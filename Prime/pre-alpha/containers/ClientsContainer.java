@@ -14,7 +14,7 @@ public class ClientsContainer extends Container implements Serializable
 
 	
 	/**
-	 * Description NEEDED!
+	 * Description NEEDED !
 	 *
 	 */
 	public ClientsContainer()
