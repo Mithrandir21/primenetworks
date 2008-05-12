@@ -12,7 +12,7 @@ import java.awt.event.*;
  * Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * @version
+ * @version 0.1
  */
 
 public class WorkareaCanvas extends Canvas implements MouseListener, MouseMotionListener

@@ -12,7 +12,7 @@ import javax.swing.*;
  * Description NEEDED!
  *
  * @author Bahram Malaekeh
- * @version
+ * @version 0.1
  */
 public class ImageSelection extends TransferHandler implements Transferable 
 {

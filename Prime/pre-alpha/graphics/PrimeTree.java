@@ -16,7 +16,7 @@ import javax.swing.tree.*;
  * Description NEEDED!
  *
  * @author Bahram Malaekeh
- * @version
+ * @version 0.1
  */
 public class PrimeTree extends JScrollPane implements TreeSelectionListener 
 {

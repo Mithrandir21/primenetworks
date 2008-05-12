@@ -17,7 +17,7 @@ import javax.swing.border.Border;
  * Description NEEDED!
  *
  * @author Bahram Malaekeh
- * @version
+ * @version 0.1
  */
 public class ObjectSelection extends JPanel
 {

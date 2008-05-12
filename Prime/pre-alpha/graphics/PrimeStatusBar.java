@@ -13,7 +13,7 @@ import org.jdesktop.swingx.JXStatusBar;
  * Description NEEDED!
  *
  * @author Bahram Malaekeh
- * @version
+ * @version 0.1
  */
 public class PrimeStatusBar extends JXStatusBar
 {
