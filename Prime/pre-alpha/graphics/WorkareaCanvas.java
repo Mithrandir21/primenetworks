@@ -6,6 +6,9 @@ package graphics;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.*;
+
+import javax.swing.*;
 
 
 /**
@@ -19,10 +22,40 @@ public class WorkareaCanvas extends Canvas implements MouseListener, MouseMotion
 {
 	public WorkareaCanvas()
 	{
-		setBackground(Color.white);
+		setBackground(Color.black);
 		addMouseMotionListener(this);
 		addMouseListener(this);
+		
+		
+		// Tell AWT not to bother repainting our canvas since we're
+		// going to do that our self in accelerated mode
+		setIgnoreRepaint(true);
+		
+		
+		// create the buffering strategy which will allow AWT
+		// to manage our accelerated graphics
+		createBufferStrategy(2);
+		BufferStrategy strategy = getBufferStrategy();
+		
+		
+        // Get hold of a graphics context for the accelerated 
+        // surface and blank it out
+        Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
+        g.setColor(Color.black);
+        g.fillRect(0,0,800,600);
+
+        // finally, we've completed drawing so clear up the graphics
+        // and flip the buffer over
+        g.dispose();
+        strategy.show();
 	}
+	
+	
+	private void setup()
+	{
+		
+	}
+	
 
 	// Handles the event of the user pressing down the mouse button.
 	public void mousePressed(MouseEvent e)
