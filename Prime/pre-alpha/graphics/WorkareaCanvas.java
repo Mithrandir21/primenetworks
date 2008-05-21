@@ -21,26 +21,18 @@ import javax.swing.border.Border;
 
 public class WorkareaCanvas extends Canvas //implements MouseListener, MouseMotionListener
 {
+	Image t = createImageIcon("images/buttonIcons/cut.jpg").getImage();
 	public WorkareaCanvas()
 	{
-		this.setMaximumSize(new Dimension(50,50));
+		
 	}
 	
 	public void paint(Graphics g)
     {
-		// = this.getGraphics();
-		
-		Image t = createImageIcon("images/buttonIcons/cut.jpg").getImage();
-		
-		
-		//Graphics2D g2d = ( Graphics2D ) g;
-		
-		
-		//this.setBackground(Color.black);
-		
 		g.setColor(Color.black);
 		g.fillRect(0, 0, 500, 500);
 		g.drawImage(t,50,50,null);
+		
     }
 	
 	

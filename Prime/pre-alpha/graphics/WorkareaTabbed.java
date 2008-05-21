@@ -30,17 +30,18 @@ public class WorkareaTabbed extends JTabbedPane
 		
 		
 		JScrollPane pane = new JScrollPane();
-		//pane.setPreferredSize(new Dimension(800,600));
+		pane.setPreferredSize(new Dimension(800,600));
 		pane.setHorizontalScrollBarPolicy(pane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		pane.setVerticalScrollBarPolicy(pane.VERTICAL_SCROLLBAR_ALWAYS);
 		
 		WorkareaCanvas canvas = new WorkareaCanvas();
 		
+		
+		
 		pane.setViewportView(canvas);
 		
 		p.add(pane);
-
-		
+	
 		this.addTab("Canvas", null, p, "P2");
 		
 		

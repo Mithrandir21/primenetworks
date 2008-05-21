@@ -142,7 +142,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 		 * be.
 		 */
 		// Creates a new panel with a GridBagLayout.
-		workareaPanel = new JPanel(new GridLayout());
+		workareaPanel = new JPanel(new BorderLayout());
 		
 		// Constraints for the window
 		GridBagConstraints conWorkareaPanel = new GridBagConstraints();
@@ -156,6 +156,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 		//workareaPanel.add(new JLabel("Workarea"));
 		
         workareaPanel.add(new WorkareaTabbed());
+        
 	
 		
 		
