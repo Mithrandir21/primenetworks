@@ -97,27 +97,6 @@ public class PrimeMain1 extends JFrame implements ActionListener
 		selectionPanel.add(new TabbedSelection());
 		
 		
-		/* 
-		 * SETUP FOR THE workareaPanel PANEL. This panel will contain the actual work area where
-		 * all of the icons and connection will be shown. This is where the "map" of the network will
-		 * be.
-		 */
-		// Creates a new panel with a GridBagLayout.
-		workareaPanel = new JPanel(new GridLayout());
-		
-		// Constraints for the window
-		GridBagConstraints conWorkareaPanel = new GridBagConstraints();
-		
-		// Sets the constraints to fill both vertical and horizontal
-		//conWorkareaPanel.fill = GridBagConstraints.BOTH;
-		
-		// Sets the border around the panel
-		workareaPanel.setBorder(grayline);
-		
-		//workareaPanel.add(new JLabel("Workarea"));
-		
-        workareaPanel.add(new WorkareaTabbed());
-		
 		
 		/* 
 		 * SETUP FOR THE propertiesPanel PANEL. This panel will contain some, if not all, of
@@ -155,6 +134,28 @@ public class PrimeMain1 extends JFrame implements ActionListener
 		messagesPanel.setBorder(grayline);
 		
 		messagesPanel.add(new JLabel("Messages"));
+		
+		
+		/* 
+		 * SETUP FOR THE workareaPanel PANEL. This panel will contain the actual work area where
+		 * all of the icons and connection will be shown. This is where the "map" of the network will
+		 * be.
+		 */
+		// Creates a new panel with a GridBagLayout.
+		workareaPanel = new JPanel(new GridLayout());
+		
+		// Constraints for the window
+		GridBagConstraints conWorkareaPanel = new GridBagConstraints();
+		
+		// Sets the constraints to fill both vertical and horizontal
+		//conWorkareaPanel.fill = GridBagConstraints.BOTH;
+		
+		// Sets the border around the panel
+		workareaPanel.setBorder(grayline);
+		
+		//workareaPanel.add(new JLabel("Workarea"));
+		
+        workareaPanel.add(new WorkareaTabbed());
 	
 		
 		
@@ -162,8 +163,8 @@ public class PrimeMain1 extends JFrame implements ActionListener
 	
 		this.add(new PrimeStatusBar(), BorderLayout.SOUTH);
 		
-		
-		LoadLayoutModel();
+		makeLayoutModel();
+		//LoadLayoutModel();
 		
 		
 		multiSplitPane.setDividerSize(5);
@@ -202,7 +203,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 			{
             	public void windowClosing(WindowEvent ev) 
             	{
-            		SaveLayoutModel();
+            		//SaveLayoutModel();
             		System.exit(0);
             	}
 			}
@@ -235,7 +236,28 @@ public class PrimeMain1 extends JFrame implements ActionListener
 		}
 	}
 	
-	
+	private void makeLayoutModel()
+	{
+		String layoutDef =
+		    "(COLUMN weight=1.0" +
+		    	"(LEAF name=toolbarLeaf) " +
+		    		"(ROW " +
+		    			"(LEAF name=selectionLeaf) " +
+		    			"(COLUMN " +
+		    				"(ROW " +
+		    					"(LEAF name=workareaLeaf weight=0.7)" +
+		    					"(LEAF name=propertiesLeaf) " +
+		    				")" +
+		    				"(LEAF name=messagesLeaf weight=0.2) " +
+		    			")" +
+		    		")" +
+		    ")";
+		
+		//JOptionPane.showMessageDialog(null,"Error Loading layout Model.");
+		Node modelRoot = MultiSplitLayout.parseModel(layoutDef);
+	    multiSplitPane.getMultiSplitLayout().setModel(modelRoot);
+	    multiSplitPane.setPreferredSize(modelRoot.getBounds().getSize());
+	}
 	
 	private void LoadLayoutModel()
 	{

@@ -9,6 +9,7 @@ import java.awt.event.*;
 import java.awt.image.*;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 
 /**
@@ -18,44 +19,32 @@ import javax.swing.*;
  * @version 0.1
  */
 
-public class WorkareaCanvas extends Canvas implements MouseListener, MouseMotionListener
+public class WorkareaCanvas extends Canvas //implements MouseListener, MouseMotionListener
 {
 	public WorkareaCanvas()
 	{
-		setBackground(Color.black);
-		addMouseMotionListener(this);
-		addMouseListener(this);
+		this.setMaximumSize(new Dimension(50,50));
+	}
+	
+	public void paint(Graphics g)
+    {
+		// = this.getGraphics();
+		
+		Image t = createImageIcon("images/buttonIcons/cut.jpg").getImage();
 		
 		
-		// Tell AWT not to bother repainting our canvas since we're
-		// going to do that our self in accelerated mode
-		setIgnoreRepaint(true);
+		//Graphics2D g2d = ( Graphics2D ) g;
 		
 		
-		// create the buffering strategy which will allow AWT
-		// to manage our accelerated graphics
-		createBufferStrategy(2);
-		BufferStrategy strategy = getBufferStrategy();
+		//this.setBackground(Color.black);
 		
-		
-        // Get hold of a graphics context for the accelerated 
-        // surface and blank it out
-        Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
-        g.setColor(Color.black);
-        g.fillRect(0,0,800,600);
+		g.setColor(Color.black);
+		g.fillRect(0, 0, 500, 500);
+		g.drawImage(t,50,50,null);
+    }
+	
+	
 
-        // finally, we've completed drawing so clear up the graphics
-        // and flip the buffer over
-        g.dispose();
-        strategy.show();
-	}
-	
-	
-	private void setup()
-	{
-		
-	}
-	
 
 	// Handles the event of the user pressing down the mouse button.
 	public void mousePressed(MouseEvent e)
@@ -98,5 +87,15 @@ public class WorkareaCanvas extends Canvas implements MouseListener, MouseMotion
 		
 	}
 	
-
+	/** Returns an ImageIcon, or null if the path was invalid. */
+	protected ImageIcon createImageIcon(String path) 
+	{
+	    java.net.URL imgURL = getClass().getResource(path);
+	    if (imgURL != null) {
+	        return new ImageIcon(imgURL);
+	    } else {
+	        System.err.println("Couldn't find file: " + path);
+	        return null;
+	    }
+	}
 }

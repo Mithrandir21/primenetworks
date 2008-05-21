@@ -3,7 +3,10 @@
  */
 package graphics;
 
+import java.awt.*;
+
 import javax.swing.*;
+import javax.swing.border.Border;
 
 /**
  * Description NEEDED!
@@ -15,10 +18,30 @@ public class WorkareaTabbed extends JTabbedPane
 {
 	public WorkareaTabbed()
 	{
+		
+		// A simple border that is gray 
+		Border grayline = BorderFactory.createLineBorder(Color.GRAY);
+		
+		
 		ImageIcon icon = createImageIcon("images/java.jpg");
-		JComponent p = new JPanel();
-		p.add(new WorkareaCanvas());
-		this.addTab("P1", icon, p, "P2");
+		
+		JPanel p = new JPanel();
+		p.setLayout(new BorderLayout());
+		
+		
+		JScrollPane pane = new JScrollPane();
+		//pane.setPreferredSize(new Dimension(800,600));
+		pane.setHorizontalScrollBarPolicy(pane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		pane.setVerticalScrollBarPolicy(pane.VERTICAL_SCROLLBAR_ALWAYS);
+		
+		WorkareaCanvas canvas = new WorkareaCanvas();
+		
+		pane.setViewportView(canvas);
+		
+		p.add(pane);
+
+		
+		this.addTab("Canvas", null, p, "P2");
 		
 		
         
