@@ -21,29 +21,13 @@ public class ImageSelection extends TransferHandler implements Transferable
 		  private Image image;
 
 		  
+		  
 		  public int getSourceActions(JComponent c) 
 		  {
 		    return TransferHandler.COPY;
 		  }
 
-		  /*
-		  public boolean canImport(TransferSupport support) 
-		  {
-		    if (!isDataFlavorSupported(DataFlavor.imageFlavor)) 
-		    {
-		      return false;
-		    }
-		    
-		    // Fetch the drop location
-		    //DropLocation loc = support.getDropLocation();
-
-		    // Return whether we accept the location
-		    //return shouldAcceptDropLocation(loc);
-		    
-		    return true;
-		  }
-		  */
-
+		  
 		  
 		  public Transferable createTransferable(JComponent comp) 
 		  {
@@ -64,23 +48,7 @@ public class ImageSelection extends TransferHandler implements Transferable
 		    
 		  }
 
-		  /*
-		  public boolean importData(TransferSupport support) 
-		  {
-		    if (!canImport(support)) 
-		    {
-		    	return false;
-		    }
-		    
-
-		    JLabel label = (JLabel) support.getTransferable();
-		    
-		    
-		    return false;
-		  }
-		  */
-
-		  // Transferable
+		  
 		  
 		  public Object getTransferData(DataFlavor flavor) 
 		  {
@@ -93,10 +61,12 @@ public class ImageSelection extends TransferHandler implements Transferable
 		  
 		  
 		  
+		  
 		  public DataFlavor[] getTransferDataFlavors() 
 		  {
 		    return flavors;
 		  }
+		  
 		  
 		  
 		  

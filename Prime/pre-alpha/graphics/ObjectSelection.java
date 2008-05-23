@@ -177,9 +177,7 @@ public class ObjectSelection extends JPanel
 		JLabel iconButton = new JLabel(imageIcon);
 		iconButton.setName("Bam");
 		iconButton.setText(text);		
-		
-		
-		
+
 		MouseListener mouseListener = new MouseAdapter() 
 		{
 		      public void mousePressed(MouseEvent e) 
@@ -190,17 +188,9 @@ public class ObjectSelection extends JPanel
 		      }
 		};
 		
-		
 		iconButton.setTransferHandler(new ImageSelection());
 		
-		
-		
 		iconButton.addMouseListener(mouseListener);
-		
-		
-		
-		
-		
 		
 		iconButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		iconButton.setAlignmentY(Component.TOP_ALIGNMENT);

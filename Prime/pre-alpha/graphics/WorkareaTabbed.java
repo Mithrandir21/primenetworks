@@ -17,46 +17,24 @@ import javax.swing.border.Border;
 public class WorkareaTabbed extends JTabbedPane
 {
 	public WorkareaTabbed()
-	{
-		
-		// A simple border that is gray 
-		Border grayline = BorderFactory.createLineBorder(Color.GRAY);
-		
-		
+	{		
+		// Creates the image for the tab
 		ImageIcon icon = createImageIcon("images/java.jpg");
 		
-		JPanel p = new JPanel();
-		p.setLayout(new BorderLayout());
+		this.setPreferredSize(new Dimension(600,500));
 		
 		
-		JScrollPane pane = new JScrollPane();
-		pane.setPreferredSize(new Dimension(800,600));
-		pane.setHorizontalScrollBarPolicy(pane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		pane.setVerticalScrollBarPolicy(pane.VERTICAL_SCROLLBAR_ALWAYS);
-		
-		WorkareaCanvas canvas = new WorkareaCanvas();
+		// Creates a new JScrollPane with the viewport set to the workareaCanvas
+		WorkareaSceneScroll canvasScroll = new WorkareaSceneScroll();
 		
 		
-		
-		pane.setViewportView(canvas);
-		
-		p.add(pane);
-	
-		this.addTab("Canvas", null, p, "P2");
+		addTab("Canvas", icon, canvasScroll);
 		
 		
-        
-        //The following line enables to use scrolling tabs.
-        this.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		
 	}
 
-    
-    
-    
-    
-    
-    
-    
 	
     
 	/** Returns an ImageIcon, or null if the path was invalid. */

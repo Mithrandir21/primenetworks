@@ -155,6 +155,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 		
 		//workareaPanel.add(new JLabel("Workarea"));
 		
+	    //workareaPanel.add(new WorkareaCanvas());
         workareaPanel.add(new WorkareaTabbed());
         
 	

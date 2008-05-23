@@ -3,13 +3,16 @@
  */
 package graphics;
 
-
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.*;
 
 import javax.swing.*;
-import javax.swing.border.Border;
+
+import org.netbeans.api.visual.widget.*;
+import org.netbeans.api.visual.action.*;
+import org.netbeans.api.visual.anchor.*;
+import org.netbeans.api.visual.border.BorderFactory;
+
+
 
 
 /**
@@ -19,72 +22,123 @@ import javax.swing.border.Border;
  * @version 0.1
  */
 
-public class WorkareaCanvas extends Canvas //implements MouseListener, MouseMotionListener
+public class WorkareaCanvas 
 {
-	Image t = createImageIcon("images/buttonIcons/cut.jpg").getImage();
+	private Scene scene;
+	
+	public JComponent myView;
+	
+	private LayerWidget mainLayer;
+	
+	private LayerWidget interactionLayer;
+	
+	private LayerWidget connectionLayer;
+	
+	
 	public WorkareaCanvas()
 	{
+		scene = new Scene();
+		
+		myView = scene.createView();
+		
+		scene.getActions().addAction(ActionFactory.createSelectAction(new CreateProvider()));
+		scene.getActions().addAction(ActionFactory.createZoomAction());
+		
+		
+		mainLayer = new LayerWidget(scene);
+		scene.addChild(mainLayer);
+		
+		interactionLayer = new LayerWidget(scene);
+		scene.addChild(interactionLayer);
+		
+		connectionLayer = new LayerWidget(scene);
+		scene.addChild(connectionLayer);
 		
 	}
 	
-	public void paint(Graphics g)
-    {
-		g.setColor(Color.black);
-		g.fillRect(0, 0, 500, 500);
-		g.drawImage(t,50,50,null);
-		
-    }
 	
 	
-
-
-	// Handles the event of the user pressing down the mouse button.
-	public void mousePressed(MouseEvent e)
+	private class CreateProvider implements SelectProvider
 	{
-		
+
+		public boolean isAimingAllowed(Widget arg0, Point arg1, boolean arg2) 
+		{
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		public boolean isSelectionAllowed(Widget arg0, Point arg1, boolean arg2) 
+		{
+			// TODO Auto-generated method stub
+			return true;
+		}
+
+		public void select(Widget relatedWidget, Point localLocation, boolean invertSelection) 
+		{
+			Widget widget = new ImageWidget(scene, createImage("images/java.jpg"));
+			widget.setPreferredLocation(relatedWidget.convertLocalToScene(localLocation));
+			widget.getActions().addAction(ActionFactory.createExtendedConnectAction(interactionLayer,new SceneConnectProvider()));
+			//widget.setBorder(BorderFactory.createRoundedBorder(10, 10, Color.yellow, Color.black));
+			widget.getActions().addAction(ActionFactory.createAlignWithMoveAction(mainLayer, interactionLayer, null));
+			mainLayer.addChild(widget);
+		}
+
 	}
-
-	// Handles the event of a user dragging the mouse while holding down the
-	// mouse button.
-	public void mouseDragged(MouseEvent e)
+	
+	
+	private class SceneConnectProvider implements ConnectProvider
 	{
 
-	}
+		public void createConnection(Widget sourceWidget, Widget targetWidget) 
+		{
+			ConnectionWidget connection = new ConnectionWidget(scene);
+			connection.setTargetAnchorShape(AnchorShape.TRIANGLE_FILLED);
+			connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(sourceWidget));
+			connection.setTargetAnchor(AnchorFactory.createRectangularAnchor(targetWidget));
+			connectionLayer.addChild(connection);
+			
+			
+		}
 
-	// Handles the event of a user releasing the mouse button.
-	public void mouseReleased(MouseEvent e)
-	{
-		
-	}
+		public boolean hasCustomTargetWidgetResolver(Scene scene) {
+			// TODO Auto-generated method stub
+			return false;
+		}
 
-	// This method required by MouseListener.
-	public void mouseMoved(MouseEvent e)
-	{
-		
-	}
+		public boolean isSourceWidget(Widget arg0) {
+			// TODO Auto-generated method stub
+			return false;
+		}
 
-	// These methods are required by MouseMotionListener.
-	public void mouseClicked(MouseEvent e)
-	{
-		
-	}
+		public ConnectorState isTargetWidget(Widget sourceWidget, Widget targetWidget) 
+		{
+			if(sourceWidget != targetWidget && targetWidget instanceof LabelWidget)
+			{
+				return ConnectorState.ACCEPT;
+			}
+			else
+			{
+				return ConnectorState.REJECT;
+			}
+			
+		}
 
-	public void mouseExited(MouseEvent e)
-	{
-		
-	}
-
-	public void mouseEntered(MouseEvent e)
-	{
+		public Widget resolveTargetWidget(Scene sourceWidget, Point sceneLocation) 
+		{
+			// TODO Auto-generated method stub
+			return null;
+		}
 		
 	}
 	
-	/** Returns an ImageIcon, or null if the path was invalid. */
-	protected ImageIcon createImageIcon(String path) 
+	
+	
+	/** Returns an Image, or null if the path was invalid. */
+	protected Image createImage(String path) 
 	{
 	    java.net.URL imgURL = getClass().getResource(path);
 	    if (imgURL != null) {
-	        return new ImageIcon(imgURL);
+	        return new ImageIcon(imgURL).getImage();
 	    } else {
 	        System.err.println("Couldn't find file: " + path);
 	        return null;
