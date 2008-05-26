@@ -6,6 +6,8 @@ package graphics;
 import java.awt.*;
 import java.awt.datatransfer.*;
 
+import servers.*;
+import widgetManipulation.WidgetObject;
 import javax.swing.*;
 
 /**
@@ -14,68 +16,43 @@ import javax.swing.*;
  * @author Bahram Malaekeh
  * @version 0.1
  */
-public class ImageSelection extends TransferHandler implements Transferable 
+public class ImageSelection extends TransferHandler 
 {
-	private static final DataFlavor flavors[] = { DataFlavor.imageFlavor };
-
-		  private Image image;
-
-		  
-		  
-		  public int getSourceActions(JComponent c) 
-		  {
-		    return TransferHandler.COPY;
-		  }
+	
+	public int getSourceActions(JComponent c) 
+	{
+		System.out.println("Kmr hit 11");
+	    return TransferHandler.COPY;
+	}
 
 		  
 		  
-		  public Transferable createTransferable(JComponent comp) 
-		  {
-			  
-		    // Clear
-		    image = null;
-
+	public Transferable createTransferable(JComponent comp) 
+	{
+		System.out.println("Kmr hit 12");
 		    if (comp instanceof JLabel) 
 		    {
 		      JLabel label = (JLabel) comp;
 		      Icon icon = label.getIcon();
 		      if (icon instanceof ImageIcon) 
 		      {
-		    	  return new StringSelection (label.getText());
+		    	  System.out.println("Lager object");
+		    	  return new WidgetObject(PrimeMain1.scene,new HTTPServer("newComponent2","Desc","1","2","3"), createImage("images/objectImages/print-server.png"));
 		      }
 		    }
 		    return null;
-		    
-		  }
+	}
 
-		  
-		  
-		  public Object getTransferData(DataFlavor flavor) 
-		  {
-		    if (isDataFlavorSupported(flavor)) 
-		    {
-		      return image;
-		    }
-		    return null;
-		  }
-		  
-		  
-		  
-		  
-		  public DataFlavor[] getTransferDataFlavors() 
-		  {
-		    return flavors;
-		  }
-		  
-		  
-		  
-		  
-		  public boolean isDataFlavorSupported(DataFlavor flavor) 
-		  {
-		    return flavor.equals(DataFlavor.imageFlavor);
-		  }
-		
-		
 	
-	
+	/** Returns an Image, or null if the path was invalid. */
+	protected Image createImage(String path) 
+	{
+	    java.net.URL imgURL = getClass().getResource(path);
+	    if (imgURL != null) {
+	        return new ImageIcon(imgURL).getImage();
+	    } else {
+	        System.err.println("Couldn't find file: " + path);
+	        return null;
+	    }
+	}
 }

@@ -14,6 +14,7 @@ import javax.swing.border.Border;
 
 import org.jdesktop.swingx.*;
 import org.jdesktop.swingx.MultiSplitLayout.*;
+import org.netbeans.api.visual.widget.Scene;
 
 
 /**
@@ -37,6 +38,9 @@ public class PrimeMain1 extends JFrame implements ActionListener
 	
 	// A simple border that is gray 
 	Border grayline = BorderFactory.createLineBorder(Color.GRAY);
+	
+	
+	static Scene scene = new Scene();
 	
 	
 	
@@ -298,4 +302,5 @@ public class PrimeMain1 extends JFrame implements ActionListener
 		    multiSplitPane.setPreferredSize(modelRoot.getBounds().getSize());
 		}		
 	}
+
 }

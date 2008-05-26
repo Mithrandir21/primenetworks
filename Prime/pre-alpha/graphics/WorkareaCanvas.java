@@ -12,6 +12,9 @@ import org.netbeans.api.visual.action.*;
 import org.netbeans.api.visual.anchor.*;
 import org.netbeans.api.visual.border.BorderFactory;
 
+import servers.HTTPServer;
+import widgetManipulation.WidgetObject;
+
 
 
 
@@ -37,20 +40,28 @@ public class WorkareaCanvas
 	
 	public WorkareaCanvas()
 	{
-		scene = new Scene();
+		// The scene, canvas, where all the components of the system will be shown.
+		scene = PrimeMain1.scene;
+			
 		
+		// Creating the actual view
 		myView = scene.createView();
 		
+		
 		scene.getActions().addAction(ActionFactory.createSelectAction(new CreateProvider()));
+		
+		// Adds the zoom feature to the scene.
 		scene.getActions().addAction(ActionFactory.createZoomAction());
 		
-		
+		// This is the main layer of the scene where the widgets, objects, are placed.
 		mainLayer = new LayerWidget(scene);
 		scene.addChild(mainLayer);
 		
+		// This is the interaction layer
 		interactionLayer = new LayerWidget(scene);
 		scene.addChild(interactionLayer);
 		
+		// This is the connection layer where all the connections between the objects are shown.
 		connectionLayer = new LayerWidget(scene);
 		scene.addChild(connectionLayer);
 		
@@ -75,7 +86,8 @@ public class WorkareaCanvas
 
 		public void select(Widget relatedWidget, Point localLocation, boolean invertSelection) 
 		{
-			Widget widget = new ImageWidget(scene, createImage("images/java.jpg"));
+			//Widget widget = new ImageWidget(scene, createImage("images/java.jpg"));
+			Widget widget = new WidgetObject(scene,new HTTPServer("newComponent2","Desc","1","2","3"), createImage("images/objectImages/print-server.png"));
 			widget.setPreferredLocation(relatedWidget.convertLocalToScene(localLocation));
 			widget.getActions().addAction(ActionFactory.createExtendedConnectAction(interactionLayer,new SceneConnectProvider()));
 			//widget.setBorder(BorderFactory.createRoundedBorder(10, 10, Color.yellow, Color.black));
@@ -112,13 +124,13 @@ public class WorkareaCanvas
 
 		public ConnectorState isTargetWidget(Widget sourceWidget, Widget targetWidget) 
 		{
-			if(sourceWidget != targetWidget && targetWidget instanceof LabelWidget)
+			if(sourceWidget != targetWidget && targetWidget instanceof WidgetObject)
 			{
 				return ConnectorState.ACCEPT;
 			}
 			else
 			{
-				return ConnectorState.REJECT;
+				return ConnectorState.REJECT_AND_STOP;
 			}
 			
 		}
