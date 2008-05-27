@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphics;
+package graphics.GUI.workareaCanvas;
 
 import java.awt.*;
 
@@ -41,7 +41,7 @@ public class WorkareaCanvas
 	public WorkareaCanvas()
 	{
 		// The scene, canvas, where all the components of the system will be shown.
-		scene = PrimeMain1.scene;
+		scene = graphics.PrimeMain1.scene;
 			
 		
 		// Creating the actual view

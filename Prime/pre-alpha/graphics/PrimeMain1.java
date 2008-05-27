@@ -3,7 +3,7 @@
  */
 package graphics;
 
-import graphics.GUI.canvasArea.WorkareaTabbed;
+import graphics.GUI.workareaCanvas.WorkareaTabbed;
 import graphics.GUI.menues.GenericPrimeMenuBar;
 import graphics.GUI.menues.GenericPrimeToolbar;
 import graphics.GUI.selectArea.TabbedSelection;

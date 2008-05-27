@@ -1,9 +1,8 @@
 /**
  * 
  */
-package graphics;
+package graphics.GUI.workareaCanvas;
 
-import graphics.WorkareaSceneScroll;
 
 import java.awt.*;
 

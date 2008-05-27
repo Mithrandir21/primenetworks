@@ -1,6 +1,6 @@
-package graphics;
+package graphics.GUI.workareaCanvas;
 
-import graphics.GUI.canvasArea.WorkareaCanvas;
+import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import javax.swing.*;
 
