@@ -3,6 +3,8 @@
  */
 package graphics;
 
+import graphics.WorkareaSceneScroll;
+
 import java.awt.*;
 
 import javax.swing.*;

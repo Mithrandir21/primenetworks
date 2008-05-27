@@ -1,5 +1,7 @@
 package graphics;
 
+import graphics.GUI.canvasArea.WorkareaCanvas;
+
 import javax.swing.*;
 
 import org.netbeans.api.visual.widget.Scene;

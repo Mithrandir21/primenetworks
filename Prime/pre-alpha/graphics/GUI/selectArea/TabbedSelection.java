@@ -1,4 +1,4 @@
-package graphics;
+package graphics.GUI.selectArea;
 
 
 
@@ -6,6 +6,7 @@ package graphics;
  * TabbedPaneDemo.java requires one additional file:
  *   images/middle.gif.
  */
+
 
 import javax.swing.*;
 

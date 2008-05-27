@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphics;
+package graphics.GUI.statusArea;
 
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;

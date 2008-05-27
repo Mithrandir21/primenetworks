@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphics;
+package graphics.GUI.selectArea;
 
 import java.awt.Dimension;
 import java.io.File;

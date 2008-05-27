@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphics;
+package graphics.GUI.menues;
 
 import java.awt.BorderLayout;
 import javax.swing.*;

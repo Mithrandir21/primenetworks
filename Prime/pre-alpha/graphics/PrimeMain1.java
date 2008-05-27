@@ -3,6 +3,12 @@
  */
 package graphics;
 
+import graphics.GUI.canvasArea.WorkareaTabbed;
+import graphics.GUI.menues.GenericPrimeMenuBar;
+import graphics.GUI.menues.GenericPrimeToolbar;
+import graphics.GUI.selectArea.TabbedSelection;
+import graphics.GUI.statusArea.PrimeStatusBar;
+
 import java.io.*;
 
 import java.awt.*;
@@ -40,7 +46,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 	Border grayline = BorderFactory.createLineBorder(Color.GRAY);
 	
 	
-	static Scene scene = new Scene();
+	public static Scene scene = new Scene();
 	
 	
 	

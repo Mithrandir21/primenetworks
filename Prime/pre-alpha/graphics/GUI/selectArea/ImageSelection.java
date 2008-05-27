@@ -1,7 +1,9 @@
 /**
  * 
  */
-package graphics;
+package graphics.GUI.selectArea;
+
+import graphics.PrimeMain1;
 
 import java.awt.*;
 import java.awt.datatransfer.*;
@@ -21,7 +23,7 @@ public class ImageSelection extends TransferHandler
 	
 	public int getSourceActions(JComponent c) 
 	{
-		System.out.println("Kmr hit 11");
+		System.out.println("Sjekker tillatt handling.");
 	    return TransferHandler.COPY;
 	}
 
@@ -29,7 +31,6 @@ public class ImageSelection extends TransferHandler
 		  
 	public Transferable createTransferable(JComponent comp) 
 	{
-		System.out.println("Kmr hit 12");
 		    if (comp instanceof JLabel) 
 		    {
 		      JLabel label = (JLabel) comp;

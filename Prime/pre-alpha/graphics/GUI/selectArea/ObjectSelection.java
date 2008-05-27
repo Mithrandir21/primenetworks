@@ -1,7 +1,8 @@
 /**
  * 
  */
-package graphics;
+package graphics.GUI.selectArea;
+
 
 
 import java.awt.*;

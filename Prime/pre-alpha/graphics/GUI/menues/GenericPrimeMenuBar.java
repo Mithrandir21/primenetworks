@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphics;
+package graphics.GUI.menues;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
