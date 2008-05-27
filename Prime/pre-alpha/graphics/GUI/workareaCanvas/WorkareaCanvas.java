@@ -104,7 +104,7 @@ public class WorkareaCanvas
 		public void createConnection(Widget sourceWidget, Widget targetWidget) 
 		{
 			ConnectionWidget connection = new ConnectionWidget(scene);
-			connection.setTargetAnchorShape(AnchorShape.TRIANGLE_FILLED);
+			connection.setTargetAnchorShape(AnchorShape.NONE);
 			connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(sourceWidget));
 			connection.setTargetAnchor(AnchorFactory.createRectangularAnchor(targetWidget));
 			connectionLayer.addChild(connection);
@@ -112,13 +112,18 @@ public class WorkareaCanvas
 			
 		}
 
-		public boolean hasCustomTargetWidgetResolver(Scene scene) {
-			// TODO Auto-generated method stub
+		public boolean hasCustomTargetWidgetResolver(Scene scene) 
+		{
 			return false;
 		}
 
-		public boolean isSourceWidget(Widget arg0) {
-			// TODO Auto-generated method stub
+		public boolean isSourceWidget(Widget sourceWidget) 
+		{
+			if(sourceWidget instanceof WidgetObject)
+			{
+				return true;
+			}
+			
 			return false;
 		}
 
