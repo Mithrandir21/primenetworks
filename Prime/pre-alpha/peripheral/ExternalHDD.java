@@ -1,5 +1,4 @@
 package peripheral;
-import hardware.HDD;
 import java.io.Serializable;
 import objects.ExternalHardware;
 

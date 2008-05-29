@@ -222,6 +222,7 @@ public class ComponentsManagment
 	 * @throws ObjectNotFoundException Throws an exception which states that there were
 	 * not objects found with the given class.
 	 */
+	@SuppressWarnings("unchecked")
 	public static Object[] getSpesificComponents(Class ComponentClass,
 			Object[] components, int componentCounter) throws ObjectNotFoundException
 	{		
@@ -254,9 +255,7 @@ public class ComponentsManagment
 		// Checks whether all the objects were found and removed
 		if(objectNotFound==true)
 		{
-			ObjectNotFoundException exception = new 
-			ObjectNotFoundException("Object(s) with the given component, "+ ComponentClass.getCanonicalName() 
-					+ " were not found.", ComponentClass);
+			ObjectNotFoundException exception = new ObjectNotFoundException("Object(s) with the given component, "+ ComponentClass.getCanonicalName() + " were not found.", ComponentClass);
 			
 			throw exception;
 		}

@@ -10,9 +10,6 @@ package graphics.GUI.selectArea;
 
 import javax.swing.*;
 
-import java.awt.*;
-import java.io.IOException;
-
 public class TabbedSelection extends JTabbedPane
 {
     public TabbedSelection() 

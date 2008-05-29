@@ -5,8 +5,6 @@ import junit.framework.TestCase;
 
 import managment.ArrayManagment;
 
-import objects.Object;
-
 import org.junit.Test;
 
 import exceptions.StringNotFoundInArrayException;

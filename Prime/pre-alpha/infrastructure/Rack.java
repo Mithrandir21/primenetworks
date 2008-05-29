@@ -129,7 +129,7 @@ public class Rack extends Object implements Serializable
 	 * 
 	 * @return Returns an array of units that match with the given class.
 	 */
-	public Object[] getSpesificUnits(Class unitClass) throws ObjectNotFoundException
+	public Object[] getSpesificUnits(Class<Object> unitClass) throws ObjectNotFoundException
 	{		
 		Object[] unitsFound = ComponentsManagment.getSpesificComponents(unitClass,
 				units, unitsCounter);

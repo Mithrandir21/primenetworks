@@ -206,7 +206,7 @@ public class MainContainerWorker
 	 * Description
 	 * 
 	 */
-	public boolean containsObject(Object object, Class objectClass)
+	public boolean containsObject(Object object, Class<Object> objectClass)
 	{
 		if(objectClass.equals(Object.class))
 		{

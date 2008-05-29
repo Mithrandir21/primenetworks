@@ -161,7 +161,7 @@ public class Laptop extends Clients implements Serializable
 	 * 
 	 * @return Returns an array of components that match with the given class.
 	 */
-	public Object[] getSpesificComponents(Class ComponentClass)
+	public Object[] getSpesificComponents(Class<Object> ComponentClass)
 			throws ObjectNotFoundException
 	{
 		Object[] componentsFound = ComponentsManagment.getSpesificComponents(
@@ -179,7 +179,7 @@ public class Laptop extends Clients implements Serializable
 	 * @return Returns an array of connected devices that match with the given
 	 *         class.
 	 */
-	public Object[] getSpesificConncetedDevices(Class connectedDeviceClass)
+	public Object[] getSpesificConncetedDevices(Class<Object> connectedDeviceClass)
 			throws ObjectNotFoundException
 	{
 		Object[] componentsFound = ComponentsManagment.getSpesificComponents(

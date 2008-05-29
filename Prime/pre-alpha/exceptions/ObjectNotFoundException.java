@@ -1,6 +1,6 @@
 package exceptions;
-import objects.Object;
 
+import objects.Object;
 
 /**
  * This is exception class extends the super class, {@link  java.lang.Exception  Exception} class.
@@ -16,7 +16,7 @@ import objects.Object;
 public class ObjectNotFoundException extends Exception
 {
 	// A container for the class of the object that was not found.
-	Class objectType;
+	Class<Object> objectType;
 	
 	
     /**
@@ -28,7 +28,7 @@ public class ObjectNotFoundException extends Exception
      *          later retrieval by the {@link #getMessage()} method.
      * @param   type  The class of the object that was not found within an array
      */
-    public ObjectNotFoundException(String message, Class type) 
+    public ObjectNotFoundException(String message, Class<Object> type) 
     {
     	super(message);
     	
@@ -41,9 +41,8 @@ public class ObjectNotFoundException extends Exception
 	 * Retrieves the class of the object that was not found.
 	 *
 	 */
-	public Class getObjectClass()
+	public Class<Object> getObjectClass()
 	{
-	
 		return objectType;
 	}
 }

@@ -10,7 +10,6 @@ import javax.swing.*;
 import org.netbeans.api.visual.widget.*;
 import org.netbeans.api.visual.action.*;
 import org.netbeans.api.visual.anchor.*;
-import org.netbeans.api.visual.border.BorderFactory;
 
 import servers.HTTPServer;
 import widgetManipulation.WidgetObject;

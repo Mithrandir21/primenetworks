@@ -51,6 +51,7 @@ public class InternalComponentsCheck
 	/**
 	 * Description
 	 */
+	@SuppressWarnings("unchecked")
 	public static boolean checkMBinternalPorts(Motherboard MB,
 			Object[] components, Object a)
 	{
@@ -264,6 +265,7 @@ public class InternalComponentsCheck
 	/**
 	 * Description
 	 */
+	@SuppressWarnings("unchecked")
 	public static int checkMB_DUCports(int maxDUCs, Object[] components)
 	{
 		// Number of available DUC ports on the computer

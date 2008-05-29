@@ -4,8 +4,6 @@ import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import javax.swing.*;
 
-import org.netbeans.api.visual.widget.Scene;
-
 public class WorkareaSceneScroll extends JScrollPane
 {
 	private WorkareaCanvas canvas;

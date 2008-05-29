@@ -2,8 +2,6 @@ package peripheral;
 import java.io.Serializable;
 
 import objects.ExternalHardware;
-import objects.Hardware;
-import peripheral.*;
 
 /**
  * This class represents a MultifunctionPrinter.

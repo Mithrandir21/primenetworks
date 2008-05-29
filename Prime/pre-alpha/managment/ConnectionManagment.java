@@ -2,7 +2,6 @@ package managment;
 
 
 import logistical.cleanup;
-import objects.ExternalHardware;
 import objects.Object;
 import connections.Connection;
 import connections.DeviceConnection;
@@ -35,6 +34,7 @@ public class ConnectionManagment
 	 * @return Returns, if possible, a connection object that represents a
 	 *         connection between the two objects.
 	 */
+	@SuppressWarnings("unchecked")
 	public static Connection makeConnection(Connection[] existingConnections,
 			String conName, String conDesc, Object objectA, Object objectB,
 			String type, Class conClass)

@@ -7,9 +7,6 @@ package graphics.GUI.workareaCanvas;
 import java.awt.*;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-
-import org.netbeans.api.visual.widget.Scene;
 
 /**
  * Description NEEDED!

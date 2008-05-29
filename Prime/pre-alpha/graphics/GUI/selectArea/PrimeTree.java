@@ -74,7 +74,7 @@ public class PrimeTree extends JScrollPane implements TreeSelectionListener
 	      curTop.add(curDir);
 	    }
 	    
-	    Vector ol = new Vector();
+	    Vector<String> ol = new Vector<String>();
 	    
 	    String[] tmp = dir.list();
 	    
@@ -87,7 +87,7 @@ public class PrimeTree extends JScrollPane implements TreeSelectionListener
 	    
 	    File f;
 	    
-	    Vector files = new Vector();
+	    Vector<String> files = new Vector<String>();
 	    
 	    // Make two passes, one for Dirs and one for Files. This is #1.
 	    for (int i = 0; i < ol.size(); i++) 
