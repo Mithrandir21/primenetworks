@@ -122,8 +122,6 @@ public class WidgetObject extends ImageWidget implements Transferable
 
 	public boolean isDataFlavorSupported(DataFlavor flavor)
 	{
-		System.out.println("WidgetCanvas - " + flavors[0]);
-		System.out.println("WidgetCanvas - " + flavor);
 		return flavors[0].equals(flavor);
 	}
 

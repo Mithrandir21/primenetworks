@@ -44,10 +44,6 @@ public class ImageSelection extends TransferHandler
 			Object newObject = new CreateObjectDragged().CreateObject(icon);
 			
 		    return new WidgetObject(PrimeMain1.scene, newObject, icon.getIconImage());
-		    
-		    
-//		    System.out.println("ImageSelection - " + objectType);
-//		    return new WidgetObject(PrimeMain1.scene,new HTTPServer("newComponent2","Desc","1","2","3"), createImage("images/objectImages/print-server.png"));
 		}
 	return null;
 	}

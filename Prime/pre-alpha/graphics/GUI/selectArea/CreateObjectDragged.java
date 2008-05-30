@@ -10,6 +10,7 @@ import infrastructure.*;
 import hardware.*;
 import graphics.WidgetIcon;
 import objects.Object;
+import peripheral.Scanner;
 
 /**
  * @author Bam
@@ -54,6 +55,10 @@ public class CreateObjectDragged
 		else if(objectType.equals("hardware.HDD"))
 		{
 			newObject = createDefaultHDD(iconObject);
+		}
+		else if(objectType.equals("peripheral.Scanner"))
+		{
+			newObject = createDefaultScanner(iconObject);
 		}
 		else if(objectType.equals("infrastructure.Hub"))
 		{
@@ -140,7 +145,7 @@ public class CreateObjectDragged
 	 */
 	private HTTPServer createDefaultHTTPServer(WidgetIcon iconObject)
 	{
-		String objectName = "Desktop" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "HTTP Server" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		String ObjectSWname = "Apache";
@@ -165,7 +170,7 @@ public class CreateObjectDragged
 	 */
 	private BackupServer createDefaultBackupServer(WidgetIcon iconObject)
 	{
-		String objectName = "Desktop" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "Backup Server" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		String ObjectSWname = "Backup";
@@ -188,7 +193,7 @@ public class CreateObjectDragged
 	 */
 	private MailServer createDefaultMailServer(WidgetIcon iconObject)
 	{
-		String objectName = "MailServer" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "Mail Server" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		String ObjectSWname = "Mail";
@@ -212,7 +217,7 @@ public class CreateObjectDragged
 	 */
 	private FirewallServer createDefaultFirewallServer(WidgetIcon iconObject)
 	{
-		String objectName = "FirewallServer" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "Firewall Server" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		String ObjectSWname = "Firewall";
@@ -237,7 +242,7 @@ public class CreateObjectDragged
 	 */
 	private ProxyServer createDefaultProxyServer(WidgetIcon iconObject)
 	{
-		String objectName = "ProxyServer" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "Proxy Server" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		String ObjectSWname = "ProxyServer";
@@ -275,6 +280,29 @@ public class CreateObjectDragged
 		
 		
 		return new HDD(objectName, objectDesc, HHDtype, HDDsize);
+	}
+	
+	
+	
+	/**
+	 * @param iconObject
+	 * @return
+	 */
+	private Scanner createDefaultScanner(WidgetIcon iconObject)
+	{
+		String objectName = "HDD" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectDesc = iconObject.getDescription();
+		
+		String Sresolution = "1280x1020";
+		String SconnectionInterfaces[] = { "USB" };
+		
+		if(objectDesc == "")
+		{
+			objectDesc = objectName;
+		}
+		
+		
+		return new Scanner(objectName, objectDesc, Sresolution, SconnectionInterfaces);
 	}
 	
 	

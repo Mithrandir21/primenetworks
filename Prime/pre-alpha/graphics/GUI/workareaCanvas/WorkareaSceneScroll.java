@@ -1,8 +1,8 @@
 package graphics.GUI.workareaCanvas;
 
-import graphics.GUI.workareaCanvas.WorkareaCanvas;
+import graphics.PrimeMain1;
 
-import javax.swing.*;
+import javax.swing.JScrollPane;
 
 public class WorkareaSceneScroll extends JScrollPane
 {
@@ -15,7 +15,7 @@ public class WorkareaSceneScroll extends JScrollPane
 		setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
 		
 		canvas = new WorkareaCanvas();
-		this.setViewportView(canvas.myView);
+		this.setViewportView(PrimeMain1.myView);
 		
 		
 	}

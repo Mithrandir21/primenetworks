@@ -21,6 +21,7 @@ import javax.swing.border.Border;
 
 import org.jdesktop.swingx.*;
 import org.jdesktop.swingx.MultiSplitLayout.*;
+import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Scene;
 
 
@@ -46,6 +47,17 @@ public class PrimeMain1 extends JFrame implements ActionListener
 
 
 	public static Scene scene = new Scene();
+	
+	public static JComponent myView;
+
+	public static LayerWidget mainLayer;
+
+	public static LayerWidget interactionLayer;
+
+	public static LayerWidget connectionLayer;
+	
+	
+	
 
 	// TODO - Create array of amount of different object types on the scene.
 	public static int numberOfWidgetsOnTheScene = 0;
@@ -199,7 +211,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 
 
 
-		this.setSize(1600, 1000);
+		this.setSize(800, 600);
 		this.setVisible(true);
 
 	}
