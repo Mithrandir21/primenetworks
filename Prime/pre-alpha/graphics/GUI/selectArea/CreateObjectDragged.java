@@ -6,12 +6,10 @@ package graphics.GUI.selectArea;
 import graphics.PrimeMain1;
 import clients.*;
 import servers.*;
-import widgetManipulation.WidgetObject;
 import infrastructure.*;
 import hardware.*;
 import graphics.WidgetIcon;
 import objects.Object;
-import peripheral.*;
 
 /**
  * @author Bam
@@ -71,7 +69,6 @@ public class CreateObjectDragged
 		}
 		
 		
-		PrimeMain1.numberOfWidgetsOnTheScene++;
 		return newObject;
 	}
 	

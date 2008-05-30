@@ -3,6 +3,7 @@
  */
 package graphics;
 
+
 import graphics.GUI.selectArea.ImageSelection;
 
 import java.awt.Image;
@@ -10,26 +11,25 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.TransferHandler;
 
+
 /**
  * @author Bam
- *
  */
 public class WidgetIcon extends JLabel
 {
 	Class classType;
-	
+
 	String description = "";
-	
+
 	Image img = null;
-	
-	
-	
+
+
+
 	/**
 	 * @param icon
 	 * @param objectType
@@ -41,8 +41,8 @@ public class WidgetIcon extends JLabel
 		classType = objectType;
 		widgetIconSetup();
 	}
-	
-	
+
+
 	/**
 	 * @param icon
 	 * @param objectType
@@ -56,8 +56,8 @@ public class WidgetIcon extends JLabel
 		setText(name);
 		widgetIconSetup();
 	}
-	
-	
+
+
 	/**
 	 * @param icon
 	 * @param objectType
@@ -72,28 +72,29 @@ public class WidgetIcon extends JLabel
 		description = desc;
 		widgetIconSetup();
 	}
-	
-	
+
+
 	// GETTERS
 
 	/**
 	 * @return the classType
 	 */
-	public Class getClassType() 
+	public Class getClassType()
 	{
 		return classType;
 	}
-	
-	
+
+
 	/**
 	 * @return the description
 	 */
-	public String getDescription() {
+	public String getDescription()
+	{
 		return description;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * @return
 	 */
@@ -101,10 +102,10 @@ public class WidgetIcon extends JLabel
 	{
 		return img;
 	}
-	
 
-	
-	
+
+
+
 	/**
 	 * 
 	 */
@@ -113,19 +114,19 @@ public class WidgetIcon extends JLabel
 		addMouseListener(mouseListener);
 		setTransferHandler(new ImageSelection());
 	}
-	
-	
-	
+
+
+
 	/**
 	 * 
 	 */
-	MouseListener mouseListener = new MouseAdapter() 
+	MouseListener mouseListener = new MouseAdapter()
 	{
-	      public void mousePressed(MouseEvent e) 
-	      {
-	        JComponent comp = (JComponent) e.getSource();
-	        TransferHandler handler = comp.getTransferHandler();
-	        handler.exportAsDrag(comp, e, TransferHandler.COPY);
-	      }
+		public void mousePressed(MouseEvent e)
+		{
+			JComponent comp = (JComponent) e.getSource();
+			TransferHandler handler = comp.getTransferHandler();
+			handler.exportAsDrag(comp, e, TransferHandler.COPY);
+		}
 	};
 }

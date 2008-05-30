@@ -10,20 +10,24 @@ import java.io.*;
 import objects.Object;
 
 import org.netbeans.api.visual.widget.*;
+import org.netbeans.modules.visual.util.GeomUtil;
+
 
 /**
  * @author bam
- *
  */
 public class WidgetObject extends ImageWidget implements Transferable
 {
-	// The object that the widget represents. 
+	// The object that the widget represents.
 	private Object object = null;
-	
-	
+
+
 	private static final DataFlavor flavors[] = new DataFlavor[1];
 	
 	
+	private String label;
+
+
 	/**
 	 * @param canvas
 	 * @param obj
@@ -31,83 +35,109 @@ public class WidgetObject extends ImageWidget implements Transferable
 	 */
 	public WidgetObject(Scene canvas, Object obj, Image objImg)
 	{
-		super(canvas,objImg);
+		super(canvas, objImg);
 		object = obj;
 
 		setFlavor();
 	}
 
 
-	
-	// GETTERS 
+
+	// GETTERS
 	/**
 	 * @return the object
 	 */
-	public Object getObject() {
+	public Object getObject()
+	{
 		return object;
 	}
-	
-	
+
+
 	/**
 	 * @return
 	 */
 	public Dimension getImageDimension()
 	{
-		return new Dimension(getImage().getHeight(null),getImage().getWidth(null));
+		return new Dimension(getImage().getHeight(null), getImage().getWidth(null));
 	}
+	
+	
+    /**
+     * Returns a label.
+     * @return the label
+     */
+    public String getLabel () {
+        return label;
+    }
+	
 
 
 	// SETTERS
 	/**
-	 * @param object the object to set
+	 * @param object
+	 *            the object to set
 	 */
-	public void setObject(Object object) {
+	public void setObject(Object object)
+	{
 		this.object = object;
 	}
 
+	
+    /**
+     * Sets a label.
+     * @param label the label
+     */
+    public void setLabel (String label) {
+        if (GeomUtil.equals (this.label, label))
+        {
+            return;
+        }
+        
+        this.label = label;
+        revalidate ();
+    }
 
 
-	
-	
+
 	// TRANSFERABLE IMPLEMENTATION
-	public WidgetObject getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException 
+	public WidgetObject getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException
 	{
-//		System.out.println("WidgetCanvas - getTransferData");
-	    if (isDataFlavorSupported(flavor)) 
-	    {
-	    	return this;
-	    }
-	    return null;
+		// System.out.println("WidgetCanvas - getTransferData");
+		if ( isDataFlavorSupported(flavor) )
+		{
+			return this;
+		}
+		return null;
 	}
 
 
 
-	public DataFlavor[] getTransferDataFlavors() 
+	public DataFlavor[] getTransferDataFlavors()
 	{
-//		System.out.println("WidgetCanvas - getTransferDataFlavors");
+		// System.out.println("WidgetCanvas - getTransferDataFlavors");
 		return flavors;
 	}
 
 
 
-	public boolean isDataFlavorSupported(DataFlavor flavor) 
+	public boolean isDataFlavorSupported(DataFlavor flavor)
 	{
 		System.out.println("WidgetCanvas - " + flavors[0]);
 		System.out.println("WidgetCanvas - " + flavor);
 		return flavors[0].equals(flavor);
 	}
-	
-	
-	
-	
+
+
+
+
 	private DataFlavor[] setFlavor()
 	{
-//		System.out.println("WidgetCanvas - setFlavor");
-		if(flavors[0] == null)
+		// System.out.println("WidgetCanvas - setFlavor");
+		if ( flavors[0] == null )
 		{
-			flavors[0] = new DataFlavor(WidgetObject.class,"Widget Object");
+			flavors[0] = new DataFlavor(WidgetObject.class, "Widget Object");
 		}
-//		System.out.println("WidgetCanvas - " + flavors[0]);
+		// System.out.println("WidgetCanvas - " + flavors[0]);
 		return flavors;
 	}
 }

@@ -10,15 +10,13 @@ import graphics.GUI.selectArea.CreateObjectDragged;
 import java.awt.Image;
 import java.awt.datatransfer.Transferable;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.TransferHandler;
 
-import servers.HTTPServer;
 import widgetManipulation.WidgetObject;
 import objects.Object;
+//import servers.HTTPServer;
 
 /**
  * Description NEEDED!
