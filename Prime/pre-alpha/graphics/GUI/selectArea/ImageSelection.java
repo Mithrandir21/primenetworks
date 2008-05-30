@@ -4,13 +4,21 @@
 package graphics.GUI.selectArea;
 
 import graphics.PrimeMain1;
+import graphics.WidgetIcon;
+import graphics.GUI.selectArea.CreateObjectDragged;
 
-import java.awt.*;
-import java.awt.datatransfer.*;
+import java.awt.Image;
+import java.awt.datatransfer.Transferable;
 
-import servers.*;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.TransferHandler;
+
+import servers.HTTPServer;
 import widgetManipulation.WidgetObject;
-import javax.swing.*;
+import objects.Object;
 
 /**
  * Description NEEDED!
@@ -23,7 +31,7 @@ public class ImageSelection extends TransferHandler
 	
 	public int getSourceActions(JComponent c) 
 	{
-		System.out.println("Sjekker tillatt handling.");
+//		System.out.println("ImageSelection - Sjekker tillatt handling.");
 	    return TransferHandler.COPY;
 	}
 
@@ -31,17 +39,19 @@ public class ImageSelection extends TransferHandler
 		  
 	public Transferable createTransferable(JComponent comp) 
 	{
-		    if (comp instanceof JLabel) 
-		    {
-		      JLabel label = (JLabel) comp;
-		      Icon icon = label.getIcon();
-		      if (icon instanceof ImageIcon) 
-		      {
-		    	  System.out.println("Lager object");
-		    	  return new WidgetObject(PrimeMain1.scene,new HTTPServer("newComponent2","Desc","1","2","3"), createImage("images/objectImages/print-server.png"));
-		      }
-		    }
-		    return null;
+		if (comp instanceof WidgetIcon) 
+		{
+			WidgetIcon icon = (WidgetIcon) comp;
+		    
+			Object newObject = new CreateObjectDragged().CreateObject(icon);
+			
+		    return new WidgetObject(PrimeMain1.scene, newObject, icon.getIconImage());
+		    
+		    
+//		    System.out.println("ImageSelection - " + objectType);
+//		    return new WidgetObject(PrimeMain1.scene,new HTTPServer("newComponent2","Desc","1","2","3"), createImage("images/objectImages/print-server.png"));
+		}
+	return null;
 	}
 
 	
@@ -52,7 +62,7 @@ public class ImageSelection extends TransferHandler
 	    if (imgURL != null) {
 	        return new ImageIcon(imgURL).getImage();
 	    } else {
-	        System.err.println("Couldn't find file: " + path);
+	        System.err.println("ImageSelection - Couldn't find file: " + path);
 	        return null;
 	    }
 	}

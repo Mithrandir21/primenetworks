@@ -7,6 +7,7 @@ package widgetManipulation;
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.io.*;
+import objects.Object;
 
 import org.netbeans.api.visual.widget.*;
 
@@ -45,6 +46,15 @@ public class WidgetObject extends ImageWidget implements Transferable
 	public Object getObject() {
 		return object;
 	}
+	
+	
+	/**
+	 * @return
+	 */
+	public Dimension getImageDimension()
+	{
+		return new Dimension(getImage().getHeight(null),getImage().getWidth(null));
+	}
 
 
 	// SETTERS
@@ -60,9 +70,9 @@ public class WidgetObject extends ImageWidget implements Transferable
 	
 	
 	// TRANSFERABLE IMPLEMENTATION
-	public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException 
+	public WidgetObject getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException 
 	{
-		System.out.println("Kmr hit 1");
+//		System.out.println("WidgetCanvas - getTransferData");
 	    if (isDataFlavorSupported(flavor)) 
 	    {
 	    	return this;
@@ -74,7 +84,7 @@ public class WidgetObject extends ImageWidget implements Transferable
 
 	public DataFlavor[] getTransferDataFlavors() 
 	{
-		System.out.println("Kmr hit 2");
+//		System.out.println("WidgetCanvas - getTransferDataFlavors");
 		return flavors;
 	}
 
@@ -82,8 +92,8 @@ public class WidgetObject extends ImageWidget implements Transferable
 
 	public boolean isDataFlavorSupported(DataFlavor flavor) 
 	{
-		System.out.println(flavors[0]);
-		System.out.println(flavor);
+		System.out.println("WidgetCanvas - " + flavors[0]);
+		System.out.println("WidgetCanvas - " + flavor);
 		return flavors[0].equals(flavor);
 	}
 	
@@ -92,13 +102,12 @@ public class WidgetObject extends ImageWidget implements Transferable
 	
 	private DataFlavor[] setFlavor()
 	{
-		System.out.println("Kmr hit 3");
+//		System.out.println("WidgetCanvas - setFlavor");
 		if(flavors[0] == null)
 		{
 			flavors[0] = new DataFlavor(WidgetObject.class,"Widget Object");
 		}
-		System.out.println(flavors[0]);
+//		System.out.println("WidgetCanvas - " + flavors[0]);
 		return flavors;
 	}
-
 }

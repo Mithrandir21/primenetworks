@@ -70,6 +70,30 @@ public class Desktop extends Clients implements Serializable
 	private int numberOfNodes;
 
 
+	
+	
+	/**
+	 * Constructor of a desktop computer.<br>
+	 * This constructor also sets the number of components in the system and the
+	 * desktop rating to "0"(since the rating system is not yet implemented).
+	 * 
+	 * @param Name
+	 *            The name of the desktop.
+	 * @param Desc
+	 *            The description of the desktop.
+	 * @param DesktopComponents
+	 *            The initial components an instance of a desktop has.
+	 */
+	public Desktop(String Name, String Desc)
+	{
+		super(Name, Desc);
+
+		componentCounter = 0;
+
+		components = null;
+
+		desktopRate = 0; // Not been rated yet.
+	}
 
 
 

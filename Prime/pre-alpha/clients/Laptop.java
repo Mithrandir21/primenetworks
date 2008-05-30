@@ -64,7 +64,31 @@ public class Laptop extends Clients implements Serializable
 
 
 
+	/**
+	 * Constructor of a laptop computer.<br>
+	 * This constructor also sets the number of components in the system and the
+	 * laptop rating to "0"(since the rating system is not yet implemented).
+	 * 
+	 * @param Name
+	 *            The name of the laptop.
+	 * @param Desc
+	 *            The description of the laptop.
+	 */
+	public Laptop(String Name, String Desc)
+	{
+		super(Name, Desc);
 
+		componentCounter = 0;
+
+		components = null;
+
+		laptopRate = 0; // Not been rated yet.
+	}
+	
+	
+	
+	
+	
 	/**
 	 * Constructor of a laptop computer.<br>
 	 * This constructor also sets the number of components in the system and the

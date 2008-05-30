@@ -48,13 +48,15 @@ public class PrimeMain1 extends JFrame implements ActionListener
 	
 	public static Scene scene = new Scene();
 	
+	// TODO - Create array of amount of different object types on the scene.
+	public static int numberOfWidgetsOnTheScene = 0;
+	
 	
 	
 	// Constructor
 	public PrimeMain1()
 	{
 		super("Prime");
-		
 		
 		// SETUP FOR THE OEVERALL GUI
 		// Get the content pane for this object
