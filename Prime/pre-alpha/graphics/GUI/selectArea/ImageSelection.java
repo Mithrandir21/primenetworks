@@ -3,9 +3,9 @@
  */
 package graphics.GUI.selectArea;
 
+
 import graphics.PrimeMain1;
 import graphics.WidgetIcon;
-import graphics.GUI.selectArea.CreateObjectDragged;
 
 import java.awt.Image;
 import java.awt.datatransfer.Transferable;
@@ -14,50 +14,60 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.TransferHandler;
 
-import widgetManipulation.WidgetObject;
 import objects.Object;
-//import servers.HTTPServer;
+import widgetManipulation.WidgetObject;
+
 
 /**
- * Description NEEDED!
- *
+ * A transferHandler extention class which contains a createTransferable
+ * methode which returns a newly created object from a dragged 
+ * {@link graphics.WidgetIcon WidgetIcon}.
+ * 
  * @author Bahram Malaekeh
  * @version 0.1
  */
-public class ImageSelection extends TransferHandler 
+public class ImageSelection extends TransferHandler
 {
-	
-	public int getSourceActions(JComponent c) 
+
+	/* (non-Javadoc)
+	 * @see javax.swing.TransferHandler#getSourceActions(javax.swing.JComponent)
+	 */
+	public int getSourceActions(JComponent c)
 	{
-//		System.out.println("ImageSelection - Sjekker tillatt handling.");
-	    return TransferHandler.COPY;
+		return TransferHandler.COPY;
 	}
 
-		  
-		  
-	public Transferable createTransferable(JComponent comp) 
+
+
+	/* (non-Javadoc)
+	 * @see javax.swing.TransferHandler#createTransferable(javax.swing.JComponent)
+	 */
+	public Transferable createTransferable(JComponent comp)
 	{
-		if (comp instanceof WidgetIcon) 
+		if ( comp instanceof WidgetIcon )
 		{
 			WidgetIcon icon = (WidgetIcon) comp;
-		    
+
 			Object newObject = new CreateObjectDragged().CreateObject(icon);
-			
-		    return new WidgetObject(PrimeMain1.scene, newObject, icon.getIconImage());
+
+			return new WidgetObject(PrimeMain1.scene, newObject, icon.getIconImage());
 		}
-	return null;
+		return null;
 	}
 
-	
+
 	/** Returns an Image, or null if the path was invalid. */
-	protected Image createImage(String path) 
+	protected Image createImage(String path)
 	{
-	    java.net.URL imgURL = getClass().getResource(path);
-	    if (imgURL != null) {
-	        return new ImageIcon(imgURL).getImage();
-	    } else {
-	        System.err.println("ImageSelection - Couldn't find file: " + path);
-	        return null;
-	    }
+		java.net.URL imgURL = getClass().getResource(path);
+		if ( imgURL != null )
+		{
+			return new ImageIcon(imgURL).getImage();
+		}
+		else
+		{
+			System.err.println("ImageSelection - Couldn't find file: " + path);
+			return null;
+		}
 	}
 }

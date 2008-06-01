@@ -19,24 +19,19 @@ import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
-import javax.swing.KeyStroke;
+import javax.swing.JPanel;
 import javax.swing.TransferHandler;
 
 import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.action.SelectProvider;
 import org.netbeans.api.visual.action.TextFieldInplaceEditor;
 import org.netbeans.api.visual.widget.LayerWidget;
-import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
 
 import servers.HTTPServer;
@@ -52,7 +47,7 @@ import widgetManipulation.WidgetObject;
  * @version 0.1
  */
 
-public class WorkareaCanvas extends JComponent implements DropTargetListener, ActionListener
+public class WorkareaCanvas extends JPanel implements DropTargetListener, ActionListener
 {
 
 	private TransferHandler TransHandler = new WidgetTransferHandler();
@@ -93,9 +88,6 @@ public class WorkareaCanvas extends JComponent implements DropTargetListener, Ac
 		PrimeMain1.connectionLayer = new LayerWidget(PrimeMain1.scene);
 		PrimeMain1.scene.addChild(PrimeMain1.connectionLayer);
 
-
-
-
 	}
 
 
@@ -122,7 +114,6 @@ public class WorkareaCanvas extends JComponent implements DropTargetListener, Ac
 			widget.getActions().addAction(ActionFactory.createInplaceEditorAction(new LabelTextFieldEditor()));
 			widget.setLabel("Biatch");
 			PrimeMain1.mainLayer.addChild(widget);
-			PrimeMain1.scene.repaint();
 			PrimeMain1.numberOfWidgetsOnTheScene++;
 		}
 
@@ -293,6 +284,7 @@ public class WorkareaCanvas extends JComponent implements DropTargetListener, Ac
 		}
 	}
 
+	
 
 	public void createPopupMenu()
 	{

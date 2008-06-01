@@ -12,12 +12,30 @@ import graphics.WidgetIcon;
 import objects.Object;
 import peripheral.Scanner;
 
+
 /**
- * @author Bam
+ * A class that contains only one public method that
+ * returns an object based on the given {@link graphics.WidgetIcon WidgetIcon}.
  *
+ * @author Bahram Malaekeh
  */
 public class CreateObjectDragged 
 {
+	
+	/**
+	 * Creates and returns an object based on the 
+	 * {@link graphics.WidgetIcon WidgetIcon} classType.
+	 * 
+	 * The object created is a standard object with very
+	 * little extra information. 
+	 * 
+	 * @param iconObject
+	 *            The {@link graphics.WidgetIcon WidgetIcon} that contains 
+	 *            the calssTypethats is the basis for the creation 
+	 *            of the return object.
+	 * @return Object
+	 * 			  The newly created standard object.
+	 */
 	public Object CreateObject(WidgetIcon iconObject)
 	{
 		Object newObject = null;
@@ -78,11 +96,7 @@ public class CreateObjectDragged
 	}
 	
 	
-	
-	/**
-	 * @param iconObject
-	 * @return
-	 */
+
 	private Desktop createDefaultDesktop(WidgetIcon iconObject)
 	{
 		String objectName = "Desktop" + PrimeMain1.numberOfWidgetsOnTheScene;
@@ -98,11 +112,7 @@ public class CreateObjectDragged
 	}
 	
 	
-	
-	/**
-	 * @param iconObject
-	 * @return
-	 */
+
 	private Laptop createDefaultLaptop(WidgetIcon iconObject)
 	{
 		String objectName = "Laptop" + PrimeMain1.numberOfWidgetsOnTheScene;
@@ -138,11 +148,7 @@ public class CreateObjectDragged
 //	}
 	
 	
-	
-	/**
-	 * @param iconObject
-	 * @return
-	 */
+
 	private HTTPServer createDefaultHTTPServer(WidgetIcon iconObject)
 	{
 		String objectName = "HTTP Server" + PrimeMain1.numberOfWidgetsOnTheScene;
@@ -163,11 +169,7 @@ public class CreateObjectDragged
 	
 	
 	
-	
-	/**
-	 * @param iconObject
-	 * @return
-	 */
+
 	private BackupServer createDefaultBackupServer(WidgetIcon iconObject)
 	{
 		String objectName = "Backup Server" + PrimeMain1.numberOfWidgetsOnTheScene;
@@ -186,11 +188,7 @@ public class CreateObjectDragged
 	}
 	
 	
-	
-	/**
-	 * @param iconObject
-	 * @return
-	 */
+
 	private MailServer createDefaultMailServer(WidgetIcon iconObject)
 	{
 		String objectName = "Mail Server" + PrimeMain1.numberOfWidgetsOnTheScene;
@@ -211,10 +209,6 @@ public class CreateObjectDragged
 
 	
 	
-	/**
-	 * @param iconObject
-	 * @return
-	 */
 	private FirewallServer createDefaultFirewallServer(WidgetIcon iconObject)
 	{
 		String objectName = "Firewall Server" + PrimeMain1.numberOfWidgetsOnTheScene;
@@ -235,11 +229,6 @@ public class CreateObjectDragged
 	
 	
 	
-	
-	/**
-	 * @param iconObject
-	 * @return
-	 */
 	private ProxyServer createDefaultProxyServer(WidgetIcon iconObject)
 	{
 		String objectName = "Proxy Server" + PrimeMain1.numberOfWidgetsOnTheScene;
@@ -260,11 +249,6 @@ public class CreateObjectDragged
 	
 	
 	
-	
-	/**
-	 * @param iconObject
-	 * @return
-	 */
 	private HDD createDefaultHDD(WidgetIcon iconObject)
 	{
 		String objectName = "HDD" + PrimeMain1.numberOfWidgetsOnTheScene;
@@ -284,10 +268,6 @@ public class CreateObjectDragged
 	
 	
 	
-	/**
-	 * @param iconObject
-	 * @return
-	 */
 	private Scanner createDefaultScanner(WidgetIcon iconObject)
 	{
 		String objectName = "HDD" + PrimeMain1.numberOfWidgetsOnTheScene;
@@ -308,10 +288,6 @@ public class CreateObjectDragged
 	
 	
 	
-	/**
-	 * @param iconObject
-	 * @return
-	 */
 	private Hub createDefaultHub(WidgetIcon iconObject)
 	{
 		String objectName = "Hub" + PrimeMain1.numberOfWidgetsOnTheScene;
@@ -334,11 +310,6 @@ public class CreateObjectDragged
 	
 	
 	
-	
-	/**
-	 * @param iconObject
-	 * @return
-	 */
 	private Switch createDefaultSwitch(WidgetIcon iconObject)
 	{
 		String objectName = "Switch" + PrimeMain1.numberOfWidgetsOnTheScene;
@@ -360,10 +331,6 @@ public class CreateObjectDragged
 	
 	
 	
-	/**
-	 * @param iconObject
-	 * @return
-	 */
 	private Router createDefaultRouter(WidgetIcon iconObject)
 	{
 		String objectName = "Router" + PrimeMain1.numberOfWidgetsOnTheScene;

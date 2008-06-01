@@ -7,10 +7,24 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 import actions.*;
 
+/**
+ * The GenericPrimeToolbar represents a generic toolbar for the program.
+ * This is where the buttons at the top of the program screen are created and
+ * added.
+ * 
+ * GenericPrimeToolbar is an extention of the JMenuBar class.
+ *
+ * @author Bahram Malaekeh
+ * 
+ */
 @SuppressWarnings("serial")
 public class GenericPrimeToolbar extends JMenuBar
 {
 	
+	/**
+	 * Constructor for the GenericPrimeToolbar class.
+	 * Here the different parts of the toolbar are initiated.
+	 */
 	public GenericPrimeToolbar()
 	{
 		initFileToolBar();
@@ -66,7 +80,9 @@ public class GenericPrimeToolbar extends JMenuBar
 	
 	
 	/**
-	 * Description
+	 * This function creates the File toolbar. 
+	 * 
+	 * TODO - Get it working with the panel.
 	 * 
 	 */
 	private void initEditToolBar()
