@@ -4,13 +4,12 @@
 package graphics.GUI.selectArea;
 
 
+
 import graphics.PrimeMain1;
 import graphics.WidgetIcon;
 
-import java.awt.Image;
 import java.awt.datatransfer.Transferable;
 
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.TransferHandler;
 
@@ -55,19 +54,4 @@ public class ImageSelection extends TransferHandler
 		return null;
 	}
 
-
-	/** Returns an Image, or null if the path was invalid. */
-	protected Image createImage(String path)
-	{
-		java.net.URL imgURL = getClass().getResource(path);
-		if ( imgURL != null )
-		{
-			return new ImageIcon(imgURL).getImage();
-		}
-		else
-		{
-			System.err.println("ImageSelection - Couldn't find file: " + path);
-			return null;
-		}
-	}
 }
