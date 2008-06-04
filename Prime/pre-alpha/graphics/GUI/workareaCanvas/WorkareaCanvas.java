@@ -127,6 +127,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 					ActionFactory.createInplaceEditorAction(new LabelTextFieldEditor()));
 			
 			widget.setLabel("Biatch");
+			
+			cleanUp();
+			
 			PrimeMain1.mainLayer.addChild(widget);
 			PrimeMain1.numberOfWidgetsOnTheScene++;
 		}

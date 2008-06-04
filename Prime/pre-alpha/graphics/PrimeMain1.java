@@ -78,6 +78,8 @@ public class PrimeMain1 extends JFrame implements ActionListener
 	
 	
 	public static ImageIcon JavaIcon = null;
+	
+	public ImageIcon[] ic = null;
 
 
 	// TODO - Create array of amount of different object types on the scene.
@@ -98,7 +100,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 
 		if ( splash == null )
 		{
-			System.out.println("SplashScreen.getSplashScreen() returned null");
+			//System.out.println("SplashScreen.getSplashScreen() returned null");
 		}
 		else
 		{
@@ -128,7 +130,9 @@ public class PrimeMain1 extends JFrame implements ActionListener
 		}
 
 
-
+		MakeSystemImageIcons n = new MakeSystemImageIcons();
+		
+		n.getImageIcons();
 
 
 

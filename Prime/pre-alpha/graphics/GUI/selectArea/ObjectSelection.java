@@ -35,7 +35,7 @@ import clients.Laptop;
 
 
 /**
- * NOTE - Maybe set inn a vertical tab for all the different object categories.
+ * NOTE - Maybe set in a vertical tab for all the different object categories.
  */
 
 /**
