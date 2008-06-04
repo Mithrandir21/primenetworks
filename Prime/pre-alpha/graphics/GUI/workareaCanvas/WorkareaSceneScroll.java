@@ -8,7 +8,6 @@ public class WorkareaSceneScroll extends JScrollPane
 {
 	private WorkareaCanvas canvas;
 	
-	
 	public WorkareaSceneScroll()
 	{
 		setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -16,7 +15,5 @@ public class WorkareaSceneScroll extends JScrollPane
 		
 		canvas = new WorkareaCanvas();
 		this.setViewportView(PrimeMain1.myView);
-		
-		
 	}
 }

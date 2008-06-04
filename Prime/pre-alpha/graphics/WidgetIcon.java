@@ -5,16 +5,13 @@ package graphics;
 
 
 import graphics.GUI.selectArea.ImageSelection;
-import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.lang.reflect.Constructor;
 
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.TransferHandler;
 

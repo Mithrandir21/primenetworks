@@ -17,7 +17,6 @@ public class WidgetTransferHandler extends TransferHandler
 {
 	public boolean canImport(TransferSupport support) 
 	{
-		System.out.println("WidgetTransferHandler - Kommer hit 1.");
 		DataFlavor flavors[] = support.getDataFlavors();
 		if(flavors[0].equals(new DataFlavor(WidgetObject.class,"Widget Object")))
 		{

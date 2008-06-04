@@ -47,11 +47,12 @@ public class CanvasMenu
 		popup.add(menuItem);
 		
 		menuItem = new JMenuItem("Another popup menu item");
-		menuItem.setName("CreateNewItem");
+		menuItem.setName("CreateAnotherNewItem");
 		menuItem.addActionListener(canvas);
 		popup.add(menuItem);
 
 		menuItem = new JMenuItem("Yet Another popup menu item");
+		menuItem.setName("CreateYetAnotherNewItem");
 		menuItem.addActionListener(canvas);
 		popup.add(menuItem);
 	}

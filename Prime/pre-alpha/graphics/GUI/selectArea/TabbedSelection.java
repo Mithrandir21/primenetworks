@@ -8,6 +8,9 @@ package graphics.GUI.selectArea;
  */
 
 
+import graphics.ImageLocator;
+import graphics.PrimeMain1;
+
 import javax.swing.*;
 
 public class TabbedSelection extends JTabbedPane
@@ -16,7 +19,7 @@ public class TabbedSelection extends JTabbedPane
     {
         
         
-        ImageIcon icon = createImageIcon("images/java.jpg");
+        ImageIcon icon = PrimeMain1.JavaIcon;
         
         
         
@@ -35,19 +38,4 @@ public class TabbedSelection extends JTabbedPane
         //The following line enables to use scrolling tabs.
         this.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
     }
-    
-    
-    
-	/** Returns an ImageIcon, or null if the path was invalid. */
-	protected ImageIcon createImageIcon(String path) 
-	{
-	    java.net.URL imgURL = getClass().getResource(path);
-	    if (imgURL != null) {
-	        return new ImageIcon(imgURL);
-	    } else {
-	        System.err.println("Couldn't find file: " + path);
-	        return null;
-	    }
-	}
-
 }

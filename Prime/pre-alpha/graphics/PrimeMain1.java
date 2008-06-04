@@ -4,23 +4,44 @@
 package graphics;
 
 
-import graphics.GUI.workareaCanvas.WorkareaTabbed;
 import graphics.GUI.menues.GenericPrimeMenuBar;
 import graphics.GUI.menues.GenericPrimeToolbar;
 import graphics.GUI.selectArea.TabbedSelection;
 import graphics.GUI.statusArea.PrimeStatusBar;
+import graphics.GUI.workareaCanvas.WorkareaTabbed;
 
-import java.io.*;
+import java.awt.AlphaComposite;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.SplashScreen;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.beans.*;
-
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import org.jdesktop.swingx.*;
-import org.jdesktop.swingx.MultiSplitLayout.*;
+import org.jdesktop.swingx.JXMultiSplitPane;
+import org.jdesktop.swingx.MultiSplitLayout;
+import org.jdesktop.swingx.MultiSplitLayout.Node;
 import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Scene;
 
@@ -36,8 +57,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 {
 
 	// Main window panel setup
-	private JPanel toolbarPanel, selectionPanel, workareaPanel,
-			propertiesPanel, messagesPanel;
+	private JPanel toolbarPanel, selectionPanel, workareaPanel, propertiesPanel, messagesPanel;
 
 	static JXMultiSplitPane multiSplitPane = new JXMultiSplitPane();
 
@@ -47,7 +67,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 
 
 	public static Scene scene = new Scene();
-	
+
 	public static JComponent myView;
 
 	public static LayerWidget mainLayer;
@@ -57,7 +77,8 @@ public class PrimeMain1 extends JFrame implements ActionListener
 	public static LayerWidget connectionLayer;
 	
 	
-	
+	public static ImageIcon JavaIcon = null;
+
 
 	// TODO - Create array of amount of different object types on the scene.
 	public static int numberOfWidgetsOnTheScene = 0;
@@ -68,6 +89,48 @@ public class PrimeMain1 extends JFrame implements ActionListener
 	public PrimeMain1()
 	{
 		super("Prime");
+
+
+		setupSystemIcons();
+		
+		
+		final SplashScreen splash = SplashScreen.getSplashScreen();
+
+		if ( splash == null )
+		{
+			System.out.println("SplashScreen.getSplashScreen() returned null");
+		}
+		else
+		{
+			Graphics2D g = splash.createGraphics();
+			if ( g == null )
+			{
+				System.out.println("g is null");
+			}
+			else
+			{
+				for ( int i = 0; i < 2; i++ )
+				{
+					renderSplashFrame(g, i);
+					splash.update();
+					try
+					{
+						Thread.sleep(100);
+					}
+					catch ( InterruptedException e )
+					{
+					}
+				}
+				splash.close();
+				setVisible(true);
+				toFront();
+			}
+		}
+
+
+
+
+
 
 		// SETUP FOR THE OEVERALL GUI
 		// Get the content pane for this object
@@ -246,8 +309,8 @@ public class PrimeMain1 extends JFrame implements ActionListener
 	{
 		try
 		{
-			XMLEncoder output = new XMLEncoder(new BufferedOutputStream(
-					new FileOutputStream("PrimeLayoutModel.xml")));
+			XMLEncoder output = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(
+					"PrimeLayoutModel.xml")));
 
 			output.writeObject(multiSplitPane);
 			output.close();
@@ -261,10 +324,9 @@ public class PrimeMain1 extends JFrame implements ActionListener
 
 	private void makeLayoutModel()
 	{
-		String layoutDef = "(COLUMN weight=1.0" + "(LEAF name=toolbarLeaf) "
-				+ "(ROW " + "(LEAF name=selectionLeaf) " + "(COLUMN " + "(ROW "
-				+ "(LEAF name=workareaLeaf weight=0.7)"
-				+ "(LEAF name=propertiesLeaf) " + ")"
+		String layoutDef = "(COLUMN weight=1.0" + "(LEAF name=toolbarLeaf) " + "(ROW "
+				+ "(LEAF name=selectionLeaf) " + "(COLUMN " + "(ROW "
+				+ "(LEAF name=workareaLeaf weight=0.7)" + "(LEAF name=propertiesLeaf) " + ")"
 				+ "(LEAF name=messagesLeaf weight=0.2) " + ")" + ")" + ")";
 
 		// JOptionPane.showMessageDialog(null,"Error Loading layout Model.");
@@ -273,19 +335,19 @@ public class PrimeMain1 extends JFrame implements ActionListener
 		multiSplitPane.setPreferredSize(modelRoot.getBounds().getSize());
 	}
 
+	
 	private void LoadLayoutModel()
 	{
-		String layoutDef = "(COLUMN weight=1.0" + "(LEAF name=toolbarLeaf) "
-				+ "(ROW " + "(LEAF name=selectionLeaf) " + "(COLUMN " + "(ROW "
-				+ "(LEAF name=workareaLeaf weight=0.7)"
-				+ "(LEAF name=propertiesLeaf) " + ")"
+		String layoutDef = "(COLUMN weight=1.0" + "(LEAF name=toolbarLeaf) " + "(ROW "
+				+ "(LEAF name=selectionLeaf) " + "(COLUMN " + "(ROW "
+				+ "(LEAF name=workareaLeaf weight=0.7)" + "(LEAF name=propertiesLeaf) " + ")"
 				+ "(LEAF name=messagesLeaf weight=0.2) " + ")" + ")" + ")";
 
 
 		try
 		{
-			XMLDecoder d = new XMLDecoder(new BufferedInputStream(
-					new FileInputStream("PrimeLayoutModel.xml")));
+			XMLDecoder d = new XMLDecoder(new BufferedInputStream(new FileInputStream(
+					"PrimeLayoutModel.xml")));
 
 
 			multiSplitPane = (JXMultiSplitPane) (d.readObject());
@@ -301,5 +363,28 @@ public class PrimeMain1 extends JFrame implements ActionListener
 			multiSplitPane.setPreferredSize(modelRoot.getBounds().getSize());
 		}
 	}
+
+
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	static void renderSplashFrame(Graphics2D g, int frame)
+	{
+		final String[] comps = { "Bam", "Pegah", "Lille-Bam" , "Bitch"};
+		g.setComposite(AlphaComposite.Clear);
+		g.fillRect(120, 140, 200, 40);
+		g.setPaintMode();
+		g.setColor(Color.BLACK);
+		g.drawString("Loading " + comps[(frame / 5) % 4] + "...", 120, 150);
+	}
+	
+
+
+	private void setupSystemIcons()
+	{
+		JavaIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/java.jpg"));
+	}
+	
 
 }

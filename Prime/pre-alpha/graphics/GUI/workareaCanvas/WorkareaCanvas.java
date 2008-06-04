@@ -4,10 +4,11 @@
 package graphics.GUI.workareaCanvas;
 
 
+import graphics.ImageLocator;
 import graphics.PrimeMain1;
+import graphics.GUI.selectArea.CreateObjectDragged;
 
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -21,12 +22,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.TransferHandler;
+
+import objects.Object;
 
 import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.action.SelectProvider;
@@ -69,7 +70,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 		createPopupMenu();
 
 
-		PrimeMain1.scene.getActions().addAction(ActionFactory.createSelectAction(new CreateProvider()));
+		PrimeMain1.scene.getActions().addAction(
+				ActionFactory.createSelectAction(new CreateProvider()));
 
 		// Adds the zoom feature to the scene.
 		PrimeMain1.scene.getActions().addAction(ActionFactory.createZoomAction());
@@ -107,35 +109,29 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 		public void select(Widget relatedWidget, Point localLocation, boolean invertSelection)
 		{
-			WidgetObject widget = new WidgetObject(PrimeMain1.scene, new HTTPServer("newComponent2", "Desc", "1", "2", "3"), createImage("images/objectImages/print-server.png"));
+			WidgetObject widget = new WidgetObject(PrimeMain1.scene, new HTTPServer(
+					"newComponent2", "Desc", "1", "2", "3"), ImageLocator.createImage(this
+					.getClass().getResource("images/objectImages/print-server.png")));
+			
 			widget.setPreferredLocation(relatedWidget.convertLocalToScene(localLocation));
-			widget.getActions().addAction(ActionFactory.createExtendedConnectAction(PrimeMain1.interactionLayer, new SceneConnectProvider()));
-			widget.getActions().addAction(ActionFactory.createAlignWithMoveAction(PrimeMain1.mainLayer, PrimeMain1.interactionLayer, null));
-			widget.getActions().addAction(ActionFactory.createInplaceEditorAction(new LabelTextFieldEditor()));
+			
+			widget.getActions().addAction(
+					ActionFactory.createExtendedConnectAction(PrimeMain1.interactionLayer,
+							new SceneConnectProvider()));
+			
+			widget.getActions().addAction(
+					ActionFactory.createAlignWithMoveAction(PrimeMain1.mainLayer,
+							PrimeMain1.interactionLayer, null));
+			
+			widget.getActions().addAction(
+					ActionFactory.createInplaceEditorAction(new LabelTextFieldEditor()));
+			
 			widget.setLabel("Biatch");
 			PrimeMain1.mainLayer.addChild(widget);
 			PrimeMain1.numberOfWidgetsOnTheScene++;
 		}
 
 	}
-
-
-
-	/** Returns an Image, or null if the path was invalid. */
-	protected Image createImage(String path)
-	{
-		java.net.URL imgURL = getClass().getResource(path);
-		if ( imgURL != null )
-		{
-			return new ImageIcon(imgURL).getImage();
-		}
-		else
-		{
-			System.err.println("Couldn't find file: " + path);
-			return null;
-		}
-	}
-
 
 
 	// ------------------ TRANSFER METHODES -----------------------
@@ -175,7 +171,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 		try
 		{
-			newObject = (WidgetObject) tr.getTransferData(new DataFlavor(WidgetObject.class, "Widget Object"));
+			newObject = (WidgetObject) tr.getTransferData(new DataFlavor(WidgetObject.class,
+					"Widget Object"));
 
 
 			Dimension objectSize = newObject.getImageDimension();
@@ -227,10 +224,16 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	private void addWidgetObject(WidgetObject newObject, Point objectPoint)
 	{
 		newObject.setPreferredLocation(newObject.convertLocalToScene(objectPoint));
-		newObject.getActions().addAction(ActionFactory.createExtendedConnectAction(PrimeMain1.interactionLayer, new SceneConnectProvider()));
-		newObject.getActions().addAction(ActionFactory.createAlignWithMoveAction(PrimeMain1.mainLayer, PrimeMain1.interactionLayer, null));
+		newObject.getActions().addAction(
+				ActionFactory.createExtendedConnectAction(PrimeMain1.interactionLayer,
+						new SceneConnectProvider()));
+		newObject.getActions().addAction(
+				ActionFactory.createAlignWithMoveAction(PrimeMain1.mainLayer,
+						PrimeMain1.interactionLayer, null));
 
-		int n = JOptionPane.showConfirmDialog(this, "Would you like to add a new " + newObject.getObject().getName() + "?", "An Inane Question", JOptionPane.YES_NO_OPTION);
+		int n = JOptionPane.showConfirmDialog(this, "Would you like to add a new "
+				+ newObject.getObject().getName() + "?", "An Inane Question",
+				JOptionPane.YES_NO_OPTION);
 
 		if ( n == 0 )
 		{
@@ -284,7 +287,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 		}
 	}
 
-	
+
 
 	public void createPopupMenu()
 	{
@@ -297,19 +300,59 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 		JMenuItem action = (JMenuItem) e.getSource();
 
 		String actionName = "";
-		
+
 
 		if ( action.getName() != null )
 		{
 			actionName = action.getName();
 		}
 
-		
+
 		if ( !actionName.equals("") )
 		{
-			if ( actionName.equals("CreateNewItem") )
+			if ( actionName.equals("CreateNewST_Desktop_Item") )
 			{
-				System.out.println("This");
+				System.out.println("CreateNewST_Desktop_Item");
+			}
+			else if ( actionName.equals("CreateNewST_Laptop_Item") )
+			{
+				System.out.println("CreateNewST_Laptop_Item");
+			}
+			else if ( actionName.equals("CreateNewST_HTTPServer_Item") )
+			{
+				System.out.println("CreateNewST_HTTPServer_Item");
+			}
+			else if ( actionName.equals("CreateNewST_MailServer_Item") )
+			{
+				System.out.println("CreateNewST_MailServer_Item");
+			}
+			else if ( actionName.equals("CreateNewST_BackupServer_Item") )
+			{
+				System.out.println("CreateNewST_BackupServer_Item");
+			}
+			else if ( actionName.equals("CreateNewST_FirewallServer_Item") )
+			{
+				System.out.println("CreateNewST_FirewallServer_Item");
+			}
+			else if ( actionName.equals("CreateNewST_Hub_Item") )
+			{
+				System.out.println("CreateNewST_Hub_Item");
+			}
+			else if ( actionName.equals("CreateNewST_Switch_Item") )
+			{
+				System.out.println("CreateNewST_Switch_Item");
+			}
+			else if ( actionName.equals("CreateNewST_Router_Item") )
+			{
+				System.out.println("CreateNewST_Router_Item");
+			}
+			else if ( actionName.equals("CreateNewST_WirelessRouter_Item") )
+			{
+				System.out.println("CreateNewST_WirelessRouter_Item");
+			}
+			else if ( actionName.equals("CreateNewST_Scanner_Item") )
+			{
+				System.out.println("CreateNewST_Scanner_Item");
 			}
 		}
 	}

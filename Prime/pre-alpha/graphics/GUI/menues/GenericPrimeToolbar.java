@@ -3,6 +3,8 @@
  */
 package graphics.GUI.menues;
 
+import graphics.ImageLocator;
+
 import java.awt.BorderLayout;
 import javax.swing.*;
 import actions.*;
@@ -20,6 +22,9 @@ import actions.*;
 @SuppressWarnings("serial")
 public class GenericPrimeToolbar extends JMenuBar
 {
+	// Temp imageIcon that will hold the icon of the created button.
+	private ImageIcon tempIcon = null;
+	
 	
 	/**
 	 * Constructor for the GenericPrimeToolbar class.
@@ -52,17 +57,18 @@ public class GenericPrimeToolbar extends JMenuBar
 		fileToolBar = new JToolBar();
 		fileToolBar.setFloatable(false);
 		
-		ActionNew newFile = new ActionNew("New",
-				createImageIcon("images/buttonIcons/new.jpg"));
 		
-		ActionOpenfile openFile = new ActionOpenfile("Open File",
-				createImageIcon("images/buttonIcons/open.jpg"));
+		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/new.jpg"));
+		ActionNew newFile = new ActionNew("New",tempIcon);
 		
-		ActionSave save = new ActionSave("Save",
-				createImageIcon("images/buttonIcons/save.jpg"));
+		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/open.jpg"));
+		ActionOpenfile openFile = new ActionOpenfile("Open File",tempIcon);
 		
-		ActionSaveAll saveAll = new ActionSaveAll("Save All",
-				createImageIcon("images/buttonIcons/save_all.jpg"));
+		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/save.jpg"));
+		ActionSave save = new ActionSave("Save",tempIcon);
+		
+		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/save_all.jpg"));
+		ActionSaveAll saveAll = new ActionSaveAll("Save All",tempIcon);
 		
 		
 		fileToolBar.add(newFile);
@@ -73,7 +79,7 @@ public class GenericPrimeToolbar extends JMenuBar
 		
 		
 		this.add(fileToolBar, BorderLayout.WEST);
-
+		tempIcon = null;
 	}
 	
 	
@@ -90,14 +96,15 @@ public class GenericPrimeToolbar extends JMenuBar
 		editToolBar = new JToolBar("Editing");
 		editToolBar.setFloatable(false);
 		
-		ActionCut cut = new ActionCut("Cut",
-				createImageIcon("images/buttonIcons/cut.jpg"));
 		
-		ActionCopy openFile = new ActionCopy("Copy",
-				createImageIcon("images/buttonIcons/copy.jpg"));
-		
-		ActionPaste save = new ActionPaste("Paste",
-				createImageIcon("images/buttonIcons/paste.jpg"));
+		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/cut.jpg"));
+		ActionCut cut = new ActionCut("Cut",tempIcon);
+
+		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/copy.jpg"));
+		ActionCopy openFile = new ActionCopy("Copy",tempIcon);
+
+		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/paste.jpg"));
+		ActionPaste save = new ActionPaste("Paste",tempIcon);
 		
 		
 		editToolBar.add(cut);
@@ -105,22 +112,6 @@ public class GenericPrimeToolbar extends JMenuBar
 		editToolBar.add(save);
 		
 		this.add(editToolBar);
-		
+		tempIcon = null;
 	}
-
-	
-	
-	
-	/** Returns an ImageIcon, or null if the path was invalid. */
-	protected ImageIcon createImageIcon(String path) 
-	{
-	    java.net.URL imgURL = getClass().getResource(path);
-	    if (imgURL != null) {
-	        return new ImageIcon(imgURL);
-	    } else {
-	        System.err.println("Couldn't find file: " + path);
-	        return null;
-	    }
-	}
-
 }
