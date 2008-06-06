@@ -50,4 +50,24 @@ public class ImageLocator
 			return null;
 		}
 	}
+	
+	
+	
+	
+	public static ImageIcon getImageIconObject(String name)
+	{
+		ImageIcon temp = null;
+		
+		for(int i = 0;i<PrimeMain1.images.size();i++)
+		{
+			temp = PrimeMain1.images.get(i);
+			
+			if(temp.getDescription().equals(name))
+			{
+				return temp;
+			}
+		}
+		
+		return null;
+	}
 }

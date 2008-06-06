@@ -94,7 +94,6 @@ public class PrimeMain1 extends JFrame implements ActionListener
 	{
 		super("Prime");
 
-
 		setupSystemIcons();
 		
 		

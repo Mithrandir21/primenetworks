@@ -22,7 +22,7 @@ import javax.swing.ImageIcon;
 public class MakeSystemImageIcons
 {
 
-	static int count = 0;
+//	static int count = 0;
 
 	public void getImageIcons()
 	{
@@ -45,32 +45,18 @@ public class MakeSystemImageIcons
 
 		visitAllFiles(folder);
 		
-		System.out.println();
-
-		
-		for(int i = 0;i<PrimeMain1.images.size();i++)
-		{
-			System.out.println(PrimeMain1.images.get(i));
-		}
-		
-		System.out.println(PrimeMain1.images.size());
+//		System.out.println();
+//
+//		
+//		for(int i = 0;i<PrimeMain1.images.size();i++)
+//		{
+//			System.out.println(PrimeMain1.images.get(i));
+//		}
+//		
+//		System.out.println(PrimeMain1.images.size());
 
 	}
-
-
-	private void traverse(String path)
-	{
-		System.out.println(path);
-
-		File src = new File(path);
-
-		System.out.println(src.getName());
-
-		visitAllFiles(src);
-	}
-
-
-
+	
 
 	// Process all files and directories under dir
 	public static void visitAllDirsAndFiles(File dir)
@@ -125,18 +111,28 @@ public class MakeSystemImageIcons
 		else
 		{
 			String name = dir.getName();
+			
 			if ( name.contains(".png") || name.contains(".jpg") || name.contains(".gif") )
 			{
+//				System.out.println(name);
 				try
 				{
-					PrimeMain1.images.add(ImageLocator.createImageIcon(dir.toURI().toURL()));
+					name = name.substring(0, (name.length()-4));
+					
+					System.out.println(name);
+					
+					ImageIcon toBeAdded = ImageLocator.createImageIcon(dir.toURI().toURL());
+					toBeAdded.setDescription(name);
+//					
+//					PrimeMain1.images.add(ImageLocator.createImageIcon(dir.toURI().toURL()));
+					
+					PrimeMain1.images.add(toBeAdded);
 				}
 				catch ( MalformedURLException e )
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				count++;
 			}
 		}
 	}

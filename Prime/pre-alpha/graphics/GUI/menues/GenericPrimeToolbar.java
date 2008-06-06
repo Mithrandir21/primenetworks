@@ -8,6 +8,7 @@ import graphics.ImageLocator;
 import java.awt.BorderLayout;
 import javax.swing.*;
 import actions.*;
+import graphics.PrimeMain1;
 
 /**
  * The GenericPrimeToolbar represents a generic toolbar for the program.
@@ -97,7 +98,7 @@ public class GenericPrimeToolbar extends JMenuBar
 		editToolBar.setFloatable(false);
 		
 		
-		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/cut.jpg"));
+		tempIcon = ImageLocator.getImageIconObject("cut");
 		ActionCut cut = new ActionCut("Cut",tempIcon);
 
 		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/copy.jpg"));
