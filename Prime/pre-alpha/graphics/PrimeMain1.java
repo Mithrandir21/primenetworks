@@ -30,6 +30,8 @@ import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -79,7 +81,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 	
 	public static ImageIcon JavaIcon = null;
 	
-	public ImageIcon[] ic = null;
+	public static ArrayList<ImageIcon> images = new ArrayList<ImageIcon>(50);
 
 
 	// TODO - Create array of amount of different object types on the scene.

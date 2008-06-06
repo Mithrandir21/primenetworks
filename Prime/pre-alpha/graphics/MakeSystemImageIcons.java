@@ -5,6 +5,8 @@ package graphics;
 
 
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -46,7 +48,12 @@ public class MakeSystemImageIcons
 		System.out.println();
 
 		
-		System.out.println(count);
+		for(int i = 0;i<PrimeMain1.images.size();i++)
+		{
+			System.out.println(PrimeMain1.images.get(i));
+		}
+		
+		System.out.println(PrimeMain1.images.size());
 
 	}
 
@@ -71,7 +78,6 @@ public class MakeSystemImageIcons
 
 		if ( dir.isDirectory() )
 		{
-			System.out.println("K1");
 
 			String[] children = dir.list();
 			for ( int i = 0; i < children.length; i++ )
@@ -99,18 +105,39 @@ public class MakeSystemImageIcons
 	// Process only files under dir
 	public static void visitAllFiles(File dir)
 	{
+//		try
+//		{
+//			System.out.println("Does this." + count + " " + dir.getCanonicalPath());
+//		}
+//		catch ( IOException e )
+//		{
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		if ( dir.isDirectory() )
 		{
 			String[] children = dir.list();
 			for ( int i = 0; i < children.length; i++ )
 			{
-				System.out.println(children[i]);
 				visitAllFiles(new File(dir, children[i]));
 			}
 		}
 		else
 		{
-			count++;
+			String name = dir.getName();
+			if ( name.contains(".png") || name.contains(".jpg") || name.contains(".gif") )
+			{
+				try
+				{
+					PrimeMain1.images.add(ImageLocator.createImageIcon(dir.toURI().toURL()));
+				}
+				catch ( MalformedURLException e )
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				count++;
+			}
 		}
 	}
 }
