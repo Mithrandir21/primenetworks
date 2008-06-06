@@ -98,7 +98,7 @@ public class GenericPrimeToolbar extends JMenuBar
 		editToolBar.setFloatable(false);
 		
 		
-		tempIcon = ImageLocator.getImageIconObject("cut");
+		tempIcon = ImageLocator.getImageIconObject("Cut");
 		ActionCut cut = new ActionCut("Cut",tempIcon);
 
 		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/copy.jpg"));
