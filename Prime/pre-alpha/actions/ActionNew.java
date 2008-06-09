@@ -32,6 +32,21 @@ public class ActionNew extends AbstractAction
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_N));
 	}
 	
+	
+	/**
+	 * 
+	 * Description NEEDED!
+	 *
+	 * @param text
+	 * @param icon
+	 */
+	public ActionNew(String text) 
+	{
+		super(text);
+		putValue(SHORT_DESCRIPTION, "This is a New action");
+		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_N));
+	}
+	
 
 	public void actionPerformed(ActionEvent e)
 	{

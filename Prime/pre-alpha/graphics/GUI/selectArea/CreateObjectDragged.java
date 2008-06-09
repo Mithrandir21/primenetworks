@@ -97,7 +97,7 @@ public class CreateObjectDragged
 	
 	
 
-	private Desktop createDefaultDesktop(WidgetIcon iconObject)
+	public Desktop createDefaultDesktop(WidgetIcon iconObject)
 	{
 		String objectName = "Desktop" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -113,7 +113,7 @@ public class CreateObjectDragged
 	
 	
 
-	private Laptop createDefaultLaptop(WidgetIcon iconObject)
+	public Laptop createDefaultLaptop(WidgetIcon iconObject)
 	{
 		String objectName = "Laptop" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -149,7 +149,7 @@ public class CreateObjectDragged
 	
 	
 
-	private HTTPServer createDefaultHTTPServer(WidgetIcon iconObject)
+	public HTTPServer createDefaultHTTPServer(WidgetIcon iconObject)
 	{
 		String objectName = "HTTP Server" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -170,7 +170,7 @@ public class CreateObjectDragged
 	
 	
 
-	private BackupServer createDefaultBackupServer(WidgetIcon iconObject)
+	public BackupServer createDefaultBackupServer(WidgetIcon iconObject)
 	{
 		String objectName = "Backup Server" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -189,7 +189,7 @@ public class CreateObjectDragged
 	
 	
 
-	private MailServer createDefaultMailServer(WidgetIcon iconObject)
+	public MailServer createDefaultMailServer(WidgetIcon iconObject)
 	{
 		String objectName = "Mail Server" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -209,7 +209,7 @@ public class CreateObjectDragged
 
 	
 	
-	private FirewallServer createDefaultFirewallServer(WidgetIcon iconObject)
+	public FirewallServer createDefaultFirewallServer(WidgetIcon iconObject)
 	{
 		String objectName = "Firewall Server" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -229,7 +229,7 @@ public class CreateObjectDragged
 	
 	
 	
-	private ProxyServer createDefaultProxyServer(WidgetIcon iconObject)
+	public ProxyServer createDefaultProxyServer(WidgetIcon iconObject)
 	{
 		String objectName = "Proxy Server" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -249,7 +249,7 @@ public class CreateObjectDragged
 	
 	
 	
-	private HDD createDefaultHDD(WidgetIcon iconObject)
+	public HDD createDefaultHDD(WidgetIcon iconObject)
 	{
 		String objectName = "HDD" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -268,7 +268,7 @@ public class CreateObjectDragged
 	
 	
 	
-	private Scanner createDefaultScanner(WidgetIcon iconObject)
+	public Scanner createDefaultScanner(WidgetIcon iconObject)
 	{
 		String objectName = "HDD" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -288,7 +288,7 @@ public class CreateObjectDragged
 	
 	
 	
-	private Hub createDefaultHub(WidgetIcon iconObject)
+	public Hub createDefaultHub(WidgetIcon iconObject)
 	{
 		String objectName = "Hub" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -310,7 +310,7 @@ public class CreateObjectDragged
 	
 	
 	
-	private Switch createDefaultSwitch(WidgetIcon iconObject)
+	public Switch createDefaultSwitch(WidgetIcon iconObject)
 	{
 		String objectName = "Switch" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -331,7 +331,7 @@ public class CreateObjectDragged
 	
 	
 	
-	private Router createDefaultRouter(WidgetIcon iconObject)
+	public Router createDefaultRouter(WidgetIcon iconObject)
 	{
 		String objectName = "Router" + PrimeMain1.numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();

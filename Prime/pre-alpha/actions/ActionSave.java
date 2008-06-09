@@ -33,6 +33,21 @@ public class ActionSave extends AbstractAction
 	}
 
 	
+	/**
+	 * 
+	 * Description NEEDED!
+	 *
+	 * @param text
+	 * @param icon
+	 */
+	public ActionSave(String text) 
+	{
+		super(text);
+		putValue(SHORT_DESCRIPTION, "This is a Save action");
+		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_S));
+	}
+	
+	
 	public void actionPerformed(ActionEvent e)
 	{
 		// TODO Auto-generated method stub

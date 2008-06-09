@@ -6,9 +6,18 @@ package graphics.GUI.menues;
 import graphics.ImageLocator;
 
 import java.awt.BorderLayout;
-import javax.swing.*;
-import actions.*;
-import graphics.PrimeMain1;
+
+import javax.swing.ImageIcon;
+import javax.swing.JMenuBar;
+import javax.swing.JToolBar;
+
+import actions.ActionCopy;
+import actions.ActionCut;
+import actions.ActionNew;
+import actions.ActionOpenfile;
+import actions.ActionPaste;
+import actions.ActionSave;
+import actions.ActionSaveAll;
 
 /**
  * The GenericPrimeToolbar represents a generic toolbar for the program.
@@ -59,16 +68,16 @@ public class GenericPrimeToolbar extends JMenuBar
 		fileToolBar.setFloatable(false);
 		
 		
-		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/new.jpg"));
+		tempIcon = ImageLocator.getImageIconObject("New");
 		ActionNew newFile = new ActionNew("New",tempIcon);
 		
-		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/open.jpg"));
+		tempIcon = ImageLocator.getImageIconObject("Open");
 		ActionOpenfile openFile = new ActionOpenfile("Open File",tempIcon);
 		
-		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/save.jpg"));
+		tempIcon = ImageLocator.getImageIconObject("Save");
 		ActionSave save = new ActionSave("Save",tempIcon);
 		
-		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/save_all.jpg"));
+		tempIcon = ImageLocator.getImageIconObject("Save_all");
 		ActionSaveAll saveAll = new ActionSaveAll("Save All",tempIcon);
 		
 		
@@ -101,10 +110,10 @@ public class GenericPrimeToolbar extends JMenuBar
 		tempIcon = ImageLocator.getImageIconObject("Cut");
 		ActionCut cut = new ActionCut("Cut",tempIcon);
 
-		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/copy.jpg"));
+		tempIcon = ImageLocator.getImageIconObject("Copy");
 		ActionCopy openFile = new ActionCopy("Copy",tempIcon);
 
-		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/buttonIcons/paste.jpg"));
+		tempIcon = ImageLocator.getImageIconObject("Paste");;
 		ActionPaste save = new ActionPaste("Paste",tempIcon);
 		
 		

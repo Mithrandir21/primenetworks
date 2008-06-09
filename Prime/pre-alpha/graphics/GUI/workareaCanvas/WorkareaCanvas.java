@@ -6,7 +6,11 @@ package graphics.GUI.workareaCanvas;
 
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
+import graphics.WidgetIcon;
 import graphics.GUI.selectArea.CreateObjectDragged;
+import infrastructure.Hub;
+import infrastructure.Router;
+import infrastructure.Switch;
 
 import java.awt.Dimension;
 import java.awt.Point;
@@ -22,21 +26,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
 
-import objects.Object;
-
 import org.netbeans.api.visual.action.ActionFactory;
-import org.netbeans.api.visual.action.SelectProvider;
-import org.netbeans.api.visual.action.TextFieldInplaceEditor;
+import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.LayerWidget;
-import org.netbeans.api.visual.widget.Widget;
 
+import peripheral.Scanner;
+import servers.BackupServer;
+import servers.FirewallServer;
 import servers.HTTPServer;
+import servers.MailServer;
+import servers.ProxyServer;
 import widgetManipulation.WidgetObject;
+import clients.Desktop;
+import clients.Laptop;
 
 
 
@@ -58,9 +66,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 	public WorkareaCanvas()
 	{
-
 		// Creating the actual view
 		PrimeMain1.myView = PrimeMain1.scene.createView();
+
 
 		PrimeMain1.myView.setTransferHandler(TransHandler);
 
@@ -72,6 +80,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 		PrimeMain1.scene.getActions().addAction(
 				ActionFactory.createSelectAction(new CreateProvider()));
+
 
 		// Adds the zoom feature to the scene.
 		PrimeMain1.scene.getActions().addAction(ActionFactory.createZoomAction());
@@ -92,49 +101,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 	}
 
-
-
-	private class CreateProvider implements SelectProvider
-	{
-
-		public boolean isAimingAllowed(Widget arg0, Point arg1, boolean arg2)
-		{
-			return false;
-		}
-
-		public boolean isSelectionAllowed(Widget arg0, Point arg1, boolean arg2)
-		{
-			return true;
-		}
-
-		public void select(Widget relatedWidget, Point localLocation, boolean invertSelection)
-		{
-			WidgetObject widget = new WidgetObject(PrimeMain1.scene, new HTTPServer(
-					"newComponent2", "Desc", "1", "2", "3"), ImageLocator.createImage(this
-					.getClass().getResource("images/objectImages/print-server.png")));
-			
-			widget.setPreferredLocation(relatedWidget.convertLocalToScene(localLocation));
-			
-			widget.getActions().addAction(
-					ActionFactory.createExtendedConnectAction(PrimeMain1.interactionLayer,
-							new SceneConnectProvider()));
-			
-			widget.getActions().addAction(
-					ActionFactory.createAlignWithMoveAction(PrimeMain1.mainLayer,
-							PrimeMain1.interactionLayer, null));
-			
-			widget.getActions().addAction(
-					ActionFactory.createInplaceEditorAction(new LabelTextFieldEditor()));
-			
-			widget.setLabel("Biatch");
-			
-			cleanUp();
-			
-			PrimeMain1.mainLayer.addChild(widget);
-			PrimeMain1.numberOfWidgetsOnTheScene++;
-		}
-
-	}
 
 
 	// ------------------ TRANSFER METHODES -----------------------
@@ -219,35 +185,57 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	@Override
 	public void dropActionChanged(DropTargetDragEvent dtde)
 	{
-		// System.out.println("Drag DropActionChanged");
 	}
 
 
 
 	private void addWidgetObject(WidgetObject newObject, Point objectPoint)
 	{
-		newObject.setPreferredLocation(newObject.convertLocalToScene(objectPoint));
-		newObject.getActions().addAction(
-				ActionFactory.createExtendedConnectAction(PrimeMain1.interactionLayer,
-						new SceneConnectProvider()));
-		newObject.getActions().addAction(
-				ActionFactory.createAlignWithMoveAction(PrimeMain1.mainLayer,
-						PrimeMain1.interactionLayer, null));
+		// int n = JOptionPane.showConfirmDialog(this, "Would you like to add a
+		// new "
+		// + newObject.getObject().getName() + "?", "An Inane Question",
+		// JOptionPane.YES_NO_OPTION);
 
-		int n = JOptionPane.showConfirmDialog(this, "Would you like to add a new "
-				+ newObject.getObject().getName() + "?", "An Inane Question",
-				JOptionPane.YES_NO_OPTION);
-
-		if ( n == 0 )
+		if ( true )
 		{
+			Point sceneLocation = PrimeMain1.scene.convertViewToScene(objectPoint);
+
+			newObject.setPreferredLocation(sceneLocation);
+
+			newObject.getActions().addAction(
+					ActionFactory.createExtendedConnectAction(PrimeMain1.interactionLayer,
+							new SceneConnectProvider()));
+
+			newObject.getActions().addAction(
+					ActionFactory.createAlignWithMoveAction(PrimeMain1.mainLayer,
+							PrimeMain1.interactionLayer, null));
+
+			newObject.getActions().addAction(
+					ActionFactory.createInplaceEditorAction(new LabelTextFieldEditor()));
+
+			newObject.getActions().addAction(new AdapterExtended());
+
+			newObject.addChild(new LabelWidget(PrimeMain1.scene, newObject.getObject().getName()));
+
+			newObject.setToolTipText(newObject.getObject().getDescription());
+
+			// newObject.getActions().addAction(ActionFactory.createAddRemoveControlPointAction(1.0,3.0));
+
+
 			PrimeMain1.mainLayer.addChild(newObject);
 			PrimeMain1.numberOfWidgetsOnTheScene++;
+
+			cleanUp();
 		}
 	}
 
 
+
 	private void cleanUp()
 	{
+		doRepaint();
+
+
 		PrimeMain1.scene.revalidate();
 		PrimeMain1.scene.repaint();
 
@@ -262,32 +250,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 		PrimeMain1.connectionLayer.revalidate();
 		PrimeMain1.connectionLayer.repaint();
-	}
 
-
-
-
-
-
-	private class LabelTextFieldEditor implements TextFieldInplaceEditor
-	{
-		@Override
-		public String getText(Widget widget)
-		{
-			return ((WidgetObject) widget).getLabel();
-		}
-
-		@Override
-		public boolean isEnabled(Widget widget)
-		{
-			return true;
-		}
-
-		@Override
-		public void setText(Widget widget, String text)
-		{
-			((WidgetObject) widget).setLabel(text);
-		}
+		WorkareaTabbed.canvasScroll.repaint();
+		WorkareaSceneScroll.canvas.repaint();
 	}
 
 
@@ -313,50 +278,140 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 		if ( !actionName.equals("") )
 		{
+
+			boolean set = false;
+			Class objectType = null;
+			ImageIcon objectIcon = null;
+			objects.Object newObject = null;
+			WidgetObject newWidgetObject = null;
+
 			if ( actionName.equals("CreateNewST_Desktop_Item") )
 			{
-				System.out.println("CreateNewST_Desktop_Item");
+				objectType = Desktop.class;
+				objectIcon = ImageLocator.getImageIconObject("Desktop");
+
+				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Laptop_Item") )
 			{
-				System.out.println("CreateNewST_Laptop_Item");
+				objectType = Laptop.class;
+				objectIcon = ImageLocator.getImageIconObject("Desktop");
+
+				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_HTTPServer_Item") )
 			{
-				System.out.println("CreateNewST_HTTPServer_Item");
+				objectType = HTTPServer.class;
+				objectIcon = ImageLocator.getImageIconObject("Web-server");
+
+				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_MailServer_Item") )
 			{
-				System.out.println("CreateNewST_MailServer_Item");
+				objectType = MailServer.class;
+				objectIcon = ImageLocator.getImageIconObject("Email-server");
+
+				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_BackupServer_Item") )
 			{
-				System.out.println("CreateNewST_BackupServer_Item");
+				objectType = BackupServer.class;
+				objectIcon = ImageLocator.getImageIconObject("Data-server");
+
+				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_FirewallServer_Item") )
 			{
-				System.out.println("CreateNewST_FirewallServer_Item");
+				objectType = FirewallServer.class;
+				objectIcon = ImageLocator.getImageIconObject("Firewall-server");
+
+				set = true;
+			}
+			else if ( actionName.equals("CreateNewST_ProxyServer_Item") )
+			{
+				objectType = ProxyServer.class;
+				objectIcon = ImageLocator.getImageIconObject("Proxy-server");
+
+				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Hub_Item") )
 			{
-				System.out.println("CreateNewST_Hub_Item");
+				objectType = Hub.class;
+				objectIcon = ImageLocator.getImageIconObject("Hub");
+
+				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Switch_Item") )
 			{
-				System.out.println("CreateNewST_Switch_Item");
+				objectType = Switch.class;
+				objectIcon = ImageLocator.getImageIconObject("Switch");
+
+				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Router_Item") )
 			{
-				System.out.println("CreateNewST_Router_Item");
+				objectType = Router.class;
+				objectIcon = ImageLocator.getImageIconObject("Router");
+
+				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_WirelessRouter_Item") )
 			{
-				System.out.println("CreateNewST_WirelessRouter_Item");
+				objectType = Router.class;
+				objectIcon = ImageLocator.getImageIconObject("WirelessRouter");
+
+				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Scanner_Item") )
 			{
-				System.out.println("CreateNewST_Scanner_Item");
+				objectType = Scanner.class;
+				objectIcon = ImageLocator.getImageIconObject("Scanner");
+
+				set = true;
 			}
+
+
+			if ( set == true )
+			{
+				WidgetIcon newObjectIcon = new WidgetIcon(objectIcon, objectType);
+
+
+				newObject = new CreateObjectDragged().CreateObject(newObjectIcon);
+
+
+				newWidgetObject = new WidgetObject(PrimeMain1.scene, newObject, objectIcon
+						.getImage());
+
+
+				addWidgetObject(newWidgetObject, new Point(0, 0));
+			}
+		}
+	}
+
+
+
+	/**
+	 * I HATE EVERYBODY!!!!!
+	 */
+	private void doRepaint()
+	{
+		// The Nodes API can fire events outside the AWT Thread
+		if ( SwingUtilities.isEventDispatchThread() )
+		{
+			repaint();
+			PrimeMain1.scene.getScene().validate();
+			// required or repaint() doesn’t work
+		}
+		else
+		{
+			SwingUtilities.invokeLater(new Runnable()
+			{
+				public void run()
+				{
+					repaint();
+					PrimeMain1.scene.getScene().validate();
+				}
+			});
 		}
 	}
 }

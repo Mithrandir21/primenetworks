@@ -31,7 +31,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -79,8 +78,6 @@ public class PrimeMain1 extends JFrame implements ActionListener
 	public static LayerWidget connectionLayer;
 	
 	
-	public static ImageIcon JavaIcon = null;
-	
 	public static ArrayList<ImageIcon> images = new ArrayList<ImageIcon>(50);
 
 
@@ -94,9 +91,6 @@ public class PrimeMain1 extends JFrame implements ActionListener
 	{
 		super("Prime");
 
-		setupSystemIcons();
-		
-		
 		final SplashScreen splash = SplashScreen.getSplashScreen();
 
 		if ( splash == null )
@@ -383,13 +377,5 @@ public class PrimeMain1 extends JFrame implements ActionListener
 		g.setColor(Color.BLACK);
 		g.drawString("Loading " + comps[(frame / 5) % 4] + "...", 120, 150);
 	}
-	
-
-
-	private void setupSystemIcons()
-	{
-		JavaIcon = ImageLocator.createImageIcon(this.getClass().getResource("images/java.jpg"));
-	}
-	
 
 }

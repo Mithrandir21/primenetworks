@@ -36,14 +36,10 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 
 
-	ImageIcon icon = ImageLocator.createImageIcon(this.getClass().getResource("images/java.jpg"));
+	ImageIcon icon = ImageLocator.getImageIconObject("java");
 
 	// The menu buttons at the top of the screen
 	private JMenu file, edit, tools, help;
-
-
-	// Temp ImageIcon for holding the menu Icon.
-	private ImageIcon tempIcon = null;
 
 
 	/**
@@ -79,27 +75,19 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 		// Adds different items to the "File" menu
 
-		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource(
-				"images/buttonIcons/new.jpg"));
-		JMenuItem newFile = new JMenuItem(new ActionNew("New", tempIcon));
+		JMenuItem newFile = new JMenuItem(new ActionNew("New"));
 		newFile.setIcon(null);
 		file.add(newFile);
 
-		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource(
-				"images/buttonIcons/open.jpg"));
-		JMenuItem openFile = new JMenuItem(new ActionOpenfile("Open File", tempIcon));
+		JMenuItem openFile = new JMenuItem(new ActionOpenfile("Open File"));
 		openFile.setIcon(null);
 		file.add(openFile);
 
-		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource(
-				"images/buttonIcons/save.jpg"));
-		JMenuItem saveFile = new JMenuItem(new ActionSave("Save", tempIcon));
+		JMenuItem saveFile = new JMenuItem(new ActionSave("Save"));
 		saveFile.setIcon(null);
 		file.add(saveFile);
 
-		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource(
-				"images/buttonIcons/save_all.jpg"));
-		JMenuItem saveAll = new JMenuItem(new ActionSaveAll("Save All", tempIcon));
+		JMenuItem saveAll = new JMenuItem(new ActionSaveAll("Save All"));
 		saveAll.setIcon(null);
 		file.add(saveAll);
 
@@ -111,7 +99,6 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 
 		this.add(file);
-		tempIcon = null;
 	}
 
 
@@ -126,30 +113,22 @@ public class GenericPrimeMenuBar extends JMenuBar
 		edit.setMnemonic('E');
 
 		// Adds different items to the "Edit" menu
-		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource(
-				"images/buttonIcons/save_all.jpg"));
-		JMenuItem undo = new JMenuItem(new ActionSaveAll("Save All", null));
+		JMenuItem undo = new JMenuItem(new ActionSaveAll("Save All"));
 		undo.setIcon(null);
 		edit.add(undo);
 
 		// Adds a separator to the menu
 		edit.addSeparator();
 
-		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource(
-				"images/buttonIcons/cut.jpg"));
-		JMenuItem cut = new JMenuItem(new ActionCut("Cut", tempIcon));
+		JMenuItem cut = new JMenuItem(new ActionCut("Cut"));
 		cut.setIcon(null);
 		edit.add(cut);
 
-		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource(
-				"images/buttonIcons/copy.jpg"));
-		JMenuItem copy = new JMenuItem(new ActionCopy("Copy", tempIcon));
+		JMenuItem copy = new JMenuItem(new ActionCopy("Copy"));
 		copy.setIcon(null);
 		edit.add(copy);
 
-		tempIcon = ImageLocator.createImageIcon(this.getClass().getResource(
-				"images/buttonIcons/paste.jpg"));
-		JMenuItem paste = new JMenuItem(new ActionPaste("Paste", tempIcon));
+		JMenuItem paste = new JMenuItem(new ActionPaste("Paste"));
 		paste.setIcon(null);
 		edit.add(paste);
 
@@ -157,7 +136,6 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 
 		this.add(edit);
-		tempIcon = null;
 	}
 
 

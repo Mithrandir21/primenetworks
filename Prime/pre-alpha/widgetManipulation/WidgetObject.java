@@ -4,12 +4,17 @@
 package widgetManipulation;
 
 
-import java.awt.*;
-import java.awt.datatransfer.*;
-import java.io.*;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
+
 import objects.Object;
 
-import org.netbeans.api.visual.widget.*;
+import org.netbeans.api.visual.widget.ImageWidget;
+import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.modules.visual.util.GeomUtil;
 
 
@@ -37,7 +42,7 @@ public class WidgetObject extends ImageWidget implements Transferable
 	{
 		super(canvas, objImg);
 		object = obj;
-
+		
 		setFlavor();
 	}
 
@@ -138,4 +143,8 @@ public class WidgetObject extends ImageWidget implements Transferable
 		// System.out.println("WidgetCanvas - " + flavors[0]);
 		return flavors;
 	}
+
+	
+	
+
 }

@@ -9,9 +9,11 @@ package graphics.GUI.selectArea;
 
 
 import graphics.ImageLocator;
-import graphics.PrimeMain1;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 
 public class TabbedSelection extends JTabbedPane
 {
@@ -19,7 +21,7 @@ public class TabbedSelection extends JTabbedPane
     {
         
         
-        ImageIcon icon = PrimeMain1.JavaIcon;
+        ImageIcon icon = ImageLocator.getImageIconObject("java");
         
         
         

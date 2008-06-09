@@ -32,6 +32,22 @@ public class ActionCopy extends AbstractAction
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_C));
 	}
 	
+	/**
+	 * 
+	 * Description NEEDED!
+	 *
+	 * @param text
+	 * @param icon
+	 */
+	public ActionCopy(String text) 
+	{
+		super(text);
+		putValue(SHORT_DESCRIPTION, "This is a Copy action");
+		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_C));
+	}
+	
+	
+	
 
 	public void actionPerformed(ActionEvent e)
 	{

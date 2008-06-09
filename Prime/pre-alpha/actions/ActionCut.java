@@ -32,6 +32,23 @@ public class ActionCut extends AbstractAction
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_X));
 	}
 
+	
+	/**
+	 * 
+	 * Description NEEDED!
+	 *
+	 * @param text
+	 * @param icon
+	 */
+	public ActionCut(String text) 
+	{
+		super(text);
+		putValue(SHORT_DESCRIPTION, "This is a Cut action");
+		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_X));
+	}
+	
+	
+	
 	public void actionPerformed(ActionEvent e)
 	{
 		// TODO Auto-generated method stub

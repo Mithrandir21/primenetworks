@@ -31,6 +31,22 @@ public class ActionOpenfile extends AbstractAction
 		putValue(SHORT_DESCRIPTION, "This is a Open File action");
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_O));
 	}
+	
+	
+	/**
+	 * 
+	 * Description NEEDED!
+	 *
+	 * @param text
+	 * @param icon
+	 */
+	public ActionOpenfile(String text) 
+	{
+		super(text);
+		putValue(SHORT_DESCRIPTION, "This is a Open File action");
+		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_O));
+	}
+	
 
 	public void actionPerformed(ActionEvent e)
 	{

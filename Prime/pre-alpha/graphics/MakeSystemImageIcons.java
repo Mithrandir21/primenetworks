@@ -5,7 +5,6 @@ package graphics;
 
 
 import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -36,8 +35,6 @@ public class MakeSystemImageIcons
 		}
 		catch ( URISyntaxException e )
 		{
-			System.out.println("BIatch");
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -45,16 +42,6 @@ public class MakeSystemImageIcons
 
 		visitAllFiles(folder);
 		
-//		System.out.println();
-//
-//		
-//		for(int i = 0;i<PrimeMain1.images.size();i++)
-//		{
-//			System.out.println(PrimeMain1.images.get(i));
-//		}
-//		
-//		System.out.println(PrimeMain1.images.size());
-
 	}
 	
 
@@ -114,23 +101,17 @@ public class MakeSystemImageIcons
 			
 			if ( name.contains(".png") || name.contains(".jpg") || name.contains(".gif") )
 			{
-//				System.out.println(name);
 				try
 				{
 					name = name.substring(0, (name.length()-4));
 					
-					System.out.println(name);
-					
 					ImageIcon toBeAdded = ImageLocator.createImageIcon(dir.toURI().toURL());
 					toBeAdded.setDescription(name);
-//					
-//					PrimeMain1.images.add(ImageLocator.createImageIcon(dir.toURI().toURL()));
 					
 					PrimeMain1.images.add(toBeAdded);
 				}
 				catch ( MalformedURLException e )
 				{
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

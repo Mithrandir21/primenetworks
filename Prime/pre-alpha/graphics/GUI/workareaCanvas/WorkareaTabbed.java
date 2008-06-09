@@ -19,23 +19,23 @@ import javax.swing.*;
  */
 public class WorkareaTabbed extends JTabbedPane
 {
+	public static WorkareaSceneScroll canvasScroll = new WorkareaSceneScroll();
+	
 	public WorkareaTabbed()
 	{
 		// Creates the image for the tab
-		ImageIcon icon = ImageLocator.createImageIcon(this.getClass()
-				.getResource("images/java.jpg"));
+		ImageIcon icon = ImageLocator.getImageIconObject("java");
 
 		this.setPreferredSize(new Dimension(600, 500));
 
 
 		// Creates a new JScrollPane with the viewport set to the workareaCanvas
-		WorkareaSceneScroll canvasScroll = new WorkareaSceneScroll();
+		
 
 
 		addTab("Canvas", icon, canvasScroll);
 
 
-		setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-
+//		setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 	}
 }

@@ -31,6 +31,21 @@ public class ActionPaste extends AbstractAction
 		putValue(SHORT_DESCRIPTION, "This is a Paste action");
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_V));
 	}
+	
+	
+	/**
+	 * 
+	 * Description NEEDED!
+	 *
+	 * @param text
+	 * @param icon
+	 */
+	public ActionPaste(String text) 
+	{
+		super(text);
+		putValue(SHORT_DESCRIPTION, "This is a Paste action");
+		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_V));
+	}
 
 	public void actionPerformed(ActionEvent e)
 	{

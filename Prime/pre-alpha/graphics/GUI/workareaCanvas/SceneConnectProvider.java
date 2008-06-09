@@ -3,6 +3,7 @@
  */
 package graphics.GUI.workareaCanvas;
 
+
 import graphics.PrimeMain1;
 
 import java.awt.Point;
@@ -17,17 +18,19 @@ import org.netbeans.api.visual.widget.Widget;
 
 import widgetManipulation.WidgetObject;
 
+
 /**
  * @author Bam
- *
  */
 public class SceneConnectProvider implements ConnectProvider
 {
-	
+
 	public void createConnection(Widget sourceWidget, Widget targetWidget)
 	{
 		ConnectionWidget connection = new ConnectionWidget(PrimeMain1.scene);
 		connection.setTargetAnchorShape(AnchorShape.NONE);
+		connection.setToolTipText("This is a connection");
+		connection.getActions().addAction(new AdapterExtended());
 		connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(sourceWidget));
 		connection.setTargetAnchor(AnchorFactory.createRectangularAnchor(targetWidget));
 		PrimeMain1.connectionLayer.addChild(connection);
@@ -65,4 +68,3 @@ public class SceneConnectProvider implements ConnectProvider
 		return null;
 	}
 }
-

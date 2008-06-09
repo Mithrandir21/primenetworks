@@ -32,6 +32,21 @@ public class ActionSaveAll extends AbstractAction
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_A));
 	}
 	
+	
+	/**
+	 * 
+	 * Description NEEDED!
+	 *
+	 * @param text
+	 * @param icon
+	 */
+	public ActionSaveAll(String text) 
+	{
+		super(text);
+		putValue(SHORT_DESCRIPTION, "This is a Save All action");
+		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_A));
+	}
+	
 
 	public void actionPerformed(ActionEvent e)
 	{
