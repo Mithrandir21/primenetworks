@@ -8,10 +8,16 @@ import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.WidgetIcon;
 import graphics.GUI.selectArea.CreateObjectDragged;
+import graphics.GUI.workareaCanvas.providers.AdapterExtended;
+import graphics.GUI.workareaCanvas.providers.CanvasMenu;
+import graphics.GUI.workareaCanvas.providers.CreateProvider;
+import graphics.GUI.workareaCanvas.providers.SceneConnectProvider;
+import graphics.GUI.workareaCanvas.providers.WidgetHoverProvider;
 import infrastructure.Hub;
 import infrastructure.Router;
 import infrastructure.Switch;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.datatransfer.DataFlavor;
@@ -33,6 +39,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
 
 import org.netbeans.api.visual.action.ActionFactory;
+import org.netbeans.api.visual.border.BorderFactory;
 import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.LayerWidget;
 
@@ -69,7 +76,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 		// Creating the actual view
 		PrimeMain1.myView = PrimeMain1.scene.createView();
 
-
 		PrimeMain1.myView.setTransferHandler(TransHandler);
 
 		dt = new DropTarget(PrimeMain1.myView, this);
@@ -84,6 +90,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 		// Adds the zoom feature to the scene.
 		PrimeMain1.scene.getActions().addAction(ActionFactory.createZoomAction());
+		PrimeMain1.scene.getActions().addAction(ActionFactory.createPanAction());
 
 		// This is the main layer of the scene where the widgets, objects, are
 		// placed.
@@ -210,14 +217,35 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 					ActionFactory.createAlignWithMoveAction(PrimeMain1.mainLayer,
 							PrimeMain1.interactionLayer, null));
 
-			newObject.getActions().addAction(
-					ActionFactory.createInplaceEditorAction(new LabelTextFieldEditor()));
+			// NOT IN NEED OF THIS SINCE THERE WILL BE CREATED EDIT OBJECT VIEW
+			// newObject.getActions().addAction(
+			// ActionFactory.createInplaceEditorAction(new
+			// LabelTextFieldEditor()));
+
 
 			newObject.getActions().addAction(new AdapterExtended());
 
 			newObject.addChild(new LabelWidget(PrimeMain1.scene, newObject.getObject().getName()));
 
 			newObject.setToolTipText(newObject.getObject().getDescription());
+
+			// Adds hovering action to the widget.
+			newObject.getActions().addAction(
+					ActionFactory.createHoverAction(new WidgetHoverProvider()));
+
+
+			// ----------DIFFERENT BORDERS------------
+			newObject.setBorder(BorderFactory.createEmptyBorder());
+
+			// newObject.setBorder(BorderFactory.createDashedBorder(Color.black,
+			// 5, 5));
+
+			// newObject.setBorder(BorderFactory.createBevelBorder(false));
+
+			// newObject.setBorder(BorderFactory.createResizeBorder(5));
+
+			// newObject.setBorder(BorderFactory.createRoundedBorder(10, 10,
+			// Color.white, Color.black));
 
 			// newObject.getActions().addAction(ActionFactory.createAddRemoveControlPointAction(1.0,3.0));
 
@@ -228,7 +256,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 			cleanUp();
 		}
 	}
-
 
 
 	private void cleanUp()
@@ -254,7 +281,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 		WorkareaTabbed.canvasScroll.repaint();
 		WorkareaSceneScroll.canvas.repaint();
 	}
-
 
 
 	public void createPopupMenu()

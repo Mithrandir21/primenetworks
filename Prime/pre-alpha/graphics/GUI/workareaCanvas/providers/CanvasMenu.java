@@ -1,9 +1,10 @@
 /**
  * 
  */
-package graphics.GUI.workareaCanvas;
+package graphics.GUI.workareaCanvas.providers;
 
 import graphics.PrimeMain1;
+import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import java.awt.event.MouseListener;
 

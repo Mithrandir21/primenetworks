@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphics.GUI.workareaCanvas;
+package graphics.GUI.workareaCanvas.providers;
 
 
 import graphics.PrimeMain1;

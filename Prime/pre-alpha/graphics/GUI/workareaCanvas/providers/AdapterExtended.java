@@ -1,4 +1,4 @@
-package graphics.GUI.workareaCanvas;
+package graphics.GUI.workareaCanvas.providers;
 
 import java.awt.event.MouseEvent;
 
