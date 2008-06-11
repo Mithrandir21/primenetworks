@@ -78,15 +78,15 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	private JPopupMenu popup = CanvasMenu.createPopupMenu(this);
 
 
-	public static Scene scene = new Scene();
+	private Scene scene = new Scene();
 
-	public JComponent myView = scene.createView();
+	private JComponent myView = scene.createView();
 
 	private LayerWidget mainLayer;
 
 	private LayerWidget interactionLayer;
 
-	public LayerWidget connectionLayer;
+	private LayerWidget connectionLayer;
 
 
 	// TODO - Create array of amount of different object types on the scene.
@@ -127,21 +127,106 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 		connectionLayer = new LayerWidget(scene);
 		scene.addChild(connectionLayer);
 	}
+
 	
-	
-	public String getName()
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @return the canvasName
+	 */
+	public String getCanvasName()
 	{
 		return CanvasName;
 	}
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @return the scene
+	 */
+	public Scene getScene()
+	{
+		return scene;
+	}
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @return the myView
+	 */
+	public JComponent getMyView()
+	{
+		return myView;
+	}
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @return the mainLayer
+	 */
+	public LayerWidget getMainLayer()
+	{
+		return mainLayer;
+	}
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @return the interactionLayer
+	 */
+	public LayerWidget getInteractionLayer()
+	{
+		return interactionLayer;
+	}
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @return the connectionLayer
+	 */
+	public LayerWidget getConnectionLayer()
+	{
+		return connectionLayer;
+	}
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @return the numberOfWidgetsOnTheScene
+	 */
+	public int getNumberOfWidgetsOnTheScene()
+	{
+		return numberOfWidgetsOnTheScene;
+	}
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @param canvasName the canvasName to set
+	 */
+	public void setCanvasName(String canvasName)
+	{
+		CanvasName = canvasName;
+	}
 	
 
+	
+	
 
 	// ------------------ TRANSFER METHODES -----------------------
+
 
 	@Override
 	public void dragEnter(DropTargetDragEvent dtde)
 	{
-		// System.out.println("Drag Enter");
+		 System.out.println(getCanvasName());
 	}
 
 

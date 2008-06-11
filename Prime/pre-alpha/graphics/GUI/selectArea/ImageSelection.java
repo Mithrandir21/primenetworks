@@ -49,7 +49,7 @@
 				Object newObject = new CreateObjectDragged().CreateObject(icon,
 						PrimeMain1.currentCanvas.numberOfWidgetsOnTheScene);
 
-				return new WidgetObject(PrimeMain1.currentCanvas.scene, newObject, icon.getIconImage());
+				return new WidgetObject(PrimeMain1.currentCanvas.getScene(), newObject, icon.getIconImage());
 			}
 			return null;
 		}

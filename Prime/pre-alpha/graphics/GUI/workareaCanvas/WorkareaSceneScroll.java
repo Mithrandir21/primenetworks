@@ -1,30 +1,38 @@
 package graphics.GUI.workareaCanvas;
 
-import graphics.PrimeMain1;
-
 import javax.swing.JScrollPane;
 
 import managment.CanvasManagment;
 
+
 public class WorkareaSceneScroll extends JScrollPane
 {
-	public WorkareaSceneScroll()
+	private WorkareaCanvas canvas = new WorkareaCanvas();
+	
+	public WorkareaSceneScroll(String name)
 	{
-		createNewCanvas();
+		createNewCanvas(name);
 	}
 	
 	
-	public void createNewCanvas()
+	public void createNewCanvas(String name)
 	{
-		WorkareaCanvas canvas = new WorkareaCanvas();
-		
 		setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
 		setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
 		
-		this.setViewportView(canvas.myView);
+		this.setViewportView(canvas.getMyView());
 		
-		CanvasManagment.addCanvas(canvas);
-		
-		
+		CanvasManagment.addCanvas(canvas, name);
+	}
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @return the canvas
+	 */
+	public WorkareaCanvas getCanvas()
+	{
+		return canvas;
 	}
 }

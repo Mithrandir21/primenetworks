@@ -55,13 +55,13 @@
 			}
 			else
 			{
-				ConnectionWidget connection = new ConnectionWidget(PrimeMain1.currentCanvas.scene);
+				ConnectionWidget connection = new ConnectionWidget(PrimeMain1.currentCanvas.getScene());
 				connection.setTargetAnchorShape(AnchorShape.NONE);
 				connection.setToolTipText("This is a connection");
 				connection.getActions().addAction(new AdapterExtended());
 				connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(sourceWidget));
 				connection.setTargetAnchor(AnchorFactory.createRectangularAnchor(targetWidget));
-				PrimeMain1.currentCanvas.connectionLayer.addChild(connection);
+				PrimeMain1.currentCanvas.getConnectionLayer().addChild(connection);
 			}
 		}
 
