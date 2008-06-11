@@ -18,16 +18,16 @@ public class JPopupMenuProvider
 	public JPopupMenu createPopupMenu()
 	{
 		InitialMenues();
+//
+//
+//		popup.addSeparator();
+//
+//
+//		ObjectCreationMenues();
 
-
-		popup.addSeparator();
-
-
-		ObjectCreationMenues();
-
-		// Add listener to the text area so the popup menu can come up.
-		MouseListener popupListener = new PopupListener(popup);
-		PrimeMain1.myView.addMouseListener(popupListener);
+//		// Add listener to the text area so the popup menu can come up.
+//		MouseListener popupListener = new PopupListener(popup);
+//		PrimeMain1.myView.addMouseListener(popupListener);
 
 		return popup;
 	}

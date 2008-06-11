@@ -20,7 +20,7 @@ import managment.ComponentsManagment;
  * up the actual desktop, like a mouse, a monitor, a HDD, a motherboard and so
  * on.<br>
  * Each instance of this object will also contain an array of pointers to
- * devices connected to the system. These will represente the network around the
+ * devices connected to the system. These will reperesente the network around the
  * system, like switches, servers, firewalls, printer and so on. <br>
  * <br>
  * TODO - Make desktop rating system.<br>
@@ -66,7 +66,7 @@ public class Desktop extends Clients implements Serializable
 	private int desktopRate;
 
 	// Nodes before it reaches the first router outside of the systems own
-	// routers, ie the Internet.
+	// routers, i.e. the Internet.
 	private int numberOfNodes;
 
 

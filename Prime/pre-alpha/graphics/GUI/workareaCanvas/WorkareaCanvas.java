@@ -11,6 +11,8 @@ import graphics.GUI.selectArea.CreateObjectDragged;
 import graphics.GUI.workareaCanvas.providers.AdapterExtended;
 import graphics.GUI.workareaCanvas.providers.CanvasMenu;
 import graphics.GUI.workareaCanvas.providers.CreateProvider;
+import graphics.GUI.workareaCanvas.providers.JMenuProvider;
+import graphics.GUI.workareaCanvas.providers.PopupListener;
 import graphics.GUI.workareaCanvas.providers.SceneConnectProvider;
 import graphics.GUI.workareaCanvas.providers.WidgetHoverProvider;
 import infrastructure.Hub;
@@ -30,11 +32,13 @@ import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
 
@@ -69,6 +73,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	private TransferHandler TransHandler = new WidgetTransferHandler();
 
 	private DropTarget dt;
+
+	private JPopupMenu popup = CanvasMenu.createPopupMenu(this);
 
 
 	public WorkareaCanvas()
@@ -105,7 +111,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 		// objects are shown.
 		PrimeMain1.connectionLayer = new LayerWidget(PrimeMain1.scene);
 		PrimeMain1.scene.addChild(PrimeMain1.connectionLayer);
-
 	}
 
 
@@ -233,6 +238,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 			newObject.getActions().addAction(
 					ActionFactory.createHoverAction(new WidgetHoverProvider()));
 
+			newObject.getActions().addAction(
+					ActionFactory.createPopupMenuAction(new JMenuProvider()));
+
 
 			// ----------DIFFERENT BORDERS------------
 			newObject.setBorder(BorderFactory.createEmptyBorder());
@@ -248,7 +256,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 			// Color.white, Color.black));
 
 			// newObject.getActions().addAction(ActionFactory.createAddRemoveControlPointAction(1.0,3.0));
-
+			// ---------------------------------------
 
 			PrimeMain1.mainLayer.addChild(newObject);
 			PrimeMain1.numberOfWidgetsOnTheScene++;
@@ -285,7 +293,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 	public void createPopupMenu()
 	{
-		CanvasMenu.createPopupMenu(this);
+		// Add listener to the text area so the popup menu can come up.
+		MouseListener popupListener = new PopupListener(popup);
+		PrimeMain1.myView.addMouseListener(popupListener);
 	}
 
 

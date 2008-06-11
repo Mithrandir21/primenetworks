@@ -44,9 +44,9 @@ public abstract class Connection extends Object implements Serializable
 	 *
 	 * @param Name The name of the connection.
 	 * @param Desc The description of the connection.
-	 * @param From The object the connection emanates from.
+	 * @param From The object the connection eminated from.
 	 * @param To The object which is to be connected to. 
-	 * @param connection
+	 * @param connection The tyoe of connection between the objects.
 	 */
 	public Connection(String Name, String Desc,Object From, Object To, String connection)
 	{

@@ -273,7 +273,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 
 
 
-		this.setSize(1000, 800);
+		this.setSize(1200, 750);
 		this.setVisible(true);
 
 	}

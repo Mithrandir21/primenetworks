@@ -28,14 +28,8 @@ public class WorkareaTabbed extends JTabbedPane
 
 		this.setPreferredSize(new Dimension(600, 500));
 
-
-		// Creates a new JScrollPane with the viewport set to the workareaCanvas
-		
-
-
 		addTab("Canvas", icon, canvasScroll);
 
 
-//		setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 	}
 }

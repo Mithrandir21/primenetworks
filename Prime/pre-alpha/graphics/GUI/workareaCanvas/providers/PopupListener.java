@@ -16,7 +16,7 @@ public class PopupListener extends MouseAdapter
 {
     JPopupMenu popup;
 
-    PopupListener(JPopupMenu popupMenu) 
+    public PopupListener(JPopupMenu popupMenu) 
     {
         popup = popupMenu;
     }

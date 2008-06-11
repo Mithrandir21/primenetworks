@@ -35,9 +35,8 @@ public class ConnectionManagment
 	 *         connection between the two objects.
 	 */
 	@SuppressWarnings("unchecked")
-	public static Connection makeConnection(Connection[] existingConnections,
-			String conName, String conDesc, Object objectA, Object objectB,
-			String type, Class conClass)
+	public static Connection makeConnection(Connection[] existingConnections, String conName,
+			String conDesc, Object objectA, Object objectB, String type, Class conClass)
 	{
 		Connection connection = null;
 
@@ -55,18 +54,15 @@ public class ConnectionManagment
 				 */
 				if ( conClass.equals(DeviceConnection.class) )
 				{
-					connection = new DeviceConnection(conName, conDesc,
-							objectA, objectB, type);
+					connection = new DeviceConnection(conName, conDesc, objectA, objectB, type);
 				}
 				else if ( conClass.equals(InternalConnection.class) )
 				{
-					connection = new InternalConnection(conName, conDesc,
-							objectA, objectB, type);
+					connection = new InternalConnection(conName, conDesc, objectA, objectB, type);
 				}
 				else
 				{
-					connection = new NetworkConnection(conName, conDesc,
-							objectA, objectB, type);
+					connection = new NetworkConnection(conName, conDesc, objectA, objectB, type);
 				}
 			}
 		}
@@ -85,16 +81,14 @@ public class ConnectionManagment
 	 *         between the two given object. The array is cleaned for any empty
 	 *         indexs.
 	 */
-	public static Connection[] breakConnection(
-			Connection[] existingConnections, Object objectA, Object objectB)
-			throws ConnectionDoesNotExist
+	public static Connection[] breakConnection(Connection[] existingConnections, Object objectA,
+			Object objectB) throws ConnectionDoesNotExist
 	{
 
 		// Checks to see if there really is a connection between A and B
 		if ( checkConnectionExistence(existingConnections, objectA, objectB) == false )
 		{
-			throw new ConnectionDoesNotExist(objectA.getName(), objectB
-					.getName());
+			throw new ConnectionDoesNotExist(objectA.getName(), objectB.getName());
 		}
 
 
@@ -164,27 +158,23 @@ public class ConnectionManagment
 	 * @return Returns an array of connections where the connection between A
 	 *         and B has been changed to a connection between A and C.
 	 */
-	public static Connection[] changeConnection(
-			Connection[] existingConnections, Object objectA,
-			Object objectToBeRemoved, Object objectC)
-			throws ConnectionDoesNotExist, ConnectionDoesExist
+	public static Connection[] changeConnection(Connection[] existingConnections, Object objectA,
+			Object objectToBeRemoved, Object objectC) throws ConnectionDoesNotExist,
+			ConnectionDoesExist
 	{
 
 		// First checks to see if there exist a connection between object a and
 		// "ToBeRemoved"
-		if ( checkConnectionExistence(existingConnections, objectA,
-				objectToBeRemoved) == false )
+		if ( checkConnectionExistence(existingConnections, objectA, objectToBeRemoved) == false )
 		{
-			throw new ConnectionDoesNotExist(objectA.getName(),
-					objectToBeRemoved.getName());
+			throw new ConnectionDoesNotExist(objectA.getName(), objectToBeRemoved.getName());
 		}
 
 		// Then checks to see if there already exists a connection between
 		// object a and c
 		if ( checkConnectionExistence(existingConnections, objectA, objectC) == true )
 		{
-			throw new ConnectionDoesExist(objectA.getName(), objectToBeRemoved
-					.getName());
+			throw new ConnectionDoesExist(objectA.getName(), objectToBeRemoved.getName());
 		}
 
 
@@ -203,8 +193,7 @@ public class ConnectionManagment
 					// If the second object is found at the same index as the
 					// first
 					// one
-					if ( existingConnections[i].getObject2().equals(
-							objectToBeRemoved) )
+					if ( existingConnections[i].getObject2().equals(objectToBeRemoved) )
 					{
 						existingConnections[i].setObject2(objectC);
 					}
@@ -222,8 +211,7 @@ public class ConnectionManagment
 			if ( existingConnections[i] != null )
 			{
 				// If the second object is found
-				if ( existingConnections[i].getObject1().equals(
-						objectToBeRemoved) )
+				if ( existingConnections[i].getObject1().equals(objectToBeRemoved) )
 				{
 					// If the first object is found at the same index as the
 					// first
@@ -249,8 +237,8 @@ public class ConnectionManagment
 	 * @return Returns true if both the devices support the interface, and false
 	 *         if one or both do not support the interface.
 	 */
-	static boolean checkDeviceConnectiontypeSupport(Object objectA,
-			Object objectB, String type)
+	public static boolean checkDeviceConnectiontypeSupport(Object objectA, Object objectB,
+			String type)
 	{
 		// Gets the supported connection interfaces of both the devices
 		String[] connectionTypesA = objectA.getSupportedConnectionInterfaces();
@@ -299,7 +287,7 @@ public class ConnectionManagment
 	 * 
 	 * @return Returns true if a connection is found and false if not.
 	 */
-	static boolean checkConnectionExistence(Connection[] existingConnections,
+	public static boolean checkConnectionExistence(Connection[] existingConnections,
 			Object objectA, Object objectB)
 	{
 		/*
@@ -360,9 +348,8 @@ public class ConnectionManagment
 	 * 
 	 * @return Returns true if a connection is found and false if not.
 	 */
-	static boolean checkConnectionExistence(
-			ConnectionContainer[] connectionContainer, Object objectA,
-			Object objectB)
+	public static boolean checkConnectionExistence(ConnectionContainer[] connectionContainer,
+			Object objectA, Object objectB)
 	{
 		/*
 		 * Checks to see if object A is the first object in any connection. Then
@@ -373,16 +360,15 @@ public class ConnectionManagment
 		{
 			// Finds the index of object A in the arraylist. Or returns -1 if
 			// not found.
-			int objectAindex = connectionContainer[i].getContainer().indexOf(
-					objectA);
+			int objectAindex = connectionContainer[i].getContainer().indexOf(objectA);
 
 			// If the first object is found
 			if ( objectAindex != -1 )
 			{
 				// A temporary Connection object to see if Object A is connected
 				// to object B.
-				Connection temp = (Connection) connectionContainer[i]
-						.getContainer().get(objectAindex);
+				Connection temp = (Connection) connectionContainer[i].getContainer().get(
+						objectAindex);
 
 
 				// If the second object is found as the second object in the
@@ -403,16 +389,15 @@ public class ConnectionManagment
 		{
 			// Finds the index of object A in the arraylist. Or returns -1 if
 			// not found.
-			int objectBindex = connectionContainer[i].getContainer().indexOf(
-					objectB);
+			int objectBindex = connectionContainer[i].getContainer().indexOf(objectB);
 
 			// If the first object is found
 			if ( objectBindex != -1 )
 			{
 				// A temporary Connection object to see if Object A is connected
 				// to object B.
-				Connection temp = (Connection) connectionContainer[i]
-						.getContainer().get(objectBindex);
+				Connection temp = (Connection) connectionContainer[i].getContainer().get(
+						objectBindex);
 
 
 				// If the second object is found as the second object in the
