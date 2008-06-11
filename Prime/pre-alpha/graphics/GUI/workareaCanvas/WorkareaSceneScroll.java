@@ -4,15 +4,27 @@ import graphics.PrimeMain1;
 
 import javax.swing.JScrollPane;
 
+import managment.CanvasManagment;
+
 public class WorkareaSceneScroll extends JScrollPane
 {
-	public static WorkareaCanvas canvas = new WorkareaCanvas();
-	
 	public WorkareaSceneScroll()
 	{
+		createNewCanvas();
+	}
+	
+	
+	public void createNewCanvas()
+	{
+		WorkareaCanvas canvas = new WorkareaCanvas();
+		
 		setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
 		setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
 		
-		this.setViewportView(PrimeMain1.myView);
+		this.setViewportView(canvas.myView);
+		
+		CanvasManagment.addCanvas(canvas);
+		
+		
 	}
 }

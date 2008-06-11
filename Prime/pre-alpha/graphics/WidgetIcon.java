@@ -148,7 +148,7 @@ public class WidgetIcon extends JLabel
 
 	/**
 	 * This method sets the widgetIcons, JLabel icon, transferhandler which takes care
-	 * of the drag and drop functionality. It also adds an mouselistener to the JLabel.
+	 * of the drag and drop functionality. It also adds an mouseListener to the JLabel.
 	 */
 	private void widgetIconSetup()
 	{

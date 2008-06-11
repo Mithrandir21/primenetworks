@@ -36,7 +36,7 @@ public class CreateObjectDragged
 	 * @return Object
 	 * 			  The newly created standard object.
 	 */
-	public Object CreateObject(WidgetIcon iconObject)
+	public Object CreateObject(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		Object newObject = null;
 		String objectType = iconObject.getClassType().getName();
@@ -44,51 +44,51 @@ public class CreateObjectDragged
 		
 		if(objectType.equals("clients.Desktop"))
 		{
-			newObject = createDefaultDesktop(iconObject);
+			newObject = createDefaultDesktop(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if(objectType.equals("clients.Laptop"))
 		{
-			newObject = createDefaultLaptop(iconObject);
+			newObject = createDefaultLaptop(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if(objectType.equals("servers.HTTPServer"))
 		{
-			newObject = createDefaultHTTPServer(iconObject);
+			newObject = createDefaultHTTPServer(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if(objectType.equals("servers.BackupServer"))
 		{
-			newObject = createDefaultBackupServer(iconObject);
+			newObject = createDefaultBackupServer(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if(objectType.equals("servers.MailServer"))
 		{
-			newObject = createDefaultMailServer(iconObject);
+			newObject = createDefaultMailServer(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if(objectType.equals("servers.FirewallServer"))
 		{
-			newObject = createDefaultFirewallServer(iconObject);
+			newObject = createDefaultFirewallServer(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if(objectType.equals("servers.ProxyServer"))
 		{
-			newObject = createDefaultProxyServer(iconObject);
+			newObject = createDefaultProxyServer(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if(objectType.equals("hardware.HDD"))
 		{
-			newObject = createDefaultHDD(iconObject);
+			newObject = createDefaultHDD(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if(objectType.equals("peripheral.Scanner"))
 		{
-			newObject = createDefaultScanner(iconObject);
+			newObject = createDefaultScanner(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if(objectType.equals("infrastructure.Hub"))
 		{
-			newObject = createDefaultHub(iconObject);
+			newObject = createDefaultHub(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if(objectType.equals("infrastructure.Switch"))
 		{
-			newObject = createDefaultSwitch(iconObject);
+			newObject = createDefaultSwitch(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if(objectType.equals("infrastructure.Router"))
 		{
-			newObject = createDefaultRouter(iconObject);
+			newObject = createDefaultRouter(iconObject, numberOfWidgetsOnTheScene);
 		}
 		
 		
@@ -97,9 +97,9 @@ public class CreateObjectDragged
 	
 	
 
-	public Desktop createDefaultDesktop(WidgetIcon iconObject)
+	public Desktop createDefaultDesktop(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
-		String objectName = "Desktop" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "Desktop" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		if(objectDesc == "")
@@ -113,9 +113,9 @@ public class CreateObjectDragged
 	
 	
 
-	public Laptop createDefaultLaptop(WidgetIcon iconObject)
+	public Laptop createDefaultLaptop(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
-		String objectName = "Laptop" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "Laptop" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		if(objectDesc == "")
@@ -135,7 +135,7 @@ public class CreateObjectDragged
 //	 */
 //	private ThinClient createDefaultThinClient(WidgetIcon iconObject)
 //	{
-//		String objectName = "Desktop" + PrimeMain1.numberOfWidgetsOnTheScene;
+//		String objectName = "Desktop" + numberOfWidgetsOnTheScene;
 //		String objectDesc = iconObject.getDescription();
 //		
 //		if(objectDesc == "")
@@ -149,9 +149,9 @@ public class CreateObjectDragged
 	
 	
 
-	public HTTPServer createDefaultHTTPServer(WidgetIcon iconObject)
+	public HTTPServer createDefaultHTTPServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
-		String objectName = "HTTP Server" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "HTTP Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		String ObjectSWname = "Apache";
@@ -170,9 +170,9 @@ public class CreateObjectDragged
 	
 	
 
-	public BackupServer createDefaultBackupServer(WidgetIcon iconObject)
+	public BackupServer createDefaultBackupServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
-		String objectName = "Backup Server" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "Backup Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		String ObjectSWname = "Backup";
@@ -189,9 +189,9 @@ public class CreateObjectDragged
 	
 	
 
-	public MailServer createDefaultMailServer(WidgetIcon iconObject)
+	public MailServer createDefaultMailServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
-		String objectName = "Mail Server" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "Mail Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		String ObjectSWname = "Mail";
@@ -209,9 +209,9 @@ public class CreateObjectDragged
 
 	
 	
-	public FirewallServer createDefaultFirewallServer(WidgetIcon iconObject)
+	public FirewallServer createDefaultFirewallServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
-		String objectName = "Firewall Server" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "Firewall Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		String ObjectSWname = "Firewall";
@@ -229,9 +229,9 @@ public class CreateObjectDragged
 	
 	
 	
-	public ProxyServer createDefaultProxyServer(WidgetIcon iconObject)
+	public ProxyServer createDefaultProxyServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
-		String objectName = "Proxy Server" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "Proxy Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		String ObjectSWname = "ProxyServer";
@@ -249,9 +249,9 @@ public class CreateObjectDragged
 	
 	
 	
-	public HDD createDefaultHDD(WidgetIcon iconObject)
+	public HDD createDefaultHDD(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
-		String objectName = "HDD" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "HDD" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		String HHDtype = "IDE";
@@ -268,9 +268,9 @@ public class CreateObjectDragged
 	
 	
 	
-	public Scanner createDefaultScanner(WidgetIcon iconObject)
+	public Scanner createDefaultScanner(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
-		String objectName = "HDD" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "HDD" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		String Sresolution = "1280x1020";
@@ -288,9 +288,9 @@ public class CreateObjectDragged
 	
 	
 	
-	public Hub createDefaultHub(WidgetIcon iconObject)
+	public Hub createDefaultHub(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
-		String objectName = "Hub" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "Hub" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		String[] SupConInt = { "RJ-45" };
@@ -310,9 +310,9 @@ public class CreateObjectDragged
 	
 	
 	
-	public Switch createDefaultSwitch(WidgetIcon iconObject)
+	public Switch createDefaultSwitch(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
-		String objectName = "Switch" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "Switch" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		String[] SupConInt = { "RJ-45" };
@@ -331,9 +331,9 @@ public class CreateObjectDragged
 	
 	
 	
-	public Router createDefaultRouter(WidgetIcon iconObject)
+	public Router createDefaultRouter(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
-		String objectName = "Router" + PrimeMain1.numberOfWidgetsOnTheScene;
+		String objectName = "Router" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		
 		String[] SupConInt = { "RJ-45" };

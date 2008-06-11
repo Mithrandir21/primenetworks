@@ -290,29 +290,31 @@ public class ConnectionManagment
 	public static boolean checkConnectionExistence(Connection[] existingConnections,
 			Object objectA, Object objectB)
 	{
-		/*
-		 * Checks to see if object A is the first object in any connection. Then
-		 * if it find object A as the first object, it looks for object B at the
-		 * same index as object A.
-		 */
-		for ( int i = 0; i < existingConnections.length; i++ )
+		if ( existingConnections != null )
 		{
-			if ( existingConnections[i] != null )
+			/*
+			 * Checks to see if object A is the first object in any connection. Then
+			 * if it find object A as the first object, it looks for object B at the
+			 * same index as object A.
+			 */
+			for ( int i = 0; i < existingConnections.length; i++ )
 			{
-				// If the first object is found
-				if ( existingConnections[i].getObject1().equals(objectA) )
+				if ( existingConnections[i] != null )
 				{
-					// If the second object is found at the same index as the
-					// first
-					// one
-					if ( existingConnections[i].getObject2().equals(objectB) )
+					// If the first object is found
+					if ( existingConnections[i].getObject1().equals(objectA) )
 					{
-						return true;
+						// If the second object is found at the same index as the
+						// first
+						// one
+						if ( existingConnections[i].getObject2().equals(objectB) )
+						{
+							return true;
+						}
 					}
 				}
 			}
 		}
-
 		/*
 		 * Checks to see if object B is the first object in any connection. Then
 		 * if it find object B as the first object, it looks for object A at the
@@ -351,35 +353,37 @@ public class ConnectionManagment
 	public static boolean checkConnectionExistence(ConnectionContainer[] connectionContainer,
 			Object objectA, Object objectB)
 	{
-		/*
-		 * Checks to see if object A is the first object in any connection. Then
-		 * if it find object A as the first object, it looks for object B at the
-		 * same index as object A.
-		 */
-		for ( int i = 0; i < connectionContainer.length; i++ )
+		if ( connectionContainer != null )
 		{
-			// Finds the index of object A in the arraylist. Or returns -1 if
-			// not found.
-			int objectAindex = connectionContainer[i].getContainer().indexOf(objectA);
-
-			// If the first object is found
-			if ( objectAindex != -1 )
+			/*
+			 * Checks to see if object A is the first object in any connection. Then
+			 * if it find object A as the first object, it looks for object B at the
+			 * same index as object A.
+			 */
+			for ( int i = 0; i < connectionContainer.length; i++ )
 			{
-				// A temporary Connection object to see if Object A is connected
-				// to object B.
-				Connection temp = (Connection) connectionContainer[i].getContainer().get(
-						objectAindex);
+				// Finds the index of object A in the arraylist. Or returns -1 if
+				// not found.
+				int objectAindex = connectionContainer[i].getContainer().indexOf(objectA);
 
-
-				// If the second object is found as the second object in the
-				// connection
-				if ( temp.getObject2().equals(objectB) )
+				// If the first object is found
+				if ( objectAindex != -1 )
 				{
-					return true;
+					// A temporary Connection object to see if Object A is connected
+					// to object B.
+					Connection temp = (Connection) connectionContainer[i].getContainer().get(
+							objectAindex);
+
+
+					// If the second object is found as the second object in the
+					// connection
+					if ( temp.getObject2().equals(objectB) )
+					{
+						return true;
+					}
 				}
 			}
 		}
-
 		/*
 		 * Checks to see if object B is the first object in any connection. Then
 		 * if it find object B as the first object, it looks for object A at the

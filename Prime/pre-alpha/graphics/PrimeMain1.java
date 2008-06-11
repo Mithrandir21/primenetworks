@@ -8,6 +8,7 @@ import graphics.GUI.menues.GenericPrimeMenuBar;
 import graphics.GUI.menues.GenericPrimeToolbar;
 import graphics.GUI.selectArea.TabbedSelection;
 import graphics.GUI.statusArea.PrimeStatusBar;
+import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import graphics.GUI.workareaCanvas.WorkareaTabbed;
 
 import java.awt.AlphaComposite;
@@ -34,7 +35,6 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -43,8 +43,6 @@ import javax.swing.border.Border;
 import org.jdesktop.swingx.JXMultiSplitPane;
 import org.jdesktop.swingx.MultiSplitLayout;
 import org.jdesktop.swingx.MultiSplitLayout.Node;
-import org.netbeans.api.visual.widget.LayerWidget;
-import org.netbeans.api.visual.widget.Scene;
 
 
 /**
@@ -67,22 +65,13 @@ public class PrimeMain1 extends JFrame implements ActionListener
 	Border grayline = BorderFactory.createLineBorder(Color.GRAY);
 
 
-	public static Scene scene = new Scene();
-
-	public static JComponent myView;
-
-	public static LayerWidget mainLayer;
-
-	public static LayerWidget interactionLayer;
-
-	public static LayerWidget connectionLayer;
+	public static WorkareaCanvas[] canvases = new WorkareaCanvas[1];
 	
 	
+	public static WorkareaCanvas currentCanvas = null;
+
+
 	public static ArrayList<ImageIcon> images = new ArrayList<ImageIcon>(50);
-
-
-	// TODO - Create array of amount of different object types on the scene.
-	public static int numberOfWidgetsOnTheScene = 0;
 
 
 
@@ -95,7 +84,8 @@ public class PrimeMain1 extends JFrame implements ActionListener
 
 		if ( splash == null )
 		{
-			//System.out.println("SplashScreen.getSplashScreen() returned null");
+			// System.out.println("SplashScreen.getSplashScreen() returned
+			// null");
 		}
 		else
 		{
@@ -126,7 +116,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 
 
 		MakeSystemImageIcons n = new MakeSystemImageIcons();
-		
+
 		n.getImageIcons();
 
 
@@ -334,7 +324,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 		multiSplitPane.setPreferredSize(modelRoot.getBounds().getSize());
 	}
 
-	
+
 	private void LoadLayoutModel()
 	{
 		String layoutDef = "(COLUMN weight=1.0" + "(LEAF name=toolbarLeaf) " + "(ROW "
@@ -366,11 +356,10 @@ public class PrimeMain1 extends JFrame implements ActionListener
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	static void renderSplashFrame(Graphics2D g, int frame)
 	{
-		final String[] comps = { "Bam", "Pegah", "Lille-Bam" , "Bitch"};
+		final String[] comps = { "Bam", "Pegah", "Lille-Bam", "Bitch" };
 		g.setComposite(AlphaComposite.Clear);
 		g.fillRect(120, 140, 200, 40);
 		g.setPaintMode();
