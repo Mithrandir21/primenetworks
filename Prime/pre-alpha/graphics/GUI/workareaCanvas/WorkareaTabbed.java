@@ -28,27 +28,29 @@ public class WorkareaTabbed extends JTabbedPane
 	{
 		createNewCanvasTab("AA");
 		createNewCanvasTab("BB");
-
-		System.out.println(PrimeMain1.canvases[0].getCanvasName());
-		System.out.println(PrimeMain1.canvases[1].getCanvasName());
-
+		createNewCanvasTab("CC");
 
 		addChangeListener(new ChangeListener()
 		{
 			// This method is called whenever the selected tab changes
 			public void stateChanged(ChangeEvent evt)
 			{
+				// Gets the JTabbedPane that the event comes from.
 				JTabbedPane pane = (JTabbedPane) evt.getSource();
-				
-				pane.revalidate();
-				pane.repaint();
-				
-				WorkareaSceneScroll temp = (WorkareaSceneScroll) pane.getSelectedComponent();
 
-				WorkareaCanvas temp2 = temp.getCanvas();
-				
-				// Get current tab
-				System.out.println(temp2.numberOfWidgetsOnTheScene);
+				// Gets the scrollPane that the JTabbedPane contains.
+				WorkareaSceneScroll currentScrollPane = (WorkareaSceneScroll) pane
+						.getSelectedComponent();
+
+				// Gets the workareaCanvas that the scrollPane contains.
+				WorkareaCanvas currentCanvas = currentScrollPane.getCanvas();
+
+				// Repaints the entier canvas.(Avoids NullPointerExeption errors from swing).
+				currentCanvas.doRepaint();
+
+				// Sets the current working canvas to the canvas that is actually shown in the 
+				// JTabbedPane scrollPane.
+				PrimeMain1.currentCanvas = currentCanvas;
 			}
 		});
 	}
@@ -64,9 +66,7 @@ public class WorkareaTabbed extends JTabbedPane
 
 		this.setPreferredSize(new Dimension(600, 500));
 
-		addTab("Canvas", icon, canvasScroll);
-
-		setSelectedIndex(this.getTabCount() - 1);
+		addTab(name, icon, canvasScroll);
 	}
 
 

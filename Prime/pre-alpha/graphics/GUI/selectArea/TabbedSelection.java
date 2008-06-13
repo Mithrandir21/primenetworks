@@ -25,14 +25,16 @@ public class TabbedSelection extends JTabbedPane
         
         
         
+        JComponent panel4 = new ObjectSelection();
+        JScrollPane scrollArea = new JScrollPane(panel4);
+        this.addTab("Unit Area", icon, scrollArea, "Unit Area");
+        
+        
+        
         JComponent panel1 = new PrimeTree();
         this.addTab("Network Models", icon, panel1, "Network Models");
         
-        
-        
-        JComponent panel4 = new ObjectSelection();
-        JScrollPane scrollArea = new JScrollPane(panel4);
-        this.addTab("unit Area", icon, scrollArea, "Unit Area");
+
         
         
         

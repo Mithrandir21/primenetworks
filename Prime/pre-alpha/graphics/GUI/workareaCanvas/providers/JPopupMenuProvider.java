@@ -1,10 +1,6 @@
 package graphics.GUI.workareaCanvas.providers;
 
 
-import graphics.PrimeMain1;
-
-import java.awt.event.MouseListener;
-
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;

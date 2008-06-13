@@ -20,7 +20,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.border.Border;
 
@@ -69,13 +68,6 @@ public class ObjectSelection extends JPanel
 		initInfrastructureButtonIcons();
 
 		initSoftwareButtonIcons();
-
-		// /////////////
-		JTextField tf = new JTextField();
-		// tf.setDragEnabled(true);
-
-		this.add(tf);
-		// ////////////
 	}
 
 

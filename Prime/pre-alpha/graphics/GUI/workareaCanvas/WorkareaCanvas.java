@@ -69,7 +69,7 @@ import clients.Laptop;
 
 public class WorkareaCanvas extends JPanel implements DropTargetListener, ActionListener
 {
-	private String CanvasName = "";
+	private String CanvasName;
 	
 	private TransferHandler TransHandler = new WidgetTransferHandler();
 
@@ -226,7 +226,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	@Override
 	public void dragEnter(DropTargetDragEvent dtde)
 	{
-		 System.out.println(getCanvasName());
+//		 System.out.println(getCanvasName());
 	}
 
 
@@ -327,11 +327,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 			newObject.getActions().addAction(
 					ActionFactory.createAlignWithMoveAction(mainLayer, interactionLayer, null));
 
-			// NOT IN NEED OF THIS SINCE THERE WILL BE CREATED EDIT OBJECT VIEW
-			// newObject.getActions().addAction(
-			// ActionFactory.createInplaceEditorAction(new
-			// LabelTextFieldEditor()));
-
 
 			newObject.getActions().addAction(new AdapterExtended());
 
@@ -421,7 +416,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 		{
 
 			boolean set = false;
-			Class objectType = null;
+			Class<?> objectType = null;
 			ImageIcon objectIcon = null;
 			objects.Object newObject = null;
 			WidgetObject newWidgetObject = null;
@@ -534,7 +529,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	/**
 	 * I HATE EVERYBODY!!!!!
 	 */
-	private void doRepaint()
+	public void doRepaint()
 	{
 		// The Nodes API can fire events outside the AWT Thread
 		if ( SwingUtilities.isEventDispatchThread() )

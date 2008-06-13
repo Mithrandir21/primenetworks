@@ -6,6 +6,7 @@ package graphics;
 
 import graphics.GUI.menues.GenericPrimeMenuBar;
 import graphics.GUI.menues.GenericPrimeToolbar;
+import graphics.GUI.properties.PropertiesArea;
 import graphics.GUI.selectArea.TabbedSelection;
 import graphics.GUI.statusArea.PrimeStatusBar;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
@@ -56,18 +57,19 @@ public class PrimeMain1 extends JFrame implements ActionListener
 {
 
 	// Main window panel setup
-	private JPanel toolbarPanel, selectionPanel, workareaPanel, propertiesPanel, messagesPanel;
+	private JPanel toolbarPanel, selectionPanel, workareaPanel, messagesPanel;
+	
+	public static JPanel propertiesPanel;
 
 	static JXMultiSplitPane multiSplitPane = new JXMultiSplitPane();
-
 
 	// A simple border that is gray
 	Border grayline = BorderFactory.createLineBorder(Color.GRAY);
 
-
+	// An array that points to all the currently open canvases in the workarea.
 	public static WorkareaCanvas[] canvases = new WorkareaCanvas[1];
 	
-	
+	// A pointer to the currently open canvas that is displayed in the workarea.
 	public static WorkareaCanvas currentCanvas = null;
 
 
@@ -109,8 +111,6 @@ public class PrimeMain1 extends JFrame implements ActionListener
 					}
 				}
 				splash.close();
-				setVisible(true);
-				toFront();
 			}
 		}
 
@@ -179,7 +179,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 		 * not all, of the properties of the selected object.
 		 */
 		// Creates a new panel with a GridBagLayout.
-		propertiesPanel = new JPanel(new GridBagLayout());
+		propertiesPanel = new JPanel(new BorderLayout());
 
 		// Constraints for the window
 		GridBagConstraints conPropertiesPanel = new GridBagConstraints();
@@ -190,7 +190,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 		// Sets the border around the panel
 		propertiesPanel.setBorder(grayline);
 
-		propertiesPanel.add(new JLabel("Properties"));
+		propertiesPanel.add(new PropertiesArea());
 
 		/*
 		 * SETUP FOR THE messagesPanel PANEL. This panel will contain the

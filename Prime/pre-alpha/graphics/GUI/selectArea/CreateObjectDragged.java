@@ -3,14 +3,20 @@
  */
 package graphics.GUI.selectArea;
 
-import graphics.PrimeMain1;
-import clients.*;
-import servers.*;
-import infrastructure.*;
-import hardware.*;
 import graphics.WidgetIcon;
+import hardware.HDD;
+import infrastructure.Hub;
+import infrastructure.Router;
+import infrastructure.Switch;
 import objects.Object;
 import peripheral.Scanner;
+import servers.BackupServer;
+import servers.FirewallServer;
+import servers.HTTPServer;
+import servers.MailServer;
+import servers.ProxyServer;
+import clients.Desktop;
+import clients.Laptop;
 
 
 /**

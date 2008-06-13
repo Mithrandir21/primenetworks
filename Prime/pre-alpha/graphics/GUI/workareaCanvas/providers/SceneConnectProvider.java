@@ -55,6 +55,7 @@
 			}
 			else
 			{
+				// FIXME - Change to WidgetExtendedConnection and add a Connection to the constructor
 				ConnectionWidget connection = new ConnectionWidget(PrimeMain1.currentCanvas.getScene());
 				connection.setTargetAnchorShape(AnchorShape.NONE);
 				connection.setToolTipText("This is a connection");

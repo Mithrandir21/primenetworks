@@ -48,7 +48,7 @@ public class PrimeTree extends JScrollPane implements TreeSelectionListener
         
         this.add(tree);
         
-        this.setPreferredSize(new Dimension(500, 300));
+        this.setPreferredSize(new Dimension(300, 300));
         
 	}
 

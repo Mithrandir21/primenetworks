@@ -3,10 +3,7 @@
  */
 package graphics.GUI.workareaCanvas.providers;
 
-import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
-
-import java.awt.event.MouseListener;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
