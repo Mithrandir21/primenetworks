@@ -16,11 +16,13 @@ import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.SplashScreen;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -53,12 +55,13 @@ import org.jdesktop.swingx.MultiSplitLayout.Node;
  * @version 0.1
  */
 @SuppressWarnings("serial")
-public class PrimeMain1 extends JFrame implements ActionListener
+public class PrimeMain1 extends JFrame
 {
-
+	public static int width,height;
+	
 	// Main window panel setup
 	private JPanel toolbarPanel, selectionPanel, workareaPanel, messagesPanel;
-	
+
 	public static JPanel propertiesPanel;
 
 	static JXMultiSplitPane multiSplitPane = new JXMultiSplitPane();
@@ -68,7 +71,7 @@ public class PrimeMain1 extends JFrame implements ActionListener
 
 	// An array that points to all the currently open canvases in the workarea.
 	public static WorkareaCanvas[] canvases = new WorkareaCanvas[1];
-	
+
 	// A pointer to the currently open canvas that is displayed in the workarea.
 	public static WorkareaCanvas currentCanvas = null;
 
@@ -81,6 +84,18 @@ public class PrimeMain1 extends JFrame implements ActionListener
 	public PrimeMain1()
 	{
 		super("Prime");
+		
+		// Get the default toolkit
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+
+		// Get the current screen size
+		Dimension scrnsize = toolkit.getScreenSize();
+		
+		
+		width = ((int) scrnsize.getWidth())-200;
+		
+		height = ((int) scrnsize.getHeight())-200;
+		
 
 		final SplashScreen splash = SplashScreen.getSplashScreen();
 
@@ -263,7 +278,8 @@ public class PrimeMain1 extends JFrame implements ActionListener
 
 
 
-		this.setSize(1200, 750);
+		this.setSize(width, height);
+		this.setExtendedState(this.MAXIMIZED_BOTH);
 		this.setVisible(true);
 
 	}
@@ -287,12 +303,6 @@ public class PrimeMain1 extends JFrame implements ActionListener
 
 	}
 
-	public void actionPerformed(ActionEvent e)
-	{
-
-	}
-
-
 
 	private static void SaveLayoutModel()
 	{
@@ -313,10 +323,10 @@ public class PrimeMain1 extends JFrame implements ActionListener
 
 	private void makeLayoutModel()
 	{
-		String layoutDef = "(COLUMN weight=1.0" + "(LEAF name=toolbarLeaf) " + "(ROW "
-				+ "(LEAF name=selectionLeaf) " + "(COLUMN " + "(ROW "
-				+ "(LEAF name=workareaLeaf weight=0.7)" + "(LEAF name=propertiesLeaf) " + ")"
-				+ "(LEAF name=messagesLeaf weight=0.2) " + ")" + ")" + ")";
+		String layoutDef = "(COLUMN (LEAF name=toolbarLeaf) (ROW (LEAF name=selectionLeaf) "
+				+ "(COLUMN (ROW (LEAF name=workareaLeaf weight=0.6) "
+				+ "(LEAF name=propertiesLeaf weight=0.2) )"
+				+ "(LEAF name=messagesLeaf weight=1)  ) ) )";
 
 		// JOptionPane.showMessageDialog(null,"Error Loading layout Model.");
 		Node modelRoot = MultiSplitLayout.parseModel(layoutDef);
@@ -327,10 +337,10 @@ public class PrimeMain1 extends JFrame implements ActionListener
 
 	private void LoadLayoutModel()
 	{
-		String layoutDef = "(COLUMN weight=1.0" + "(LEAF name=toolbarLeaf) " + "(ROW "
-				+ "(LEAF name=selectionLeaf) " + "(COLUMN " + "(ROW "
-				+ "(LEAF name=workareaLeaf weight=0.7)" + "(LEAF name=propertiesLeaf) " + ")"
-				+ "(LEAF name=messagesLeaf weight=0.2) " + ")" + ")" + ")";
+		String layoutDef = "(COLUMN (LEAF name=toolbarLeaf) (ROW (LEAF name=selectionLeaf) "
+			+ "(COLUMN (ROW (LEAF name=workareaLeaf weight=0.6) "
+			+ "(LEAF name=propertiesLeaf weight=0.2) )"
+			+ "(LEAF name=messagesLeaf weight=1)  ) ) )";
 
 
 		try

@@ -90,7 +90,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 	// TODO - Create array of amount of different object types on the scene.
-	public int numberOfWidgetsOnTheScene = 0;
+	private int numberOfWidgetsOnTheScene = 0;
 
 
 

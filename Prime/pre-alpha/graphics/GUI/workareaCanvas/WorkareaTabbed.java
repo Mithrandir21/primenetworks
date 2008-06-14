@@ -6,6 +6,7 @@ package graphics.GUI.workareaCanvas;
 
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
+import graphics.GUI.properties.PropertiesArea;
 
 import java.awt.Dimension;
 
@@ -51,6 +52,11 @@ public class WorkareaTabbed extends JTabbedPane
 				// Sets the current working canvas to the canvas that is actually shown in the 
 				// JTabbedPane scrollPane.
 				PrimeMain1.currentCanvas = currentCanvas;
+				
+				
+				PropertiesArea temp = (PropertiesArea) PrimeMain1.propertiesPanel.getComponent(0);
+				
+				temp.newObjectSelectedPropertiesTab(PrimeMain1.currentCanvas);
 			}
 		});
 	}
@@ -64,7 +70,11 @@ public class WorkareaTabbed extends JTabbedPane
 		// Creates the image for the tab
 		ImageIcon icon = ImageLocator.getImageIconObject("java");
 
-		this.setPreferredSize(new Dimension(600, 500));
+		int width = (int) (PrimeMain1.width*0.60);
+		int height = (int) (PrimeMain1.width*0.60);
+		
+		
+		this.setPreferredSize(new Dimension(width,height));
 
 		addTab(name, icon, canvasScroll);
 	}

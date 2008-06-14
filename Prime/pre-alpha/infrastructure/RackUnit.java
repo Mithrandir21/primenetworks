@@ -5,11 +5,6 @@ import objects.Object;
 
 public class RackUnit extends Object implements Serializable 
 {
-	
-
-	
-	
-	
 	/**
 	 * Constructor for a rack unit class.
 	 *

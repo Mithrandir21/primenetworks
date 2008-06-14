@@ -3,6 +3,10 @@
  */
 package graphics.GUI.properties;
 
+import java.awt.Dimension;
+
+import graphics.GUI.workareaCanvas.WorkareaCanvas;
+
 import javax.swing.JTabbedPane;
 
 import objects.Object;
@@ -15,6 +19,8 @@ import objects.Object;
  */
 public class PropertiesArea	extends JTabbedPane
 {
+	ObjectScrollProperties scrollArea = new ObjectScrollProperties();
+	
 	/**
 	 * TODO - Description NEEDED!
 	 *
@@ -22,6 +28,8 @@ public class PropertiesArea	extends JTabbedPane
 	public PropertiesArea()
 	{
 		createPropertiesTab();
+		
+//		this.setPreferredSize(new Dimension(200,300));
 	}
 	
 	
@@ -31,11 +39,9 @@ public class PropertiesArea	extends JTabbedPane
 	 */
 	public void createPropertiesTab()
 	{
-		ObjectProperties objProp = new ObjectProperties();
+		scrollArea.createPropertiesTab();
 		
-//		this.setPreferredSize(new Dimension(600, 500));
-		
-		addTab("tab", objProp);
+		addTab("tab", scrollArea);
 	}
 	
 	
@@ -46,11 +52,9 @@ public class PropertiesArea	extends JTabbedPane
 	 */
 	public void createPropertiesTab(Object object)
 	{
-		ObjectProperties objProp = new ObjectProperties(object);
+		scrollArea.createPropertiesTab(object);
 		
-//		this.setPreferredSize(new Dimension(600, 500));
-		
-		addTab("tab", objProp);
+		addTab("tab", scrollArea);
 	}
 	
 	
@@ -61,10 +65,22 @@ public class PropertiesArea	extends JTabbedPane
 	 */
 	public void newObjectSelectedPropertiesTab(Object object)
 	{
-		ObjectProperties objProp = new ObjectProperties(object);
+		scrollArea.newObjectSelectedPropertiesTab(object);
 		
-		this.removeAll();
+		addTab(object.getName(), scrollArea);
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void newObjectSelectedPropertiesTab(WorkareaCanvas canvas)
+	{
+		scrollArea.newObjectSelectedPropertiesTab(canvas);
 		
-		addTab(object.getName(), objProp);
+		addTab(canvas.getCanvasName(), scrollArea);
+		
 	}
 }

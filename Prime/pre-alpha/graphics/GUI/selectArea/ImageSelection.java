@@ -47,7 +47,7 @@
 				WidgetIcon icon = (WidgetIcon) comp;
 
 				Object newObject = new CreateObjectDragged().CreateObject(icon,
-						PrimeMain1.currentCanvas.numberOfWidgetsOnTheScene);
+						PrimeMain1.currentCanvas.getNumberOfWidgetsOnTheScene());
 
 				return new WidgetObject(PrimeMain1.currentCanvas.getScene(), newObject, icon.getIconImage());
 			}
