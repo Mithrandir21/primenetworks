@@ -85,6 +85,7 @@ public class PrimeMain1 extends JFrame
 	{
 		super("Prime");
 		
+		
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -157,7 +158,7 @@ public class PrimeMain1 extends JFrame
 		conToolbarPanel.fill = GridBagConstraints.BOTH;
 
 		// Sets the border around the panel
-		toolbarPanel.setBorder(grayline);
+//		toolbarPanel.setBorder(grayline);
 
 		toolbarPanel.add(new GenericPrimeToolbar());
 
@@ -203,9 +204,11 @@ public class PrimeMain1 extends JFrame
 		conPropertiesPanel.fill = GridBagConstraints.BOTH;
 
 		// Sets the border around the panel
-		propertiesPanel.setBorder(grayline);
+//		propertiesPanel.setBorder(grayline);
 
 		propertiesPanel.add(new PropertiesArea());
+		
+//		propertiesPanel.setPreferredSize(new Dimension(200,300));
 
 		/*
 		 * SETUP FOR THE messagesPanel PANEL. This panel will contain the
@@ -375,6 +378,15 @@ public class PrimeMain1 extends JFrame
 		g.setPaintMode();
 		g.setColor(Color.BLACK);
 		g.drawString("Loading " + comps[(frame / 5) % 4] + "...", 120, 150);
+	}
+	
+	
+	
+	public static void updatePropertiesArea()
+	{
+		PropertiesArea temp = (PropertiesArea) propertiesPanel.getComponent(0);
+		
+		temp.newObjectSelectedPropertiesTab(currentCanvas);
 	}
 
 }

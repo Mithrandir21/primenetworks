@@ -22,40 +22,7 @@ public class ObjectScrollProperties extends JScrollPane
 		setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
 		setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
 	}
-	
-	
-	/**
-	 * TODO - Description
-	 * 
-	 */
-	public void createPropertiesTab()
-	{
-		setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
-		setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
-		
-		ObjectProperties objProp = new ObjectProperties();
-		
-		this.setViewportView(objProp);
-		
-	}
-	
-	
-	
-	/**
-	 * TODO - Description
-	 * 
-	 */
-	public void createPropertiesTab(Object object)
-	{
-		setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
-		setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
-		
-		ObjectProperties objProp = new ObjectProperties(object);
-		
-		this.setViewportView(objProp);
-		
-	}
-	
+
 	
 	
 	/**

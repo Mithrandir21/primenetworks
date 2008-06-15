@@ -5,6 +5,7 @@ package graphics.GUI.workareaCanvas;
 
 
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.WidgetIcon;
 import graphics.GUI.selectArea.CreateObjectDragged;
 import graphics.GUI.workareaCanvas.providers.AdapterExtended;
@@ -370,6 +371,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	{
 		doRepaint();
 
+		PrimeMain1.updatePropertiesArea();
 
 		scene.revalidate();
 		scene.repaint();

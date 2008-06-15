@@ -43,10 +43,10 @@ public class ObjectProperties extends JPanel
 	JLabel serversLabels[] = new JLabel[4];
 
 	// Standard peripherals labels
-	JLabel peripheralsLabels[] = new JLabel[3];
+	JLabel peripheralsLabels[] = new JLabel[0];
 
 	// Standard infrastructure labels
-	JLabel infrastructuresLabels[] = new JLabel[3];
+	JLabel infrastructuresLabels[] = new JLabel[0];
 
 	// Standard connections labels
 	JLabel connectionsLabels[] = new JLabel[3];
@@ -61,9 +61,6 @@ public class ObjectProperties extends JPanel
 
 	public ObjectProperties(WorkareaCanvas canvas)
 	{
-		init();
-
-
 		this.setLayout(new SpringLayout());
 
 		JLabel canvasLabels[] = new JLabel[3];
@@ -95,7 +92,7 @@ public class ObjectProperties extends JPanel
 		canvasLabels[1] = temp;
 
 		this.add(canvasLabels[1]);
-		JTextField textField1 = new JTextField(canvas.getNumberOfWidgetsOnTheScene());
+		JTextField textField1 = new JTextField("" + canvas.getNumberOfWidgetsOnTheScene());
 		Dimension tfSize1 = new Dimension(5, 20);
 		textField1.setMaximumSize(tfSize1);
 		textField1.setPreferredSize(tfSize1);
@@ -210,6 +207,14 @@ public class ObjectProperties extends JPanel
 
 		temp = null;
 		// /////////////////////////////////////////////////
+		
+		
+		// -------------------- Peripherals --------------------
+
+		// /////////////////////////////////////////////////
+		
+		
+		
 	}
 
 

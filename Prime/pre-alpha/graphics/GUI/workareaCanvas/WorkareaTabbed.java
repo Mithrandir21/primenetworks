@@ -30,6 +30,9 @@ public class WorkareaTabbed extends JTabbedPane
 		createNewCanvasTab("AA");
 		createNewCanvasTab("BB");
 		createNewCanvasTab("CC");
+		
+//		PrimeMain1.updatePropertiesArea();
+		
 
 		addChangeListener(new ChangeListener()
 		{
@@ -53,12 +56,12 @@ public class WorkareaTabbed extends JTabbedPane
 				// JTabbedPane scrollPane.
 				PrimeMain1.currentCanvas = currentCanvas;
 				
-				
-				PropertiesArea temp = (PropertiesArea) PrimeMain1.propertiesPanel.getComponent(0);
-				
-				temp.newObjectSelectedPropertiesTab(PrimeMain1.currentCanvas);
+				PrimeMain1.updatePropertiesArea();
 			}
 		});
+		
+		
+		
 	}
 
 

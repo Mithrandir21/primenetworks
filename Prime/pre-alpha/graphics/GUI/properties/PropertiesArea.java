@@ -5,6 +5,7 @@ package graphics.GUI.properties;
 
 import java.awt.Dimension;
 
+import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import javax.swing.JTabbedPane;
@@ -27,36 +28,15 @@ public class PropertiesArea	extends JTabbedPane
 	 */
 	public PropertiesArea()
 	{
-		createPropertiesTab();
 		
-//		this.setPreferredSize(new Dimension(200,300));
-	}
-	
-	
-	/**
-	 * TODO - Description
-	 * 
-	 */
-	public void createPropertiesTab()
-	{
-		scrollArea.createPropertiesTab();
+		int width = (int) (PrimeMain1.width*0.11);
 		
-		addTab("tab", scrollArea);
-	}
-	
-	
-	
-	/**
-	 * TODO - Description
-	 * 
-	 */
-	public void createPropertiesTab(Object object)
-	{
-		scrollArea.createPropertiesTab(object);
+		int height = (int) (PrimeMain1.height*0.70);
+
+
 		
-		addTab("tab", scrollArea);
+		this.setPreferredSize(new Dimension(width,height));
 	}
-	
 	
 	
 	/**
