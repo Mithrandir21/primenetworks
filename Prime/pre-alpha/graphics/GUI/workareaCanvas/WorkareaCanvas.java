@@ -44,6 +44,7 @@ import javax.swing.TransferHandler;
 
 import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.border.BorderFactory;
+import org.netbeans.api.visual.model.ObjectScene;
 import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Scene;
@@ -57,6 +58,7 @@ import servers.ProxyServer;
 import widgetManipulation.WidgetObject;
 import clients.Desktop;
 import clients.Laptop;
+import connections.Connection;
 
 
 
@@ -79,7 +81,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	private JPopupMenu popup = CanvasMenu.createPopupMenu(this);
 
 
-	private Scene scene = new Scene();
+	private ObjectScene scene = new ObjectScene();
 
 	private JComponent myView = scene.createView();
 
@@ -88,10 +90,15 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	private LayerWidget interactionLayer;
 
 	private LayerWidget connectionLayer;
+	
+	private Connection[] connections = new Connection[5];
 
 
 	// TODO - Create array of amount of different object types on the scene.
 	private int numberOfWidgetsOnTheScene = 0;
+	
+	
+	private WidgetObject currentWidgetObject = null;
 
 
 
@@ -104,10 +111,10 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 		dt = new DropTarget(myView, this);
 
 
-		createPopupMenu();
+//		createPopupMenu();
 
 
-		scene.getActions().addAction(ActionFactory.createSelectAction(new CreateProvider()));
+//		scene.getActions().addAction(ActionFactory.createSelectAction(new CreateProvider()));
 
 
 		// Adds the zoom feature to the scene.
@@ -207,6 +214,17 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	}
 
 
+	public Connection[] getConnections() 
+	{
+		return connections;
+	}
+
+	
+	public WidgetObject getCurrentWidgetObject() {
+		return currentWidgetObject;
+	}
+
+
 	/**
 	 * TODO - Description NEEDED!
 	 *
@@ -218,10 +236,20 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	}
 	
 
-	
+	public void setConnections(Connection[] connections) 
+	{
+		this.connections = connections;
+	}
 	
 
+
+	public void setCurrentWidgetObject(WidgetObject currentWidgetObject) {
+		this.currentWidgetObject = currentWidgetObject;
+	}
 	// ------------------ TRANSFER METHODES -----------------------
+
+
+
 
 
 	@Override
@@ -324,6 +352,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 			newObject.getActions().addAction(
 					ActionFactory.createExtendedConnectAction(interactionLayer,
 							new SceneConnectProvider()));
+			
+			newObject.getActions().addAction(
+					ActionFactory.createSelectAction(new CreateProvider()));
 
 			newObject.getActions().addAction(
 					ActionFactory.createAlignWithMoveAction(mainLayer, interactionLayer, null));
@@ -338,9 +369,18 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 			// Adds hovering action to the widget.
 			newObject.getActions().addAction(
 					ActionFactory.createHoverAction(new WidgetHoverProvider()));
+			
+			JMenuProvider menuProvider = new JMenuProvider();
+			
+			this.setComponentPopupMenu(menuProvider.getPopupMenu(newObject, objectPoint));
 
 			newObject.getActions().addAction(
-					ActionFactory.createPopupMenuAction(new JMenuProvider()));
+					ActionFactory.createPopupMenuAction(menuProvider));
+			
+			
+//			newObject.getActions().addAction(ActionFactory.createRectangularSelectAction(
+//					ActionFactory.createDefaultRectangularSelectDecorator(scene),interactionLayer,
+//					ActionFactory.createObjectSceneRectangularSelectProvider(scene)));
 
 
 			// ----------DIFFERENT BORDERS------------
@@ -423,9 +463,13 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 			objects.Object newObject = null;
 			WidgetObject newWidgetObject = null;
 
-			if ( actionName.equals("CreateNewST_Desktop_Item") )
+			if ( actionName.equals("DeleteThisObject") )
 			{
-				objectType = Desktop.class;
+				System.out.println("khdg");
+			}			
+			else if ( actionName.equals("CreateNewST_Laptop_Item") )
+			{
+				objectType = Laptop.class;
 				objectIcon = ImageLocator.getImageIconObject("Desktop");
 
 				set = true;
@@ -552,4 +596,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 			});
 		}
 	}
+
+
 }

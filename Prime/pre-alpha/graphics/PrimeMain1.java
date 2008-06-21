@@ -70,8 +70,9 @@ public class PrimeMain1 extends JFrame
 	Border grayline = BorderFactory.createLineBorder(Color.GRAY);
 
 	// An array that points to all the currently open canvases in the workarea.
-	public static WorkareaCanvas[] canvases = new WorkareaCanvas[1];
-
+	public static WorkareaCanvas[] canvases = new WorkareaCanvas[3];
+	
+	
 	// A pointer to the currently open canvas that is displayed in the workarea.
 	public static WorkareaCanvas currentCanvas = null;
 

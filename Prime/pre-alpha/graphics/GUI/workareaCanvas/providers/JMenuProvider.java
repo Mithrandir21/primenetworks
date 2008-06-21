@@ -16,6 +16,6 @@ public class JMenuProvider implements PopupMenuProvider
 	{
 		JPopupMenuProvider provider = new JPopupMenuProvider();
 
-		return provider.createPopupMenu();
+		return provider.createPopupMenu(widget);
 	}
 }

@@ -4,21 +4,25 @@
 	package graphics.GUI.workareaCanvas.providers;
 
 	import java.awt.Point;
+	import javax.swing.JOptionPane;
 
-	import managment.ConnectionManagment;
-	import objects.Object;
+import managment.ConnectionManagment;
+import objects.Object;
 
-	import org.netbeans.api.visual.action.ConnectProvider;
-	import org.netbeans.api.visual.action.ConnectorState;
-	import org.netbeans.api.visual.anchor.AnchorFactory;
-	import org.netbeans.api.visual.anchor.AnchorShape;
-	import org.netbeans.api.visual.widget.ConnectionWidget;
-	import org.netbeans.api.visual.widget.Scene;
-	import org.netbeans.api.visual.widget.Widget;
+import org.netbeans.api.visual.action.ConnectProvider;
+import org.netbeans.api.visual.action.ConnectorState;
+import org.netbeans.api.visual.anchor.AnchorFactory;
+import org.netbeans.api.visual.anchor.AnchorShape;
+import org.netbeans.api.visual.widget.Scene;
+import org.netbeans.api.visual.widget.Widget;
 
-	import widgetManipulation.WidgetObject;
-	import exceptions.ConnectionsIsNotPossible;
-	import graphics.PrimeMain1;
+import widgetManipulation.WidgetObject;
+import connections.Connection;
+import connections.NetworkConnection;
+import connections.WidgetExtendedConnection;
+import exceptions.ConnectionDoesExist;
+import exceptions.ConnectionsIsNotPossible;
+import graphics.PrimeMain1;
 
 	/**
 	 * TODO - Description NEEDED!
@@ -31,38 +35,57 @@
 
 		public void createConnection(Widget sourceWidget, Widget targetWidget)
 		{
+			// Either the source or the target widget is not an object, which would
+			// result in a NullPOinterException.
+			if(sourceWidget == null || targetWidget == null)
+			{
+				return;
+			}
+			
 			WidgetObject SourceWidObj = (WidgetObject) sourceWidget;
 			WidgetObject TargetWidObj = (WidgetObject) targetWidget;
-
-
-			// Checks if connection is possible.
-			boolean possible = checkSupportsConnection(SourceWidObj.getObject(), TargetWidObj
-					.getObject());
-
-
-			if ( possible == false )
+			
+			Connection con = null;
+			try 
 			{
-				try
-				{
-					throw new ConnectionsIsNotPossible(SourceWidObj.getObject().getName(),
-							TargetWidObj.getObject().getName(),
-							"the 2 objects dont support the connection type.");
-				}
-				catch ( ConnectionsIsNotPossible e )
-				{
-					System.out.println("SceneConnectProvide - " + e.toString());
-				}
-			}
-			else
-			{
-				// FIXME - Change to WidgetExtendedConnection and add a Connection to the constructor
-				ConnectionWidget connection = new ConnectionWidget(PrimeMain1.currentCanvas.getScene());
+				con = ConnectionManagment.makeConnection(
+						PrimeMain1.currentCanvas.getConnections(),
+						"Connection"+PrimeMain1.currentCanvas.getNumberOfWidgetsOnTheScene(),
+						"Connection between " + SourceWidObj.getObject().getName() + " and " +
+						TargetWidObj.getObject().getName() + ".",
+						SourceWidObj.getObject(), TargetWidObj.getObject(), "RJ-45", NetworkConnection.class);
+				
+
+				WidgetExtendedConnection connection = new WidgetExtendedConnection(PrimeMain1.currentCanvas.getScene(), con);
+
+				ConnectionManagment.addConnection(con,false);
+
 				connection.setTargetAnchorShape(AnchorShape.NONE);
 				connection.setToolTipText("This is a connection");
 				connection.getActions().addAction(new AdapterExtended());
 				connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(sourceWidget));
 				connection.setTargetAnchor(AnchorFactory.createRectangularAnchor(targetWidget));
 				PrimeMain1.currentCanvas.getConnectionLayer().addChild(connection);
+				
+			} catch (ConnectionDoesExist e) 
+			{
+				JOptionPane.showMessageDialog(null,
+						"There already exists a connection between these two objects.", 
+						"alert", JOptionPane.ERROR_MESSAGE);
+			} catch (ConnectionsIsNotPossible e) 
+			{
+				JOptionPane.showMessageDialog(null,
+						"A connection between these two objects is not possible.", 
+						"alert", JOptionPane.ERROR_MESSAGE);
+			}
+
+			if(con != null)
+			{
+
+			}
+			else
+			{
+
 			}
 		}
 

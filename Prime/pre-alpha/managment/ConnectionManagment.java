@@ -8,6 +8,7 @@ import connections.DeviceConnection;
 import connections.InternalConnection;
 import connections.NetworkConnection;
 import exceptions.*;
+import graphics.PrimeMain1;
 import containers.*;
 
 
@@ -36,36 +37,42 @@ public class ConnectionManagment
 	 */
 	@SuppressWarnings("unchecked")
 	public static Connection makeConnection(Connection[] existingConnections, String conName,
-			String conDesc, Object objectA, Object objectB, String type, Class conClass)
+			String conDesc, Object objectA, Object objectB, String type, Class conClass) throws 
+			ConnectionDoesExist, ConnectionsIsNotPossible
 	{
 		Connection connection = null;
-
-
+		
 		// Checks to see if there is any previous connection between A and B
-		if ( checkConnectionExistence(existingConnections, objectA, objectB) == false )
+		if ( checkConnectionExistence(existingConnections, objectA, objectB) == true )
 		{
-			// Checks to see if both the devices support the type of connection
-			if ( checkDeviceConnectiontypeSupport(objectA, objectB, type) == true )
-			{
-				/*
-				 * If there is no previous connection between A and B, and they
-				 * both support the connection type, a connection is made
-				 * between them.
-				 */
-				if ( conClass.equals(DeviceConnection.class) )
-				{
-					connection = new DeviceConnection(conName, conDesc, objectA, objectB, type);
-				}
-				else if ( conClass.equals(InternalConnection.class) )
-				{
-					connection = new InternalConnection(conName, conDesc, objectA, objectB, type);
-				}
-				else
-				{
-					connection = new NetworkConnection(conName, conDesc, objectA, objectB, type);
-				}
-			}
+			throw new ConnectionDoesExist(objectA.getName(),objectB.getName());
 		}
+		
+
+		// Checks to see if both the devices support the type of connection
+		if ( checkDeviceConnectiontypeSupport(objectA, objectB, type) == false )
+		{
+			throw new ConnectionsIsNotPossible(objectA.getName(),objectB.getName(),"");
+		}
+		
+		/*
+		 * If there is no previous connection between A and B, and they
+		 * both support the connection type, a connection is made
+		 * between them.
+		 */
+		if ( conClass.equals(DeviceConnection.class) )
+		{
+			connection = new DeviceConnection(conName, conDesc, objectA, objectB, type);
+		}
+		else if ( conClass.equals(InternalConnection.class) )
+		{
+			connection = new InternalConnection(conName, conDesc, objectA, objectB, type);
+		}
+		else
+		{
+			connection = new NetworkConnection(conName, conDesc, objectA, objectB, type);
+		}
+		
 
 		return connection;
 	}
@@ -314,33 +321,32 @@ public class ConnectionManagment
 					}
 				}
 			}
-		}
-		/*
-		 * Checks to see if object B is the first object in any connection. Then
-		 * if it find object B as the first object, it looks for object A at the
-		 * same index as object B.
-		 */
-		for ( int i = 0; i < existingConnections.length; i++ )
-		{
-			if ( existingConnections[i] != null )
+		
+			/*
+			 * Checks to see if object B is the first object in any connection. Then
+			 * if it find object B as the first object, it looks for object A at the
+			 * same index as object B.
+			 */
+			for ( int i = 0; i < existingConnections.length; i++ )
 			{
-				// If the second object is found
-				if ( existingConnections[i].getObject1().equals(objectB) )
+				if ( existingConnections[i] != null )
 				{
-					// If the first object is found at the same index as the
-					// first
-					// one
-					if ( existingConnections[i].getObject1().equals(objectA) )
+					// If the second object is found
+					if ( existingConnections[i].getObject1().equals(objectB) )
 					{
-						return true;
+						// If the first object is found at the same index as the
+						// first
+						// one
+						if ( existingConnections[i].getObject2().equals(objectA) )
+						{
+							return true;
+						}
 					}
 				}
 			}
 		}
-
 		return false;
 	}
-
 
 
 
@@ -414,5 +420,61 @@ public class ConnectionManagment
 		}
 
 		return false;
+	}
+
+	
+	
+	public static boolean addConnection(Connection newCon, boolean withCheck)
+	{
+		// Gets the current canvas connections array.
+		Connection currentCons[] = PrimeMain1.currentCanvas.getConnections();
+		
+		// Gets the objects that the user wants to connect
+		Object a1 = newCon.getObject1();
+		Object a2 = newCon.getObject2();
+		
+		// If there should be run a check to see if any connection exist.
+		if (withCheck) 
+		{
+			// Checks if there is a connection between them.
+			if (checkConnectionExistence(currentCons, a1, a2)) 
+			{
+				return false;
+			}
+		}
+		
+		// Goes through the entier array of connections and set the connection in 
+		// at the first empty space.
+		for(int i = 0;i<currentCons.length;i++)
+		{
+			if(currentCons[i] == null)
+			{
+				currentCons[i] = newCon;
+				return true;
+			}
+		}
+		
+		// Extends the array with 5 spaces.
+		extendConnectionArray();
+		
+		// Reruns the whole method with 5 added spaces in the connection array.
+		return addConnection(newCon,withCheck);
+	}
+	
+	
+	
+	
+	private static void extendConnectionArray()
+	{
+		
+		Connection currentCons[] = PrimeMain1.currentCanvas.getConnections();
+		Connection temp[] = new Connection[currentCons.length+5];
+		
+		for(int i = 0;i<currentCons.length;i++)
+		{
+			temp[i] = currentCons[i];
+		}
+		
+		PrimeMain1.currentCanvas.setConnections(temp);
 	}
 }

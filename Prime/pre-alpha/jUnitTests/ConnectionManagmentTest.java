@@ -1,6 +1,8 @@
 package jUnitTests;
 
 
+import javax.swing.JOptionPane;
+
 import junit.framework.TestCase;
 
 import objects.Object;
@@ -12,6 +14,7 @@ import servers.HTTPServer;
 import clients.Desktop;
 import exceptions.ConnectionDoesExist;
 import exceptions.ConnectionDoesNotExist;
+import exceptions.ConnectionsIsNotPossible;
 import managment.ConnectionManagment;
 
 
@@ -38,9 +41,22 @@ public class ConnectionManagmentTest extends TestCase
 	{
 
 		// Tries to create a connection between a desktop and HTTPserver.
-		Connection con1 = ConnectionManagment.makeConnection(connections,
-				"ConName", "ConDesc", newComponent1, newComponent2, "RJ-45",
-				NetworkConnection.class);
+		Connection con1 = null;
+		try {
+			con1 = ConnectionManagment.makeConnection(connections,
+					"ConName", "ConDesc", newComponent1, newComponent2, "RJ-45",
+					NetworkConnection.class);
+		} catch (ConnectionDoesExist e) 
+		{
+			JOptionPane.showMessageDialog(null,
+					"JUnitTest - There already exists a connection between these two objects.", 
+					"alert", JOptionPane.ERROR_MESSAGE);
+		} catch (ConnectionsIsNotPossible e) 
+		{
+			JOptionPane.showMessageDialog(null,
+					"JUnitTest - A connection between these two objects is not possible.", 
+					"alert", JOptionPane.ERROR_MESSAGE);
+		}
 
 		// Checks to see if there really exists a connection.
 		assertNotNull(con1);
@@ -55,9 +71,22 @@ public class ConnectionManagmentTest extends TestCase
 
 		// Tries to create a internal AGP connection between a desktop and
 		// a HTTPserver. Should return null.
-		Connection con2 = ConnectionManagment.makeConnection(connections,
-				"ConName", "ConDesc", newComponent1, newComponent2, "AGP",
-				InternalConnection.class);
+		Connection con2 = null;
+		try {
+			con2 = ConnectionManagment.makeConnection(connections,
+					"ConName", "ConDesc", newComponent1, newComponent2, "AGP",
+					InternalConnection.class);
+		} catch (ConnectionDoesExist e) 
+		{
+			JOptionPane.showMessageDialog(null,
+					"JUnitTest - There already exists a connection between these two objects.", 
+					"alert", JOptionPane.ERROR_MESSAGE);
+		} catch (ConnectionsIsNotPossible e) 
+		{
+			JOptionPane.showMessageDialog(null,
+					"JUnitTest - A connection between these two objects is not possible.", 
+					"alert", JOptionPane.ERROR_MESSAGE);
+		}
 
 		// Checks to see if there was a connection maid. Should not be a
 		// connection maid.
@@ -71,9 +100,22 @@ public class ConnectionManagmentTest extends TestCase
 		 * Tries to create a connection between a desktop and HTTPserver
 		 * that already have a connection between them with a RJ-45. 
 		 */
-		Connection con3 = ConnectionManagment.makeConnection(connections,
-				"ConName", "ConDesc", newComponent1, newComponent2, "RJ-45",
-				NetworkConnection.class);
+		Connection con3 = null;
+		try {
+			con3 = ConnectionManagment.makeConnection(connections,
+					"ConName", "ConDesc", newComponent1, newComponent2, "RJ-45",
+					NetworkConnection.class);
+		} catch (ConnectionDoesExist e) 
+		{
+			JOptionPane.showMessageDialog(null,
+					"JUnitTest - There already exists a connection between these two objects.", 
+					"alert", JOptionPane.ERROR_MESSAGE);
+		} catch (ConnectionsIsNotPossible e) 
+		{
+			JOptionPane.showMessageDialog(null,
+					"JUnitTest - A connection between these two objects is not possible.", 
+					"alert", JOptionPane.ERROR_MESSAGE);
+		}
 		
 		
 		assertNull(con3);
@@ -88,9 +130,22 @@ public class ConnectionManagmentTest extends TestCase
 	public void testBreakConnection()
 	{
 		// Tries to create a connection between adesktop and HTTPserver.
-		Connection con = ConnectionManagment.makeConnection(connections,
-				"ConName", "ConDesc", newComponent1, newComponent2, "RJ-45",
-				NetworkConnection.class);
+		Connection con = null;
+		try {
+			con = ConnectionManagment.makeConnection(connections,
+					"ConName", "ConDesc", newComponent1, newComponent2, "RJ-45",
+					NetworkConnection.class);
+		} catch (ConnectionDoesExist e) 
+		{
+			JOptionPane.showMessageDialog(null,
+					"JUnitTest - There already exists a connection between these two objects.", 
+					"alert", JOptionPane.ERROR_MESSAGE);
+		} catch (ConnectionsIsNotPossible e) 
+		{
+			JOptionPane.showMessageDialog(null,
+					"JUnitTest - A connection between these two objects is not possible.", 
+					"alert", JOptionPane.ERROR_MESSAGE);
+		}
 
 		// Checks to see if there really exists a connection.
 		assertNotNull(con);
@@ -132,9 +187,22 @@ public class ConnectionManagmentTest extends TestCase
 	public void testChangeConnection()
 	{
 		// Tries to create a connection between a desktop and HTTPserver.
-		Connection con1 = ConnectionManagment.makeConnection(connections,
-				"ConName", "ConDesc", newComponent1, newComponent2, "RJ-45",
-				NetworkConnection.class);
+		Connection con1 = null;
+		try {
+			con1 = ConnectionManagment.makeConnection(connections,
+					"ConName", "ConDesc", newComponent1, newComponent2, "RJ-45",
+					NetworkConnection.class);
+		} catch (ConnectionDoesExist e) 
+		{
+			JOptionPane.showMessageDialog(null,
+					"JUnitTest - There already exists a connection between these two objects.", 
+					"alert", JOptionPane.ERROR_MESSAGE);
+		} catch (ConnectionsIsNotPossible e) 
+		{
+			JOptionPane.showMessageDialog(null,
+					"JUnitTest - A connection between these two objects is not possible.", 
+					"alert", JOptionPane.ERROR_MESSAGE);
+		}
 		
 		// Checks to see if there really exists a connection.
 		assertNotNull(con1);
