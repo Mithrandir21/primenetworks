@@ -41,7 +41,7 @@ public class AdapterExtended extends Adapter
 	{
 		if ( event.getButton() == MouseEvent.BUTTON1 )
 		{
-			System.out.println("Mouse Pressed");
+//			System.out.println("Mouse Pressed");
 			widget.bringToFront();
 			return State.CONSUMED;
 		}
@@ -52,7 +52,7 @@ public class AdapterExtended extends Adapter
 	@Override
 	public State mouseEntered(Widget widget, WidgetMouseEvent event)
 	{
-		System.out.println("Mouse entered");
+//		System.out.println("Mouse entered");
 		return State.REJECTED;
 	}
 	
@@ -61,7 +61,7 @@ public class AdapterExtended extends Adapter
 	@Override
 	public State mouseExited(Widget widget, WidgetMouseEvent event)
 	{
-		System.out.println("Mouse exited");
+//		System.out.println("Mouse exited");
 		return State.REJECTED;
 	}
 

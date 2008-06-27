@@ -2,7 +2,9 @@ package managment;
 
 
 import logistical.cleanup;
+import objects.*;
 import objects.Object;
+import widgetManipulation.WidgetObject;
 import connections.Connection;
 import connections.DeviceConnection;
 import connections.InternalConnection;
@@ -476,5 +478,21 @@ public class ConnectionManagment
 		}
 		
 		PrimeMain1.currentCanvas.setConnections(temp);
+	}
+	
+	
+	public static int getConnectionClass(WidgetObject widObj)
+	{
+		if(widObj.getObject() instanceof Clients)
+		{
+			System.out.println("This is a client");
+		}
+		else if(widObj.getObject() instanceof Servers)
+		{
+			System.out.println("This is a server");
+		}
+		
+		
+		return -1;
 	}
 }

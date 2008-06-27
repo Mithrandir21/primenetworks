@@ -45,6 +45,8 @@ import graphics.PrimeMain1;
 			WidgetObject SourceWidObj = (WidgetObject) sourceWidget;
 			WidgetObject TargetWidObj = (WidgetObject) targetWidget;
 			
+			ConnectionManagment.getConnectionClass(SourceWidObj);
+			
 			Connection con = null;
 			try 
 			{
