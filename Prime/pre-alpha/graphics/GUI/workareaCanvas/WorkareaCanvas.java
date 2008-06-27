@@ -111,9 +111,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 		dt = new DropTarget(myView, this);
 
 
-//		createPopupMenu();
-
-
 //		scene.getActions().addAction(ActionFactory.createSelectAction(new CreateProvider()));
 
 
@@ -243,8 +240,16 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	
 
 
-	public void setCurrentWidgetObject(WidgetObject currentWidgetObject) {
-		this.currentWidgetObject = currentWidgetObject;
+	public void setCurrentWidgetObject(WidgetObject currentWidgetObject) 
+	{
+		if(currentWidgetObject == null)
+		{
+			this.currentWidgetObject = null;
+		}
+		else
+		{
+			this.currentWidgetObject = currentWidgetObject;
+		}
 	}
 	// ------------------ TRANSFER METHODES -----------------------
 
@@ -347,35 +352,42 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 		{
 			Point sceneLocation = scene.convertViewToScene(objectPoint);
 
+			
 			newObject.setPreferredLocation(sceneLocation);
 
+			
 			newObject.getActions().addAction(
 					ActionFactory.createExtendedConnectAction(interactionLayer,
 							new SceneConnectProvider()));
 			
+			
+//			
 			newObject.getActions().addAction(
 					ActionFactory.createSelectAction(new CreateProvider()));
 
+			
 			newObject.getActions().addAction(
 					ActionFactory.createAlignWithMoveAction(mainLayer, interactionLayer, null));
 
+			
 
 			newObject.getActions().addAction(new AdapterExtended());
 
+			
 			newObject.addChild(new LabelWidget(scene, newObject.getObject().getName()));
 
+			
 			newObject.setToolTipText(newObject.getObject().getDescription());
 
+			
 			// Adds hovering action to the widget.
-			newObject.getActions().addAction(
-					ActionFactory.createHoverAction(new WidgetHoverProvider()));
+//			newObject.getActions().addAction(
+//					ActionFactory.createHoverAction(new WidgetHoverProvider()));
 			
-			JMenuProvider menuProvider = new JMenuProvider();
 			
-			this.setComponentPopupMenu(menuProvider.getPopupMenu(newObject, objectPoint));
-
 			newObject.getActions().addAction(
-					ActionFactory.createPopupMenuAction(menuProvider));
+					ActionFactory.createPopupMenuAction(new JMenuProvider()));
+			
 			
 			
 //			newObject.getActions().addAction(ActionFactory.createRectangularSelectAction(
@@ -433,14 +445,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	}
 
 
-	public void createPopupMenu()
-	{
-		// Add listener to the text area so the popup menu can come up.
-		MouseListener popupListener = new PopupListener(popup);
-		myView.addMouseListener(popupListener);
-	}
-
-
 	public void actionPerformed(ActionEvent e)
 	{
 		JMenuItem action = (JMenuItem) e.getSource();
@@ -465,7 +469,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 			if ( actionName.equals("DeleteThisObject") )
 			{
-				System.out.println("khdg");
+//				System.out.println("khdsag");
 			}			
 			else if ( actionName.equals("CreateNewST_Laptop_Item") )
 			{

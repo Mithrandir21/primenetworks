@@ -2,6 +2,7 @@ package graphics.GUI.workareaCanvas.providers;
 
 
 import graphics.PrimeMain1;
+import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -20,9 +21,15 @@ public class JPopupMenuProvider
 	public JPopupMenu createPopupMenu(Widget widget)
 	{
 		
+		WorkareaCanvas canvas = PrimeMain1.currentCanvas;
+		
 		PrimeMain1.currentCanvas.setCurrentWidgetObject((WidgetObject) widget);
 		
-		InitialMenues();
+		System.out.println(PrimeMain1.currentCanvas.getCurrentWidgetObject().getObject().getName());
+		
+		
+		
+		InitialMenues(canvas);
 		
 //		popup.addSeparator();
 //
@@ -36,12 +43,13 @@ public class JPopupMenuProvider
 		return popup;
 	}
 
-	private void InitialMenues()
+	private void InitialMenues(WorkareaCanvas canvas)
 	{
 		JMenuItem menuItem;
 		
 		menuItem = new JMenuItem("Delete this object");
 		menuItem.setName("DeleteThisObject");
+		menuItem.addActionListener(canvas);
 		popup.add(menuItem);
 
 		menuItem = new JMenuItem("A popup menu item");

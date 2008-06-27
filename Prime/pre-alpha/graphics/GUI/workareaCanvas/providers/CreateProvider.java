@@ -11,8 +11,7 @@ public class CreateProvider implements SelectProvider
 {
 	public boolean isAimingAllowed(Widget arg0, Point arg1, boolean arg2)
 	{
-		System.out.println("Aimed");
-		return true;
+		return false;
 	}
 
 	public boolean isSelectionAllowed(Widget arg0, Point arg1, boolean arg2)
@@ -22,7 +21,6 @@ public class CreateProvider implements SelectProvider
 
 	public void select(Widget relatedWidget, Point localLocation, boolean invertSelection)
 	{
-		System.out.println("gkhdaf");
 	}
 
 }
