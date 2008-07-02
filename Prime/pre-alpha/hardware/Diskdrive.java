@@ -35,7 +35,7 @@ public class Diskdrive extends Hardware implements Serializable
 	 *
 	 * @param Name The name of the Diskdrive.
 	 * @param Desc The description of the Diskdrive.
-	 * @param DiskdriveType The type of diskdrive. Like CDROM, DVD-Burner and so on.
+	 * @param DiskdriveType The type of diskdrive. Like CDROM, DVD-RW and so on.
 	 */
 	public Diskdrive(String Name, String Desc, String DiskdriveType)
 	{

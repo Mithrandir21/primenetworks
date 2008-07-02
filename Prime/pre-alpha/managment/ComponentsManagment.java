@@ -55,7 +55,7 @@ public class ComponentsManagment
 				// A try/catch incase the object is null.
 				try 
 				{
-					throw new Exception("The component " + NewComponents[i].getName() 
+					throw new Exception("The component " + NewComponents[i].getObjectName() 
 							+ " is already present.");
 				} 
 				catch (Exception e) 
@@ -175,7 +175,7 @@ public class ComponentsManagment
 			// A try/catch incase the object is null.
 			try 
 			{
-				throw new Exception("The component " + NewComponent.getName() 
+				throw new Exception("The component " + NewComponent.getObjectName() 
 						+ " is already present.");
 			} 
 			catch (Exception e) 

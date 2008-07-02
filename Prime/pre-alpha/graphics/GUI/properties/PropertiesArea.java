@@ -47,7 +47,7 @@ public class PropertiesArea	extends JTabbedPane
 	{
 		scrollArea.newObjectSelectedPropertiesTab(object);
 		
-		addTab(object.getName(), scrollArea);
+		addTab(object.getObjectName(), scrollArea);
 	}
 	
 	

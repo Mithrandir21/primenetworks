@@ -57,8 +57,8 @@ import org.jdesktop.swingx.MultiSplitLayout.Node;
 @SuppressWarnings("serial")
 public class PrimeMain1 extends JFrame
 {
-	public static int width,height;
-	
+	public static int width, height;
+
 	// Main window panel setup
 	private JPanel toolbarPanel, selectionPanel, workareaPanel, messagesPanel;
 
@@ -71,33 +71,34 @@ public class PrimeMain1 extends JFrame
 
 	// An array that points to all the currently open canvases in the workarea.
 	public static WorkareaCanvas[] canvases = new WorkareaCanvas[3];
-	
-	
+
+
 	// A pointer to the currently open canvas that is displayed in the workarea.
 	public static WorkareaCanvas currentCanvas = null;
 
 
 	public static ArrayList<ImageIcon> images = new ArrayList<ImageIcon>(50);
 
+	
+	public static MakeStandardInternalComponents standard_internal_components = new MakeStandardInternalComponents();
 
 
 	// Constructor
 	public PrimeMain1()
 	{
 		super("Prime");
-		
-		
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
-		
-		
-		width = ((int) scrnsize.getWidth())-200;
-		
-		height = ((int) scrnsize.getHeight())-200;
-		
+
+
+		width = ((int) scrnsize.getWidth()) - 200;
+
+		height = ((int) scrnsize.getHeight()) - 200;
+
 
 		final SplashScreen splash = SplashScreen.getSplashScreen();
 
@@ -132,9 +133,15 @@ public class PrimeMain1 extends JFrame
 		}
 
 
-		MakeSystemImageIcons n = new MakeSystemImageIcons();
+		MakeSystemImageIcons standard_Image_Icons = new MakeSystemImageIcons();
 
-		n.getImageIcons();
+		standard_Image_Icons.getImageIcons();
+
+
+		
+
+
+
 
 
 
@@ -159,7 +166,7 @@ public class PrimeMain1 extends JFrame
 		conToolbarPanel.fill = GridBagConstraints.BOTH;
 
 		// Sets the border around the panel
-//		toolbarPanel.setBorder(grayline);
+		// toolbarPanel.setBorder(grayline);
 
 		toolbarPanel.add(new GenericPrimeToolbar());
 
@@ -205,11 +212,11 @@ public class PrimeMain1 extends JFrame
 		conPropertiesPanel.fill = GridBagConstraints.BOTH;
 
 		// Sets the border around the panel
-//		propertiesPanel.setBorder(grayline);
+		// propertiesPanel.setBorder(grayline);
 
 		propertiesPanel.add(new PropertiesArea());
-		
-//		propertiesPanel.setPreferredSize(new Dimension(200,300));
+
+		// propertiesPanel.setPreferredSize(new Dimension(200,300));
 
 		/*
 		 * SETUP FOR THE messagesPanel PANEL. This panel will contain the
@@ -342,9 +349,9 @@ public class PrimeMain1 extends JFrame
 	private void LoadLayoutModel()
 	{
 		String layoutDef = "(COLUMN (LEAF name=toolbarLeaf) (ROW (LEAF name=selectionLeaf) "
-			+ "(COLUMN (ROW (LEAF name=workareaLeaf weight=0.6) "
-			+ "(LEAF name=propertiesLeaf weight=0.2) )"
-			+ "(LEAF name=messagesLeaf weight=1)  ) ) )";
+				+ "(COLUMN (ROW (LEAF name=workareaLeaf weight=0.6) "
+				+ "(LEAF name=propertiesLeaf weight=0.2) )"
+				+ "(LEAF name=messagesLeaf weight=1)  ) ) )";
 
 
 		try
@@ -380,13 +387,13 @@ public class PrimeMain1 extends JFrame
 		g.setColor(Color.BLACK);
 		g.drawString("Loading " + comps[(frame / 5) % 4] + "...", 120, 150);
 	}
-	
-	
-	
+
+
+
 	public static void updatePropertiesArea()
 	{
 		PropertiesArea temp = (PropertiesArea) propertiesPanel.getComponent(0);
-		
+
 		temp.newObjectSelectedPropertiesTab(currentCanvas);
 	}
 

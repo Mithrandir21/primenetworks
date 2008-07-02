@@ -25,7 +25,7 @@ public class JPopupMenuProvider
 		
 		PrimeMain1.currentCanvas.setCurrentWidgetObject((WidgetObject) widget);
 		
-		System.out.println(PrimeMain1.currentCanvas.getCurrentWidgetObject().getObject().getName());
+		System.out.println(PrimeMain1.currentCanvas.getCurrentWidgetObject().getObject().getObjectName());
 		
 		
 		

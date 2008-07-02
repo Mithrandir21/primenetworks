@@ -3,8 +3,12 @@
  */
 package graphics.GUI.selectArea;
 
+
+import graphics.MakeStandardInternalComponents;
+import graphics.PrimeMain1;
 import graphics.WidgetIcon;
 import hardware.HDD;
+import hardware.Motherboard;
 import infrastructure.Hub;
 import infrastructure.Router;
 import infrastructure.Switch;
@@ -20,339 +24,382 @@ import clients.Laptop;
 
 
 /**
- * A class that contains only one public method that
- * returns an object based on the given {@link graphics.WidgetIcon WidgetIcon}.
- *
+ * A class that contains only one public method that returns an object based on
+ * the given {@link graphics.WidgetIcon WidgetIcon}.
+ * 
  * @author Bahram Malaekeh
  */
-public class CreateObjectDragged 
+public class CreateObjectDragged
 {
-	
+
+	private Object[] st_components = new Object[5];
+
+
 	/**
-	 * Creates and returns an object based on the 
-	 * {@link graphics.WidgetIcon WidgetIcon} classType.
-	 * 
-	 * The object created is a standard object with very
-	 * little extra information. 
+	 * Creates and returns an object based on the
+	 * {@link graphics.WidgetIcon WidgetIcon} classType. The object created is a
+	 * standard object with very little extra information.
 	 * 
 	 * @param iconObject
-	 *            The {@link graphics.WidgetIcon WidgetIcon} that contains 
-	 *            the calssTypethats is the basis for the creation 
-	 *            of the return object.
-	 * @return Object
-	 * 			  The newly created standard object.
+	 *            The {@link graphics.WidgetIcon WidgetIcon} that contains the
+	 *            calssTypethats is the basis for the creation of the return
+	 *            object.
+	 * @return Object The newly created standard object.
 	 */
 	public Object CreateObject(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		Object newObject = null;
 		String objectType = iconObject.getClassType().getName();
+
 		
-		
-		if(objectType.equals("clients.Desktop"))
+
+		if ( objectType.equals("clients.Desktop") )
 		{
+			createClientComponentsArray();
 			newObject = createDefaultDesktop(iconObject, numberOfWidgetsOnTheScene);
 		}
-		else if(objectType.equals("clients.Laptop"))
+		else if ( objectType.equals("clients.Laptop") )
 		{
+			createClientComponentsArray();
 			newObject = createDefaultLaptop(iconObject, numberOfWidgetsOnTheScene);
 		}
-		else if(objectType.equals("servers.HTTPServer"))
+		else if ( objectType.equals("servers.HTTPServer") )
 		{
+			createServerComponentsArray();
 			newObject = createDefaultHTTPServer(iconObject, numberOfWidgetsOnTheScene);
 		}
-		else if(objectType.equals("servers.BackupServer"))
+		else if ( objectType.equals("servers.BackupServer") )
 		{
+			createServerComponentsArray();
 			newObject = createDefaultBackupServer(iconObject, numberOfWidgetsOnTheScene);
 		}
-		else if(objectType.equals("servers.MailServer"))
+		else if ( objectType.equals("servers.MailServer") )
 		{
+			createServerComponentsArray();
 			newObject = createDefaultMailServer(iconObject, numberOfWidgetsOnTheScene);
 		}
-		else if(objectType.equals("servers.FirewallServer"))
+		else if ( objectType.equals("servers.FirewallServer") )
 		{
+			createServerComponentsArray();
 			newObject = createDefaultFirewallServer(iconObject, numberOfWidgetsOnTheScene);
 		}
-		else if(objectType.equals("servers.ProxyServer"))
+		else if ( objectType.equals("servers.ProxyServer") )
 		{
+			createServerComponentsArray();
 			newObject = createDefaultProxyServer(iconObject, numberOfWidgetsOnTheScene);
 		}
-		else if(objectType.equals("hardware.HDD"))
+		else if ( objectType.equals("hardware.HDD") )
 		{
 			newObject = createDefaultHDD(iconObject, numberOfWidgetsOnTheScene);
 		}
-		else if(objectType.equals("peripheral.Scanner"))
+		else if ( objectType.equals("peripheral.Scanner") )
 		{
 			newObject = createDefaultScanner(iconObject, numberOfWidgetsOnTheScene);
 		}
-		else if(objectType.equals("infrastructure.Hub"))
+		else if ( objectType.equals("infrastructure.Hub") )
 		{
 			newObject = createDefaultHub(iconObject, numberOfWidgetsOnTheScene);
 		}
-		else if(objectType.equals("infrastructure.Switch"))
+		else if ( objectType.equals("infrastructure.Switch") )
 		{
 			newObject = createDefaultSwitch(iconObject, numberOfWidgetsOnTheScene);
 		}
-		else if(objectType.equals("infrastructure.Router"))
+		else if ( objectType.equals("infrastructure.Router") )
 		{
 			newObject = createDefaultRouter(iconObject, numberOfWidgetsOnTheScene);
 		}
-		
-		
+
+
 		return newObject;
 	}
-	
-	
+
+
+
+	private void createClientComponentsArray()
+	{
+		st_components[0] = PrimeMain1.standard_internal_components.getSt_client_MB();
+		st_components[1] = PrimeMain1.standard_internal_components.getSt_client_CPU();
+		st_components[2] = PrimeMain1.standard_internal_components.getSt_client_RAM();
+		st_components[3] = PrimeMain1.standard_internal_components.getSt_client_HDD();
+		st_components[4] = PrimeMain1.standard_internal_components.getSt_client_DVDRW();
+	}
+
+
+	private void createServerComponentsArray()
+	{
+		st_components[0] = PrimeMain1.standard_internal_components.getSt_server_MB();
+		st_components[1] = PrimeMain1.standard_internal_components.getSt_server_CPU();
+		st_components[2] = PrimeMain1.standard_internal_components.getSt_server_RAM();
+		st_components[3] = PrimeMain1.standard_internal_components.getSt_server_HDD();
+		st_components[4] = PrimeMain1.standard_internal_components.getSt_server_DVDRW();
+	}
+
+
 
 	public Desktop createDefaultDesktop(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Desktop" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		
-		if(objectDesc == "")
+		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
+
+		if ( objectDesc == "" )
 		{
 			objectDesc = objectName;
 		}
-		
-		
-		return new Desktop(objectName, objectDesc);
+
+
+		return new Desktop(objectName, objectDesc, supportedConnectionInterfaces, st_components);
 	}
-	
-	
+
+
 
 	public Laptop createDefaultLaptop(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Laptop" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		
-		if(objectDesc == "")
+		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
+
+		if ( objectDesc == "" )
 		{
 			objectDesc = objectName;
 		}
-		
-		
-		return new Laptop(objectName, objectDesc);
+
+
+		return new Laptop(objectName, objectDesc, supportedConnectionInterfaces, st_components);
 	}
 
 
-	
-//	/**
-//	 * @param iconObject
-//	 * @return
-//	 */
-//	private ThinClient createDefaultThinClient(WidgetIcon iconObject)
-//	{
-//		String objectName = "Desktop" + numberOfWidgetsOnTheScene;
-//		String objectDesc = iconObject.getDescription();
-//		
-//		if(objectDesc == "")
-//		{
-//			objectDesc = objectName;
-//		}
-//		
-//		
-//		return new ThinClient(objectName, objectDesc);
-//	}
-	
-	
+
+	// /**
+	// * @param iconObject
+	// * @return
+	// */
+	// private ThinClient createDefaultThinClient(WidgetIcon iconObject)
+	// {
+	// String objectName = "Desktop" + numberOfWidgetsOnTheScene;
+	// String objectDesc = iconObject.getDescription();
+	//		
+	// if(objectDesc == "")
+	// {
+	// objectDesc = objectName;
+	// }
+	//		
+	//		
+	// return new ThinClient(objectName, objectDesc);
+	// }
+
+
 
 	public HTTPServer createDefaultHTTPServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "HTTP Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		
+		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
+
 		String ObjectSWname = "Apache";
 		String ObjectSWdesc = "Standard Webserver";
 		String ObjectSWversion = "2.2";
-		
-		if(objectDesc == "")
+
+		if ( objectDesc == "" )
 		{
 			objectDesc = objectName;
 		}
-		
-		
-		return new HTTPServer(objectName, objectDesc, ObjectSWname, ObjectSWdesc, ObjectSWversion);
-	}
-	
-	
-	
 
-	public BackupServer createDefaultBackupServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+
+		return new HTTPServer(objectName, objectDesc, supportedConnectionInterfaces, st_components,
+				ObjectSWname, ObjectSWdesc, ObjectSWversion);
+	}
+
+
+
+
+	public BackupServer createDefaultBackupServer(WidgetIcon iconObject,
+			int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Backup Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		
+		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
+
 		String ObjectSWname = "Backup";
 		String ObjectSWdesc = "Standard backup server";
 		String ObjectSWversion = "1";
-		
-		if(objectDesc == "")
+
+		if ( objectDesc == "" )
 		{
 			objectDesc = objectName;
 		}
-		
-		return new BackupServer(objectName, objectDesc, ObjectSWname, ObjectSWdesc, ObjectSWversion);
+
+		return new BackupServer(objectName, objectDesc, supportedConnectionInterfaces,
+				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
 	}
-	
-	
+
+
 
 	public MailServer createDefaultMailServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Mail Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		
+		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
+
 		String ObjectSWname = "Mail";
 		String ObjectSWdesc = "Standard mail server";
 		String ObjectSWversion = "1";
-		
-		if(objectDesc == "")
+
+		if ( objectDesc == "" )
 		{
 			objectDesc = objectName;
 		}
-		
-		
-		return new MailServer(objectName, objectDesc, ObjectSWname, ObjectSWdesc, ObjectSWversion);
+
+
+		return new MailServer(objectName, objectDesc, supportedConnectionInterfaces, st_components,
+				ObjectSWname, ObjectSWdesc, ObjectSWversion);
 	}
 
-	
-	
-	public FirewallServer createDefaultFirewallServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+
+
+	public FirewallServer createDefaultFirewallServer(WidgetIcon iconObject,
+			int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Firewall Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		
+		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
+
 		String ObjectSWname = "Firewall";
 		String ObjectSWdesc = "Standard firewall server";
 		String ObjectSWversion = "1";
-		
-		if(objectDesc == "")
+
+		if ( objectDesc == "" )
 		{
 			objectDesc = objectName;
 		}
-		
-		
-		return new FirewallServer(objectName, objectDesc, ObjectSWname, ObjectSWdesc, ObjectSWversion);
+
+
+		return new FirewallServer(objectName, objectDesc, supportedConnectionInterfaces,
+				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
 	}
-	
-	
-	
+
+
+
 	public ProxyServer createDefaultProxyServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Proxy Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		
+		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
+
 		String ObjectSWname = "ProxyServer";
 		String ObjectSWdesc = "Standard proxy server";
 		String ObjectSWversion = "1";
-		
-		if(objectDesc == "")
+
+		if ( objectDesc == "" )
 		{
 			objectDesc = objectName;
 		}
-		
-		
-		return new ProxyServer(objectName, objectDesc, ObjectSWname, ObjectSWdesc, ObjectSWversion);
+
+
+		return new ProxyServer(objectName, objectDesc, supportedConnectionInterfaces,
+				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
 	}
-	
-	
-	
+
+
+
 	public HDD createDefaultHDD(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "HDD" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		
+
 		String HHDtype = "IDE";
 		int HDDsize = 80;
-		
-		if(objectDesc == "")
+
+		if ( objectDesc == "" )
 		{
 			objectDesc = objectName;
 		}
-		
-		
+
+
 		return new HDD(objectName, objectDesc, HHDtype, HDDsize);
 	}
-	
-	
-	
+
+
+
 	public Scanner createDefaultScanner(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "HDD" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		
+
 		String Sresolution = "1280x1020";
 		String SconnectionInterfaces[] = { "USB" };
-		
-		if(objectDesc == "")
+
+		if ( objectDesc == "" )
 		{
 			objectDesc = objectName;
 		}
-		
-		
+
+
 		return new Scanner(objectName, objectDesc, Sresolution, SconnectionInterfaces);
 	}
-	
-	
-	
-	
+
+
+
+
 	public Hub createDefaultHub(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Hub" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		
+
 		String[] SupConInt = { "RJ-45" };
 		int outPorts = 16;
-		int inPorts = 16;		
+		int inPorts = 16;
 		String[] DuplexSupport = { "Full Duplex" };
-		
-		if(objectDesc == "")
+
+		if ( objectDesc == "" )
 		{
 			objectDesc = objectName;
 		}
-		
-		
+
+
 		return new Hub(objectName, objectDesc, SupConInt, outPorts, inPorts, DuplexSupport);
 	}
-	
-	
-	
-	
+
+
+
+
 	public Switch createDefaultSwitch(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Switch" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		
+
 		String[] SupConInt = { "RJ-45" };
 		int outPorts = 16;
-		int inPorts = 16;		
+		int inPorts = 16;
 		String[] DuplexSupport = { "Full Duplex" };
-		
-		if(objectDesc == "")
+
+		if ( objectDesc == "" )
 		{
 			objectDesc = objectName;
 		}
-		
-		
+
+
 		return new Switch(objectName, objectDesc, SupConInt, outPorts, inPorts, DuplexSupport);
 	}
-	
-	
-	
+
+
+
 	public Router createDefaultRouter(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Router" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		
+
 		String[] SupConInt = { "RJ-45" };
 		int outPorts = 16;
-		int inPorts = 16;		
+		int inPorts = 16;
 		String[] DuplexSupport = { "Full Duplex" };
-		
-		if(objectDesc == "")
+
+		if ( objectDesc == "" )
 		{
 			objectDesc = objectName;
 		}
-		
-		
+
+
 		return new Router(objectName, objectDesc, SupConInt, outPorts, inPorts, DuplexSupport);
 	}
 }

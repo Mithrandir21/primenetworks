@@ -78,7 +78,7 @@ public abstract class Object implements Serializable
 	/**
 	 * Returns the name of the object.
 	 */
-	public String getName()
+	public String getObjectName()
 	{
 
 		return name;
@@ -115,7 +115,7 @@ public abstract class Object implements Serializable
 	/**
 	 * Sets the name of the object.
 	 */
-	public void setName(String ObjectName)
+	public void setObjectName(String ObjectName)
 	{
 
 		name = ObjectName;

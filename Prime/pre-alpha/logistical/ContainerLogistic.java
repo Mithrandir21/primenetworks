@@ -33,7 +33,7 @@ public class ContainerLogistic
 				 * If the name of the container object is the same
 				 * as the given object, true is returned.
 				 */
-				if(container.get(i).getName().equals(obj.getName()))
+				if(container.get(i).getObjectName().equals(obj.getObjectName()))
 				{
 					return true;
 				}

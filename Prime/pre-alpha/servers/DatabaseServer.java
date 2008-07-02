@@ -3,6 +3,7 @@ import software.*;
 import java.io.Serializable;
 import exceptions.StringNotFoundInArrayException;
 import objects.*;
+import objects.Object;
 import managment.ArrayManagment;
 
 
@@ -52,15 +53,11 @@ public class DatabaseServer extends Servers implements Serializable
 			String DatabaseSWname, String DatabaseSWdesc,
 			String DatabaseSWversion)
 	{
-
 		super(Name, Desc);
-
 
 		// Creates a database software object
 		Database = new Database(DatabaseSWname, DatabaseSWdesc,
 				DatabaseSWversion);
-
-
 	}
 	
 	
@@ -83,18 +80,68 @@ public class DatabaseServer extends Servers implements Serializable
 			String DatabaseSWname, String DatabaseSWdesc,
 			String DatabaseSWversion)
 	{
-
 		super(Name, Desc, SupConInt);
-
 
 		// Creates a database software object
 		Database = new Database(DatabaseSWname, DatabaseSWdesc,
 				DatabaseSWversion);
-
-
 	}
 
+	
+	
+	/**
+	 * The constructor for the device.
+	 * 
+	 * @param Name
+	 *            The name of the server.
+	 * @param Desc
+	 *            The description of the server.
+	 * @param DatabaseSWname
+	 *            The name of the application that the server is set to run.
+	 * @param DatabaseSWdesc
+	 *            The description of the application that the server is set to
+	 *            run.
+	 * @param DatabaseSWversion
+	 *            The version of the application that the server is set to run.
+	 */
+	public DatabaseServer(String Name, String Desc, Object[] DesktopComponents,
+			String DatabaseSWname, String DatabaseSWdesc,
+			String DatabaseSWversion)
+	{
+		super(Name, Desc, DesktopComponents);
 
+		// Creates a database software object
+		Database = new Database(DatabaseSWname, DatabaseSWdesc,
+				DatabaseSWversion);
+	}
+	
+	
+	
+	/**
+	 * The constructor for the device.
+	 * 
+	 * @param Name
+	 *            The name of the server.
+	 * @param Desc
+	 *            The description of the server.
+	 * @param DatabaseSWname
+	 *            The name of the application that the server is set to run.
+	 * @param DatabaseSWdesc
+	 *            The description of the application that the server is set to
+	 *            run.
+	 * @param DatabaseSWversion
+	 *            The version of the application that the server is set to run.
+	 */
+	public DatabaseServer(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents,
+			String DatabaseSWname, String DatabaseSWdesc,
+			String DatabaseSWversion)
+	{
+		super(Name, Desc, SupConInt, DesktopComponents);
+
+		// Creates a database software object
+		Database = new Database(DatabaseSWname, DatabaseSWdesc,
+				DatabaseSWversion);
+	}
 
 
 	

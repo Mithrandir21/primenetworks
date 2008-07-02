@@ -42,6 +42,8 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
 
+import objects.Object;
+
 import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.border.BorderFactory;
 import org.netbeans.api.visual.model.ObjectScene;
@@ -294,8 +296,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 		{
 			newObject = (WidgetObject) tr.getTransferData(new DataFlavor(WidgetObject.class,
 					"Widget Object"));
-
-
+			
 			Dimension objectSize = newObject.getImageDimension();
 
 			Point objectPoint = dtde.getLocation();
@@ -374,7 +375,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 			newObject.getActions().addAction(new AdapterExtended());
 
 			
-			newObject.addChild(new LabelWidget(scene, newObject.getObject().getName()));
+			newObject.addChild(new LabelWidget(scene, newObject.getObject().getObjectName()));
 
 			
 			newObject.setToolTipText(newObject.getObject().getDescription());

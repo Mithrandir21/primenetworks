@@ -51,7 +51,7 @@ public abstract class Container implements Serializable
 		if(container.contains(obj))
 		{
 			throw new ObjectExistInContainer("This object," 
-					+ obj.getName() + ", already exist in this container.",obj);
+					+ obj.getObjectName() + ", already exist in this container.",obj);
 		}
 
 		// Returns true if added and false if not.
@@ -70,7 +70,7 @@ public abstract class Container implements Serializable
 		if(!container.contains(obj))
 		{
 			throw new ObjectDoesNotExistInContainer("This object,"
-					+ obj.getName() + ", does not exist in this container.",obj);
+					+ obj.getObjectName() + ", does not exist in this container.",obj);
 		}
 		
 		

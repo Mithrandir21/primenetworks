@@ -5,6 +5,7 @@ import software.*;
 import java.io.Serializable;
 import exceptions.StringNotFoundInArrayException;
 import objects.*;
+import objects.Object;
 import managment.ArrayManagment;
 
 
@@ -52,14 +53,10 @@ public class MailServer extends Servers implements Serializable
 	public MailServer(String Name, String Desc, String EmailSWname,
 			String EmailSWdesc, String EmailSWversion)
 	{
-
 		super(Name, Desc);
-
 
 		// Creates a Email software object
 		Email = new Email(EmailSWname, EmailSWdesc, EmailSWversion);
-
-
 	}
 
 
@@ -81,14 +78,62 @@ public class MailServer extends Servers implements Serializable
 	public MailServer(String Name, String Desc, String[] SupConInt,
 			String EmailSWname, String EmailSWdesc, String EmailSWversion)
 	{
-
 		super(Name, Desc, SupConInt);
-
 
 		// Creates a Email software object
 		Email = new Email(EmailSWname, EmailSWdesc, EmailSWversion);
+	}
+	
+	
+	
+	/**
+	 * The constructor for the device.
+	 * 
+	 * @param Name
+	 *            The name of the server.
+	 * @param Desc
+	 *            The description of the server.
+	 * @param EmailSWname
+	 *            The name of the application that the server is set to run.
+	 * @param EmailSWdesc
+	 *            The description of the application that the server is set to
+	 *            run.
+	 * @param EmailSWversion
+	 *            The version of the application that the server is set to run.
+	 */
+	public MailServer(String Name, String Desc, Object[] DesktopComponents,
+			String EmailSWname, String EmailSWdesc, String EmailSWversion)
+	{
+		super(Name, Desc, DesktopComponents);
 
+		// Creates a Email software object
+		Email = new Email(EmailSWname, EmailSWdesc, EmailSWversion);
+	}
+	
+	
+	
+	/**
+	 * The constructor for the device.
+	 * 
+	 * @param Name
+	 *            The name of the server.
+	 * @param Desc
+	 *            The description of the server.
+	 * @param EmailSWname
+	 *            The name of the application that the server is set to run.
+	 * @param EmailSWdesc
+	 *            The description of the application that the server is set to
+	 *            run.
+	 * @param EmailSWversion
+	 *            The version of the application that the server is set to run.
+	 */
+	public MailServer(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents,
+			String EmailSWname, String EmailSWdesc, String EmailSWversion)
+	{
+		super(Name, Desc, SupConInt, DesktopComponents);
 
+		// Creates a Email software object
+		Email = new Email(EmailSWname, EmailSWdesc, EmailSWversion);
 	}
 
 

@@ -100,10 +100,13 @@ public class Motherboard extends Hardware implements Serializable
 	 * @param MBmaxRAMs The number of RAM slots on the MB.
 	 * @param MBDUCconnectionType The type of DUC connection ports on the MB.
 	 * @param MBintegLANcard Boolean on whether or not the MB has an integrated LAN card.
+	 * @param MBintegGraphicalCard Boolean on whether or not the MB has an integrated GPU card.
+	 * @param MBintegAudioCard Boolean on whether or not the MB has an integrated Audio card.
 	 */
 	public Motherboard(String Name, String Desc, String MBproducer, String MBform,
 			String MBsocket, int MBmaxCPUs, int MBmaxPCIs, String MBgraphicalPort, int MBmaxRAMs, 
-			String MBDUCconnectionType, boolean MBintegLANcard)
+			String MBDUCconnectionType, boolean MBintegLANcard, boolean MBintegGraphicalCard
+			, boolean MBintegAudioCard)
 	{
 		super(Name,Desc);
 
@@ -116,6 +119,8 @@ public class Motherboard extends Hardware implements Serializable
 		maxRAMs = MBmaxRAMs;
 		DUCconnectionType = MBDUCconnectionType;
 		integLANcard = MBintegLANcard;
+		integGraphicalCard = MBintegGraphicalCard;
+		integAudioCard = MBintegAudioCard;
 	}
 	
 	

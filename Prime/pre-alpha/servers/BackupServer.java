@@ -3,6 +3,7 @@ import software.*;
 import java.io.Serializable;
 import exceptions.StringNotFoundInArrayException;
 import objects.*;
+import objects.Object;
 import managment.ArrayManagment;
 
 
@@ -47,15 +48,13 @@ public class BackupServer extends Servers implements Serializable
 	public BackupServer(String Name, String Desc, String BackupSWname, String BackupSWdesc
 			, String BackupSWversion)
 	{
-
 		super(Name, Desc);
-		
 		
 		// Creates a Backup software object
 		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
-		
-		
 	}
+	
+	
 	
 	/**
 	 * The constructor for the device.
@@ -72,14 +71,56 @@ public class BackupServer extends Servers implements Serializable
 	public BackupServer(String Name, String Desc, String[] SupConInt, String BackupSWname, String BackupSWdesc
 			, String BackupSWversion)
 	{
-
 		super(Name, Desc, SupConInt);
-		
 		
 		// Creates a Backup software object
 		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
+	}
+	
+	
+	
+	/**
+	 * The constructor for the device.
+	 *
+	 * @param Name The name of the server.
+	 * @param Desc The description of the server.
+	 * @param BackupSWname The name of the application that the server
+	 * is set to run.
+	 * @param BackupSWdesc The description of the application that the
+	 * server is set to run.
+	 * @param BackupSWversion The version of the application that the 
+	 * server is set to run.
+	 */
+	public BackupServer(String Name, String Desc, Object[] DesktopComponents, String BackupSWname, String BackupSWdesc
+			, String BackupSWversion)
+	{
+		super(Name, Desc, DesktopComponents);
 		
+		// Creates a Backup software object
+		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
+	}
+	
+	
+	
+	/**
+	 * The constructor for the device.
+	 *
+	 * @param Name The name of the server.
+	 * @param Desc The description of the server.
+	 * @param BackupSWname The name of the application that the server
+	 * is set to run.
+	 * @param BackupSWdesc The description of the application that the
+	 * server is set to run.
+	 * @param BackupSWversion The version of the application that the 
+	 * server is set to run.
+	 */
+	public BackupServer(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents, String BackupSWname, String BackupSWdesc
+			, String BackupSWversion)
+	{
+		super(Name, Desc, SupConInt, DesktopComponents);
 		
+		// Creates a Backup software object
+		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
 	}
 
 
