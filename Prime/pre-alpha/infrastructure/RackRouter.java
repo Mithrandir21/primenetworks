@@ -1,4 +1,6 @@
 package infrastructure;
+import hardware.Motherboard;
+
 import java.io.Serializable;
 
 
@@ -23,10 +25,10 @@ public class RackRouter extends Router implements Serializable
 	 * @param Name The name of the RackRouter.
 	 * @param Desc The description of the RackRouter.
 	 */
-	public RackRouter(String Name, String Desc, String[] SupConInt, int outPorts, int inPorts
+	public RackRouter(String Name, String Desc, String[] SupConInt, Motherboard objectMB, int outPorts, int inPorts
 			, String[] DuplexSupport)
 	{
-		super(Name,Desc,SupConInt,outPorts,inPorts,DuplexSupport);
+		super(Name,Desc,SupConInt,objectMB,outPorts,inPorts,DuplexSupport);
 	}
 
 

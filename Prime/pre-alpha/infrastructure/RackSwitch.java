@@ -1,5 +1,7 @@
 package infrastructure;
 
+import hardware.Motherboard;
+
 
 /**
  * A representation of a Switch that fits into a {@link  infrastructure.Rack  19"-rack}.
@@ -23,10 +25,10 @@ public class RackSwitch extends Switch
 	 * @param Name The name of the RackSwitch.
 	 * @param Desc The description of the RackSwitch.
 	 */
-	public RackSwitch(String Name, String Desc, String[] SupConInt, int outPorts, int inPorts
+	public RackSwitch(String Name, String Desc, String[] SupConInt, Motherboard objectMB, int outPorts, int inPorts
 			, String[] DuplexSupport)
 	{
-		super(Name,Desc,SupConInt,outPorts,inPorts,DuplexSupport);;
+		super(Name,Desc,SupConInt,objectMB,outPorts,inPorts,DuplexSupport);;
 	}
 
 

@@ -1,4 +1,6 @@
 package infrastructure;
+import hardware.Motherboard;
+
 import java.io.Serializable;
 
 
@@ -68,10 +70,10 @@ public class Router extends Object implements Serializable
 	 * internet access.
 	 * @param DuplexSupport The supported duplex type on the device.
 	 */
-	public Router(String Name, String Desc, String[] SupConInt, int outPorts, int inPorts
+	public Router(String Name, String Desc, String[] SupConInt, Motherboard objectMB, int outPorts, int inPorts
 			, String[] DuplexSupport)
 	{
-		super(Name,Desc,SupConInt);
+		super(Name,Desc,SupConInt,objectMB);
 		
 		switchPorts = outPorts;
 		

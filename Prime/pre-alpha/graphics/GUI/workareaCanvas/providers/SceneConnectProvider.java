@@ -4,14 +4,13 @@
 package graphics.GUI.workareaCanvas.providers;
 
 
+import exceptions.ConnectionDoesExist;
+import exceptions.ConnectionsIsNotPossible;
+import graphics.PrimeMain1;
+
 import java.awt.Point;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
 
 import managment.ConnectionManagment;
 import objects.Object;
@@ -23,16 +22,11 @@ import org.netbeans.api.visual.anchor.AnchorShape;
 import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
 
-import clients.Desktop;
-
 import widgetManipulation.WidgetObject;
 import connections.Connection;
 import connections.DeviceConnection;
 import connections.NetworkConnection;
 import connections.WidgetExtendedConnection;
-import exceptions.ConnectionDoesExist;
-import exceptions.ConnectionsIsNotPossible;
-import graphics.PrimeMain1;
 
 
 /**
@@ -72,8 +66,20 @@ public class SceneConnectProvider implements ConnectProvider
 					compInter, null, null);
 
 
-			// If a connection type is selected.
-			if ( conType != null )
+			// If a connection type is not selected.
+			if ( conType == null )
+			{
+				JOptionPane.showMessageDialog(null,
+						"You must choose a connection type for a connection to be made.", "alert",
+						JOptionPane.ERROR_MESSAGE);
+			}
+			// If the cancel butten is pressed.
+			else if ( conType == "Cancelled" )
+			{
+				
+			}
+			// Else a connection type is choosen and the "Create connection" button is pressed.
+			else
 			{
 				
 				Connection con = null;
@@ -108,24 +114,20 @@ public class SceneConnectProvider implements ConnectProvider
 					PrimeMain1.currentCanvas.getConnectionLayer().addChild(connection);
 
 				}
+				// If there already exists a connection between the two given objects.
 				catch ( ConnectionDoesExist e )
 				{
 					JOptionPane.showMessageDialog(null,
 							"There already exists a connection between these two objects.",
 							"alert", JOptionPane.ERROR_MESSAGE);
 				}
+				// If a connection between the two given objects is impossible.
 				catch ( ConnectionsIsNotPossible e )
 				{
 					JOptionPane.showMessageDialog(null,
 							"A connection between these two objects is not possible.", "alert",
 							JOptionPane.ERROR_MESSAGE);
 				}
-			}
-			else
-			{
-				JOptionPane.showMessageDialog(null,
-						"You must choose a connection type for a connection to be made.", "alert",
-						JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else

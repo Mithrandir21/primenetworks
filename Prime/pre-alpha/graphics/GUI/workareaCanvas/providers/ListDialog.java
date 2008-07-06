@@ -96,6 +96,7 @@ public class ListDialog extends JDialog implements ActionListener
 
 		// Create and initialize the buttons.
 		JButton cancelButton = new JButton("Cancel");
+		cancelButton.setActionCommand("Cancel");
 		cancelButton.addActionListener(this);
 		
 		//
@@ -170,6 +171,10 @@ public class ListDialog extends JDialog implements ActionListener
 		if ( "Set".equals(e.getActionCommand()) )
 		{
 			ListDialog.value = (String) (list.getSelectedValue());
+		}
+		else if( "Cancel".equals(e.getActionCommand()) )
+		{
+			ListDialog.value = "Cancelled";
 		}
 		ListDialog.dialog.setVisible(false);
 	}

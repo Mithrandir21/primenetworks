@@ -290,7 +290,7 @@ public class PrimeMain1 extends JFrame
 
 
 		this.setSize(width, height);
-		this.setExtendedState(this.MAXIMIZED_BOTH);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setVisible(true);
 
 	}

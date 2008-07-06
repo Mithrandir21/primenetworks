@@ -168,6 +168,9 @@ public class CreateObjectDragged
 			objectDesc = objectName;
 		}
 
+		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setMaxIntegratedLANs(2);
+		
 
 		return new HTTPServer(objectName, objectDesc, supportedConnectionInterfaces, st_components,
 				ObjectSWname, ObjectSWdesc, ObjectSWversion);
@@ -192,6 +195,10 @@ public class CreateObjectDragged
 			objectDesc = objectName;
 		}
 
+		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setMaxIntegratedLANs(2);
+		
+
 		return new BackupServer(objectName, objectDesc, supportedConnectionInterfaces,
 				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
 	}
@@ -212,6 +219,9 @@ public class CreateObjectDragged
 		{
 			objectDesc = objectName;
 		}
+
+		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setMaxIntegratedLANs(2);
 
 
 		return new MailServer(objectName, objectDesc, supportedConnectionInterfaces, st_components,
@@ -236,6 +246,9 @@ public class CreateObjectDragged
 			objectDesc = objectName;
 		}
 
+		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setMaxIntegratedLANs(2);
+
 
 		return new FirewallServer(objectName, objectDesc, supportedConnectionInterfaces,
 				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
@@ -257,6 +270,9 @@ public class CreateObjectDragged
 		{
 			objectDesc = objectName;
 		}
+
+		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setMaxIntegratedLANs(2);
 
 
 		return new ProxyServer(objectName, objectDesc, supportedConnectionInterfaces,
@@ -349,9 +365,14 @@ public class CreateObjectDragged
 		{
 			objectDesc = objectName;
 		}
+		
+		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
 
+		objectMB.setIntegLANcard(true);
+		objectMB.setMaxIntegratedLANs(16);
+		
 
-		return new Switch(objectName, objectDesc, SupConInt, outPorts, inPorts, DuplexSupport);
+		return new Switch(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport);
 	}
 
 
@@ -362,16 +383,21 @@ public class CreateObjectDragged
 		String objectDesc = iconObject.getDescription();
 
 		String[] SupConInt = { "RJ-45" };
-		int outPorts = 16;
-		int inPorts = 16;
+		int outPorts = 4;
+		int inPorts = 4;
 		String[] DuplexSupport = { "Full Duplex" };
 
 		if ( objectDesc == "" )
 		{
 			objectDesc = objectName;
 		}
+		
+		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
 
+		objectMB.setIntegLANcard(true);
+		objectMB.setMaxIntegratedLANs(4);
 
-		return new Router(objectName, objectDesc, SupConInt, outPorts, inPorts, DuplexSupport);
+		
+		return new Router(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport);
 	}
 }
