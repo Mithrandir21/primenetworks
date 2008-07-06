@@ -12,6 +12,8 @@ import widgetManipulation.WidgetObject;
 import connections.*;
 import exceptions.*;
 import graphics.PrimeMain1;
+import hardware.InternalNetworksCard;
+import hardware.Motherboard;
 import containers.*;
 
 
@@ -45,7 +47,7 @@ public class ConnectionManagment
 	{
 		Connection connection = null;
 
-		
+
 		// Checks to see if there is any previous connection between A and B
 		if ( checkConnectionExistence(existingConnections, objectA, objectB) == true )
 		{
@@ -58,6 +60,13 @@ public class ConnectionManagment
 		{
 			throw new ConnectionsIsNotPossible(objectA.getObjectName(), objectB.getObjectName(), "");
 		}
+
+
+		if ( checkAndSetPortAvailability(objectA, objectB, type) == false )
+		{
+			throw new ConnectionsIsNotPossible(objectA.getObjectName(), objectB.getObjectName(), "");
+		}
+
 
 		/*
 		 * If there is no previous connection between A and B, and they both
@@ -177,14 +186,16 @@ public class ConnectionManagment
 		// "ToBeRemoved"
 		if ( checkConnectionExistence(existingConnections, objectA, objectToBeRemoved) == false )
 		{
-			throw new ConnectionDoesNotExist(objectA.getObjectName(), objectToBeRemoved.getObjectName());
+			throw new ConnectionDoesNotExist(objectA.getObjectName(), objectToBeRemoved
+					.getObjectName());
 		}
 
 		// Then checks to see if there already exists a connection between
 		// object a and c
 		if ( checkConnectionExistence(existingConnections, objectA, objectC) == true )
 		{
-			throw new ConnectionDoesExist(objectA.getObjectName(), objectToBeRemoved.getObjectName());
+			throw new ConnectionDoesExist(objectA.getObjectName(), objectToBeRemoved
+					.getObjectName());
 		}
 
 
@@ -430,6 +441,210 @@ public class ConnectionManagment
 
 
 
+	public static boolean checkAndSetPortAvailability(Object objectA, Object objectB, String conType)
+			throws ConnectionsIsNotPossible
+	{
+		Motherboard objectAmotherboard = null;
+		Motherboard objectBmotherboard = null;
+
+		try
+		{
+			// Since any object only has one motherboard this is a safe bet.
+			objectAmotherboard = (Motherboard) objectA.getSpesificComponents(Motherboard.class)[0];
+			objectBmotherboard = (Motherboard) objectB.getSpesificComponents(Motherboard.class)[0];
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			JOptionPane.showMessageDialog(null, "One of the devices does not have a motherboard.",
+					"alert", JOptionPane.ERROR_MESSAGE);
+
+			return false;
+		}
+
+		if ( conType == "RJ-45" )
+		{
+			/**
+			 * These two values will be changed or the function will get some
+			 * exceptions and will not move on.
+			 */
+			int indexA = 0;
+			int indexB = 0;
+
+
+			if ( objectAmotherboard.LANcardIsIntegrated() )
+			{
+				indexA = objectAmotherboard.firstAvailableIndex(objectAmotherboard
+						.getIntegLANPortsAvailable());
+
+				if ( indexA < 0 )
+				{
+					JOptionPane.showMessageDialog(null,
+							"Someshits wrong in the ConnextionManagment checkPortAvailability11.",
+							"alert", JOptionPane.ERROR_MESSAGE);
+
+					return false;
+				}
+			}
+			else
+			{
+				// FIXME - Search for correct component, InternalNetworksCard.
+				try
+				{
+					objectA.getSpesificComponents(InternalNetworksCard.class);
+				}
+				catch ( ObjectNotFoundException e )
+				{
+					JOptionPane.showMessageDialog(null,
+							"Someshits wrong in the ConnextionManagment checkPortAvailability21.",
+							"alert", JOptionPane.ERROR_MESSAGE);
+
+					return false;
+				}
+			}
+
+
+			if ( objectBmotherboard.LANcardIsIntegrated() )
+			{
+				indexB = objectBmotherboard.firstAvailableIndex(objectBmotherboard
+						.getIntegLANPortsAvailable());
+
+				if ( indexB < 0 )
+				{
+					JOptionPane.showMessageDialog(null,
+							"Someshits wrong in the ConnextionManagment checkPortAvailability12.",
+							"alert", JOptionPane.ERROR_MESSAGE);
+
+					return false;
+				}
+			}
+			else
+			{
+				// FIXME - Search for correct component, InternalNetworksCard.
+				try
+				{
+					objectA.getSpesificComponents(InternalNetworksCard.class);
+				}
+				catch ( ObjectNotFoundException e )
+				{
+					JOptionPane.showMessageDialog(null,
+							"Someshits wrong in the ConnextionManagment checkPortAvailability22.",
+							"alert", JOptionPane.ERROR_MESSAGE);
+
+					return false;
+				}
+			}
+
+
+			/**
+			 * The function gets to this point it means that both the
+			 * motherboards on the objects have available LAN ports and the
+			 * indexes are retrieved.
+			 */
+
+			// Gets the arrays for with the booleans telling if the ports are
+			// available.
+			boolean[] objectAarray = objectAmotherboard.getIntegLANPortsAvailable();
+			boolean[] objectBarray = objectBmotherboard.getIntegLANPortsAvailable();
+
+			// Sets the indexes at both the arrays to true;
+			objectAarray[indexA] = true;
+			objectBarray[indexB] = true;
+
+			// Sets the arrays on the actual motherboard components.
+			objectAmotherboard.setIntegLANPortsAvailable(objectAarray);
+			objectBmotherboard.setIntegLANPortsAvailable(objectBarray);
+
+			objectA.addConnectedDevices(objectB);
+			objectB.addConnectedDevices(objectA);
+		}
+		else if ( conType == "USB" )
+		{
+			/**
+			 * These two values will be changed or the function will get some
+			 * exceptions and will not move on.
+			 */
+			int indexA = 0;
+			int indexB = 0;
+
+
+			if ( objectAmotherboard.getMaxUSBs() > 0 )
+			{
+				indexA = objectAmotherboard.firstAvailableIndex(objectAmotherboard
+						.getUSBPortsAvailable());
+
+				if ( indexA < 0 )
+				{
+					JOptionPane
+							.showMessageDialog(
+									null,
+									"Someshits wrong in the ConnextionManagment checkPortAvailability11 - USB.",
+									"alert", JOptionPane.ERROR_MESSAGE);
+
+					return false;
+				}
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, objectA.getObjectName()
+						+ " has no USB ports available.", "alert", JOptionPane.ERROR_MESSAGE);
+
+				return false;
+			}
+
+
+			if ( objectBmotherboard.getMaxUSBs() > 0 )
+			{
+				indexB = objectBmotherboard.firstAvailableIndex(objectBmotherboard
+						.getUSBPortsAvailable());
+
+				if ( indexB < 0 )
+				{
+					JOptionPane
+							.showMessageDialog(
+									null,
+									"Someshits wrong in the ConnextionManagment checkPortAvailability12 - USB.",
+									"alert", JOptionPane.ERROR_MESSAGE);
+
+					return false;
+				}
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, objectB.getObjectName()
+						+ " has no USB ports available.", "alert", JOptionPane.ERROR_MESSAGE);
+
+				return false;
+			}
+
+
+			/**
+			 * The function gets to this point it means that both the
+			 * motherboards on the objects have available ports and the indexes
+			 * are retrieved.
+			 */
+
+			// Gets the arrays for with the booleans telling if the ports are
+			// available.
+			boolean[] objectAarray = objectAmotherboard.getUSBPortsAvailable();
+			boolean[] objectBarray = objectBmotherboard.getUSBPortsAvailable();
+
+			// Sets the indexes at both the arrays to true;
+			objectAarray[indexA] = true;
+			objectBarray[indexB] = true;
+
+			// Sets the arrays on the actual motherboard components.
+			objectAmotherboard.setUSBPortsAvailable(objectAarray);
+			objectBmotherboard.setUSBPortsAvailable(objectBarray);
+
+			System.out.println("This shit still working...2");
+		}
+
+
+
+		return true;
+	}
+
+
 	public static boolean addConnection(Connection newCon, boolean withCheck)
 	{
 		// Gets the current canvas connections array.
@@ -537,9 +752,9 @@ public class ConnectionManagment
 			}
 		}
 
-		
+
 		temp = stringArrayCrop(temp);
-		
+
 
 		return temp;
 	}

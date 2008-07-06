@@ -134,7 +134,7 @@ public class StandaloneServer extends Object implements Serializable
 	 * 
 	 * @return Returns an array of components that match with the given class.
 	 */
-	public Object[] getSpesificComponents(Class<Object> ComponentClass) throws ObjectNotFoundException
+	public Object[] getSpesificComponents(Class<?> ComponentClass) throws ObjectNotFoundException
 	{		
 		Object[] componentsFound = ComponentsManagment.getSpesificComponents(ComponentClass,
 				components, componentCounter);
@@ -149,7 +149,7 @@ public class StandaloneServer extends Object implements Serializable
 	 * 
 	 * @return Returns an array of connected devices that match with the given class.
 	 */
-	public Object[] getSpesificConncetedDevices(Class<Object> connectedDeviceClass) 
+	public Object[] getSpesificConncetedDevices(Class<?> connectedDeviceClass) 
 										throws ObjectNotFoundException
 	{		
 		Object[] componentsFound = ComponentsManagment.getSpesificComponents(connectedDeviceClass,
@@ -325,7 +325,7 @@ public class StandaloneServer extends Object implements Serializable
 	 * 
 	 * @param NewConnectedDevices An array of new devices.
 	 */
-	public void addConnectedDevices(Object[] NewConnectedDevices) throws Exception
+	public void addConnectedDevices(Object[] NewConnectedDevices) 
 	{
 		connectedDevices = ComponentsManagment.addComponents(NewConnectedDevices, 
 				connectedDevices, connectedDevicesCounter);

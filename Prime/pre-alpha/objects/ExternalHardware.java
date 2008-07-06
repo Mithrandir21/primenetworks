@@ -1,5 +1,7 @@
 package objects;
 
+import hardware.Motherboard;
+
 import java.io.Serializable;
 
 
@@ -19,9 +21,11 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 
 	/**
 	 * Constructor of an abstract hardware superclass.
-	 *
-	 * @param Name The name of the hardware device.
-	 * @param Desc The description of the hardware decvice.
+	 * 
+	 * @param Name
+	 *            The name of the hardware device.
+	 * @param Desc
+	 *            The description of the hardware decvice.
 	 */
 	public ExternalHardware(String Name, String Desc)
 	{
@@ -32,12 +36,70 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	/**
 	 * Constructor of an abstract hardware superclass.
 	 *
-	 * @param Name The name of the hardware device.
-	 * @param Desc The description of the hardware decvice.
+	 * @param Name
+	 *            The name of the hardware device.
+	 * @param Desc
+	 *            The description of the hardware decvice.
+	 * @param SupConInt
+	 *            An array of strings that describes the supported connection
+	 *            interfaces.
 	 */
 	public ExternalHardware(String Name, String Desc, String[] SupConInt)
 	{
 		super(Name,Desc,SupConInt);
 	}
-
+	
+	
+	/**
+	 * Constructor of an abstract hardware superclass.
+	 * 
+	 * @param Name
+	 *            The name of the hardware device.
+	 * @param Desc
+	 *            The description of the hardware decvice.
+	 * @param DesktopComponents
+	 *            The initial components an instance of a desktop has.
+	 */
+	public ExternalHardware(String Name, String Desc, Object[] DesktopComponents)
+	{
+		super(Name,Desc,DesktopComponents);
+	}
+	
+	
+	/**
+	 * Constructor of an abstract hardware superclass.
+	 *
+	 * @param Name
+	 *            The name of the hardware device.
+	 * @param Desc
+	 *            The description of the hardware decvice.
+	 * @param SupConInt
+	 *            An array of strings that describes the supported connection
+	 *            interfaces.
+	 * @param DesktopComponents
+	 *            The initial components an instance of a desktop has.
+	 */
+	public ExternalHardware(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents)
+	{
+		super(Name,Desc,SupConInt,DesktopComponents);
+	}
+	
+	
+	/**
+	 * Constructor of an abstract hardware superclass.
+	 *
+	 * @param Name
+	 *            The name of the hardware device.
+	 * @param Desc
+	 *            The description of the hardware decvice.
+	 * @param SupConInt
+	 *            An array of strings that describes the supported connection
+	 *            interfaces.
+	 * @param DesktopComponents
+	 *            The initial components an instance of a desktop has.
+	 */
+	public ExternalHardware(String Name, String Desc, String[] SupConInt, Motherboard deviceMB)
+	{
+		super(Name,Desc,SupConInt,deviceMB);
+	}
 }

@@ -16,27 +16,6 @@ import connections.Connection;
  */
 public abstract class Servers extends Object implements Serializable
 {
-	// THE MASKIN ITSELF
-
-	// An array that contains pointers to the objects that make up a computer.
-	private Object[] components;
-
-	// Counts number of components in the components list
-	private int componentCounter;
-
-
-	// THE DEVICES SURROUNDING IT
-
-	// An array of the objects it is connected to, whether by USB, RJ-45,
-	// bluetooth, PS-2 and so on.
-	private Object[] connectedDevices;
-
-	// An array of connection object which represent the connection between the
-	// outside devices.
-	private Connection[] connections;
-
-	// Counts the number of objects it is connected to
-	private int connectedDevicesCounter;
 
 
 	// NETWORK INFORMATION FIELDS
@@ -62,12 +41,6 @@ public abstract class Servers extends Object implements Serializable
 	public Servers(String Name, String Desc)
 	{
 		super(Name,Desc);
-
-		componentCounter = 0;
-
-		components = null;
-
-		desktopRate = 0; // Not been rated yet.
 	}
 	
 	/**
@@ -81,12 +54,6 @@ public abstract class Servers extends Object implements Serializable
 	public Servers(String Name, String Desc, String[] SupConInt)
 	{
 		super(Name,Desc,SupConInt);
-
-		componentCounter = 0;
-
-		components = null;
-
-		desktopRate = 0; // Not been rated yet.
 	}
 	
 	
@@ -101,13 +68,7 @@ public abstract class Servers extends Object implements Serializable
 	 */
 	public Servers(String Name, String Desc, Object[] DesktopComponents)
 	{
-		super(Name,Desc);
-		
-		componentCounter = DesktopComponents.length;
-
-		components = DesktopComponents;
-
-		desktopRate = 0; // Not been rated yet.		
+		super(Name,Desc,DesktopComponents);
 	}
 	
 	
@@ -122,13 +83,29 @@ public abstract class Servers extends Object implements Serializable
 	 */
 	public Servers(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents)
 	{
-		super(Name,Desc,SupConInt);
-		
-		componentCounter = DesktopComponents.length;
+		super(Name,Desc,SupConInt,DesktopComponents);
+	}
+	
+	
+	
 
-		components = DesktopComponents;
 
-		desktopRate = 0; // Not been rated yet.		
+	/**
+	 * Get the number of nodes between the maskin and the internet.
+	 */
+	public int getNumberJumps()
+	{
+		return numberOfNodes;
+	}
+	
+	
+
+	/**
+	 * Set method for number of jumps to the internet.
+	 */
+	public void setNumberOfJumps(int jumps)
+	{
+		numberOfNodes = jumps;
 	}
 	
 }

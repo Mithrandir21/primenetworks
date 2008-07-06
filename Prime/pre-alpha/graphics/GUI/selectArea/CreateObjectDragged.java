@@ -51,41 +51,34 @@ public class CreateObjectDragged
 		Object newObject = null;
 		String objectType = iconObject.getClassType().getName();
 
-		
+		createComponentsArray();
 
 		if ( objectType.equals("clients.Desktop") )
 		{
-			createClientComponentsArray();
 			newObject = createDefaultDesktop(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("clients.Laptop") )
 		{
-			createClientComponentsArray();
 			newObject = createDefaultLaptop(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("servers.HTTPServer") )
 		{
-			createServerComponentsArray();
 			newObject = createDefaultHTTPServer(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("servers.BackupServer") )
 		{
-			createServerComponentsArray();
 			newObject = createDefaultBackupServer(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("servers.MailServer") )
 		{
-			createServerComponentsArray();
 			newObject = createDefaultMailServer(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("servers.FirewallServer") )
 		{
-			createServerComponentsArray();
 			newObject = createDefaultFirewallServer(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("servers.ProxyServer") )
 		{
-			createServerComponentsArray();
 			newObject = createDefaultProxyServer(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("hardware.HDD") )
@@ -115,23 +108,13 @@ public class CreateObjectDragged
 
 
 
-	private void createClientComponentsArray()
+	private void createComponentsArray()
 	{
-		st_components[0] = PrimeMain1.standard_internal_components.getSt_client_MB();
-		st_components[1] = PrimeMain1.standard_internal_components.getSt_client_CPU();
-		st_components[2] = PrimeMain1.standard_internal_components.getSt_client_RAM();
-		st_components[3] = PrimeMain1.standard_internal_components.getSt_client_HDD();
-		st_components[4] = PrimeMain1.standard_internal_components.getSt_client_DVDRW();
-	}
-
-
-	private void createServerComponentsArray()
-	{
-		st_components[0] = PrimeMain1.standard_internal_components.getSt_server_MB();
-		st_components[1] = PrimeMain1.standard_internal_components.getSt_server_CPU();
-		st_components[2] = PrimeMain1.standard_internal_components.getSt_server_RAM();
-		st_components[3] = PrimeMain1.standard_internal_components.getSt_server_HDD();
-		st_components[4] = PrimeMain1.standard_internal_components.getSt_server_DVDRW();
+		st_components[0] = PrimeMain1.standard_internal_components.getSt_MB();
+		st_components[1] = PrimeMain1.standard_internal_components.getSt_CPU();
+		st_components[2] = PrimeMain1.standard_internal_components.getSt_RAM();
+		st_components[3] = PrimeMain1.standard_internal_components.getSt_HDD();
+		st_components[4] = PrimeMain1.standard_internal_components.getSt_DVDRW();
 	}
 
 
@@ -167,26 +150,6 @@ public class CreateObjectDragged
 
 		return new Laptop(objectName, objectDesc, supportedConnectionInterfaces, st_components);
 	}
-
-
-
-	// /**
-	// * @param iconObject
-	// * @return
-	// */
-	// private ThinClient createDefaultThinClient(WidgetIcon iconObject)
-	// {
-	// String objectName = "Desktop" + numberOfWidgetsOnTheScene;
-	// String objectDesc = iconObject.getDescription();
-	//		
-	// if(objectDesc == "")
-	// {
-	// objectDesc = objectName;
-	// }
-	//		
-	//		
-	// return new ThinClient(objectName, objectDesc);
-	// }
 
 
 
@@ -323,7 +286,7 @@ public class CreateObjectDragged
 
 	public Scanner createDefaultScanner(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
-		String objectName = "HDD" + numberOfWidgetsOnTheScene;
+		String objectName = "Scanner" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 
 		String Sresolution = "1280x1020";
@@ -333,9 +296,13 @@ public class CreateObjectDragged
 		{
 			objectDesc = objectName;
 		}
-
-
-		return new Scanner(objectName, objectDesc, Sresolution, SconnectionInterfaces);
+		
+		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
+		
+		objectMB.setMaxUSBs(1);
+		
+		
+		return new Scanner(objectName, objectDesc, Sresolution, SconnectionInterfaces, objectMB);
 	}
 
 
@@ -355,9 +322,14 @@ public class CreateObjectDragged
 		{
 			objectDesc = objectName;
 		}
+		
+		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
+		
+		objectMB.setIntegLANcard(true);
+		objectMB.setMaxIntegratedLANs(16);
 
 
-		return new Hub(objectName, objectDesc, SupConInt, outPorts, inPorts, DuplexSupport);
+		return new Hub(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport);
 	}
 
 

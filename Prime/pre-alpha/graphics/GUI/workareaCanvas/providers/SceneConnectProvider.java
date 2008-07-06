@@ -121,6 +121,19 @@ public class SceneConnectProvider implements ConnectProvider
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
+			else
+			{
+				JOptionPane.showMessageDialog(null,
+						"You must choose a connection type for a connection to be made.", "alert",
+						JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(null,
+					"These two objects cannot connect to eachother because they dont"
+					+ " support the same ports.", "alert",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

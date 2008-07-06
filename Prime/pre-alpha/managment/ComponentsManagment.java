@@ -45,7 +45,11 @@ public class ComponentsManagment
 		Object[] tempComponents = new Object[componentCounter + numberOfNewComponents];
 		
 		// The boolean array that tells whether or not any of the objects already are in the array
-		boolean[] areFound = arrayContains(components,NewComponents);
+		boolean[] areFound = new boolean[0];
+		if ( components != null )
+		{
+			areFound = arrayContains(components, NewComponents);
+		}
 		
 		// Checks to see if any of the 
 		for(int i = 0;i<areFound.length;i++)
