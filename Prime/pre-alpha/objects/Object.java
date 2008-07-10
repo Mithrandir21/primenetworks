@@ -5,9 +5,13 @@ import hardware.Motherboard;
 
 import java.io.Serializable;
 
+import logistical.cleanup;
 import managment.ComponentsManagment;
 
 import connections.Connection;
+import connections.DeviceConnection;
+import connections.InternalConnection;
+import connections.NetworkConnection;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
 
@@ -49,7 +53,14 @@ public abstract class Object implements Serializable
 	 * An array that contains pointers to the objects that make up a computer.
 	 */
 	private Object[] components;
-
+	
+	
+	/**
+	 * FIXME - Implement connections between internal components and the machine itself.
+	 */
+	private InternalConnection[] internalConnections;
+	
+	
 	/**
 	 * Counts number of components in the components list
 	 */
@@ -68,8 +79,16 @@ public abstract class Object implements Serializable
 	 * An array of connection object which represent the connection between the
 	 * object and outside devices.
 	 */
-	private Connection[] connections;
+	private NetworkConnection[] networkConnections;
+	
+	
+	/**
+	 * An array of deviceConnections that represent the connections inside the computer 
+	 * itself.
+	 */
+	private DeviceConnection[] deviceConnections;
 
+	
 	/**
 	 * Counts the number of objects it is connected to
 	 */
@@ -268,7 +287,7 @@ public abstract class Object implements Serializable
 	public Connection[] getConnections()
 	{
 
-		return connections;
+		return networkConnections;
 	}
 
 
@@ -376,14 +395,29 @@ public abstract class Object implements Serializable
 	 * @param connections
 	 *            the connections to set
 	 */
-	public void setConnections(Connection[] connections)
+	public void setConnections(NetworkConnection[] connections)
 	{
-		this.connections = connections;
+		this.networkConnections = connections;
 	}
 
 
 
 	// CLASS METHODES
+	
+	/**
+	 * 
+	 */
+	public void removeConnections()
+	{
+		connectedDevices = new Object[0];
+		
+		removeAllDeviceConnections();
+		
+		removeAllNetworkConnections();
+		
+		connectedDevicesCounter = 0;
+	}
+	
 
 
 	// COMPONENTS MANIPULATION
@@ -480,10 +514,19 @@ public abstract class Object implements Serializable
 		// Sets the new count for number of connected devices in the array
 		connectedDevicesCounter = connectedDevices.length;
 	}
+	
+	
+	/**
+	 * 
+	 */
+	public void removeAllConnectedDevices()
+	{
+		connectedDevices = new Object[5];
+	}
 
 
 	/**
-	 * Function to add device(s) to the the connceted devices list. NOTES - THE
+	 * Function to add device(s) to the the connected devices list. NOTES - THE
 	 * SYSTEM WILL CHECK AT AN EARLIER POINT TOO SEE IF THERE IS ROOM FOR THESE
 	 * COMPONENTS
 	 * 
@@ -518,6 +561,337 @@ public abstract class Object implements Serializable
 		// Sets the new count for number of connected devices in the array
 		connectedDevicesCounter = connectedDevices.length;
 	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void addConnection(Connection con)
+	{
+		if(con instanceof InternalConnection)
+		{
+			addInternalConnection((InternalConnection) con);
+		}
+		else if(con instanceof DeviceConnection)
+		{
+			addDeviceConnection((DeviceConnection) con);
+		}
+		else // This will then be a network connection.
+		{
+			addNetworkConnection((NetworkConnection) con);
+		}
+	}
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void removeConnection(Connection con)
+	{
+		if(con instanceof InternalConnection)
+		{
+			removeInternalConnection((InternalConnection) con);
+		}
+		else if(con instanceof DeviceConnection)
+		{
+			removeDeviceConnection((DeviceConnection) con);
+		}
+		else // This will then be a network connection.
+		{
+			removeNetworkConnection((NetworkConnection) con);
+		}
+	}
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void releaseConnectionPorts(Connection con)
+	{
+		if(con instanceof InternalConnection)
+		{
+			addInternalConnection((InternalConnection) con);
+		}
+		else if(con instanceof DeviceConnection)
+		{
+			addDeviceConnection((DeviceConnection) con);
+		}
+		else // This will then be a network connection.
+		{
+			addNetworkConnection((NetworkConnection) con);
+		}
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void addInternalConnection(InternalConnection con)
+	{
+		if(internalConnections == null)
+		{
+			internalConnections = initConnection(internalConnections);
+		}
+		
+		for(int i = 0; i<internalConnections.length; i++)
+		{
+			if(internalConnections[i] == null)
+			{
+				internalConnections[i] = con;
+				return;
+			}
+		}
+		
+		
+		// If the function gets to this point it means that there where no
+		// available indexes and the array needs to be extended.
+		internalConnections = extendConnectionArray(internalConnections);
+		addInternalConnection(con);
+		
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void addNetworkConnection(NetworkConnection con)
+	{
+		if(networkConnections == null)
+		{
+			networkConnections = initConnection(networkConnections);
+		}
+		
+		for(int i = 0; i<networkConnections.length; i++)
+		{
+			if(networkConnections[i] == null)
+			{
+				networkConnections[i] = con;
+				return;
+			}
+		}
+		
+		// If the function gets to this point it means that there where no
+		// available indexes and the array needs to be extended.
+		networkConnections = extendConnectionArray(networkConnections);
+		addNetworkConnection(con);
+		
+	}
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void addDeviceConnection(DeviceConnection con)
+	{
+		if(deviceConnections == null)
+		{
+			deviceConnections = initConnection(deviceConnections);
+		}
+		
+		for(int i = 0; i<deviceConnections.length; i++)
+		{
+			if(deviceConnections[i] == null)
+			{
+				deviceConnections[i] = con;
+				return;
+			}
+		}
+		
+		
+		// If the function gets to this point it means that there where no
+		// available indexes and the array needs to be extended.
+		deviceConnections = extendConnectionArray(deviceConnections);
+		
+		// Runs the function again with the extended array.		
+		addDeviceConnection(con);
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public boolean removeInternalConnection(InternalConnection con)
+	{
+		
+		for(int i = 0; i<internalConnections.length; i++)
+		{
+			if(internalConnections[i].equals(con))
+			{
+				internalConnections[i] = null;
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void removeAllInternalConnections()
+	{
+		internalConnections = new InternalConnection[5];
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public boolean removeNetworkConnection(NetworkConnection con)
+	{
+		
+		for(int i = 0; i<networkConnections.length; i++)
+		{
+			if(networkConnections[i].equals(con))
+			{
+				networkConnections[i] = null;
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void removeAllNetworkConnections()
+	{
+		networkConnections = new NetworkConnection[5];
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public boolean removeDeviceConnection(DeviceConnection con)
+	{
+		
+		for(int i = 0; i<deviceConnections.length; i++)
+		{
+			if(deviceConnections[i].equals(con))
+			{
+				deviceConnections[i] = null;
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void removeAllDeviceConnections()
+	{
+		deviceConnections = new DeviceConnection[5];
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	private NetworkConnection[] initConnection(NetworkConnection[] array)
+	{
+		return array = new NetworkConnection[5];
+	}
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	private DeviceConnection[] initConnection(DeviceConnection[] array)
+	{
+		return array = new DeviceConnection[5];
+	}
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	private InternalConnection[] initConnection(InternalConnection[] array)
+	{
+		return array = new InternalConnection[5];
+	}
+	
+	
+	
 
-
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	private NetworkConnection[] extendConnectionArray(NetworkConnection[] array)
+	{
+		NetworkConnection[] temp = new NetworkConnection[array.length + 5];
+		
+		for(int i = 0; i<array.length; i++)
+		{
+			temp[i] = array[i];
+		}
+		
+		return temp;
+	}
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	private DeviceConnection[] extendConnectionArray(DeviceConnection[] array)
+	{
+		DeviceConnection[] temp = new DeviceConnection[array.length + 5];
+		
+		for(int i = 0; i<array.length; i++)
+		{
+			temp[i] = array[i];
+		}
+		
+		return temp;
+	}
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	private InternalConnection[] extendConnectionArray(InternalConnection[] array)
+	{
+		InternalConnection[] temp = new InternalConnection[array.length + 5];
+		
+		for(int i = 0; i<array.length; i++)
+		{
+			temp[i] = array[i];
+		}
+		
+		return temp;
+	}
+	
+	
 }

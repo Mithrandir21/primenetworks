@@ -96,8 +96,13 @@ public class SceneConnectProvider implements ConnectProvider
 									+ TargetWidObj.getObject().getObjectName() + ".", SourceWidObj
 									.getObject(), TargetWidObj.getObject(), conType, conClass);
 
-
-					// Creates the coonecion between the two devices on the scene.
+					
+					// Adds the connection to the connections array of each object.
+					SourceWidObj.getObject().addConnection(con);
+					TargetWidObj.getObject().addConnection(con);
+					
+					
+					// Creates the connection between the two devices on the scene.
 					WidgetExtendedConnection connection = new WidgetExtendedConnection(
 							PrimeMain1.currentCanvas.getScene(), con);
 

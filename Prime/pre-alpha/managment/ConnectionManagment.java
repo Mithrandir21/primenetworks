@@ -110,6 +110,7 @@ public class ConnectionManagment
 			throw new ConnectionDoesNotExist(objectA.getObjectName(), objectB.getObjectName());
 		}
 
+		boolean foundCon = false;
 
 
 		/*
@@ -119,45 +120,54 @@ public class ConnectionManagment
 		 */
 		for ( int i = 0; i < existingConnections.length; i++ )
 		{
+			System.out.println("1");
 			if ( existingConnections[i] != null )
 			{
 				// If the first object is found
 				if ( existingConnections[i].getObject1().equals(objectA) )
 				{
 					// If the second object is found at the same index as the
-					// first
-					// one
+					// first one
 					if ( existingConnections[i].getObject2().equals(objectB) )
 					{
+						objectA.removeConnection(existingConnections[i]);
+						objectB.removeConnection(existingConnections[i]);
 						existingConnections[i] = null;
+						foundCon = true;
 					}
 				}
 			}
 		}
 
-		/*
-		 * Checks to see if object B is the first object in any connection. Then
-		 * if it find object B as the first object, it looks for object A at the
-		 * same index as object B.
-		 */
-		for ( int i = 0; i < existingConnections.length; i++ )
+		if ( foundCon == false)
 		{
-			if ( existingConnections[i] != null )
+			/*
+			 * Checks to see if object B is the first object in any connection. Then
+			 * if it find object B as the first object, it looks for object A at the
+			 * same index as object B.
+			 */
+			for ( int i = 0; i < existingConnections.length; i++ )
 			{
-				// If the second object is found
-				if ( existingConnections[i].getObject1().equals(objectB) )
+				System.out.println("2");
+				if ( existingConnections[i] != null )
 				{
-					// If the first object is found at the same index as the
-					// first
-					// one
-					if ( existingConnections[i].getObject1().equals(objectA) )
+					// If the second object is found
+					if ( existingConnections[i].getObject1().equals(objectB) )
 					{
-						existingConnections[i] = null;
+						// If the first object is found at the same index as the
+						// first
+						// one
+						if ( existingConnections[i].getObject1().equals(objectA) )
+						{
+							objectA.removeConnection(existingConnections[i]);
+							objectB.removeConnection(existingConnections[i]);
+							existingConnections[i] = null;
+						}
 					}
 				}
 			}
 		}
-
+		
 		// Removes any null-pointers in the array of connections
 		existingConnections = cleanup.cleanObjectArray(existingConnections);
 
@@ -479,8 +489,8 @@ public class ConnectionManagment
 				if ( indexA < 0 )
 				{
 					JOptionPane.showMessageDialog(null,
-							"Someshits wrong in the ConnextionManagment checkPortAvailability11.",
-							"alert", JOptionPane.ERROR_MESSAGE);
+							"There are no available integrated LAN ports on "
+									+ objectA.getObjectName(), "alert", JOptionPane.ERROR_MESSAGE);
 
 					return false;
 				}
@@ -494,9 +504,8 @@ public class ConnectionManagment
 				}
 				catch ( ObjectNotFoundException e )
 				{
-					JOptionPane.showMessageDialog(null,
-							"Someshits wrong in the ConnextionManagment checkPortAvailability21.",
-							"alert", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "A networkscard was not found inside "
+							+ objectA.getObjectName(), "alert", JOptionPane.ERROR_MESSAGE);
 
 					return false;
 				}
@@ -511,8 +520,8 @@ public class ConnectionManagment
 				if ( indexB < 0 )
 				{
 					JOptionPane.showMessageDialog(null,
-							"Someshits wrong in the ConnextionManagment checkPortAvailability12.",
-							"alert", JOptionPane.ERROR_MESSAGE);
+							"There are no available integrated LAN ports on "
+									+ objectB.getObjectName(), "alert", JOptionPane.ERROR_MESSAGE);
 
 					return false;
 				}
@@ -522,13 +531,12 @@ public class ConnectionManagment
 				// FIXME - Search for correct component, InternalNetworksCard.
 				try
 				{
-					objectA.getSpesificComponents(InternalNetworksCard.class);
+					objectB.getSpesificComponents(InternalNetworksCard.class);
 				}
 				catch ( ObjectNotFoundException e )
 				{
-					JOptionPane.showMessageDialog(null,
-							"Someshits wrong in the ConnextionManagment checkPortAvailability22.",
-							"alert", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "A networkscard was not found inside "
+							+ objectB.getObjectName(), "alert", JOptionPane.ERROR_MESSAGE);
 
 					return false;
 				}
@@ -574,11 +582,8 @@ public class ConnectionManagment
 
 				if ( indexA < 0 )
 				{
-					JOptionPane
-							.showMessageDialog(
-									null,
-									"Someshits wrong in the ConnextionManagment checkPortAvailability11 - USB.",
-									"alert", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "There are no available USB ports on "
+							+ objectA.getObjectName(), "alert", JOptionPane.ERROR_MESSAGE);
 
 					return false;
 				}
@@ -599,11 +604,8 @@ public class ConnectionManagment
 
 				if ( indexB < 0 )
 				{
-					JOptionPane
-							.showMessageDialog(
-									null,
-									"Someshits wrong in the ConnextionManagment checkPortAvailability12 - USB.",
-									"alert", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "There are no available USB ports on "
+							+ objectB.getObjectName(), "alert", JOptionPane.ERROR_MESSAGE);
 
 					return false;
 				}
@@ -636,7 +638,8 @@ public class ConnectionManagment
 			objectAmotherboard.setUSBPortsAvailable(objectAarray);
 			objectBmotherboard.setUSBPortsAvailable(objectBarray);
 
-			System.out.println("This shit still working...2");
+			objectA.addConnectedDevices(objectB);
+			objectB.addConnectedDevices(objectA);
 		}
 
 
