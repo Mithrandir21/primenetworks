@@ -29,10 +29,10 @@ import objects.Hardware;
 public class Motherboard extends Hardware implements Serializable
 {
 
-	// The company that produces the Motherboard. Sony, Samsung and so on.
+	// The company that produces the Motherboard. Asus, MSI and so on.
 	private String producer;
 
-	// The form of Motherboard. CDROM,DVDROM,DVDburner,Blu-Ray,HD-DVD and so on.
+	// The form of Motherboard. ATX, mini-ATX, E-ATX and so on.
 	private String form;
 
 	// The subtype of the Motherboard type, Socket 775, Socket 939 and so on.
@@ -115,11 +115,9 @@ public class Motherboard extends Hardware implements Serializable
 	 * @param Desc
 	 *            The description of the MB.
 	 * @param MBproducer
-	 *            The company that produces the Motherboard. Sony, Samsung and
-	 *            so on.
+	 *            The company that produces the Motherboard.
 	 * @param MBform
-	 *            The form of Motherboard. CDROM,DVDROM,DVDburner,Blu-Ray,HD-DVD
-	 *            and so on.
+	 *            The form of Motherboard.
 	 * @param MBsocket
 	 *            The subtype of the Motherboard type, Socket 775, Socket 939
 	 *            and so on.
@@ -177,32 +175,6 @@ public class Motherboard extends Hardware implements Serializable
 	 * @param Name
 	 *            The name of the MB.
 	 * @param Desc
-	 *            The description of the MB.
-	 * @param MBproducer
-	 *            The company that produces the Motherboard. Sony, Samsung and
-	 *            so on.
-	 * @param MBform
-	 *            The form of Motherboard. CDROM,DVDROM,DVDburner,Blu-Ray,HD-DVD
-	 *            and so on.
-	 * @param MBsocket
-	 *            The subtype of the Motherboard type, Socket 775, Socket 939
-	 *            and so on.
-	 * @param MBmaxCPUs
-	 *            The number of CPU slots on the MB.
-	 * @param MBmaxPCIs
-	 *            The number of PCI slots on the MB.
-	 * @param MBgraphicalPort
-	 *            The type of graphical port on the MB.
-	 * @param MBmaxRAMs
-	 *            The number of RAM slots on the MB.
-	 * @param MBDUCconnectionType
-	 *            The type of DUC connection ports on the MB.
-	 * @param MBintegLANcard
-	 *            Boolean on whether or not the MB has an integrated LAN card.
-	 * @param MBintegGraphicalCard
-	 *            Boolean on whether or not the MB has an integrated GPU card.
-	 * @param MBintegAudioCard
-	 *            Boolean on whether or not the MB has an integrated Audio card.
 	 */
 	public Motherboard(String Name, String Desc)
 	{
@@ -683,7 +655,7 @@ public class Motherboard extends Hardware implements Serializable
 		this.isGraphicsCardInstalled = graphicsCard;
 	}
 
-	
+
 	/**
 	 * TODO - Description NEEDED!
 	 * 

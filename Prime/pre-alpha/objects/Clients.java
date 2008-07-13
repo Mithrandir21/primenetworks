@@ -3,12 +3,6 @@ package objects;
 
 import java.io.Serializable;
 
-import managment.ComponentsManagment;
-
-import connections.Connection;
-import exceptions.ObjectNotFoundException;
-import exceptions.ObjectNotFoundInArrayException;
-
 
 /**
  * An abstract super class for all client objects in the system, including
@@ -45,8 +39,6 @@ public abstract class Clients extends Object implements Serializable
 	 *            The name of the desktop.
 	 * @param Desc
 	 *            The description of the desktop.
-	 * @param DesktopComponents
-	 *            The initial components an instance of a desktop has.
 	 */
 	public Clients(String Name, String Desc)
 	{
@@ -64,8 +56,8 @@ public abstract class Clients extends Object implements Serializable
 	 *            The name of the desktop.
 	 * @param Desc
 	 *            The description of the desktop.
-	 * @param DesktopComponents
-	 *            The initial components an instance of a desktop has.
+	 * @param SupConInt
+	 *            The connection interfaces supported by the client.
 	 */
 	public Clients(String Name, String Desc, String[] SupConInt)
 	{

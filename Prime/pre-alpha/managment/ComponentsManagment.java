@@ -41,7 +41,7 @@ public class ComponentsManagment
 			}
 		}
 		
-		// Makes a new components array with the added number of indexs
+		// Makes a new components array with the added number of indexes
 		Object[] tempComponents = new Object[componentCounter + numberOfNewComponents];
 		
 		// The boolean array that tells whether or not any of the objects already are in the array
@@ -71,7 +71,7 @@ public class ComponentsManagment
 		}
 		
 		
-		// Addes the old components to the new array
+		// Adds the old components to the new array
 		for(int i = 0;i<componentCounter;i++)
 		{
 			tempComponents[i] = components[i];

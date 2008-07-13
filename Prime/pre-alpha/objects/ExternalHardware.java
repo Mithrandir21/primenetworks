@@ -95,8 +95,8 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 * @param SupConInt
 	 *            An array of strings that describes the supported connection
 	 *            interfaces.
-	 * @param DesktopComponents
-	 *            The initial components an instance of a desktop has.
+	 * @param deviceMB
+	 *            The initial {@link hardware.Motherboard motherboard} the hardware has.
 	 */
 	public ExternalHardware(String Name, String Desc, String[] SupConInt, Motherboard deviceMB)
 	{

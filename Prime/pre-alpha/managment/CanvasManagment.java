@@ -3,8 +3,16 @@
  */
 package managment;
 
+
+import java.util.Iterator;
+import java.util.List;
+
+import org.netbeans.api.visual.widget.Widget;
+
 import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
+import connections.Connection;
+import connections.WidgetExtendedConnection;
 
 
 /**
@@ -17,7 +25,6 @@ public class CanvasManagment
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public static void addCanvas(WorkareaCanvas newCanvas, String name)
 	{
@@ -62,7 +69,6 @@ public class CanvasManagment
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public static void extendCanvasArray()
 	{
@@ -80,7 +86,6 @@ public class CanvasManagment
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public static WorkareaCanvas findCanvas(String canvasName)
 	{
@@ -94,5 +99,38 @@ public class CanvasManagment
 
 		// Has not found any canvases with that name.
 		return null;
+	}
+
+
+
+	/**
+	 * TODO - Description
+	 */
+	public static void removeConnectionFromConnectionLayer(Connection con)
+	{
+		List<Widget> list = PrimeMain1.currentCanvas.getConnectionLayer().getChildren();
+
+		WidgetExtendedConnection temp = null;
+
+		boolean found = false;
+		
+		
+		WidgetExtendedConnection testingWidget = null;
+		
+		for ( Iterator<?> iter = list.iterator(); iter.hasNext(); )
+		{
+			testingWidget = (WidgetExtendedConnection) iter.next();
+
+			if ( testingWidget.getConnection().equals(con) )
+			{
+				found = true;
+				temp = testingWidget;
+			}
+		}
+		
+		if(found == true)
+		{
+			PrimeMain1.currentCanvas.getConnectionLayer().removeChild(temp);
+		}
 	}
 }

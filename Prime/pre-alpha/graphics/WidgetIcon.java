@@ -31,13 +31,12 @@ public class WidgetIcon extends JLabel
 {
 	/**
 	 * This represents the class type what the icon represents.
-	 * Like {@link  clients.Desktop  Desktop} or 
-	 * {@link  servers.Server  Server}.
+	 * Like {@link  clients.Desktop  Desktop}.
 	 */
-	Class classType;
+	Class<?> classType;
 
 	/**
-	 * This is the decription of the object that is represents.
+	 * This is the description of the object that is represents.
 	 */
 	String description = "";
 
@@ -59,7 +58,7 @@ public class WidgetIcon extends JLabel
 	 * @param icon The icon that is to represent the {@link  objects.Object  Object}.
 	 * @param objectType The object class of the represented {@link  objects.Object  Object}.
 	 */
-	public WidgetIcon(ImageIcon icon, Class objectType)
+	public WidgetIcon(ImageIcon icon, Class<?> objectType)
 	{
 		super(icon);
 		img = icon.getImage();
@@ -81,7 +80,7 @@ public class WidgetIcon extends JLabel
 	 * @param objectType The object class of the represented {@link  objects.Object  Object}.
 	 * @param name The name of the JLabel. 
 	 */
-	public WidgetIcon(ImageIcon icon, Class objectType, String name)
+	public WidgetIcon(ImageIcon icon, Class<?> objectType, String name)
 	{
 		super(icon);
 		img = icon.getImage();
@@ -104,7 +103,7 @@ public class WidgetIcon extends JLabel
 	 * @param name The name of the JLabel. 
 	 * @param desc The description of of the represented 
 	 */
-	public WidgetIcon(ImageIcon icon, Class objectType, String name, String desc)
+	public WidgetIcon(ImageIcon icon, Class<?> objectType, String name, String desc)
 	{
 		super(icon);
 		img = icon.getImage();
@@ -120,7 +119,7 @@ public class WidgetIcon extends JLabel
 	/**
 	 * @return The class of the {@link  objects.Object  Object} that the JLabel icon represents.
 	 */
-	public Class getClassType()
+	public Class<?> getClassType()
 	{
 		return classType;
 	}

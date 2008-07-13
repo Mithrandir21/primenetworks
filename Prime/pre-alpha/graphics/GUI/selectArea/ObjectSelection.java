@@ -88,29 +88,23 @@ public class ObjectSelection extends JPanel
 
 	private void initServerButtonIcons()
 	{
-		this
-				.add(makeImageIcon("Web-server", HTTPServer.class,
-						"Web Server"));
+		this.add(makeImageIcon("Web-server", HTTPServer.class, "Web Server"));
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("Data-server", BackupServer.class,
-				"Backup Server"));
+		this.add(makeImageIcon("Data-server", BackupServer.class, "Backup Server"));
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("Email-server", MailServer.class,
-				"Email Server"));
+		this.add(makeImageIcon("Email-server", MailServer.class, "Email Server"));
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("Firewall-server", FirewallServer.class,
-				"Firewall Server"));
+		this.add(makeImageIcon("Firewall-server", FirewallServer.class, "Firewall Server"));
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("Proxy-server", ProxyServer.class,
-				"Proxy Server"));
+		this.add(makeImageIcon("Proxy-server", ProxyServer.class, "Proxy Server"));
 
 		this.add(new JToolBar.Separator());
 
@@ -154,8 +148,7 @@ public class ObjectSelection extends JPanel
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("WirelessRouter", Router.class,
-				"Wireless Router"));
+		this.add(makeImageIcon("WirelessRouter", Router.class, "Wireless Router"));
 
 		this.add(new JToolBar.Separator());
 

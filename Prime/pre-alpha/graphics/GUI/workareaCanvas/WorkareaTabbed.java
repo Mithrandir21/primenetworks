@@ -6,7 +6,6 @@ package graphics.GUI.workareaCanvas;
 
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
-import graphics.GUI.properties.PropertiesArea;
 
 import java.awt.Dimension;
 

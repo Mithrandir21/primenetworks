@@ -14,6 +14,7 @@ import connections.InternalConnection;
 import connections.NetworkConnection;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
+import exceptions.PortIsNotRegisteredOnMotherboard;
 
 
 /**
@@ -53,14 +54,15 @@ public abstract class Object implements Serializable
 	 * An array that contains pointers to the objects that make up a computer.
 	 */
 	private Object[] components;
-	
-	
+
+
 	/**
-	 * FIXME - Implement connections between internal components and the machine itself.
+	 * FIXME - Implement connections between internal components and the machine
+	 * itself.
 	 */
 	private InternalConnection[] internalConnections;
-	
-	
+
+
 	/**
 	 * Counts number of components in the components list
 	 */
@@ -80,15 +82,15 @@ public abstract class Object implements Serializable
 	 * object and outside devices.
 	 */
 	private NetworkConnection[] networkConnections;
-	
-	
+
+
 	/**
-	 * An array of deviceConnections that represent the connections inside the computer 
-	 * itself.
+	 * An array of deviceConnections that represent the connections inside the
+	 * computer itself.
 	 */
 	private DeviceConnection[] deviceConnections;
 
-	
+
 	/**
 	 * Counts the number of objects it is connected to
 	 */
@@ -97,9 +99,8 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Constructor of a object computer.<br>
-	 * This constructor also sets the number of components in the system and the
-	 * object rating to "0"(since the rating system is not yet implemented).
+	 * Constructor of an object.<br>
+	 * This constructor also sets the number of components in the system to "0".
 	 * 
 	 * @param Name
 	 *            The name of the object.
@@ -120,12 +121,16 @@ public abstract class Object implements Serializable
 
 	/**
 	 * The constructor of the object superclass. All objects must have both a
-	 * name and description. TODO
+	 * name and description. This constructor also sets the supported user
+	 * interfaces the object supports.
 	 * 
 	 * @param Name
 	 *            The name of an object
 	 * @param Desc
 	 *            The description of any object
+	 * @param SupConInt
+	 *            The supported connection interfaces an instance of a object
+	 *            supports.
 	 */
 	public Object(String Name, String Desc, String[] SupConInt)
 	{
@@ -142,7 +147,9 @@ public abstract class Object implements Serializable
 
 	/**
 	 * The constructor of the object superclass. All objects must have both a
-	 * name and description. TODO
+	 * name and description. This constructor also sets the initial components
+	 * that an object starts of with. Like
+	 * {@link hardware.Motherboard motherboards}.
 	 * 
 	 * @param Name
 	 *            The name of an object
@@ -166,7 +173,9 @@ public abstract class Object implements Serializable
 
 	/**
 	 * The constructor of the object superclass. All objects must have both a
-	 * name and description. TODO
+	 * name and description. This constructor also sets the supported user
+	 * interfaces the object supports and sets the initial components that an
+	 * object starts of with. Like {@link hardware.Motherboard motherboards}.
 	 * 
 	 * @param Name
 	 *            The name of an object
@@ -192,7 +201,10 @@ public abstract class Object implements Serializable
 
 	/**
 	 * The constructor of the object superclass. All objects must have both a
-	 * name and description. TODO
+	 * name and description. This constructor also sets the supported user
+	 * interfaces the object supports and set the objects
+	 * {@link hardware.Motherboard motherboards}. This constructor is good for
+	 * the creation of infrastructure which may only have a motherboard.
 	 * 
 	 * @param Name
 	 *            The name of an object
@@ -201,8 +213,8 @@ public abstract class Object implements Serializable
 	 * @param SupConInt
 	 *            The supported connection interfaces an instance of a object
 	 *            supports.
-	 * @param objectComponents
-	 *            The initial components an instance of a object has.
+	 * @param objectMB
+	 *            The {@link  hardware.Motherboard motherboard} of an object.
 	 */
 	public Object(String Name, String Desc, String[] SupConInt, Motherboard objectMB)
 	{
@@ -403,22 +415,6 @@ public abstract class Object implements Serializable
 
 
 	// CLASS METHODES
-	
-	/**
-	 * 
-	 */
-	public void removeConnections()
-	{
-		connectedDevices = new Object[0];
-		
-		removeAllDeviceConnections();
-		
-		removeAllNetworkConnections();
-		
-		connectedDevicesCounter = 0;
-	}
-	
-
 
 	// COMPONENTS MANIPULATION
 
@@ -517,7 +513,26 @@ public abstract class Object implements Serializable
 	
 	
 	/**
+	 * Function to remove connected devices from the array of connected devices.
 	 * 
+	 * @param ToBeRemoved
+	 *            Connected device to be removed.
+	 */
+	public void removeConnectedDevices(Object ToBeRemoved) throws ObjectNotFoundInArrayException
+	{
+		Object[] newObject = new Object[1];
+		newObject[0] = ToBeRemoved;
+		connectedDevices = ComponentsManagment.removeComponents(newObject, connectedDevices,
+				connectedDevicesCounter);
+
+		// Sets the new count for number of connected devices in the array
+		connectedDevicesCounter = connectedDevices.length;
+	}
+
+
+	/**
+	 * Removes all the objects in the connectedDevices by replacing the
+	 * connectedDevices with an empty array with 5 indexes.
 	 */
 	public void removeAllConnectedDevices()
 	{
@@ -533,7 +548,7 @@ public abstract class Object implements Serializable
 	 * @param NewConnectedDevices
 	 *            An array of new devices.
 	 */
-	public void addConnectedDevices(Object[] NewConnectedDevices) 
+	public void addConnectedDevices(Object[] NewConnectedDevices)
 	{
 		connectedDevices = ComponentsManagment.addComponents(NewConnectedDevices, connectedDevices,
 				connectedDevicesCounter);
@@ -541,17 +556,17 @@ public abstract class Object implements Serializable
 		// Sets the new count for number of connected devices in the array
 		connectedDevicesCounter = connectedDevices.length;
 	}
-	
-	
+
+
 	/**
-	 * Function to add device(s) to the the connceted devices list. NOTES - THE
+	 * Function to add device(s) to the the connected devices list. NOTES - THE
 	 * SYSTEM WILL CHECK AT AN EARLIER POINT TOO SEE IF THERE IS ROOM FOR THESE
 	 * COMPONENTS
 	 * 
 	 * @param NewConnectedDevice
 	 *            A new device.
 	 */
-	public void addConnectedDevices(Object NewConnectedDevice) 
+	public void addConnectedDevices(Object NewConnectedDevice)
 	{
 		Object[] newObject = new Object[1];
 		newObject[0] = NewConnectedDevice;
@@ -561,337 +576,518 @@ public abstract class Object implements Serializable
 		// Sets the new count for number of connected devices in the array
 		connectedDevicesCounter = connectedDevices.length;
 	}
-	
-	
-	
+
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Adds the given connection by determining what kind of class the
+	 * connection is an instance of, and then passes it on to the correct
+	 * method.
 	 */
 	public void addConnection(Connection con)
 	{
-		if(con instanceof InternalConnection)
+		if ( con instanceof InternalConnection )
 		{
 			addInternalConnection((InternalConnection) con);
 		}
-		else if(con instanceof DeviceConnection)
+		else if ( con instanceof DeviceConnection )
 		{
 			addDeviceConnection((DeviceConnection) con);
 		}
-		else // This will then be a network connection.
+		else
+		// This will then be a network connection.
 		{
 			addNetworkConnection((NetworkConnection) con);
 		}
+		
 	}
-	
-	
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Removes the given connection by determining what kind of class the
+	 * connection is an instance of, and then passes it on to the correct
+	 * method.
 	 */
 	public void removeConnection(Connection con)
 	{
-		if(con instanceof InternalConnection)
+		if ( con instanceof InternalConnection )
 		{
 			removeInternalConnection((InternalConnection) con);
 		}
-		else if(con instanceof DeviceConnection)
+		else if ( con instanceof DeviceConnection )
 		{
 			removeDeviceConnection((DeviceConnection) con);
 		}
-		else // This will then be a network connection.
+		else
+		// This will then be a network connection.
 		{
 			removeNetworkConnection((NetworkConnection) con);
 		}
+
+		try
+		{
+			releaseSingelConnectionPort(con);
+		}
+		catch ( PortIsNotRegisteredOnMotherboard e )
+		{
+			System.out.println(e.getMessage());
+		}
+		
 	}
-	
-	
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Releases all the connection ports on a motherboard by determining what
+	 * kind of class the connection is an instance of, and then clearing the
+	 * correct ports on the {@link hardware.Motherboard motherboard} of the object.
 	 */
-	public void releaseConnectionPorts(Connection con)
+	public void releaseAllConnectionPorts(Connection con)
 	{
-		if(con instanceof InternalConnection)
+		Motherboard objectAmotherboard = null;
+
+		try
 		{
-			addInternalConnection((InternalConnection) con);
+			objectAmotherboard = (Motherboard) getSpesificComponents(Motherboard.class)[0];
 		}
-		else if(con instanceof DeviceConnection)
+		catch ( ObjectNotFoundException e )
 		{
-			addDeviceConnection((DeviceConnection) con);
+			System.out
+					.println("Object - releaseConnectionPorts - Network connection - cant find Motherboard");
 		}
-		else // This will then be a network connection.
+
+
+		if ( con instanceof InternalConnection )
 		{
-			addNetworkConnection((NetworkConnection) con);
+			objectAmotherboard.setMaxCPUs(objectAmotherboard.getMaxCPUs());
+			objectAmotherboard.setMaxDUCs(objectAmotherboard.getMaxDUCs());
+			objectAmotherboard.setMaxPCIs(objectAmotherboard.getMaxPCIs());
+			objectAmotherboard.setMaxRAMs(objectAmotherboard.getMaxRAMs());
+		}
+		else if ( con instanceof DeviceConnection )
+		{
+			objectAmotherboard.setMaxUSBs(objectAmotherboard.getMaxUSBs());
+		}
+		else
+		// This will then be a network connection.
+		{
+
+			// Sets the arrays on the actual motherboard component to an array
+			// of booleans with the given length of the last array, but where
+			// all the indexes are false.
+			objectAmotherboard
+					.setMaxIntegratedLANs(objectAmotherboard.getIntegLANPortsAvailable().length);
+
 		}
 	}
-	
-	
-	
+
+
+
+	public void releaseAllNetworkConnectionPorts()
+	{
+		Motherboard objectAmotherboard = null;
+
+		try
+		{
+			objectAmotherboard = (Motherboard) getSpesificComponents(Motherboard.class)[0];
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			System.out
+					.println("Object - releaseConnectionPorts - Network connection - cant find Motherboard");
+		}
+
+		// Sets the arrays on the actual motherboard component to an array
+		// of booleans with the given length of the last array, but where
+		// all the indexes are false.
+		objectAmotherboard.setIntegLANPortsAvailable(new boolean[objectAmotherboard
+				.getIntegLANPortsAvailable().length]);
+
+	}
+
+
+	public void releaseSingelConnectionPort(Connection con) throws PortIsNotRegisteredOnMotherboard
+	{
+		Motherboard objectMotherboard = null;
+
+		try
+		{
+			objectMotherboard = (Motherboard) getSpesificComponents(Motherboard.class)[0];
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			System.out
+					.println("Object - releaseConnectionPorts - Network connection - cant find Motherboard");
+		}
+
+
+		if ( con instanceof InternalConnection )
+		{
+			// FIXME - Have to fix the removal function on ports.
+		}
+		else if ( con instanceof DeviceConnection )
+		{
+			// Gets the array of ports on the motherboard.
+			boolean[] ports = objectMotherboard.getUSBPortsAvailable();
+
+			// Gets the first index where the value is true, which means its a
+			// taken port.
+			int Index = getFirstTakenIndex(ports);
+
+			// If the returned index is -1, then there are no taken ports and
+			// something has gone wrong.
+			if ( Index == -1 )
+			{
+				throw new exceptions.PortIsNotRegisteredOnMotherboard(objectMotherboard, this,
+						"USB");
+			}
+
+			// Sets the port index to false, which means that it is not taken.
+			ports[Index] = false;
+
+			// Sorts the boolean array on the boolean true.
+			ports = cleanup.cleanObjectArray(ports, true);
+
+			// Sets the arrays on the actual motherboard component to an array
+			// of booleans.
+			objectMotherboard.setUSBPortsAvailable(ports);
+		}
+		else
+		// This will then be a network connection.
+		{
+			// Gets the array of ports on the motherboard.
+			boolean[] ports = objectMotherboard.getIntegLANPortsAvailable();
+
+			// Gets the first index where the value is true, which means its a
+			// taken port.
+			int Index = getFirstTakenIndex(ports);
+
+			// If the returned index is -1, then there are no taken ports and
+			// something has gone wrong.
+			if ( Index == -1 )
+			{
+				throw new exceptions.PortIsNotRegisteredOnMotherboard(objectMotherboard, this,
+						"LAN");
+			}
+
+			// Sets the port index to false, which means that it is not taken.
+			ports[Index] = false;
+
+			// Sorts the boolean array on the boolean true.
+			ports = cleanup.cleanObjectArray(ports, true);
+
+			// Sets the arrays on the actual motherboard component to an array
+			// of booleans.
+			objectMotherboard.setIntegLANPortsAvailable(ports);
+		}
+	}
+
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Adds the givens connection to the array of internal connections.
+	 * If necessary, initiates the array or extends the array.
 	 */
 	public void addInternalConnection(InternalConnection con)
 	{
-		if(internalConnections == null)
+		if ( internalConnections == null )
 		{
 			internalConnections = initConnection(internalConnections);
 		}
-		
-		for(int i = 0; i<internalConnections.length; i++)
+
+		for ( int i = 0; i < internalConnections.length; i++ )
 		{
-			if(internalConnections[i] == null)
+			if ( internalConnections[i] == null )
 			{
 				internalConnections[i] = con;
 				return;
 			}
 		}
-		
-		
+
+
 		// If the function gets to this point it means that there where no
 		// available indexes and the array needs to be extended.
 		internalConnections = extendConnectionArray(internalConnections);
+
+		// Runs the function again with the extended array.
 		addInternalConnection(con);
-		
+
 	}
-	
-	
-	
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Adds the givens connection to the array of network connections.
+	 * If necessary, initiates the array or extends the array.
 	 */
 	public void addNetworkConnection(NetworkConnection con)
 	{
-		if(networkConnections == null)
+		if ( networkConnections == null )
 		{
 			networkConnections = initConnection(networkConnections);
 		}
-		
-		for(int i = 0; i<networkConnections.length; i++)
+
+		for ( int i = 0; i < networkConnections.length; i++ )
 		{
-			if(networkConnections[i] == null)
+			if ( networkConnections[i] == null )
 			{
 				networkConnections[i] = con;
 				return;
 			}
 		}
-		
+
 		// If the function gets to this point it means that there where no
 		// available indexes and the array needs to be extended.
 		networkConnections = extendConnectionArray(networkConnections);
+
+		// Runs the function again with the extended array.
 		addNetworkConnection(con);
-		
+
 	}
-	
-	
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Adds the givens connection to the array of device connections.
+	 * If necessary, initiates the array or extends the array.
 	 */
 	public void addDeviceConnection(DeviceConnection con)
 	{
-		if(deviceConnections == null)
+		if ( deviceConnections == null )
 		{
 			deviceConnections = initConnection(deviceConnections);
 		}
-		
-		for(int i = 0; i<deviceConnections.length; i++)
+
+		for ( int i = 0; i < deviceConnections.length; i++ )
 		{
-			if(deviceConnections[i] == null)
+			if ( deviceConnections[i] == null )
 			{
 				deviceConnections[i] = con;
 				return;
 			}
 		}
-		
-		
+
+
 		// If the function gets to this point it means that there where no
 		// available indexes and the array needs to be extended.
 		deviceConnections = extendConnectionArray(deviceConnections);
-		
-		// Runs the function again with the extended array.		
+
+		// Runs the function again with the extended array.
 		addDeviceConnection(con);
 	}
-	
-	
-	
+
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Finds and removes the given internal connection from the array of
+	 * connections.
 	 */
 	public boolean removeInternalConnection(InternalConnection con)
 	{
-		
-		for(int i = 0; i<internalConnections.length; i++)
+
+		for ( int i = 0; i < internalConnections.length; i++ )
 		{
-			if(internalConnections[i].equals(con))
+			if ( internalConnections[i].equals(con) )
 			{
 				internalConnections[i] = null;
+				internalConnections = cleanup.cleanObjectArray(internalConnections);
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
-	
-	
+
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Removes all the internal connections by replacing the internalConnections
+	 * with an empty array with 5 indexes.
 	 */
 	public void removeAllInternalConnections()
 	{
 		internalConnections = new InternalConnection[5];
 	}
-	
-	
-	
+
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Finds and removes the given network connection from the array of
+	 * connections.
 	 */
 	public boolean removeNetworkConnection(NetworkConnection con)
 	{
-		
-		for(int i = 0; i<networkConnections.length; i++)
+
+		for ( int i = 0; i < networkConnections.length; i++ )
 		{
-			if(networkConnections[i].equals(con))
+			if ( networkConnections[i].equals(con) )
 			{
 				networkConnections[i] = null;
+				networkConnections = cleanup.cleanObjectArray(networkConnections);
 				return true;
 			}
 		}
-		
+
+
+
 		return false;
 	}
-	
-	
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Removes all the network connections by replacing the networkConnections
+	 * with an empty array with 5 indexes.
 	 */
 	public void removeAllNetworkConnections()
 	{
 		networkConnections = new NetworkConnection[5];
 	}
-	
-	
-	
+
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Finds and removes the given device connection from the array of
+	 * connections.
 	 */
 	public boolean removeDeviceConnection(DeviceConnection con)
 	{
-		
-		for(int i = 0; i<deviceConnections.length; i++)
+
+		for ( int i = 0; i < deviceConnections.length; i++ )
 		{
-			if(deviceConnections[i].equals(con))
+			if ( deviceConnections[i].equals(con) )
 			{
 				deviceConnections[i] = null;
+				deviceConnections = cleanup.cleanObjectArray(deviceConnections);
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
-	
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Removes all the device connections by replacing the deviceConnections
+	 * with an empty array with 5 indexes.
 	 */
 	public void removeAllDeviceConnections()
 	{
 		deviceConnections = new DeviceConnection[5];
 	}
-	
-	
-	
+
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * This method is used to initiate the given array, giving it 5 empty
+	 * indexes.
 	 */
 	private NetworkConnection[] initConnection(NetworkConnection[] array)
 	{
 		return array = new NetworkConnection[5];
 	}
-	
-	
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * This method is used to initiate the given array, giving it 5 empty
+	 * indexes.
 	 */
 	private DeviceConnection[] initConnection(DeviceConnection[] array)
 	{
 		return array = new DeviceConnection[5];
 	}
-	
-	
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * This method is used to initiate the given array, giving it 5 empty
+	 * indexes.
 	 */
 	private InternalConnection[] initConnection(InternalConnection[] array)
 	{
 		return array = new InternalConnection[5];
 	}
-	
-	
-	
+
+
 
 	/**
-	 * TODO - Description
-	 * 
+	 * Extends the given array with 5 indexes.
 	 */
 	private NetworkConnection[] extendConnectionArray(NetworkConnection[] array)
 	{
 		NetworkConnection[] temp = new NetworkConnection[array.length + 5];
-		
-		for(int i = 0; i<array.length; i++)
+
+		for ( int i = 0; i < array.length; i++ )
 		{
 			temp[i] = array[i];
 		}
-		
+
 		return temp;
 	}
-	
-	
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Extends the given array with 5 indexes.
 	 */
 	private DeviceConnection[] extendConnectionArray(DeviceConnection[] array)
 	{
 		DeviceConnection[] temp = new DeviceConnection[array.length + 5];
-		
-		for(int i = 0; i<array.length; i++)
+
+		for ( int i = 0; i < array.length; i++ )
 		{
 			temp[i] = array[i];
 		}
-		
+
 		return temp;
 	}
-	
-	
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Extends the given array with 5 indexes.
 	 */
 	private InternalConnection[] extendConnectionArray(InternalConnection[] array)
 	{
 		InternalConnection[] temp = new InternalConnection[array.length + 5];
-		
-		for(int i = 0; i<array.length; i++)
+
+		for ( int i = 0; i < array.length; i++ )
 		{
 			temp[i] = array[i];
 		}
-		
+
 		return temp;
 	}
-	
-	
+
+
+	/**
+	 * Gets the first index that has the value true and returns that index. This
+	 * method is mainly used internally for setting and releasing ports on a
+	 * motherboard.
+	 */
+	private int getFirstTakenIndex(boolean[] array)
+	{
+		for ( int i = 0; i < array.length; i++ )
+		{
+			if ( array[i] == true )
+			{
+				return i;
+			}
+		}
+
+		return -1;
+	}
+
+
+	/**
+	 * Checks whether or not an array of booleans contains the given boolean.
+	 */
+	private boolean checkArray(boolean[] array, boolean shouldContain)
+	{
+		boolean found = false;
+
+		for ( int i = 0; i < array.length; i++ )
+		{
+			if ( array[i] == shouldContain )
+			{
+				found = true;
+			}
+		}
+
+		return found;
+	}
+
 }

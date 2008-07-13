@@ -38,7 +38,6 @@ public class ActionSaveAll extends AbstractAction
 	 * Description NEEDED!
 	 *
 	 * @param text
-	 * @param icon
 	 */
 	public ActionSaveAll(String text) 
 	{

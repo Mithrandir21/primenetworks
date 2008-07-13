@@ -4,18 +4,15 @@
 package graphics.GUI.properties;
 
 
-import java.awt.Dimension;
-
-import graphics.ObjectDefiner;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
+
+import java.awt.Dimension;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
-
-import clients.Desktop;
 
 import objects.Object;
 

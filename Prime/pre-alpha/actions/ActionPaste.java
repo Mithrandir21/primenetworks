@@ -38,7 +38,6 @@ public class ActionPaste extends AbstractAction
 	 * Description NEEDED!
 	 *
 	 * @param text
-	 * @param icon
 	 */
 	public ActionPaste(String text) 
 	{

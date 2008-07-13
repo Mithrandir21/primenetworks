@@ -38,7 +38,6 @@ public class ActionNew extends AbstractAction
 	 * Description NEEDED!
 	 *
 	 * @param text
-	 * @param icon
 	 */
 	public ActionNew(String text) 
 	{

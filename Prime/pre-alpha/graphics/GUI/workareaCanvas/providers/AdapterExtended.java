@@ -1,7 +1,6 @@
 package graphics.GUI.workareaCanvas.providers;
 
 
-import graphics.ObjectDefiner;
 import graphics.PrimeMain1;
 import graphics.GUI.properties.PropertiesArea;
 

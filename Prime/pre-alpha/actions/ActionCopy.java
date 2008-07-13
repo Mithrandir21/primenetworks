@@ -37,7 +37,6 @@ public class ActionCopy extends AbstractAction
 	 * Description NEEDED!
 	 *
 	 * @param text
-	 * @param icon
 	 */
 	public ActionCopy(String text) 
 	{

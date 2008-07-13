@@ -4,7 +4,6 @@
 package graphics.GUI.selectArea;
 
 
-import graphics.MakeStandardInternalComponents;
 import graphics.PrimeMain1;
 import graphics.WidgetIcon;
 import hardware.HDD;

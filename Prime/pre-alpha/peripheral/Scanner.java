@@ -6,7 +6,6 @@ import hardware.Motherboard;
 import java.io.Serializable;
 
 import objects.ExternalHardware;
-import objects.Object;
 
 
 /**

@@ -2,19 +2,15 @@ package clients;
 
 
 import java.io.Serializable;
-import connections.*;
 
-import exceptions.ObjectNotFoundException;
-import exceptions.ObjectNotFoundInArrayException;
-import objects.*;
+import objects.Clients;
 import objects.Object;
-import managment.ComponentsManagment;
 
 
 /**
  * This class represents a desktop machine. This can be any machine that has the
- * necessery equipment to run by its self without the need for add from any
- * other obejcts. <br>
+ * necessary equipment to run by its self without the need for add from any
+ * other objects. <br>
  * An instance of this object will contain an array of pointers to the different
  * components of the desktop system. This will represent the objects that make
  * up the actual desktop, like a mouse, a monitor, a HDD, a motherboard and so
@@ -47,8 +43,6 @@ public class Desktop extends Clients implements Serializable
 	 *            The name of the desktop.
 	 * @param Desc
 	 *            The description of the desktop.
-	 * @param DesktopComponents
-	 *            The initial components an instance of a desktop has.
 	 */
 	public Desktop(String Name, String Desc)
 	{
@@ -66,7 +60,7 @@ public class Desktop extends Clients implements Serializable
 	 *            The name of the desktop.
 	 * @param Desc
 	 *            The description of the desktop.
-	 * @param DesktopComponents
+	 * @param SupConInt
 	 *            The initial components an instance of a desktop has.
 	 */
 	public Desktop(String Name, String Desc, String[] SupConInt)

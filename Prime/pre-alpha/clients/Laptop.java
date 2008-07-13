@@ -3,11 +3,7 @@ package clients;
 
 import java.io.Serializable;
 
-import exceptions.ObjectNotFoundException;
-import exceptions.ObjectNotFoundInArrayException;
-
-import managment.ComponentsManagment;
-import objects.*;
+import objects.Clients;
 import objects.Object;
 
 

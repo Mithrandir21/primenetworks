@@ -1,8 +1,6 @@
 package objects;
 import java.io.Serializable;
 
-import connections.Connection;
-
 
 
 /**

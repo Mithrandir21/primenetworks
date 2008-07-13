@@ -59,7 +59,7 @@ public class WidgetObject extends ImageWidget implements Transferable
 
 
 	/**
-	 * @return
+	 * @return A new Dimension with the size of the image.
 	 */
 	public Dimension getImageDimension()
 	{

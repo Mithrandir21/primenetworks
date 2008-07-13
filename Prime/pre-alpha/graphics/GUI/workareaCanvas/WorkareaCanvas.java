@@ -12,9 +12,7 @@ import graphics.GUI.workareaCanvas.providers.AdapterExtended;
 import graphics.GUI.workareaCanvas.providers.CanvasMenu;
 import graphics.GUI.workareaCanvas.providers.CreateProvider;
 import graphics.GUI.workareaCanvas.providers.JMenuProvider;
-import graphics.GUI.workareaCanvas.providers.PopupListener;
 import graphics.GUI.workareaCanvas.providers.SceneConnectProvider;
-import graphics.GUI.workareaCanvas.providers.WidgetHoverProvider;
 import infrastructure.Hub;
 import infrastructure.Router;
 import infrastructure.Switch;
@@ -31,7 +29,6 @@ import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
@@ -41,8 +38,6 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
-
-import objects.Object;
 
 import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.border.BorderFactory;
@@ -58,7 +53,6 @@ import servers.HTTPServer;
 import servers.MailServer;
 import servers.ProxyServer;
 import widgetManipulation.WidgetObject;
-import clients.Desktop;
 import clients.Laptop;
 import connections.Connection;
 
@@ -478,11 +472,14 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 			ImageIcon objectIcon = null;
 			objects.Object newObject = null;
 			WidgetObject newWidgetObject = null;
-
-			if ( actionName.equals("DeleteThisObject") )
+			
+			if ( actionName.equals("DeleteConnectionsObject") )
+			{
+				WorkareaCanvasActions.removeAllConnectionsToFromObject(this, currentWidgetObject.getObject());
+			}
+			else if ( actionName.equals("DeleteThisObject") )
 			{
 				WorkareaCanvasActions.deleteCurrentObject(this);
-				System.out.println("khdsag");
 			}
 			else if ( actionName.equals("CreateNewST_Laptop_Item") )
 			{

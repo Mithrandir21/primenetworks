@@ -38,7 +38,6 @@ public class ActionSave extends AbstractAction
 	 * Description NEEDED!
 	 *
 	 * @param text
-	 * @param icon
 	 */
 	public ActionSave(String text) 
 	{

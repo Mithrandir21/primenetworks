@@ -25,9 +25,6 @@ public class JPopupMenuProvider
 		
 		PrimeMain1.currentCanvas.setCurrentWidgetObject((WidgetObject) widget);
 		
-		System.out.println(PrimeMain1.currentCanvas.getCurrentWidgetObject().getObject().getObjectName());
-		
-		
 		
 		InitialMenues(canvas);
 		
@@ -49,6 +46,11 @@ public class JPopupMenuProvider
 		
 		menuItem = new JMenuItem("Delete this object");
 		menuItem.setName("DeleteThisObject");
+		menuItem.addActionListener(canvas);
+		popup.add(menuItem);
+		
+		menuItem = new JMenuItem("Delete all connection to and from this object");
+		menuItem.setName("DeleteConnectionsObject");
 		menuItem.addActionListener(canvas);
 		popup.add(menuItem);
 

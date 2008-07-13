@@ -38,7 +38,6 @@ public class ActionOpenfile extends AbstractAction
 	 * Description NEEDED!
 	 *
 	 * @param text
-	 * @param icon
 	 */
 	public ActionOpenfile(String text) 
 	{

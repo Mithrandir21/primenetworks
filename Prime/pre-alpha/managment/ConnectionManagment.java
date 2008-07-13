@@ -1,20 +1,24 @@
 package managment;
 
 
-import javax.swing.*;
-
-import clients.Desktop;
-
-import logistical.cleanup;
-import objects.*;
-import objects.Object;
-import widgetManipulation.WidgetObject;
-import connections.*;
-import exceptions.*;
 import graphics.PrimeMain1;
 import hardware.InternalNetworksCard;
 import hardware.Motherboard;
-import containers.*;
+
+import javax.swing.JOptionPane;
+
+import logistical.cleanup;
+import objects.Object;
+import connections.Connection;
+import connections.DeviceConnection;
+import connections.InternalConnection;
+import connections.NetworkConnection;
+import containers.ConnectionContainer;
+import exceptions.ConnectionDoesExist;
+import exceptions.ConnectionDoesNotExist;
+import exceptions.ConnectionsIsNotPossible;
+import exceptions.ObjectNotFoundException;
+import exceptions.ObjectNotFoundInArrayException;
 
 
 /**
@@ -120,7 +124,6 @@ public class ConnectionManagment
 		 */
 		for ( int i = 0; i < existingConnections.length; i++ )
 		{
-			System.out.println("1");
 			if ( existingConnections[i] != null )
 			{
 				// If the first object is found
@@ -130,25 +133,38 @@ public class ConnectionManagment
 					// first one
 					if ( existingConnections[i].getObject2().equals(objectB) )
 					{
+						// Removes the both objects from each others internal
+						// connected device array.
 						objectA.removeConnection(existingConnections[i]);
 						objectB.removeConnection(existingConnections[i]);
 						existingConnections[i] = null;
+
+						try
+						{
+							objectA.removeConnectedDevices(objectB);
+							objectB.removeConnectedDevices(objectA);
+						}
+						catch ( ObjectNotFoundInArrayException e )
+						{
+							System.out.println(e.getMessage());
+						}
+						// Indicates that the connection has been found and
+						// removed.
 						foundCon = true;
 					}
 				}
 			}
 		}
 
-		if ( foundCon == false)
+		if ( foundCon == false )
 		{
 			/*
-			 * Checks to see if object B is the first object in any connection. Then
-			 * if it find object B as the first object, it looks for object A at the
-			 * same index as object B.
+			 * Checks to see if object B is the first object in any connection.
+			 * Then if it find object B as the first object, it looks for object
+			 * A at the same index as object B.
 			 */
 			for ( int i = 0; i < existingConnections.length; i++ )
 			{
-				System.out.println("2");
 				if ( existingConnections[i] != null )
 				{
 					// If the second object is found
@@ -157,8 +173,11 @@ public class ConnectionManagment
 						// If the first object is found at the same index as the
 						// first
 						// one
-						if ( existingConnections[i].getObject1().equals(objectA) )
+						if ( existingConnections[i].getObject2().equals(objectA) )
 						{
+							// Removes the both objects from each others
+							// internal
+							// connected device array.
 							objectA.removeConnection(existingConnections[i]);
 							objectB.removeConnection(existingConnections[i]);
 							existingConnections[i] = null;
@@ -167,7 +186,7 @@ public class ConnectionManagment
 				}
 			}
 		}
-		
+
 		// Removes any null-pointers in the array of connections
 		existingConnections = cleanup.cleanObjectArray(existingConnections);
 
@@ -178,7 +197,7 @@ public class ConnectionManagment
 
 
 	/**
-	 * This methode changes a connection between A and B, to be a connection
+	 * This method changes a connection between A and B, to be a connection
 	 * between A and C. This is done by changing the second object in the
 	 * connection to point to object C instead of object B. There is also checks
 	 * done to see if there really is a connection between A and B, and if there
@@ -258,6 +277,69 @@ public class ConnectionManagment
 		return existingConnections;
 	}
 
+
+
+	/**
+	 * TODO - Description
+	 * @throws ConnectionDoesNotExist 
+	 * 
+	 */
+	public static Connection getConnection(Connection[] existingConnections, Object objectA,
+			Object objectB) throws ConnectionDoesNotExist
+	{
+		// Checks to see if there really is a connection between A and B
+		if ( checkConnectionExistence(existingConnections, objectA, objectB) == false )
+		{
+			throw new ConnectionDoesNotExist(objectA.getObjectName(), objectB.getObjectName());
+		}
+
+		boolean foundCon = false;
+
+
+		/*
+		 * Checks to see if object A is the first object in any connection. Then
+		 * if it finds object A as the first object, it looks for object B at
+		 * the same index as object A.
+		 */
+		for ( int i = 0; i < existingConnections.length; i++ )
+		{
+			if ( existingConnections[i] != null )
+			{
+				// If the first object is found
+				if ( existingConnections[i].getObject1().equals(objectA) )
+				{
+					// If the second object is found at the same index as the
+					// first one
+					if ( existingConnections[i].getObject2().equals(objectB) )
+					{
+						return existingConnections[i];
+					}
+				}
+			}
+		}
+
+		if ( foundCon == false )
+		{
+			/*
+			 * Checks to see if object B is the first object in any connection.
+			 * Then if it find object B as the first object, it looks for object
+			 * A at the same index as object B.
+			 */
+			for ( int i = 0; i < existingConnections.length; i++ )
+			{
+				if ( existingConnections[i] != null )
+				{
+					// If the second object is found
+					if ( existingConnections[i].getObject1().equals(objectB) )
+					{
+						return existingConnections[i];
+					}
+				}
+			}
+		}
+
+		return null;
+	}
 
 
 
@@ -451,6 +533,10 @@ public class ConnectionManagment
 
 
 
+	/**
+	 * In this function the availability of the ports to which the connection is
+	 * to be made is checked and, if available, set.
+	 */
 	public static boolean checkAndSetPortAvailability(Object objectA, Object objectB, String conType)
 			throws ConnectionsIsNotPossible
 	{
@@ -471,21 +557,26 @@ public class ConnectionManagment
 			return false;
 		}
 
+
 		if ( conType == "RJ-45" )
 		{
-			/**
+			/*
 			 * These two values will be changed or the function will get some
 			 * exceptions and will not move on.
 			 */
 			int indexA = 0;
 			int indexB = 0;
 
-
+			// Checks if the motherboard of the first object has an integrated
+			// LAN port.
 			if ( objectAmotherboard.LANcardIsIntegrated() )
 			{
+				// Gets the first available LAN port index.
 				indexA = objectAmotherboard.firstAvailableIndex(objectAmotherboard
 						.getIntegLANPortsAvailable());
 
+				// If the index is below 0, it means that there are no indexes
+				// available.
 				if ( indexA < 0 )
 				{
 					JOptionPane.showMessageDialog(null,
@@ -497,7 +588,7 @@ public class ConnectionManagment
 			}
 			else
 			{
-				// FIXME - Search for correct component, InternalNetworksCard.
+				// TODO - Search for correct component, InternalNetworksCard.
 				try
 				{
 					objectA.getSpesificComponents(InternalNetworksCard.class);
@@ -511,12 +602,16 @@ public class ConnectionManagment
 				}
 			}
 
-
+			// Checks if the motherboard of the second object has an integrated
+			// LAN port.
 			if ( objectBmotherboard.LANcardIsIntegrated() )
 			{
+				// Gets the first available LAN port index.
 				indexB = objectBmotherboard.firstAvailableIndex(objectBmotherboard
 						.getIntegLANPortsAvailable());
 
+				// If the index is below 0, it means that there are no indexes
+				// available.
 				if ( indexB < 0 )
 				{
 					JOptionPane.showMessageDialog(null,
@@ -528,7 +623,7 @@ public class ConnectionManagment
 			}
 			else
 			{
-				// FIXME - Search for correct component, InternalNetworksCard.
+				// TODO - Search for correct component, InternalNetworksCard.
 				try
 				{
 					objectB.getSpesificComponents(InternalNetworksCard.class);
@@ -544,7 +639,7 @@ public class ConnectionManagment
 
 
 			/**
-			 * The function gets to this point it means that both the
+			 * If the function gets to this point it means that both the
 			 * motherboards on the objects have available LAN ports and the
 			 * indexes are retrieved.
 			 */
@@ -562,6 +657,8 @@ public class ConnectionManagment
 			objectAmotherboard.setIntegLANPortsAvailable(objectAarray);
 			objectBmotherboard.setIntegLANPortsAvailable(objectBarray);
 
+			// Adds each object to the other objects array of connection
+			// objects.
 			objectA.addConnectedDevices(objectB);
 			objectB.addConnectedDevices(objectA);
 		}
@@ -648,6 +745,21 @@ public class ConnectionManagment
 	}
 
 
+	/**
+	 * This function add a connection to the connection array of the currently
+	 * selected canvas. The function also gives the developer the opportunity to
+	 * add a check function which checks to see whether or not the connection
+	 * that is to be added already exists in the connection array of the
+	 * currently selected canvas.
+	 * 
+	 * @param newCon
+	 *            The connection to be added to the currently selected canvas.
+	 * @param withCheck
+	 *            The boolean which tells the function whether or not to run a
+	 *            check as to see if the connection thats is to be added already
+	 *            exists in the connection array of the currently selected
+	 *            canvas.
+	 */
 	public static boolean addConnection(Connection newCon, boolean withCheck)
 	{
 		// Gets the current canvas connections array.
@@ -689,9 +801,12 @@ public class ConnectionManagment
 
 
 
+	/**
+	 * This function extends the connection array of the currently selected
+	 * canvas with 5 indexes.
+	 */
 	private static void extendConnectionArray()
 	{
-
 		Connection currentCons[] = PrimeMain1.currentCanvas.getConnections();
 		Connection temp[] = new Connection[currentCons.length + 5];
 
@@ -704,28 +819,21 @@ public class ConnectionManagment
 	}
 
 
-	public static int getConnectionClass(WidgetObject widObj)
-	{
-		if ( widObj.getObject() instanceof Clients )
-		{
-			System.out.println("This is a client");
-		}
-		else if ( widObj.getObject() instanceof Servers )
-		{
-			System.out.println("This is a server");
-		}
 
-
-		return -1;
-	}
-
-
-
+	/**
+	 * This function returns an array of strings that contain strings found in
+	 * both the given arrays. This method is use to find compatible user
+	 * interfaces supported by two objects.
+	 */
 	public static String[] getCompatibleConnectionInterfaces(String[] a, String[] b)
 	{
+		// The array that is the longest.
 		String[] longestArray = null;
+
+		// The shortest array.
 		String[] otherArray = null;
 
+		// Determines which of the given arrays is the longest.
 		if ( a.length > b.length )
 		{
 			longestArray = a;
@@ -737,17 +845,25 @@ public class ConnectionManagment
 			otherArray = a;
 		}
 
+		// Makes a new string array with the length of the longest array.
 		String temp[] = new String[longestArray.length];
 
+		// The index of the last supported interface found in both the string
+		// arrays.
 		int tempPlacesTaken = 0;
 
-
+		// Goes through the longest array.
 		for ( int i = 0; i < longestArray.length; i++ )
 		{
+			// Goes through the shortest array one by one for each index of the
+			// longest array.
 			for ( int j = 0; j < otherArray.length; j++ )
 			{
+				// Checks to see if any of the indexes in the shortest array
+				// match up with any of the indexes in the longest array.
 				if ( longestArray[i].equals(otherArray[j]) )
 				{
+					// If it matches up it is placed in the temp array.
 					temp[tempPlacesTaken] = longestArray[i];
 					tempPlacesTaken++;
 					j = otherArray.length;
@@ -755,40 +871,8 @@ public class ConnectionManagment
 			}
 		}
 
-
-		temp = stringArrayCrop(temp);
-
-
-		return temp;
-	}
-
-
-
-	private static String[] stringArrayCrop(String[] array)
-	{
-		int indexes = 0;
-
-		String[] temp;
-
-
-
-		for ( int i = 0; i < array.length; i++ )
-		{
-			if ( array[i] != null )
-			{
-				indexes++;
-			}
-		}
-
-
-		temp = new String[indexes];
-
-
-		for ( int i = 0; i < indexes; i++ )
-		{
-			temp[i] = array[i];
-		}
-
+		// Cleans up any null pointers at the end of the temp string array.
+		temp = logistical.cleanup.cleanObjectArray(temp);
 
 		return temp;
 	}

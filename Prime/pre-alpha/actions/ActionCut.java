@@ -38,7 +38,6 @@ public class ActionCut extends AbstractAction
 	 * Description NEEDED!
 	 *
 	 * @param text
-	 * @param icon
 	 */
 	public ActionCut(String text) 
 	{
