@@ -181,6 +181,16 @@ public class ConnectionManagment
 							objectA.removeConnection(existingConnections[i]);
 							objectB.removeConnection(existingConnections[i]);
 							existingConnections[i] = null;
+							
+							try
+							{
+								objectA.removeConnectedDevices(objectB);
+								objectB.removeConnectedDevices(objectA);
+							}
+							catch ( ObjectNotFoundInArrayException e )
+							{
+								System.out.println(e.getMessage());
+							}
 						}
 					}
 				}

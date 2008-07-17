@@ -85,8 +85,7 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * An array of deviceConnections that represent the connections inside the
-	 * computer itself.
+	 * An array of deviceConnections that represent the connections.
 	 */
 	private DeviceConnection[] deviceConnections;
 
@@ -1087,6 +1086,29 @@ public abstract class Object implements Serializable
 			}
 		}
 
+		return found;
+	}
+	
+	
+	
+	/**
+	 * Gets the number of actual connected devices, by it with RJ-45 or USB and so on.
+	 */
+	public int getNumberOfConnectedDevices()
+	{
+		int found = 0;
+		
+		if ( connectedDevices != null )
+		{
+			for ( int i = 0; i < connectedDevices.length; i++ )
+			{
+				if ( !connectedDevices[i].equals(null) )
+				{
+					found++;
+				}
+			}
+		}
+		
 		return found;
 	}
 

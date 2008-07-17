@@ -7,8 +7,10 @@ package graphics.GUI.properties;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -31,10 +33,10 @@ public class ObjectProperties extends JPanel
 
 
 	// These are the standard Object fields.
-	JLabel standardLabels[] = new JLabel[3];
+	JLabel standardLabels[] = new JLabel[4];
 
 	// Standard clients labels
-	JLabel clientsLabels[] = new JLabel[3];
+	JLabel clientsLabels[] = new JLabel[1];
 
 	// Standard servers labels
 	JLabel serversLabels[] = new JLabel[4];
@@ -121,20 +123,37 @@ public class ObjectProperties extends JPanel
 
 		temp = null;
 
+//		// Index 1 - Description
+//		temp = new JLabel("Description");
+//		temp.setName(temp.getText());
+//		temp.setToolTipText("The description of the device.");
+//		standardLabels[1] = temp;
+//
+//		temp = null;
+
 		// Index 1 - Description
-		temp = new JLabel("Description");
-		temp.setName(temp.getText());
-		temp.setToolTipText("The description of the device.");
-		standardLabels[1] = temp;
-
-		temp = null;
-
-		// Index 2 - Description
 		temp = new JLabel("Supported Connection Interfaces");
 		temp.setName(temp.getText());
 		temp.setToolTipText("The types of connections the device is capable"
 				+ " of connecting to, like USB og RJ-45.");
+		standardLabels[1] = temp;
+
+		temp = null;
+
+		// Index 2 - Number of components
+		temp = new JLabel("Number of devices connected");
+		temp.setName(temp.getText());
+		temp.setToolTipText("The number of devices connected to this devices.");
 		standardLabels[2] = temp;
+
+		temp = null;
+
+		// Index 3 - Number of nodes
+		temp = new JLabel("Number of jumps");
+		temp.setName(temp.getText());
+		temp.setToolTipText("The numbers of devices between this device and a router outside"
+				+ " of this system.");
+		standardLabels[3] = temp;
 
 		temp = null;
 		// /////////////////////////////////////////////////
@@ -142,28 +161,11 @@ public class ObjectProperties extends JPanel
 
 
 		// -------------------- Clients --------------------
-		// Index 0 - Number of components
-		temp = new JLabel("Number of devices connected");
-		temp.setName(temp.getText());
-		temp.setToolTipText("The number of devices connected to this devices.");
-		clientsLabels[0] = temp;
-
-		temp = null;
-
-		// Index 1 - Desktop Rate
+		// Index 0 - Desktop Rate
 		temp = new JLabel("Desktop Rate");
 		temp.setName(temp.getText());
 		temp.setToolTipText("The desktop rating...");
-		clientsLabels[1] = temp;
-
-		temp = null;
-
-		// Index 2 - Number of nodes
-		temp = new JLabel("Number of jumps");
-		temp.setName(temp.getText());
-		temp.setToolTipText("The numbers of devices between this device and a router outside"
-				+ " of this system.");
-		clientsLabels[2] = temp;
+		clientsLabels[0] = temp;
 
 		temp = null;
 		// /////////////////////////////////////////////////
@@ -204,14 +206,14 @@ public class ObjectProperties extends JPanel
 
 		temp = null;
 		// /////////////////////////////////////////////////
-		
-		
+
+
 		// -------------------- Peripherals --------------------
 
 		// /////////////////////////////////////////////////
-		
-		
-		
+
+
+
 	}
 
 
@@ -257,7 +259,7 @@ public class ObjectProperties extends JPanel
 			showInfrastructurProperties(object);
 		}
 
-		
+
 		// Lay out the panel.
 		SpringUtilities.makeCompactGrid(this, numPairs * 2, 1, // rows, cols
 				6, 6, // initX, initY
@@ -268,37 +270,72 @@ public class ObjectProperties extends JPanel
 	{
 		numPairs = standardLabels.length;
 
-		// Create and populate the panel.
-		for ( int i = 0; i < numPairs; i++ )
-		{
-			JLabel l = new JLabel(standardLabels[i].getText(), JLabel.TRAILING);
-			this.add(l);
-			JTextField textField = new JTextField(10);
-			Dimension tfSize = new Dimension(5, 20);
-			textField.setMaximumSize(tfSize);
-			textField.setPreferredSize(tfSize);
-			l.setLabelFor(textField);
-			this.add(textField);
-		}
+		// Name
+		JLabel l = new JLabel(standardLabels[0].getText(), JLabel.TRAILING);
+		this.add(l);
+		JTextField textField = new JTextField(object.getObjectName());
+		Dimension tfSize = new Dimension(5, 20);
+		textField.setMaximumSize(tfSize);
+		textField.setPreferredSize(tfSize);
+		l.setLabelFor(textField);
+		this.add(textField);
+		
+		// Sup int
+		l = new JLabel(standardLabels[1].getText(), JLabel.TRAILING);
+		this.add(l);
+		textField = new JTextField(10);
+		textField.setMaximumSize(tfSize);
+		textField.setPreferredSize(tfSize);
+		l.setLabelFor(textField);
+		this.add(textField);
+		
+		// Number of comp
+		l = new JLabel(standardLabels[2].getText(), JLabel.TRAILING);
+		this.add(l);
+		textField = new JTextField(Integer.toString((object.getNumberOfConnectedDevices())));
+		textField.setEditable(false);
+		textField.setMaximumSize(tfSize);
+		textField.setPreferredSize(tfSize);
+		l.setLabelFor(textField);
+		this.add(textField);
+		
+		// Number of jumps
+		l = new JLabel(standardLabels[3].getText(), JLabel.TRAILING);
+		this.add(l);
+		textField = new JTextField("0");
+		textField.setEditable(false);
+		textField.setMaximumSize(tfSize);
+		textField.setPreferredSize(tfSize);
+		l.setLabelFor(textField);
+		this.add(textField);
 	}
 
 
 	private void showDesktopProperties(Object object)
 	{
 		numPairs += clientsLabels.length;
-
-		// Create and populate the panel.
-		for ( int i = 0; i < clientsLabels.length; i++ )
+		
+		String[] rates = new String[20];
+		int temp = 5;
+		
+		for(int i = 0;i<rates.length;i++)
 		{
-			JLabel l = new JLabel(clientsLabels[i].getText(), JLabel.TRAILING);
-			this.add(l);
-			JTextField textField = new JTextField(10);
-			Dimension tfSize = new Dimension(5, 20);
-			textField.setMaximumSize(tfSize);
-			textField.setPreferredSize(tfSize);
-			l.setLabelFor(textField);
-			this.add(textField);
+			rates[i] = Integer.toString(temp);
+			temp = temp +5;
 		}
+
+		
+		JComboBox comboBox = new JComboBox(rates);
+		comboBox.setBackground(Color.white);
+	    comboBox.setEditable(false);
+		Dimension tfSize = new Dimension(5, 20);
+		comboBox.setMaximumSize(tfSize);
+		comboBox.setPreferredSize(tfSize);
+		
+
+		JLabel l = new JLabel(clientsLabels[0].getText(), JLabel.TRAILING);
+		this.add(l);
+		this.add(comboBox);
 	}
 
 	private void showServerProperties(Object object)

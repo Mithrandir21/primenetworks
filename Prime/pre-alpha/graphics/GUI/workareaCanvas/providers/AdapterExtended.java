@@ -19,48 +19,56 @@ public class AdapterExtended extends Adapter
 	public State mouseClicked(Widget widget, WidgetMouseEvent event)
 	{
 		// TODO - Add option of connection clicked
-		if (! (widget instanceof ConnectionWidget))
+		if ( !(widget instanceof ConnectionWidget) )
 		{
 			if ( event.getButton() == MouseEvent.BUTTON1 )
 			{
-				WidgetObject widgetobj = (WidgetObject) widget;
-				PropertiesArea temp = (PropertiesArea) PrimeMain1.propertiesPanel.getComponent(0);
-				
-				temp.newObjectSelectedPropertiesTab(widgetobj.getObject());
-				
-//				System.out.println(widgetobj.getObject().getName());
+				if ( event.getClickCount() == 2 )
+				{
+					new graphics.GUI.objectView.ObjectView();
+				}
+				else if ( event.getClickCount() == 1 )
+				{
+					
+					WidgetObject widgetobj = (WidgetObject) widget;
+					PropertiesArea temp = (PropertiesArea) PrimeMain1.propertiesPanel
+							.getComponent(0);
+
+					temp.newObjectSelectedPropertiesTab(widgetobj.getObject());
+
+					// System.out.println(widgetobj.getObject().getName());
+				}
 			}
 		}
 		return State.REJECTED;
 	}
-
 
 	@Override
 	public State mousePressed(Widget widget, WidgetMouseEvent event)
 	{
 		if ( event.getButton() == MouseEvent.BUTTON1 )
 		{
-//			System.out.println("Mouse Pressed");
+			// System.out.println("Mouse Pressed");
 			widget.bringToFront();
 			return State.CONSUMED;
 		}
 		return State.REJECTED;
 	}
-	
-	
+
+
 	@Override
 	public State mouseEntered(Widget widget, WidgetMouseEvent event)
 	{
-//		System.out.println("Mouse entered");
+		// System.out.println("Mouse entered");
 		return State.REJECTED;
 	}
-	
+
 
 
 	@Override
 	public State mouseExited(Widget widget, WidgetMouseEvent event)
 	{
-//		System.out.println("Mouse exited");
+		// System.out.println("Mouse exited");
 		return State.REJECTED;
 	}
 
