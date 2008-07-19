@@ -1,8 +1,13 @@
 package graphics.GUI.objectView;
 
 import graphics.GUI.objectView.General.GeneralObjectView;
+import graphics.GUI.objectView.Hardware.HardwareObjectView;
+import graphics.GUI.objectView.Network.NetworkObjectView;
+import graphics.GUI.objectView.Software.SoftwareObjectView;
+import graphics.GUI.objectView.Visual.VisualObjectView;
 
 import javax.swing.JTabbedPane;
+import objects.Object;
 
 /**
  * TODO - Description NEEDED!
@@ -12,12 +17,45 @@ import javax.swing.JTabbedPane;
  */
 public class ObjectViewTabbed extends JTabbedPane
 {
-	public ObjectViewTabbed()
+	public GeneralObjectView genObjView;
+	
+	public HardwareObjectView hardObjView;
+	
+	public SoftwareObjectView softObjView;
+	
+	public NetworkObjectView netObjView;
+	
+	public VisualObjectView visObjView;
+	
+	
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 */
+	public ObjectViewTabbed(Object obj)
 	{
-//		 this.addTab("Unit Area", icon, scrollArea, "Unit Area");
+		genObjView = new GeneralObjectView(obj);
 		String genDesc = "General information and option";
+		this.addTab("General", null, genObjView, genDesc);
 		
-		this.addTab("General", null, new GeneralObjectView(), genDesc);
+		
+		hardObjView = new HardwareObjectView(obj);
+		String hardwareDesc = "General information and option";
+		this.addTab("Hardware", null, hardObjView, hardwareDesc);
+		
+		
+		softObjView = new SoftwareObjectView(obj);
+		String softDesc = "General information and option";
+		this.addTab("Software", null, softObjView, softDesc);
+		
+		
+		netObjView = new NetworkObjectView(obj);
+		String netDesc = "General information and option";
+		this.addTab("Network", null, netObjView, netDesc);
+		
+		visObjView = new VisualObjectView(obj);
+		String visDesc = "General information and option";
+		this.addTab("Visual", null, visObjView, visDesc);
 		
 	}
 }

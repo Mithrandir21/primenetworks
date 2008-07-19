@@ -77,7 +77,7 @@ public class PrimeMain1 extends JFrame
 
 	public static ArrayList<ImageIcon> images = new ArrayList<ImageIcon>(50);
 
-	
+
 	public static MakeStandardInternalComponents standard_internal_components = new MakeStandardInternalComponents();
 
 
@@ -134,13 +134,6 @@ public class PrimeMain1 extends JFrame
 		MakeSystemImageIcons standard_Image_Icons = new MakeSystemImageIcons();
 
 		standard_Image_Icons.getImageIcons();
-
-
-		
-
-
-
-
 
 
 		// SETUP FOR THE OEVERALL GUI

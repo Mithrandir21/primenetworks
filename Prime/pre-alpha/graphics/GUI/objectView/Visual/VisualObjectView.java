@@ -1,6 +1,23 @@
 package graphics.GUI.objectView.Visual;
 
-public class VisualObjectView
-{
+import javax.swing.JPanel;
 
+import objects.Object;
+
+/**
+ * TODO - Description NEEDED!
+ *
+ * @author Bahram Malaekeh
+ * 
+ */
+public class VisualObjectView extends JPanel
+{
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 */
+	public VisualObjectView(Object obj)
+	{
+		
+	}
 }

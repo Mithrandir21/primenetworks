@@ -23,14 +23,15 @@ public class AdapterExtended extends Adapter
 		{
 			if ( event.getButton() == MouseEvent.BUTTON1 )
 			{
+				WidgetObject widgetobj = (WidgetObject) widget;
 				if ( event.getClickCount() == 2 )
 				{
-					new graphics.GUI.objectView.ObjectView();
+					new graphics.GUI.objectView.ObjectView(widgetobj.getObject());
 				}
 				else if ( event.getClickCount() == 1 )
 				{
 					
-					WidgetObject widgetobj = (WidgetObject) widget;
+					
 					PropertiesArea temp = (PropertiesArea) PrimeMain1.propertiesPanel
 							.getComponent(0);
 
