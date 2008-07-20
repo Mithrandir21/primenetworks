@@ -157,6 +157,10 @@ public class ObjectSelection extends JPanel
 	private WidgetIcon makeImageIcon(String name, Class objectType, String text)
 	{
 		ImageIcon Icon = ImageLocator.getImageIconObject(name);
+		System.out.println("---");
+		System.out.println(Icon);
+		System.out.println(objectType);
+		System.out.println(text);
 		WidgetIcon iconButton = new WidgetIcon(Icon, objectType, text);
 
 		iconButton.setAlignmentX(Component.CENTER_ALIGNMENT);
