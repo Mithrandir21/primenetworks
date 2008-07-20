@@ -6,12 +6,12 @@ package graphics.GUI.selectArea;
 
 import graphics.PrimeMain1;
 import graphics.WidgetIcon;
-import hardware.HDD;
 import hardware.Motherboard;
 import infrastructure.Hub;
 import infrastructure.Router;
 import infrastructure.Switch;
 import objects.Object;
+import peripheral.Printer;
 import peripheral.Scanner;
 import servers.BackupServer;
 import servers.FirewallServer;
@@ -60,6 +60,10 @@ public class CreateObjectDragged
 		{
 			newObject = createDefaultLaptop(iconObject, numberOfWidgetsOnTheScene);
 		}
+		else if ( objectType.equals("clients.ThinClient") )
+		{
+			newObject = createDefaultThinClient(iconObject, numberOfWidgetsOnTheScene);
+		}
 		else if ( objectType.equals("servers.HTTPServer") )
 		{
 			newObject = createDefaultHTTPServer(iconObject, numberOfWidgetsOnTheScene);
@@ -80,13 +84,13 @@ public class CreateObjectDragged
 		{
 			newObject = createDefaultProxyServer(iconObject, numberOfWidgetsOnTheScene);
 		}
-		else if ( objectType.equals("hardware.HDD") )
-		{
-			newObject = createDefaultHDD(iconObject, numberOfWidgetsOnTheScene);
-		}
 		else if ( objectType.equals("peripheral.Scanner") )
 		{
 			newObject = createDefaultScanner(iconObject, numberOfWidgetsOnTheScene);
+		}
+		else if ( objectType.equals("peripheral.Printer") )
+		{
+			newObject = createDefaultPrinter(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("infrastructure.Hub") )
 		{
@@ -138,6 +142,23 @@ public class CreateObjectDragged
 	public Laptop createDefaultLaptop(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Laptop" + numberOfWidgetsOnTheScene;
+		String objectDesc = iconObject.getDescription();
+		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
+
+		if ( objectDesc == "" )
+		{
+			objectDesc = objectName;
+		}
+
+
+		return new Laptop(objectName, objectDesc, supportedConnectionInterfaces, st_components);
+	}
+	
+	
+	
+	public Laptop createDefaultThinClient(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	{
+		String objectName = "Thin Client" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
 
@@ -280,25 +301,6 @@ public class CreateObjectDragged
 
 
 
-	public HDD createDefaultHDD(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
-	{
-		String objectName = "HDD" + numberOfWidgetsOnTheScene;
-		String objectDesc = iconObject.getDescription();
-
-		String HHDtype = "IDE";
-		int HDDsize = 80;
-
-		if ( objectDesc == "" )
-		{
-			objectDesc = objectName;
-		}
-
-
-		return new HDD(objectName, objectDesc, HHDtype, HDDsize);
-	}
-
-
-
 	public Scanner createDefaultScanner(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Scanner" + numberOfWidgetsOnTheScene;
@@ -318,6 +320,28 @@ public class CreateObjectDragged
 		
 		
 		return new Scanner(objectName, objectDesc, Sresolution, SconnectionInterfaces, objectMB);
+	}
+	
+	
+	public Printer createDefaultPrinter(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	{
+		String objectName = "Printer" + numberOfWidgetsOnTheScene;
+		String objectDesc = iconObject.getDescription();
+
+		String Sresolution = "1280x1020";
+		String SconnectionInterfaces[] = { "USB" };
+
+		if ( objectDesc == "" )
+		{
+			objectDesc = objectName;
+		}
+		
+		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
+		
+		objectMB.setMaxUSBs(1);
+		
+		
+		return new Printer(objectName, objectDesc, Sresolution, SconnectionInterfaces, objectMB);
 	}
 
 

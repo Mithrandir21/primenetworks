@@ -21,8 +21,6 @@ import javax.swing.ImageIcon;
 public class MakeSystemImageIcons
 {
 
-//	static int count = 0;
-
 	public void getImageIcons()
 	{
 		URL url = this.getClass().getResource("images");

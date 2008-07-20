@@ -1,4 +1,6 @@
 package peripheral;
+import hardware.Motherboard;
+
 import java.io.Serializable;
 
 import objects.ExternalHardware;
@@ -34,6 +36,23 @@ public class Printer extends ExternalHardware implements Serializable
 	public Printer(String Name, String Desc, String PprinterType, String[] PconnectionInterfaces)
 	{
 		super(Name,Desc,PconnectionInterfaces);
+		
+		printerType = PprinterType;
+	}
+	
+	
+	/**
+	 * Constructor of the printer class.
+	 *
+	 * @param Name The name of the printer.
+	 * @param Desc The description of the printer.
+	 * @param PprinterType Type of printer. ink or laser.
+	 * @param PconnectionInterfaces Connection interfaces supported by the printer. An array of Strings.
+	 */
+	public Printer(String Name, String Desc, String PprinterType, String[] PconnectionInterfaces,
+			Motherboard objectMB)
+	{
+		super(Name,Desc,PconnectionInterfaces,objectMB);
 		
 		printerType = PprinterType;
 	}
