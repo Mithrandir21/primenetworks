@@ -379,8 +379,10 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 			newObject.getActions().addAction(new AdapterExtended());
 
-
-			newObject.addChild(new LabelWidget(scene, newObject.getObject().getObjectName()));
+			
+			LabelWidget objectLabel = new LabelWidget(scene, newObject.getObject().getObjectName());
+			
+			newObject.addChild(objectLabel);
 
 
 			newObject.setToolTipText(newObject.getObject().getDescription());
@@ -425,7 +427,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	}
 
 
-	private void cleanUp()
+	public void cleanUp()
 	{
 		doRepaint();
 

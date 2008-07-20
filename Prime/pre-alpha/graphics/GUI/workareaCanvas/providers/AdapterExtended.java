@@ -26,7 +26,7 @@ public class AdapterExtended extends Adapter
 				WidgetObject widgetobj = (WidgetObject) widget;
 				if ( event.getClickCount() == 2 )
 				{
-					new graphics.GUI.objectView.ObjectView(widgetobj.getObject());
+					new graphics.GUI.objectView.ObjectView(widgetobj);
 				}
 				else if ( event.getClickCount() == 1 )
 				{

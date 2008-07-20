@@ -10,6 +10,7 @@ import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

@@ -1,20 +1,25 @@
 package graphics.GUI.objectView;
 
-import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import objects.Object;
+
+import org.netbeans.api.visual.widget.LabelWidget;
+import org.netbeans.api.visual.widget.Widget;
+
+import widgetManipulation.WidgetObject;
 
 /**
  * TODO - Description NEEDED!
@@ -26,6 +31,8 @@ public class ObjectView extends JFrame implements ActionListener
 {
 	private ObjectViewTabbed view;
 	
+	private WidgetObject widgetObj;
+	
 	private Object currentObject;
 	
 	
@@ -33,11 +40,13 @@ public class ObjectView extends JFrame implements ActionListener
 	 * TODO - Description NEEDED!
 	 *
 	 */
-	public ObjectView(Object obj)
+	public ObjectView(WidgetObject obj)
 	{
 		super("Object View");
 		
-		currentObject = obj;
+		widgetObj = obj;
+		
+		currentObject = obj.getObject();
 		
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -59,7 +68,7 @@ public class ObjectView extends JFrame implements ActionListener
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
 		
-		view = new ObjectViewTabbed(obj);
+		view = new ObjectViewTabbed(currentObject);
 		
 		panel.add(view);
 		
@@ -104,9 +113,30 @@ public class ObjectView extends JFrame implements ActionListener
 	{
 		if(e.getActionCommand().equals("save"))
 		{
-			if(!currentObject.getObjectName().equals(view.genObjView.nametext.getText()))
+			String viewNameText = view.genObjView.nametext.getText();
+			
+			if(!currentObject.getObjectName().equals(viewNameText))
 			{
-				currentObject.setObjectName(view.genObjView.nametext.getText());
+				currentObject.setObjectName(viewNameText);
+				
+				List<Widget> children = widgetObj.getChildren();
+				
+				LabelWidget label = null;
+				
+				
+				for (Iterator<Widget> iter = children.iterator(); iter.hasNext();) 
+				{
+					Widget temp = (Widget) iter.next();
+					if ( temp instanceof LabelWidget )
+					{
+						label = (LabelWidget) temp;
+					}
+				}
+				
+				if(label!=null)
+				{
+					label.setLabel(viewNameText);
+				}
 			}
 			
 			
@@ -132,9 +162,12 @@ public class ObjectView extends JFrame implements ActionListener
 			}
 			
 		}
-		else if(e.getActionCommand().equals("cancel"))
+		else 
 		{
+			assert e.getActionCommand().equals("cancel");
 			
+			this.dispose();
 		}
+		
 	}
 }
