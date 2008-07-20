@@ -23,6 +23,7 @@ import javax.swing.JSeparator;
 import javax.swing.JToolBar;
 import javax.swing.border.Border;
 
+import peripheral.Printer;
 import peripheral.Scanner;
 import servers.BackupServer;
 import servers.FirewallServer;
@@ -31,6 +32,7 @@ import servers.MailServer;
 import servers.ProxyServer;
 import clients.Desktop;
 import clients.Laptop;
+import clients.ThinClient;
 
 
 /**
@@ -61,13 +63,9 @@ public class ObjectSelection extends JPanel
 
 		initServerButtonIcons();
 
-		initHardwareButtonIcons();
-
 		initExternalHardwareButtonIcons();
 
 		initInfrastructureButtonIcons();
-
-		initSoftwareButtonIcons();
 	}
 
 
@@ -77,7 +75,11 @@ public class ObjectSelection extends JPanel
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("Desktop", Laptop.class, "Laptop"));
+		this.add(makeImageIcon("Laptop", Laptop.class, "Laptop"));
+
+		this.add(new JToolBar.Separator());
+		
+		this.add(makeImageIcon("Screen", ThinClient.class, "Thin Client"));
 
 		this.add(new JToolBar.Separator());
 
@@ -113,19 +115,13 @@ public class ObjectSelection extends JPanel
 		this.add(new JSeparator());
 	}
 
-	private void initHardwareButtonIcons()
-	{
-		this.add(makeImageIcon("Harddisc", HDD.class, "Harddisc"));
-
-		this.add(new JToolBar.Separator());
-
-
-		this.add(new JSeparator());
-	}
-
 	private void initExternalHardwareButtonIcons()
 	{
 		this.add(makeImageIcon("Scanner", Scanner.class, "Scanner"));
+
+		this.add(new JToolBar.Separator());		
+		
+		this.add(makeImageIcon("Printer", Printer.class, "Printer"));
 
 		this.add(new JToolBar.Separator());
 
@@ -154,12 +150,6 @@ public class ObjectSelection extends JPanel
 
 
 		this.add(new JSeparator());
-	}
-
-
-	private void initSoftwareButtonIcons()
-	{
-
 	}
 
 
