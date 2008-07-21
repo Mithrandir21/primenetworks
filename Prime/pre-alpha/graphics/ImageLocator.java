@@ -37,6 +37,10 @@ public class ImageLocator
 	
 	
 	
+	/**
+	 * TODO - Description
+	 * 
+	 */
 	public static ImageIcon getImageIconObject(String name)
 	{
 		ImageIcon temp = null;

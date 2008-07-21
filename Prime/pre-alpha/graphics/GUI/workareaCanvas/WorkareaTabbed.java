@@ -55,7 +55,7 @@ public class WorkareaTabbed extends JTabbedPane
 				// JTabbedPane scrollPane.
 				PrimeMain1.currentCanvas = currentCanvas;
 				
-				PrimeMain1.updatePropertiesArea();
+				PrimeMain1.updatePropertiesCanvasArea();
 			}
 		});
 		

@@ -1,5 +1,8 @@
 package graphics.GUI.objectView;
 
+import graphics.PrimeMain1;
+import graphics.GUI.properties.PropertiesArea;
+
 import java.awt.Button;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -108,6 +111,9 @@ public class ObjectView extends JFrame implements ActionListener
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -145,6 +151,7 @@ public class ObjectView extends JFrame implements ActionListener
 				currentObject.setDescription(view.genObjView.textarea.getText());
 			}
 			
+			PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject());
 			
 			this.dispose();
 		}
@@ -161,6 +168,8 @@ public class ObjectView extends JFrame implements ActionListener
 				currentObject.setDescription(view.genObjView.textarea.getText());
 			}
 			
+			
+			PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject());
 		}
 		else 
 		{

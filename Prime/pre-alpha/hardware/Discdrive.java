@@ -13,7 +13,7 @@ import objects.Hardware;
  * @author Bahram Malaekeh
  * @version 0.0.1
  */
-public class Diskdrive extends Hardware implements Serializable 
+public class Discdrive extends Hardware implements Serializable 
 {
 	
 	// The company that produces the Diskdrive. Sony, Samsung and so on.
@@ -37,7 +37,7 @@ public class Diskdrive extends Hardware implements Serializable
 	 * @param Desc The description of the Diskdrive.
 	 * @param DiskdriveType The type of diskdrive. Like CDROM, DVD-RW and so on.
 	 */
-	public Diskdrive(String Name, String Desc, String DiskdriveType)
+	public Discdrive(String Name, String Desc, String DiskdriveType)
 	{
 		super(Name,Desc);
 

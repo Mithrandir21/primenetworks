@@ -162,7 +162,7 @@ public class InternalComponentsCheck
 		}
 		// If the component is a HHD or Diskdrive component
 		else if ( objectClass.equals(HDD.class)
-				|| objectClass.equals(Diskdrive.class) )
+				|| objectClass.equals(Discdrive.class) )
 		{
 			// If the number returned it greater then 1, then there is room for
 			// the object
@@ -282,7 +282,7 @@ public class InternalComponentsCheck
 				// If the temporary object is an instance of a HDD or a
 				// diskdrive class
 				if ( objectClass.equals(HDD.class)
-						|| objectClass.equals(Diskdrive.class) )
+						|| objectClass.equals(Discdrive.class) )
 				{
 					portsAvailable--;
 				}

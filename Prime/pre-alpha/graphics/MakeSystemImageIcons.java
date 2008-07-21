@@ -73,18 +73,13 @@ public class MakeSystemImageIcons
 		}
 	}
 
-	// Process only files under dir
+
+	/**
+	 * TODO - Description
+	 * 
+	 */
 	public static void visitAllFiles(File dir)
 	{
-//		try
-//		{
-//			System.out.println("Does this." + count + " " + dir.getCanonicalPath());
-//		}
-//		catch ( IOException e )
-//		{
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		if ( dir.isDirectory() )
 		{
 			String[] children = dir.list();

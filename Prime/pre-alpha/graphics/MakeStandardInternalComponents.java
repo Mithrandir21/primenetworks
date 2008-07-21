@@ -24,8 +24,8 @@ public class MakeStandardInternalComponents
 	 */
 	public Motherboard getSt_MB()
 	{
-		return new Motherboard("Standard client Motherboard",
-				"This is the system standard client motherboard.", "Prime", "ATX", "Intel 775", 1,
+		return new Motherboard("Standard Motherboard",
+				"This is the system standard motherboard.", "Prime", "ATX", "Intel 775", 1,
 				3, 2, 4, 4, "SATA", "AGP", true, true, true, 1);
 	}
 
@@ -54,7 +54,7 @@ public class MakeStandardInternalComponents
 	 */
 	public CPU getSt_CPU()
 	{
-		return new CPU("Standard client CPU", "This is the system standard client CPU.",
+		return new CPU("Standard CPU", "This is the system standard CPU.",
 				"Intel 775", 512);
 	}
 
@@ -69,7 +69,7 @@ public class MakeStandardInternalComponents
 	 */
 	public HDD getSt_HDD()
 	{
-		return new HDD("Standard client HDD", "This is the system standard client HDD.", "SATA",
+		return new HDD("Standard HDD", "This is the system standard HDD.", "SATA",
 				160);
 	}
 
@@ -84,7 +84,7 @@ public class MakeStandardInternalComponents
 	 */
 	public Ram getSt_RAM()
 	{
-		return new Ram("Standard client Ram", "This is the system standard client RAM.", "DDR2",
+		return new Ram("Standard Ram", "This is the system standard RAM.", "DDR2",
 				1024);
 	}
 
@@ -97,9 +97,9 @@ public class MakeStandardInternalComponents
 	 * 
 	 * @return the st_DVDRW
 	 */
-	public Diskdrive getSt_DVDRW()
+	public Discdrive getSt_DVDRW()
 	{
-		return new Diskdrive("Standard client DVD-RW",
-				"This is the system standard client DVD-RW.", "DVD-RW");
+		return new Discdrive("Standard DVD-RW",
+				"This is the system standard DVD-RW.", "DVD-RW");
 	}
 }

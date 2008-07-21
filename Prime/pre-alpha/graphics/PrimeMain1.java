@@ -11,6 +11,7 @@ import graphics.GUI.selectArea.TabbedSelection;
 import graphics.GUI.statusArea.PrimeStatusBar;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import graphics.GUI.workareaCanvas.WorkareaTabbed;
+import objects.Object;
 
 import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
@@ -306,6 +307,10 @@ public class PrimeMain1 extends JFrame
 	}
 
 
+	/**
+	 * TODO - Description
+	 * 
+	 */
 	private static void SaveLayoutModel()
 	{
 		try
@@ -323,6 +328,11 @@ public class PrimeMain1 extends JFrame
 		}
 	}
 
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
 	private void makeLayoutModel()
 	{
 		String layoutDef = "(COLUMN (LEAF name=toolbarLeaf) (ROW (LEAF name=selectionLeaf) "
@@ -337,6 +347,10 @@ public class PrimeMain1 extends JFrame
 	}
 
 
+	/**
+	 * TODO - Description
+	 * 
+	 */
 	private void LoadLayoutModel()
 	{
 		String layoutDef = "(COLUMN (LEAF name=toolbarLeaf) (ROW (LEAF name=selectionLeaf) "
@@ -381,11 +395,28 @@ public class PrimeMain1 extends JFrame
 
 
 
-	public static void updatePropertiesArea()
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static void updatePropertiesCanvasArea()
 	{
 		PropertiesArea temp = (PropertiesArea) propertiesPanel.getComponent(0);
 
 		temp.newObjectSelectedPropertiesTab(currentCanvas);
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static void updatePropertiesObjectArea(Object obj)
+	{
+		PropertiesArea temp = (PropertiesArea) propertiesPanel.getComponent(0);
+
+		temp.newObjectSelectedPropertiesTab(obj);
 	}
 
 }

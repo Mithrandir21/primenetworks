@@ -2,7 +2,7 @@ package graphics.GUI.workareaCanvas.providers;
 
 
 import graphics.PrimeMain1;
-import graphics.GUI.properties.PropertiesArea;
+import graphics.GUI.objectView.ObjectView;
 
 import java.awt.event.MouseEvent;
 
@@ -26,18 +26,11 @@ public class AdapterExtended extends Adapter
 				WidgetObject widgetobj = (WidgetObject) widget;
 				if ( event.getClickCount() == 2 )
 				{
-					new graphics.GUI.objectView.ObjectView(widgetobj);
+					new ObjectView(widgetobj);
 				}
 				else if ( event.getClickCount() == 1 )
 				{
-					
-					
-					PropertiesArea temp = (PropertiesArea) PrimeMain1.propertiesPanel
-							.getComponent(0);
-
-					temp.newObjectSelectedPropertiesTab(widgetobj.getObject());
-
-					// System.out.println(widgetobj.getObject().getName());
+					PrimeMain1.updatePropertiesObjectArea(widgetobj.getObject());
 				}
 			}
 		}

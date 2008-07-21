@@ -431,7 +431,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	{
 		doRepaint();
 
-		PrimeMain1.updatePropertiesArea();
+		PrimeMain1.updatePropertiesCanvasArea();
 
 		scene.revalidate();
 		scene.repaint();
