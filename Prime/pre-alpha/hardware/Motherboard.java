@@ -32,7 +32,7 @@ public class Motherboard extends Hardware implements Serializable
 	// The company that produces the Motherboard. Asus, MSI and so on.
 	private String producer;
 
-	// The form of Motherboard. ATX, mini-ATX, E-ATX and so on.
+	// The form of Motherboard. ATX, mini-ATX(mATX), E-ATX(eATX) and so on.
 	private String form;
 
 	// The subtype of the Motherboard type, Socket 775, Socket 939 and so on.
@@ -349,17 +349,6 @@ public class Motherboard extends Hardware implements Serializable
 	public int getMaxIntegLANs()
 	{
 		return maxIntegLANs;
-	}
-
-
-	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @return the graphicalPortType
-	 */
-	public String getGraphicalPortType()
-	{
-		return graphicalPortType;
 	}
 
 

@@ -59,7 +59,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 10, 10);
 
-		ImageIcon temp = null;// ImageLocator.getImageIconObject("Motherboard");
+		ImageIcon temp = null;
 
 		Object[] hwObj = obj.getComponents();
 
