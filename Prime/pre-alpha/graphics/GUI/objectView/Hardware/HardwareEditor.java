@@ -50,9 +50,9 @@ public class HardwareEditor extends JFrame implements ActionListener
 		Dimension scrnsize = toolkit.getScreenSize();
 
 
-		int width = ((int) scrnsize.getWidth()) / 2;
+		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth()/3)));
 
-		int height = ((int) scrnsize.getHeight()) / 2;
+		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight()/3)));
 		
 		
 		// Get the content pane for this object

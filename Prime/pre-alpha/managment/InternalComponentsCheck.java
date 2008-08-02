@@ -104,7 +104,7 @@ public class InternalComponentsCheck
 			{
 				if ( MBgraphicalType == "PCI-E" )
 				{
-					if ( MB.isGraphicsCard() != true )
+					if ( MB.isGraphicsCardInstalled() != true )
 					{
 						return true;
 					}
@@ -118,7 +118,7 @@ public class InternalComponentsCheck
 			{
 				if ( MBgraphicalType == "AGP" )
 				{
-					if ( MB.isGraphicsCard() != true )
+					if ( MB.isGraphicsCardInstalled() != true )
 					{
 						return true;
 					}

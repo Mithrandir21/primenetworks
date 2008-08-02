@@ -456,7 +456,7 @@ public class Motherboard extends Hardware implements Serializable
 	 * 
 	 * @return the graphicsCard
 	 */
-	public boolean isGraphicsCard()
+	public boolean isGraphicsCardInstalled()
 	{
 
 		return isGraphicsCardInstalled;
