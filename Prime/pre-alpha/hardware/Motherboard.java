@@ -153,6 +153,7 @@ public class Motherboard extends Hardware implements Serializable
 		maxRAMs = MBmaxRAMs;
 		maxUSBs = MBmaxUSBs;
 		maxDUCs = MBmaxDUCs;
+		maxIntegLANs = MBmaxIntegLanPorts;
 		graphicalPortType = MBgraphicalPort;
 		DUCconnectionType = MBDUCconnectionType;
 		LANcardIntegrated = MBintegLANcard;

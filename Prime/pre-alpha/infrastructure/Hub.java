@@ -7,6 +7,7 @@ import java.io.Serializable;
 import managment.ArrayManagment;
 import exceptions.StringNotFoundInArrayException;
 
+import objects.Infrastructure;
 import objects.Object;
 
 
@@ -22,7 +23,7 @@ import objects.Object;
  * @author Bahram Malaekeh
  * @version 0.1
  */
-public class Hub extends Object implements Serializable
+public class Hub extends Infrastructure implements Serializable
 {
 	
 	// The transfer rate

@@ -3,18 +3,20 @@
  */
 package graphics.GUI.objectView.Hardware.HardwareView;
 
+import graphics.ImageLocator;
+import graphics.GUI.objectView.Hardware.HardwareEditor;
+import hardware.Discdrive;
+
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import graphics.ImageLocator;
-import graphics.GUI.objectView.Hardware.HardwareEditor;
-import hardware.Discdrive;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  * TODO - Description NEEDED!
@@ -22,8 +24,11 @@ import javax.swing.JPanel;
  * @author Bahram Malaekeh
  * 
  */
-public class DiscDriveView extends JPanel
+public class DiscDriveView extends JPanel implements HardwareView
 {
+	JTextField name = new JTextField(25);
+	JTextArea desc = new JTextArea(3,40);
+	
 	/**
 	 * TODO - Description NEEDED!
 	 *
@@ -46,7 +51,7 @@ public class DiscDriveView extends JPanel
 		c.insets = new Insets(10, 10, 5, 10);
 		
 		ImageIcon icon = ImageLocator.getImageIconObject("Optical-Drive");
-		JPanel p1 = HardwareEditor.GeneralInfo(discdrive,icon);
+		JPanel p1 = HardwareEditor.GeneralInfo(discdrive,icon,name,desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 		
 		
@@ -68,5 +73,17 @@ public class DiscDriveView extends JPanel
 		p2.setBorder(BorderFactory.createEtchedBorder());
 		
 		this.add(p2,c);
+	}
+
+	public void save()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean validateData()
+	{
+		// TODO Auto-generated method stub
+		return true;
 	}
 }

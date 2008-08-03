@@ -7,6 +7,7 @@ import java.io.Serializable;
 import managment.ArrayManagment;
 import exceptions.StringNotFoundInArrayException;
 
+import objects.Infrastructure;
 import objects.Object;
 
 
@@ -26,7 +27,7 @@ import objects.Object;
  * @author Bahram Malaekeh
  * @version 0.1
  */
-public class Switch extends Object implements Serializable
+public class Switch extends Infrastructure implements Serializable
 {
 	
 	// The transfer rate

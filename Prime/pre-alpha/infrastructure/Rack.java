@@ -5,6 +5,7 @@ import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
 import logistical.*;
 import managment.ComponentsManagment;
+import objects.Infrastructure;
 import objects.Object;
 
 
@@ -17,7 +18,7 @@ import objects.Object;
  * @author Bahram Malaekeh
  * @version 0.0.1
  */
-public class Rack extends Object implements Serializable 
+public class Rack extends Infrastructure implements Serializable 
 {
 	
 	// The number of spaces on a rack, usually refered to as "shelf" or "U".

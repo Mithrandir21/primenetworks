@@ -25,6 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import objects.Hardware;
+import objects.Infrastructure;
 import objects.Object;
 
 /**
@@ -36,6 +37,8 @@ import objects.Object;
 public class HardwareEditor extends JFrame implements ActionListener
 {
 	private Object givenObject = null;
+	
+	HardwareEditorTabbed view;
 	
 	public HardwareEditor(Object obj)
 	{
@@ -63,7 +66,7 @@ public class HardwareEditor extends JFrame implements ActionListener
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
 		
-		HardwareEditorTabbed view = new HardwareEditorTabbed(obj.getComponents());
+		view = new HardwareEditorTabbed(obj.getComponents());
 		
 		panel.add(view);
 		
@@ -80,7 +83,7 @@ public class HardwareEditor extends JFrame implements ActionListener
 		apply.addActionListener(this);
 		apply.setActionCommand("apply");
 		
-		Button cancel = new Button("cancel");
+		Button cancel = new Button("Cancel");
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 		
@@ -105,8 +108,42 @@ public class HardwareEditor extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		if(e.getActionCommand().equals("save"))
+		{
+			boolean verify = true;
+			
+			// If the object is an instance of infrastructure.
+			if(givenObject instanceof Infrastructure)
+			{
+				verify = false;
+			}
+			
+			// If the information is saved a true is returned and the 
+			// JFrame is closed.
+			if(view.save(verify))
+			{
+				this.dispose();
+			}
+		}
+		else if(e.getActionCommand().equals("apply"))
+		{
+			boolean verify = true;
+			
+			// If the object is an instance of infrastructure.
+			if(givenObject instanceof Infrastructure)
+			{
+				verify = false;
+			}
+			
+			// Saves the information with the option of verification.
+			view.save(verify);
+		}
+		else
+		{
+			assert(e.getActionCommand().equals("cancel"));
+			
+			this.dispose();
+		}
 	}
 	
 	
@@ -114,7 +151,7 @@ public class HardwareEditor extends JFrame implements ActionListener
 	 * TODO - Description
 	 * 
 	 */
-	public static JPanel GeneralInfo(Hardware hw,ImageIcon temp)
+	public static JPanel GeneralInfo(Hardware hw,ImageIcon temp,JTextField name, JTextArea desc)
 	{
 		JPanel genPanel = new JPanel();
 		genPanel.setLayout(new GridBagLayout());
@@ -146,7 +183,7 @@ public class HardwareEditor extends JFrame implements ActionListener
 		d.gridheight = 1;
 		d.anchor = GridBagConstraints.CENTER;
 		
-		JLabel nameLabel = new JLabel("Motherboard name");
+		JLabel nameLabel = new JLabel("Hardware name");
 		genPanel.add(nameLabel,d);
 
 		d.gridx = 2;
@@ -157,7 +194,7 @@ public class HardwareEditor extends JFrame implements ActionListener
 		d.gridheight = 1;
 		d.anchor = GridBagConstraints.LINE_START;
 		
-		JTextField name = new JTextField(25);
+		name.setName("Name");
 		name.setText(hw.getObjectName());
 		JLabel t = new JLabel();
 		name.setFont(t.getFont());
@@ -187,7 +224,7 @@ public class HardwareEditor extends JFrame implements ActionListener
 		d.gridheight = 1;
 		d.anchor = GridBagConstraints.LINE_START;
 		
-		JTextArea desc = new JTextArea(3,40);
+		desc.setName("Description");
 		desc.setBorder(BorderFactory.createEtchedBorder());
 		desc.setText(hw.getDescription());
 		desc.setFont(t.getFont());

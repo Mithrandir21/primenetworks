@@ -15,14 +15,19 @@ import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
  */
-public class CPUView extends JPanel
+public class CPUView extends JPanel implements HardwareView
 {
+	JTextField name = new JTextField(25);
+	JTextArea desc = new JTextArea(3,40);
+	
 	public CPUView(CPU cpu)
 	{
 		this.setLayout(new GridBagLayout());
@@ -40,7 +45,7 @@ public class CPUView extends JPanel
 		c.insets = new Insets(10, 10, 5, 10);
 		
 		ImageIcon icon = ImageLocator.getImageIconObject("CPU");
-		JPanel p1 = HardwareEditor.GeneralInfo(cpu,icon);
+		JPanel p1 = HardwareEditor.GeneralInfo(cpu,icon,name,desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 		
 		
@@ -59,5 +64,17 @@ public class CPUView extends JPanel
 		p2.setBorder(BorderFactory.createEtchedBorder());
 		
 		this.add(p2,c);
+	}
+
+	public void save()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean validateData()
+	{
+		// TODO Auto-generated method stub
+		return true;
 	}
 }

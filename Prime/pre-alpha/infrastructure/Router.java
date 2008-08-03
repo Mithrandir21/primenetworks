@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 import exceptions.StringNotFoundInArrayException;
 import managment.ArrayManagment;
+import objects.Infrastructure;
 import objects.Object;
 
 
@@ -23,7 +24,7 @@ import objects.Object;
  * @author Bahram Malaekeh
  * @version 0.1
  */
-public class Router extends Object implements Serializable
+public class Router extends Infrastructure implements Serializable
 {
 	
 	// The transfer rate

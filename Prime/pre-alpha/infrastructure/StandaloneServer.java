@@ -4,6 +4,7 @@ import java.io.Serializable;
 import managment.ComponentsManagment;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
+import objects.Infrastructure;
 import objects.Object;
 import objects.Servers;
 
@@ -14,7 +15,7 @@ import objects.Servers;
  * @author Bahram Malaekeh
  * @version 0.1
  */
-public class StandaloneServer extends Object implements Serializable
+public class StandaloneServer extends Infrastructure implements Serializable
 {
 	
 	// THE MASKIN ITSELF

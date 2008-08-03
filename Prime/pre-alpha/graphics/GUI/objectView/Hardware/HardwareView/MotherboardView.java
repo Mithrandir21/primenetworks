@@ -10,20 +10,19 @@ import graphics.GUI.objectView.Hardware.HardwareEditor;
 import hardware.Motherboard;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
@@ -33,8 +32,51 @@ import javax.swing.SpringLayout;
  * 
  * @author Bahram Malaekeh
  */
-public class MotherboardView extends JPanel
+public class MotherboardView extends JPanel implements HardwareView
 {
+	JTextField name = new JTextField(25);
+	JTextArea desc = new JTextArea(3,40);
+	
+	private JTextField producerField = new JTextField(7);
+	
+	private JComboBox forms;
+	
+	private JComboBox sockets;
+	
+	private JComboBox busSpeeds;
+	
+	private JTextField chipsetField = new JTextField(7);
+	
+	private JComboBox gpuPorts;
+	
+	private JComboBox DUCPorts;
+	
+	private JComboBox RAMPorts;
+	
+	private JCheckBox intAudioCard;
+	
+	private JCheckBox intGPU;
+	
+	private JCheckBox intNIC;
+	
+	private JCheckBox GPUinstalled;
+	
+	private JComboBox CPUsockets;
+	
+	private JComboBox PCIslots;
+	
+	private JComboBox RAMslots;
+	
+	private JComboBox USBports;
+	
+	private JComboBox DUCports;
+	
+	private JComboBox LANports;
+	
+	
+	Motherboard mbObj;
+	
+	
 	/**
 	 * TODO - Description NEEDED!
 	 *
@@ -42,7 +84,7 @@ public class MotherboardView extends JPanel
 	 */
 	public MotherboardView(Motherboard mb)
 	{
-		
+		mbObj = mb;
 		this.setLayout(new GridBagLayout());
 		this.setBackground(Color.WHITE);
 		GridBagConstraints c = new GridBagConstraints();
@@ -58,12 +100,8 @@ public class MotherboardView extends JPanel
 		c.insets = new Insets(10, 10, 5, 10);
 		
 		ImageIcon icon = ImageLocator.getImageIconObject("Motherboard");
-		JPanel p1 = HardwareEditor.GeneralInfo(mb,icon);
+		JPanel p1 = HardwareEditor.GeneralInfo(mb,icon,name,desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
-		
-		
-		
-		
 		
 		this.add(p1,c);
 		
@@ -150,7 +188,6 @@ public class MotherboardView extends JPanel
 		
 		
 		// PRODUCER
-		JTextField producerField = new JTextField(7);
 		labels[0].setLabelFor(producerField);
 		producerField.setMaximumSize(tfSize);
 		producerField.setPreferredSize(tfSize);
@@ -164,7 +201,7 @@ public class MotherboardView extends JPanel
 		
 		// FORM
 		String[] formsStrings = {"","ATX","mATX","eATX"};
-		JComboBox forms = new JComboBox(formsStrings);
+		forms = new JComboBox(formsStrings);
 		forms.setMaximumSize(tfSize);
 		forms.setPreferredSize(tfSize);
 		forms.setBackground(Color.WHITE);
@@ -172,14 +209,14 @@ public class MotherboardView extends JPanel
 
 		int formIndex = 0;
 		
-		for(int i = 0;i<forms.getComponentCount();i++)
+		for(int i = 1;i<formsStrings.length;i++)
 		{
 			if ( mb.getForm() != null && mb.getForm() != "" )
 			{
 				if ( forms.getItemAt(i).equals(mb.getForm()) )
 				{
 					formIndex = i;
-					i = forms.getComponentCount();
+					i = formsStrings.length;
 				}
 			}
 		}
@@ -195,7 +232,7 @@ public class MotherboardView extends JPanel
 		
 		// SOCKET
 		String[] socketsStrings = {"","Intel 775","Intel 939","AMD AM2","AMD AM2+"};
-		JComboBox sockets = new JComboBox(socketsStrings);
+		sockets = new JComboBox(socketsStrings);
 		sockets.setMaximumSize(tfSize);
 		sockets.setPreferredSize(tfSize);
 		sockets.setBackground(Color.WHITE);
@@ -204,14 +241,14 @@ public class MotherboardView extends JPanel
 		
 		int socketsIndex = 0;
 		
-		for(int i = 0;i<sockets.getComponentCount();i++)
+		for(int i = 1;i<socketsStrings.length;i++)
 		{
 			if ( mb.getSocket() != null && mb.getSocket() != "" )
 			{
 				if ( sockets.getItemAt(i).equals(mb.getSocket()) )
 				{
 					socketsIndex = i;
-					i = sockets.getComponentCount();
+					i = socketsStrings.length;
 				}
 			}
 		}
@@ -227,7 +264,7 @@ public class MotherboardView extends JPanel
 		
 		// BUS SPEED
 		String[] busspeedStrings = {"","800","1066"};
-		JComboBox busSpeeds = new JComboBox(busspeedStrings);
+		busSpeeds = new JComboBox(busspeedStrings);
 		busSpeeds.setMaximumSize(tfSize);
 		busSpeeds.setPreferredSize(tfSize);
 		busSpeeds.setBackground(Color.WHITE);
@@ -236,14 +273,14 @@ public class MotherboardView extends JPanel
 		
 		int busSpeedIndex = 0;
 		
-		for(int i = 0;i<busSpeeds.getComponentCount();i++)
+		for(int i = 1;i<busspeedStrings.length;i++)
 		{
 			if ( mb.getBusSpeed() != 0 )
 			{
-				if ( busSpeeds.getItemAt(i).equals(mb.getBusSpeed()) )
+				if ( Integer.parseInt(busSpeeds.getItemAt(i).toString()) == (mb.getBusSpeed()) )
 				{
 					busSpeedIndex = i;
-					i = busSpeeds.getComponentCount();
+					i = busspeedStrings.length;
 				}
 			}
 		}
@@ -258,7 +295,6 @@ public class MotherboardView extends JPanel
 		
 		
 		// CHIPSET
-		JTextField chipsetField = new JTextField(7);
 		labels[4].setLabelFor(chipsetField);
 		chipsetField.setMaximumSize(tfSize);
 		chipsetField.setPreferredSize(tfSize);
@@ -273,7 +309,7 @@ public class MotherboardView extends JPanel
 		
 		// GPU PORT
 		String[] gpuPortStrings = {"","AGP","PCI","PCI-E"};
-		JComboBox gpuPorts = new JComboBox(gpuPortStrings);
+		gpuPorts = new JComboBox(gpuPortStrings);
 		gpuPorts.setMaximumSize(tfSize);
 		gpuPorts.setMinimumSize(tfSize);
 		gpuPorts.setPreferredSize(tfSize);
@@ -283,14 +319,14 @@ public class MotherboardView extends JPanel
 		
 		int gpuPortIndex = 0;
 		
-		for(int i = 0;i<gpuPorts.getComponentCount();i++)
+		for(int i = 1;i<gpuPortStrings.length;i++)
 		{
 			if ( mb.getGraphicalPort() != null && mb.getGraphicalPort() != "" )
 			{
 				if ( gpuPorts.getItemAt(i).equals(mb.getGraphicalPort()) )
 				{
 					gpuPortIndex = i;
-					i = gpuPorts.getComponentCount();
+					i = gpuPortStrings.length;
 				}
 			}
 		}
@@ -307,7 +343,7 @@ public class MotherboardView extends JPanel
 		
 		// DUC, connection port
 		String[] DUCStrings = {"","IDE","SATA","eSATA"};
-		JComboBox DUCPorts = new JComboBox(DUCStrings);
+		DUCPorts = new JComboBox(DUCStrings);
 		DUCPorts.setMaximumSize(tfSize);
 		DUCPorts.setMinimumSize(tfSize);
 		DUCPorts.setPreferredSize(tfSize);
@@ -317,14 +353,14 @@ public class MotherboardView extends JPanel
 		
 		int DUCPortIndex = 0;
 		
-		for(int i = 0;i<DUCPorts.getComponentCount();i++)
+		for(int i = 0;i<DUCStrings.length;i++)
 		{
 			if ( mb.getDUCconnectionType() != null && mb.getDUCconnectionType() != "" )
 			{
 				if ( DUCPorts.getItemAt(i).equals(mb.getDUCconnectionType()) )
 				{
 					DUCPortIndex = i;
-					i = DUCPorts.getComponentCount();
+					i = DUCStrings.length;
 				}
 			}
 		}
@@ -341,7 +377,7 @@ public class MotherboardView extends JPanel
 		
 		// RAM
 		String[] RAMStrings = {"","DDR","DDR2","DDR3"};
-		JComboBox RAMPorts = new JComboBox(RAMStrings);
+		RAMPorts = new JComboBox(RAMStrings);
 		RAMPorts.setMaximumSize(tfSize);
 		RAMPorts.setMinimumSize(tfSize);
 		RAMPorts.setPreferredSize(tfSize);
@@ -351,14 +387,14 @@ public class MotherboardView extends JPanel
 		
 		int RAMPortIndex = 0;
 		
-		for(int i = 0;i<RAMPorts.getComponentCount();i++)
+		for(int i = 0;i<RAMStrings.length;i++)
 		{
 			if ( mb.getRAMtype() != null && mb.getRAMtype() != "" )
 			{
 				if ( RAMPorts.getItemAt(i).equals(mb.getRAMtype()) )
 				{
 					RAMPortIndex = i;
-					i = RAMPorts.getComponentCount();
+					i = RAMStrings.length;
 				}
 			}
 		}
@@ -374,7 +410,7 @@ public class MotherboardView extends JPanel
 		
 		
 		// Integrated Audio card
-		JCheckBox intAudioCard = new JCheckBox();
+		intAudioCard = new JCheckBox();
 		intAudioCard.setSelected(mb.isIntegAudioCard());
 		intAudioCard.setToolTipText(labels[8].getToolTipText());
 
@@ -387,7 +423,7 @@ public class MotherboardView extends JPanel
 		
 		
 		// Integrated GPU card
-		JCheckBox intGPU = new JCheckBox();
+		intGPU = new JCheckBox();
 		intGPU.setSelected(mb.isIntegGraphicalCard());
 		intGPU.setToolTipText(labels[9].getToolTipText());
 
@@ -400,7 +436,7 @@ public class MotherboardView extends JPanel
 		
 		
 		// Integrated NIC
-		JCheckBox intNIC = new JCheckBox();
+		intNIC = new JCheckBox();
 		intNIC.setSelected(mb.isIntegLANcard());
 		intNIC.setToolTipText(labels[10].getToolTipText());
 
@@ -413,7 +449,7 @@ public class MotherboardView extends JPanel
 		
 		
 		// GPU installed, regardless of whether or not any integrate GPU exists.
-		JCheckBox GPUinstalled = new JCheckBox();
+		GPUinstalled = new JCheckBox();
 		GPUinstalled.setSelected(mb.isGraphicsCardInstalled());
 		GPUinstalled.setToolTipText(labels[11].getToolTipText());
 
@@ -428,7 +464,7 @@ public class MotherboardView extends JPanel
 		
 		// CPU sockets
 		String[] CPUsocketsStrings = {"","1","2","3","4","5","6"};
-		JComboBox CPUsockets = new JComboBox(CPUsocketsStrings);
+		CPUsockets = new JComboBox(CPUsocketsStrings);
 		CPUsockets.setMaximumSize(tfSize);
 		CPUsockets.setMinimumSize(tfSize);
 		CPUsockets.setPreferredSize(tfSize);
@@ -437,12 +473,12 @@ public class MotherboardView extends JPanel
 		
 		int CPUsocketsIndex = 0;
 		
-		for(int i = 1;i<CPUsockets.getComponentCount();i++)
+		for(int i = 1;i<CPUsocketsStrings.length;i++)
 		{
 				if ( Integer.parseInt(CPUsockets.getItemAt(i).toString()) == (mb.getMaxCPUs()) )
 				{
 					CPUsocketsIndex = i;
-					i = CPUsockets.getComponentCount();
+					i = CPUsocketsStrings.length;
 				}
 		}
 		
@@ -459,7 +495,7 @@ public class MotherboardView extends JPanel
 		
 		// PCI slots
 		String[] PCIslotsStrings = {"","1","2","3","4","5","6"};
-		JComboBox PCIslots = new JComboBox(PCIslotsStrings);
+		PCIslots = new JComboBox(PCIslotsStrings);
 		PCIslots.setMaximumSize(tfSize);
 		PCIslots.setMinimumSize(tfSize);
 		PCIslots.setPreferredSize(tfSize);
@@ -469,12 +505,12 @@ public class MotherboardView extends JPanel
 		
 		int PCIslotsIndex = 0;
 		
-		for(int i = 1;i<PCIslots.getComponentCount();i++)
+		for(int i = 1;i<PCIslotsStrings.length;i++)
 		{
 				if ( Integer.parseInt(PCIslots.getItemAt(i).toString()) == (mb.getMaxPCIs()) )
 				{
 					PCIslotsIndex = i;
-					i = PCIslots.getComponentCount();
+					i = PCIslotsStrings.length;
 				}
 		}
 		
@@ -491,7 +527,7 @@ public class MotherboardView extends JPanel
 		
 		// RAM slots
 		String[] RAMslotsStrings = {"","1","2","3","4","5","6"};
-		JComboBox RAMslots = new JComboBox(RAMslotsStrings);
+		RAMslots = new JComboBox(RAMslotsStrings);
 		RAMslots.setMaximumSize(tfSize);
 		RAMslots.setMinimumSize(tfSize);
 		RAMslots.setPreferredSize(tfSize);
@@ -501,12 +537,12 @@ public class MotherboardView extends JPanel
 		
 		int RAMslotsIndex = 0;
 		
-		for(int i = 1;i<RAMslots.getComponentCount();i++)
+		for(int i = 1;i<RAMslotsStrings.length;i++)
 		{
 				if ( Integer.parseInt(RAMslots.getItemAt(i).toString()) == (mb.getMaxRAMs()) )
 				{
 					RAMslotsIndex = i;
-					i = RAMslots.getComponentCount();
+					i = RAMslotsStrings.length;
 				}
 		}
 		
@@ -523,7 +559,7 @@ public class MotherboardView extends JPanel
 		
 		// USB slots
 		String[] USBportsStrings = {"","1","2","3","4","5","6"};
-		JComboBox USBports = new JComboBox(USBportsStrings);
+		USBports = new JComboBox(USBportsStrings);
 		USBports.setMaximumSize(tfSize);
 		USBports.setMinimumSize(tfSize);
 		USBports.setPreferredSize(tfSize);
@@ -533,12 +569,12 @@ public class MotherboardView extends JPanel
 		
 		int USBportsIndex = 0;
 		
-		for(int i = 1;i<USBports.getComponentCount();i++)
+		for(int i = 1;i<USBportsStrings.length;i++)
 		{
 				if ( Integer.parseInt(USBports.getItemAt(i).toString()) == (mb.getMaxUSBs()) )
 				{
 					USBportsIndex = i;
-					i = USBports.getComponentCount();
+					i = USBportsStrings.length;
 				}
 		}
 		
@@ -555,7 +591,7 @@ public class MotherboardView extends JPanel
 		
 		// DUC ports
 		String[] DUCportsStrings = {"","1","2","3","4","5","6"};
-		JComboBox DUCports = new JComboBox(DUCportsStrings);
+		DUCports = new JComboBox(DUCportsStrings);
 		DUCports.setMaximumSize(tfSize);
 		DUCports.setMinimumSize(tfSize);
 		DUCports.setPreferredSize(tfSize);
@@ -565,12 +601,12 @@ public class MotherboardView extends JPanel
 		
 		int DUCportsIndex = 0;
 		
-		for(int i = 1;i<DUCports.getComponentCount();i++)
+		for(int i = 1;i<DUCportsStrings.length;i++)
 		{
 				if ( Integer.parseInt(DUCports.getItemAt(i).toString()) == (mb.getMaxUSBs()) )
 				{
 					DUCportsIndex = i;
-					i = DUCports.getComponentCount();
+					i = DUCportsStrings.length;
 				}
 		}
 		
@@ -587,7 +623,7 @@ public class MotherboardView extends JPanel
 		
 		// LAN ports
 		String[] LANportsStrings = {"","1","2","3","4","5","6"};
-		JComboBox LANports = new JComboBox(LANportsStrings);
+		LANports = new JComboBox(LANportsStrings);
 		LANports.setMaximumSize(tfSize);
 		LANports.setMinimumSize(tfSize);
 		LANports.setPreferredSize(tfSize);
@@ -597,12 +633,12 @@ public class MotherboardView extends JPanel
 		
 		int LANportsIndex = 0;
 		
-		for(int i = 1;i<LANports.getComponentCount();i++)
+		for(int i = 1;i<LANportsStrings.length;i++)
 		{
-				if ( Integer.parseInt(LANports.getItemAt(i).toString()) == (mb.getMaxUSBs()) )
+				if ( Integer.parseInt(LANports.getItemAt(i).toString()) == (mb.getMaxLANs()) )
 				{
 					LANportsIndex = i;
-					i = LANports.getComponentCount();
+					i = LANportsStrings.length;
 				}
 		}
 		
@@ -628,5 +664,157 @@ public class MotherboardView extends JPanel
 		
 		
 		return panel;
+	}
+	
+	
+	
+	/* (non-Javadoc)
+	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#validateData()
+	 */
+	public boolean validateData()
+	{
+		// Checks the name of the motherboard
+		if(name.getText().length()<1 || name.getText().length()>255)
+		{
+			JOptionPane.showMessageDialog(this
+					, "The motherboard name must be between 1 and 255 characters."
+					, "Error - Name"
+					, JOptionPane.INFORMATION_MESSAGE);
+			
+			return false;
+		}
+		
+		// Checks the description of the motherboard.
+		if(desc.getText().length()<1)
+		{
+			JOptionPane.showMessageDialog(this
+					, "The motherboard description must be longer then 1 character."
+					, "Error - Description"
+					, JOptionPane.INFORMATION_MESSAGE);
+			
+			return false;
+		}	
+		
+		
+		// Checks the form of the motherboard.
+		if(forms.getSelectedItem().toString().equals(""))
+		{
+			JOptionPane.showMessageDialog(this
+					, "The motherboard must have a form."
+					, "Error - Form"
+					, JOptionPane.INFORMATION_MESSAGE);
+			
+			return false;
+		}
+		
+		
+		// Checks the socket of the motherboard.
+		if(sockets.getSelectedItem().toString().equals(""))
+		{
+			JOptionPane.showMessageDialog(this
+					, "The motherboard must have a socket so to place a CPU."
+					, "Error - Socket"
+					, JOptionPane.INFORMATION_MESSAGE);
+			
+			return false;
+		}
+		
+		
+		return true;
+	}
+	
+	
+	
+	/* (non-Javadoc)
+	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
+	 */
+	public void save()
+	{
+		if(name.getText() != "")
+		{
+			mbObj.setObjectName(name.getText());
+		}
+		
+		if(desc.getText() != "")
+		{
+			mbObj.setDescription(desc.getText());
+		}
+		
+		if(producerField.getText() != "")
+		{
+			mbObj.setProducer(producerField.getText());
+		}
+		
+		if(forms.getSelectedItem().toString() != "")
+		{
+			mbObj.setForm(forms.getSelectedItem().toString());
+		}
+		
+		if(sockets.getSelectedItem().toString() != "")
+		{
+			mbObj.setSocket(sockets.getSelectedItem().toString());
+		}
+		
+		if(busSpeeds.getSelectedItem().toString() != "")
+		{
+			mbObj.setBusSpeed(Integer.parseInt(busSpeeds.getSelectedItem().toString()));
+		}
+		
+		if(chipsetField.getText() != "")
+		{
+			mbObj.setChipset(chipsetField.getText());
+		}
+		
+		if(gpuPorts.getSelectedItem().toString() != "")
+		{
+			mbObj.setGraphicalPort(gpuPorts.getSelectedItem().toString());
+		}
+		
+		if(DUCPorts.getSelectedItem().toString() != "")
+		{
+			mbObj.setDUCconnectionType(DUCPorts.getSelectedItem().toString());
+		}
+		
+		if(RAMPorts.getSelectedItem().toString() != "")
+		{
+			mbObj.setRAMtype(RAMPorts.getSelectedItem().toString());
+		}
+		
+
+		mbObj.setIntegAudioCard(intAudioCard.isSelected());
+		mbObj.setIntegGraphicalCard(intGPU.isSelected());
+		mbObj.setIntegLANcard(intNIC.isSelected());
+		mbObj.setGraphicsCard(GPUinstalled.isSelected());
+		
+		
+		if(CPUsockets.getSelectedItem().toString() != "")
+		{
+			mbObj.setMaxCPUs(Integer.parseInt(CPUsockets.getSelectedItem().toString()));
+		}	
+		
+		if(PCIslots.getSelectedItem().toString() != "")
+		{
+			mbObj.setMaxPCIs(Integer.parseInt(PCIslots.getSelectedItem().toString()));
+		}
+		
+		if(RAMslots.getSelectedItem().toString() != "")
+		{
+			mbObj.setMaxRAMs(Integer.parseInt(RAMslots.getSelectedItem().toString()));
+		}
+		
+		if(USBports.getSelectedItem().toString() != "")
+		{
+			mbObj.setMaxUSBs(Integer.parseInt(USBports.getSelectedItem().toString()));
+		}
+		
+		if(DUCports.getSelectedItem().toString() != "")
+		{
+			mbObj.setMaxDUCs(Integer.parseInt(DUCports.getSelectedItem().toString()));
+		}
+		
+		if(LANports.getSelectedItem().toString() != "")
+		{
+			mbObj.setMaxIntegratedLANs(Integer.parseInt(LANports.getSelectedItem().toString()));
+		}
 	}
 }
