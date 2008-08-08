@@ -37,10 +37,18 @@ public class HardwareObjectView extends JPanel implements ActionListener
 {
 	private Object givenObject = null;
 	
+	private HardwareEditor hwEditor = null;
+	
 	/**
 	 * TODO - Description NEEDED!
 	 */
 	public HardwareObjectView(Object obj)
+	{
+		populiateInfo(obj);
+	}
+	
+	
+	public void populiateInfo(Object obj)
 	{
 		givenObject = obj;
 		
@@ -454,6 +462,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		this.add(buttons, d);
 		
 	}
+	
 
 	/**
 	 * TODO - Description
@@ -516,7 +525,22 @@ public class HardwareObjectView extends JPanel implements ActionListener
 	{
 		if(e.getActionCommand().equals("edit"))
 		{
-			new HardwareEditor(givenObject); 
+			hwEditor = new HardwareEditor(givenObject); 
 		}
+	}
+	
+	
+	
+	public void updateTabInfo()
+	{
+		hwEditor.HardwarePanelRevalidate();
+		
+		
+		this.removeAll();
+		
+		this.populiateInfo(givenObject);
+		
+		this.repaint();
+		this.revalidate();
 	}
 }

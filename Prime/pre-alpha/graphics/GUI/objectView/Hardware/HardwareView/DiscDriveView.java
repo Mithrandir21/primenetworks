@@ -18,6 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import objects.Object;
+
 /**
  * TODO - Description NEEDED!
  *
@@ -31,10 +33,11 @@ public class DiscDriveView extends JPanel implements HardwareView
 	
 	/**
 	 * TODO - Description NEEDED!
+	 * @param obj 
 	 *
 	 * @param discdrive
 	 */
-	public DiscDriveView(Discdrive discdrive)
+	public DiscDriveView(Object obj, Discdrive discdrive)
 	{		
 		this.setLayout(new GridBagLayout());
 		this.setBackground(Color.WHITE);
@@ -81,9 +84,16 @@ public class DiscDriveView extends JPanel implements HardwareView
 		
 	}
 
-	public boolean validateData()
+	public boolean validateNecessaryData()
 	{
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public boolean validateChangedData()
+	{
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

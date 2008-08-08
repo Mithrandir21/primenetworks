@@ -38,7 +38,7 @@ public class HardwareEditor extends JFrame implements ActionListener
 {
 	private Object givenObject = null;
 	
-	HardwareEditorTabbed view;
+	private HardwareEditorTabbed view;
 	
 	public HardwareEditor(Object obj)
 	{
@@ -66,7 +66,7 @@ public class HardwareEditor extends JFrame implements ActionListener
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
 		
-		view = new HardwareEditorTabbed(obj.getComponents());
+		view = new HardwareEditorTabbed(obj);
 		
 		panel.add(view);
 		
@@ -234,4 +234,11 @@ public class HardwareEditor extends JFrame implements ActionListener
 		return genPanel;
 	}
 	
+	
+	public void HardwarePanelRevalidate()
+	{
+		view.removeAll();
+		
+		view.populateTabs(givenObject);
+	}
 }

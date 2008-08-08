@@ -13,8 +13,17 @@ import org.netbeans.api.visual.widget.Widget;
 import widgetManipulation.WidgetObject;
 
 
+/**
+ * TODO - Description NEEDED!
+ *
+ * @author Bahram Malaekeh
+ * 
+ */
 public class AdapterExtended extends Adapter
 {
+	/* (non-Javadoc)
+	 * @see org.netbeans.api.visual.action.WidgetAction$Adapter#mouseClicked(org.netbeans.api.visual.widget.Widget, org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
+	 */
 	@Override
 	public State mouseClicked(Widget widget, WidgetMouseEvent event)
 	{
@@ -26,7 +35,11 @@ public class AdapterExtended extends Adapter
 				WidgetObject widgetobj = (WidgetObject) widget;
 				if ( event.getClickCount() == 2 )
 				{
-					new ObjectView(widgetobj);
+					if ( PrimeMain1.getObjectView() == null )
+					{
+						ObjectView objView = new ObjectView(widgetobj);
+						PrimeMain1.setObjectView(objView);
+					}
 				}
 				else if ( event.getClickCount() == 1 )
 				{
@@ -37,6 +50,9 @@ public class AdapterExtended extends Adapter
 		return State.REJECTED;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.netbeans.api.visual.action.WidgetAction$Adapter#mousePressed(org.netbeans.api.visual.widget.Widget, org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
+	 */
 	@Override
 	public State mousePressed(Widget widget, WidgetMouseEvent event)
 	{
@@ -50,6 +66,9 @@ public class AdapterExtended extends Adapter
 	}
 
 
+	/* (non-Javadoc)
+	 * @see org.netbeans.api.visual.action.WidgetAction$Adapter#mouseEntered(org.netbeans.api.visual.widget.Widget, org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
+	 */
 	@Override
 	public State mouseEntered(Widget widget, WidgetMouseEvent event)
 	{
@@ -59,6 +78,9 @@ public class AdapterExtended extends Adapter
 
 
 
+	/* (non-Javadoc)
+	 * @see org.netbeans.api.visual.action.WidgetAction$Adapter#mouseExited(org.netbeans.api.visual.widget.Widget, org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
+	 */
 	@Override
 	public State mouseExited(Widget widget, WidgetMouseEvent event)
 	{

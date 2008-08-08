@@ -18,6 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import objects.Object;
+
 /**
  * TODO - Description NEEDED!
  *
@@ -31,10 +33,11 @@ public class RAMView extends JPanel implements HardwareView
 	
 	/**
 	 * TODO - Description NEEDED!
+	 * @param obj 
 	 *
 	 * @param RAM
 	 */
-	public RAMView(Ram RAM)
+	public RAMView(Object obj, Ram RAM)
 	{
 		
 		this.setLayout(new GridBagLayout());
@@ -78,9 +81,16 @@ public class RAMView extends JPanel implements HardwareView
 		
 	}
 
-	public boolean validateData()
+	public boolean validateNecessaryData()
 	{
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public boolean validateChangedData()
+	{
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

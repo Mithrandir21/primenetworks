@@ -56,6 +56,12 @@ public class ObjectViewTabbed extends JTabbedPane
 		visObjView = new VisualObjectView(obj);
 		String visDesc = "General information and option";
 		this.addTab("Visual", null, visObjView, visDesc);
-		
+	}
+	
+	
+	
+	public void updateTabInfo()
+	{
+		hardObjView.updateTabInfo();
 	}
 }

@@ -10,6 +10,8 @@ import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Iterator;
 import java.util.List;
 
@@ -108,6 +110,16 @@ public class ObjectView extends JFrame implements ActionListener
 		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
+		
+		
+		// Resets the objectView object when closed.
+		this.addWindowListener(new WindowAdapter()
+		{
+			public void windowClosing(WindowEvent ev)
+			{
+				PrimeMain1.resetObjectView();
+			}
+		});
 	}
 
 	
@@ -153,6 +165,8 @@ public class ObjectView extends JFrame implements ActionListener
 			
 			PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject());
 			
+			PrimeMain1.resetObjectView();
+			
 			this.dispose();
 		}
 		else if(e.getActionCommand().equals("apply"))
@@ -175,8 +189,17 @@ public class ObjectView extends JFrame implements ActionListener
 		{
 			assert e.getActionCommand().equals("cancel");
 			
+			PrimeMain1.resetObjectView();
+			
 			this.dispose();
 		}
 		
+	}
+	
+	
+	
+	public void updateViewInfo()
+	{
+		view.updateTabInfo();
 	}
 }

@@ -6,12 +6,12 @@ package graphics;
 
 import graphics.GUI.menues.GenericPrimeMenuBar;
 import graphics.GUI.menues.GenericPrimeToolbar;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.properties.PropertiesArea;
 import graphics.GUI.selectArea.TabbedSelection;
 import graphics.GUI.statusArea.PrimeStatusBar;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import graphics.GUI.workareaCanvas.WorkareaTabbed;
-import objects.Object;
 
 import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
@@ -41,6 +41,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+
+import objects.Object;
 
 import org.jdesktop.swingx.JXMultiSplitPane;
 import org.jdesktop.swingx.MultiSplitLayout;
@@ -80,6 +82,9 @@ public class PrimeMain1 extends JFrame
 
 
 	public static MakeStandardInternalComponents standard_internal_components = new MakeStandardInternalComponents();
+	
+	
+	public static ObjectView objView = null;
 
 
 	// Constructor
@@ -417,6 +422,48 @@ public class PrimeMain1 extends JFrame
 		PropertiesArea temp = (PropertiesArea) propertiesPanel.getComponent(0);
 
 		temp.newObjectSelectedPropertiesTab(obj);
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static void resetObjectView()
+	{
+		objView = null;
+	}
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static void setObjectView(ObjectView view)
+	{
+		objView = view;
+	}
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static ObjectView getObjectView()
+	{
+		return objView;
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static void updateObjectView()
+	{
+		objView.updateViewInfo();
 	}
 
 }

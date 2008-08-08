@@ -16,7 +16,14 @@ public interface HardwareView
 	 * TODO - Description
 	 * 
 	 */
-	public boolean validateData();
+	public boolean validateNecessaryData();
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public boolean validateChangedData();
 	
 	
 	/**

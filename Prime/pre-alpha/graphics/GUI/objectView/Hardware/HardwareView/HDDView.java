@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import objects.Object;
+
 /**
  * TODO - Description NEEDED!
  *
@@ -26,7 +28,7 @@ public class HDDView extends JPanel implements HardwareView
 	JTextField name = new JTextField(25);
 	JTextArea desc = new JTextArea(3,40);
 	
-	public HDDView(HDD hdd)
+	public HDDView(Object obj, HDD hdd)
 	{		
 		this.setLayout(new GridBagLayout());
 		this.setBackground(Color.WHITE);
@@ -73,9 +75,16 @@ public class HDDView extends JPanel implements HardwareView
 		
 	}
 
-	public boolean validateData()
+	public boolean validateNecessaryData()
 	{
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public boolean validateChangedData()
+	{
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
