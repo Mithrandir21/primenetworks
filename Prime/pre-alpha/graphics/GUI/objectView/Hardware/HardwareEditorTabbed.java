@@ -30,7 +30,7 @@ import objects.Object;
 
 
 /**
- * TODO - Description NEEDED!
+ * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
  */
@@ -38,54 +38,58 @@ public class HardwareEditorTabbed extends JTabbedPane
 {
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Javadoc-TODO - Description NEEDED!
 	 * 
-	 * @param components
+	 * @param obj
 	 */
 	public HardwareEditorTabbed(Object obj)
 	{
 		populateTabs(obj);
 	}
-	
-	
+
+
 	/**
-	 * TODO - Description
+	 * Creates and adds tabs to this JTabbedPane instance based on the class of
+	 * the internal components of the given object, such as Motherboard, CPU or
+	 * RAM.
 	 * 
+	 * @param obj
+	 *            The object that holds the internal components which in turn
+	 *            are the basis for the creation of the hardware views.
 	 */
 	public void populateTabs(Object obj)
 	{
 		Object[] components = obj.getComponents();
-		
-		
+
+
 		for ( int i = 0; i < components.length; i++ )
 		{
 			if ( components[i] instanceof Motherboard )
 			{
 				String MBDesc = "General information and option";
-				this.addTab("Motherboard", null, new MotherboardView(obj,(Motherboard) components[i]),
-						MBDesc);
+				this.addTab("Motherboard", null, new MotherboardView(obj,
+						(Motherboard) components[i]), MBDesc);
 			}
 			else if ( components[i] instanceof CPU )
 			{
 				String CPUDesc = "General information and option";
-				this.addTab("CPU", null, new CPUView(obj,(CPU) components[i]), CPUDesc);
+				this.addTab("CPU", null, new CPUView(obj, (CPU) components[i]), CPUDesc);
 			}
 			else if ( components[i] instanceof HDD )
 			{
 				String HDDDesc = "General information and option";
-				this.addTab("Harddisc", null, new HDDView(obj,(HDD) components[i]), HDDDesc);
+				this.addTab("Harddisc", null, new HDDView(obj, (HDD) components[i]), HDDDesc);
 			}
 			else if ( components[i] instanceof Ram )
 			{
 				String RAMDesc = "General information and option";
-				this.addTab("RAM", null, new RAMView(obj,(Ram) components[i]), RAMDesc);
+				this.addTab("RAM", null, new RAMView(obj, (Ram) components[i]), RAMDesc);
 			}
 			else if ( components[i] instanceof Discdrive )
 			{
 				String DDDesc = "General information and option";
-				this
-						.addTab("Discdrive", null, new DiscDriveView(obj,(Discdrive) components[i]),
-								DDDesc);
+				this.addTab("Discdrive", null, new DiscDriveView(obj, (Discdrive) components[i]),
+						DDDesc);
 			}
 			else if ( components[i] instanceof GraphicsCard )
 			{
@@ -107,11 +111,19 @@ public class HardwareEditorTabbed extends JTabbedPane
 			}
 		}
 	}
-	
-	
+
+
 
 	/**
-	 * TODO - Description
+	 * This method calls the save methods on all the different HardwareViews and
+	 * if the boolean given is true, calls also the validation methodes on all
+	 * views. If any of the validations fail, none save methods will be called.
+	 * 
+	 * @param verify
+	 *            Boolean saying if validation should be run on the data.
+	 * @return If the save methods in each of the views does not return false,
+	 *         which would mean that it did not save, the method will return
+	 *         true. Else it will return false;
 	 */
 	public boolean save(boolean verify)
 	{
@@ -154,15 +166,21 @@ public class HardwareEditorTabbed extends JTabbedPane
 		{
 			/**
 			 * Goes through all the views and saves the values since none of the
-			 * views failed its validation.
+			 * views failed its validation. All except the motherboard which
+			 * will be saved last.
 			 */
-			for ( int i = 0; i < this.getComponentCount(); i++ )
+			for ( int i = 1; i < this.getComponentCount(); i++ )
 			{
 				Component comp = this.getComponent(i);
 
 				((HardwareView) comp).save();
 			}
 
+			// The motherboard save.
+			Component comp = this.getComponent(0);
+			((HardwareView) comp).save();
+
+			
 			// Returns a boolean showing that everything i saved.
 			return true;
 		}
@@ -170,7 +188,7 @@ public class HardwareEditorTabbed extends JTabbedPane
 		else
 		{
 			/**
-			 * Shows that atleast one of the validations have failed and that
+			 * Shows that at least one of the validations have failed and that
 			 * nothing has been saved.
 			 */
 			return false;

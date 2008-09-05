@@ -60,7 +60,15 @@ import connections.Connection;
 
 
 /**
- * Description NEEDED!
+ * A visual canvas that will hold all the object of any given network. The
+ * object can be moved around, deleted or connected to other object. The canvas
+ * has a come special feature like zooming, scrolling and panning.
+ * 
+ * The canvas has D'n'D(Drag and Drop) features. Any Widget can be dragged and
+ * dropped onto the the canvas. The widget will then be converted into a
+ * {@link WidgetObject WidgetObject} and a standard object will be created. The
+ * object class depends on the class of the dragged widget. The object will be
+ * created and place within the WidgetObject.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -99,6 +107,10 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 
+	/**
+	 * A constructor for the canvas class. This constructor will set the drop
+	 * handling and all the special features the canvas has.
+	 */
 	public WorkareaCanvas()
 	{
 		// Creating the actual view
@@ -132,7 +144,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the name of the canvas.
 	 * 
 	 * @return the canvasName
 	 */
@@ -143,8 +155,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the scene.
 	 * 
+	 * @see org.netbeans.api.visual.widget.Scene Scene
 	 * @return the scene
 	 */
 	public Scene getScene()
@@ -154,8 +167,10 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the view of the scene. Scene can only be viewed through a view like
+	 * this.
 	 * 
+	 * @see org.netbeans.api.visual.widget.Scene#getView() View
 	 * @return the myView
 	 */
 	public JComponent getMyView()
@@ -165,8 +180,10 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the main layer of the scene. This is where the
+	 * {@link WidgetObject WidgetObjects} are placed.
 	 * 
+	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the mainLayer
 	 */
 	public LayerWidget getMainLayer()
@@ -176,8 +193,10 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the interaction layer of the scene. This is where the actions a user
+	 * sees take place like clicks and menues.
 	 * 
+	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the interactionLayer
 	 */
 	public LayerWidget getInteractionLayer()
@@ -187,8 +206,10 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the connection layer of the scene. This is where the
+	 * {@link connections.WidgetExtendedConnection connections) between objects in the scene are placed.
 	 * 
+	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the connectionLayer
 	 */
 	public LayerWidget getConnectionLayer()
@@ -198,7 +219,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the number of objects on the Scene.
 	 * 
 	 * @return the numberOfWidgetsOnTheScene
 	 */
@@ -209,7 +230,11 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 	/**
-	 * TODO - Description
+	 * Gets the array of connections between objects.
+	 * 
+	 * <i>Note: These connections are not the visual connections shown on the
+	 * scene, but the actual connections between the objects within the
+	 * different widgetObjects.</i>
 	 */
 	public Connection[] getConnections()
 	{
@@ -218,8 +243,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 	/**
-	 * TODO - Description
+	 * Gets the currently selected widgetObject.
 	 * 
+	 * @return Returns the currently selected widgetObject.
 	 */
 	public WidgetObject getCurrentWidgetObject()
 	{
@@ -228,10 +254,10 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets the given string as the canvas name.
 	 * 
 	 * @param canvasName
-	 *            the canvasName to set
+	 *            The name of the canvas.
 	 */
 	public void setCanvasName(String canvasName)
 	{
@@ -239,6 +265,15 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	}
 
 
+	/**
+	 * Sets the connections array for the canvas.
+	 * 
+	 * <i>Note: These connections are not the visual connections shown on the
+	 * scene, but the actual connections between the objects within the
+	 * different widgetObjects.</i>
+	 * 
+	 * @param connections
+	 */
 	public void setConnections(Connection[] connections)
 	{
 		this.connections = connections;
@@ -246,6 +281,11 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 
+	/**
+	 * Sets the current widgetObject.
+	 * 
+	 * @param currentWidgetObject
+	 */
 	public void setCurrentWidgetObject(WidgetObject currentWidgetObject)
 	{
 		if ( currentWidgetObject == null )
@@ -264,6 +304,11 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.dnd.DropTargetListener#dragEnter(java.awt.dnd.DropTargetDragEvent)
+	 */
 	@Override
 	public void dragEnter(DropTargetDragEvent dtde)
 	{
@@ -272,6 +317,11 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.dnd.DropTargetListener#dragExit(java.awt.dnd.DropTargetEvent)
+	 */
 	@Override
 	public void dragExit(DropTargetEvent dte)
 	{
@@ -280,6 +330,11 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.dnd.DropTargetListener#dragOver(java.awt.dnd.DropTargetDragEvent)
+	 */
 	@Override
 	public void dragOver(DropTargetDragEvent dtde)
 	{
@@ -288,6 +343,11 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
+	 */
 	@Override
 	public void drop(DropTargetDropEvent dtde)
 	{
@@ -340,13 +400,30 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.dnd.DropTargetListener#dropActionChanged(java.awt.dnd.DropTargetDragEvent)
+	 */
 	@Override
 	public void dropActionChanged(DropTargetDragEvent dtde)
 	{
+
 	}
 
 
 
+	/**
+	 * Adds the given WidgetObject at the given point on the scene. This method
+	 * adds all the functionality that a widgetObject will have like being able
+	 * to connect to other widgets, being clicked or dragged.
+	 * 
+	 * It also sets a description and places an empty border around the
+	 * widgetObject.
+	 * 
+	 * @param newObject
+	 * @param objectPoint
+	 */
 	private void addWidgetObject(WidgetObject newObject, Point objectPoint)
 	{
 		// int n = JOptionPane.showConfirmDialog(this, "Would you like to add a
@@ -379,9 +456,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 			newObject.getActions().addAction(new AdapterExtended());
 
-			
+
 			LabelWidget objectLabel = new LabelWidget(scene, newObject.getObject().getObjectName());
-			
+
 			newObject.addChild(objectLabel);
 
 
@@ -427,6 +504,10 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	}
 
 
+	/**
+	 * This method cleans up the canvas. The scene and all the views are
+	 * repainted and revalidated. The properties panel is also updated.
+	 */
 	public void cleanUp()
 	{
 		doRepaint();
@@ -453,6 +534,11 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	}
 
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		JMenuItem action = (JMenuItem) e.getSource();
@@ -474,10 +560,11 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 			ImageIcon objectIcon = null;
 			objects.Object newObject = null;
 			WidgetObject newWidgetObject = null;
-			
+
 			if ( actionName.equals("DeleteConnectionsObject") )
 			{
-				WorkareaCanvasActions.removeAllConnectionsToFromObject(this, currentWidgetObject.getObject());
+				WorkareaCanvasActions.removeAllConnectionsToFromObject(this, currentWidgetObject
+						.getObject());
 			}
 			else if ( actionName.equals("DeleteThisObject") )
 			{

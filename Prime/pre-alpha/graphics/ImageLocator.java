@@ -5,12 +5,13 @@ package graphics;
 
 
 import java.net.URL;
-
 import javax.swing.ImageIcon;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class contains methods that get images, ImageIcons, from a given URL or
+ * finds and returns an ImageIcon based on whether or not the given String is
+ * the name of any of the ImageIcons in the systems main ImageIcons.
  * 
  * @author Bahram Malaekeh
  */
@@ -33,28 +34,28 @@ public class ImageLocator
 			return null;
 		}
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Finds and returns an ImageIcon based on whether or not the given String
+	 * is the name of any of the ImageIcons in the systems main ImageIcons.
 	 */
 	public static ImageIcon getImageIconObject(String name)
 	{
 		ImageIcon temp = null;
-		
-		for(int i = 0;i<PrimeMain1.images.size();i++)
+
+		for ( int i = 0; i < PrimeMain1.images.size(); i++ )
 		{
 			temp = PrimeMain1.images.get(i);
-			
-			if(temp.getDescription().equals(name))
+
+			if ( temp.getDescription().equals(name) )
 			{
 				return temp;
 			}
 		}
-		
+
 		return null;
 	}
 }

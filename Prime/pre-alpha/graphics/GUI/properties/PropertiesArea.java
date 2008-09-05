@@ -3,6 +3,7 @@
  */
 package graphics.GUI.properties;
 
+
 import java.awt.Dimension;
 
 import graphics.PrimeMain1;
@@ -12,55 +13,59 @@ import javax.swing.JTabbedPane;
 
 import objects.Object;
 
+
 /**
- * TODO - Description NEEDED!
- *
+ * This is the properties class that is an extension of the JTabbedPane class.
+ * It is here the information about either the canvas or the WidgetObject i
+ * shown. It will react on changes in what canvas i currently selected or clicks
+ * on WidgetObjects on the scene.
+ * 
  * @author Bahram Malaekeh
  * 
  */
-public class PropertiesArea	extends JTabbedPane
+public class PropertiesArea extends JTabbedPane
 {
-	ObjectScrollProperties scrollArea = new ObjectScrollProperties();
-	
+	private ObjectScrollProperties scrollArea = new ObjectScrollProperties();
+
 	/**
-	 * TODO - Description NEEDED!
-	 *
+	 * The constructor for the class that will set both the height and width of
+	 * the component depending on the screen size.
+	 * 
 	 */
 	public PropertiesArea()
 	{
-		
-		int width = (int) (PrimeMain1.width*0.11);
-		
-		int height = (int) (PrimeMain1.height*0.70);
+
+		int width = (int) (PrimeMain1.width * 0.11);
+
+		int height = (int) (PrimeMain1.height * 0.70);
 
 
-		
-		this.setPreferredSize(new Dimension(width,height));
+		this.setPreferredSize(new Dimension(width, height));
 	}
-	
-	
+
+
 	/**
-	 * TODO - Description
+	 * Creates and adds a new properties view with the information from the given object.
 	 * 
 	 */
 	public void newObjectSelectedPropertiesTab(Object object)
 	{
 		scrollArea.newObjectSelectedPropertiesTab(object);
-		
+
 		addTab(object.getObjectName(), scrollArea);
 	}
-	
-	
-	
+
+
+
 	/**
-	 * TODO - Description
+	 * Creates and adds a new properties view with the information from the given canvas.
 	 * 
 	 */
 	public void newObjectSelectedPropertiesTab(WorkareaCanvas canvas)
 	{
 		scrollArea.newObjectSelectedPropertiesTab(canvas);
-		
+
 		addTab(canvas.getCanvasName(), scrollArea);
-		
+
 	}
 }

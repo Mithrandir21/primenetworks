@@ -16,7 +16,8 @@ import connections.WidgetExtendedConnection;
 
 
 /**
- * TODO - Description NEEDED!
+ * In this class the method to maintain and process canvases are placed.
+ * Here are methods that can add or remove canvas
  * 
  * @author Bahram Malaekeh
  */
@@ -24,7 +25,14 @@ public class CanvasManagment
 {
 
 	/**
-	 * TODO - Description
+	 * Adds the given canvas to the array of currently active canvas in the
+	 * system. It also sets the given name as the name of the canvas object.
+	 * 
+	 * @param newCanvas
+	 *            The new canvas that is to be added to systems array of
+	 *            canvases.
+	 * @param name
+	 *            The name that is to be set as the name for the canvas object.
 	 */
 	public static void addCanvas(WorkareaCanvas newCanvas, String name)
 	{
@@ -68,7 +76,7 @@ public class CanvasManagment
 
 
 	/**
-	 * TODO - Description
+	 * Extends the array that holds the system canvases with one index.
 	 */
 	public static void extendCanvasArray()
 	{
@@ -85,7 +93,11 @@ public class CanvasManagment
 
 
 	/**
-	 * TODO - Description
+	 * Searches and, find found, returns a canvas from the systems canvases with
+	 * the given name.
+	 * 
+	 * @param canvasName
+	 *            The name of the canvas that is searched for.
 	 */
 	public static WorkareaCanvas findCanvas(String canvasName)
 	{
@@ -99,38 +111,5 @@ public class CanvasManagment
 
 		// Has not found any canvases with that name.
 		return null;
-	}
-
-
-
-	/**
-	 * TODO - Description
-	 */
-	public static void removeConnectionFromConnectionLayer(Connection con)
-	{
-		List<Widget> list = PrimeMain1.currentCanvas.getConnectionLayer().getChildren();
-
-		WidgetExtendedConnection temp = null;
-
-		boolean found = false;
-		
-		
-		WidgetExtendedConnection testingWidget = null;
-		
-		for ( Iterator<?> iter = list.iterator(); iter.hasNext(); )
-		{
-			testingWidget = (WidgetExtendedConnection) iter.next();
-
-			if ( testingWidget.getConnection().equals(con) )
-			{
-				found = true;
-				temp = testingWidget;
-			}
-		}
-		
-		if(found == true)
-		{
-			PrimeMain1.currentCanvas.getConnectionLayer().removeChild(temp);
-		}
 	}
 }

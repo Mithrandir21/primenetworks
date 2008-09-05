@@ -3,6 +3,7 @@
  */
 package graphics.GUI.objectView.Hardware;
 
+
 import graphics.ImageLocator;
 
 import java.awt.Button;
@@ -28,24 +29,29 @@ import objects.Hardware;
 import objects.Infrastructure;
 import objects.Object;
 
+
 /**
- * TODO - Description NEEDED!
- *
- * @author Bahram Malaekeh
+ * Javadoc-TODO - Description NEEDED!
  * 
+ * @author Bahram Malaekeh
  */
 public class HardwareEditor extends JFrame implements ActionListener
 {
 	private Object givenObject = null;
-	
+
 	private HardwareEditorTabbed view;
-	
+
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 * 
+	 * @param obj
+	 */
 	public HardwareEditor(Object obj)
 	{
 		super("Edit hardware");
-		
+
 		givenObject = obj;
-		
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -53,105 +59,122 @@ public class HardwareEditor extends JFrame implements ActionListener
 		Dimension scrnsize = toolkit.getScreenSize();
 
 
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth()/3)));
+		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
 
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight()/3)));
-		
-		
+		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+
+
 		// Get the content pane for this object
 		Container c = this.getContentPane();
 
 		JPanel panel = new JPanel();
-		
-		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
-		
-		
+
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+
 		view = new HardwareEditorTabbed(obj);
-		
+
 		panel.add(view);
-		
-		
-		
+
+
+
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
-		
+
 		Button save = new Button("Save");
 		save.addActionListener(this);
 		save.setActionCommand("save");
-		
+
 		Button apply = new Button("Apply");
 		apply.addActionListener(this);
 		apply.setActionCommand("apply");
-		
+
 		Button cancel = new Button("Cancel");
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
-		
-		
+
+
 		buttons.add(save);
 		buttons.add(apply);
 		buttons.add(cancel);
-		
-		buttons.setMaximumSize(new Dimension((int) scrnsize.getWidth(),1));
-		
+
+		buttons.setMaximumSize(new Dimension((int) scrnsize.getWidth(), 1));
+
 		panel.add(buttons);
-		
-		
-		
+
+
+
 		c.add(panel);
-		
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,(int) scrnsize.getHeight() / 3));
+
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
+				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getActionCommand().equals("save"))
+		if ( e.getActionCommand().equals("save") )
 		{
 			boolean verify = true;
-			
+
 			// If the object is an instance of infrastructure.
-			if(givenObject instanceof Infrastructure)
+			if ( givenObject instanceof Infrastructure )
 			{
 				verify = false;
 			}
-			
-			// If the information is saved a true is returned and the 
+
+			// If the information is saved a true is returned and the
 			// JFrame is closed.
-			if(view.save(verify))
+			if ( view.save(verify) )
 			{
 				this.dispose();
 			}
 		}
-		else if(e.getActionCommand().equals("apply"))
+		else if ( e.getActionCommand().equals("apply") )
 		{
 			boolean verify = true;
-			
+
 			// If the object is an instance of infrastructure.
-			if(givenObject instanceof Infrastructure)
+			if ( givenObject instanceof Infrastructure )
 			{
 				verify = false;
 			}
-			
+
 			// Saves the information with the option of verification.
 			view.save(verify);
 		}
 		else
 		{
-			assert(e.getActionCommand().equals("cancel"));
-			
+			assert (e.getActionCommand().equals("cancel"));
+
 			this.dispose();
 		}
 	}
-	
-	
+
+
 	/**
-	 * TODO - Description
+	 * Creates a JPanel that shows an Icon representing the hardware object and
+	 * two fields with the name and description of the hardware object.
 	 * 
+	 * @param hw
+	 *            The actual hardware object.
+	 * @param icon
+	 *            The Icon representing the hardware component.
+	 * @param name
+	 *            A JTextField that will contain the name of the object.
+	 * @param desc
+	 *            A JTextArea that holds the description of the object.
+	 * @return Returns the created JPanel with all the information about the
+	 *         hardware object.
 	 */
-	public static JPanel GeneralInfo(Hardware hw,ImageIcon temp,JTextField name, JTextArea desc)
+	public static JPanel GeneralInfo(Hardware hw, ImageIcon icon, JTextField name, JTextArea desc)
 	{
 		JPanel genPanel = new JPanel();
 		genPanel.setLayout(new GridBagLayout());
@@ -167,13 +190,13 @@ public class HardwareEditor extends JFrame implements ActionListener
 		c.weighty = 1;
 		c.gridwidth = 1;
 		c.gridheight = 2;
-		
-		JLabel image = new JLabel(temp);
+
+		JLabel image = new JLabel(icon);
 		genPanel.add(image, c);
-		
-		
+
+
 		GridBagConstraints d = new GridBagConstraints();
-		
+
 		d.fill = GridBagConstraints.NONE;
 		d.gridx = 1;
 		d.gridy = 0;
@@ -182,9 +205,9 @@ public class HardwareEditor extends JFrame implements ActionListener
 		d.gridwidth = 1;
 		d.gridheight = 1;
 		d.anchor = GridBagConstraints.CENTER;
-		
+
 		JLabel nameLabel = new JLabel("Hardware name");
-		genPanel.add(nameLabel,d);
+		genPanel.add(nameLabel, d);
 
 		d.gridx = 2;
 		d.gridy = 0;
@@ -193,15 +216,15 @@ public class HardwareEditor extends JFrame implements ActionListener
 		d.gridwidth = 1;
 		d.gridheight = 1;
 		d.anchor = GridBagConstraints.LINE_START;
-		
+
 		name.setName("Name");
 		name.setText(hw.getObjectName());
 		JLabel t = new JLabel();
 		name.setFont(t.getFont());
-		//	name.setBorder(BorderFactory.createEmptyBorder());
-		genPanel.add(name,d);
-		
-		
+		// name.setBorder(BorderFactory.createEmptyBorder());
+		genPanel.add(name, d);
+
+
 		d.fill = GridBagConstraints.NONE;
 		d.gridx = 1;
 		d.gridy = 1;
@@ -210,11 +233,11 @@ public class HardwareEditor extends JFrame implements ActionListener
 		d.gridwidth = 1;
 		d.gridheight = 1;
 		d.anchor = GridBagConstraints.CENTER;
-		
+
 		JLabel descLabel = new JLabel("Description");
-		genPanel.add(descLabel,d);
-		
-		
+		genPanel.add(descLabel, d);
+
+
 		d.fill = GridBagConstraints.HORIZONTAL;
 		d.gridx = 2;
 		d.gridy = 1;
@@ -223,22 +246,27 @@ public class HardwareEditor extends JFrame implements ActionListener
 		d.gridwidth = 1;
 		d.gridheight = 1;
 		d.anchor = GridBagConstraints.LINE_START;
-		
+
 		desc.setName("Description");
 		desc.setBorder(BorderFactory.createEtchedBorder());
 		desc.setText(hw.getDescription());
 		desc.setFont(t.getFont());
-		genPanel.add(desc,d);
-		
-		
+		genPanel.add(desc, d);
+
+
 		return genPanel;
 	}
-	
-	
+
+
+	/**
+	 * This function is used for when hardware information is changed or when a
+	 * component is added or removed from an object. It redraws the views that
+	 * show all current hardware information.
+	 */
 	public void HardwarePanelRevalidate()
 	{
 		view.removeAll();
-		
+
 		view.populateTabs(givenObject);
 	}
 }

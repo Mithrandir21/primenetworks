@@ -4,7 +4,7 @@
 package exceptions;
 
 /**
- * TODO - Description NEEDED!
+ * Javadoc-TODO - Description NEEDED!
  *
  * @author Bahram Malaekeh
  * 
@@ -18,8 +18,11 @@ public class ConnectionsIsNotPossible extends Exception
 	
 	
 	/**
-	 * Description NEEDED!
+	 * Javadoc-TODO - Description NEEDED!
 	 *
+	 * @param a
+	 * @param b
+	 * @param reason
 	 */
 	public ConnectionsIsNotPossible(String a, String b, String reason)
 	{

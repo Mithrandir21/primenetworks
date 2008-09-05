@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 
 /**
- * TODO - Description NEEDED!
+ * Javadoc-TODO - Description NEEDED!
  *
  * @author Bahram Malaekeh
  * 
@@ -18,7 +18,7 @@ public class Infrastructure extends Object implements Serializable
 {
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Javadoc-TODO - Description NEEDED!
 	 *
 	 * @param Name
 	 * @param Desc
@@ -30,7 +30,7 @@ public class Infrastructure extends Object implements Serializable
 	
 	
 	/**
-	 * TODO - Description NEEDED!
+	 * Javadoc-TODO - Description NEEDED!
 	 *
 	 * @param Name
 	 * @param Desc
@@ -43,7 +43,7 @@ public class Infrastructure extends Object implements Serializable
 	
 	
 	/**
-	 * TODO - Description NEEDED!
+	 * Javadoc-TODO - Description NEEDED!
 	 *
 	 * @param Name
 	 * @param Desc
@@ -56,7 +56,7 @@ public class Infrastructure extends Object implements Serializable
 	
 	
 	/**
-	 * TODO - Description NEEDED!
+	 * Javadoc-TODO - Description NEEDED!
 	 *
 	 * @param Name
 	 * @param Desc
@@ -70,7 +70,7 @@ public class Infrastructure extends Object implements Serializable
 	
 	
 	/**
-	 * TODO - Description NEEDED!
+	 * Javadoc-TODO - Description NEEDED!
 	 *
 	 * @param Name
 	 * @param Desc

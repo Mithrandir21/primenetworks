@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 import objects.Object;
 
 /**
- * TODO - Description NEEDED!
+ * Javadoc-TODO - Description NEEDED!
  *
  * @author Bahram Malaekeh
  * 
@@ -72,18 +72,29 @@ public class ExternaNICView extends JPanel implements HardwareView
 		this.add(p2,c);
 	}
 
+	/* (non-Javadoc)
+	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
+	 */
+	@Override
 	public void save()
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#validateNecessaryData()
+	 */
+	@Override
 	public boolean validateNecessaryData()
 	{
 		// TODO Auto-generated method stub
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#validateChangedData()
+	 */
 	@Override
 	public boolean validateChangedData()
 	{

@@ -181,7 +181,7 @@ public class ConnectionManagment
 							objectA.removeConnection(existingConnections[i]);
 							objectB.removeConnection(existingConnections[i]);
 							existingConnections[i] = null;
-							
+
 							try
 							{
 								objectA.removeConnectedDevices(objectB);
@@ -290,9 +290,18 @@ public class ConnectionManagment
 
 
 	/**
-	 * TODO - Description
-	 * @throws ConnectionDoesNotExist 
+	 * Searches and, if found, returns a {@link Connection Connection} between
+	 * the two given objects.
 	 * 
+	 * @param existingConnections
+	 *            The array of existing connections.
+	 * @param objectA
+	 *            One of the objects that is searched for.
+	 * @param objectB
+	 *            The other object in the search.
+	 * @return The connection found between object a and b.
+	 * @throws ConnectionDoesNotExist
+	 *             If thing is found this exception is thrown.
 	 */
 	public static Connection getConnection(Connection[] existingConnections, Object objectA,
 			Object objectB) throws ConnectionDoesNotExist
@@ -428,9 +437,7 @@ public class ConnectionManagment
 					if ( existingConnections[i].getObject1().equals(objectA) )
 					{
 						// If the second object is found at the same index as
-						// the
-						// first
-						// one
+						// the first one.
 						if ( existingConnections[i].getObject2().equals(objectB) )
 						{
 							return true;

@@ -117,7 +117,7 @@ public class ObjectView extends JFrame implements ActionListener
 		{
 			public void windowClosing(WindowEvent ev)
 			{
-				PrimeMain1.resetObjectView();
+				PrimeMain1.objView = null;
 			}
 		});
 	}
@@ -165,7 +165,7 @@ public class ObjectView extends JFrame implements ActionListener
 			
 			PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject());
 			
-			PrimeMain1.resetObjectView();
+			PrimeMain1.objView = null;
 			
 			this.dispose();
 		}
@@ -189,7 +189,7 @@ public class ObjectView extends JFrame implements ActionListener
 		{
 			assert e.getActionCommand().equals("cancel");
 			
-			PrimeMain1.resetObjectView();
+			PrimeMain1.objView = null;
 			
 			this.dispose();
 		}

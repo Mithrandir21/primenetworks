@@ -5,15 +5,14 @@ import objects.ExternalHardware;
 
 /**
  * This class represents a MultifunctionPrinter.
- * This device can be connected to any device that supports the conncetion type of this device. 
- * It contains information on what kind of capability the MultifunctionPrinter machine has and what 
- * kind of connection interface is has.
+ * This device can be connected to any device that supports the connection type, USB and so on, of this device. 
+ * It contains information on what kind of capability the MultifunctionPrinter machin has and what 
+ * kind of connection interface is allows.
  * It also includes whether or not the machine has integrated a scanner and a fax.
  * <br><br>
- * <b>Notation</b>: The MultifunctionPrinter will be refered to as "MFP" in 
+ * <b>Notation</b>: The MultifunctionPrinter will be referred to as "MFP" in 
  * the remainder of this document.
  * <br><br>
- * TODO - connect the MFP to the different device present, like fax and scanner.
  * 
  * @author Bahram Malaekeh
  * @version 0.1

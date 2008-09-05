@@ -58,11 +58,14 @@ import org.jdesktop.swingx.MultiSplitLayout.Node;
 @SuppressWarnings("serial")
 public class PrimeMain1 extends JFrame
 {
+	// Variables to place the height and width of the main screen.
 	public static int width, height;
 
 	// Main window panel setup
 	private JPanel toolbarPanel, selectionPanel, workareaPanel, messagesPanel;
 
+	// The JPanel where the properties of any selected object or network
+	// overview is shown.
 	public static JPanel propertiesPanel;
 
 	static JXMultiSplitPane multiSplitPane = new JXMultiSplitPane();
@@ -77,13 +80,13 @@ public class PrimeMain1 extends JFrame
 	// A pointer to the currently open canvas that is displayed in the workarea.
 	public static WorkareaCanvas currentCanvas = null;
 
-
+	// An ImageIcon array that contains all the icons used in the system.
 	public static ArrayList<ImageIcon> images = new ArrayList<ImageIcon>(50);
 
-
+	// A pointer to where all standard internal components are kept.
 	public static MakeStandardInternalComponents standard_internal_components = new MakeStandardInternalComponents();
-	
-	
+
+	// The variable for the object that is in view.
 	public static ObjectView objView = null;
 
 
@@ -137,8 +140,8 @@ public class PrimeMain1 extends JFrame
 		}
 
 
+		// Creates the system icons and places them in the ImageIcon array.
 		MakeSystemImageIcons standard_Image_Icons = new MakeSystemImageIcons();
-
 		standard_Image_Icons.getImageIcons();
 
 
@@ -313,8 +316,6 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * TODO - Description
-	 * 
 	 */
 	private static void SaveLayoutModel()
 	{
@@ -333,10 +334,8 @@ public class PrimeMain1 extends JFrame
 		}
 	}
 
-	
+
 	/**
-	 * TODO - Description
-	 * 
 	 */
 	private void makeLayoutModel()
 	{
@@ -353,8 +352,6 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * TODO - Description
-	 * 
 	 */
 	private void LoadLayoutModel()
 	{
@@ -386,7 +383,6 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * TODO - Description
 	 */
 	static void renderSplashFrame(Graphics2D g, int frame)
 	{
@@ -401,8 +397,8 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * TODO - Description
-	 * 
+	 * Updates the properties panel with information from the currently selected
+	 * canvas.
 	 */
 	public static void updatePropertiesCanvasArea()
 	{
@@ -410,12 +406,12 @@ public class PrimeMain1 extends JFrame
 
 		temp.newObjectSelectedPropertiesTab(currentCanvas);
 	}
-	
-	
-	
+
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Updates the properties panel with information from the given
+	 * object.
 	 */
 	public static void updatePropertiesObjectArea(Object obj)
 	{
@@ -423,47 +419,4 @@ public class PrimeMain1 extends JFrame
 
 		temp.newObjectSelectedPropertiesTab(obj);
 	}
-	
-	
-	
-	/**
-	 * TODO - Description
-	 * 
-	 */
-	public static void resetObjectView()
-	{
-		objView = null;
-	}
-	
-	
-	/**
-	 * TODO - Description
-	 * 
-	 */
-	public static void setObjectView(ObjectView view)
-	{
-		objView = view;
-	}
-	
-	
-	/**
-	 * TODO - Description
-	 * 
-	 */
-	public static ObjectView getObjectView()
-	{
-		return objView;
-	}
-	
-	
-	
-	/**
-	 * TODO - Description
-	 * 
-	 */
-	public static void updateObjectView()
-	{
-		objView.updateViewInfo();
-	}
-
 }

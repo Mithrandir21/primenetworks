@@ -12,6 +12,7 @@ import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareEditor;
 import graphics.GUI.objectView.Hardware.HardwareViewVerifications.MotherboardVerifications;
 import hardware.CPU;
+import hardware.GraphicsCard;
 import hardware.Motherboard;
 
 import java.awt.Color;
@@ -227,21 +228,7 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 		forms.setActionCommand("Form");
 		forms.addActionListener(this);
 
-		int formIndex = 0;
-
-		for ( int i = 1; i < formsStrings.length; i++ )
-		{
-			if ( mb.getForm() != null && mb.getForm() != "" )
-			{
-				if ( forms.getItemAt(i).equals(mb.getForm()) )
-				{
-					formIndex = i;
-					i = formsStrings.length;
-				}
-			}
-		}
-
-		forms.setSelectedIndex(formIndex);
+		forms.setSelectedIndex(getIndexInJComboBox(formsStrings, mb.getForm()));
 
 		labels[1].setLabelFor(forms);
 
@@ -260,22 +247,7 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 		sockets.setActionCommand("Socket");
 		sockets.addActionListener(this);
 
-
-		int socketsIndex = 0;
-
-		for ( int i = 1; i < socketsStrings.length; i++ )
-		{
-			if ( mb.getSocket() != null && mb.getSocket() != "" )
-			{
-				if ( sockets.getItemAt(i).equals(mb.getSocket()) )
-				{
-					socketsIndex = i;
-					i = socketsStrings.length;
-				}
-			}
-		}
-
-		sockets.setSelectedIndex(socketsIndex);
+		sockets.setSelectedIndex(getIndexInJComboBox(socketsStrings, mb.getSocket()));
 
 		labels[2].setLabelFor(sockets);
 
@@ -295,21 +267,7 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 		busSpeeds.addActionListener(this);
 
 
-		int busSpeedIndex = 0;
-
-		for ( int i = 1; i < busspeedStrings.length; i++ )
-		{
-			if ( mb.getBusSpeed() != 0 )
-			{
-				if ( Integer.parseInt(busSpeeds.getItemAt(i).toString()) == (mb.getBusSpeed()) )
-				{
-					busSpeedIndex = i;
-					i = busspeedStrings.length;
-				}
-			}
-		}
-
-		busSpeeds.setSelectedIndex(busSpeedIndex);
+		busSpeeds.setSelectedIndex(getIndexInJComboBox(busspeedStrings, mb.getBusSpeed()));
 
 		labels[3].setLabelFor(busSpeeds);
 
@@ -718,6 +676,166 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 
 
+	/**
+	 * This method find and returns the index of data if it is found in the
+	 * array of strings. If not it will return 0;
+	 * 
+	 * @param strings
+	 *            The array that is searched for the data.
+	 * @param data
+	 *            The integer that is searched for in the array of
+	 *            strings(converted to Integers).
+	 * @return Returns the index in the array where the data has been found. If
+	 *         not found, 0 will be returned.
+	 */
+	private int getIndexInJComboBox(String[] strings, int data)
+	{
+		int Index = 0;
+
+		for ( int i = 0; i < strings.length; i++ )
+		{
+			if ( strings[i] != "" )
+			{
+				if ( Integer.parseInt(strings[i]) == data )
+				{
+					Index = i;
+					i = strings.length;
+				}
+			}
+		}
+
+		return Index;
+	}
+
+
+
+	/**
+	 * This method find and returns the index of data if it is found in the
+	 * array of strings. If not it will return 0;
+	 * 
+	 * @param strings
+	 *            The array that is searched for the data.
+	 * @param data
+	 *            The string that is searched for in the array of strings.
+	 * @return Returns the index in the array where the data has been found. If
+	 *         not found, 0 will be returned.
+	 */
+	private int getIndexInJComboBox(String[] strings, String data)
+	{
+		int Index = 0;
+
+		for ( int i = 0; i < strings.length; i++ )
+		{
+			if ( data != null && data != "" )
+			{
+				if ( strings[i].equals(data) )
+				{
+					Index = i;
+					i = strings.length;
+				}
+			}
+		}
+
+		return Index;
+	}
+
+
+
+	/**
+	 * This method will remove any component from the component list of the this
+	 * classes object if the given mbVariable does not match the given
+	 * newVariable.
+	 * 
+	 * @param componentClass
+	 *            The class of the components that might be removed.
+	 * @param mbVariable
+	 *            The variable on the motherboard. Like the socket or GPU port.
+	 * @param newVariable
+	 *            The editor variable that will be checked for differences.
+	 */
+	public void removeComponentFromObject(Class<?> componentClass, String mbVariable,
+			String newVariable)
+	{
+		if ( ComponentsManagment.containsComponent(componentClass, mainObj.getComponents(), mainObj
+				.getComponents().length) )
+		{
+
+			if ( !mbVariable.equals(newVariable) )
+			{
+
+				boolean objContains = true;
+
+				Object[] returned = null;
+
+				try
+				{
+					// Find the components with the given class on a motherboard
+					returned = ComponentsManagment.getSpesificComponents(componentClass, mainObj
+							.getComponents(), mainObj.getComponents().length);
+				}
+				catch ( ObjectNotFoundException ex )
+				{
+					objContains = false;
+				}
+
+
+				if ( objContains )
+				{
+					try
+					{
+						mainObj.setAllComponents(ComponentsManagment.removeComponents(returned,
+								mainObj.getComponents(), mainObj.getComponents().length));
+					}
+					catch ( ObjectNotFoundInArrayException ex )
+					{
+						ex.printStackTrace();
+					}
+				}
+
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				PrimeMain1.objView.updateViewInfo();
+			}
+		}
+	}
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param componentClass
+	 * @param mbVariable
+	 * @param newVariable
+	 * @param msg
+	 * @param strings
+	 * @param combo
+	 */
+	public void verifyChange(Class<?> componentClass, String mbVariable, String newVariable,
+			String msg, String[] strings, JComboBox combo)
+	{
+		if ( ComponentsManagment.containsComponent(componentClass, mainObj.getComponents(), mainObj
+				.getComponents().length) )
+		{
+
+			if ( !mbVariable.equals(newVariable) )
+			{
+				int n = JOptionPane.showConfirmDialog(this, msg, "Verify",
+						JOptionPane.YES_NO_OPTION);
+
+
+				// If the answer is "No"
+				if ( n == 1 )
+				{
+					combo.setSelectedIndex(getIndexInJComboBox(strings, mbVariable));
+				}
+			}
+		}
+	}
+
+
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -834,6 +952,12 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		if ( sockets.getSelectedItem().toString() != "" )
 		{
+			// Will remove any objects with the given class from the components
+			// array of the motherboard object if the motherboard variable does
+			// not match the editor variable.
+			removeComponentFromObject(CPU.class, mbObj.getSocket(), sockets.getSelectedItem()
+					.toString());
+
 			mbObj.setSocket(sockets.getSelectedItem().toString());
 		}
 
@@ -849,6 +973,12 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		if ( gpuPorts.getSelectedItem().toString() != "" )
 		{
+			// Will remove any objects with the given class from the components
+			// array of the motherboard object if the motherboard variable does
+			// not match the editor variable.
+			removeComponentFromObject(GraphicsCard.class, mbObj.getGraphicalPort(), gpuPorts
+					.getSelectedItem().toString());
+
 			mbObj.setGraphicalPort(gpuPorts.getSelectedItem().toString());
 		}
 
@@ -901,6 +1031,9 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 	}
 
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -913,60 +1046,34 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 			{
 
 			}
+			/**
+			 * 
+			 */
 			else if ( command.equals("Socket") )
 			{
+				String msg = "The CPU will no longer be compatiable.\n\nDo you want to keep this change?";
 
-				if ( !mbObj.getSocket().equals(sockets.getSelectedItem().toString()) )
-				{
-					int n = JOptionPane.showConfirmDialog(this, "Do you want to do this?",
-							"Socket Question", JOptionPane.YES_NO_OPTION);
+				String[] socketsStrings = { "", "Intel 775", "Intel 939", "AMD AM2", "AMD AM2+" };
 
-
-					// If the answer is "Yes"
-					if ( n == 0 )
-					{
-						boolean objContainsCPU = true;
-
-						Object[] returned = null;
-
-						try
-						{
-							// Find the CPUs on a motherboard
-							returned = ComponentsManagment.getSpesificComponents(CPU.class, mainObj
-									.getComponents(), mainObj.getComponents().length);
-						}
-						catch ( ObjectNotFoundException ex )
-						{
-							objContainsCPU = false;
-						}
-
-
-						if ( objContainsCPU )
-						{
-							try
-							{
-								mainObj.setAllComponents(ComponentsManagment.removeComponents(returned, mainObj.getComponents(),
-										mainObj.getComponents().length));
-							}
-							catch ( ObjectNotFoundInArrayException ex )
-							{
-								ex.printStackTrace();
-							}
-						}
-					}
-					
-					
-					// Updates the views of the object to correctly show the current info.
-					PrimeMain1.updateObjectView();
-				}
+				verifyChange(CPU.class, mbObj.getSocket(), sockets.getSelectedItem().toString(),
+						msg, socketsStrings, sockets);
 
 			}
 			else if ( command.equals("Bus Speed") )
 			{
 
 			}
+			/**
+			 * 
+			 */
 			else if ( command.equals("GPU Port") )
 			{
+				String msg = "The Graphical card will no longer be compatiable.\n\nDo you want to keep this change?";
+
+				String[] gpuPortStrings = { "", "AGP", "PCI", "PCI-E" };
+
+				verifyChange(GraphicsCard.class, mbObj.getGraphicalPort(), gpuPorts
+						.getSelectedItem().toString(), msg, gpuPortStrings, gpuPorts);
 
 			}
 			else if ( command.equals("DUC Port") )

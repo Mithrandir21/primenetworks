@@ -8,7 +8,7 @@ import hardware.*;
 
 
 /**
- * TODO - Description NEEDED!
+ * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
  */
@@ -18,7 +18,7 @@ public class MakeStandardInternalComponents
 	// GETTERS
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Javadoc-TODO - Description NEEDED!
 	 * 
 	 * @return the st_MB
 	 */
@@ -33,7 +33,7 @@ public class MakeStandardInternalComponents
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Javadoc-TODO - Description NEEDED!
 	 * 
 	 * @return the hw_MB
 	 */
@@ -48,7 +48,7 @@ public class MakeStandardInternalComponents
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Javadoc-TODO - Description NEEDED!
 	 * 
 	 * @return the st_CPU
 	 */
@@ -63,7 +63,7 @@ public class MakeStandardInternalComponents
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Javadoc-TODO - Description NEEDED!
 	 * 
 	 * @return the st_HDD
 	 */
@@ -78,7 +78,7 @@ public class MakeStandardInternalComponents
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Javadoc-TODO - Description NEEDED!
 	 * 
 	 * @return the st_RAM
 	 */
@@ -93,7 +93,7 @@ public class MakeStandardInternalComponents
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Javadoc-TODO - Description NEEDED!
 	 * 
 	 * @return the st_DVDRW
 	 */

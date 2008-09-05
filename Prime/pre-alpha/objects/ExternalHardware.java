@@ -7,14 +7,17 @@ import java.io.Serializable;
 
 /**
  * An abstract super class for all external hardware objects in the system, 
- * including {@link  objects.Servers  Servers}, {@link  objects.Clients  Clients} and
- * {@link  peripheral  Peripherals}.
+ * including {@link  peripheral.ExternalHDD  ExternalHDD}, {@link  peripheral.Printer  Printer} and
+ * {@link  peripheral.Monitor  Monitor}.
  * 
- * MUST ADD INFO!!
- * TODO - ADD INFO HERE
+ * The class contains different constructors so the system can easily create different object
+ * with the available information.
+ * There are constructors that create object only with a name and a description, and there are
+ * constructors that create an object with all the internal components or just a motherboard.
+ *  
  *
  * @author Bahram Malaekeh
- * @version 0.0.1
+ * @version 0.1
  */
 public abstract class ExternalHardware extends Hardware implements Serializable
 {
@@ -25,7 +28,7 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 * @param Name
 	 *            The name of the hardware device.
 	 * @param Desc
-	 *            The description of the hardware decvice.
+	 *            The description of the hardware device.
 	 */
 	public ExternalHardware(String Name, String Desc)
 	{
@@ -39,7 +42,7 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 * @param Name
 	 *            The name of the hardware device.
 	 * @param Desc
-	 *            The description of the hardware decvice.
+	 *            The description of the hardware device.
 	 * @param SupConInt
 	 *            An array of strings that describes the supported connection
 	 *            interfaces.
@@ -56,7 +59,7 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 * @param Name
 	 *            The name of the hardware device.
 	 * @param Desc
-	 *            The description of the hardware decvice.
+	 *            The description of the hardware device.
 	 * @param DesktopComponents
 	 *            The initial components an instance of a desktop has.
 	 */
@@ -72,7 +75,7 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 * @param Name
 	 *            The name of the hardware device.
 	 * @param Desc
-	 *            The description of the hardware decvice.
+	 *            The description of the hardware device.
 	 * @param SupConInt
 	 *            An array of strings that describes the supported connection
 	 *            interfaces.
@@ -91,7 +94,7 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 * @param Name
 	 *            The name of the hardware device.
 	 * @param Desc
-	 *            The description of the hardware decvice.
+	 *            The description of the hardware device.
 	 * @param SupConInt
 	 *            An array of strings that describes the supported connection
 	 *            interfaces.
