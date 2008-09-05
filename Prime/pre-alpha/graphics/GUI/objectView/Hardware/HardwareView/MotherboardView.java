@@ -13,6 +13,7 @@ import graphics.GUI.objectView.Hardware.HardwareEditor;
 import graphics.GUI.objectView.Hardware.HardwareViewVerifications.MotherboardVerifications;
 import hardware.CPU;
 import hardware.GraphicsCard;
+import hardware.HDD;
 import hardware.Motherboard;
 
 import java.awt.Color;
@@ -803,14 +804,18 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function does verifies that a component with the given class exists in the components
+	 * array of the main selected component. If it does the function then checks to verify that
+	 * the input slot/socket matches with the slot/socket of the found component.
+	 * If the two slots/sockets do not match the user is asked to verify their choice
+	 * that will then lead to the removal of the uncompatible component.
 	 * 
-	 * @param componentClass
-	 * @param mbVariable
-	 * @param newVariable
-	 * @param msg
-	 * @param strings
-	 * @param combo
+	 * @param componentClass The class of the component that will be searched for.
+	 * @param mbVariable The port, slot or socket on the motherboard.
+	 * @param newVariable The port, slot or socket that the user has choosen. 
+	 * @param msg The message the user will see.
+	 * @param strings The strings in the selected JComboBox.
+	 * @param combo The JComboBox itself.
 	 */
 	public void verifyChange(Class<?> componentClass, String mbVariable, String newVariable,
 			String msg, String[] strings, JComboBox combo)
@@ -1078,6 +1083,12 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 			}
 			else if ( command.equals("DUC Port") )
 			{
+				String msg = "Some connected devices will no longer be compatiable.\n\nDo you want to keep this change?";
+
+				String[] DUCStrings = { "", "IDE", "SATA", "eSATA" };
+
+				verifyChange(HDD.class, mbObj.getDUCconnectionType(), DUCPorts
+						.getSelectedItem().toString(), msg, DUCStrings, DUCPorts);
 
 			}
 			else if ( command.equals("RAM Port") )
