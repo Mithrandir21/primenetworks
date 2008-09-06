@@ -4,20 +4,13 @@
 package managment;
 
 
-import java.util.Iterator;
-import java.util.List;
-
-import org.netbeans.api.visual.widget.Widget;
-
 import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
-import connections.Connection;
-import connections.WidgetExtendedConnection;
 
 
 /**
- * In this class the method to maintain and process canvases are placed.
- * Here are methods that can add or remove canvas
+ * In this class the method to maintain and process canvases are placed. Here
+ * are methods that can add or remove canvas
  * 
  * @author Bahram Malaekeh
  */

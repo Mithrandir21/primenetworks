@@ -3,11 +3,9 @@ import hardware.Motherboard;
 
 import java.io.Serializable;
 
-
-import exceptions.StringNotFoundInArrayException;
 import managment.ArrayManagment;
 import objects.Infrastructure;
-import objects.Object;
+import exceptions.StringNotFoundInArrayException;
 
 
 /**

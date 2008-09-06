@@ -2,7 +2,6 @@ package infrastructure;
 import java.io.Serializable;
 
 import objects.Infrastructure;
-import objects.Object;
 
 
 public class RackUnit extends Infrastructure implements Serializable 

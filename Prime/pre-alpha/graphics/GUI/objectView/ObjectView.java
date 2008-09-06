@@ -1,7 +1,6 @@
 package graphics.GUI.objectView;
 
 import graphics.PrimeMain1;
-import graphics.GUI.properties.PropertiesArea;
 
 import java.awt.Button;
 import java.awt.Container;

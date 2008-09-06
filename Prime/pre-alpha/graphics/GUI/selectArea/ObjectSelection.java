@@ -6,7 +6,6 @@ package graphics.GUI.selectArea;
 
 import graphics.ImageLocator;
 import graphics.WidgetIcon;
-import hardware.HDD;
 import infrastructure.Hub;
 import infrastructure.Router;
 import infrastructure.Switch;

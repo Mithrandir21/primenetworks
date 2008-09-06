@@ -4,8 +4,6 @@
 package graphics.GUI.objectView.Hardware;
 
 
-import graphics.ImageLocator;
-
 import java.awt.Button;
 import java.awt.Container;
 import java.awt.Dimension;

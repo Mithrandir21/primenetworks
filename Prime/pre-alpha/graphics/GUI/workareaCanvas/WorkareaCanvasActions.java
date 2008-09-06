@@ -1,16 +1,17 @@
 package graphics.GUI.workareaCanvas;
 
 
+import exceptions.ConnectionDoesNotExist;
+import graphics.PrimeMain1;
+
 import java.util.Iterator;
 import java.util.List;
 
-import org.netbeans.api.visual.widget.Widget;
-
-import exceptions.ConnectionDoesNotExist;
-import graphics.PrimeMain1;
-import managment.CanvasManagment;
 import managment.ConnectionManagment;
 import objects.Object;
+
+import org.netbeans.api.visual.widget.Widget;
+
 import widgetManipulation.WidgetObject;
 import connections.Connection;
 import connections.WidgetExtendedConnection;

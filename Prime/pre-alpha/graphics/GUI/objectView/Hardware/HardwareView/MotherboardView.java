@@ -808,11 +808,11 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 	 * array of the main selected component. If it does the function then checks to verify that
 	 * the input slot/socket matches with the slot/socket of the found component.
 	 * If the two slots/sockets do not match the user is asked to verify their choice
-	 * that will then lead to the removal of the uncompatible component.
+	 * that will then lead to the removal of the incompatible component.
 	 * 
 	 * @param componentClass The class of the component that will be searched for.
 	 * @param mbVariable The port, slot or socket on the motherboard.
-	 * @param newVariable The port, slot or socket that the user has choosen. 
+	 * @param newVariable The port, slot or socket that the user has chosen. 
 	 * @param msg The message the user will see.
 	 * @param strings The strings in the selected JComboBox.
 	 * @param combo The JComboBox itself.
@@ -989,6 +989,12 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		if ( DUCPorts.getSelectedItem().toString() != "" )
 		{
+			// Will remove any objects with the given class from the components
+			// array of the motherboard object if the motherboard variable does
+			// not match the editor variable.
+			removeComponentFromObject(HDD.class, mbObj.getDUCconnectionType(), DUCPorts.getSelectedItem()
+					.toString());
+
 			mbObj.setDUCconnectionType(DUCPorts.getSelectedItem().toString());
 		}
 

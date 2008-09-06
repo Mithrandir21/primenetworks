@@ -5,10 +5,8 @@ import hardware.Motherboard;
 import java.io.Serializable;
 
 import managment.ArrayManagment;
-import exceptions.StringNotFoundInArrayException;
-
 import objects.Infrastructure;
-import objects.Object;
+import exceptions.StringNotFoundInArrayException;
 
 
 /**
