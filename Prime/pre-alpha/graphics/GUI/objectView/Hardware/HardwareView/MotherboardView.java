@@ -138,6 +138,10 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 	}
 
 
+	/**
+	 * @param mb
+	 * @return
+	 */
 	private JPanel createSpesificInfo(Motherboard mb)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
