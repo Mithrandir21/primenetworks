@@ -4,7 +4,9 @@
 package graphics.GUI.objectView.Hardware.HardwareView;
 
 
+import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareEditor;
 import hardware.CPU;
 import hardware.Ram;
@@ -14,6 +16,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -31,25 +35,24 @@ import objects.Object;
  * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
-public class RAMView extends JPanel implements HardwareView
+public class RAMView extends JPanel implements HardwareView, ActionListener
 {
 	JTextField name = new JTextField(25);
 
 	JTextArea desc = new JTextArea(3, 40);
-	
+
 	private JTextField producer = new JTextField(7);
-	
+
 	private JComboBox type;
-	
+
 	private JComboBox subtype;
-	
+
 	private JComboBox size;
-	
+
 	private JComboBox speed;
-	
-	
+
+
 	Object mainObj;
 
 	Ram RAMobj;
@@ -58,7 +61,6 @@ public class RAMView extends JPanel implements HardwareView
 	 * TODO - Description NEEDED!
 	 * 
 	 * @param obj
-	 * 
 	 * @param RAM
 	 */
 	public RAMView(Object obj, Ram RAM)
@@ -94,19 +96,19 @@ public class RAMView extends JPanel implements HardwareView
 		c.gridheight = 5;
 		c.insets = new Insets(0, 10, 10, 10);
 
-		JPanel p2 = new JPanel();
+		JPanel p2 = createSpesificInfo(RAMobj);
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
 	}
-	
-	
-	private JPanel createSpesificInfo(CPU cpu)
+
+
+	private JPanel createSpesificInfo(Ram ram)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[5];
-		
-		
+
+
 		labels[0] = new JLabel("Producer");
 		labels[0].setToolTipText("The producer of the ram.");
 
@@ -118,21 +120,134 @@ public class RAMView extends JPanel implements HardwareView
 
 		labels[3] = new JLabel("Size");
 		labels[3].setToolTipText("The size of the RAM measured in MB.");
-		
+
 		labels[4] = new JLabel("Speed");
 		labels[4].setToolTipText("The speed of the RAM measured in Mhz.");
-		
+
 
 		Dimension tfSize = new Dimension(90, 20);
+
+
+		// The producer
+		labels[0].setLabelFor(producer);
+		producer.setMaximumSize(tfSize);
+		producer.setPreferredSize(tfSize);
+		producer.setText(ram.getProducer());
+		producer.setToolTipText(labels[0].getToolTipText());
+
+
+		panel.add(labels[0]);
+		panel.add(producer);
+
+
+		// The type of the ram
+		labels[1].setLabelFor(type);
+		String[] typeString = { "", "SDRAM", "DDR", "DDR2", "DDR3" };
+		type = new JComboBox(typeString);
+		type.setMaximumSize(tfSize);
+		type.setPreferredSize(tfSize);
+		type.setBackground(Color.WHITE);
+		type.setToolTipText(labels[1].getToolTipText());
+		type.setActionCommand("Type");
+		type.addActionListener(this);
+
+		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				typeString, ram.getType()));
+
+
+		panel.add(labels[1]);
+		panel.add(type);
+
+
+
+		// The subtype of the ram
+		labels[2].setLabelFor(subtype);
+		String[] subtypeString = { "", "DIMM", "SO-DIMM" };
+		subtype = new JComboBox(subtypeString);
+		subtype.setMaximumSize(tfSize);
+		subtype.setPreferredSize(tfSize);
+		subtype.setBackground(Color.WHITE);
+		subtype.setToolTipText(labels[2].getToolTipText());
+		subtype.setActionCommand("Subtype");
+		subtype.addActionListener(this);
+
+		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				subtypeString, ram.getSubtype()));
+
+
+		panel.add(labels[2]);
+		panel.add(subtype);
+
+
+
+		// The size of the ram
+		labels[3].setLabelFor(size);
+		String[] sizeString = { "", "128", "256", "512", "1024", "2048", "4096" };
+		size = new JComboBox(sizeString);
+		size.setMaximumSize(tfSize);
+		size.setPreferredSize(tfSize);
+		size.setBackground(Color.WHITE);
+		size.setToolTipText(labels[3].getToolTipText());
+		size.setActionCommand("Subtype");
+		size.addActionListener(this);
+
+		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				sizeString, ram.getSize()));
+
+
+		panel.add(labels[3]);
+		panel.add(size);
+
+
+
+		// The speed of the ram
+		labels[4].setLabelFor(speed);
+		String[] speedString = { "", "66", "100", "133", "200", "266", "333",
+				"400", "466", "500", "533", "667", "800" };
+		speed = new JComboBox(speedString);
+		speed.setMaximumSize(tfSize);
+		speed.setPreferredSize(tfSize);
+		speed.setBackground(Color.WHITE);
+		speed.setToolTipText(labels[4].getToolTipText());
+		speed.setActionCommand("Speed");
+		speed.addActionListener(this);
+
+		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				speedString, ram.getSpeed()));
+
+
+		panel.add(labels[4]);
+		panel.add(speed);
 		
 		
+		JLabel temp1 = new JLabel("");
+		temp1.setMaximumSize(tfSize);
+		temp1.setPreferredSize(tfSize);
+
+		JLabel temp2 = new JLabel("");
+		temp2.setMaximumSize(tfSize);
+		temp2.setPreferredSize(tfSize);
+		
+
+		// adding components so that the layout is right
+		panel.add(temp1);
+		panel.add(temp2);
+		
+		
+		
+		// Lay out the panel.
+		SpringUtilities.makeCompactGrid(panel, 2, 6, // rows, cols
+				10, 10, // initX, initY
+				20, 20); // xPad, yPad
+
+
+
 		return panel;
 	}
-	
+
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
 	 */
 	@Override
@@ -144,7 +259,6 @@ public class RAMView extends JPanel implements HardwareView
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
 	 * validateNecessaryData()
 	 */
@@ -157,7 +271,6 @@ public class RAMView extends JPanel implements HardwareView
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
 	 * validateChangedData()
 	 */
@@ -166,5 +279,13 @@ public class RAMView extends JPanel implements HardwareView
 	{
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent arg0)
+	{
+		// TODO Auto-generated method stub
+
 	}
 }
