@@ -1,9 +1,11 @@
 package graphics.GUI.workareaCanvas.providers;
 
+
 import org.netbeans.api.visual.action.TextFieldInplaceEditor;
 import org.netbeans.api.visual.widget.Widget;
 
 import widgetManipulation.WidgetObject;
+
 
 public class LabelTextFieldEditor implements TextFieldInplaceEditor
 {

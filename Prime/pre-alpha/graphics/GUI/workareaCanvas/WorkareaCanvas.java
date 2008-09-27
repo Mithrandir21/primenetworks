@@ -180,8 +180,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 	/**
-	 * Gets the main layer of the scene. This is where the
-	 * {@link WidgetObject WidgetObjects} are placed.
+	 * Gets the main layer of the scene. This is where the {@link WidgetObject
+	 * WidgetObjects} are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the mainLayer
@@ -205,7 +205,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	}
 
 
-	/**
+/**
 	 * Gets the connection layer of the scene. This is where the
 	 * {@link connections.WidgetExtendedConnection connections) between objects in the scene are placed.
 	 * 
@@ -307,7 +307,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.awt.dnd.DropTargetListener#dragEnter(java.awt.dnd.DropTargetDragEvent)
+	 * @see
+	 * java.awt.dnd.DropTargetListener#dragEnter(java.awt.dnd.DropTargetDragEvent
+	 * )
 	 */
 	@Override
 	public void dragEnter(DropTargetDragEvent dtde)
@@ -320,7 +322,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.awt.dnd.DropTargetListener#dragExit(java.awt.dnd.DropTargetEvent)
+	 * @see
+	 * java.awt.dnd.DropTargetListener#dragExit(java.awt.dnd.DropTargetEvent)
 	 */
 	@Override
 	public void dragExit(DropTargetEvent dte)
@@ -333,7 +336,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.awt.dnd.DropTargetListener#dragOver(java.awt.dnd.DropTargetDragEvent)
+	 * @see
+	 * java.awt.dnd.DropTargetListener#dragOver(java.awt.dnd.DropTargetDragEvent
+	 * )
 	 */
 	@Override
 	public void dragOver(DropTargetDragEvent dtde)
@@ -346,7 +351,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
+	 * @see
+	 * java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
 	 */
 	@Override
 	public void drop(DropTargetDropEvent dtde)
@@ -403,7 +409,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.awt.dnd.DropTargetListener#dropActionChanged(java.awt.dnd.DropTargetDragEvent)
+	 * @seejava.awt.dnd.DropTargetListener#dropActionChanged(java.awt.dnd.
+	 * DropTargetDragEvent)
 	 */
 	@Override
 	public void dropActionChanged(DropTargetDragEvent dtde)
@@ -475,9 +482,11 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 
-			// newObject.getActions().addAction(ActionFactory.createRectangularSelectAction(
-			// ActionFactory.createDefaultRectangularSelectDecorator(scene),interactionLayer,
-			// ActionFactory.createObjectSceneRectangularSelectProvider(scene)));
+			// newObject.getActions().addAction(ActionFactory.
+			// createRectangularSelectAction(
+			// ActionFactory.createDefaultRectangularSelectDecorator(scene),
+			// interactionLayer,
+			//ActionFactory.createObjectSceneRectangularSelectProvider(scene)));
 
 
 			// ----------DIFFERENT BORDERS------------
@@ -493,7 +502,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 			// newObject.setBorder(BorderFactory.createRoundedBorder(10, 10,
 			// Color.white, Color.black));
 
-			// newObject.getActions().addAction(ActionFactory.createAddRemoveControlPointAction(1.0,3.0));
+			// newObject.getActions().addAction(ActionFactory.
+			// createAddRemoveControlPointAction(1.0,3.0));
 			// ---------------------------------------
 
 			mainLayer.addChild(newObject);
@@ -537,7 +547,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e)
 	{

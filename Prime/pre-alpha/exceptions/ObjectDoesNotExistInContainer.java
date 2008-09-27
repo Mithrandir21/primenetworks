@@ -7,9 +7,9 @@ import objects.Object;
 ;
 
 /**
- * This extension of the {@link  java.lang.Exception  Exception} class is
- * created and thrown when an object that is searched for is not found in a
- * specific container.
+ * This extension of the {@link java.lang.Exception Exception} class is created
+ * and thrown when an object that is searched for is not found in a specific
+ * container.
  * 
  * @author Bahram Malaekeh
  * @version 0.1

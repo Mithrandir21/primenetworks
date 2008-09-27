@@ -60,8 +60,9 @@ public class SceneConnectProvider implements ConnectProvider
 		// If the compatible interfaces between the two devices are not 0.
 		if ( compInter.length > 0 )
 		{
-			
-			// Creates a dialog that shows the different available connection types. 
+
+			// Creates a dialog that shows the different available connection
+			// types.
 			String conType = ListDialog.showDialog(null, null, "Connection type", "Connection",
 					compInter, null, null);
 
@@ -76,38 +77,44 @@ public class SceneConnectProvider implements ConnectProvider
 			// If the cancel butten is pressed.
 			else if ( conType == "Cancelled" )
 			{
-				
+
 			}
-			// Else a connection type is choosen and the "Create connection" button is pressed.
+			// Else a connection type is choosen and the "Create connection"
+			// button is pressed.
 			else
 			{
-				
+
 				Connection con = null;
 				try
 				{
-					// Gets the connection class, Networkconnection, deviceconnection, etc. 
+					// Gets the connection class, Networkconnection,
+					// deviceconnection, etc.
 					Class<?> conClass = getConClass(conType);
 
-					// Creates the connection between the two devices(Not on the scene).
+					// Creates the connection between the two devices(Not on the
+					// scene).
 					con = ConnectionManagment.makeConnection(PrimeMain1.currentCanvas
 							.getConnections(), "Connection"
 							+ PrimeMain1.currentCanvas.getNumberOfWidgetsOnTheScene(),
-							"Connection between " + SourceWidObj.getObject().getObjectName() + " and "
-									+ TargetWidObj.getObject().getObjectName() + ".", SourceWidObj
-									.getObject(), TargetWidObj.getObject(), conType, conClass);
+							"Connection between " + SourceWidObj.getObject().getObjectName()
+									+ " and " + TargetWidObj.getObject().getObjectName() + ".",
+							SourceWidObj.getObject(), TargetWidObj.getObject(), conType, conClass);
 
-					
-					// Adds the connection to the connections array of each object.
+
+					// Adds the connection to the connections array of each
+					// object.
 					SourceWidObj.getObject().addConnection(con);
 					TargetWidObj.getObject().addConnection(con);
-					
-					
-					// Creates the connection between the two devices on the scene.
+
+
+					// Creates the connection between the two devices on the
+					// scene.
 					WidgetExtendedConnection connection = new WidgetExtendedConnection(
 							PrimeMain1.currentCanvas.getScene(), con);
 
-					
-					// Adds the connection to the connection array for the workareacanvas.
+
+					// Adds the connection to the connection array for the
+					// workareacanvas.
 					ConnectionManagment.addConnection(con, false);
 
 					// The array anchor
@@ -119,7 +126,8 @@ public class SceneConnectProvider implements ConnectProvider
 					PrimeMain1.currentCanvas.getConnectionLayer().addChild(connection);
 
 				}
-				// If there already exists a connection between the two given objects.
+				// If there already exists a connection between the two given
+				// objects.
 				catch ( ConnectionDoesExist e )
 				{
 					JOptionPane.showMessageDialog(null,
@@ -139,8 +147,7 @@ public class SceneConnectProvider implements ConnectProvider
 		{
 			JOptionPane.showMessageDialog(null,
 					"These two objects cannot connect to eachother because they dont"
-					+ " support the same ports.", "alert",
-					JOptionPane.ERROR_MESSAGE);
+							+ " support the same ports.", "alert", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

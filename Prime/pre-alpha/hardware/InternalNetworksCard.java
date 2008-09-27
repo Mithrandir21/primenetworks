@@ -1,72 +1,82 @@
 package hardware;
+
+
 import java.io.Serializable;
+
 import objects.Hardware;
 
 
 /**
- * This class represents a networks interface card within a {@link  objects.Servers  server} or 
- * {@link  objects.Clients  client} machine. 
- * It can be a server, a desktop or a laptop. It contains information on what kind 
- * of capability the networks interface card has.
- * It also contains information on transfere speeds, MACs, connection types and so on.
- * <br><br>
- * <b>Notation</b>: The networks interface card will be refered to 
- * as "NIC" in the remainder of this document.
+ * This class represents a networks interface card within a
+ * {@link objects.Servers server} or {@link objects.Clients client} machine. It
+ * can be a server, a desktop or a laptop. It contains information on what kind
+ * of capability the networks interface card has. It also contains information
+ * on transfere speeds, MACs, connection types and so on. <br>
+ * <br>
+ * <b>Notation</b>: The networks interface card will be refered to as "NIC" in
+ * the remainder of this document.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
  */
-public class InternalNetworksCard extends Hardware implements Serializable 
+public class InternalNetworksCard extends Hardware implements Serializable
 {
-	
+
 	// The company that produces the NIC. D-Link, Linksys, Cisco and so on.
 	private String producer;
-	
+
 	// The MAC address of the NIC
 	private String MAC;
-	
+
 	// The connection type of NIC. Wired or wireless
 	private String connectionType;
-	
+
 	// The speed of the NIC. 10 Mbps, 100 Mbps or 1000 Mbps
 	private int transferSpeed;
-	
+
 	// The NIC protocol. Ethernet, token and so on
 	private String protocol;
-	
-	// The standards supported by the NIC. IEEE 802.3, IEEE 802.3u, IEEE 802.1x and so on
+
+	// The standards supported by the NIC. IEEE 802.3, IEEE 802.3u, IEEE 802.1x
+	// and so on
 	private String[] supportedStandards;
-	
+
 	// Whether or not the NIC has support for IP version 6, IPv6
 	private boolean supportsIPv6;
-	
-	
 
-	
+
+
+
 
 	/**
 	 * Constructor of a NIC hardware
-	 *
-	 * @param Name The name of the MB.
-	 * @param Desc The description of the MB.
-	 * @param NICproducer The company that produces the NIC. D-Link, Linksys, Cisco and so on.
-	 * @param NIC_MAC The MAC address of the NIC.
-	 * @param NICconnectionType The connection type of NIC. Wired or wireless.
+	 * 
+	 * @param Name
+	 *            The name of the MB.
+	 * @param Desc
+	 *            The description of the MB.
+	 * @param NICproducer
+	 *            The company that produces the NIC. D-Link, Linksys, Cisco and
+	 *            so on.
+	 * @param NIC_MAC
+	 *            The MAC address of the NIC.
+	 * @param NICconnectionType
+	 *            The connection type of NIC. Wired or wireless.
 	 */
-	public InternalNetworksCard(String Name, String Desc, String NICproducer
-			, String NIC_MAC, String NICconnectionType)
+	public InternalNetworksCard(String Name, String Desc, String NICproducer, String NIC_MAC,
+			String NICconnectionType)
 	{
-		super(Name,Desc);
+		super(Name, Desc);
 
 		producer = NICproducer;
 		MAC = NIC_MAC;
 		connectionType = NICconnectionType;
 	}
-	
-	
-	
+
+
+
 	// Get and Set methodes for retrieving all datafields.
-	
+
 	// GET METHODES
 
 	/**
@@ -77,7 +87,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	{
 		return producer;
 	}
-	
+
 
 	/**
 	 * Get the MAC of the NIC.
@@ -86,8 +96,8 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	public String getMAC()
 	{
 		return MAC;
-	}	
-	
+	}
+
 
 	/**
 	 * Get the connection type of NIC.
@@ -96,8 +106,8 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	public String getConnectionType()
 	{
 		return connectionType;
-	}	
-	
+	}
+
 
 	/**
 	 * Get the transfer speed of the NIC.
@@ -107,7 +117,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	{
 		return transferSpeed;
 	}
-	
+
 
 	/**
 	 * Get the protocol of the NIC.
@@ -117,7 +127,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	{
 		return protocol;
 	}
-	
+
 
 	/**
 	 * Get the standard(s) of the NIC.
@@ -127,7 +137,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	{
 		return supportedStandards;
 	}
-	
+
 
 	/**
 	 * Get the protocol of the NIC.
@@ -137,8 +147,8 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	{
 		return supportsIPv6;
 	}
-	
-	
+
+
 	// SET METHODES
 
 	/**
@@ -149,7 +159,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	{
 		producer = NICProducer;
 	}
-	
+
 
 	/**
 	 * Set method for the MAC of the NIC.
@@ -159,7 +169,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	{
 		MAC = NIC_MAC;
 	}
-	
+
 
 	/**
 	 * Set method for connection type of the NIC.
@@ -169,7 +179,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	{
 		connectionType = NICconnectionType;
 	}
-	
+
 
 	/**
 	 * Set method for speed of the NIC.
@@ -179,7 +189,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	{
 		transferSpeed = NICtransferSpeed;
 	}
-	
+
 
 	/**
 	 * Set method for connection type of the NIC.
@@ -189,7 +199,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	{
 		supportedStandards = NICsupportedStandards;
 	}
-	
+
 
 	/**
 	 * Set method for speed of the NIC.
@@ -199,7 +209,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	{
 		supportsIPv6 = NICsupportsIPv6;
 	}
-	
-	
-	
+
+
+
 }

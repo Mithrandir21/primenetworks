@@ -29,9 +29,9 @@ public class WorkareaTabbed extends JTabbedPane
 		createNewCanvasTab("AA");
 		createNewCanvasTab("BB");
 		createNewCanvasTab("CC");
-		
-//		PrimeMain1.updatePropertiesArea();
-		
+
+		// PrimeMain1.updatePropertiesArea();
+
 
 		addChangeListener(new ChangeListener()
 		{
@@ -48,19 +48,21 @@ public class WorkareaTabbed extends JTabbedPane
 				// Gets the workareaCanvas that the scrollPane contains.
 				WorkareaCanvas currentCanvas = currentScrollPane.getCanvas();
 
-				// Repaints the entier canvas.(Avoids NullPointerExeption errors from swing).
+				// Repaints the entier canvas.(Avoids NullPointerExeption errors
+				// from swing).
 				currentCanvas.doRepaint();
 
-				// Sets the current working canvas to the canvas that is actually shown in the 
+				// Sets the current working canvas to the canvas that is
+				// actually shown in the
 				// JTabbedPane scrollPane.
 				PrimeMain1.currentCanvas = currentCanvas;
-				
+
 				PrimeMain1.updatePropertiesCanvasArea();
 			}
 		});
-		
-		
-		
+
+
+
 	}
 
 
@@ -72,11 +74,11 @@ public class WorkareaTabbed extends JTabbedPane
 		// Creates the image for the tab
 		ImageIcon icon = ImageLocator.getImageIconObject("java");
 
-		int width = (int) (PrimeMain1.width*0.60);
-		int height = (int) (PrimeMain1.width*0.60);
-		
-		
-		this.setPreferredSize(new Dimension(width,height));
+		int width = (int) (PrimeMain1.width * 0.60);
+		int height = (int) (PrimeMain1.width * 0.60);
+
+
+		this.setPreferredSize(new Dimension(width, height));
 
 		addTab(name, icon, canvasScroll);
 	}

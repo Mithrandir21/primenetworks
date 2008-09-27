@@ -28,8 +28,8 @@ public class WidgetObject extends ImageWidget implements Transferable
 
 
 	private static final DataFlavor flavors[] = new DataFlavor[1];
-	
-	
+
+
 	private String label;
 
 
@@ -42,7 +42,7 @@ public class WidgetObject extends ImageWidget implements Transferable
 	{
 		super(canvas, objImg);
 		object = obj;
-		
+
 		setFlavor();
 	}
 
@@ -65,16 +65,18 @@ public class WidgetObject extends ImageWidget implements Transferable
 	{
 		return new Dimension(getImage().getHeight(null), getImage().getWidth(null));
 	}
-	
-	
-    /**
-     * Returns a label.
-     * @return the label
-     */
-    public String getLabel () {
-        return label;
-    }
-	
+
+
+	/**
+	 * Returns a label.
+	 * 
+	 * @return the label
+	 */
+	public String getLabel()
+	{
+		return label;
+	}
+
 
 
 	// SETTERS
@@ -87,25 +89,29 @@ public class WidgetObject extends ImageWidget implements Transferable
 		this.object = object;
 	}
 
-	
-    /**
-     * Sets a label.
-     * @param label the label
-     */
-    public void setLabel (String label) {
-        if (GeomUtil.equals (this.label, label))
-        {
-            return;
-        }
-        
-        this.label = label;
-        revalidate ();
-    }
+
+	/**
+	 * Sets a label.
+	 * 
+	 * @param label
+	 *            the label
+	 */
+	public void setLabel(String label)
+	{
+		if ( GeomUtil.equals(this.label, label) )
+		{
+			return;
+		}
+
+		this.label = label;
+		revalidate();
+	}
 
 
 
 	// TRANSFERABLE IMPLEMENTATION
-	public WidgetObject getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException
+	public WidgetObject getTransferData(DataFlavor flavor) throws UnsupportedFlavorException,
+			IOException
 	{
 		// System.out.println("WidgetCanvas - getTransferData");
 		if ( isDataFlavorSupported(flavor) )
@@ -144,7 +150,7 @@ public class WidgetObject extends ImageWidget implements Transferable
 		return flavors;
 	}
 
-	
-	
+
+
 
 }

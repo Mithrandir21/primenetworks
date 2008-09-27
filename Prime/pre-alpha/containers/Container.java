@@ -1,5 +1,6 @@
 package containers;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -7,23 +8,24 @@ import objects.Object;
 import exceptions.ObjectDoesNotExistInContainer;
 import exceptions.ObjectExistInContainer;
 
+
 /**
  * Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * @version 0.1
  */
-public abstract class Container implements Serializable 
+public abstract class Container implements Serializable
 {
 	// The arraylist that will contain all the objects of a system
 	ArrayList<Object> container = new ArrayList<Object>();
-	
-	
+
+
 	/**
 	 * Description
 	 * 
 	 */
-	public ArrayList<Object> getContainer() 
+	public ArrayList<Object> getContainer()
 	{
 		return container;
 	}
@@ -32,13 +34,15 @@ public abstract class Container implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 *
-	 * @param container the container to set
+	 * 
+	 * @param container
+	 *            the container to set
 	 */
-	public void setContainer(ArrayList<Object> container) {
+	public void setContainer(ArrayList<Object> container)
+	{
 		this.container = container;
 	}
-	
+
 
 
 	/**
@@ -48,18 +52,18 @@ public abstract class Container implements Serializable
 	public boolean addObject(Object obj) throws ObjectExistInContainer
 	{
 		// Check to see if the specific object already exist in the container
-		if(container.contains(obj))
+		if ( container.contains(obj) )
 		{
-			throw new ObjectExistInContainer("This object," 
-					+ obj.getObjectName() + ", already exist in this container.",obj);
+			throw new ObjectExistInContainer("This object," + obj.getObjectName()
+					+ ", already exist in this container.", obj);
 		}
 
 		// Returns true if added and false if not.
 		return container.add(obj);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Description
 	 * 
@@ -67,25 +71,25 @@ public abstract class Container implements Serializable
 	public boolean removeObject(Object obj) throws ObjectDoesNotExistInContainer
 	{
 		// Checks to see if object really exist in the container
-		if(!container.contains(obj))
+		if ( !container.contains(obj) )
 		{
-			throw new ObjectDoesNotExistInContainer("This object,"
-					+ obj.getObjectName() + ", does not exist in this container.",obj);
+			throw new ObjectDoesNotExistInContainer("This object," + obj.getObjectName()
+					+ ", does not exist in this container.", obj);
 		}
-		
-		
+
+
 		return container.remove(obj);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Description
 	 * 
 	 */
 	public boolean containsObject(Object obj)
 	{
-		
-		return container.contains(obj); 
+
+		return container.contains(obj);
 	}
 }

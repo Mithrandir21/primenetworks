@@ -25,7 +25,8 @@ public class WidgetHoverProvider implements HoverProvider
 		{
 			// System.out.println(widget.getToolTipText());
 			WidgetObject wid = (WidgetObject) widget;
-//			wid.setBorder(BorderFactory.createRoundedBorder(10, 10, Color.white, Color.black));
+			// wid.setBorder(BorderFactory.createRoundedBorder(10, 10,
+			// Color.white, Color.black));
 			// System.out.println("Hovering over - " +
 			// wid.getObject().getDescription());
 		}

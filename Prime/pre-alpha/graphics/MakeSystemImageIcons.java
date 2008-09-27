@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 /**
  * A class that contains methods for the creation and collection of the system
  * standard ImageIcon that are used, among other thing, for the creation of
- * objects or buttons. 
+ * objects or buttons.
  * 
  * @author Bahram Malaekeh
  */
@@ -24,8 +24,8 @@ public class MakeSystemImageIcons
 {
 
 	/**
-	 * Gets the URL of this class to be used to locate all the system images and Icons.
-	 * It calls the method visitAllFiles.
+	 * Gets the URL of this class to be used to locate all the system images and
+	 * Icons. It calls the method visitAllFiles.
 	 * 
 	 */
 	public void getImageIcons()

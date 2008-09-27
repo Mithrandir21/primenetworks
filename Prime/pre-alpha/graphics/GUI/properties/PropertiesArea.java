@@ -4,10 +4,10 @@
 package graphics.GUI.properties;
 
 
-import java.awt.Dimension;
-
 import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
+
+import java.awt.Dimension;
 
 import javax.swing.JTabbedPane;
 
@@ -45,7 +45,8 @@ public class PropertiesArea extends JTabbedPane
 
 
 	/**
-	 * Creates and adds a new properties view with the information from the given object.
+	 * Creates and adds a new properties view with the information from the
+	 * given object.
 	 * 
 	 */
 	public void newObjectSelectedPropertiesTab(Object object)
@@ -58,7 +59,8 @@ public class PropertiesArea extends JTabbedPane
 
 
 	/**
-	 * Creates and adds a new properties view with the information from the given canvas.
+	 * Creates and adds a new properties view with the information from the
+	 * given canvas.
 	 * 
 	 */
 	public void newObjectSelectedPropertiesTab(WorkareaCanvas canvas)

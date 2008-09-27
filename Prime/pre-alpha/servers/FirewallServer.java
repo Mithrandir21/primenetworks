@@ -1,13 +1,13 @@
 package servers;
 
 
-import software.*;
 import java.io.Serializable;
 
-import exceptions.StringNotFoundInArrayException;
-import objects.*;
-import objects.Object;
 import managment.ArrayManagment;
+import objects.Object;
+import objects.Servers;
+import software.Firewall;
+import exceptions.StringNotFoundInArrayException;
 
 
 /**
@@ -105,8 +105,8 @@ public class FirewallServer extends Servers implements Serializable
 	 * @param FirewallSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public FirewallServer(String Name, String Desc, Object[] DesktopComponents, String FirewallSWname,
-			String FirewallSWdesc, String FirewallSWversion)
+	public FirewallServer(String Name, String Desc, Object[] DesktopComponents,
+			String FirewallSWname, String FirewallSWdesc, String FirewallSWversion)
 	{
 		super(Name, Desc, DesktopComponents);
 

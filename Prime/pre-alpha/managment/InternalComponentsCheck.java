@@ -1,8 +1,14 @@
 package managment;
 
 
+import hardware.CPU;
+import hardware.Discdrive;
+import hardware.GraphicsCard;
+import hardware.HDD;
+import hardware.InternalNetworksCard;
+import hardware.Motherboard;
+import hardware.Ram;
 import objects.Object;
-import hardware.*;
 
 
 
@@ -52,8 +58,7 @@ public class InternalComponentsCheck
 	 * Description
 	 */
 	@SuppressWarnings("unchecked")
-	public static boolean checkMBinternalPorts(Motherboard MB,
-			Object[] components, Object a)
+	public static boolean checkMBinternalPorts(Motherboard MB, Object[] components, Object a)
 	{
 		Class objectClass = a.getClass();
 
@@ -161,8 +166,7 @@ public class InternalComponentsCheck
 			}
 		}
 		// If the component is a HHD or Diskdrive component
-		else if ( objectClass.equals(HDD.class)
-				|| objectClass.equals(Discdrive.class) )
+		else if ( objectClass.equals(HDD.class) || objectClass.equals(Discdrive.class) )
 		{
 			// If the number returned it greater then 1, then there is room for
 			// the object
@@ -205,8 +209,7 @@ public class InternalComponentsCheck
 				Object currentObject = components[i];
 
 				// If the component is a internal networks card
-				if ( currentObject.getClass()
-						.equals(InternalNetworksCard.class) )
+				if ( currentObject.getClass().equals(InternalNetworksCard.class) )
 				{
 					portsAvailable--;
 				}
@@ -281,8 +284,7 @@ public class InternalComponentsCheck
 
 				// If the temporary object is an instance of a HDD or a
 				// diskdrive class
-				if ( objectClass.equals(HDD.class)
-						|| objectClass.equals(Discdrive.class) )
+				if ( objectClass.equals(HDD.class) || objectClass.equals(Discdrive.class) )
 				{
 					portsAvailable--;
 				}

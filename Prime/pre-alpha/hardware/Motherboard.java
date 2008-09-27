@@ -2,12 +2,13 @@ package hardware;
 
 
 import java.io.Serializable;
+
 import objects.Hardware;
 
 
 /**
- * This class represents a motherboard of a {@link  objects.Servers  server} or
- * {@link  objects.Clients  client} machine. It can be a server, a desktop or a
+ * This class represents a motherboard of a {@link objects.Servers server} or
+ * {@link objects.Clients client} machine. It can be a server, a desktop or a
  * laptop. It contains information on what kind of capability the motherboard
  * has, what kind of ports it has, how many slots it has for different cards,
  * how many CPUs can be installed and so on. <br>

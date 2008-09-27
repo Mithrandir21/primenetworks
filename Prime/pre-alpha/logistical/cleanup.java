@@ -2,7 +2,10 @@ package logistical;
 
 
 import objects.Object;
-import connections.*;
+import connections.Connection;
+import connections.DeviceConnection;
+import connections.InternalConnection;
+import connections.NetworkConnection;
 
 
 /**

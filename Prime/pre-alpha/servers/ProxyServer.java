@@ -1,12 +1,13 @@
 package servers;
 
 
-import software.*;
 import java.io.Serializable;
-import exceptions.StringNotFoundInArrayException;
-import objects.*;
-import objects.Object;
+
 import managment.ArrayManagment;
+import objects.Object;
+import objects.Servers;
+import software.Proxy;
+import exceptions.StringNotFoundInArrayException;
 
 
 /**

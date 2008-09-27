@@ -1,73 +1,83 @@
 package software;
+
+
 import java.io.Serializable;
 import java.util.Date;
 
 import objects.Software;
 
+
 /**
- * This class represents an security suite program.
- * It contains information on whether or not the security suite contains a firewall, an antivirus
- * and/or a proxy. It also contains information about the activation of the software, the license
- * of the software and the activation/expiration date for the software.
- *
+ * This class represents an security suite program. It contains information on
+ * whether or not the security suite contains a firewall, an antivirus and/or a
+ * proxy. It also contains information about the activation of the software, the
+ * license of the software and the activation/expiration date for the software.
+ * 
  * @author Bahram Malaekeh
  * @version 0.0.1
  */
-public class SecuritySuite extends Software implements Serializable 
+public class SecuritySuite extends Software implements Serializable
 {
 	/*
-	 * Datafields for an abstract Security Suite
-	 * These will contain the values of any Security Suite object
+	 * Datafields for an abstract Security Suite These will contain the values
+	 * of any Security Suite object
 	 */
-	
+
 	// Whether or not the security suite has been activated
 	private boolean activated;
-	
+
 	// The actual license of the program
 	private String license;
-	
+
 	// Whether or not the security suite contains an antivirus
 	private boolean hasAntivirus;
-	
-	// TO-DO: Set up connection between security suite and antivirus, firewall and proxy
-	
+
+	// TO-DO: Set up connection between security suite and antivirus, firewall
+	// and proxy
+
 	// Whether or not the security suite contains an firewall
 	private boolean hasFirewall;
-	
+
 	// Whether or not the security suite contains an proxy
 	private boolean hasProxy;
-	
+
 	// The date of activation
 	private Date actDate;
-	
+
 	// The date the license expires
 	private Date expDate;
-	
-	
+
+
 	// Constructor for the class
 	/**
 	 * Description NEEDED!
-	 *
-	 * @param Name The name of the security suite software.
-	 * @param Desc The description of the security suite software.
-	 * @param Version The version of the security suite software.
-	 * @param SShasAntivirus Whether or not the security suite contains an antivirus.
-	 * @param SShasFirewall Whether or not the security suite contains an firewall.
-	 * @param SShasProxy Whether or not the security suite contains an proxy.
+	 * 
+	 * @param Name
+	 *            The name of the security suite software.
+	 * @param Desc
+	 *            The description of the security suite software.
+	 * @param Version
+	 *            The version of the security suite software.
+	 * @param SShasAntivirus
+	 *            Whether or not the security suite contains an antivirus.
+	 * @param SShasFirewall
+	 *            Whether or not the security suite contains an firewall.
+	 * @param SShasProxy
+	 *            Whether or not the security suite contains an proxy.
 	 */
-	public SecuritySuite(String Name, String Desc, String Version, boolean SShasAntivirus,boolean SShasFirewall
-			,boolean SShasProxy)
+	public SecuritySuite(String Name, String Desc, String Version, boolean SShasAntivirus,
+			boolean SShasFirewall, boolean SShasProxy)
 	{
-		super(Name,Desc,Version);
-		
+		super(Name, Desc, Version);
+
 		hasAntivirus = SShasAntivirus;
 		hasFirewall = SShasFirewall;
 		hasProxy = SShasProxy;
 	}
-	
-	
+
+
 	// Get and Set methodes for retrieving all datafields.
-	
+
 	// GET METHODES
 
 	/**
@@ -78,8 +88,8 @@ public class SecuritySuite extends Software implements Serializable
 	{
 		return activated;
 	}
-	
-	
+
+
 	/**
 	 * Get the actual license string of the antivirus software.
 	 * 
@@ -88,7 +98,7 @@ public class SecuritySuite extends Software implements Serializable
 	{
 		return license;
 	}
-	
+
 
 	/**
 	 * Get whether or not the suite has an antivirus.
@@ -98,7 +108,7 @@ public class SecuritySuite extends Software implements Serializable
 	{
 		return hasAntivirus;
 	}
-	
+
 
 	/**
 	 * Get whether or not the suite has a firewall.
@@ -108,7 +118,7 @@ public class SecuritySuite extends Software implements Serializable
 	{
 		return hasFirewall;
 	}
-	
+
 
 	/**
 	 * Get whether or not the suite has a proxy.
@@ -118,7 +128,7 @@ public class SecuritySuite extends Software implements Serializable
 	{
 		return hasProxy;
 	}
-	
+
 
 	/**
 	 * Get the activation date for the suite.
@@ -128,7 +138,7 @@ public class SecuritySuite extends Software implements Serializable
 	{
 		return actDate;
 	}
-	
+
 
 	/**
 	 * Get the expiration date for the suite.
@@ -138,8 +148,8 @@ public class SecuritySuite extends Software implements Serializable
 	{
 		return expDate;
 	}
-	
-	
+
+
 	// SET METHODES
 
 	/**
@@ -150,8 +160,8 @@ public class SecuritySuite extends Software implements Serializable
 	{
 		activated = SSactivated;
 	}
-	
-	
+
+
 	/**
 	 * Set the actual license string of the security suite software.
 	 * 
@@ -160,8 +170,8 @@ public class SecuritySuite extends Software implements Serializable
 	{
 		license = AVlicense;
 	}
-	
-	
+
+
 	/**
 	 * Get whether or not the suite has an antivirus.
 	 * 
@@ -170,7 +180,7 @@ public class SecuritySuite extends Software implements Serializable
 	{
 		hasAntivirus = SShasAntivirus;
 	}
-	
+
 
 	/**
 	 * Get whether or not the suite has an firewall.
@@ -180,7 +190,7 @@ public class SecuritySuite extends Software implements Serializable
 	{
 		hasFirewall = SShasFirewall;
 	}
-	
+
 
 	/**
 	 * Get whether or not the suite has an proxy.
@@ -190,7 +200,7 @@ public class SecuritySuite extends Software implements Serializable
 	{
 		hasProxy = SShasProxy;
 	}
-	
+
 
 	/**
 	 * Sets the suites activation date.
@@ -200,7 +210,7 @@ public class SecuritySuite extends Software implements Serializable
 	{
 		actDate = SSactivattionDate;
 	}
-	
+
 
 	/**
 	 * Sets the suites expiration date.

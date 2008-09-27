@@ -24,7 +24,7 @@ import actions.ActionSaveAll;
 
 
 /**
- * This class creates the a generic {@link  JMenuBar  JMenuBar} for the main
+ * This class creates the a generic {@link JMenuBar JMenuBar} for the main
  * windows of the program. This JMenuBar will include the menues "File", "Edit",
  * "Tools" and "Help". (More menues should be added at a later point.)
  * 
@@ -172,7 +172,7 @@ public class GenericPrimeMenuBar extends JMenuBar
 	/**
 	 * This function sets the keystroke association with the spesific action.
 	 * Eksampel: "Undo" with "Ctrl + Z" It sets the keystroke to the default
-	 * keystroke choosen, which normally is the "Alt" key. 
+	 * keystroke choosen, which normally is the "Alt" key.
 	 */
 	private JMenuItem setKeystroke(JMenuItem item, char key)
 	{

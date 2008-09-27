@@ -1,56 +1,62 @@
 package software;
+
+
 import java.io.Serializable;
 import java.util.Date;
 
 import objects.Software;
 
+
 /**
- * This class represents an antivirus program.
- * It contains information on whether or not the license has been activated
- *
+ * This class represents an antivirus program. It contains information on
+ * whether or not the license has been activated
+ * 
  * @author Bahram Malaekeh
  * @version 0.0.1
  */
-public class Antivirus extends Software implements Serializable 
+public class Antivirus extends Software implements Serializable
 {
 	/*
-	 * Datafields for an abstract antivirus
-	 * These will contain the values of any antivirus object
+	 * Datafields for an abstract antivirus These will contain the values of any
+	 * antivirus object
 	 */
-	
+
 	// Whether or not the antivirus has been activated
 	private boolean activated;
-	
+
 	// The actual license of the program
 	private String license;
-	
+
 	// The date of activation
 	private Date actDate;
-	
+
 	// The date the license expires
 	private Date expDate;
-	
-	
-	
+
+
+
 
 	/**
-	 * Constructor of the antivirus software class.
-	 * This will represent a single program with a singel license.
-	 *
-	 * @param Name The name of the antivirus software.
-	 * @param Desc The description of the antivirus software.
-	 * @param Version The version of the antivirus software.
+	 * Constructor of the antivirus software class. This will represent a single
+	 * program with a singel license.
+	 * 
+	 * @param Name
+	 *            The name of the antivirus software.
+	 * @param Desc
+	 *            The description of the antivirus software.
+	 * @param Version
+	 *            The version of the antivirus software.
 	 */
 	public Antivirus(String Name, String Desc, String Version)
 	{
-		super(Name,Desc,Version);
+		super(Name, Desc, Version);
 	}
-	
-	
-	
-	
+
+
+
+
 	// Get and Set methodes for retrieving all datafields.
-	
+
 	// GET METHODES
 
 	/**
@@ -61,8 +67,8 @@ public class Antivirus extends Software implements Serializable
 	{
 		return activated;
 	}
-	
-	
+
+
 	/**
 	 * Get the actual license string of the antivirus software.
 	 * 
@@ -71,7 +77,7 @@ public class Antivirus extends Software implements Serializable
 	{
 		return license;
 	}
-	
+
 
 	/**
 	 * Get the activation date for the antivirus.
@@ -81,7 +87,7 @@ public class Antivirus extends Software implements Serializable
 	{
 		return actDate;
 	}
-	
+
 
 	/**
 	 * Get the expiration date for the antivirus.
@@ -91,8 +97,8 @@ public class Antivirus extends Software implements Serializable
 	{
 		return expDate;
 	}
-	
-	
+
+
 	// SET METHODES
 
 	/**
@@ -103,8 +109,8 @@ public class Antivirus extends Software implements Serializable
 	{
 		activated = AVactivated;
 	}
-	
-	
+
+
 	/**
 	 * Set the actual license string of the antivirus software.
 	 * 
@@ -113,7 +119,7 @@ public class Antivirus extends Software implements Serializable
 	{
 		license = AVlicense;
 	}
-	
+
 
 	/**
 	 * Sets the antiviruAV activation date.
@@ -123,7 +129,7 @@ public class Antivirus extends Software implements Serializable
 	{
 		actDate = AVactivattionDate;
 	}
-	
+
 
 	/**
 	 * Sets the antiviruAV expiration date.

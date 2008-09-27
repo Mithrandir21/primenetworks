@@ -16,8 +16,8 @@ import objects.Object;
  * up the actual desktop, like a mouse, a monitor, a HDD, a motherboard and so
  * on.<br>
  * Each instance of this object will also contain an array of pointers to
- * devices connected to the system. These will reperesente the network around the
- * system, like switches, servers, firewalls, printer and so on. <br>
+ * devices connected to the system. These will reperesente the network around
+ * the system, like switches, servers, firewalls, printer and so on. <br>
  * <br>
  * TODO - Make desktop rating system.<br>
  * A system that rates a desktop machine depending on the type of components it
@@ -32,8 +32,8 @@ import objects.Object;
  */
 public class Desktop extends Clients implements Serializable
 {
-	
-	
+
+
 	/**
 	 * Constructor of a desktop computer.<br>
 	 * This constructor also sets the number of components in the system and the
@@ -48,9 +48,9 @@ public class Desktop extends Clients implements Serializable
 	{
 		super(Name, Desc);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Constructor of a desktop computer.<br>
 	 * This constructor also sets the number of components in the system and the
@@ -98,13 +98,12 @@ public class Desktop extends Clients implements Serializable
 	 * @param Desc
 	 *            The description of the desktop.
 	 * @param SupConInt
-	 * 			  An array of strings that describes the supported connection
-	 * 			  interfaces.
+	 *            An array of strings that describes the supported connection
+	 *            interfaces.
 	 * @param DesktopComponents
 	 *            The initial components an instance of a desktop has.
 	 */
-	public Desktop(String Name, String Desc, String[] SupConInt,
-			Object[] DesktopComponents)
+	public Desktop(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 	}

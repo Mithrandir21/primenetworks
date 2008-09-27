@@ -1,11 +1,21 @@
-
 package workers;
 
-import containers.*;
+
+import objects.Clients;
+import objects.Hardware;
 import objects.Object;
-import objects.*;
-import connections.*;
-import exceptions.*;
+import objects.Servers;
+import objects.Software;
+import connections.Connection;
+import containers.ClientsContainer;
+import containers.ConnectionContainer;
+import containers.HardwareContainer;
+import containers.PeripheralContainer;
+import containers.ServersContainer;
+import containers.SoftwareContainer;
+import exceptions.ObjectDoesNotExistInContainer;
+import exceptions.ObjectExistInContainer;
+
 
 /**
  * Description NEEDED!
@@ -15,31 +25,32 @@ import exceptions.*;
  */
 public class MainContainerWorker
 {
-	
-	// The different container that will hold the different objects of the system.
+
+	// The different container that will hold the different objects of the
+	// system.
 	HardwareContainer hwContainer = new HardwareContainer();
-	
+
 	SoftwareContainer swContainer = new SoftwareContainer();
-	
+
 	PeripheralContainer perContainer = new PeripheralContainer();
-	
+
 	ConnectionContainer conContainer = new ConnectionContainer();
-	
+
 	ClientsContainer clientContainer = new ClientsContainer();
-	
+
 	ServersContainer serverContainer = new ServersContainer();
-	
-	
-	
-	
-	
+
+
+
+
+
 	/**
 	 * Description NEEDED!
 	 * 
 	 */
 	public MainContainerWorker()
 	{
-		
+
 	}
 
 
@@ -48,7 +59,7 @@ public class MainContainerWorker
 
 	/**
 	 * Description NEEDED!
-	 *
+	 * 
 	 * @return the conContainer
 	 */
 	public ConnectionContainer getConContainer()
@@ -62,7 +73,7 @@ public class MainContainerWorker
 
 	/**
 	 * Description NEEDED!
-	 *
+	 * 
 	 * @return the hwContainer
 	 */
 	public HardwareContainer getHwContainer()
@@ -76,7 +87,7 @@ public class MainContainerWorker
 
 	/**
 	 * Description NEEDED!
-	 *
+	 * 
 	 * @return the perContainer
 	 */
 	public PeripheralContainer getPerContainer()
@@ -90,7 +101,7 @@ public class MainContainerWorker
 
 	/**
 	 * Description NEEDED!
-	 *
+	 * 
 	 * @return the swContainer
 	 */
 	public SoftwareContainer getSwContainer()
@@ -98,12 +109,12 @@ public class MainContainerWorker
 		return swContainer;
 	}
 
-	
-	
-	
+
+
+
 	/**
 	 * Description NEEDED!
-	 *
+	 * 
 	 * @return the clientContainer
 	 */
 	public ClientsContainer getClientContainer()
@@ -115,17 +126,17 @@ public class MainContainerWorker
 
 	/**
 	 * Description NEEDED!
-	 *
+	 * 
 	 * @return the serverContainer
 	 */
 	public ServersContainer getServerContainer()
 	{
 		return serverContainer;
 	}
-	
-	
-	
-	
+
+
+
+
 	// CLASS METHODES
 
 
@@ -133,128 +144,130 @@ public class MainContainerWorker
 	/**
 	 * 
 	 * Description
-	 * @throws ObjectExistInContainer 
+	 * 
+	 * @throws ObjectExistInContainer
 	 * 
 	 */
 	public boolean addObject(Object object) throws ObjectExistInContainer
 	{
-		
-		if(object instanceof Hardware)
+
+		if ( object instanceof Hardware )
 		{
 			return hwContainer.addObject(object);
 		}
-		else if(object instanceof Software)
+		else if ( object instanceof Software )
 		{
 			return swContainer.addObject(object);
 		}
-		else if(object instanceof Connection)
+		else if ( object instanceof Connection )
 		{
 			return conContainer.addObject(object);
 		}
-		else if(object instanceof Clients)
+		else if ( object instanceof Clients )
 		{
 			return clientContainer.addObject(object);
 		}
-		else if(object instanceof Servers)
+		else if ( object instanceof Servers )
 		{
 			return serverContainer.addObject(object);
 		}
 
-		
+
 		return false;
 	}
-	
-	
-	
+
+
+
 	/**
-	 *  
+	 * 
 	 * Description
-	 * @throws ObjectDoesNotExistInContainer 
+	 * 
+	 * @throws ObjectDoesNotExistInContainer
 	 * 
 	 */
 	public boolean removeObject(Object object) throws ObjectDoesNotExistInContainer
 	{
-		if(object instanceof Hardware)
+		if ( object instanceof Hardware )
 		{
 			return hwContainer.removeObject(object);
 		}
-		else if(object instanceof Software)
+		else if ( object instanceof Software )
 		{
 			return swContainer.removeObject(object);
 		}
-		else if(object instanceof Connection)
+		else if ( object instanceof Connection )
 		{
 			return conContainer.removeObject(object);
 		}
-		else if(object instanceof Clients)
+		else if ( object instanceof Clients )
 		{
 			return clientContainer.removeObject(object);
 		}
-		else if(object instanceof Servers)
+		else if ( object instanceof Servers )
 		{
 			return serverContainer.removeObject(object);
 		}
 
-		
+
 		return false;
 	}
-	
 
-	
-	
+
+
+
 	/**
 	 * Description
 	 * 
 	 */
 	public boolean containsObject(Object object, Class<Object> objectClass)
 	{
-		if(objectClass.equals(Object.class))
+		if ( objectClass.equals(Object.class) )
 		{
-			if(object instanceof Hardware)
+			if ( object instanceof Hardware )
 			{
 				return hwContainer.containsObject(object);
 			}
-			else if(object instanceof Software)
+			else if ( object instanceof Software )
 			{
 				return swContainer.containsObject(object);
 			}
-			else if(object instanceof Connection)
+			else if ( object instanceof Connection )
 			{
 				return conContainer.containsObject(object);
 			}
-			else if(object instanceof Clients)
+			else if ( object instanceof Clients )
 			{
 				return clientContainer.containsObject(object);
 			}
-			else if(object instanceof Servers)
+			else if ( object instanceof Servers )
 			{
 				return serverContainer.containsObject(object);
 			}
 		}
-		else if(objectClass.equals(Hardware.class))
+		else if ( objectClass.equals(Hardware.class) )
 		{
 			return hwContainer.containsObject(object);
 		}
-		else if(objectClass.equals(Software.class))
+		else if ( objectClass.equals(Software.class) )
 		{
 			return swContainer.containsObject(object);
 		}
-		else if(objectClass.equals(Connection.class))
+		else if ( objectClass.equals(Connection.class) )
 		{
 			return conContainer.containsObject(object);
 		}
-		else if(objectClass.equals(Clients.class))
+		else if ( objectClass.equals(Clients.class) )
 		{
 			return clientContainer.containsObject(object);
 		}
-		else if(objectClass.equals(Servers.class))
+		else if ( objectClass.equals(Servers.class) )
 		{
 			return serverContainer.containsObject(object);
 		}
-		
-		
-		
+
+
+
 		return false;
 	}
-	
+
 }

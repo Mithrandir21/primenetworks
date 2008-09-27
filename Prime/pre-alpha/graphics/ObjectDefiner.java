@@ -16,56 +16,56 @@ public class ObjectDefiner
 {
 	public static Object defineObjectClass(Object object)
 	{
-		
+
 		if ( object instanceof clients.Desktop )
 		{
-			return (clients.Desktop) object; 
+			return object;
 		}
 		else if ( object instanceof clients.Laptop )
 		{
-			return (clients.Laptop) object; 
+			return object;
 		}
 		else if ( object instanceof servers.HTTPServer )
 		{
-			return (servers.HTTPServer) object; 
+			return object;
 		}
 		else if ( object instanceof servers.BackupServer )
 		{
-			return (servers.BackupServer) object; 
+			return object;
 		}
 		else if ( object instanceof servers.MailServer )
 		{
-			return (servers.MailServer) object; 
+			return object;
 		}
 		else if ( object instanceof servers.FirewallServer )
 		{
-			return (servers.FirewallServer) object; 
+			return object;
 		}
 		else if ( object instanceof servers.ProxyServer )
 		{
-			return (servers.ProxyServer) object; 
+			return object;
 		}
 		else if ( object instanceof hardware.HDD )
 		{
-			return (hardware.HDD) object; 
+			return object;
 		}
 		else if ( object instanceof peripheral.Scanner )
 		{
-			return (peripheral.Scanner) object; 
+			return object;
 		}
 		else if ( object instanceof infrastructure.Hub )
 		{
-			return (infrastructure.Hub) object; 
+			return object;
 		}
 		else if ( object instanceof infrastructure.Switch )
 		{
-			return (infrastructure.Switch) object; 
+			return object;
 		}
 		else if ( object instanceof infrastructure.Router )
 		{
-			return (infrastructure.Router) object; 
+			return object;
 		}
-		
+
 		return null;
 	}
 }

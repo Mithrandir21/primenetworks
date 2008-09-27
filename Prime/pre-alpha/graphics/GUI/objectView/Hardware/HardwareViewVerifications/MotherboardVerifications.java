@@ -3,11 +3,13 @@
  */
 package graphics.GUI.objectView.Hardware.HardwareViewVerifications;
 
+
 import javax.swing.JOptionPane;
+
 
 /**
  * TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
@@ -15,7 +17,7 @@ public class MotherboardVerifications
 {
 	public static boolean nameTest(String text)
 	{
-		
+
 		if ( text.length() < 1 || text.length() > 255 )
 		{
 			JOptionPane.showMessageDialog(null,
@@ -24,14 +26,14 @@ public class MotherboardVerifications
 
 			return false;
 		}
-		
+
 		return true;
 	}
-	
-	
+
+
 	public static boolean socketTest()
 	{
-		
+
 		return true;
 	}
 }

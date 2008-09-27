@@ -18,6 +18,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -290,7 +291,7 @@ public class PrimeMain1 extends JFrame
 
 
 		this.setSize(width, height);
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		this.setExtendedState(Frame.MAXIMIZED_BOTH);
 		this.setVisible(true);
 
 	}
@@ -305,6 +306,7 @@ public class PrimeMain1 extends JFrame
 
 		temp.addWindowListener(new WindowAdapter()
 		{
+			@Override
 			public void windowClosing(WindowEvent ev)
 			{
 				// SaveLayoutModel();
@@ -410,8 +412,7 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * Updates the properties panel with information from the given
-	 * object.
+	 * Updates the properties panel with information from the given object.
 	 */
 	public static void updatePropertiesObjectArea(Object obj)
 	{

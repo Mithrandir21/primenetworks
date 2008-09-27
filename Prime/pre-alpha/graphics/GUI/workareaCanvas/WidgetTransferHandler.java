@@ -3,34 +3,38 @@
  */
 package graphics.GUI.workareaCanvas;
 
+
 import java.awt.datatransfer.DataFlavor;
 
 import javax.swing.TransferHandler;
 
 import widgetManipulation.WidgetObject;
 
+
 /**
  * @author Bam
- *
+ * 
  */
 public class WidgetTransferHandler extends TransferHandler
 {
-	public boolean canImport(TransferSupport support) 
+	@Override
+	public boolean canImport(TransferSupport support)
 	{
 		DataFlavor flavors[] = support.getDataFlavors();
-		if(flavors[0].equals(new DataFlavor(WidgetObject.class,"Widget Object")))
+		if ( flavors[0].equals(new DataFlavor(WidgetObject.class, "Widget Object")) )
 		{
 			return true;
 		}
-		
+
 		return false;
 	}
-	
-	public boolean importData(TransferSupport support) 
+
+	@Override
+	public boolean importData(TransferSupport support)
 	{
-	    return true;
+		return true;
 	}
-	
-	
-	
+
+
+
 }

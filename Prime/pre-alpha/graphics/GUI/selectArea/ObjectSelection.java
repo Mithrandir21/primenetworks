@@ -77,7 +77,7 @@ public class ObjectSelection extends JPanel
 		this.add(makeImageIcon("Laptop", Laptop.class, "Laptop"));
 
 		this.add(new JToolBar.Separator());
-		
+
 		this.add(makeImageIcon("Screen", ThinClient.class, "Thin Client"));
 
 		this.add(new JToolBar.Separator());
@@ -118,8 +118,8 @@ public class ObjectSelection extends JPanel
 	{
 		this.add(makeImageIcon("Scanner", Scanner.class, "Scanner"));
 
-		this.add(new JToolBar.Separator());		
-		
+		this.add(new JToolBar.Separator());
+
 		this.add(makeImageIcon("Printer", Printer.class, "Printer"));
 
 		this.add(new JToolBar.Separator());

@@ -35,9 +35,9 @@ public class CreateObjectDragged
 
 
 	/**
-	 * Creates and returns an object based on the
-	 * {@link graphics.WidgetIcon WidgetIcon} classType. The object created is a
-	 * standard object with very little extra information.
+	 * Creates and returns an object based on the {@link graphics.WidgetIcon
+	 * WidgetIcon} classType. The object created is a standard object with very
+	 * little extra information.
 	 * 
 	 * @param iconObject
 	 *            The {@link graphics.WidgetIcon WidgetIcon} that contains the
@@ -153,9 +153,9 @@ public class CreateObjectDragged
 
 		return new Laptop(objectName, objectDesc, supportedConnectionInterfaces, st_components);
 	}
-	
-	
-	
+
+
+
 	public Laptop createDefaultThinClient(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Thin Client" + numberOfWidgetsOnTheScene;
@@ -190,7 +190,7 @@ public class CreateObjectDragged
 
 		Motherboard serverMB = (Motherboard) st_components[0];
 		serverMB.setMaxIntegratedLANs(2);
-		
+
 
 		return new HTTPServer(objectName, objectDesc, supportedConnectionInterfaces, st_components,
 				ObjectSWname, ObjectSWdesc, ObjectSWversion);
@@ -217,7 +217,7 @@ public class CreateObjectDragged
 
 		Motherboard serverMB = (Motherboard) st_components[0];
 		serverMB.setMaxIntegratedLANs(2);
-		
+
 
 		return new BackupServer(objectName, objectDesc, supportedConnectionInterfaces,
 				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
@@ -313,16 +313,16 @@ public class CreateObjectDragged
 		{
 			objectDesc = objectName;
 		}
-		
+
 		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
-		
+
 		objectMB.setMaxUSBs(1);
-		
-		
+
+
 		return new Scanner(objectName, objectDesc, Sresolution, SconnectionInterfaces, objectMB);
 	}
-	
-	
+
+
 	public Printer createDefaultPrinter(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Printer" + numberOfWidgetsOnTheScene;
@@ -335,12 +335,12 @@ public class CreateObjectDragged
 		{
 			objectDesc = objectName;
 		}
-		
+
 		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
-		
+
 		objectMB.setMaxUSBs(1);
-		
-		
+
+
 		return new Printer(objectName, objectDesc, Sresolution, SconnectionInterfaces, objectMB);
 	}
 
@@ -361,14 +361,15 @@ public class CreateObjectDragged
 		{
 			objectDesc = objectName;
 		}
-		
+
 		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
-		
+
 		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(16);
 
 
-		return new Hub(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport);
+		return new Hub(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts,
+				DuplexSupport);
 	}
 
 
@@ -388,14 +389,15 @@ public class CreateObjectDragged
 		{
 			objectDesc = objectName;
 		}
-		
+
 		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
 
 		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(16);
-		
 
-		return new Switch(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport);
+
+		return new Switch(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts,
+				DuplexSupport);
 	}
 
 
@@ -414,13 +416,14 @@ public class CreateObjectDragged
 		{
 			objectDesc = objectName;
 		}
-		
+
 		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
 
 		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(4);
 
-		
-		return new Router(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport);
+
+		return new Router(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts,
+				DuplexSupport);
 	}
 }

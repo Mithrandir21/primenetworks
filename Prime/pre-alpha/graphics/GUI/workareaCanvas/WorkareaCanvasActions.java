@@ -54,8 +54,8 @@ public class WorkareaCanvasActions
 		removeAllConnectionsToFromObject(canvas, obj.getObject());
 
 		PrimeMain1.currentCanvas.getMainLayer().removeChild(obj);
-		
-		
+
+
 		PrimeMain1.currentCanvas.setCurrentWidgetObject(null);
 	}
 
@@ -94,7 +94,7 @@ public class WorkareaCanvasActions
 			{
 				try
 				{
-					removeConnectionFromConnectionLayer(canvas,ConnectionManagment.getConnection(
+					removeConnectionFromConnectionLayer(canvas, ConnectionManagment.getConnection(
 							canvasCons, obj, connectedObjects[i]));
 
 					canvas.setConnections(ConnectionManagment.breakConnection(canvasCons, obj,

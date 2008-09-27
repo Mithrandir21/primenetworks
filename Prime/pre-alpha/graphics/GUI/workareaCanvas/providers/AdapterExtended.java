@@ -16,7 +16,7 @@ import widgetManipulation.WidgetObject;
 
 
 /**
- * This class overrides some of the methods in the {@link  Adapter  Adapter}
+ * This class overrides some of the methods in the {@link Adapter Adapter}
  * class. The methods govern how widgets react to actions like clicks and mouse
  * movements.
  * 
@@ -27,8 +27,10 @@ public class AdapterExtended extends Adapter
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.netbeans.api.visual.action.WidgetAction$Adapter#mouseClicked(org.netbeans.api.visual.widget.Widget,
-	 *      org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
+	 * @see
+	 * org.netbeans.api.visual.action.WidgetAction$Adapter#mouseClicked(org.
+	 * netbeans.api.visual.widget.Widget,
+	 * org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
 	 */
 	@Override
 	public State mouseClicked(Widget widget, WidgetMouseEvent event)
@@ -80,15 +82,17 @@ public class AdapterExtended extends Adapter
 		{
 			System.out.println("There is still work to be done. AdapterExtended - mouseClicked");
 		}
-		
+
 		return State.REJECTED;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.netbeans.api.visual.action.WidgetAction$Adapter#mousePressed(org.netbeans.api.visual.widget.Widget,
-	 *      org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
+	 * @see
+	 * org.netbeans.api.visual.action.WidgetAction$Adapter#mousePressed(org.
+	 * netbeans.api.visual.widget.Widget,
+	 * org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
 	 */
 	@Override
 	public State mousePressed(Widget widget, WidgetMouseEvent event)
@@ -106,8 +110,10 @@ public class AdapterExtended extends Adapter
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.netbeans.api.visual.action.WidgetAction$Adapter#mouseEntered(org.netbeans.api.visual.widget.Widget,
-	 *      org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
+	 * @see
+	 * org.netbeans.api.visual.action.WidgetAction$Adapter#mouseEntered(org.
+	 * netbeans.api.visual.widget.Widget,
+	 * org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
 	 */
 	@Override
 	public State mouseEntered(Widget widget, WidgetMouseEvent event)
@@ -121,8 +127,10 @@ public class AdapterExtended extends Adapter
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.netbeans.api.visual.action.WidgetAction$Adapter#mouseExited(org.netbeans.api.visual.widget.Widget,
-	 *      org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
+	 * @see
+	 * org.netbeans.api.visual.action.WidgetAction$Adapter#mouseExited(org.netbeans
+	 * .api.visual.widget.Widget,
+	 * org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
 	 */
 	@Override
 	public State mouseExited(Widget widget, WidgetMouseEvent event)

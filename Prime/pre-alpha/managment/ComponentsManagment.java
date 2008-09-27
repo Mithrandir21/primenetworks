@@ -3,15 +3,16 @@ package managment;
 
 import logistical.cleanup;
 import objects.Object;
-import exceptions.*;
+import exceptions.ObjectNotFoundException;
+import exceptions.ObjectNotFoundInArrayException;
 
 
 /**
  * Class that contains different function that add, remove and replace
  * components from a given array. It is used in the different parts of the
- * program, specially {@link  clients.Desktop  Desktops},
- * {@link  clients.Laptop  Laptops}, {@link  objects.Servers  Servers} and
- * {@link  infrastructure.Rack  Racks}.
+ * program, specially {@link clients.Desktop Desktops}, {@link clients.Laptop
+ * Laptops}, {@link objects.Servers Servers} and {@link infrastructure.Rack
+ * Racks}.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -142,7 +143,7 @@ public class ComponentsManagment
 		// Adds the new components at the end of the array of components.
 		tempComponents[components.length] = NewComponent;
 
-		
+
 		return tempComponents;
 	}
 
@@ -342,10 +343,10 @@ public class ComponentsManagment
 
 		return componentsFound;
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Get specific components by searching for components with the give class
 	 * type.

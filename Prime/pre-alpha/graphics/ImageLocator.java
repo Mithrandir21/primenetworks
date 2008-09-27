@@ -5,6 +5,7 @@ package graphics;
 
 
 import java.net.URL;
+
 import javax.swing.ImageIcon;
 
 
@@ -30,7 +31,14 @@ public class ImageLocator
 		}
 		else
 		{
-			System.err.println("Couldn't find file: " + imgURL.getPath());
+			if ( imgURL != null )
+			{
+				System.err.println("Couldn't find file: " + imgURL.getPath());
+			}
+			else
+			{
+				System.err.println("Error in the image handling function.");
+			}
 			return null;
 		}
 	}

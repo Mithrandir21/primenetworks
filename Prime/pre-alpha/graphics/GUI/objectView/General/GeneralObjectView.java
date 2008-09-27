@@ -1,6 +1,7 @@
 package graphics.GUI.objectView.General;
 
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -125,15 +126,15 @@ public class GeneralObjectView extends JPanel implements ActionListener
 		labels.setLayout(new BoxLayout(labels, BoxLayout.PAGE_AXIS));
 
 		JLabel typeLabel = new JLabel("Type");
-		typeLabel.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
+		typeLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
 		JLabel nameLabel = new JLabel("Name");
-		nameLabel.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
+		nameLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
 
 
 		JLabel descLabel = new JLabel("Description");
-		descLabel.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
+		descLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
 
 		labels.add(typeLabel);
@@ -162,12 +163,12 @@ public class GeneralObjectView extends JPanel implements ActionListener
 
 
 		JTextField typetext = new JTextField(obj.getClass().getSimpleName());
-		typetext.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+		typetext.setAlignmentX(Component.LEFT_ALIGNMENT);
 		typetext.setMaximumSize(new Dimension(150, 20));
 		typetext.setEditable(false);
 
 		nametext = new JTextField(obj.getObjectName());
-		nametext.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+		nametext.setAlignmentX(Component.LEFT_ALIGNMENT);
 		nametext.setMaximumSize(new Dimension(150, 20));
 
 		texts.add(typetext);
@@ -193,10 +194,10 @@ public class GeneralObjectView extends JPanel implements ActionListener
 
 
 		JLabel supIntLabel = new JLabel("Supported Interfaces");
-		supIntLabel.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
+		supIntLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
 		JLabel conLabel = new JLabel("Number of connected devices");
-		conLabel.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
+		conLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
 		labels.add(supIntLabel);
 		labels.add(Box.createRigidArea(new Dimension(0, 50)));
@@ -223,12 +224,12 @@ public class GeneralObjectView extends JPanel implements ActionListener
 
 
 		JComboBox comboBox = new JComboBox(obj.getSupportedConnectionInterfaces());
-		comboBox.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+		comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
 		comboBox.setMaximumSize(new Dimension(150, 20));
 		comboBox.setEditable(false);
 
 		JTextField numConDev = new JTextField("" + obj.getNumberOfConnectedDevices());
-		numConDev.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+		numConDev.setAlignmentX(Component.LEFT_ALIGNMENT);
 		numConDev.setMaximumSize(new Dimension(150, 20));
 		numConDev.setEditable(false);
 
@@ -270,7 +271,8 @@ public class GeneralObjectView extends JPanel implements ActionListener
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)

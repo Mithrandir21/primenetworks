@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 import logistical.cleanup;
 import managment.ComponentsManagment;
-
 import connections.Connection;
 import connections.DeviceConnection;
 import connections.InternalConnection;
@@ -147,8 +146,8 @@ public abstract class Object implements Serializable
 	/**
 	 * The constructor of the object superclass. All objects must have both a
 	 * name and description. This constructor also sets the initial components
-	 * that an object starts of with. Like
-	 * {@link hardware.Motherboard motherboards}.
+	 * that an object starts of with. Like {@link hardware.Motherboard
+	 * motherboards}.
 	 * 
 	 * @param Name
 	 *            The name of an object
@@ -213,7 +212,7 @@ public abstract class Object implements Serializable
 	 *            The supported connection interfaces an instance of a object
 	 *            supports.
 	 * @param objectMB
-	 *            The {@link  hardware.Motherboard motherboard} of an object.
+	 *            The {@link hardware.Motherboard motherboard} of an object.
 	 */
 	public Object(String Name, String Desc, String[] SupConInt, Motherboard objectMB)
 	{
@@ -267,8 +266,8 @@ public abstract class Object implements Serializable
 	/**
 	 * Get all components of a computer.
 	 * 
-	 * @return Returns an array of {@link  objects.Object  Objects} containing
-	 *         the components that make up the system.
+	 * @return Returns an array of {@link objects.Object Objects} containing the
+	 *         components that make up the system.
 	 */
 	public Object[] getComponents()
 	{
@@ -279,8 +278,8 @@ public abstract class Object implements Serializable
 	/**
 	 * Get all the devices connected to the computer.
 	 * 
-	 * @return Returns an array of {@link  objects.Object  Objects} containing
-	 *         the devices that are connected the system.
+	 * @return Returns an array of {@link objects.Object Objects} containing the
+	 *         devices that are connected the system.
 	 */
 	public Object[] getConnectedDevices()
 	{
@@ -293,7 +292,7 @@ public abstract class Object implements Serializable
 	 * Get all the connections between the computer and devices it is connected
 	 * to.
 	 * 
-	 * @return Returns an array of {@link  connections.Connection Connections}.
+	 * @return Returns an array of {@link connections.Connection Connections}.
 	 */
 	public Connection[] getConnections()
 	{
@@ -509,8 +508,8 @@ public abstract class Object implements Serializable
 		// Sets the new count for number of connected devices in the array
 		connectedDevicesCounter = connectedDevices.length;
 	}
-	
-	
+
+
 	/**
 	 * Function to remove connected devices from the array of connected devices.
 	 * 
@@ -598,7 +597,7 @@ public abstract class Object implements Serializable
 		{
 			addNetworkConnection((NetworkConnection) con);
 		}
-		
+
 	}
 
 
@@ -631,14 +630,15 @@ public abstract class Object implements Serializable
 		{
 			System.out.println(e.getMessage());
 		}
-		
+
 	}
 
 
 	/**
 	 * Releases all the connection ports on a motherboard by determining what
 	 * kind of class the connection is an instance of, and then clearing the
-	 * correct ports on the {@link hardware.Motherboard motherboard} of the object.
+	 * correct ports on the {@link hardware.Motherboard motherboard} of the
+	 * object.
 	 */
 	public void releaseAllConnectionPorts(Connection con)
 	{
@@ -783,8 +783,8 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Adds the givens connection to the array of internal connections.
-	 * If necessary, initiates the array or extends the array.
+	 * Adds the givens connection to the array of internal connections. If
+	 * necessary, initiates the array or extends the array.
 	 */
 	public void addInternalConnection(InternalConnection con)
 	{
@@ -814,8 +814,8 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Adds the givens connection to the array of network connections.
-	 * If necessary, initiates the array or extends the array.
+	 * Adds the givens connection to the array of network connections. If
+	 * necessary, initiates the array or extends the array.
 	 */
 	public void addNetworkConnection(NetworkConnection con)
 	{
@@ -844,8 +844,8 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Adds the givens connection to the array of device connections.
-	 * If necessary, initiates the array or extends the array.
+	 * Adds the givens connection to the array of device connections. If
+	 * necessary, initiates the array or extends the array.
 	 */
 	public void addDeviceConnection(DeviceConnection con)
 	{
@@ -1088,16 +1088,17 @@ public abstract class Object implements Serializable
 
 		return found;
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Gets the number of actual connected devices, by it with RJ-45 or USB and so on.
+	 * Gets the number of actual connected devices, by it with RJ-45 or USB and
+	 * so on.
 	 */
 	public int getNumberOfConnectedDevices()
 	{
 		int found = 0;
-		
+
 		if ( connectedDevices != null )
 		{
 			for ( int i = 0; i < connectedDevices.length; i++ )
@@ -1108,7 +1109,7 @@ public abstract class Object implements Serializable
 				}
 			}
 		}
-		
+
 		return found;
 	}
 

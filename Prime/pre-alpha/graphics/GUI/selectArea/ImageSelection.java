@@ -26,8 +26,10 @@ public class ImageSelection extends TransferHandler
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.swing.TransferHandler#getSourceActions(javax.swing.JComponent)
 	 */
+	@Override
 	public int getSourceActions(JComponent c)
 	{
 		return TransferHandler.COPY;
@@ -37,8 +39,11 @@ public class ImageSelection extends TransferHandler
 
 	/*
 	 * (non-Javadoc)
-	 * @see javax.swing.TransferHandler#createTransferable(javax.swing.JComponent)
+	 * 
+	 * @see
+	 * javax.swing.TransferHandler#createTransferable(javax.swing.JComponent)
 	 */
+	@Override
 	public Transferable createTransferable(JComponent comp)
 	{
 		if ( comp instanceof WidgetIcon )

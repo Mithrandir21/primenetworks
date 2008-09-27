@@ -1,17 +1,18 @@
 package managment;
 
 
+import logistical.cleanup;
 import objects.Object;
-import exceptions.*;
-import logistical.*;
+import exceptions.ObjectNotFoundInArrayException;
+import exceptions.StringNotFoundInArrayException;
 
 
 /**
  * Class that contains different function that add, remove and replace
  * components from a given array. It is used in the different parts of the
- * program, specially {@link  clients.Desktop  Desktops},
- * {@link  clients.Laptop  Laptops}, {@link  objects.Servers  Servers} and
- * {@link  infrastructure.Rack  Racks}.
+ * program, specially {@link clients.Desktop Desktops}, {@link clients.Laptop
+ * Laptops}, {@link objects.Servers Servers} and {@link infrastructure.Rack
+ * Racks}.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -30,8 +31,7 @@ public class ArrayManagment
 	 *             Throws an exception with a message which says that the item
 	 *             is already present.
 	 */
-	public static String[] addItems(String[] NewItems, String[] Items)
-			throws Exception
+	public static String[] addItems(String[] NewItems, String[] Items) throws Exception
 	{
 		// The number of new items to be added to the items array
 		int numberOfNewItems = 0;
@@ -45,7 +45,7 @@ public class ArrayManagment
 				numberOfNewItems++;
 			}
 		}
-		
+
 
 		// Makes a new items array with the added number of indexs
 		String[] tempItems = new String[Items.length + numberOfNewItems];
@@ -59,8 +59,7 @@ public class ArrayManagment
 		{
 			if ( areFound[i] == true )
 			{
-				throw new Exception("The items " + NewItems[i]
-						+ " is already present.");
+				throw new Exception("The items " + NewItems[i] + " is already present.");
 			}
 		}
 
@@ -133,16 +132,15 @@ public class ArrayManagment
 			{
 				StringNotFoundInArrayException exception = new StringNotFoundInArrayException(
 						"String was not found, hence cannot "
-								+ "be deleted. Contact systemadminstrator.",
-						ToBeRemoved[i]);
+								+ "be deleted. Contact systemadminstrator.", ToBeRemoved[i]);
 
 				throw exception;
 			}
 		}
-		
-		
+
+
 		items = cleanup.cleanObjectArray(items);
-		
+
 
 		return items;
 	}
@@ -159,8 +157,7 @@ public class ArrayManagment
 	 * @param Items
 	 *            The current string list.
 	 */
-	public static String[] changeArrayItem(String NewItem, String OldItem,
-			String[] Items)
+	public static String[] changeArrayItem(String NewItem, String OldItem, String[] Items)
 	{
 		// Goes through all the strings and replaces the old string with the new
 		// one

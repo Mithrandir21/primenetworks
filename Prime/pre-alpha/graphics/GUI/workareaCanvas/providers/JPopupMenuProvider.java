@@ -20,35 +20,35 @@ public class JPopupMenuProvider
 
 	public JPopupMenu createPopupMenu(Widget widget)
 	{
-		
-		WorkareaCanvas canvas = PrimeMain1.currentCanvas;
-		
-		PrimeMain1.currentCanvas.setCurrentWidgetObject((WidgetObject) widget);
-		
-		
-		InitialMenues(canvas);
-		
-//		popup.addSeparator();
-//
-//
-//		ObjectCreationMenues();
 
-//		// Add listener to the text area so the popup menu can come up.
-//		MouseListener popupListener = new PopupListener(popup);
-//		PrimeMain1.myView.addMouseListener(popupListener);
-		
+		WorkareaCanvas canvas = PrimeMain1.currentCanvas;
+
+		PrimeMain1.currentCanvas.setCurrentWidgetObject((WidgetObject) widget);
+
+
+		InitialMenues(canvas);
+
+		// popup.addSeparator();
+		//
+		//
+		// ObjectCreationMenues();
+
+		// // Add listener to the text area so the popup menu can come up.
+		// MouseListener popupListener = new PopupListener(popup);
+		// PrimeMain1.myView.addMouseListener(popupListener);
+
 		return popup;
 	}
 
 	private void InitialMenues(WorkareaCanvas canvas)
 	{
 		JMenuItem menuItem;
-		
+
 		menuItem = new JMenuItem("Delete this object");
 		menuItem.setName("DeleteThisObject");
 		menuItem.addActionListener(canvas);
 		popup.add(menuItem);
-		
+
 		menuItem = new JMenuItem("Delete all connection to and from this object");
 		menuItem.setName("DeleteConnectionsObject");
 		menuItem.addActionListener(canvas);
@@ -85,8 +85,7 @@ public class JPopupMenuProvider
 
 
 
-		JMenuItem submenuInfrastructur = createAddInfrastructur(new JMenu(
-				"Add Infrastructur"));
+		JMenuItem submenuInfrastructur = createAddInfrastructur(new JMenu("Add Infrastructur"));
 
 		submenuAdd.add(submenuInfrastructur);
 
@@ -143,7 +142,7 @@ public class JPopupMenuProvider
 		menuItem = new JMenuItem("Firewall Server");
 		menuItem.setName("CreateNewST_FirewallServer_Item");
 		submenuServer.add(menuItem);
-		
+
 		menuItem = new JMenuItem("Proxy Server");
 		menuItem.setName("CreateNewST_ProxyServer_Item");
 		submenuServer.add(menuItem);

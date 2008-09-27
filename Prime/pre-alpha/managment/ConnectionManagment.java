@@ -97,7 +97,7 @@ public class ConnectionManagment
 	/**
 	 * Breaks connections between two components in the system. It removes the
 	 * connection from the array of existing connections. This methode throws
-	 * {@link  exceptions.ConnectionDoesNotExist  ConnectionDoesNotExist}
+	 * {@link exceptions.ConnectionDoesNotExist ConnectionDoesNotExist}
 	 * exception, if there is no connection between the two given objects.
 	 * 
 	 * @return Returns the given connections array without the connection

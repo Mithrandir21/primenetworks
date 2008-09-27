@@ -4,8 +4,6 @@
 package graphics.GUI.objectView.Hardware;
 
 
-import java.awt.Component;
-
 import graphics.GUI.objectView.Hardware.HardwareView.CPUView;
 import graphics.GUI.objectView.Hardware.HardwareView.DiscDriveView;
 import graphics.GUI.objectView.Hardware.HardwareView.ExternaNICView;
@@ -23,6 +21,8 @@ import hardware.HDD;
 import hardware.InternalNetworksCard;
 import hardware.Motherboard;
 import hardware.Ram;
+
+import java.awt.Component;
 
 import javax.swing.JTabbedPane;
 
@@ -180,7 +180,7 @@ public class HardwareEditorTabbed extends JTabbedPane
 			Component comp = this.getComponent(0);
 			((HardwareView) comp).save();
 
-			
+
 			// Returns a boolean showing that everything i saved.
 			return true;
 		}

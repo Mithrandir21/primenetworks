@@ -8,6 +8,7 @@ import javax.swing.JPopupMenu;
 import org.netbeans.api.visual.action.PopupMenuProvider;
 import org.netbeans.api.visual.widget.Widget;
 
+
 public class JMenuProvider implements PopupMenuProvider
 {
 

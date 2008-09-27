@@ -44,9 +44,9 @@ public class Laptop extends Clients implements Serializable
 	{
 		super(Name, Desc);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Constructor of a laptop computer.<br>
 	 * This constructor also sets the number of components in the system and the
@@ -61,10 +61,10 @@ public class Laptop extends Clients implements Serializable
 	{
 		super(Name, Desc, SupConInt);
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Constructor of a laptop computer.<br>
 	 * This constructor also sets the number of components in the system and the
@@ -93,13 +93,12 @@ public class Laptop extends Clients implements Serializable
 	 * @param Desc
 	 *            The description of the laptop.
 	 * @param SupConInt
-	 * 			  An array of strings that describes the supported connection
-	 * 			  interfaces.
+	 *            An array of strings that describes the supported connection
+	 *            interfaces.
 	 * @param DesktopComponents
 	 *            The initial components an instance of a laptop has.
 	 */
-	public Laptop(String Name, String Desc, String[] SupConInt,
-			Object[] DesktopComponents)
+	public Laptop(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 	}

@@ -32,9 +32,27 @@ package graphics.GUI.workareaCanvas.providers;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 
 
 /*
@@ -98,7 +116,7 @@ public class ListDialog extends JDialog implements ActionListener
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.setActionCommand("Cancel");
 		cancelButton.addActionListener(this);
-		
+
 		//
 		final JButton setButton = new JButton("Create Connection");
 		setButton.setActionCommand("Set");
@@ -114,9 +132,10 @@ public class ListDialog extends JDialog implements ActionListener
 			list.setPrototypeCellValue(longValue); // get extra space
 		}
 		list.setLayoutOrientation(JList.VERTICAL);
-//		list.setVisibleRowCount(-1);
+		// list.setVisibleRowCount(-1);
 		list.addMouseListener(new MouseAdapter()
 		{
+			@Override
 			public void mouseClicked(MouseEvent e)
 			{
 				if ( e.getClickCount() == 2 )
@@ -125,13 +144,13 @@ public class ListDialog extends JDialog implements ActionListener
 				}
 			}
 		});
-		
-		
+
+
 		JScrollPane listScroller = new JScrollPane(list);
 		listScroller.setPreferredSize(new Dimension(150, 80));
 		listScroller.setAlignmentX(LEFT_ALIGNMENT);
 
-		
+
 		// Create a container so that we can add a title around
 		// the scroll pane. Can't add a title directly to the
 		// scroll pane because its background would be white.
@@ -172,7 +191,7 @@ public class ListDialog extends JDialog implements ActionListener
 		{
 			ListDialog.value = (String) (list.getSelectedValue());
 		}
-		else if( "Cancel".equals(e.getActionCommand()) )
+		else if ( "Cancel".equals(e.getActionCommand()) )
 		{
 			ListDialog.value = "Cancelled";
 		}

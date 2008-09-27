@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+import javax.swing.SwingConstants;
 
 import objects.Object;
 
@@ -68,7 +69,7 @@ public class ObjectProperties extends JPanel
 		JLabel temp = null;
 
 		// Index 0 - Name
-		temp = new JLabel("Name", JLabel.TRAILING);
+		temp = new JLabel("Name", SwingConstants.TRAILING);
 		temp.setName(temp.getText());
 		temp.setToolTipText("The name of the network map.");
 		canvasLabels[0] = temp;
@@ -85,7 +86,7 @@ public class ObjectProperties extends JPanel
 
 
 		// Index 1 - The number of objects on the network map.
-		temp = new JLabel("Objects count", JLabel.TRAILING);
+		temp = new JLabel("Objects count", SwingConstants.TRAILING);
 		temp.setName(temp.getText());
 		temp.setToolTipText("The number of objects in the network.");
 		canvasLabels[1] = temp;
@@ -123,13 +124,13 @@ public class ObjectProperties extends JPanel
 
 		temp = null;
 
-//		// Index 1 - Description
-//		temp = new JLabel("Description");
-//		temp.setName(temp.getText());
-//		temp.setToolTipText("The description of the device.");
-//		standardLabels[1] = temp;
-//
-//		temp = null;
+		// // Index 1 - Description
+		// temp = new JLabel("Description");
+		// temp.setName(temp.getText());
+		// temp.setToolTipText("The description of the device.");
+		// standardLabels[1] = temp;
+		//
+		// temp = null;
 
 		// Index 1 - Description
 		temp = new JLabel("Supported Connection Interfaces");
@@ -271,7 +272,7 @@ public class ObjectProperties extends JPanel
 		numPairs = standardLabels.length;
 
 		// Name
-		JLabel l = new JLabel(standardLabels[0].getText(), JLabel.TRAILING);
+		JLabel l = new JLabel(standardLabels[0].getText(), SwingConstants.TRAILING);
 		this.add(l);
 		JTextField textField = new JTextField(object.getObjectName());
 		Dimension tfSize = new Dimension(5, 20);
@@ -279,18 +280,18 @@ public class ObjectProperties extends JPanel
 		textField.setPreferredSize(tfSize);
 		l.setLabelFor(textField);
 		this.add(textField);
-		
+
 		// Sup int
-		l = new JLabel(standardLabels[1].getText(), JLabel.TRAILING);
+		l = new JLabel(standardLabels[1].getText(), SwingConstants.TRAILING);
 		this.add(l);
 		textField = new JTextField(10);
 		textField.setMaximumSize(tfSize);
 		textField.setPreferredSize(tfSize);
 		l.setLabelFor(textField);
 		this.add(textField);
-		
+
 		// Number of comp
-		l = new JLabel(standardLabels[2].getText(), JLabel.TRAILING);
+		l = new JLabel(standardLabels[2].getText(), SwingConstants.TRAILING);
 		this.add(l);
 		textField = new JTextField(Integer.toString((object.getNumberOfConnectedDevices())));
 		textField.setEditable(false);
@@ -298,9 +299,9 @@ public class ObjectProperties extends JPanel
 		textField.setPreferredSize(tfSize);
 		l.setLabelFor(textField);
 		this.add(textField);
-		
+
 		// Number of jumps
-		l = new JLabel(standardLabels[3].getText(), JLabel.TRAILING);
+		l = new JLabel(standardLabels[3].getText(), SwingConstants.TRAILING);
 		this.add(l);
 		textField = new JTextField("0");
 		textField.setEditable(false);
@@ -314,26 +315,26 @@ public class ObjectProperties extends JPanel
 	private void showDesktopProperties(Object object)
 	{
 		numPairs += clientsLabels.length;
-		
+
 		String[] rates = new String[20];
 		int temp = 5;
-		
-		for(int i = 0;i<rates.length;i++)
+
+		for ( int i = 0; i < rates.length; i++ )
 		{
 			rates[i] = Integer.toString(temp);
-			temp = temp +5;
+			temp = temp + 5;
 		}
 
-		
+
 		JComboBox comboBox = new JComboBox(rates);
 		comboBox.setBackground(Color.white);
-	    comboBox.setEditable(false);
+		comboBox.setEditable(false);
 		Dimension tfSize = new Dimension(5, 20);
 		comboBox.setMaximumSize(tfSize);
 		comboBox.setPreferredSize(tfSize);
-		
 
-		JLabel l = new JLabel(clientsLabels[0].getText(), JLabel.TRAILING);
+
+		JLabel l = new JLabel(clientsLabels[0].getText(), SwingConstants.TRAILING);
 		this.add(l);
 		this.add(comboBox);
 	}
@@ -345,7 +346,7 @@ public class ObjectProperties extends JPanel
 		// Create and populate the panel.
 		for ( int i = 0; i < serversLabels.length; i++ )
 		{
-			JLabel l = new JLabel(serversLabels[i].getText(), JLabel.TRAILING);
+			JLabel l = new JLabel(serversLabels[i].getText(), SwingConstants.TRAILING);
 			this.add(l);
 			JTextField textField = new JTextField(10);
 			Dimension tfSize = new Dimension(5, 20);
@@ -363,7 +364,7 @@ public class ObjectProperties extends JPanel
 		// Create and populate the panel.
 		for ( int i = 0; i < peripheralsLabels.length; i++ )
 		{
-			JLabel l = new JLabel(peripheralsLabels[i].getText(), JLabel.TRAILING);
+			JLabel l = new JLabel(peripheralsLabels[i].getText(), SwingConstants.TRAILING);
 			this.add(l);
 			JTextField textField = new JTextField(10);
 			Dimension tfSize = new Dimension(5, 20);
@@ -381,7 +382,7 @@ public class ObjectProperties extends JPanel
 		// Create and populate the panel.
 		for ( int i = 0; i < infrastructuresLabels.length; i++ )
 		{
-			JLabel l = new JLabel(infrastructuresLabels[i].getText(), JLabel.TRAILING);
+			JLabel l = new JLabel(infrastructuresLabels[i].getText(), SwingConstants.TRAILING);
 			this.add(l);
 			JTextField textField = new JTextField(10);
 			Dimension tfSize = new Dimension(5, 20);

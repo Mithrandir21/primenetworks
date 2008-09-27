@@ -4,7 +4,11 @@
 package graphics;
 
 
-import hardware.*;
+import hardware.CPU;
+import hardware.Discdrive;
+import hardware.HDD;
+import hardware.Motherboard;
+import hardware.Ram;
 
 
 /**
@@ -24,9 +28,8 @@ public class MakeStandardInternalComponents
 	 */
 	public Motherboard getSt_MB()
 	{
-		return new Motherboard("Standard Motherboard",
-				"This is the system standard motherboard.", "Prime", "ATX", "Intel 775", 1,
-				3, 2, 4, 4, "SATA", "AGP", true, true, true, 1);
+		return new Motherboard("Standard Motherboard", "This is the system standard motherboard.",
+				"Prime", "ATX", "Intel 775", 1, 3, 2, 4, 4, "SATA", "AGP", true, true, true, 1);
 	}
 
 
@@ -54,8 +57,7 @@ public class MakeStandardInternalComponents
 	 */
 	public CPU getSt_CPU()
 	{
-		return new CPU("Standard CPU", "This is the system standard CPU.",
-				"Intel 775", 512);
+		return new CPU("Standard CPU", "This is the system standard CPU.", "Intel 775", 512);
 	}
 
 
@@ -69,8 +71,7 @@ public class MakeStandardInternalComponents
 	 */
 	public HDD getSt_HDD()
 	{
-		return new HDD("Standard HDD", "This is the system standard HDD.", "SATA",
-				160);
+		return new HDD("Standard HDD", "This is the system standard HDD.", "SATA", 160);
 	}
 
 
@@ -84,8 +85,7 @@ public class MakeStandardInternalComponents
 	 */
 	public Ram getSt_RAM()
 	{
-		return new Ram("Standard Ram", "This is the system standard RAM.", "DDR2",
-				1024);
+		return new Ram("Standard Ram", "This is the system standard RAM.", "DDR2", 1024);
 	}
 
 
@@ -99,7 +99,6 @@ public class MakeStandardInternalComponents
 	 */
 	public Discdrive getSt_DVDRW()
 	{
-		return new Discdrive("Standard DVD-RW",
-				"This is the system standard DVD-RW.", "DVD-RW");
+		return new Discdrive("Standard DVD-RW", "This is the system standard DVD-RW.", "DVD-RW");
 	}
 }

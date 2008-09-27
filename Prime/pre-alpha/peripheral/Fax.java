@@ -1,48 +1,55 @@
 package peripheral;
+
+
 import java.io.Serializable;
 
 import objects.ExternalHardware;
 
 
 /**
- * This class represents a fax machine.
- * This device can be connected to any device that supports the conncetion type of this device. 
- * It contains information on what kind of capability the fax machine has and what 
- * kind of connection interface is has.
- *
+ * This class represents a fax machine. This device can be connected to any
+ * device that supports the conncetion type of this device. It contains
+ * information on what kind of capability the fax machine has and what kind of
+ * connection interface is has.
+ * 
  * @author Bahram Malaekeh
  * @version 0.0.1
  */
-public class Fax extends ExternalHardware implements Serializable 
+public class Fax extends ExternalHardware implements Serializable
 {
 
 	// Type of fax. ink or laser
 	private String faxType;
-	
-	
+
+
 	// Pages per minute(up to)
 	private int ppm;
-	
-	
-	
+
+
+
 	/**
 	 * Constructor of the fax class.
-	 *
-	 * @param Name The name of the fax.
-	 * @param Desc The description of the fax.
-	 * @param FfaxType Type of fax. ink or laser.
-	 * @param FconnectionInterfaces Connection interfaces supported by the fax. An array of Strings.
+	 * 
+	 * @param Name
+	 *            The name of the fax.
+	 * @param Desc
+	 *            The description of the fax.
+	 * @param FfaxType
+	 *            Type of fax. ink or laser.
+	 * @param FconnectionInterfaces
+	 *            Connection interfaces supported by the fax. An array of
+	 *            Strings.
 	 */
 	public Fax(String Name, String Desc, String FfaxType, String[] FconnectionInterfaces)
 	{
-		super(Name,Desc,FconnectionInterfaces);
-		
+		super(Name, Desc, FconnectionInterfaces);
+
 		faxType = FfaxType;
 	}
-	
-	
+
+
 	// Get and Set methodes for retrieving all datafields.
-	
+
 	// GET METHODES
 
 	/**
@@ -53,7 +60,7 @@ public class Fax extends ExternalHardware implements Serializable
 	{
 		return faxType;
 	}
-	
+
 
 	/**
 	 * Get print outs per minute.
@@ -63,8 +70,8 @@ public class Fax extends ExternalHardware implements Serializable
 	{
 		return ppm;
 	}
-	
-	
+
+
 	// SET METHODES
 
 	/**
@@ -75,7 +82,7 @@ public class Fax extends ExternalHardware implements Serializable
 	{
 		faxType = FfaxType;
 	}
-	
+
 
 	/**
 	 * Sets pages per minute for a fax.
