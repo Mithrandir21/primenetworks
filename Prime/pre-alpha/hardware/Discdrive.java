@@ -22,8 +22,11 @@ public class Discdrive extends Hardware implements Serializable
 	// The company that produces the Diskdrive. Sony, Samsung and so on.
 	private String producer;
 
-	// The type of Diskdrive. CDROM,DVDROM,DVDburner,Blu-Ray,HD-DVD and so on.
+	// The type of Diskdrive. CDROM,DVDROM,DVDburner,Blu-Ray and so on.
 	private String type;
+	
+	// The port of the Discdrive. IDE, SATA or USB.
+	private String port;
 
 	// The subtype of the Diskdrive type, DualLayer, Doublesided and so on.
 	private String subtype;
@@ -43,11 +46,13 @@ public class Discdrive extends Hardware implements Serializable
 	 * @param DiskdriveType
 	 *            The type of diskdrive. Like CDROM, DVD-RW and so on.
 	 */
-	public Discdrive(String Name, String Desc, String DiskdriveType)
+	public Discdrive(String Name, String Desc, String DiskdriveType, String Port)
 	{
 		super(Name, Desc);
 
 		type = DiskdriveType;
+		
+		port = Port;
 	}
 
 
@@ -72,6 +77,16 @@ public class Discdrive extends Hardware implements Serializable
 	public String getType()
 	{
 		return type;
+	}
+	
+	
+	/**
+	 * Get the port that connects the discdrive to a motherboard.
+	 * 
+	 */
+	public String getPort()
+	{
+		return port;
 	}
 
 
@@ -112,6 +127,16 @@ public class Discdrive extends Hardware implements Serializable
 	public void setType(String DiskdriveType)
 	{
 		type = DiskdriveType;
+	}
+	
+	
+	/**
+	 * Set method for the port that connects the discdrive to a motherboard.
+	 * 
+	 */
+	public void setPort(String Port)
+	{
+		port = Port;
 	}
 
 

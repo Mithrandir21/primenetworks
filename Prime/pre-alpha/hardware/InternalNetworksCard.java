@@ -11,9 +11,9 @@ import objects.Hardware;
  * {@link objects.Servers server} or {@link objects.Clients client} machine. It
  * can be a server, a desktop or a laptop. It contains information on what kind
  * of capability the networks interface card has. It also contains information
- * on transfere speeds, MACs, connection types and so on. <br>
+ * on transfer speeds, MACs, connection types and so on. <br>
  * <br>
- * <b>Notation</b>: The networks interface card will be refered to as "NIC" in
+ * <b>Notation</b>: The networks interface card will be referred to as "NIC" in
  * the remainder of this document.
  * 
  * @author Bahram Malaekeh

@@ -367,6 +367,19 @@ public abstract class Object implements Serializable
 	{
 		this.supportedConnectionInterfaces = supportedConnectionInterfaces;
 	}
+	
+	
+	/**
+	 * Description NEEDED!
+	 * 
+	 * @param supportedConnectionInterfaces
+	 *            the supportedConnectionInterfaces to set
+	 */
+	public void setSupportedConnectionInterfaces(String supportedConnectionInterface)
+	{
+		String[] one = { supportedConnectionInterface };
+		this.supportedConnectionInterfaces = one;
+	}
 
 
 	/**

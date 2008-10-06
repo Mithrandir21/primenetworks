@@ -3,9 +3,11 @@
  */
 package graphics;
 
+
 import java.awt.Component;
 
 import javax.swing.JComboBox;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import managment.ComponentsManagment;
@@ -102,7 +104,8 @@ public class GraphicalFunctions
 	 * @param newVariable
 	 *            The editor variable that will be checked for differences.
 	 * @param mainObj
-	 * 			  The object that the objects with the given class will be removed from.
+	 *            The object that the objects with the given class will be
+	 *            removed from.
 	 */
 	public static void removeComponentFromObject(Class<?> componentClass, String variable,
 			String newVariable, Object mainObj)
@@ -150,9 +153,9 @@ public class GraphicalFunctions
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	/**
 	 * This function does verifies that a component with the given class exists
 	 * in the components array of the main selected component. If it does the
@@ -162,9 +165,10 @@ public class GraphicalFunctions
 	 * removal of the incompatible component.
 	 * 
 	 * @param comp
-	 * 			  The components that will be the ancestor of the JOptionPane.
+	 *            The components that will be the ancestor of the JOptionPane.
 	 * @param mainObj
-	 * 			  The main component. The object which all other objects are children of.
+	 *            The main component. The object which all other objects are
+	 *            children of.
 	 * @param componentClass
 	 *            The class of the component that will be searched for.
 	 * @param mbVariable
@@ -178,8 +182,8 @@ public class GraphicalFunctions
 	 * @param combo
 	 *            The JComboBox itself.
 	 */
-	public static JComboBox verifyChange(Component comp,Object mainObj,Class<?> componentClass, String mbVariable, String newVariable,
-			String msg, String[] strings, JComboBox combo)
+	public static JComboBox verifyChange(Component comp, Object mainObj, Class<?> componentClass,
+			String mbVariable, String newVariable, String msg, String[] strings, JComboBox combo)
 	{
 		if ( ComponentsManagment.containsComponent(componentClass, mainObj.getComponents(), mainObj
 				.getComponents().length) )
@@ -194,12 +198,46 @@ public class GraphicalFunctions
 				// If the answer is "No"
 				if ( n == 1 )
 				{
+
 					combo.setSelectedIndex(getIndexInJComboBox(strings, mbVariable));
 				}
 			}
 		}
-		
+
 		return combo;
 	}
 
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param list
+	 * @param data
+	 * @return
+	 */
+	public static JList getIndexInJList(JList list, String[] possibilities, String[] data)
+	{
+		int[] indices = new int[data.length];
+
+		for ( int i = 0; i < data.length; i++ )
+		{
+			for ( int j = 0; j < possibilities.length; j++ )
+			{
+				if ( data[i].equals(possibilities[j]) )
+				{
+					indices[i] = j;
+
+					// Stops the loop.
+					j = possibilities.length;
+				}
+			}
+		}
+
+
+		list.setSelectedIndices(indices);
+
+		return list;
+	}
 }

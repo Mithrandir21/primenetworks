@@ -99,6 +99,6 @@ public class MakeStandardInternalComponents
 	 */
 	public Discdrive getSt_DVDRW()
 	{
-		return new Discdrive("Standard DVD-RW", "This is the system standard DVD-RW.", "DVD-RW");
+		return new Discdrive("Standard discdrive", "This is the system standard discdrive.", "DVDRW", "SATA");
 	}
 }

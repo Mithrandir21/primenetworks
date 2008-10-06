@@ -116,7 +116,7 @@ public class HardwareEditorTabbed extends JTabbedPane
 
 	/**
 	 * This method calls the save methods on all the different HardwareViews and
-	 * if the boolean given is true, calls also the validation methodes on all
+	 * if the boolean given is true, calls also the validation methods on all
 	 * views. If any of the validations fail, none save methods will be called.
 	 * 
 	 * @param verify

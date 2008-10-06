@@ -438,9 +438,7 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 			CPUobj.setCPUcores(4);
 		}
 
-
 		CPUobj.set64Bit(bit64.isSelected());
-
 	}
 	
 	

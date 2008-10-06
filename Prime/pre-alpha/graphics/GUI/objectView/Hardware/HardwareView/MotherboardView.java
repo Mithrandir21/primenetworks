@@ -88,9 +88,9 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 	private JComboBox LANports;
 
 
-	Object mainObj;
+	private Object mainObj;
 
-	Motherboard mbObj;
+	private Motherboard mbObj;
 
 
 	/**

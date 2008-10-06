@@ -3,6 +3,7 @@ package graphics.GUI.objectView.Hardware.HardwareView;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareEditor;
 import hardware.HDD;
 import hardware.Ram;
@@ -19,6 +20,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -46,15 +48,15 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 	private JComboBox subtype;
 
 	private JComboBox size;
-	
+
 	private JComboBox transferSpeed;
-	
+
 	private JComboBox rpm;
-	
-	
-	Object mainObj;
-	
-	HDD mainHDD;
+
+
+	private Object mainObj;
+
+	private HDD mainHDD;
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
@@ -99,18 +101,18 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 		c.gridheight = 5;
 		c.insets = new Insets(0, 10, 10, 10);
 
-		JPanel p2 = new JPanel();
+		JPanel p2 = createSpesificInfo(hdd);
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
 	}
-	
-	
+
+
 	private JPanel createSpesificInfo(HDD hdd)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[6];
-		
+
 		labels[0] = new JLabel("Producer");
 		labels[0].setToolTipText("The producer of the hdd.");
 
@@ -125,11 +127,11 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 
 		labels[4] = new JLabel("Speed");
 		labels[4].setToolTipText("The transfer speed of the HDD measured in MB.");
-		
+
 		labels[5] = new JLabel("RPM");
 		labels[5].setToolTipText("The number of disk rotations per minute.");
-		
-		
+
+
 		Dimension tfSize = new Dimension(90, 20);
 
 
@@ -145,7 +147,7 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 		panel.add(producer);
 
 
-		// The type of the ram
+		// The type of the hdd
 		labels[1].setLabelFor(type);
 		String[] typeString = { "", "IDE", "SATA", "USB" };
 		type = new JComboBox(typeString);
@@ -156,8 +158,7 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 		type.setActionCommand("Type");
 		type.addActionListener(this);
 
-		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				typeString, hdd.getType()));
+		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(typeString, hdd.getType()));
 
 
 		panel.add(labels[1]);
@@ -165,9 +166,10 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 
 
 
-		// The subtype of the ram
+		// The subtype of the hdd
 		labels[2].setLabelFor(subtype);
-		String[] subtypeString = { "", "DIMM", "SO-DIMM" };
+		String[] subtypeString = { "", "ATA-100", "ATA-133", "SATA-150", "SATA-300", "USBv1",
+				"USBv2", "eSATA" };
 		subtype = new JComboBox(subtypeString);
 		subtype.setMaximumSize(tfSize);
 		subtype.setPreferredSize(tfSize);
@@ -176,8 +178,8 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 		subtype.setActionCommand("Subtype");
 		subtype.addActionListener(this);
 
-		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				subtypeString, hdd.getSubtype()));
+		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(subtypeString, hdd
+				.getSubtype()));
 
 
 		panel.add(labels[2]);
@@ -185,28 +187,91 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 
 
 
-		// The size of the ram
+		// The size of the hdd
 		labels[3].setLabelFor(size);
 		String[] sizeString = new String[30];
-	
+		sizeString[0] = "";
+
+		int hddSize = 0;
+
+		for ( int i = 1; i < sizeString.length; i++ )
+		{
+			if ( hddSize < 60 )
+			{
+				hddSize = hddSize + 10;
+				sizeString[i] = "" + hddSize;
+			}
+			else if ( hddSize < 200 )
+			{
+				hddSize = hddSize + 40;
+				sizeString[i] = "" + hddSize;
+			}
+			else
+			{
+				hddSize = hddSize + 100;
+				sizeString[i] = "" + hddSize;
+			}
+		}
+
 		size = new JComboBox(sizeString);
 		size.setMaximumSize(tfSize);
 		size.setPreferredSize(tfSize);
 		size.setBackground(Color.WHITE);
 		size.setToolTipText(labels[3].getToolTipText());
-		size.setActionCommand("Subtype");
+		size.setActionCommand("size");
 		size.addActionListener(this);
 
-		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				sizeString, hdd.getSize()));
-
+		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(sizeString, hdd.getSize()));
 
 		panel.add(labels[3]);
 		panel.add(size);
+
+
+
+		// The transfer speed of the hdd
+		labels[4].setLabelFor(transferSpeed);
+		String[] transSpeedString = { "", "16", "33", "66", "80", "133", "150", "300", "600" };
+		transferSpeed = new JComboBox(typeString);
+		transferSpeed.setMaximumSize(tfSize);
+		transferSpeed.setPreferredSize(tfSize);
+		transferSpeed.setBackground(Color.WHITE);
+		transferSpeed.setToolTipText(labels[1].getToolTipText());
+		transferSpeed.setActionCommand("Speed");
+		transferSpeed.addActionListener(this);
+
+		transferSpeed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(transSpeedString, hdd
+				.getSpeed()));
+
+
+		panel.add(labels[4]);
+		panel.add(transferSpeed);
+
+
+
+		// The rpm of the hdd
+		labels[5].setLabelFor(rpm);
+		String[] rpmString = { "", "5400", "7200", "10000", "15000" };
+		rpm = new JComboBox(rpmString);
+		rpm.setMaximumSize(tfSize);
+		rpm.setPreferredSize(tfSize);
+		rpm.setBackground(Color.WHITE);
+		rpm.setToolTipText(labels[1].getToolTipText());
+		rpm.setActionCommand("Speed");
+		rpm.addActionListener(this);
+
+		rpm.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(rpmString, hdd.getRPM()));
+
+
+		panel.add(labels[5]);
+		panel.add(rpm);
+
+
+		// Lay out the panel.
+		SpringUtilities.makeCompactGrid(panel, 2, 6, // rows, cols
+				10, 10, // initX, initY
+				20, 20); // xPad, yPad
 		
-		
-		
-		
+
 		return panel;
 	}
 
@@ -218,7 +283,51 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
+		if ( name.getText() != "" )
+		{
+			mainHDD.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainHDD.setDescription(desc.getText());
+		}
+		
+		if ( producer.getText() != "" )
+		{
+			mainHDD.setProducer(producer.getText());
+		}
+		
+		if ( type.getSelectedItem().toString() != "" )
+		{
+			// Will remove any objects with the given class from the components
+			// array of the motherboard object if the motherboard variable does
+			// not match the editor variable.
+			GraphicalFunctions.removeComponentFromObject(HDD.class, mainHDD.getType(), type
+					.getSelectedItem().toString(), mainObj);
+			
+			mainHDD.setType(type.getSelectedItem().toString());
+		}
+		
+		if ( subtype.getSelectedItem().toString() != "" )
+		{
+			mainHDD.setSubtype(subtype.getSelectedItem().toString());
+		}
+		
+		if ( size.getSelectedItem().toString() != "" )
+		{
+			mainHDD.setSize(Integer.parseInt(size.getSelectedItem().toString()));
+		}
+		
+		if ( transferSpeed.getSelectedItem().toString() != "" )
+		{
+			mainHDD.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem().toString()));
+		}
+		
+		if ( rpm.getSelectedItem().toString() != "" )
+		{
+			mainHDD.setRPM(Integer.parseInt(rpm.getSelectedItem().toString()));
+		}
 
 	}
 
@@ -231,7 +340,28 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 	@Override
 	public boolean validateNecessaryData()
 	{
-		// TODO Auto-generated method stub
+		// Checks the name of the motherboard
+		if ( name.getText().length() < 1 || name.getText().length() > 255 )
+		{
+			JOptionPane.showMessageDialog(this,
+					"The motherboard name must be between 1 and 255 characters.", "Error - Name",
+					JOptionPane.INFORMATION_MESSAGE);
+
+			return false;
+		}
+
+		// Checks the description of the motherboard.
+		if ( desc.getText().length() < 1 )
+		{
+			JOptionPane.showMessageDialog(this,
+					"The motherboard description must be longer then 1 character.",
+					"Error - Description", JOptionPane.INFORMATION_MESSAGE);
+
+			return false;
+		}
+
+		// Possibility for more checks on the CPU values.
+		
 		return true;
 	}
 
@@ -252,7 +382,23 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		if ( e.getSource() instanceof JComboBox )
+		{
+			JComboBox box = (JComboBox) e.getSource();
+
+			String command = box.getActionCommand();
+			
+			if ( command.equals("Type") )
+			{
+				String msg = "The HDD will no longer be compatiable with the motherboard.\n\nDo you want to keep this change?";
+
+				String[] typeString = { "", "IDE", "SATA", "USB" };
+
+				type = GraphicalFunctions.verifyChange(this, mainObj, HDD.class, mainHDD.getType()
+						, type.getSelectedItem().toString(), msg, typeString,
+						type);
+			}
+			
+		}
 	}
 }

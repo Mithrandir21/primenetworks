@@ -23,6 +23,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -53,9 +54,9 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 	private JComboBox speed;
 
 
-	Object mainObj;
+	private Object mainObj;
 
-	Ram RAMobj;
+	private Ram RAMobj;
 
 	/**
 	 * TODO - Description NEEDED!
@@ -103,6 +104,12 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 	}
 
 
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param ram
+	 * @return
+	 */
 	private JPanel createSpesificInfo(Ram ram)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -253,8 +260,47 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
+		if ( name.getText() != "" )
+		{
+			RAMobj.setObjectName(name.getText());
+		}
 
+		if ( desc.getText() != "" )
+		{
+			RAMobj.setDescription(desc.getText());
+		}
+		
+		if ( producer.getText() != "" )
+		{
+			RAMobj.setProducer(producer.getText());
+		}
+		
+		if ( type.getSelectedItem().toString() != "" )
+		{
+			// Will remove any objects with the given class from the components
+			// array of the motherboard object if the motherboard variable does
+			// not match the editor variable.
+			GraphicalFunctions.removeComponentFromObject(Ram.class, RAMobj.getType(), type
+					.getSelectedItem().toString(), mainObj);
+			
+			RAMobj.setType(type.getSelectedItem().toString());
+		}
+		
+		if ( subtype.getSelectedItem().toString() != "" )
+		{
+			RAMobj.setSubtype(subtype.getSelectedItem().toString());
+		}
+		
+		if ( size.getSelectedItem().toString() != "" )
+		{
+			RAMobj.setSize(Integer.parseInt(size.getSelectedItem().toString()));
+		}
+		
+		if ( speed.getSelectedItem().toString() != "" )
+		{
+			RAMobj.setSpeed(Integer.parseInt(type.getSelectedItem().toString()));
+		}
+		
 	}
 
 	/*
@@ -265,7 +311,28 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 	@Override
 	public boolean validateNecessaryData()
 	{
-		// TODO Auto-generated method stub
+		// Checks the name of the motherboard
+		if ( name.getText().length() < 1 || name.getText().length() > 255 )
+		{
+			JOptionPane.showMessageDialog(this,
+					"The motherboard name must be between 1 and 255 characters.", "Error - Name",
+					JOptionPane.INFORMATION_MESSAGE);
+
+			return false;
+		}
+
+		// Checks the description of the motherboard.
+		if ( desc.getText().length() < 1 )
+		{
+			JOptionPane.showMessageDialog(this,
+					"The motherboard description must be longer then 1 character.",
+					"Error - Description", JOptionPane.INFORMATION_MESSAGE);
+
+			return false;
+		}
+
+		// Possibility for more checks on the CPU values.
+		
 		return true;
 	}
 
@@ -282,10 +349,29 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 	}
 
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
-	public void actionPerformed(ActionEvent arg0)
+	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
+		if ( e.getSource() instanceof JComboBox )
+		{
+			JComboBox box = (JComboBox) e.getSource();
 
+			String command = box.getActionCommand();
+			
+			if ( command.equals("Type") )
+			{
+				String msg = "The RAM will no longer be compatiable with the motherboard.\n\nDo you want to keep this change?";
+
+				String[] typeString = { "", "SDRAM", "DDR", "DDR2", "DDR3" };
+
+				type = GraphicalFunctions.verifyChange(this, mainObj, Ram.class, RAMobj.getType()
+						, type.getSelectedItem().toString(), msg, typeString,
+						type);
+			}
+			
+		}
 	}
 }

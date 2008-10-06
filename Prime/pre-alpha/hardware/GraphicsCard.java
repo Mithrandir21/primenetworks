@@ -12,7 +12,7 @@ import objects.Hardware;
  * desktop or a laptop. It contains information on what kind of capability the
  * graphical card has and what kind of system it can fit into. <br>
  * <br>
- * <b>Notation</b>: The graphical card will be refered to as "GC" in the
+ * <b>Notation</b>: The graphical card will be referred to as "GC" in the
  * remainder of this document.
  * 
  * @author Bahram Malaekeh
@@ -36,7 +36,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	// The speed of the GC
 	private int Speed;
 
-	// The maximum number of monitores output ports on the GC
+	// The maximum number of monitors output ports on the GC
 	private int maxMonitors;
 
 	// Whether or not the GC is integrated on the MB
@@ -45,7 +45,7 @@ public class GraphicsCard extends Hardware implements Serializable
 
 
 	/**
-	 * Constructor of a grapfics card hardware.
+	 * Constructor of a graphics card hardware.
 	 * 
 	 * @param Name
 	 *            The name of the GC.
@@ -204,7 +204,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	 * Set method for RPM of the GC.
 	 * 
 	 */
-	public void setRPM(int GCmaxMonitors)
+	public void setMaxMonitors(int GCmaxMonitors)
 	{
 		maxMonitors = GCmaxMonitors;
 	}

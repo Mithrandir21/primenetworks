@@ -4,20 +4,31 @@
 package graphics.GUI.objectView.Hardware.HardwareView;
 
 
+import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareEditor;
 import hardware.Discdrive;
+import hardware.HDD;
+import hardware.Ram;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SpringLayout;
 
 import objects.Object;
 
@@ -28,11 +39,26 @@ import objects.Object;
  * @author Bahram Malaekeh
  * 
  */
-public class DiscDriveView extends JPanel implements HardwareView
+public class DiscDriveView extends JPanel implements HardwareView, ActionListener
 {
-	JTextField name = new JTextField(25);
+	private JTextField name = new JTextField(25);
 
-	JTextArea desc = new JTextArea(3, 40);
+	private JTextArea desc = new JTextArea(3, 40);
+
+	private JTextField producer = new JTextField(7);
+
+	private JComboBox type;
+
+	private JComboBox port;
+
+	private JComboBox subtype;
+
+	private JComboBox speed;
+
+
+	private Object mainObj;
+
+	private Discdrive DiscObj;
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
@@ -42,6 +68,8 @@ public class DiscDriveView extends JPanel implements HardwareView
 	 */
 	public DiscDriveView(Object obj, Discdrive discdrive)
 	{
+		mainObj = obj;
+		DiscObj = discdrive;
 		this.setLayout(new GridBagLayout());
 		this.setBackground(Color.WHITE);
 		GridBagConstraints c = new GridBagConstraints();
@@ -75,10 +103,158 @@ public class DiscDriveView extends JPanel implements HardwareView
 		c.gridheight = 5;
 		c.insets = new Insets(0, 10, 10, 10);
 
-		JPanel p2 = new JPanel();
+		JPanel p2 = createSpesificInfo(discdrive);
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param disc
+	 * @return
+	 */
+	private JPanel createSpesificInfo(Discdrive disc)
+	{
+		JPanel panel = new JPanel(new SpringLayout());
+		JLabel[] labels = new JLabel[5];
+
+		labels[0] = new JLabel("Producer");
+		labels[0].setToolTipText("The producer of the discdrive.");
+
+		labels[1] = new JLabel("Type");
+		labels[1].setToolTipText("The discdrive type.");
+
+		labels[2] = new JLabel("Port");
+		labels[2].setToolTipText("The discdrive port to the motherboard.");
+
+		labels[3] = new JLabel("Subtype");
+		labels[3].setToolTipText("The discdrive subtype. (DualLayer and Doublesided.)");
+
+		labels[4] = new JLabel("Speed");
+		labels[4].setToolTipText("The speed of the discdrive.(2x, 4x, 6x and so on).");
+
+
+		Dimension tfSize = new Dimension(90, 20);
+
+
+		// The producer
+		labels[0].setLabelFor(producer);
+		producer.setMaximumSize(tfSize);
+		producer.setPreferredSize(tfSize);
+		producer.setText(disc.getProducer());
+		producer.setToolTipText(labels[0].getToolTipText());
+
+
+		panel.add(labels[0]);
+		panel.add(producer);
+
+
+		// The type of the discdrive
+		labels[1].setLabelFor(type);
+		String[] typeString = { "", "CDROM", "DVDROM", "DVDRW", "Blu-Ray" };
+		type = new JComboBox(typeString);
+		type.setMaximumSize(tfSize);
+		type.setPreferredSize(tfSize);
+		type.setBackground(Color.WHITE);
+		type.setToolTipText(labels[1].getToolTipText());
+		type.setActionCommand("Type");
+		type.addActionListener(this);
+
+		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(typeString, disc.getType()));
+
+
+		panel.add(labels[1]);
+		panel.add(type);
+
+
+
+		// The port of the discdrive
+		labels[2].setLabelFor(port);
+		String[] portString = { "", "IDE", "SATA", "USB" };
+		port = new JComboBox(portString);
+		port.setMaximumSize(tfSize);
+		port.setPreferredSize(tfSize);
+		port.setBackground(Color.WHITE);
+		port.setToolTipText(labels[2].getToolTipText());
+		port.setActionCommand("Port");
+		port.addActionListener(this);
+
+		port.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(portString, disc.getPort()));
+
+
+		panel.add(labels[2]);
+		panel.add(port);
+
+
+		// The subtype of the ram
+		labels[3].setLabelFor(subtype);
+		String[] subtypeString = { "", "DualLayer", "DoubleSided" };
+		subtype = new JComboBox(subtypeString);
+		subtype.setMaximumSize(tfSize);
+		subtype.setPreferredSize(tfSize);
+		subtype.setBackground(Color.WHITE);
+		subtype.setToolTipText(labels[3].getToolTipText());
+		subtype.setActionCommand("Subtype");
+		subtype.addActionListener(this);
+
+		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(subtypeString, disc
+				.getSubtype()));
+
+
+		panel.add(labels[3]);
+		panel.add(subtype);
+
+
+		// The speed of the ram
+		labels[4].setLabelFor(speed);
+		String[] speedString = { "", "2", "4", "6", "8", "10", "12", "14", "16", "18", "20", "22",
+				"24", "32", "48" };
+		speed = new JComboBox(speedString);
+		speed.setMaximumSize(tfSize);
+		speed.setPreferredSize(tfSize);
+		speed.setBackground(Color.WHITE);
+		speed.setToolTipText(labels[4].getToolTipText());
+		speed.setActionCommand("Speed");
+		speed.addActionListener(this);
+
+		speed
+				.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(speedString, disc
+						.getSpeed()));
+
+
+		panel.add(labels[4]);
+		panel.add(speed);
+
+
+		JLabel temp1 = new JLabel("");
+		temp1.setMaximumSize(tfSize);
+		temp1.setPreferredSize(tfSize);
+
+		JLabel temp2 = new JLabel("");
+		temp2.setMaximumSize(tfSize);
+		temp2.setPreferredSize(tfSize);
+
+
+
+		// adding components so that the layout is right
+		panel.add(temp1);
+		panel.add(temp2);
+
+
+
+
+		// Lay out the panel.
+		SpringUtilities.makeCompactGrid(panel, 2, 6, // rows, cols
+				10, 10, // initX, initY
+				20, 20); // xPad, yPad
+
+
+
+
+		return panel;
 	}
 
 	/*
@@ -89,7 +265,46 @@ public class DiscDriveView extends JPanel implements HardwareView
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
+		if ( name.getText() != "" )
+		{
+			DiscObj.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			DiscObj.setDescription(desc.getText());
+		}
+
+		if ( producer.getText() != "" )
+		{
+			DiscObj.setProducer(producer.getText());
+		}
+
+		if ( type.getSelectedItem().toString() != "" )
+		{
+			DiscObj.setType(type.getSelectedItem().toString());
+		}
+
+		if ( port.getSelectedItem().toString() != "" )
+		{
+			// Will remove any objects with the given class from the components
+			// array of the motherboard object if the motherboard variable does
+			// not match the editor variable.
+			GraphicalFunctions.removeComponentFromObject(Discdrive.class, DiscObj.getType(), port
+					.getSelectedItem().toString(), mainObj);
+
+			DiscObj.setPort(port.getSelectedItem().toString());
+		}
+
+		if ( subtype.getSelectedItem().toString() != "" )
+		{
+			DiscObj.setSubtype(subtype.getSelectedItem().toString());
+		}
+
+		if ( speed.getSelectedItem().toString() != "" )
+		{
+			DiscObj.setSpeed(Integer.parseInt(type.getSelectedItem().toString()));
+		}
 	}
 
 	/*
@@ -101,7 +316,28 @@ public class DiscDriveView extends JPanel implements HardwareView
 	@Override
 	public boolean validateNecessaryData()
 	{
-		// TODO Auto-generated method stub
+		// Checks the name of the motherboard
+		if ( name.getText().length() < 1 || name.getText().length() > 255 )
+		{
+			JOptionPane.showMessageDialog(this,
+					"The component name must be between 1 and 255 characters.", "Error - Name",
+					JOptionPane.INFORMATION_MESSAGE);
+
+			return false;
+		}
+
+		// Checks the description of the motherboard.
+		if ( desc.getText().length() < 1 )
+		{
+			JOptionPane.showMessageDialog(this,
+					"The component description must be longer then 1 character.",
+					"Error - Description", JOptionPane.INFORMATION_MESSAGE);
+
+			return false;
+		}
+
+		// Possibility for more checks on the CPU values.
+
 		return true;
 	}
 
@@ -110,5 +346,24 @@ public class DiscDriveView extends JPanel implements HardwareView
 	{
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		JComboBox box = (JComboBox) e.getSource();
+
+		String command = box.getActionCommand();
+
+		if ( command.equals("Port") )
+		{
+			String msg = "The Discdrive will no longer be compatiable with the motherboard.\n\nDo you want to keep this change?";
+
+			String[] portString = { "", "IDE", "SATA", "USB" };
+			
+			port = GraphicalFunctions.verifyChange(this, mainObj, Discdrive.class, DiscObj
+					.getPort(), port.getSelectedItem().toString(), msg, portString, port);
+		}
 	}
 }
