@@ -150,7 +150,7 @@ public class ComponentsManagment
 
 
 	/**
-	 * Function to remove a component from the array of components.
+	 * Function to remove an array of components from the array of components.
 	 * 
 	 * @param ToBeRemoved
 	 *            Component to be removed.
@@ -214,7 +214,31 @@ public class ComponentsManagment
 		return components;
 	}
 
+	
+	/**
+	 * Function to remove an array of components from the array of components.
+	 * 
+	 */
+	public static Object[] removeComponent(Object ToBeRemoved, Object[] components, int componentCounter)
+	{
+		// Goes through all the components and removes the one(s) to be removed
+		for ( int i = 0; i < componentCounter; i++ )
+		{
+			if ( components[i] != null )
+			{
+				if ( components[i].equals(ToBeRemoved) )
+				{
+					components[i] = null;
+				}
+			}
+		}
+		
+		
+		// Cleans the array of any null pointers
+		components = cleanup.cleanObjectArray(components);
 
+		return components;
+	}
 
 	/**
 	 * Function for replacing a spesific given component with a given new

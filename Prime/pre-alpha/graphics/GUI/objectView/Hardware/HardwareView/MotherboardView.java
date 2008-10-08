@@ -13,6 +13,7 @@ import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareEditor;
 import graphics.GUI.objectView.Hardware.HardwareViewVerifications.MotherboardVerifications;
 import hardware.CPU;
+import hardware.Discdrive;
 import hardware.GraphicsCard;
 import hardware.HDD;
 import hardware.Motherboard;
@@ -831,15 +832,27 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 			mbObj.setGraphicalPort(gpuPorts.getSelectedItem().toString());
 		}
 
-		if ( DUCPorts.getSelectedItem().toString() != "" )
+		if ( true )
 		{
+			
 			// Will remove any objects with the given class from the components
 			// array of the motherboard object if the motherboard variable does
 			// not match the editor variable.
+			// Removes all HDDs
 			GraphicalFunctions.removeComponentFromObject(HDD.class, mbObj.getDUCconnectionType(),
 					DUCPorts.getSelectedItem().toString(), mainObj);
+			
+			// Removes all Dicsdrives
+			GraphicalFunctions.removeComponentFromObject(Discdrive.class, mbObj.getDUCconnectionType(),
+					DUCPorts.getSelectedItem().toString(), mainObj);
 
+			System.out.println(DUCPorts.getSelectedItem().toString() + "--1");
+			
+			System.out.println(mbObj.getDUCconnectionType() + "--2");
+			
 			mbObj.setDUCconnectionType(DUCPorts.getSelectedItem().toString());
+			
+			System.out.println(mbObj.getDUCconnectionType() + "--3");
 		}
 
 		if ( RAMPorts.getSelectedItem().toString() != "" )

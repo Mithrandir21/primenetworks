@@ -4,6 +4,13 @@
 package graphics;
 
 
+import hardware.CPU;
+import hardware.Discdrive;
+import hardware.ExternalNetworksCard;
+import hardware.GraphicsCard;
+import hardware.InternalNetworksCard;
+import hardware.Motherboard;
+
 import java.awt.Component;
 
 import javax.swing.JComboBox;
@@ -91,10 +98,214 @@ public class GraphicalFunctions
 	}
 
 
+	/**
+	 * TODO - Description
+	 */
+	public static void processAll(Object obj)
+	{
+		Object[] components = obj.getComponents();
+
+		Motherboard mb = null;
+
+		try
+		{
+			mb = (Motherboard) ComponentsManagment.getSpesificComponents(
+					Motherboard.class, components, components.length)[0];
+		}
+		catch ( ObjectNotFoundException e1 )
+		{
+			// FIXME - ProcessAll motherboard get
+			e1.printStackTrace();
+		}
+
+
+		// CPU
+
+	}
+
+
+	/**
+	 * TODO - Description
+	 */
+	public static void processCPU(Motherboard mb, Object obj)
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		try
+		{
+			// Gets all the CPU components in the components array.
+			Object[] cpus = ComponentsManagment.getSpesificComponents(
+					CPU.class, components, components.length);
+
+			// 
+			for ( int i = 0; i < cpus.length; i++ )
+			{
+				CPU cpu = (CPU) cpus[i];
+
+				if ( cpu.getSocket() != mb.getSocket() )
+				{
+					// Removes the actual components.
+					obj.setAllComponents(ComponentsManagment.removeComponent(
+							cpu, components, components.length));
+				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static void processDiscDrive(Motherboard mb, Object obj)
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		try
+		{
+			// Gets all the Discdrive components in the components array.
+			Object[] drives = ComponentsManagment.getSpesificComponents(
+					Discdrive.class, components, components.length);
+
+			// 
+			for ( int i = 0; i < drives.length; i++ )
+			{
+				Discdrive dicsdrive = (Discdrive) drives[i];
+
+				if ( dicsdrive.getPort() != mb.getDUCconnectionType() )
+				{
+					// Removes the actual components.
+					obj.setAllComponents(ComponentsManagment.removeComponent(
+							dicsdrive, components, components.length));
+				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static void processExternalNIC(Motherboard mb, Object obj)
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		try
+		{
+			// Gets all the ExternalNetworksCard components in the components array.
+			Object[] extNICs = ComponentsManagment.getSpesificComponents(
+					ExternalNetworksCard.class, components, components.length);
+
+			// 
+			for ( int i = 0; i < extNICs.length; i++ )
+			{
+				ExternalNetworksCard extNIC = (ExternalNetworksCard) extNICs[i];
+
+//				if ( extNIC.getPort() != mb.getDUCconnectionType() )
+//				{
+//					// Removes the actual components.
+//					obj.setAllComponents(ComponentsManagment.removeComponent(
+//							extNIC, components, components.length));
+//				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+
+	
+
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static void processInternalNIC(Motherboard mb, Object obj)
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		try
+		{
+			// Gets all the ExternalNetworksCard components in the components array.
+			Object[] intNICs = ComponentsManagment.getSpesificComponents(
+					InternalNetworksCard.class, components, components.length);
+
+			// 
+			for ( int i = 0; i < intNICs.length; i++ )
+			{
+				InternalNetworksCard intNIC= (InternalNetworksCard) intNICs[i];
+
+//				if ( extNIC.getPort() != mb.getDUCconnectionType() )
+//				{
+//					// Removes the actual components.
+//					obj.setAllComponents(ComponentsManagment.removeComponent(
+//							extNIC, components, components.length));
+//				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static void processGPU(Motherboard mb, Object obj)
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		try
+		{
+			// Gets all the GraphicsCard components in the components array.
+			Object[] GPUs = ComponentsManagment.getSpesificComponents(
+					GraphicsCard.class, components, components.length);
+
+			// 
+			for ( int i = 0; i < GPUs.length; i++ )
+			{
+				InternalNetworksCard gpu = (InternalNetworksCard) GPUs[i];
+
+//				if ( extNIC.getPort() != mb.getDUCconnectionType() )
+//				{
+//					// Removes the actual components.
+//					obj.setAllComponents(ComponentsManagment.removeComponent(
+//							extNIC, components, components.length));
+//				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+
+	
 
 	/**
 	 * This method will remove any component from the component list of the this
-	 * classes object if the given mbVariable does not match the given
+	 * classes object if the given Variable does not match the given
 	 * newVariable.
 	 * 
 	 * @param componentClass
@@ -107,14 +318,13 @@ public class GraphicalFunctions
 	 *            The object that the objects with the given class will be
 	 *            removed from.
 	 */
-	public static void removeComponentFromObject(Class<?> componentClass, String variable,
-			String newVariable, Object mainObj)
+	public static void removeComponentFromObject(Class<?> componentClass,
+			String variable, String newVariable, Object mainObj)
 	{
-		if ( ComponentsManagment.containsComponent(componentClass, mainObj.getComponents(), mainObj
-				.getComponents().length) )
+		if ( !variable.equals(newVariable) )
 		{
-
-			if ( !variable.equals(newVariable) )
+			if ( ComponentsManagment.containsComponent(componentClass, mainObj
+					.getComponents(), mainObj.getComponents().length) )
 			{
 
 				boolean objContains = true;
@@ -124,8 +334,9 @@ public class GraphicalFunctions
 				try
 				{
 					// Find the components with the given class on a motherboard
-					returned = ComponentsManagment.getSpesificComponents(componentClass, mainObj
-							.getComponents(), mainObj.getComponents().length);
+					returned = ComponentsManagment.getSpesificComponents(
+							componentClass, mainObj.getComponents(), mainObj
+									.getComponents().length);
 				}
 				catch ( ObjectNotFoundException ex )
 				{
@@ -137,8 +348,10 @@ public class GraphicalFunctions
 				{
 					try
 					{
-						mainObj.setAllComponents(ComponentsManagment.removeComponents(returned,
-								mainObj.getComponents(), mainObj.getComponents().length));
+						mainObj.setAllComponents(ComponentsManagment
+								.removeComponents(returned, mainObj
+										.getComponents(), mainObj
+										.getComponents().length));
 					}
 					catch ( ObjectNotFoundInArrayException ex )
 					{
@@ -182,11 +395,12 @@ public class GraphicalFunctions
 	 * @param combo
 	 *            The JComboBox itself.
 	 */
-	public static JComboBox verifyChange(Component comp, Object mainObj, Class<?> componentClass,
-			String mbVariable, String newVariable, String msg, String[] strings, JComboBox combo)
+	public static JComboBox verifyChange(Component comp, Object mainObj,
+			Class<?> componentClass, String mbVariable, String newVariable,
+			String msg, String[] strings, JComboBox combo)
 	{
-		if ( ComponentsManagment.containsComponent(componentClass, mainObj.getComponents(), mainObj
-				.getComponents().length) )
+		if ( ComponentsManagment.containsComponent(componentClass, mainObj
+				.getComponents(), mainObj.getComponents().length) )
 		{
 
 			if ( !mbVariable.equals(newVariable) )
@@ -199,7 +413,8 @@ public class GraphicalFunctions
 				if ( n == 1 )
 				{
 
-					combo.setSelectedIndex(getIndexInJComboBox(strings, mbVariable));
+					combo.setSelectedIndex(getIndexInJComboBox(strings,
+							mbVariable));
 				}
 			}
 		}
@@ -217,7 +432,8 @@ public class GraphicalFunctions
 	 * @param data
 	 * @return
 	 */
-	public static JList getIndexInJList(JList list, String[] possibilities, String[] data)
+	public static JList getIndexInJList(JList list, String[] possibilities,
+			String[] data)
 	{
 		int[] indices = new int[data.length];
 

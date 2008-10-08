@@ -356,7 +356,7 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		if ( name.getText().length() < 1 || name.getText().length() > 255 )
 		{
 			JOptionPane.showMessageDialog(this,
-					"The motherboard name must be between 1 and 255 characters.", "Error - Name",
+					"The component name must be between 1 and 255 characters.", "Error - Name",
 					JOptionPane.INFORMATION_MESSAGE);
 
 			return false;
@@ -366,7 +366,7 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		if ( desc.getText().length() < 1 )
 		{
 			JOptionPane.showMessageDialog(this,
-					"The motherboard description must be longer then 1 character.",
+					"The component description must be longer then 1 character.",
 					"Error - Description", JOptionPane.INFORMATION_MESSAGE);
 
 			return false;

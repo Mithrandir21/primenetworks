@@ -189,21 +189,16 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 
 		// The size of the hdd
 		labels[3].setLabelFor(size);
-		String[] sizeString = new String[30];
+		String[] sizeString = new String[29];
 		sizeString[0] = "";
 
 		int hddSize = 0;
 
 		for ( int i = 1; i < sizeString.length; i++ )
 		{
-			if ( hddSize < 60 )
+			if ( hddSize < 200 )
 			{
 				hddSize = hddSize + 10;
-				sizeString[i] = "" + hddSize;
-			}
-			else if ( hddSize < 200 )
-			{
-				hddSize = hddSize + 40;
 				sizeString[i] = "" + hddSize;
 			}
 			else
@@ -300,11 +295,11 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 		
 		if ( type.getSelectedItem().toString() != "" )
 		{
-			// Will remove any objects with the given class from the components
-			// array of the motherboard object if the motherboard variable does
-			// not match the editor variable.
-			GraphicalFunctions.removeComponentFromObject(HDD.class, mainHDD.getType(), type
-					.getSelectedItem().toString(), mainObj);
+//			// Will remove any objects with the given class from the components
+//			// array of the motherboard object if the motherboard variable does
+//			// not match the editor variable.
+//			GraphicalFunctions.removeComponentFromObject(HDD.class, mainHDD.getType(), type
+//					.getSelectedItem().toString(), mainObj);
 			
 			mainHDD.setType(type.getSelectedItem().toString());
 		}

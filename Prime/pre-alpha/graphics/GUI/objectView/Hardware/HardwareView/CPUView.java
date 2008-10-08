@@ -393,13 +393,7 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 		}
 
 		if ( socket.getSelectedItem().toString() != "" )
-		{
-			// Will remove any objects with the given class from the components
-			// array of the motherboard object if the motherboard variable does
-			// not match the editor variable.
-			GraphicalFunctions.removeComponentFromObject(CPU.class, CPUobj.getSocket(), socket
-					.getSelectedItem().toString(), mainObj);
-			
+		{			
 			CPUobj.setSocketType(socket.getSelectedItem().toString());
 		}
 

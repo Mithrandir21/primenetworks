@@ -288,10 +288,10 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 		if ( port.getSelectedItem().toString() != "" )
 		{
 			// Will remove any objects with the given class from the components
-			// array of the motherboard object if the motherboard variable does
-			// not match the editor variable.
-			GraphicalFunctions.removeComponentFromObject(Discdrive.class, DiscObj.getType(), port
-					.getSelectedItem().toString(), mainObj);
+//			// array of the motherboard object if the motherboard variable does
+//			// not match the editor variable.
+//			GraphicalFunctions.removeComponentFromObject(Discdrive.class, DiscObj.getPort(), port
+//					.getSelectedItem().toString(), mainObj);
 
 			DiscObj.setPort(port.getSelectedItem().toString());
 		}
