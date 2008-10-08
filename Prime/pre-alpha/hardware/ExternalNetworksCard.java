@@ -44,8 +44,8 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	// Whether or not the NIC has support for IP version 6, IPv6
 	private boolean supportsIPv6;
 
-	// The conncetion type between the device and the computer it is connected
-	// to.
+	// The connection type between the device and the computer it is connected
+	// to. FIXME - ConnectedBy externalNIC
 	private String connectedBy;
 
 
@@ -173,13 +173,25 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	{
 		producer = NICProducer;
 	}
+	
+
+	
+	/**
+	 * Set method for the type of the NIC.(Wired or Wireless)
+	 * 
+	 */
+	public void setType(String type)
+	{
+		connectionType = type;
+	}
+	
 
 
 	/**
 	 * Set method for the MAC of the NIC.
 	 * 
 	 */
-	public void setType(String NIC_MAC)
+	public void setMAC(String NIC_MAC)
 	{
 		MAC = NIC_MAC;
 	}

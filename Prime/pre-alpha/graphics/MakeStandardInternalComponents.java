@@ -6,7 +6,10 @@ package graphics;
 
 import hardware.CPU;
 import hardware.Discdrive;
+import hardware.ExternalNetworksCard;
+import hardware.GraphicsCard;
 import hardware.HDD;
+import hardware.InternalNetworksCard;
 import hardware.Motherboard;
 import hardware.Ram;
 
@@ -29,7 +32,8 @@ public class MakeStandardInternalComponents
 	public Motherboard getSt_MB()
 	{
 		return new Motherboard("Standard Motherboard", "This is the system standard motherboard.",
-				"Prime", "ATX", "Intel 775", 1, 3, 2, 4, 4, "SATA", "AGP", true, true, true, 1);
+				"Prime", "ATX", "Intel 775", "DDR2", 1, 3, 2, 4, 4, "SATA", "AGP", true, true,
+				true, 1);
 	}
 
 
@@ -99,6 +103,78 @@ public class MakeStandardInternalComponents
 	 */
 	public Discdrive getSt_DVDRW()
 	{
-		return new Discdrive("Standard discdrive", "This is the system standard discdrive.", "DVDRW", "SATA");
+		return new Discdrive("Standard discdrive", "This is the system standard discdrive.",
+				"DVDRW", "SATA");
+	}
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @return
+	 */
+	public ExternalNetworksCard getSt_ExtNIC()
+	{
+		String count = "";
+		int canvasCount = PrimeMain1.currentCanvas.getNumberOfWidgetsOnTheScene();
+
+		if ( canvasCount < 10 )
+		{
+			count = "0" + canvasCount;
+		}
+		else
+		{
+			count = "" + canvasCount;
+		}
+
+		String mac = "00:00:00:00:00:" + count;
+		
+		PrimeMain1.currentCanvas.addNIC();
+		
+		return new ExternalNetworksCard("Standard external NIC",
+				"This is the system standard external NIC.", "Realtek", mac, "Wireless", "USB");
+	}
+	
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @return
+	 */
+	public InternalNetworksCard getSt_IntNIC()
+	{
+		String count = "";
+		int canvasCount = PrimeMain1.currentCanvas.getNumberOfWidgetsOnTheScene();
+
+		if ( canvasCount < 10 )
+		{
+			count = "0" + canvasCount;
+		}
+		else
+		{
+			count = "" + canvasCount;
+		}
+
+		String mac = "00:00:00:00:00:" + count;
+		
+		PrimeMain1.currentCanvas.addNIC();
+		
+		return new InternalNetworksCard("Standard internal NIC",
+				"This is the system standard internal NIC.", "Realtek", mac, "Wired");
+	}
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @return
+	 */
+	public GraphicsCard getSt_GPU()
+	{
+		return new GraphicsCard("Standard GPU","This is the system standard GPU.","AGP",128,"VGA",false);
 	}
 }

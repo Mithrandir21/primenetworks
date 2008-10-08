@@ -8,7 +8,6 @@ import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareEditor;
-import hardware.CPU;
 import hardware.Ram;
 
 import java.awt.Color;
@@ -277,12 +276,6 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 		
 		if ( type.getSelectedItem().toString() != "" )
 		{
-			// Will remove any objects with the given class from the components
-			// array of the motherboard object if the motherboard variable does
-			// not match the editor variable.
-			GraphicalFunctions.removeComponentFromObject(Ram.class, RAMobj.getType(), type
-					.getSelectedItem().toString(), mainObj);
-			
 			RAMobj.setType(type.getSelectedItem().toString());
 		}
 		

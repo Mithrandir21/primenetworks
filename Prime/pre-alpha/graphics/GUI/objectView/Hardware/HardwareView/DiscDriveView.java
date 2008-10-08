@@ -9,8 +9,6 @@ import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareEditor;
 import hardware.Discdrive;
-import hardware.HDD;
-import hardware.Ram;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -287,12 +285,6 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 
 		if ( port.getSelectedItem().toString() != "" )
 		{
-			// Will remove any objects with the given class from the components
-//			// array of the motherboard object if the motherboard variable does
-//			// not match the editor variable.
-//			GraphicalFunctions.removeComponentFromObject(Discdrive.class, DiscObj.getPort(), port
-//					.getSelectedItem().toString(), mainObj);
-
 			DiscObj.setPort(port.getSelectedItem().toString());
 		}
 

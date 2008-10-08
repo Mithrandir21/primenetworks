@@ -26,6 +26,7 @@ import java.awt.Component;
 
 import javax.swing.JTabbedPane;
 
+import managment.ComponentsManagment;
 import objects.Object;
 
 
@@ -37,6 +38,8 @@ import objects.Object;
 public class HardwareEditorTabbed extends JTabbedPane
 {
 
+	private Object mainobj;
+	
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 
@@ -44,6 +47,7 @@ public class HardwareEditorTabbed extends JTabbedPane
 	 */
 	public HardwareEditorTabbed(Object obj)
 	{
+		mainobj = obj;
 		populateTabs(obj);
 	}
 
@@ -166,19 +170,21 @@ public class HardwareEditorTabbed extends JTabbedPane
 		{
 			/**
 			 * Goes through all the views and saves the values since none of the
-			 * views failed its validation. All except the motherboard which
-			 * will be saved last.
+			 * views failed its validation. 
 			 */
-			for ( int i = 1; i < this.getComponentCount(); i++ )
+			for ( int i = 0; i < this.getComponentCount(); i++ )
 			{
 				Component comp = this.getComponent(i);
 
 				((HardwareView) comp).save();
 			}
 
-			// The motherboard save.
-			Component comp = this.getComponent(0);
-			((HardwareView) comp).save();
+//			// The motherboard save.
+//			Component comp = this.getComponent(0);
+//			((HardwareView) comp).save();
+			
+			
+			ComponentsManagment.processAll(mainobj);
 
 
 			// Returns a boolean showing that everything i saved.

@@ -122,6 +122,8 @@ public class Motherboard extends Hardware implements Serializable
 	 * @param MBsocket
 	 *            The subtype of the Motherboard type, Socket 775, Socket 939
 	 *            and so on.
+	 * @param MBramType
+	 *            The ram type of the motherboard.
 	 * @param MBmaxCPUs
 	 *            The number of CPU slots on the MB.
 	 * @param MBmaxPCIs
@@ -140,15 +142,17 @@ public class Motherboard extends Hardware implements Serializable
 	 *            Boolean on whether or not the MB has an integrated Audio card.
 	 */
 	public Motherboard(String Name, String Desc, String MBproducer, String MBform, String MBsocket,
-			int MBmaxCPUs, int MBmaxPCIs, int MBmaxRAMs, int MBmaxUSBs, int MBmaxDUCs,
-			String MBDUCconnectionType, String MBgraphicalPort, boolean MBintegLANcard,
-			boolean MBintegGraphicalCard, boolean MBintegAudioCard, int MBmaxIntegLanPorts)
+			String MBramType, int MBmaxCPUs, int MBmaxPCIs, int MBmaxRAMs, int MBmaxUSBs,
+			int MBmaxDUCs, String MBDUCconnectionType, String MBgraphicalPort,
+			boolean MBintegLANcard, boolean MBintegGraphicalCard, boolean MBintegAudioCard,
+			int MBmaxIntegLanPorts)
 	{
 		super(Name, Desc);
 
 		producer = MBproducer;
 		form = MBform;
 		socket = MBsocket;
+		RAMtype = MBramType;
 		maxCPUs = MBmaxCPUs;
 		maxPCIs = MBmaxPCIs;
 		maxRAMs = MBmaxRAMs;

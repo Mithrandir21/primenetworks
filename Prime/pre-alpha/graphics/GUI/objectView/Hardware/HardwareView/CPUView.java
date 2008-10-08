@@ -8,7 +8,6 @@ import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareEditor;
-import graphics.GUI.objectView.Hardware.HardwareViewVerifications.MotherboardVerifications;
 import hardware.CPU;
 
 import java.awt.Color;

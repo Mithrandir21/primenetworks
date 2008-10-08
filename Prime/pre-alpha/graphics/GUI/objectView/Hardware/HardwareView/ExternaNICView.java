@@ -7,9 +7,7 @@ package graphics.GUI.objectView.Hardware.HardwareView;
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.objectView.Hardware.HardwareEditor;
-import graphics.GUI.objectView.Hardware.HardwareView.InternalNICView.SharedListSelectionHandler;
 import hardware.ExternalNetworksCard;
-import hardware.InternalNetworksCard;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -289,8 +287,47 @@ public class ExternaNICView extends JPanel implements HardwareView, ActionListen
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
+		if ( name.getText() != "" )
+		{
+			extNIC.setObjectName(name.getText());
+		}
 
+		if ( desc.getText() != "" )
+		{
+			extNIC.setDescription(desc.getText());
+		}
+
+		if ( producer.getText() != "" )
+		{
+			extNIC.setProducer(producer.getText());
+		}
+		
+		if ( MAC.getText() != "" )
+		{
+			extNIC.setMAC(MAC.getText());
+		}
+		
+		if ( conType.getSelectedItem().toString() != "" )
+		{
+			extNIC.setType(conType.getSelectedItem().toString());
+		}
+		
+		if ( transferSpeed.getSelectedItem().toString() != "" )
+		{
+			extNIC.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem().toString()));
+		}
+		
+		if ( protocol.getSelectedItem().toString() != "" )
+		{
+			extNIC.setSupportedConnectionInterfaces(protocol.getSelectedItem().toString());
+		}
+		
+		if ( supStandards.getSelectedIndex() == -1 )
+		{
+			extNIC.setSupportedStandards(standars);
+		}
+		
+		extNIC.setSupportsIPv6(supIPv6.isSelected());
 	}
 
 	/*

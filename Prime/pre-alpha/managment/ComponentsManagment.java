@@ -5,6 +5,15 @@ import logistical.cleanup;
 import objects.Object;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
+import graphics.PrimeMain1;
+import hardware.CPU;
+import hardware.Discdrive;
+import hardware.ExternalNetworksCard;
+import hardware.GraphicsCard;
+import hardware.HDD;
+import hardware.InternalNetworksCard;
+import hardware.Motherboard;
+import hardware.Ram;
 
 
 /**
@@ -67,7 +76,7 @@ public class ComponentsManagment
 		{
 			if ( areFound[i] == true )
 			{
-				// A try/catch incase the object is null.
+				// A try/catch in case the object is null.
 				try
 				{
 					throw new Exception("The component " + NewComponents[i].getObjectName()
@@ -148,7 +157,6 @@ public class ComponentsManagment
 	}
 
 
-
 	/**
 	 * Function to remove an array of components from the array of components.
 	 * 
@@ -214,12 +222,13 @@ public class ComponentsManagment
 		return components;
 	}
 
-	
+
 	/**
 	 * Function to remove an array of components from the array of components.
 	 * 
 	 */
-	public static Object[] removeComponent(Object ToBeRemoved, Object[] components, int componentCounter)
+	public static Object[] removeComponent(Object ToBeRemoved, Object[] components,
+			int componentCounter)
 	{
 		// Goes through all the components and removes the one(s) to be removed
 		for ( int i = 0; i < componentCounter; i++ )
@@ -232,8 +241,8 @@ public class ComponentsManagment
 				}
 			}
 		}
-		
-		
+
+
 		// Cleans the array of any null pointers
 		components = cleanup.cleanObjectArray(components);
 
@@ -241,7 +250,7 @@ public class ComponentsManagment
 	}
 
 	/**
-	 * Function for replacing a spesific given component with a given new
+	 * Function for replacing a specific given component with a given new
 	 * component.
 	 * 
 	 * @param NewComponent
@@ -299,6 +308,388 @@ public class ComponentsManagment
 
 
 		return components;
+	}
+
+
+	/**
+	 * This method will remove any component with the given class from the
+	 * component list of the this classes object if the given Variable does not
+	 * match the given newVariable.
+	 * 
+	 * @param componentClass
+	 *            The class of the components that might be removed.
+	 * @param variable
+	 *            The variable on the motherboard. Like the socket or GPU port.
+	 * @param newVariable
+	 *            The editor variable that will be checked for differences.
+	 * @param mainObj
+	 *            The object that the objects with the given class will be
+	 *            removed from.
+	 */
+	public static void removeComponentFromObject(Class<?> componentClass, String variable,
+			String newVariable, Object mainObj)
+	{
+		if ( !variable.equals(newVariable) )
+		{
+			if ( ComponentsManagment.containsComponent(componentClass, mainObj.getComponents(),
+					mainObj.getComponents().length) )
+			{
+
+				boolean objContains = true;
+
+				Object[] returned = null;
+
+				try
+				{
+					// Find the components with the given class on a motherboard
+					returned = ComponentsManagment.getSpesificComponents(componentClass, mainObj
+							.getComponents(), mainObj.getComponents().length);
+				}
+				catch ( ObjectNotFoundException ex )
+				{
+					objContains = false;
+				}
+
+
+				if ( objContains )
+				{
+					try
+					{
+						mainObj.setAllComponents(ComponentsManagment.removeComponents(returned,
+								mainObj.getComponents(), mainObj.getComponents().length));
+					}
+					catch ( ObjectNotFoundInArrayException ex )
+					{
+						ex.printStackTrace();
+					}
+				}
+
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				PrimeMain1.objView.updateViewInfo();
+			}
+		}
+	}
+
+
+
+
+	// COMPONENTS CHECKS
+	/**
+	 * TODO - Description
+	 */
+	public static void processAll(Object obj)
+	{
+		Object[] components = obj.getComponents();
+
+		Motherboard mb = null;
+
+		try
+		{
+			mb = (Motherboard) ComponentsManagment.getSpesificComponents(Motherboard.class,
+					components, components.length)[0];
+		}
+		catch ( ObjectNotFoundException e1 )
+		{
+			// FIXME - ProcessAll motherboard get
+			e1.printStackTrace();
+		}
+
+
+		if ( mb != null )
+		{
+			processCPU(mb, obj);
+
+			processDiscDrive(mb, obj);
+
+			processExternalNIC(mb, obj);
+
+			processInternalNIC(mb, obj);
+
+			processGPU(mb, obj);
+
+			processHDD(mb, obj);
+
+			processRAM(mb, obj);
+		}
+
+		// Updates the views of the object to correctly show the
+		// current info.
+		PrimeMain1.objView.updateViewInfo();
+	}
+
+
+	/**
+	 * Checks compatibility of the any CPU component with the motherboard.
+	 * Removes the ones that are not compatible.
+	 */
+	public static void processCPU(Motherboard mb, Object obj)
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		try
+		{
+			// Gets all the CPU components in the components array.
+			Object[] cpus = ComponentsManagment.getSpesificComponents(CPU.class, components,
+					components.length);
+
+			for ( int i = 0; i < cpus.length; i++ )
+			{
+				// Gets all the Discdrive components in the components array.
+				if ( mb.getSocket() != "" && mb.getSocket() != null)
+				{
+					CPU cpu = (CPU) cpus[i];
+					// Checks the socket of the cpu versus the socket on the
+					// motherboard
+					if ( cpu.getSocket() != mb.getSocket() )
+					{
+						// Removes the actual components.
+						obj.setAllComponents(ComponentsManagment.removeComponent(cpu, components,
+								components.length));
+					}
+				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+
+
+
+	/**
+	 * Checks compatibility of the any DicsDrive component with the motherboard.
+	 * Removes the ones that are not compatible.
+	 */
+	public static void processDiscDrive(Motherboard mb, Object obj)
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		try
+		{
+			// Gets all the Discdrive components in the components array.
+			Object[] drives = ComponentsManagment.getSpesificComponents(Discdrive.class,
+					components, components.length);
+
+			// 
+			for ( int i = 0; i < drives.length; i++ )
+			{
+				// If the motherboard actual has a value that can be checked.
+				if ( mb.getDUCconnectionType() != "" && mb.getDUCconnectionType() != null)
+				{
+					Discdrive dicsdrive = (Discdrive) drives[i];
+					if ( dicsdrive.getPort() != mb.getDUCconnectionType() )
+					{
+						// Removes the actual components.
+						obj.setAllComponents(ComponentsManagment.removeComponent(dicsdrive,
+								components, components.length));
+					}
+				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+
+
+
+	/**
+	 * Checks compatibility of the any ExternalNIC component with the
+	 * motherboard. Removes the ones that are not compatible.
+	 */
+	public static void processExternalNIC(Motherboard mb, Object obj)
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		try
+		{
+			// Gets all the ExternalNetworksCard components in the components
+			// array.
+			Object[] extNICs = ComponentsManagment.getSpesificComponents(
+					ExternalNetworksCard.class, components, components.length);
+
+			// 
+			for ( int i = 0; i < extNICs.length; i++ )
+			{
+				ExternalNetworksCard extNIC = (ExternalNetworksCard) extNICs[i];
+
+				// if ( mb.getUSBPortsAvailable() )
+				// {
+				// // Removes the actual components.
+				// obj.setAllComponents(ComponentsManagment.removeComponent(
+				// extNIC, components, components.length));
+				// }
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+
+
+
+	/**
+	 * Checks compatibility of the any InternalNIC component with the
+	 * motherboard. Removes the ones that are not compatible.
+	 */
+	public static void processInternalNIC(Motherboard mb, Object obj)
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		try
+		{
+			// Gets all the ExternalNetworksCard components in the components
+			// array.
+			Object[] intNICs = ComponentsManagment.getSpesificComponents(
+					InternalNetworksCard.class, components, components.length);
+
+			// 
+			for ( int i = 0; i < intNICs.length; i++ )
+			{
+				// If the motherboard actual has a value that can be checked.
+				if ( mb.getDUCconnectionType() != "" && mb.getDUCconnectionType() != null)
+				{
+					InternalNetworksCard intNIC = (InternalNetworksCard) intNICs[i];
+					if ( intNIC.getConnectionType() != mb.getDUCconnectionType() )
+					{
+						// Removes the actual components.
+						obj.setAllComponents(ComponentsManagment.removeComponent(intNIC,
+								components, components.length));
+					}
+				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+
+
+
+	/**
+	 * Checks compatibility of the any GPU component with the motherboard.
+	 * Removes the ones that are not compatible.
+	 */
+	public static void processGPU(Motherboard mb, Object obj)
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		try
+		{
+			// Gets all the GraphicsCard components in the components array.
+			Object[] GPUs = ComponentsManagment.getSpesificComponents(GraphicsCard.class,
+					components, components.length);
+
+			// 
+			for ( int i = 0; i < GPUs.length; i++ )
+			{
+				// If the motherboard actual has a value that can be checked.
+				if ( mb.getGraphicalPort() != "" && mb.getGraphicalPort() != null)
+				{
+					InternalNetworksCard gpu = (InternalNetworksCard) GPUs[i];
+					if ( gpu.getConnectionType() != mb.getGraphicalPort() )
+					{
+						// Removes the actual components.
+						obj.setAllComponents(ComponentsManagment.removeComponent(gpu, components,
+								components.length));
+					}
+				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+
+
+
+	/**
+	 * Checks compatibility of the any HDD component with the motherboard.
+	 * Removes the ones that are not compatible.
+	 */
+	public static void processHDD(Motherboard mb, Object obj)
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		try
+		{
+			// Gets all the HDD components in the components array.
+			Object[] HDDs = ComponentsManagment.getSpesificComponents(HDD.class, components,
+					components.length);
+
+			// If the port to the motherboard is not the same
+			for ( int i = 0; i < HDDs.length; i++ )
+			{
+				// If the motherboard actual has a value that can be checked.
+				if ( mb.getDUCconnectionType() != ""  && mb.getDUCconnectionType() != null)
+				{
+					HDD hdd = (HDD) HDDs[i];
+					if ( hdd.getType() != mb.getDUCconnectionType() )
+					{
+						// Removes the actual components.
+						obj.setAllComponents(ComponentsManagment.removeComponent(hdd, components,
+								components.length));
+					}
+				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+
+
+
+	/**
+	 * Checks compatibility of the any RAM component with the motherboard.
+	 * Removes the ones that are not compatible.
+	 */
+	public static void processRAM(Motherboard mb, Object obj)
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		try
+		{
+			// Gets all the Ram components in the components array.
+			Object[] RAMs = ComponentsManagment.getSpesificComponents(Ram.class, components,
+					components.length);
+
+			// 
+			for ( int i = 0; i < RAMs.length; i++ )
+			{
+				// If the motherboard actual has a value that can be checked.
+				if ( mb.getRAMtype() != "" && mb.getRAMtype() != null)
+				{
+					Ram RAM = (Ram) RAMs[i];
+					// If the port to the motherboard is not the same
+					if ( RAM.getType() != mb.getRAMtype() )
+					{
+						// Removes the actual components.
+						obj.setAllComponents(ComponentsManagment.removeComponent(RAM, components,
+								components.length));
+					}
+				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
 	}
 
 
@@ -370,7 +761,6 @@ public class ComponentsManagment
 
 
 
-
 	/**
 	 * Get specific components by searching for components with the give class
 	 * type.
@@ -416,8 +806,6 @@ public class ComponentsManagment
 
 		return objectFound;
 	}
-
-
 
 
 

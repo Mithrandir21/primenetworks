@@ -9,7 +9,6 @@ import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareEditor;
 import hardware.GraphicsCard;
-import hardware.HDD;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -309,13 +308,7 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		}
 		
 		if ( type.getSelectedItem().toString() != "" )
-		{
-			// Will remove any objects with the given class from the components
-			// array of the motherboard object if the motherboard variable does
-			// not match the editor variable.
-			GraphicalFunctions.removeComponentFromObject(HDD.class, mainGC.getType(), type
-					.getSelectedItem().toString(), mainObj);
-			
+		{			
 			mainGC.setType(type.getSelectedItem().toString());
 		}
 		

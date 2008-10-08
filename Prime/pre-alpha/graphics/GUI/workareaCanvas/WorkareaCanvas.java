@@ -100,6 +100,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 	// TODO - Create array of amount of different object types on the scene.
 	private int numberOfWidgetsOnTheScene = 0;
+	
+	private int numberOfNICs = 0;
 
 
 	private WidgetObject currentWidgetObject = null;
@@ -227,6 +229,17 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	{
 		return numberOfWidgetsOnTheScene;
 	}
+	
+	
+	/**
+	 * Gets the number of Networks cards on the Scene.
+	 * 
+	 * @return
+	 */
+	public int getNumberOfNICsOnTheScene()
+	{
+		return numberOfNICs;
+	}
 
 
 	/**
@@ -297,6 +310,18 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 			this.currentWidgetObject = currentWidgetObject;
 		}
 	}
+	
+	
+	
+	/**
+	 * Adds 1 to the number of nics on the scene.
+	 * 
+	 */
+	public void addNIC()
+	{
+		numberOfNICs++;
+	}
+	
 
 	// ------------------ TRANSFER METHODES -----------------------
 

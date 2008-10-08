@@ -8,7 +8,6 @@ import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.objectView.Hardware.HardwareEditor;
 import hardware.InternalNetworksCard;
-import hardware.Ram;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -289,8 +288,47 @@ public class InternalNICView extends JPanel implements HardwareView, ActionListe
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
+		if ( name.getText() != "" )
+		{
+			IntNIC.setObjectName(name.getText());
+		}
 
+		if ( desc.getText() != "" )
+		{
+			IntNIC.setDescription(desc.getText());
+		}
+
+		if ( producer.getText() != "" )
+		{
+			IntNIC.setProducer(producer.getText());
+		}
+		
+		if ( MAC.getText() != "" )
+		{
+			IntNIC.setMAC(MAC.getText());
+		}
+		
+		if ( conType.getSelectedItem().toString() != "" )
+		{
+			IntNIC.setType(conType.getSelectedItem().toString());
+		}
+		
+		if ( transferSpeed.getSelectedItem().toString() != "" )
+		{
+			IntNIC.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem().toString()));
+		}
+		
+		if ( protocol.getSelectedItem().toString() != "" )
+		{
+			IntNIC.setSupportedConnectionInterfaces(protocol.getSelectedItem().toString());
+		}
+		
+		if ( supStandards.getSelectedIndex() == -1 )
+		{
+			IntNIC.setSupportedStandards(standars);
+		}
+		
+		IntNIC.setSupportsIPv6(supIPv6.isSelected());
 	}
 
 	/*

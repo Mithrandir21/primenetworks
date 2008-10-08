@@ -159,13 +159,24 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	{
 		producer = NICProducer;
 	}
+	
+	
+	/**
+	 * Set method for the type of the NIC.(Wired or Wireless)
+	 * 
+	 */
+	public void setType(String type)
+	{
+		connectionType = type;
+	}
+	
 
 
 	/**
 	 * Set method for the MAC of the NIC.
 	 * 
 	 */
-	public void setType(String NIC_MAC)
+	public void setMAC(String NIC_MAC)
 	{
 		MAC = NIC_MAC;
 	}

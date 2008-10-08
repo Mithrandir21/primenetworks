@@ -2,6 +2,7 @@ package graphics.GUI.objectView.Hardware;
 
 
 import graphics.ImageLocator;
+import graphics.GUI.objectView.Hardware.NewComponent.NewComponentChoice;
 import hardware.CPU;
 import hardware.Discdrive;
 import hardware.ExternalNetworksCard;
@@ -469,8 +470,12 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		edit.addActionListener(this);
 		edit.setActionCommand("edit");
 
+		Button addNew = new Button("New Component");
+		addNew.addActionListener(this);
+		addNew.setActionCommand("newComp");
 
 		buttons.add(edit);
+		buttons.add(addNew);
 
 		this.add(buttons, d);
 
@@ -488,7 +493,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 	 * @return Returns a JPanel with both the ImageIcon and the hardware
 	 *         information.
 	 */
-	private JPanel createHardwareJPanel(String[] texts, ImageIcon icon)
+	public static JPanel createHardwareJPanel(String[] texts, ImageIcon icon)
 	{
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createEtchedBorder());
@@ -553,6 +558,10 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		if ( e.getActionCommand().equals("edit") )
 		{
 			hwEditor = new HardwareEditor(givenObject);
+		}
+		else if ( e.getActionCommand().equals("newComp") )
+		{
+			new NewComponentChoice(givenObject);
 		}
 	}
 
