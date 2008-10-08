@@ -1,14 +1,14 @@
 /**
  * 
  */
-package graphics.GUI.objectView.Hardware.HardwareView;
+package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
 import exceptions.ObjectNotFoundException;
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
-import graphics.GUI.objectView.Hardware.HardwareEditor;
+import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.objectView.Hardware.HardwareViewVerifications.MotherboardVerifications;
 import hardware.CPU;
 import hardware.GraphicsCard;

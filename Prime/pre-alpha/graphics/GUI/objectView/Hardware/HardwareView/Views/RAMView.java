@@ -1,13 +1,13 @@
 /**
  * 
  */
-package graphics.GUI.objectView.Hardware.HardwareView;
+package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
-import graphics.GUI.objectView.Hardware.HardwareEditor;
+import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import hardware.Ram;
 
 import java.awt.Color;

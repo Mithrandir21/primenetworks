@@ -1,13 +1,13 @@
 /**
  * 
  */
-package graphics.GUI.objectView.Hardware.HardwareView;
+package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
-import graphics.GUI.objectView.Hardware.HardwareEditor;
+import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import hardware.CPU;
 
 import java.awt.Color;
@@ -64,9 +64,9 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 	private JCheckBox bit64;
 
 
-	Object mainObj;
+	private Object mainObj;
 
-	CPU CPUobj;
+	private CPU CPUobj;
 
 
 	/**

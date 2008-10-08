@@ -6,7 +6,7 @@ package graphics.GUI.objectView.Hardware.NewComponent;
 
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
-import graphics.GUI.objectView.Hardware.HardwareObjectView;
+import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareObjectView;
 import hardware.CPU;
 import hardware.Discdrive;
 import hardware.ExternalNetworksCard;
@@ -490,31 +490,31 @@ public class NewComponentsView extends JPanel implements MouseListener
 		}
 		else if( panel.getName().equals("CPU") )
 		{
-			
+			cpuPanel.setBorder(raisedbevel);
 		}
 		else if( panel.getName().equals("HDD") )
 		{
-			
+			hddPanel.setBorder(raisedbevel);
 		}
 		else if( panel.getName().equals("RAM") )
 		{
-			
+			ramPanel.setBorder(raisedbevel);
 		}
 		else if( panel.getName().equals("Discdrive") )
 		{
-			
+			discPanel.setBorder(raisedbevel);
 		}
 		else if( panel.getName().equals("GPU") )
 		{
-			
+			gpuPanel.setBorder(raisedbevel);
 		}
 		else if( panel.getName().equals("Int NIC") )
 		{
-			
+			intNICPanel.setBorder(raisedbevel);
 		}
 		else if( panel.getName().equals("Ext NIC") )
 		{
-			
+			extNICPanel.setBorder(raisedbevel);
 		}
 		
 	}
@@ -529,37 +529,38 @@ public class NewComponentsView extends JPanel implements MouseListener
 		
 		Border normal = BorderFactory.createEtchedBorder();
 		
+		
 		if( panel.getName().equals("Motherboard") )
 		{
 			mbPanel.setBorder(normal);
 		}
 		else if( panel.getName().equals("CPU") )
 		{
-			
+			cpuPanel.setBorder(normal);
 		}
 		else if( panel.getName().equals("HDD") )
 		{
-			
+			hddPanel.setBorder(normal);
 		}
 		else if( panel.getName().equals("RAM") )
 		{
-			
+			ramPanel.setBorder(normal);
 		}
 		else if( panel.getName().equals("Discdrive") )
 		{
-			
+			discPanel.setBorder(normal);
 		}
 		else if( panel.getName().equals("GPU") )
 		{
-			
+			gpuPanel.setBorder(normal);
 		}
 		else if( panel.getName().equals("Int NIC") )
 		{
-			
+			intNICPanel.setBorder(normal);
 		}
 		else if( panel.getName().equals("Ext NIC") )
 		{
-			
+			extNICPanel.setBorder(normal);
 		}
 	}
 
@@ -571,8 +572,43 @@ public class NewComponentsView extends JPanel implements MouseListener
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
-		// TODO Auto-generated method stub
-
+		JPanel panel = (JPanel) e.getSource();
+		
+		Border lowered = BorderFactory.createLoweredBevelBorder();
+		
+		
+		if( panel.getName().equals("Motherboard") )
+		{
+			mbPanel.setBorder(lowered);
+		}
+		else if( panel.getName().equals("CPU") )
+		{
+			cpuPanel.setBorder(lowered);
+		}
+		else if( panel.getName().equals("HDD") )
+		{
+			hddPanel.setBorder(lowered);
+		}
+		else if( panel.getName().equals("RAM") )
+		{
+			ramPanel.setBorder(lowered);
+		}
+		else if( panel.getName().equals("Discdrive") )
+		{
+			discPanel.setBorder(lowered);
+		}
+		else if( panel.getName().equals("GPU") )
+		{
+			gpuPanel.setBorder(lowered);
+		}
+		else if( panel.getName().equals("Int NIC") )
+		{
+			intNICPanel.setBorder(lowered);
+		}
+		else if( panel.getName().equals("Ext NIC") )
+		{
+			extNICPanel.setBorder(lowered);
+		}
 	}
 
 
@@ -583,8 +619,43 @@ public class NewComponentsView extends JPanel implements MouseListener
 	@Override
 	public void mouseReleased(MouseEvent e)
 	{
-		// TODO Auto-generated method stub
-
+		JPanel panel = (JPanel) e.getSource();
+		
+		Border raised = BorderFactory.createRaisedBevelBorder();
+		
+		
+		if( panel.getName().equals("Motherboard") )
+		{
+			mbPanel.setBorder(raised);
+		}
+		else if( panel.getName().equals("CPU") )
+		{
+			cpuPanel.setBorder(raised);
+		}
+		else if( panel.getName().equals("HDD") )
+		{
+			hddPanel.setBorder(raised);
+		}
+		else if( panel.getName().equals("RAM") )
+		{
+			ramPanel.setBorder(raised);
+		}
+		else if( panel.getName().equals("Discdrive") )
+		{
+			discPanel.setBorder(raised);
+		}
+		else if( panel.getName().equals("GPU") )
+		{
+			gpuPanel.setBorder(raised);
+		}
+		else if( panel.getName().equals("Int NIC") )
+		{
+			intNICPanel.setBorder(raised);
+		}
+		else if( panel.getName().equals("Ext NIC") )
+		{
+			extNICPanel.setBorder(raised);
+		}
 	}
 
 }

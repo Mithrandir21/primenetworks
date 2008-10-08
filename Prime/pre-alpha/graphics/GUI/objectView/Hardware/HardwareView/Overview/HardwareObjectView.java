@@ -1,4 +1,4 @@
-package graphics.GUI.objectView.Hardware;
+package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
 
 import graphics.ImageLocator;

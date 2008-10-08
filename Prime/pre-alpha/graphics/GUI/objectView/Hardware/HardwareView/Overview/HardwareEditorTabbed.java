@@ -1,18 +1,18 @@
 /**
  * 
  */
-package graphics.GUI.objectView.Hardware;
+package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
 
-import graphics.GUI.objectView.Hardware.HardwareView.CPUView;
-import graphics.GUI.objectView.Hardware.HardwareView.DiscDriveView;
-import graphics.GUI.objectView.Hardware.HardwareView.ExternaNICView;
-import graphics.GUI.objectView.Hardware.HardwareView.GraphicsCardView;
-import graphics.GUI.objectView.Hardware.HardwareView.HDDView;
-import graphics.GUI.objectView.Hardware.HardwareView.HardwareView;
-import graphics.GUI.objectView.Hardware.HardwareView.InternalNICView;
-import graphics.GUI.objectView.Hardware.HardwareView.MotherboardView;
-import graphics.GUI.objectView.Hardware.HardwareView.RAMView;
+import graphics.GUI.objectView.Hardware.HardwareView.Views.CPUView;
+import graphics.GUI.objectView.Hardware.HardwareView.Views.DiscDriveView;
+import graphics.GUI.objectView.Hardware.HardwareView.Views.ExternaNICView;
+import graphics.GUI.objectView.Hardware.HardwareView.Views.GraphicsCardView;
+import graphics.GUI.objectView.Hardware.HardwareView.Views.HDDView;
+import graphics.GUI.objectView.Hardware.HardwareView.Views.HardwareView;
+import graphics.GUI.objectView.Hardware.HardwareView.Views.InternalNICView;
+import graphics.GUI.objectView.Hardware.HardwareView.Views.MotherboardView;
+import graphics.GUI.objectView.Hardware.HardwareView.Views.RAMView;
 import hardware.CPU;
 import hardware.Discdrive;
 import hardware.ExternalNetworksCard;

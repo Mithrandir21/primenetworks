@@ -2,7 +2,7 @@ package graphics.GUI.objectView;
 
 
 import graphics.GUI.objectView.General.GeneralObjectView;
-import graphics.GUI.objectView.Hardware.HardwareObjectView;
+import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareObjectView;
 import graphics.GUI.objectView.Network.NetworkObjectView;
 import graphics.GUI.objectView.Software.SoftwareObjectView;
 import graphics.GUI.objectView.Visual.VisualObjectView;

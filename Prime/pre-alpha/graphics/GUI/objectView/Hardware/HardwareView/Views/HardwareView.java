@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphics.GUI.objectView.Hardware.HardwareView;
+package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
 
