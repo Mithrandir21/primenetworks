@@ -1,19 +1,23 @@
 /**
  * 
  */
-package graphics.GUI.objectView.Hardware.HardwareView.Views;
-
+package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
+import graphics.GUI.objectView.Hardware.HardwareView.Views.HardwareView;
 import hardware.InternalNetworksCard;
 
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,6 +25,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -34,14 +39,13 @@ import javax.swing.event.ListSelectionListener;
 
 import objects.Object;
 
-
 /**
  * Javadoc-TODO - Description NEEDED!
- * 
+ *
  * @author Bahram Malaekeh
  * 
  */
-public class InternalNICView extends JPanel implements HardwareView, ActionListener
+public class InternalNICNewView extends JFrame implements HardwareView, ActionListener
 {
 	private JTextField name = new JTextField(25);
 
@@ -76,8 +80,24 @@ public class InternalNICView extends JPanel implements HardwareView, ActionListe
 	 * @param obj
 	 * @param intNIC
 	 */
-	public InternalNICView(Object obj, InternalNetworksCard intNIC)
+	public InternalNICNewView(Object obj, InternalNetworksCard intNIC)
 	{
+		super("New Internal NIC");
+
+
+		// Get the default toolkit
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+
+		// Get the current screen size
+		Dimension scrnsize = toolkit.getScreenSize();
+
+
+		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
+
+		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		
+		
+		
 		mainObj = obj;
 		IntNIC = intNIC;
 		this.setLayout(new GridBagLayout());
@@ -110,13 +130,36 @@ public class InternalNICView extends JPanel implements HardwareView, ActionListe
 		c.weightx = 1;
 		c.weighty = 1;
 		c.gridwidth = 1;
-		c.gridheight = 5;
+		c.gridheight = 1;
 		c.insets = new Insets(0, 10, 10, 10);
 
 		JPanel p2 = createSpesificInfo(IntNIC);
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
+		
+		
+		
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weightx = 1;
+		c.weighty = 0.01;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.insets = new Insets(0, 10, 10, 10);
+
+		JPanel buttons = createButtons();
+		buttons.setBorder(BorderFactory.createEtchedBorder());
+
+		this.add(buttons, c);
+		
+		
+		
+		
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
+				(int) scrnsize.getHeight() / 3));
+		this.setSize(width, height);
+		this.setVisible(true);
 	}
 
 
@@ -257,7 +300,6 @@ public class InternalNICView extends JPanel implements HardwareView, ActionListe
 						NIC.getSupportedStandards()));
 			}
 		}
-
 		panel.add(labels[5]);
 		panel.add(listPane);
 		
@@ -277,82 +319,85 @@ public class InternalNICView extends JPanel implements HardwareView, ActionListe
 		panel.add(labels[6]);
 		panel.add(supIPv6);
 		
-		
+
+		JLabel temp1 = new JLabel("");
+		temp1.setMaximumSize(tfSize);
+		temp1.setPreferredSize(tfSize);
+
+		JLabel temp2 = new JLabel("");
+		temp2.setMaximumSize(tfSize);
+		temp2.setPreferredSize(tfSize);
+
+		JLabel temp3 = new JLabel("");
+		temp1.setMaximumSize(tfSize);
+		temp1.setPreferredSize(tfSize);
+
+		JLabel temp4 = new JLabel("");
+		temp2.setMaximumSize(tfSize);
+		temp2.setPreferredSize(tfSize);
+
+		JLabel temp5 = new JLabel("");
+		temp1.setMaximumSize(tfSize);
+		temp1.setPreferredSize(tfSize);
+
+		JLabel temp6 = new JLabel("");
+		temp2.setMaximumSize(tfSize);
+		temp2.setPreferredSize(tfSize);
+
+
+		// adding components so that the layout is right
+		panel.add(temp1);
+		panel.add(temp2);
+		panel.add(temp3);
+		panel.add(temp4);
+		panel.add(temp5);
+		panel.add(temp6);
+
+
+		// Lay out the panel.
+		SpringUtilities.makeCompactGrid(panel, 3, 6, // rows, cols
+				10, 10, // initX, initY
+				20, 20); // xPad, yPad
+
 		
 		return panel;
 	}
 
-
-	/*
-	 * (non-Javadoc)
+	
+	/**
+	 * Javadoc-TODO - Description
 	 * 
-	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
+	 * @return
 	 */
+	private JPanel createButtons()
+	{
+		JPanel buttons = new JPanel();
+		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
+
+		
+		Button save = new Button("Save");
+		save.addActionListener(this);
+		save.setActionCommand("save");
+		
+		Button cancel = new Button("Cancel");
+		cancel.addActionListener(this);
+		cancel.setActionCommand("cancel");
+		
+		
+		buttons.add(save);
+		buttons.add(cancel);
+		
+		return buttons;
+	}
+	
+	
 	@Override
 	public void save()
 	{
-		if ( name.getText() != "" )
-		{
-			IntNIC.setObjectName(name.getText());
-		}
-
-		if ( desc.getText() != "" )
-		{
-			IntNIC.setDescription(desc.getText());
-		}
-
-		if ( producer.getText() != "" )
-		{
-			IntNIC.setProducer(producer.getText());
-		}
-		
-		if ( MAC.getText() != "" )
-		{
-			IntNIC.setMAC(MAC.getText());
-		}
-		
-		if ( conType.getSelectedItem().toString() != "" )
-		{
-			IntNIC.setType(conType.getSelectedItem().toString());
-		}
-		
-		if ( transferSpeed.getSelectedItem().toString() != "" )
-		{
-			IntNIC.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem().toString()));
-		}
-		
-		if ( protocol.getSelectedItem().toString() != "" )
-		{
-			IntNIC.setSupportedConnectionInterfaces(protocol.getSelectedItem().toString());
-		}
-		
-		if ( supStandards.getSelectedIndex() == -1 )
-		{
-			IntNIC.setSupportedStandards(standars);
-		}
-		
-		IntNIC.setSupportsIPv6(supIPv6.isSelected());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
-	 * validateNecessaryData()
-	 */
-	@Override
-	public boolean validateNecessaryData()
-	{
 		// TODO Auto-generated method stub
-		return true;
+		
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
-	 * validateChangedData()
-	 */
 	@Override
 	public boolean validateChangedData()
 	{
@@ -360,17 +405,21 @@ public class InternalNICView extends JPanel implements HardwareView, ActionListe
 		return false;
 	}
 
-
+	@Override
+	public boolean validateNecessaryData()
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		// TODO Auto-generated method stub
-
+		
 	}
 
-
-
+	
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 

@@ -2,7 +2,7 @@ package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
 
 import graphics.ImageLocator;
-import graphics.GUI.objectView.Hardware.NewComponent.NewComponentChoice;
+import graphics.GUI.objectView.Hardware.NewComponent.NewOverview.NewComponentChoice;
 import hardware.CPU;
 import hardware.Discdrive;
 import hardware.ExternalNetworksCard;

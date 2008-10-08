@@ -1,12 +1,20 @@
 /**
  * 
  */
-package graphics.GUI.objectView.Hardware.NewComponent;
+package graphics.GUI.objectView.Hardware.NewComponent.NewOverview;
 
 
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareObjectView;
+import graphics.GUI.objectView.Hardware.NewComponent.NewViews.CPUNewView;
+import graphics.GUI.objectView.Hardware.NewComponent.NewViews.DiscDriveNewView;
+import graphics.GUI.objectView.Hardware.NewComponent.NewViews.ExternalNICNewView;
+import graphics.GUI.objectView.Hardware.NewComponent.NewViews.GraphicsCardNewView;
+import graphics.GUI.objectView.Hardware.NewComponent.NewViews.HDDNewView;
+import graphics.GUI.objectView.Hardware.NewComponent.NewViews.InternalNICNewView;
+import graphics.GUI.objectView.Hardware.NewComponent.NewViews.MotherboardNewView;
+import graphics.GUI.objectView.Hardware.NewComponent.NewViews.RAMNewView;
 import hardware.CPU;
 import hardware.Discdrive;
 import hardware.ExternalNetworksCard;
@@ -15,6 +23,7 @@ import hardware.HDD;
 import hardware.InternalNetworksCard;
 import hardware.Motherboard;
 import hardware.Ram;
+import objects.Object;
 
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
@@ -43,17 +52,31 @@ public class NewComponentsView extends JPanel implements MouseListener
 	JPanel intNICPanel = null;
 	JPanel extNICPanel = null;
 	
+	Motherboard mbObj = null;
+	CPU cpuObj = null;
+	HDD hddObj = null;
+	Ram ramObj = null;
+	Discdrive discObj = null;
+	GraphicsCard gpuObj = null;
+	InternalNetworksCard intNICObj = null;
+	ExternalNetworksCard extNICObj = null;
+	
+	
+	
+	private Object mainObj;
 	
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 
 	 */
-	public NewComponentsView()
+	public NewComponentsView(Object obj)
 	{
+		mainObj = obj;
+		
 		this.setLayout(new GridLayout(0, 2, 3, 5));
 
-
+		
 
 
 
@@ -61,7 +84,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 
 		String[] mbinfo = new String[5];
 
-		Motherboard mbObj = PrimeMain1.standard_internal_components.getSt_MB();
+		mbObj = PrimeMain1.standard_internal_components.getSt_MB();
 
 		String text = null;
 
@@ -108,7 +131,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		// CPU
 		ImageIcon cputemp = ImageLocator.getImageIconObject("CPU");
 
-		CPU cpuObj = PrimeMain1.standard_internal_components.getSt_CPU();
+		cpuObj = PrimeMain1.standard_internal_components.getSt_CPU();
 
 		String[] cpuinfo = new String[4];
 
@@ -149,7 +172,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		// HDD
 		ImageIcon hddtemp = ImageLocator.getImageIconObject("Harddisc");
 
-		HDD hddObj = PrimeMain1.standard_internal_components.getSt_HDD();
+		hddObj = PrimeMain1.standard_internal_components.getSt_HDD();
 
 		String[] hddinfo = new String[5];
 
@@ -194,7 +217,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		// RAM
 		ImageIcon ramtemp = ImageLocator.getImageIconObject("RAM");
 
-		Ram ramObj = PrimeMain1.standard_internal_components.getSt_RAM();
+		ramObj = PrimeMain1.standard_internal_components.getSt_RAM();
 
 		String[] raminfo = new String[5];
 
@@ -239,7 +262,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		// Discdrive
 		ImageIcon disctemp = ImageLocator.getImageIconObject("Optical-Drive");
 
-		Discdrive discObj = PrimeMain1.standard_internal_components.getSt_DVDRW();
+		discObj = PrimeMain1.standard_internal_components.getSt_DVDRW();
 
 		String[] discinfo = new String[5];
 
@@ -284,7 +307,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		// GPU
 		ImageIcon gputemp = ImageLocator.getImageIconObject("GPU");
 
-		GraphicsCard gpuObj = PrimeMain1.standard_internal_components.getSt_GPU();
+		gpuObj = PrimeMain1.standard_internal_components.getSt_GPU();
 
 		String[] gpuinfo = new String[5];
 
@@ -330,7 +353,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		// intNIC
 		ImageIcon intNICtemp = ImageLocator.getImageIconObject("NIC");
 
-		InternalNetworksCard intNICObj = PrimeMain1.standard_internal_components.getSt_IntNIC();
+		intNICObj = PrimeMain1.standard_internal_components.getSt_IntNIC();
 
 		String[] intNICinfo = new String[5];
 
@@ -376,7 +399,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		// extNIC
 		ImageIcon extNICtemp = ImageLocator.getImageIconObject("NIC");
 
-		ExternalNetworksCard extNICObj = PrimeMain1.standard_internal_components.getSt_ExtNIC();
+		extNICObj = PrimeMain1.standard_internal_components.getSt_ExtNIC();
 
 		String[] extNICinfo = new String[5];
 
@@ -439,35 +462,35 @@ public class NewComponentsView extends JPanel implements MouseListener
 		
 		if( panel.getName().equals("Motherboard") )
 		{
-			System.out.println("Clicked");
+			new MotherboardNewView(mainObj,mbObj);
 		}
 		else if( panel.getName().equals("CPU") )
 		{
-			
+			new CPUNewView(mainObj,cpuObj);
 		}
 		else if( panel.getName().equals("HDD") )
 		{
-			
+			new HDDNewView(mainObj,hddObj);
 		}
 		else if( panel.getName().equals("RAM") )
 		{
-			
+			new RAMNewView(mainObj,ramObj);
 		}
 		else if( panel.getName().equals("Discdrive") )
 		{
-			
+			new DiscDriveNewView(mainObj,discObj);
 		}
 		else if( panel.getName().equals("GPU") )
 		{
-			
+			new GraphicsCardNewView(mainObj,gpuObj);
 		}
 		else if( panel.getName().equals("Int NIC") )
 		{
-			
+			new InternalNICNewView(mainObj,intNICObj);
 		}
 		else if( panel.getName().equals("Ext NIC") )
 		{
-			
+			new ExternalNICNewView(mainObj,extNICObj);
 		}
 	}
 

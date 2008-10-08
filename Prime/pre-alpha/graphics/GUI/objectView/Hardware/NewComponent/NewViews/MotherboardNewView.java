@@ -1,24 +1,23 @@
 /**
  * 
  */
-package graphics.GUI.objectView.Hardware.HardwareView.Views;
+package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
-
-import exceptions.ObjectNotFoundException;
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
-import hardware.CPU;
-import hardware.GraphicsCard;
-import hardware.HDD;
+import graphics.GUI.objectView.Hardware.HardwareView.Views.HardwareView;
 import hardware.Motherboard;
 
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,23 +25,22 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
-import managment.ComponentsManagment;
 import objects.Object;
 
-
 /**
- * TODO - Description NEEDED!
- * 
+ * Javadoc-TODO - Description NEEDED!
+ *
  * @author Bahram Malaekeh
+ * 
  */
-public class MotherboardView extends JPanel implements HardwareView, ActionListener
+public class MotherboardNewView extends JFrame implements HardwareView, ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -96,8 +94,25 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 	 * @param obj
 	 * @param mb
 	 */
-	public MotherboardView(Object obj, Motherboard mb)
+	public MotherboardNewView(Object obj, Motherboard mb)
 	{
+		super("New Motherboard");
+		
+		
+		// Get the default toolkit
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+
+		// Get the current screen size
+		Dimension scrnsize = toolkit.getScreenSize();
+
+
+		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
+
+		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		
+		
+		
+		
 		mainObj = obj;
 		mbObj = mb;
 		this.setLayout(new GridBagLayout());
@@ -126,13 +141,36 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 		c.weightx = 1;
 		c.weighty = 1;
 		c.gridwidth = 1;
-		c.gridheight = 5;
+		c.gridheight = 1;
 		c.insets = new Insets(0, 10, 10, 10);
 
 		JPanel p2 = createSpesificInfo(mb);
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
+		
+		
+		
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weightx = 1;
+		c.weighty = 0.01;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.insets = new Insets(0, 10, 10, 10);
+
+		JPanel buttons = createButtons();
+		buttons.setBorder(BorderFactory.createEtchedBorder());
+
+		this.add(buttons, c);
+		
+		
+		
+		
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
+				(int) scrnsize.getHeight() / 3));
+		this.setSize(width, height);
+		this.setVisible(true);
 	}
 
 
@@ -678,330 +716,64 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		return panel;
 	}
-
-
-	/*
-	 * (non-Javadoc)
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
 	 * 
-	 * @see
-	 * graphics.GUI.objectView.Hardware.HardwareView.HardwareView#validateData()
+	 * @return
 	 */
-	public boolean validateNecessaryData()
+	private JPanel createButtons()
 	{
-		// Checks the name of the motherboard
-		if ( name.getText().length() < 1 || name.getText().length() > 255 )
-		{
-			JOptionPane.showMessageDialog(this,
-					"The motherboard name must be between 1 and 255 characters.", "Error - Name",
-					JOptionPane.INFORMATION_MESSAGE);
+		JPanel buttons = new JPanel();
+		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-			return false;
-		}
-
-		// Checks the description of the motherboard.
-		if ( desc.getText().length() < 1 )
-		{
-			JOptionPane.showMessageDialog(this,
-					"The motherboard description must be longer then 1 character.",
-					"Error - Description", JOptionPane.INFORMATION_MESSAGE);
-
-			return false;
-		}
-
-
-		// Checks the form of the motherboard.
-		if ( forms.getSelectedItem().toString().equals("") )
-		{
-			JOptionPane.showMessageDialog(this, "The motherboard must have a form.",
-					"Error - Form", JOptionPane.INFORMATION_MESSAGE);
-
-			return false;
-		}
-
-
-		// Checks the socket of the motherboard.
-		if ( sockets.getSelectedItem().toString().equals("") )
-		{
-			JOptionPane.showMessageDialog(this,
-					"The motherboard must have a socket so to place a CPU.", "Error - Socket",
-					JOptionPane.INFORMATION_MESSAGE);
-
-			return false;
-		}
-
-
-		return true;
+		
+		Button save = new Button("Save");
+		save.addActionListener(this);
+		save.setActionCommand("save");
+		
+		Button cancel = new Button("Cancel");
+		cancel.addActionListener(this);
+		cancel.setActionCommand("cancel");
+		
+		
+		buttons.add(save);
+		buttons.add(cancel);
+		
+		return buttons;
 	}
+	
 
-
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
-	 * validateChangedData()
-	 */
-	@Override
-	public boolean validateChangedData()
-	{
-		if ( !mbObj.getSocket().equals(sockets.getSelectedItem().toString()) )
-		{
-			boolean objContainsCPU = true;
-
-			try
-			{
-				Object[] returned = ComponentsManagment.getSpesificComponents(CPU.class, mainObj
-						.getComponents(), mainObj.getComponents().length);
-			}
-			catch ( ObjectNotFoundException e )
-			{
-				objContainsCPU = false;
-			}
-
-
-			if ( objContainsCPU )
-			{
-
-			}
-
-		}
-
-		return true;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
-	 */
-	public void save()
-	{
-		if ( name.getText() != "" )
-		{
-			mbObj.setObjectName(name.getText());
-		}
-
-		if ( desc.getText() != "" )
-		{
-			mbObj.setDescription(desc.getText());
-		}
-
-		if ( producerField.getText() != "" )
-		{
-			mbObj.setProducer(producerField.getText());
-		}
-
-		if ( forms.getSelectedItem().toString() != "" )
-		{
-			mbObj.setForm(forms.getSelectedItem().toString());
-		}
-
-		if ( sockets.getSelectedItem().toString() != "" )
-		{
-//			// Will remove any objects with the given class from the components
-//			// array of the motherboard object if the motherboard variable does
-//			// not match the editor variable.
-//			GraphicalFunctions.removeComponentFromObject(CPU.class, mbObj.getSocket(), sockets
-//					.getSelectedItem().toString(), mainObj);
-
-			mbObj.setSocket(sockets.getSelectedItem().toString());
-		}
-
-		if ( busSpeeds.getSelectedItem().toString() != "" )
-		{
-			mbObj.setBusSpeed(Integer.parseInt(busSpeeds.getSelectedItem().toString()));
-		}
-
-		if ( chipsetField.getText() != "" )
-		{
-			mbObj.setChipset(chipsetField.getText());
-		}
-
-		if ( gpuPorts.getSelectedItem().toString() != "" )
-		{
-//			// Will remove any objects with the given class from the components
-//			// array of the motherboard object if the motherboard variable does
-//			// not match the editor variable.
-//			GraphicalFunctions.removeComponentFromObject(GraphicsCard.class, mbObj
-//					.getGraphicalPort(), gpuPorts.getSelectedItem().toString(), mainObj);
-
-			mbObj.setGraphicalPort(gpuPorts.getSelectedItem().toString());
-		}
-
-		if ( true )
-		{
-//			// Will remove any objects with the given class from the components
-//			// array of the motherboard object if the motherboard variable does
-//			// not match the editor variable.
-//			// Removes all HDDs
-//			GraphicalFunctions.removeComponentFromObject(HDD.class, mbObj.getDUCconnectionType(),
-//					DUCPorts.getSelectedItem().toString(), mainObj);
-//			
-//			// Removes all Dicsdrives
-//			GraphicalFunctions.removeComponentFromObject(Discdrive.class, mbObj.getDUCconnectionType(),
-//					DUCPorts.getSelectedItem().toString(), mainObj);
-			
-			mbObj.setDUCconnectionType(DUCPorts.getSelectedItem().toString());
-		}
-
-		if ( RAMPorts.getSelectedItem().toString() != "" )
-		{
-			mbObj.setRAMtype(RAMPorts.getSelectedItem().toString());
-		}
-
-
-		mbObj.setIntegAudioCard(intAudioCard.isSelected());
-		mbObj.setIntegGraphicalCard(intGPU.isSelected());
-		mbObj.setIntegLANcard(intNIC.isSelected());
-		mbObj.setGraphicsCard(GPUinstalled.isSelected());
-
-
-		if ( CPUsockets.getSelectedItem().toString() != "" )
-		{
-			mbObj.setMaxCPUs(Integer.parseInt(CPUsockets.getSelectedItem().toString()));
-		}
-
-		if ( PCIslots.getSelectedItem().toString() != "" )
-		{
-			mbObj.setMaxPCIs(Integer.parseInt(PCIslots.getSelectedItem().toString()));
-		}
-
-		if ( RAMslots.getSelectedItem().toString() != "" )
-		{
-			mbObj.setMaxRAMs(Integer.parseInt(RAMslots.getSelectedItem().toString()));
-		}
-
-		if ( USBports.getSelectedItem().toString() != "" )
-		{
-			mbObj.setMaxUSBs(Integer.parseInt(USBports.getSelectedItem().toString()));
-		}
-
-		if ( DUCports.getSelectedItem().toString() != "" )
-		{
-			mbObj.setMaxDUCs(Integer.parseInt(DUCports.getSelectedItem().toString()));
-		}
-
-		if ( LANports.getSelectedItem().toString() != "" )
-		{
-			mbObj.setMaxIntegratedLANs(Integer.parseInt(LANports.getSelectedItem().toString()));
-		}
-	}
-
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( e.getSource() instanceof JComboBox )
-		{
-			JComboBox box = (JComboBox) e.getSource();
+		// TODO Auto-generated method stub
+		
+	}
 
-			String command = box.getActionCommand();
-			if ( command.equals("Form") )
-			{
 
-			}
-			/**
-			 * 
-			 */
-			else if ( command.equals("Socket") )
-			{
-				String msg = "The CPU will no longer be compatiable.\n\nDo you want to keep this change?";
+	@Override
+	public void save()
+	{
+		// TODO Auto-generated method stub
+		
+	}
 
-				String[] socketsStrings = { "", "Intel 775", "Intel 939", "AMD AM2", "AMD AM2+" };
 
-				sockets = GraphicalFunctions.verifyChange(this, mainObj, CPU.class, mbObj
-						.getSocket(), sockets.getSelectedItem().toString(), msg, socketsStrings,
-						sockets);
+	@Override
+	public boolean validateChangedData()
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-			}
-			else if ( command.equals("Bus Speed") )
-			{
 
-			}
-			/**
-			 * 
-			 */
-			else if ( command.equals("GPU Port") )
-			{
-				String msg = "The Graphical card will no longer be compatiable.\n\nDo you want to keep this change?";
-
-				String[] gpuPortStrings = { "", "AGP", "PCI", "PCI-E" };
-
-				gpuPorts = GraphicalFunctions.verifyChange(this, mainObj, GraphicsCard.class, mbObj
-						.getGraphicalPort(), gpuPorts.getSelectedItem().toString(), msg,
-						gpuPortStrings, gpuPorts);
-
-			}
-			else if ( command.equals("DUC Port") )
-			{
-				String msg = "Some connected devices will no longer be compatiable.\n\nDo you want to keep this change?";
-
-				String[] DUCStrings = { "", "IDE", "SATA", "eSATA" };
-
-				DUCPorts = GraphicalFunctions.verifyChange(this, mainObj, HDD.class, mbObj
-						.getDUCconnectionType(), DUCPorts.getSelectedItem().toString(), msg,
-						DUCStrings, DUCPorts);
-
-			}
-			else if ( command.equals("RAM Port") )
-			{
-
-			}
-			else if ( command.equals("CPU sockets") )
-			{
-
-			}
-			else if ( command.equals("PCI Slots") )
-			{
-
-			}
-			else if ( command.equals("RAM Slots") )
-			{
-
-			}
-			else if ( command.equals("USB Ports") )
-			{
-
-			}
-			else if ( command.equals("DUC Ports") )
-			{
-
-			}
-			else if ( command.equals("LAN Ports") )
-			{
-
-			}
-
-		}
-		else
-		{
-			assert (e.getSource() instanceof JCheckBox);
-
-			JCheckBox check = (JCheckBox) e.getSource();
-
-			String command = check.getActionCommand();
-			if ( command.equals("Int Audio") )
-			{
-
-			}
-			else if ( command.equals("Int GPU") )
-			{
-
-			}
-			else if ( command.equals("Int NIC") )
-			{
-
-			}
-			else if ( command.equals("GPU Installed") )
-			{
-
-			}
-		}
+	@Override
+	public boolean validateNecessaryData()
+	{
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

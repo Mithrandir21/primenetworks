@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphics.GUI.objectView.Hardware.NewComponent;
+package graphics.GUI.objectView.Hardware.NewComponent.NewOverview;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -25,7 +25,7 @@ import objects.Object;
  * @author Bahram Malaekeh
  * 
  */
-public class NewComponentChoice extends JFrame implements ActionListener
+public class NewComponentChoice extends JFrame
 {
 	private Object givenObject = null;
 
@@ -63,7 +63,7 @@ public class NewComponentChoice extends JFrame implements ActionListener
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		
-		panel.add(new NewComponentsView());
+		panel.add(new NewComponentsView(obj));
 		
 		
 		this.setLayout(new GridBagLayout());
@@ -88,15 +88,4 @@ public class NewComponentChoice extends JFrame implements ActionListener
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
-	
-		
-	
-	
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
 }

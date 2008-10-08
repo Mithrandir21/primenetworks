@@ -123,7 +123,7 @@ public class ExternaNICView extends JPanel implements HardwareView, ActionListen
 	private JPanel createSpesificInfo(ExternalNetworksCard NIC)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
-		JLabel[] labels = new JLabel[6];
+		JLabel[] labels = new JLabel[7];
 
 
 		labels[0] = new JLabel("Producer");
@@ -208,7 +208,7 @@ public class ExternaNICView extends JPanel implements HardwareView, ActionListen
 		transferSpeed.setActionCommand("Speed");
 		transferSpeed.addActionListener(this);
 
-		transferSpeed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(conTypeString, NIC
+		transferSpeed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(speedString, NIC
 				.getSpeed()));
 
 
@@ -228,7 +228,7 @@ public class ExternaNICView extends JPanel implements HardwareView, ActionListen
 		protocol.setActionCommand("Protocol");
 		protocol.addActionListener(this);
 
-		protocol.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(conTypeString, NIC
+		protocol.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(protocolString, NIC
 				.getProtocol()));
 
 
@@ -248,10 +248,13 @@ public class ExternaNICView extends JPanel implements HardwareView, ActionListen
 		listPane.setPreferredSize(new Dimension(90, 60));
 		listSelectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
-		if ( NIC.getSupportedStandards().length > 0 )
+		if ( NIC.getSupportedStandards() != null )
 		{
-			listPane.setViewportView(GraphicalFunctions.getIndexInJList(supStandards, listData, NIC
-					.getSupportedStandards()));
+			if ( NIC.getSupportedStandards().length > 0 )
+			{
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(supStandards, listData,
+						NIC.getSupportedStandards()));
+			}
 		}
 
 		panel.add(labels[5]);
@@ -264,7 +267,7 @@ public class ExternaNICView extends JPanel implements HardwareView, ActionListen
 		supIPv6 = new JCheckBox();
 		supIPv6.setMaximumSize(tfSize);
 		supIPv6.setPreferredSize(tfSize);
-		supIPv6.setToolTipText(labels[9].getToolTipText());
+		supIPv6.setToolTipText(labels[6].getToolTipText());
 		supIPv6.setActionCommand("IPv6");
 		supIPv6.addActionListener(this);
 
