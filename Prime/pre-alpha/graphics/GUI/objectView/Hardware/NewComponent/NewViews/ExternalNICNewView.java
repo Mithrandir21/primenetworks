@@ -260,7 +260,7 @@ public class ExternalNICNewView extends JFrame implements HardwareView, ActionLi
 		// The transfer speed supported by the NIC
 		labels[4].setLabelFor(protocol);
 		String[] protocolString = { "", "Ethernet", "Token Ring", "ATM" };
-		protocol = new JComboBox(speedString);
+		protocol = new JComboBox(protocolString);
 		protocol.setMaximumSize(tfSize);
 		protocol.setPreferredSize(tfSize);
 		protocol.setBackground(Color.WHITE);

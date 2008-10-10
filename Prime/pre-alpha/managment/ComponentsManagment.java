@@ -1,6 +1,10 @@
 package managment;
 
 
+import java.awt.Component;
+
+import javax.swing.JOptionPane;
+
 import logistical.cleanup;
 import objects.Object;
 import exceptions.ObjectNotFoundException;
@@ -181,6 +185,7 @@ public class ComponentsManagment
 		// Number of components removed
 		int componentsRemoved = 0;
 
+
 		// Goes through all the components and removes the one(s) to be removed
 		for ( int i = 0; i < componentCounter; i++ )
 		{
@@ -196,6 +201,7 @@ public class ComponentsManagment
 
 							objectFound[j] = true;
 
+							j = ToBeRemoved.length;
 							componentsRemoved++;
 						}
 					}
@@ -379,7 +385,7 @@ public class ComponentsManagment
 	/**
 	 * TODO - Description
 	 */
-	public static void processAll(Object obj)
+	public static void processAllChanges(Object obj)
 	{
 		Object[] components = obj.getComponents();
 
@@ -399,19 +405,19 @@ public class ComponentsManagment
 
 		if ( mb != null )
 		{
-			processCPU(mb, obj);
+			processCPUchanges(mb, obj);
 
-			processDiscDrive(mb, obj);
+			processDiscDriveChanges(mb, obj);
 
-			processExternalNIC(mb, obj);
+			processExternalNICchanges(mb, obj);
 
-			processInternalNIC(mb, obj);
+			processInternalNICchanges(mb, obj);
 
-			processGPU(mb, obj);
+			processGPUchanges(mb, obj);
 
-			processHDD(mb, obj);
+			processHDDchanges(mb, obj);
 
-			processRAM(mb, obj);
+			processRAMchanges(mb, obj);
 		}
 
 		// Updates the views of the object to correctly show the
@@ -424,7 +430,7 @@ public class ComponentsManagment
 	 * Checks compatibility of the any CPU component with the motherboard.
 	 * Removes the ones that are not compatible.
 	 */
-	public static void processCPU(Motherboard mb, Object obj)
+	public static void processCPUchanges(Motherboard mb, Object obj)
 	{
 		// Gets all the components the object contains.
 		Object[] components = obj.getComponents();
@@ -438,7 +444,7 @@ public class ComponentsManagment
 			for ( int i = 0; i < cpus.length; i++ )
 			{
 				// Gets all the Discdrive components in the components array.
-				if ( mb.getSocket() != "" && mb.getSocket() != null)
+				if ( mb.getSocket() != "" && mb.getSocket() != null )
 				{
 					CPU cpu = (CPU) cpus[i];
 					// Checks the socket of the cpu versus the socket on the
@@ -464,7 +470,7 @@ public class ComponentsManagment
 	 * Checks compatibility of the any DicsDrive component with the motherboard.
 	 * Removes the ones that are not compatible.
 	 */
-	public static void processDiscDrive(Motherboard mb, Object obj)
+	public static void processDiscDriveChanges(Motherboard mb, Object obj)
 	{
 		// Gets all the components the object contains.
 		Object[] components = obj.getComponents();
@@ -479,7 +485,7 @@ public class ComponentsManagment
 			for ( int i = 0; i < drives.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
-				if ( mb.getDUCconnectionType() != "" && mb.getDUCconnectionType() != null)
+				if ( mb.getDUCconnectionType() != "" && mb.getDUCconnectionType() != null )
 				{
 					Discdrive dicsdrive = (Discdrive) drives[i];
 					if ( dicsdrive.getPort() != mb.getDUCconnectionType() )
@@ -503,7 +509,7 @@ public class ComponentsManagment
 	 * Checks compatibility of the any ExternalNIC component with the
 	 * motherboard. Removes the ones that are not compatible.
 	 */
-	public static void processExternalNIC(Motherboard mb, Object obj)
+	public static void processExternalNICchanges(Motherboard mb, Object obj)
 	{
 		// Gets all the components the object contains.
 		Object[] components = obj.getComponents();
@@ -540,7 +546,7 @@ public class ComponentsManagment
 	 * Checks compatibility of the any InternalNIC component with the
 	 * motherboard. Removes the ones that are not compatible.
 	 */
-	public static void processInternalNIC(Motherboard mb, Object obj)
+	public static void processInternalNICchanges(Motherboard mb, Object obj)
 	{
 		// Gets all the components the object contains.
 		Object[] components = obj.getComponents();
@@ -556,7 +562,7 @@ public class ComponentsManagment
 			for ( int i = 0; i < intNICs.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
-				if ( mb.getDUCconnectionType() != "" && mb.getDUCconnectionType() != null)
+				if ( mb.getDUCconnectionType() != "" && mb.getDUCconnectionType() != null )
 				{
 					InternalNetworksCard intNIC = (InternalNetworksCard) intNICs[i];
 					if ( intNIC.getConnectionType() != mb.getDUCconnectionType() )
@@ -580,7 +586,7 @@ public class ComponentsManagment
 	 * Checks compatibility of the any GPU component with the motherboard.
 	 * Removes the ones that are not compatible.
 	 */
-	public static void processGPU(Motherboard mb, Object obj)
+	public static void processGPUchanges(Motherboard mb, Object obj)
 	{
 		// Gets all the components the object contains.
 		Object[] components = obj.getComponents();
@@ -595,7 +601,7 @@ public class ComponentsManagment
 			for ( int i = 0; i < GPUs.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
-				if ( mb.getGraphicalPort() != "" && mb.getGraphicalPort() != null)
+				if ( mb.getGraphicalPort() != "" && mb.getGraphicalPort() != null )
 				{
 					InternalNetworksCard gpu = (InternalNetworksCard) GPUs[i];
 					if ( gpu.getConnectionType() != mb.getGraphicalPort() )
@@ -619,7 +625,7 @@ public class ComponentsManagment
 	 * Checks compatibility of the any HDD component with the motherboard.
 	 * Removes the ones that are not compatible.
 	 */
-	public static void processHDD(Motherboard mb, Object obj)
+	public static void processHDDchanges(Motherboard mb, Object obj)
 	{
 		// Gets all the components the object contains.
 		Object[] components = obj.getComponents();
@@ -634,7 +640,7 @@ public class ComponentsManagment
 			for ( int i = 0; i < HDDs.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
-				if ( mb.getDUCconnectionType() != ""  && mb.getDUCconnectionType() != null)
+				if ( mb.getDUCconnectionType() != "" && mb.getDUCconnectionType() != null )
 				{
 					HDD hdd = (HDD) HDDs[i];
 					if ( hdd.getType() != mb.getDUCconnectionType() )
@@ -658,7 +664,7 @@ public class ComponentsManagment
 	 * Checks compatibility of the any RAM component with the motherboard.
 	 * Removes the ones that are not compatible.
 	 */
-	public static void processRAM(Motherboard mb, Object obj)
+	public static void processRAMchanges(Motherboard mb, Object obj)
 	{
 		// Gets all the components the object contains.
 		Object[] components = obj.getComponents();
@@ -673,7 +679,7 @@ public class ComponentsManagment
 			for ( int i = 0; i < RAMs.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
-				if ( mb.getRAMtype() != "" && mb.getRAMtype() != null)
+				if ( mb.getRAMtype() != "" && mb.getRAMtype() != null )
 				{
 					Ram RAM = (Ram) RAMs[i];
 					// If the port to the motherboard is not the same
@@ -690,6 +696,62 @@ public class ComponentsManagment
 		{
 			// Does nothing if no objects are found.
 		}
+	}
+
+
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param mb
+	 * @param cpu
+	 * @return
+	 */
+	public static boolean precessCPUmatch(Motherboard mb, CPU cpu, Component comp)
+	{
+		int available = -1;
+
+		boolean[] ports = mb.getCPUPortsAvailable();
+
+		// Finds the first available port.
+		for ( int i = 0; i < ports.length; i++ )
+		{
+			if ( ports[i] == false )
+			{
+				available = i;
+				i = ports.length;
+			}
+		}
+
+		// Check the availability of sockets.
+		if ( available < 0 )
+		{
+			// Checks the match between the sockets.
+			if ( cpu.getSocket().equals(mb.getSocket()) )
+			{
+				
+			}
+			// If the sockets don't match.
+			else
+			{
+				JOptionPane.showMessageDialog(comp, "The socket on the motherboard, "
+						+ mb.getSocket() + ", does not match the CPU socket, " + cpu.getSocket()
+						+ ".", "Info", JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+		// If there are not available sockets.
+		else
+		{
+			JOptionPane.showMessageDialog(comp,
+					"There are no available CPU sockets left on the machine.", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+
+
+
+		return false;
 	}
 
 

@@ -204,6 +204,10 @@ public class ObjectView extends JFrame implements ActionListener
 
 
 
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 */
 	public void updateViewInfo()
 	{
 		view.updateTabInfo();

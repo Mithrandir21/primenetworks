@@ -6,9 +6,11 @@ package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.HardwareView;
+import graphics.GUI.workareaCanvas.WorkareaCanvasActions;
 import hardware.CPU;
 
 import java.awt.Button;
@@ -28,6 +30,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -95,9 +98,9 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
 
 		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
-		
-		
-		
+
+
+
 		mainObj = obj;
 		CPUobj = cpu;
 		this.setLayout(new GridBagLayout());
@@ -134,8 +137,8 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
-		
-		
+
+
 		c.gridx = 0;
 		c.gridy = 2;
 		c.weightx = 1;
@@ -148,10 +151,10 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(buttons, c);
-		
-		
-		
-		
+
+
+
+
 		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
 				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
@@ -417,8 +420,8 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 		return panel;
 	}
 
-	
-	
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -429,27 +432,64 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		
+
 		Button save = new Button("Save");
 		save.addActionListener(this);
 		save.setActionCommand("save");
-		
+
 		Button cancel = new Button("Cancel");
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
-		
-		
+
+
 		buttons.add(save);
 		buttons.add(cancel);
-		
+
 		return buttons;
 	}
-	
+
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		if ( e.getActionCommand().equals("save") )
+		{
+//			int answer = JOptionPane
+//					.showConfirmDialog(
+//							this,
+//							"By saving a new motherboard ALL the machines other components " +
+//							"will be removed. Do you wish to do this?",
+//							"Verify", JOptionPane.YES_NO_OPTION);
+
+//			// If the answer is not No.
+//			if ( answer != 1 )
+//			{
+				// Saves the current values of the new motherboard.
+				save();
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				PrimeMain1.objView.updateViewInfo();
+
+
+				// Closes the JFrame.
+				this.dispose();
+//			}
+
+		}
+		else
+		{
+			assert (e.getActionCommand().equals("cancel"));
+
+			this.dispose();
+		}
+
+	}
+
 
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
 
 	}
 
@@ -467,11 +507,5 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 		return false;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		// TODO Auto-generated method stub
-
-	}
 
 }

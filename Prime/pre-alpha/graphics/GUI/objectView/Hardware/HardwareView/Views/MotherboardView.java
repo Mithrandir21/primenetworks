@@ -798,12 +798,6 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		if ( sockets.getSelectedItem().toString() != "" )
 		{
-//			// Will remove any objects with the given class from the components
-//			// array of the motherboard object if the motherboard variable does
-//			// not match the editor variable.
-//			GraphicalFunctions.removeComponentFromObject(CPU.class, mbObj.getSocket(), sockets
-//					.getSelectedItem().toString(), mainObj);
-
 			mbObj.setSocket(sockets.getSelectedItem().toString());
 		}
 
@@ -819,28 +813,11 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		if ( gpuPorts.getSelectedItem().toString() != "" )
 		{
-//			// Will remove any objects with the given class from the components
-//			// array of the motherboard object if the motherboard variable does
-//			// not match the editor variable.
-//			GraphicalFunctions.removeComponentFromObject(GraphicsCard.class, mbObj
-//					.getGraphicalPort(), gpuPorts.getSelectedItem().toString(), mainObj);
-
 			mbObj.setGraphicalPort(gpuPorts.getSelectedItem().toString());
 		}
 
 		if ( true )
 		{
-//			// Will remove any objects with the given class from the components
-//			// array of the motherboard object if the motherboard variable does
-//			// not match the editor variable.
-//			// Removes all HDDs
-//			GraphicalFunctions.removeComponentFromObject(HDD.class, mbObj.getDUCconnectionType(),
-//					DUCPorts.getSelectedItem().toString(), mainObj);
-//			
-//			// Removes all Dicsdrives
-//			GraphicalFunctions.removeComponentFromObject(Discdrive.class, mbObj.getDUCconnectionType(),
-//					DUCPorts.getSelectedItem().toString(), mainObj);
-			
 			mbObj.setDUCconnectionType(DUCPorts.getSelectedItem().toString());
 		}
 

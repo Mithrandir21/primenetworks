@@ -31,6 +31,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
@@ -44,27 +45,41 @@ import javax.swing.border.Border;
 public class NewComponentsView extends JPanel implements MouseListener
 {
 	JPanel mbPanel = null;
+
 	JPanel cpuPanel = null;
+
 	JPanel hddPanel = null;
+
 	JPanel ramPanel = null;
+
 	JPanel discPanel = null;
+
 	JPanel gpuPanel = null;
+
 	JPanel intNICPanel = null;
+
 	JPanel extNICPanel = null;
-	
+
 	Motherboard mbObj = null;
+
 	CPU cpuObj = null;
+
 	HDD hddObj = null;
+
 	Ram ramObj = null;
+
 	Discdrive discObj = null;
+
 	GraphicsCard gpuObj = null;
+
 	InternalNetworksCard intNICObj = null;
+
 	ExternalNetworksCard extNICObj = null;
-	
-	
-	
+
+
+
 	private Object mainObj;
-	
+
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
@@ -73,10 +88,10 @@ public class NewComponentsView extends JPanel implements MouseListener
 	public NewComponentsView(Object obj)
 	{
 		mainObj = obj;
-		
+
 		this.setLayout(new GridLayout(0, 2, 3, 5));
 
-		
+
 
 
 
@@ -458,39 +473,50 @@ public class NewComponentsView extends JPanel implements MouseListener
 	public void mouseClicked(MouseEvent e)
 	{
 		JPanel panel = (JPanel) e.getSource();
-		
-		
-		if( panel.getName().equals("Motherboard") )
+
+
+		if ( panel.getName().equals("Motherboard") )
 		{
-			new MotherboardNewView(mainObj,mbObj);
+			int answer = JOptionPane
+					.showConfirmDialog(
+							this,
+							"By creating a new motherboard all the machines other components will be removed.\n" +
+							"Do you wish to do this?",
+							"Caution", JOptionPane.YES_NO_OPTION);
+
+			// If the answer is not No.
+			if ( answer != 1 )
+			{
+				new MotherboardNewView(mainObj, mbObj);
+			}
 		}
-		else if( panel.getName().equals("CPU") )
+		else if ( panel.getName().equals("CPU") )
 		{
-			new CPUNewView(mainObj,cpuObj);
+			new CPUNewView(mainObj, cpuObj);
 		}
-		else if( panel.getName().equals("HDD") )
+		else if ( panel.getName().equals("HDD") )
 		{
-			new HDDNewView(mainObj,hddObj);
+			new HDDNewView(mainObj, hddObj);
 		}
-		else if( panel.getName().equals("RAM") )
+		else if ( panel.getName().equals("RAM") )
 		{
-			new RAMNewView(mainObj,ramObj);
+			new RAMNewView(mainObj, ramObj);
 		}
-		else if( panel.getName().equals("Discdrive") )
+		else if ( panel.getName().equals("Discdrive") )
 		{
-			new DiscDriveNewView(mainObj,discObj);
+			new DiscDriveNewView(mainObj, discObj);
 		}
-		else if( panel.getName().equals("GPU") )
+		else if ( panel.getName().equals("GPU") )
 		{
-			new GraphicsCardNewView(mainObj,gpuObj);
+			new GraphicsCardNewView(mainObj, gpuObj);
 		}
-		else if( panel.getName().equals("Int NIC") )
+		else if ( panel.getName().equals("Int NIC") )
 		{
-			new InternalNICNewView(mainObj,intNICObj);
+			new InternalNICNewView(mainObj, intNICObj);
 		}
-		else if( panel.getName().equals("Ext NIC") )
+		else if ( panel.getName().equals("Ext NIC") )
 		{
-			new ExternalNICNewView(mainObj,extNICObj);
+			new ExternalNICNewView(mainObj, extNICObj);
 		}
 	}
 
@@ -503,43 +529,43 @@ public class NewComponentsView extends JPanel implements MouseListener
 	public void mouseEntered(MouseEvent e)
 	{
 		JPanel panel = (JPanel) e.getSource();
-		
+
 		Border raisedbevel = BorderFactory.createRaisedBevelBorder();
-		
-		
-		if( panel.getName().equals("Motherboard") )
+
+
+		if ( panel.getName().equals("Motherboard") )
 		{
 			mbPanel.setBorder(raisedbevel);
 		}
-		else if( panel.getName().equals("CPU") )
+		else if ( panel.getName().equals("CPU") )
 		{
 			cpuPanel.setBorder(raisedbevel);
 		}
-		else if( panel.getName().equals("HDD") )
+		else if ( panel.getName().equals("HDD") )
 		{
 			hddPanel.setBorder(raisedbevel);
 		}
-		else if( panel.getName().equals("RAM") )
+		else if ( panel.getName().equals("RAM") )
 		{
 			ramPanel.setBorder(raisedbevel);
 		}
-		else if( panel.getName().equals("Discdrive") )
+		else if ( panel.getName().equals("Discdrive") )
 		{
 			discPanel.setBorder(raisedbevel);
 		}
-		else if( panel.getName().equals("GPU") )
+		else if ( panel.getName().equals("GPU") )
 		{
 			gpuPanel.setBorder(raisedbevel);
 		}
-		else if( panel.getName().equals("Int NIC") )
+		else if ( panel.getName().equals("Int NIC") )
 		{
 			intNICPanel.setBorder(raisedbevel);
 		}
-		else if( panel.getName().equals("Ext NIC") )
+		else if ( panel.getName().equals("Ext NIC") )
 		{
 			extNICPanel.setBorder(raisedbevel);
 		}
-		
+
 	}
 
 
@@ -549,39 +575,39 @@ public class NewComponentsView extends JPanel implements MouseListener
 	public void mouseExited(MouseEvent e)
 	{
 		JPanel panel = (JPanel) e.getSource();
-		
+
 		Border normal = BorderFactory.createEtchedBorder();
-		
-		
-		if( panel.getName().equals("Motherboard") )
+
+
+		if ( panel.getName().equals("Motherboard") )
 		{
 			mbPanel.setBorder(normal);
 		}
-		else if( panel.getName().equals("CPU") )
+		else if ( panel.getName().equals("CPU") )
 		{
 			cpuPanel.setBorder(normal);
 		}
-		else if( panel.getName().equals("HDD") )
+		else if ( panel.getName().equals("HDD") )
 		{
 			hddPanel.setBorder(normal);
 		}
-		else if( panel.getName().equals("RAM") )
+		else if ( panel.getName().equals("RAM") )
 		{
 			ramPanel.setBorder(normal);
 		}
-		else if( panel.getName().equals("Discdrive") )
+		else if ( panel.getName().equals("Discdrive") )
 		{
 			discPanel.setBorder(normal);
 		}
-		else if( panel.getName().equals("GPU") )
+		else if ( panel.getName().equals("GPU") )
 		{
 			gpuPanel.setBorder(normal);
 		}
-		else if( panel.getName().equals("Int NIC") )
+		else if ( panel.getName().equals("Int NIC") )
 		{
 			intNICPanel.setBorder(normal);
 		}
-		else if( panel.getName().equals("Ext NIC") )
+		else if ( panel.getName().equals("Ext NIC") )
 		{
 			extNICPanel.setBorder(normal);
 		}
@@ -596,39 +622,39 @@ public class NewComponentsView extends JPanel implements MouseListener
 	public void mousePressed(MouseEvent e)
 	{
 		JPanel panel = (JPanel) e.getSource();
-		
+
 		Border lowered = BorderFactory.createLoweredBevelBorder();
-		
-		
-		if( panel.getName().equals("Motherboard") )
+
+
+		if ( panel.getName().equals("Motherboard") )
 		{
 			mbPanel.setBorder(lowered);
 		}
-		else if( panel.getName().equals("CPU") )
+		else if ( panel.getName().equals("CPU") )
 		{
 			cpuPanel.setBorder(lowered);
 		}
-		else if( panel.getName().equals("HDD") )
+		else if ( panel.getName().equals("HDD") )
 		{
 			hddPanel.setBorder(lowered);
 		}
-		else if( panel.getName().equals("RAM") )
+		else if ( panel.getName().equals("RAM") )
 		{
 			ramPanel.setBorder(lowered);
 		}
-		else if( panel.getName().equals("Discdrive") )
+		else if ( panel.getName().equals("Discdrive") )
 		{
 			discPanel.setBorder(lowered);
 		}
-		else if( panel.getName().equals("GPU") )
+		else if ( panel.getName().equals("GPU") )
 		{
 			gpuPanel.setBorder(lowered);
 		}
-		else if( panel.getName().equals("Int NIC") )
+		else if ( panel.getName().equals("Int NIC") )
 		{
 			intNICPanel.setBorder(lowered);
 		}
-		else if( panel.getName().equals("Ext NIC") )
+		else if ( panel.getName().equals("Ext NIC") )
 		{
 			extNICPanel.setBorder(lowered);
 		}
@@ -643,39 +669,39 @@ public class NewComponentsView extends JPanel implements MouseListener
 	public void mouseReleased(MouseEvent e)
 	{
 		JPanel panel = (JPanel) e.getSource();
-		
+
 		Border raised = BorderFactory.createRaisedBevelBorder();
-		
-		
-		if( panel.getName().equals("Motherboard") )
+
+
+		if ( panel.getName().equals("Motherboard") )
 		{
 			mbPanel.setBorder(raised);
 		}
-		else if( panel.getName().equals("CPU") )
+		else if ( panel.getName().equals("CPU") )
 		{
 			cpuPanel.setBorder(raised);
 		}
-		else if( panel.getName().equals("HDD") )
+		else if ( panel.getName().equals("HDD") )
 		{
 			hddPanel.setBorder(raised);
 		}
-		else if( panel.getName().equals("RAM") )
+		else if ( panel.getName().equals("RAM") )
 		{
 			ramPanel.setBorder(raised);
 		}
-		else if( panel.getName().equals("Discdrive") )
+		else if ( panel.getName().equals("Discdrive") )
 		{
 			discPanel.setBorder(raised);
 		}
-		else if( panel.getName().equals("GPU") )
+		else if ( panel.getName().equals("GPU") )
 		{
 			gpuPanel.setBorder(raised);
 		}
-		else if( panel.getName().equals("Int NIC") )
+		else if ( panel.getName().equals("Int NIC") )
 		{
 			intNICPanel.setBorder(raised);
 		}
-		else if( panel.getName().equals("Ext NIC") )
+		else if ( panel.getName().equals("Ext NIC") )
 		{
 			extNICPanel.setBorder(raised);
 		}

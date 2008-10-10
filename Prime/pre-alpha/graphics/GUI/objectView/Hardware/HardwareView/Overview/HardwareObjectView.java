@@ -575,9 +575,11 @@ public class HardwareObjectView extends JPanel implements ActionListener
 	 */
 	public void updateTabInfo()
 	{
-		hwEditor.HardwarePanelRevalidate();
-
-
+		if ( hwEditor != null )
+		{
+			hwEditor.HardwarePanelRevalidate();
+		}
+		
 		this.removeAll();
 
 		this.populiateInfo(givenObject);

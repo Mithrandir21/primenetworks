@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import objects.ExternalHardware;
 import objects.Hardware;
 import objects.Infrastructure;
 import objects.Object;
@@ -124,7 +125,7 @@ public class HardwareEditor extends JFrame implements ActionListener
 			boolean verify = true;
 
 			// If the object is an instance of infrastructure.
-			if ( givenObject instanceof Infrastructure )
+			if ( givenObject instanceof Infrastructure || givenObject instanceof ExternalHardware )
 			{
 				verify = false;
 			}
@@ -141,7 +142,7 @@ public class HardwareEditor extends JFrame implements ActionListener
 			boolean verify = true;
 
 			// If the object is an instance of infrastructure.
-			if ( givenObject instanceof Infrastructure )
+			if ( givenObject instanceof Infrastructure || givenObject instanceof ExternalHardware )
 			{
 				verify = false;
 			}

@@ -184,7 +184,7 @@ public class HardwareEditorTabbed extends JTabbedPane
 //			((HardwareView) comp).save();
 			
 			
-			ComponentsManagment.processAll(mainobj);
+			ComponentsManagment.processAllChanges(mainobj);
 
 
 			// Returns a boolean showing that everything i saved.

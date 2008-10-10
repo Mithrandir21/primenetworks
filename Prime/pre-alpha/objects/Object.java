@@ -367,8 +367,8 @@ public abstract class Object implements Serializable
 	{
 		this.supportedConnectionInterfaces = supportedConnectionInterfaces;
 	}
-	
-	
+
+
 	/**
 	 * Description NEEDED!
 	 * 
@@ -482,6 +482,24 @@ public abstract class Object implements Serializable
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
 	}
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param NewComponent
+	 */
+	public void addComponent(Object NewComponent)
+	{
+		Object[] temp = new Object[1];
+		temp[0] = NewComponent;
+		
+		components = ComponentsManagment.addComponents(temp, components, componentCounter);
+
+		// Sets the new count for number of components in the array
+		componentCounter = components.length;
+	}
 
 
 	// CONNECTED DEVICES MANIPULATION
@@ -551,6 +569,41 @@ public abstract class Object implements Serializable
 	}
 
 
+
+	/**
+	 * Removes the given connection by determining what kind of class the
+	 * connection is an instance of, and then passes it on to the correct
+	 * method.
+	 */
+	public void removeConnection(Connection con)
+	{
+		if ( con instanceof InternalConnection )
+		{
+			removeInternalConnection((InternalConnection) con);
+		}
+		else if ( con instanceof DeviceConnection )
+		{
+			removeDeviceConnection((DeviceConnection) con);
+		}
+		else
+		// This will then be a network connection.
+		{
+			removeNetworkConnection((NetworkConnection) con);
+		}
+
+		try
+		{
+			releaseSingelConnectionPort(con);
+		}
+		catch ( PortIsNotRegisteredOnMotherboard e )
+		{
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+
+
 	/**
 	 * Function to add device(s) to the the connected devices list. NOTES - THE
 	 * SYSTEM WILL CHECK AT AN EARLIER POINT TOO SEE IF THERE IS ROOM FOR THESE
@@ -615,39 +668,6 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Removes the given connection by determining what kind of class the
-	 * connection is an instance of, and then passes it on to the correct
-	 * method.
-	 */
-	public void removeConnection(Connection con)
-	{
-		if ( con instanceof InternalConnection )
-		{
-			removeInternalConnection((InternalConnection) con);
-		}
-		else if ( con instanceof DeviceConnection )
-		{
-			removeDeviceConnection((DeviceConnection) con);
-		}
-		else
-		// This will then be a network connection.
-		{
-			removeNetworkConnection((NetworkConnection) con);
-		}
-
-		try
-		{
-			releaseSingelConnectionPort(con);
-		}
-		catch ( PortIsNotRegisteredOnMotherboard e )
-		{
-			System.out.println(e.getMessage());
-		}
-
-	}
-
-
-	/**
 	 * Releases all the connection ports on a motherboard by determining what
 	 * kind of class the connection is an instance of, and then clearing the
 	 * correct ports on the {@link hardware.Motherboard motherboard} of the
@@ -694,6 +714,65 @@ public abstract class Object implements Serializable
 
 
 
+	/**
+	 * Removes all connected devices, network connections and resets the
+	 * connected devices counter.
+	 * 
+	 */
+	public void removeAllConnections()
+	{
+		removeAllConnectedDevices();
+		
+		removeAllNetworkConnections();
+		
+		resetConnectedDevicesCounter();
+	}
+	
+	
+	
+	
+	/**
+	 * Removes all internal components from this object.
+	 * 
+	 */
+	public void removeAllComponents()
+	{
+//		Object[] temp = this.components;
+		
+//		System.out.println(temp.length);
+//		System.out.println(components.length);
+//		
+//		for( int i = 0; i<components.length; i++)
+//		{
+//			if( components[i] != null )
+//			{
+//				System.out.println(components[i].name);
+//			}
+//			else
+//			{
+//				System.out.println(i + " is empty.");
+//			}
+//		}
+		
+		
+		try
+		{
+			removeComponent(components);
+		}
+		catch ( ObjectNotFoundInArrayException e )
+		{
+			System.out.println("Object - removeAllComponents()");
+			e.printStackTrace();
+		}
+		
+//		temp = null;
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 */
 	public void releaseAllNetworkConnectionPorts()
 	{
 		Motherboard objectAmotherboard = null;
@@ -717,6 +796,12 @@ public abstract class Object implements Serializable
 	}
 
 
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param con
+	 * @throws PortIsNotRegisteredOnMotherboard
+	 */
 	public void releaseSingelConnectionPort(Connection con) throws PortIsNotRegisteredOnMotherboard
 	{
 		Motherboard objectMotherboard = null;
@@ -794,6 +879,8 @@ public abstract class Object implements Serializable
 	}
 
 
+
+	// CONNECTION ARRAY MANIPULATION
 
 	/**
 	 * Adds the givens connection to the array of internal connections. If
@@ -986,6 +1073,8 @@ public abstract class Object implements Serializable
 
 
 
+	// INITIATION FUNCTIONS
+
 	/**
 	 * This method is used to initiate the given array, giving it 5 empty
 	 * indexes.
@@ -1016,6 +1105,7 @@ public abstract class Object implements Serializable
 	}
 
 
+	// EXTENTION FUNCTIONS
 
 	/**
 	 * Extends the given array with 5 indexes.
@@ -1065,6 +1155,10 @@ public abstract class Object implements Serializable
 	}
 
 
+
+
+	// MICS FUNCTIONS
+
 	/**
 	 * Gets the first index that has the value true and returns that index. This
 	 * method is mainly used internally for setting and releasing ports on a
@@ -1105,7 +1199,7 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Gets the number of actual connected devices, by it with RJ-45 or USB and
+	 * Gets the number of actual connected devices, be it with RJ-45 or USB and
 	 * so on.
 	 */
 	public int getNumberOfConnectedDevices()
@@ -1116,7 +1210,7 @@ public abstract class Object implements Serializable
 		{
 			for ( int i = 0; i < connectedDevices.length; i++ )
 			{
-				if ( !connectedDevices[i].equals(null) )
+				if ( connectedDevices[i] != null )
 				{
 					found++;
 				}
@@ -1126,4 +1220,14 @@ public abstract class Object implements Serializable
 		return found;
 	}
 
+	
+	
+	/**
+	 * Resets the connected devices counter to 0.
+	 * 
+	 */
+	public void resetConnectedDevicesCounter()
+	{
+		connectedDevicesCounter = 0;
+	}
 }

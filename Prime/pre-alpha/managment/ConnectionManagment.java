@@ -309,7 +309,9 @@ public class ConnectionManagment
 		// Checks to see if there really is a connection between A and B
 		if ( checkConnectionExistence(existingConnections, objectA, objectB) == false )
 		{
-			throw new ConnectionDoesNotExist(objectA.getObjectName(), objectB.getObjectName());
+			String a = objectA.getObjectName();
+			String b = objectB.getObjectName();
+			throw new ConnectionDoesNotExist(a, b);
 		}
 
 		boolean foundCon = false;
