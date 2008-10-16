@@ -9,8 +9,6 @@ import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
-import graphics.GUI.objectView.Hardware.HardwareView.Views.HardwareView;
-import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import graphics.GUI.workareaCanvas.WorkareaCanvasActions;
 import hardware.Motherboard;
 
@@ -37,7 +35,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
-import objects.Infrastructure;
 import objects.Object;
 
 

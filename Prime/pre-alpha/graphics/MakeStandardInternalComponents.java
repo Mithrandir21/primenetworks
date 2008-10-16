@@ -31,9 +31,16 @@ public class MakeStandardInternalComponents
 	 */
 	public Motherboard getSt_MB()
 	{
-		return new Motherboard("Standard Motherboard", "This is the system standard motherboard.",
+		Motherboard mb = new Motherboard("Standard Motherboard", "This is the system standard motherboard.",
 				"Prime", "ATX", "Intel 775", "DDR2", 1, 3, 2, 4, 4, "SATA", "AGP", true, true,
 				true, 1);
+		
+		mb.makeOneCPUportTaken();
+		mb.makeOneRAMportTaken();
+		mb.makeOneDUCportTaken();// For the CPU
+		mb.makeOneDUCportTaken();// For the HDD
+		
+		return mb;
 	}
 
 

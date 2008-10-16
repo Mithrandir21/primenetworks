@@ -5,9 +5,11 @@ package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.HardwareView;
+import hardware.Motherboard;
 import hardware.Ram;
 
 import java.awt.Button;
@@ -30,6 +32,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+
+import managment.ComponentsManagment;
 
 import objects.Object;
 
@@ -323,8 +327,40 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
+		if ( name.getText() != "" )
+		{
+			RAMobj.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			RAMobj.setDescription(desc.getText());
+		}
 		
+		if ( producer.getText() != "" )
+		{
+			RAMobj.setProducer(producer.getText());
+		}
+		
+		if ( type.getSelectedItem().toString() != "" )
+		{
+			RAMobj.setType(type.getSelectedItem().toString());
+		}
+		
+		if ( subtype.getSelectedItem().toString() != "" )
+		{
+			RAMobj.setSubtype(subtype.getSelectedItem().toString());
+		}
+		
+		if ( size.getSelectedItem().toString() != "" )
+		{
+			RAMobj.setSize(Integer.parseInt(size.getSelectedItem().toString()));
+		}
+		
+		if ( speed.getSelectedItem().toString() != "" )
+		{
+			RAMobj.setSpeed(Integer.parseInt(type.getSelectedItem().toString()));
+		}
 	}
 
 	@Override
@@ -344,8 +380,29 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		if ( e.getActionCommand().equals("save") )
+		{
+			// Saves the current values of the new motherboard.
+			save();
+			
+			ComponentsManagment.processRAMmatch(mainObj, 
+					(Motherboard) mainObj.getComponents()[0], RAMobj, this);
+			
+
+			// Updates the views of the object to correctly show the
+			// current info.
+			PrimeMain1.objView.updateViewInfo();
+
+
+			// Closes the JFrame.
+			this.dispose();
+
+		}
+		else if(e.getActionCommand().equals("cancel"))
+		{
+			this.dispose();
+		}
+
 	}
 
 }

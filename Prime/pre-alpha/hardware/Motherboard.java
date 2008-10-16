@@ -673,6 +673,42 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		CPUPortsAvailable = portsAvailable;
 	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void makeOneCPUportAvailable()
+	{
+		for(int i = 0; i < CPUPortsAvailable.length; i++)
+		{
+			if(CPUPortsAvailable[i] == true)
+			{
+				CPUPortsAvailable[i] = false;
+				return;
+			}
+		}
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void makeOneCPUportTaken()
+	{
+		for(int i = 0; i < CPUPortsAvailable.length; i++)
+		{
+			if(CPUPortsAvailable[i] == false)
+			{
+				CPUPortsAvailable[i] = true;
+				return;
+			}
+		}
+	}
 
 
 	/**
@@ -684,6 +720,42 @@ public class Motherboard extends Hardware implements Serializable
 	public void setPCIPortsAvailable(boolean[] portsAvailable)
 	{
 		PCIPortsAvailable = portsAvailable;
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void makeOnePCIportAvailable()
+	{
+		for(int i = 0; i < PCIPortsAvailable.length; i++)
+		{
+			if(PCIPortsAvailable[i] == true)
+			{
+				PCIPortsAvailable[i] = false;
+				return;
+			}
+		}
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void makeOnePCIportTaken()
+	{
+		for(int i = 0; i < PCIPortsAvailable.length; i++)
+		{
+			if(PCIPortsAvailable[i] == false)
+			{
+				PCIPortsAvailable[i] = true;
+				return;
+			}
+		}
 	}
 
 
@@ -697,7 +769,42 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		RAMPortsAvailable = portsAvailable;
 	}
-
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void makeOneRAMportAvailable()
+	{
+		for(int i = 0; i < RAMPortsAvailable.length; i++)
+		{
+			if(RAMPortsAvailable[i] == true)
+			{
+				RAMPortsAvailable[i] = false;
+				return;
+			}
+		}
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void makeOneRAMportTaken()
+	{
+		for(int i = 0; i < RAMPortsAvailable.length; i++)
+		{
+			if(RAMPortsAvailable[i] == false)
+			{
+				RAMPortsAvailable[i] = true;
+				return;
+			}
+		}
+	}
 
 	/**
 	 * TODO - Description NEEDED!
@@ -709,7 +816,42 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		USBPortsAvailable = portsAvailable;
 	}
-
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void makeOneUSBportAvailable()
+	{
+		for(int i = 0; i < USBPortsAvailable.length; i++)
+		{
+			if(USBPortsAvailable[i] == true)
+			{
+				USBPortsAvailable[i] = false;
+				return;
+			}
+		}
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void makeOneUSBportTaken()
+	{
+		for(int i = 0; i < USBPortsAvailable.length; i++)
+		{
+			if(USBPortsAvailable[i] == false)
+			{
+				USBPortsAvailable[i] = true;
+				return;
+			}
+		}
+	}
 
 	/**
 	 * TODO - Description NEEDED!
@@ -721,7 +863,43 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		DUCPortsAvailable = portsAvailable;
 	}
-
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void makeOneDUCportAvailable()
+	{
+		for(int i = 0; i < DUCPortsAvailable.length; i++)
+		{
+			if(DUCPortsAvailable[i] == true)
+			{
+				DUCPortsAvailable[i] = false;
+				return;
+			}
+		}
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void makeOneDUCportTaken()
+	{
+		for(int i = 0; i < DUCPortsAvailable.length; i++)
+		{
+			if(DUCPortsAvailable[i] == false)
+			{
+				DUCPortsAvailable[i] = true;
+				return;
+			}
+		}
+	}
+	
 
 	/**
 	 * TODO - Description NEEDED!
@@ -733,7 +911,42 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		IntegLANPortsAvailable = integLANPortsAvailable;
 	}
-
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void makeOneIntLANportAvailable()
+	{
+		for(int i = 0; i < IntegLANPortsAvailable.length; i++)
+		{
+			if(IntegLANPortsAvailable[i] == true)
+			{
+				IntegLANPortsAvailable[i] = false;
+				return;
+			}
+		}
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public void makeOneIntLANportTaken()
+	{
+		for(int i = 0; i < IntegLANPortsAvailable.length; i++)
+		{
+			if(IntegLANPortsAvailable[i] == false)
+			{
+				IntegLANPortsAvailable[i] = true;
+				return;
+			}
+		}
+	}
 
 
 	// CLASS METHODES

@@ -42,7 +42,8 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class MotherboardView extends JPanel implements HardwareView, ActionListener
+public class MotherboardView extends JPanel implements HardwareView,
+		ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -150,10 +151,12 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 		labels[0].setToolTipText("The producer of the motherboard.");
 
 		labels[1] = new JLabel("Form");
-		labels[1].setToolTipText("The form of the motherboard, ie. the dimensions.");
+		labels[1]
+				.setToolTipText("The form of the motherboard, ie. the dimensions.");
 
 		labels[2] = new JLabel("Socket");
-		labels[2].setToolTipText("The socket on the motherboard which holds the CPU.");
+		labels[2]
+				.setToolTipText("The socket on the motherboard which holds the CPU.");
 
 		labels[3] = new JLabel("Bus Speed");
 		labels[3]
@@ -166,42 +169,51 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 		labels[5].setToolTipText("The graphics card port on the motherboard.");
 
 		labels[6] = new JLabel("Connection Port");
-		labels[6].setToolTipText("The ports that are for connections to harddiscs and cdrom.");
+		labels[6]
+				.setToolTipText("The ports that are for connections to harddiscs and cdrom.");
 
 		labels[7] = new JLabel("Ram Type");
 		labels[7].setToolTipText("The ram port on the motherboard.");
 
 		labels[8] = new JLabel("Audiocard Integrated");
-		labels[8].setToolTipText("Whether or not a audio card i integrated in the motherboard.");
+		labels[8]
+				.setToolTipText("Whether or not a audio card i integrated in the motherboard.");
 
 		labels[9] = new JLabel("GPU integrated");
-		labels[9].setToolTipText("Whether or not a graphics card i integrated in the motherboard.");
+		labels[9]
+				.setToolTipText("Whether or not a graphics card i integrated in the motherboard.");
 
 		labels[10] = new JLabel("NIC integrated");
-		labels[10].setToolTipText("Whether or not a LAN card i integrated in the motherboard.");
+		labels[10]
+				.setToolTipText("Whether or not a LAN card i integrated in the motherboard.");
 
 		labels[11] = new JLabel("GPU installed");
 		labels[11]
 				.setToolTipText("Whether or not a graphical card is installed on the motherboard. Regardless of the status of the integrated GPU.");
 
 		labels[12] = new JLabel("CPU socket");
-		labels[12].setToolTipText("The number of CPU sockets on the motherboard.");
+		labels[12]
+				.setToolTipText("The number of CPU sockets on the motherboard.");
 
 		labels[13] = new JLabel("PCI slots");
-		labels[13].setToolTipText("The number of PCI slots on the motherboard.");
+		labels[13]
+				.setToolTipText("The number of PCI slots on the motherboard.");
 
 		labels[14] = new JLabel("RAM slots");
-		labels[14].setToolTipText("The number of RAM slots on the motherboard.");
+		labels[14]
+				.setToolTipText("The number of RAM slots on the motherboard.");
 
 		labels[15] = new JLabel("USB ports");
-		labels[15].setToolTipText("The number of USB ports on the motherboard.");
+		labels[15]
+				.setToolTipText("The number of USB ports on the motherboard.");
 
 		labels[16] = new JLabel("DUC slots");
 		labels[16]
 				.setToolTipText("The number of connection ports (SATA or IDE) on the motherboard.");
 
 		labels[17] = new JLabel("LAN ports");
-		labels[17].setToolTipText("The number of LAN ports on the motherboard.");
+		labels[17]
+				.setToolTipText("The number of LAN ports on the motherboard.");
 
 
 
@@ -231,7 +243,8 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 		forms.setActionCommand("Form");
 		forms.addActionListener(this);
 
-		forms.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(formsStrings, mb.getForm()));
+		forms.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				formsStrings, mb.getForm()));
 
 		labels[1].setLabelFor(forms);
 
@@ -241,7 +254,8 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 
 		// SOCKET
-		String[] socketsStrings = { "", "Intel 775", "Intel 939", "AMD AM2", "AMD AM2+" };
+		String[] socketsStrings = { "", "Intel 775", "Intel 939", "AMD AM2",
+				"AMD AM2+" };
 		sockets = new JComboBox(socketsStrings);
 		sockets.setMaximumSize(tfSize);
 		sockets.setPreferredSize(tfSize);
@@ -250,8 +264,8 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 		sockets.setActionCommand("Socket");
 		sockets.addActionListener(this);
 
-		sockets.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(socketsStrings, mb
-				.getSocket()));
+		sockets.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				socketsStrings, mb.getSocket()));
 
 		labels[2].setLabelFor(sockets);
 
@@ -271,8 +285,8 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 		busSpeeds.addActionListener(this);
 
 
-		busSpeeds.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(busspeedStrings, mb
-				.getBusSpeed()));
+		busSpeeds.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				busspeedStrings, mb.getBusSpeed()));
 
 		labels[3].setLabelFor(busSpeeds);
 
@@ -346,7 +360,8 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		for ( int i = 0; i < DUCStrings.length; i++ )
 		{
-			if ( mb.getDUCconnectionType() != null && mb.getDUCconnectionType() != "" )
+			if ( mb.getDUCconnectionType() != null
+					&& mb.getDUCconnectionType() != "" )
 			{
 				if ( DUCPorts.getItemAt(i).equals(mb.getDUCconnectionType()) )
 				{
@@ -478,7 +493,8 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		for ( int i = 1; i < CPUsocketsStrings.length; i++ )
 		{
-			if ( Integer.parseInt(CPUsockets.getItemAt(i).toString()) == (mb.getMaxCPUs()) )
+			if ( Integer.parseInt(CPUsockets.getItemAt(i).toString()) == (mb
+					.getMaxCPUs()) )
 			{
 				CPUsocketsIndex = i;
 				i = CPUsocketsStrings.length;
@@ -512,7 +528,8 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		for ( int i = 1; i < PCIslotsStrings.length; i++ )
 		{
-			if ( Integer.parseInt(PCIslots.getItemAt(i).toString()) == (mb.getMaxPCIs()) )
+			if ( Integer.parseInt(PCIslots.getItemAt(i).toString()) == (mb
+					.getMaxPCIs()) )
 			{
 				PCIslotsIndex = i;
 				i = PCIslotsStrings.length;
@@ -546,7 +563,8 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		for ( int i = 1; i < RAMslotsStrings.length; i++ )
 		{
-			if ( Integer.parseInt(RAMslots.getItemAt(i).toString()) == (mb.getMaxRAMs()) )
+			if ( Integer.parseInt(RAMslots.getItemAt(i).toString()) == (mb
+					.getMaxRAMs()) )
 			{
 				RAMslotsIndex = i;
 				i = RAMslotsStrings.length;
@@ -580,7 +598,8 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		for ( int i = 1; i < USBportsStrings.length; i++ )
 		{
-			if ( Integer.parseInt(USBports.getItemAt(i).toString()) == (mb.getMaxUSBs()) )
+			if ( Integer.parseInt(USBports.getItemAt(i).toString()) == (mb
+					.getMaxUSBs()) )
 			{
 				USBportsIndex = i;
 				i = USBportsStrings.length;
@@ -614,7 +633,8 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		for ( int i = 1; i < DUCportsStrings.length; i++ )
 		{
-			if ( Integer.parseInt(DUCports.getItemAt(i).toString()) == (mb.getMaxUSBs()) )
+			if ( Integer.parseInt(DUCports.getItemAt(i).toString()) == (mb
+					.getMaxUSBs()) )
 			{
 				DUCportsIndex = i;
 				i = DUCportsStrings.length;
@@ -648,7 +668,8 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		for ( int i = 1; i < LANportsStrings.length; i++ )
 		{
-			if ( Integer.parseInt(LANports.getItemAt(i).toString()) == (mb.getMaxLANs()) )
+			if ( Integer.parseInt(LANports.getItemAt(i).toString()) == (mb
+					.getMaxLANs()) )
 			{
 				LANportsIndex = i;
 				i = LANportsStrings.length;
@@ -682,7 +703,6 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * graphics.GUI.objectView.Hardware.HardwareView.HardwareView#validateData()
 	 */
@@ -691,9 +711,11 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 		// Checks the name of the motherboard
 		if ( name.getText().length() < 1 || name.getText().length() > 255 )
 		{
-			JOptionPane.showMessageDialog(this,
-					"The motherboard name must be between 1 and 255 characters.", "Error - Name",
-					JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane
+					.showMessageDialog(
+							this,
+							"The motherboard name must be between 1 and 255 characters.",
+							"Error - Name", JOptionPane.INFORMATION_MESSAGE);
 
 			return false;
 		}
@@ -701,9 +723,12 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 		// Checks the description of the motherboard.
 		if ( desc.getText().length() < 1 )
 		{
-			JOptionPane.showMessageDialog(this,
-					"The motherboard description must be longer then 1 character.",
-					"Error - Description", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane
+					.showMessageDialog(
+							this,
+							"The motherboard description must be longer then 1 character.",
+							"Error - Description",
+							JOptionPane.INFORMATION_MESSAGE);
 
 			return false;
 		}
@@ -712,8 +737,9 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 		// Checks the form of the motherboard.
 		if ( forms.getSelectedItem().toString().equals("") )
 		{
-			JOptionPane.showMessageDialog(this, "The motherboard must have a form.",
-					"Error - Form", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this,
+					"The motherboard must have a form.", "Error - Form",
+					JOptionPane.INFORMATION_MESSAGE);
 
 			return false;
 		}
@@ -723,8 +749,8 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 		if ( sockets.getSelectedItem().toString().equals("") )
 		{
 			JOptionPane.showMessageDialog(this,
-					"The motherboard must have a socket so to place a CPU.", "Error - Socket",
-					JOptionPane.INFORMATION_MESSAGE);
+					"The motherboard must have a socket so to place a CPU.",
+					"Error - Socket", JOptionPane.INFORMATION_MESSAGE);
 
 			return false;
 		}
@@ -737,7 +763,6 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
 	 * validateChangedData()
 	 */
@@ -750,8 +775,9 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 			try
 			{
-				Object[] returned = ComponentsManagment.getSpesificComponents(CPU.class, mainObj
-						.getComponents(), mainObj.getComponents().length);
+				Object[] returned = ComponentsManagment.getSpesificComponents(
+						CPU.class, mainObj.getComponents(), mainObj
+								.getComponents().length);
 			}
 			catch ( ObjectNotFoundException e )
 			{
@@ -771,7 +797,6 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
 	 */
 	public void save()
@@ -803,7 +828,8 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		if ( busSpeeds.getSelectedItem().toString() != "" )
 		{
-			mbObj.setBusSpeed(Integer.parseInt(busSpeeds.getSelectedItem().toString()));
+			mbObj.setBusSpeed(Integer.parseInt(busSpeeds.getSelectedItem()
+					.toString()));
 		}
 
 		if ( chipsetField.getText() != "" )
@@ -835,39 +861,52 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		if ( CPUsockets.getSelectedItem().toString() != "" )
 		{
-			mbObj.setMaxCPUs(Integer.parseInt(CPUsockets.getSelectedItem().toString()));
+			// If the motherboards cpu sockets is different then the socket on the 
+			// edit view.
+			if ( mbObj.getMaxCPUs() != Integer.parseInt(CPUsockets
+					.getSelectedItem().toString()) )
+			{
+				mbObj.setMaxCPUs(Integer.parseInt(CPUsockets.getSelectedItem()
+						.toString()));
+				
+				
+			}
 		}
 
 		if ( PCIslots.getSelectedItem().toString() != "" )
 		{
-			mbObj.setMaxPCIs(Integer.parseInt(PCIslots.getSelectedItem().toString()));
+			mbObj.setMaxPCIs(Integer.parseInt(PCIslots.getSelectedItem()
+					.toString()));
 		}
 
 		if ( RAMslots.getSelectedItem().toString() != "" )
 		{
-			mbObj.setMaxRAMs(Integer.parseInt(RAMslots.getSelectedItem().toString()));
+			mbObj.setMaxRAMs(Integer.parseInt(RAMslots.getSelectedItem()
+					.toString()));
 		}
 
 		if ( USBports.getSelectedItem().toString() != "" )
 		{
-			mbObj.setMaxUSBs(Integer.parseInt(USBports.getSelectedItem().toString()));
+			mbObj.setMaxUSBs(Integer.parseInt(USBports.getSelectedItem()
+					.toString()));
 		}
 
 		if ( DUCports.getSelectedItem().toString() != "" )
 		{
-			mbObj.setMaxDUCs(Integer.parseInt(DUCports.getSelectedItem().toString()));
+			mbObj.setMaxDUCs(Integer.parseInt(DUCports.getSelectedItem()
+					.toString()));
 		}
 
 		if ( LANports.getSelectedItem().toString() != "" )
 		{
-			mbObj.setMaxIntegratedLANs(Integer.parseInt(LANports.getSelectedItem().toString()));
+			mbObj.setMaxIntegratedLANs(Integer.parseInt(LANports
+					.getSelectedItem().toString()));
 		}
 	}
 
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -890,11 +929,12 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 			{
 				String msg = "The CPU will no longer be compatiable.\n\nDo you want to keep this change?";
 
-				String[] socketsStrings = { "", "Intel 775", "Intel 939", "AMD AM2", "AMD AM2+" };
+				String[] socketsStrings = { "", "Intel 775", "Intel 939",
+						"AMD AM2", "AMD AM2+" };
 
-				sockets = GraphicalFunctions.verifyChange(this, mainObj, CPU.class, mbObj
-						.getSocket(), sockets.getSelectedItem().toString(), msg, socketsStrings,
-						sockets);
+				sockets = GraphicalFunctions.verifyChange(this, mainObj,
+						CPU.class, mbObj.getSocket(), sockets.getSelectedItem()
+								.toString(), msg, socketsStrings, sockets);
 
 			}
 			else if ( command.equals("Bus Speed") )
@@ -910,8 +950,9 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 				String[] gpuPortStrings = { "", "AGP", "PCI", "PCI-E" };
 
-				gpuPorts = GraphicalFunctions.verifyChange(this, mainObj, GraphicsCard.class, mbObj
-						.getGraphicalPort(), gpuPorts.getSelectedItem().toString(), msg,
+				gpuPorts = GraphicalFunctions.verifyChange(this, mainObj,
+						GraphicsCard.class, mbObj.getGraphicalPort(), gpuPorts
+								.getSelectedItem().toString(), msg,
 						gpuPortStrings, gpuPorts);
 
 			}
@@ -921,9 +962,10 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 				String[] DUCStrings = { "", "IDE", "SATA", "eSATA" };
 
-				DUCPorts = GraphicalFunctions.verifyChange(this, mainObj, HDD.class, mbObj
-						.getDUCconnectionType(), DUCPorts.getSelectedItem().toString(), msg,
-						DUCStrings, DUCPorts);
+				DUCPorts = GraphicalFunctions.verifyChange(this, mainObj,
+						HDD.class, mbObj.getDUCconnectionType(), DUCPorts
+								.getSelectedItem().toString(), msg, DUCStrings,
+						DUCPorts);
 
 			}
 			else if ( command.equals("RAM Port") )

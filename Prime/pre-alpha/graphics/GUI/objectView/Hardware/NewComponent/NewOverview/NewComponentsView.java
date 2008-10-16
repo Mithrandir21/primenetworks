@@ -23,7 +23,6 @@ import hardware.HDD;
 import hardware.InternalNetworksCard;
 import hardware.Motherboard;
 import hardware.Ram;
-import objects.Object;
 
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
@@ -34,6 +33,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+
+import objects.Object;
 
 
 /**
