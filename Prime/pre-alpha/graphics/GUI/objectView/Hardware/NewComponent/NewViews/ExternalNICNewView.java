@@ -6,10 +6,12 @@ package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.HardwareView;
 import hardware.ExternalNetworksCard;
+import hardware.Motherboard;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -37,6 +39,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import managment.ComponentsManagment;
 
 import objects.Object;
 
@@ -395,8 +399,47 @@ public class ExternalNICNewView extends JFrame implements HardwareView, ActionLi
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
+		if ( name.getText() != "" )
+		{
+			extNIC.setObjectName(name.getText());
+		}
 
+		if ( desc.getText() != "" )
+		{
+			extNIC.setDescription(desc.getText());
+		}
+
+		if ( producer.getText() != "" )
+		{
+			extNIC.setProducer(producer.getText());
+		}
+		
+		if ( MAC.getText() != "" )
+		{
+			extNIC.setMAC(MAC.getText());
+		}
+		
+		if ( conType.getSelectedItem().toString() != "" )
+		{
+			extNIC.setType(conType.getSelectedItem().toString());
+		}
+		
+		if ( transferSpeed.getSelectedItem().toString() != "" )
+		{
+			extNIC.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem().toString()));
+		}
+		
+		if ( protocol.getSelectedItem().toString() != "" )
+		{
+			extNIC.setSupportedConnectionInterfaces(protocol.getSelectedItem().toString());
+		}
+		
+		if ( supStandards.getSelectedIndex() == -1 )
+		{
+			extNIC.setSupportedStandards(standars);
+		}
+		
+		extNIC.setSupportsIPv6(supIPv6.isSelected());
 	}
 
 	@Override
@@ -416,8 +459,28 @@ public class ExternalNICNewView extends JFrame implements HardwareView, ActionLi
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
+		if ( e.getActionCommand().equals("save") )
+		{
+			// Saves the current values of the new motherboard.
+			save();
+			
+			ComponentsManagment.processExternalNICmatch(mainObj, 
+					(Motherboard) mainObj.getComponents()[0], extNIC, this);
+			
 
+			// Updates the views of the object to correctly show the
+			// current info.
+			PrimeMain1.objView.updateViewInfo();
+
+
+			// Closes the JFrame.
+			this.dispose();
+
+		}
+		else if(e.getActionCommand().equals("cancel"))
+		{
+			this.dispose();
+		}
 	}
 
 	/**

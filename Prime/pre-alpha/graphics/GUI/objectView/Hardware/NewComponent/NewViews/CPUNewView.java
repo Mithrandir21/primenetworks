@@ -485,7 +485,62 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 	@Override
 	public void save()
 	{
+		if ( name.getText() != "" )
+		{
+			CPUobj.setObjectName(name.getText());
+		}
 
+		if ( desc.getText() != "" )
+		{
+			CPUobj.setDescription(desc.getText());
+		}
+
+		if ( producerField.getText() != "" )
+		{
+			CPUobj.setProducer(producerField.getText());
+		}
+
+		if ( socket.getSelectedItem().toString() != "" )
+		{			
+			CPUobj.setSocketType(socket.getSelectedItem().toString());
+		}
+
+		if ( mhz.getSelectedItem().toString() != "" )
+		{
+			CPUobj.setSpeed(Integer.parseInt(mhz.getSelectedItem().toString()));
+		}
+
+		if ( level1Cache.getSelectedItem().toString() != "" )
+		{
+			CPUobj.setLevel1CacheSize(Integer.parseInt(level1Cache.getSelectedItem().toString()));
+		}
+
+		if ( level2Cache.getSelectedItem().toString() != "" )
+		{
+			CPUobj.setLevel2CacheSize(Integer.parseInt(level2Cache.getSelectedItem().toString()));
+		}
+
+		if ( nanometer.getSelectedItem().toString() != "" )
+		{
+			CPUobj.setNanometer(Integer.parseInt(nanometer.getSelectedItem().toString()));
+		}
+
+		if ( fsb.getSelectedItem().toString() != "" )
+		{
+			CPUobj.setFSB(Integer.parseInt(fsb.getSelectedItem().toString()));
+		}
+
+
+		if ( dualCore.isSelected() )
+		{
+			CPUobj.setCPUcores(2);
+		}
+		else if ( quadCore.isSelected() )
+		{
+			CPUobj.setCPUcores(4);
+		}
+
+		CPUobj.set64Bit(bit64.isSelected());
 	}
 
 	@Override

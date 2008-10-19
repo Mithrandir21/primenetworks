@@ -591,12 +591,11 @@ public class ConnectionManagment
 			if ( objectAmotherboard.LANcardIsIntegrated() )
 			{
 				// Gets the first available LAN port index.
-				indexA = objectAmotherboard.firstAvailableIndex(objectAmotherboard
-						.getIntegLANPortsAvailable());
+				indexA = objectAmotherboard.getIntegLANPortsAvailable();
 
-				// If the index is below 0, it means that there are no indexes
+				// If the index is below 1, it means that there are no indexes
 				// available.
-				if ( indexA < 0 )
+				if ( indexA < 1 )
 				{
 					JOptionPane.showMessageDialog(null,
 							"There are no available integrated LAN ports on "
@@ -626,12 +625,11 @@ public class ConnectionManagment
 			if ( objectBmotherboard.LANcardIsIntegrated() )
 			{
 				// Gets the first available LAN port index.
-				indexB = objectBmotherboard.firstAvailableIndex(objectBmotherboard
-						.getIntegLANPortsAvailable());
+				indexB = objectBmotherboard.getIntegLANPortsAvailable();
 
-				// If the index is below 0, it means that there are no indexes
+				// If the index is below 1, it means that there are no indexes
 				// available.
-				if ( indexB < 0 )
+				if ( indexB < 1 )
 				{
 					JOptionPane.showMessageDialog(null,
 							"There are no available integrated LAN ports on "
@@ -663,18 +661,9 @@ public class ConnectionManagment
 			 * indexes are retrieved.
 			 */
 
-			// Gets the arrays for with the booleans telling if the ports are
-			// available.
-			boolean[] objectAarray = objectAmotherboard.getIntegLANPortsAvailable();
-			boolean[] objectBarray = objectBmotherboard.getIntegLANPortsAvailable();
-
-			// Sets the indexes at both the arrays to true;
-			objectAarray[indexA] = true;
-			objectBarray[indexB] = true;
-
 			// Sets the arrays on the actual motherboard components.
-			objectAmotherboard.setIntegLANPortsAvailable(objectAarray);
-			objectBmotherboard.setIntegLANPortsAvailable(objectBarray);
+			objectAmotherboard.makeOneIntLANportTaken();
+			objectBmotherboard.makeOneIntLANportTaken();
 
 			// Adds each object to the other objects array of connection
 			// objects.
@@ -693,8 +682,8 @@ public class ConnectionManagment
 
 			if ( objectAmotherboard.getMaxUSBs() > 0 )
 			{
-				indexA = objectAmotherboard.firstAvailableIndex(objectAmotherboard
-						.getUSBPortsAvailable());
+				// Gets the first available LAN port index.
+				indexA = objectAmotherboard.getUSBPortsAvailable();
 
 				if ( indexA < 0 )
 				{
@@ -715,8 +704,8 @@ public class ConnectionManagment
 
 			if ( objectBmotherboard.getMaxUSBs() > 0 )
 			{
-				indexB = objectBmotherboard.firstAvailableIndex(objectBmotherboard
-						.getUSBPortsAvailable());
+				// Gets the first available LAN port index.
+				indexB = objectBmotherboard.getUSBPortsAvailable();
 
 				if ( indexB < 0 )
 				{
@@ -741,18 +730,9 @@ public class ConnectionManagment
 			 * are retrieved.
 			 */
 
-			// Gets the arrays for with the booleans telling if the ports are
-			// available.
-			boolean[] objectAarray = objectAmotherboard.getUSBPortsAvailable();
-			boolean[] objectBarray = objectBmotherboard.getUSBPortsAvailable();
-
-			// Sets the indexes at both the arrays to true;
-			objectAarray[indexA] = true;
-			objectBarray[indexB] = true;
-
 			// Sets the arrays on the actual motherboard components.
-			objectAmotherboard.setUSBPortsAvailable(objectAarray);
-			objectBmotherboard.setUSBPortsAvailable(objectBarray);
+			objectAmotherboard.makeOneUSBportTaken();
+			objectBmotherboard.makeOneUSBportTaken();
 
 			objectA.addConnectedDevices(objectB);
 			objectB.addConnectedDevices(objectA);

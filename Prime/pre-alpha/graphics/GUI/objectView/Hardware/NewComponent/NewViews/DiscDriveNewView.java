@@ -5,10 +5,12 @@ package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.HardwareView;
 import hardware.Discdrive;
+import hardware.Motherboard;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -30,6 +32,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+
+import managment.ComponentsManagment;
 
 import objects.Object;
 
@@ -330,8 +334,40 @@ public class DiscDriveNewView extends JFrame implements HardwareView, ActionList
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
-		
+		if ( name.getText() != "" )
+		{
+			DiscObj.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			DiscObj.setDescription(desc.getText());
+		}
+
+		if ( producer.getText() != "" )
+		{
+			DiscObj.setProducer(producer.getText());
+		}
+
+		if ( type.getSelectedItem().toString() != "" )
+		{
+			DiscObj.setType(type.getSelectedItem().toString());
+		}
+
+		if ( port.getSelectedItem().toString() != "" )
+		{
+			DiscObj.setPort(port.getSelectedItem().toString());
+		}
+
+		if ( subtype.getSelectedItem().toString() != "" )
+		{
+			DiscObj.setSubtype(subtype.getSelectedItem().toString());
+		}
+
+		if ( speed.getSelectedItem().toString() != "" )
+		{
+			DiscObj.setSpeed(Integer.parseInt(type.getSelectedItem().toString()));
+		}
 	}
 
 
@@ -354,7 +390,27 @@ public class DiscDriveNewView extends JFrame implements HardwareView, ActionList
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		if ( e.getActionCommand().equals("save") )
+		{
+			// Saves the current values of the new motherboard.
+			save();
+			
+			ComponentsManagment.processDiscDrivematch(mainObj, 
+					(Motherboard) mainObj.getComponents()[0], DiscObj, this);
+			
+
+			// Updates the views of the object to correctly show the
+			// current info.
+			PrimeMain1.objView.updateViewInfo();
+
+
+			// Closes the JFrame.
+			this.dispose();
+
+		}
+		else if(e.getActionCommand().equals("cancel"))
+		{
+			this.dispose();
+		}
 	}
 }

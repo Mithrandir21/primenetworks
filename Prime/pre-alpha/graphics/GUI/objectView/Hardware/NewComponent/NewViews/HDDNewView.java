@@ -5,10 +5,12 @@ package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.HardwareView;
 import hardware.HDD;
+import hardware.Motherboard;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -30,6 +32,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+
+import managment.ComponentsManagment;
 
 import objects.Object;
 
@@ -343,8 +347,45 @@ public class HDDNewView extends JFrame implements HardwareView, ActionListener
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
+		if ( name.getText() != "" )
+		{
+			mainHDD.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainHDD.setDescription(desc.getText());
+		}
 		
+		if ( producer.getText() != "" )
+		{
+			mainHDD.setProducer(producer.getText());
+		}
+		
+		if ( type.getSelectedItem().toString() != "" )
+		{
+			mainHDD.setType(type.getSelectedItem().toString());
+		}
+		
+		if ( subtype.getSelectedItem().toString() != "" )
+		{
+			mainHDD.setSubtype(subtype.getSelectedItem().toString());
+		}
+		
+		if ( size.getSelectedItem().toString() != "" )
+		{
+			mainHDD.setSize(Integer.parseInt(size.getSelectedItem().toString()));
+		}
+		
+		if ( transferSpeed.getSelectedItem().toString() != "" )
+		{
+			mainHDD.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem().toString()));
+		}
+		
+		if ( rpm.getSelectedItem().toString() != "" )
+		{
+			mainHDD.setRPM(Integer.parseInt(rpm.getSelectedItem().toString()));
+		}
 	}
 
 	@Override
@@ -364,8 +405,28 @@ public class HDDNewView extends JFrame implements HardwareView, ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		if ( e.getActionCommand().equals("save") )
+		{
+			// Saves the current values of the new motherboard.
+			save();
+			
+			ComponentsManagment.processHDDmatch(mainObj, 
+					(Motherboard) mainObj.getComponents()[0], mainHDD, this);
+			
+
+			// Updates the views of the object to correctly show the
+			// current info.
+			PrimeMain1.objView.updateViewInfo();
+
+
+			// Closes the JFrame.
+			this.dispose();
+
+		}
+		else if(e.getActionCommand().equals("cancel"))
+		{
+			this.dispose();
+		}
 	}
 
 }

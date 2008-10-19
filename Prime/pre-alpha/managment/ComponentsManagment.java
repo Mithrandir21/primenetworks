@@ -47,8 +47,8 @@ public class ComponentsManagment
 	 *             Throws an exception with a message which says that the
 	 *             component is already present.
 	 */
-	public static Object[] addComponents(Object[] NewComponents,
-			Object[] components, int componentCounter)
+	public static Object[] addComponents(Object[] NewComponents, Object[] components,
+			int componentCounter)
 	{
 
 		// The number of new components to be added to the components array
@@ -65,8 +65,7 @@ public class ComponentsManagment
 		}
 
 		// Makes a new components array with the added number of indexes
-		Object[] tempComponents = new Object[componentCounter
-				+ numberOfNewComponents];
+		Object[] tempComponents = new Object[componentCounter + numberOfNewComponents];
 
 		// The boolean array that tells whether or not any of the objects
 		// already are in the array
@@ -84,8 +83,7 @@ public class ComponentsManagment
 				// A try/catch in case the object is null.
 				try
 				{
-					throw new Exception("The component "
-							+ NewComponents[i].getObjectName()
+					throw new Exception("The component " + NewComponents[i].getObjectName()
 							+ " is already present.");
 				}
 				catch ( Exception e )
@@ -131,8 +129,7 @@ public class ComponentsManagment
 	 *             Throws an exception with a message which says that the
 	 *             component is already present.
 	 */
-	public static Object[] addComponents(Object NewComponent,
-			Object[] components)
+	public static Object[] addComponents(Object NewComponent, Object[] components)
 	{
 		// Makes a new components array with the added number of indexes
 		Object[] tempComponents = new Object[components.length + 1];
@@ -147,8 +144,8 @@ public class ComponentsManagment
 			// A try/catch in case the object is null.
 			try
 			{
-				throw new Exception("The component "
-						+ NewComponent.getObjectName() + " is already present.");
+				throw new Exception("The component " + NewComponent.getObjectName()
+						+ " is already present.");
 			}
 			catch ( Exception e )
 			{
@@ -181,9 +178,8 @@ public class ComponentsManagment
 	 *             object that to be removed do not exist in the components
 	 *             object they are trying to be removed from.
 	 */
-	public static Object[] removeComponents(Object[] ToBeRemoved,
-			Object[] components, int componentCounter)
-			throws ObjectNotFoundInArrayException
+	public static Object[] removeComponents(Object[] ToBeRemoved, Object[] components,
+			int componentCounter) throws ObjectNotFoundInArrayException
 	{
 		// booleans to check whether the objects to be removed are found or not
 		boolean[] objectFound = new boolean[ToBeRemoved.length];
@@ -222,8 +218,7 @@ public class ComponentsManagment
 			{
 				ObjectNotFoundInArrayException exception = new ObjectNotFoundInArrayException(
 						"Object was not found, hence cannot "
-								+ "be deleted. Contact systemadminstrator.",
-						ToBeRemoved[i]);
+								+ "be deleted. Contact systemadminstrator.", ToBeRemoved[i]);
 
 				throw exception;
 			}
@@ -239,8 +234,8 @@ public class ComponentsManagment
 	/**
 	 * Function to remove an array of components from the array of components.
 	 */
-	public static Object[] removeComponent(Object ToBeRemoved,
-			Object[] components, int componentCounter)
+	public static Object[] removeComponent(Object ToBeRemoved, Object[] components,
+			int componentCounter)
 	{
 		// Goes through all the components and removes the one(s) to be removed
 		for ( int i = 0; i < componentCounter; i++ )
@@ -275,8 +270,8 @@ public class ComponentsManagment
 	 * @param components
 	 *            The current components list.
 	 */
-	public static Object[] changeComponent(Object NewComponent,
-			Object OldComponent, Object[] components, int componentCounter)
+	public static Object[] changeComponent(Object NewComponent, Object OldComponent,
+			Object[] components, int componentCounter)
 	{
 		// The boolean array that tells whether or not any of the object already
 		// are in the array
@@ -288,8 +283,8 @@ public class ComponentsManagment
 			// A try/catch incase the object is null.
 			try
 			{
-				throw new Exception("The component "
-						+ NewComponent.getObjectName() + " is already present.");
+				throw new Exception("The component " + NewComponent.getObjectName()
+						+ " is already present.");
 			}
 			catch ( Exception e )
 			{
@@ -338,13 +333,13 @@ public class ComponentsManagment
 	 *            The object that the objects with the given class will be
 	 *            removed from.
 	 */
-	public static void removeComponentFromObject(Class<?> componentClass,
-			String variable, String newVariable, Object mainObj)
+	public static void removeComponentFromObject(Class<?> componentClass, String variable,
+			String newVariable, Object mainObj)
 	{
 		if ( !variable.equals(newVariable) )
 		{
-			if ( ComponentsManagment.containsComponent(componentClass, mainObj
-					.getComponents(), mainObj.getComponents().length) )
+			if ( ComponentsManagment.containsComponent(componentClass, mainObj.getComponents(),
+					mainObj.getComponents().length) )
 			{
 
 				boolean objContains = true;
@@ -354,9 +349,8 @@ public class ComponentsManagment
 				try
 				{
 					// Find the components with the given class on a motherboard
-					returned = ComponentsManagment.getSpesificComponents(
-							componentClass, mainObj.getComponents(), mainObj
-									.getComponents().length);
+					returned = ComponentsManagment.getSpesificComponents(componentClass, mainObj
+							.getComponents(), mainObj.getComponents().length);
 				}
 				catch ( ObjectNotFoundException ex )
 				{
@@ -368,10 +362,8 @@ public class ComponentsManagment
 				{
 					try
 					{
-						mainObj.setAllComponents(ComponentsManagment
-								.removeComponents(returned, mainObj
-										.getComponents(), mainObj
-										.getComponents().length));
+						mainObj.setAllComponents(ComponentsManagment.removeComponents(returned,
+								mainObj.getComponents(), mainObj.getComponents().length));
 					}
 					catch ( ObjectNotFoundInArrayException ex )
 					{
@@ -402,8 +394,8 @@ public class ComponentsManagment
 
 		try
 		{
-			mb = (Motherboard) ComponentsManagment.getSpesificComponents(
-					Motherboard.class, components, components.length)[0];
+			mb = (Motherboard) ComponentsManagment.getSpesificComponents(Motherboard.class,
+					components, components.length)[0];
 		}
 		catch ( ObjectNotFoundException e1 )
 		{
@@ -447,8 +439,8 @@ public class ComponentsManagment
 		try
 		{
 			// Gets all the CPU components in the components array.
-			Object[] cpus = ComponentsManagment.getSpesificComponents(
-					CPU.class, components, components.length);
+			Object[] cpus = ComponentsManagment.getSpesificComponents(CPU.class, components,
+					components.length);
 
 			for ( int i = 0; i < cpus.length; i++ )
 			{
@@ -461,10 +453,9 @@ public class ComponentsManagment
 					if ( cpu.getSocket() != mb.getSocket() )
 					{
 						// Removes the actual components.
-						obj.setAllComponents(ComponentsManagment
-								.removeComponent(cpu, components,
-										components.length));
-						
+						obj.setAllComponents(ComponentsManagment.removeComponent(cpu, components,
+								components.length));
+
 						mb.makeOneCPUportAvailable();
 					}
 				}
@@ -490,23 +481,21 @@ public class ComponentsManagment
 		try
 		{
 			// Gets all the Discdrive components in the components array.
-			Object[] drives = ComponentsManagment.getSpesificComponents(
-					Discdrive.class, components, components.length);
+			Object[] drives = ComponentsManagment.getSpesificComponents(Discdrive.class,
+					components, components.length);
 
 			// 
 			for ( int i = 0; i < drives.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
-				if ( mb.getDUCconnectionType() != ""
-						&& mb.getDUCconnectionType() != null )
+				if ( mb.getDUCconnectionType() != "" && mb.getDUCconnectionType() != null )
 				{
 					Discdrive dicsdrive = (Discdrive) drives[i];
 					if ( dicsdrive.getPort() != mb.getDUCconnectionType() )
 					{
 						// Removes the actual components.
-						obj.setAllComponents(ComponentsManagment
-								.removeComponent(dicsdrive, components,
-										components.length));
+						obj.setAllComponents(ComponentsManagment.removeComponent(dicsdrive,
+								components, components.length));
 					}
 				}
 			}
@@ -576,17 +565,14 @@ public class ComponentsManagment
 			for ( int i = 0; i < intNICs.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
-				if ( mb.getDUCconnectionType() != ""
-						&& mb.getDUCconnectionType() != null )
+				if ( mb.getDUCconnectionType() != "" && mb.getDUCconnectionType() != null )
 				{
 					InternalNetworksCard intNIC = (InternalNetworksCard) intNICs[i];
-					if ( intNIC.getConnectionType() != mb
-							.getDUCconnectionType() )
+					if ( intNIC.getConnectionType() != mb.getDUCconnectionType() )
 					{
 						// Removes the actual components.
-						obj.setAllComponents(ComponentsManagment
-								.removeComponent(intNIC, components,
-										components.length));
+						obj.setAllComponents(ComponentsManagment.removeComponent(intNIC,
+								components, components.length));
 					}
 				}
 			}
@@ -611,23 +597,21 @@ public class ComponentsManagment
 		try
 		{
 			// Gets all the GraphicsCard components in the components array.
-			Object[] GPUs = ComponentsManagment.getSpesificComponents(
-					GraphicsCard.class, components, components.length);
+			Object[] GPUs = ComponentsManagment.getSpesificComponents(GraphicsCard.class,
+					components, components.length);
 
 			// 
 			for ( int i = 0; i < GPUs.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
-				if ( mb.getGraphicalPort() != ""
-						&& mb.getGraphicalPort() != null )
+				if ( mb.getGraphicalPort() != "" && mb.getGraphicalPort() != null )
 				{
 					InternalNetworksCard gpu = (InternalNetworksCard) GPUs[i];
 					if ( gpu.getConnectionType() != mb.getGraphicalPort() )
 					{
 						// Removes the actual components.
-						obj.setAllComponents(ComponentsManagment
-								.removeComponent(gpu, components,
-										components.length));
+						obj.setAllComponents(ComponentsManagment.removeComponent(gpu, components,
+								components.length));
 					}
 				}
 			}
@@ -652,23 +636,21 @@ public class ComponentsManagment
 		try
 		{
 			// Gets all the HDD components in the components array.
-			Object[] HDDs = ComponentsManagment.getSpesificComponents(
-					HDD.class, components, components.length);
+			Object[] HDDs = ComponentsManagment.getSpesificComponents(HDD.class, components,
+					components.length);
 
 			// If the port to the motherboard is not the same
 			for ( int i = 0; i < HDDs.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
-				if ( mb.getDUCconnectionType() != ""
-						&& mb.getDUCconnectionType() != null )
+				if ( mb.getDUCconnectionType() != "" && mb.getDUCconnectionType() != null )
 				{
 					HDD hdd = (HDD) HDDs[i];
 					if ( hdd.getType() != mb.getDUCconnectionType() )
 					{
 						// Removes the actual components.
-						obj.setAllComponents(ComponentsManagment
-								.removeComponent(hdd, components,
-										components.length));
+						obj.setAllComponents(ComponentsManagment.removeComponent(hdd, components,
+								components.length));
 					}
 				}
 			}
@@ -693,8 +675,8 @@ public class ComponentsManagment
 		try
 		{
 			// Gets all the Ram components in the components array.
-			Object[] RAMs = ComponentsManagment.getSpesificComponents(
-					Ram.class, components, components.length);
+			Object[] RAMs = ComponentsManagment.getSpesificComponents(Ram.class, components,
+					components.length);
 
 			// 
 			for ( int i = 0; i < RAMs.length; i++ )
@@ -707,10 +689,9 @@ public class ComponentsManagment
 					if ( RAM.getType() != mb.getRAMtype() )
 					{
 						// Removes the actual components.
-						obj.setAllComponents(ComponentsManagment
-								.removeComponent(RAM, components,
-										components.length));
-						
+						obj.setAllComponents(ComponentsManagment.removeComponent(RAM, components,
+								components.length));
+
 						mb.makeOneRAMportAvailable();
 					}
 				}
@@ -733,26 +714,12 @@ public class ComponentsManagment
 	 * @param cpu
 	 * @return
 	 */
-	public static boolean processCPUmatch(Object mainObj, Motherboard mb, CPU cpu,
-			Component comp)
+	public static boolean processCPUmatch(Object mainObj, Motherboard mb, CPU cpu, Component comp)
 	{
-		int availablePort = -1;
-
-		boolean[] ports = mb.getCPUPortsAvailable();
-
-		// Finds the first available port.
-		for ( int i = 0; i < ports.length; i++ )
-		{
-			// If the port is not taken.
-			if ( ports[i] == false )
-			{
-				availablePort = i;
-				i = ports.length;
-			}
-		}
+		int availablePort = mb.getCPUPortsAvailable();
 
 		// Check the availability of sockets.
-		if ( availablePort > -1 )
+		if ( availablePort > 0 )
 		{
 			// Checks the match between the sockets.
 			if ( cpu.getSocket().equals(mb.getSocket()) )
@@ -760,26 +727,24 @@ public class ComponentsManagment
 				// First we add the component to the components list of the main
 				// object.
 				mainObj.addComponent(cpu);
-				
+
 				// Then we set the ports to the motherboard
 				mb.makeOneCPUportTaken();
 			}
 			// If the sockets don't match.
 			else
 			{
-				JOptionPane.showMessageDialog(comp,
-						"The socket on the motherboard, " + mb.getSocket()
-								+ ", does not match the CPU socket, "
-								+ cpu.getSocket() + ".", "Info",
-						JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(comp, "The socket on the motherboard, "
+						+ mb.getSocket() + ", does not match the CPU socket, " + cpu.getSocket()
+						+ ".", "Info", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 		// If there are not available sockets.
 		else
 		{
 			JOptionPane.showMessageDialog(comp,
-					"There are no available CPU sockets left on the machine.",
-					"Info", JOptionPane.INFORMATION_MESSAGE);
+					"There are no available CPU sockets left on the machine.", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
 		}
 
 
@@ -793,31 +758,15 @@ public class ComponentsManagment
 	 * Javadoc-TODO - Description
 	 * 
 	 * @param mb
-	 * @param cpu
+	 * @param ram
 	 * @return
 	 */
-	public static boolean processRAMmatch(Object mainObj, Motherboard mb, Ram ram,
-			Component comp)
+	public static boolean processRAMmatch(Object mainObj, Motherboard mb, Ram ram, Component comp)
 	{
-		int availablePort = -1;
-
-		boolean[] ports = mb.getRAMPortsAvailable();
-
-		// Finds the first available port.
-		for ( int i = 0; i < ports.length; i++ )
-		{
-			// If the port is not taken.
-			if ( ports[i] == false )
-			{
-				availablePort = i;
-				i = ports.length;
-			}
-		}
-		
-		System.out.println(availablePort);
+		int availablePort = mb.getRAMPortsAvailable();
 
 		// Check the availability of ports.
-		if ( availablePort > -1 )
+		if ( availablePort > 0 )
 		{
 			// Checks the match between the types of ram.
 			if ( ram.getType().equals(mb.getRAMtype()) )
@@ -825,32 +774,239 @@ public class ComponentsManagment
 				// First we add the component to the components list of the main
 				// object.
 				mainObj.addComponent(ram);
-				
+
 				// Then we set the ports to the motherboard
 				mb.makeOneRAMportTaken();
 			}
 			// If the types don't match.
 			else
 			{
-				JOptionPane.showMessageDialog(comp,
-						"The socket on the motherboard, " + mb.getRAMtype()
-								+ ", does not match the RAM ports, "
-								+ ram.getType() + ".", "Info",
-						JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(comp, "The port on the motherboard, "
+						+ mb.getRAMtype() + ", does not match the RAM ports, " + ram.getType()
+						+ ".", "Info", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 		// If there are not available type.
 		else
 		{
 			JOptionPane.showMessageDialog(comp,
-					"There are no available RAM ports left on the machine.",
-					"Info", JOptionPane.INFORMATION_MESSAGE);
+					"There are no available RAM ports left on the machine.", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
 		}
 
 
 
 		return false;
 	}
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param mb
+	 * @param hdd
+	 * @return
+	 */
+	public static boolean processHDDmatch(Object mainObj, Motherboard mb, HDD hdd, Component comp)
+	{
+		int availablePort = mb.getDUCPortsAvailable();
+
+		// Check the availability of ports.
+		if ( availablePort > 0 )
+		{
+			// Checks the match between the types of hdd.
+			if ( hdd.getType().equals(mb.getDUCconnectionType()) )
+			{
+				// First we add the component to the components list of the main
+				// object.
+				mainObj.addComponent(hdd);
+
+				// Then we set the ports to the motherboard
+				mb.makeOneDUCportTaken();
+			}
+			// If the types don't match.
+			else
+			{
+				JOptionPane.showMessageDialog(comp, "The port on the motherboard, "
+						+ mb.getDUCconnectionType() + ", does not match the HDD ports, "
+						+ hdd.getType() + ".", "Info", JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+		// If there are not available type.
+		else
+		{
+			JOptionPane.showMessageDialog(comp,
+					"There are no available HDD ports left on the machine.", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+
+
+
+		return false;
+	}
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param mb
+	 * @param dics
+	 * @return
+	 */
+	public static boolean processDiscDrivematch(Object mainObj, Motherboard mb, Discdrive disc,
+			Component comp)
+	{
+		int availablePort = mb.getDUCPortsAvailable();
+
+		// Check the availability of ports.
+		if ( availablePort > 0 )
+		{
+			// Checks the match between the types of disc.
+			if ( disc.getPort().equals(mb.getDUCconnectionType()) )
+			{
+				// First we add the component to the components list of the main
+				// object.
+				mainObj.addComponent(disc);
+
+				// Then we set the ports to the motherboard
+				mb.makeOneDUCportTaken();
+			}
+			// If the types don't match.
+			else
+			{
+				JOptionPane.showMessageDialog(comp, "The port on the motherboard, "
+						+ mb.getDUCconnectionType() + ", does not match the Disc ports, "
+						+ disc.getPort() + ".", "Info", JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+		// If there are not available type.
+		else
+		{
+			JOptionPane.showMessageDialog(comp,
+					"There are no available Disc ports left on the machine.", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return false;
+	}
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param mb
+	 * @param GPU
+	 * @return
+	 */
+	public static boolean processGPUmatch(Object mainObj, Motherboard mb, GraphicsCard GPU,
+			Component comp)
+	{
+		boolean availablePort = mb.isGraphicsCardInstalled();
+
+		// Check the availability of ports.
+		if ( availablePort == false )
+		{
+			// Checks the match between the types of disc.
+			if ( GPU.getType().equals(mb.getGraphicalPort()) )
+			{
+				// First we add the component to the components list of the main
+				// object.
+				mainObj.addComponent(GPU);
+
+				// Then we set the ports to the motherboard
+				mb.setGraphicsCard(true);
+			}
+			// If the types don't match.
+			else
+			{
+				JOptionPane.showMessageDialog(comp, "The port on the motherboard, "
+						+ mb.getGraphicalPort() + ", does not match the GPU ports, "
+						+ GPU.getType() + ".", "Info", JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+		// If there are not available type.
+		else
+		{
+			JOptionPane.showMessageDialog(comp,
+					"There are no available GPU ports left on the machine.", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return false;
+	}
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param mb
+	 * @param nic
+	 * @return
+	 */
+	public static boolean processInternalNICmatch(Object mainObj, Motherboard mb,
+			InternalNetworksCard nic, Component comp)
+	{
+		int availablePort = mb.getPCIPortsAvailable();
+
+		// Check the availability of ports.
+		if ( availablePort > 0 )
+		{
+			// First we add the component to the components list of the main
+			// object.
+			mainObj.addComponent(nic);
+
+			// Then we set the ports to the motherboard
+			mb.makeOneIntLANportTaken();
+		}
+		// If there are not available type.
+		else
+		{
+			JOptionPane.showMessageDialog(comp,
+					"There are no available PCI ports left on the machine.", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return false;
+	}
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param mb
+	 * @param nic
+	 * @return
+	 */
+	public static boolean processExternalNICmatch(Object mainObj, Motherboard mb,
+			ExternalNetworksCard nic, Component comp)
+	{
+		int availablePort = mb.getUSBPortsAvailable();
+
+		// Check the availability of ports.
+		if ( availablePort > 0 )
+		{
+			// First we add the component to the components list of the main
+			// object.
+			mainObj.addComponent(nic);
+
+			// Then we set the ports to the motherboard
+			mb.makeOneIntLANportTaken();
+		}
+		// If there are not available type.
+		else
+		{
+			JOptionPane.showMessageDialog(comp,
+					"There are no available USB ports left on the machine.", "Info",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return false;
+	}
+
 
 
 	// SEARCH FUNCTIONS
@@ -869,9 +1025,8 @@ public class ComponentsManagment
 	 *             found with the given class.
 	 */
 	@SuppressWarnings("unchecked")
-	public static Object[] getSpesificComponents(Class ComponentClass,
-			Object[] components, int componentCounter)
-			throws ObjectNotFoundException
+	public static Object[] getSpesificComponents(Class ComponentClass, Object[] components,
+			int componentCounter) throws ObjectNotFoundException
 	{
 		// boolean to check whether the object is found or not
 		boolean objectNotFound = true;
@@ -903,8 +1058,7 @@ public class ComponentsManagment
 		if ( objectNotFound == true )
 		{
 			ObjectNotFoundException exception = new ObjectNotFoundException(
-					"Object(s) with the given component, "
-							+ ComponentClass.getCanonicalName()
+					"Object(s) with the given component, " + ComponentClass.getCanonicalName()
 							+ " were not found.", ComponentClass);
 
 			throw exception;
@@ -935,8 +1089,8 @@ public class ComponentsManagment
 	 *             found with the given class.
 	 */
 	@SuppressWarnings("unchecked")
-	public static boolean containsComponent(Class ComponentClass,
-			Object[] components, int componentCounter)
+	public static boolean containsComponent(Class ComponentClass, Object[] components,
+			int componentCounter)
 	{
 		// boolean to check whether the object is found or not
 		boolean objectFound = false;

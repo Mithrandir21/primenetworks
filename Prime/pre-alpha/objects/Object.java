@@ -707,7 +707,7 @@ public abstract class Object implements Serializable
 			// of booleans with the given length of the last array, but where
 			// all the indexes are false.
 			objectAmotherboard
-					.setMaxIntegratedLANs(objectAmotherboard.getIntegLANPortsAvailable().length);
+					.setMaxIntegratedLANs(objectAmotherboard.getIntegLANPortsAvailable());
 
 		}
 	}
@@ -737,27 +737,12 @@ public abstract class Object implements Serializable
 	 */
 	public void removeAllComponents()
 	{
-//		Object[] temp = this.components;
-		
-//		System.out.println(temp.length);
-//		System.out.println(components.length);
-//		
-//		for( int i = 0; i<components.length; i++)
-//		{
-//			if( components[i] != null )
-//			{
-//				System.out.println(components[i].name);
-//			}
-//			else
-//			{
-//				System.out.println(i + " is empty.");
-//			}
-//		}
-		
-		
 		try
 		{
 			removeComponent(components);
+			
+			
+			
 		}
 		catch ( ObjectNotFoundInArrayException e )
 		{
@@ -765,7 +750,8 @@ public abstract class Object implements Serializable
 			e.printStackTrace();
 		}
 		
-//		temp = null;
+		
+		
 	}
 
 
@@ -790,8 +776,8 @@ public abstract class Object implements Serializable
 		// Sets the arrays on the actual motherboard component to an array
 		// of booleans with the given length of the last array, but where
 		// all the indexes are false.
-		objectAmotherboard.setIntegLANPortsAvailable(new boolean[objectAmotherboard
-				.getIntegLANPortsAvailable().length]);
+		objectAmotherboard.setIntegLANPortsAvailable(objectAmotherboard
+				.getIntegLANPortsAvailable());
 
 	}
 
@@ -823,58 +809,12 @@ public abstract class Object implements Serializable
 		}
 		else if ( con instanceof DeviceConnection )
 		{
-			// Gets the array of ports on the motherboard.
-			boolean[] ports = objectMotherboard.getUSBPortsAvailable();
-
-			// Gets the first index where the value is true, which means its a
-			// taken port.
-			int Index = getFirstTakenIndex(ports);
-
-			// If the returned index is -1, then there are no taken ports and
-			// something has gone wrong.
-			if ( Index == -1 )
-			{
-				throw new exceptions.PortIsNotRegisteredOnMotherboard(objectMotherboard, this,
-						"USB");
-			}
-
-			// Sets the port index to false, which means that it is not taken.
-			ports[Index] = false;
-
-			// Sorts the boolean array on the boolean true.
-			ports = cleanup.cleanObjectArray(ports, true);
-
-			// Sets the arrays on the actual motherboard component to an array
-			// of booleans.
-			objectMotherboard.setUSBPortsAvailable(ports);
+			objectMotherboard.makeOneUSBportAvailable();
 		}
 		else
 		// This will then be a network connection.
 		{
-			// Gets the array of ports on the motherboard.
-			boolean[] ports = objectMotherboard.getIntegLANPortsAvailable();
-
-			// Gets the first index where the value is true, which means its a
-			// taken port.
-			int Index = getFirstTakenIndex(ports);
-
-			// If the returned index is -1, then there are no taken ports and
-			// something has gone wrong.
-			if ( Index == -1 )
-			{
-				throw new exceptions.PortIsNotRegisteredOnMotherboard(objectMotherboard, this,
-						"LAN");
-			}
-
-			// Sets the port index to false, which means that it is not taken.
-			ports[Index] = false;
-
-			// Sorts the boolean array on the boolean true.
-			ports = cleanup.cleanObjectArray(ports, true);
-
-			// Sets the arrays on the actual motherboard component to an array
-			// of booleans.
-			objectMotherboard.setIntegLANPortsAvailable(ports);
+			objectMotherboard.makeOneIntLANportAvailable();
 		}
 	}
 

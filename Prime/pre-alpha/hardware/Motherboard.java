@@ -4,6 +4,7 @@ package hardware;
 import java.io.Serializable;
 
 import objects.Hardware;
+import sun.security.x509.AVA;
 
 
 /**
@@ -19,7 +20,7 @@ import objects.Hardware;
  * <br>
  * Changelog 0.2
  * <p>
- * Changed HDD connections to DUC, Different Usage Connections, to better suet
+ * Changed HDD connections to DUC, Different Usage Connections, to better suit
  * the actual function of the port which is a port for both HDDs and CDROMs
  * among other things.
  * </p>
@@ -90,17 +91,17 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	// The number of available ports.
-	private boolean[] CPUPortsAvailable;
+	private int CPUPortsAvailable;
 
-	private boolean[] PCIPortsAvailable;
+	private int PCIPortsAvailable;
 
-	private boolean[] RAMPortsAvailable;
+	private int RAMPortsAvailable;
 
-	private boolean[] USBPortsAvailable;
+	private int USBPortsAvailable;
 
-	private boolean[] DUCPortsAvailable;
+	private int DUCPortsAvailable;
 
-	private boolean[] IntegLANPortsAvailable;
+	private int IntegLANPortsAvailable;
 
 
 
@@ -165,12 +166,12 @@ public class Motherboard extends Hardware implements Serializable
 		graphicalCardIntegrated = MBintegGraphicalCard;
 		audioCardIntegrated = MBintegAudioCard;
 
-		CPUPortsAvailable = new boolean[MBmaxCPUs];
-		PCIPortsAvailable = new boolean[MBmaxPCIs];
-		RAMPortsAvailable = new boolean[MBmaxRAMs];
-		USBPortsAvailable = new boolean[MBmaxUSBs];
-		DUCPortsAvailable = new boolean[MBmaxDUCs];
-		IntegLANPortsAvailable = new boolean[MBmaxIntegLanPorts];
+		CPUPortsAvailable = MBmaxCPUs;
+		PCIPortsAvailable = MBmaxPCIs;
+		RAMPortsAvailable = MBmaxRAMs;
+		USBPortsAvailable = MBmaxUSBs;
+		DUCPortsAvailable = MBmaxDUCs;
+		IntegLANPortsAvailable = MBmaxIntegLanPorts;
 	}
 
 
@@ -396,9 +397,9 @@ public class Motherboard extends Hardware implements Serializable
 	 * 
 	 * @return the cPUPortsAvailable
 	 */
-	public boolean[] getCPUPortsAvailable()
+	public int getCPUPortsAvailable()
 	{
-		return CPUPortsAvailable;
+		return CPUPortsAvailable++;
 	}
 
 
@@ -407,7 +408,7 @@ public class Motherboard extends Hardware implements Serializable
 	 * 
 	 * @return the pCIPortsAvailable
 	 */
-	public boolean[] getPCIPortsAvailable()
+	public int getPCIPortsAvailable()
 	{
 		return PCIPortsAvailable;
 	}
@@ -418,7 +419,7 @@ public class Motherboard extends Hardware implements Serializable
 	 * 
 	 * @return the rAMPortsAvailable
 	 */
-	public boolean[] getRAMPortsAvailable()
+	public int getRAMPortsAvailable()
 	{
 		return RAMPortsAvailable;
 	}
@@ -429,7 +430,7 @@ public class Motherboard extends Hardware implements Serializable
 	 * 
 	 * @return the uSBPortsAvailable
 	 */
-	public boolean[] getUSBPortsAvailable()
+	public int getUSBPortsAvailable()
 	{
 		return USBPortsAvailable;
 	}
@@ -440,7 +441,7 @@ public class Motherboard extends Hardware implements Serializable
 	 * 
 	 * @return the dUCPortsAvailable
 	 */
-	public boolean[] getDUCPortsAvailable()
+	public int getDUCPortsAvailable()
 	{
 		return DUCPortsAvailable;
 	}
@@ -451,7 +452,7 @@ public class Motherboard extends Hardware implements Serializable
 	 * 
 	 * @return the integLANPortsAvailable
 	 */
-	public boolean[] getIntegLANPortsAvailable()
+	public int getIntegLANPortsAvailable()
 	{
 		return IntegLANPortsAvailable;
 	}
@@ -525,8 +526,26 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public void setMaxCPUs(int MBmaxCPUs)
 	{
+		int occupied = maxCPUs - CPUPortsAvailable;
+		
+		
+		for(int i = occupied; i == 0;)
+		{
+			if(i<0)
+			{
+				
+			}
+			else
+			{
+				
+			}
+		}
+		
+		
 		maxCPUs = MBmaxCPUs;
-		setCPUPortsAvailable(new boolean[maxCPUs]);
+		
+		
+		
 	}
 
 
@@ -536,7 +555,6 @@ public class Motherboard extends Hardware implements Serializable
 	public void setMaxPCIs(int MBmaxPCIs)
 	{
 		maxPCIs = MBmaxPCIs;
-		setPCIPortsAvailable(new boolean[maxPCIs]);
 	}
 
 
@@ -546,7 +564,6 @@ public class Motherboard extends Hardware implements Serializable
 	public void setMaxRAMs(int MBmaxRAMs)
 	{
 		maxRAMs = MBmaxRAMs;
-		setRAMPortsAvailable(new boolean[maxRAMs]);
 	}
 
 
@@ -556,7 +573,6 @@ public class Motherboard extends Hardware implements Serializable
 	public void setMaxDUCs(int MBmaxDUCs)
 	{
 		maxDUCs = MBmaxDUCs;
-		setDUCPortsAvailable(new boolean[maxDUCs]);
 	}
 
 
@@ -566,7 +582,6 @@ public class Motherboard extends Hardware implements Serializable
 	public void setMaxUSBs(int MBmaxUSBs)
 	{
 		maxUSBs = MBmaxUSBs;
-		setUSBPortsAvailable(new boolean[maxUSBs]);
 	}
 
 
@@ -576,7 +591,6 @@ public class Motherboard extends Hardware implements Serializable
 	public void setMaxIntegratedLANs(int MBmaxIntegLANs)
 	{
 		maxIntegLANs = MBmaxIntegLANs;
-		setIntegLANPortsAvailable(new boolean[maxIntegLANs]);
 	}
 
 
@@ -669,7 +683,7 @@ public class Motherboard extends Hardware implements Serializable
 	 * @param portsAvailable
 	 *            the cPUPortsAvailable to set
 	 */
-	public void setCPUPortsAvailable(boolean[] portsAvailable)
+	public void setCPUPortsAvailable(int portsAvailable)
 	{
 		CPUPortsAvailable = portsAvailable;
 	}
@@ -682,14 +696,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public void makeOneCPUportAvailable()
 	{
-		for(int i = 0; i < CPUPortsAvailable.length; i++)
-		{
-			if(CPUPortsAvailable[i] == true)
-			{
-				CPUPortsAvailable[i] = false;
-				return;
-			}
-		}
+		CPUPortsAvailable++;
 	}
 	
 	
@@ -700,14 +707,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public void makeOneCPUportTaken()
 	{
-		for(int i = 0; i < CPUPortsAvailable.length; i++)
-		{
-			if(CPUPortsAvailable[i] == false)
-			{
-				CPUPortsAvailable[i] = true;
-				return;
-			}
-		}
+		CPUPortsAvailable--;
 	}
 
 
@@ -717,7 +717,7 @@ public class Motherboard extends Hardware implements Serializable
 	 * @param portsAvailable
 	 *            the pCIPortsAvailable to set
 	 */
-	public void setPCIPortsAvailable(boolean[] portsAvailable)
+	public void setPCIPortsAvailable(int portsAvailable)
 	{
 		PCIPortsAvailable = portsAvailable;
 	}
@@ -730,14 +730,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public void makeOnePCIportAvailable()
 	{
-		for(int i = 0; i < PCIPortsAvailable.length; i++)
-		{
-			if(PCIPortsAvailable[i] == true)
-			{
-				PCIPortsAvailable[i] = false;
-				return;
-			}
-		}
+		PCIPortsAvailable++;
 	}
 	
 	
@@ -748,14 +741,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public void makeOnePCIportTaken()
 	{
-		for(int i = 0; i < PCIPortsAvailable.length; i++)
-		{
-			if(PCIPortsAvailable[i] == false)
-			{
-				PCIPortsAvailable[i] = true;
-				return;
-			}
-		}
+		PCIPortsAvailable--;
 	}
 
 
@@ -765,7 +751,7 @@ public class Motherboard extends Hardware implements Serializable
 	 * @param portsAvailable
 	 *            the rAMPortsAvailable to set
 	 */
-	public void setRAMPortsAvailable(boolean[] portsAvailable)
+	public void setRAMPortsAvailable(int portsAvailable)
 	{
 		RAMPortsAvailable = portsAvailable;
 	}
@@ -778,14 +764,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public void makeOneRAMportAvailable()
 	{
-		for(int i = 0; i < RAMPortsAvailable.length; i++)
-		{
-			if(RAMPortsAvailable[i] == true)
-			{
-				RAMPortsAvailable[i] = false;
-				return;
-			}
-		}
+		RAMPortsAvailable++;
 	}
 	
 	
@@ -796,14 +775,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public void makeOneRAMportTaken()
 	{
-		for(int i = 0; i < RAMPortsAvailable.length; i++)
-		{
-			if(RAMPortsAvailable[i] == false)
-			{
-				RAMPortsAvailable[i] = true;
-				return;
-			}
-		}
+		RAMPortsAvailable--;
 	}
 
 	/**
@@ -812,7 +784,7 @@ public class Motherboard extends Hardware implements Serializable
 	 * @param portsAvailable
 	 *            the uSBPortsAvailable to set
 	 */
-	public void setUSBPortsAvailable(boolean[] portsAvailable)
+	public void setUSBPortsAvailable(int portsAvailable)
 	{
 		USBPortsAvailable = portsAvailable;
 	}
@@ -825,14 +797,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public void makeOneUSBportAvailable()
 	{
-		for(int i = 0; i < USBPortsAvailable.length; i++)
-		{
-			if(USBPortsAvailable[i] == true)
-			{
-				USBPortsAvailable[i] = false;
-				return;
-			}
-		}
+		USBPortsAvailable++;
 	}
 	
 	
@@ -843,14 +808,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public void makeOneUSBportTaken()
 	{
-		for(int i = 0; i < USBPortsAvailable.length; i++)
-		{
-			if(USBPortsAvailable[i] == false)
-			{
-				USBPortsAvailable[i] = true;
-				return;
-			}
-		}
+		USBPortsAvailable--;
 	}
 
 	/**
@@ -859,7 +817,7 @@ public class Motherboard extends Hardware implements Serializable
 	 * @param portsAvailable
 	 *            the dUCPortsAvailable to set
 	 */
-	public void setDUCPortsAvailable(boolean[] portsAvailable)
+	public void setDUCPortsAvailable(int portsAvailable)
 	{
 		DUCPortsAvailable = portsAvailable;
 	}
@@ -872,14 +830,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public void makeOneDUCportAvailable()
 	{
-		for(int i = 0; i < DUCPortsAvailable.length; i++)
-		{
-			if(DUCPortsAvailable[i] == true)
-			{
-				DUCPortsAvailable[i] = false;
-				return;
-			}
-		}
+		DUCPortsAvailable++;
 	}
 	
 	
@@ -890,14 +841,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public void makeOneDUCportTaken()
 	{
-		for(int i = 0; i < DUCPortsAvailable.length; i++)
-		{
-			if(DUCPortsAvailable[i] == false)
-			{
-				DUCPortsAvailable[i] = true;
-				return;
-			}
-		}
+		DUCPortsAvailable--;
 	}
 	
 
@@ -907,7 +851,7 @@ public class Motherboard extends Hardware implements Serializable
 	 * @param integLANPortsAvailable
 	 *            the integLANPortsAvailable to set
 	 */
-	public void setIntegLANPortsAvailable(boolean[] integLANPortsAvailable)
+	public void setIntegLANPortsAvailable(int integLANPortsAvailable)
 	{
 		IntegLANPortsAvailable = integLANPortsAvailable;
 	}
@@ -920,14 +864,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public void makeOneIntLANportAvailable()
 	{
-		for(int i = 0; i < IntegLANPortsAvailable.length; i++)
-		{
-			if(IntegLANPortsAvailable[i] == true)
-			{
-				IntegLANPortsAvailable[i] = false;
-				return;
-			}
-		}
+		IntegLANPortsAvailable++;
 	}
 	
 	
@@ -938,14 +875,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public void makeOneIntLANportTaken()
 	{
-		for(int i = 0; i < IntegLANPortsAvailable.length; i++)
-		{
-			if(IntegLANPortsAvailable[i] == false)
-			{
-				IntegLANPortsAvailable[i] = true;
-				return;
-			}
-		}
+		IntegLANPortsAvailable--;
 	}
 
 
@@ -967,12 +897,12 @@ public class Motherboard extends Hardware implements Serializable
 		graphicalCardIntegrated = false;
 		audioCardIntegrated = false;
 
-		CPUPortsAvailable = new boolean[0];
-		PCIPortsAvailable = new boolean[0];
-		RAMPortsAvailable = new boolean[0];
-		USBPortsAvailable = new boolean[0];
-		DUCPortsAvailable = new boolean[0];
-		IntegLANPortsAvailable = new boolean[0];
+		CPUPortsAvailable = 0;
+		PCIPortsAvailable = 0;
+		RAMPortsAvailable = 0;
+		USBPortsAvailable = 0;
+		DUCPortsAvailable = 0;
+		IntegLANPortsAvailable = 0;
 	}
 
 

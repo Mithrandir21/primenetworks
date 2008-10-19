@@ -114,6 +114,15 @@ public class CreateObjectDragged
 	private void createComponentsArray()
 	{
 		st_components[0] = PrimeMain1.standard_internal_components.getSt_MB();
+		
+		Motherboard mb = (Motherboard) st_components[0];
+		
+		mb.makeOneCPUportTaken();
+		mb.makeOneRAMportTaken();
+		mb.makeOneDUCportTaken();// For the CPU
+		mb.makeOneDUCportTaken();// For the HDD
+		
+		st_components[0] = mb;
 		st_components[1] = PrimeMain1.standard_internal_components.getSt_CPU();
 		st_components[2] = PrimeMain1.standard_internal_components.getSt_RAM();
 		st_components[3] = PrimeMain1.standard_internal_components.getSt_HDD();
