@@ -4,7 +4,6 @@ package hardware;
 import java.io.Serializable;
 
 import objects.Hardware;
-import sun.security.x509.AVA;
 
 
 /**
@@ -399,7 +398,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public int getCPUPortsAvailable()
 	{
-		return CPUPortsAvailable++;
+		return CPUPortsAvailable;
 	}
 
 
@@ -527,11 +526,11 @@ public class Motherboard extends Hardware implements Serializable
 	public void setMaxCPUs(int MBmaxCPUs)
 	{
 		int occupied = maxCPUs - CPUPortsAvailable;
-		
-		
-		for(int i = occupied; i == 0;)
+
+
+		for ( int i = occupied; i == 0; )
 		{
-			if(i<0)
+			if ( i < 0 )
 			{
 				
 			}
@@ -540,12 +539,12 @@ public class Motherboard extends Hardware implements Serializable
 				
 			}
 		}
-		
-		
+
+
 		maxCPUs = MBmaxCPUs;
-		
-		
-		
+
+
+
 	}
 
 
@@ -687,9 +686,9 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		CPUPortsAvailable = portsAvailable;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * TODO - Description
 	 * 
@@ -698,9 +697,9 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		CPUPortsAvailable++;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * TODO - Description
 	 * 
@@ -721,9 +720,9 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		PCIPortsAvailable = portsAvailable;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * TODO - Description
 	 * 
@@ -732,9 +731,9 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		PCIPortsAvailable++;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * TODO - Description
 	 * 
@@ -755,9 +754,9 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		RAMPortsAvailable = portsAvailable;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * TODO - Description
 	 * 
@@ -766,9 +765,9 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		RAMPortsAvailable++;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * TODO - Description
 	 * 
@@ -788,9 +787,9 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		USBPortsAvailable = portsAvailable;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * TODO - Description
 	 * 
@@ -799,9 +798,9 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		USBPortsAvailable++;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * TODO - Description
 	 * 
@@ -821,9 +820,9 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		DUCPortsAvailable = portsAvailable;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * TODO - Description
 	 * 
@@ -832,9 +831,9 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		DUCPortsAvailable++;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * TODO - Description
 	 * 
@@ -843,7 +842,7 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		DUCPortsAvailable--;
 	}
-	
+
 
 	/**
 	 * TODO - Description NEEDED!
@@ -855,9 +854,9 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		IntegLANPortsAvailable = integLANPortsAvailable;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * TODO - Description
 	 * 
@@ -866,9 +865,9 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		IntegLANPortsAvailable++;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * TODO - Description
 	 * 

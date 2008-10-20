@@ -24,7 +24,7 @@ public class Discdrive extends Hardware implements Serializable
 
 	// The type of Diskdrive. CDROM,DVDROM,DVDburner,Blu-Ray and so on.
 	private String type;
-	
+
 	// The port of the Discdrive. IDE, SATA or USB.
 	private String port;
 
@@ -51,7 +51,7 @@ public class Discdrive extends Hardware implements Serializable
 		super(Name, Desc);
 
 		type = DiskdriveType;
-		
+
 		port = Port;
 	}
 
@@ -78,8 +78,8 @@ public class Discdrive extends Hardware implements Serializable
 	{
 		return type;
 	}
-	
-	
+
+
 	/**
 	 * Get the port that connects the discdrive to a motherboard.
 	 * 
@@ -128,8 +128,8 @@ public class Discdrive extends Hardware implements Serializable
 	{
 		type = DiskdriveType;
 	}
-	
-	
+
+
 	/**
 	 * Set method for the port that connects the discdrive to a motherboard.
 	 * 

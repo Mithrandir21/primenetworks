@@ -31,10 +31,10 @@ public class MakeStandardInternalComponents
 	 */
 	public Motherboard getSt_MB()
 	{
-		Motherboard mb = new Motherboard("Standard Motherboard", "This is the system standard motherboard.",
-				"Prime", "ATX", "Intel 775", "DDR2", 1, 3, 2, 4, 4, "SATA", "AGP", true, true,
-				true, 1);
-		
+		Motherboard mb = new Motherboard("Standard Motherboard",
+				"This is the system standard motherboard.", "Prime", "ATX", "Intel 775", "DDR2", 1,
+				3, 2, 4, 4, "SATA", "AGP", true, true, true, 1);
+
 		return mb;
 	}
 
@@ -131,16 +131,16 @@ public class MakeStandardInternalComponents
 		}
 
 		String mac = "00:00:00:00:00:" + count;
-		
+
 		PrimeMain1.currentCanvas.addNIC();
-		
+
 		return new ExternalNetworksCard("Standard external NIC",
 				"This is the system standard external NIC.", "Realtek", mac, "Wireless", "USB");
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -161,15 +161,15 @@ public class MakeStandardInternalComponents
 		}
 
 		String mac = "00:00:00:00:00:" + count;
-		
+
 		PrimeMain1.currentCanvas.addNIC();
-		
+
 		return new InternalNetworksCard("Standard internal NIC",
 				"This is the system standard internal NIC.", "Realtek", mac, "Wired");
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -177,6 +177,7 @@ public class MakeStandardInternalComponents
 	 */
 	public GraphicsCard getSt_GPU()
 	{
-		return new GraphicsCard("Standard GPU","This is the system standard GPU.","AGP",128,"VGA",false);
+		return new GraphicsCard("Standard GPU", "This is the system standard GPU.", "AGP", 128,
+				"VGA", false);
 	}
 }

@@ -6,11 +6,14 @@ package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import hardware.ExternalNetworksCard;
 
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -31,6 +34,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import managment.ComponentsManagment;
 
 import objects.Object;
 
@@ -67,8 +72,8 @@ public class ExternaNICView extends JPanel implements HardwareView, ActionListen
 	private Object mainObj;
 
 	private ExternalNetworksCard extNIC;
-	
-	
+
+
 
 	public ExternaNICView(Object obj, ExternalNetworksCard NIC)
 	{
@@ -104,16 +109,40 @@ public class ExternaNICView extends JPanel implements HardwareView, ActionListen
 		c.weightx = 1;
 		c.weighty = 1;
 		c.gridwidth = 1;
-		c.gridheight = 5;
-		c.insets = new Insets(0, 10, 10, 10);
+		c.gridheight = 1;
+		c.insets = new Insets(0, 10, 0, 10);
 
 		JPanel p2 = createSpesificInfo(extNIC);
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
+
+
+
+		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
+		buttons.setBorder(BorderFactory.createEtchedBorder());
+
+		JLabel label = new JLabel("Remove this component from this device");
+
+		Button save = new Button("Remove Component");
+		save.addActionListener(this);
+		save.setActionCommand("removeComp");
+
+		buttons.add(label);
+		buttons.add(save);
+
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weightx = 1;
+		c.weighty = 0.01;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.insets = new Insets(2, 10, 10, 10);
+
+		this.add(buttons, c);
 	}
-	
-	
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -259,9 +288,9 @@ public class ExternaNICView extends JPanel implements HardwareView, ActionListen
 
 		panel.add(labels[5]);
 		panel.add(listPane);
-		
-		
-		
+
+
+
 		// The 64 bit check box
 		labels[6].setLabelFor(supIPv6);
 		supIPv6 = new JCheckBox();
@@ -272,15 +301,15 @@ public class ExternaNICView extends JPanel implements HardwareView, ActionListen
 		supIPv6.addActionListener(this);
 
 		supIPv6.setSelected(NIC.getIPv6support());
-		
+
 		panel.add(labels[6]);
 		panel.add(supIPv6);
-		
-		
-		
+
+
+
 		return panel;
 	}
-	
+
 
 	/*
 	 * (non-Javadoc)
@@ -304,32 +333,32 @@ public class ExternaNICView extends JPanel implements HardwareView, ActionListen
 		{
 			extNIC.setProducer(producer.getText());
 		}
-		
+
 		if ( MAC.getText() != "" )
 		{
 			extNIC.setMAC(MAC.getText());
 		}
-		
+
 		if ( conType.getSelectedItem().toString() != "" )
 		{
 			extNIC.setType(conType.getSelectedItem().toString());
 		}
-		
+
 		if ( transferSpeed.getSelectedItem().toString() != "" )
 		{
 			extNIC.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem().toString()));
 		}
-		
+
 		if ( protocol.getSelectedItem().toString() != "" )
 		{
 			extNIC.setSupportedConnectionInterfaces(protocol.getSelectedItem().toString());
 		}
-		
+
 		if ( supStandards.getSelectedIndex() == -1 )
 		{
 			extNIC.setSupportedStandards(standars);
 		}
-		
+
 		extNIC.setSupportsIPv6(supIPv6.isSelected());
 	}
 
@@ -363,11 +392,28 @@ public class ExternaNICView extends JPanel implements HardwareView, ActionListen
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		if ( e.getSource() instanceof Button )
+		{
+			Button check = (Button) e.getSource();
+
+			String command = check.getActionCommand();
+
+			if ( command.equals("removeComp") )
+			{
+				// Will remove the first variable from the list of components
+				// that will be returned and set as the components for the main
+				// object.
+				mainObj.setAllComponents(ComponentsManagment.removeComponent(extNIC, mainObj
+						.getComponents(), mainObj.getComponents().length));
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				PrimeMain1.objView.updateViewInfo();
+			}
+		}
 	}
-	
-	
+
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 
@@ -396,7 +442,7 @@ public class ExternaNICView extends JPanel implements HardwareView, ActionListen
 				// Creates an array of strings with the length of the array with
 				// the selected indices.
 				standars = new String[indeces.length];
-				
+
 				// Find out which indexes are selected.
 				for ( int i = 0; i < indeces.length; i++ )
 				{

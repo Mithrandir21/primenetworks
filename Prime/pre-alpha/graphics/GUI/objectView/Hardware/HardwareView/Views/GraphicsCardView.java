@@ -6,12 +6,15 @@ package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import hardware.GraphicsCard;
 
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -29,6 +32,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import managment.ComponentsManagment;
+
 import objects.Object;
 
 
@@ -43,24 +48,24 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 	JTextField name = new JTextField(25);
 
 	JTextArea desc = new JTextArea(3, 40);
-	
+
 	private JTextField producer = new JTextField(7);
 
 	private JComboBox type;
-	
+
 	private JComboBox outputInterface;
-	
+
 	private JComboBox size;
-	
+
 	private JComboBox speed;
-	
+
 	private JComboBox maxMonitors;
-	
+
 	private JCheckBox isIntegrated;
-	
-	
+
+
 	private Object mainObj;
-	
+
 	private GraphicsCard mainGC;
 
 	/**
@@ -103,16 +108,39 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		c.weightx = 1;
 		c.weighty = 1;
 		c.gridwidth = 1;
-		c.gridheight = 5;
-		c.insets = new Insets(0, 10, 10, 10);
+		c.gridheight = 1;
+		c.insets = new Insets(0, 10, 0, 10);
 
 		JPanel p2 = createSpesificInfo(mainGC);
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
+
+
+		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
+		buttons.setBorder(BorderFactory.createEtchedBorder());
+
+		JLabel label = new JLabel("Remove this component from this device");
+
+		Button save = new Button("Remove Component");
+		save.addActionListener(this);
+		save.setActionCommand("removeComp");
+
+		buttons.add(label);
+		buttons.add(save);
+
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weightx = 1;
+		c.weighty = 0.01;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.insets = new Insets(2, 10, 10, 10);
+
+		this.add(buttons, c);
 	}
-	
-	
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -123,7 +151,7 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 	{
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[7];
-		
+
 		labels[0] = new JLabel("Producer");
 		labels[0].setToolTipText("The producer of the GPU.");
 
@@ -132,13 +160,13 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 
 		labels[2] = new JLabel("Output Port");
 		labels[2].setToolTipText("The GPU output port. ");
-		
+
 		labels[3] = new JLabel("Size");
 		labels[3].setToolTipText("The size of the RAM on the GPU.");
-		
+
 		labels[4] = new JLabel("Speed");
 		labels[4].setToolTipText("The speed of the GPU in MHz.");
-		
+
 		labels[5] = new JLabel("Max Monitors");
 		labels[5].setToolTipText("The number of output ports.");
 
@@ -147,7 +175,7 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 
 
 		Dimension tfSize = new Dimension(90, 20);
-		
+
 		// The producer
 		labels[0].setLabelFor(producer);
 		producer.setMaximumSize(tfSize);
@@ -171,18 +199,17 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		type.setActionCommand("Interface");
 		type.addActionListener(this);
 
-		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				typeString, GPU.getType()));
+		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(typeString, GPU.getType()));
 
 
 		panel.add(labels[1]);
 		panel.add(type);
 
-		
-		
+
+
 		// The output port of the GPU
 		labels[2].setLabelFor(outputInterface);
-		String[] portString = { "", "VGA", "DVI",};
+		String[] portString = { "", "VGA", "DVI", };
 		outputInterface = new JComboBox(portString);
 		outputInterface.setMaximumSize(tfSize);
 		outputInterface.setPreferredSize(tfSize);
@@ -191,15 +218,15 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		outputInterface.setActionCommand("Port");
 		outputInterface.addActionListener(this);
 
-		outputInterface.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				portString, GPU.getOutputInterface()));
+		outputInterface.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(portString, GPU
+				.getOutputInterface()));
 
 
 		panel.add(labels[2]);
 		panel.add(outputInterface);
 
-		
-		
+
+
 		// The size of the GPU
 		labels[3].setLabelFor(size);
 		String[] sizeString = { "", "64", "128", "256", "512" };
@@ -211,15 +238,14 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		size.setActionCommand("Size");
 		size.addActionListener(this);
 
-		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				sizeString, GPU.getSize()));
+		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(sizeString, GPU.getSize()));
 
 
 		panel.add(labels[3]);
 		panel.add(size);
-		
-		
-		
+
+
+
 		// The speed of the GPU
 		labels[4].setLabelFor(speed);
 		String[] speedString = { "", "100", "200", "300", "400", "500" };
@@ -231,15 +257,14 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		speed.setActionCommand("Speed");
 		speed.addActionListener(this);
 
-		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				speedString, GPU.getSpeed()));
+		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(speedString, GPU.getSpeed()));
 
 
 		panel.add(labels[4]);
-		panel.add(speed);		
-		
-		
-		
+		panel.add(speed);
+
+
+
 		// The speed of the GPU
 		labels[5].setLabelFor(maxMonitors);
 		String[] monitorsString = { "", "1", "2", "3" };
@@ -251,14 +276,14 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		maxMonitors.setActionCommand("MaxMonitors");
 		maxMonitors.addActionListener(this);
 
-		maxMonitors.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				monitorsString, GPU.getMaxMonitors()));
+		maxMonitors.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(monitorsString, GPU
+				.getMaxMonitors()));
 
 
 		panel.add(labels[5]);
-		panel.add(maxMonitors);	
-		
-		
+		panel.add(maxMonitors);
+
+
 		// The dual quad check box
 		labels[6].setLabelFor(isIntegrated);
 		isIntegrated = new JCheckBox();
@@ -271,9 +296,9 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 
 		panel.add(labels[6]);
 		panel.add(isIntegrated);
-		
-		
-		
+
+
+
 		JLabel temp1 = new JLabel("");
 		temp1.setMaximumSize(tfSize);
 		temp1.setPreferredSize(tfSize);
@@ -294,18 +319,18 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		panel.add(temp2);
 		panel.add(temp3);
 		panel.add(temp4);
-		
-		
+
+
 		// Lay out the panel.
 		SpringUtilities.makeCompactGrid(panel, 3, 6, // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-		
-		
+
+
 		return panel;
 	}
-	
-	
+
+
 
 	/*
 	 * (non-Javadoc)
@@ -324,39 +349,39 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		{
 			mainGC.setDescription(desc.getText());
 		}
-		
+
 		if ( producer.getText() != "" )
 		{
 			mainGC.setProducer(producer.getText());
 		}
-		
+
 		if ( type.getSelectedItem().toString() != "" )
-		{			
+		{
 			mainGC.setType(type.getSelectedItem().toString());
 		}
-		
+
 		if ( outputInterface.getSelectedItem().toString() != "" )
 		{
 			mainGC.setSupportedConnectionInterfaces(outputInterface.getSelectedItem().toString());
 		}
-		
+
 		if ( size.getSelectedItem().toString() != "" )
 		{
 			mainGC.setSize(Integer.parseInt(size.getSelectedItem().toString()));
 		}
-		
+
 		if ( speed.getSelectedItem().toString() != "" )
 		{
 			mainGC.setSpeed(Integer.parseInt(speed.getSelectedItem().toString()));
 		}
-		
+
 		if ( outputInterface.getSelectedItem().toString() != "" )
 		{
 			mainGC.setMaxMonitors(Integer.parseInt(maxMonitors.getSelectedItem().toString()));
 		}
 
 		mainGC.setIsIntegrated(isIntegrated.isSelected());
-		
+
 	}
 
 	/*
@@ -389,7 +414,7 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		}
 
 		// Possibility for more checks on the CPU values.
-		
+
 		return true;
 	}
 
@@ -410,10 +435,10 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( e.getActionCommand() != "Integrated" )
+		if ( e.getSource() instanceof JComboBox && e.getActionCommand() != "Integrated" )
 		{
 			JComboBox box = (JComboBox) e.getSource();
-			
+
 			String command = box.getActionCommand();
 			if ( command.equals("Interface") )
 			{
@@ -425,10 +450,29 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 						.getType(), type.getSelectedItem().toString(), msg, typeString, type);
 			}
 		}
+		else if ( e.getSource() instanceof Button )
+		{
+			Button check = (Button) e.getSource();
+
+			String command = check.getActionCommand();
+
+			if ( command.equals("removeComp") )
+			{
+				// Will remove the first variable from the list of components
+				// that will be returned and set as the components for the main
+				// object.
+				mainObj.setAllComponents(ComponentsManagment.removeComponent(mainGC, mainObj
+						.getComponents(), mainObj.getComponents().length));
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				PrimeMain1.objView.updateViewInfo();
+			}
+		}
 		else
 		{
 			JCheckBox box = (JCheckBox) e.getSource();
-			
+
 			// TODO - isIntegrated
 		}
 	}

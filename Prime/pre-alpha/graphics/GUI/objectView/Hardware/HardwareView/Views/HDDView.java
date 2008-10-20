@@ -3,12 +3,15 @@ package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import hardware.HDD;
 
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -24,6 +27,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+
+import managment.ComponentsManagment;
 
 import objects.Object;
 
@@ -97,13 +102,36 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 		c.weightx = 1;
 		c.weighty = 1;
 		c.gridwidth = 1;
-		c.gridheight = 5;
-		c.insets = new Insets(0, 10, 10, 10);
+		c.gridheight = 1;
+		c.insets = new Insets(0, 10, 0, 10);
 
 		JPanel p2 = createSpesificInfo(hdd);
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
+
+
+		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
+		buttons.setBorder(BorderFactory.createEtchedBorder());
+
+		JLabel label = new JLabel("Remove this component from this device");
+
+		Button save = new Button("Remove Component");
+		save.addActionListener(this);
+		save.setActionCommand("removeComp");
+
+		buttons.add(label);
+		buttons.add(save);
+
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weightx = 1;
+		c.weighty = 0.01;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.insets = new Insets(2, 10, 10, 10);
+
+		this.add(buttons, c);
 	}
 
 
@@ -264,7 +292,7 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 		SpringUtilities.makeCompactGrid(panel, 2, 6, // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-		
+
 
 		return panel;
 	}
@@ -286,32 +314,32 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 		{
 			mainHDD.setDescription(desc.getText());
 		}
-		
+
 		if ( producer.getText() != "" )
 		{
 			mainHDD.setProducer(producer.getText());
 		}
-		
+
 		if ( type.getSelectedItem().toString() != "" )
 		{
 			mainHDD.setType(type.getSelectedItem().toString());
 		}
-		
+
 		if ( subtype.getSelectedItem().toString() != "" )
 		{
 			mainHDD.setSubtype(subtype.getSelectedItem().toString());
 		}
-		
+
 		if ( size.getSelectedItem().toString() != "" )
 		{
 			mainHDD.setSize(Integer.parseInt(size.getSelectedItem().toString()));
 		}
-		
+
 		if ( transferSpeed.getSelectedItem().toString() != "" )
 		{
 			mainHDD.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem().toString()));
 		}
-		
+
 		if ( rpm.getSelectedItem().toString() != "" )
 		{
 			mainHDD.setRPM(Integer.parseInt(rpm.getSelectedItem().toString()));
@@ -349,7 +377,7 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 		}
 
 		// Possibility for more checks on the CPU values.
-		
+
 		return true;
 	}
 
@@ -375,18 +403,36 @@ public class HDDView extends JPanel implements HardwareView, ActionListener
 			JComboBox box = (JComboBox) e.getSource();
 
 			String command = box.getActionCommand();
-			
+
 			if ( command.equals("Type") )
 			{
 				String msg = "The HDD will no longer be compatiable with the motherboard.\n\nDo you want to keep this change?";
 
 				String[] typeString = { "", "IDE", "SATA", "USB" };
 
-				type = GraphicalFunctions.verifyChange(this, mainObj, HDD.class, mainHDD.getType()
-						, type.getSelectedItem().toString(), msg, typeString,
-						type);
+				type = GraphicalFunctions.verifyChange(this, mainObj, HDD.class, mainHDD.getType(),
+						type.getSelectedItem().toString(), msg, typeString, type);
 			}
-			
+
+		}
+		else if ( e.getSource() instanceof Button )
+		{
+			Button check = (Button) e.getSource();
+
+			String command = check.getActionCommand();
+
+			if ( command.equals("removeComp") )
+			{
+				// Will remove the first variable from the list of components
+				// that will be returned and set as the components for the main
+				// object.
+				mainObj.setAllComponents(ComponentsManagment.removeComponent(mainHDD, mainObj
+						.getComponents(), mainObj.getComponents().length));
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				PrimeMain1.objView.updateViewInfo();
+			}
 		}
 	}
 }

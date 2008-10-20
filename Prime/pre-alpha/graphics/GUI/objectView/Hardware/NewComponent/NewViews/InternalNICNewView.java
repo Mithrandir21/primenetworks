@@ -3,6 +3,7 @@
  */
 package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
+
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
@@ -40,12 +41,12 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import managment.ComponentsManagment;
-
 import objects.Object;
+
 
 /**
  * Javadoc-TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
@@ -99,9 +100,9 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
 
 		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
-		
-		
-		
+
+
+
 		mainObj = obj;
 		IntNIC = intNIC;
 		this.setLayout(new GridBagLayout());
@@ -141,9 +142,9 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
-		
-		
-		
+
+
+
 		c.gridx = 0;
 		c.gridy = 2;
 		c.weightx = 1;
@@ -156,10 +157,10 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(buttons, c);
-		
-		
-		
-		
+
+
+
+
 		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
 				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
@@ -306,9 +307,9 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 		}
 		panel.add(labels[5]);
 		panel.add(listPane);
-		
-		
-		
+
+
+
 		// The 64 bit check box
 		labels[6].setLabelFor(supIPv6);
 		supIPv6 = new JCheckBox();
@@ -319,10 +320,10 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 		supIPv6.addActionListener(this);
 
 		supIPv6.setSelected(NIC.getIPv6support());
-		
+
 		panel.add(labels[6]);
 		panel.add(supIPv6);
-		
+
 
 		JLabel temp1 = new JLabel("");
 		temp1.setMaximumSize(tfSize);
@@ -363,11 +364,11 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
-		
+
 		return panel;
 	}
 
-	
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -378,23 +379,23 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		
+
 		Button save = new Button("Save");
 		save.addActionListener(this);
 		save.setActionCommand("save");
-		
+
 		Button cancel = new Button("Cancel");
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
-		
-		
+
+
 		buttons.add(save);
 		buttons.add(cancel);
-		
+
 		return buttons;
 	}
-	
-	
+
+
 	@Override
 	public void save()
 	{
@@ -412,32 +413,32 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 		{
 			IntNIC.setProducer(producer.getText());
 		}
-		
+
 		if ( MAC.getText() != "" )
 		{
 			IntNIC.setMAC(MAC.getText());
 		}
-		
+
 		if ( conType.getSelectedItem().toString() != "" )
 		{
 			IntNIC.setType(conType.getSelectedItem().toString());
 		}
-		
+
 		if ( transferSpeed.getSelectedItem().toString() != "" )
 		{
 			IntNIC.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem().toString()));
 		}
-		
+
 		if ( protocol.getSelectedItem().toString() != "" )
 		{
 			IntNIC.setSupportedConnectionInterfaces(protocol.getSelectedItem().toString());
 		}
-		
+
 		if ( supStandards.getSelectedIndex() == -1 )
 		{
 			IntNIC.setSupportedStandards(standars);
 		}
-		
+
 		IntNIC.setSupportsIPv6(supIPv6.isSelected());
 	}
 
@@ -462,10 +463,10 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 		{
 			// Saves the current values of the new motherboard.
 			save();
-			
-			ComponentsManagment.processInternalNICmatch(mainObj, 
-					(Motherboard) mainObj.getComponents()[0], IntNIC, this);
-			
+
+			ComponentsManagment.processInternalNICmatch(mainObj, (Motherboard) mainObj
+					.getComponents()[0], IntNIC, this);
+
 
 			// Updates the views of the object to correctly show the
 			// current info.
@@ -476,13 +477,13 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 			this.dispose();
 
 		}
-		else if(e.getActionCommand().equals("cancel"))
+		else if ( e.getActionCommand().equals("cancel") )
 		{
 			this.dispose();
 		}
 	}
 
-	
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 
@@ -511,7 +512,7 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 				// Creates an array of strings with the length of the array with
 				// the selected indices.
 				standars = new String[indeces.length];
-				
+
 				// Find out which indexes are selected.
 				for ( int i = 0; i < indeces.length; i++ )
 				{

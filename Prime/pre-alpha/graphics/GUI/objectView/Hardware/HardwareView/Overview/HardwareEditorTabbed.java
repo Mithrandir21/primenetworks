@@ -39,7 +39,7 @@ public class HardwareEditorTabbed extends JTabbedPane
 {
 
 	private Object mainobj;
-	
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 
@@ -170,7 +170,7 @@ public class HardwareEditorTabbed extends JTabbedPane
 		{
 			/**
 			 * Goes through all the views and saves the values since none of the
-			 * views failed its validation. 
+			 * views failed its validation.
 			 */
 			for ( int i = 0; i < this.getComponentCount(); i++ )
 			{
@@ -179,11 +179,11 @@ public class HardwareEditorTabbed extends JTabbedPane
 				((HardwareView) comp).save();
 			}
 
-//			// The motherboard save.
-//			Component comp = this.getComponent(0);
-//			((HardwareView) comp).save();
-			
-			
+			// // The motherboard save.
+			// Component comp = this.getComponent(0);
+			// ((HardwareView) comp).save();
+
+
 			ComponentsManagment.processAllChanges(mainobj);
 
 

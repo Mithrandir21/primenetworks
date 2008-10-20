@@ -6,12 +6,15 @@ package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import hardware.Discdrive;
 
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -27,6 +30,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+
+import managment.ComponentsManagment;
 
 import objects.Object;
 
@@ -98,13 +103,37 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 		c.weightx = 1;
 		c.weighty = 1;
 		c.gridwidth = 1;
-		c.gridheight = 5;
-		c.insets = new Insets(0, 10, 10, 10);
+		c.gridheight = 1;
+		c.insets = new Insets(0, 10, 0, 10);
 
 		JPanel p2 = createSpesificInfo(discdrive);
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
+
+
+
+		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
+		buttons.setBorder(BorderFactory.createEtchedBorder());
+
+		JLabel label = new JLabel("Remove this component from this device");
+
+		Button save = new Button("Remove Component");
+		save.addActionListener(this);
+		save.setActionCommand("removeComp");
+
+		buttons.add(label);
+		buttons.add(save);
+
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weightx = 1;
+		c.weighty = 0.01;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.insets = new Insets(2, 10, 10, 10);
+
+		this.add(buttons, c);
 	}
 
 
@@ -344,18 +373,41 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		JComboBox box = (JComboBox) e.getSource();
-
-		String command = box.getActionCommand();
-
-		if ( command.equals("Port") )
+		if ( e.getSource() instanceof JComboBox )
 		{
-			String msg = "The Discdrive will no longer be compatiable with the motherboard.\n\nDo you want to keep this change?";
+			JComboBox box = (JComboBox) e.getSource();
 
-			String[] portString = { "", "IDE", "SATA", "USB" };
-			
-			port = GraphicalFunctions.verifyChange(this, mainObj, Discdrive.class, DiscObj
-					.getPort(), port.getSelectedItem().toString(), msg, portString, port);
+			String command = box.getActionCommand();
+
+			if ( command.equals("Port") )
+			{
+
+				String msg = "The Discdrive will no longer be compatiable with the motherboard.\n\nDo you want to keep this change?";
+
+				String[] portString = { "", "IDE", "SATA", "USB" };
+
+				port = GraphicalFunctions.verifyChange(this, mainObj, Discdrive.class, DiscObj
+						.getPort(), port.getSelectedItem().toString(), msg, portString, port);
+			}
+		}
+		else if ( e.getSource() instanceof Button )
+		{
+			Button check = (Button) e.getSource();
+
+			String command = check.getActionCommand();
+
+			if ( command.equals("removeComp") )
+			{
+				// Will remove the first variable from the list of components
+				// that will be returned and set as the components for the main
+				// object.
+				mainObj.setAllComponents(ComponentsManagment.removeComponent(DiscObj, mainObj
+						.getComponents(), mainObj.getComponents().length));
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				PrimeMain1.objView.updateViewInfo();
+			}
 		}
 	}
 }

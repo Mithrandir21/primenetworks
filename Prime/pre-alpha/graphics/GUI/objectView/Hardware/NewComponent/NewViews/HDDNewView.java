@@ -3,6 +3,7 @@
  */
 package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
+
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
@@ -34,12 +35,12 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import managment.ComponentsManagment;
-
 import objects.Object;
+
 
 /**
  * Javadoc-TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
@@ -87,9 +88,9 @@ public class HDDNewView extends JFrame implements HardwareView, ActionListener
 		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
 
 		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
-		
-		
-		
+
+
+
 		mainObj = obj;
 		mainHDD = hdd;
 		this.setLayout(new GridBagLayout());
@@ -129,8 +130,8 @@ public class HDDNewView extends JFrame implements HardwareView, ActionListener
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
-		
-		
+
+
 		c.gridx = 0;
 		c.gridy = 2;
 		c.weightx = 1;
@@ -143,10 +144,10 @@ public class HDDNewView extends JFrame implements HardwareView, ActionListener
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(buttons, c);
-		
-		
-		
-		
+
+
+
+
 		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
 				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
@@ -311,12 +312,12 @@ public class HDDNewView extends JFrame implements HardwareView, ActionListener
 		SpringUtilities.makeCompactGrid(panel, 2, 6, // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-		
+
 
 		return panel;
 	}
-	
-	
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -327,23 +328,23 @@ public class HDDNewView extends JFrame implements HardwareView, ActionListener
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		
+
 		Button save = new Button("Save");
 		save.addActionListener(this);
 		save.setActionCommand("save");
-		
+
 		Button cancel = new Button("Cancel");
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
-		
-		
+
+
 		buttons.add(save);
 		buttons.add(cancel);
-		
+
 		return buttons;
 	}
-	
-	
+
+
 	@Override
 	public void save()
 	{
@@ -356,32 +357,32 @@ public class HDDNewView extends JFrame implements HardwareView, ActionListener
 		{
 			mainHDD.setDescription(desc.getText());
 		}
-		
+
 		if ( producer.getText() != "" )
 		{
 			mainHDD.setProducer(producer.getText());
 		}
-		
+
 		if ( type.getSelectedItem().toString() != "" )
 		{
 			mainHDD.setType(type.getSelectedItem().toString());
 		}
-		
+
 		if ( subtype.getSelectedItem().toString() != "" )
 		{
 			mainHDD.setSubtype(subtype.getSelectedItem().toString());
 		}
-		
+
 		if ( size.getSelectedItem().toString() != "" )
 		{
 			mainHDD.setSize(Integer.parseInt(size.getSelectedItem().toString()));
 		}
-		
+
 		if ( transferSpeed.getSelectedItem().toString() != "" )
 		{
 			mainHDD.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem().toString()));
 		}
-		
+
 		if ( rpm.getSelectedItem().toString() != "" )
 		{
 			mainHDD.setRPM(Integer.parseInt(rpm.getSelectedItem().toString()));
@@ -409,10 +410,10 @@ public class HDDNewView extends JFrame implements HardwareView, ActionListener
 		{
 			// Saves the current values of the new motherboard.
 			save();
-			
-			ComponentsManagment.processHDDmatch(mainObj, 
-					(Motherboard) mainObj.getComponents()[0], mainHDD, this);
-			
+
+			ComponentsManagment.processHDDmatch(mainObj, (Motherboard) mainObj.getComponents()[0],
+					mainHDD, this);
+
 
 			// Updates the views of the object to correctly show the
 			// current info.
@@ -423,7 +424,7 @@ public class HDDNewView extends JFrame implements HardwareView, ActionListener
 			this.dispose();
 
 		}
-		else if(e.getActionCommand().equals("cancel"))
+		else if ( e.getActionCommand().equals("cancel") )
 		{
 			this.dispose();
 		}

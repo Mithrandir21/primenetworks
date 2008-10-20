@@ -41,7 +41,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import managment.ComponentsManagment;
-
 import objects.Object;
 
 
@@ -413,32 +412,32 @@ public class ExternalNICNewView extends JFrame implements HardwareView, ActionLi
 		{
 			extNIC.setProducer(producer.getText());
 		}
-		
+
 		if ( MAC.getText() != "" )
 		{
 			extNIC.setMAC(MAC.getText());
 		}
-		
+
 		if ( conType.getSelectedItem().toString() != "" )
 		{
 			extNIC.setType(conType.getSelectedItem().toString());
 		}
-		
+
 		if ( transferSpeed.getSelectedItem().toString() != "" )
 		{
 			extNIC.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem().toString()));
 		}
-		
+
 		if ( protocol.getSelectedItem().toString() != "" )
 		{
 			extNIC.setSupportedConnectionInterfaces(protocol.getSelectedItem().toString());
 		}
-		
+
 		if ( supStandards.getSelectedIndex() == -1 )
 		{
 			extNIC.setSupportedStandards(standars);
 		}
-		
+
 		extNIC.setSupportsIPv6(supIPv6.isSelected());
 	}
 
@@ -463,10 +462,10 @@ public class ExternalNICNewView extends JFrame implements HardwareView, ActionLi
 		{
 			// Saves the current values of the new motherboard.
 			save();
-			
-			ComponentsManagment.processExternalNICmatch(mainObj, 
-					(Motherboard) mainObj.getComponents()[0], extNIC, this);
-			
+
+			ComponentsManagment.processExternalNICmatch(mainObj, (Motherboard) mainObj
+					.getComponents()[0], extNIC, this);
+
 
 			// Updates the views of the object to correctly show the
 			// current info.
@@ -477,7 +476,7 @@ public class ExternalNICNewView extends JFrame implements HardwareView, ActionLi
 			this.dispose();
 
 		}
-		else if(e.getActionCommand().equals("cancel"))
+		else if ( e.getActionCommand().equals("cancel") )
 		{
 			this.dispose();
 		}

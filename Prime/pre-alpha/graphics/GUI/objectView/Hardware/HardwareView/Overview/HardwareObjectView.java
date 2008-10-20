@@ -579,7 +579,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		{
 			hwEditor.HardwarePanelRevalidate();
 		}
-		
+
 		this.removeAll();
 
 		this.populiateInfo(givenObject);

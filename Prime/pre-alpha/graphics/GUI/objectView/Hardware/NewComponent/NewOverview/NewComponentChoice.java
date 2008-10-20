@@ -3,6 +3,7 @@
  */
 package graphics.GUI.objectView.Hardware.NewComponent.NewOverview;
 
+
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -16,9 +17,10 @@ import javax.swing.JPanel;
 
 import objects.Object;
 
+
 /**
  * Javadoc-TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
@@ -26,7 +28,7 @@ public class NewComponentChoice extends JFrame
 {
 	private Object givenObject = null;
 
-	
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 
@@ -35,11 +37,11 @@ public class NewComponentChoice extends JFrame
 	public NewComponentChoice(Object obj)
 	{
 		super("New Component");
-		
-		
 
-		
-		
+
+
+
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -56,16 +58,16 @@ public class NewComponentChoice extends JFrame
 		Container c = this.getContentPane();
 
 		JPanel panel = new JPanel();
-		
+
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		
-		
+
+
 		panel.add(new NewComponentsView(obj));
-		
-		
+
+
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints cons = new GridBagConstraints();
-		
+
 		cons.fill = GridBagConstraints.BOTH;
 
 		cons.gridx = 0;
@@ -75,11 +77,11 @@ public class NewComponentChoice extends JFrame
 		cons.gridwidth = 1;
 		cons.gridheight = 1;
 		cons.insets = new Insets(10, 10, 10, 10);
-		
-		
-		
+
+
+
 		c.add(panel, cons);
-		
+
 		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
 				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);

@@ -129,7 +129,7 @@ public class ComponentsManagment
 	 *             Throws an exception with a message which says that the
 	 *             component is already present.
 	 */
-	public static Object[] addComponents(Object NewComponent, Object[] components)
+	public static Object[] addComponent(Object NewComponent, Object[] components)
 	{
 		// Makes a new components array with the added number of indexes
 		Object[] tempComponents = new Object[components.length + 1];
@@ -154,6 +154,13 @@ public class ComponentsManagment
 				return components;
 			}
 		}
+
+
+		for ( int i = 0; i < components.length; i++ )
+		{
+			tempComponents[i] = components[i];
+		}
+
 
 		// Adds the new components at the end of the array of components.
 		tempComponents[components.length] = NewComponent;
@@ -972,8 +979,8 @@ public class ComponentsManagment
 
 		return false;
 	}
-	
-	
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -1120,6 +1127,13 @@ public class ComponentsManagment
 		return objectFound;
 	}
 
+
+
+	// public static Object handleMBavailabilityChange(Class ComponentClass,
+	// Object obj)
+	// {
+	// return obj;
+	// }
 
 
 	// CHECK FUNCTIONS

@@ -6,12 +6,15 @@ package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import hardware.Ram;
 
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -27,6 +30,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+
+import managment.ComponentsManagment;
 
 import objects.Object;
 
@@ -93,13 +98,36 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 		c.weightx = 1;
 		c.weighty = 1;
 		c.gridwidth = 1;
-		c.gridheight = 5;
-		c.insets = new Insets(0, 10, 10, 10);
+		c.gridheight = 1;
+		c.insets = new Insets(0, 10, 0, 10);
 
 		JPanel p2 = createSpesificInfo(RAMobj);
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
+
+
+		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
+		buttons.setBorder(BorderFactory.createEtchedBorder());
+
+		JLabel label = new JLabel("Remove this component from this device");
+
+		Button save = new Button("Remove Component");
+		save.addActionListener(this);
+		save.setActionCommand("removeComp");
+
+		buttons.add(label);
+		buttons.add(save);
+
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weightx = 1;
+		c.weighty = 0.01;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.insets = new Insets(2, 10, 10, 10);
+
+		this.add(buttons, c);
 	}
 
 
@@ -157,8 +185,7 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 		type.setActionCommand("Type");
 		type.addActionListener(this);
 
-		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				typeString, ram.getType()));
+		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(typeString, ram.getType()));
 
 
 		panel.add(labels[1]);
@@ -177,8 +204,8 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 		subtype.setActionCommand("Subtype");
 		subtype.addActionListener(this);
 
-		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				subtypeString, ram.getSubtype()));
+		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(subtypeString, ram
+				.getSubtype()));
 
 
 		panel.add(labels[2]);
@@ -197,8 +224,7 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 		size.setActionCommand("Subtype");
 		size.addActionListener(this);
 
-		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				sizeString, ram.getSize()));
+		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(sizeString, ram.getSize()));
 
 
 		panel.add(labels[3]);
@@ -208,8 +234,8 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 
 		// The speed of the ram
 		labels[4].setLabelFor(speed);
-		String[] speedString = { "", "66", "100", "133", "200", "266", "333",
-				"400", "466", "500", "533", "667", "800" };
+		String[] speedString = { "", "66", "100", "133", "200", "266", "333", "400", "466", "500",
+				"533", "667", "800" };
 		speed = new JComboBox(speedString);
 		speed.setMaximumSize(tfSize);
 		speed.setPreferredSize(tfSize);
@@ -218,14 +244,13 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 		speed.setActionCommand("Speed");
 		speed.addActionListener(this);
 
-		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				speedString, ram.getSpeed()));
+		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(speedString, ram.getSpeed()));
 
 
 		panel.add(labels[4]);
 		panel.add(speed);
-		
-		
+
+
 		JLabel temp1 = new JLabel("");
 		temp1.setMaximumSize(tfSize);
 		temp1.setPreferredSize(tfSize);
@@ -233,14 +258,14 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 		JLabel temp2 = new JLabel("");
 		temp2.setMaximumSize(tfSize);
 		temp2.setPreferredSize(tfSize);
-		
+
 
 		// adding components so that the layout is right
 		panel.add(temp1);
 		panel.add(temp2);
-		
-		
-		
+
+
+
 		// Lay out the panel.
 		SpringUtilities.makeCompactGrid(panel, 2, 6, // rows, cols
 				10, 10, // initX, initY
@@ -254,6 +279,7 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
 	 */
 	@Override
@@ -268,36 +294,37 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 		{
 			RAMobj.setDescription(desc.getText());
 		}
-		
+
 		if ( producer.getText() != "" )
 		{
 			RAMobj.setProducer(producer.getText());
 		}
-		
+
 		if ( type.getSelectedItem().toString() != "" )
 		{
 			RAMobj.setType(type.getSelectedItem().toString());
 		}
-		
+
 		if ( subtype.getSelectedItem().toString() != "" )
 		{
 			RAMobj.setSubtype(subtype.getSelectedItem().toString());
 		}
-		
+
 		if ( size.getSelectedItem().toString() != "" )
 		{
 			RAMobj.setSize(Integer.parseInt(size.getSelectedItem().toString()));
 		}
-		
+
 		if ( speed.getSelectedItem().toString() != "" )
 		{
 			RAMobj.setSpeed(Integer.parseInt(type.getSelectedItem().toString()));
 		}
-		
+
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
 	 * validateNecessaryData()
 	 */
@@ -325,12 +352,13 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 		}
 
 		// Possibility for more checks on the CPU values.
-		
+
 		return true;
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
 	 * validateChangedData()
 	 */
@@ -342,8 +370,11 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 	}
 
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -353,18 +384,37 @@ public class RAMView extends JPanel implements HardwareView, ActionListener
 			JComboBox box = (JComboBox) e.getSource();
 
 			String command = box.getActionCommand();
-			
+
 			if ( command.equals("Type") )
 			{
 				String msg = "The RAM will no longer be compatiable with the motherboard.\n\nDo you want to keep this change?";
 
 				String[] typeString = { "", "SDRAM", "DDR", "DDR2", "DDR3" };
 
-				type = GraphicalFunctions.verifyChange(this, mainObj, Ram.class, RAMobj.getType()
-						, type.getSelectedItem().toString(), msg, typeString,
-						type);
+				type = GraphicalFunctions.verifyChange(this, mainObj, Ram.class, RAMobj.getType(),
+						type.getSelectedItem().toString(), msg, typeString, type);
 			}
-			
+
+		}
+		else if ( e.getSource() instanceof Button )
+		{
+			Button check = (Button) e.getSource();
+
+			String command = check.getActionCommand();
+
+			if ( command.equals("removeComp") )
+			{
+				// Will remove the first variable from the list of components
+				// that will be returned and set as the components for the main
+				// object.
+				mainObj.setAllComponents(ComponentsManagment.removeComponent(RAMobj, mainObj
+						.getComponents(), mainObj.getComponents().length));
+
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				PrimeMain1.objView.updateViewInfo();
+			}
 		}
 	}
 }

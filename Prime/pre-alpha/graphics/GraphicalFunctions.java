@@ -116,11 +116,10 @@ public class GraphicalFunctions
 	 * @param combo
 	 *            The JComboBox itself.
 	 */
-	public static JComboBox verifyChange(Component comp, Object mainObj,
-			Class<?> componentClass, String mbVariable, String newVariable,
-			String msg, String[] strings, JComboBox combo)
+	public static JComboBox verifyChange(Component comp, Object mainObj, Class<?> componentClass,
+			String mbVariable, String newVariable, String msg, String[] strings, JComboBox combo)
 	{
-		if ( mbVariable != "" && mbVariable != null)
+		if ( mbVariable != "" && mbVariable != null )
 		{
 			if ( ComponentsManagment.containsComponent(componentClass, mainObj.getComponents(),
 					mainObj.getComponents().length) )
@@ -154,8 +153,7 @@ public class GraphicalFunctions
 	 * @param data
 	 * @return
 	 */
-	public static JList getIndexInJList(JList list, String[] possibilities,
-			String[] data)
+	public static JList getIndexInJList(JList list, String[] possibilities, String[] data)
 	{
 		int[] indices = new int[data.length];
 

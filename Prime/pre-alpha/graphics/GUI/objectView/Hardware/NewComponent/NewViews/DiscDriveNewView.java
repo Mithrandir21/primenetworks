@@ -3,6 +3,7 @@
  */
 package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
+
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
@@ -34,12 +35,12 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import managment.ComponentsManagment;
-
 import objects.Object;
+
 
 /**
  * Javadoc-TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
@@ -85,9 +86,9 @@ public class DiscDriveNewView extends JFrame implements HardwareView, ActionList
 		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
 
 		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
-		
-		
-		
+
+
+
 		mainObj = obj;
 		DiscObj = discdrive;
 		this.setLayout(new GridBagLayout());
@@ -127,9 +128,9 @@ public class DiscDriveNewView extends JFrame implements HardwareView, ActionList
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
-		
-		
-		
+
+
+
 		c.gridx = 0;
 		c.gridy = 2;
 		c.weightx = 1;
@@ -142,10 +143,10 @@ public class DiscDriveNewView extends JFrame implements HardwareView, ActionList
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(buttons, c);
-		
-		
-		
-		
+
+
+
+
 		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
 				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
@@ -300,9 +301,9 @@ public class DiscDriveNewView extends JFrame implements HardwareView, ActionList
 
 		return panel;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -313,22 +314,22 @@ public class DiscDriveNewView extends JFrame implements HardwareView, ActionList
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		
+
 		Button save = new Button("Save");
 		save.addActionListener(this);
 		save.setActionCommand("save");
-		
+
 		Button cancel = new Button("Cancel");
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
-		
-		
+
+
 		buttons.add(save);
 		buttons.add(cancel);
-		
+
 		return buttons;
 	}
-	
+
 
 
 	@Override
@@ -394,10 +395,10 @@ public class DiscDriveNewView extends JFrame implements HardwareView, ActionList
 		{
 			// Saves the current values of the new motherboard.
 			save();
-			
-			ComponentsManagment.processDiscDrivematch(mainObj, 
-					(Motherboard) mainObj.getComponents()[0], DiscObj, this);
-			
+
+			ComponentsManagment.processDiscDrivematch(mainObj, (Motherboard) mainObj
+					.getComponents()[0], DiscObj, this);
+
 
 			// Updates the views of the object to correctly show the
 			// current info.
@@ -408,7 +409,7 @@ public class DiscDriveNewView extends JFrame implements HardwareView, ActionList
 			this.dispose();
 
 		}
-		else if(e.getActionCommand().equals("cancel"))
+		else if ( e.getActionCommand().equals("cancel") )
 		{
 			this.dispose();
 		}

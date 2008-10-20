@@ -36,7 +36,6 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import managment.ComponentsManagment;
-
 import objects.Object;
 
 
@@ -189,8 +188,7 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 		labels[4].setToolTipText("The size of the level 2 cache.");
 
 		labels[5] = new JLabel("Nanometers");
-		labels[5]
-				.setToolTipText("The amount of space taken up by a block on the CPU.");
+		labels[5].setToolTipText("The amount of space taken up by a block on the CPU.");
 
 		labels[6] = new JLabel("FSB");
 		labels[6].setToolTipText("The fsb, Front Side Bus, of the CPU.");
@@ -224,8 +222,7 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 
 		// The socket
 		labels[1].setLabelFor(socket);
-		String[] socketsStrings = { "", "Intel 775", "Intel 939", "AMD AM2",
-				"AMD AM2+" };
+		String[] socketsStrings = { "", "Intel 775", "Intel 939", "AMD AM2", "AMD AM2+" };
 		socket = new JComboBox(socketsStrings);
 		socket.setMaximumSize(tfSize);
 		socket.setPreferredSize(tfSize);
@@ -234,8 +231,8 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 		socket.setActionCommand("Socket");
 		socket.addActionListener(this);
 
-		socket.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				socketsStrings, cpu.getSocket()));
+		socket.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(socketsStrings, cpu
+				.getSocket()));
 
 
 		panel.add(labels[1]);
@@ -264,8 +261,7 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 		mhz.setActionCommand("Speed");
 		mhz.addActionListener(this);
 
-		mhz.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(mhertz, cpu
-				.getSpeed()));
+		mhz.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(mhertz, cpu.getSpeed()));
 
 
 		panel.add(labels[2]);
@@ -283,8 +279,8 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 		level1Cache.setActionCommand("Level 1 Cache");
 		level1Cache.addActionListener(this);
 
-		level1Cache.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				level1CacheStrings, cpu.getLevel1CacheSize()));
+		level1Cache.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(level1CacheStrings, cpu
+				.getLevel1CacheSize()));
 
 
 		panel.add(labels[3]);
@@ -293,8 +289,8 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 
 		// The level 2 cache
 		labels[4].setLabelFor(level2Cache);
-		String[] level2CacheStrings = { "", "8", "16", "32", "64", "128",
-				"256", "512", "1024", "2048" };
+		String[] level2CacheStrings = { "", "8", "16", "32", "64", "128", "256", "512", "1024",
+				"2048" };
 		level2Cache = new JComboBox(level2CacheStrings);
 		level2Cache.setMaximumSize(tfSize);
 		level2Cache.setPreferredSize(tfSize);
@@ -303,8 +299,8 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 		level2Cache.setActionCommand("Level 1 Cache");
 		level2Cache.addActionListener(this);
 
-		level2Cache.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				level2CacheStrings, cpu.getLevel2CacheSize()));
+		level2Cache.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(level2CacheStrings, cpu
+				.getLevel2CacheSize()));
 
 
 		panel.add(labels[4]);
@@ -322,8 +318,8 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 		nanometer.setActionCommand("Nanometer");
 		nanometer.addActionListener(this);
 
-		nanometer.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				nanometerStrings, cpu.getNanometer()));
+		nanometer.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(nanometerStrings, cpu
+				.getNanometer()));
 
 
 		panel.add(labels[5]);
@@ -341,8 +337,7 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 		fsb.setActionCommand("FSB");
 		fsb.addActionListener(this);
 
-		fsb.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(fsbStrings,
-				cpu.getBusSpeed()));
+		fsb.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(fsbStrings, cpu.getBusSpeed()));
 
 
 		panel.add(labels[6]);
@@ -460,10 +455,10 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 		{
 			// Saves the current values of the new motherboard.
 			save();
-			
-			ComponentsManagment.processCPUmatch(mainObj, 
-					(Motherboard) mainObj.getComponents()[0], CPUobj, this);
-			
+
+			ComponentsManagment.processCPUmatch(mainObj, (Motherboard) mainObj.getComponents()[0],
+					CPUobj, this);
+
 
 			// Updates the views of the object to correctly show the
 			// current info.
@@ -474,7 +469,7 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 			this.dispose();
 
 		}
-		else if(e.getActionCommand().equals("cancel"))
+		else if ( e.getActionCommand().equals("cancel") )
 		{
 			this.dispose();
 		}
@@ -501,7 +496,7 @@ public class CPUNewView extends JFrame implements HardwareView, ActionListener
 		}
 
 		if ( socket.getSelectedItem().toString() != "" )
-		{			
+		{
 			CPUobj.setSocketType(socket.getSelectedItem().toString());
 		}
 

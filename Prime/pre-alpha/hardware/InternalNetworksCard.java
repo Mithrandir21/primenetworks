@@ -159,8 +159,8 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	{
 		producer = NICProducer;
 	}
-	
-	
+
+
 	/**
 	 * Set method for the type of the NIC.(Wired or Wireless)
 	 * 
@@ -169,7 +169,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	{
 		connectionType = type;
 	}
-	
+
 
 
 	/**

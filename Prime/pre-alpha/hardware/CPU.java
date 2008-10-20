@@ -39,15 +39,15 @@ public class CPU extends Hardware implements Serializable
 
 	// The bus speed of the CPU.
 	private int frontBusSpeed;
-	
+
 	// The nanometer of the CPU.
 	private int nanometer;
-	
+
 	// The 64 bit variable.
 	private boolean bit64;
-	
 
-	
+
+
 	/**
 	 * Constructor of a CPU hardware.
 	 * 
@@ -70,7 +70,7 @@ public class CPU extends Hardware implements Serializable
 		nanometer = 0;
 		bit64 = false;
 	}
-	
+
 
 
 	/**
@@ -97,9 +97,9 @@ public class CPU extends Hardware implements Serializable
 		nanometer = 0;
 		bit64 = false;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Constructor of a CPU hardware.
 	 * 
@@ -112,7 +112,7 @@ public class CPU extends Hardware implements Serializable
 	 * @param level1CPUcache
 	 *            The cache size in KB. Normally 16 - 64 KB.
 	 * @param level2CPUcache
-	 * 			  The cache size in KB. Normally 256 - 1024 KB.
+	 *            The cache size in KB. Normally 256 - 1024 KB.
 	 */
 	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache, int level2CPUcache)
 	{
@@ -126,9 +126,9 @@ public class CPU extends Hardware implements Serializable
 		nanometer = 0;
 		bit64 = false;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Constructor of a CPU hardware.
 	 * 
@@ -141,13 +141,13 @@ public class CPU extends Hardware implements Serializable
 	 * @param level1CPUcache
 	 *            The cache size in KB. Normally 16 - 64 KB.
 	 * @param level2CPUcache
-	 * 			  The cache size in KB. Normally 256 - 1024 KB.
+	 *            The cache size in KB. Normally 256 - 1024 KB.
 	 * @param fsb
-	 * 			  The front side bus of the CPU.
+	 *            The front side bus of the CPU.
 	 */
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
+	 * 
 	 * @param Name
 	 * @param Desc
 	 * @param CPUsocket
@@ -155,8 +155,8 @@ public class CPU extends Hardware implements Serializable
 	 * @param level2CPUcache
 	 * @param fsb
 	 */
-	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache, int level2CPUcache
-			,int fsb)
+	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache, int level2CPUcache,
+			int fsb)
 	{
 		super(Name, Desc);
 
@@ -168,9 +168,9 @@ public class CPU extends Hardware implements Serializable
 		nanometer = 0;
 		bit64 = false;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Constructor of a CPU hardware.
 	 * 
@@ -183,14 +183,15 @@ public class CPU extends Hardware implements Serializable
 	 * @param level1CPUcache
 	 *            The cache size in KB. Normally 16 - 64 KB.
 	 * @param level2CPUcache
-	 * 			  The cache size in KB. Normally 256 - 1024 KB.
+	 *            The cache size in KB. Normally 256 - 1024 KB.
 	 * @param fsb
-	 * 			  The front side bus of the CPU.
+	 *            The front side bus of the CPU.
 	 * @param nm
-	 * 			  The nanometer of the CPU. Its the size that one block takes up.
+	 *            The nanometer of the CPU. Its the size that one block takes
+	 *            up.
 	 */
-	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache, int level2CPUcache
-			,int fsb, int nm)
+	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache, int level2CPUcache,
+			int fsb, int nm)
 	{
 		super(Name, Desc);
 
@@ -202,9 +203,9 @@ public class CPU extends Hardware implements Serializable
 		nanometer = nm;
 		bit64 = false;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Constructor of a CPU hardware.
 	 * 
@@ -217,16 +218,17 @@ public class CPU extends Hardware implements Serializable
 	 * @param level1CPUcache
 	 *            The cache size in KB. Normally 16 - 64 KB.
 	 * @param level2CPUcache
-	 * 			  The cache size in KB. Normally 256 - 1024 KB.
+	 *            The cache size in KB. Normally 256 - 1024 KB.
 	 * @param fsb
-	 * 			  The front side bus of the CPU.
+	 *            The front side bus of the CPU.
 	 * @param nm
-	 * 			  The nanometer of the CPU. Its the size that one block takes up.
+	 *            The nanometer of the CPU. Its the size that one block takes
+	 *            up.
 	 * @param bit
-	 * 			  The boolean variable that tells if the CPU is a 64 bit CPU. 
+	 *            The boolean variable that tells if the CPU is a 64 bit CPU.
 	 */
-	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache, int level2CPUcache
-			,int fsb, int nm, boolean bit)
+	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache, int level2CPUcache,
+			int fsb, int nm, boolean bit)
 	{
 		super(Name, Desc);
 
@@ -238,7 +240,7 @@ public class CPU extends Hardware implements Serializable
 		nanometer = nm;
 		bit64 = bit;
 	}
-	
+
 
 
 	// Get and Set methodes for retrieving all datafields.
@@ -273,8 +275,8 @@ public class CPU extends Hardware implements Serializable
 	{
 		return level1cacheSize;
 	}
-	
-	
+
+
 	/**
 	 * Get the level 2 cache size of the CPU.
 	 * 
@@ -314,8 +316,8 @@ public class CPU extends Hardware implements Serializable
 	{
 		return frontBusSpeed;
 	}
-	
-	
+
+
 	/**
 	 * Get the nanometer(size of one block) of the CPU.
 	 * 
@@ -324,8 +326,8 @@ public class CPU extends Hardware implements Serializable
 	{
 		return nanometer;
 	}
-	
-	
+
+
 	/**
 	 * Returns a boolean on whether or not the CPU is a 64 bit CPU.
 	 * 
@@ -334,9 +336,9 @@ public class CPU extends Hardware implements Serializable
 	{
 		return bit64;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -344,16 +346,16 @@ public class CPU extends Hardware implements Serializable
 	 */
 	public boolean isDualCore()
 	{
-		if(cores==2)
+		if ( cores == 2 )
 		{
 			return true;
 		}
-		
+
 		return false;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -361,11 +363,11 @@ public class CPU extends Hardware implements Serializable
 	 */
 	public boolean isQuadCore()
 	{
-		if(cores==4)
+		if ( cores == 4 )
 		{
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -399,7 +401,7 @@ public class CPU extends Hardware implements Serializable
 	{
 		level1cacheSize = CPUcacheSize;
 	}
-	
+
 
 	/**
 	 * Set method for level 2 cache size of the CPU.
@@ -409,7 +411,7 @@ public class CPU extends Hardware implements Serializable
 	{
 		level2cacheSize = CPUcacheSize;
 	}
-	
+
 
 
 	/**
@@ -440,18 +442,18 @@ public class CPU extends Hardware implements Serializable
 	{
 		frontBusSpeed = CPUbusSpeed;
 	}
-	
-	
+
+
 	/**
 	 * Sets the nanometer(size of one block) of the CPU.
 	 * 
 	 */
 	public void setNanometer(int nm)
 	{
-		nanometer = nm; 
+		nanometer = nm;
 	}
-	
-	
+
+
 	/**
 	 * Sets a boolean on whether or not the CPU is a 64 bit CPU.
 	 * 

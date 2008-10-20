@@ -482,9 +482,9 @@ public abstract class Object implements Serializable
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -494,7 +494,7 @@ public abstract class Object implements Serializable
 	{
 		Object[] temp = new Object[1];
 		temp[0] = NewComponent;
-		
+
 		components = ComponentsManagment.addComponents(temp, components, componentCounter);
 
 		// Sets the new count for number of components in the array
@@ -706,8 +706,7 @@ public abstract class Object implements Serializable
 			// Sets the arrays on the actual motherboard component to an array
 			// of booleans with the given length of the last array, but where
 			// all the indexes are false.
-			objectAmotherboard
-					.setMaxIntegratedLANs(objectAmotherboard.getIntegLANPortsAvailable());
+			objectAmotherboard.setMaxIntegratedLANs(objectAmotherboard.getIntegLANPortsAvailable());
 
 		}
 	}
@@ -722,15 +721,15 @@ public abstract class Object implements Serializable
 	public void removeAllConnections()
 	{
 		removeAllConnectedDevices();
-		
+
 		removeAllNetworkConnections();
-		
+
 		resetConnectedDevicesCounter();
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Removes all internal components from this object.
 	 * 
@@ -740,18 +739,15 @@ public abstract class Object implements Serializable
 		try
 		{
 			removeComponent(components);
-			
-			
-			
 		}
 		catch ( ObjectNotFoundInArrayException e )
 		{
 			System.out.println("Object - removeAllComponents()");
 			e.printStackTrace();
 		}
-		
-		
-		
+
+
+
 	}
 
 
@@ -776,8 +772,8 @@ public abstract class Object implements Serializable
 		// Sets the arrays on the actual motherboard component to an array
 		// of booleans with the given length of the last array, but where
 		// all the indexes are false.
-		objectAmotherboard.setIntegLANPortsAvailable(objectAmotherboard
-				.getIntegLANPortsAvailable());
+		objectAmotherboard
+				.setIntegLANPortsAvailable(objectAmotherboard.getIntegLANPortsAvailable());
 
 	}
 
@@ -1160,8 +1156,8 @@ public abstract class Object implements Serializable
 		return found;
 	}
 
-	
-	
+
+
 	/**
 	 * Resets the connected devices counter to 0.
 	 * 

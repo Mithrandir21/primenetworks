@@ -3,6 +3,7 @@
  */
 package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
+
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
@@ -34,12 +35,12 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import managment.ComponentsManagment;
-
 import objects.Object;
+
 
 /**
  * Javadoc-TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
@@ -85,8 +86,8 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
 
 		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
-		
-		
+
+
 		mainObj = obj;
 		RAMobj = RAM;
 		this.setLayout(new GridBagLayout());
@@ -122,8 +123,8 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
-		
-		
+
+
 		c.gridx = 0;
 		c.gridy = 2;
 		c.weightx = 1;
@@ -136,10 +137,10 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(buttons, c);
-		
-		
-		
-		
+
+
+
+
 		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
 				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
@@ -201,8 +202,7 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 		type.setActionCommand("Type");
 		type.addActionListener(this);
 
-		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				typeString, ram.getType()));
+		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(typeString, ram.getType()));
 
 
 		panel.add(labels[1]);
@@ -221,8 +221,8 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 		subtype.setActionCommand("Subtype");
 		subtype.addActionListener(this);
 
-		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				subtypeString, ram.getSubtype()));
+		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(subtypeString, ram
+				.getSubtype()));
 
 
 		panel.add(labels[2]);
@@ -241,8 +241,7 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 		size.setActionCommand("Subtype");
 		size.addActionListener(this);
 
-		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				sizeString, ram.getSize()));
+		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(sizeString, ram.getSize()));
 
 
 		panel.add(labels[3]);
@@ -252,8 +251,8 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 
 		// The speed of the ram
 		labels[4].setLabelFor(speed);
-		String[] speedString = { "", "66", "100", "133", "200", "266", "333",
-				"400", "466", "500", "533", "667", "800" };
+		String[] speedString = { "", "66", "100", "133", "200", "266", "333", "400", "466", "500",
+				"533", "667", "800" };
 		speed = new JComboBox(speedString);
 		speed.setMaximumSize(tfSize);
 		speed.setPreferredSize(tfSize);
@@ -262,14 +261,13 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 		speed.setActionCommand("Speed");
 		speed.addActionListener(this);
 
-		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				speedString, ram.getSpeed()));
+		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(speedString, ram.getSpeed()));
 
 
 		panel.add(labels[4]);
 		panel.add(speed);
-		
-		
+
+
 		JLabel temp1 = new JLabel("");
 		temp1.setMaximumSize(tfSize);
 		temp1.setPreferredSize(tfSize);
@@ -277,14 +275,14 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 		JLabel temp2 = new JLabel("");
 		temp2.setMaximumSize(tfSize);
 		temp2.setPreferredSize(tfSize);
-		
+
 
 		// adding components so that the layout is right
 		panel.add(temp1);
 		panel.add(temp2);
-		
-		
-		
+
+
+
 		// Lay out the panel.
 		SpringUtilities.makeCompactGrid(panel, 2, 6, // rows, cols
 				10, 10, // initX, initY
@@ -294,9 +292,9 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 
 		return panel;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -307,23 +305,23 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		
+
 		Button save = new Button("Save");
 		save.addActionListener(this);
 		save.setActionCommand("save");
-		
+
 		Button cancel = new Button("Cancel");
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
-		
-		
+
+
 		buttons.add(save);
 		buttons.add(cancel);
-		
+
 		return buttons;
 	}
-	
-	
+
+
 	@Override
 	public void save()
 	{
@@ -336,27 +334,27 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 		{
 			RAMobj.setDescription(desc.getText());
 		}
-		
+
 		if ( producer.getText() != "" )
 		{
 			RAMobj.setProducer(producer.getText());
 		}
-		
+
 		if ( type.getSelectedItem().toString() != "" )
 		{
 			RAMobj.setType(type.getSelectedItem().toString());
 		}
-		
+
 		if ( subtype.getSelectedItem().toString() != "" )
 		{
 			RAMobj.setSubtype(subtype.getSelectedItem().toString());
 		}
-		
+
 		if ( size.getSelectedItem().toString() != "" )
 		{
 			RAMobj.setSize(Integer.parseInt(size.getSelectedItem().toString()));
 		}
-		
+
 		if ( speed.getSelectedItem().toString() != "" )
 		{
 			RAMobj.setSpeed(Integer.parseInt(type.getSelectedItem().toString()));
@@ -384,10 +382,10 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 		{
 			// Saves the current values of the new motherboard.
 			save();
-			
-			ComponentsManagment.processRAMmatch(mainObj, 
-					(Motherboard) mainObj.getComponents()[0], RAMobj, this);
-			
+
+			ComponentsManagment.processRAMmatch(mainObj, (Motherboard) mainObj.getComponents()[0],
+					RAMobj, this);
+
 
 			// Updates the views of the object to correctly show the
 			// current info.
@@ -398,7 +396,7 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 			this.dispose();
 
 		}
-		else if(e.getActionCommand().equals("cancel"))
+		else if ( e.getActionCommand().equals("cancel") )
 		{
 			this.dispose();
 		}

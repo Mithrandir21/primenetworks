@@ -4,12 +4,15 @@
 package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 
+import exceptions.ObjectNotFoundException;
+import exceptions.ObjectNotFoundInArrayException;
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.workareaCanvas.WorkareaCanvasActions;
+import hardware.CPU;
 import hardware.Motherboard;
 
 import java.awt.Button;
@@ -34,6 +37,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+
+import managment.ComponentsManagment;
 
 import objects.Object;
 
@@ -767,38 +772,36 @@ public class MotherboardNewView extends JFrame implements HardwareNewView, Actio
 							"By saving a new motherboard ALL the machines other components will be removed. Do you wish to do this?",
 							"Verify", JOptionPane.YES_NO_OPTION);
 
+
 			// If the answer is not No.
 			if ( answer != 1 )
 			{
 				// Saves the current values of the new motherboard.
 				save();
-				
-				
+
 				// We have to remove all connection between this object and
 				// other objects on the canvas
-				WorkareaCanvasActions.removeAllConnectionsToFromObject(PrimeMain1.currentCanvas, mainObj);
+				WorkareaCanvasActions.removeAllConnectionsToFromObject(PrimeMain1.currentCanvas,
+						mainObj);
 
-				
+
 				// Since the motherboard is where most of the connections are
-				// placed we first have to remove all connections to the devices.
+				// placed we first have to remove all connections to the
+				// devices.
 				mainObj.removeAllConnections();
 
-				
 				// Then we have to remove all the components that a object
 				// contains.
 				mainObj.removeAllComponents();
-
 
 				// Now that the object has no connections to other components
 				// and device
 				// we can add the motherboard object.
 				mainObj.addComponent(mbObj);
 
-
 				// Updates the views of the object to correctly show the
 				// current info.
 				PrimeMain1.objView.updateViewInfo();
-
 
 
 				// Closes the JFrame.
