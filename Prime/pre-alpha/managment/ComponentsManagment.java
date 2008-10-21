@@ -1055,6 +1055,8 @@ public class ComponentsManagment
 			if ( components[i].getClass().equals(ComponentClass) )
 			{
 				componentsFound[tempCounter] = components[i];
+				
+				tempCounter++;
 
 				objectNotFound = false;
 			}

@@ -13,9 +13,12 @@ import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.workareaCanvas.WorkareaCanvasActions;
 import hardware.CPU;
+import hardware.Discdrive;
+import hardware.ExternalNetworksCard;
 import hardware.GraphicsCard;
 import hardware.HDD;
 import hardware.Motherboard;
+import hardware.Ram;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -873,7 +876,7 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 					// Gets all the CPUs from the objects components array.
 					comp = ComponentsManagment.getSpesificComponents(CPU.class, mainObj
 							.getComponents(), mainObj.getComponents().length);
-
+					
 					// Removes all the CPUs from the objects components array.
 					mainObj.setAllComponents(ComponentsManagment.removeComponents(comp, mainObj
 							.getComponents(), mainObj.getComponents().length));
@@ -899,13 +902,13 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 				// All the components of the main object(without the CPUs).
 				Object[] mainComp = mainObj.getComponents();
+				
 
 				for ( int i = 0; i < counter; i++ )
 				{
 					// If i is smaller then the length of the comp array.
 					if ( i < comp.length )
 					{
-						// CONTINUE -- Will noe remove objects
 						mainComp = ComponentsManagment.addComponent(comp[i], mainComp);
 						mbObj.makeOneCPUportTaken();
 					}
@@ -918,22 +921,179 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		if ( PCIslots.getSelectedItem().toString() != "" )
 		{
-			mbObj.setMaxPCIs(Integer.parseInt(PCIslots.getSelectedItem().toString()));
+			if ( mbObj.getMaxPCIs() != Integer.parseInt(PCIslots.getSelectedItem().toString()) )
+			{
+				Object[] comp = null;
+				try
+				{
+					// Gets all the CPUs from the objects components array.
+					comp = ComponentsManagment.getSpesificComponents(ExternalNetworksCard.class, mainObj
+							.getComponents(), mainObj.getComponents().length);
+					
+					// Removes all the CPUs from the objects components array.
+					mainObj.setAllComponents(ComponentsManagment.removeComponents(comp, mainObj
+							.getComponents(), mainObj.getComponents().length));
+
+				}
+				catch ( ObjectNotFoundException e )
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				catch ( ObjectNotFoundInArrayException e )
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+
+				mbObj.setMaxPCIs(Integer.parseInt(PCIslots.getSelectedItem().toString()));
+				mbObj.setPCIPortsAvailable(mbObj.getMaxPCIs());
+
+				// The number of components there are room for.
+				int counter = mbObj.getMaxPCIs();
+
+				// All the components of the main object(without the CPUs).
+				Object[] mainComp = mainObj.getComponents();
+				
+
+				for ( int i = 0; i < counter; i++ )
+				{
+					// If i is smaller then the length of the comp array.
+					if ( i < comp.length )
+					{
+						mainComp = ComponentsManagment.addComponent(comp[i], mainComp);
+						mbObj.makeOnePCIportTaken();
+					}
+				}
+
+
+				mainObj.setAllComponents(mainComp);
+			}
 		}
 
 		if ( RAMslots.getSelectedItem().toString() != "" )
 		{
-			mbObj.setMaxRAMs(Integer.parseInt(RAMslots.getSelectedItem().toString()));
+			if ( mbObj.getMaxRAMs() != Integer.parseInt(RAMslots.getSelectedItem().toString()) )
+			{
+				Object[] comp = null;
+				try
+				{
+					// Gets all the CPUs from the objects components array.
+					comp = ComponentsManagment.getSpesificComponents(Ram.class, mainObj
+							.getComponents(), mainObj.getComponents().length);
+					
+					// Removes all the CPUs from the objects components array.
+					mainObj.setAllComponents(ComponentsManagment.removeComponents(comp, mainObj
+							.getComponents(), mainObj.getComponents().length));
+
+				}
+				catch ( ObjectNotFoundException e )
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				catch ( ObjectNotFoundInArrayException e )
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+
+				mbObj.setMaxRAMs(Integer.parseInt(RAMslots.getSelectedItem().toString()));
+				mbObj.setRAMPortsAvailable(mbObj.getMaxRAMs());
+
+				// The number of components there are room for.
+				int counter = mbObj.getMaxRAMs();
+
+				// All the components of the main object(without the CPUs).
+				Object[] mainComp = mainObj.getComponents();
+				
+
+				for ( int i = 0; i < counter; i++ )
+				{
+					// If i is smaller then the length of the comp array.
+					if ( i < comp.length )
+					{
+						mainComp = ComponentsManagment.addComponent(comp[i], mainComp);
+						mbObj.makeOneRAMportTaken();
+					}
+				}
+
+
+				mainObj.setAllComponents(mainComp);
+			}
 		}
 
 		if ( USBports.getSelectedItem().toString() != "" )
 		{
 			mbObj.setMaxUSBs(Integer.parseInt(USBports.getSelectedItem().toString()));
+			// FIXME - MotherboardView MaxUSB	
 		}
 
 		if ( DUCports.getSelectedItem().toString() != "" )
 		{
-			mbObj.setMaxDUCs(Integer.parseInt(DUCports.getSelectedItem().toString()));
+			if ( mbObj.getMaxDUCs() != Integer.parseInt(DUCports.getSelectedItem().toString()) )
+			{
+				Object[] comp = null;
+				try
+				{
+					// Gets all the CPUs from the objects components array.
+					Object[] compHDD = ComponentsManagment.getSpesificComponents(HDD.class, mainObj
+							.getComponents(), mainObj.getComponents().length);
+					
+					Object[] compDisc = ComponentsManagment.getSpesificComponents(Discdrive.class, mainObj
+							.getComponents(), mainObj.getComponents().length);
+					
+					comp = new Object[compDisc.length+compHDD.length];
+					
+					int count = 0;
+					
+					for(int i = 0;i<compHDD.length;i++)
+					{
+						
+					}
+					
+					// Removes all the CPUs from the objects components array.
+					mainObj.setAllComponents(ComponentsManagment.removeComponents(comp, mainObj
+							.getComponents(), mainObj.getComponents().length));
+
+				}
+				catch ( ObjectNotFoundException e )
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				catch ( ObjectNotFoundInArrayException e )
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+
+				mbObj.setMaxRAMs(Integer.parseInt(RAMslots.getSelectedItem().toString()));
+				mbObj.setRAMPortsAvailable(mbObj.getMaxRAMs());
+
+				// The number of components there are room for.
+				int counter = mbObj.getMaxRAMs();
+
+				// All the components of the main object(without the CPUs).
+				Object[] mainComp = mainObj.getComponents();
+				
+
+				for ( int i = 0; i < counter; i++ )
+				{
+					// If i is smaller then the length of the comp array.
+					if ( i < comp.length )
+					{
+						mainComp = ComponentsManagment.addComponent(comp[i], mainComp);
+						mbObj.makeOneRAMportTaken();
+					}
+				}
+
+
+				mainObj.setAllComponents(mainComp);
+			}
 		}
 
 		if ( LANports.getSelectedItem().toString() != "" )
