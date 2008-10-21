@@ -29,6 +29,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -647,7 +651,7 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 		for ( int i = 1; i < DUCportsStrings.length; i++ )
 		{
-			if ( Integer.parseInt(DUCports.getItemAt(i).toString()) == (mb.getMaxUSBs()) )
+			if ( Integer.parseInt(DUCports.getItemAt(i).toString()) == (mb.getMaxDUCs()) )
 			{
 				DUCportsIndex = i;
 				i = DUCportsStrings.length;
@@ -876,7 +880,7 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 					// Gets all the CPUs from the objects components array.
 					comp = ComponentsManagment.getSpesificComponents(CPU.class, mainObj
 							.getComponents(), mainObj.getComponents().length);
-					
+
 					// Removes all the CPUs from the objects components array.
 					mainObj.setAllComponents(ComponentsManagment.removeComponents(comp, mainObj
 							.getComponents(), mainObj.getComponents().length));
@@ -902,7 +906,7 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 				// All the components of the main object(without the CPUs).
 				Object[] mainComp = mainObj.getComponents();
-				
+
 
 				for ( int i = 0; i < counter; i++ )
 				{
@@ -927,9 +931,9 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 				try
 				{
 					// Gets all the CPUs from the objects components array.
-					comp = ComponentsManagment.getSpesificComponents(ExternalNetworksCard.class, mainObj
-							.getComponents(), mainObj.getComponents().length);
-					
+					comp = ComponentsManagment.getSpesificComponents(ExternalNetworksCard.class,
+							mainObj.getComponents(), mainObj.getComponents().length);
+
 					// Removes all the CPUs from the objects components array.
 					mainObj.setAllComponents(ComponentsManagment.removeComponents(comp, mainObj
 							.getComponents(), mainObj.getComponents().length));
@@ -955,7 +959,7 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 				// All the components of the main object(without the CPUs).
 				Object[] mainComp = mainObj.getComponents();
-				
+
 
 				for ( int i = 0; i < counter; i++ )
 				{
@@ -982,7 +986,7 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 					// Gets all the CPUs from the objects components array.
 					comp = ComponentsManagment.getSpesificComponents(Ram.class, mainObj
 							.getComponents(), mainObj.getComponents().length);
-					
+
 					// Removes all the CPUs from the objects components array.
 					mainObj.setAllComponents(ComponentsManagment.removeComponents(comp, mainObj
 							.getComponents(), mainObj.getComponents().length));
@@ -1008,7 +1012,7 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 
 				// All the components of the main object(without the CPUs).
 				Object[] mainComp = mainObj.getComponents();
-				
+
 
 				for ( int i = 0; i < counter; i++ )
 				{
@@ -1028,7 +1032,7 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 		if ( USBports.getSelectedItem().toString() != "" )
 		{
 			mbObj.setMaxUSBs(Integer.parseInt(USBports.getSelectedItem().toString()));
-			// FIXME - MotherboardView MaxUSB	
+			// FIXME - MotherboardView MaxUSB
 		}
 
 		if ( DUCports.getSelectedItem().toString() != "" )
@@ -1036,24 +1040,63 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 			if ( mbObj.getMaxDUCs() != Integer.parseInt(DUCports.getSelectedItem().toString()) )
 			{
 				Object[] comp = null;
+
 				try
 				{
 					// Gets all the CPUs from the objects components array.
 					Object[] compHDD = ComponentsManagment.getSpesificComponents(HDD.class, mainObj
 							.getComponents(), mainObj.getComponents().length);
-					
-					Object[] compDisc = ComponentsManagment.getSpesificComponents(Discdrive.class, mainObj
-							.getComponents(), mainObj.getComponents().length);
-					
-					comp = new Object[compDisc.length+compHDD.length];
-					
-					int count = 0;
-					
-					for(int i = 0;i<compHDD.length;i++)
+
+					Object[] compDisc = ComponentsManagment.getSpesificComponents(Discdrive.class,
+							mainObj.getComponents(), mainObj.getComponents().length);
+
+					comp = new Object[compDisc.length + compHDD.length];
+
+					// The different counters for the different arrays of
+					// components.
+					int hddCount = 0;
+					int discCount = 0;
+
+					// The tick/tack boolean.
+					boolean tick = true;
+
+
+					for ( int i = 0; i < comp.length; i++ )
 					{
-						
+						// Tries to add the hdd first.
+						if ( tick )
+						{
+							if ( hddCount < compHDD.length && compHDD[hddCount] != null )
+							{
+								comp[i] = compHDD[hddCount];
+								hddCount++;
+								tick = false;
+							}
+							else
+							{
+								comp[i] = compDisc[discCount];
+								discCount++;
+								tick = false;
+							}
+						}
+						// Tack
+						else
+						{
+							if ( discCount < compDisc.length && compDisc[discCount] != null )
+							{
+								comp[i] = compDisc[discCount];
+								discCount++;
+								tick = true;
+							}
+							else
+							{
+								comp[i] = compHDD[hddCount];
+								hddCount++;
+								tick = true;
+							}
+						}
 					}
-					
+
 					// Removes all the CPUs from the objects components array.
 					mainObj.setAllComponents(ComponentsManagment.removeComponents(comp, mainObj
 							.getComponents(), mainObj.getComponents().length));
@@ -1071,15 +1114,15 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 				}
 
 
-				mbObj.setMaxRAMs(Integer.parseInt(RAMslots.getSelectedItem().toString()));
-				mbObj.setRAMPortsAvailable(mbObj.getMaxRAMs());
+				mbObj.setMaxDUCs(Integer.parseInt(DUCports.getSelectedItem().toString()));
+				mbObj.setDUCPortsAvailable(mbObj.getMaxDUCs());
 
 				// The number of components there are room for.
-				int counter = mbObj.getMaxRAMs();
+				int counter = mbObj.getMaxDUCs();
 
 				// All the components of the main object(without the CPUs).
 				Object[] mainComp = mainObj.getComponents();
-				
+
 
 				for ( int i = 0; i < counter; i++ )
 				{
@@ -1087,7 +1130,7 @@ public class MotherboardView extends JPanel implements HardwareView, ActionListe
 					if ( i < comp.length )
 					{
 						mainComp = ComponentsManagment.addComponent(comp[i], mainComp);
-						mbObj.makeOneRAMportTaken();
+						mbObj.makeOneDUCportTaken();
 					}
 				}
 
