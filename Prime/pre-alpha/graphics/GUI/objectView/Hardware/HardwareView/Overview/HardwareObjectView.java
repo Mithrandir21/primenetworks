@@ -455,12 +455,13 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		d.fill = GridBagConstraints.BOTH;
 
 		d.gridx = 0;
-		d.gridy = c.gridy;
+		d.gridy = c.gridy++;
 		d.weightx = 1;
-		d.weighty = 0.01;
+		d.weighty = 1;
 		d.gridwidth = 1;
 		d.gridheight = 1;
 		d.insets = new Insets(10, 10, 10, 10);
+		
 
 
 		JPanel buttons = new JPanel();

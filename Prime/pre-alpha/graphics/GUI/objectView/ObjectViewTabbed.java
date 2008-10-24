@@ -7,6 +7,7 @@ import graphics.GUI.objectView.Network.NetworkObjectView;
 import graphics.GUI.objectView.Software.SoftwareObjectView;
 import graphics.GUI.objectView.Visual.VisualObjectView;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import objects.Object;
@@ -44,7 +45,10 @@ public class ObjectViewTabbed extends JTabbedPane
 
 		hardObjView = new HardwareObjectView(obj);
 		String hardwareDesc = "General information and option";
-		this.addTab("Hardware", null, hardObjView, hardwareDesc);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setViewportView(hardObjView);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		this.addTab("Hardware", null, scrollPane, hardwareDesc);
 
 
 		softObjView = new SoftwareObjectView(obj);
