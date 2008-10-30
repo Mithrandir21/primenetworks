@@ -54,11 +54,12 @@ public abstract class Connection extends Object implements Serializable
 	 * @param connection
 	 *            The tyoe of connection between the objects.
 	 */
-	public Connection(String Name, String Desc, Object From, Object To, String connection)
+	public Connection(String Name, String Desc, Object From, Object To, String conType)
 	{
 		super(Name, Desc, new String[0]);
 		object1 = From;
 		object2 = To;
+		connection = conType;
 	}
 
 
@@ -109,7 +110,7 @@ public abstract class Connection extends Object implements Serializable
 	 * 
 	 * @return the connection
 	 */
-	public String getConnection()
+	public String getConnectionType()
 	{
 
 		return connection;

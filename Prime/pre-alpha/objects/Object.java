@@ -289,15 +289,29 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Get all the connections between the computer and devices it is connected
+	 * Get all the network connections between the computer and devices it is connected
 	 * to.
 	 * 
 	 * @return Returns an array of {@link connections.Connection Connections}.
 	 */
-	public Connection[] getConnections()
+	public Connection[] getNetworkConnections()
 	{
 
 		return networkConnections;
+	}
+	
+	
+	
+	/**
+	 * Get all the device connections between the computer and devices it is connected
+	 * to.
+	 * 
+	 * @return Returns an array of {@link connections.Connection Connections}.
+	 */
+	public Connection[] getDeviceConnections()
+	{
+
+		return deviceConnections;
 	}
 
 

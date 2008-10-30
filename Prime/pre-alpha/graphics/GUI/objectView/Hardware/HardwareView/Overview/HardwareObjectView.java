@@ -2,6 +2,7 @@ package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
 
 import graphics.ImageLocator;
+import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.NewComponent.NewOverview.NewComponentChoice;
 import hardware.CPU;
 import hardware.Discdrive;
@@ -14,6 +15,7 @@ import hardware.Ram;
 
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -448,6 +450,11 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 		}
 
+		
+		
+		JLabel temp1 = new JLabel("");
+		temp1.setMaximumSize(new Dimension(90, 20));
+		temp1.setPreferredSize(new Dimension(90, 20));
 
 
 		GridBagConstraints d = new GridBagConstraints();
@@ -455,13 +462,26 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		d.fill = GridBagConstraints.BOTH;
 
 		d.gridx = 0;
+
+		if ( hwCount % 2 == 0 )
+		{
+			d.gridy = c.gridy++;
+		}
+		else
+		{
+			// Adds an empty components so that the spacing comes out correct.
+			// Because of the SpringUtilities.makeCompactGrid.
+			this.add(temp1);
+			d.gridy = c.gridy++;
+		}
+		
 		d.gridy = c.gridy++;
 		d.weightx = 1;
 		d.weighty = 1;
 		d.gridwidth = 1;
 		d.gridheight = 1;
 		d.insets = new Insets(10, 10, 10, 10);
-		
+
 
 
 		JPanel buttons = new JPanel();

@@ -2,8 +2,12 @@ package managment;
 
 
 import java.awt.Component;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+
+import connections.Connection;
 
 import logistical.cleanup;
 import objects.Object;
@@ -1055,7 +1059,7 @@ public class ComponentsManagment
 			if ( components[i].getClass().equals(ComponentClass) )
 			{
 				componentsFound[tempCounter] = components[i];
-				
+
 				tempCounter++;
 
 				objectNotFound = false;
@@ -1209,5 +1213,100 @@ public class ComponentsManagment
 		}
 
 		return foundObject;
+	}
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param connectedTo
+	 * @param conType
+	 * @return
+	 */
+	public static Object[] connectedToBy(Object connectedTo, String conType)
+	{
+		// The array that will hold all the matching objects.
+		Object[] foundComp = null;
+
+		Connection[] cons = null;
+		
+		int index = 0;
+		
+		
+		Connection[] netCons = connectedTo.getNetworkConnections();
+		
+		Connection[] devCons = connectedTo.getDeviceConnections();
+		
+		
+		// Finds the number of overall connections.
+		if(netCons != null)
+		{
+			index = index + netCons.length;
+		}
+		
+		if(devCons != null)
+		{
+			index = index + devCons.length;
+		}
+		
+		
+		// The array that will hold all of the objects connections.
+		cons = new Connection[index];
+		
+
+		if ( netCons != null )
+		{
+			// Adding the networkconnections to the array.
+			System.arraycopy(netCons, 0, cons, 0, netCons.length);
+		}
+		
+		
+		
+		if ( devCons != null )
+		{
+			if ( netCons != null )
+			{
+				// Adding the deviceconnections to the array.
+				System.arraycopy(devCons, 0, cons, netCons.length, devCons.length);
+			}
+			else
+			{
+				// Adding the deviceconnections to the array.
+				System.arraycopy(devCons, 0, cons, 0, devCons.length);
+			}
+		}
+		
+		
+		
+		// Creating an array with the length of cons.
+		foundComp = new Object[cons.length];
+		
+		// Matching the connection types to the given conType.
+		for(int i = 0; i < cons.length; i++)
+		{
+			if ( cons[i] != null )
+			{
+				if ( cons[i].getConnectionType().equals(conType) )
+				{
+					if(cons[i].getObject1().equals(connectedTo))
+					{
+						foundComp[i] = cons[i].getObject2();
+					}
+					else
+					{
+						foundComp[i] = cons[i].getObject1();
+					}
+				}
+			}
+		}
+		
+		
+		// Removes all the empty indexes from the array.
+		foundComp = cleanup.cleanObjectArray(foundComp);
+		
+
+
+		return foundComp;
 	}
 }

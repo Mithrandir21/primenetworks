@@ -45,7 +45,7 @@ public class ObjectViewTabbed extends JTabbedPane
 
 		hardObjView = new HardwareObjectView(obj);
 		String hardwareDesc = "General information and option";
-		JScrollPane scrollPane = new JScrollPane();
+		JScrollPane scrollPane = new JScrollPane(hardObjView);
 		scrollPane.setViewportView(hardObjView);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		this.addTab("Hardware", null, scrollPane, hardwareDesc);
