@@ -6,6 +6,7 @@ import java.io.Serializable;
 import managment.ArrayManagment;
 import objects.Object;
 import objects.Servers;
+import objects.Software;
 import software.Firewall;
 import exceptions.StringNotFoundInArrayException;
 
@@ -60,6 +61,8 @@ public class FirewallServer extends Servers implements Serializable
 
 		// Creates a firewall software object
 		firewall = new Firewall(FirewallSWname, FirewallSWdesc, FirewallSWversion);
+		Software[] sw = {firewall};
+		super.setSoftware(sw);
 	}
 
 
@@ -86,6 +89,8 @@ public class FirewallServer extends Servers implements Serializable
 
 		// Creates a firewall software object
 		firewall = new Firewall(FirewallSWname, FirewallSWdesc, FirewallSWversion);
+		Software[] sw = {firewall};
+		super.setSoftware(sw);
 	}
 
 
@@ -112,6 +117,8 @@ public class FirewallServer extends Servers implements Serializable
 
 		// Creates a firewall software object
 		firewall = new Firewall(FirewallSWname, FirewallSWdesc, FirewallSWversion);
+		Software[] sw = {firewall};
+		super.setSoftware(sw);
 	}
 
 
@@ -140,6 +147,8 @@ public class FirewallServer extends Servers implements Serializable
 
 		// Creates a firewall software object
 		firewall = new Firewall(FirewallSWname, FirewallSWdesc, FirewallSWversion);
+		Software[] sw = {firewall};
+		super.setSoftware(sw);
 	}
 
 

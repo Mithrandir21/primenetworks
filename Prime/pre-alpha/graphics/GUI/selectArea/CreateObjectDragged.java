@@ -175,6 +175,8 @@ public class CreateObjectDragged
 		{
 			objectDesc = objectName;
 		}
+		
+		// TODO - ThinClient
 
 
 		return new Laptop(objectName, objectDesc, supportedConnectionInterfaces, st_components);
@@ -198,7 +200,9 @@ public class CreateObjectDragged
 		}
 
 		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
+		serverMB.setIntegLANPortsAvailable(2);
 
 
 		return new HTTPServer(objectName, objectDesc, supportedConnectionInterfaces, st_components,
@@ -225,7 +229,9 @@ public class CreateObjectDragged
 		}
 
 		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
+		serverMB.setIntegLANPortsAvailable(2);
 
 
 		return new BackupServer(objectName, objectDesc, supportedConnectionInterfaces,
@@ -250,7 +256,9 @@ public class CreateObjectDragged
 		}
 
 		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
+		serverMB.setIntegLANPortsAvailable(2);
 
 
 		return new MailServer(objectName, objectDesc, supportedConnectionInterfaces, st_components,
@@ -276,7 +284,9 @@ public class CreateObjectDragged
 		}
 
 		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
+		serverMB.setIntegLANPortsAvailable(2);
 
 
 		return new FirewallServer(objectName, objectDesc, supportedConnectionInterfaces,
@@ -301,7 +311,9 @@ public class CreateObjectDragged
 		}
 
 		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
+		serverMB.setIntegLANPortsAvailable(2);
 
 
 		return new ProxyServer(objectName, objectDesc, supportedConnectionInterfaces,
@@ -326,6 +338,7 @@ public class CreateObjectDragged
 		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
 
 		objectMB.setMaxUSBs(1);
+		objectMB.setUSBPortsAvailable(1);
 
 
 		return new Scanner(objectName, objectDesc, Sresolution, SconnectionInterfaces, objectMB);
@@ -348,6 +361,7 @@ public class CreateObjectDragged
 		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
 
 		objectMB.setMaxUSBs(1);
+		objectMB.setUSBPortsAvailable(1);
 
 
 		return new Printer(objectName, objectDesc, Sresolution, SconnectionInterfaces, objectMB);
@@ -375,6 +389,7 @@ public class CreateObjectDragged
 
 		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(16);
+		objectMB.setIntegLANPortsAvailable(16);
 
 
 		return new Hub(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts,
@@ -403,6 +418,7 @@ public class CreateObjectDragged
 
 		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(16);
+		objectMB.setIntegLANPortsAvailable(16);
 
 
 		return new Switch(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts,
@@ -430,6 +446,7 @@ public class CreateObjectDragged
 
 		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(4);
+		objectMB.setIntegLANPortsAvailable(4);
 
 
 		return new Router(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts,

@@ -142,19 +142,23 @@ public class NetworkObjectView extends JPanel
 
 		Object[] matched = ComponentsManagment.connectedToBy(obj, "USB");
 
-		panel = new JPanel(new SpringLayout());
-//		GridBagConstraints c = new GridBagConstraints();
-//
-//		c.fill = GridBagConstraints.NONE;
-//
-//
-//		// Icon image.
-//		c.gridx = 0;
-//		c.gridy = 0;
-//		c.weightx = 1;
-//		c.weighty = 1;
-//		c.gridwidth = 1;
-//		// c.gridheight = texts.length;
+		panel = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+
+		c.fill = GridBagConstraints.HORIZONTAL;
+
+
+		// Icon image.
+		c.gridx = 0;
+		c.gridy = 0;
+		c.weightx = 1;
+		c.weighty = 1;
+		c.gridwidth = 1;
+		c.anchor = GridBagConstraints.NORTH;
+		c.insets = new Insets(5, 5, 0, 5);
+		// c.gridheight = texts.length;
+		
+		int hwCount = 0;
 
 
 		for ( int i = 0; i < matched.length; i++ )
@@ -163,25 +167,42 @@ public class NetworkObjectView extends JPanel
 			objPanel.setMaximumSize(new Dimension(90, 20));
 			objPanel.setPreferredSize(new Dimension(90, 20));
 			
-			lhsdf
-			panel.add(createPanel(matched[i]));
+			panel.add(createPanel(matched[i]),c);
 			
-//			if ( i % 2 == 0 )
-//			{
-//				c.gridx++;
-//			}
-//			else
-//			{
-//				c.gridx = 0;
-//				c.gridy++;
-//			}
+			if ( i % 2 == 0 )
+			{
+				c.gridx++;
+			}
+			else
+			{
+				c.gridx = 0;
+				c.gridy++;
+			}
+			
+			hwCount++;
 		}
 		
 		
-		// Lay out the panel.
-		SpringUtilities.makeCompactGrid(panel, 1, 2, // rows, cols
-				10, 10, // initX, initY
-				20, 20); // xPad, yPad
+		
+		while ( hwCount < 10 )
+		{
+			JPanel p = new JPanel();
+//			p.setBorder(BorderFactory.createEtchedBorder());
+			panel.add(p, c);
+
+			hwCount++;
+
+			if ( hwCount % 2 == 0 )
+			{
+				c.gridx = 0;
+				c.gridy++;
+			}
+			else
+			{
+				c.gridx++;
+			}
+		}
+
 
 
 		TitledBorder title;
@@ -209,7 +230,7 @@ public class NetworkObjectView extends JPanel
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 
-		c.fill = GridBagConstraints.NONE;
+		c.fill = GridBagConstraints.HORIZONTAL;
 
 
 		// Icon image.
@@ -218,14 +239,44 @@ public class NetworkObjectView extends JPanel
 		c.weightx = 1;
 		c.weighty = 1;
 		c.gridwidth = 1;
-		c.gridheight = 1;
+		c.anchor = GridBagConstraints.NORTH;
+		c.insets = new Insets(5, 5, 0, 5);
+		// c.gridheight = texts.length;
+		
+		int hwCount = 0;
 
 
 		for ( int i = 0; i < matched.length; i++ )
 		{
+			JPanel objPanel = createPanel(matched[i]);
+			objPanel.setMaximumSize(new Dimension(90, 20));
+			objPanel.setPreferredSize(new Dimension(90, 20));
+			
 			panel.add(createPanel(matched[i]),c);
 			
 			if ( i % 2 == 0 )
+			{
+				c.gridx++;
+			}
+			else
+			{
+				c.gridx = 0;
+				c.gridy++;
+			}
+			
+			hwCount++;
+		}
+		
+		
+		while ( hwCount < 10 )
+		{
+			JPanel p = new JPanel();
+//			p.setBorder(BorderFactory.createEtchedBorder());
+			panel.add(p, c);
+
+			hwCount++;
+
+			if ( hwCount % 2 == 0 )
 			{
 				c.gridx = 0;
 				c.gridy++;
@@ -235,6 +286,7 @@ public class NetworkObjectView extends JPanel
 				c.gridx++;
 			}
 		}
+
 
 
 		TitledBorder title;
@@ -273,23 +325,23 @@ public class NetworkObjectView extends JPanel
 		// }
 		else if ( obj instanceof HTTPServer )
 		{
-			icon = ImageLocator.getImageIconObject("Web Server");
+			icon = ImageLocator.getImageIconObject("Web-server");
 		}
 		else if ( obj instanceof BackupServer )
 		{
-			icon = ImageLocator.getImageIconObject("Backup Server");
+			icon = ImageLocator.getImageIconObject("Data-server");
 		}
 		else if ( obj instanceof MailServer )
 		{
-			icon = ImageLocator.getImageIconObject("Email Server");
+			icon = ImageLocator.getImageIconObject("Email-server");
 		}
 		else if ( obj instanceof FirewallServer )
 		{
-			icon = ImageLocator.getImageIconObject("Firewall Server");
+			icon = ImageLocator.getImageIconObject("Firewall-server");
 		}
 		else if ( obj instanceof ProxyServer )
 		{
-			icon = ImageLocator.getImageIconObject("Proxy Server");
+			icon = ImageLocator.getImageIconObject("Proxy-server");
 		}
 		else if ( obj instanceof Scanner )
 		{

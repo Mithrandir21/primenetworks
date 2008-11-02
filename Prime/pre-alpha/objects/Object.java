@@ -93,6 +93,11 @@ public abstract class Object implements Serializable
 	 * Counts the number of objects it is connected to
 	 */
 	private int connectedDevicesCounter;
+	
+	
+	// THE SOFTWARE
+	
+	private Software[] software;
 
 
 
@@ -352,6 +357,17 @@ public abstract class Object implements Serializable
 	// SET METHODES
 
 	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @return the software
+	 */
+	public Software[] getSoftware()
+	{
+		return software;
+	}
+
+
+	/**
 	 * Sets the name of the object.
 	 */
 	public void setObjectName(String ObjectName)
@@ -442,6 +458,17 @@ public abstract class Object implements Serializable
 	// CLASS METHODES
 
 	// COMPONENTS MANIPULATION
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @param software the software to set
+	 */
+	public void setSoftware(Software[] software)
+	{
+		this.software = software;
+	}
 
 
 	/**

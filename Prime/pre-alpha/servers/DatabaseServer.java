@@ -6,6 +6,7 @@ import java.io.Serializable;
 import managment.ArrayManagment;
 import objects.Object;
 import objects.Servers;
+import objects.Software;
 import software.Database;
 import exceptions.StringNotFoundInArrayException;
 
@@ -59,6 +60,8 @@ public class DatabaseServer extends Servers implements Serializable
 
 		// Creates a database software object
 		Database = new Database(DatabaseSWname, DatabaseSWdesc, DatabaseSWversion);
+		Software[] sw = {Database};
+		super.setSoftware(sw);
 	}
 
 
@@ -84,6 +87,8 @@ public class DatabaseServer extends Servers implements Serializable
 
 		// Creates a database software object
 		Database = new Database(DatabaseSWname, DatabaseSWdesc, DatabaseSWversion);
+		Software[] sw = {Database};
+		super.setSoftware(sw);
 	}
 
 
@@ -110,6 +115,8 @@ public class DatabaseServer extends Servers implements Serializable
 
 		// Creates a database software object
 		Database = new Database(DatabaseSWname, DatabaseSWdesc, DatabaseSWversion);
+		Software[] sw = {Database};
+		super.setSoftware(sw);
 	}
 
 
@@ -136,6 +143,8 @@ public class DatabaseServer extends Servers implements Serializable
 
 		// Creates a database software object
 		Database = new Database(DatabaseSWname, DatabaseSWdesc, DatabaseSWversion);
+		Software[] sw = {Database};
+		super.setSoftware(sw);
 	}
 
 

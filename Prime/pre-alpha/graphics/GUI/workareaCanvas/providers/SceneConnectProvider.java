@@ -45,7 +45,7 @@ public class SceneConnectProvider implements ConnectProvider
 		{
 			return;
 		}
-
+		
 		// Casts the widgets to WidgetObjects because all of the widgets on the
 		// scene are widgetObjects
 		WidgetObject SourceWidObj = (WidgetObject) sourceWidget;
@@ -79,7 +79,7 @@ public class SceneConnectProvider implements ConnectProvider
 			{
 
 			}
-			// Else a connection type is choosen and the "Create connection"
+			// Else a connection type is chosen and the "Create connection"
 			// button is pressed.
 			else
 			{

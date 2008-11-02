@@ -39,6 +39,7 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
+@SuppressWarnings("serial")
 public class HardwareObjectView extends JPanel implements ActionListener
 {
 	private Object givenObject = null;

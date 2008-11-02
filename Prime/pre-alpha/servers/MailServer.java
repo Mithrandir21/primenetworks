@@ -6,6 +6,7 @@ import java.io.Serializable;
 import managment.ArrayManagment;
 import objects.Object;
 import objects.Servers;
+import objects.Software;
 import software.Email;
 import exceptions.StringNotFoundInArrayException;
 
@@ -58,6 +59,8 @@ public class MailServer extends Servers implements Serializable
 
 		// Creates a Email software object
 		Email = new Email(EmailSWname, EmailSWdesc, EmailSWversion);
+		Software[] sw = {Email};
+		super.setSoftware(sw);
 	}
 
 
@@ -83,6 +86,8 @@ public class MailServer extends Servers implements Serializable
 
 		// Creates a Email software object
 		Email = new Email(EmailSWname, EmailSWdesc, EmailSWversion);
+		Software[] sw = {Email};
+		super.setSoftware(sw);
 	}
 
 
@@ -109,6 +114,8 @@ public class MailServer extends Servers implements Serializable
 
 		// Creates a Email software object
 		Email = new Email(EmailSWname, EmailSWdesc, EmailSWversion);
+		Software[] sw = {Email};
+		super.setSoftware(sw);
 	}
 
 
@@ -135,6 +142,8 @@ public class MailServer extends Servers implements Serializable
 
 		// Creates a Email software object
 		Email = new Email(EmailSWname, EmailSWdesc, EmailSWversion);
+		Software[] sw = {Email};
+		super.setSoftware(sw);
 	}
 
 

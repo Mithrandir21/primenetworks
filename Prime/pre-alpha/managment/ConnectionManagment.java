@@ -22,13 +22,13 @@ import exceptions.ObjectNotFoundInArrayException;
 
 
 /**
- * A method class for the managment of any type of connection within the system.
+ * A method class for the management of any type of connection within the system.
  * A connection is a physical link, be it wired or wireless, between two
  * components in the system. Examples of this are connections between switches
  * and computers, swithes and other switches, computers and printers, servers
  * and routers and so on. <br>
  * The class contains methodes like making connections, breaking connection or
- * changing connection. There are additional methodes that help with the
+ * changing connection. There are additional methods that help with the
  * managment of connections.
  * 
  * @author Bahram Malaekeh
@@ -353,7 +353,11 @@ public class ConnectionManagment
 					// If the second object is found
 					if ( existingConnections[i].getObject1().equals(objectB) )
 					{
-						return existingConnections[i];
+						// If the first object is found
+						if ( existingConnections[i].getObject2().equals(objectA) )
+						{
+							return existingConnections[i];
+						}
 					}
 				}
 			}

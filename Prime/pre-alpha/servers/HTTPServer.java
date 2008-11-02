@@ -6,6 +6,7 @@ import java.io.Serializable;
 import managment.ArrayManagment;
 import objects.Object;
 import objects.Servers;
+import objects.Software;
 import software.Webserver;
 import exceptions.StringNotFoundInArrayException;
 
@@ -59,6 +60,8 @@ public class HTTPServer extends Servers implements Serializable
 
 		// Creates a Webserver software object
 		Webserver = new Webserver(WebserverSWname, WebserverSWdesc, WebserverSWversion);
+		Software[] sw = {Webserver};
+		super.setSoftware(sw);
 	}
 
 
@@ -85,6 +88,8 @@ public class HTTPServer extends Servers implements Serializable
 
 		// Creates a Webserver software object
 		Webserver = new Webserver(WebserverSWname, WebserverSWdesc, WebserverSWversion);
+		Software[] sw = {Webserver};
+		super.setSoftware(sw);
 	}
 
 
@@ -111,6 +116,8 @@ public class HTTPServer extends Servers implements Serializable
 
 		// Creates a Webserver software object
 		Webserver = new Webserver(WebserverSWname, WebserverSWdesc, WebserverSWversion);
+		Software[] sw = {Webserver};
+		super.setSoftware(sw);
 	}
 
 
@@ -137,6 +144,8 @@ public class HTTPServer extends Servers implements Serializable
 
 		// Creates a Webserver software object
 		Webserver = new Webserver(WebserverSWname, WebserverSWdesc, WebserverSWversion);
+		Software[] sw = {Webserver};
+		super.setSoftware(sw);
 	}
 
 

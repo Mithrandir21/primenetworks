@@ -6,6 +6,7 @@ import java.io.Serializable;
 import managment.ArrayManagment;
 import objects.Object;
 import objects.Servers;
+import objects.Software;
 import software.Backup;
 import exceptions.StringNotFoundInArrayException;
 
@@ -59,6 +60,8 @@ public class BackupServer extends Servers implements Serializable
 
 		// Creates a Backup software object
 		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
+		Software[] sw = {Backup};
+		super.setSoftware(sw);
 	}
 
 
@@ -85,6 +88,8 @@ public class BackupServer extends Servers implements Serializable
 
 		// Creates a Backup software object
 		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
+		Software[] sw = {Backup};
+		super.setSoftware(sw);
 	}
 
 
@@ -111,6 +116,8 @@ public class BackupServer extends Servers implements Serializable
 
 		// Creates a Backup software object
 		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
+		Software[] sw = {Backup};
+		super.setSoftware(sw);
 	}
 
 
@@ -137,6 +144,8 @@ public class BackupServer extends Servers implements Serializable
 
 		// Creates a Backup software object
 		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
+		Software[] sw = {Backup};
+		super.setSoftware(sw);
 	}
 
 

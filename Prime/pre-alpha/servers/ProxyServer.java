@@ -6,6 +6,7 @@ import java.io.Serializable;
 import managment.ArrayManagment;
 import objects.Object;
 import objects.Servers;
+import objects.Software;
 import software.Proxy;
 import exceptions.StringNotFoundInArrayException;
 
@@ -59,6 +60,8 @@ public class ProxyServer extends Servers implements Serializable
 
 		// Creates a Proxy software object
 		Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
+		Software[] sw = {Proxy};
+		super.setSoftware(sw);
 	}
 
 
@@ -84,6 +87,8 @@ public class ProxyServer extends Servers implements Serializable
 
 		// Creates a Proxy software object
 		Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
+		Software[] sw = {Proxy};
+		super.setSoftware(sw);
 	}
 
 
@@ -110,6 +115,8 @@ public class ProxyServer extends Servers implements Serializable
 
 		// Creates a Proxy software object
 		Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
+		Software[] sw = {Proxy};
+		super.setSoftware(sw);
 	}
 
 
@@ -136,6 +143,8 @@ public class ProxyServer extends Servers implements Serializable
 
 		// Creates a Proxy software object
 		Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
+		Software[] sw = {Proxy};
+		super.setSoftware(sw);
 	}
 
 
