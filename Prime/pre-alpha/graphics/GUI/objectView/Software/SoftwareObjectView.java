@@ -4,18 +4,9 @@ package graphics.GUI.objectView.Software;
 import graphics.ImageLocator;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.objectView.Hardware.NewComponent.NewOverview.NewComponentChoice;
-import hardware.CPU;
-import hardware.Discdrive;
-import hardware.ExternalNetworksCard;
-import hardware.GraphicsCard;
-import hardware.HDD;
-import hardware.InternalNetworksCard;
-import hardware.Motherboard;
-import hardware.Ram;
 
 import java.awt.Button;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -32,7 +23,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import objects.Object;
-import servers.BackupServer;
 import software.Antivirus;
 import software.Backup;
 import software.Database;

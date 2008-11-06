@@ -2,7 +2,6 @@ package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
 
 import graphics.ImageLocator;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.NewComponent.NewOverview.NewComponentChoice;
 import hardware.CPU;
 import hardware.Discdrive;

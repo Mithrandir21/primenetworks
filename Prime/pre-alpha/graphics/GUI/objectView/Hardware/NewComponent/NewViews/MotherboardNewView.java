@@ -4,15 +4,12 @@
 package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 
-import exceptions.ObjectNotFoundException;
-import exceptions.ObjectNotFoundInArrayException;
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.workareaCanvas.WorkareaCanvasActions;
-import hardware.CPU;
 import hardware.Motherboard;
 
 import java.awt.Button;
@@ -37,8 +34,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
-
-import managment.ComponentsManagment;
 
 import objects.Object;
 

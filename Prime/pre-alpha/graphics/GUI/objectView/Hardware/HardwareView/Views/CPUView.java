@@ -23,7 +23,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -34,7 +33,6 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import managment.ComponentsManagment;
-
 import objects.Object;
 
 
@@ -145,6 +143,10 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 		this.add(buttons, c);
 	}
 
+	/**
+	 * TODO - Description
+	 * 
+	 */
 	private JPanel createSpesificInfo(CPU cpu)
 	{
 		JPanel panel = new JPanel(new SpringLayout());

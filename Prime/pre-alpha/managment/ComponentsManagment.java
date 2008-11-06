@@ -2,15 +2,12 @@ package managment;
 
 
 import java.awt.Component;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import connections.Connection;
-
 import logistical.cleanup;
 import objects.Object;
+import connections.Connection;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
 import graphics.PrimeMain1;

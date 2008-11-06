@@ -3,7 +3,6 @@ package graphics.GUI.objectView.Network;
 
 import exceptions.ObjectNotFoundException;
 import graphics.ImageLocator;
-import graphics.GUI.SpringUtilities;
 import hardware.CPU;
 import hardware.HDD;
 import hardware.Motherboard;
@@ -21,17 +20,10 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JToolBar;
-import javax.swing.SpringLayout;
 import javax.swing.border.TitledBorder;
 
 import logistical.cleanup;
 import managment.ComponentsManagment;
-
-import clients.Desktop;
-import clients.Laptop;
-import clients.ThinClient;
-
 import objects.Object;
 import peripheral.Printer;
 import peripheral.Scanner;
@@ -40,6 +32,8 @@ import servers.FirewallServer;
 import servers.HTTPServer;
 import servers.MailServer;
 import servers.ProxyServer;
+import clients.Desktop;
+import clients.Laptop;
 
 
 /**
