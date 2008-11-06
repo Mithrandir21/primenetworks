@@ -17,7 +17,7 @@ import exceptions.ObjectExistInContainer;
  */
 public abstract class Container implements Serializable
 {
-	// The arraylist that will contain all the objects of a system
+	// The arraylist that will contain objects
 	ArrayList<Object> container = new ArrayList<Object>();
 
 
