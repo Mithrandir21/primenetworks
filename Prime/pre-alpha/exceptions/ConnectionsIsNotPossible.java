@@ -4,11 +4,14 @@
 package exceptions;
 
 
+import objects.Object;
+
+
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This exceptions is thrown when a connection is not possible between two
+ * {@link Object Objects}. There is also a reason given.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class ConnectionsIsNotPossible extends Exception
 {
@@ -22,11 +25,13 @@ public class ConnectionsIsNotPossible extends Exception
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * Constructor for this exception including a reason.
 	 * 
 	 * @param a
 	 * @param b
 	 * @param reason
+	 *            The reason why a connection is not possible between object a
+	 *            and object b.
 	 */
 	public ConnectionsIsNotPossible(String a, String b, String reason)
 	{
@@ -41,14 +46,13 @@ public class ConnectionsIsNotPossible extends Exception
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.lang.Throwable#getMessage()
 	 */
 	@Override
 	public String getMessage()
 	{
-		String output = "A connection between object a, " + a + " and object b, " + b
-				+ ", is no possible because " + reason;
+		String output = "A connection between object a, " + a
+				+ " and object b, " + b + ", is not possible because " + reason;
 
 		return output;
 	}

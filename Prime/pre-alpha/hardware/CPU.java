@@ -340,9 +340,7 @@ public class CPU extends Hardware implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @return
+	 * Whether or not the CPU is Dual Core or not.
 	 */
 	public boolean isDualCore()
 	{
@@ -357,9 +355,7 @@ public class CPU extends Hardware implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @return
+	 * Whether or not the CPU is Quad Core.
 	 */
 	public boolean isQuadCore()
 	{

@@ -402,8 +402,8 @@ public abstract class Object implements Serializable
 	/**
 	 * Description NEEDED!
 	 * 
-	 * @param supportedConnectionInterfaces
-	 *            the supportedConnectionInterfaces to set
+	 * @param supportedConnectionInterface
+	 *            the supportedConnectionInterface to set
 	 */
 	public void setSupportedConnectionInterfaces(String supportedConnectionInterface)
 	{

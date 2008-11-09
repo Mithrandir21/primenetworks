@@ -13,6 +13,8 @@ import graphics.GUI.workareaCanvas.providers.CanvasMenu;
 import graphics.GUI.workareaCanvas.providers.CreateProvider;
 import graphics.GUI.workareaCanvas.providers.JMenuProvider;
 import graphics.GUI.workareaCanvas.providers.SceneConnectProvider;
+import hardware.ExternalNetworksCard;
+import hardware.InternalNetworksCard;
 import infrastructure.Hub;
 import infrastructure.Router;
 import infrastructure.Switch;
@@ -209,7 +211,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 /**
 	 * Gets the connection layer of the scene. This is where the
-	 * {@link connections.WidgetExtendedConnection connections) between objects in the scene are placed.
+	 * {@link connections.WidgetExtendedConnection connections} between objects in the scene are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the connectionLayer
@@ -235,6 +237,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	 * Gets the number of Networks cards on the Scene.
 	 * 
 	 * @return
+	 * 			Returns the number of network cards on the scene. Both {@link InternalNetworksCard}s and {@link ExternalNetworksCard}s.
 	 */
 	public int getNumberOfNICsOnTheScene()
 	{

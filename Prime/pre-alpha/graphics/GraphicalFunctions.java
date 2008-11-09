@@ -150,8 +150,10 @@ public class GraphicalFunctions
 	 * Javadoc-TODO - Description
 	 * 
 	 * @param list
+	 * @param possibilities
 	 * @param data
 	 * @return
+	 * 			Returns the indexes of the given data in the array of possibilities.
 	 */
 	public static JList getIndexInJList(JList list, String[] possibilities, String[] data)
 	{

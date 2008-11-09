@@ -115,6 +115,7 @@ public class MakeStandardInternalComponents
 	 * Javadoc-TODO - Description
 	 * 
 	 * @return
+	 * 			Returns a new standard {@link ExternalNetworksCard}.
 	 */
 	public ExternalNetworksCard getSt_ExtNIC()
 	{
@@ -145,6 +146,7 @@ public class MakeStandardInternalComponents
 	 * Javadoc-TODO - Description
 	 * 
 	 * @return
+	 * 			Returns a standard {@link InternalNetworksCard}.
 	 */
 	public InternalNetworksCard getSt_IntNIC()
 	{
@@ -174,6 +176,7 @@ public class MakeStandardInternalComponents
 	 * Javadoc-TODO - Description
 	 * 
 	 * @return
+	 * 			Returns a new standard {@link GraphicsCard}.
 	 */
 	public GraphicsCard getSt_GPU()
 	{

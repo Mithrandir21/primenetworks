@@ -1,5 +1,6 @@
 package graphics.GUI.objectView.Software.EditSoftware;
 
+
 import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Software.SoftwareEditView;
@@ -28,15 +29,24 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import objects.Object;
+import objects.Software;
 import software.Antivirus;
 
+
 /**
- * TODO - Description NEEDED!
- *
- * @author Bahram Malaekeh
+ * A JPanel that will contain fields and options for a presentation and
+ * modification of an {@link Antivirus Antivirus} Software. The panel is made up
+ * of 3 JPanel ordered in a column.
  * 
+ * The first one contains the name and description of the object. 
+ * The second panel contains the specific software options. 
+ * The third panel contains the button that can remove the software
+ * from the computer.
+ * 
+ * @author Bahram Malaekeh
  */
-public class AntivirusEditView extends JPanel implements SoftwareEditView, ActionListener
+public class AntivirusEditView extends JPanel implements SoftwareEditView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -49,24 +59,26 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView, Actio
 
 	// The date the license expires
 	private JTextField expDate = new JTextField(10);
-	
+
 	// Whether or not the antivirus has been activated
 	private JCheckBox activated;
-	
+
 	// The actual license of the program
 	private JTextField license = new JTextField(100);
-	
-	
+
+
 	private Object mainObj;
-	
+
 	private Antivirus mainAV;
-	
-	
+
+
 	/**
-	 * TODO - Description NEEDED!
-	 *
+	 * Constructor for the software view.
+	 * 
 	 * @param obj
+	 * 			The main {@link Object object}.
 	 * @param av
+	 * 			The {@link Antivirus Antivirus} software.
 	 */
 	public AntivirusEditView(Object obj, Antivirus av)
 	{
@@ -102,7 +114,7 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView, Actio
 		c.gridheight = 1;
 		c.insets = new Insets(0, 10, 0, 10);
 
-		JPanel p2 = createSpesificInfo(mainAV);
+		JPanel p2 = createSpecificInfo(mainAV);
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
@@ -131,18 +143,19 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView, Actio
 
 		this.add(buttons, c);
 	}
-	
-	
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Creates the JPanel that will contain the {@link Software Software} 
+	 * specific options. The layout of the returned panel will 
+	 * be {@link SpringLayout}.
 	 */
-	private JPanel createSpesificInfo(Antivirus av)
+	private JPanel createSpecificInfo(Antivirus av)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[4];
-		
-		
+
+
 		labels[0] = new JLabel("Activated Date");
 		labels[0].setToolTipText("The date that the AV was activated.");
 
@@ -158,14 +171,14 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView, Actio
 
 		Dimension tfSize = new Dimension(90, 20);
 		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
-		
-		
+
+
 		// The Activated date
 		labels[0].setLabelFor(actDate);
 		actDate.setMaximumSize(tfSize);
 		actDate.setPreferredSize(tfSize);
 		Date parsedAct = null;
-		
+
 		try
 		{
 			parsedAct = format.parse(av.getActivationDate().toString());
@@ -175,21 +188,21 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView, Actio
 			// DO nothing.
 			System.out.println("øsdjfj");
 		}
-		
+
 		actDate.setText(parsedAct.toString());
 		actDate.setToolTipText(labels[0].getToolTipText());
 
 		panel.add(labels[0]);
 		panel.add(actDate);
 
-		
-		
+
+
 		// The Expiration date
 		labels[1].setLabelFor(expDate);
 		expDate.setMaximumSize(tfSize);
 		expDate.setPreferredSize(tfSize);
 		Date parsedExp = null;
-		
+
 		try
 		{
 			parsedExp = format.parse(av.getExpirationDate().toString());
@@ -199,15 +212,15 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView, Actio
 			// DO nothing.
 			System.out.println("øsdjfj");
 		}
-		
+
 		actDate.setText(parsedExp.toString());
 		actDate.setToolTipText(labels[1].getToolTipText());
 
 		panel.add(labels[0]);
 		panel.add(actDate);
-		
-		
-		
+
+
+
 		// Whether or not the AV has been avtivated.
 		labels[2].setLabelFor(activated);
 		activated = new JCheckBox();
@@ -220,9 +233,9 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView, Actio
 
 		panel.add(labels[2]);
 		panel.add(activated);
-		
-		
-		
+
+
+
 		// The license key
 		labels[3].setLabelFor(license);
 		license.setMaximumSize(tfSize);
@@ -233,9 +246,9 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView, Actio
 
 		panel.add(labels[3]);
 		panel.add(license);
-		
-		
-		
+
+
+
 		JLabel temp1 = new JLabel("");
 		temp1.setMaximumSize(tfSize);
 		temp1.setPreferredSize(tfSize);
@@ -247,38 +260,88 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView, Actio
 		JLabel temp3 = new JLabel("");
 		temp3.setMaximumSize(tfSize);
 		temp3.setPreferredSize(tfSize);
-		
+
 		// adding components so that the layout is right
 		panel.add(temp1);
 		panel.add(temp2);
 		panel.add(temp3);
-		
-		
+
+
 		// Lay out the panel.
 		SpringUtilities.makeCompactGrid(panel, 2, 6, // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-		
-		
-		
+
+
+
 		return panel;
 	}
-	
-	
-	
+
+
+
 
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
+		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
 		
+		if ( name.getText() != "" )
+		{
+			mainAV.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainAV.setDescription(desc.getText());
+		}
+		
+		if ( actDate.getText() != "" )
+		{
+			Date tempDate = null;
+			
+			try
+			{
+				tempDate = format.parse(actDate.getText());
+			}
+			catch ( ParseException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			mainAV.setActivationDate(tempDate);
+		}
+		
+		if ( expDate.getText() != "" )
+		{
+			Date tempDate = null;
+			
+			try
+			{
+				tempDate = format.parse(expDate.getText());
+			}
+			catch ( ParseException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			mainAV.setExpirationDate(tempDate);
+		}
+		
+		mainAV.setActivated(activated.isSelected());
+
+		if ( license.getText() != "" )
+		{
+			mainAV.setLicense(license.getText());
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

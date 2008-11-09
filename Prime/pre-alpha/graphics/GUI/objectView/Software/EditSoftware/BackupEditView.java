@@ -1,5 +1,6 @@
 package graphics.GUI.objectView.Software.EditSoftware;
 
+
 import graphics.ImageLocator;
 import graphics.GUI.objectView.Software.SoftwareEditView;
 import graphics.GUI.objectView.Software.SoftwareEditor;
@@ -23,23 +24,46 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import objects.Object;
+import objects.Software;
 import software.Backup;
 
-public class BackupEditView extends JPanel implements SoftwareEditView, ActionListener
+
+/**
+ * A JPanel that will contain fields and options for a presentation and
+ * modification of an {@link Backup Backup} Software. The panel is made up
+ * of 3 JPanel ordered in a column.
+ * 
+ * The first one contains the name and description of the object. 
+ * The second panel contains the specific software options. 
+ * The third panel contains the button that can remove the software
+ * from the computer.
+ * 
+ * @author Bahram Malaekeh
+ */
+public class BackupEditView extends JPanel implements SoftwareEditView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
 
 	// The description of the software object.
 	JTextArea desc = new JTextArea(3, 40);
-	
-	
-	
+
+
+
 	private Object mainObj;
-	
+
 	private Backup mainBack;
+
 	
-	
+	/**
+	 * Constructor for the software view.
+	 * 
+	 * @param obj
+	 * 			The main {@link Object object}.
+	 * @param back
+	 * 			The {@link Backup Backup} software.
+	 */
 	public BackupEditView(Object obj, Backup back)
 	{
 		mainObj = obj;
@@ -101,20 +125,21 @@ public class BackupEditView extends JPanel implements SoftwareEditView, ActionLi
 		c.gridheight = 1;
 		c.insets = new Insets(2, 10, 10, 10);
 
-		this.add(buttons, c);		
+		this.add(buttons, c);
 	}
-	
-	
+
+
 	/**
-	 * TODO - Description
-	 * 
+	 * Creates the JPanel that will contain the {@link Software Software} 
+	 * specific options. The layout of the returned panel will 
+	 * be {@link SpringLayout}.
 	 */
 	private JPanel createSpesificInfo(Backup back)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
-JLabel[] labels = new JLabel[4];
-		
-		
+		JLabel[] labels = new JLabel[4];
+
+
 		labels[0] = new JLabel("Activated Date");
 		labels[0].setToolTipText("The date that the AV was activated.");
 
@@ -129,27 +154,27 @@ JLabel[] labels = new JLabel[4];
 
 
 		Dimension tfSize = new Dimension(90, 20);
-		
-		
-		
-		
+
+
+
+
 		return panel;
 	}
-	
-	
+
+
 
 	@Override
 	public void save()
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

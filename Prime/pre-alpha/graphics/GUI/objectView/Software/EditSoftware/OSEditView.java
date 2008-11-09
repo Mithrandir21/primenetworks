@@ -20,7 +20,6 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -33,9 +32,22 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import objects.Object;
+import objects.Software;
 import software.OperatingSystem;
 
 
+/**
+ * A JPanel that will contain fields and options for a presentation and
+ * modification of an {@link OperatingSystem OperatingSystem} Software. 
+ * The panel is made up of 3 JPanel ordered in a column.
+ * 
+ * The first one contains the name and description of the object. 
+ * The second panel contains the specific software options. 
+ * The third panel contains the button that can remove the software
+ * from the computer.
+ * 
+ * @author Bahram Malaekeh
+ */
 public class OSEditView extends JPanel implements SoftwareEditView,
 		ActionListener
 {
@@ -65,6 +77,14 @@ public class OSEditView extends JPanel implements SoftwareEditView,
 	private OperatingSystem mainOS;
 
 
+	/**
+	 * Constructor for the software view.
+	 * 
+	 * @param obj
+	 * 			The main {@link Object object}.
+	 * @param OS
+	 * 			The {@link OperatingSystem OperatingSystem} software.
+	 */
 	public OSEditView(Object obj, OperatingSystem OS)
 	{
 		mainObj = obj;
@@ -131,7 +151,9 @@ public class OSEditView extends JPanel implements SoftwareEditView,
 
 
 	/**
-	 * TODO - Description
+	 * Creates the JPanel that will contain the {@link Software Software} 
+	 * specific options. The layout of the returned panel will 
+	 * be {@link SpringLayout}.
 	 */
 	private JPanel createSpesificInfo(OperatingSystem OS)
 	{
@@ -271,8 +293,26 @@ public class OSEditView extends JPanel implements SoftwareEditView,
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
+		if ( name.getText() != "" )
+		{
+			mainOS.setObjectName(name.getText());
+		}
 
+		if ( desc.getText() != "" )
+		{
+			mainOS.setDescription(desc.getText());
+		}
+		
+		if ( supportedFS.getSelectedIndex() != -1 )
+		{
+			mainOS.setSupportedFS(fsData);
+		}
+		
+		mainOS.setEncryptedFileSystem(encryptedFileSystem.isSelected());
+		
+		mainOS.setHasGUI(hasGUI.isSelected());
+		
+		mainOS.setIs64bit(is64bit.isSelected());
 	}
 
 	@Override

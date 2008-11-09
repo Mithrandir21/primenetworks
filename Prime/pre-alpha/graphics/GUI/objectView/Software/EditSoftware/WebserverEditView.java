@@ -23,8 +23,22 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import objects.Object;
+import objects.Software;
 import software.Webserver;
 
+
+/**
+ * A JPanel that will contain fields and options for a presentation and
+ * modification of an {@link Webserver Webserver} Software. The panel is made up
+ * of 3 JPanel ordered in a column.
+ * 
+ * The first one contains the name and description of the object. 
+ * The second panel contains the specific software options. 
+ * The third panel contains the button that can remove the software
+ * from the computer.
+ * 
+ * @author Bahram Malaekeh
+ */
 public class WebserverEditView extends JPanel implements SoftwareEditView, ActionListener
 {
 	// The name of the software object
@@ -39,7 +53,14 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 	
 	private Webserver mainWebSer;
 	
-	
+	/**
+	 * Constructor for the software view.
+	 * 
+	 * @param obj
+	 * 			The main {@link Object object}.
+	 * @param webserver
+	 * 			The {@link Webserver Webserver} software.
+	 */
 	public WebserverEditView(Object obj, Webserver webserver)
 	{
 		mainObj = obj;
@@ -106,8 +127,9 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 	
 	
 	/**
-	 * TODO - Description
-	 * 
+	 * Creates the JPanel that will contain the {@link Software Software} 
+	 * specific options. The layout of the returned panel will 
+	 * be {@link SpringLayout}.
 	 */
 	private JPanel createSpesificInfo(Webserver webserver)
 	{

@@ -21,7 +21,7 @@ public class ObjectDoesNotExistInContainer extends Exception
 
 
 	/**
-	 * Description NEEDED!
+	 * Constructor 
 	 * 
 	 * @param message
 	 * @param notFoundObject
