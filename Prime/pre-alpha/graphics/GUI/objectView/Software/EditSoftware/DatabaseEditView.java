@@ -161,7 +161,16 @@ public class DatabaseEditView extends JPanel implements SoftwareEditView, Action
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
+		if ( name.getText() != "" )
+		{
+			mainDB.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainDB.setDescription(desc.getText());
+		}
+
 		
 	}
 

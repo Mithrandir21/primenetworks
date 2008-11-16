@@ -353,7 +353,7 @@ public class InternalNICView extends JPanel implements HardwareView, ActionListe
 			IntNIC.setSupportedConnectionInterfaces(protocol.getSelectedItem().toString());
 		}
 
-		if ( supStandards.getSelectedIndex() == -1 )
+		if ( supStandards.getSelectedIndex() != -1 )
 		{
 			IntNIC.setSupportedStandards(standars);
 		}

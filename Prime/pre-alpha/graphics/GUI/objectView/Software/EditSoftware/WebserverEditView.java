@@ -162,8 +162,15 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
-		
+		if ( name.getText() != "" )
+		{
+			mainWebSer.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainWebSer.setDescription(desc.getText());
+		}
 	}
 
 	@Override

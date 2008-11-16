@@ -163,8 +163,15 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
-		
+		if ( name.getText() != "" )
+		{
+			mainSecSuite.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainSecSuite.setDescription(desc.getText());
+		}
 	}
 
 	@Override

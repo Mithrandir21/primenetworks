@@ -560,7 +560,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 	{
 		if ( e.getActionCommand().equals("edit") )
 		{
-			hwEditor = new HardwareEditor(givenObject);
+//			hwEditor = new HardwareEditor(givenObject);
 		}
 		else if ( e.getActionCommand().equals("newComp") )
 		{

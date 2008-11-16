@@ -162,8 +162,15 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
-		
+		if ( name.getText() != "" )
+		{
+			mainProxy.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainProxy.setDescription(desc.getText());
+		}
 	}
 
 	@Override

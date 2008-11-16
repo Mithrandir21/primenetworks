@@ -163,8 +163,15 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareEditView, Act
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
-		
+		if ( name.getText() != "" )
+		{
+			mainOffSuite.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainOffSuite.setDescription(desc.getText());
+		}
 	}
 
 	@Override

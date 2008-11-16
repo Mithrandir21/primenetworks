@@ -1,8 +1,10 @@
 package graphics.GUI.objectView.Software.EditSoftware;
 
+import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.objectView.Software.SoftwareEditView;
 import graphics.GUI.objectView.Software.SoftwareEditor;
+import graphics.GUI.objectView.Software.EditSoftware.EmailEditView.SharedListSelectionHandler;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -16,11 +18,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import objects.Object;
 import objects.Software;
@@ -46,6 +54,24 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 
 	// The description of the software object.
 	JTextArea desc = new JTextArea(3, 40);
+	
+	// Supported Operating systems
+	private JList supportedOS;
+
+	// List of operating systems
+	private String[] OSs;
+	
+	// Has network-layer firewall feature
+	private JCheckBox hasNetworkFirewall;
+
+	// Has stateful firewall feature
+	private JCheckBox hasStatefulFirewall;
+
+	// Has application-layer firewall feature
+	private JCheckBox hasApplicationFirewall;
+
+	// Has DPI, deep package inspections, firewall feature
+	private JCheckBox hasDPI;
 	
 	
 	
@@ -137,9 +163,10 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[4];
 		
-		
-		labels[0] = new JLabel("Activated Date");
-		labels[0].setToolTipText("The date that the AV was activated.");
+
+		labels[0] = new JLabel("Supported OS");
+		labels[0]
+				.setToolTipText("The supported Operating Systems by the software.");
 
 		labels[1] = new JLabel("Expiration Date");
 		labels[1].setToolTipText("The date that the AV will expire.");
@@ -154,6 +181,70 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		Dimension tfSize = new Dimension(90, 20);
 		
 		
+		// The supported operating systems by the Email software.
+		labels[0].setLabelFor(supportedOS);
+		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
+				"Windows Vista", "Linux", "Novell" };
+		supportedOS = new JList(listData);
+		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
+		listSelectionModel
+				.addListSelectionListener(new SharedListSelectionHandler());
+		JScrollPane listPane = new JScrollPane(supportedOS);
+		listPane.setMaximumSize(new Dimension(90, 60));
+		listPane.setPreferredSize(new Dimension(90, 60));
+		listSelectionModel
+				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+		if ( mainFW.getSupportedOperatingSystems() != null )
+		{
+			if ( mainFW.getSupportedOperatingSystems().length > 0 )
+			{
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
+						supportedOS, listData, mainFW
+								.getSupportedOperatingSystems()));
+			}
+		}
+
+		panel.add(labels[0]);
+		panel.add(listPane);
+		
+		
+		// Whether or not the software supports network firewall
+		labels[1].setLabelFor(hasNetworkFirewall);
+		hasNetworkFirewall = new JCheckBox();
+		hasNetworkFirewall.setMaximumSize(tfSize);
+		hasNetworkFirewall.setPreferredSize(tfSize);
+		hasNetworkFirewall.setToolTipText(labels[1].getToolTipText());
+		hasNetworkFirewall.setActionCommand("POP3");
+		hasNetworkFirewall.addActionListener(this);
+
+		hasNetworkFirewall.setSelected(mainFW.HasNetworkFirewall());
+
+		panel.add(labels[1]);
+		panel.add(hasNetworkFirewall);
+
+		
+		// Whether or not the software supports stateful firewall
+		labels[2].setLabelFor(hasStatefulFirewall);
+		hasStatefulFirewall = new JCheckBox();
+		hasStatefulFirewall.setMaximumSize(tfSize);
+		hasStatefulFirewall.setPreferredSize(tfSize);
+		hasStatefulFirewall.setToolTipText(labels[2].getToolTipText());
+		hasStatefulFirewall.setActionCommand("POP3");
+		hasStatefulFirewall.addActionListener(this);
+
+		hasNetworkFirewall.setSelected(mainFW.HasStatefulFirewall());
+
+		panel.add(labels[2]);
+		panel.add(hasNetworkFirewall);
+
+		// Has application-layer firewall feature
+		private JCheckBox hasApplicationFirewall;
+
+		// Has DPI, deep package inspections, firewall feature
+		private JCheckBox hasDPI;
+		
+		
 		
 		return panel;
 	}
@@ -163,8 +254,15 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
-		
+		if ( name.getText() != "" )
+		{
+			mainFW.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainFW.setDescription(desc.getText());
+		}
 	}
 
 	@Override
@@ -172,6 +270,43 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 	{
 		// TODO Auto-generated method stub
 		
+	}
+
+	
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 * 
+	 * @author Bahram Malaekeh
+	 */
+	class SharedListSelectionHandler implements ListSelectionListener
+	{
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
+		 * event.ListSelectionEvent)
+		 */
+		public void valueChanged(ListSelectionEvent e)
+		{
+			int[] indeces = supportedOS.getSelectedIndices();
+
+			if ( indeces.length == 0 )
+			{
+				OSs = null;
+			}
+			else
+			{
+				// Creates an array of strings with the length of the array with
+				// the selected indices.
+				OSs = new String[indeces.length];
+
+				// Find out which indexes are selected.
+				for ( int i = 0; i < indeces.length; i++ )
+				{
+					OSs[i] = (String) supportedOS.getSelectedValues()[i];
+				}
+			}
+		}
 	}
 
 }
