@@ -1,5 +1,6 @@
 package graphics.GUI.objectView.Software.EditSoftware;
 
+import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.objectView.Software.SoftwareEditView;
 import graphics.GUI.objectView.Software.SoftwareEditor;
@@ -16,11 +17,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import objects.Object;
 import objects.Software;
@@ -46,6 +53,41 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 
 	// The description of the software object.
 	JTextArea desc = new JTextArea(3, 40);
+	
+	// Supported Operating systems
+	private JList supportedOS;
+
+	// List of operating systems
+	private String[] OSs;
+	
+	// Has caching feature
+	private JCheckBox caching;
+
+	// Has Web proxy feature
+	private JCheckBox webProxy;
+
+	// Has Anonymizing proxy feature
+	private JCheckBox anonymizingProxy;
+
+	// Has transparent proxy feature
+	private JCheckBox transparentProxy;
+
+	// Has reverse proxy feature
+	private JCheckBox reverseProxy;
+
+
+	// DIFFERENT SUPPORTED FEATURES
+	// Supports IP version 6
+	private JCheckBox supportsIPv6;
+
+	// Supports SSL
+	private JCheckBox supportsSSL;
+
+	// Supports TLS
+	private JCheckBox supportsTSL;
+
+	// Supports HTTPS
+	private JCheckBox supportsHTTPS;
 	
 	
 	
@@ -154,6 +196,69 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 		
 		
 		
+		// The supported operating systems by the Email software.
+		labels[0].setLabelFor(supportedOS);
+		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
+				"Windows Vista", "Linux", "Novell" };
+		supportedOS = new JList(listData);
+		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
+		listSelectionModel
+				.addListSelectionListener(new SharedListSelectionHandler());
+		JScrollPane listPane = new JScrollPane(supportedOS);
+		listPane.setMaximumSize(new Dimension(90, 60));
+		listPane.setPreferredSize(new Dimension(90, 60));
+		listSelectionModel
+				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+		if ( mainProxy.getSupportedOperatingSystems() != null )
+		{
+			if ( mainProxy.getSupportedOperatingSystems().length > 0 )
+			{
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
+						supportedOS, listData, mainProxy
+								.getSupportedOperatingSystems()));
+			}
+		}
+
+		panel.add(labels[0]);
+		panel.add(listPane);
+		
+		
+		
+		
+		// Has caching feature
+		private JCheckBox caching;
+
+		// Has Web proxy feature
+		private JCheckBox webProxy;
+
+		// Has Anonymizing proxy feature
+		private JCheckBox anonymizingProxy;
+
+		// Has transparent proxy feature
+		private JCheckBox transparentProxy;
+
+		// Has reverse proxy feature
+		private JCheckBox reverseProxy;
+
+
+		// DIFFERENT SUPPORTED FEATURES
+		// Supports IP version 6
+		private JCheckBox supportsIPv6;
+
+		// Supports SSL
+		private JCheckBox supportsSSL;
+
+		// Supports TLS
+		private JCheckBox supportsTSL;
+
+		// Supports HTTPS
+		private JCheckBox supportsHTTPS;
+		
+		
+		
+		
+		
 		return panel;
 	}
 	
@@ -179,5 +284,40 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 * 
+	 * @author Bahram Malaekeh
+	 */
+	private class SharedListSelectionHandler implements ListSelectionListener
+	{
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
+		 * event.ListSelectionEvent)
+		 */
+		public void valueChanged(ListSelectionEvent e)
+		{
+			int[] indeces = supportedOS.getSelectedIndices();
 
+			if ( indeces.length == 0 )
+			{
+				OSs = null;
+			}
+			else
+			{
+				// Creates an array of strings with the length of the array with
+				// the selected indices.
+				OSs = new String[indeces.length];
+
+				// Find out which indexes are selected.
+				for ( int i = 0; i < indeces.length; i++ )
+				{
+					OSs[i] = (String) supportedOS.getSelectedValues()[i];
+				}
+			}
+		}
+	}
 }

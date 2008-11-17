@@ -8,10 +8,12 @@ import objects.Software;
 
 /**
  * A class representing a software firewall. This software is meant to run on a
- * spesific machine with the goal of separating different networks which are at
- * different trust leves. Its goal is to allow, deny or proxy any connection
+ * specific machine with the goal of separating different networks which are at
+ * different trust levels. Its goal is to allow, deny or proxy any connection
  * from one network to another according to the rules that are given to it by
  * the administrator.
+ * 
+ * FIXME - Description for all the class methods.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
