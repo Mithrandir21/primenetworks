@@ -75,7 +75,7 @@ public class Proxy extends Software implements Serializable
 	 * 
 	 * @return the anonymizingProxy
 	 */
-	public boolean isAnonymizingProxy()
+	public boolean hasAnonymizingProxy()
 	{
 
 		return anonymizingProxy;
@@ -89,7 +89,7 @@ public class Proxy extends Software implements Serializable
 	 * 
 	 * @return the caching
 	 */
-	public boolean isCaching()
+	public boolean hasCaching()
 	{
 
 		return caching;
@@ -103,7 +103,7 @@ public class Proxy extends Software implements Serializable
 	 * 
 	 * @return the reverseProxy
 	 */
-	public boolean isReverseProxy()
+	public boolean hasReverseProxy()
 	{
 
 		return reverseProxy;
@@ -117,7 +117,7 @@ public class Proxy extends Software implements Serializable
 	 * 
 	 * @return the supportsHTTPS
 	 */
-	public boolean isSupportsHTTPS()
+	public boolean supportsHTTPS()
 	{
 
 		return supportsHTTPS;
@@ -131,7 +131,7 @@ public class Proxy extends Software implements Serializable
 	 * 
 	 * @return the supportsIPv6
 	 */
-	public boolean isSupportsIPv6()
+	public boolean supportsIPv6()
 	{
 
 		return supportsIPv6;
@@ -145,7 +145,7 @@ public class Proxy extends Software implements Serializable
 	 * 
 	 * @return the supportsSSL
 	 */
-	public boolean isSupportsSSL()
+	public boolean supportsSSL()
 	{
 
 		return supportsSSL;
@@ -159,7 +159,7 @@ public class Proxy extends Software implements Serializable
 	 * 
 	 * @return the supportsTSL
 	 */
-	public boolean isSupportsTSL()
+	public boolean supportsTSL()
 	{
 
 		return supportsTSL;
@@ -173,7 +173,7 @@ public class Proxy extends Software implements Serializable
 	 * 
 	 * @return the transparentProxy
 	 */
-	public boolean isTransparentProxy()
+	public boolean hasTransparentProxy()
 	{
 
 		return transparentProxy;
@@ -187,7 +187,7 @@ public class Proxy extends Software implements Serializable
 	 * 
 	 * @return the webProxy
 	 */
-	public boolean isWebProxy()
+	public boolean hasWebProxy()
 	{
 
 		return webProxy;
@@ -195,7 +195,7 @@ public class Proxy extends Software implements Serializable
 
 
 
-
+	// SETTERS
 
 	/**
 	 * Description NEEDED!
@@ -219,7 +219,7 @@ public class Proxy extends Software implements Serializable
 	 * @param anonymizingProxy
 	 *            the anonymizingProxy to set
 	 */
-	public void setAnonymizingProxy(boolean anonymizingProxy)
+	public void setSupportsAnonymizingProxy(boolean anonymizingProxy)
 	{
 
 		this.anonymizingProxy = anonymizingProxy;
@@ -234,7 +234,7 @@ public class Proxy extends Software implements Serializable
 	 * @param caching
 	 *            the caching to set
 	 */
-	public void setCaching(boolean caching)
+	public void setSupportsCaching(boolean caching)
 	{
 
 		this.caching = caching;
@@ -249,7 +249,7 @@ public class Proxy extends Software implements Serializable
 	 * @param reverseProxy
 	 *            the reverseProxy to set
 	 */
-	public void setReverseProxy(boolean reverseProxy)
+	public void setSupportsReverseProxy(boolean reverseProxy)
 	{
 
 		this.reverseProxy = reverseProxy;
@@ -324,7 +324,7 @@ public class Proxy extends Software implements Serializable
 	 * @param transparentProxy
 	 *            the transparentProxy to set
 	 */
-	public void setTransparentProxy(boolean transparentProxy)
+	public void setSupportsTransparentProxy(boolean transparentProxy)
 	{
 
 		this.transparentProxy = transparentProxy;
@@ -339,7 +339,7 @@ public class Proxy extends Software implements Serializable
 	 * @param webProxy
 	 *            the webProxy to set
 	 */
-	public void setWebProxy(boolean webProxy)
+	public void setSupportsWebProxy(boolean webProxy)
 	{
 
 		this.webProxy = webProxy;

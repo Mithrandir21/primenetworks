@@ -19,9 +19,11 @@ import objects.Software;
 public class SecuritySuite extends Software implements Serializable
 {
 	/*
-	 * Datafields for an abstract Security Suite These will contain the values
-	 * of any Security Suite object
+	 * Datafields for an Security Suite.
+	 * These will contain the values of any Security Suite object.
 	 */
+	// Supported Operating systems
+	private String[] supportedOperatingSystems;
 
 	// Whether or not the security suite has been activated
 	private boolean activated;
@@ -81,10 +83,21 @@ public class SecuritySuite extends Software implements Serializable
 	// GET METHODES
 
 	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 *
+	 * @return the supportedOperatingSystems
+	 */
+	public String[] getSupportedOperatingSystems()
+	{
+		return supportedOperatingSystems;
+	}
+
+
+	/**
 	 * Get whether or not the suite has been activated.
 	 * 
 	 */
-	public boolean getIsActivated()
+	public boolean isActivated()
 	{
 		return activated;
 	}
@@ -104,7 +117,7 @@ public class SecuritySuite extends Software implements Serializable
 	 * Get whether or not the suite has an antivirus.
 	 * 
 	 */
-	public boolean getHasAntivirus()
+	public boolean hasAntivirus()
 	{
 		return hasAntivirus;
 	}
@@ -114,7 +127,7 @@ public class SecuritySuite extends Software implements Serializable
 	 * Get whether or not the suite has a firewall.
 	 * 
 	 */
-	public boolean getHasFirewall()
+	public boolean hasFirewall()
 	{
 		return hasFirewall;
 	}
@@ -124,7 +137,7 @@ public class SecuritySuite extends Software implements Serializable
 	 * Get whether or not the suite has a proxy.
 	 * 
 	 */
-	public boolean getHasProxy()
+	public boolean hasProxy()
 	{
 		return hasProxy;
 	}
@@ -150,7 +163,19 @@ public class SecuritySuite extends Software implements Serializable
 	}
 
 
+	
 	// SET METHODES
+
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 *
+	 * @param supportedOperatingSystems the supportedOperatingSystems to set
+	 */
+	public void setSupportedOperatingSystems(String[] supportedOperatingSystems)
+	{
+		this.supportedOperatingSystems = supportedOperatingSystems;
+	}
+
 
 	/**
 	 * Sets the suite to activated.

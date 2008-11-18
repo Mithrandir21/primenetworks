@@ -16,9 +16,6 @@ public class Webserver extends Software implements Serializable
 	// Supported Operating systems
 	private String[] supportedOperatingSystems;
 
-	// TODO - Create function to add supported OSs
-
-
 	// Supports Virtual hosting feature
 	private boolean hasVirtualHosting;
 
@@ -38,10 +35,10 @@ public class Webserver extends Software implements Serializable
 
 
 	// SUPPORT FOR HTTPS
-	// Supports SSL
+	// Supports SSL, Secure Sockets Layers
 	private boolean supportsSSL;
 
-	// Supports TSL
+	// Supports TSL, Transport Layer Security
 	private boolean supportsTSL;
 
 
@@ -125,7 +122,7 @@ public class Webserver extends Software implements Serializable
 	 * 
 	 * @return the supportsASP
 	 */
-	public boolean isSupportsASP()
+	public boolean supportsASP()
 	{
 
 		return supportsASP;
@@ -138,7 +135,7 @@ public class Webserver extends Software implements Serializable
 	 * 
 	 * @return the supportsASPnet
 	 */
-	public boolean isSupportsASPnet()
+	public boolean supportsASPnet()
 	{
 
 		return supportsASPnet;
@@ -151,7 +148,7 @@ public class Webserver extends Software implements Serializable
 	 * 
 	 * @return the supportsBasic
 	 */
-	public boolean isSupportsBasic()
+	public boolean supportsBasic()
 	{
 
 		return supportsBasic;
@@ -164,7 +161,7 @@ public class Webserver extends Software implements Serializable
 	 * 
 	 * @return the supportsCGI
 	 */
-	public boolean isSupportsCGI()
+	public boolean supportsCGI()
 	{
 
 		return supportsCGI;
@@ -177,7 +174,7 @@ public class Webserver extends Software implements Serializable
 	 * 
 	 * @return the supportsDigest
 	 */
-	public boolean isSupportsDigest()
+	public boolean supportsDigest()
 	{
 
 		return supportsDigest;
@@ -190,7 +187,7 @@ public class Webserver extends Software implements Serializable
 	 * 
 	 * @return the supportsFastCGI
 	 */
-	public boolean isSupportsFastCGI()
+	public boolean supportsFastCGI()
 	{
 
 		return supportsFastCGI;
@@ -203,7 +200,7 @@ public class Webserver extends Software implements Serializable
 	 * 
 	 * @return the supportsIPv6
 	 */
-	public boolean isSupportsIPv6()
+	public boolean supportsIPv6()
 	{
 
 		return supportsIPv6;
@@ -216,7 +213,7 @@ public class Webserver extends Software implements Serializable
 	 * 
 	 * @return the supportsJSP
 	 */
-	public boolean isSupportsJSP()
+	public boolean supportsJSP()
 	{
 
 		return supportsJSP;
@@ -229,7 +226,7 @@ public class Webserver extends Software implements Serializable
 	 * 
 	 * @return the supportsPHP
 	 */
-	public boolean isSupportsPHP()
+	public boolean supportsPHP()
 	{
 
 		return supportsPHP;
@@ -242,7 +239,7 @@ public class Webserver extends Software implements Serializable
 	 * 
 	 * @return the supportsSCGI
 	 */
-	public boolean isSupportsSCGI()
+	public boolean supportsSCGI()
 	{
 
 		return supportsSCGI;
@@ -255,7 +252,7 @@ public class Webserver extends Software implements Serializable
 	 * 
 	 * @return the supportsSSI
 	 */
-	public boolean isSupportsSSI()
+	public boolean supportsSSI()
 	{
 
 		return supportsSSI;
@@ -268,7 +265,7 @@ public class Webserver extends Software implements Serializable
 	 * 
 	 * @return the supportsSSL
 	 */
-	public boolean isSupportsSSL()
+	public boolean supportsSSL()
 	{
 
 		return supportsSSL;
@@ -281,7 +278,7 @@ public class Webserver extends Software implements Serializable
 	 * 
 	 * @return the supportsTSL
 	 */
-	public boolean isSupportsTSL()
+	public boolean supportsTSL()
 	{
 
 		return supportsTSL;

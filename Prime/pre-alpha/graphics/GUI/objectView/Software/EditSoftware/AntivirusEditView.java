@@ -186,7 +186,7 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView,
 		catch ( ParseException e )
 		{
 			// DO nothing.
-			System.out.println("øsdjfj");
+			System.out.println("Error - AntivirusEditView - Activated Date");
 		}
 
 		actDate.setText(parsedAct.toString());
@@ -210,14 +210,14 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView,
 		catch ( ParseException e )
 		{
 			// DO nothing.
-			System.out.println("øsdjfj");
+			System.out.println("Error - AntivirusEditView - Expiration Date");
 		}
 
-		actDate.setText(parsedExp.toString());
-		actDate.setToolTipText(labels[1].getToolTipText());
+		expDate.setText(parsedExp.toString());
+		expDate.setToolTipText(labels[1].getToolTipText());
 
-		panel.add(labels[0]);
-		panel.add(actDate);
+		panel.add(labels[1]);
+		panel.add(expDate);
 
 
 
