@@ -76,10 +76,6 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 	
 
 
-
-
-
-
 	// NON-FIREWALLING FEATURE
 	// Has proxy feature
 	private JCheckBox hasProxy;

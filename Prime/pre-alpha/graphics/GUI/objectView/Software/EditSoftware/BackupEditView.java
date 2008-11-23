@@ -1,6 +1,7 @@
 package graphics.GUI.objectView.Software.EditSoftware;
 
 
+import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.objectView.Software.SoftwareEditView;
 import graphics.GUI.objectView.Software.SoftwareEditor;
@@ -17,11 +18,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import objects.Object;
 import objects.Software;
@@ -44,12 +51,32 @@ public class BackupEditView extends JPanel implements SoftwareEditView,
 		ActionListener
 {
 	// The name of the software object
-	JTextField name = new JTextField(25);
+	private JTextField name = new JTextField(25);
 
 	// The description of the software object.
-	JTextArea desc = new JTextArea(3, 40);
+	private JTextArea desc = new JTextArea(3, 40);
+	
+	// Supported Operating systems
+	private JList supportedOS;
 
+	// List of operating systems
+	private String[] OSs;
 
+	// The type of backup
+	private JTextField backupType;
+	
+	// Whether or not the software can use compression
+	private JCheckBox compression;
+	
+	// Whether or not the software can use encryption
+	private JCheckBox encryption;
+	
+	// The number of copies keeps
+	private JTextField duplicate;	
+		
+	
+	
+	
 
 	private Object mainObj;
 
@@ -154,7 +181,88 @@ public class BackupEditView extends JPanel implements SoftwareEditView,
 
 
 		Dimension tfSize = new Dimension(90, 20);
+		
+		
+		// The supported operating systems by the Email software.
+		labels[0].setLabelFor(supportedOS);
+		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
+				"Windows Vista", "Linux", "Novell" };
+		supportedOS = new JList(listData);
+		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
+		listSelectionModel
+				.addListSelectionListener(new SharedListSelectionHandler());
+		JScrollPane listPane = new JScrollPane(supportedOS);
+		listPane.setMaximumSize(new Dimension(90, 60));
+		listPane.setPreferredSize(new Dimension(90, 60));
+		listSelectionModel
+				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
+		if ( mainBack.getSupportedOperatingSystems() != null )
+		{
+			if ( mainBack.getSupportedOperatingSystems().length > 0 )
+			{
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
+						supportedOS, listData, mainBack
+								.getSupportedOperatingSystems()));
+			}
+		}
+
+		panel.add(labels[0]);
+		panel.add(listPane);
+		
+		
+		// The type of backup
+		labels[1].setLabelFor(backupType);
+		backupType.setMaximumSize(tfSize);
+		backupType.setPreferredSize(tfSize);
+		backupType.setText(mainBack.getBackupType());
+		backupType.setToolTipText(labels[1].getToolTipText());
+
+
+		panel.add(labels[1]);
+		panel.add(backupType);
+		
+		
+		// Whether or not the software can use compression
+		labels[2].setLabelFor(compression);
+		compression = new JCheckBox();
+		compression.setMaximumSize(tfSize);
+		compression.setPreferredSize(tfSize);
+		compression.setToolTipText(labels[2].getToolTipText());
+		compression.setActionCommand("SupportsCompression");
+		compression.addActionListener(this);
+
+		compression.setSelected(mainBack.supportsCompression());
+
+		panel.add(labels[2]);
+		panel.add(compression);
+		
+		
+		// Whether or not the software can use encryption
+		labels[3].setLabelFor(encryption);
+		encryption = new JCheckBox();
+		encryption.setMaximumSize(tfSize);
+		encryption.setPreferredSize(tfSize);
+		encryption.setToolTipText(labels[3].getToolTipText());
+		encryption.setActionCommand("SupportsEncryption");
+		encryption.addActionListener(this);
+
+		encryption.setSelected(mainBack.supportsEncryption());
+
+		panel.add(labels[3]);
+		panel.add(encryption);
+		
+		
+		// The number of copies keeps
+		labels[4].setLabelFor(duplicate);
+		duplicate.setMaximumSize(tfSize);
+		duplicate.setPreferredSize(tfSize);
+		duplicate.setText(mainBack.getDuplicate() + "");
+		duplicate.setToolTipText(labels[4].getToolTipText());
+
+
+		panel.add(labels[4]);
+		panel.add(duplicate);
 
 
 
@@ -166,8 +274,22 @@ public class BackupEditView extends JPanel implements SoftwareEditView,
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
+		if ( name.getText() != "" )
+		{
+			mainBack.setObjectName(name.getText());
+		}
 
+		if ( desc.getText() != "" )
+		{
+			mainBack.setDescription(desc.getText());
+		}
+		
+		if ( supportedOS.getSelectedIndex() != -1 )
+		{
+			mainBack.setSupportedOperatingSystems(OSs);
+		}
+		
+		jhf
 	}
 
 	@Override
@@ -177,4 +299,40 @@ public class BackupEditView extends JPanel implements SoftwareEditView,
 
 	}
 
+	
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 * 
+	 * @author Bahram Malaekeh
+	 */
+	private class SharedListSelectionHandler implements ListSelectionListener
+	{
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
+		 * event.ListSelectionEvent)
+		 */
+		public void valueChanged(ListSelectionEvent e)
+		{
+			int[] indeces = supportedOS.getSelectedIndices();
+
+			if ( indeces.length == 0 )
+			{
+				OSs = null;
+			}
+			else
+			{
+				// Creates an array of strings with the length of the array with
+				// the selected indices.
+				OSs = new String[indeces.length];
+
+				// Find out which indexes are selected.
+				for ( int i = 0; i < indeces.length; i++ )
+				{
+					OSs[i] = (String) supportedOS.getSelectedValues()[i];
+				}
+			}
+		}
+	}
 }
