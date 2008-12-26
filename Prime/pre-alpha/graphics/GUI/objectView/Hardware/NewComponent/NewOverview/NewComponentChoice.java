@@ -38,9 +38,6 @@ public class NewComponentChoice extends JFrame
 		super("New Component");
 
 
-
-
-
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 

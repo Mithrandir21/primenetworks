@@ -87,6 +87,9 @@ public class PrimeMain1 extends JFrame
 
 	// A pointer to where all standard internal components are kept.
 	public static MakeStandardInternalComponents standard_internal_components = new MakeStandardInternalComponents();
+	
+	// A pointer to where all standard softwares are kept.
+	public static MakeStandardSoftware standard_software = new MakeStandardSoftware();
 
 	// The variable for the object that is in view.
 	private static ArrayList<ObjectView> objView = new ArrayList<ObjectView>(1);

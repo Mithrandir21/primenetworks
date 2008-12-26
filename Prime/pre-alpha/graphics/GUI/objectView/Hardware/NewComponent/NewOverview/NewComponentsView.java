@@ -91,9 +91,6 @@ public class NewComponentsView extends JPanel implements MouseListener
 		this.setLayout(new GridLayout(0, 2, 3, 5));
 
 
-
-
-
 		ImageIcon mbtemp = ImageLocator.getImageIconObject("Motherboard");
 
 		String[] mbinfo = new String[5];
@@ -548,8 +545,6 @@ public class NewComponentsView extends JPanel implements MouseListener
 
 
 
-
-
 	@Override
 	public void mouseEntered(MouseEvent e)
 	{
@@ -637,8 +632,6 @@ public class NewComponentsView extends JPanel implements MouseListener
 			extNICPanel.setBorder(normal);
 		}
 	}
-
-
 
 
 
