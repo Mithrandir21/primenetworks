@@ -53,14 +53,14 @@ public class ProxyServer extends Servers implements Serializable
 	 * @param ProxySWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public ProxyServer(String Name, String Desc, String ProxySWname, String ProxySWdesc,
-			String ProxySWversion)
+	public ProxyServer(String Name, String Desc, String ProxySWname,
+			String ProxySWdesc, String ProxySWversion)
 	{
 		super(Name, Desc);
 
 		// Creates a Proxy software object
 		Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
-		Software[] sw = {Proxy};
+		Software[] sw = { Proxy };
 		super.setSoftware(sw);
 	}
 
@@ -80,14 +80,14 @@ public class ProxyServer extends Servers implements Serializable
 	 * @param ProxySWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public ProxyServer(String Name, String Desc, String[] SupConInt, String ProxySWname,
-			String ProxySWdesc, String ProxySWversion)
+	public ProxyServer(String Name, String Desc, String[] SupConInt,
+			String ProxySWname, String ProxySWdesc, String ProxySWversion)
 	{
 		super(Name, Desc, SupConInt);
 
 		// Creates a Proxy software object
 		Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
-		Software[] sw = {Proxy};
+		Software[] sw = { Proxy };
 		super.setSoftware(sw);
 	}
 
@@ -108,14 +108,14 @@ public class ProxyServer extends Servers implements Serializable
 	 * @param ProxySWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public ProxyServer(String Name, String Desc, Object[] DesktopComponents, String ProxySWname,
-			String ProxySWdesc, String ProxySWversion)
+	public ProxyServer(String Name, String Desc, Object[] DesktopComponents,
+			String ProxySWname, String ProxySWdesc, String ProxySWversion)
 	{
 		super(Name, Desc, DesktopComponents);
 
 		// Creates a Proxy software object
 		Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
-		Software[] sw = {Proxy};
+		Software[] sw = { Proxy };
 		super.setSoftware(sw);
 	}
 
@@ -136,14 +136,15 @@ public class ProxyServer extends Servers implements Serializable
 	 * @param ProxySWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public ProxyServer(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents,
-			String ProxySWname, String ProxySWdesc, String ProxySWversion)
+	public ProxyServer(String Name, String Desc, String[] SupConInt,
+			Object[] DesktopComponents, String ProxySWname, String ProxySWdesc,
+			String ProxySWversion)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 
 		// Creates a Proxy software object
 		Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
-		Software[] sw = {Proxy};
+		Software[] sw = { Proxy };
 		super.setSoftware(sw);
 	}
 
@@ -222,7 +223,8 @@ public class ProxyServer extends Servers implements Serializable
 	 * Set an array of string with the protocols the device supports for remote
 	 * access.
 	 */
-	public void setSupportedRemoteAccessProtocols(String[] supportedRemoteAccessProtocols)
+	public void setSupportedRemoteAccessProtocols(
+			String[] supportedRemoteAccessProtocols)
 	{
 
 		this.supportedRemoteAccessProtocols = supportedRemoteAccessProtocols;
@@ -263,7 +265,8 @@ public class ProxyServer extends Servers implements Serializable
 	 * @param NewProtocols
 	 *            An array of new remote access protocols.
 	 */
-	public void addRemoteAccessProtocols(String[] NewProtocols) throws Exception
+	public void addRemoteAccessProtocols(String[] NewProtocols)
+			throws Exception
 	{
 		supportedRemoteAccessProtocols = ArrayManagment.addItems(NewProtocols,
 				supportedRemoteAccessProtocols);
@@ -282,7 +285,7 @@ public class ProxyServer extends Servers implements Serializable
 	public void removeRemoteAccessProtocols(String[] ToBeRemoved)
 			throws StringNotFoundInArrayException
 	{
-		supportedRemoteAccessProtocols = ArrayManagment.removeItems(ToBeRemoved,
-				supportedRemoteAccessProtocols);
+		supportedRemoteAccessProtocols = ArrayManagment.removeItems(
+				ToBeRemoved, supportedRemoteAccessProtocols);
 	}
 }

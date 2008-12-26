@@ -40,7 +40,8 @@ public class Fax extends ExternalHardware implements Serializable
 	 *            Connection interfaces supported by the fax. An array of
 	 *            Strings.
 	 */
-	public Fax(String Name, String Desc, String FfaxType, String[] FconnectionInterfaces)
+	public Fax(String Name, String Desc, String FfaxType,
+			String[] FconnectionInterfaces)
 	{
 		super(Name, Desc, FconnectionInterfaces);
 
@@ -54,7 +55,6 @@ public class Fax extends ExternalHardware implements Serializable
 
 	/**
 	 * Get type of fax. ink or laser.
-	 * 
 	 */
 	public String getFaxType()
 	{
@@ -64,7 +64,6 @@ public class Fax extends ExternalHardware implements Serializable
 
 	/**
 	 * Get print outs per minute.
-	 * 
 	 */
 	public int getPagesPerMinute()
 	{
@@ -76,7 +75,6 @@ public class Fax extends ExternalHardware implements Serializable
 
 	/**
 	 * Sets the type of fax. Ink or laser.
-	 * 
 	 */
 	public void setFaxType(String FfaxType)
 	{
@@ -86,7 +84,6 @@ public class Fax extends ExternalHardware implements Serializable
 
 	/**
 	 * Sets pages per minute for a fax.
-	 * 
 	 */
 	public void setPagesPerMinute(int Pppm)
 	{

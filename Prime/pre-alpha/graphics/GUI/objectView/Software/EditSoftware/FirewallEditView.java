@@ -1,11 +1,11 @@
 package graphics.GUI.objectView.Software.EditSoftware;
 
+
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Software.SoftwareEditView;
 import graphics.GUI.objectView.Software.SoftwareEditor;
-import graphics.GUI.objectView.Software.EditSoftware.EmailEditView.SharedListSelectionHandler;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -39,29 +39,28 @@ import software.Firewall;
 /**
  * A JPanel that will contain fields and options for a presentation and
  * modification of an {@link Firewall Firewall} Software. The panel is made up
- * of 3 JPanel ordered in a column.
- * 
- * The first one contains the name and description of the object. 
- * The second panel contains the specific software options. 
- * The third panel contains the button that can remove the software
+ * of 3 JPanel ordered in a column. The first one contains the name and
+ * description of the object. The second panel contains the specific software
+ * options. The third panel contains the button that can remove the software
  * from the computer.
  * 
  * @author Bahram Malaekeh
  */
-public class FirewallEditView extends JPanel implements SoftwareEditView, ActionListener
+public class FirewallEditView extends JPanel implements SoftwareEditView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
 
 	// The description of the software object.
 	JTextArea desc = new JTextArea(3, 40);
-	
+
 	// Supported Operating systems
 	private JList supportedOS;
 
 	// List of operating systems
 	private String[] OSs;
-	
+
 	// Has network-layer firewall feature
 	private JCheckBox hasNetworkFirewall;
 
@@ -73,7 +72,7 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 
 	// Has DPI, deep package inspections, firewall feature
 	private JCheckBox hasDPI;
-	
+
 
 
 	// NON-FIREWALLING FEATURE
@@ -123,21 +122,21 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 	// Supports TP, tarpit
 	private JCheckBox supportsTarpit;
 
-	
-	
-	
+
+
+
 	private Object mainObj;
-	
+
 	private Firewall mainFW;
-	
-	
+
+
 	/**
 	 * Constructor for the software view.
 	 * 
 	 * @param obj
-	 * 			The main {@link Object object}.
+	 *            The main {@link Object object}.
 	 * @param fw
-	 * 			The {@link Firewall Firewall} software.
+	 *            The {@link Firewall Firewall} software.
 	 */
 	public FirewallEditView(Object obj, Firewall fw)
 	{
@@ -200,84 +199,100 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		c.gridheight = 1;
 		c.insets = new Insets(2, 10, 10, 10);
 
-		this.add(buttons, c);	
+		this.add(buttons, c);
 	}
-	
-	
+
+
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software} 
-	 * specific options. The layout of the returned panel will 
-	 * be {@link SpringLayout}.
+	 * Creates the JPanel that will contain the {@link Software Software}
+	 * specific options. The layout of the returned panel will be
+	 * {@link SpringLayout}.
 	 */
 	private JPanel createSpesificInfo(Firewall fw)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[19];
-		
+
 
 		labels[0] = new JLabel("Supported OS");
 		labels[0]
 				.setToolTipText("The supported Operating Systems by the software.");
 
 		labels[1] = new JLabel("Network Firewall");
-		labels[1].setToolTipText("Whether or not the software supports network firewall.");
+		labels[1]
+				.setToolTipText("Whether or not the software supports network firewall.");
 
 		labels[2] = new JLabel("Stateful Firewall");
-		labels[2].setToolTipText("Whether or not the software supports stateful firewall.");
+		labels[2]
+				.setToolTipText("Whether or not the software supports stateful firewall.");
 
 		labels[3] = new JLabel("Supports DPI");
-		labels[3].setToolTipText("Whether or not the software supports DPI, Deep package inspection.");
-		
+		labels[3]
+				.setToolTipText("Whether or not the software supports DPI, Deep package inspection.");
+
 		labels[4] = new JLabel("Proxy");
-		labels[4].setToolTipText("Whether or not the software has proxy feature.");
+		labels[4]
+				.setToolTipText("Whether or not the software has proxy feature.");
 
 		labels[5] = new JLabel("NAT");
 		labels[5].setToolTipText("Whether or not the software has NAT feature");
 
 		labels[6] = new JLabel("VPN");
 		labels[6].setToolTipText("Whether or not the software has VPN feature");
-		
+
 		labels[7] = new JLabel("Antivirus");
-		labels[7].setToolTipText("Whether or not the software has antivirus feature");
+		labels[7]
+				.setToolTipText("Whether or not the software has antivirus feature");
 
 		labels[8] = new JLabel("IDS");
-		labels[8].setToolTipText("Whether or not the software has IDS, Intrusion Detection System, feature.");
+		labels[8]
+				.setToolTipText("Whether or not the software has IDS, Intrusion Detection System, feature.");
 
 		labels[9] = new JLabel("Modularity");
-		labels[9].setToolTipText("Whether or not the software supports Modularity, third-party modules to extend functionality.");
-		
+		labels[9]
+				.setToolTipText("Whether or not the software supports Modularity, third-party modules to extend functionality.");
+
 		labels[10] = new JLabel("Supports IPv6");
-		labels[10].setToolTipText("Whether or not the software supports IP version 6.");
+		labels[10]
+				.setToolTipText("Whether or not the software supports IP version 6.");
 
 		labels[11] = new JLabel("Supports TTL");
-		labels[11].setToolTipText("Whether or not the software supports TTL, Transparent to traceroute.");
+		labels[11]
+				.setToolTipText("Whether or not the software supports TTL, Transparent to traceroute.");
 
 		labels[12] = new JLabel("Supports RWA");
-		labels[12].setToolTipText("Whether or not the software supports RWA, Reject-with-answer.");
-		
+		labels[12]
+				.setToolTipText("Whether or not the software supports RWA, Reject-with-answer.");
+
 		labels[13] = new JLabel("Supports DMZ");
-		labels[13].setToolTipText("Whether or not the software supports a DMZ, de-militarized zone.");
+		labels[13]
+				.setToolTipText("Whether or not the software supports a DMZ, de-militarized zone.");
 
 		labels[14] = new JLabel("Supports ToD Filter");
-		labels[14].setToolTipText("Whether or not the software supports ToDFilter, Time of day filter.");
+		labels[14]
+				.setToolTipText("Whether or not the software supports ToDFilter, Time of day filter.");
 
 		labels[15] = new JLabel("Supports Forwarding");
-		labels[15].setToolTipText("Whether or not the software supports forwarding.");
-		
+		labels[15]
+				.setToolTipText("Whether or not the software supports forwarding.");
+
 		labels[16] = new JLabel("Supports Port Forwarding");
-		labels[16].setToolTipText("Whether or not the software supports port forwarding.");
+		labels[16]
+				.setToolTipText("Whether or not the software supports port forwarding.");
 
 		labels[17] = new JLabel("Supports QoS");
-		labels[17].setToolTipText("Whether or not the software supports QoS, quality of service.");
+		labels[17]
+				.setToolTipText("Whether or not the software supports QoS, quality of service.");
 
 		labels[18] = new JLabel("Supports Tarpit");
-		labels[18].setToolTipText("Whether or not the software supports TP, tarpit.");
-		
+		labels[18]
+				.setToolTipText("Whether or not the software supports TP, tarpit.");
+
 
 
 		Dimension tfSize = new Dimension(90, 20);
-		
-		
+
+
 		// The supported operating systems by the Email software.
 		labels[0].setLabelFor(supportedOS);
 		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
@@ -304,8 +319,8 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		
-		
+
+
 		// Whether or not the software supports network firewall
 		labels[1].setLabelFor(hasNetworkFirewall);
 		hasNetworkFirewall = new JCheckBox();
@@ -320,7 +335,7 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		panel.add(labels[1]);
 		panel.add(hasNetworkFirewall);
 
-		
+
 		// Whether or not the software supports stateful firewall
 		labels[2].setLabelFor(hasStatefulFirewall);
 		hasStatefulFirewall = new JCheckBox();
@@ -350,9 +365,9 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 
 		panel.add(labels[3]);
 		panel.add(hasDPI);
-		
-		
-		
+
+
+
 		// Whether or not the software has proxy feature
 		labels[4].setLabelFor(hasProxy);
 		hasProxy = new JCheckBox();
@@ -366,8 +381,8 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 
 		panel.add(labels[4]);
 		panel.add(hasProxy);
-		
-		
+
+
 		// Whether or not the software has NAT feature
 		labels[5].setLabelFor(hasNAT);
 		hasNAT = new JCheckBox();
@@ -381,8 +396,8 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 
 		panel.add(labels[5]);
 		panel.add(hasNAT);
-		
-		
+
+
 		// Whether or not the software has VPN feature
 		labels[6].setLabelFor(hasVPN);
 		hasVPN = new JCheckBox();
@@ -397,7 +412,7 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		panel.add(labels[6]);
 		panel.add(hasVPN);
 
-		
+
 		// Whether or not the software has antivirus feature
 		labels[7].setLabelFor(hasAntivirus);
 		hasAntivirus = new JCheckBox();
@@ -412,8 +427,9 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		panel.add(labels[7]);
 		panel.add(hasAntivirus);
 
-		
-		// Whether or not the software has IDS, Intrusion Detection System, feature
+
+		// Whether or not the software has IDS, Intrusion Detection System,
+		// feature
 		labels[8].setLabelFor(hasIDS);
 		hasIDS = new JCheckBox();
 		hasIDS.setMaximumSize(tfSize);
@@ -426,12 +442,13 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 
 		panel.add(labels[8]);
 		panel.add(hasIDS);
-		
-		
+
+
 
 		// DIFFERENT SUPPORT FEATURES
-		
-		// Whether or not the software supports Modularity, third-party modules to extend functionality
+
+		// Whether or not the software supports Modularity, third-party modules
+		// to extend functionality
 		labels[9].setLabelFor(supportsModularity);
 		supportsModularity = new JCheckBox();
 		supportsModularity.setMaximumSize(tfSize);
@@ -445,7 +462,7 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		panel.add(labels[9]);
 		panel.add(supportsModularity);
 
-		
+
 		// Whether or not the software supports IP version 6
 		labels[10].setLabelFor(supportsIPv6);
 		supportsIPv6 = new JCheckBox();
@@ -460,7 +477,7 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		panel.add(labels[10]);
 		panel.add(supportsIPv6);
 
-		
+
 		// Whether or not the software supports TTL, Transparent to traceroute
 		labels[11].setLabelFor(supportsTTL);
 		supportsTTL = new JCheckBox();
@@ -475,7 +492,7 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		panel.add(labels[11]);
 		panel.add(supportsTTL);
 
-		
+
 		// Whether or not the software supports RWA, Reject-with-answer
 		labels[12].setLabelFor(supportsRWA);
 		supportsRWA = new JCheckBox();
@@ -490,7 +507,7 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		panel.add(labels[12]);
 		panel.add(supportsRWA);
 
-		
+
 		// Whether or not the software supports a DMZ, de-militarized zone
 		labels[13].setLabelFor(supportsDMZ);
 		supportsDMZ = new JCheckBox();
@@ -505,7 +522,7 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		panel.add(labels[13]);
 		panel.add(supportsDMZ);
 
-		
+
 		// Whether or not the software supports ToDFilter, Time of day filter
 		labels[14].setLabelFor(supportsToD);
 		supportsToD = new JCheckBox();
@@ -520,7 +537,7 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		panel.add(labels[14]);
 		panel.add(supportsToD);
 
-		
+
 		// Whether or not the software supports forwarding
 		labels[15].setLabelFor(supportsForwarding);
 		supportsForwarding = new JCheckBox();
@@ -535,7 +552,7 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		panel.add(labels[15]);
 		panel.add(supportsForwarding);
 
-		
+
 		// Whether or not the software supports port forwarding
 		labels[16].setLabelFor(supportsPortForwarding);
 		supportsPortForwarding = new JCheckBox();
@@ -550,7 +567,7 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		panel.add(labels[16]);
 		panel.add(supportsPortForwarding);
 
-		
+
 		// Whether or not the software supports QoS, quality of service
 		labels[17].setLabelFor(supportsQos);
 		supportsQos = new JCheckBox();
@@ -565,7 +582,7 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		panel.add(labels[17]);
 		panel.add(supportsQos);
 
-		
+
 		// Whether or not the software supports TP, tarpit
 		labels[18].setLabelFor(supportsTarpit);
 		supportsTarpit = new JCheckBox();
@@ -579,9 +596,9 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 
 		panel.add(labels[18]);
 		panel.add(supportsTarpit);
-		
-		
-		
+
+
+
 		JLabel temp1 = new JLabel("");
 		temp1.setMaximumSize(tfSize);
 		temp1.setPreferredSize(tfSize);
@@ -602,19 +619,19 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		panel.add(temp2);
 		panel.add(temp3);
 		panel.add(temp4);
-		
+
 
 		// Lay out the panel.
 		SpringUtilities.makeCompactGrid(panel, 7, 6, // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-		
-		
-		
+
+
+
 		return panel;
 	}
-	
-	
+
+
 
 	@Override
 	public void save()
@@ -628,29 +645,29 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		{
 			mainFW.setDescription(desc.getText());
 		}
-		
+
 		if ( supportedOS.getSelectedIndex() != -1 )
 		{
 			mainFW.setSupportedOperatingSystems(OSs);
 		}
-		
+
 		mainFW.setHasNetworkFirewall(hasNetworkFirewall.isSelected());
 
 		mainFW.setHasStatefulFirewall(hasStatefulFirewall.isSelected());
 
 		mainFW.setHasApplicationFirewall(hasApplicationFirewall.isSelected());
-		
+
 		mainFW.setHasDPI(hasDPI.isSelected());
-		
+
 
 		mainFW.setHasProxy(hasProxy.isSelected());
-		
+
 		mainFW.setHasNAT(hasNAT.isSelected());
-		
+
 		mainFW.setHasVPN(hasVPN.isSelected());
-		
+
 		mainFW.setHasAntivirus(hasAntivirus.isSelected());
-		
+
 		mainFW.setHasIDS(hasIDS.isSelected());
 
 
@@ -659,19 +676,19 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		mainFW.setSupportsIPv6(supportsIPv6.isSelected());
 
 		mainFW.setSupportsTTL(supportsTTL.isSelected());
-		
+
 		mainFW.setSupportsRWA(supportsRWA.isSelected());
-		
+
 		mainFW.setSupportsDMZ(supportsDMZ.isSelected());
 
 		mainFW.setSupportsToD(supportsToD.isSelected());
-		
+
 		mainFW.setSupportsForwarding(supportsForwarding.isSelected());
-		
+
 		mainFW.setSupportsPortForwarding(supportsPortForwarding.isSelected());
-		
+
 		mainFW.setSupportsQos(supportsQos.isSelected());
-		
+
 		mainFW.setSupportsTarpit(supportsTarpit.isSelected());
 	}
 
@@ -681,89 +698,89 @@ public class FirewallEditView extends JPanel implements SoftwareEditView, Action
 		if ( e.getSource() instanceof JCheckBox )
 		{
 			JCheckBox box = (JCheckBox) e.getSource();
-			
+
 			String command = box.getActionCommand();
-			
+
 			if ( command.equals("NetworkFW") )
 			{
-				
+
 			}
-			else if ( command.equals("StatefulFW"))
+			else if ( command.equals("StatefulFW") )
 			{
-				
+
 			}
-			else if ( command.equals("HasDPI"))
+			else if ( command.equals("HasDPI") )
 			{
-				
+
 			}
-			else if ( command.equals("HasProxy"))
+			else if ( command.equals("HasProxy") )
 			{
-				
+
 			}
-			else if ( command.equals("HasNAT"))
+			else if ( command.equals("HasNAT") )
 			{
-				
+
 			}
-			else if ( command.equals("HasVPN"))
+			else if ( command.equals("HasVPN") )
 			{
-				
+
 			}
-			else if ( command.equals("HasAV"))
+			else if ( command.equals("HasAV") )
 			{
-				
+
 			}
-			else if ( command.equals("HasIDS"))
+			else if ( command.equals("HasIDS") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsModularity"))
+			else if ( command.equals("SupportsModularity") )
 			{
-				
+
 			}
-			else if ( command.equals("SupporsIPv6"))
+			else if ( command.equals("SupporsIPv6") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsTTL"))
+			else if ( command.equals("SupportsTTL") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsTTL"))
+			else if ( command.equals("SupportsTTL") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsRWA"))
+			else if ( command.equals("SupportsRWA") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsDMZ"))
+			else if ( command.equals("SupportsDMZ") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsToD"))
+			else if ( command.equals("SupportsToD") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsForwarding"))
+			else if ( command.equals("SupportsForwarding") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsPortForwarding"))
+			else if ( command.equals("SupportsPortForwarding") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsQoS"))
+			else if ( command.equals("SupportsQoS") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsTP"))
+			else if ( command.equals("SupportsTP") )
 			{
-				
+
 			}
 		}
 	}
 
-	
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 

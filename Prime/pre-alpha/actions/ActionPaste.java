@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
 public class ActionPaste extends AbstractAction
 {
 	/**
-	 * 
 	 * Description NEEDED!
 	 * 
 	 * @param text
@@ -36,7 +35,6 @@ public class ActionPaste extends AbstractAction
 
 
 	/**
-	 * 
 	 * Description NEEDED!
 	 * 
 	 * @param text
@@ -51,7 +49,8 @@ public class ActionPaste extends AbstractAction
 	public void actionPerformed(ActionEvent e)
 	{
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(null, "You want to perform a \"Paste\" action.");
+		JOptionPane.showMessageDialog(null,
+				"You want to perform a \"Paste\" action.");
 	}
 
 }

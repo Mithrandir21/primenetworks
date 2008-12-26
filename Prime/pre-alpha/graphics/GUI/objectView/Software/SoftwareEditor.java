@@ -1,6 +1,5 @@
 package graphics.GUI.objectView.Software;
 
-import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditorTabbed;
 
 import java.awt.Button;
 import java.awt.Container;
@@ -24,11 +23,12 @@ import javax.swing.JTextField;
 import objects.Object;
 import objects.Software;
 
+
 public class SoftwareEditor extends JFrame implements ActionListener
 {
 	private Object givenObject = null;
-	
-	
+
+
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
@@ -61,9 +61,9 @@ public class SoftwareEditor extends JFrame implements ActionListener
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
 
-//		view = new HardwareEditorTabbed(obj);
-//
-//		panel.add(view);
+		// view = new HardwareEditorTabbed(obj);
+		//
+		// panel.add(view);
 
 
 
@@ -100,9 +100,9 @@ public class SoftwareEditor extends JFrame implements ActionListener
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Creates a JPanel that shows an Icon representing the hardware object and
 	 * two fields with the name and description of the hardware object.
@@ -118,7 +118,8 @@ public class SoftwareEditor extends JFrame implements ActionListener
 	 * @return Returns the created JPanel with all the information about the
 	 *         hardware object.
 	 */
-	public static JPanel GeneralInfo(Software sw, ImageIcon icon, JTextField name, JTextArea desc)
+	public static JPanel GeneralInfo(Software sw, ImageIcon icon,
+			JTextField name, JTextArea desc)
 	{
 		JPanel genPanel = new JPanel();
 		genPanel.setLayout(new GridBagLayout());
@@ -200,16 +201,16 @@ public class SoftwareEditor extends JFrame implements ActionListener
 
 		return genPanel;
 	}
-	
-	
-	
-	
+
+
+
+
 
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

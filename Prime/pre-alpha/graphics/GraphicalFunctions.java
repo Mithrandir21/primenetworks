@@ -116,13 +116,14 @@ public class GraphicalFunctions
 	 * @param combo
 	 *            The JComboBox itself.
 	 */
-	public static JComboBox verifyChange(Component comp, Object mainObj, Class<?> componentClass,
-			String mbVariable, String newVariable, String msg, String[] strings, JComboBox combo)
+	public static JComboBox verifyChange(Component comp, Object mainObj,
+			Class<?> componentClass, String mbVariable, String newVariable,
+			String msg, String[] strings, JComboBox combo)
 	{
 		if ( mbVariable != "" && mbVariable != null )
 		{
-			if ( ComponentsManagment.containsComponent(componentClass, mainObj.getComponents(),
-					mainObj.getComponents().length) )
+			if ( ComponentsManagment.containsComponent(componentClass, mainObj
+					.getComponents(), mainObj.getComponents().length) )
 			{
 
 				if ( !mbVariable.equals(newVariable) )
@@ -135,7 +136,8 @@ public class GraphicalFunctions
 					if ( n == 1 )
 					{
 
-						combo.setSelectedIndex(getIndexInJComboBox(strings, mbVariable));
+						combo.setSelectedIndex(getIndexInJComboBox(strings,
+								mbVariable));
 					}
 				}
 			}
@@ -152,10 +154,11 @@ public class GraphicalFunctions
 	 * @param list
 	 * @param possibilities
 	 * @param data
-	 * @return
-	 * 			Returns the indexes of the given data in the array of possibilities.
+	 * @return Returns the indexes of the given data in the array of
+	 *         possibilities.
 	 */
-	public static JList getIndexInJList(JList list, String[] possibilities, String[] data)
+	public static JList getIndexInJList(JList list, String[] possibilities,
+			String[] data)
 	{
 		int[] indices = new int[data.length];
 

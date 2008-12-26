@@ -137,10 +137,11 @@ public class Rack extends Infrastructure implements Serializable
 	 * 
 	 * @return Returns an array of units that match with the given class.
 	 */
-	public Object[] getSpesificUnits(Class<Object> unitClass) throws ObjectNotFoundException
+	public Object[] getSpesificUnits(Class<Object> unitClass)
+			throws ObjectNotFoundException
 	{
-		Object[] unitsFound = ComponentsManagment.getSpesificComponents(unitClass, units,
-				unitsCounter);
+		Object[] unitsFound = ComponentsManagment.getSpesificComponents(
+				unitClass, units, unitsCounter);
 
 		return unitsFound;
 	}
@@ -160,7 +161,8 @@ public class Rack extends Infrastructure implements Serializable
 		 */
 		if ( !(RackFunctions.calculateShelfSpace(NewUnits) > (numberOfShelfs - occupiedShelfs)) )
 		{
-			units = ComponentsManagment.addComponents(NewUnits, units, unitsCounter);
+			units = ComponentsManagment.addComponents(NewUnits, units,
+					unitsCounter);
 
 			// Sets the new count for number of components in the array
 
@@ -190,7 +192,8 @@ public class Rack extends Infrastructure implements Serializable
 		 */
 		if ( !(RackFunctions.calculateShelfSpace(NewUnit) > (numberOfShelfs - occupiedShelfs)) )
 		{
-			units = ComponentsManagment.changeComponent(NewUnit, OldUnit, units, unitsCounter);
+			units = ComponentsManagment.changeComponent(NewUnit, OldUnit,
+					units, unitsCounter);
 
 			// Sets the new count for number of components in the array
 			unitsCounter = units.length;
@@ -208,9 +211,11 @@ public class Rack extends Infrastructure implements Serializable
 	 *            Units to be removed.
 	 */
 	@Override
-	public void removeComponent(Object[] ToBeRemoved) throws ObjectNotFoundInArrayException
+	public void removeComponent(Object[] ToBeRemoved)
+			throws ObjectNotFoundInArrayException
 	{
-		units = ComponentsManagment.removeComponents(ToBeRemoved, units, unitsCounter);
+		units = ComponentsManagment.removeComponents(ToBeRemoved, units,
+				unitsCounter);
 
 		// Sets the new count for number of components in the array
 		unitsCounter = units.length;

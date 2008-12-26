@@ -54,14 +54,15 @@ public class FirewallServer extends Servers implements Serializable
 	 * @param FirewallSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public FirewallServer(String Name, String Desc, String FirewallSWname, String FirewallSWdesc,
-			String FirewallSWversion)
+	public FirewallServer(String Name, String Desc, String FirewallSWname,
+			String FirewallSWdesc, String FirewallSWversion)
 	{
 		super(Name, Desc);
 
 		// Creates a firewall software object
-		firewall = new Firewall(FirewallSWname, FirewallSWdesc, FirewallSWversion);
-		Software[] sw = {firewall};
+		firewall = new Firewall(FirewallSWname, FirewallSWdesc,
+				FirewallSWversion);
+		Software[] sw = { firewall };
 		super.setSoftware(sw);
 	}
 
@@ -82,14 +83,16 @@ public class FirewallServer extends Servers implements Serializable
 	 * @param FirewallSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public FirewallServer(String Name, String Desc, String[] SupConInt, String FirewallSWname,
-			String FirewallSWdesc, String FirewallSWversion)
+	public FirewallServer(String Name, String Desc, String[] SupConInt,
+			String FirewallSWname, String FirewallSWdesc,
+			String FirewallSWversion)
 	{
 		super(Name, Desc, SupConInt);
 
 		// Creates a firewall software object
-		firewall = new Firewall(FirewallSWname, FirewallSWdesc, FirewallSWversion);
-		Software[] sw = {firewall};
+		firewall = new Firewall(FirewallSWname, FirewallSWdesc,
+				FirewallSWversion);
+		Software[] sw = { firewall };
 		super.setSoftware(sw);
 	}
 
@@ -111,13 +114,15 @@ public class FirewallServer extends Servers implements Serializable
 	 *            The version of the application that the server is set to run.
 	 */
 	public FirewallServer(String Name, String Desc, Object[] DesktopComponents,
-			String FirewallSWname, String FirewallSWdesc, String FirewallSWversion)
+			String FirewallSWname, String FirewallSWdesc,
+			String FirewallSWversion)
 	{
 		super(Name, Desc, DesktopComponents);
 
 		// Creates a firewall software object
-		firewall = new Firewall(FirewallSWname, FirewallSWdesc, FirewallSWversion);
-		Software[] sw = {firewall};
+		firewall = new Firewall(FirewallSWname, FirewallSWdesc,
+				FirewallSWversion);
+		Software[] sw = { firewall };
 		super.setSoftware(sw);
 	}
 
@@ -140,14 +145,16 @@ public class FirewallServer extends Servers implements Serializable
 	 * @param FirewallSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public FirewallServer(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents,
-			String FirewallSWname, String FirewallSWdesc, String FirewallSWversion)
+	public FirewallServer(String Name, String Desc, String[] SupConInt,
+			Object[] DesktopComponents, String FirewallSWname,
+			String FirewallSWdesc, String FirewallSWversion)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 
 		// Creates a firewall software object
-		firewall = new Firewall(FirewallSWname, FirewallSWdesc, FirewallSWversion);
-		Software[] sw = {firewall};
+		firewall = new Firewall(FirewallSWname, FirewallSWdesc,
+				FirewallSWversion);
+		Software[] sw = { firewall };
 		super.setSoftware(sw);
 	}
 
@@ -223,7 +230,8 @@ public class FirewallServer extends Servers implements Serializable
 	 * Set an array of string with the protocols the device supports for remote
 	 * access.
 	 */
-	public void setSupportedRemoteAccessProtocols(String[] supportedRemoteAccessProtocols)
+	public void setSupportedRemoteAccessProtocols(
+			String[] supportedRemoteAccessProtocols)
 	{
 
 		this.supportedRemoteAccessProtocols = supportedRemoteAccessProtocols;
@@ -264,7 +272,8 @@ public class FirewallServer extends Servers implements Serializable
 	 * @param NewProtocols
 	 *            An array of new remote access protocols.
 	 */
-	public void addRemoteAccessProtocols(String[] NewProtocols) throws Exception
+	public void addRemoteAccessProtocols(String[] NewProtocols)
+			throws Exception
 	{
 		supportedRemoteAccessProtocols = ArrayManagment.addItems(NewProtocols,
 				supportedRemoteAccessProtocols);
@@ -283,7 +292,7 @@ public class FirewallServer extends Servers implements Serializable
 	public void removeRemoteAccessProtocols(String[] ToBeRemoved)
 			throws StringNotFoundInArrayException
 	{
-		supportedRemoteAccessProtocols = ArrayManagment.removeItems(ToBeRemoved,
-				supportedRemoteAccessProtocols);
+		supportedRemoteAccessProtocols = ArrayManagment.removeItems(
+				ToBeRemoved, supportedRemoteAccessProtocols);
 	}
 }

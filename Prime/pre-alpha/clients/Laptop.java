@@ -98,7 +98,8 @@ public class Laptop extends Clients implements Serializable
 	 * @param DesktopComponents
 	 *            The initial components an instance of a laptop has.
 	 */
-	public Laptop(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents)
+	public Laptop(String Name, String Desc, String[] SupConInt,
+			Object[] DesktopComponents)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 	}

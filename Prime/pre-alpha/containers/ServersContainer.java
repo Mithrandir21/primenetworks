@@ -16,7 +16,6 @@ public class ServersContainer extends Container implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public ServersContainer()
 	{

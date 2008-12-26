@@ -21,7 +21,6 @@ import objects.Object;
  * on WidgetObjects on the scene.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class PropertiesArea extends JTabbedPane
 {
@@ -30,7 +29,6 @@ public class PropertiesArea extends JTabbedPane
 	/**
 	 * The constructor for the class that will set both the height and width of
 	 * the component depending on the screen size.
-	 * 
 	 */
 	public PropertiesArea()
 	{
@@ -47,7 +45,6 @@ public class PropertiesArea extends JTabbedPane
 	/**
 	 * Creates and adds a new properties view with the information from the
 	 * given object.
-	 * 
 	 */
 	public void newObjectSelectedPropertiesTab(Object object)
 	{
@@ -61,7 +58,6 @@ public class PropertiesArea extends JTabbedPane
 	/**
 	 * Creates and adds a new properties view with the information from the
 	 * given canvas.
-	 * 
 	 */
 	public void newObjectSelectedPropertiesTab(WorkareaCanvas canvas)
 	{

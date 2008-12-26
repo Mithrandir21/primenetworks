@@ -17,7 +17,6 @@ import objects.Object;
  * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class ObjectViewTabbed extends JTabbedPane
 {
@@ -34,7 +33,6 @@ public class ObjectViewTabbed extends JTabbedPane
 
 	/**
 	 * TODO - Description NEEDED!
-	 * 
 	 */
 	public ObjectViewTabbed(Object obj)
 	{
@@ -47,7 +45,8 @@ public class ObjectViewTabbed extends JTabbedPane
 		String hardwareDesc = "General information and option";
 		JScrollPane scrollPane = new JScrollPane(hardObjView);
 		scrollPane.setViewportView(hardObjView);
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane
+				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		this.addTab("Hardware", null, scrollPane, hardwareDesc);
 
 

@@ -18,7 +18,6 @@ import widgetManipulation.WidgetObject;
  * objects in the system.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class WidgetExtendedConnection extends ConnectionWidget
 {

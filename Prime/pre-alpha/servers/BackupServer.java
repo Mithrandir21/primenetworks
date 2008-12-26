@@ -53,14 +53,14 @@ public class BackupServer extends Servers implements Serializable
 	 * @param BackupSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public BackupServer(String Name, String Desc, String BackupSWname, String BackupSWdesc,
-			String BackupSWversion)
+	public BackupServer(String Name, String Desc, String BackupSWname,
+			String BackupSWdesc, String BackupSWversion)
 	{
 		super(Name, Desc);
 
 		// Creates a Backup software object
 		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
-		Software[] sw = {Backup};
+		Software[] sw = { Backup };
 		super.setSoftware(sw);
 	}
 
@@ -81,14 +81,14 @@ public class BackupServer extends Servers implements Serializable
 	 * @param BackupSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public BackupServer(String Name, String Desc, String[] SupConInt, String BackupSWname,
-			String BackupSWdesc, String BackupSWversion)
+	public BackupServer(String Name, String Desc, String[] SupConInt,
+			String BackupSWname, String BackupSWdesc, String BackupSWversion)
 	{
 		super(Name, Desc, SupConInt);
 
 		// Creates a Backup software object
 		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
-		Software[] sw = {Backup};
+		Software[] sw = { Backup };
 		super.setSoftware(sw);
 	}
 
@@ -109,14 +109,14 @@ public class BackupServer extends Servers implements Serializable
 	 * @param BackupSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public BackupServer(String Name, String Desc, Object[] DesktopComponents, String BackupSWname,
-			String BackupSWdesc, String BackupSWversion)
+	public BackupServer(String Name, String Desc, Object[] DesktopComponents,
+			String BackupSWname, String BackupSWdesc, String BackupSWversion)
 	{
 		super(Name, Desc, DesktopComponents);
 
 		// Creates a Backup software object
 		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
-		Software[] sw = {Backup};
+		Software[] sw = { Backup };
 		super.setSoftware(sw);
 	}
 
@@ -137,14 +137,15 @@ public class BackupServer extends Servers implements Serializable
 	 * @param BackupSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public BackupServer(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents,
-			String BackupSWname, String BackupSWdesc, String BackupSWversion)
+	public BackupServer(String Name, String Desc, String[] SupConInt,
+			Object[] DesktopComponents, String BackupSWname,
+			String BackupSWdesc, String BackupSWversion)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 
 		// Creates a Backup software object
 		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
-		Software[] sw = {Backup};
+		Software[] sw = { Backup };
 		super.setSoftware(sw);
 	}
 
@@ -154,7 +155,6 @@ public class BackupServer extends Servers implements Serializable
 
 	/**
 	 * Get the software that is set to run on this device.
-	 * 
 	 */
 	public Backup getBackupApplication()
 	{
@@ -168,7 +168,6 @@ public class BackupServer extends Servers implements Serializable
 
 	/**
 	 * Get the protocols this device supports for access from a remote location.
-	 * 
 	 */
 	public String[] getSupportedRemoteAccessProtocols()
 	{
@@ -184,7 +183,6 @@ public class BackupServer extends Servers implements Serializable
 	 * Get a boolean saying if this device supports on-site-access, which
 	 * implies that the device is atleast connected to a mouse, keyboard and a
 	 * monitor.
-	 * 
 	 */
 	public boolean SupportsOnSiteAccess()
 	{
@@ -198,7 +196,6 @@ public class BackupServer extends Servers implements Serializable
 
 	/**
 	 * Get a boolean saying if the device supports remote access.
-	 * 
 	 */
 	public boolean SupportsRemoteAccess()
 	{
@@ -212,7 +209,6 @@ public class BackupServer extends Servers implements Serializable
 
 	/**
 	 * Sets the application that is to run on the device.
-	 * 
 	 */
 	public void setBackupApplication(Backup Backup)
 	{
@@ -227,9 +223,9 @@ public class BackupServer extends Servers implements Serializable
 	/**
 	 * Set an array of string with the protocols the device supports for remote
 	 * access.
-	 * 
 	 */
-	public void setSupportedRemoteAccessProtocols(String[] supportedRemoteAccessProtocols)
+	public void setSupportedRemoteAccessProtocols(
+			String[] supportedRemoteAccessProtocols)
 	{
 
 		this.supportedRemoteAccessProtocols = supportedRemoteAccessProtocols;
@@ -241,7 +237,6 @@ public class BackupServer extends Servers implements Serializable
 
 	/**
 	 * Set the support of the device for On-Site-Access.
-	 * 
 	 */
 	public void setSupportsOnSiteAccess(boolean supportsOnSiteAccess)
 	{
@@ -255,7 +250,6 @@ public class BackupServer extends Servers implements Serializable
 
 	/**
 	 * Set the support of the device for remote access.
-	 * 
 	 */
 	public void setSupportsRemoteAccess(boolean supportsRemoteAccess)
 	{
@@ -273,7 +267,8 @@ public class BackupServer extends Servers implements Serializable
 	 * @param NewProtocols
 	 *            An array of new remote access protocols.
 	 */
-	public void addRemoteAccessProtocols(String[] NewProtocols) throws Exception
+	public void addRemoteAccessProtocols(String[] NewProtocols)
+			throws Exception
 	{
 		supportedRemoteAccessProtocols = ArrayManagment.addItems(NewProtocols,
 				supportedRemoteAccessProtocols);
@@ -292,7 +287,7 @@ public class BackupServer extends Servers implements Serializable
 	public void removeRemoteAccessProtocols(String[] ToBeRemoved)
 			throws StringNotFoundInArrayException
 	{
-		supportedRemoteAccessProtocols = ArrayManagment.removeItems(ToBeRemoved,
-				supportedRemoteAccessProtocols);
+		supportedRemoteAccessProtocols = ArrayManagment.removeItems(
+				ToBeRemoved, supportedRemoteAccessProtocols);
 	}
 }

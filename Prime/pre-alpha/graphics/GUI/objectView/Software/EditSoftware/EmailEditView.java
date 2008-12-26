@@ -373,32 +373,32 @@ public class EmailEditView extends JPanel implements SoftwareEditView,
 		if ( e.getSource() instanceof JCheckBox )
 		{
 			JCheckBox box = (JCheckBox) e.getSource();
-			
+
 			String command = box.getActionCommand();
-			
+
 			if ( command.equals("POP3") )
 			{
-				
+
 			}
-			else if ( command.equals("SMTP"))
+			else if ( command.equals("SMTP") )
 			{
-				
+
 			}
-			else if ( command.equals("IMAP"))
+			else if ( command.equals("IMAP") )
 			{
-				
+
 			}
-			else if ( command.equals("NNTP"))
+			else if ( command.equals("NNTP") )
 			{
-				
+
 			}
-			else if ( command.equals("SSL"))
+			else if ( command.equals("SSL") )
 			{
-				
+
 			}
-			else if ( command.equals("Webmail"))
+			else if ( command.equals("Webmail") )
 			{
-				
+
 			}
 		}
 	}

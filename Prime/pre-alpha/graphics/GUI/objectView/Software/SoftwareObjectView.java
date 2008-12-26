@@ -2,7 +2,6 @@ package graphics.GUI.objectView.Software;
 
 
 import graphics.ImageLocator;
-import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.objectView.Hardware.NewComponent.NewOverview.NewComponentChoice;
 
 import java.awt.Button;
@@ -89,324 +88,327 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 
 		String[] info = null;
 
-		for ( int i = 0; i < swObj.length; i++ )
+		// If there are no software objects.
+		if ( swObj != null )
 		{
-			if ( swObj[i] instanceof Antivirus )
+			for ( int i = 0; i < swObj.length; i++ )
 			{
-				temp = ImageLocator.getImageIconObject("Data-server");
-
-				Antivirus antiVirusObj = (Antivirus) swObj[i];
-
-				info = new String[4];
-
-				String text = null;
-
-				text = antiVirusObj.getObjectName();
-				if ( text != "" && text != null )
+				if ( swObj[i] instanceof Antivirus )
 				{
-					info[0] = text;
+					temp = ImageLocator.getImageIconObject("Data-server");
+
+					Antivirus antiVirusObj = (Antivirus) swObj[i];
+
+					info = new String[4];
+
+					String text = null;
+
+					text = antiVirusObj.getObjectName();
+					if ( text != "" && text != null )
+					{
+						info[0] = text;
+					}
+
+					text = antiVirusObj.getVersion();
+					if ( text != "" && text != null )
+					{
+						info[1] = "Version: " + text;
+					}
+
+					Date d = antiVirusObj.getExpirationDate();
+					if ( d != null )
+					{
+						Calendar cal = Calendar.getInstance();
+						cal.setTime(d);
+						info[2] = "Expires: " + cal.DAY_OF_MONTH + "/"
+								+ cal.MONTH + "/" + cal.YEAR;
+					}
+
+					text = antiVirusObj.getDescription();
+					if ( text != "" && text != null )
+					{
+						info[3] = "Description: " + text;
+					}
+
+				}
+				else if ( swObj[i] instanceof Backup )
+				{
+					temp = ImageLocator.getImageIconObject("CPU");
+
+					Backup backupObj = (Backup) swObj[i];
+
+					info = new String[3];
+
+					String text = null;
+
+					text = backupObj.getObjectName();
+					if ( text != "" && text != null )
+					{
+						info[0] = text;
+					}
+
+					text = backupObj.getVersion();
+					if ( text != "" && text != null )
+					{
+						info[1] = "Version: " + text;
+					}
+
+					text = backupObj.getDescription();
+					if ( text != "" && text != null )
+					{
+						info[2] = "Description: " + text;
+					}
+
+				}
+				else if ( swObj[i] instanceof Database )
+				{
+					temp = ImageLocator.getImageIconObject("Harddisc");
+
+					Database hddObj = (Database) swObj[i];
+
+					info = new String[3];
+
+					String text = null;
+
+					text = hddObj.getObjectName();
+					if ( text != "" && text != null )
+					{
+						info[0] = text;
+					}
+
+					text = hddObj.getVersion();
+					if ( text != "" && text != null )
+					{
+						info[1] = "Producer: " + text;
+					}
+
+					text = hddObj.getDescription();
+					if ( text != "" && text != null )
+					{
+						info[2] = "Description: " + text;
+					}
+
+				}
+				else if ( swObj[i] instanceof Email )
+				{
+					temp = ImageLocator.getImageIconObject("RAM");
+
+					Email emailObj = (Email) swObj[i];
+
+					info = new String[3];
+
+					String text = null;
+
+					text = emailObj.getObjectName();
+					if ( text != "" && text != null )
+					{
+						info[0] = text;
+					}
+
+					text = emailObj.getVersion();
+					if ( text != "" && text != null )
+					{
+						info[1] = "Version: " + text;
+					}
+
+					text = emailObj.getDescription();
+					if ( text != "" && text != null )
+					{
+						info[2] = "Description: " + text;
+					}
+
+				}
+				else if ( swObj[i] instanceof Firewall )
+				{
+					temp = ImageLocator.getImageIconObject("Optical-Drive");
+
+					Firewall firewallObj = (Firewall) swObj[i];
+
+					info = new String[3];
+
+					String text = null;
+
+					text = firewallObj.getObjectName();
+					if ( text != "" && text != null )
+					{
+						info[0] = text;
+					}
+
+					text = firewallObj.getVersion();
+					if ( text != "" && text != null )
+					{
+						info[1] = "Version: " + text;
+					}
+
+					text = firewallObj.getDescription();
+					if ( text != "" && text != null )
+					{
+						info[2] = "Description: " + text;
+					}
+				}
+				else if ( swObj[i] instanceof OfficeSuite )
+				{
+					temp = ImageLocator.getImageIconObject("GPU");
+
+					OfficeSuite OffSuitObj = (OfficeSuite) swObj[i];
+
+					info = new String[5];
+
+					String text = null;
+
+					text = OffSuitObj.getObjectName();
+					if ( text != "" && text != null )
+					{
+						info[0] = text;
+					}
+
+					text = OffSuitObj.getVersion();
+					if ( text != "" && text != null )
+					{
+						info[1] = "Version: " + text;
+					}
+
+					text = OffSuitObj.getDescription();
+					if ( text != "" && text != null )
+					{
+						info[2] = "Description: " + text;
+					}
+				}
+				else if ( swObj[i] instanceof OperatingSystem )
+				{
+					temp = ImageLocator.getImageIconObject("NIC");
+
+					OperatingSystem OSObj = (OperatingSystem) swObj[i];
+
+					info = new String[3];
+
+					String text = null;
+
+					text = OSObj.getObjectName();
+					if ( text != "" && text != null )
+					{
+						info[0] = text;
+					}
+
+					text = OSObj.getVersion();
+					if ( text != "" && text != null )
+					{
+						info[1] = "Producer: " + text;
+					}
+
+					text = OSObj.getDescription();
+					if ( text != "" && text != null )
+					{
+						info[2] = "Description: " + text;
+					}
+
+				}
+				else if ( swObj[i] instanceof Proxy )
+				{
+					temp = ImageLocator.getImageIconObject("NIC");
+
+					Proxy proxyObj = (Proxy) swObj[i];
+
+					info = new String[3];
+
+					String text = null;
+
+					text = proxyObj.getObjectName();
+					if ( text != "" && text != null )
+					{
+						info[0] = text;
+					}
+
+					text = proxyObj.getVersion();
+					if ( text != "" && text != null )
+					{
+						info[1] = "Producer: " + text;
+					}
+
+					text = proxyObj.getDescription();
+					if ( text != "" && text != null )
+					{
+						info[2] = "Description: " + text;
+					}
+
+				}
+				else if ( swObj[i] instanceof SecuritySuite )
+				{
+					temp = ImageLocator.getImageIconObject("NIC");
+
+					SecuritySuite secSuiteObj = (SecuritySuite) swObj[i];
+
+					info = new String[3];
+
+					String text = null;
+
+					text = secSuiteObj.getObjectName();
+					if ( text != "" && text != null )
+					{
+						info[0] = text;
+					}
+
+					text = secSuiteObj.getVersion();
+					if ( text != "" && text != null )
+					{
+						info[1] = "Producer: " + text;
+					}
+
+					text = secSuiteObj.getDescription();
+					if ( text != "" && text != null )
+					{
+						info[2] = "Description: " + text;
+					}
+
+				}
+				else if ( swObj[i] instanceof Webserver )
+				{
+					temp = ImageLocator.getImageIconObject("NIC");
+
+					Webserver webServObj = (Webserver) swObj[i];
+
+					info = new String[3];
+
+					String text = null;
+
+					text = webServObj.getObjectName();
+					if ( text != "" && text != null )
+					{
+						info[0] = text;
+					}
+
+					text = webServObj.getVersion();
+					if ( text != "" && text != null )
+					{
+						info[1] = "Producer: " + text;
+					}
+
+					text = webServObj.getDescription();
+					if ( text != "" && text != null )
+					{
+						info[2] = "Description: " + text;
+					}
+
 				}
 
-				text = antiVirusObj.getVersion();
-				if ( text != "" && text != null )
+				assert temp != null;
+
+				swCount++;
+
+
+				this.add(createSoftwareJPanel(info, temp), c);
+
+				if ( swCount % 2 == 0 )
 				{
-					info[1] = "Version: " + text;
+					c.gridx = 0;
+					c.gridy++;
 				}
-
-				Date d = antiVirusObj.getExpirationDate();
-				if ( d != null )
+				else
 				{
-					Calendar cal = Calendar.getInstance();
-					cal.setTime(d);
-					info[2] = "Expires: " + cal.DAY_OF_MONTH + "/" + cal.MONTH
-							+ "/" + cal.YEAR;
+					c.gridx++;
 				}
-
-				text = antiVirusObj.getDescription();
-				if ( text != "" && text != null )
-				{
-					info[3] = "Description: " + text;
-				}
-
-			}
-			else if ( swObj[i] instanceof Backup )
-			{
-				temp = ImageLocator.getImageIconObject("CPU");
-
-				Backup backupObj = (Backup) swObj[i];
-
-				info = new String[3];
-
-				String text = null;
-
-				text = backupObj.getObjectName();
-				if ( text != "" && text != null )
-				{
-					info[0] = text;
-				}
-
-				text = backupObj.getVersion();
-				if ( text != "" && text != null )
-				{
-					info[1] = "Version: " + text;
-				}
-
-				text = backupObj.getDescription();
-				if ( text != "" && text != null )
-				{
-					info[2] = "Description: " + text;
-				}
-
-			}
-			else if ( swObj[i] instanceof Database )
-			{
-				temp = ImageLocator.getImageIconObject("Harddisc");
-
-				Database hddObj = (Database) swObj[i];
-
-				info = new String[3];
-
-				String text = null;
-
-				text = hddObj.getObjectName();
-				if ( text != "" && text != null )
-				{
-					info[0] = text;
-				}
-
-				text = hddObj.getVersion();
-				if ( text != "" && text != null )
-				{
-					info[1] = "Producer: " + text;
-				}
-
-				text = hddObj.getDescription();
-				if ( text != "" && text != null )
-				{
-					info[2] = "Description: " + text;
-				}
-
-			}
-			else if ( swObj[i] instanceof Email )
-			{
-				temp = ImageLocator.getImageIconObject("RAM");
-
-				Email emailObj = (Email) swObj[i];
-
-				info = new String[3];
-
-				String text = null;
-
-				text = emailObj.getObjectName();
-				if ( text != "" && text != null )
-				{
-					info[0] = text;
-				}
-
-				text = emailObj.getVersion();
-				if ( text != "" && text != null )
-				{
-					info[1] = "Version: " + text;
-				}
-
-				text = emailObj.getDescription();
-				if ( text != "" && text != null )
-				{
-					info[2] = "Description: " + text;
-				}
-
-			}
-			else if ( swObj[i] instanceof Firewall )
-			{
-				temp = ImageLocator.getImageIconObject("Optical-Drive");
-
-				Firewall firewallObj = (Firewall) swObj[i];
-
-				info = new String[3];
-
-				String text = null;
-
-				text = firewallObj.getObjectName();
-				if ( text != "" && text != null )
-				{
-					info[0] = text;
-				}
-
-				text = firewallObj.getVersion();
-				if ( text != "" && text != null )
-				{
-					info[1] = "Version: " + text;
-				}
-
-				text = firewallObj.getDescription();
-				if ( text != "" && text != null )
-				{
-					info[2] = "Description: " + text;
-				}
-			}
-			else if ( swObj[i] instanceof OfficeSuite )
-			{
-				temp = ImageLocator.getImageIconObject("GPU");
-
-				OfficeSuite OffSuitObj = (OfficeSuite) swObj[i];
-
-				info = new String[5];
-
-				String text = null;
-
-				text = OffSuitObj.getObjectName();
-				if ( text != "" && text != null )
-				{
-					info[0] = text;
-				}
-
-				text = OffSuitObj.getVersion();
-				if ( text != "" && text != null )
-				{
-					info[1] = "Version: " + text;
-				}
-
-				text = OffSuitObj.getDescription();
-				if ( text != "" && text != null )
-				{
-					info[2] = "Description: " + text;
-				}
-			}
-			else if ( swObj[i] instanceof OperatingSystem )
-			{
-				temp = ImageLocator.getImageIconObject("NIC");
-
-				OperatingSystem OSObj = (OperatingSystem) swObj[i];
-
-				info = new String[3];
-
-				String text = null;
-
-				text = OSObj.getObjectName();
-				if ( text != "" && text != null )
-				{
-					info[0] = text;
-				}
-
-				text = OSObj.getVersion();
-				if ( text != "" && text != null )
-				{
-					info[1] = "Producer: " + text;
-				}
-
-				text = OSObj.getDescription();
-				if ( text != "" && text != null )
-				{
-					info[2] = "Description: " + text;
-				}
-
-			}
-			else if ( swObj[i] instanceof Proxy )
-			{
-				temp = ImageLocator.getImageIconObject("NIC");
-
-				Proxy proxyObj = (Proxy) swObj[i];
-
-				info = new String[3];
-
-				String text = null;
-
-				text = proxyObj.getObjectName();
-				if ( text != "" && text != null )
-				{
-					info[0] = text;
-				}
-
-				text = proxyObj.getVersion();
-				if ( text != "" && text != null )
-				{
-					info[1] = "Producer: " + text;
-				}
-
-				text = proxyObj.getDescription();
-				if ( text != "" && text != null )
-				{
-					info[2] = "Description: " + text;
-				}
-
-			}
-			else if ( swObj[i] instanceof SecuritySuite )
-			{
-				temp = ImageLocator.getImageIconObject("NIC");
-
-				SecuritySuite secSuiteObj = (SecuritySuite) swObj[i];
-
-				info = new String[3];
-
-				String text = null;
-
-				text = secSuiteObj.getObjectName();
-				if ( text != "" && text != null )
-				{
-					info[0] = text;
-				}
-
-				text = secSuiteObj.getVersion();
-				if ( text != "" && text != null )
-				{
-					info[1] = "Producer: " + text;
-				}
-
-				text = secSuiteObj.getDescription();
-				if ( text != "" && text != null )
-				{
-					info[2] = "Description: " + text;
-				}
-
-			}
-			else if ( swObj[i] instanceof Webserver )
-			{
-				temp = ImageLocator.getImageIconObject("NIC");
-
-				Webserver webServObj = (Webserver) swObj[i];
-
-				info = new String[3];
-
-				String text = null;
-
-				text = webServObj.getObjectName();
-				if ( text != "" && text != null )
-				{
-					info[0] = text;
-				}
-
-				text = webServObj.getVersion();
-				if ( text != "" && text != null )
-				{
-					info[1] = "Producer: " + text;
-				}
-
-				text = webServObj.getDescription();
-				if ( text != "" && text != null )
-				{
-					info[2] = "Description: " + text;
-				}
-
-			}
-
-			assert temp != null;
-
-			swCount++;
-
-
-			this.add(createSoftwareJPanel(info, temp), c);
-
-			if ( swCount % 2 == 0 )
-			{
-				c.gridx = 0;
-				c.gridy++;
-			}
-			else
-			{
-				c.gridx++;
 			}
 		}
-
 		/**
 		 * Creates empty JPanels and adds them to the main panel until there are
 		 * 8 panels in the main panel. This is done so that the panels that
@@ -560,7 +562,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 	{
 		if ( e.getActionCommand().equals("edit") )
 		{
-//			hwEditor = new HardwareEditor(givenObject);
+			// hwEditor = new HardwareEditor(givenObject);
 		}
 		else if ( e.getActionCommand().equals("newComp") )
 		{
@@ -568,7 +570,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 		}
 	}
 
-	
-	
-	
+
+
+
 }

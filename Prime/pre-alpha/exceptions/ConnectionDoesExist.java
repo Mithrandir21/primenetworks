@@ -20,8 +20,8 @@ public class ConnectionDoesExist extends Exception
 
 
 	/**
-	 * Constructs a new exception with parameters for two {@link Object Objects}.
-	 * The two parameters will be the two objects that should not, but do,
+	 * Constructs a new exception with parameters for two {@link Object Objects}
+	 * . The two parameters will be the two objects that should not, but do,
 	 * have a connection between them.
 	 * 
 	 * @param a
@@ -41,14 +41,13 @@ public class ConnectionDoesExist extends Exception
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.lang.Throwable#getMessage()
 	 */
 	@Override
 	public String getMessage()
 	{
-		String output = "There exists a connection between object a, " + a + " and object b, " + b
-				+ ".";
+		String output = "There exists a connection between object a, " + a
+				+ " and object b, " + b + ".";
 
 		return output;
 	}

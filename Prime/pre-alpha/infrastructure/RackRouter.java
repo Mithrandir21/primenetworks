@@ -29,8 +29,9 @@ public class RackRouter extends Router implements Serializable
 	 * @param Desc
 	 *            The description of the RackRouter.
 	 */
-	public RackRouter(String Name, String Desc, String[] SupConInt, Motherboard objectMB,
-			int outPorts, int inPorts, String[] DuplexSupport)
+	public RackRouter(String Name, String Desc, String[] SupConInt,
+			Motherboard objectMB, int outPorts, int inPorts,
+			String[] DuplexSupport)
 	{
 		super(Name, Desc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport);
 	}

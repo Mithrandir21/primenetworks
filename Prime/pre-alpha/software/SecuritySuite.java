@@ -19,8 +19,8 @@ import objects.Software;
 public class SecuritySuite extends Software implements Serializable
 {
 	/*
-	 * Datafields for an Security Suite.
-	 * These will contain the values of any Security Suite object.
+	 * Datafields for an Security Suite. These will contain the values of any
+	 * Security Suite object.
 	 */
 	// Supported Operating systems
 	private String[] supportedOperatingSystems;
@@ -67,8 +67,8 @@ public class SecuritySuite extends Software implements Serializable
 	 * @param SShasProxy
 	 *            Whether or not the security suite contains an proxy.
 	 */
-	public SecuritySuite(String Name, String Desc, String Version, boolean SShasAntivirus,
-			boolean SShasFirewall, boolean SShasProxy)
+	public SecuritySuite(String Name, String Desc, String Version,
+			boolean SShasAntivirus, boolean SShasFirewall, boolean SShasProxy)
 	{
 		super(Name, Desc, Version);
 
@@ -84,7 +84,7 @@ public class SecuritySuite extends Software implements Serializable
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the supportedOperatingSystems
 	 */
 	public String[] getSupportedOperatingSystems()
@@ -95,7 +95,6 @@ public class SecuritySuite extends Software implements Serializable
 
 	/**
 	 * Get whether or not the suite has been activated.
-	 * 
 	 */
 	public boolean isActivated()
 	{
@@ -105,7 +104,6 @@ public class SecuritySuite extends Software implements Serializable
 
 	/**
 	 * Get the actual license string of the antivirus software.
-	 * 
 	 */
 	public String getLicense()
 	{
@@ -115,7 +113,6 @@ public class SecuritySuite extends Software implements Serializable
 
 	/**
 	 * Get whether or not the suite has an antivirus.
-	 * 
 	 */
 	public boolean hasAntivirus()
 	{
@@ -125,7 +122,6 @@ public class SecuritySuite extends Software implements Serializable
 
 	/**
 	 * Get whether or not the suite has a firewall.
-	 * 
 	 */
 	public boolean hasFirewall()
 	{
@@ -135,7 +131,6 @@ public class SecuritySuite extends Software implements Serializable
 
 	/**
 	 * Get whether or not the suite has a proxy.
-	 * 
 	 */
 	public boolean hasProxy()
 	{
@@ -145,7 +140,6 @@ public class SecuritySuite extends Software implements Serializable
 
 	/**
 	 * Get the activation date for the suite.
-	 * 
 	 */
 	public Date getActivationDate()
 	{
@@ -155,7 +149,6 @@ public class SecuritySuite extends Software implements Serializable
 
 	/**
 	 * Get the expiration date for the suite.
-	 * 
 	 */
 	public Date getExpirationDate()
 	{
@@ -163,13 +156,14 @@ public class SecuritySuite extends Software implements Serializable
 	}
 
 
-	
+
 	// SET METHODES
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
-	 * @param supportedOperatingSystems the supportedOperatingSystems to set
+	 * 
+	 * @param supportedOperatingSystems
+	 *            the supportedOperatingSystems to set
 	 */
 	public void setSupportedOperatingSystems(String[] supportedOperatingSystems)
 	{
@@ -179,7 +173,6 @@ public class SecuritySuite extends Software implements Serializable
 
 	/**
 	 * Sets the suite to activated.
-	 * 
 	 */
 	public void setActivated(boolean SSactivated)
 	{
@@ -189,7 +182,6 @@ public class SecuritySuite extends Software implements Serializable
 
 	/**
 	 * Set the actual license string of the security suite software.
-	 * 
 	 */
 	public void setLicense(String AVlicense)
 	{
@@ -199,7 +191,6 @@ public class SecuritySuite extends Software implements Serializable
 
 	/**
 	 * Get whether or not the suite has an antivirus.
-	 * 
 	 */
 	public void setHasAntivirus(boolean SShasAntivirus)
 	{
@@ -209,7 +200,6 @@ public class SecuritySuite extends Software implements Serializable
 
 	/**
 	 * Get whether or not the suite has an firewall.
-	 * 
 	 */
 	public void sethasFirewall(boolean SShasFirewall)
 	{
@@ -219,7 +209,6 @@ public class SecuritySuite extends Software implements Serializable
 
 	/**
 	 * Get whether or not the suite has an proxy.
-	 * 
 	 */
 	public void sethasProxy(boolean SShasProxy)
 	{
@@ -229,7 +218,6 @@ public class SecuritySuite extends Software implements Serializable
 
 	/**
 	 * Sets the suites activation date.
-	 * 
 	 */
 	public void setActivationDate(Date SSactivattionDate)
 	{
@@ -239,7 +227,6 @@ public class SecuritySuite extends Software implements Serializable
 
 	/**
 	 * Sets the suites expiration date.
-	 * 
 	 */
 	public void setExpirationDate(Date SSexpirationDate)
 	{

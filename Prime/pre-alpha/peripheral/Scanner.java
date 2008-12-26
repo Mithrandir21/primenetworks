@@ -38,7 +38,8 @@ public class Scanner extends ExternalHardware implements Serializable
 	 *            Connection interfaces supported by the scanner. An array of
 	 *            Strings.
 	 */
-	public Scanner(String Name, String Desc, String Sresolution, String[] SconnectionInterfaces)
+	public Scanner(String Name, String Desc, String Sresolution,
+			String[] SconnectionInterfaces)
 	{
 		super(Name, Desc, SconnectionInterfaces);
 
@@ -64,8 +65,8 @@ public class Scanner extends ExternalHardware implements Serializable
 	 *            Connection interfaces supported by the scanner. An array of
 	 *            Strings.
 	 */
-	public Scanner(String Name, String Desc, String Sresolution, String[] SconnectionInterfaces,
-			Motherboard objectMB)
+	public Scanner(String Name, String Desc, String Sresolution,
+			String[] SconnectionInterfaces, Motherboard objectMB)
 	{
 		super(Name, Desc, SconnectionInterfaces, objectMB);
 

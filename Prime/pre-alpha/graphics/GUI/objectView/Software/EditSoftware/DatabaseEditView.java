@@ -1,5 +1,6 @@
 package graphics.GUI.objectView.Software.EditSoftware;
 
+
 import graphics.ImageLocator;
 import graphics.GUI.objectView.Software.SoftwareEditView;
 import graphics.GUI.objectView.Software.SoftwareEditor;
@@ -26,40 +27,40 @@ import objects.Object;
 import objects.Software;
 import software.Database;
 
+
 /**
  * A JPanel that will contain fields and options for a presentation and
  * modification of an {@link Database Database} Software. The panel is made up
- * of 3 JPanel ordered in a column.
- * 
- * The first one contains the name and description of the object. 
- * The second panel contains the specific software options. 
- * The third panel contains the button that can remove the software
+ * of 3 JPanel ordered in a column. The first one contains the name and
+ * description of the object. The second panel contains the specific software
+ * options. The third panel contains the button that can remove the software
  * from the computer.
  * 
  * @author Bahram Malaekeh
  */
-public class DatabaseEditView extends JPanel implements SoftwareEditView, ActionListener
+public class DatabaseEditView extends JPanel implements SoftwareEditView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
 
 	// The description of the software object.
 	JTextArea desc = new JTextArea(3, 40);
-	
-	
-	
+
+
+
 	private Object mainObj;
-	
+
 	private Database mainDB;
-	
-	
+
+
 	/**
 	 * Constructor for the software view.
 	 * 
 	 * @param obj
-	 * 			The main {@link Object object}.
+	 *            The main {@link Object object}.
 	 * @param db
-	 * 			The {@link Database Database} software.
+	 *            The {@link Database Database} software.
 	 */
 	public DatabaseEditView(Object obj, Database db)
 	{
@@ -122,21 +123,21 @@ public class DatabaseEditView extends JPanel implements SoftwareEditView, Action
 		c.gridheight = 1;
 		c.insets = new Insets(2, 10, 10, 10);
 
-		this.add(buttons, c);		
+		this.add(buttons, c);
 	}
-	
-	
+
+
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software} 
-	 * specific options. The layout of the returned panel will 
-	 * be {@link SpringLayout}.
+	 * Creates the JPanel that will contain the {@link Software Software}
+	 * specific options. The layout of the returned panel will be
+	 * {@link SpringLayout}.
 	 */
 	private JPanel createSpesificInfo(Database db)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[4];
-		
-		
+
+
 		labels[0] = new JLabel("Activated Date");
 		labels[0].setToolTipText("The date that the AV was activated.");
 
@@ -151,12 +152,12 @@ public class DatabaseEditView extends JPanel implements SoftwareEditView, Action
 
 
 		Dimension tfSize = new Dimension(90, 20);
-		
-		
+
+
 		return panel;
 	}
-	
-	
+
+
 
 	@Override
 	public void save()
@@ -171,15 +172,14 @@ public class DatabaseEditView extends JPanel implements SoftwareEditView, Action
 			mainDB.setDescription(desc.getText());
 		}
 
-		
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
-

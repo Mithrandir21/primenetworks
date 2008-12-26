@@ -28,7 +28,8 @@ public class InternalConnection extends Connection implements Serializable
 	 * @param To
 	 *            The object which is to be connected to.
 	 */
-	public InternalConnection(String Name, String Desc, Object From, Object To, String connection)
+	public InternalConnection(String Name, String Desc, Object From, Object To,
+			String connection)
 	{
 		super(Name, Desc, From, To, connection);
 	}

@@ -78,7 +78,6 @@ public class GraphicsCard extends Hardware implements Serializable
 
 	/**
 	 * Get producer of the GC.
-	 * 
 	 */
 	public String getProducer()
 	{
@@ -89,7 +88,6 @@ public class GraphicsCard extends Hardware implements Serializable
 
 	/**
 	 * Get the type of the GC.
-	 * 
 	 */
 	public String getType()
 	{
@@ -99,7 +97,6 @@ public class GraphicsCard extends Hardware implements Serializable
 
 	/**
 	 * Get the output interface of the GC
-	 * 
 	 */
 	public String getOutputInterface()
 	{
@@ -109,7 +106,6 @@ public class GraphicsCard extends Hardware implements Serializable
 
 	/**
 	 * Get the size of the GC.
-	 * 
 	 */
 	public int getSize()
 	{
@@ -119,7 +115,6 @@ public class GraphicsCard extends Hardware implements Serializable
 
 	/**
 	 * Get the speed of the GC.
-	 * 
 	 */
 	public int getSpeed()
 	{
@@ -129,7 +124,6 @@ public class GraphicsCard extends Hardware implements Serializable
 
 	/**
 	 * Get the max number of monitors output ports on the GC.
-	 * 
 	 */
 	public int getMaxMonitors()
 	{
@@ -140,7 +134,6 @@ public class GraphicsCard extends Hardware implements Serializable
 	/**
 	 * Get the information on whether or not the GC is integrated on the
 	 * motherboard or not.
-	 * 
 	 */
 	public boolean getIsIntegrated()
 	{
@@ -152,7 +145,6 @@ public class GraphicsCard extends Hardware implements Serializable
 
 	/**
 	 * Set method for producers of the GC.
-	 * 
 	 */
 	public void setProducer(String GCproducer)
 	{
@@ -162,7 +154,6 @@ public class GraphicsCard extends Hardware implements Serializable
 
 	/**
 	 * Set method for type of the GC.
-	 * 
 	 */
 	public void setType(String GCtype)
 	{
@@ -172,7 +163,6 @@ public class GraphicsCard extends Hardware implements Serializable
 
 	/**
 	 * Set method for subtype of the GC
-	 * 
 	 */
 	public void setSubtype(String GCoutputInterface)
 	{
@@ -182,7 +172,6 @@ public class GraphicsCard extends Hardware implements Serializable
 
 	/**
 	 * Set method for size of the GC.
-	 * 
 	 */
 	public void setSize(int GCsize)
 	{
@@ -192,7 +181,6 @@ public class GraphicsCard extends Hardware implements Serializable
 
 	/**
 	 * Set method for speed of the GC.
-	 * 
 	 */
 	public void setSpeed(int GCspeed)
 	{
@@ -202,7 +190,6 @@ public class GraphicsCard extends Hardware implements Serializable
 
 	/**
 	 * Set method for RPM of the GC.
-	 * 
 	 */
 	public void setMaxMonitors(int GCmaxMonitors)
 	{
@@ -212,7 +199,6 @@ public class GraphicsCard extends Hardware implements Serializable
 
 	/**
 	 * Set method for whether or not the GC is integrated on the motherboard.
-	 * 
 	 */
 	public void setIsIntegrated(boolean GCisIntegrated)
 	{

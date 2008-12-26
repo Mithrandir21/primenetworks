@@ -53,14 +53,15 @@ public class HTTPServer extends Servers implements Serializable
 	 * @param WebserverSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public HTTPServer(String Name, String Desc, String WebserverSWname, String WebserverSWdesc,
-			String WebserverSWversion)
+	public HTTPServer(String Name, String Desc, String WebserverSWname,
+			String WebserverSWdesc, String WebserverSWversion)
 	{
 		super(Name, Desc);
 
 		// Creates a Webserver software object
-		Webserver = new Webserver(WebserverSWname, WebserverSWdesc, WebserverSWversion);
-		Software[] sw = {Webserver};
+		Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
+				WebserverSWversion);
+		Software[] sw = { Webserver };
 		super.setSoftware(sw);
 	}
 
@@ -81,14 +82,16 @@ public class HTTPServer extends Servers implements Serializable
 	 * @param WebserverSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public HTTPServer(String Name, String Desc, String[] SupConInt, String WebserverSWname,
-			String WebserverSWdesc, String WebserverSWversion)
+	public HTTPServer(String Name, String Desc, String[] SupConInt,
+			String WebserverSWname, String WebserverSWdesc,
+			String WebserverSWversion)
 	{
 		super(Name, Desc, SupConInt);
 
 		// Creates a Webserver software object
-		Webserver = new Webserver(WebserverSWname, WebserverSWdesc, WebserverSWversion);
-		Software[] sw = {Webserver};
+		Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
+				WebserverSWversion);
+		Software[] sw = { Webserver };
 		super.setSoftware(sw);
 	}
 
@@ -109,14 +112,16 @@ public class HTTPServer extends Servers implements Serializable
 	 * @param WebserverSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public HTTPServer(String Name, String Desc, Object[] DesktopComponents, String WebserverSWname,
-			String WebserverSWdesc, String WebserverSWversion)
+	public HTTPServer(String Name, String Desc, Object[] DesktopComponents,
+			String WebserverSWname, String WebserverSWdesc,
+			String WebserverSWversion)
 	{
 		super(Name, Desc, DesktopComponents);
 
 		// Creates a Webserver software object
-		Webserver = new Webserver(WebserverSWname, WebserverSWdesc, WebserverSWversion);
-		Software[] sw = {Webserver};
+		Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
+				WebserverSWversion);
+		Software[] sw = { Webserver };
 		super.setSoftware(sw);
 	}
 
@@ -137,14 +142,16 @@ public class HTTPServer extends Servers implements Serializable
 	 * @param WebserverSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public HTTPServer(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents,
-			String WebserverSWname, String WebserverSWdesc, String WebserverSWversion)
+	public HTTPServer(String Name, String Desc, String[] SupConInt,
+			Object[] DesktopComponents, String WebserverSWname,
+			String WebserverSWdesc, String WebserverSWversion)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 
 		// Creates a Webserver software object
-		Webserver = new Webserver(WebserverSWname, WebserverSWdesc, WebserverSWversion);
-		Software[] sw = {Webserver};
+		Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
+				WebserverSWversion);
+		Software[] sw = { Webserver };
 		super.setSoftware(sw);
 	}
 
@@ -154,7 +161,6 @@ public class HTTPServer extends Servers implements Serializable
 
 	/**
 	 * Get the software that is set to run on this device.
-	 * 
 	 */
 	public Webserver getWebserverApplication()
 	{
@@ -168,7 +174,6 @@ public class HTTPServer extends Servers implements Serializable
 
 	/**
 	 * Get the protocols this device supports for access from a remote location.
-	 * 
 	 */
 	public String[] getSupportedRemoteAccessProtocols()
 	{
@@ -184,7 +189,6 @@ public class HTTPServer extends Servers implements Serializable
 	 * Get a boolean saying if this device supports on-site-access, which
 	 * implies that the device is atleast connected to a mouse, keyboard and a
 	 * monitor.
-	 * 
 	 */
 	public boolean SupportsOnSiteAccess()
 	{
@@ -198,7 +202,6 @@ public class HTTPServer extends Servers implements Serializable
 
 	/**
 	 * Get a boolean saying if the device supports remote access.
-	 * 
 	 */
 	public boolean SupportsRemoteAccess()
 	{
@@ -212,7 +215,6 @@ public class HTTPServer extends Servers implements Serializable
 
 	/**
 	 * Sets the application that is to run on the device.
-	 * 
 	 */
 	public void setWebserverApplication(Webserver Webserver)
 	{
@@ -227,9 +229,9 @@ public class HTTPServer extends Servers implements Serializable
 	/**
 	 * Set an array of string with the protocols the device supports for remote
 	 * access.
-	 * 
 	 */
-	public void setSupportedRemoteAccessProtocols(String[] supportedRemoteAccessProtocols)
+	public void setSupportedRemoteAccessProtocols(
+			String[] supportedRemoteAccessProtocols)
 	{
 
 		this.supportedRemoteAccessProtocols = supportedRemoteAccessProtocols;
@@ -241,7 +243,6 @@ public class HTTPServer extends Servers implements Serializable
 
 	/**
 	 * Set the support of the device for On-Site-Access.
-	 * 
 	 */
 	public void setSupportsOnSiteAccess(boolean supportsOnSiteAccess)
 	{
@@ -255,7 +256,6 @@ public class HTTPServer extends Servers implements Serializable
 
 	/**
 	 * Set the support of the device for remote access.
-	 * 
 	 */
 	public void setSupportsRemoteAccess(boolean supportsRemoteAccess)
 	{
@@ -272,7 +272,8 @@ public class HTTPServer extends Servers implements Serializable
 	 * @param NewProtocols
 	 *            An array of new remote access protocols.
 	 */
-	public void addRemoteAccessProtocols(String[] NewProtocols) throws Exception
+	public void addRemoteAccessProtocols(String[] NewProtocols)
+			throws Exception
 	{
 		supportedRemoteAccessProtocols = ArrayManagment.addItems(NewProtocols,
 				supportedRemoteAccessProtocols);
@@ -291,7 +292,7 @@ public class HTTPServer extends Servers implements Serializable
 	public void removeRemoteAccessProtocols(String[] ToBeRemoved)
 			throws StringNotFoundInArrayException
 	{
-		supportedRemoteAccessProtocols = ArrayManagment.removeItems(ToBeRemoved,
-				supportedRemoteAccessProtocols);
+		supportedRemoteAccessProtocols = ArrayManagment.removeItems(
+				ToBeRemoved, supportedRemoteAccessProtocols);
 	}
 }

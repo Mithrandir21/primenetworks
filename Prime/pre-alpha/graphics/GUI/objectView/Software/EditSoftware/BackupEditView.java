@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -37,13 +38,11 @@ import software.Backup;
 
 /**
  * A JPanel that will contain fields and options for a presentation and
- * modification of an {@link Backup Backup} Software. The panel is made up
- * of 3 JPanel ordered in a column.
- * 
- * The first one contains the name and description of the object. 
- * The second panel contains the specific software options. 
- * The third panel contains the button that can remove the software
- * from the computer.
+ * modification of an {@link Backup Backup} Software. The panel is made up of 3
+ * JPanel ordered in a column. The first one contains the name and description
+ * of the object. The second panel contains the specific software options. The
+ * third panel contains the button that can remove the software from the
+ * computer.
  * 
  * @author Bahram Malaekeh
  */
@@ -55,7 +54,7 @@ public class BackupEditView extends JPanel implements SoftwareEditView,
 
 	// The description of the software object.
 	private JTextArea desc = new JTextArea(3, 40);
-	
+
 	// Supported Operating systems
 	private JList supportedOS;
 
@@ -64,32 +63,32 @@ public class BackupEditView extends JPanel implements SoftwareEditView,
 
 	// The type of backup
 	private JTextField backupType;
-	
+
 	// Whether or not the software can use compression
 	private JCheckBox compression;
-	
+
 	// Whether or not the software can use encryption
 	private JCheckBox encryption;
-	
+
 	// The number of copies keeps
-	private JTextField duplicate;	
-		
-	
-	
-	
+	private JComboBox duplicate;
+
+
+
+
 
 	private Object mainObj;
 
 	private Backup mainBack;
 
-	
+
 	/**
 	 * Constructor for the software view.
 	 * 
 	 * @param obj
-	 * 			The main {@link Object object}.
+	 *            The main {@link Object object}.
 	 * @param back
-	 * 			The {@link Backup Backup} software.
+	 *            The {@link Backup Backup} software.
 	 */
 	public BackupEditView(Object obj, Backup back)
 	{
@@ -157,9 +156,9 @@ public class BackupEditView extends JPanel implements SoftwareEditView,
 
 
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software} 
-	 * specific options. The layout of the returned panel will 
-	 * be {@link SpringLayout}.
+	 * Creates the JPanel that will contain the {@link Software Software}
+	 * specific options. The layout of the returned panel will be
+	 * {@link SpringLayout}.
 	 */
 	private JPanel createSpesificInfo(Backup back)
 	{
@@ -181,8 +180,8 @@ public class BackupEditView extends JPanel implements SoftwareEditView,
 
 
 		Dimension tfSize = new Dimension(90, 20);
-		
-		
+
+
 		// The supported operating systems by the Email software.
 		labels[0].setLabelFor(supportedOS);
 		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
@@ -209,8 +208,8 @@ public class BackupEditView extends JPanel implements SoftwareEditView,
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		
-		
+
+
 		// The type of backup
 		labels[1].setLabelFor(backupType);
 		backupType.setMaximumSize(tfSize);
@@ -221,8 +220,8 @@ public class BackupEditView extends JPanel implements SoftwareEditView,
 
 		panel.add(labels[1]);
 		panel.add(backupType);
-		
-		
+
+
 		// Whether or not the software can use compression
 		labels[2].setLabelFor(compression);
 		compression = new JCheckBox();
@@ -236,8 +235,8 @@ public class BackupEditView extends JPanel implements SoftwareEditView,
 
 		panel.add(labels[2]);
 		panel.add(compression);
-		
-		
+
+
 		// Whether or not the software can use encryption
 		labels[3].setLabelFor(encryption);
 		encryption = new JCheckBox();
@@ -251,14 +250,21 @@ public class BackupEditView extends JPanel implements SoftwareEditView,
 
 		panel.add(labels[3]);
 		panel.add(encryption);
-		
-		
+
+
 		// The number of copies keeps
 		labels[4].setLabelFor(duplicate);
+		String[] dupStrings = { "0", "1", "2", "3", "4", "5", "6", "7", "8" };
+		duplicate = new JComboBox(dupStrings);
 		duplicate.setMaximumSize(tfSize);
 		duplicate.setPreferredSize(tfSize);
-		duplicate.setText(mainBack.getDuplicate() + "");
+		duplicate.setBackground(Color.WHITE);
 		duplicate.setToolTipText(labels[4].getToolTipText());
+		duplicate.setActionCommand("Duplicates");
+		duplicate.addActionListener(this);
+
+		duplicate.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				dupStrings, back.getDuplicate()));
 
 
 		panel.add(labels[4]);
@@ -283,13 +289,27 @@ public class BackupEditView extends JPanel implements SoftwareEditView,
 		{
 			mainBack.setDescription(desc.getText());
 		}
-		
+
 		if ( supportedOS.getSelectedIndex() != -1 )
 		{
 			mainBack.setSupportedOperatingSystems(OSs);
 		}
-		
-		jhf
+
+		// The type of backup
+		if ( backupType.getText() != "" )
+		{
+			mainBack.setBackupType(backupType.getText());
+		}
+
+		// Whether or not the software can use compression
+		mainBack.setSupportsCompression(compression.isSelected());
+
+		// Whether or not the software can use encryption
+		mainBack.setSupportsEncryption(encryption.isSelected());
+
+		// The number of copies keeps
+		// private JTextField duplicate;
+
 	}
 
 	@Override
@@ -299,7 +319,7 @@ public class BackupEditView extends JPanel implements SoftwareEditView,
 
 	}
 
-	
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 

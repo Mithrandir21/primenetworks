@@ -11,9 +11,7 @@ import objects.Software;
  * specific machine with the goal of separating different networks which are at
  * different trust levels. Its goal is to allow, deny or proxy any connection
  * from one network to another according to the rules that are given to it by
- * the administrator.
- * 
- * FIXME - Description for all the class methods.
+ * the administrator. FIXME - Description for all the class methods.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -143,7 +141,6 @@ public class Firewall extends Software implements Serializable
 	/**
 	 * Get a boolean telling whether or not the firewall has a integrated
 	 * antivirus.
-	 * 
 	 */
 	public boolean HasAntivirus()
 	{
@@ -158,7 +155,6 @@ public class Firewall extends Software implements Serializable
 	/**
 	 * Get a boolean that says if the firewall has an application level firewall
 	 * feature.
-	 * 
 	 */
 	public boolean HasApplicationFirewall()
 	{
@@ -173,7 +169,6 @@ public class Firewall extends Software implements Serializable
 	/**
 	 * Get a boolean that says if the firewall has a deep package inspection
 	 * firewall feature.
-	 * 
 	 */
 	public boolean HasDPI()
 	{
@@ -187,7 +182,6 @@ public class Firewall extends Software implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public boolean HasIDS()
 	{
@@ -201,7 +195,6 @@ public class Firewall extends Software implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public boolean HasNAT()
 	{
@@ -215,7 +208,6 @@ public class Firewall extends Software implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public boolean HasNetworkFirewall()
 	{
@@ -229,7 +221,6 @@ public class Firewall extends Software implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public boolean HasProxy()
 	{
@@ -243,7 +234,6 @@ public class Firewall extends Software implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public boolean HasStatefulFirewall()
 	{
@@ -257,7 +247,6 @@ public class Firewall extends Software implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public boolean HasVPN()
 	{
@@ -271,7 +260,6 @@ public class Firewall extends Software implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public boolean SupportsDMZ()
 	{
@@ -285,7 +273,6 @@ public class Firewall extends Software implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public boolean SupportsForwarding()
 	{
@@ -299,7 +286,6 @@ public class Firewall extends Software implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public boolean SupportsIPv6()
 	{
@@ -313,7 +299,6 @@ public class Firewall extends Software implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public boolean SupportsPortForwarding()
 	{
@@ -327,7 +312,6 @@ public class Firewall extends Software implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public boolean SupportsQos()
 	{
@@ -341,7 +325,6 @@ public class Firewall extends Software implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public boolean SupportsRWA()
 	{
@@ -355,7 +338,6 @@ public class Firewall extends Software implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public boolean SupportsTarpit()
 	{
@@ -369,7 +351,6 @@ public class Firewall extends Software implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public boolean SupportsToD()
 	{
@@ -383,7 +364,6 @@ public class Firewall extends Software implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public boolean SupportsTTL()
 	{

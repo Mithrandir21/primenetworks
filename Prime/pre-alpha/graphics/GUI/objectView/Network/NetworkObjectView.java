@@ -40,7 +40,6 @@ import clients.Laptop;
  * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class NetworkObjectView extends JPanel
 {
@@ -48,7 +47,6 @@ public class NetworkObjectView extends JPanel
 
 	/**
 	 * TODO - Description NEEDED!
-	 * 
 	 */
 	public NetworkObjectView(Object obj)
 	{
@@ -80,18 +78,18 @@ public class NetworkObjectView extends JPanel
 		c.insets = new Insets(10, 10, 10, 10);
 
 
-		this.add(determine(obj,"USB"),c);
-		
-		
+		this.add(determine(obj, "USB"), c);
+
+
 		c.gridx = 1;
 		c.gridy = 0;
 		c.weightx = 1;
 		c.weighty = 1;
 		c.gridwidth = 1;
 		c.gridheight = 1;
-		
-		
-		this.add(determine(obj,"RJ-45"),c);
+
+
+		this.add(determine(obj, "RJ-45"), c);
 
 	}
 
@@ -151,7 +149,7 @@ public class NetworkObjectView extends JPanel
 		c.anchor = GridBagConstraints.NORTH;
 		c.insets = new Insets(5, 5, 0, 5);
 		// c.gridheight = texts.length;
-		
+
 		int hwCount = 0;
 
 
@@ -160,9 +158,9 @@ public class NetworkObjectView extends JPanel
 			JPanel objPanel = createPanel(matched[i]);
 			objPanel.setMaximumSize(new Dimension(90, 20));
 			objPanel.setPreferredSize(new Dimension(90, 20));
-			
-			panel.add(createPanel(matched[i]),c);
-			
+
+			panel.add(createPanel(matched[i]), c);
+
 			if ( i % 2 == 0 )
 			{
 				c.gridx++;
@@ -172,16 +170,16 @@ public class NetworkObjectView extends JPanel
 				c.gridx = 0;
 				c.gridy++;
 			}
-			
+
 			hwCount++;
 		}
-		
-		
-		
+
+
+
 		while ( hwCount < 10 )
 		{
 			JPanel p = new JPanel();
-//			p.setBorder(BorderFactory.createEtchedBorder());
+			// p.setBorder(BorderFactory.createEtchedBorder());
 			panel.add(p, c);
 
 			hwCount++;
@@ -236,7 +234,7 @@ public class NetworkObjectView extends JPanel
 		c.anchor = GridBagConstraints.NORTH;
 		c.insets = new Insets(5, 5, 0, 5);
 		// c.gridheight = texts.length;
-		
+
 		int hwCount = 0;
 
 
@@ -245,9 +243,9 @@ public class NetworkObjectView extends JPanel
 			JPanel objPanel = createPanel(matched[i]);
 			objPanel.setMaximumSize(new Dimension(90, 20));
 			objPanel.setPreferredSize(new Dimension(90, 20));
-			
-			panel.add(createPanel(matched[i]),c);
-			
+
+			panel.add(createPanel(matched[i]), c);
+
 			if ( i % 2 == 0 )
 			{
 				c.gridx++;
@@ -257,15 +255,15 @@ public class NetworkObjectView extends JPanel
 				c.gridx = 0;
 				c.gridy++;
 			}
-			
+
 			hwCount++;
 		}
-		
-		
+
+
 		while ( hwCount < 10 )
 		{
 			JPanel p = new JPanel();
-//			p.setBorder(BorderFactory.createEtchedBorder());
+			// p.setBorder(BorderFactory.createEtchedBorder());
 			panel.add(p, c);
 
 			hwCount++;
@@ -405,28 +403,29 @@ public class NetworkObjectView extends JPanel
 
 		try
 		{
- 			mbObj = (Motherboard) ComponentsManagment.getSpesificComponents(Motherboard.class, obj
-					.getComponents(), obj.getComponents().length)[0];
+			mbObj = (Motherboard) ComponentsManagment.getSpesificComponents(
+					Motherboard.class, obj.getComponents(),
+					obj.getComponents().length)[0];
 
 
- 			
-			Object[] cpusArray = ComponentsManagment.getSpesificComponents(CPU.class,
-					obj.getComponents(), obj.getComponents().length);
-			
+
+			Object[] cpusArray = ComponentsManagment.getSpesificComponents(
+					CPU.class, obj.getComponents(), obj.getComponents().length);
+
 			cpus = new CPU[cpusArray.length];
-			for(int i = 0;i<cpusArray.length;i++)
+			for ( int i = 0; i < cpusArray.length; i++ )
 			{
 				cpus[i] = (CPU) cpusArray[i];
 			}
 
 
-			
-			Object[] hddsArray = ComponentsManagment.getSpesificComponents(HDD.class,
-					obj.getComponents(), obj.getComponents().length);
-			
-			
+
+			Object[] hddsArray = ComponentsManagment.getSpesificComponents(
+					HDD.class, obj.getComponents(), obj.getComponents().length);
+
+
 			hdds = new HDD[hddsArray.length];
-			for(int i = 0;i<hddsArray.length;i++)
+			for ( int i = 0; i < hddsArray.length; i++ )
 			{
 				hdds[i] = (HDD) hddsArray[i];
 			}
@@ -447,15 +446,15 @@ public class NetworkObjectView extends JPanel
 		{
 			text = "";
 			int speed = 0;
-			
-			
+
+
 			if ( cpus.length == 1 )
 			{
 				text = "Speed: " + cpus[0].getSpeed();
 			}
 			else if ( cpus.length > 1 )
 			{
-				
+
 
 				for ( int i = 0; i < cpus.length; i++ )
 				{

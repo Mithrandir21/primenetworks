@@ -67,8 +67,9 @@ import javax.swing.ListSelectionModel;
  * <pre>
  * String[] choices = { &quot;A&quot;, &quot;long&quot;, &quot;array&quot;, &quot;of&quot;, &quot;strings&quot; };
  * 
- * String selectedName = ListDialog.showDialog(componentInControllingFrame, locatorComponent,
- * 		&quot;A description of the list:&quot;, &quot;Dialog Title&quot;, choices, choices[0]);
+ * String selectedName = ListDialog.showDialog(componentInControllingFrame,
+ * 		locatorComponent, &quot;A description of the list:&quot;, &quot;Dialog Title&quot;,
+ * 		choices, choices[0]);
  * </pre>
  */
 public class ListDialog extends JDialog implements ActionListener
@@ -87,13 +88,14 @@ public class ListDialog extends JDialog implements ActionListener
 	 * screen; otherwise, it should be the component on top of which the dialog
 	 * should appear.
 	 */
-	public static String showDialog(Component frameComp, Component locationComp, String labelText,
-			String title, String[] possibleValues, String initialValue, String longValue)
+	public static String showDialog(Component frameComp,
+			Component locationComp, String labelText, String title,
+			String[] possibleValues, String initialValue, String longValue)
 	{
 
 		Frame frame = JOptionPane.getFrameForComponent(frameComp);
-		dialog = new ListDialog(frame, locationComp, labelText, title, possibleValues,
-				initialValue, longValue);
+		dialog = new ListDialog(frame, locationComp, labelText, title,
+				possibleValues, initialValue, longValue);
 		dialog.setVisible(true);
 		return value;
 
@@ -107,8 +109,8 @@ public class ListDialog extends JDialog implements ActionListener
 	}
 
 
-	private ListDialog(Frame frame, Component locationComp, String labelText, String title,
-			Object[] data, String initialValue, String longValue)
+	private ListDialog(Frame frame, Component locationComp, String labelText,
+			String title, Object[] data, String initialValue, String longValue)
 	{
 		super(frame, title, true);
 

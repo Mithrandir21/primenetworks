@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
 public class ActionCopy extends AbstractAction
 {
 	/**
-	 * 
 	 * Description NEEDED!
 	 * 
 	 * @param text
@@ -35,7 +34,6 @@ public class ActionCopy extends AbstractAction
 	}
 
 	/**
-	 * 
 	 * Description NEEDED!
 	 * 
 	 * @param text
@@ -53,7 +51,8 @@ public class ActionCopy extends AbstractAction
 	public void actionPerformed(ActionEvent e)
 	{
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(null, "You want to perform a \"Copy\" action.");
+		JOptionPane.showMessageDialog(null,
+				"You want to perform a \"Copy\" action.");
 	}
 
 }

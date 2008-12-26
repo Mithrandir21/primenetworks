@@ -19,7 +19,8 @@ public class CreateProvider implements SelectProvider
 		return true;
 	}
 
-	public void select(Widget relatedWidget, Point localLocation, boolean invertSelection)
+	public void select(Widget relatedWidget, Point localLocation,
+			boolean invertSelection)
 	{
 	}
 

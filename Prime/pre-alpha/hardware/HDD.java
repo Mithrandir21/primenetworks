@@ -68,7 +68,6 @@ public class HDD extends Hardware implements Serializable
 
 	/**
 	 * Get producer of the HDD.
-	 * 
 	 */
 	public String getProducer()
 	{
@@ -79,7 +78,6 @@ public class HDD extends Hardware implements Serializable
 
 	/**
 	 * Get the type of the HDD.
-	 * 
 	 */
 	public String getType()
 	{
@@ -89,7 +87,6 @@ public class HDD extends Hardware implements Serializable
 
 	/**
 	 * Get the subtype of the type of HDD.
-	 * 
 	 */
 	public String getSubtype()
 	{
@@ -99,7 +96,6 @@ public class HDD extends Hardware implements Serializable
 
 	/**
 	 * Get the size of the HDD.
-	 * 
 	 */
 	public int getSize()
 	{
@@ -109,7 +105,6 @@ public class HDD extends Hardware implements Serializable
 
 	/**
 	 * Get the transfer speed of the HDD.
-	 * 
 	 */
 	public int getSpeed()
 	{
@@ -119,7 +114,6 @@ public class HDD extends Hardware implements Serializable
 
 	/**
 	 * Get the RPM of the HDD.
-	 * 
 	 */
 	public int getRPM()
 	{
@@ -131,7 +125,6 @@ public class HDD extends Hardware implements Serializable
 
 	/**
 	 * Set method for producers of the HDD.
-	 * 
 	 */
 	public void setProducer(String HDDProducer)
 	{
@@ -141,7 +134,6 @@ public class HDD extends Hardware implements Serializable
 
 	/**
 	 * Set method for type of the HDD.
-	 * 
 	 */
 	public void setType(String HDDType)
 	{
@@ -151,7 +143,6 @@ public class HDD extends Hardware implements Serializable
 
 	/**
 	 * Set method for subtype of the HDD.
-	 * 
 	 */
 	public void setSubtype(String HDDSubtype)
 	{
@@ -161,7 +152,6 @@ public class HDD extends Hardware implements Serializable
 
 	/**
 	 * Set method for size of the HDD.
-	 * 
 	 */
 	public void setSize(int HDDSize)
 	{
@@ -171,7 +161,6 @@ public class HDD extends Hardware implements Serializable
 
 	/**
 	 * Set method for speed of the HDD.
-	 * 
 	 */
 	public void setSpeed(int HDDtransferSpeed)
 	{
@@ -181,7 +170,6 @@ public class HDD extends Hardware implements Serializable
 
 	/**
 	 * Set method for RPM of the HDD.
-	 * 
 	 */
 	public void setRPM(int HDDrpm)
 	{

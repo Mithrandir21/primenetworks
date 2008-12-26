@@ -92,7 +92,8 @@ public class ObjectProperties extends JPanel
 		canvasLabels[1] = temp;
 
 		this.add(canvasLabels[1]);
-		JTextField textField1 = new JTextField("" + canvas.getNumberOfWidgetsOnTheScene());
+		JTextField textField1 = new JTextField(""
+				+ canvas.getNumberOfWidgetsOnTheScene());
 		Dimension tfSize1 = new Dimension(5, 20);
 		textField1.setMaximumSize(tfSize1);
 		textField1.setPreferredSize(tfSize1);
@@ -152,8 +153,9 @@ public class ObjectProperties extends JPanel
 		// Index 3 - Number of nodes
 		temp = new JLabel("Number of jumps");
 		temp.setName(temp.getText());
-		temp.setToolTipText("The numbers of devices between this device and a router outside"
-				+ " of this system.");
+		temp
+				.setToolTipText("The numbers of devices between this device and a router outside"
+						+ " of this system.");
 		standardLabels[3] = temp;
 
 		temp = null;
@@ -186,7 +188,8 @@ public class ObjectProperties extends JPanel
 		// Index 1 - supportsRemoteAccess
 		temp = new JLabel("Supports Remote Access");
 		temp.setName(temp.getText());
-		temp.setToolTipText("Whether or not this device supports remote access.");
+		temp
+				.setToolTipText("Whether or not this device supports remote access.");
 		serversLabels[1] = temp;
 
 		temp = null;
@@ -202,7 +205,8 @@ public class ObjectProperties extends JPanel
 		// Index 3 - Software name
 		temp = new JLabel("Software Name");
 		temp.setName(temp.getText());
-		temp.setToolTipText("The name of the main software running on this device.");
+		temp
+				.setToolTipText("The name of the main software running on this device.");
 		serversLabels[3] = temp;
 
 		temp = null;
@@ -237,12 +241,15 @@ public class ObjectProperties extends JPanel
 		showStandardButtons(object);
 
 
-		if ( object instanceof clients.Desktop || object instanceof clients.Laptop )
+		if ( object instanceof clients.Desktop
+				|| object instanceof clients.Laptop )
 		{
 			showDesktopProperties(object);
 		}
-		else if ( object instanceof servers.HTTPServer || object instanceof servers.BackupServer
-				|| object instanceof servers.MailServer || object instanceof servers.FirewallServer
+		else if ( object instanceof servers.HTTPServer
+				|| object instanceof servers.BackupServer
+				|| object instanceof servers.MailServer
+				|| object instanceof servers.FirewallServer
 				|| object instanceof servers.ProxyServer )
 		{
 			showServerProperties(object);
@@ -254,7 +261,8 @@ public class ObjectProperties extends JPanel
 		{
 			showPeripheralProperties(object);
 		}
-		else if ( object instanceof infrastructure.Hub || object instanceof infrastructure.Switch
+		else if ( object instanceof infrastructure.Hub
+				|| object instanceof infrastructure.Switch
 				|| object instanceof infrastructure.Router )
 		{
 			showInfrastructurProperties(object);
@@ -272,7 +280,8 @@ public class ObjectProperties extends JPanel
 		numPairs = standardLabels.length;
 
 		// Name
-		JLabel l = new JLabel(standardLabels[0].getText(), SwingConstants.TRAILING);
+		JLabel l = new JLabel(standardLabels[0].getText(),
+				SwingConstants.TRAILING);
 		this.add(l);
 		JTextField textField = new JTextField(object.getObjectName());
 		Dimension tfSize = new Dimension(5, 20);
@@ -293,7 +302,8 @@ public class ObjectProperties extends JPanel
 		// Number of comp
 		l = new JLabel(standardLabels[2].getText(), SwingConstants.TRAILING);
 		this.add(l);
-		textField = new JTextField(Integer.toString((object.getNumberOfConnectedDevices())));
+		textField = new JTextField(Integer.toString((object
+				.getNumberOfConnectedDevices())));
 		textField.setEditable(false);
 		textField.setMaximumSize(tfSize);
 		textField.setPreferredSize(tfSize);
@@ -334,7 +344,8 @@ public class ObjectProperties extends JPanel
 		comboBox.setPreferredSize(tfSize);
 
 
-		JLabel l = new JLabel(clientsLabels[0].getText(), SwingConstants.TRAILING);
+		JLabel l = new JLabel(clientsLabels[0].getText(),
+				SwingConstants.TRAILING);
 		this.add(l);
 		this.add(comboBox);
 	}
@@ -346,7 +357,8 @@ public class ObjectProperties extends JPanel
 		// Create and populate the panel.
 		for ( int i = 0; i < serversLabels.length; i++ )
 		{
-			JLabel l = new JLabel(serversLabels[i].getText(), SwingConstants.TRAILING);
+			JLabel l = new JLabel(serversLabels[i].getText(),
+					SwingConstants.TRAILING);
 			this.add(l);
 			JTextField textField = new JTextField(10);
 			Dimension tfSize = new Dimension(5, 20);
@@ -364,7 +376,8 @@ public class ObjectProperties extends JPanel
 		// Create and populate the panel.
 		for ( int i = 0; i < peripheralsLabels.length; i++ )
 		{
-			JLabel l = new JLabel(peripheralsLabels[i].getText(), SwingConstants.TRAILING);
+			JLabel l = new JLabel(peripheralsLabels[i].getText(),
+					SwingConstants.TRAILING);
 			this.add(l);
 			JTextField textField = new JTextField(10);
 			Dimension tfSize = new Dimension(5, 20);
@@ -382,7 +395,8 @@ public class ObjectProperties extends JPanel
 		// Create and populate the panel.
 		for ( int i = 0; i < infrastructuresLabels.length; i++ )
 		{
-			JLabel l = new JLabel(infrastructuresLabels[i].getText(), SwingConstants.TRAILING);
+			JLabel l = new JLabel(infrastructuresLabels[i].getText(),
+					SwingConstants.TRAILING);
 			this.add(l);
 			JTextField textField = new JTextField(10);
 			Dimension tfSize = new Dimension(5, 20);

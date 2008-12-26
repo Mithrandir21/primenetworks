@@ -32,7 +32,8 @@ public class DeviceConnection extends Connection implements Serializable
 	 *            A string that says what kind of connection there is between
 	 *            the objects.
 	 */
-	public DeviceConnection(String Name, String Desc, Object From, Object To, String connection)
+	public DeviceConnection(String Name, String Desc, Object From, Object To,
+			String connection)
 	{
 		super(Name, Desc, From, To, connection);
 	}

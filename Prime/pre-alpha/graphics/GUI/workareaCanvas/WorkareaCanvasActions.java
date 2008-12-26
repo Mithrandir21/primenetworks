@@ -82,7 +82,8 @@ public class WorkareaCanvasActions
 	 * @param obj
 	 *            The object which has the connections that are to be removed.
 	 */
-	public static void removeAllConnectionsToFromObject(WorkareaCanvas canvas, Object obj)
+	public static void removeAllConnectionsToFromObject(WorkareaCanvas canvas,
+			Object obj)
 	{
 		Object[] connectedObjects = obj.getConnectedDevices();
 
@@ -94,16 +95,18 @@ public class WorkareaCanvasActions
 			{
 				try
 				{
-					removeConnectionFromConnectionLayer(canvas, ConnectionManagment.getConnection(
-							canvasCons, obj, connectedObjects[i]));
+					removeConnectionFromConnectionLayer(canvas,
+							ConnectionManagment.getConnection(canvasCons, obj,
+									connectedObjects[i]));
 
-					canvas.setConnections(ConnectionManagment.breakConnection(canvasCons, obj,
-							connectedObjects[i]));
+					canvas.setConnections(ConnectionManagment.breakConnection(
+							canvasCons, obj, connectedObjects[i]));
 				}
 				catch ( ConnectionDoesNotExist e )
 				{
 					System.out.println(e.getMessage());
-					System.out.println("removeAllConnectionsToFromObject - breakConnection");
+					System.out
+							.println("removeAllConnectionsToFromObject - breakConnection");
 				}
 			}
 		}
@@ -130,7 +133,8 @@ public class WorkareaCanvasActions
 	 * @param con
 	 *            The connection to be removed.
 	 */
-	public static void removeConnectionFromConnectionLayer(WorkareaCanvas canvas, Connection con)
+	public static void removeConnectionFromConnectionLayer(
+			WorkareaCanvas canvas, Connection con)
 	{
 		List<Widget> list = canvas.getConnectionLayer().getChildren();
 
@@ -170,7 +174,8 @@ public class WorkareaCanvasActions
 	 */
 	public static void removeConnectionFromConnectionLayer(Connection con)
 	{
-		List<Widget> list = PrimeMain1.currentCanvas.getConnectionLayer().getChildren();
+		List<Widget> list = PrimeMain1.currentCanvas.getConnectionLayer()
+				.getChildren();
 
 		WidgetExtendedConnection temp = null;
 
@@ -208,7 +213,8 @@ public class WorkareaCanvasActions
 	 * @param canvas
 	 *            The given that the connection is to be removed from.
 	 */
-	public static void removeConnectionFromCanvas(Connection con, WorkareaCanvas canvas)
+	public static void removeConnectionFromCanvas(Connection con,
+			WorkareaCanvas canvas)
 	{
 		List<Widget> list = canvas.getConnectionLayer().getChildren();
 

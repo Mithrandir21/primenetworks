@@ -8,6 +8,7 @@ import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import hardware.CPU;
 
@@ -145,7 +146,6 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	private JPanel createSpesificInfo(CPU cpu)
 	{
@@ -169,7 +169,8 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 		labels[4].setToolTipText("The size of the level 2 cache.");
 
 		labels[5] = new JLabel("Nanometers");
-		labels[5].setToolTipText("The amount of space taken up by a block on the CPU.");
+		labels[5]
+				.setToolTipText("The amount of space taken up by a block on the CPU.");
 
 		labels[6] = new JLabel("FSB");
 		labels[6].setToolTipText("The fsb, Front Side Bus, of the CPU.");
@@ -203,7 +204,8 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 
 		// The socket
 		labels[1].setLabelFor(socket);
-		String[] socketsStrings = { "", "Intel 775", "Intel 939", "AMD AM2", "AMD AM2+" };
+		String[] socketsStrings = { "", "Intel 775", "Intel 939", "AMD AM2",
+				"AMD AM2+" };
 		socket = new JComboBox(socketsStrings);
 		socket.setMaximumSize(tfSize);
 		socket.setPreferredSize(tfSize);
@@ -212,8 +214,8 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 		socket.setActionCommand("Socket");
 		socket.addActionListener(this);
 
-		socket.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(socketsStrings, cpu
-				.getSocket()));
+		socket.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				socketsStrings, cpu.getSocket()));
 
 
 		panel.add(labels[1]);
@@ -242,7 +244,8 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 		mhz.setActionCommand("Speed");
 		mhz.addActionListener(this);
 
-		mhz.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(mhertz, cpu.getSpeed()));
+		mhz.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(mhertz, cpu
+				.getSpeed()));
 
 
 		panel.add(labels[2]);
@@ -260,8 +263,8 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 		level1Cache.setActionCommand("Level 1 Cache");
 		level1Cache.addActionListener(this);
 
-		level1Cache.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(level1CacheStrings, cpu
-				.getLevel1CacheSize()));
+		level1Cache.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				level1CacheStrings, cpu.getLevel1CacheSize()));
 
 
 		panel.add(labels[3]);
@@ -270,8 +273,8 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 
 		// The level 2 cache
 		labels[4].setLabelFor(level2Cache);
-		String[] level2CacheStrings = { "", "8", "16", "32", "64", "128", "256", "512", "1024",
-				"2048" };
+		String[] level2CacheStrings = { "", "8", "16", "32", "64", "128",
+				"256", "512", "1024", "2048" };
 		level2Cache = new JComboBox(level2CacheStrings);
 		level2Cache.setMaximumSize(tfSize);
 		level2Cache.setPreferredSize(tfSize);
@@ -280,8 +283,8 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 		level2Cache.setActionCommand("Level 1 Cache");
 		level2Cache.addActionListener(this);
 
-		level2Cache.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(level2CacheStrings, cpu
-				.getLevel2CacheSize()));
+		level2Cache.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				level2CacheStrings, cpu.getLevel2CacheSize()));
 
 
 		panel.add(labels[4]);
@@ -299,8 +302,8 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 		nanometer.setActionCommand("Nanometer");
 		nanometer.addActionListener(this);
 
-		nanometer.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(nanometerStrings, cpu
-				.getNanometer()));
+		nanometer.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				nanometerStrings, cpu.getNanometer()));
 
 
 		panel.add(labels[5]);
@@ -318,7 +321,8 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 		fsb.setActionCommand("FSB");
 		fsb.addActionListener(this);
 
-		fsb.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(fsbStrings, cpu.getBusSpeed()));
+		fsb.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(fsbStrings,
+				cpu.getBusSpeed()));
 
 
 		panel.add(labels[6]);
@@ -402,7 +406,6 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
 	 */
 	@Override
@@ -435,17 +438,20 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 
 		if ( level1Cache.getSelectedItem().toString() != "" )
 		{
-			CPUobj.setLevel1CacheSize(Integer.parseInt(level1Cache.getSelectedItem().toString()));
+			CPUobj.setLevel1CacheSize(Integer.parseInt(level1Cache
+					.getSelectedItem().toString()));
 		}
 
 		if ( level2Cache.getSelectedItem().toString() != "" )
 		{
-			CPUobj.setLevel2CacheSize(Integer.parseInt(level2Cache.getSelectedItem().toString()));
+			CPUobj.setLevel2CacheSize(Integer.parseInt(level2Cache
+					.getSelectedItem().toString()));
 		}
 
 		if ( nanometer.getSelectedItem().toString() != "" )
 		{
-			CPUobj.setNanometer(Integer.parseInt(nanometer.getSelectedItem().toString()));
+			CPUobj.setNanometer(Integer.parseInt(nanometer.getSelectedItem()
+					.toString()));
 		}
 
 		if ( fsb.getSelectedItem().toString() != "" )
@@ -469,7 +475,6 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
 	 * validateNecessaryData()
 	 */
@@ -479,9 +484,11 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 		// Checks the name of the motherboard
 		if ( name.getText().length() < 1 || name.getText().length() > 255 )
 		{
-			JOptionPane.showMessageDialog(this,
-					"The motherboard name must be between 1 and 255 characters.", "Error - Name",
-					JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane
+					.showMessageDialog(
+							this,
+							"The motherboard name must be between 1 and 255 characters.",
+							"Error - Name", JOptionPane.INFORMATION_MESSAGE);
 
 			return false;
 		}
@@ -489,9 +496,12 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 		// Checks the description of the motherboard.
 		if ( desc.getText().length() < 1 )
 		{
-			JOptionPane.showMessageDialog(this,
-					"The motherboard description must be longer then 1 character.",
-					"Error - Description", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane
+					.showMessageDialog(
+							this,
+							"The motherboard description must be longer then 1 character.",
+							"Error - Description",
+							JOptionPane.INFORMATION_MESSAGE);
 
 			return false;
 		}
@@ -504,7 +514,6 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
 	 * validateChangedData()
 	 */
@@ -518,7 +527,6 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -534,11 +542,12 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 			{
 				String msg = "The CPU will no longer be compatiable with the motherboard.\n\nDo you want to keep this change?";
 
-				String[] socketsStrings = { "", "Intel 775", "Intel 939", "AMD AM2", "AMD AM2+" };
+				String[] socketsStrings = { "", "Intel 775", "Intel 939",
+						"AMD AM2", "AMD AM2+" };
 
-				socket = GraphicalFunctions.verifyChange(this, mainObj, CPU.class, CPUobj
-						.getSocket(), socket.getSelectedItem().toString(), msg, socketsStrings,
-						socket);
+				socket = GraphicalFunctions.verifyChange(this, mainObj,
+						CPU.class, CPUobj.getSocket(), socket.getSelectedItem()
+								.toString(), msg, socketsStrings, socket);
 
 			}
 		}
@@ -553,12 +562,17 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 				// Will remove the first variable from the list of components
 				// that will be returned and set as the components for the main
 				// object.
-				mainObj.setAllComponents(ComponentsManagment.removeComponent(CPUobj, mainObj
-						.getComponents(), mainObj.getComponents().length));
+				mainObj.setAllComponents(ComponentsManagment.removeComponent(
+						CPUobj, mainObj.getComponents(), mainObj
+								.getComponents().length));
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				PrimeMain1.objView.updateViewInfo();
+				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				if(view != null)
+				{
+					view.updateViewInfo();
+				}
 			}
 		}
 		else

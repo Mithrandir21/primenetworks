@@ -77,23 +77,26 @@ public class HardwareEditorTabbed extends JTabbedPane
 			else if ( components[i] instanceof CPU )
 			{
 				String CPUDesc = "General information and option";
-				this.addTab("CPU", null, new CPUView(obj, (CPU) components[i]), CPUDesc);
+				this.addTab("CPU", null, new CPUView(obj, (CPU) components[i]),
+						CPUDesc);
 			}
 			else if ( components[i] instanceof HDD )
 			{
 				String HDDDesc = "General information and option";
-				this.addTab("Harddisc", null, new HDDView(obj, (HDD) components[i]), HDDDesc);
+				this.addTab("Harddisc", null, new HDDView(obj,
+						(HDD) components[i]), HDDDesc);
 			}
 			else if ( components[i] instanceof Ram )
 			{
 				String RAMDesc = "General information and option";
-				this.addTab("RAM", null, new RAMView(obj, (Ram) components[i]), RAMDesc);
+				this.addTab("RAM", null, new RAMView(obj, (Ram) components[i]),
+						RAMDesc);
 			}
 			else if ( components[i] instanceof Discdrive )
 			{
 				String DDDesc = "General information and option";
-				this.addTab("Discdrive", null, new DiscDriveView(obj, (Discdrive) components[i]),
-						DDDesc);
+				this.addTab("Discdrive", null, new DiscDriveView(obj,
+						(Discdrive) components[i]), DDDesc);
 			}
 			else if ( components[i] instanceof GraphicsCard )
 			{

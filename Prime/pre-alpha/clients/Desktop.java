@@ -103,7 +103,8 @@ public class Desktop extends Clients implements Serializable
 	 * @param DesktopComponents
 	 *            The initial components an instance of a desktop has.
 	 */
-	public Desktop(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents)
+	public Desktop(String Name, String Desc, String[] SupConInt,
+			Object[] DesktopComponents)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 	}

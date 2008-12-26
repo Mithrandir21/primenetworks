@@ -40,9 +40,9 @@ import objects.Object;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
-public class GraphicsCardView extends JPanel implements HardwareView, ActionListener
+public class GraphicsCardView extends JPanel implements HardwareView,
+		ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -198,7 +198,8 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		type.setActionCommand("Interface");
 		type.addActionListener(this);
 
-		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(typeString, GPU.getType()));
+		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				typeString, GPU.getType()));
 
 
 		panel.add(labels[1]);
@@ -217,8 +218,8 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		outputInterface.setActionCommand("Port");
 		outputInterface.addActionListener(this);
 
-		outputInterface.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(portString, GPU
-				.getOutputInterface()));
+		outputInterface.setSelectedIndex(GraphicalFunctions
+				.getIndexInJComboBox(portString, GPU.getOutputInterface()));
 
 
 		panel.add(labels[2]);
@@ -237,7 +238,8 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		size.setActionCommand("Size");
 		size.addActionListener(this);
 
-		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(sizeString, GPU.getSize()));
+		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				sizeString, GPU.getSize()));
 
 
 		panel.add(labels[3]);
@@ -256,7 +258,8 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		speed.setActionCommand("Speed");
 		speed.addActionListener(this);
 
-		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(speedString, GPU.getSpeed()));
+		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				speedString, GPU.getSpeed()));
 
 
 		panel.add(labels[4]);
@@ -275,8 +278,8 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		maxMonitors.setActionCommand("MaxMonitors");
 		maxMonitors.addActionListener(this);
 
-		maxMonitors.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(monitorsString, GPU
-				.getMaxMonitors()));
+		maxMonitors.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				monitorsString, GPU.getMaxMonitors()));
 
 
 		panel.add(labels[5]);
@@ -333,7 +336,6 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
 	 */
 	@Override
@@ -361,7 +363,8 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 
 		if ( outputInterface.getSelectedItem().toString() != "" )
 		{
-			mainGC.setSupportedConnectionInterfaces(outputInterface.getSelectedItem().toString());
+			mainGC.setSupportedConnectionInterfaces(outputInterface
+					.getSelectedItem().toString());
 		}
 
 		if ( size.getSelectedItem().toString() != "" )
@@ -371,12 +374,14 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 
 		if ( speed.getSelectedItem().toString() != "" )
 		{
-			mainGC.setSpeed(Integer.parseInt(speed.getSelectedItem().toString()));
+			mainGC.setSpeed(Integer
+					.parseInt(speed.getSelectedItem().toString()));
 		}
 
 		if ( outputInterface.getSelectedItem().toString() != "" )
 		{
-			mainGC.setMaxMonitors(Integer.parseInt(maxMonitors.getSelectedItem().toString()));
+			mainGC.setMaxMonitors(Integer.parseInt(maxMonitors
+					.getSelectedItem().toString()));
 		}
 
 		mainGC.setIsIntegrated(isIntegrated.isSelected());
@@ -385,7 +390,6 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
 	 * validateNecessaryData()
 	 */
@@ -396,8 +400,8 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		if ( name.getText().length() < 1 || name.getText().length() > 255 )
 		{
 			JOptionPane.showMessageDialog(this,
-					"The component name must be between 1 and 255 characters.", "Error - Name",
-					JOptionPane.INFORMATION_MESSAGE);
+					"The component name must be between 1 and 255 characters.",
+					"Error - Name", JOptionPane.INFORMATION_MESSAGE);
 
 			return false;
 		}
@@ -405,9 +409,12 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 		// Checks the description of the motherboard.
 		if ( desc.getText().length() < 1 )
 		{
-			JOptionPane.showMessageDialog(this,
-					"The component description must be longer then 1 character.",
-					"Error - Description", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane
+					.showMessageDialog(
+							this,
+							"The component description must be longer then 1 character.",
+							"Error - Description",
+							JOptionPane.INFORMATION_MESSAGE);
 
 			return false;
 		}
@@ -419,7 +426,6 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
 	 * validateChangedData()
 	 */
@@ -434,7 +440,8 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( e.getSource() instanceof JComboBox && e.getActionCommand() != "Integrated" )
+		if ( e.getSource() instanceof JComboBox
+				&& e.getActionCommand() != "Integrated" )
 		{
 			JComboBox box = (JComboBox) e.getSource();
 
@@ -445,8 +452,10 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 
 				String[] typeString = { "", "PCI", "AGP", "PCI-E" };
 
-				type = GraphicalFunctions.verifyChange(this, mainObj, GraphicsCard.class, mainGC
-						.getType(), type.getSelectedItem().toString(), msg, typeString, type);
+				type = GraphicalFunctions.verifyChange(this, mainObj,
+						GraphicsCard.class, mainGC.getType(), type
+								.getSelectedItem().toString(), msg, typeString,
+						type);
 			}
 		}
 		else if ( e.getSource() instanceof Button )
@@ -460,12 +469,13 @@ public class GraphicsCardView extends JPanel implements HardwareView, ActionList
 				// Will remove the first variable from the list of components
 				// that will be returned and set as the components for the main
 				// object.
-				mainObj.setAllComponents(ComponentsManagment.removeComponent(mainGC, mainObj
-						.getComponents(), mainObj.getComponents().length));
+				mainObj.setAllComponents(ComponentsManagment.removeComponent(
+						mainGC, mainObj.getComponents(), mainObj
+								.getComponents().length));
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				PrimeMain1.objView.updateViewInfo();
+				PrimeMain1.getObjectView(mainObj).updateViewInfo();
 			}
 		}
 		else

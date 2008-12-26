@@ -13,7 +13,6 @@ import javax.swing.JPopupMenu;
 
 /**
  * @author Bam
- * 
  */
 public class CanvasMenu
 {
@@ -63,25 +62,28 @@ public class CanvasMenu
 		JMenuItem submenuAdd = new JMenu("Add new devices");
 
 
-		JMenuItem submenuDesktop = createAddDesktop(canvas, new JMenu("Add Clients"));
+		JMenuItem submenuDesktop = createAddDesktop(canvas, new JMenu(
+				"Add Clients"));
 
 		submenuAdd.add(submenuDesktop);
 
 
-		JMenuItem submenuServer = createAddServer(canvas, new JMenu("Add Server"));
+		JMenuItem submenuServer = createAddServer(canvas, new JMenu(
+				"Add Server"));
 
 		submenuAdd.add(submenuServer);
 
 
 
-		JMenuItem submenuInfrastructur = createAddInfrastructur(canvas, new JMenu(
-				"Add Infrastructur"));
+		JMenuItem submenuInfrastructur = createAddInfrastructur(canvas,
+				new JMenu("Add Infrastructur"));
 
 		submenuAdd.add(submenuInfrastructur);
 
 
 
-		JMenuItem submenuPeripheral = createAddPeripheral(canvas, new JMenu("Add Peripheral"));
+		JMenuItem submenuPeripheral = createAddPeripheral(canvas, new JMenu(
+				"Add Peripheral"));
 
 		submenuAdd.add(submenuPeripheral);
 
@@ -92,7 +94,8 @@ public class CanvasMenu
 	}
 
 
-	private static JMenuItem createAddDesktop(WorkareaCanvas canvas, JMenuItem submenuDesktop)
+	private static JMenuItem createAddDesktop(WorkareaCanvas canvas,
+			JMenuItem submenuDesktop)
 	{
 
 		JMenuItem menuItem = new JMenuItem();
@@ -114,7 +117,8 @@ public class CanvasMenu
 
 
 
-	private static JMenuItem createAddServer(WorkareaCanvas canvas, JMenuItem submenuServer)
+	private static JMenuItem createAddServer(WorkareaCanvas canvas,
+			JMenuItem submenuServer)
 	{
 
 		JMenuItem menuItem = new JMenuItem();
@@ -183,7 +187,8 @@ public class CanvasMenu
 
 
 
-	private static JMenuItem createAddPeripheral(WorkareaCanvas canvas, JMenuItem submenuPeripheral)
+	private static JMenuItem createAddPeripheral(WorkareaCanvas canvas,
+			JMenuItem submenuPeripheral)
 	{
 
 		JMenuItem menuItem = new JMenuItem();

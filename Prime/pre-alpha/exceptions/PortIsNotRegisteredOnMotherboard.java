@@ -28,7 +28,8 @@ public class PortIsNotRegisteredOnMotherboard extends Exception
 	 * @param aMB
 	 * @param aOb
 	 */
-	public PortIsNotRegisteredOnMotherboard(Motherboard aMB, Object aOb, String type)
+	public PortIsNotRegisteredOnMotherboard(Motherboard aMB, Object aOb,
+			String type)
 	{
 		mb = aMB;
 		obj = aOb;
@@ -38,14 +39,14 @@ public class PortIsNotRegisteredOnMotherboard extends Exception
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.lang.Throwable#getMessage()
 	 */
 	@Override
 	public String getMessage()
 	{
-		String output = "The motherboard, " + mb.getObjectName() + ", on the object "
-				+ obj.getObjectName() + " has not registered " + conType
+		String output = "The motherboard, " + mb.getObjectName()
+				+ ", on the object " + obj.getObjectName()
+				+ " has not registered " + conType
 				+ " ports in the correct way.";
 
 		return output;

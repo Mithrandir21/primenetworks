@@ -26,7 +26,8 @@ public class OfficeSuite extends Software implements Serializable
 	private String[] supportedFormats;
 
 
-	public OfficeSuite(String Name, String Desc, String Version, String[] OfficeSupportedFormats)
+	public OfficeSuite(String Name, String Desc, String Version,
+			String[] OfficeSupportedFormats)
 	{
 		super(Name, Desc, Version);
 		if ( OfficeSupportedFormats[0] != null )

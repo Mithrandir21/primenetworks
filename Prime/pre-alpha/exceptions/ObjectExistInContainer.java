@@ -35,7 +35,6 @@ public class ObjectExistInContainer extends Exception
 
 	/**
 	 * Retrieves the object that was found.
-	 * 
 	 */
 	public Object getObject()
 	{

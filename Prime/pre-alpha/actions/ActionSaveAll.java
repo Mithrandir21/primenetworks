@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
 public class ActionSaveAll extends AbstractAction
 {
 	/**
-	 * 
 	 * Description NEEDED!
 	 * 
 	 * @param text
@@ -36,7 +35,6 @@ public class ActionSaveAll extends AbstractAction
 
 
 	/**
-	 * 
 	 * Description NEEDED!
 	 * 
 	 * @param text
@@ -52,7 +50,8 @@ public class ActionSaveAll extends AbstractAction
 	public void actionPerformed(ActionEvent e)
 	{
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(null, "You want to perform a \"Save All\" action.");
+		JOptionPane.showMessageDialog(null,
+				"You want to perform a \"Save All\" action.");
 	}
 
 }

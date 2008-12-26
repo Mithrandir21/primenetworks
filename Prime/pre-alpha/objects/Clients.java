@@ -99,7 +99,8 @@ public abstract class Clients extends Object implements Serializable
 	 * @param DesktopComponents
 	 *            The initial components an instance of a desktop has.
 	 */
-	public Clients(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents)
+	public Clients(String Name, String Desc, String[] SupConInt,
+			Object[] DesktopComponents)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 	}

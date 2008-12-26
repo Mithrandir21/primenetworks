@@ -38,13 +38,11 @@ import software.OperatingSystem;
 
 /**
  * A JPanel that will contain fields and options for a presentation and
- * modification of an {@link OperatingSystem OperatingSystem} Software. 
- * The panel is made up of 3 JPanel ordered in a column.
- * 
- * The first one contains the name and description of the object. 
- * The second panel contains the specific software options. 
- * The third panel contains the button that can remove the software
- * from the computer.
+ * modification of an {@link OperatingSystem OperatingSystem} Software. The
+ * panel is made up of 3 JPanel ordered in a column. The first one contains the
+ * name and description of the object. The second panel contains the specific
+ * software options. The third panel contains the button that can remove the
+ * software from the computer.
  * 
  * @author Bahram Malaekeh
  */
@@ -59,7 +57,7 @@ public class OSEditView extends JPanel implements SoftwareEditView,
 
 	// Supported File systems
 	private JList supportedFS;
-	
+
 	private String[] fsData;
 
 	// Has encrypted filesystem
@@ -81,9 +79,9 @@ public class OSEditView extends JPanel implements SoftwareEditView,
 	 * Constructor for the software view.
 	 * 
 	 * @param obj
-	 * 			The main {@link Object object}.
+	 *            The main {@link Object object}.
 	 * @param OS
-	 * 			The {@link OperatingSystem OperatingSystem} software.
+	 *            The {@link OperatingSystem OperatingSystem} software.
 	 */
 	public OSEditView(Object obj, OperatingSystem OS)
 	{
@@ -151,9 +149,9 @@ public class OSEditView extends JPanel implements SoftwareEditView,
 
 
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software} 
-	 * specific options. The layout of the returned panel will 
-	 * be {@link SpringLayout}.
+	 * Creates the JPanel that will contain the {@link Software Software}
+	 * specific options. The layout of the returned panel will be
+	 * {@link SpringLayout}.
 	 */
 	private JPanel createSpesificInfo(OperatingSystem OS)
 	{
@@ -183,8 +181,7 @@ public class OSEditView extends JPanel implements SoftwareEditView,
 		String[] listData = { "FAT16", "FAT32", "NTFS", "EXT", "EXT2", "EXT3",
 				"ReiserFS", "Reiser4", "ZFS", "XFS" };
 		supportedFS = new JList(listData);
-		ListSelectionModel listSelectionModel = supportedFS
-				.getSelectionModel();
+		ListSelectionModel listSelectionModel = supportedFS.getSelectionModel();
 		listSelectionModel
 				.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supportedFS);
@@ -205,8 +202,8 @@ public class OSEditView extends JPanel implements SoftwareEditView,
 		panel.add(labels[0]);
 		panel.add(supportedFS);
 
-		
-		
+
+
 		// Whether or not the OS supports encrypted file system
 		labels[1].setLabelFor(encryptedFileSystem);
 		encryptedFileSystem = new JCheckBox();
@@ -221,9 +218,9 @@ public class OSEditView extends JPanel implements SoftwareEditView,
 
 		panel.add(labels[1]);
 		panel.add(encryptedFileSystem);
-		
-		
-		
+
+
+
 		// Whether or not the OS has a GUI
 		labels[2].setLabelFor(hasGUI);
 		hasGUI = new JCheckBox();
@@ -238,10 +235,10 @@ public class OSEditView extends JPanel implements SoftwareEditView,
 
 		panel.add(labels[2]);
 		panel.add(hasGUI);
-		
-		
 
-		
+
+
+
 		// The 64 bit check box
 		labels[3].setLabelFor(is64bit);
 		is64bit = new JCheckBox();
@@ -258,7 +255,7 @@ public class OSEditView extends JPanel implements SoftwareEditView,
 		panel.add(is64bit);
 
 
-		
+
 		JLabel temp1 = new JLabel("");
 		temp1.setMaximumSize(tfSize);
 		temp1.setPreferredSize(tfSize);
@@ -270,20 +267,20 @@ public class OSEditView extends JPanel implements SoftwareEditView,
 		JLabel temp3 = new JLabel("");
 		temp3.setMaximumSize(tfSize);
 		temp3.setPreferredSize(tfSize);
-		
+
 		// adding components so that the layout is right
 		panel.add(temp1);
 		panel.add(temp2);
 		panel.add(temp3);
-		
 
-		
+
+
 		// Lay out the panel.
 		SpringUtilities.makeCompactGrid(panel, 2, 6, // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-		
-		
+
+
 
 		return panel;
 	}
@@ -302,16 +299,16 @@ public class OSEditView extends JPanel implements SoftwareEditView,
 		{
 			mainOS.setDescription(desc.getText());
 		}
-		
+
 		if ( supportedFS.getSelectedIndex() != -1 )
 		{
 			mainOS.setSupportedFS(fsData);
 		}
-		
+
 		mainOS.setEncryptedFileSystem(encryptedFileSystem.isSelected());
-		
+
 		mainOS.setHasGUI(hasGUI.isSelected());
-		
+
 		mainOS.setIs64bit(is64bit.isSelected());
 	}
 
@@ -322,18 +319,16 @@ public class OSEditView extends JPanel implements SoftwareEditView,
 
 	}
 
-	
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 
 	 * @author Bahram Malaekeh
-	 * 
 	 */
 	class SharedListSelectionHandler implements ListSelectionListener
 	{
 		/*
 		 * (non-Javadoc)
-		 * 
 		 * @see
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)

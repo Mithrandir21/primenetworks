@@ -16,7 +16,6 @@ public class SoftwareContainer extends Container implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public SoftwareContainer()
 	{

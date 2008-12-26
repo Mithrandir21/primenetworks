@@ -53,14 +53,15 @@ public class DatabaseServer extends Servers implements Serializable
 	 * @param DatabaseSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public DatabaseServer(String Name, String Desc, String DatabaseSWname, String DatabaseSWdesc,
-			String DatabaseSWversion)
+	public DatabaseServer(String Name, String Desc, String DatabaseSWname,
+			String DatabaseSWdesc, String DatabaseSWversion)
 	{
 		super(Name, Desc);
 
 		// Creates a database software object
-		Database = new Database(DatabaseSWname, DatabaseSWdesc, DatabaseSWversion);
-		Software[] sw = {Database};
+		Database = new Database(DatabaseSWname, DatabaseSWdesc,
+				DatabaseSWversion);
+		Software[] sw = { Database };
 		super.setSoftware(sw);
 	}
 
@@ -80,14 +81,16 @@ public class DatabaseServer extends Servers implements Serializable
 	 * @param DatabaseSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public DatabaseServer(String Name, String Desc, String[] SupConInt, String DatabaseSWname,
-			String DatabaseSWdesc, String DatabaseSWversion)
+	public DatabaseServer(String Name, String Desc, String[] SupConInt,
+			String DatabaseSWname, String DatabaseSWdesc,
+			String DatabaseSWversion)
 	{
 		super(Name, Desc, SupConInt);
 
 		// Creates a database software object
-		Database = new Database(DatabaseSWname, DatabaseSWdesc, DatabaseSWversion);
-		Software[] sw = {Database};
+		Database = new Database(DatabaseSWname, DatabaseSWdesc,
+				DatabaseSWversion);
+		Software[] sw = { Database };
 		super.setSoftware(sw);
 	}
 
@@ -109,13 +112,15 @@ public class DatabaseServer extends Servers implements Serializable
 	 *            The version of the application that the server is set to run.
 	 */
 	public DatabaseServer(String Name, String Desc, Object[] DesktopComponents,
-			String DatabaseSWname, String DatabaseSWdesc, String DatabaseSWversion)
+			String DatabaseSWname, String DatabaseSWdesc,
+			String DatabaseSWversion)
 	{
 		super(Name, Desc, DesktopComponents);
 
 		// Creates a database software object
-		Database = new Database(DatabaseSWname, DatabaseSWdesc, DatabaseSWversion);
-		Software[] sw = {Database};
+		Database = new Database(DatabaseSWname, DatabaseSWdesc,
+				DatabaseSWversion);
+		Software[] sw = { Database };
 		super.setSoftware(sw);
 	}
 
@@ -136,14 +141,16 @@ public class DatabaseServer extends Servers implements Serializable
 	 * @param DatabaseSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public DatabaseServer(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents,
-			String DatabaseSWname, String DatabaseSWdesc, String DatabaseSWversion)
+	public DatabaseServer(String Name, String Desc, String[] SupConInt,
+			Object[] DesktopComponents, String DatabaseSWname,
+			String DatabaseSWdesc, String DatabaseSWversion)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 
 		// Creates a database software object
-		Database = new Database(DatabaseSWname, DatabaseSWdesc, DatabaseSWversion);
-		Software[] sw = {Database};
+		Database = new Database(DatabaseSWname, DatabaseSWdesc,
+				DatabaseSWversion);
+		Software[] sw = { Database };
 		super.setSoftware(sw);
 	}
 
@@ -151,7 +158,6 @@ public class DatabaseServer extends Servers implements Serializable
 
 	/**
 	 * Get the software that is set to run on this device.
-	 * 
 	 */
 	public Database getDatabaseApplication()
 	{
@@ -165,7 +171,6 @@ public class DatabaseServer extends Servers implements Serializable
 
 	/**
 	 * Get the protocols this device supports for access from a remote location.
-	 * 
 	 */
 	public String[] getSupportedRemoteAccessProtocols()
 	{
@@ -181,7 +186,6 @@ public class DatabaseServer extends Servers implements Serializable
 	 * Get a boolean saying if this device supports on-site-access, which
 	 * implies that the device is atleast connected to a mouse, keyboard and a
 	 * monitor.
-	 * 
 	 */
 	public boolean SupportsOnSiteAccess()
 	{
@@ -195,7 +199,6 @@ public class DatabaseServer extends Servers implements Serializable
 
 	/**
 	 * Get a boolean saying if the device supports remote access.
-	 * 
 	 */
 	public boolean SupportsRemoteAccess()
 	{
@@ -209,7 +212,6 @@ public class DatabaseServer extends Servers implements Serializable
 
 	/**
 	 * Sets the application that is to run on the device.
-	 * 
 	 */
 	public void setDatabaseApplication(Database Database)
 	{
@@ -224,9 +226,9 @@ public class DatabaseServer extends Servers implements Serializable
 	/**
 	 * Set an array of string with the protocols the device supports for remote
 	 * access.
-	 * 
 	 */
-	public void setSupportedRemoteAccessProtocols(String[] supportedRemoteAccessProtocols)
+	public void setSupportedRemoteAccessProtocols(
+			String[] supportedRemoteAccessProtocols)
 	{
 
 		this.supportedRemoteAccessProtocols = supportedRemoteAccessProtocols;
@@ -238,7 +240,6 @@ public class DatabaseServer extends Servers implements Serializable
 
 	/**
 	 * Set the support of the device for On-Site-Access.
-	 * 
 	 */
 	public void setSupportsOnSiteAccess(boolean supportsOnSiteAccess)
 	{
@@ -252,7 +253,6 @@ public class DatabaseServer extends Servers implements Serializable
 
 	/**
 	 * Set the support of the device for remote access.
-	 * 
 	 */
 	public void setSupportsRemoteAccess(boolean supportsRemoteAccess)
 	{
@@ -269,7 +269,8 @@ public class DatabaseServer extends Servers implements Serializable
 	 * @param NewProtocols
 	 *            An array of new remote access protocols.
 	 */
-	public void addRemoteAccessProtocols(String[] NewProtocols) throws Exception
+	public void addRemoteAccessProtocols(String[] NewProtocols)
+			throws Exception
 	{
 		supportedRemoteAccessProtocols = ArrayManagment.addItems(NewProtocols,
 				supportedRemoteAccessProtocols);
@@ -288,7 +289,7 @@ public class DatabaseServer extends Servers implements Serializable
 	public void removeRemoteAccessProtocols(String[] ToBeRemoved)
 			throws StringNotFoundInArrayException
 	{
-		supportedRemoteAccessProtocols = ArrayManagment.removeItems(ToBeRemoved,
-				supportedRemoteAccessProtocols);
+		supportedRemoteAccessProtocols = ArrayManagment.removeItems(
+				ToBeRemoved, supportedRemoteAccessProtocols);
 	}
 }

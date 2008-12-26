@@ -59,7 +59,6 @@ public class Monitor extends ExternalHardware implements Serializable
 
 	/**
 	 * Get monitor size.
-	 * 
 	 */
 	public int getMonitorSize()
 	{
@@ -69,7 +68,6 @@ public class Monitor extends ExternalHardware implements Serializable
 
 	/**
 	 * Gets the type of monitor. LCD or CRT.
-	 * 
 	 */
 	public String getMonitorType()
 	{
@@ -80,7 +78,6 @@ public class Monitor extends ExternalHardware implements Serializable
 
 	/**
 	 * Get boolean on whether or not the monitor is a laptop monitor.
-	 * 
 	 */
 	public boolean isLaptopMonitor()
 	{
@@ -93,7 +90,6 @@ public class Monitor extends ExternalHardware implements Serializable
 
 	/**
 	 * Sets monitor size.
-	 * 
 	 */
 	public void setMonitorSize(int MonitorInches)
 	{
@@ -103,7 +99,6 @@ public class Monitor extends ExternalHardware implements Serializable
 
 	/**
 	 * Sets the type of monitor. CRT or LCD.
-	 * 
 	 */
 	public void setMonitorType(String Type)
 	{
@@ -113,7 +108,6 @@ public class Monitor extends ExternalHardware implements Serializable
 
 	/**
 	 * Sets info on whether or not the monitor is a laptop monitor.
-	 * 
 	 */
 	public void setLaptopMonitor(boolean info)
 	{

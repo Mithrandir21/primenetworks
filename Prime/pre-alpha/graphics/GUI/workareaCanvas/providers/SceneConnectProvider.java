@@ -45,16 +45,17 @@ public class SceneConnectProvider implements ConnectProvider
 		{
 			return;
 		}
-		
+
 		// Casts the widgets to WidgetObjects because all of the widgets on the
 		// scene are widgetObjects
 		WidgetObject SourceWidObj = (WidgetObject) sourceWidget;
 		WidgetObject TargetWidObj = (WidgetObject) targetWidget;
 
 		// Gets the compatible interfaces between the two devices.
-		String[] compInter = ConnectionManagment.getCompatibleConnectionInterfaces(SourceWidObj
-				.getObject().getSupportedConnectionInterfaces(), TargetWidObj.getObject()
-				.getSupportedConnectionInterfaces());
+		String[] compInter = ConnectionManagment
+				.getCompatibleConnectionInterfaces(SourceWidObj.getObject()
+						.getSupportedConnectionInterfaces(), TargetWidObj
+						.getObject().getSupportedConnectionInterfaces());
 
 
 		// If the compatible interfaces between the two devices are not 0.
@@ -63,16 +64,18 @@ public class SceneConnectProvider implements ConnectProvider
 
 			// Creates a dialog that shows the different available connection
 			// types.
-			String conType = ListDialog.showDialog(null, null, "Connection type", "Connection",
-					compInter, null, null);
+			String conType = ListDialog.showDialog(null, null,
+					"Connection type", "Connection", compInter, null, null);
 
 
 			// If a connection type is not selected.
 			if ( conType == null )
 			{
-				JOptionPane.showMessageDialog(null,
-						"You must choose a connection type for a connection to be made.", "alert",
-						JOptionPane.ERROR_MESSAGE);
+				JOptionPane
+						.showMessageDialog(
+								null,
+								"You must choose a connection type for a connection to be made.",
+								"alert", JOptionPane.ERROR_MESSAGE);
 			}
 			// If the cancel butten is pressed.
 			else if ( conType == "Cancelled" )
@@ -93,12 +96,17 @@ public class SceneConnectProvider implements ConnectProvider
 
 					// Creates the connection between the two devices(Not on the
 					// scene).
-					con = ConnectionManagment.makeConnection(PrimeMain1.currentCanvas
-							.getConnections(), "Connection"
-							+ PrimeMain1.currentCanvas.getNumberOfWidgetsOnTheScene(),
-							"Connection between " + SourceWidObj.getObject().getObjectName()
-									+ " and " + TargetWidObj.getObject().getObjectName() + ".",
-							SourceWidObj.getObject(), TargetWidObj.getObject(), conType, conClass);
+					con = ConnectionManagment.makeConnection(
+							PrimeMain1.currentCanvas.getConnections(),
+							"Connection"
+									+ PrimeMain1.currentCanvas
+											.getNumberOfWidgetsOnTheScene(),
+							"Connection between "
+									+ SourceWidObj.getObject().getObjectName()
+									+ " and "
+									+ TargetWidObj.getObject().getObjectName()
+									+ ".", SourceWidObj.getObject(),
+							TargetWidObj.getObject(), conType, conClass);
 
 
 					// Adds the connection to the connections array of each
@@ -121,25 +129,32 @@ public class SceneConnectProvider implements ConnectProvider
 					connection.setTargetAnchorShape(AnchorShape.NONE);
 					connection.setToolTipText("This is a connection");
 					connection.getActions().addAction(new AdapterExtended());
-					connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(sourceWidget));
-					connection.setTargetAnchor(AnchorFactory.createRectangularAnchor(targetWidget));
-					PrimeMain1.currentCanvas.getConnectionLayer().addChild(connection);
+					connection.setSourceAnchor(AnchorFactory
+							.createRectangularAnchor(sourceWidget));
+					connection.setTargetAnchor(AnchorFactory
+							.createRectangularAnchor(targetWidget));
+					PrimeMain1.currentCanvas.getConnectionLayer().addChild(
+							connection);
 
 				}
 				// If there already exists a connection between the two given
 				// objects.
 				catch ( ConnectionDoesExist e )
 				{
-					JOptionPane.showMessageDialog(null,
-							"There already exists a connection between these two objects.",
-							"alert", JOptionPane.ERROR_MESSAGE);
+					JOptionPane
+							.showMessageDialog(
+									null,
+									"There already exists a connection between these two objects.",
+									"alert", JOptionPane.ERROR_MESSAGE);
 				}
 				// If a connection between the two given objects is impossible.
 				catch ( ConnectionsIsNotPossible e )
 				{
-					JOptionPane.showMessageDialog(null,
-							"A connection between these two objects is not possible.", "alert",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane
+							.showMessageDialog(
+									null,
+									"A connection between these two objects is not possible.",
+									"alert", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
@@ -147,7 +162,8 @@ public class SceneConnectProvider implements ConnectProvider
 		{
 			JOptionPane.showMessageDialog(null,
 					"These two objects cannot connect to eachother because they dont"
-							+ " support the same ports.", "alert", JOptionPane.ERROR_MESSAGE);
+							+ " support the same ports.", "alert",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -166,9 +182,11 @@ public class SceneConnectProvider implements ConnectProvider
 		return false;
 	}
 
-	public ConnectorState isTargetWidget(Widget sourceWidget, Widget targetWidget)
+	public ConnectorState isTargetWidget(Widget sourceWidget,
+			Widget targetWidget)
 	{
-		if ( sourceWidget != targetWidget && targetWidget instanceof WidgetObject )
+		if ( sourceWidget != targetWidget
+				&& targetWidget instanceof WidgetObject )
 		{
 			return ConnectorState.ACCEPT;
 		}
@@ -187,7 +205,8 @@ public class SceneConnectProvider implements ConnectProvider
 
 	private boolean checkSupportsConnection(Object a, Object b)
 	{
-		return ConnectionManagment.checkDeviceConnectiontypeSupport(a, b, "RJ-45");
+		return ConnectionManagment.checkDeviceConnectiontypeSupport(a, b,
+				"RJ-45");
 	}
 
 

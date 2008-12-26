@@ -45,7 +45,8 @@ public class CreateObjectDragged
 	 *            object.
 	 * @return Object The newly created standard object.
 	 */
-	public Object CreateObject(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	public Object CreateObject(WidgetIcon iconObject,
+			int numberOfWidgetsOnTheScene)
 	{
 		Object newObject = null;
 		String objectType = iconObject.getClassType().getName();
@@ -54,43 +55,53 @@ public class CreateObjectDragged
 
 		if ( objectType.equals("clients.Desktop") )
 		{
-			newObject = createDefaultDesktop(iconObject, numberOfWidgetsOnTheScene);
+			newObject = createDefaultDesktop(iconObject,
+					numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("clients.Laptop") )
 		{
-			newObject = createDefaultLaptop(iconObject, numberOfWidgetsOnTheScene);
+			newObject = createDefaultLaptop(iconObject,
+					numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("clients.ThinClient") )
 		{
-			newObject = createDefaultThinClient(iconObject, numberOfWidgetsOnTheScene);
+			newObject = createDefaultThinClient(iconObject,
+					numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("servers.HTTPServer") )
 		{
-			newObject = createDefaultHTTPServer(iconObject, numberOfWidgetsOnTheScene);
+			newObject = createDefaultHTTPServer(iconObject,
+					numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("servers.BackupServer") )
 		{
-			newObject = createDefaultBackupServer(iconObject, numberOfWidgetsOnTheScene);
+			newObject = createDefaultBackupServer(iconObject,
+					numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("servers.MailServer") )
 		{
-			newObject = createDefaultMailServer(iconObject, numberOfWidgetsOnTheScene);
+			newObject = createDefaultMailServer(iconObject,
+					numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("servers.FirewallServer") )
 		{
-			newObject = createDefaultFirewallServer(iconObject, numberOfWidgetsOnTheScene);
+			newObject = createDefaultFirewallServer(iconObject,
+					numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("servers.ProxyServer") )
 		{
-			newObject = createDefaultProxyServer(iconObject, numberOfWidgetsOnTheScene);
+			newObject = createDefaultProxyServer(iconObject,
+					numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("peripheral.Scanner") )
 		{
-			newObject = createDefaultScanner(iconObject, numberOfWidgetsOnTheScene);
+			newObject = createDefaultScanner(iconObject,
+					numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("peripheral.Printer") )
 		{
-			newObject = createDefaultPrinter(iconObject, numberOfWidgetsOnTheScene);
+			newObject = createDefaultPrinter(iconObject,
+					numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("infrastructure.Hub") )
 		{
@@ -98,11 +109,13 @@ public class CreateObjectDragged
 		}
 		else if ( objectType.equals("infrastructure.Switch") )
 		{
-			newObject = createDefaultSwitch(iconObject, numberOfWidgetsOnTheScene);
+			newObject = createDefaultSwitch(iconObject,
+					numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("infrastructure.Router") )
 		{
-			newObject = createDefaultRouter(iconObject, numberOfWidgetsOnTheScene);
+			newObject = createDefaultRouter(iconObject,
+					numberOfWidgetsOnTheScene);
 		}
 
 
@@ -126,12 +139,14 @@ public class CreateObjectDragged
 		st_components[1] = PrimeMain1.standard_internal_components.getSt_CPU();
 		st_components[2] = PrimeMain1.standard_internal_components.getSt_RAM();
 		st_components[3] = PrimeMain1.standard_internal_components.getSt_HDD();
-		st_components[4] = PrimeMain1.standard_internal_components.getSt_DVDRW();
+		st_components[4] = PrimeMain1.standard_internal_components
+				.getSt_DVDRW();
 	}
 
 
 
-	public Desktop createDefaultDesktop(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	public Desktop createDefaultDesktop(WidgetIcon iconObject,
+			int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Desktop" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -143,12 +158,14 @@ public class CreateObjectDragged
 		}
 
 
-		return new Desktop(objectName, objectDesc, supportedConnectionInterfaces, st_components);
+		return new Desktop(objectName, objectDesc,
+				supportedConnectionInterfaces, st_components);
 	}
 
 
 
-	public Laptop createDefaultLaptop(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	public Laptop createDefaultLaptop(WidgetIcon iconObject,
+			int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Laptop" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -160,12 +177,14 @@ public class CreateObjectDragged
 		}
 
 
-		return new Laptop(objectName, objectDesc, supportedConnectionInterfaces, st_components);
+		return new Laptop(objectName, objectDesc,
+				supportedConnectionInterfaces, st_components);
 	}
 
 
 
-	public Laptop createDefaultThinClient(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	public Laptop createDefaultThinClient(WidgetIcon iconObject,
+			int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Thin Client" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -175,16 +194,18 @@ public class CreateObjectDragged
 		{
 			objectDesc = objectName;
 		}
-		
+
 		// TODO - ThinClient
 
 
-		return new Laptop(objectName, objectDesc, supportedConnectionInterfaces, st_components);
+		return new Laptop(objectName, objectDesc,
+				supportedConnectionInterfaces, st_components);
 	}
 
 
 
-	public HTTPServer createDefaultHTTPServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	public HTTPServer createDefaultHTTPServer(WidgetIcon iconObject,
+			int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "HTTP Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -205,8 +226,9 @@ public class CreateObjectDragged
 		serverMB.setIntegLANPortsAvailable(2);
 
 
-		return new HTTPServer(objectName, objectDesc, supportedConnectionInterfaces, st_components,
-				ObjectSWname, ObjectSWdesc, ObjectSWversion);
+		return new HTTPServer(objectName, objectDesc,
+				supportedConnectionInterfaces, st_components, ObjectSWname,
+				ObjectSWdesc, ObjectSWversion);
 	}
 
 
@@ -234,13 +256,15 @@ public class CreateObjectDragged
 		serverMB.setIntegLANPortsAvailable(2);
 
 
-		return new BackupServer(objectName, objectDesc, supportedConnectionInterfaces,
-				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
+		return new BackupServer(objectName, objectDesc,
+				supportedConnectionInterfaces, st_components, ObjectSWname,
+				ObjectSWdesc, ObjectSWversion);
 	}
 
 
 
-	public MailServer createDefaultMailServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	public MailServer createDefaultMailServer(WidgetIcon iconObject,
+			int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Mail Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -261,8 +285,9 @@ public class CreateObjectDragged
 		serverMB.setIntegLANPortsAvailable(2);
 
 
-		return new MailServer(objectName, objectDesc, supportedConnectionInterfaces, st_components,
-				ObjectSWname, ObjectSWdesc, ObjectSWversion);
+		return new MailServer(objectName, objectDesc,
+				supportedConnectionInterfaces, st_components, ObjectSWname,
+				ObjectSWdesc, ObjectSWversion);
 	}
 
 
@@ -289,13 +314,15 @@ public class CreateObjectDragged
 		serverMB.setIntegLANPortsAvailable(2);
 
 
-		return new FirewallServer(objectName, objectDesc, supportedConnectionInterfaces,
-				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
+		return new FirewallServer(objectName, objectDesc,
+				supportedConnectionInterfaces, st_components, ObjectSWname,
+				ObjectSWdesc, ObjectSWversion);
 	}
 
 
 
-	public ProxyServer createDefaultProxyServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	public ProxyServer createDefaultProxyServer(WidgetIcon iconObject,
+			int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Proxy Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -316,13 +343,15 @@ public class CreateObjectDragged
 		serverMB.setIntegLANPortsAvailable(2);
 
 
-		return new ProxyServer(objectName, objectDesc, supportedConnectionInterfaces,
-				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
+		return new ProxyServer(objectName, objectDesc,
+				supportedConnectionInterfaces, st_components, ObjectSWname,
+				ObjectSWdesc, ObjectSWversion);
 	}
 
 
 
-	public Scanner createDefaultScanner(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	public Scanner createDefaultScanner(WidgetIcon iconObject,
+			int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Scanner" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -335,17 +364,20 @@ public class CreateObjectDragged
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
+		Motherboard objectMB = PrimeMain1.standard_internal_components
+				.getHw_MB();
 
 		objectMB.setMaxUSBs(1);
 		objectMB.setUSBPortsAvailable(1);
 
 
-		return new Scanner(objectName, objectDesc, Sresolution, SconnectionInterfaces, objectMB);
+		return new Scanner(objectName, objectDesc, Sresolution,
+				SconnectionInterfaces, objectMB);
 	}
 
 
-	public Printer createDefaultPrinter(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	public Printer createDefaultPrinter(WidgetIcon iconObject,
+			int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Printer" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -358,19 +390,22 @@ public class CreateObjectDragged
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
+		Motherboard objectMB = PrimeMain1.standard_internal_components
+				.getHw_MB();
 
 		objectMB.setMaxUSBs(1);
 		objectMB.setUSBPortsAvailable(1);
 
 
-		return new Printer(objectName, objectDesc, Sresolution, SconnectionInterfaces, objectMB);
+		return new Printer(objectName, objectDesc, Sresolution,
+				SconnectionInterfaces, objectMB);
 	}
 
 
 
 
-	public Hub createDefaultHub(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	public Hub createDefaultHub(WidgetIcon iconObject,
+			int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Hub" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -385,21 +420,23 @@ public class CreateObjectDragged
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
+		Motherboard objectMB = PrimeMain1.standard_internal_components
+				.getHw_MB();
 
 		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(16);
 		objectMB.setIntegLANPortsAvailable(16);
 
 
-		return new Hub(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts,
-				DuplexSupport);
+		return new Hub(objectName, objectDesc, SupConInt, objectMB, outPorts,
+				inPorts, DuplexSupport);
 	}
 
 
 
 
-	public Switch createDefaultSwitch(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	public Switch createDefaultSwitch(WidgetIcon iconObject,
+			int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Switch" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -414,20 +451,22 @@ public class CreateObjectDragged
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
+		Motherboard objectMB = PrimeMain1.standard_internal_components
+				.getHw_MB();
 
 		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(16);
 		objectMB.setIntegLANPortsAvailable(16);
 
 
-		return new Switch(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts,
-				DuplexSupport);
+		return new Switch(objectName, objectDesc, SupConInt, objectMB,
+				outPorts, inPorts, DuplexSupport);
 	}
 
 
 
-	public Router createDefaultRouter(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	public Router createDefaultRouter(WidgetIcon iconObject,
+			int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Router" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -442,14 +481,15 @@ public class CreateObjectDragged
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
+		Motherboard objectMB = PrimeMain1.standard_internal_components
+				.getHw_MB();
 
 		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(4);
 		objectMB.setIntegLANPortsAvailable(4);
 
 
-		return new Router(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts,
-				DuplexSupport);
+		return new Router(objectName, objectDesc, SupConInt, objectMB,
+				outPorts, inPorts, DuplexSupport);
 	}
 }

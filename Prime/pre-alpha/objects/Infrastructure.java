@@ -13,7 +13,6 @@ import java.io.Serializable;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class Infrastructure extends Object implements Serializable
 {
@@ -64,7 +63,8 @@ public class Infrastructure extends Object implements Serializable
 	 * @param SupConInt
 	 * @param mb
 	 */
-	public Infrastructure(String Name, String Desc, String[] SupConInt, Motherboard mb)
+	public Infrastructure(String Name, String Desc, String[] SupConInt,
+			Motherboard mb)
 	{
 		super(Name, Desc, SupConInt, mb);
 	}
@@ -78,7 +78,8 @@ public class Infrastructure extends Object implements Serializable
 	 * @param SupConInt
 	 * @param objectComponents
 	 */
-	public Infrastructure(String Name, String Desc, String[] SupConInt, Object[] objectComponents)
+	public Infrastructure(String Name, String Desc, String[] SupConInt,
+			Object[] objectComponents)
 	{
 		super(Name, Desc, SupConInt, objectComponents);
 	}

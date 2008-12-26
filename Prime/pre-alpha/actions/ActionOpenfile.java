@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
 public class ActionOpenfile extends AbstractAction
 {
 	/**
-	 * 
 	 * Description NEEDED!
 	 * 
 	 * @param text
@@ -36,7 +35,6 @@ public class ActionOpenfile extends AbstractAction
 
 
 	/**
-	 * 
 	 * Description NEEDED!
 	 * 
 	 * @param text
@@ -52,7 +50,8 @@ public class ActionOpenfile extends AbstractAction
 	public void actionPerformed(ActionEvent e)
 	{
 
-		JOptionPane.showMessageDialog(null, "You want to perform a \"Open File\" action.");
+		JOptionPane.showMessageDialog(null,
+				"You want to perform a \"Open File\" action.");
 	}
 
 }

@@ -36,11 +36,9 @@ import software.Antivirus;
 /**
  * A JPanel that will contain fields and options for a presentation and
  * modification of an {@link Antivirus Antivirus} Software. The panel is made up
- * of 3 JPanel ordered in a column.
- * 
- * The first one contains the name and description of the object. 
- * The second panel contains the specific software options. 
- * The third panel contains the button that can remove the software
+ * of 3 JPanel ordered in a column. The first one contains the name and
+ * description of the object. The second panel contains the specific software
+ * options. The third panel contains the button that can remove the software
  * from the computer.
  * 
  * @author Bahram Malaekeh
@@ -76,9 +74,9 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView,
 	 * Constructor for the software view.
 	 * 
 	 * @param obj
-	 * 			The main {@link Object object}.
+	 *            The main {@link Object object}.
 	 * @param av
-	 * 			The {@link Antivirus Antivirus} software.
+	 *            The {@link Antivirus Antivirus} software.
 	 */
 	public AntivirusEditView(Object obj, Antivirus av)
 	{
@@ -146,9 +144,9 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView,
 
 
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software} 
-	 * specific options. The layout of the returned panel will 
-	 * be {@link SpringLayout}.
+	 * Creates the JPanel that will contain the {@link Software Software}
+	 * specific options. The layout of the returned panel will be
+	 * {@link SpringLayout}.
 	 */
 	private JPanel createSpecificInfo(Antivirus av)
 	{
@@ -284,7 +282,7 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView,
 	public void save()
 	{
 		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
-		
+
 		if ( name.getText() != "" )
 		{
 			mainAV.setObjectName(name.getText());
@@ -294,11 +292,11 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView,
 		{
 			mainAV.setDescription(desc.getText());
 		}
-		
+
 		if ( actDate.getText() != "" )
 		{
 			Date tempDate = null;
-			
+
 			try
 			{
 				tempDate = format.parse(actDate.getText());
@@ -308,14 +306,14 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView,
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			mainAV.setActivationDate(tempDate);
 		}
-		
+
 		if ( expDate.getText() != "" )
 		{
 			Date tempDate = null;
-			
+
 			try
 			{
 				tempDate = format.parse(expDate.getText());
@@ -325,10 +323,10 @@ public class AntivirusEditView extends JPanel implements SoftwareEditView,
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			mainAV.setExpirationDate(tempDate);
 		}
-		
+
 		mainAV.setActivated(activated.isSelected());
 
 		if ( license.getText() != "" )

@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
 public class ActionUndo extends AbstractAction
 {
 	/**
-	 * 
 	 * Description NEEDED!
 	 * 
 	 * @param text
@@ -38,7 +37,8 @@ public class ActionUndo extends AbstractAction
 	public void actionPerformed(ActionEvent e)
 	{
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(null, "You want to perform a \"Undo\" action.");
+		JOptionPane.showMessageDialog(null,
+				"You want to perform a \"Undo\" action.");
 	}
 
 }

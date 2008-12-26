@@ -7,9 +7,7 @@ import java.io.Serializable;
 /**
  * An abstract super class for all hardware objects in the system, including
  * {@link software.Webserver Webserver}, {@link software.OperatingSystem
- * Operating System} and {@link software.Firewall Firewall}.
- * 
- * MUST ADD INFO
+ * Operating System} and {@link software.Firewall Firewall}. MUST ADD INFO
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -48,7 +46,6 @@ public abstract class Software extends Object implements Serializable
 
 	/**
 	 * Get the version of the software.
-	 * 
 	 */
 	public String getVersion()
 	{
@@ -59,7 +56,6 @@ public abstract class Software extends Object implements Serializable
 
 	/**
 	 * Set the version of the software.
-	 * 
 	 */
 	public void setVersion(String SWversion)
 	{

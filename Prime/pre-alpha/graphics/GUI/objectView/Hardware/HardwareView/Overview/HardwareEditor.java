@@ -113,7 +113,6 @@ public class HardwareEditor extends JFrame implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -125,7 +124,8 @@ public class HardwareEditor extends JFrame implements ActionListener
 			boolean verify = true;
 
 			// If the object is an instance of infrastructure.
-			if ( givenObject instanceof Infrastructure || givenObject instanceof ExternalHardware )
+			if ( givenObject instanceof Infrastructure
+					|| givenObject instanceof ExternalHardware )
 			{
 				verify = false;
 			}
@@ -142,7 +142,8 @@ public class HardwareEditor extends JFrame implements ActionListener
 			boolean verify = true;
 
 			// If the object is an instance of infrastructure.
-			if ( givenObject instanceof Infrastructure || givenObject instanceof ExternalHardware )
+			if ( givenObject instanceof Infrastructure
+					|| givenObject instanceof ExternalHardware )
 			{
 				verify = false;
 			}
@@ -174,7 +175,8 @@ public class HardwareEditor extends JFrame implements ActionListener
 	 * @return Returns the created JPanel with all the information about the
 	 *         hardware object.
 	 */
-	public static JPanel GeneralInfo(Hardware hw, ImageIcon icon, JTextField name, JTextArea desc)
+	public static JPanel GeneralInfo(Hardware hw, ImageIcon icon,
+			JTextField name, JTextArea desc)
 	{
 		JPanel genPanel = new JPanel();
 		genPanel.setLayout(new GridBagLayout());

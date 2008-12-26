@@ -14,7 +14,6 @@ import javax.swing.JFrame;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class NewComponentView extends JFrame implements ActionListener
 {

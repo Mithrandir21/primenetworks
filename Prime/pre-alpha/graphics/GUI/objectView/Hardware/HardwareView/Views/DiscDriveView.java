@@ -8,6 +8,7 @@ import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import hardware.Discdrive;
 
@@ -39,9 +40,9 @@ import objects.Object;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
-public class DiscDriveView extends JPanel implements HardwareView, ActionListener
+public class DiscDriveView extends JPanel implements HardwareView,
+		ActionListener
 {
 	private JTextField name = new JTextField(25);
 
@@ -157,10 +158,12 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 		labels[2].setToolTipText("The discdrive port to the motherboard.");
 
 		labels[3] = new JLabel("Subtype");
-		labels[3].setToolTipText("The discdrive subtype. (DualLayer and Doublesided.)");
+		labels[3]
+				.setToolTipText("The discdrive subtype. (DualLayer and Doublesided.)");
 
 		labels[4] = new JLabel("Speed");
-		labels[4].setToolTipText("The speed of the discdrive.(2x, 4x, 6x and so on).");
+		labels[4]
+				.setToolTipText("The speed of the discdrive.(2x, 4x, 6x and so on).");
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -189,7 +192,8 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 		type.setActionCommand("Type");
 		type.addActionListener(this);
 
-		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(typeString, disc.getType()));
+		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				typeString, disc.getType()));
 
 
 		panel.add(labels[1]);
@@ -208,7 +212,8 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 		port.setActionCommand("Port");
 		port.addActionListener(this);
 
-		port.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(portString, disc.getPort()));
+		port.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				portString, disc.getPort()));
 
 
 		panel.add(labels[2]);
@@ -226,8 +231,8 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 		subtype.setActionCommand("Subtype");
 		subtype.addActionListener(this);
 
-		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(subtypeString, disc
-				.getSubtype()));
+		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				subtypeString, disc.getSubtype()));
 
 
 		panel.add(labels[3]);
@@ -236,8 +241,8 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 
 		// The speed of the ram
 		labels[4].setLabelFor(speed);
-		String[] speedString = { "", "2", "4", "6", "8", "10", "12", "14", "16", "18", "20", "22",
-				"24", "32", "48" };
+		String[] speedString = { "", "2", "4", "6", "8", "10", "12", "14",
+				"16", "18", "20", "22", "24", "32", "48" };
 		speed = new JComboBox(speedString);
 		speed.setMaximumSize(tfSize);
 		speed.setPreferredSize(tfSize);
@@ -246,9 +251,8 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 		speed.setActionCommand("Speed");
 		speed.addActionListener(this);
 
-		speed
-				.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(speedString, disc
-						.getSpeed()));
+		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				speedString, disc.getSpeed()));
 
 
 		panel.add(labels[4]);
@@ -285,7 +289,6 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
 	 */
 	@Override
@@ -323,13 +326,13 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 
 		if ( speed.getSelectedItem().toString() != "" )
 		{
-			DiscObj.setSpeed(Integer.parseInt(type.getSelectedItem().toString()));
+			DiscObj.setSpeed(Integer
+					.parseInt(type.getSelectedItem().toString()));
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
 	 * validateNecessaryData()
 	 */
@@ -340,8 +343,8 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 		if ( name.getText().length() < 1 || name.getText().length() > 255 )
 		{
 			JOptionPane.showMessageDialog(this,
-					"The component name must be between 1 and 255 characters.", "Error - Name",
-					JOptionPane.INFORMATION_MESSAGE);
+					"The component name must be between 1 and 255 characters.",
+					"Error - Name", JOptionPane.INFORMATION_MESSAGE);
 
 			return false;
 		}
@@ -349,9 +352,12 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 		// Checks the description of the motherboard.
 		if ( desc.getText().length() < 1 )
 		{
-			JOptionPane.showMessageDialog(this,
-					"The component description must be longer then 1 character.",
-					"Error - Description", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane
+					.showMessageDialog(
+							this,
+							"The component description must be longer then 1 character.",
+							"Error - Description",
+							JOptionPane.INFORMATION_MESSAGE);
 
 			return false;
 		}
@@ -385,8 +391,10 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 
 				String[] portString = { "", "IDE", "SATA", "USB" };
 
-				port = GraphicalFunctions.verifyChange(this, mainObj, Discdrive.class, DiscObj
-						.getPort(), port.getSelectedItem().toString(), msg, portString, port);
+				port = GraphicalFunctions.verifyChange(this, mainObj,
+						Discdrive.class, DiscObj.getPort(), port
+								.getSelectedItem().toString(), msg, portString,
+						port);
 			}
 		}
 		else if ( e.getSource() instanceof Button )
@@ -400,12 +408,17 @@ public class DiscDriveView extends JPanel implements HardwareView, ActionListene
 				// Will remove the first variable from the list of components
 				// that will be returned and set as the components for the main
 				// object.
-				mainObj.setAllComponents(ComponentsManagment.removeComponent(DiscObj, mainObj
-						.getComponents(), mainObj.getComponents().length));
+				mainObj.setAllComponents(ComponentsManagment.removeComponent(
+						DiscObj, mainObj.getComponents(), mainObj
+								.getComponents().length));
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				PrimeMain1.objView.updateViewInfo();
+				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				if(view != null)
+				{
+					view.updateViewInfo();
+				}
 			}
 		}
 	}

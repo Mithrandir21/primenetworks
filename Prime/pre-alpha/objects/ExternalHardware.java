@@ -10,12 +10,10 @@ import java.io.Serializable;
  * An abstract super class for all external hardware objects in the system,
  * including {@link peripheral.ExternalHDD ExternalHDD},
  * {@link peripheral.Printer Printer} and {@link peripheral.Monitor Monitor}.
- * 
  * The class contains different constructors so the system can easily create
  * different object with the available information. There are constructors that
  * create object only with a name and a description, and there are constructors
  * that create an object with all the internal components or just a motherboard.
- * 
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -83,7 +81,8 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 * @param DesktopComponents
 	 *            The initial components an instance of a desktop has.
 	 */
-	public ExternalHardware(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents)
+	public ExternalHardware(String Name, String Desc, String[] SupConInt,
+			Object[] DesktopComponents)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 	}
@@ -103,7 +102,8 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 *            The initial {@link hardware.Motherboard motherboard} the
 	 *            hardware has.
 	 */
-	public ExternalHardware(String Name, String Desc, String[] SupConInt, Motherboard deviceMB)
+	public ExternalHardware(String Name, String Desc, String[] SupConInt,
+			Motherboard deviceMB)
 	{
 		super(Name, Desc, SupConInt, deviceMB);
 	}

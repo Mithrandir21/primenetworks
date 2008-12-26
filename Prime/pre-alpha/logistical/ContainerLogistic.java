@@ -19,7 +19,8 @@ public class ContainerLogistic
 	 * Checks to see if a specific object exist in the container with the same
 	 * name as the given object.
 	 */
-	public static boolean checkObjectNameExistence(ArrayList<Object> container, Object obj)
+	public static boolean checkObjectNameExistence(ArrayList<Object> container,
+			Object obj)
 	{
 		// The size of the container
 		int arraySize = container.size();
@@ -34,7 +35,8 @@ public class ContainerLogistic
 				 * If the name of the container object is the same as the given
 				 * object, true is returned.
 				 */
-				if ( container.get(i).getObjectName().equals(obj.getObjectName()) )
+				if ( container.get(i).getObjectName().equals(
+						obj.getObjectName()) )
 				{
 					return true;
 				}

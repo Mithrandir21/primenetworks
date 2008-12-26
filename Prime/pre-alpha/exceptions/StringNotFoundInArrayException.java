@@ -39,7 +39,6 @@ public class StringNotFoundInArrayException extends Exception
 
 	/**
 	 * Retrieves the object that was not found.
-	 * 
 	 */
 	public String getString()
 	{

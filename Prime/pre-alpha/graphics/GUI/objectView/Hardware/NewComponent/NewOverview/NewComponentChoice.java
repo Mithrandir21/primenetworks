@@ -22,7 +22,6 @@ import objects.Object;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class NewComponentChoice extends JFrame
 {

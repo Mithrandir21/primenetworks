@@ -46,7 +46,6 @@ public class MainContainerWorker
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public MainContainerWorker()
 	{
@@ -142,11 +141,9 @@ public class MainContainerWorker
 
 
 	/**
-	 * 
 	 * Description
 	 * 
 	 * @throws ObjectExistInContainer
-	 * 
 	 */
 	public boolean addObject(Object object) throws ObjectExistInContainer
 	{
@@ -179,13 +176,12 @@ public class MainContainerWorker
 
 
 	/**
-	 * 
 	 * Description
 	 * 
 	 * @throws ObjectDoesNotExistInContainer
-	 * 
 	 */
-	public boolean removeObject(Object object) throws ObjectDoesNotExistInContainer
+	public boolean removeObject(Object object)
+			throws ObjectDoesNotExistInContainer
 	{
 		if ( object instanceof Hardware )
 		{
@@ -217,7 +213,6 @@ public class MainContainerWorker
 
 	/**
 	 * Description
-	 * 
 	 */
 	public boolean containsObject(Object object, Class<Object> objectClass)
 	{

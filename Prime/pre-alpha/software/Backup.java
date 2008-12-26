@@ -8,23 +8,23 @@ import objects.Software;
 
 public class Backup extends Software implements Serializable
 {
-	
+
 	// Supported Operating systems
 	private String[] supportedOperatingSystems;
 
 	// The type of backup
 	private String backupType;
-	
+
 	// Whether or not the software can use compression
 	private boolean compression;
-	
+
 	// Whether or not the software can use encryption
 	private boolean encryption;
-	
+
 	// The number of copies keeps
-	private int duplicate;	
-	
-	
+	private int duplicate;
+
+
 
 	// FIXME - Fix backup.
 	public Backup(String Name, String Desc, String Version)
@@ -36,7 +36,7 @@ public class Backup extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the supportedOperatingSystems
 	 */
 	public String[] getSupportedOperatingSystems()
@@ -48,7 +48,7 @@ public class Backup extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the backupType
 	 */
 	public String getBackupType()
@@ -60,7 +60,7 @@ public class Backup extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the compression
 	 */
 	public boolean supportsCompression()
@@ -72,7 +72,7 @@ public class Backup extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the encryption
 	 */
 	public boolean supportsEncryption()
@@ -84,7 +84,7 @@ public class Backup extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the duplicate
 	 */
 	public int getDuplicate()
@@ -96,8 +96,9 @@ public class Backup extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
-	 * @param supportedOperatingSystems the supportedOperatingSystems to set
+	 * 
+	 * @param supportedOperatingSystems
+	 *            the supportedOperatingSystems to set
 	 */
 	public void setSupportedOperatingSystems(String[] supportedOperatingSystems)
 	{
@@ -108,8 +109,9 @@ public class Backup extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
-	 * @param backupType the backupType to set
+	 * 
+	 * @param backupType
+	 *            the backupType to set
 	 */
 	public void setBackupType(String backupType)
 	{
@@ -120,8 +122,9 @@ public class Backup extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
-	 * @param compression the compression to set
+	 * 
+	 * @param compression
+	 *            the compression to set
 	 */
 	public void setSupportsCompression(boolean compression)
 	{
@@ -132,8 +135,9 @@ public class Backup extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
-	 * @param encryption the encryption to set
+	 * 
+	 * @param encryption
+	 *            the encryption to set
 	 */
 	public void setSupportsEncryption(boolean encryption)
 	{
@@ -144,8 +148,9 @@ public class Backup extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
-	 * @param duplicate the duplicate to set
+	 * 
+	 * @param duplicate
+	 *            the duplicate to set
 	 */
 	public void setSupportsDuplicate(int duplicate)
 	{

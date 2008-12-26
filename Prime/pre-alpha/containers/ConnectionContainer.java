@@ -16,7 +16,6 @@ public class ConnectionContainer extends Container implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public ConnectionContainer()
 	{

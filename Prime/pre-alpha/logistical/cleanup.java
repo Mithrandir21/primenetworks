@@ -219,7 +219,8 @@ public class cleanup
 	/**
 	 * Function to remove null pointer from the an array of InternalConnections.
 	 */
-	public static InternalConnection[] cleanObjectArray(InternalConnection[] array)
+	public static InternalConnection[] cleanObjectArray(
+			InternalConnection[] array)
 	{
 
 		// Temporary counter for the function

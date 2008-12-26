@@ -33,7 +33,8 @@ public class Keyboard extends ExternalHardware implements Serializable
 	 * @param KeyboardConnectionInterface
 	 *            The connection interface supported by a keyboard.
 	 */
-	public Keyboard(String Name, String Desc, String[] KeyboardConnectionInterface)
+	public Keyboard(String Name, String Desc,
+			String[] KeyboardConnectionInterface)
 	{
 		super(Name, Desc, KeyboardConnectionInterface);
 	}
@@ -46,7 +47,6 @@ public class Keyboard extends ExternalHardware implements Serializable
 
 	/**
 	 * Get info on whether or not a keyboard is a laptop keyboard.
-	 * 
 	 */
 	public boolean isLaptopKeyboard()
 	{
@@ -60,7 +60,6 @@ public class Keyboard extends ExternalHardware implements Serializable
 
 	/**
 	 * Sets info on whether or not a keyboard is a laptop keyboard.
-	 * 
 	 */
 	public void setIsLaptopKeyboard(boolean info)
 	{

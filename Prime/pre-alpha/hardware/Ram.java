@@ -62,7 +62,6 @@ public class Ram extends Hardware implements Serializable
 
 	/**
 	 * Get producer of the ram.
-	 * 
 	 */
 	public String getProducer()
 	{
@@ -72,7 +71,6 @@ public class Ram extends Hardware implements Serializable
 
 	/**
 	 * Get the type of the ram.
-	 * 
 	 */
 	public String getType()
 	{
@@ -82,7 +80,6 @@ public class Ram extends Hardware implements Serializable
 
 	/**
 	 * Get the subtype of the type of ram.
-	 * 
 	 */
 	public String getSubtype()
 	{
@@ -92,7 +89,6 @@ public class Ram extends Hardware implements Serializable
 
 	/**
 	 * Get the size of the ram.
-	 * 
 	 */
 	public int getSize()
 	{
@@ -102,7 +98,6 @@ public class Ram extends Hardware implements Serializable
 
 	/**
 	 * Get the speed of the ram.
-	 * 
 	 */
 	public int getSpeed()
 	{
@@ -114,7 +109,6 @@ public class Ram extends Hardware implements Serializable
 
 	/**
 	 * Set method for producers of the ram.
-	 * 
 	 */
 	public void setProducer(String ramProducer)
 	{
@@ -124,7 +118,6 @@ public class Ram extends Hardware implements Serializable
 
 	/**
 	 * Set method for type of the ram.
-	 * 
 	 */
 	public void setType(String ramType)
 	{
@@ -134,7 +127,6 @@ public class Ram extends Hardware implements Serializable
 
 	/**
 	 * Set method for subtype of the ram.
-	 * 
 	 */
 	public void setSubtype(String ramSubtype)
 	{
@@ -144,7 +136,6 @@ public class Ram extends Hardware implements Serializable
 
 	/**
 	 * Set method for size of the ram.
-	 * 
 	 */
 	public void setSize(int ramSize)
 	{
@@ -154,7 +145,6 @@ public class Ram extends Hardware implements Serializable
 
 	/**
 	 * Set method for speed of the ram
-	 * 
 	 */
 	public void setSpeed(int ramSpeed)
 	{

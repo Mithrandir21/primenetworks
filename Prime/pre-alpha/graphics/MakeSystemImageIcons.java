@@ -26,7 +26,6 @@ public class MakeSystemImageIcons
 	/**
 	 * Gets the URL of this class to be used to locate all the system images and
 	 * Icons. It calls the method visitAllFiles.
-	 * 
 	 */
 	public void getImageIcons()
 	{
@@ -102,13 +101,15 @@ public class MakeSystemImageIcons
 		{
 			String name = dir.getName();
 
-			if ( name.contains(".png") || name.contains(".jpg") || name.contains(".gif") )
+			if ( name.contains(".png") || name.contains(".jpg")
+					|| name.contains(".gif") )
 			{
 				try
 				{
 					name = name.substring(0, (name.length() - 4));
 
-					ImageIcon toBeAdded = ImageLocator.createImageIcon(dir.toURI().toURL());
+					ImageIcon toBeAdded = ImageLocator.createImageIcon(dir
+							.toURI().toURL());
 					toBeAdded.setDescription(name);
 
 					PrimeMain1.images.add(toBeAdded);

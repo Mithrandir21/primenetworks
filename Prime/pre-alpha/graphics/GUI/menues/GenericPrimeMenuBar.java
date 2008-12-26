@@ -176,8 +176,8 @@ public class GenericPrimeMenuBar extends JMenuBar
 	 */
 	private JMenuItem setKeystroke(JMenuItem item, char key)
 	{
-		item.setAccelerator(KeyStroke.getKeyStroke(key, Toolkit.getDefaultToolkit()
-				.getMenuShortcutKeyMask(), false));
+		item.setAccelerator(KeyStroke.getKeyStroke(key, Toolkit
+				.getDefaultToolkit().getMenuShortcutKeyMask(), false));
 
 		return item;
 	}

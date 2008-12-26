@@ -16,7 +16,6 @@ public class HardwareContainer extends Container implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public HardwareContainer()
 	{

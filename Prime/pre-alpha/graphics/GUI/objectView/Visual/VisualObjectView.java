@@ -10,13 +10,11 @@ import objects.Object;
  * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class VisualObjectView extends JPanel
 {
 	/**
 	 * TODO - Description NEEDED!
-	 * 
 	 */
 	public VisualObjectView(Object obj)
 	{

@@ -59,8 +59,7 @@ public class WorkareaTabbed extends JTabbedPane
 
 				PrimeMain1.updatePropertiesCanvasArea();
 			}
-		}
-	);
+		});
 
 
 
@@ -70,7 +69,6 @@ public class WorkareaTabbed extends JTabbedPane
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public void createNewCanvasTab(String name)
 	{

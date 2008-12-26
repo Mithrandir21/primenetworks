@@ -8,9 +8,8 @@ import objects.Software;
 
 /**
  * TODO - Description NEEDED!
- *
- * @author Bahram Malaekeh
  * 
+ * @author Bahram Malaekeh
  */
 public class OperatingSystem extends Software implements Serializable
 {
@@ -25,8 +24,8 @@ public class OperatingSystem extends Software implements Serializable
 
 	// Has GUI
 	private boolean hasGUI;
-	
-	
+
+
 	// Is 64-bit
 	private boolean is64bit;
 
@@ -34,7 +33,7 @@ public class OperatingSystem extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
+	 * 
 	 * @param Name
 	 * @param Desc
 	 * @param Version
@@ -44,13 +43,13 @@ public class OperatingSystem extends Software implements Serializable
 		super(Name, Desc, Version);
 	}
 
-	
+
 	// GETTERS
 
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the supportedFS
 	 */
 	public String[] getSupportedFS()
@@ -62,7 +61,7 @@ public class OperatingSystem extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the encryptedFileSystem
 	 */
 	public boolean isEncryptedFileSystem()
@@ -74,7 +73,7 @@ public class OperatingSystem extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the hasGUI
 	 */
 	public boolean isHasGUI()
@@ -86,7 +85,7 @@ public class OperatingSystem extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the is64bit
 	 */
 	public boolean isIs64bit()
@@ -94,15 +93,16 @@ public class OperatingSystem extends Software implements Serializable
 		return is64bit;
 	}
 
-	
-	
+
+
 	// SETTERS
 
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
-	 * @param supportedFS the supportedFS to set
+	 * 
+	 * @param supportedFS
+	 *            the supportedFS to set
 	 */
 	public void setSupportedFS(String[] supportedFS)
 	{
@@ -113,8 +113,9 @@ public class OperatingSystem extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
-	 * @param encryptedFileSystem the encryptedFileSystem to set
+	 * 
+	 * @param encryptedFileSystem
+	 *            the encryptedFileSystem to set
 	 */
 	public void setEncryptedFileSystem(boolean encryptedFileSystem)
 	{
@@ -125,8 +126,9 @@ public class OperatingSystem extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
-	 * @param hasGUI the hasGUI to set
+	 * 
+	 * @param hasGUI
+	 *            the hasGUI to set
 	 */
 	public void setHasGUI(boolean hasGUI)
 	{
@@ -137,14 +139,15 @@ public class OperatingSystem extends Software implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
-	 * @param is64bit the is64bit to set
+	 * 
+	 * @param is64bit
+	 *            the is64bit to set
 	 */
 	public void setIs64bit(boolean is64bit)
 	{
 		this.is64bit = is64bit;
 	}
-	
-	
-	
+
+
+
 }

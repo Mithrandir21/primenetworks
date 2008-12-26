@@ -46,7 +46,6 @@ public class Mouse extends ExternalHardware implements Serializable
 
 	/**
 	 * Get info on whether or not a mouse is a laptop mouse.
-	 * 
 	 */
 	public boolean isLaptopMouse()
 	{
@@ -58,7 +57,6 @@ public class Mouse extends ExternalHardware implements Serializable
 
 	/**
 	 * Sets info on whether or not a mouse is a laptop mouse.
-	 * 
 	 */
 	public void setIsLaptopMouse(boolean info)
 	{

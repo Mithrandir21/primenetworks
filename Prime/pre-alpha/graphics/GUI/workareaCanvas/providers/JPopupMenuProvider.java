@@ -49,7 +49,8 @@ public class JPopupMenuProvider
 		menuItem.addActionListener(canvas);
 		popup.add(menuItem);
 
-		menuItem = new JMenuItem("Delete all connection to and from this object");
+		menuItem = new JMenuItem(
+				"Delete all connection to and from this object");
 		menuItem.setName("DeleteConnectionsObject");
 		menuItem.addActionListener(canvas);
 		popup.add(menuItem);
@@ -85,13 +86,15 @@ public class JPopupMenuProvider
 
 
 
-		JMenuItem submenuInfrastructur = createAddInfrastructur(new JMenu("Add Infrastructur"));
+		JMenuItem submenuInfrastructur = createAddInfrastructur(new JMenu(
+				"Add Infrastructur"));
 
 		submenuAdd.add(submenuInfrastructur);
 
 
 
-		JMenuItem submenuPeripheral = createAddPeripheral(new JMenu("Add Peripheral"));
+		JMenuItem submenuPeripheral = createAddPeripheral(new JMenu(
+				"Add Peripheral"));
 
 		submenuAdd.add(submenuPeripheral);
 

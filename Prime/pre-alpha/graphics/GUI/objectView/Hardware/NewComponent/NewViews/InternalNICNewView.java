@@ -8,6 +8,7 @@ import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.HardwareView;
 import hardware.InternalNetworksCard;
@@ -48,9 +49,9 @@ import objects.Object;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
-public class InternalNICNewView extends JFrame implements HardwareView, ActionListener
+public class InternalNICNewView extends JFrame implements HardwareView,
+		ActionListener
 {
 	private JTextField name = new JTextField(25);
 
@@ -186,17 +187,20 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 				.setToolTipText("The connection type supported by the NIC, ie. Wired or Wireless.");
 
 		labels[3] = new JLabel("Speed");
-		labels[3].setToolTipText("The speed of the NIC. 10 Mbps, 100 Mbps or 1000 Mbps.");
+		labels[3]
+				.setToolTipText("The speed of the NIC. 10 Mbps, 100 Mbps or 1000 Mbps.");
 
 		labels[4] = new JLabel("Protocol");
-		labels[4].setToolTipText("The NIC protocol. Ethernet, token and so on.");
+		labels[4]
+				.setToolTipText("The NIC protocol. Ethernet, token and so on.");
 
 		labels[5] = new JLabel("Supported Standars");
 		labels[5]
 				.setToolTipText("The standards supported by the NIC. IEEE 802.3, IEEE 802.3u and so on.");
 
 		labels[6] = new JLabel("Supports IPv6");
-		labels[6].setToolTipText("Whether or not the NIC has support for IP version 6, IPv6.");
+		labels[6]
+				.setToolTipText("Whether or not the NIC has support for IP version 6, IPv6.");
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -237,8 +241,8 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 		conType.setActionCommand("ConnectionType");
 		conType.addActionListener(this);
 
-		conType.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(conTypeString, NIC
-				.getConnectionType()));
+		conType.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				conTypeString, NIC.getConnectionType()));
 
 
 		panel.add(labels[2]);
@@ -257,8 +261,8 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 		transferSpeed.setActionCommand("Speed");
 		transferSpeed.addActionListener(this);
 
-		transferSpeed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(speedString, NIC
-				.getSpeed()));
+		transferSpeed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				speedString, NIC.getSpeed()));
 
 
 		panel.add(labels[3]);
@@ -277,8 +281,8 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 		protocol.setActionCommand("Protocol");
 		protocol.addActionListener(this);
 
-		protocol.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(protocolString, NIC
-				.getProtocol()));
+		protocol.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				protocolString, NIC.getProtocol()));
 
 
 		panel.add(labels[4]);
@@ -287,22 +291,26 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 
 		// The supported standards by the NIC.
 		labels[5].setLabelFor(supStandards);
-		String[] listData = { "802.3i", "802.3x", "802.3y", "802.3ab", "802.3an", "802.11a",
-				"802.11b", "802.11g", "802.11n", "802.11y" };
+		String[] listData = { "802.3i", "802.3x", "802.3y", "802.3ab",
+				"802.3an", "802.11a", "802.11b", "802.11g", "802.11n",
+				"802.11y" };
 		supStandards = new JList(listData);
-		ListSelectionModel listSelectionModel = supStandards.getSelectionModel();
-		listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
+		ListSelectionModel listSelectionModel = supStandards
+				.getSelectionModel();
+		listSelectionModel
+				.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supStandards);
 		listPane.setMaximumSize(new Dimension(90, 60));
 		listPane.setPreferredSize(new Dimension(90, 60));
-		listSelectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		listSelectionModel
+				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		if ( NIC.getSupportedStandards() != null )
 		{
 			if ( NIC.getSupportedStandards().length > 0 )
 			{
-				listPane.setViewportView(GraphicalFunctions.getIndexInJList(supStandards, listData,
-						NIC.getSupportedStandards()));
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
+						supStandards, listData, NIC.getSupportedStandards()));
 			}
 		}
 		panel.add(labels[5]);
@@ -426,12 +434,14 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 
 		if ( transferSpeed.getSelectedItem().toString() != "" )
 		{
-			IntNIC.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem().toString()));
+			IntNIC.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem()
+					.toString()));
 		}
 
 		if ( protocol.getSelectedItem().toString() != "" )
 		{
-			IntNIC.setSupportedConnectionInterfaces(protocol.getSelectedItem().toString());
+			IntNIC.setSupportedConnectionInterfaces(protocol.getSelectedItem()
+					.toString());
 		}
 
 		if ( supStandards.getSelectedIndex() == -1 )
@@ -464,13 +474,17 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 			// Saves the current values of the new motherboard.
 			save();
 
-			ComponentsManagment.processInternalNICmatch(mainObj, (Motherboard) mainObj
-					.getComponents()[0], IntNIC, this);
+			ComponentsManagment.processInternalNICmatch(mainObj,
+					(Motherboard) mainObj.getComponents()[0], IntNIC, this);
 
 
 			// Updates the views of the object to correctly show the
 			// current info.
-			PrimeMain1.objView.updateViewInfo();
+			ObjectView view = PrimeMain1.getObjectView(mainObj);
+			if(view != null)
+			{
+				view.updateViewInfo();
+			}
 
 
 			// Closes the JFrame.
@@ -488,13 +502,11 @@ public class InternalNICNewView extends JFrame implements HardwareView, ActionLi
 	 * Javadoc-TODO - Description NEEDED!
 	 * 
 	 * @author Bahram Malaekeh
-	 * 
 	 */
 	class SharedListSelectionHandler implements ListSelectionListener
 	{
 		/*
 		 * (non-Javadoc)
-		 * 
 		 * @see
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)

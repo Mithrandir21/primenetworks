@@ -41,7 +41,8 @@ public class Printer extends ExternalHardware implements Serializable
 	 *            Connection interfaces supported by the printer. An array of
 	 *            Strings.
 	 */
-	public Printer(String Name, String Desc, String PprinterType, String[] PconnectionInterfaces)
+	public Printer(String Name, String Desc, String PprinterType,
+			String[] PconnectionInterfaces)
 	{
 		super(Name, Desc, PconnectionInterfaces);
 
@@ -62,8 +63,8 @@ public class Printer extends ExternalHardware implements Serializable
 	 *            Connection interfaces supported by the printer. An array of
 	 *            Strings.
 	 */
-	public Printer(String Name, String Desc, String PprinterType, String[] PconnectionInterfaces,
-			Motherboard objectMB)
+	public Printer(String Name, String Desc, String PprinterType,
+			String[] PconnectionInterfaces, Motherboard objectMB)
 	{
 		super(Name, Desc, PconnectionInterfaces, objectMB);
 
@@ -77,7 +78,6 @@ public class Printer extends ExternalHardware implements Serializable
 
 	/**
 	 * Get type of printer. ink or laser.
-	 * 
 	 */
 	public String getPrinterType()
 	{
@@ -87,7 +87,6 @@ public class Printer extends ExternalHardware implements Serializable
 
 	/**
 	 * Get print outs per minute.
-	 * 
 	 */
 	public int getPagesPerMinute()
 	{
@@ -99,7 +98,6 @@ public class Printer extends ExternalHardware implements Serializable
 
 	/**
 	 * Sets the type of printer. Ink or laser.
-	 * 
 	 */
 	public void setPrinterType(String PprinterType)
 	{
@@ -110,7 +108,6 @@ public class Printer extends ExternalHardware implements Serializable
 
 	/**
 	 * Sets pages per minute for a printer.
-	 * 
 	 */
 	public void setPagesPerMinute(int Pppm)
 	{

@@ -31,7 +31,6 @@ import widgetManipulation.WidgetObject;
  * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class ObjectView extends JFrame implements ActionListener
 {
@@ -44,7 +43,6 @@ public class ObjectView extends JFrame implements ActionListener
 
 	/**
 	 * TODO - Description NEEDED!
-	 * 
 	 */
 	public ObjectView(WidgetObject obj)
 	{
@@ -120,7 +118,7 @@ public class ObjectView extends JFrame implements ActionListener
 			@Override
 			public void windowClosing(WindowEvent ev)
 			{
-				PrimeMain1.objView = null;
+				PrimeMain1.removeObjectView(currentObject);
 			}
 		});
 	}
@@ -128,7 +126,6 @@ public class ObjectView extends JFrame implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -148,7 +145,8 @@ public class ObjectView extends JFrame implements ActionListener
 				LabelWidget label = null;
 
 
-				for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
+				for ( Iterator<Widget> iter = children.iterator(); iter
+						.hasNext(); )
 				{
 					Widget temp = iter.next();
 					if ( temp instanceof LabelWidget )
@@ -164,28 +162,33 @@ public class ObjectView extends JFrame implements ActionListener
 			}
 
 
-			if ( !currentObject.getDescription().equals(view.genObjView.textarea.getText()) )
+			if ( !currentObject.getDescription().equals(
+					view.genObjView.textarea.getText()) )
 			{
-				currentObject.setDescription(view.genObjView.textarea.getText());
+				currentObject
+						.setDescription(view.genObjView.textarea.getText());
 			}
 
 			PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject());
 
-			PrimeMain1.objView = null;
+			PrimeMain1.removeObjectView(currentObject);
 
 			this.dispose();
 		}
 		else if ( e.getActionCommand().equals("apply") )
 		{
-			if ( !currentObject.getObjectName().equals(view.genObjView.nametext.getText()) )
+			if ( !currentObject.getObjectName().equals(
+					view.genObjView.nametext.getText()) )
 			{
 				currentObject.setObjectName(view.genObjView.nametext.getText());
 			}
 
 
-			if ( !currentObject.getDescription().equals(view.genObjView.textarea.getText()) )
+			if ( !currentObject.getDescription().equals(
+					view.genObjView.textarea.getText()) )
 			{
-				currentObject.setDescription(view.genObjView.textarea.getText());
+				currentObject
+						.setDescription(view.genObjView.textarea.getText());
 			}
 
 
@@ -195,7 +198,7 @@ public class ObjectView extends JFrame implements ActionListener
 		{
 			assert e.getActionCommand().equals("cancel");
 
-			PrimeMain1.objView = null;
+			PrimeMain1.removeObjectView(currentObject);
 
 			this.dispose();
 		}
@@ -206,10 +209,19 @@ public class ObjectView extends JFrame implements ActionListener
 
 	/**
 	 * Javadoc-TODO - Description
-	 * 
 	 */
 	public void updateViewInfo()
 	{
 		view.updateTabInfo();
+	}
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public Object getObject()
+	{
+		return currentObject;
 	}
 }

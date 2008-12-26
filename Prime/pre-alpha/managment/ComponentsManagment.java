@@ -11,6 +11,7 @@ import connections.Connection;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
 import graphics.PrimeMain1;
+import graphics.GUI.objectView.ObjectView;
 import hardware.CPU;
 import hardware.Discdrive;
 import hardware.ExternalNetworksCard;
@@ -386,7 +387,11 @@ public class ComponentsManagment
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				PrimeMain1.objView.updateViewInfo();
+				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				if( view != null )
+				{
+					view.updateViewInfo();
+				}
 			}
 		}
 	}
@@ -435,7 +440,11 @@ public class ComponentsManagment
 
 		// Updates the views of the object to correctly show the
 		// current info.
-		PrimeMain1.objView.updateViewInfo();
+		ObjectView view = PrimeMain1.getObjectView(obj);
+		if( view != null )
+		{
+			view.updateViewInfo();
+		}
 	}
 
 

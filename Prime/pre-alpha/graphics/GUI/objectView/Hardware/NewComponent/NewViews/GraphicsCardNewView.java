@@ -8,6 +8,7 @@ import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.HardwareView;
 import hardware.GraphicsCard;
@@ -43,9 +44,9 @@ import objects.Object;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
-public class GraphicsCardNewView extends JFrame implements HardwareView, ActionListener
+public class GraphicsCardNewView extends JFrame implements HardwareView,
+		ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -217,7 +218,8 @@ public class GraphicsCardNewView extends JFrame implements HardwareView, ActionL
 		type.setActionCommand("Interface");
 		type.addActionListener(this);
 
-		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(typeString, GPU.getType()));
+		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				typeString, GPU.getType()));
 
 
 		panel.add(labels[1]);
@@ -236,8 +238,8 @@ public class GraphicsCardNewView extends JFrame implements HardwareView, ActionL
 		outputInterface.setActionCommand("Port");
 		outputInterface.addActionListener(this);
 
-		outputInterface.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(portString, GPU
-				.getOutputInterface()));
+		outputInterface.setSelectedIndex(GraphicalFunctions
+				.getIndexInJComboBox(portString, GPU.getOutputInterface()));
 
 
 		panel.add(labels[2]);
@@ -256,7 +258,8 @@ public class GraphicsCardNewView extends JFrame implements HardwareView, ActionL
 		size.setActionCommand("Size");
 		size.addActionListener(this);
 
-		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(sizeString, GPU.getSize()));
+		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				sizeString, GPU.getSize()));
 
 
 		panel.add(labels[3]);
@@ -275,7 +278,8 @@ public class GraphicsCardNewView extends JFrame implements HardwareView, ActionL
 		speed.setActionCommand("Speed");
 		speed.addActionListener(this);
 
-		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(speedString, GPU.getSpeed()));
+		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				speedString, GPU.getSpeed()));
 
 
 		panel.add(labels[4]);
@@ -294,8 +298,8 @@ public class GraphicsCardNewView extends JFrame implements HardwareView, ActionL
 		maxMonitors.setActionCommand("MaxMonitors");
 		maxMonitors.addActionListener(this);
 
-		maxMonitors.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(monitorsString, GPU
-				.getMaxMonitors()));
+		maxMonitors.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				monitorsString, GPU.getMaxMonitors()));
 
 
 		panel.add(labels[5]);
@@ -404,7 +408,8 @@ public class GraphicsCardNewView extends JFrame implements HardwareView, ActionL
 
 		if ( outputInterface.getSelectedItem().toString() != "" )
 		{
-			mainGC.setSupportedConnectionInterfaces(outputInterface.getSelectedItem().toString());
+			mainGC.setSupportedConnectionInterfaces(outputInterface
+					.getSelectedItem().toString());
 		}
 
 		if ( size.getSelectedItem().toString() != "" )
@@ -414,12 +419,14 @@ public class GraphicsCardNewView extends JFrame implements HardwareView, ActionL
 
 		if ( speed.getSelectedItem().toString() != "" )
 		{
-			mainGC.setSpeed(Integer.parseInt(speed.getSelectedItem().toString()));
+			mainGC.setSpeed(Integer
+					.parseInt(speed.getSelectedItem().toString()));
 		}
 
 		if ( maxMonitors.getSelectedItem().toString() != "" )
 		{
-			mainGC.setMaxMonitors(Integer.parseInt(maxMonitors.getSelectedItem().toString()));
+			mainGC.setMaxMonitors(Integer.parseInt(maxMonitors
+					.getSelectedItem().toString()));
 		}
 
 		mainGC.setIsIntegrated(isIntegrated.isSelected());
@@ -447,13 +454,17 @@ public class GraphicsCardNewView extends JFrame implements HardwareView, ActionL
 			// Saves the current values of the new motherboard.
 			save();
 
-			ComponentsManagment.processGPUmatch(mainObj, (Motherboard) mainObj.getComponents()[0],
-					mainGC, this);
+			ComponentsManagment.processGPUmatch(mainObj, (Motherboard) mainObj
+					.getComponents()[0], mainGC, this);
 
 
 			// Updates the views of the object to correctly show the
 			// current info.
-			PrimeMain1.objView.updateViewInfo();
+			ObjectView view = PrimeMain1.getObjectView(mainObj);
+			if(view != null)
+			{
+				view.updateViewInfo();
+			}
 
 
 			// Closes the JFrame.

@@ -21,7 +21,7 @@ public class ObjectDoesNotExistInContainer extends Exception
 
 
 	/**
-	 * Constructor 
+	 * Constructor
 	 * 
 	 * @param message
 	 * @param notFoundObject
@@ -37,7 +37,6 @@ public class ObjectDoesNotExistInContainer extends Exception
 
 	/**
 	 * Retrieves the object that was not found.
-	 * 
 	 */
 	public Object getObject()
 	{

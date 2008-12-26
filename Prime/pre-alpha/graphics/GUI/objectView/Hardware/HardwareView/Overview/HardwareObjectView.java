@@ -300,7 +300,8 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				String text = null;
 
 				text = gpuObj.getObjectName();
-				if ( gpuObj.getObjectName() != "" && gpuObj.getObjectName() != null )
+				if ( gpuObj.getObjectName() != ""
+						&& gpuObj.getObjectName() != null )
 				{
 					info[0] = gpuObj.getObjectName();
 				}
@@ -450,8 +451,8 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 		}
 
-		
-		
+
+
 		JLabel temp1 = new JLabel("");
 		temp1.setMaximumSize(new Dimension(90, 20));
 		temp1.setPreferredSize(new Dimension(90, 20));
@@ -474,7 +475,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			this.add(temp1);
 			d.gridy = c.gridy++;
 		}
-		
+
 		d.gridy = c.gridy++;
 		d.weightx = 1;
 		d.weighty = 1;
@@ -569,7 +570,6 @@ public class HardwareObjectView extends JPanel implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */

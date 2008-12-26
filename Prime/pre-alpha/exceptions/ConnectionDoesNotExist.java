@@ -40,14 +40,13 @@ public class ConnectionDoesNotExist extends Exception
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.lang.Throwable#getMessage()
 	 */
 	@Override
 	public String getMessage()
 	{
-		String output = "There exists no connection between object a, " + a + " and object b, " + b
-				+ ".";
+		String output = "There exists no connection between object a, " + a
+				+ " and object b, " + b + ".";
 
 		return output;
 	}

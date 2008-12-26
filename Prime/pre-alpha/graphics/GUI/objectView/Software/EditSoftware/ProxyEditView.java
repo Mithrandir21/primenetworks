@@ -1,5 +1,6 @@
 package graphics.GUI.objectView.Software.EditSoftware;
 
+
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
@@ -37,30 +38,29 @@ import software.Proxy;
 
 /**
  * A JPanel that will contain fields and options for a presentation and
- * modification of an {@link Proxy Proxy} Software. The panel is made up
- * of 3 JPanel ordered in a column.
- * 
- * The first one contains the name and description of the object. 
- * The second panel contains the specific software options. 
- * The third panel contains the button that can remove the software
- * from the computer.
+ * modification of an {@link Proxy Proxy} Software. The panel is made up of 3
+ * JPanel ordered in a column. The first one contains the name and description
+ * of the object. The second panel contains the specific software options. The
+ * third panel contains the button that can remove the software from the
+ * computer.
  * 
  * @author Bahram Malaekeh
  */
-public class ProxyEditView extends JPanel implements SoftwareEditView, ActionListener
+public class ProxyEditView extends JPanel implements SoftwareEditView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
 
 	// The description of the software object.
 	JTextArea desc = new JTextArea(3, 40);
-	
+
 	// Supported Operating systems
 	private JList supportedOS;
 
 	// List of operating systems
 	private String[] OSs;
-	
+
 	// Has caching feature
 	private JCheckBox caching;
 
@@ -89,20 +89,20 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 
 	// Supports HTTPS
 	private JCheckBox supportsHTTPS;
-	
-	
-	
+
+
+
 	private Object mainObj;
-	
+
 	private Proxy mainProxy;
-	
+
 	/**
 	 * Constructor for the software view.
 	 * 
 	 * @param obj
-	 * 			The main {@link Object object}.
+	 *            The main {@link Object object}.
 	 * @param proxy
-	 * 			The {@link Proxy Proxy} software.
+	 *            The {@link Proxy Proxy} software.
 	 */
 	public ProxyEditView(Object obj, Proxy proxy)
 	{
@@ -165,46 +165,52 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 		c.gridheight = 1;
 		c.insets = new Insets(2, 10, 10, 10);
 
-		this.add(buttons, c);		
+		this.add(buttons, c);
 	}
-	
-	
+
+
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software} 
-	 * specific options. The layout of the returned panel will 
-	 * be {@link SpringLayout}.
+	 * Creates the JPanel that will contain the {@link Software Software}
+	 * specific options. The layout of the returned panel will be
+	 * {@link SpringLayout}.
 	 */
 	private JPanel createSpesificInfo(Proxy proxy)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[10];
-		
-		
+
+
 		labels[0] = new JLabel("Supported OS");
 		labels[0]
 				.setToolTipText("The supported Operating Systems by the software.");
 
 		labels[1] = new JLabel("Chaching");
-		labels[1].setToolTipText("Whether or not the software has caching feature.");
+		labels[1]
+				.setToolTipText("Whether or not the software has caching feature.");
 
 		labels[2] = new JLabel("Proxy");
-		labels[2].setToolTipText("Whether or not the software has Web proxy feature.");
+		labels[2]
+				.setToolTipText("Whether or not the software has Web proxy feature.");
 
 		labels[3] = new JLabel("Anonymizing");
-		labels[3].setToolTipText("Whether or not the software has Anonymizing proxy feature.");
-		
+		labels[3]
+				.setToolTipText("Whether or not the software has Anonymizing proxy feature.");
+
 		labels[4] = new JLabel("Transparent Proxy");
-		labels[4].setToolTipText("Whether or not the software has transparent proxy feature.");
+		labels[4]
+				.setToolTipText("Whether or not the software has transparent proxy feature.");
 
 		labels[5] = new JLabel("Reverse Proxy");
-		labels[5].setToolTipText("Whether or not the software has reverse proxy feature.");
+		labels[5]
+				.setToolTipText("Whether or not the software has reverse proxy feature.");
 
 		labels[6] = new JLabel("Supports IPv6");
-		labels[6].setToolTipText("Whether or not the software supports IP version 6.");
+		labels[6]
+				.setToolTipText("Whether or not the software supports IP version 6.");
 
 		labels[7] = new JLabel("Supports SSL");
 		labels[7].setToolTipText("Whether or not the software supports SSL.");
-		
+
 		labels[8] = new JLabel("Supports TSL");
 		labels[8].setToolTipText("Whether or not the software supports TSL.");
 
@@ -214,9 +220,9 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 
 
 		Dimension tfSize = new Dimension(90, 20);
-		
-		
-		
+
+
+
 		// The supported operating systems by the Proxy software.
 		labels[0].setLabelFor(supportedOS);
 		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
@@ -243,9 +249,9 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		
-		
-		
+
+
+
 		// Whether or not the software has caching feature
 		labels[1].setLabelFor(caching);
 		caching = new JCheckBox();
@@ -259,7 +265,7 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 
 		panel.add(labels[1]);
 		panel.add(caching);
-		
+
 
 		// Whether or not the software has Web proxy feature
 		labels[2].setLabelFor(webProxy);
@@ -274,9 +280,9 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 
 		panel.add(labels[2]);
 		panel.add(webProxy);
-		
-		
-		
+
+
+
 		// Whether or not the software has Anonymizing proxy feature
 		labels[3].setLabelFor(anonymizingProxy);
 		anonymizingProxy = new JCheckBox();
@@ -291,8 +297,8 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 		panel.add(labels[3]);
 		panel.add(anonymizingProxy);
 
-		
-		
+
+
 		// Whether or not the software has transparent proxy feature
 		labels[4].setLabelFor(transparentProxy);
 		transparentProxy = new JCheckBox();
@@ -307,7 +313,7 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 		panel.add(labels[4]);
 		panel.add(transparentProxy);
 
-		
+
 		// Whether or not the software has reverse proxy feature
 		labels[5].setLabelFor(reverseProxy);
 		reverseProxy = new JCheckBox();
@@ -337,7 +343,7 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 		panel.add(labels[6]);
 		panel.add(supportsIPv6);
 
-		
+
 		// Whether or not the software supports SSL
 		labels[7].setLabelFor(supportsSSL);
 		supportsSSL = new JCheckBox();
@@ -352,7 +358,7 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 		panel.add(labels[7]);
 		panel.add(supportsSSL);
 
-		
+
 		// Whether or not the software supports TSL
 		labels[8].setLabelFor(supportsTSL);
 		supportsTSL = new JCheckBox();
@@ -367,7 +373,7 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 		panel.add(labels[8]);
 		panel.add(supportsTSL);
 
-		
+
 		// Whether or not the software supports HTTPS
 		labels[9].setLabelFor(supportsHTTPS);
 		supportsHTTPS = new JCheckBox();
@@ -381,9 +387,9 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 
 		panel.add(labels[9]);
 		panel.add(supportsHTTPS);
-		
-		
-		
+
+
+
 		JLabel temp1 = new JLabel("");
 		temp1.setMaximumSize(tfSize);
 		temp1.setPreferredSize(tfSize);
@@ -404,24 +410,25 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 		panel.add(temp2);
 		panel.add(temp3);
 		panel.add(temp4);
-		
-		
-		
-		
+
+
+
+
 		// Lay out the panel.
 		SpringUtilities.makeCompactGrid(panel, 4, 6, // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-		
-		
-		
-		
+
+
+
+
 		return panel;
 	}
-	
-	
 
-	/* (non-Javadoc)
+
+
+	/*
+	 * (non-Javadoc)
 	 * @see graphics.GUI.objectView.Software.SoftwareEditView#save()
 	 */
 	@Override
@@ -436,18 +443,18 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 		{
 			mainProxy.setDescription(desc.getText());
 		}
-		
+
 		if ( supportedOS.getSelectedIndex() != -1 )
 		{
 			mainProxy.setSupportedOperatingSystems(OSs);
 		}
-		
+
 		mainProxy.setSupportsCaching(caching.isSelected());
-		
+
 		mainProxy.setSupportsWebProxy(webProxy.isSelected());
 
 		mainProxy.setSupportsAnonymizingProxy(anonymizingProxy.isSelected());
-		
+
 		mainProxy.setSupportsTransparentProxy(transparentProxy.isSelected());
 
 		mainProxy.setSupportsReverseProxy(reverseProxy.isSelected());
@@ -455,14 +462,16 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 		mainProxy.setSupportsIPv6(supportsIPv6.isSelected());
 
 		mainProxy.setSupportsSSL(supportsSSL.isSelected());
-		
+
 		mainProxy.setSupportsTSL(supportsTSL.isSelected());
-		
+
 		mainProxy.setSupportsHTTPS(supportsHTTPS.isSelected());
 	}
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -470,50 +479,50 @@ public class ProxyEditView extends JPanel implements SoftwareEditView, ActionLis
 		if ( e.getSource() instanceof JCheckBox )
 		{
 			JCheckBox box = (JCheckBox) e.getSource();
-			
+
 			String command = box.getActionCommand();
-			
+
 			if ( command.equals("Caching") )
 			{
-				
+
 			}
-			else if ( command.equals("WebProxy"))
+			else if ( command.equals("WebProxy") )
 			{
-				
+
 			}
-			else if ( command.equals("Anonymizing"))
+			else if ( command.equals("Anonymizing") )
 			{
-				
+
 			}
-			else if ( command.equals("Transparent"))
+			else if ( command.equals("Transparent") )
 			{
-				
+
 			}
-			else if ( command.equals("ReverseProxy"))
+			else if ( command.equals("ReverseProxy") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsIPv6"))
+			else if ( command.equals("SupportsIPv6") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsSSL"))
+			else if ( command.equals("SupportsSSL") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsTSL"))
+			else if ( command.equals("SupportsTSL") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsHTTPS"))
+			else if ( command.equals("SupportsHTTPS") )
 			{
-				
+
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 

@@ -43,7 +43,6 @@ public class ObjectNotFoundInArrayException extends Exception
 
 	/**
 	 * Retrieves the object that was not found.
-	 * 
 	 */
 	public Object getObject()
 	{

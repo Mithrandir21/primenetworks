@@ -28,8 +28,9 @@ public class RackSwitch extends Switch
 	 * @param Desc
 	 *            The description of the RackSwitch.
 	 */
-	public RackSwitch(String Name, String Desc, String[] SupConInt, Motherboard objectMB,
-			int outPorts, int inPorts, String[] DuplexSupport)
+	public RackSwitch(String Name, String Desc, String[] SupConInt,
+			Motherboard objectMB, int outPorts, int inPorts,
+			String[] DuplexSupport)
 	{
 		super(Name, Desc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport);
 		;

@@ -1,5 +1,6 @@
 package graphics.GUI.objectView.Software.EditSoftware;
 
+
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
@@ -38,29 +39,28 @@ import software.Webserver;
 /**
  * A JPanel that will contain fields and options for a presentation and
  * modification of an {@link Webserver Webserver} Software. The panel is made up
- * of 3 JPanel ordered in a column.
- * 
- * The first one contains the name and description of the object. 
- * The second panel contains the specific software options. 
- * The third panel contains the button that can remove the software
+ * of 3 JPanel ordered in a column. The first one contains the name and
+ * description of the object. The second panel contains the specific software
+ * options. The third panel contains the button that can remove the software
  * from the computer.
  * 
  * @author Bahram Malaekeh
  */
-public class WebserverEditView extends JPanel implements SoftwareEditView, ActionListener
+public class WebserverEditView extends JPanel implements SoftwareEditView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
 
 	// The description of the software object.
 	JTextArea desc = new JTextArea(3, 40);
-	
+
 	// Supported Operating systems
 	private JList supportedOS;
 
 	// List of operating systems
 	private String[] OSs;
-	
+
 	// Supports Virtual hosting feature
 	private JCheckBox hasVirtualHosting;
 
@@ -112,20 +112,20 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 
 	// Supports ASP .net
 	private JCheckBox supportsASPnet;
-	
-	
-	
+
+
+
 	private Object mainObj;
-	
+
 	private Webserver mainWebSer;
-	
+
 	/**
 	 * Constructor for the software view.
 	 * 
 	 * @param obj
-	 * 			The main {@link Object object}.
+	 *            The main {@link Object object}.
 	 * @param webserver
-	 * 			The {@link Webserver Webserver} software.
+	 *            The {@link Webserver Webserver} software.
 	 */
 	public WebserverEditView(Object obj, Webserver webserver)
 	{
@@ -190,55 +190,65 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 
 		this.add(buttons, c);
 	}
-	
-	
+
+
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software} 
-	 * specific options. The layout of the returned panel will 
-	 * be {@link SpringLayout}.
+	 * Creates the JPanel that will contain the {@link Software Software}
+	 * specific options. The layout of the returned panel will be
+	 * {@link SpringLayout}.
 	 */
 	private JPanel createSpesificInfo(Webserver webserver)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[15];
-		
-		
+
+
 		labels[0] = new JLabel("Supported OS");
 		labels[0]
 				.setToolTipText("The supported Operating Systems by the software.");
 
 		labels[1] = new JLabel("Supports Virtual Hosting");
-		labels[1].setToolTipText("Whether or not the software supports Virtual hosting feature.");
+		labels[1]
+				.setToolTipText("Whether or not the software supports Virtual hosting feature.");
 
 		labels[2] = new JLabel("Supports HTTP compression");
-		labels[2].setToolTipText("Whether or not the software supports HTTP compression.");
+		labels[2]
+				.setToolTipText("Whether or not the software supports HTTP compression.");
 
 		labels[3] = new JLabel("Supports Basic Access");
-		labels[3].setToolTipText("Whether or not the software supports basic access authentication.");
+		labels[3]
+				.setToolTipText("Whether or not the software supports basic access authentication.");
 
 		labels[4] = new JLabel("Supports Digest Access");
-		labels[4].setToolTipText("Whether or not the software supports digest access authentication.");
+		labels[4]
+				.setToolTipText("Whether or not the software supports digest access authentication.");
 
 		labels[5] = new JLabel("Supports SSL");
-		labels[5].setToolTipText("Whether or not the software supports SSL, Secure Sockets Layer.");
+		labels[5]
+				.setToolTipText("Whether or not the software supports SSL, Secure Sockets Layer.");
 
 		labels[6] = new JLabel("Supports TSL");
-		labels[6].setToolTipText("Whether or not the software supports TSL, Transport Layer Security.");
+		labels[6]
+				.setToolTipText("Whether or not the software supports TSL, Transport Layer Security.");
 
 		labels[7] = new JLabel("Supports IPv6");
 		labels[7].setToolTipText("Whether or not the software supports IPv6.");
 
 		labels[8] = new JLabel("Supports SSI");
-		labels[8].setToolTipText("Whether or not the software supports SSI, Server Side Includes.");
+		labels[8]
+				.setToolTipText("Whether or not the software supports SSI, Server Side Includes.");
 
 		labels[9] = new JLabel("Supports CGI");
-		labels[9].setToolTipText("Whether or not the software supports CGI, Common Gateway Interface.");
+		labels[9]
+				.setToolTipText("Whether or not the software supports CGI, Common Gateway Interface.");
 
 		labels[10] = new JLabel("Supports SCGI");
-		labels[10].setToolTipText("Whether or not the software supports SCGI, Simple Common Gateway Interface.");
+		labels[10]
+				.setToolTipText("Whether or not the software supports SCGI, Simple Common Gateway Interface.");
 
 		labels[11] = new JLabel("Supports FastCGI");
-		labels[11].setToolTipText("Whether or not the software supports FastCGI.");
+		labels[11]
+				.setToolTipText("Whether or not the software supports FastCGI.");
 
 		labels[12] = new JLabel("Supports JSP");
 		labels[12].setToolTipText("Whether or not the software supports JSP.");
@@ -250,13 +260,14 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		labels[14].setToolTipText("Whether or not the software supports ASP.");
 
 		labels[15] = new JLabel("Supports ASP .Net");
-		labels[15].setToolTipText("Whether or not the software supports ASP .Net.");
+		labels[15]
+				.setToolTipText("Whether or not the software supports ASP .Net.");
 
 
 		Dimension tfSize = new Dimension(90, 20);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// The supported operating systems by the Webserver software.
 		labels[0].setLabelFor(supportedOS);
 		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
@@ -284,8 +295,8 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[0]);
 		panel.add(listPane);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the software supports Virtual hosting feature
 		labels[1].setLabelFor(hasVirtualHosting);
 		hasVirtualHosting = new JCheckBox();
@@ -300,8 +311,8 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[1]);
 		panel.add(hasVirtualHosting);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the software supports HTTP compression
 		labels[2].setLabelFor(hasCompression);
 		hasCompression = new JCheckBox();
@@ -316,8 +327,8 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[2]);
 		panel.add(hasCompression);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the software supports basic access authentication
 		labels[3].setLabelFor(supportsBasic);
 		supportsBasic = new JCheckBox();
@@ -332,8 +343,8 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[3]);
 		panel.add(supportsBasic);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the software supports basic access authentication
 		labels[4].setLabelFor(supportsDigest);
 		supportsDigest = new JCheckBox();
@@ -348,8 +359,8 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[4]);
 		panel.add(supportsDigest);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the software supports SSL
 		labels[5].setLabelFor(supportsSSL);
 		supportsSSL = new JCheckBox();
@@ -364,8 +375,8 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[5]);
 		panel.add(supportsSSL);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the software supports TSL
 		labels[6].setLabelFor(supportsTSL);
 		supportsTSL = new JCheckBox();
@@ -380,8 +391,8 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[6]);
 		panel.add(supportsTSL);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the software supports IPv6
 		labels[7].setLabelFor(supportsIPv6);
 		supportsIPv6 = new JCheckBox();
@@ -396,8 +407,8 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[7]);
 		panel.add(supportsIPv6);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the software supports SSI, Server Side Includes
 		labels[8].setLabelFor(supportsIPv6);
 		supportsSSI = new JCheckBox();
@@ -412,8 +423,8 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[8]);
 		panel.add(supportsSSI);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the software supports SSI, Server Side Includes
 		labels[9].setLabelFor(supportsCGI);
 		supportsCGI = new JCheckBox();
@@ -428,9 +439,10 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[9]);
 		panel.add(supportsCGI);
 
-		//--------------------------------------------------------------
-		
-		// Whether or not the software supports SCGI, Simple Common Gateway Interface
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports SCGI, Simple Common Gateway
+		// Interface
 		labels[10].setLabelFor(supportsSCGI);
 		supportsSCGI = new JCheckBox();
 		supportsSCGI.setMaximumSize(tfSize);
@@ -444,8 +456,8 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[10]);
 		panel.add(supportsSCGI);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the software supports FastCGI
 		labels[11].setLabelFor(supportsFastCGI);
 		supportsFastCGI = new JCheckBox();
@@ -460,8 +472,8 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[11]);
 		panel.add(supportsFastCGI);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the software supports JSP
 		labels[12].setLabelFor(supportsJSP);
 		supportsJSP = new JCheckBox();
@@ -476,8 +488,8 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[12]);
 		panel.add(supportsJSP);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the software supports JSP
 		labels[13].setLabelFor(supportsPHP);
 		supportsPHP = new JCheckBox();
@@ -492,8 +504,8 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[13]);
 		panel.add(supportsPHP);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the software supports ASP
 		labels[14].setLabelFor(supportsASP);
 		supportsASP = new JCheckBox();
@@ -508,8 +520,8 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[14]);
 		panel.add(supportsASP);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the software supports ASP .net
 		labels[14].setLabelFor(supportsASPnet);
 		supportsASPnet = new JCheckBox();
@@ -524,21 +536,22 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		panel.add(labels[14]);
 		panel.add(supportsASPnet);
 
-		//--------------------------------------------------------------
-		
-		
+		// --------------------------------------------------------------
+
+
 		// Lay out the panel.
 		SpringUtilities.makeCompactGrid(panel, 5, 6, // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-		
-		
+
+
 		return panel;
 	}
-	
-	
 
-	/* (non-Javadoc)
+
+
+	/*
+	 * (non-Javadoc)
 	 * @see graphics.GUI.objectView.Software.SoftwareEditView#save()
 	 */
 	@Override
@@ -553,19 +566,19 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		{
 			mainWebSer.setDescription(desc.getText());
 		}
-		
+
 		if ( supportedOS.getSelectedIndex() != -1 )
 		{
 			mainWebSer.setSupportedOperatingSystems(OSs);
 		}
-		
-		
+
+
 		mainWebSer.setHasVirtualHosting(hasVirtualHosting.isSelected());
-		
+
 		mainWebSer.setHasCompression(hasCompression.isSelected());
 
 		mainWebSer.setSupportsBasic(supportsBasic.isSelected());
-		
+
 		mainWebSer.setSupportsDigest(supportsDigest.isSelected());
 
 		mainWebSer.setSupportsSSL(supportsSSL.isSelected());
@@ -591,9 +604,11 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		mainWebSer.setSupportsASPnet(supportsASPnet.isSelected());
 	}
 
-	
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -601,73 +616,73 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 		if ( e.getSource() instanceof JCheckBox )
 		{
 			JCheckBox box = (JCheckBox) e.getSource();
-			
+
 			String command = box.getActionCommand();
-			
+
 			if ( command.equals("HasVirtualHosting") )
 			{
-				
+
 			}
-			else if ( command.equals("HasCompression"))
+			else if ( command.equals("HasCompression") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsBasic"))
+			else if ( command.equals("SupportsBasic") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsDigest"))
+			else if ( command.equals("SupportsDigest") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsSSL"))
+			else if ( command.equals("SupportsSSL") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsTSL"))
+			else if ( command.equals("SupportsTSL") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsIPv6"))
+			else if ( command.equals("SupportsIPv6") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsSSI"))
+			else if ( command.equals("SupportsSSI") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsCGI"))
+			else if ( command.equals("SupportsCGI") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsSCGI"))
+			else if ( command.equals("SupportsSCGI") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsFastCGI"))
+			else if ( command.equals("SupportsFastCGI") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsJSP"))
+			else if ( command.equals("SupportsJSP") )
 			{
-				
+
 			}
-			else if ( command.equals("supportsPHP"))
+			else if ( command.equals("supportsPHP") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsASP"))
+			else if ( command.equals("SupportsASP") )
 			{
-				
+
 			}
-			else if ( command.equals("SupportsASPnet"))
+			else if ( command.equals("SupportsASPnet") )
 			{
-				
+
 			}
 		}
 	}
 
-	
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 
@@ -703,6 +718,6 @@ public class WebserverEditView extends JPanel implements SoftwareEditView, Actio
 			}
 		}
 	}
-	
-	
+
+
 }

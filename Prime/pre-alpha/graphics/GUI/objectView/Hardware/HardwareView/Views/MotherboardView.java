@@ -10,6 +10,7 @@ import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.workareaCanvas.WorkareaCanvasActions;
 import hardware.CPU;
@@ -914,11 +915,11 @@ public class MotherboardView extends JPanel implements HardwareView,
 				}
 				catch ( ObjectNotFoundException e )
 				{
-					
+
 				}
 				catch ( ObjectNotFoundInArrayException e )
 				{
-					
+
 				}
 
 
@@ -930,10 +931,10 @@ public class MotherboardView extends JPanel implements HardwareView,
 				{
 					// The number of components there are room for.
 					int counter = mbObj.getMaxCPUs();
-					
+
 					// All the components of the main object(without the CPUs).
 					Object[] mainComp = mainObj.getComponents();
-					
+
 					for ( int i = 0; i < counter; i++ )
 					{
 						// If i is smaller then the length of the comp array.
@@ -1028,11 +1029,11 @@ public class MotherboardView extends JPanel implements HardwareView,
 				}
 				catch ( ObjectNotFoundException e )
 				{
-					
+
 				}
 				catch ( ObjectNotFoundInArrayException e )
 				{
-					
+
 				}
 
 
@@ -1145,11 +1146,11 @@ public class MotherboardView extends JPanel implements HardwareView,
 				}
 				catch ( ObjectNotFoundException e )
 				{
-					
+
 				}
 				catch ( ObjectNotFoundInArrayException e )
 				{
-					
+
 				}
 
 
@@ -1161,10 +1162,10 @@ public class MotherboardView extends JPanel implements HardwareView,
 				{
 					// The number of components there are room for.
 					int counter = mbObj.getMaxDUCs();
-					
+
 					// All the components of the main object(without the CPUs).
 					Object[] mainComp = mainObj.getComponents();
-					
+
 					for ( int i = 0; i < counter; i++ )
 					{
 						// If i is smaller then the length of the comp array.
@@ -1325,7 +1326,11 @@ public class MotherboardView extends JPanel implements HardwareView,
 
 					// Updates the views of the object to correctly show the
 					// current info.
-					PrimeMain1.objView.updateViewInfo();
+					ObjectView view = PrimeMain1.getObjectView(mainObj);
+					if(view != null)
+					{
+						view.updateViewInfo();
+					}
 				}
 			}
 		}

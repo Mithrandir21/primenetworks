@@ -107,7 +107,6 @@ public class StandaloneServer extends Infrastructure implements Serializable
 
 	/**
 	 * Get server rating.
-	 * 
 	 */
 	public int getServerRating()
 	{
@@ -117,7 +116,6 @@ public class StandaloneServer extends Infrastructure implements Serializable
 
 	/**
 	 * Get the number of nodes between the maskin and the internet.
-	 * 
 	 */
 	public int getNumberJumps()
 	{
@@ -146,10 +144,11 @@ public class StandaloneServer extends Infrastructure implements Serializable
 	 * @return Returns an array of components that match with the given class.
 	 */
 	@Override
-	public Object[] getSpesificComponents(Class<?> ComponentClass) throws ObjectNotFoundException
+	public Object[] getSpesificComponents(Class<?> ComponentClass)
+			throws ObjectNotFoundException
 	{
-		Object[] componentsFound = ComponentsManagment.getSpesificComponents(ComponentClass,
-				components, componentCounter);
+		Object[] componentsFound = ComponentsManagment.getSpesificComponents(
+				ComponentClass, components, componentCounter);
 
 		return componentsFound;
 	}
@@ -167,8 +166,8 @@ public class StandaloneServer extends Infrastructure implements Serializable
 	public Object[] getSpesificConncetedDevices(Class<?> connectedDeviceClass)
 			throws ObjectNotFoundException
 	{
-		Object[] componentsFound = ComponentsManagment.getSpesificComponents(connectedDeviceClass,
-				components, componentCounter);
+		Object[] componentsFound = ComponentsManagment.getSpesificComponents(
+				connectedDeviceClass, components, componentCounter);
 
 		return componentsFound;
 	}
@@ -213,7 +212,6 @@ public class StandaloneServer extends Infrastructure implements Serializable
 
 	/**
 	 * Set method for server rating.
-	 * 
 	 */
 	public void setServerRating(int rate)
 	{
@@ -223,7 +221,6 @@ public class StandaloneServer extends Infrastructure implements Serializable
 
 	/**
 	 * Set method for number of jumps to the internet.
-	 * 
 	 */
 	public void setNumberOfJumps(int jumps)
 	{
@@ -265,8 +262,8 @@ public class StandaloneServer extends Infrastructure implements Serializable
 	@Override
 	public void changeComponent(Object NewComponent, Object OldComponent)
 	{
-		components = ComponentsManagment.changeComponent(NewComponent, OldComponent, components,
-				componentCounter);
+		components = ComponentsManagment.changeComponent(NewComponent,
+				OldComponent, components, componentCounter);
 
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
@@ -281,10 +278,11 @@ public class StandaloneServer extends Infrastructure implements Serializable
 	 *            Component to be removed.
 	 */
 	@Override
-	public void removeComponent(Object[] ToBeRemoved) throws ObjectNotFoundInArrayException
+	public void removeComponent(Object[] ToBeRemoved)
+			throws ObjectNotFoundInArrayException
 	{
-		components = ComponentsManagment
-				.removeComponents(ToBeRemoved, components, componentCounter);
+		components = ComponentsManagment.removeComponents(ToBeRemoved,
+				components, componentCounter);
 
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
@@ -293,9 +291,8 @@ public class StandaloneServer extends Infrastructure implements Serializable
 
 
 	/**
-	 * Function to add component(s) to the the components list.
-	 * 
-	 * TODO - CHECK IF THE SYSTEM IS CAPABLE OF INSTALLING NEW COMPONENTS.
+	 * Function to add component(s) to the the components list. TODO - CHECK IF
+	 * THE SYSTEM IS CAPABLE OF INSTALLING NEW COMPONENTS.
 	 * 
 	 * @param NewComponents
 	 *            An array of new components.
@@ -303,7 +300,8 @@ public class StandaloneServer extends Infrastructure implements Serializable
 	@Override
 	public void addComponents(Object[] NewComponents) throws Exception
 	{
-		components = ComponentsManagment.addComponents(NewComponents, components, componentCounter);
+		components = ComponentsManagment.addComponents(NewComponents,
+				components, componentCounter);
 
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
@@ -323,10 +321,11 @@ public class StandaloneServer extends Infrastructure implements Serializable
 	 *            The connected device to be replaced.
 	 */
 	@Override
-	public void changeConnectedDevice(Object NewconnectedDevice, Object OldconnectedDevice)
+	public void changeConnectedDevice(Object NewconnectedDevice,
+			Object OldconnectedDevice)
 	{
-		components = ComponentsManagment.changeComponent(NewconnectedDevice, OldconnectedDevice,
-				connectedDevices, connectedDevicesCounter);
+		components = ComponentsManagment.changeComponent(NewconnectedDevice,
+				OldconnectedDevice, connectedDevices, connectedDevicesCounter);
 
 		// Sets the new count for number of connected devices in the array
 		connectedDevicesCounter = connectedDevices.length;
@@ -341,10 +340,11 @@ public class StandaloneServer extends Infrastructure implements Serializable
 	 *            Connected device to be removed.
 	 */
 	@Override
-	public void removeConnectedDevices(Object[] ToBeRemoved) throws ObjectNotFoundInArrayException
+	public void removeConnectedDevices(Object[] ToBeRemoved)
+			throws ObjectNotFoundInArrayException
 	{
-		connectedDevices = ComponentsManagment.removeComponents(ToBeRemoved, connectedDevices,
-				connectedDevicesCounter);
+		connectedDevices = ComponentsManagment.removeComponents(ToBeRemoved,
+				connectedDevices, connectedDevicesCounter);
 
 		// Sets the new count for number of connected devices in the array
 		connectedDevicesCounter = connectedDevices.length;
@@ -352,9 +352,8 @@ public class StandaloneServer extends Infrastructure implements Serializable
 
 
 	/**
-	 * Function to add device(s) to the the connceted devices list.
-	 * 
-	 * TODO - CHECK IF THE SYSTEM IS CAPABLE OF INSTALLING NEW DEVICES.
+	 * Function to add device(s) to the the connceted devices list. TODO - CHECK
+	 * IF THE SYSTEM IS CAPABLE OF INSTALLING NEW DEVICES.
 	 * 
 	 * @param NewConnectedDevices
 	 *            An array of new devices.
@@ -362,8 +361,8 @@ public class StandaloneServer extends Infrastructure implements Serializable
 	@Override
 	public void addConnectedDevices(Object[] NewConnectedDevices)
 	{
-		connectedDevices = ComponentsManagment.addComponents(NewConnectedDevices, connectedDevices,
-				connectedDevicesCounter);
+		connectedDevices = ComponentsManagment.addComponents(
+				NewConnectedDevices, connectedDevices, connectedDevicesCounter);
 
 		// Sets the new count for number of connected devices in the array
 		connectedDevicesCounter = connectedDevices.length;

@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
 public class ActionRedo extends AbstractAction
 {
 	/**
-	 * 
 	 * Description NEEDED!
 	 * 
 	 * @param text
@@ -38,7 +37,8 @@ public class ActionRedo extends AbstractAction
 	public void actionPerformed(ActionEvent e)
 	{
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(null, "You want to perform a \"Redo\" action.");
+		JOptionPane.showMessageDialog(null,
+				"You want to perform a \"Redo\" action.");
 	}
 
 }

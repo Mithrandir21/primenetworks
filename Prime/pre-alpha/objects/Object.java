@@ -93,10 +93,10 @@ public abstract class Object implements Serializable
 	 * Counts the number of objects it is connected to
 	 */
 	private int connectedDevicesCounter;
-	
-	
+
+
 	// THE SOFTWARE
-	
+
 	private Software[] software;
 
 
@@ -190,7 +190,8 @@ public abstract class Object implements Serializable
 	 * @param objectComponents
 	 *            The initial components an instance of a object has.
 	 */
-	public Object(String Name, String Desc, String[] SupConInt, Object[] objectComponents)
+	public Object(String Name, String Desc, String[] SupConInt,
+			Object[] objectComponents)
 	{
 		name = Name;
 		description = Desc;
@@ -219,7 +220,8 @@ public abstract class Object implements Serializable
 	 * @param objectMB
 	 *            The {@link hardware.Motherboard motherboard} of an object.
 	 */
-	public Object(String Name, String Desc, String[] SupConInt, Motherboard objectMB)
+	public Object(String Name, String Desc, String[] SupConInt,
+			Motherboard objectMB)
 	{
 		name = Name;
 		description = Desc;
@@ -294,8 +296,8 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Get all the network connections between the computer and devices it is connected
-	 * to.
+	 * Get all the network connections between the computer and devices it is
+	 * connected to.
 	 * 
 	 * @return Returns an array of {@link connections.Connection Connections}.
 	 */
@@ -304,12 +306,12 @@ public abstract class Object implements Serializable
 
 		return networkConnections;
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Get all the device connections between the computer and devices it is connected
-	 * to.
+	 * Get all the device connections between the computer and devices it is
+	 * connected to.
 	 * 
 	 * @return Returns an array of {@link connections.Connection Connections}.
 	 */
@@ -327,10 +329,11 @@ public abstract class Object implements Serializable
 	 * 
 	 * @return Returns an array of components that match with the given class.
 	 */
-	public Object[] getSpesificComponents(Class<?> ComponentClass) throws ObjectNotFoundException
+	public Object[] getSpesificComponents(Class<?> ComponentClass)
+			throws ObjectNotFoundException
 	{
-		Object[] componentsFound = ComponentsManagment.getSpesificComponents(ComponentClass,
-				components, componentCounter);
+		Object[] componentsFound = ComponentsManagment.getSpesificComponents(
+				ComponentClass, components, componentCounter);
 
 		return componentsFound;
 	}
@@ -346,8 +349,8 @@ public abstract class Object implements Serializable
 	public Object[] getSpesificConncetedDevices(Class<?> connectedDeviceClass)
 			throws ObjectNotFoundException
 	{
-		Object[] componentsFound = ComponentsManagment.getSpesificComponents(connectedDeviceClass,
-				components, componentCounter);
+		Object[] componentsFound = ComponentsManagment.getSpesificComponents(
+				connectedDeviceClass, components, componentCounter);
 
 		return componentsFound;
 	}
@@ -358,7 +361,7 @@ public abstract class Object implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the software
 	 */
 	public Software[] getSoftware()
@@ -393,7 +396,8 @@ public abstract class Object implements Serializable
 	 * @param supportedConnectionInterfaces
 	 *            the supportedConnectionInterfaces to set
 	 */
-	public void setSupportedConnectionInterfaces(String[] supportedConnectionInterfaces)
+	public void setSupportedConnectionInterfaces(
+			String[] supportedConnectionInterfaces)
 	{
 		this.supportedConnectionInterfaces = supportedConnectionInterfaces;
 	}
@@ -405,7 +409,8 @@ public abstract class Object implements Serializable
 	 * @param supportedConnectionInterface
 	 *            the supportedConnectionInterface to set
 	 */
-	public void setSupportedConnectionInterfaces(String supportedConnectionInterface)
+	public void setSupportedConnectionInterfaces(
+			String supportedConnectionInterface)
 	{
 		String[] one = { supportedConnectionInterface };
 		this.supportedConnectionInterfaces = one;
@@ -462,8 +467,9 @@ public abstract class Object implements Serializable
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
-	 * @param software the software to set
+	 * 
+	 * @param software
+	 *            the software to set
 	 */
 	public void setSoftware(Software[] software)
 	{
@@ -482,8 +488,8 @@ public abstract class Object implements Serializable
 	 */
 	public void changeComponent(Object NewComponent, Object OldComponent)
 	{
-		components = ComponentsManagment.changeComponent(NewComponent, OldComponent, components,
-				componentCounter);
+		components = ComponentsManagment.changeComponent(NewComponent,
+				OldComponent, components, componentCounter);
 
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
@@ -497,10 +503,11 @@ public abstract class Object implements Serializable
 	 * @param ToBeRemoved
 	 *            Component to be removed.
 	 */
-	public void removeComponent(Object[] ToBeRemoved) throws ObjectNotFoundInArrayException
+	public void removeComponent(Object[] ToBeRemoved)
+			throws ObjectNotFoundInArrayException
 	{
-		components = ComponentsManagment
-				.removeComponents(ToBeRemoved, components, componentCounter);
+		components = ComponentsManagment.removeComponents(ToBeRemoved,
+				components, componentCounter);
 
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
@@ -518,7 +525,8 @@ public abstract class Object implements Serializable
 	 */
 	public void addComponents(Object[] NewComponents) throws Exception
 	{
-		components = ComponentsManagment.addComponents(NewComponents, components, componentCounter);
+		components = ComponentsManagment.addComponents(NewComponents,
+				components, componentCounter);
 
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
@@ -536,7 +544,8 @@ public abstract class Object implements Serializable
 		Object[] temp = new Object[1];
 		temp[0] = NewComponent;
 
-		components = ComponentsManagment.addComponents(temp, components, componentCounter);
+		components = ComponentsManagment.addComponents(temp, components,
+				componentCounter);
 
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
@@ -555,9 +564,28 @@ public abstract class Object implements Serializable
 	 * @param OldconnectedDevice
 	 *            The connected device to be replaced.
 	 */
-	public void changeConnectedDevice(Object NewconnectedDevice, Object OldconnectedDevice)
+	public void changeConnectedDevice(Object NewconnectedDevice,
+			Object OldconnectedDevice)
 	{
-		components = ComponentsManagment.changeComponent(NewconnectedDevice, OldconnectedDevice,
+		components = ComponentsManagment.changeComponent(NewconnectedDevice,
+				OldconnectedDevice, connectedDevices, connectedDevicesCounter);
+
+		// Sets the new count for number of connected devices in the array
+		connectedDevicesCounter = connectedDevices.length;
+	}
+
+
+
+	/**
+	 * Function to remove connected devices from the array of connected devices.
+	 * 
+	 * @param ToBeRemoved
+	 *            Connected device to be removed.
+	 */
+	public void removeConnectedDevices(Object[] ToBeRemoved)
+			throws ObjectNotFoundInArrayException
+	{
+		connectedDevices = ComponentsManagment.removeComponents(ToBeRemoved,
 				connectedDevices, connectedDevicesCounter);
 
 		// Sets the new count for number of connected devices in the array
@@ -565,35 +593,19 @@ public abstract class Object implements Serializable
 	}
 
 
-
 	/**
 	 * Function to remove connected devices from the array of connected devices.
 	 * 
 	 * @param ToBeRemoved
 	 *            Connected device to be removed.
 	 */
-	public void removeConnectedDevices(Object[] ToBeRemoved) throws ObjectNotFoundInArrayException
-	{
-		connectedDevices = ComponentsManagment.removeComponents(ToBeRemoved, connectedDevices,
-				connectedDevicesCounter);
-
-		// Sets the new count for number of connected devices in the array
-		connectedDevicesCounter = connectedDevices.length;
-	}
-
-
-	/**
-	 * Function to remove connected devices from the array of connected devices.
-	 * 
-	 * @param ToBeRemoved
-	 *            Connected device to be removed.
-	 */
-	public void removeConnectedDevices(Object ToBeRemoved) throws ObjectNotFoundInArrayException
+	public void removeConnectedDevices(Object ToBeRemoved)
+			throws ObjectNotFoundInArrayException
 	{
 		Object[] newObject = new Object[1];
 		newObject[0] = ToBeRemoved;
-		connectedDevices = ComponentsManagment.removeComponents(newObject, connectedDevices,
-				connectedDevicesCounter);
+		connectedDevices = ComponentsManagment.removeComponents(newObject,
+				connectedDevices, connectedDevicesCounter);
 
 		// Sets the new count for number of connected devices in the array
 		connectedDevicesCounter = connectedDevices.length;
@@ -655,8 +667,8 @@ public abstract class Object implements Serializable
 	 */
 	public void addConnectedDevices(Object[] NewConnectedDevices)
 	{
-		connectedDevices = ComponentsManagment.addComponents(NewConnectedDevices, connectedDevices,
-				connectedDevicesCounter);
+		connectedDevices = ComponentsManagment.addComponents(
+				NewConnectedDevices, connectedDevices, connectedDevicesCounter);
 
 		// Sets the new count for number of connected devices in the array
 		connectedDevicesCounter = connectedDevices.length;
@@ -675,8 +687,8 @@ public abstract class Object implements Serializable
 	{
 		Object[] newObject = new Object[1];
 		newObject[0] = NewConnectedDevice;
-		connectedDevices = ComponentsManagment.addComponents(newObject, connectedDevices,
-				connectedDevicesCounter);
+		connectedDevices = ComponentsManagment.addComponents(newObject,
+				connectedDevices, connectedDevicesCounter);
 
 		// Sets the new count for number of connected devices in the array
 		connectedDevicesCounter = connectedDevices.length;
@@ -747,7 +759,8 @@ public abstract class Object implements Serializable
 			// Sets the arrays on the actual motherboard component to an array
 			// of booleans with the given length of the last array, but where
 			// all the indexes are false.
-			objectAmotherboard.setMaxIntegratedLANs(objectAmotherboard.getIntegLANPortsAvailable());
+			objectAmotherboard.setMaxIntegratedLANs(objectAmotherboard
+					.getIntegLANPortsAvailable());
 
 		}
 	}
@@ -757,7 +770,6 @@ public abstract class Object implements Serializable
 	/**
 	 * Removes all connected devices, network connections and resets the
 	 * connected devices counter.
-	 * 
 	 */
 	public void removeAllConnections()
 	{
@@ -773,7 +785,6 @@ public abstract class Object implements Serializable
 
 	/**
 	 * Removes all internal components from this object.
-	 * 
 	 */
 	public void removeAllComponents()
 	{
@@ -794,7 +805,6 @@ public abstract class Object implements Serializable
 
 	/**
 	 * Javadoc-TODO - Description
-	 * 
 	 */
 	public void releaseAllNetworkConnectionPorts()
 	{
@@ -813,8 +823,8 @@ public abstract class Object implements Serializable
 		// Sets the arrays on the actual motherboard component to an array
 		// of booleans with the given length of the last array, but where
 		// all the indexes are false.
-		objectAmotherboard
-				.setIntegLANPortsAvailable(objectAmotherboard.getIntegLANPortsAvailable());
+		objectAmotherboard.setIntegLANPortsAvailable(objectAmotherboard
+				.getIntegLANPortsAvailable());
 
 	}
 
@@ -825,7 +835,8 @@ public abstract class Object implements Serializable
 	 * @param con
 	 * @throws PortIsNotRegisteredOnMotherboard
 	 */
-	public void releaseSingelConnectionPort(Connection con) throws PortIsNotRegisteredOnMotherboard
+	public void releaseSingelConnectionPort(Connection con)
+			throws PortIsNotRegisteredOnMotherboard
 	{
 		Motherboard objectMotherboard = null;
 
@@ -963,7 +974,8 @@ public abstract class Object implements Serializable
 			if ( internalConnections[i].equals(con) )
 			{
 				internalConnections[i] = null;
-				internalConnections = cleanup.cleanObjectArray(internalConnections);
+				internalConnections = cleanup
+						.cleanObjectArray(internalConnections);
 				return true;
 			}
 		}
@@ -996,7 +1008,8 @@ public abstract class Object implements Serializable
 			if ( networkConnections[i].equals(con) )
 			{
 				networkConnections[i] = null;
-				networkConnections = cleanup.cleanObjectArray(networkConnections);
+				networkConnections = cleanup
+						.cleanObjectArray(networkConnections);
 				return true;
 			}
 		}
@@ -1119,7 +1132,8 @@ public abstract class Object implements Serializable
 	/**
 	 * Extends the given array with 5 indexes.
 	 */
-	private InternalConnection[] extendConnectionArray(InternalConnection[] array)
+	private InternalConnection[] extendConnectionArray(
+			InternalConnection[] array)
 	{
 		InternalConnection[] temp = new InternalConnection[array.length + 5];
 
@@ -1201,7 +1215,6 @@ public abstract class Object implements Serializable
 
 	/**
 	 * Resets the connected devices counter to 0.
-	 * 
 	 */
 	public void resetConnectedDevicesCounter()
 	{

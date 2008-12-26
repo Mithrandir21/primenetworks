@@ -41,7 +41,6 @@ import objects.Object;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class NewComponentsView extends JPanel implements MouseListener
 {
@@ -84,7 +83,6 @@ public class NewComponentsView extends JPanel implements MouseListener
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 * 
 	 */
 	public NewComponentsView(Object obj)
 	{
@@ -405,7 +403,8 @@ public class NewComponentsView extends JPanel implements MouseListener
 		assert intNICtemp != null;
 
 		// Create internal NIC JPanel
-		intNICPanel = HardwareObjectView.createHardwareJPanel(intNICinfo, intNICtemp);
+		intNICPanel = HardwareObjectView.createHardwareJPanel(intNICinfo,
+				intNICtemp);
 		intNICPanel.addMouseListener(this);
 		intNICPanel.setName("Int NIC");
 
@@ -451,7 +450,8 @@ public class NewComponentsView extends JPanel implements MouseListener
 		assert extNICtemp != null;
 
 		// Create external NIC JPanel
-		extNICPanel = HardwareObjectView.createHardwareJPanel(extNICinfo, extNICtemp);
+		extNICPanel = HardwareObjectView.createHardwareJPanel(extNICinfo,
+				extNICtemp);
 		extNICPanel.addMouseListener(this);
 		extNICPanel.setName("Ext NIC");
 
@@ -478,58 +478,69 @@ public class NewComponentsView extends JPanel implements MouseListener
 
 		if ( panel.getName().equals("Motherboard") )
 		{
-			int answer = JOptionPane.showConfirmDialog(this,
-					"By creating a new motherboard all the machines other components will be removed.\n"
-							+ "Do you wish to do this?", "Caution", JOptionPane.YES_NO_OPTION);
+			int answer = JOptionPane
+					.showConfirmDialog(
+							this,
+							"By creating a new motherboard all the machines other components will be removed.\n"
+									+ "Do you wish to do this?", "Caution",
+							JOptionPane.YES_NO_OPTION);
 
 			// If the answer is not No.
 			if ( answer != 1 )
 			{
 				new MotherboardNewView(mainObj, mbObj);
-				// Creates a new object after the first object is passed to the view.
+				// Creates a new object after the first object is passed to the
+				// view.
 				mbObj = PrimeMain1.standard_internal_components.getSt_MB();
 			}
 		}
 		else if ( panel.getName().equals("CPU") )
 		{
 			new CPUNewView(mainObj, cpuObj);
-			// Creates a new object after the first object is passed to the view.
+			// Creates a new object after the first object is passed to the
+			// view.
 			cpuObj = PrimeMain1.standard_internal_components.getSt_CPU();
 		}
 		else if ( panel.getName().equals("HDD") )
 		{
 			new HDDNewView(mainObj, hddObj);
-			// Creates a new object after the first object is passed to the view.
+			// Creates a new object after the first object is passed to the
+			// view.
 			hddObj = PrimeMain1.standard_internal_components.getSt_HDD();
 		}
 		else if ( panel.getName().equals("RAM") )
 		{
 			new RAMNewView(mainObj, ramObj);
-			// Creates a new object after the first object is passed to the view.
+			// Creates a new object after the first object is passed to the
+			// view.
 			ramObj = PrimeMain1.standard_internal_components.getSt_RAM();
 		}
 		else if ( panel.getName().equals("Discdrive") )
 		{
 			new DiscDriveNewView(mainObj, discObj);
-			// Creates a new object after the first object is passed to the view.
+			// Creates a new object after the first object is passed to the
+			// view.
 			discObj = PrimeMain1.standard_internal_components.getSt_DVDRW();
 		}
 		else if ( panel.getName().equals("GPU") )
 		{
 			new GraphicsCardNewView(mainObj, gpuObj);
-			// Creates a new object after the first object is passed to the view.
+			// Creates a new object after the first object is passed to the
+			// view.
 			gpuObj = PrimeMain1.standard_internal_components.getSt_GPU();
 		}
 		else if ( panel.getName().equals("Int NIC") )
 		{
 			new InternalNICNewView(mainObj, intNICObj);
-			// Creates a new object after the first object is passed to the view.
+			// Creates a new object after the first object is passed to the
+			// view.
 			intNICObj = PrimeMain1.standard_internal_components.getSt_IntNIC();
 		}
 		else if ( panel.getName().equals("Ext NIC") )
 		{
 			new ExternalNICNewView(mainObj, extNICObj);
-			// Creates a new object after the first object is passed to the view.
+			// Creates a new object after the first object is passed to the
+			// view.
 			extNICObj = PrimeMain1.standard_internal_components.getSt_ExtNIC();
 		}
 	}

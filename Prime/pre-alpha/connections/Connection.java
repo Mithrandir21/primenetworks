@@ -11,7 +11,6 @@ import objects.Object;
  * system. This can be a connection between a computer and a printer, a computer
  * and a router, a router and a server, a router and another router and so on.
  * 
- * 
  * @author Bahram Malaekeh
  * @version 0.1
  */
@@ -52,7 +51,8 @@ public abstract class Connection extends Object implements Serializable
 	 * @param To
 	 *            The object which is to be connected to.
 	 */
-	public Connection(String Name, String Desc, Object From, Object To, String conType)
+	public Connection(String Name, String Desc, Object From, Object To,
+			String conType)
 	{
 		super(Name, Desc, new String[0]);
 		object1 = From;
@@ -65,7 +65,6 @@ public abstract class Connection extends Object implements Serializable
 
 	/**
 	 * Get the first object in the connection.
-	 * 
 	 */
 	public Object getObject1()
 	{
@@ -79,7 +78,6 @@ public abstract class Connection extends Object implements Serializable
 	/**
 	 * Get the second object in the connection. Normally the object which is to
 	 * be connected to.
-	 * 
 	 */
 	public Object getObject2()
 	{
@@ -94,7 +92,6 @@ public abstract class Connection extends Object implements Serializable
 	/**
 	 * Get the actual status of the connection, whether it be enabled or
 	 * disabled.
-	 * 
 	 */
 	public boolean getStatus()
 	{
@@ -120,7 +117,6 @@ public abstract class Connection extends Object implements Serializable
 
 	/**
 	 * Set the first object in the connection.
-	 * 
 	 */
 	public void setObject1(Object object1)
 	{
@@ -133,7 +129,6 @@ public abstract class Connection extends Object implements Serializable
 
 	/**
 	 * Set the second object in the connection.
-	 * 
 	 */
 	public void setObject2(Object object2)
 	{
@@ -148,7 +143,6 @@ public abstract class Connection extends Object implements Serializable
 	/**
 	 * Set the actual status of the connection, whether it be enabled or
 	 * disabled.
-	 * 
 	 */
 	public void setStatus(boolean status)
 	{

@@ -1,5 +1,6 @@
 package graphics.GUI.objectView.Software.EditSoftware;
 
+
 import graphics.ImageLocator;
 import graphics.GUI.objectView.Software.SoftwareEditView;
 import graphics.GUI.objectView.Software.SoftwareEditor;
@@ -29,38 +30,37 @@ import software.OfficeSuite;
 
 /**
  * A JPanel that will contain fields and options for a presentation and
- * modification of an {@link OfficeSuite OfficeSuite} Software. The panel is made up
- * of 3 JPanel ordered in a column.
- * 
- * The first one contains the name and description of the object. 
- * The second panel contains the specific software options. 
- * The third panel contains the button that can remove the software
+ * modification of an {@link OfficeSuite OfficeSuite} Software. The panel is
+ * made up of 3 JPanel ordered in a column. The first one contains the name and
+ * description of the object. The second panel contains the specific software
+ * options. The third panel contains the button that can remove the software
  * from the computer.
  * 
  * @author Bahram Malaekeh
  */
-public class OfficeSuiteEditView extends JPanel implements SoftwareEditView, ActionListener
+public class OfficeSuiteEditView extends JPanel implements SoftwareEditView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
 
 	// The description of the software object.
 	JTextArea desc = new JTextArea(3, 40);
-	
-	
-	
+
+
+
 	private Object mainObj;
-	
+
 	private OfficeSuite mainOffSuite;
-	
-	
+
+
 	/**
 	 * Constructor for the software view.
 	 * 
 	 * @param obj
-	 * 			The main {@link Object object}.
+	 *            The main {@link Object object}.
 	 * @param offSuite
-	 * 			The {@link OfficeSuite OfficeSuite} software.
+	 *            The {@link OfficeSuite OfficeSuite} software.
 	 */
 	public OfficeSuiteEditView(Object obj, OfficeSuite offSuite)
 	{
@@ -123,21 +123,21 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareEditView, Act
 		c.gridheight = 1;
 		c.insets = new Insets(2, 10, 10, 10);
 
-		this.add(buttons, c);		
+		this.add(buttons, c);
 	}
-	
-	
+
+
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software} 
-	 * specific options. The layout of the returned panel will 
-	 * be {@link SpringLayout}.
+	 * Creates the JPanel that will contain the {@link Software Software}
+	 * specific options. The layout of the returned panel will be
+	 * {@link SpringLayout}.
 	 */
 	private JPanel createSpesificInfo(OfficeSuite offSuite)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[4];
-		
-		
+
+
 		labels[0] = new JLabel("Activated Date");
 		labels[0].setToolTipText("The date that the AV was activated.");
 
@@ -152,13 +152,13 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareEditView, Act
 
 
 		Dimension tfSize = new Dimension(90, 20);
-		
-		
-		
+
+
+
 		return panel;
 	}
-	
-	
+
+
 
 	@Override
 	public void save()
@@ -178,7 +178,7 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareEditView, Act
 	public void actionPerformed(ActionEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

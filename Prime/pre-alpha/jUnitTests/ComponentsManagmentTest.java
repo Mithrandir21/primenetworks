@@ -26,10 +26,12 @@ public class ComponentsManagmentTest extends TestCase
 	Desktop newComponent1 = new Desktop("newComponent1", "Desc", new Object[1]);
 
 	// A server object thats is to be added.
-	HTTPServer newComponent2 = new HTTPServer("newComponent2", "Desc", "1", "2", "3");
+	HTTPServer newComponent2 = new HTTPServer("newComponent2", "Desc", "1",
+			"2", "3");
 
 	// A external hardware object thats is to be added.
-	ExternalHDD newComponent3 = new ExternalHDD("newComponent2", "Desc", "1", 2, new String[1]);
+	ExternalHDD newComponent3 = new ExternalHDD("newComponent2", "Desc", "1",
+			2, new String[1]);
 
 
 
@@ -49,8 +51,8 @@ public class ComponentsManagmentTest extends TestCase
 
 		try
 		{
-			components = ComponentsManagment.addComponents(newComponents, components,
-					components.length);
+			components = ComponentsManagment.addComponents(newComponents,
+					components, components.length);
 		}
 		catch ( Exception e )
 		{
@@ -90,8 +92,8 @@ public class ComponentsManagmentTest extends TestCase
 		// Adds the newly created objects to the components array.
 		try
 		{
-			components = ComponentsManagment.addComponents(newComponents, components,
-					components.length);
+			components = ComponentsManagment.addComponents(newComponents,
+					components, components.length);
 		}
 		catch ( Exception e1 )
 		{
@@ -117,8 +119,8 @@ public class ComponentsManagmentTest extends TestCase
 
 		try
 		{
-			components = ComponentsManagment.removeComponents(toBeRemoved, components,
-					components.length);
+			components = ComponentsManagment.removeComponents(toBeRemoved,
+					components, components.length);
 		}
 		catch ( ObjectNotFoundInArrayException e )
 		{
@@ -155,8 +157,8 @@ public class ComponentsManagmentTest extends TestCase
 		// Adds the newly created objects to the components array.
 		try
 		{
-			components = ComponentsManagment.addComponents(newComponents, components,
-					components.length);
+			components = ComponentsManagment.addComponents(newComponents,
+					components, components.length);
 		}
 		catch ( Exception e1 )
 		{
@@ -179,8 +181,8 @@ public class ComponentsManagmentTest extends TestCase
 
 
 
-		components = ComponentsManagment.changeComponent(newComponent3, newComponent1, components,
-				components.length);
+		components = ComponentsManagment.changeComponent(newComponent3,
+				newComponent1, components, components.length);
 
 
 
@@ -216,8 +218,8 @@ public class ComponentsManagmentTest extends TestCase
 		// Adds the newly created objects to the components array.
 		try
 		{
-			components = ComponentsManagment.addComponents(newComponents, components,
-					components.length);
+			components = ComponentsManagment.addComponents(newComponents,
+					components, components.length);
 		}
 		catch ( Exception e1 )
 		{
@@ -240,8 +242,8 @@ public class ComponentsManagmentTest extends TestCase
 
 		try
 		{
-			found = ComponentsManagment.getSpesificComponents(Desktop.class, components,
-					components.length);
+			found = ComponentsManagment.getSpesificComponents(Desktop.class,
+					components, components.length);
 		}
 		catch ( ObjectNotFoundException e )
 		{

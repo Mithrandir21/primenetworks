@@ -35,6 +35,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -88,7 +89,7 @@ public class PrimeMain1 extends JFrame
 	public static MakeStandardInternalComponents standard_internal_components = new MakeStandardInternalComponents();
 
 	// The variable for the object that is in view.
-	public static ObjectView objView = null;
+	private static ArrayList<ObjectView> objView = new ArrayList<ObjectView>(1);
 
 
 	// Constructor
@@ -323,8 +324,8 @@ public class PrimeMain1 extends JFrame
 	{
 		try
 		{
-			XMLEncoder output = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(
-					"PrimeLayoutModel.xml")));
+			XMLEncoder output = new XMLEncoder(new BufferedOutputStream(
+					new FileOutputStream("PrimeLayoutModel.xml")));
 
 			output.writeObject(multiSplitPane);
 			output.close();
@@ -365,8 +366,8 @@ public class PrimeMain1 extends JFrame
 
 		try
 		{
-			XMLDecoder d = new XMLDecoder(new BufferedInputStream(new FileInputStream(
-					"PrimeLayoutModel.xml")));
+			XMLDecoder d = new XMLDecoder(new BufferedInputStream(
+					new FileInputStream("PrimeLayoutModel.xml")));
 
 
 			multiSplitPane = (JXMultiSplitPane) (d.readObject());
@@ -419,5 +420,53 @@ public class PrimeMain1 extends JFrame
 		PropertiesArea temp = (PropertiesArea) propertiesPanel.getComponent(0);
 
 		temp.newObjectSelectedPropertiesTab(obj);
+	}
+	
+	
+	
+	/**
+	 * Searches the object views that exist to find the given object
+	 * as one of the views main object. If found that view is returned.
+	 */
+	public static ObjectView getObjectView(Object obj)
+	{
+		Iterator<ObjectView> i = objView.iterator();
+		while (i.hasNext()) 
+		{
+			ObjectView objViewTest = (ObjectView) i.next();
+			
+			if(obj == objViewTest.getObject())
+			{
+				return objViewTest;
+			}
+            
+        }
+		
+		return null;
+	}
+	
+	
+	
+	/**
+	 * Adds a view to the arraylist of views.
+	 */
+	public static void addObjectView(ObjectView view)
+	{
+		objView.add(view);
+	}
+	
+	
+	/**
+	 * Removes the view, if it exist, that has as its main object
+	 * the given object.
+	 */
+	public static void removeObjectView(Object obj)
+	{
+		ObjectView view = getObjectView(obj);
+		
+		if(view != null)
+		{
+			objView.remove(view);
+		}
 	}
 }

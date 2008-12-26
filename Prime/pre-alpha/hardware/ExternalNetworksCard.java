@@ -66,8 +66,8 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 * @param NICconnectionType
 	 *            The connection type of NIC. Wired or wireless.
 	 */
-	public ExternalNetworksCard(String Name, String Desc, String NICproducer, String NIC_MAC,
-			String NICconnectionType, String NICconncectedBy)
+	public ExternalNetworksCard(String Name, String Desc, String NICproducer,
+			String NIC_MAC, String NICconnectionType, String NICconncectedBy)
 	{
 		super(Name, Desc);
 
@@ -85,7 +85,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Get producer of the NIC.
-	 * 
 	 */
 	public String getProducer()
 	{
@@ -95,7 +94,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Get the MAC of the NIC.
-	 * 
 	 */
 	public String getMAC()
 	{
@@ -105,7 +103,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Get the connection type of NIC.
-	 * 
 	 */
 	public String getConnectionType()
 	{
@@ -115,7 +112,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Get the transfer speed of the NIC.
-	 * 
 	 */
 	public int getSpeed()
 	{
@@ -125,7 +121,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Get the protocol of the NIC.
-	 * 
 	 */
 	public String getProtocol()
 	{
@@ -135,7 +130,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Get the standard(s) of the NIC.
-	 * 
 	 */
 	public String[] getSupportedStandards()
 	{
@@ -145,7 +139,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Get the protocol of the NIC.
-	 * 
 	 */
 	public boolean getIPv6support()
 	{
@@ -155,7 +148,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Get the connection type between the device and the computer.
-	 * 
 	 */
 	public String getConnectedBy()
 	{
@@ -167,7 +159,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Set method for producers of the NIC.
-	 * 
 	 */
 	public void setProducer(String NICProducer)
 	{
@@ -178,7 +169,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Set method for the type of the NIC.(Wired or Wireless)
-	 * 
 	 */
 	public void setType(String type)
 	{
@@ -189,7 +179,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Set method for the MAC of the NIC.
-	 * 
 	 */
 	public void setMAC(String NIC_MAC)
 	{
@@ -199,7 +188,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Set method for connection type of the NIC.
-	 * 
 	 */
 	public void setSubtype(String NICconnectionType)
 	{
@@ -209,7 +197,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Set method for speed of the NIC.
-	 * 
 	 */
 	public void setSpeed(int NICtransferSpeed)
 	{
@@ -219,7 +206,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Set method for connection type of the NIC.
-	 * 
 	 */
 	public void setSupportedStandards(String NICsupportedStandards[])
 	{
@@ -229,7 +215,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Set method for speed of the NIC.
-	 * 
 	 */
 	public void setSupportsIPv6(boolean NICsupportsIPv6)
 	{
@@ -239,7 +224,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	/**
 	 * Set the connection type between the device and the computer.
-	 * 
 	 */
 	public void setConnectedBy(String NICconnectedBy)
 	{

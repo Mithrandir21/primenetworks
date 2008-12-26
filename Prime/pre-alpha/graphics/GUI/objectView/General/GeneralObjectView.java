@@ -223,12 +223,14 @@ public class GeneralObjectView extends JPanel implements ActionListener
 		texts.setLayout(new BoxLayout(texts, BoxLayout.PAGE_AXIS));
 
 
-		JComboBox comboBox = new JComboBox(obj.getSupportedConnectionInterfaces());
+		JComboBox comboBox = new JComboBox(obj
+				.getSupportedConnectionInterfaces());
 		comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
 		comboBox.setMaximumSize(new Dimension(150, 20));
 		comboBox.setEditable(false);
 
-		JTextField numConDev = new JTextField("" + obj.getNumberOfConnectedDevices());
+		JTextField numConDev = new JTextField(""
+				+ obj.getNumberOfConnectedDevices());
 		numConDev.setAlignmentX(Component.LEFT_ALIGNMENT);
 		numConDev.setMaximumSize(new Dimension(150, 20));
 		numConDev.setEditable(false);
@@ -270,7 +272,6 @@ public class GeneralObjectView extends JPanel implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */

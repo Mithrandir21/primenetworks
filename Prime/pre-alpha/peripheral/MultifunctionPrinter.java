@@ -20,7 +20,8 @@ import objects.ExternalHardware;
  * @author Bahram Malaekeh
  * @version 0.1
  */
-public class MultifunctionPrinter extends ExternalHardware implements Serializable
+public class MultifunctionPrinter extends ExternalHardware implements
+		Serializable
 {
 
 	// Whether or not the MFP has a printer
@@ -53,7 +54,8 @@ public class MultifunctionPrinter extends ExternalHardware implements Serializab
 	 * @param MFPConnectionInterfaces
 	 *            Connection interfaces supported by a MFP. A array of Strings.
 	 */
-	public MultifunctionPrinter(String Name, String Desc, String[] MFPConnectionInterfaces)
+	public MultifunctionPrinter(String Name, String Desc,
+			String[] MFPConnectionInterfaces)
 	{
 		super(Name, Desc, MFPConnectionInterfaces);
 
@@ -158,7 +160,6 @@ public class MultifunctionPrinter extends ExternalHardware implements Serializab
 
 	/**
 	 * Get info on whether or not the MFP has a printer.
-	 * 
 	 */
 	public void setHasPrinter(boolean MFPhasPrinter)
 	{
@@ -182,7 +183,6 @@ public class MultifunctionPrinter extends ExternalHardware implements Serializab
 
 	/**
 	 * Get info on whether or not the MFP has a scanner.
-	 * 
 	 */
 	public void setHasScanner(boolean MFPhasScanner)
 	{
@@ -206,7 +206,6 @@ public class MultifunctionPrinter extends ExternalHardware implements Serializab
 
 	/**
 	 * Get info on whether or not the MFP has a fax.
-	 * 
 	 */
 	public void setHasFax(boolean MFPhasFax)
 	{

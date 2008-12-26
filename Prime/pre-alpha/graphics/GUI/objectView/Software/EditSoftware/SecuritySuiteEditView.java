@@ -1,5 +1,6 @@
 package graphics.GUI.objectView.Software.EditSoftware;
 
+
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
@@ -40,30 +41,29 @@ import software.SecuritySuite;
 
 /**
  * A JPanel that will contain fields and options for a presentation and
- * modification of an {@link SecuritySuite SecuritySuite} Software. 
- * The panel is made up of 3 JPanel ordered in a column.
- * 
- * The first one contains the name and description of the object. 
- * The second panel contains the specific software options. 
- * The third panel contains the button that can remove the software
+ * modification of an {@link SecuritySuite SecuritySuite} Software. The panel is
+ * made up of 3 JPanel ordered in a column. The first one contains the name and
+ * description of the object. The second panel contains the specific software
+ * options. The third panel contains the button that can remove the software
  * from the computer.
  * 
  * @author Bahram Malaekeh
  */
-public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, ActionListener
+public class SecuritySuiteEditView extends JPanel implements SoftwareEditView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
 
 	// The description of the software object.
 	JTextArea desc = new JTextArea(3, 40);
-	
+
 	// Supported Operating systems
 	private JList supportedOS;
 
 	// List of operating systems
 	private String[] OSs;
-	
+
 	// Whether or not the security suite has been activated
 	private JCheckBox activated;
 
@@ -87,21 +87,21 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 
 	// The date the license expires
 	private JTextField expDate = new JTextField(10);
-	
-	
-	
+
+
+
 	private Object mainObj;
-	
+
 	private SecuritySuite mainSecSuite;
-	
-	
+
+
 	/**
 	 * Constructor for the software view.
 	 * 
 	 * @param obj
-	 * 			The main {@link Object object}.
+	 *            The main {@link Object object}.
 	 * @param secSuite
-	 * 			The {@link SecuritySuite SecuritySuite} software.
+	 *            The {@link SecuritySuite SecuritySuite} software.
 	 */
 	public SecuritySuiteEditView(Object obj, SecuritySuite secSuite)
 	{
@@ -164,21 +164,21 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 		c.gridheight = 1;
 		c.insets = new Insets(2, 10, 10, 10);
 
-		this.add(buttons, c);		
+		this.add(buttons, c);
 	}
-	
-	
+
+
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software} 
-	 * specific options. The layout of the returned panel will 
-	 * be {@link SpringLayout}.
+	 * Creates the JPanel that will contain the {@link Software Software}
+	 * specific options. The layout of the returned panel will be
+	 * {@link SpringLayout}.
 	 */
 	private JPanel createSpesificInfo(SecuritySuite secSuite)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[7];
-		
-		
+
+
 		labels[0] = new JLabel("Supported OS");
 		labels[0]
 				.setToolTipText("The supported Operating Systems by the software.");
@@ -187,26 +187,31 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 		labels[1].setToolTipText("The actual license of the program.");
 
 		labels[2] = new JLabel("Has Antivirus");
-		labels[2].setToolTipText("Whether or not the security suite contains an antivirus.");
+		labels[2]
+				.setToolTipText("Whether or not the security suite contains an antivirus.");
 
 		labels[3] = new JLabel("Has Firewall");
-		labels[3].setToolTipText("Whether or not the security suite contains an firewall.");
+		labels[3]
+				.setToolTipText("Whether or not the security suite contains an firewall.");
 
 		labels[4] = new JLabel("Has Proxy");
-		labels[4].setToolTipText("Whether or not the security suite contains an proxy.");
+		labels[4]
+				.setToolTipText("Whether or not the security suite contains an proxy.");
 
 		labels[5] = new JLabel("Activated");
-		labels[5].setToolTipText("The date the license for the software was activated.");
+		labels[5]
+				.setToolTipText("The date the license for the software was activated.");
 
 		labels[6] = new JLabel("Expires");
-		labels[6].setToolTipText("The date the license for the software expires.");
+		labels[6]
+				.setToolTipText("The date the license for the software expires.");
 
 
 		Dimension tfSize = new Dimension(90, 20);
 		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// The supported operating systems by the Email software.
 		labels[0].setLabelFor(supportedOS);
 		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
@@ -233,9 +238,9 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		
-		//--------------------------------------------------------------
-		
+
+		// --------------------------------------------------------------
+
 		// Whether or not the security suite has been activated
 		labels[1].setLabelFor(activated);
 		activated = new JCheckBox();
@@ -250,21 +255,22 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 		panel.add(labels[1]);
 		panel.add(activated);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// The actual license of the program
 		labels[2].setLabelFor(license);
 		license.setMaximumSize(tfSize);
 		license.setPreferredSize(tfSize);
-		license.setText(mainSecSuite.getLicense());;
+		license.setText(mainSecSuite.getLicense());
+		;
 		license.setToolTipText(labels[2].getToolTipText());
 
 
 		panel.add(labels[2]);
 		panel.add(license);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the security suite contains an antivirus
 		labels[3].setLabelFor(hasAntivirus);
 		hasAntivirus = new JCheckBox();
@@ -279,12 +285,13 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 		panel.add(labels[3]);
 		panel.add(hasAntivirus);
 
-		//--------------------------------------------------------------
-		
-		// TO-DO: Set up connection between security suite and antivirus, firewall
+		// --------------------------------------------------------------
+
+		// TO-DO: Set up connection between security suite and antivirus,
+		// firewall
 		// and proxy
 
-		
+
 		// Whether or not the security suite contains an firewall
 		labels[4].setLabelFor(hasFirewall);
 		hasFirewall = new JCheckBox();
@@ -299,8 +306,8 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 		panel.add(labels[4]);
 		panel.add(hasFirewall);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		// Whether or not the security suite contains an proxy
 		labels[5].setLabelFor(hasProxy);
 		hasProxy = new JCheckBox();
@@ -315,7 +322,7 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 		panel.add(labels[5]);
 		panel.add(hasProxy);
 
-		//--------------------------------------------------------------
+		// --------------------------------------------------------------
 
 		// The Activated date
 		labels[6].setLabelFor(actDate);
@@ -325,12 +332,14 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 
 		try
 		{
-			parsedAct = format.parse(mainSecSuite.getActivationDate().toString());
+			parsedAct = format.parse(mainSecSuite.getActivationDate()
+					.toString());
 		}
 		catch ( ParseException e )
 		{
 			// DO nothing.
-			System.out.println("Error - SecuritySuiteEditView - Activated Date");
+			System.out
+					.println("Error - SecuritySuiteEditView - Activated Date");
 		}
 
 		actDate.setText(parsedAct.toString());
@@ -339,8 +348,8 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 		panel.add(labels[6]);
 		panel.add(actDate);
 
-		//--------------------------------------------------------------		
-		
+		// --------------------------------------------------------------
+
 		// The Expiration date
 		labels[7].setLabelFor(expDate);
 		expDate.setMaximumSize(tfSize);
@@ -349,12 +358,14 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 
 		try
 		{
-			parsedExp = format.parse(mainSecSuite.getExpirationDate().toString());
+			parsedExp = format.parse(mainSecSuite.getExpirationDate()
+					.toString());
 		}
 		catch ( ParseException e )
 		{
 			// DO nothing.
-			System.out.println("Error - SecuritySuiteEditView - Expiration Date");
+			System.out
+					.println("Error - SecuritySuiteEditView - Expiration Date");
 		}
 
 		expDate.setText(parsedExp.toString());
@@ -363,8 +374,8 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 		panel.add(labels[7]);
 		panel.add(expDate);
 
-		//--------------------------------------------------------------
-		
+		// --------------------------------------------------------------
+
 		JLabel temp1 = new JLabel("");
 		temp1.setMaximumSize(tfSize);
 		temp1.setPreferredSize(tfSize);
@@ -385,28 +396,29 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 		panel.add(temp2);
 		panel.add(temp3);
 		panel.add(temp4);
-		
-		
+
+
 		// Lay out the panel.
 		SpringUtilities.makeCompactGrid(panel, 3, 6, // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-		
-		
-		
+
+
+
 		return panel;
 	}
-	
-	
 
-	/* (non-Javadoc)
+
+
+	/*
+	 * (non-Javadoc)
 	 * @see graphics.GUI.objectView.Software.SoftwareEditView#save()
 	 */
 	@Override
 	public void save()
 	{
 		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
-		
+
 		if ( name.getText() != "" )
 		{
 			mainSecSuite.setObjectName(name.getText());
@@ -416,30 +428,30 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 		{
 			mainSecSuite.setDescription(desc.getText());
 		}
-		
+
 		if ( supportedOS.getSelectedIndex() != -1 )
 		{
 			mainSecSuite.setSupportedOperatingSystems(OSs);
 		}
-		
-		
-		if( license.getText() != "" )
+
+
+		if ( license.getText() != "" )
 		{
 			mainSecSuite.setLicense(license.getText());
 		}
-		
-		
+
+
 		mainSecSuite.setHasAntivirus(hasAntivirus.isSelected());
-		
+
 		mainSecSuite.sethasFirewall(hasFirewall.isSelected());
-		
+
 		mainSecSuite.sethasProxy(hasProxy.isSelected());
-		
-		
+
+
 		if ( actDate.getText() != "" )
 		{
 			Date tempDate = null;
-			
+
 			try
 			{
 				tempDate = format.parse(actDate.getText());
@@ -448,14 +460,14 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 			{
 				e.printStackTrace();
 			}
-			
+
 			mainSecSuite.setActivationDate(tempDate);
 		}
-		
+
 		if ( expDate.getText() != "" )
 		{
 			Date tempDate = null;
-			
+
 			try
 			{
 				tempDate = format.parse(expDate.getText());
@@ -464,16 +476,18 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 			{
 				e.printStackTrace();
 			}
-			
+
 			mainSecSuite.setExpirationDate(tempDate);
 		}
-		
+
 	}
 
-	
-	
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+
+
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -481,29 +495,29 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 		if ( e.getSource() instanceof JCheckBox )
 		{
 			JCheckBox box = (JCheckBox) e.getSource();
-			
+
 			String command = box.getActionCommand();
-			
+
 			if ( command.equals("Activated") )
 			{
-				
+
 			}
-			else if ( command.equals("HasAntivirus"))
+			else if ( command.equals("HasAntivirus") )
 			{
-				
+
 			}
-			else if ( command.equals("HasFirewall"))
+			else if ( command.equals("HasFirewall") )
 			{
-				
+
 			}
-			else if ( command.equals("HasProxy"))
+			else if ( command.equals("HasProxy") )
 			{
-				
+
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 
@@ -539,5 +553,5 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareEditView, A
 			}
 		}
 	}
-	
+
 }

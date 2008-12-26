@@ -13,7 +13,6 @@ import widgetManipulation.WidgetObject;
 
 /**
  * @author Bam
- * 
  */
 public class WidgetTransferHandler extends TransferHandler
 {
@@ -21,7 +20,8 @@ public class WidgetTransferHandler extends TransferHandler
 	public boolean canImport(TransferSupport support)
 	{
 		DataFlavor flavors[] = support.getDataFlavors();
-		if ( flavors[0].equals(new DataFlavor(WidgetObject.class, "Widget Object")) )
+		if ( flavors[0].equals(new DataFlavor(WidgetObject.class,
+				"Widget Object")) )
 		{
 			return true;
 		}

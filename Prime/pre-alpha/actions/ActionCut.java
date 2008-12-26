@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
 public class ActionCut extends AbstractAction
 {
 	/**
-	 * 
 	 * Description NEEDED!
 	 * 
 	 * @param text
@@ -36,7 +35,6 @@ public class ActionCut extends AbstractAction
 
 
 	/**
-	 * 
 	 * Description NEEDED!
 	 * 
 	 * @param text
@@ -54,7 +52,8 @@ public class ActionCut extends AbstractAction
 	{
 		// TODO Auto-generated method stub
 
-		JOptionPane.showMessageDialog(null, "You want to perform a \"Cut\" action.");
+		JOptionPane.showMessageDialog(null,
+				"You want to perform a \"Cut\" action.");
 	}
 
 }

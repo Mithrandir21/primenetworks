@@ -36,7 +36,8 @@ public class Speakers extends ExternalHardware implements Serializable
 	 * @param Speakerssatellites
 	 *            The number of satellites, actual speakers.
 	 */
-	public Speakers(String Name, String Desc, int Speakerssatellites, String[] ConnectionInterfaces)
+	public Speakers(String Name, String Desc, int Speakerssatellites,
+			String[] ConnectionInterfaces)
 	{
 		super(Name, Desc, ConnectionInterfaces);
 
@@ -50,7 +51,6 @@ public class Speakers extends ExternalHardware implements Serializable
 
 	/**
 	 * Get the number of satellites the system has.
-	 * 
 	 */
 	public int getSpeakersSatellites()
 	{
@@ -60,7 +60,6 @@ public class Speakers extends ExternalHardware implements Serializable
 
 	/**
 	 * Get info on whether or not a speakers are a laptop speakers.
-	 * 
 	 */
 	public boolean isLaptopSpeakers()
 	{
@@ -72,7 +71,6 @@ public class Speakers extends ExternalHardware implements Serializable
 
 	/**
 	 * Sets the number of satellites the system has.
-	 * 
 	 */
 	public void setSpeakersSatellites(int SpeakersSatellites)
 	{
@@ -82,7 +80,6 @@ public class Speakers extends ExternalHardware implements Serializable
 
 	/**
 	 * Sets info on whether or not a speakers are a laptop speakers.
-	 * 
 	 */
 	public void setIsLaptopSpeakers(boolean info)
 	{

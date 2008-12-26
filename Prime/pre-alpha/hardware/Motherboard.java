@@ -141,11 +141,12 @@ public class Motherboard extends Hardware implements Serializable
 	 * @param MBintegAudioCard
 	 *            Boolean on whether or not the MB has an integrated Audio card.
 	 */
-	public Motherboard(String Name, String Desc, String MBproducer, String MBform, String MBsocket,
-			String MBramType, int MBmaxCPUs, int MBmaxPCIs, int MBmaxRAMs, int MBmaxUSBs,
-			int MBmaxDUCs, String MBDUCconnectionType, String MBgraphicalPort,
-			boolean MBintegLANcard, boolean MBintegGraphicalCard, boolean MBintegAudioCard,
-			int MBmaxIntegLanPorts)
+	public Motherboard(String Name, String Desc, String MBproducer,
+			String MBform, String MBsocket, String MBramType, int MBmaxCPUs,
+			int MBmaxPCIs, int MBmaxRAMs, int MBmaxUSBs, int MBmaxDUCs,
+			String MBDUCconnectionType, String MBgraphicalPort,
+			boolean MBintegLANcard, boolean MBintegGraphicalCard,
+			boolean MBintegAudioCard, int MBmaxIntegLanPorts)
 	{
 		super(Name, Desc);
 
@@ -532,11 +533,11 @@ public class Motherboard extends Hardware implements Serializable
 		{
 			if ( i < 0 )
 			{
-				
+
 			}
 			else
 			{
-				
+
 			}
 		}
 
@@ -691,7 +692,6 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public void makeOneCPUportAvailable()
 	{
@@ -702,7 +702,6 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public void makeOneCPUportTaken()
 	{
@@ -725,7 +724,6 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public void makeOnePCIportAvailable()
 	{
@@ -736,7 +734,6 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public void makeOnePCIportTaken()
 	{
@@ -759,7 +756,6 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public void makeOneRAMportAvailable()
 	{
@@ -770,7 +766,6 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public void makeOneRAMportTaken()
 	{
@@ -792,7 +787,6 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public void makeOneUSBportAvailable()
 	{
@@ -803,7 +797,6 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public void makeOneUSBportTaken()
 	{
@@ -825,7 +818,6 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public void makeOneDUCportAvailable()
 	{
@@ -836,7 +828,6 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public void makeOneDUCportTaken()
 	{
@@ -859,7 +850,6 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public void makeOneIntLANportAvailable()
 	{
@@ -870,7 +860,6 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public void makeOneIntLANportTaken()
 	{

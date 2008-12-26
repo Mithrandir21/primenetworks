@@ -61,7 +61,6 @@ public class Antivirus extends Software implements Serializable
 
 	/**
 	 * Get whether or not the antivirus has been activated.
-	 * 
 	 */
 	public boolean getIsActivated()
 	{
@@ -71,7 +70,6 @@ public class Antivirus extends Software implements Serializable
 
 	/**
 	 * Get the actual license string of the antivirus software.
-	 * 
 	 */
 	public String getLicense()
 	{
@@ -81,7 +79,6 @@ public class Antivirus extends Software implements Serializable
 
 	/**
 	 * Get the activation date for the antivirus.
-	 * 
 	 */
 	public Date getActivationDate()
 	{
@@ -91,7 +88,6 @@ public class Antivirus extends Software implements Serializable
 
 	/**
 	 * Get the expiration date for the antivirus.
-	 * 
 	 */
 	public Date getExpirationDate()
 	{
@@ -103,7 +99,6 @@ public class Antivirus extends Software implements Serializable
 
 	/**
 	 * Sets the antivirus to activated.
-	 * 
 	 */
 	public void setActivated(boolean AVactivated)
 	{
@@ -113,7 +108,6 @@ public class Antivirus extends Software implements Serializable
 
 	/**
 	 * Set the actual license string of the antivirus software.
-	 * 
 	 */
 	public void setLicense(String AVlicense)
 	{
@@ -123,7 +117,6 @@ public class Antivirus extends Software implements Serializable
 
 	/**
 	 * Sets the antiviruAV activation date.
-	 * 
 	 */
 	public void setActivationDate(Date AVactivattionDate)
 	{
@@ -133,7 +126,6 @@ public class Antivirus extends Software implements Serializable
 
 	/**
 	 * Sets the antiviruAV expiration date.
-	 * 
 	 */
 	public void setExpirationDate(Date AVexpirationDate)
 	{

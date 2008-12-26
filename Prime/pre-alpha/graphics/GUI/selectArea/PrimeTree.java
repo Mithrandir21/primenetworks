@@ -33,14 +33,19 @@ public class PrimeTree extends JScrollPane implements TreeSelectionListener
 		// Create a tree that allows several selections at a time.
 		if ( System.getProperty("os.name").toUpperCase().contains("WINDOWS") )
 		{
-			tree = new JTree(addNodes(null, new File(System.getProperty("user.dir") + "\\servers")));
+			tree = new JTree(addNodes(null, new File(System
+					.getProperty("user.dir")
+					+ "\\servers")));
 		}
 		else
 		{
-			tree = new JTree(addNodes(null, new File(System.getProperty("user.dir") + "/servers")));
+			tree = new JTree(addNodes(null, new File(System
+					.getProperty("user.dir")
+					+ "/servers")));
 		}
 
-		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+		tree.getSelectionModel().setSelectionMode(
+				TreeSelectionModel.SINGLE_TREE_SELECTION);
 
 		// Javadoc-TODO Comment.
 		tree.setDragEnabled(true);
@@ -60,7 +65,8 @@ public class PrimeTree extends JScrollPane implements TreeSelectionListener
 
 	public void valueChanged(TreeSelectionEvent e)
 	{
-		DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.getPath().getLastPathComponent();
+		DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.getPath()
+				.getLastPathComponent();
 		System.out.println("You selected " + node);
 	}
 

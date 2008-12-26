@@ -16,7 +16,6 @@ public class PeripheralContainer extends Container implements Serializable
 
 	/**
 	 * Description NEEDED!
-	 * 
 	 */
 	public PeripheralContainer()
 	{

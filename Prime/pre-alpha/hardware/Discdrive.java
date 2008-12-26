@@ -61,7 +61,6 @@ public class Discdrive extends Hardware implements Serializable
 	// GET METHODES
 	/**
 	 * Get producer of the Diskdrive.
-	 * 
 	 */
 	public String getProducer()
 	{
@@ -72,7 +71,6 @@ public class Discdrive extends Hardware implements Serializable
 
 	/**
 	 * Get the type of the Diskdrive.
-	 * 
 	 */
 	public String getType()
 	{
@@ -82,7 +80,6 @@ public class Discdrive extends Hardware implements Serializable
 
 	/**
 	 * Get the port that connects the discdrive to a motherboard.
-	 * 
 	 */
 	public String getPort()
 	{
@@ -92,7 +89,6 @@ public class Discdrive extends Hardware implements Serializable
 
 	/**
 	 * Get the subtype of the type of Diskdrive.
-	 * 
 	 */
 	public String getSubtype()
 	{
@@ -112,7 +108,6 @@ public class Discdrive extends Hardware implements Serializable
 	// SET METHODES
 	/**
 	 * Set method for producers of the Diskdrive.
-	 * 
 	 */
 	public void setProducer(String DiskdriveProducer)
 	{
@@ -122,7 +117,6 @@ public class Discdrive extends Hardware implements Serializable
 
 	/**
 	 * Set method for type of the Diskdrive.
-	 * 
 	 */
 	public void setType(String DiskdriveType)
 	{
@@ -132,7 +126,6 @@ public class Discdrive extends Hardware implements Serializable
 
 	/**
 	 * Set method for the port that connects the discdrive to a motherboard.
-	 * 
 	 */
 	public void setPort(String Port)
 	{
@@ -142,7 +135,6 @@ public class Discdrive extends Hardware implements Serializable
 
 	/**
 	 * Set method for subtype of the Diskdrive.
-	 * 
 	 */
 	public void setSubtype(String DiskdriveSubtype)
 	{
@@ -152,7 +144,6 @@ public class Discdrive extends Hardware implements Serializable
 
 	/**
 	 * Set method for speed of the Diskdrive.
-	 * 
 	 */
 	public void setSpeed(int DiskDrivetransferSpeed)
 	{

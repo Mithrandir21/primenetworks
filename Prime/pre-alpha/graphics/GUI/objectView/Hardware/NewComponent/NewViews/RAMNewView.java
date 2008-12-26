@@ -8,6 +8,7 @@ import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.HardwareView;
 import hardware.Motherboard;
@@ -42,7 +43,6 @@ import objects.Object;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class RAMNewView extends JFrame implements HardwareView, ActionListener
 {
@@ -202,7 +202,8 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 		type.setActionCommand("Type");
 		type.addActionListener(this);
 
-		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(typeString, ram.getType()));
+		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				typeString, ram.getType()));
 
 
 		panel.add(labels[1]);
@@ -221,8 +222,8 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 		subtype.setActionCommand("Subtype");
 		subtype.addActionListener(this);
 
-		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(subtypeString, ram
-				.getSubtype()));
+		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				subtypeString, ram.getSubtype()));
 
 
 		panel.add(labels[2]);
@@ -241,7 +242,8 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 		size.setActionCommand("Subtype");
 		size.addActionListener(this);
 
-		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(sizeString, ram.getSize()));
+		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				sizeString, ram.getSize()));
 
 
 		panel.add(labels[3]);
@@ -251,8 +253,8 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 
 		// The speed of the ram
 		labels[4].setLabelFor(speed);
-		String[] speedString = { "", "66", "100", "133", "200", "266", "333", "400", "466", "500",
-				"533", "667", "800" };
+		String[] speedString = { "", "66", "100", "133", "200", "266", "333",
+				"400", "466", "500", "533", "667", "800" };
 		speed = new JComboBox(speedString);
 		speed.setMaximumSize(tfSize);
 		speed.setPreferredSize(tfSize);
@@ -261,7 +263,8 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 		speed.setActionCommand("Speed");
 		speed.addActionListener(this);
 
-		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(speedString, ram.getSpeed()));
+		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				speedString, ram.getSpeed()));
 
 
 		panel.add(labels[4]);
@@ -357,7 +360,9 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 
 		if ( speed.getSelectedItem().toString() != "" )
 		{
-			RAMobj.setSpeed(Integer.parseInt(type.getSelectedItem().toString()));
+			RAMobj
+					.setSpeed(Integer.parseInt(type.getSelectedItem()
+							.toString()));
 		}
 	}
 
@@ -383,13 +388,17 @@ public class RAMNewView extends JFrame implements HardwareView, ActionListener
 			// Saves the current values of the new motherboard.
 			save();
 
-			ComponentsManagment.processRAMmatch(mainObj, (Motherboard) mainObj.getComponents()[0],
-					RAMobj, this);
+			ComponentsManagment.processRAMmatch(mainObj, (Motherboard) mainObj
+					.getComponents()[0], RAMobj, this);
 
 
 			// Updates the views of the object to correctly show the
 			// current info.
-			PrimeMain1.objView.updateViewInfo();
+			ObjectView view = PrimeMain1.getObjectView(mainObj);
+			if(view != null)
+			{
+				view.updateViewInfo();
+			}
 
 
 			// Closes the JFrame.

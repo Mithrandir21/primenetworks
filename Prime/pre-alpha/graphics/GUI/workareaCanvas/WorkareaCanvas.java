@@ -64,19 +64,19 @@ import connections.Connection;
 /**
  * A visual canvas that will hold all the object of any given network. The
  * object can be moved around, deleted or connected to other object. The canvas
- * has a come special feature like zooming, scrolling and panning.
- * 
- * The canvas has D'n'D(Drag and Drop) features. Any Widget can be dragged and
- * dropped onto the the canvas. The widget will then be converted into a
- * {@link WidgetObject WidgetObject} and a standard object will be created. The
- * object class depends on the class of the dragged widget. The object will be
- * created and place within the WidgetObject.
+ * has a come special feature like zooming, scrolling and panning. The canvas
+ * has D'n'D(Drag and Drop) features. Any Widget can be dragged and dropped onto
+ * the the canvas. The widget will then be converted into a {@link WidgetObject
+ * WidgetObject} and a standard object will be created. The object class depends
+ * on the class of the dragged widget. The object will be created and place
+ * within the WidgetObject.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
  */
 
-public class WorkareaCanvas extends JPanel implements DropTargetListener, ActionListener
+public class WorkareaCanvas extends JPanel implements DropTargetListener,
+		ActionListener
 {
 	private String CanvasName;
 
@@ -209,9 +209,10 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	}
 
 
-/**
+	/**
 	 * Gets the connection layer of the scene. This is where the
-	 * {@link connections.WidgetExtendedConnection connections} between objects in the scene are placed.
+	 * {@link connections.WidgetExtendedConnection connections} between objects
+	 * in the scene are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the connectionLayer
@@ -236,8 +237,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	/**
 	 * Gets the number of Networks cards on the Scene.
 	 * 
-	 * @return
-	 * 			Returns the number of network cards on the scene. Both {@link InternalNetworksCard}s and {@link ExternalNetworksCard}s.
+	 * @return Returns the number of network cards on the scene. Both
+	 *         {@link InternalNetworksCard}s and {@link ExternalNetworksCard}s.
 	 */
 	public int getNumberOfNICsOnTheScene()
 	{
@@ -246,11 +247,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 	/**
-	 * Gets the array of connections between objects.
-	 * 
-	 * <i>Note: These connections are not the visual connections shown on the
-	 * scene, but the actual connections between the objects within the
-	 * different widgetObjects.</i>
+	 * Gets the array of connections between objects. <i>Note: These connections
+	 * are not the visual connections shown on the scene, but the actual
+	 * connections between the objects within the different widgetObjects.</i>
 	 */
 	public Connection[] getConnections()
 	{
@@ -282,11 +281,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 	/**
-	 * Sets the connections array for the canvas.
-	 * 
-	 * <i>Note: These connections are not the visual connections shown on the
-	 * scene, but the actual connections between the objects within the
-	 * different widgetObjects.</i>
+	 * Sets the connections array for the canvas. <i>Note: These connections are
+	 * not the visual connections shown on the scene, but the actual connections
+	 * between the objects within the different widgetObjects.</i>
 	 * 
 	 * @param connections
 	 */
@@ -318,7 +315,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 	/**
 	 * Adds 1 to the number of nics on the scene.
-	 * 
 	 */
 	public void addNIC()
 	{
@@ -334,7 +330,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#dragEnter(java.awt.dnd.DropTargetDragEvent
 	 * )
@@ -349,7 +344,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#dragExit(java.awt.dnd.DropTargetEvent)
 	 */
@@ -363,7 +357,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#dragOver(java.awt.dnd.DropTargetDragEvent
 	 * )
@@ -378,7 +371,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
 	 */
@@ -393,8 +385,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 		try
 		{
-			newObject = (WidgetObject) tr.getTransferData(new DataFlavor(WidgetObject.class,
-					"Widget Object"));
+			newObject = (WidgetObject) tr.getTransferData(new DataFlavor(
+					WidgetObject.class, "Widget Object"));
 
 			Dimension objectSize = newObject.getImageDimension();
 
@@ -436,7 +428,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @seejava.awt.dnd.DropTargetListener#dropActionChanged(java.awt.dnd.
 	 * DropTargetDragEvent)
 	 */
@@ -451,10 +442,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 	/**
 	 * Adds the given WidgetObject at the given point on the scene. This method
 	 * adds all the functionality that a widgetObject will have like being able
-	 * to connect to other widgets, being clicked or dragged.
-	 * 
-	 * It also sets a description and places an empty border around the
-	 * widgetObject.
+	 * to connect to other widgets, being clicked or dragged. It also sets a
+	 * description and places an empty border around the widgetObject.
 	 * 
 	 * @param newObject
 	 * @param objectPoint
@@ -480,19 +469,21 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 
 			//			
-			newObject.getActions()
-					.addAction(ActionFactory.createSelectAction(new CreateProvider()));
+			newObject.getActions().addAction(
+					ActionFactory.createSelectAction(new CreateProvider()));
 
 
 			newObject.getActions().addAction(
-					ActionFactory.createAlignWithMoveAction(mainLayer, interactionLayer, null));
+					ActionFactory.createAlignWithMoveAction(mainLayer,
+							interactionLayer, null));
 
 
 
 			newObject.getActions().addAction(new AdapterExtended());
 
 
-			LabelWidget objectLabel = new LabelWidget(scene, newObject.getObject().getObjectName());
+			LabelWidget objectLabel = new LabelWidget(scene, newObject
+					.getObject().getObjectName());
 
 			newObject.addChild(objectLabel);
 
@@ -514,7 +505,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 			// createRectangularSelectAction(
 			// ActionFactory.createDefaultRectangularSelectDecorator(scene),
 			// interactionLayer,
-			//ActionFactory.createObjectSceneRectangularSelectProvider(scene)));
+			// ActionFactory.createObjectSceneRectangularSelectProvider(scene)));
 
 
 			// ----------DIFFERENT BORDERS------------
@@ -574,7 +565,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -602,8 +592,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 			if ( actionName.equals("DeleteConnectionsObject") )
 			{
-				WorkareaCanvasActions.removeAllConnectionsToFromObject(this, currentWidgetObject
-						.getObject());
+				WorkareaCanvasActions.removeAllConnectionsToFromObject(this,
+						currentWidgetObject.getObject());
 			}
 			else if ( actionName.equals("DeleteThisObject") )
 			{
@@ -697,14 +687,16 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener, Action
 
 			if ( set == true )
 			{
-				WidgetIcon newObjectIcon = new WidgetIcon(objectIcon, objectType);
+				WidgetIcon newObjectIcon = new WidgetIcon(objectIcon,
+						objectType);
 
 
-				newObject = new CreateObjectDragged().CreateObject(newObjectIcon,
-						numberOfWidgetsOnTheScene);
+				newObject = new CreateObjectDragged().CreateObject(
+						newObjectIcon, numberOfWidgetsOnTheScene);
 
 
-				newWidgetObject = new WidgetObject(scene, newObject, objectIcon.getImage());
+				newWidgetObject = new WidgetObject(scene, newObject, objectIcon
+						.getImage());
 
 
 				addWidgetObject(newWidgetObject, new Point(0, 0));
