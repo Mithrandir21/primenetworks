@@ -8,6 +8,7 @@ import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.ObjectView;
+import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import hardware.InternalNetworksCard;
 
@@ -45,7 +46,7 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class InternalNICView extends JPanel implements HardwareView,
+public class InternalNICView extends JPanel implements HardwareViewInterface,
 		ActionListener
 {
 	private JTextField name = new JTextField(25);
@@ -382,18 +383,6 @@ public class InternalNICView extends JPanel implements HardwareView,
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
-	 * validateChangedData()
-	 */
-	@Override
-	public boolean validateChangedData()
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 
 
 	@Override
@@ -461,5 +450,14 @@ public class InternalNICView extends JPanel implements HardwareView,
 				}
 			}
 		}
+	}
+
+
+
+	@Override
+	public boolean validateData()
+	{
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

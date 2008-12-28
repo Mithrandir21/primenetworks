@@ -1,10 +1,11 @@
-package graphics.GUI.objectView.Software.NewSoftware;
+package graphics.GUI.objectView.Software.EditSoftware.EditViews;
+
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
-import graphics.GUI.objectView.Software.SoftwareEditView;
-import graphics.GUI.objectView.Software.SoftwareEditor;
+import graphics.GUI.objectView.Software.SoftwareView;
+import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -13,7 +14,6 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,7 +35,18 @@ import objects.Object;
 import objects.Software;
 import software.Firewall;
 
-public class FirewallNewView extends JPanel implements SoftwareEditView,
+
+/**
+ * A JPanel that will contain fields and options for a presentation and
+ * modification of an {@link Firewall Firewall} Software. The panel is made up
+ * of 3 JPanel ordered in a column. The first one contains the name and
+ * description of the object. The second panel contains the specific software
+ * options. The third panel contains the button that can remove the software
+ * from the computer.
+ * 
+ * @author Bahram Malaekeh
+ */
+public class FirewallEditView extends JPanel implements SoftwareView,
 		ActionListener
 {
 	// The name of the software object
@@ -127,20 +138,8 @@ public class FirewallNewView extends JPanel implements SoftwareEditView,
 	 * @param fw
 	 *            The {@link Firewall Firewall} software.
 	 */
-	public FirewallNewView(Object obj, Firewall fw)
+	public FirewallEditView(Object obj, Firewall fw)
 	{
-
-		// Get the default toolkit
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-
-		// Get the current screen size
-		Dimension scrnsize = toolkit.getScreenSize();
-
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
-
 		mainObj = obj;
 		mainFW = fw;
 		this.setLayout(new GridBagLayout());
@@ -179,17 +178,28 @@ public class FirewallNewView extends JPanel implements SoftwareEditView,
 		this.add(p2, c);
 
 
-		JPanel buttons = createButtons();
+
+		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
+		JLabel label = new JLabel("Remove this component from this device");
+
+		Button save = new Button("Remove Component");
+		save.addActionListener(this);
+		save.setActionCommand("removeComp");
+
+		buttons.add(label);
+		buttons.add(save);
+
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weightx = 1;
+		c.weighty = 0.01;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.insets = new Insets(2, 10, 10, 10);
+
 		this.add(buttons, c);
-		
-
-
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
-		this.setVisible(true);
 	}
 
 
@@ -620,35 +630,157 @@ public class FirewallNewView extends JPanel implements SoftwareEditView,
 
 		return panel;
 	}
-	
-	
-	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @return
-	 */
-	private JPanel createButtons()
+
+
+
+	@Override
+	public void save()
 	{
-		JPanel buttons = new JPanel();
-		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
+		if ( name.getText() != "" )
+		{
+			mainFW.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainFW.setDescription(desc.getText());
+		}
+
+		if ( supportedOS.getSelectedIndex() != -1 )
+		{
+			mainFW.setSupportedOperatingSystems(OSs);
+		}
+
+		mainFW.setHasNetworkFirewall(hasNetworkFirewall.isSelected());
+
+		mainFW.setHasStatefulFirewall(hasStatefulFirewall.isSelected());
+
+		mainFW.setHasApplicationFirewall(hasApplicationFirewall.isSelected());
+
+		mainFW.setHasDPI(hasDPI.isSelected());
 
 
-		Button save = new Button("Save");
-		save.addActionListener(this);
-		save.setActionCommand("save");
+		mainFW.setHasProxy(hasProxy.isSelected());
 
-		Button cancel = new Button("Cancel");
-		cancel.addActionListener(this);
-		cancel.setActionCommand("cancel");
+		mainFW.setHasNAT(hasNAT.isSelected());
+
+		mainFW.setHasVPN(hasVPN.isSelected());
+
+		mainFW.setHasAntivirus(hasAntivirus.isSelected());
+
+		mainFW.setHasIDS(hasIDS.isSelected());
 
 
-		buttons.add(save);
-		buttons.add(cancel);
+		mainFW.setSupportsModularity(supportsModularity.isSelected());
 
-		return buttons;
+		mainFW.setSupportsIPv6(supportsIPv6.isSelected());
+
+		mainFW.setSupportsTTL(supportsTTL.isSelected());
+
+		mainFW.setSupportsRWA(supportsRWA.isSelected());
+
+		mainFW.setSupportsDMZ(supportsDMZ.isSelected());
+
+		mainFW.setSupportsToD(supportsToD.isSelected());
+
+		mainFW.setSupportsForwarding(supportsForwarding.isSelected());
+
+		mainFW.setSupportsPortForwarding(supportsPortForwarding.isSelected());
+
+		mainFW.setSupportsQos(supportsQos.isSelected());
+
+		mainFW.setSupportsTarpit(supportsTarpit.isSelected());
 	}
-	
-	
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		if ( e.getSource() instanceof JCheckBox )
+		{
+			JCheckBox box = (JCheckBox) e.getSource();
+
+			String command = box.getActionCommand();
+
+			if ( command.equals("NetworkFW") )
+			{
+
+			}
+			else if ( command.equals("StatefulFW") )
+			{
+
+			}
+			else if ( command.equals("HasDPI") )
+			{
+
+			}
+			else if ( command.equals("HasProxy") )
+			{
+
+			}
+			else if ( command.equals("HasNAT") )
+			{
+
+			}
+			else if ( command.equals("HasVPN") )
+			{
+
+			}
+			else if ( command.equals("HasAV") )
+			{
+
+			}
+			else if ( command.equals("HasIDS") )
+			{
+
+			}
+			else if ( command.equals("SupportsModularity") )
+			{
+
+			}
+			else if ( command.equals("SupporsIPv6") )
+			{
+
+			}
+			else if ( command.equals("SupportsTTL") )
+			{
+
+			}
+			else if ( command.equals("SupportsTTL") )
+			{
+
+			}
+			else if ( command.equals("SupportsRWA") )
+			{
+
+			}
+			else if ( command.equals("SupportsDMZ") )
+			{
+
+			}
+			else if ( command.equals("SupportsToD") )
+			{
+
+			}
+			else if ( command.equals("SupportsForwarding") )
+			{
+
+			}
+			else if ( command.equals("SupportsPortForwarding") )
+			{
+
+			}
+			else if ( command.equals("SupportsQoS") )
+			{
+
+			}
+			else if ( command.equals("SupportsTP") )
+			{
+
+			}
+		}
+	}
+
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 
@@ -684,22 +816,5 @@ public class FirewallNewView extends JPanel implements SoftwareEditView,
 			}
 		}
 	}
-
-
-	@Override
-	public void save()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
 
 }

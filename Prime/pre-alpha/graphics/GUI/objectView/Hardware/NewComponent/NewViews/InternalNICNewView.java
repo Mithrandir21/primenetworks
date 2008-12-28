@@ -9,8 +9,8 @@ import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.ObjectView;
+import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
-import graphics.GUI.objectView.Hardware.HardwareView.Views.HardwareView;
 import hardware.InternalNetworksCard;
 import hardware.Motherboard;
 
@@ -50,7 +50,7 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class InternalNICNewView extends JFrame implements HardwareView,
+public class InternalNICNewView extends JFrame implements HardwareViewInterface,
 		ActionListener
 {
 	private JTextField name = new JTextField(25);
@@ -453,13 +453,6 @@ public class InternalNICNewView extends JFrame implements HardwareView,
 	}
 
 	@Override
-	public boolean validateChangedData()
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean validateNecessaryData()
 	{
 		// TODO Auto-generated method stub
@@ -532,5 +525,13 @@ public class InternalNICNewView extends JFrame implements HardwareView,
 				}
 			}
 		}
+	}
+
+
+	@Override
+	public boolean validateData()
+	{
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

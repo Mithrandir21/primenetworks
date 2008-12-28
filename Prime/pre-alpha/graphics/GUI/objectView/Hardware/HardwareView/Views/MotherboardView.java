@@ -11,6 +11,7 @@ import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.ObjectView;
+import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.workareaCanvas.WorkareaCanvasActions;
 import hardware.CPU;
@@ -51,7 +52,7 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class MotherboardView extends JPanel implements HardwareView,
+public class MotherboardView extends JPanel implements HardwareViewInterface,
 		ActionListener
 {
 	JTextField name = new JTextField(25);
@@ -794,42 +795,6 @@ public class MotherboardView extends JPanel implements HardwareView,
 		return true;
 	}
 
-
-
-	/*
-	 * (non-Javadoc)
-	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
-	 * validateChangedData()
-	 */
-	@Override
-	public boolean validateChangedData()
-	{
-		if ( !mbObj.getSocket().equals(sockets.getSelectedItem().toString()) )
-		{
-			boolean objContainsCPU = true;
-
-			try
-			{
-				Object[] returned = ComponentsManagment.getSpesificComponents(
-						CPU.class, mainObj.getComponents(), mainObj
-								.getComponents().length);
-			}
-			catch ( ObjectNotFoundException e )
-			{
-				objContainsCPU = false;
-			}
-
-
-			if ( objContainsCPU )
-			{
-
-			}
-
-		}
-
-		return true;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
@@ -1358,5 +1323,13 @@ public class MotherboardView extends JPanel implements HardwareView,
 
 			}
 		}
+	}
+
+
+	@Override
+	public boolean validateData()
+	{
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

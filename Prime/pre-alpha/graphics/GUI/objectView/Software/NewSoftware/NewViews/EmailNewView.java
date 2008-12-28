@@ -1,11 +1,11 @@
-package graphics.GUI.objectView.Software.NewSoftware;
+package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
-import graphics.GUI.objectView.Software.SoftwareEditView;
-import graphics.GUI.objectView.Software.SoftwareEditor;
+import graphics.GUI.objectView.Software.SoftwareView;
+import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -37,7 +38,7 @@ import objects.Software;
 import software.Email;
 
 
-public class EmailNewView extends JPanel implements SoftwareEditView,
+public class EmailNewView extends JFrame implements SoftwareView,
 		ActionListener
 {
 	// The name of the software object
@@ -140,11 +141,19 @@ public class EmailNewView extends JPanel implements SoftwareEditView,
 		this.add(p2, c);
 
 
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weightx = 1;
+		c.weighty = 0.01;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.insets = new Insets(0, 10, 10, 10);
+
 		JPanel buttons = createButtons();
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(buttons, c);
-
+		
 
 
 		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
@@ -189,6 +198,7 @@ public class EmailNewView extends JPanel implements SoftwareEditView,
 				.setToolTipText("Whether or not the software supports webmail.");
 
 
+		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 
 
@@ -202,8 +212,8 @@ public class EmailNewView extends JPanel implements SoftwareEditView,
 		listSelectionModel
 				.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supportedOS);
-		listPane.setMaximumSize(new Dimension(90, 60));
-		listPane.setPreferredSize(new Dimension(90, 60));
+		listPane.setMaximumSize(new Dimension(160, 60));
+		listPane.setPreferredSize(new Dimension(160, 60));
 		listSelectionModel
 				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
@@ -219,6 +229,7 @@ public class EmailNewView extends JPanel implements SoftwareEditView,
 
 		panel.add(labels[0]);
 		panel.add(listPane);
+		childrenCount = childrenCount+2;
 
 
 
@@ -235,6 +246,7 @@ public class EmailNewView extends JPanel implements SoftwareEditView,
 
 		panel.add(labels[1]);
 		panel.add(supportsPOP3);
+		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports SMTP.
@@ -250,6 +262,7 @@ public class EmailNewView extends JPanel implements SoftwareEditView,
 
 		panel.add(labels[2]);
 		panel.add(supportsSMTP);
+		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports IMAP.
@@ -265,6 +278,7 @@ public class EmailNewView extends JPanel implements SoftwareEditView,
 
 		panel.add(labels[3]);
 		panel.add(supportsIMAP);
+		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports NNTP.
@@ -280,6 +294,7 @@ public class EmailNewView extends JPanel implements SoftwareEditView,
 
 		panel.add(labels[4]);
 		panel.add(supportsNNTP);
+		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports SSL.
@@ -295,6 +310,7 @@ public class EmailNewView extends JPanel implements SoftwareEditView,
 
 		panel.add(labels[5]);
 		panel.add(supportsSSL);
+		childrenCount = childrenCount+2;
 
 
 
@@ -311,11 +327,12 @@ public class EmailNewView extends JPanel implements SoftwareEditView,
 
 		panel.add(labels[6]);
 		panel.add(supportsWebmail);
+		childrenCount = childrenCount+2;
 
 
 
 		// Lay out the panel.
-		SpringUtilities.makeCompactGrid(panel, 4, 6, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 

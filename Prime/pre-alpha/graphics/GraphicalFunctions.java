@@ -4,9 +4,14 @@
 package graphics;
 
 
+import graphics.GUI.SpringUtilities;
+
 import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
 
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
@@ -180,5 +185,41 @@ public class GraphicalFunctions
 		list.setSelectedIndices(indices);
 
 		return list;
+	}
+	
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static void make6xGrid(Container parent, int numberOfFields,
+			int initialX, int initialY, int xPad, int yPad)
+	{
+		Dimension tfSize = new Dimension(90, 20);
+		
+		int rows = 1;
+		
+		while(numberOfFields>6)
+		{
+			numberOfFields=numberOfFields-6;
+			rows++;
+		}
+		
+		while(numberOfFields>-2)
+		{
+			JLabel temp1 = new JLabel("");
+			temp1.setMaximumSize(tfSize);
+			temp1.setPreferredSize(tfSize);
+			
+			parent.add(temp1);
+			
+			numberOfFields--;
+		}
+
+		
+		SpringUtilities.makeCompactGrid(parent, rows, 6, initialX, initialY, xPad, yPad);
+		
 	}
 }

@@ -9,8 +9,8 @@ import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.ObjectView;
+import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
-import graphics.GUI.objectView.Hardware.HardwareView.Views.HardwareView;
 import hardware.GraphicsCard;
 import hardware.Motherboard;
 
@@ -45,7 +45,7 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class GraphicsCardNewView extends JFrame implements HardwareView,
+public class GraphicsCardNewView extends JFrame implements HardwareViewInterface,
 		ActionListener
 {
 	JTextField name = new JTextField(25);
@@ -433,13 +433,6 @@ public class GraphicsCardNewView extends JFrame implements HardwareView,
 	}
 
 	@Override
-	public boolean validateChangedData()
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean validateNecessaryData()
 	{
 		// TODO Auto-generated method stub
@@ -475,5 +468,13 @@ public class GraphicsCardNewView extends JFrame implements HardwareView,
 		{
 			this.dispose();
 		}
+	}
+
+
+	@Override
+	public boolean validateData()
+	{
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

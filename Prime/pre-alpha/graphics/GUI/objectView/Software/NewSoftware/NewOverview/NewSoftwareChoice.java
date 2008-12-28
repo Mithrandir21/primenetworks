@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphics.GUI.objectView.Hardware.NewComponent.NewOverview;
+package graphics.GUI.objectView.Software.NewSoftware.NewOverview;
 
 
 import java.awt.Container;
@@ -23,16 +23,16 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class NewComponentChoice extends JFrame
+public class NewSoftwareChoice extends JFrame
 {
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 
 	 * @param obj
 	 */
-	public NewComponentChoice(Object obj)
+	public NewSoftwareChoice(Object obj)
 	{
-		super("New Component");
+		super("New Software");
 
 
 		// Get the default toolkit
@@ -55,7 +55,7 @@ public class NewComponentChoice extends JFrame
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
 
-		panel.add(new NewComponentsView(obj));
+		panel.add(new NewSoftwaresViews(obj));
 
 
 		this.setLayout(new GridBagLayout());

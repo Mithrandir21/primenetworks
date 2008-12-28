@@ -9,6 +9,7 @@ import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.ObjectView;
+import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import hardware.CPU;
 
@@ -42,7 +43,7 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class CPUView extends JPanel implements HardwareView, ActionListener
+public class CPUView extends JPanel implements HardwareViewInterface, ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -510,19 +511,15 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 
 		return true;
 	}
+	
 
-
-	/*
-	 * (non-Javadoc)
-	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
-	 * validateChangedData()
-	 */
 	@Override
-	public boolean validateChangedData()
+	public boolean validateData()
 	{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 
 	/*
@@ -641,6 +638,6 @@ public class CPUView extends JPanel implements HardwareView, ActionListener
 				}
 			}
 		}
-
 	}
+
 }

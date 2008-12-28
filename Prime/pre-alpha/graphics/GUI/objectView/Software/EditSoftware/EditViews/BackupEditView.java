@@ -1,9 +1,10 @@
-package graphics.GUI.objectView.Software.NewSoftware;
+package graphics.GUI.objectView.Software.EditSoftware.EditViews;
+
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
-import graphics.GUI.objectView.Software.SoftwareEditView;
-import graphics.GUI.objectView.Software.SoftwareEditor;
+import graphics.GUI.objectView.Software.SoftwareView;
+import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -12,7 +13,6 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,7 +35,19 @@ import objects.Object;
 import objects.Software;
 import software.Backup;
 
-public class BackupNewView extends JPanel implements SoftwareEditView,ActionListener
+
+/**
+ * A JPanel that will contain fields and options for a presentation and
+ * modification of an {@link Backup Backup} Software. The panel is made up of 3
+ * JPanel ordered in a column. The first one contains the name and description
+ * of the object. The second panel contains the specific software options. The
+ * third panel contains the button that can remove the software from the
+ * computer.
+ * 
+ * @author Bahram Malaekeh
+ */
+public class BackupEditView extends JPanel implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	private JTextField name = new JTextField(25);
@@ -63,24 +75,23 @@ public class BackupNewView extends JPanel implements SoftwareEditView,ActionList
 
 
 
+
+
 	private Object mainObj;
 
 	private Backup mainBack;
 
 
-	public BackupNewView(Object obj, Backup back)
+	/**
+	 * Constructor for the software view.
+	 * 
+	 * @param obj
+	 *            The main {@link Object object}.
+	 * @param back
+	 *            The {@link Backup Backup} software.
+	 */
+	public BackupEditView(Object obj, Backup back)
 	{
-		// Get the default toolkit
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-
-		// Get the current screen size
-		Dimension scrnsize = toolkit.getScreenSize();
-
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
-
 		mainObj = obj;
 		mainBack = back;
 		this.setLayout(new GridBagLayout());
@@ -119,21 +130,31 @@ public class BackupNewView extends JPanel implements SoftwareEditView,ActionList
 		this.add(p2, c);
 
 
-		JPanel buttons = createButtons();
+
+		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
+		JLabel label = new JLabel("Remove this component from this device");
+
+		Button save = new Button("Remove Component");
+		save.addActionListener(this);
+		save.setActionCommand("removeComp");
+
+		buttons.add(label);
+		buttons.add(save);
+
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weightx = 1;
+		c.weighty = 0.01;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.insets = new Insets(2, 10, 10, 10);
+
 		this.add(buttons, c);
-		
-
-
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
-		this.setVisible(true);
 	}
-	
-	
-	
+
+
 	/**
 	 * Creates the JPanel that will contain the {@link Software Software}
 	 * specific options. The layout of the returned panel will be
@@ -142,7 +163,7 @@ public class BackupNewView extends JPanel implements SoftwareEditView,ActionList
 	private JPanel createSpesificInfo(Backup back)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
-		JLabel[] labels = new JLabel[4];
+		JLabel[] labels = new JLabel[5];
 
 
 		labels[0] = new JLabel("Activated Date");
@@ -156,7 +177,11 @@ public class BackupNewView extends JPanel implements SoftwareEditView,ActionList
 
 		labels[3] = new JLabel("License");
 		labels[3].setToolTipText("The license key for the AV.");
-
+		
+		labels[4] = new JLabel("License");
+		labels[4].setToolTipText("The license key for the AV.");
+		// FIXME
+		
 
 		Dimension tfSize = new Dimension(90, 20);
 
@@ -253,52 +278,51 @@ public class BackupNewView extends JPanel implements SoftwareEditView,ActionList
 
 		return panel;
 	}
-	
-	
-	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @return
-	 */
-	private JPanel createButtons()
-	{
-		JPanel buttons = new JPanel();
-		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button("Save");
-		save.addActionListener(this);
-		save.setActionCommand("save");
-
-		Button cancel = new Button("Cancel");
-		cancel.addActionListener(this);
-		cancel.setActionCommand("cancel");
-
-
-		buttons.add(save);
-		buttons.add(cancel);
-
-		return buttons;
-	}
-	
-	
-	
 
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
-		
+		if ( name.getText() != "" )
+		{
+			mainBack.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainBack.setDescription(desc.getText());
+		}
+
+		if ( supportedOS.getSelectedIndex() != -1 )
+		{
+			mainBack.setSupportedOperatingSystems(OSs);
+		}
+
+		// The type of backup
+		if ( backupType.getText() != "" )
+		{
+			mainBack.setBackupType(backupType.getText());
+		}
+
+		// Whether or not the software can use compression
+		mainBack.setSupportsCompression(compression.isSelected());
+
+		// Whether or not the software can use encryption
+		mainBack.setSupportsEncryption(encryption.isSelected());
+
+		// The number of copies keeps
+		// private JTextField duplicate;
+
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e)
+	public void actionPerformed(ActionEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
+
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!

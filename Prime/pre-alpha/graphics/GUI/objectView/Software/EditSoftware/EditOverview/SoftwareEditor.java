@@ -1,4 +1,4 @@
-package graphics.GUI.objectView.Software;
+package graphics.GUI.objectView.Software.EditSoftware.EditOverview;
 
 
 import java.awt.Button;

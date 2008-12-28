@@ -1,11 +1,11 @@
-package graphics.GUI.objectView.Software.EditSoftware;
+package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
-import graphics.GUI.objectView.Software.SoftwareEditView;
-import graphics.GUI.objectView.Software.SoftwareEditor;
+import graphics.GUI.objectView.Software.SoftwareView;
+import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -46,7 +46,7 @@ import software.OperatingSystem;
  * 
  * @author Bahram Malaekeh
  */
-public class OSEditView extends JPanel implements SoftwareEditView,
+public class OSEditView extends JPanel implements SoftwareView,
 		ActionListener
 {
 	// The name of the software object

@@ -1,10 +1,10 @@
-package graphics.GUI.objectView.Software.EditSoftware;
+package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 
 import graphics.ImageLocator;
 import graphics.GUI.SpringUtilities;
-import graphics.GUI.objectView.Software.SoftwareEditView;
-import graphics.GUI.objectView.Software.SoftwareEditor;
+import graphics.GUI.objectView.Software.SoftwareView;
+import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -43,8 +43,7 @@ import software.Antivirus;
  * 
  * @author Bahram Malaekeh
  */
-public class AntivirusEditView extends JPanel implements SoftwareEditView,
-		ActionListener
+public class AntivirusEditView extends JPanel implements SoftwareView, ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);

@@ -9,6 +9,7 @@ import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.ObjectView;
+import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import graphics.GUI.workareaCanvas.WorkareaCanvasActions;
 import hardware.Motherboard;
@@ -44,7 +45,7 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class MotherboardNewView extends JFrame implements HardwareNewView,
+public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 		ActionListener
 {
 	JTextField name = new JTextField(25);
@@ -958,5 +959,13 @@ public class MotherboardNewView extends JFrame implements HardwareNewView,
 		// Since adding a new motherboard will remove all other components this
 		// method only returns true.
 		return true;
+	}
+
+
+	@Override
+	public boolean validateNecessaryData()
+	{
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

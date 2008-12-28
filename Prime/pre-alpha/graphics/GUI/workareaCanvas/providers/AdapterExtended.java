@@ -3,11 +3,10 @@ package graphics.GUI.workareaCanvas.providers;
 
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.ObjectView;
-import objects.Object;
 
 import java.awt.event.MouseEvent;
 
-import javax.swing.JOptionPane;
+import objects.Object;
 
 import org.netbeans.api.visual.action.WidgetAction.Adapter;
 import org.netbeans.api.visual.widget.ConnectionWidget;

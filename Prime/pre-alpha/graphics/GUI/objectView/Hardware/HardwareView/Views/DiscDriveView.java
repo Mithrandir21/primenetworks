@@ -9,6 +9,7 @@ import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.ObjectView;
+import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import hardware.Discdrive;
 
@@ -41,7 +42,7 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class DiscDriveView extends JPanel implements HardwareView,
+public class DiscDriveView extends JPanel implements HardwareViewInterface,
 		ActionListener
 {
 	private JTextField name = new JTextField(25);
@@ -367,13 +368,6 @@ public class DiscDriveView extends JPanel implements HardwareView,
 		return true;
 	}
 
-	@Override
-	public boolean validateChangedData()
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -421,5 +415,13 @@ public class DiscDriveView extends JPanel implements HardwareView,
 				}
 			}
 		}
+	}
+
+
+	@Override
+	public boolean validateData()
+	{
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

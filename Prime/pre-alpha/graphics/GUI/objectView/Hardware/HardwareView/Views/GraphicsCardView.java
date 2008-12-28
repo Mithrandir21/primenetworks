@@ -8,6 +8,7 @@ import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.SpringUtilities;
+import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import hardware.GraphicsCard;
 
@@ -41,7 +42,7 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class GraphicsCardView extends JPanel implements HardwareView,
+public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 		ActionListener
 {
 	JTextField name = new JTextField(25);
@@ -424,18 +425,6 @@ public class GraphicsCardView extends JPanel implements HardwareView,
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
-	 * validateChangedData()
-	 */
-	@Override
-	public boolean validateChangedData()
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -484,5 +473,13 @@ public class GraphicsCardView extends JPanel implements HardwareView,
 
 			// TODO - isIntegrated
 		}
+	}
+
+
+	@Override
+	public boolean validateData()
+	{
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

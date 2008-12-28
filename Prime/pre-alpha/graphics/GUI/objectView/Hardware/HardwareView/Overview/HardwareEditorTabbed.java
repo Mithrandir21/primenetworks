@@ -4,12 +4,12 @@
 package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
 
+import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.CPUView;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.DiscDriveView;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.ExternaNICView;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.GraphicsCardView;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.HDDView;
-import graphics.GUI.objectView.Hardware.HardwareView.Views.HardwareView;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.InternalNICView;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.MotherboardView;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.RAMView;
@@ -142,16 +142,18 @@ public class HardwareEditorTabbed extends JTabbedPane
 		{
 			// Boolean array that contains the validation status of each view.
 			boolean[] verified = new boolean[this.getComponentCount()];
-			/**
-			 * Goes through all the views and gets the validation status of each
-			 * one and places that boolean in the validation array.
-			 */
-			for ( int i = 0; i < this.getComponentCount(); i++ )
-			{
-				Component comp = this.getComponent(i);
-
-				verified[i] = ((HardwareView) comp).validateNecessaryData();
-			}
+			
+			// FIXME
+//			/**
+//			 * Goes through all the views and gets the validation status of each
+//			 * one and places that boolean in the validation array.
+//			 */
+//			for ( int i = 0; i < this.getComponentCount(); i++ )
+//			{
+//				Component comp = this.getComponent(i);
+//
+//				verified[i] = ((HardwareViewInterface) comp).validateNecessaryData();
+//			}
 
 			/**
 			 * If any of the validation function in any of the views return
@@ -179,7 +181,7 @@ public class HardwareEditorTabbed extends JTabbedPane
 			{
 				Component comp = this.getComponent(i);
 
-				((HardwareView) comp).save();
+				((HardwareViewInterface) comp).save();
 			}
 
 			// // The motherboard save.

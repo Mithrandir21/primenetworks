@@ -1,8 +1,8 @@
-package graphics.GUI.objectView.Software.NewSoftware;
+package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 import graphics.ImageLocator;
-import graphics.GUI.objectView.Software.SoftwareEditView;
-import graphics.GUI.objectView.Software.SoftwareEditor;
+import graphics.GUI.objectView.Software.SoftwareView;
+import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -27,7 +28,7 @@ import objects.Object;
 import objects.Software;
 import software.OfficeSuite;
 
-public class OfficeSuiteNewView extends JPanel implements SoftwareEditView,
+public class OfficeSuiteNewView extends JFrame implements SoftwareView,
 		ActionListener
 {
 	// The name of the software object
@@ -36,7 +37,7 @@ public class OfficeSuiteNewView extends JPanel implements SoftwareEditView,
 	// The description of the software object.
 	JTextArea desc = new JTextArea(3, 40);
 
-
+	// FIXME - has to be fixed officesuiteNewView
 
 	private Object mainObj;
 

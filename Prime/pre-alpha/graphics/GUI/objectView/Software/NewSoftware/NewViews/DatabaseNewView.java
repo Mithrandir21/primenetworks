@@ -1,9 +1,8 @@
-package graphics.GUI.objectView.Software.EditSoftware;
-
+package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 import graphics.ImageLocator;
-import graphics.GUI.objectView.Software.SoftwareEditView;
-import graphics.GUI.objectView.Software.SoftwareEditor;
+import graphics.GUI.objectView.Software.SoftwareView;
+import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -12,11 +11,13 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -27,19 +28,7 @@ import objects.Object;
 import objects.Software;
 import software.Database;
 
-
-/**
- * A JPanel that will contain fields and options for a presentation and
- * modification of an {@link Database Database} Software. The panel is made up
- * of 3 JPanel ordered in a column. The first one contains the name and
- * description of the object. The second panel contains the specific software
- * options. The third panel contains the button that can remove the software
- * from the computer.
- * 
- * @author Bahram Malaekeh
- */
-public class DatabaseEditView extends JPanel implements SoftwareEditView,
-		ActionListener
+public class DatabaseNewView extends JFrame implements SoftwareView,ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -47,13 +36,14 @@ public class DatabaseEditView extends JPanel implements SoftwareEditView,
 	// The description of the software object.
 	JTextArea desc = new JTextArea(3, 40);
 
-
+	// FIXME - Database has to be fixed.
 
 	private Object mainObj;
 
 	private Database mainDB;
 
-
+	
+	
 	/**
 	 * Constructor for the software view.
 	 * 
@@ -62,8 +52,19 @@ public class DatabaseEditView extends JPanel implements SoftwareEditView,
 	 * @param db
 	 *            The {@link Database Database} software.
 	 */
-	public DatabaseEditView(Object obj, Database db)
+	public DatabaseNewView(Object obj, Database db)
 	{
+		// Get the default toolkit
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+
+		// Get the current screen size
+		Dimension scrnsize = toolkit.getScreenSize();
+
+
+		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
+
+		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+
 		mainObj = obj;
 		mainDB = db;
 		this.setLayout(new GridBagLayout());
@@ -102,31 +103,20 @@ public class DatabaseEditView extends JPanel implements SoftwareEditView,
 		this.add(p2, c);
 
 
-
-		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
+		JPanel buttons = createButtons();
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this device");
-
-		Button save = new Button("Remove Component");
-		save.addActionListener(this);
-		save.setActionCommand("removeComp");
-
-		buttons.add(label);
-		buttons.add(save);
-
-		c.gridx = 0;
-		c.gridy = 2;
-		c.weightx = 1;
-		c.weighty = 0.01;
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		c.insets = new Insets(2, 10, 10, 10);
-
 		this.add(buttons, c);
+		
+
+
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
+				(int) scrnsize.getHeight() / 3));
+		this.setSize(width, height);
+		this.setVisible(true);
 	}
-
-
+	
+	
 	/**
 	 * Creates the JPanel that will contain the {@link Software Software}
 	 * specific options. The layout of the returned panel will be
@@ -157,29 +147,51 @@ public class DatabaseEditView extends JPanel implements SoftwareEditView,
 		return panel;
 	}
 
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @return
+	 */
+	private JPanel createButtons()
+	{
+		JPanel buttons = new JPanel();
+		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
+
+
+		Button save = new Button("Save");
+		save.addActionListener(this);
+		save.setActionCommand("save");
+
+		Button cancel = new Button("Cancel");
+		cancel.addActionListener(this);
+		cancel.setActionCommand("cancel");
+
+
+		buttons.add(save);
+		buttons.add(cancel);
+
+		return buttons;
+	}
+
 
 
 	@Override
 	public void save()
 	{
-		if ( name.getText() != "" )
-		{
-			mainDB.setObjectName(name.getText());
-		}
-
-		if ( desc.getText() != "" )
-		{
-			mainDB.setDescription(desc.getText());
-		}
-
-
+		// TODO Auto-generated method stub
+		
 	}
+
+
 
 	@Override
-	public void actionPerformed(ActionEvent arg0)
+	public void actionPerformed(ActionEvent e)
 	{
 		// TODO Auto-generated method stub
-
+		
 	}
-
+	
 }

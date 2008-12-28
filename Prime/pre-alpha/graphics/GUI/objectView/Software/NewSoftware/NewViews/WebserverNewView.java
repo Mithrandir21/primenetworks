@@ -1,0 +1,654 @@
+/**
+ * 
+ */
+package graphics.GUI.objectView.Software.NewSoftware.NewViews;
+
+
+import graphics.GraphicalFunctions;
+import graphics.ImageLocator;
+import graphics.GUI.SpringUtilities;
+import graphics.GUI.objectView.Software.SoftwareView;
+import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
+
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.SpringLayout;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import objects.Object;
+import objects.Software;
+import software.Webserver;
+
+
+/**
+ * TODO - Description NEEDED!
+ * 
+ * @author Bahram Malaekeh
+ */
+public class WebserverNewView extends JFrame implements SoftwareView, ActionListener
+{
+	// The name of the software object
+	JTextField name = new JTextField(25);
+
+	// The description of the software object.
+	JTextArea desc = new JTextArea(3, 40);
+
+	// Supported Operating systems
+	private JList supportedOS;
+
+	// List of operating systems
+	private String[] OSs;
+
+	// Supports Virtual hosting feature
+	private JCheckBox hasVirtualHosting;
+
+	// Supports HTTP compression
+	private JCheckBox hasCompression;
+
+
+
+	// DIFFERENT SECURITY FEATURES
+	// Supports basic access authentication
+	private JCheckBox supportsBasic;
+
+	// Supports digest access authentication
+	private JCheckBox supportsDigest;
+
+
+	// SUPPORT FOR HTTPS
+	// Supports SSL, Secure Sockets Layers
+	private JCheckBox supportsSSL;
+
+	// Supports TSL, Transport Layer Security
+	private JCheckBox supportsTSL;
+
+
+	// DIFFERENT SUPPORTED FEATURES
+	// Supports IPv6
+	private JCheckBox supportsIPv6;
+
+	// Supports SSI, Server Side Includes
+	private JCheckBox supportsSSI;
+
+	// Supports CGI
+	private JCheckBox supportsCGI;
+
+	// Supports SCGI, Simple Common Gateway Interface
+	private JCheckBox supportsSCGI;
+
+	// Supports FastCGI
+	private JCheckBox supportsFastCGI;
+
+	// Supports JSP
+	private JCheckBox supportsJSP;
+
+	// Supports PHP
+	private JCheckBox supportsPHP;
+
+	// Supports ASP
+	private JCheckBox supportsASP;
+
+	// Supports ASP .net
+	private JCheckBox supportsASPnet;
+
+
+
+	private Object mainObj;
+
+	private Webserver mainWebSer;
+
+	/**
+	 * Constructor for the software view.
+	 * 
+	 * @param obj
+	 *            The main {@link Object object}.
+	 * @param webserver
+	 *            The {@link Webserver Webserver} software.
+	 */
+	public WebserverNewView(Object obj, Webserver webserver)
+	{
+		// Get the default toolkit
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+
+		// Get the current screen size
+		Dimension scrnsize = toolkit.getScreenSize();
+
+
+		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
+
+		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+
+		mainObj = obj;
+		mainWebSer = webserver;
+		this.setLayout(new GridBagLayout());
+		this.setBackground(Color.WHITE);
+		GridBagConstraints c = new GridBagConstraints();
+
+		c.fill = GridBagConstraints.BOTH;
+
+		c.gridx = 0;
+		c.gridy = 0;
+		c.weightx = 1;
+		c.weighty = 0.1;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.insets = new Insets(10, 10, 5, 10);
+
+		ImageIcon icon = ImageLocator.getImageIconObject("CPU");
+		JPanel p1 = SoftwareEditor.GeneralInfo(mainWebSer, icon, name, desc);
+		p1.setBorder(BorderFactory.createEtchedBorder());
+
+
+		this.add(p1, c);
+
+
+		c.gridx = 0;
+		c.gridy = 1;
+		c.weightx = 1;
+		c.weighty = 1;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.insets = new Insets(0, 10, 0, 10);
+
+		JPanel p2 = createSpesificInfo(mainWebSer);
+		p2.setBorder(BorderFactory.createEtchedBorder());
+
+		this.add(p2, c);
+
+
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weightx = 1;
+		c.weighty = 0.01;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.insets = new Insets(0, 10, 10, 10);
+
+		JPanel buttons = createButtons();
+		buttons.setBorder(BorderFactory.createEtchedBorder());
+
+		this.add(buttons, c);
+		
+
+
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
+				(int) scrnsize.getHeight() / 3));
+		this.setSize(width, height);
+		this.setVisible(true);
+	}
+
+
+	/**
+	 * Creates the JPanel that will contain the {@link Software Software}
+	 * specific options. The layout of the returned panel will be
+	 * {@link SpringLayout}.
+	 */
+	private JPanel createSpesificInfo(Webserver webserver)
+	{
+		JPanel panel = new JPanel(new SpringLayout());
+		JLabel[] labels = new JLabel[16];
+
+
+		labels[0] = new JLabel("Supported OS");
+		labels[0]
+				.setToolTipText("The supported Operating Systems by the software.");
+
+		labels[1] = new JLabel("Supports Virtual Hosting");
+		labels[1]
+				.setToolTipText("Whether or not the software supports Virtual hosting feature.");
+
+		labels[2] = new JLabel("Supports HTTP compression");
+		labels[2]
+				.setToolTipText("Whether or not the software supports HTTP compression.");
+
+		labels[3] = new JLabel("Supports Basic Access");
+		labels[3]
+				.setToolTipText("Whether or not the software supports basic access authentication.");
+
+		labels[4] = new JLabel("Supports Digest Access");
+		labels[4]
+				.setToolTipText("Whether or not the software supports digest access authentication.");
+
+		labels[5] = new JLabel("Supports SSL");
+		labels[5]
+				.setToolTipText("Whether or not the software supports SSL, Secure Sockets Layer.");
+
+		labels[6] = new JLabel("Supports TSL");
+		labels[6]
+				.setToolTipText("Whether or not the software supports TSL, Transport Layer Security.");
+
+		labels[7] = new JLabel("Supports IPv6");
+		labels[7].setToolTipText("Whether or not the software supports IPv6.");
+
+		labels[8] = new JLabel("Supports SSI");
+		labels[8]
+				.setToolTipText("Whether or not the software supports SSI, Server Side Includes.");
+
+		labels[9] = new JLabel("Supports CGI");
+		labels[9]
+				.setToolTipText("Whether or not the software supports CGI, Common Gateway Interface.");
+
+		labels[10] = new JLabel("Supports SCGI");
+		labels[10]
+				.setToolTipText("Whether or not the software supports SCGI, Simple Common Gateway Interface.");
+
+		labels[11] = new JLabel("Supports FastCGI");
+		labels[11]
+				.setToolTipText("Whether or not the software supports FastCGI.");
+
+		labels[12] = new JLabel("Supports JSP");
+		labels[12].setToolTipText("Whether or not the software supports JSP.");
+
+		labels[13] = new JLabel("Supports PHP");
+		labels[13].setToolTipText("Whether or not the software supports PHP.");
+
+		labels[14] = new JLabel("Supports ASP");
+		labels[14].setToolTipText("Whether or not the software supports ASP.");
+
+		labels[15] = new JLabel("Supports ASP .Net");
+		labels[15]
+				.setToolTipText("Whether or not the software supports ASP .Net.");
+
+
+		int childrenCount = 0;
+		Dimension tfSize = new Dimension(90, 20);
+
+		// --------------------------------------------------------------
+
+		// The supported operating systems by the Webserver software.
+		labels[0].setLabelFor(supportedOS);
+		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
+				"Windows Vista", "Linux", "Novell" };
+		supportedOS = new JList(listData);
+		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
+		listSelectionModel
+				.addListSelectionListener(new SharedListSelectionHandler());
+		JScrollPane listPane = new JScrollPane(supportedOS);
+		listPane.setMaximumSize(new Dimension(130, 60));
+		listPane.setPreferredSize(new Dimension(130, 60));
+		listSelectionModel
+				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+		if ( mainWebSer.getSupportedOperatingSystems() != null )
+		{
+			if ( mainWebSer.getSupportedOperatingSystems().length > 0 )
+			{
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
+						supportedOS, listData, mainWebSer
+								.getSupportedOperatingSystems()));
+			}
+		}
+
+		panel.add(labels[0]);
+		panel.add(listPane);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports Virtual hosting feature
+		labels[1].setLabelFor(hasVirtualHosting);
+		hasVirtualHosting = new JCheckBox();
+		hasVirtualHosting.setMaximumSize(tfSize);
+		hasVirtualHosting.setPreferredSize(tfSize);
+		hasVirtualHosting.setToolTipText(labels[1].getToolTipText());
+		hasVirtualHosting.setActionCommand("HasVirtualHosting");
+		hasVirtualHosting.addActionListener(this);
+
+		hasVirtualHosting.setSelected(mainWebSer.HasVirtualHosting());
+
+		panel.add(labels[1]);
+		panel.add(hasVirtualHosting);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports HTTP compression
+		labels[2].setLabelFor(hasCompression);
+		hasCompression = new JCheckBox();
+		hasCompression.setMaximumSize(tfSize);
+		hasCompression.setPreferredSize(tfSize);
+		hasCompression.setToolTipText(labels[2].getToolTipText());
+		hasCompression.setActionCommand("HasCompression");
+		hasCompression.addActionListener(this);
+
+		hasCompression.setSelected(mainWebSer.HasCompression());
+
+		panel.add(labels[2]);
+		panel.add(hasCompression);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports basic access authentication
+		labels[3].setLabelFor(supportsBasic);
+		supportsBasic = new JCheckBox();
+		supportsBasic.setMaximumSize(tfSize);
+		supportsBasic.setPreferredSize(tfSize);
+		supportsBasic.setToolTipText(labels[3].getToolTipText());
+		supportsBasic.setActionCommand("SupportsBasic");
+		supportsBasic.addActionListener(this);
+
+		supportsBasic.setSelected(mainWebSer.supportsBasic());
+
+		panel.add(labels[3]);
+		panel.add(supportsBasic);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports basic access authentication
+		labels[4].setLabelFor(supportsDigest);
+		supportsDigest = new JCheckBox();
+		supportsDigest.setMaximumSize(tfSize);
+		supportsDigest.setPreferredSize(tfSize);
+		supportsDigest.setToolTipText(labels[4].getToolTipText());
+		supportsDigest.setActionCommand("SupportsDigest");
+		supportsDigest.addActionListener(this);
+
+		supportsDigest.setSelected(mainWebSer.supportsDigest());
+
+		panel.add(labels[4]);
+		panel.add(supportsDigest);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports SSL
+		labels[5].setLabelFor(supportsSSL);
+		supportsSSL = new JCheckBox();
+		supportsSSL.setMaximumSize(tfSize);
+		supportsSSL.setPreferredSize(tfSize);
+		supportsSSL.setToolTipText(labels[5].getToolTipText());
+		supportsSSL.setActionCommand("SupportsSSL");
+		supportsSSL.addActionListener(this);
+
+		supportsSSL.setSelected(mainWebSer.supportsSSL());
+
+		panel.add(labels[5]);
+		panel.add(supportsSSL);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports TSL
+		labels[6].setLabelFor(supportsTSL);
+		supportsTSL = new JCheckBox();
+		supportsTSL.setMaximumSize(tfSize);
+		supportsTSL.setPreferredSize(tfSize);
+		supportsTSL.setToolTipText(labels[6].getToolTipText());
+		supportsTSL.setActionCommand("SupportsTSL");
+		supportsTSL.addActionListener(this);
+
+		supportsTSL.setSelected(mainWebSer.supportsTSL());
+
+		panel.add(labels[6]);
+		panel.add(supportsTSL);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports IPv6
+		labels[7].setLabelFor(supportsIPv6);
+		supportsIPv6 = new JCheckBox();
+		supportsIPv6.setMaximumSize(tfSize);
+		supportsIPv6.setPreferredSize(tfSize);
+		supportsIPv6.setToolTipText(labels[7].getToolTipText());
+		supportsIPv6.setActionCommand("SupportsIPv6");
+		supportsIPv6.addActionListener(this);
+
+		supportsIPv6.setSelected(mainWebSer.supportsIPv6());
+
+		panel.add(labels[7]);
+		panel.add(supportsIPv6);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports SSI, Server Side Includes
+		labels[8].setLabelFor(supportsIPv6);
+		supportsSSI = new JCheckBox();
+		supportsSSI.setMaximumSize(tfSize);
+		supportsSSI.setPreferredSize(tfSize);
+		supportsSSI.setToolTipText(labels[8].getToolTipText());
+		supportsSSI.setActionCommand("SupportsSSI");
+		supportsSSI.addActionListener(this);
+
+		supportsSSI.setSelected(mainWebSer.supportsSSI());
+
+		panel.add(labels[8]);
+		panel.add(supportsSSI);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports SSI, Server Side Includes
+		labels[9].setLabelFor(supportsCGI);
+		supportsCGI = new JCheckBox();
+		supportsCGI.setMaximumSize(tfSize);
+		supportsCGI.setPreferredSize(tfSize);
+		supportsCGI.setToolTipText(labels[9].getToolTipText());
+		supportsCGI.setActionCommand("SupportsCGI");
+		supportsCGI.addActionListener(this);
+
+		supportsCGI.setSelected(mainWebSer.supportsCGI());
+
+		panel.add(labels[9]);
+		panel.add(supportsCGI);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports SCGI, Simple Common Gateway
+		// Interface
+		labels[10].setLabelFor(supportsSCGI);
+		supportsSCGI = new JCheckBox();
+		supportsSCGI.setMaximumSize(tfSize);
+		supportsSCGI.setPreferredSize(tfSize);
+		supportsSCGI.setToolTipText(labels[10].getToolTipText());
+		supportsSCGI.setActionCommand("SupportsSCGI");
+		supportsSCGI.addActionListener(this);
+
+		supportsSCGI.setSelected(mainWebSer.supportsSCGI());
+
+		panel.add(labels[10]);
+		panel.add(supportsSCGI);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports FastCGI
+		labels[11].setLabelFor(supportsFastCGI);
+		supportsFastCGI = new JCheckBox();
+		supportsFastCGI.setMaximumSize(tfSize);
+		supportsFastCGI.setPreferredSize(tfSize);
+		supportsFastCGI.setToolTipText(labels[11].getToolTipText());
+		supportsFastCGI.setActionCommand("SupportsFastCGI");
+		supportsFastCGI.addActionListener(this);
+
+		supportsFastCGI.setSelected(mainWebSer.supportsFastCGI());
+
+		panel.add(labels[11]);
+		panel.add(supportsFastCGI);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports JSP
+		labels[12].setLabelFor(supportsJSP);
+		supportsJSP = new JCheckBox();
+		supportsJSP.setMaximumSize(tfSize);
+		supportsJSP.setPreferredSize(tfSize);
+		supportsJSP.setToolTipText(labels[12].getToolTipText());
+		supportsJSP.setActionCommand("SupportsJSP");
+		supportsJSP.addActionListener(this);
+
+		supportsJSP.setSelected(mainWebSer.supportsJSP());
+
+		panel.add(labels[12]);
+		panel.add(supportsJSP);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports JSP
+		labels[13].setLabelFor(supportsPHP);
+		supportsPHP = new JCheckBox();
+		supportsPHP.setMaximumSize(tfSize);
+		supportsPHP.setPreferredSize(tfSize);
+		supportsPHP.setToolTipText(labels[13].getToolTipText());
+		supportsPHP.setActionCommand("SupportsPHP");
+		supportsPHP.addActionListener(this);
+
+		supportsPHP.setSelected(mainWebSer.supportsPHP());
+
+		panel.add(labels[13]);
+		panel.add(supportsPHP);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports ASP
+		labels[14].setLabelFor(supportsASP);
+		supportsASP = new JCheckBox();
+		supportsASP.setMaximumSize(tfSize);
+		supportsASP.setPreferredSize(tfSize);
+		supportsASP.setToolTipText(labels[14].getToolTipText());
+		supportsASP.setActionCommand("SupportsASP");
+		supportsASP.addActionListener(this);
+
+		supportsASP.setSelected(mainWebSer.supportsASP());
+
+		panel.add(labels[14]);
+		panel.add(supportsASP);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports ASP .net
+		labels[14].setLabelFor(supportsASPnet);
+		supportsASPnet = new JCheckBox();
+		supportsASPnet.setMaximumSize(tfSize);
+		supportsASPnet.setPreferredSize(tfSize);
+		supportsASPnet.setToolTipText(labels[14].getToolTipText());
+		supportsASPnet.setActionCommand("SupportsASPnet");
+		supportsASPnet.addActionListener(this);
+
+		supportsASPnet.setSelected(mainWebSer.supportsASPnet());
+
+		panel.add(labels[15]);
+		panel.add(supportsASPnet);
+		childrenCount = childrenCount+2;
+
+		// --------------------------------------------------------------
+
+
+		// Lay out the panel.
+		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
+				10, 10, // initX, initY
+				20, 20); // xPad, yPad
+
+
+		return panel;
+	}
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @return
+	 */
+	private JPanel createButtons()
+	{
+		JPanel buttons = new JPanel();
+		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
+
+
+		Button save = new Button("Save");
+		save.addActionListener(this);
+		save.setActionCommand("save");
+
+		Button cancel = new Button("Cancel");
+		cancel.addActionListener(this);
+		cancel.setActionCommand("cancel");
+
+
+		buttons.add(save);
+		buttons.add(cancel);
+
+		return buttons;
+	}
+
+	@Override
+	public void save()
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 * 
+	 * @author Bahram Malaekeh
+	 */
+	private class SharedListSelectionHandler implements ListSelectionListener
+	{
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
+		 * event.ListSelectionEvent)
+		 */
+		public void valueChanged(ListSelectionEvent e)
+		{
+			int[] indeces = supportedOS.getSelectedIndices();
+
+			if ( indeces.length == 0 )
+			{
+				OSs = null;
+			}
+			else
+			{
+				// Creates an array of strings with the length of the array with
+				// the selected indices.
+				OSs = new String[indeces.length];
+
+				// Find out which indexes are selected.
+				for ( int i = 0; i < indeces.length; i++ )
+				{
+					OSs[i] = (String) supportedOS.getSelectedValues()[i];
+				}
+			}
+		}
+	}
+
+}

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
+package graphics.GUI.objectView.Hardware;
 
 
 /**
@@ -9,7 +9,7 @@ package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
  * 
  * @author Bahram Malaekeh
  */
-public interface HardwareNewView
+public interface HardwareViewInterface
 {
 	/**
 	 * This method is where the changed data in the view is checked and
@@ -24,4 +24,12 @@ public interface HardwareNewView
 	 * Here the actual data is written to the object.
 	 */
 	public void save();
+
+
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	boolean validateNecessaryData();
+
 }

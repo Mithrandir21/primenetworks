@@ -1,9 +1,22 @@
-package graphics.GUI.objectView.Software.NewSoftware;
+/**
+ * 
+ */
+package graphics.GUI.objectView.Software.NewSoftware.NewOverview;
+
 
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
-import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareObjectView;
-import graphics.GUI.objectView.Software.SoftwareObjectView;
+import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareObjectView;
+import graphics.GUI.objectView.Software.NewSoftware.NewViews.AntivirusNewView;
+import graphics.GUI.objectView.Software.NewSoftware.NewViews.BackupNewView;
+import graphics.GUI.objectView.Software.NewSoftware.NewViews.DatabaseNewView;
+import graphics.GUI.objectView.Software.NewSoftware.NewViews.EmailNewView;
+import graphics.GUI.objectView.Software.NewSoftware.NewViews.FirewallNewView;
+import graphics.GUI.objectView.Software.NewSoftware.NewViews.OSNewView;
+import graphics.GUI.objectView.Software.NewSoftware.NewViews.OfficeSuiteNewView;
+import graphics.GUI.objectView.Software.NewSoftware.NewViews.ProxyNewView;
+import graphics.GUI.objectView.Software.NewSoftware.NewViews.SecuritySuiteNewView;
+import graphics.GUI.objectView.Software.NewSoftware.NewViews.WebserverNewView;
 
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
@@ -14,8 +27,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import objects.Software;
-
+import objects.Object;
 import software.Antivirus;
 import software.Backup;
 import software.Database;
@@ -26,8 +38,15 @@ import software.OperatingSystem;
 import software.Proxy;
 import software.SecuritySuite;
 import software.Webserver;
+import sun.security.x509.AVA;
 
-public class NewSoftwareView extends JPanel implements MouseListener
+
+/**
+ * Javadoc-TODO - Description NEEDED!
+ * 
+ * @author Bahram Malaekeh
+ */
+public class NewSoftwaresViews extends JPanel implements MouseListener
 {
 	private JPanel avPanel = null;
 
@@ -74,7 +93,7 @@ public class NewSoftwareView extends JPanel implements MouseListener
 	
 	
 	
-	public NewSoftwareView(Object obj)
+	public NewSoftwaresViews(Object obj)
 	{
 		mainObj = obj;
 		
@@ -474,43 +493,73 @@ public class NewSoftwareView extends JPanel implements MouseListener
 
 		if ( panel.getName().equals("Avtivirus") )
 		{
-			
+			new AntivirusNewView(mainObj, avobj);
+			// Creates a new object after the first object is passed to the
+			// view.
+			avobj = PrimeMain1.standard_software.getSt_AV();
 		}
 		else if ( panel.getName().equals("Backup") )
 		{
-			
+			new BackupNewView(mainObj, backupObj);
+			// Creates a new object after the first object is passed to the
+			// view.
+			backupObj = PrimeMain1.standard_software.getSt_Backup();
 		}
 		else if ( panel.getName().equals("Database") )
 		{
-			
+			new DatabaseNewView(mainObj, dbObj);
+			// Creates a new object after the first object is passed to the
+			// view.
+			dbObj = PrimeMain1.standard_software.getSt_Database();
 		}
 		else if ( panel.getName().equals("Email") )
 		{
-			
+			new EmailNewView(mainObj, emailObj);
+			// Creates a new object after the first object is passed to the
+			// view.
+			emailObj = PrimeMain1.standard_software.getSt_Email();
 		}
 		else if ( panel.getName().equals("Firewall") )
 		{
-			
+			new FirewallNewView(mainObj, fwObj);
+			// Creates a new object after the first object is passed to the
+			// view.
+			fwObj = PrimeMain1.standard_software.getSt_Firewall();
 		}
 		else if ( panel.getName().equals("Office Suite") )
 		{
-			
+			new OfficeSuiteNewView(mainObj, offSuiteObj);
+			// Creates a new object after the first object is passed to the
+			// view.
+			offSuiteObj = PrimeMain1.standard_software.getSt_OfficeSuite();
 		}
 		else if ( panel.getName().equals("Operating System") )
 		{
-			
+			new OSNewView(mainObj, osObj);
+			// Creates a new object after the first object is passed to the
+			// view.
+			osObj = PrimeMain1.standard_software.getSt_OS();
 		}
 		else if ( panel.getName().equals("Proxy") )
 		{
-			
+			new ProxyNewView(mainObj, proxyObj);
+			// Creates a new object after the first object is passed to the
+			// view.
+			proxyObj = PrimeMain1.standard_software.getSt_Proxy();
 		}
 		else if ( panel.getName().equals("Security Suite") )
 		{
-
+			new SecuritySuiteNewView(mainObj, secSuiteObj);
+			// Creates a new object after the first object is passed to the
+			// view.
+			secSuiteObj = PrimeMain1.standard_software.getSt_SecSuite();
 		}
 		else if ( panel.getName().equals("Webserver") )
 		{
-
+			new WebserverNewView(mainObj, webServerObj);
+			// Creates a new object after the first object is passed to the
+			// view.
+			webServerObj = PrimeMain1.standard_software.getSt_Webserver();
 		}
 	}
 

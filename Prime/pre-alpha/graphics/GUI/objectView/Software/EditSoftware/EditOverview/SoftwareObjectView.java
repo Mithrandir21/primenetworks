@@ -1,8 +1,8 @@
-package graphics.GUI.objectView.Software;
+package graphics.GUI.objectView.Software.EditSoftware.EditOverview;
 
 
 import graphics.ImageLocator;
-import graphics.GUI.objectView.Hardware.NewComponent.NewOverview.NewComponentChoice;
+import graphics.GUI.objectView.Software.NewSoftware.NewOverview.NewSoftwareChoice;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -564,9 +564,9 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 		{
 			// hwEditor = new HardwareEditor(givenObject);
 		}
-		else if ( e.getActionCommand().equals("newComp") )
+		else if ( e.getActionCommand().equals("newSoft") )
 		{
-			new NewComponentChoice(givenObject);
+			new NewSoftwareChoice(givenObject);
 		}
 	}
 

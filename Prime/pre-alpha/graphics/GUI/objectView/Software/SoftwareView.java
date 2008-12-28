@@ -1,7 +1,7 @@
 package graphics.GUI.objectView.Software;
 
 
-public interface SoftwareEditView
+public interface SoftwareView
 {
 
 	/**
