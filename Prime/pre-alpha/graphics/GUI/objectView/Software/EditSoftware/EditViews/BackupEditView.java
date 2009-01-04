@@ -322,9 +322,13 @@ public class BackupEditView extends JPanel implements SoftwareView,
 		// Whether or not the software can use encryption
 		mainBack.setSupportsEncryption(encryption.isSelected());
 
-		// The number of copies keeps
-		// private JTextField duplicate;
-
+		
+		if ( duplicate.getSelectedItem().toString() != "" ) 
+		{
+			// The number of copies keeps
+			mainBack.setDuplicate(Integer.parseInt(duplicate.getSelectedItem()
+					.toString()));
+		}
 	}
 
 	@Override

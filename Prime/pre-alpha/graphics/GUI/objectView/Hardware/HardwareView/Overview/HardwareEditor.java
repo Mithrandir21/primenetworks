@@ -111,54 +111,6 @@ public class HardwareEditor extends JFrame implements ActionListener
 		this.setVisible(true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		if ( e.getActionCommand().equals("save") )
-		{
-			boolean verify = true;
-
-			// If the object is an instance of infrastructure.
-			if ( givenObject instanceof Infrastructure
-					|| givenObject instanceof ExternalHardware )
-			{
-				verify = false;
-			}
-
-			// If the information is saved a true is returned and the
-			// JFrame is closed.
-			if ( view.save(verify) )
-			{
-				this.dispose();
-			}
-		}
-		else if ( e.getActionCommand().equals("apply") )
-		{
-			boolean verify = true;
-
-			// If the object is an instance of infrastructure.
-			if ( givenObject instanceof Infrastructure
-					|| givenObject instanceof ExternalHardware )
-			{
-				verify = false;
-			}
-
-			// Saves the information with the option of verification.
-			view.save(verify);
-		}
-		else
-		{
-			assert (e.getActionCommand().equals("cancel"));
-
-			this.dispose();
-		}
-	}
-
 
 	/**
 	 * Creates a JPanel that shows an Icon representing the hardware object and
@@ -258,6 +210,56 @@ public class HardwareEditor extends JFrame implements ActionListener
 
 		return genPanel;
 	}
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		if ( e.getActionCommand().equals("save") )
+		{
+			boolean verify = true;
+
+			// If the object is an instance of infrastructure.
+			if ( givenObject instanceof Infrastructure
+					|| givenObject instanceof ExternalHardware )
+			{
+				verify = false;
+			}
+
+			// If the information is saved a true is returned and the
+			// JFrame is closed.
+			if ( view.save(verify) )
+			{
+				this.dispose();
+			}
+		}
+		else if ( e.getActionCommand().equals("apply") )
+		{
+			boolean verify = true;
+
+			// If the object is an instance of infrastructure.
+			if ( givenObject instanceof Infrastructure
+					|| givenObject instanceof ExternalHardware )
+			{
+				verify = false;
+			}
+
+			// Saves the information with the option of verification.
+			view.save(verify);
+		}
+		else
+		{
+			assert (e.getActionCommand().equals("cancel"));
+
+			this.dispose();
+		}
+	}
+
 
 
 	/**

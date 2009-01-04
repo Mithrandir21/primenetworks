@@ -222,6 +222,40 @@ public class ArrayManagment
 
 		return foundObject;
 	}
+	
+	
+	/**
+	 * Check function to determine whether or not the the given array contains
+	 * the given object.
+	 * 
+	 * @param array
+	 *            The array that is to be checked.
+	 * @param searchObject
+	 *            The object that is to be searched for.
+	 */
+	public static int arrayContainsReturnsIndex(Object[] array, Object searchObject)
+	{
+		// Boolean to tell whether or not the given object is found within the
+		// given array.
+		int foundObject = -1;
+
+
+		for ( int i = 0; i < array.length; i++ )
+		{
+			if ( array[i] != null )
+			{
+				if ( array[i].equals(searchObject) )
+				{
+					foundObject = i;
+
+					// Sets i to array length to get out of the loop.
+					i = array.length;
+				}
+			}
+		}
+
+		return foundObject;
+	}
 
 
 
@@ -256,6 +290,40 @@ public class ArrayManagment
 							foundObject[j] = true;
 						}
 					}
+				}
+			}
+		}
+
+		return foundObject;
+	}
+	
+	
+	
+	/**
+	 * Check function to determine whether or not the the given array contains
+	 * the given searchObject.
+	 * 
+	 * @param array
+	 *            The array that is to be checked.
+	 * @param searchObjects
+	 *            The objects that is to be searched for.
+	 * @return The array of booleans that tells, by way of the index, which
+	 *         object are found.
+	 */
+	public static boolean arrayContains(String[] array, String searchObject)
+	{
+		// Boolean to tell whether or not the given object is found within the
+		// given array.
+		boolean foundObject = false;
+
+
+		for ( int i = 0; i < array.length; i++ )
+		{
+			if ( array[i] != null )
+			{
+				if ( array[i].equals(searchObject) )
+				{
+					foundObject = true;
 				}
 			}
 		}

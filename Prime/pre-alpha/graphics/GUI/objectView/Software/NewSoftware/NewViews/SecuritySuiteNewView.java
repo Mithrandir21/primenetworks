@@ -37,6 +37,8 @@ import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.SoftwareManagment;
+
 import objects.Object;
 import objects.Software;
 import software.SecuritySuite;
@@ -453,8 +455,68 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView,
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
-		
+		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
+
+		if ( name.getText() != "" )
+		{
+			mainSecSuite.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainSecSuite.setDescription(desc.getText());
+		}
+
+		if ( supportedOS.getSelectedIndex() != -1 )
+		{
+			mainSecSuite.setSupportedOperatingSystems(OSs);
+		}
+
+
+		if ( license.getText() != "" )
+		{
+			mainSecSuite.setLicense(license.getText());
+		}
+
+
+		mainSecSuite.setHasAntivirus(hasAntivirus.isSelected());
+
+		mainSecSuite.sethasFirewall(hasFirewall.isSelected());
+
+		mainSecSuite.sethasProxy(hasProxy.isSelected());
+
+
+		if ( actDate.getText() != "" )
+		{
+			Date tempDate = null;
+
+			try
+			{
+				tempDate = format.parse(actDate.getText());
+			}
+			catch ( ParseException e )
+			{
+				e.printStackTrace();
+			}
+
+			mainSecSuite.setActivationDate(tempDate);
+		}
+
+		if ( expDate.getText() != "" )
+		{
+			Date tempDate = null;
+
+			try
+			{
+				tempDate = format.parse(expDate.getText());
+			}
+			catch ( ParseException e )
+			{
+				e.printStackTrace();
+			}
+
+			mainSecSuite.setExpirationDate(tempDate);
+		}
 	}
 
 
@@ -462,8 +524,23 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView,
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		if ( e.getActionCommand().equals("save") )
+		{
+			// Saves the current values of the new motherboard.
+			save();
+			
+			// Sets an array with the newly added software object
+			mainObj.setSoftware(SoftwareManagment.addSoftware(mainSecSuite, mainObj));
+
+			// Closes the JFrame.
+			this.dispose();
+
+		}
+		else if ( e.getActionCommand().equals("cancel") )
+		{
+			this.dispose();
+		}
+
 	}
 	
 	

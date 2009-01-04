@@ -34,6 +34,8 @@ import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.SoftwareManagment;
+
 import objects.Object;
 import objects.Software;
 import software.Proxy;
@@ -449,16 +451,61 @@ public class ProxyNewView extends JFrame implements SoftwareView,
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
-		
+		if ( name.getText() != "" )
+		{
+			mainProxy.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainProxy.setDescription(desc.getText());
+		}
+
+		if ( supportedOS.getSelectedIndex() != -1 )
+		{
+			mainProxy.setSupportedOperatingSystems(OSs);
+		}
+
+		mainProxy.setSupportsCaching(caching.isSelected());
+
+		mainProxy.setSupportsWebProxy(webProxy.isSelected());
+
+		mainProxy.setSupportsAnonymizingProxy(anonymizingProxy.isSelected());
+
+		mainProxy.setSupportsTransparentProxy(transparentProxy.isSelected());
+
+		mainProxy.setSupportsReverseProxy(reverseProxy.isSelected());
+
+		mainProxy.setSupportsIPv6(supportsIPv6.isSelected());
+
+		mainProxy.setSupportsSSL(supportsSSL.isSelected());
+
+		mainProxy.setSupportsTSL(supportsTSL.isSelected());
+
+		mainProxy.setSupportsHTTPS(supportsHTTPS.isSelected());
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		if ( e.getActionCommand().equals("save") )
+		{
+			// Saves the current values of the new motherboard.
+			save();
+			
+			// Sets an array with the newly added software object
+			mainObj.setSoftware(SoftwareManagment.addSoftware(mainProxy, mainObj));
+
+			// Closes the JFrame.
+			this.dispose();
+
+		}
+		else if ( e.getActionCommand().equals("cancel") )
+		{
+			this.dispose();
+		}
+
 	}
 	
 	

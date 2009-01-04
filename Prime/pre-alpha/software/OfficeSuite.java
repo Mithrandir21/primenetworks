@@ -21,6 +21,8 @@ public class OfficeSuite extends Software implements Serializable
 	 * Datafields for an abstract webserver These will contain the values of any
 	 * webserver object
 	 */
+	// Supported Operating systems
+	private String[] supportedOperatingSystems;
 
 	// The formats supported by the Office suite
 	private String[] supportedFormats;
@@ -47,6 +49,31 @@ public class OfficeSuite extends Software implements Serializable
 
 			supportedFormats = formats;
 		}
+	}
+	
+	
+
+	/**
+	 * Returns an array with the names of the supported Operating Systems.
+	 * 
+	 * @return the supportedOperatingSystems
+	 */
+	public String[] getSupportedOperatingSystems()
+	{
+		return supportedOperatingSystems;
+	}
+	
+	
+	
+	/**
+	 * Sets an array with the names of the supported Operating Systems.
+	 * 
+	 * @param supportedOperatingSystems
+	 *            the supportedOperatingSystems to set
+	 */
+	public void setSupportedOperatingSystems(String[] supportedOperatingSystems)
+	{
+		this.supportedOperatingSystems = supportedOperatingSystems;
 	}
 
 

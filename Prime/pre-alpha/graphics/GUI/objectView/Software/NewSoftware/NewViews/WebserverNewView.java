@@ -35,6 +35,8 @@ import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.SoftwareManagment;
+
 import objects.Object;
 import objects.Software;
 import software.Webserver;
@@ -604,15 +606,72 @@ public class WebserverNewView extends JFrame implements SoftwareView, ActionList
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
+		if ( name.getText() != "" )
+		{
+			mainWebSer.setObjectName(name.getText());
+		}
 
+		if ( desc.getText() != "" )
+		{
+			mainWebSer.setDescription(desc.getText());
+		}
+
+		if ( supportedOS.getSelectedIndex() != -1 )
+		{
+			mainWebSer.setSupportedOperatingSystems(OSs);
+		}
+
+
+		mainWebSer.setHasVirtualHosting(hasVirtualHosting.isSelected());
+
+		mainWebSer.setHasCompression(hasCompression.isSelected());
+
+		mainWebSer.setSupportsBasic(supportsBasic.isSelected());
+
+		mainWebSer.setSupportsDigest(supportsDigest.isSelected());
+
+		mainWebSer.setSupportsSSL(supportsSSL.isSelected());
+
+		mainWebSer.setSupportsTSL(supportsTSL.isSelected());
+
+		mainWebSer.setSupportsIPv6(supportsIPv6.isSelected());
+
+		mainWebSer.setSupportsSSI(supportsSSI.isSelected());
+
+		mainWebSer.setSupportsCGI(supportsCGI.isSelected());
+
+		mainWebSer.setSupportsSCGI(supportsSCGI.isSelected());
+
+		mainWebSer.setSupportsFastCGI(supportsFastCGI.isSelected());
+
+		mainWebSer.setSupportsJSP(supportsJSP.isSelected());
+
+		mainWebSer.setSupportsPHP(supportsPHP.isSelected());
+
+		mainWebSer.setSupportsASP(supportsASP.isSelected());
+
+		mainWebSer.setSupportsASPnet(supportsASPnet.isSelected());
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
+		if ( e.getActionCommand().equals("save") )
+		{
+			// Saves the current values of the new motherboard.
+			save();
+			
+			// Sets an array with the newly added software object
+			mainObj.setSoftware(SoftwareManagment.addSoftware(mainWebSer, mainObj));
 
+			// Closes the JFrame.
+			this.dispose();
+
+		}
+		else if ( e.getActionCommand().equals("cancel") )
+		{
+			this.dispose();
+		}
 	}
 
 

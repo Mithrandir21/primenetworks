@@ -32,6 +32,8 @@ import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.SoftwareManagment;
+
 import objects.Object;
 import objects.Software;
 import software.Email;
@@ -372,15 +374,54 @@ public class EmailNewView extends JFrame implements SoftwareView,
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
-		
+		if ( name.getText() != "" )
+		{
+			mainEmail.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainEmail.setDescription(desc.getText());
+		}
+
+		if ( supportedOS.getSelectedIndex() != -1 )
+		{
+			mainEmail.setSupportedOperatingSystems(OSs);
+		}
+
+		mainEmail.setSupportsPOP3(supportsPOP3.isSelected());
+
+		mainEmail.setSupportsSMTP(supportsSMTP.isSelected());
+
+		mainEmail.setSupportsIMAP(supportsIMAP.isSelected());
+
+		mainEmail.setSupportsNNTP(supportsNNTP.isSelected());
+
+		mainEmail.setSupportsSSL(supportsSSL.isSelected());
+
+		mainEmail.setSupportsWebmail(supportsWebmail.isSelected());
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		if ( e.getActionCommand().equals("save") )
+		{
+			// Saves the current values of the new motherboard.
+			save();
+			
+			// Sets an array with the newly added software object
+			mainObj.setSoftware(SoftwareManagment.addSoftware(mainEmail, mainObj));
+
+			// Closes the JFrame.
+			this.dispose();
+
+		}
+		else if ( e.getActionCommand().equals("cancel") )
+		{
+			this.dispose();
+		}
+
 	}
 	
 	

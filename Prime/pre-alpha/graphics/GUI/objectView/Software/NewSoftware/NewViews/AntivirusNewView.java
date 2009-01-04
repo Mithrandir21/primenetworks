@@ -1,8 +1,11 @@
 package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
+import hardware.Motherboard;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -27,6 +30,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+
+import managment.ComponentsManagment;
+import managment.SoftwareManagment;
 
 import objects.Object;
 import software.Antivirus;
@@ -299,15 +305,81 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
-		
+		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
+
+		if ( name.getText() != "" )
+		{
+			mainAV.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainAV.setDescription(desc.getText());
+		}
+
+		if ( actDate.getText() != "" && actDate != null )
+		{
+			System.out.println("Dette er helt teit." + "\"" + actDate.getText() +"\"");
+			Date tempDate = null;
+
+			try
+			{
+				tempDate = format.parse(actDate.getText());
+			}
+			catch ( ParseException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			mainAV.setActivationDate(tempDate);
+		}
+
+		if ( expDate != null && expDate.getText() != "" )
+		{
+			Date tempDate = null;
+
+			try
+			{
+				tempDate = format.parse(expDate.getText());
+			}
+			catch ( ParseException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			mainAV.setExpirationDate(tempDate);
+		}
+
+		mainAV.setActivated(activated.isSelected());
+
+		if ( license.getText() != "" )
+		{
+			mainAV.setLicense(license.getText());
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		if ( e.getActionCommand().equals("save") )
+		{
+			// Saves the current values of the new motherboard.
+			save();
+			
+			// Sets an array with the newly added software object
+			mainObj.setSoftware(SoftwareManagment.addSoftware(mainAV, mainObj));
+
+			// Closes the JFrame.
+			this.dispose();
+
+		}
+		else if ( e.getActionCommand().equals("cancel") )
+		{
+			this.dispose();
+		}
+
 	}
 
 }

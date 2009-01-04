@@ -31,6 +31,8 @@ import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.SoftwareManagment;
+
 import objects.Object;
 import objects.Software;
 import software.Firewall;
@@ -695,16 +697,83 @@ public class FirewallNewView extends JFrame implements SoftwareView,
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
-		
+		if ( name.getText() != "" )
+		{
+			mainFW.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainFW.setDescription(desc.getText());
+		}
+
+		if ( supportedOS.getSelectedIndex() != -1 )
+		{
+			mainFW.setSupportedOperatingSystems(OSs);
+		}
+
+		mainFW.setHasNetworkFirewall(hasNetworkFirewall.isSelected());
+
+		mainFW.setHasStatefulFirewall(hasStatefulFirewall.isSelected());
+
+		mainFW.setHasApplicationFirewall(hasApplicationFirewall.isSelected());
+
+		mainFW.setHasDPI(hasDPI.isSelected());
+
+
+		mainFW.setHasProxy(hasProxy.isSelected());
+
+		mainFW.setHasNAT(hasNAT.isSelected());
+
+		mainFW.setHasVPN(hasVPN.isSelected());
+
+		mainFW.setHasAntivirus(hasAntivirus.isSelected());
+
+		mainFW.setHasIDS(hasIDS.isSelected());
+
+
+		mainFW.setSupportsModularity(supportsModularity.isSelected());
+
+		mainFW.setSupportsIPv6(supportsIPv6.isSelected());
+
+		mainFW.setSupportsTTL(supportsTTL.isSelected());
+
+		mainFW.setSupportsRWA(supportsRWA.isSelected());
+
+		mainFW.setSupportsDMZ(supportsDMZ.isSelected());
+
+		mainFW.setSupportsToD(supportsToD.isSelected());
+
+		mainFW.setSupportsForwarding(supportsForwarding.isSelected());
+
+		mainFW.setSupportsPortForwarding(supportsPortForwarding.isSelected());
+
+		mainFW.setSupportsQos(supportsQos.isSelected());
+
+		mainFW.setSupportsTarpit(supportsTarpit.isSelected());
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		if ( e.getActionCommand().equals("save") )
+		{
+			// Saves the current values of the new motherboard.
+			save();
+			
+			// Sets an array with the newly added software object
+			mainObj.setSoftware(SoftwareManagment.addSoftware(mainFW, mainObj));
+
+			// Closes the JFrame.
+			this.dispose();
+
+		}
+		else if ( e.getActionCommand().equals("cancel") )
+		{
+			this.dispose();
+		}
+
 	}
 
 

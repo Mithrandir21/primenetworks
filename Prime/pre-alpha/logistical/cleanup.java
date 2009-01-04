@@ -2,6 +2,7 @@ package logistical;
 
 
 import objects.Object;
+import objects.Software;
 import connections.Connection;
 import connections.DeviceConnection;
 import connections.InternalConnection;
@@ -53,8 +54,45 @@ public class cleanup
 			results[i] = Tempresults[i];
 		}
 
+		return results;
+	}
+	
+	
+	
+	/**
+	 * Function to remove null pointer from the an array of objects.
+	 */
+	public static Software[] cleanObjectArray(Software[] array)
+	{
+
+		// Temporary counter for the function
+		int tempCounter = 0;
+
+		// Makes an array with given lenght
+		Software[] Tempresults = new Software[array.length];
+
+		// Goes through all of the found components array and moves those that
+		// are not null
+		for ( int i = 0; i < array.length; i++ )
+		{
+			if ( array[i] != null )
+			{
+				Tempresults[tempCounter] = array[i];
+
+				tempCounter++;
+			}
+		}
 
 
+		// Makes the array that is to hold the results
+		Software[] results = new Software[tempCounter];
+
+
+		// Creates a new array that will copy all the non-null objects.
+		for ( int i = 0; i < tempCounter; i++ )
+		{
+			results[i] = Tempresults[i];
+		}
 
 		return results;
 	}

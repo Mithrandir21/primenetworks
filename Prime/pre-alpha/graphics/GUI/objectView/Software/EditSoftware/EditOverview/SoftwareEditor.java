@@ -204,8 +204,6 @@ public class SoftwareEditor extends JFrame implements ActionListener
 
 
 
-
-
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
@@ -213,4 +211,18 @@ public class SoftwareEditor extends JFrame implements ActionListener
 
 	}
 
+	
+
+
+	/**
+	 * This function is used for when software information is changed or when a
+	 * component is added or removed from an object. It redraws the views that
+	 * show all current software information.
+	 */
+	public void SoftwarePanelRevalidate()
+	{
+		view.removeAll();
+
+		view.populateTabs(givenObject);
+	}
 }

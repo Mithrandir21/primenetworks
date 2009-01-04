@@ -44,6 +44,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 {
 
 	private Object givenObject = null;
+	
+	private SoftwareEditor SWeditor = null;
 
 
 
@@ -562,7 +564,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 	{
 		if ( e.getActionCommand().equals("edit") )
 		{
-			new SoftwareEditor (givenObject);
+			SWeditor = new SoftwareEditor (givenObject);
 		}
 		else if ( e.getActionCommand().equals("newSoft") )
 		{
@@ -573,4 +575,24 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 
 
 
+	/**
+	 * This method removes all the JPanels showing the components information
+	 * and then creates them again with the current information. This method is
+	 * used when hardware information is changed or a component is added or
+	 * removed. It also calls the update function in the Hardware Editor view.
+	 */
+	public void updateTabInfo()
+	{
+		if ( SWeditor != null )
+		{
+			SWeditor.SoftwarePanelRevalidate();
+		}
+
+		this.removeAll();
+
+		this.populiateInfo(givenObject);
+
+		this.repaint();
+		this.revalidate();
+	}
 }

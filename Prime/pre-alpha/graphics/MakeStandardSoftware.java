@@ -106,8 +106,8 @@ public class MakeStandardSoftware
 	 */
 	public OperatingSystem getSt_OS()
 	{
-		OperatingSystem os = new OperatingSystem("Standard Operating System",
-				"This is the system standard Operating System.", "1");
+		OperatingSystem os = new OperatingSystem("Windows XP",
+				"This is the system standard Operating System.", "5.1");
 
 		return os;
 	}

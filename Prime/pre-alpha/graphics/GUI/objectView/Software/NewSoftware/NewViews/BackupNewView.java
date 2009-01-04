@@ -32,6 +32,8 @@ import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.SoftwareManagment;
+
 import objects.Object;
 import objects.Software;
 import software.Backup;
@@ -313,15 +315,62 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
+		if ( name.getText() != "" )
+		{
+			mainBack.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainBack.setDescription(desc.getText());
+		}
+
+		if ( supportedOS.getSelectedIndex() != -1 )
+		{
+			mainBack.setSupportedOperatingSystems(OSs);
+		}
+
+		// The type of backup
+		if ( backupType.getText() != "" )
+		{
+			mainBack.setBackupType(backupType.getText());
+		}
+
+		// Whether or not the software can use compression
+		mainBack.setSupportsCompression(compression.isSelected());
+
+		// Whether or not the software can use encryption
+		mainBack.setSupportsEncryption(encryption.isSelected());
+
 		
+		if ( duplicate.getSelectedItem().toString() != "" ) 
+		{
+			// The number of copies keeps
+			mainBack.setDuplicate(Integer.parseInt(duplicate.getSelectedItem()
+					.toString()));
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		if ( e.getActionCommand().equals("save") )
+		{
+			// Saves the current values of the new motherboard.
+			save();
+			
+			// Sets an array with the newly added software object
+			mainObj.setSoftware(SoftwareManagment.addSoftware(mainBack, mainObj));
+
+			// Closes the JFrame.
+			this.dispose();
+
+		}
+		else if ( e.getActionCommand().equals("cancel") )
+		{
+			this.dispose();
+		}
+
 	}
 	
 	

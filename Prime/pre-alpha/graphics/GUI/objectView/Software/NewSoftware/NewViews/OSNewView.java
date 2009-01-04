@@ -35,6 +35,8 @@ import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.SoftwareManagment;
+
 import objects.Object;
 import objects.Software;
 import software.OperatingSystem;
@@ -309,15 +311,47 @@ public class OSNewView extends JFrame implements SoftwareView,ActionListener
 	@Override
 	public void save()
 	{
-		// TODO Auto-generated method stub
-		
+		if ( name.getText() != "" )
+		{
+			mainOS.setObjectName(name.getText());
+		}
+
+		if ( desc.getText() != "" )
+		{
+			mainOS.setDescription(desc.getText());
+		}
+
+		if ( supportedFS.getSelectedIndex() != -1 )
+		{
+			mainOS.setSupportedFS(fsData);
+		}
+
+		mainOS.setEncryptedFileSystem(encryptedFileSystem.isSelected());
+
+		mainOS.setHasGUI(hasGUI.isSelected());
+
+		mainOS.setIs64bit(is64bit.isSelected());
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		if ( e.getActionCommand().equals("save") )
+		{
+			// Saves the current values of the new motherboard.
+			save();
+			
+			SoftwareManagment.changeOperatingSystem(mainOS, mainObj);
+
+
+			// Closes the JFrame.
+			this.dispose();
+
+		}
+		else if ( e.getActionCommand().equals("cancel") )
+		{
+			this.dispose();
+		}
 	}
 	
 	

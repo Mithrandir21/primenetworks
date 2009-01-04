@@ -92,6 +92,8 @@ public class Backup extends Software implements Serializable
 		return duplicate;
 	}
 
+	
+	// SET METHODES
 
 
 	/**
@@ -155,5 +157,17 @@ public class Backup extends Software implements Serializable
 	public void setSupportsDuplicate(int duplicate)
 	{
 		this.duplicate = duplicate;
+	}
+	
+	
+	
+	/**
+	 * TODO - Description NEEDED!
+	 * 
+	 * @return the duplicate
+	 */
+	public void setDuplicate(int dup)
+	{
+		duplicate = dup;
 	}
 }
