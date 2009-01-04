@@ -6,7 +6,6 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -128,6 +127,8 @@ public class WebserverNewView extends JFrame implements SoftwareView, ActionList
 	 */
 	public WebserverNewView(Object obj, Webserver webserver)
 	{
+		super("New Backup");
+		
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 

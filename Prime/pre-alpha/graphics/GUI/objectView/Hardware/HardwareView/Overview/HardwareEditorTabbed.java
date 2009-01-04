@@ -70,49 +70,49 @@ public class HardwareEditorTabbed extends JTabbedPane
 		{
 			if ( components[i] instanceof Motherboard )
 			{
-				String MBDesc = "General information and option";
+				String MBDesc = "Motherboard options and values";
 				this.addTab("Motherboard", null, new MotherboardView(obj,
 						(Motherboard) components[i]), MBDesc);
 			}
 			else if ( components[i] instanceof CPU )
 			{
-				String CPUDesc = "General information and option";
+				String CPUDesc = "CPU options and values";
 				this.addTab("CPU", null, new CPUView(obj, (CPU) components[i]),
 						CPUDesc);
 			}
 			else if ( components[i] instanceof HDD )
 			{
-				String HDDDesc = "General information and option";
+				String HDDDesc = "Harddisk options and values";
 				this.addTab("Harddisc", null, new HDDView(obj,
 						(HDD) components[i]), HDDDesc);
 			}
 			else if ( components[i] instanceof Ram )
 			{
-				String RAMDesc = "General information and option";
+				String RAMDesc = "RAM options and values";
 				this.addTab("RAM", null, new RAMView(obj, (Ram) components[i]),
 						RAMDesc);
 			}
 			else if ( components[i] instanceof Discdrive )
 			{
-				String DDDesc = "General information and option";
+				String DDDesc = "Discdrive options and values";
 				this.addTab("Discdrive", null, new DiscDriveView(obj,
 						(Discdrive) components[i]), DDDesc);
 			}
 			else if ( components[i] instanceof GraphicsCard )
 			{
-				String GPUDesc = "General information and option";
+				String GPUDesc = "Graphics options and values";
 				this.addTab("Graphical Card", null, new GraphicsCardView(obj,
 						(GraphicsCard) components[i]), GPUDesc);
 			}
 			else if ( components[i] instanceof InternalNetworksCard )
 			{
-				String IntNICDesc = "General information and option";
+				String IntNICDesc = "Networkcard options and values";
 				this.addTab("Internal NIC", null, new InternalNICView(obj,
 						(InternalNetworksCard) components[i]), IntNICDesc);
 			}
 			else if ( components[i] instanceof ExternalNetworksCard )
 			{
-				String ExtNICDesc = "General information and option";
+				String ExtNICDesc = "External Networkcard options and values";
 				this.addTab("External NIC", null, new ExternaNICView(obj,
 						(ExternalNetworksCard) components[i]), ExtNICDesc);
 			}

@@ -3,7 +3,6 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -127,14 +126,14 @@ public class OSEditView extends JPanel implements SoftwareView,
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this device");
+		JLabel label = new JLabel("Remove this component from this software");
 
-		Button save = new Button("Remove Component");
-		save.addActionListener(this);
-		save.setActionCommand("removeComp");
+		Button remove = new Button("Remove Software");
+		remove.addActionListener(this);
+		remove.setActionCommand("removeSoft");
 
 		buttons.add(label);
-		buttons.add(save);
+		buttons.add(remove);
 
 		c.gridx = 0;
 		c.gridy = 2;
@@ -172,6 +171,8 @@ public class OSEditView extends JPanel implements SoftwareView,
 		labels[3] = new JLabel("64-bit");
 		labels[3].setToolTipText("Whether or not the OS is 64-Bit.");
 
+		
+		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 
 
@@ -179,14 +180,14 @@ public class OSEditView extends JPanel implements SoftwareView,
 		// The supported file system.
 		labels[0].setLabelFor(supportedFS);
 		String[] listData = { "FAT16", "FAT32", "NTFS", "EXT", "EXT2", "EXT3",
-				"ReiserFS", "Reiser4", "ZFS", "XFS" };
+				"EXT4", "ReiserFS", "Reiser4", "ZFS", "XFS" };
 		supportedFS = new JList(listData);
 		ListSelectionModel listSelectionModel = supportedFS.getSelectionModel();
 		listSelectionModel
 				.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supportedFS);
-		listPane.setMaximumSize(new Dimension(90, 60));
-		listPane.setPreferredSize(new Dimension(90, 60));
+		listPane.setMaximumSize(new Dimension(160, 60));
+		listPane.setPreferredSize(new Dimension(160, 60));
 		listSelectionModel
 				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
@@ -200,7 +201,8 @@ public class OSEditView extends JPanel implements SoftwareView,
 		}
 
 		panel.add(labels[0]);
-		panel.add(supportedFS);
+		panel.add(listPane);
+		childrenCount = childrenCount+2;
 
 
 
@@ -218,6 +220,7 @@ public class OSEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[1]);
 		panel.add(encryptedFileSystem);
+		childrenCount = childrenCount+2;
 
 
 
@@ -235,6 +238,7 @@ public class OSEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[2]);
 		panel.add(hasGUI);
+		childrenCount = childrenCount+2;
 
 
 
@@ -253,33 +257,13 @@ public class OSEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[3]);
 		panel.add(is64bit);
-
-
-
-		JLabel temp1 = new JLabel("");
-		temp1.setMaximumSize(tfSize);
-		temp1.setPreferredSize(tfSize);
-
-		JLabel temp2 = new JLabel("");
-		temp2.setMaximumSize(tfSize);
-		temp2.setPreferredSize(tfSize);
-
-		JLabel temp3 = new JLabel("");
-		temp3.setMaximumSize(tfSize);
-		temp3.setPreferredSize(tfSize);
-
-		// adding components so that the layout is right
-		panel.add(temp1);
-		panel.add(temp2);
-		panel.add(temp3);
-
+		childrenCount = childrenCount+2;
 
 
 		// Lay out the panel.
-		SpringUtilities.makeCompactGrid(panel, 2, 6, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-
 
 
 		return panel;
@@ -313,10 +297,19 @@ public class OSEditView extends JPanel implements SoftwareView,
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0)
+	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
+		if ( e.getSource() instanceof Button )
+		{
+			Button check = (Button) e.getSource();
 
+			String command = check.getActionCommand();
+
+			if ( command.equals("removeComp") )
+			{
+				
+			}
+		}
 	}
 
 

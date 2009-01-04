@@ -3,7 +3,6 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -148,14 +147,14 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this device");
+		JLabel label = new JLabel("Remove this component from this software");
 
-		Button save = new Button("Remove Component");
-		save.addActionListener(this);
-		save.setActionCommand("removeComp");
+		Button remove = new Button("Remove Software");
+		remove.addActionListener(this);
+		remove.setActionCommand("removeSoft");
 
 		buttons.add(label);
-		buttons.add(save);
+		buttons.add(remove);
 
 		c.gridx = 0;
 		c.gridy = 2;
@@ -218,7 +217,7 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 		labels[9].setToolTipText("Whether or not the software supports HTTPS.");
 
 
-
+		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 
 
@@ -249,6 +248,7 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[0]);
 		panel.add(listPane);
+		childrenCount = childrenCount+2;
 
 
 
@@ -265,6 +265,7 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[1]);
 		panel.add(caching);
+		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software has Web proxy feature
@@ -280,6 +281,7 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[2]);
 		panel.add(webProxy);
+		childrenCount = childrenCount+2;
 
 
 
@@ -296,6 +298,7 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[3]);
 		panel.add(anonymizingProxy);
+		childrenCount = childrenCount+2;
 
 
 
@@ -312,6 +315,7 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[4]);
 		panel.add(transparentProxy);
+		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software has reverse proxy feature
@@ -327,6 +331,7 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[5]);
 		panel.add(reverseProxy);
+		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports IP version 6
@@ -342,6 +347,7 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[6]);
 		panel.add(supportsIPv6);
+		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports SSL
@@ -357,6 +363,7 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[7]);
 		panel.add(supportsSSL);
+		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports TSL
@@ -372,6 +379,7 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[8]);
 		panel.add(supportsTSL);
+		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports HTTPS
@@ -387,40 +395,13 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[9]);
 		panel.add(supportsHTTPS);
-
-
-
-		JLabel temp1 = new JLabel("");
-		temp1.setMaximumSize(tfSize);
-		temp1.setPreferredSize(tfSize);
-
-		JLabel temp2 = new JLabel("");
-		temp2.setMaximumSize(tfSize);
-		temp2.setPreferredSize(tfSize);
-
-		JLabel temp3 = new JLabel("");
-		temp3.setMaximumSize(tfSize);
-		temp3.setPreferredSize(tfSize);
-
-		JLabel temp4 = new JLabel("");
-		temp4.setMaximumSize(tfSize);
-		temp4.setPreferredSize(tfSize);
-		// adding components so that the layout is right
-		panel.add(temp1);
-		panel.add(temp2);
-		panel.add(temp3);
-		panel.add(temp4);
-
-
+		childrenCount = childrenCount+2;
 
 
 		// Lay out the panel.
-		SpringUtilities.makeCompactGrid(panel, 4, 6, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-
-
-
 
 		return panel;
 	}

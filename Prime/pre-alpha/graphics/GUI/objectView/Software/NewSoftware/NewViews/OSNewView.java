@@ -6,7 +6,6 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -84,7 +83,8 @@ public class OSNewView extends JFrame implements SoftwareView,ActionListener
 	 */
 	public OSNewView(Object obj, OperatingSystem OS)
 	{
-
+		super("New Backup");
+		
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -189,7 +189,7 @@ public class OSNewView extends JFrame implements SoftwareView,ActionListener
 		// The supported file system.
 		labels[0].setLabelFor(supportedFS);
 		String[] listData = { "FAT16", "FAT32", "NTFS", "EXT", "EXT2", "EXT3",
-				"ReiserFS", "Reiser4", "ZFS", "XFS" };
+				"EXT4", "ReiserFS", "Reiser4", "ZFS", "XFS" };
 		supportedFS = new JList(listData);
 		ListSelectionModel listSelectionModel = supportedFS.getSelectionModel();
 		listSelectionModel
@@ -210,7 +210,7 @@ public class OSNewView extends JFrame implements SoftwareView,ActionListener
 		}
 
 		panel.add(labels[0]);
-		panel.add(supportedFS);
+		panel.add(listPane);
 		childrenCount = childrenCount+2;
 
 

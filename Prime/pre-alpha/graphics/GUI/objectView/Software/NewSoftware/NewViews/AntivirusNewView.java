@@ -1,7 +1,6 @@
 package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 import graphics.ImageLocator;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 

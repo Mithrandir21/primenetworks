@@ -54,6 +54,8 @@ public class DatabaseNewView extends JFrame implements SoftwareView,ActionListen
 	 */
 	public DatabaseNewView(Object obj, Database db)
 	{
+		super("New Backup");
+		
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 

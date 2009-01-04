@@ -2,7 +2,6 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 
 import graphics.ImageLocator;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -121,14 +120,14 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this device");
+		JLabel label = new JLabel("Remove this component from this software");
 
-		Button save = new Button("Remove Component");
-		save.addActionListener(this);
-		save.setActionCommand("removeComp");
+		Button remove = new Button("Remove Software");
+		remove.addActionListener(this);
+		remove.setActionCommand("removeSoft");
 
 		buttons.add(label);
-		buttons.add(save);
+		buttons.add(remove);
 
 		c.gridx = 0;
 		c.gridy = 2;
@@ -159,13 +158,14 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 		labels[1] = new JLabel("Expiration Date");
 		labels[1].setToolTipText("The date that the AV will expire.");
 
-		labels[2] = new JLabel("Activated");
-		labels[2].setToolTipText("Whether or not the AV is activated.");
+		labels[2] = new JLabel("License");
+		labels[2].setToolTipText("The license key for the AV.");
+		
+		labels[3] = new JLabel("Activated");
+		labels[3].setToolTipText("Whether or not the AV is activated.");
 
-		labels[3] = new JLabel("License");
-		labels[3].setToolTipText("The license key for the AV.");
 
-
+		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
 
@@ -178,7 +178,10 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 
 		try
 		{
-			parsedAct = format.parse(av.getActivationDate().toString());
+			if ( av.getActivationDate() != null )
+			{
+				parsedAct = format.parse(av.getActivationDate().toString());
+			}
 		}
 		catch ( ParseException e )
 		{
@@ -186,12 +189,19 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 			System.out.println("Error - AntivirusEditView - Activated Date");
 		}
 
-		actDate.setText(parsedAct.toString());
+		if( av.getActivationDate() != null )
+		{
+			actDate.setText(parsedAct.toString());
+		}
+		else
+		{
+			actDate.setText("");
+		}
 		actDate.setToolTipText(labels[0].getToolTipText());
 
 		panel.add(labels[0]);
 		panel.add(actDate);
-
+		childrenCount = childrenCount+2;
 
 
 		// The Expiration date
@@ -202,74 +212,67 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 
 		try
 		{
-			parsedExp = format.parse(av.getExpirationDate().toString());
+			if ( av.getExpirationDate() != null )
+			{
+				parsedExp = format.parse(av.getExpirationDate().toString());
+			}
 		}
 		catch ( ParseException e )
 		{
 			// DO nothing.
 			System.out.println("Error - AntivirusEditView - Expiration Date");
 		}
-
-		expDate.setText(parsedExp.toString());
+		
+		if( av.getActivationDate() != null )
+		{
+			expDate.setText(parsedExp.toString());
+		}
+		else
+		{
+			expDate.setText("");
+		}
 		expDate.setToolTipText(labels[1].getToolTipText());
 
 		panel.add(labels[1]);
 		panel.add(expDate);
+		childrenCount = childrenCount+2;
 
 
+
+		// The license key
+		labels[2].setLabelFor(license);
+		license.setMaximumSize(tfSize);
+		license.setPreferredSize(tfSize);
+		license.setText(av.getLicense());
+		license.setToolTipText(labels[2].getToolTipText());
+
+
+		panel.add(labels[2]);
+		panel.add(license);
+		childrenCount = childrenCount+2;
+
+		
 
 		// Whether or not the AV has been avtivated.
-		labels[2].setLabelFor(activated);
+		labels[3].setLabelFor(activated);
 		activated = new JCheckBox();
-		activated.setToolTipText(labels[2].getToolTipText());
+		activated.setToolTipText(labels[3].getToolTipText());
 		activated.setActionCommand("activated");
 		activated.addActionListener(this);
 
 		activated.setSelected(av.getIsActivated());
 
 
-		panel.add(labels[2]);
-		panel.add(activated);
-
-
-
-		// The license key
-		labels[3].setLabelFor(license);
-		license.setMaximumSize(tfSize);
-		license.setPreferredSize(tfSize);
-		license.setText(av.getLicense());
-		license.setToolTipText(labels[3].getToolTipText());
-
-
 		panel.add(labels[3]);
-		panel.add(license);
-
-
-
-		JLabel temp1 = new JLabel("");
-		temp1.setMaximumSize(tfSize);
-		temp1.setPreferredSize(tfSize);
-
-		JLabel temp2 = new JLabel("");
-		temp2.setMaximumSize(tfSize);
-		temp2.setPreferredSize(tfSize);
-
-		JLabel temp3 = new JLabel("");
-		temp3.setMaximumSize(tfSize);
-		temp3.setPreferredSize(tfSize);
-
-		// adding components so that the layout is right
-		panel.add(temp1);
-		panel.add(temp2);
-		panel.add(temp3);
+		panel.add(activated);
+		childrenCount = childrenCount+2;
 
 
 		// Lay out the panel.
-		SpringUtilities.makeCompactGrid(panel, 2, 6, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-
-
+		
 
 		return panel;
 	}

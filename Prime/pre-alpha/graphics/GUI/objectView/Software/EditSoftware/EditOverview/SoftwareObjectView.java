@@ -293,7 +293,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = OSObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = "Producer: " + text;
+						info[1] = "Version: " + text;
 					}
 
 					text = OSObj.getDescription();
@@ -562,7 +562,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 	{
 		if ( e.getActionCommand().equals("edit") )
 		{
-			// hwEditor = new HardwareEditor(givenObject);
+			new SoftwareEditor (givenObject);
 		}
 		else if ( e.getActionCommand().equals("newSoft") )
 		{

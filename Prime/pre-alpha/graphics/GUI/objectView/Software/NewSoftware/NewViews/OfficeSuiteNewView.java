@@ -54,7 +54,8 @@ public class OfficeSuiteNewView extends JFrame implements SoftwareView,
 	 */
 	public OfficeSuiteNewView(Object obj, OfficeSuite offSuite)
 	{
-
+		super("New Backup");
+		
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 

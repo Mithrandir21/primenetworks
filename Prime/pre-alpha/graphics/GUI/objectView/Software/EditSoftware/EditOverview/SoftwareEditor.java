@@ -28,7 +28,7 @@ public class SoftwareEditor extends JFrame implements ActionListener
 {
 	private Object givenObject = null;
 
-
+	private SoftwareEditorTabbed view;
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
@@ -61,9 +61,9 @@ public class SoftwareEditor extends JFrame implements ActionListener
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
 
-		// view = new HardwareEditorTabbed(obj);
-		//
-		// panel.add(view);
+		 view = new SoftwareEditorTabbed(obj);
+		
+		 panel.add(view);
 
 
 

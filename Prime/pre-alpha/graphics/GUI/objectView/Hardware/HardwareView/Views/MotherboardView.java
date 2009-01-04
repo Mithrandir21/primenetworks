@@ -154,12 +154,12 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 		JLabel label = new JLabel(
 				"Remove all components attached to this Motherboard");
 
-		Button save = new Button("Remove All Other Components");
-		save.addActionListener(this);
-		save.setActionCommand("removeComp");
+		Button remove = new Button("Remove All Other Components");
+		remove.addActionListener(this);
+		remove.setActionCommand("removeComp");
 
 		buttons.add(label);
-		buttons.add(save);
+		buttons.add(remove);
 
 		c.gridx = 0;
 		c.gridy = 2;

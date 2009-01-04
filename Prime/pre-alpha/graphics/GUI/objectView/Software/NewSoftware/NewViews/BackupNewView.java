@@ -51,7 +51,7 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 	private String[] OSs;
 
 	// The type of backup
-	private JTextField backupType;
+	private JTextField backupType = new JTextField(7);
 
 	// Whether or not the software can use compression
 	private JCheckBox compression;
@@ -71,6 +71,8 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 
 	public BackupNewView(Object obj, Backup back)
 	{
+		super("New Backup");
+		
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -154,20 +156,20 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 		JLabel[] labels = new JLabel[5];
 
 
-		labels[0] = new JLabel("Activated Date");
-		labels[0].setToolTipText("The date that the AV was activated.");
+		labels[0] = new JLabel("Supported OS");
+		labels[0].setToolTipText("The supported Operating Systems by the software.");
 
-		labels[1] = new JLabel("Expiration Date");
-		labels[1].setToolTipText("The date that the AV will expire.");
+		labels[1] = new JLabel("Backup Type");
+		labels[1].setToolTipText("The type of backup.(\"Complete\" or just \"Changes\")");
 
-		labels[2] = new JLabel("Activated");
-		labels[2].setToolTipText("Whether or not the AV is activated.");
+		labels[2] = new JLabel("Supports Compression");
+		labels[2].setToolTipText("Whether or not the software support compression.");
 
-		labels[3] = new JLabel("License");
-		labels[3].setToolTipText("The license key for the AV.");
+		labels[3] = new JLabel("Supports Encryption");
+		labels[3].setToolTipText("Whether or not the software support encryption.");
 		
 		labels[4] = new JLabel("Duplicates");
-		labels[4].setToolTipText("The license key for the AV.");
+		labels[4].setToolTipText("How many duplicates of the backup the software keeps track of.");
 
 
 		int childrenCount = 0;
@@ -203,20 +205,6 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 		childrenCount = childrenCount+2;
 
 
-		// The type of backup
-		labels[1].setLabelFor(backupType);
-		backupType = new JTextField();
-		backupType.setMaximumSize(tfSize);
-		backupType.setPreferredSize(tfSize);
-		backupType.setText(mainBack.getBackupType());
-		backupType.setToolTipText(labels[1].getToolTipText());
-
-
-		panel.add(labels[1]);
-		panel.add(backupType);
-		childrenCount = childrenCount+2;
-
-
 		// Whether or not the software can use compression
 		labels[2].setLabelFor(compression);
 		compression = new JCheckBox();
@@ -246,6 +234,20 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 
 		panel.add(labels[3]);
 		panel.add(encryption);
+		childrenCount = childrenCount+2;
+		
+		
+		// The type of backup
+		labels[1].setLabelFor(backupType);
+		backupType = new JTextField();
+		backupType.setMaximumSize(tfSize);
+		backupType.setPreferredSize(tfSize);
+		backupType.setText(mainBack.getBackupType());
+		backupType.setToolTipText(labels[1].getToolTipText());
+
+
+		panel.add(labels[1]);
+		panel.add(backupType);
 		childrenCount = childrenCount+2;
 
 

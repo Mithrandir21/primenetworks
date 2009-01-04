@@ -5,7 +5,6 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -104,7 +103,8 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView,
 	 */
 	public SecuritySuiteNewView(Object obj, SecuritySuite secSuite)
 	{
-
+		super("New Backup");
+		
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 

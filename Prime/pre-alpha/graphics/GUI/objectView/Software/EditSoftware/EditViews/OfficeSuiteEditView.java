@@ -106,14 +106,14 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareView,
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this device");
+		JLabel label = new JLabel("Remove this component from this software");
 
-		Button save = new Button("Remove Component");
-		save.addActionListener(this);
-		save.setActionCommand("removeComp");
+		Button remove = new Button("Remove Software");
+		remove.addActionListener(this);
+		remove.setActionCommand("removeSoft");
 
 		buttons.add(label);
-		buttons.add(save);
+		buttons.add(remove);
 
 		c.gridx = 0;
 		c.gridy = 2;
@@ -151,6 +151,7 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareView,
 		labels[3].setToolTipText("The license key for the AV.");
 
 
+		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 
 

@@ -134,14 +134,14 @@ public class BackupEditView extends JPanel implements SoftwareView,
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this device");
+		JLabel label = new JLabel("Remove this component from this software");
 
-		Button save = new Button("Remove Component");
-		save.addActionListener(this);
-		save.setActionCommand("removeComp");
+		Button remove = new Button("Remove Software");
+		remove.addActionListener(this);
+		remove.setActionCommand("removeSoft");
 
 		buttons.add(label);
-		buttons.add(save);
+		buttons.add(remove);
 
 		c.gridx = 0;
 		c.gridy = 2;
@@ -166,23 +166,23 @@ public class BackupEditView extends JPanel implements SoftwareView,
 		JLabel[] labels = new JLabel[5];
 
 
-		labels[0] = new JLabel("Activated Date");
-		labels[0].setToolTipText("The date that the AV was activated.");
+		labels[0] = new JLabel("Supported OS");
+		labels[0].setToolTipText("The supported Operating Systems by the software.");
 
-		labels[1] = new JLabel("Expiration Date");
-		labels[1].setToolTipText("The date that the AV will expire.");
+		labels[1] = new JLabel("Backup Type");
+		labels[1].setToolTipText("The type of backup.(\"Complete\" or just \"Changes\")");
 
-		labels[2] = new JLabel("Activated");
-		labels[2].setToolTipText("Whether or not the AV is activated.");
+		labels[2] = new JLabel("Supports Compression");
+		labels[2].setToolTipText("Whether or not the software support compression.");
 
-		labels[3] = new JLabel("License");
-		labels[3].setToolTipText("The license key for the AV.");
+		labels[3] = new JLabel("Supports Encryption");
+		labels[3].setToolTipText("Whether or not the software support encryption.");
 		
-		labels[4] = new JLabel("License");
-		labels[4].setToolTipText("The license key for the AV.");
-		// FIXME
-		
+		labels[4] = new JLabel("Duplicates");
+		labels[4].setToolTipText("How many duplicates of the backup the software keeps track of.");
 
+
+		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 
 
@@ -195,8 +195,8 @@ public class BackupEditView extends JPanel implements SoftwareView,
 		listSelectionModel
 				.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supportedOS);
-		listPane.setMaximumSize(new Dimension(90, 60));
-		listPane.setPreferredSize(new Dimension(90, 60));
+		listPane.setMaximumSize(new Dimension(160, 60));
+		listPane.setPreferredSize(new Dimension(160, 60));
 		listSelectionModel
 				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
@@ -212,18 +212,7 @@ public class BackupEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-
-
-		// The type of backup
-		labels[1].setLabelFor(backupType);
-		backupType.setMaximumSize(tfSize);
-		backupType.setPreferredSize(tfSize);
-		backupType.setText(mainBack.getBackupType());
-		backupType.setToolTipText(labels[1].getToolTipText());
-
-
-		panel.add(labels[1]);
-		panel.add(backupType);
+		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software can use compression
@@ -239,6 +228,7 @@ public class BackupEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[2]);
 		panel.add(compression);
+		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software can use encryption
@@ -254,6 +244,21 @@ public class BackupEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[3]);
 		panel.add(encryption);
+		childrenCount = childrenCount+2;
+		
+		
+		// The type of backup
+		labels[1].setLabelFor(backupType);
+		backupType = new JTextField();
+		backupType.setMaximumSize(tfSize);
+		backupType.setPreferredSize(tfSize);
+		backupType.setText(mainBack.getBackupType());
+		backupType.setToolTipText(labels[1].getToolTipText());
+
+
+		panel.add(labels[1]);
+		panel.add(backupType);
+		childrenCount = childrenCount+2;
 
 
 		// The number of copies keeps
@@ -273,8 +278,14 @@ public class BackupEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[4]);
 		panel.add(duplicate);
+		childrenCount = childrenCount+2;
 
-
+		
+		// Lay out the panel.
+		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
+				10, 10, // initX, initY
+				20, 20); // xPad, yPad
+		
 
 		return panel;
 	}

@@ -130,12 +130,12 @@ public class InternalNICView extends JPanel implements HardwareViewInterface,
 
 		JLabel label = new JLabel("Remove this component from this device");
 
-		Button save = new Button("Remove Component");
-		save.addActionListener(this);
-		save.setActionCommand("removeComp");
+		Button remove = new Button("Remove Component");
+		remove.addActionListener(this);
+		remove.setActionCommand("removeComp");
 
 		buttons.add(label);
-		buttons.add(save);
+		buttons.add(remove);
 
 		c.gridx = 0;
 		c.gridy = 2;

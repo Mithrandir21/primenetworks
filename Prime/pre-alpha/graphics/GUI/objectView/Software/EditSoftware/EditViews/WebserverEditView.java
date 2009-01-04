@@ -3,7 +3,6 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -171,14 +170,14 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this device");
+		JLabel label = new JLabel("Remove this component from this software");
 
-		Button save = new Button("Remove Component");
-		save.addActionListener(this);
-		save.setActionCommand("removeComp");
+		Button remove = new Button("Remove Software");
+		remove.addActionListener(this);
+		remove.setActionCommand("removeSoft");
 
 		buttons.add(label);
-		buttons.add(save);
+		buttons.add(remove);
 
 		c.gridx = 0;
 		c.gridy = 2;
@@ -200,7 +199,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 	private JPanel createSpesificInfo(Webserver webserver)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
-		JLabel[] labels = new JLabel[15];
+		JLabel[] labels = new JLabel[16];
 
 
 		labels[0] = new JLabel("Supported OS");
@@ -264,6 +263,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 				.setToolTipText("Whether or not the software supports ASP .Net.");
 
 
+		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 
 		// --------------------------------------------------------------
@@ -277,8 +277,8 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 		listSelectionModel
 				.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supportedOS);
-		listPane.setMaximumSize(new Dimension(90, 60));
-		listPane.setPreferredSize(new Dimension(90, 60));
+		listPane.setMaximumSize(new Dimension(130, 60));
+		listPane.setPreferredSize(new Dimension(130, 60));
 		listSelectionModel
 				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
@@ -294,6 +294,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[0]);
 		panel.add(listPane);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -310,6 +311,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[1]);
 		panel.add(hasVirtualHosting);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -326,6 +328,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[2]);
 		panel.add(hasCompression);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -342,6 +345,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[3]);
 		panel.add(supportsBasic);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -358,6 +362,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[4]);
 		panel.add(supportsDigest);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -374,6 +379,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[5]);
 		panel.add(supportsSSL);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -390,6 +396,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[6]);
 		panel.add(supportsTSL);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -406,6 +413,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[7]);
 		panel.add(supportsIPv6);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -422,6 +430,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[8]);
 		panel.add(supportsSSI);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -438,6 +447,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[9]);
 		panel.add(supportsCGI);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -455,6 +465,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[10]);
 		panel.add(supportsSCGI);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -471,6 +482,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[11]);
 		panel.add(supportsFastCGI);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -487,6 +499,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[12]);
 		panel.add(supportsJSP);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -503,6 +516,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[13]);
 		panel.add(supportsPHP);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -519,6 +533,7 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[14]);
 		panel.add(supportsASP);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -533,14 +548,15 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		supportsASPnet.setSelected(mainWebSer.supportsASPnet());
 
-		panel.add(labels[14]);
+		panel.add(labels[15]);
 		panel.add(supportsASPnet);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
 
 		// Lay out the panel.
-		SpringUtilities.makeCompactGrid(panel, 5, 6, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 

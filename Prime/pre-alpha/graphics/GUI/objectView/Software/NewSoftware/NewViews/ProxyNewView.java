@@ -5,7 +5,6 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -105,7 +104,8 @@ public class ProxyNewView extends JFrame implements SoftwareView,
 	 */
 	public ProxyNewView(Object obj, Proxy proxy)
 	{
-
+		super("New Backup");
+		
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 

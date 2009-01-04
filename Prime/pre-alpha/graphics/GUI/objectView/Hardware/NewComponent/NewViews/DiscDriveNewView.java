@@ -240,7 +240,7 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 
 		// The subtype of the ram
 		labels[3].setLabelFor(subtype);
-		String[] subtypeString = { "", "DualLayer", "DoubleSided" };
+		String[] subtypeString = { "", "DualLayer", "DoubleSided", "DualLayer/DoubleSided" };
 		subtype = new JComboBox(subtypeString);
 		subtype.setMaximumSize(tfSize);
 		subtype.setPreferredSize(tfSize);

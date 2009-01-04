@@ -3,7 +3,6 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -147,14 +146,14 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this device");
+		JLabel label = new JLabel("Remove this component from this software");
 
-		Button save = new Button("Remove Component");
-		save.addActionListener(this);
-		save.setActionCommand("removeComp");
+		Button remove = new Button("Remove Software");
+		remove.addActionListener(this);
+		remove.setActionCommand("removeSoft");
 
 		buttons.add(label);
-		buttons.add(save);
+		buttons.add(remove);
 
 		c.gridx = 0;
 		c.gridy = 2;
@@ -176,37 +175,41 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 	private JPanel createSpesificInfo(SecuritySuite secSuite)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
-		JLabel[] labels = new JLabel[7];
+		JLabel[] labels = new JLabel[8];
 
 
 		labels[0] = new JLabel("Supported OS");
 		labels[0]
 				.setToolTipText("The supported Operating Systems by the software.");
+		
+		labels[1] = new JLabel("Activated");
+		labels[1].setToolTipText("Whether or not the AV is activated.");
 
-		labels[1] = new JLabel("License");
-		labels[1].setToolTipText("The actual license of the program.");
+		labels[2] = new JLabel("License");
+		labels[2].setToolTipText("The actual license of the program.");
 
-		labels[2] = new JLabel("Has Antivirus");
-		labels[2]
+		labels[3] = new JLabel("Has Antivirus");
+		labels[3]
 				.setToolTipText("Whether or not the security suite contains an antivirus.");
 
-		labels[3] = new JLabel("Has Firewall");
-		labels[3]
+		labels[4] = new JLabel("Has Firewall");
+		labels[4]
 				.setToolTipText("Whether or not the security suite contains an firewall.");
 
-		labels[4] = new JLabel("Has Proxy");
-		labels[4]
+		labels[5] = new JLabel("Has Proxy");
+		labels[5]
 				.setToolTipText("Whether or not the security suite contains an proxy.");
 
-		labels[5] = new JLabel("Activated");
-		labels[5]
+		labels[6] = new JLabel("Activated");
+		labels[6]
 				.setToolTipText("The date the license for the software was activated.");
 
-		labels[6] = new JLabel("Expires");
-		labels[6]
+		labels[7] = new JLabel("Expires");
+		labels[7]
 				.setToolTipText("The date the license for the software expires.");
 
 
+		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
 
@@ -221,8 +224,8 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 		listSelectionModel
 				.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supportedOS);
-		listPane.setMaximumSize(new Dimension(90, 60));
-		listPane.setPreferredSize(new Dimension(90, 60));
+		listPane.setMaximumSize(new Dimension(130, 60));
+		listPane.setPreferredSize(new Dimension(130, 60));
 		listSelectionModel
 				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
@@ -238,6 +241,7 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[0]);
 		panel.add(listPane);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -254,6 +258,7 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[1]);
 		panel.add(activated);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -268,6 +273,7 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[2]);
 		panel.add(license);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -284,6 +290,7 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[3]);
 		panel.add(hasAntivirus);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -305,6 +312,7 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[4]);
 		panel.add(hasFirewall);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -321,6 +329,7 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[5]);
 		panel.add(hasProxy);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -332,8 +341,11 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		try
 		{
-			parsedAct = format.parse(mainSecSuite.getActivationDate()
-					.toString());
+			if ( mainSecSuite.getActivationDate() != null )
+			{
+				parsedAct = format.parse(mainSecSuite.getActivationDate()
+						.toString());
+			}
 		}
 		catch ( ParseException e )
 		{
@@ -342,11 +354,15 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 					.println("Error - SecuritySuiteEditView - Activated Date");
 		}
 
-		actDate.setText(parsedAct.toString());
+		if ( parsedAct != null )
+		{
+			actDate.setText(parsedAct.toString());
+		}
 		actDate.setToolTipText(labels[6].getToolTipText());
 
 		panel.add(labels[6]);
 		panel.add(actDate);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -358,8 +374,11 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		try
 		{
-			parsedExp = format.parse(mainSecSuite.getExpirationDate()
-					.toString());
+			if ( mainSecSuite.getExpirationDate() != null )
+			{
+				parsedExp = format.parse(mainSecSuite.getExpirationDate()
+						.toString());
+			}
 		}
 		catch ( ParseException e )
 		{
@@ -368,38 +387,22 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 					.println("Error - SecuritySuiteEditView - Expiration Date");
 		}
 
-		expDate.setText(parsedExp.toString());
+		if ( parsedExp != null )
+		{
+			expDate.setText(parsedExp.toString());
+		}
 		expDate.setToolTipText(labels[7].getToolTipText());
 
 		panel.add(labels[7]);
 		panel.add(expDate);
+		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
-		JLabel temp1 = new JLabel("");
-		temp1.setMaximumSize(tfSize);
-		temp1.setPreferredSize(tfSize);
-
-		JLabel temp2 = new JLabel("");
-		temp2.setMaximumSize(tfSize);
-		temp2.setPreferredSize(tfSize);
-
-		JLabel temp3 = new JLabel("");
-		temp3.setMaximumSize(tfSize);
-		temp3.setPreferredSize(tfSize);
-
-		JLabel temp4 = new JLabel("");
-		temp4.setMaximumSize(tfSize);
-		temp4.setPreferredSize(tfSize);
-		// adding components so that the layout is right
-		panel.add(temp1);
-		panel.add(temp2);
-		panel.add(temp3);
-		panel.add(temp4);
 
 
 		// Lay out the panel.
-		SpringUtilities.makeCompactGrid(panel, 3, 6, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 

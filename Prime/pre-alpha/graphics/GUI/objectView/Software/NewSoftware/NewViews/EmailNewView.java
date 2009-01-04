@@ -3,7 +3,6 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -92,6 +91,8 @@ public class EmailNewView extends JFrame implements SoftwareView,
 	 */
 	public EmailNewView(Object obj, Email email)
 	{
+		super("New Backup");
+		
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 

@@ -439,7 +439,10 @@ public class NetworkObjectView extends JPanel
 
 		if ( mbObj != null )
 		{
-			info[2] = "Socket: " + mbObj.getSocket();
+			if ( mbObj.getSocket() != "" ) 
+			{
+				info[2] = "Socket: " + mbObj.getSocket();
+			}
 		}
 
 		if ( cpus != null )

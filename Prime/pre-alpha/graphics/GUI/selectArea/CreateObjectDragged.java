@@ -11,6 +11,7 @@ import infrastructure.Hub;
 import infrastructure.Router;
 import infrastructure.Switch;
 import objects.Object;
+import objects.Software;
 import peripheral.Printer;
 import peripheral.Scanner;
 import servers.BackupServer;
@@ -32,6 +33,8 @@ public class CreateObjectDragged
 {
 
 	private Object[] st_components = new Object[5];
+	
+	private Software[] st_software = new Software[1];
 
 
 	/**
@@ -52,6 +55,7 @@ public class CreateObjectDragged
 		String objectType = iconObject.getClassType().getName();
 
 		createComponentsArray();
+		createSoftwareArray();
 
 		if ( objectType.equals("clients.Desktop") )
 		{
@@ -124,6 +128,9 @@ public class CreateObjectDragged
 
 
 
+	/**
+	 * 
+	 */
 	private void createComponentsArray()
 	{
 		st_components[0] = PrimeMain1.standard_internal_components.getSt_MB();
@@ -142,6 +149,15 @@ public class CreateObjectDragged
 		st_components[4] = PrimeMain1.standard_internal_components
 				.getSt_DVDRW();
 	}
+	
+	
+	/**
+	 * 
+	 */
+	private void createSoftwareArray()
+	{
+		st_software[0] = PrimeMain1.standard_software.getSt_OS();
+	}
 
 
 
@@ -157,9 +173,13 @@ public class CreateObjectDragged
 			objectDesc = objectName;
 		}
 
-
-		return new Desktop(objectName, objectDesc,
+		Desktop temp = new Desktop(objectName, objectDesc,
 				supportedConnectionInterfaces, st_components);
+
+		// Adds OS
+		temp.setSoftware(st_software);
+		
+		return temp;
 	}
 
 
@@ -176,9 +196,13 @@ public class CreateObjectDragged
 			objectDesc = objectName;
 		}
 
-
-		return new Laptop(objectName, objectDesc,
+		Laptop temp = new Laptop(objectName, objectDesc,
 				supportedConnectionInterfaces, st_components);
+		
+		// Adds OS
+		temp.setSoftware(st_software);
+		
+		return temp;
 	}
 
 
@@ -198,8 +222,13 @@ public class CreateObjectDragged
 		// TODO - ThinClient
 
 
-		return new Laptop(objectName, objectDesc,
+		Laptop temp = new Laptop(objectName, objectDesc,
 				supportedConnectionInterfaces, st_components);
+		
+		// Adds OS
+		temp.setSoftware(st_software);
+		
+		return temp;
 	}
 
 
@@ -226,9 +255,14 @@ public class CreateObjectDragged
 		serverMB.setIntegLANPortsAvailable(2);
 
 
-		return new HTTPServer(objectName, objectDesc,
+		HTTPServer temp = new HTTPServer(objectName, objectDesc,
 				supportedConnectionInterfaces, st_components, ObjectSWname,
 				ObjectSWdesc, ObjectSWversion);
+			
+		// Adds OS
+		temp.setSoftware(st_software);
+		
+		return temp;
 	}
 
 
@@ -256,9 +290,14 @@ public class CreateObjectDragged
 		serverMB.setIntegLANPortsAvailable(2);
 
 
-		return new BackupServer(objectName, objectDesc,
+		BackupServer temp = new BackupServer(objectName, objectDesc,
 				supportedConnectionInterfaces, st_components, ObjectSWname,
 				ObjectSWdesc, ObjectSWversion);
+			
+		// Adds OS
+		temp.setSoftware(st_software);
+		
+		return temp;
 	}
 
 
@@ -285,9 +324,14 @@ public class CreateObjectDragged
 		serverMB.setIntegLANPortsAvailable(2);
 
 
-		return new MailServer(objectName, objectDesc,
+		MailServer temp = new MailServer(objectName, objectDesc,
 				supportedConnectionInterfaces, st_components, ObjectSWname,
 				ObjectSWdesc, ObjectSWversion);
+			
+		// Adds OS
+		temp.setSoftware(st_software);
+		
+		return temp;
 	}
 
 
@@ -313,10 +357,14 @@ public class CreateObjectDragged
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
-
-		return new FirewallServer(objectName, objectDesc,
+		FirewallServer temp = new FirewallServer(objectName, objectDesc,
 				supportedConnectionInterfaces, st_components, ObjectSWname,
 				ObjectSWdesc, ObjectSWversion);
+		
+		// Adds OS
+		temp.setSoftware(st_software);
+		
+		return temp;
 	}
 
 
@@ -342,10 +390,13 @@ public class CreateObjectDragged
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
-
-		return new ProxyServer(objectName, objectDesc,
+		ProxyServer temp = new ProxyServer(objectName, objectDesc,
 				supportedConnectionInterfaces, st_components, ObjectSWname,
 				ObjectSWdesc, ObjectSWversion);
+		
+		temp.setSoftware(st_software);
+		
+		return temp;
 	}
 
 

@@ -2,7 +2,6 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -130,6 +129,7 @@ public class FirewallNewView extends JFrame implements SoftwareView,
 	 */
 	public FirewallNewView(Object obj, Firewall fw)
 	{
+		super("New Backup");
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -225,7 +225,7 @@ public class FirewallNewView extends JFrame implements SoftwareView,
 		labels[2]
 				.setToolTipText("Whether or not the software supports stateful firewall.");
 
-		labels[3] = new JLabel("Supports DPI");
+		labels[3] = new JLabel("DPI");
 		labels[3]
 				.setToolTipText("Whether or not the software supports DPI, Deep package inspection.");
 
@@ -251,39 +251,39 @@ public class FirewallNewView extends JFrame implements SoftwareView,
 		labels[9]
 				.setToolTipText("Whether or not the software supports Modularity, third-party modules to extend functionality.");
 
-		labels[10] = new JLabel("Supports IPv6");
+		labels[10] = new JLabel("IPv6");
 		labels[10]
 				.setToolTipText("Whether or not the software supports IP version 6.");
 
-		labels[11] = new JLabel("Supports TTL");
+		labels[11] = new JLabel("TTL");
 		labels[11]
 				.setToolTipText("Whether or not the software supports TTL, Transparent to traceroute.");
 
-		labels[12] = new JLabel("Supports RWA");
+		labels[12] = new JLabel("RWA");
 		labels[12]
 				.setToolTipText("Whether or not the software supports RWA, Reject-with-answer.");
 
-		labels[13] = new JLabel("Supports DMZ");
+		labels[13] = new JLabel("DMZ");
 		labels[13]
 				.setToolTipText("Whether or not the software supports a DMZ, de-militarized zone.");
 
-		labels[14] = new JLabel("Supports ToD Filter");
+		labels[14] = new JLabel("ToD Filter");
 		labels[14]
 				.setToolTipText("Whether or not the software supports ToDFilter, Time of day filter.");
 
-		labels[15] = new JLabel("Supports Forwarding");
+		labels[15] = new JLabel("Forwarding");
 		labels[15]
 				.setToolTipText("Whether or not the software supports forwarding.");
 
-		labels[16] = new JLabel("Supports Port Forwarding");
+		labels[16] = new JLabel("Port Forwarding");
 		labels[16]
 				.setToolTipText("Whether or not the software supports port forwarding.");
 
-		labels[17] = new JLabel("Supports QoS");
+		labels[17] = new JLabel("QoS");
 		labels[17]
 				.setToolTipText("Whether or not the software supports QoS, quality of service.");
 
-		labels[18] = new JLabel("Supports Tarpit");
+		labels[18] = new JLabel("Tarpit");
 		labels[18]
 				.setToolTipText("Whether or not the software supports TP, tarpit.");
 
