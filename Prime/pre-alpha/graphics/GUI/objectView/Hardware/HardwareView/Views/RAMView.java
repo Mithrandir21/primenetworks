@@ -131,13 +131,16 @@ public class RAMView extends JPanel implements HardwareViewInterface, ActionList
 		this.add(buttons, c);
 	}
 
-
+	
 	/**
-	 * Javadoc-TODO - Description
+	 * This method creates and returns a JPanel that contains all the
+	 * different settings of the given Hardware object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
+	 * all the different components in the JPanel in grids.
 	 * 
-	 * @param ram
-	 * @return
-	 */
+	 * @param ram The Hardware that will be examined and will fill inn the fields.
+	 * @return A JPanel that contains fields to set the given objects settings.
+	 */	
 	private JPanel createSpesificInfo(Ram ram)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -327,12 +330,12 @@ public class RAMView extends JPanel implements HardwareViewInterface, ActionList
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
-	 * validateNecessaryData()
+
+
+	/**
+	 * TODO - Description
+	 * 
 	 */
-	@Override
 	public boolean validateNecessaryData()
 	{
 		// Checks the name of the motherboard
@@ -363,14 +366,6 @@ public class RAMView extends JPanel implements HardwareViewInterface, ActionList
 		// Possibility for more checks on the CPU values.
 
 		return true;
-	}
-
-
-	@Override
-	public boolean validateData()
-	{
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 

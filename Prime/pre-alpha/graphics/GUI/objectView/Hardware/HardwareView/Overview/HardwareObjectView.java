@@ -27,7 +27,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import objects.Clients;
 import objects.Object;
+import objects.Servers;
 
 
 /**
@@ -484,22 +486,35 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		d.insets = new Insets(10, 10, 10, 10);
 
 
+		if ( obj instanceof Clients || obj instanceof Servers )
+		{
+			JPanel buttons = new JPanel();
+			buttons.setLayout(new FlowLayout(FlowLayout.LEADING));
 
-		JPanel buttons = new JPanel();
-		buttons.setLayout(new FlowLayout(FlowLayout.LEADING));
+			Button edit = new Button("Edit Components");
+			edit.addActionListener(this);
+			edit.setActionCommand("edit");
 
-		Button edit = new Button("Edit");
-		edit.addActionListener(this);
-		edit.setActionCommand("edit");
+			Button addNew = new Button("New Components");
+			addNew.addActionListener(this);
+			addNew.setActionCommand("newComp");
 
-		Button addNew = new Button("New Component");
-		addNew.addActionListener(this);
-		addNew.setActionCommand("newComp");
+			buttons.add(edit);
+			buttons.add(addNew);
 
-		buttons.add(edit);
-		buttons.add(addNew);
+			this.add(buttons, d);
+		}
+		else
+		{
+			JPanel note = new JPanel();
+			note.setLayout(new FlowLayout(FlowLayout.LEADING));
 
-		this.add(buttons, d);
+			JLabel text = new JLabel(
+					"You can currently not add hardware to infrastructure or peripherals.");
+			note.add(text);
+
+			this.add(note, d);
+		}
 
 	}
 

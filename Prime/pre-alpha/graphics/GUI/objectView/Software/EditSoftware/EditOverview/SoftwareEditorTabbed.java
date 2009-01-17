@@ -1,6 +1,7 @@
 package graphics.GUI.objectView.Software.EditSoftware.EditOverview;
 
 
+import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditViews.AntivirusEditView;
 import graphics.GUI.objectView.Software.EditSoftware.EditViews.BackupEditView;
@@ -18,6 +19,7 @@ import java.awt.Component;
 import javax.swing.JTabbedPane;
 
 import managment.ComponentsManagment;
+import managment.SoftwareManagment;
 import objects.Object;
 import objects.Software;
 import software.Antivirus;
@@ -144,84 +146,23 @@ public class SoftwareEditorTabbed extends JTabbedPane
 	 * if the boolean given is true, calls also the validation methods on all
 	 * views. If any of the validations fail, none save methods will be called.
 	 * 
-	 * @param verify
-	 *            Boolean saying if validation should be run on the data.
-	 * @return If the save methods in each of the views does not return false,
-	 *         which would mean that it did not save, the method will return
-	 *         true. Else it will return false;
 	 */
-	public boolean save(boolean verify)
+	public void save()
 	{
-		boolean validationFailed = false;
-
-
-		// If verify is set, the views will be validated.
-		if ( verify )
+		/**
+		 * Goes through all the views and saves the values since none of the
+		 * views failed its validation.
+		 */
+		for ( int i = 0; i < this.getComponentCount(); i++ )
 		{
-			// Boolean array that contains the validation status of each view.
-			boolean[] verified = new boolean[this.getComponentCount()];
-			
-			// FIXME
-//			/**
-//			 * Goes through all the views and gets the validation status of each
-//			 * one and places that boolean in the validation array.
-//			 */
-//			for ( int i = 0; i < this.getComponentCount(); i++ )
-//			{
-//				Component comp = this.getComponent(i);
-//
-//				verified[i] = ((HardwareViewInterface) comp).validateNecessaryData();
-//			}
+			Component comp = this.getComponent(i);
 
-			/**
-			 * If any of the validation function in any of the views return
-			 * false the loop will end and none of the values for any of the
-			 * views will be saved. The JFrame will also not exit so the user
-			 * has a chance to change the value.
-			 */
-			for ( int i = 0; i < verified.length; i++ )
-			{
-				if ( verified[i] == false )
-				{
-					validationFailed = true;
-					i = verified.length;
-				}
-			}
+			((SoftwareView) comp).save();
 		}
-		// Checks if any of the views failed its validation.
-		if ( validationFailed == false )
-		{
-			/**
-			 * Goes through all the views and saves the values since none of the
-			 * views failed its validation.
-			 */
-			for ( int i = 0; i < this.getComponentCount(); i++ )
-			{
-				Component comp = this.getComponent(i);
-
-				((SoftwareView) comp).save();
-			}
-
-			// // The motherboard save.
-			// Component comp = this.getComponent(0);
-			// ((HardwareView) comp).save();
-
-
-			ComponentsManagment.processAllChanges(mainobj);
-
-
-			// Returns a boolean showing that everything i saved.
-			return true;
-		}
-		// Atleast one of the validations have failed.
-		else
-		{
-			/**
-			 * Shows that at least one of the validations have failed and that
-			 * nothing has been saved.
-			 */
-			return false;
-		}
+		
+		
+		// Process all changes to the software of the object
+		SoftwareManagment.processAllChanges(mainobj);
 	}
 
 

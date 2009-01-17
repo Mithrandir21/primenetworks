@@ -149,11 +149,14 @@ public class RAMNewView extends JFrame implements HardwareViewInterface, ActionL
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This method creates and returns a JPanel that contains all the
+	 * different settings of the given Hardware object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
+	 * all the different components in the JPanel in grids.
 	 * 
-	 * @param ram
-	 * @return
-	 */
+	 * @param ram The Hardware that will be examined and will fill inn the fields.
+	 * @return A JPanel that contains fields to set the given objects settings.
+	 */	
 	private JPanel createSpesificInfo(Ram ram)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -299,9 +302,8 @@ public class RAMNewView extends JFrame implements HardwareViewInterface, ActionL
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
 	 * 
-	 * @return
 	 */
 	private JPanel createButtons()
 	{
@@ -367,12 +369,6 @@ public class RAMNewView extends JFrame implements HardwareViewInterface, ActionL
 	}
 
 
-	@Override
-	public boolean validateNecessaryData()
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -403,15 +399,5 @@ public class RAMNewView extends JFrame implements HardwareViewInterface, ActionL
 		{
 			this.dispose();
 		}
-
 	}
-
-
-	@Override
-	public boolean validateData()
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

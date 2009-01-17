@@ -20,6 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import objects.ExternalHardware;
+import objects.Infrastructure;
 import objects.Object;
 import objects.Software;
 
@@ -205,10 +207,25 @@ public class SoftwareEditor extends JFrame implements ActionListener
 
 
 	@Override
-	public void actionPerformed(ActionEvent arg0)
+	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
+		if ( e.getActionCommand().equals("save") )
+		{
+			view.save();
+				
+			this.dispose();
+		}
+		else if ( e.getActionCommand().equals("apply") )
+		{
+			// Saves the information with the option of verification.
+			view.save();
+		}
+		else
+		{
+			assert (e.getActionCommand().equals("cancel"));
 
+			this.dispose();
+		}
 	}
 
 	

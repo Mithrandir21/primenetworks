@@ -291,8 +291,7 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 
 
 	/**
-	 * Function to add component(s) to the the components list. TODO - CHECK IF
-	 * THE SYSTEM IS CAPABLE OF INSTALLING NEW COMPONENTS.
+	 * Function to add component(s) to the the components list.
 	 * 
 	 * @param NewComponents
 	 *            An array of new components.
@@ -352,8 +351,7 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 
 
 	/**
-	 * Function to add device(s) to the the connceted devices list. TODO - CHECK
-	 * IF THE SYSTEM IS CAPABLE OF INSTALLING NEW DEVICES.
+	 * Function to add device(s) to the the connceted devices list.
 	 * 
 	 * @param NewConnectedDevices
 	 *            An array of new devices.

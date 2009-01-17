@@ -14,7 +14,8 @@ import objects.Object;
 
 
 /**
- * TODO - Description NEEDED!
+ * The JTabbedPane class that will contain all the different tabs showing
+ * all object information. 
  * 
  * @author Bahram Malaekeh
  */
@@ -32,7 +33,12 @@ public class ObjectViewTabbed extends JTabbedPane
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Constructor that creates all the different tabs that show different 
+	 * information about the given object. This includes general, hardware,
+	 * software and network information. 
+	 * 
+	 * @param obj
+	 * 			The object that will be examined for information
 	 */
 	public ObjectViewTabbed(Object obj)
 	{
@@ -43,16 +49,20 @@ public class ObjectViewTabbed extends JTabbedPane
 
 		hardObjView = new HardwareObjectView(obj);
 		String hardwareDesc = "General information and option";
-		JScrollPane scrollPane = new JScrollPane(hardObjView);
-		scrollPane.setViewportView(hardObjView);
-		scrollPane
+		JScrollPane scrollPaneHW = new JScrollPane(hardObjView);
+		scrollPaneHW.setViewportView(hardObjView);
+		scrollPaneHW
 				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		this.addTab("Hardware", null, scrollPane, hardwareDesc);
+		this.addTab("Hardware", null, scrollPaneHW, hardwareDesc);
 
 
 		softObjView = new SoftwareObjectView(obj);
 		String softDesc = "General information and option";
-		this.addTab("Software", null, softObjView, softDesc);
+		JScrollPane scrollPaneSW = new JScrollPane(softObjView);
+		scrollPaneSW.setViewportView(softObjView);
+		scrollPaneSW
+				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		this.addTab("Software", null, scrollPaneSW, softDesc);
 
 
 		netObjView = new NetworkObjectView(obj);
@@ -66,8 +76,15 @@ public class ObjectViewTabbed extends JTabbedPane
 
 
 
+	/**
+	 * Calls the update functions in the classes views to update the information 
+	 * it contains about the classes given object. This includes both hardware 
+	 * and software views.
+	 * 
+	 */
 	public void updateTabInfo()
 	{
 		hardObjView.updateTabInfo();
+		softObjView.updateTabInfo();
 	}
 }

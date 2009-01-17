@@ -1,7 +1,10 @@
 package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
+
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -23,6 +26,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -38,7 +42,9 @@ import objects.Object;
 import objects.Software;
 import software.Backup;
 
-public class BackupNewView extends JFrame implements SoftwareView,ActionListener
+
+public class BackupNewView extends JFrame implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	private JTextField name = new JTextField(25);
@@ -71,10 +77,16 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 	private Backup mainBack;
 
 
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @param obj
+	 * @param back
+	 */
 	public BackupNewView(Object obj, Backup back)
 	{
 		super("New Backup");
-		
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -136,7 +148,7 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(buttons, c);
-		
+
 
 
 		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
@@ -144,14 +156,18 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software}
-	 * specific options. The layout of the returned panel will be
-	 * {@link SpringLayout}.
-	 */
+	 * This method creates and returns a JPanel that contains all the
+	 * different settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
+	 * all the different components in the JPanel in grids.
+	 * 
+	 * @param back The software that will be examined and will fill inn the fields.
+	 * @return A JPanel that contains fields to set the given objects settings.
+	 */	
 	private JPanel createSpesificInfo(Backup back)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -159,19 +175,24 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 
 
 		labels[0] = new JLabel("Supported OS");
-		labels[0].setToolTipText("The supported Operating Systems by the software.");
+		labels[0]
+				.setToolTipText("The supported Operating Systems by the software.");
 
 		labels[1] = new JLabel("Backup Type");
-		labels[1].setToolTipText("The type of backup.(\"Complete\" or just \"Changes\")");
+		labels[1]
+				.setToolTipText("The type of backup.(\"Complete\" or just \"Changes\")");
 
 		labels[2] = new JLabel("Supports Compression");
-		labels[2].setToolTipText("Whether or not the software support compression.");
+		labels[2]
+				.setToolTipText("Whether or not the software support compression.");
 
 		labels[3] = new JLabel("Supports Encryption");
-		labels[3].setToolTipText("Whether or not the software support encryption.");
-		
+		labels[3]
+				.setToolTipText("Whether or not the software support encryption.");
+
 		labels[4] = new JLabel("Duplicates");
-		labels[4].setToolTipText("How many duplicates of the backup the software keeps track of.");
+		labels[4]
+				.setToolTipText("How many duplicates of the backup the software keeps track of.");
 
 
 		int childrenCount = 0;
@@ -204,7 +225,7 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		childrenCount = childrenCount+2;
+		childrenCount = childrenCount + 2;
 
 
 		// Whether or not the software can use compression
@@ -220,7 +241,7 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 
 		panel.add(labels[2]);
 		panel.add(compression);
-		childrenCount = childrenCount+2;
+		childrenCount = childrenCount + 2;
 
 
 		// Whether or not the software can use encryption
@@ -236,9 +257,9 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 
 		panel.add(labels[3]);
 		panel.add(encryption);
-		childrenCount = childrenCount+2;
-		
-		
+		childrenCount = childrenCount + 2;
+
+
 		// The type of backup
 		labels[1].setLabelFor(backupType);
 		backupType = new JTextField();
@@ -250,7 +271,7 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 
 		panel.add(labels[1]);
 		panel.add(backupType);
-		childrenCount = childrenCount+2;
+		childrenCount = childrenCount + 2;
 
 
 		// The number of copies keeps
@@ -270,23 +291,23 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 
 		panel.add(labels[4]);
 		panel.add(duplicate);
-		childrenCount = childrenCount+2;
+		childrenCount = childrenCount + 2;
 
-		
+
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows,
+																		// cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-		
+
 
 		return panel;
 	}
-	
-	
+
+
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
 	 * 
-	 * @return
 	 */
 	private JPanel createButtons()
 	{
@@ -308,9 +329,9 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 
 		return buttons;
 	}
-	
-	
-	
+
+
+
 
 	@Override
 	public void save()
@@ -342,8 +363,8 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 		// Whether or not the software can use encryption
 		mainBack.setSupportsEncryption(encryption.isSelected());
 
-		
-		if ( duplicate.getSelectedItem().toString() != "" ) 
+
+		if ( duplicate.getSelectedItem().toString() != "" )
 		{
 			// The number of copies keeps
 			mainBack.setDuplicate(Integer.parseInt(duplicate.getSelectedItem()
@@ -358,12 +379,37 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 		{
 			// Saves the current values of the new motherboard.
 			save();
-			
-			// Sets an array with the newly added software object
-			mainObj.setSoftware(SoftwareManagment.addSoftware(mainBack, mainObj));
 
-			// Closes the JFrame.
-			this.dispose();
+
+			// Checks whether or not the software is compatible with the OS
+			if ( SoftwareManagment.validateSoftware(mainBack, mainObj) )
+			{
+				// Sets an array with the newly added software object
+				mainObj.setSoftware(SoftwareManagment.addSoftware(mainBack,
+						mainObj));
+
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				if ( view != null )
+				{
+					view.updateViewInfo();
+				}
+
+
+				// Closes the JFrame.
+				this.dispose();
+			}
+			else
+			{
+				JOptionPane
+						.showMessageDialog(this,
+								"The supported Operating System chosen is not " +
+								"compatible with the objects Operating System");
+			}
+
+
 
 		}
 		else if ( e.getActionCommand().equals("cancel") )
@@ -372,13 +418,12 @@ public class BackupNewView extends JFrame implements SoftwareView,ActionListener
 		}
 
 	}
-	
-	
+
+
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @author Bahram Malaekeh
+	 * Handles the selections that are made in the "Supported Operating Systems" JList.
+	 *  
 	 */
 	private class SharedListSelectionHandler implements ListSelectionListener
 	{

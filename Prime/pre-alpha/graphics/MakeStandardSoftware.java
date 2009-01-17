@@ -13,10 +13,21 @@ import software.SecuritySuite;
 import software.Webserver;
 
 
+/**
+/**
+ * In this class the systems standard internal components are made and served to the rest of 
+ * the system. When any new object is made, the internal components 
+ * such as motherboard or CPU will be provided by the functions in this class.
+ *
+ * @author Bahram Malaekeh
+ */
 public class MakeStandardSoftware
 {
+	
 	/**
-	 * TODO - Description
+	 * Creates and returns what the system will regard as the standard Antivirus.
+	 * 
+	 * @return A new antivirus
 	 */
 	public Antivirus getSt_AV()
 	{
@@ -29,7 +40,9 @@ public class MakeStandardSoftware
 
 
 	/**
-	 * TODO - Description
+	 * Creates and returns what the system will regard as the standard Backup software.
+	 * 
+	 * @return A new Backup software
 	 */
 	public Backup getSt_Backup()
 	{
@@ -42,7 +55,9 @@ public class MakeStandardSoftware
 
 
 	/**
-	 * TODO - Description
+	 * Creates and returns what the system will regard as the standard Database.
+	 * 
+	 * @return A new Database
 	 */
 	public Database getSt_Database()
 	{
@@ -55,7 +70,10 @@ public class MakeStandardSoftware
 
 
 	/**
-	 * TODO - Description
+	 * Creates and returns what the system will regard as the standard Email software.
+	 * This is software that can read emails.
+	 * 
+	 * @return A new Email software
 	 */
 	public Email getSt_Email()
 	{
@@ -68,7 +86,9 @@ public class MakeStandardSoftware
 
 
 	/**
-	 * TODO - Description
+	 * Creates and returns what the system will regard as the standard Firewall.
+	 * 
+	 * @return A new Firewall
 	 */
 	public Firewall getSt_Firewall()
 	{
@@ -80,7 +100,11 @@ public class MakeStandardSoftware
 
 
 	/**
-	 * TODO - Description
+	 * Creates and returns what the system will regard as the standard Office Suite.
+	 * This suite has a set of predefined file types it supports. Other
+	 * file types can be added by the user.
+	 * 
+	 * @return A new Office Suite
 	 */
 	public OfficeSuite getSt_OfficeSuite()
 	{
@@ -102,7 +126,14 @@ public class MakeStandardSoftware
 
 
 	/**
-	 * TODO - Description
+	 * Creates and returns what the system will regard as the standard Operating System.
+	 * This Operating system will be the software that all software that
+	 * is to be installed on the system will be checked against for
+	 * compatibility. 
+	 * If the user has added other Operating systems to the machine, 
+	 * those will also be included in the check for software compatibility, 
+	 * 
+	 * @return A new Operating System
 	 */
 	public OperatingSystem getSt_OS()
 	{
@@ -115,7 +146,9 @@ public class MakeStandardSoftware
 
 
 	/**
-	 * TODO - Description
+	 * Creates and returns what the system will regard as the standard Proxy.
+	 * 
+	 * @return A new Proxy
 	 */
 	public Proxy getSt_Proxy()
 	{
@@ -128,8 +161,9 @@ public class MakeStandardSoftware
 
 
 	/**
-	 * TODO - Description
+	 * Creates and returns what the system will regard as the standard Security Suite.
 	 * 
+	 * @return A new Security Suite
 	 */
 	public SecuritySuite getSt_SecSuite()
 	{
@@ -144,8 +178,9 @@ public class MakeStandardSoftware
 	
 	
 	/**
-	 * TODO - Description
+	 * Creates and returns what the system will regard as the standard Webserver.
 	 * 
+	 * @return A new Webserver
 	 */
 	public Webserver getSt_Webserver()
 	{

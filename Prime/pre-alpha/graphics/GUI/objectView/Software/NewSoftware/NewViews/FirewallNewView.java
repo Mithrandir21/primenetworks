@@ -2,6 +2,8 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -22,6 +24,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -203,16 +206,20 @@ public class FirewallNewView extends JFrame implements SoftwareView,
 		this.setVisible(true);
 	}
 
-
+	
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software}
-	 * specific options. The layout of the returned panel will be
-	 * {@link SpringLayout}.
-	 */
+	 * This method creates and returns a JPanel that contains all the
+	 * different settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
+	 * all the different components in the JPanel in grids.
+	 * 
+	 * @param fw The Software that will be examined and will fill inn the fields.
+	 * @return A JPanel that contains fields to set the given objects settings.
+	 */	
 	private JPanel createSpesificInfo(Firewall fw)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
-		JLabel[] labels = new JLabel[19];
+		JLabel[] labels = new JLabel[20];
 
 
 		labels[0] = new JLabel("Supported OS");
@@ -227,66 +234,70 @@ public class FirewallNewView extends JFrame implements SoftwareView,
 		labels[2]
 				.setToolTipText("Whether or not the software supports stateful firewall.");
 
-		labels[3] = new JLabel("DPI");
+		labels[3] = new JLabel("Application Firewall");
 		labels[3]
+				.setToolTipText("Whether or not the software supports application firewall.");
+		
+		labels[4] = new JLabel("DPI");
+		labels[4]
 				.setToolTipText("Whether or not the software supports DPI, Deep package inspection.");
 
-		labels[4] = new JLabel("Proxy");
-		labels[4]
+		labels[5] = new JLabel("Proxy");
+		labels[5]
 				.setToolTipText("Whether or not the software has proxy feature.");
 
-		labels[5] = new JLabel("NAT");
-		labels[5].setToolTipText("Whether or not the software has NAT feature");
+		labels[6] = new JLabel("NAT");
+		labels[6].setToolTipText("Whether or not the software has NAT feature");
 
-		labels[6] = new JLabel("VPN");
-		labels[6].setToolTipText("Whether or not the software has VPN feature");
+		labels[7] = new JLabel("VPN");
+		labels[7].setToolTipText("Whether or not the software has VPN feature");
 
-		labels[7] = new JLabel("Antivirus");
-		labels[7]
+		labels[8] = new JLabel("Antivirus");
+		labels[8]
 				.setToolTipText("Whether or not the software has antivirus feature");
 
-		labels[8] = new JLabel("IDS");
-		labels[8]
+		labels[9] = new JLabel("IDS");
+		labels[9]
 				.setToolTipText("Whether or not the software has IDS, Intrusion Detection System, feature.");
 
-		labels[9] = new JLabel("Modularity");
-		labels[9]
+		labels[10] = new JLabel("Modularity");
+		labels[10]
 				.setToolTipText("Whether or not the software supports Modularity, third-party modules to extend functionality.");
 
-		labels[10] = new JLabel("IPv6");
-		labels[10]
+		labels[11] = new JLabel("IPv6");
+		labels[11]
 				.setToolTipText("Whether or not the software supports IP version 6.");
 
-		labels[11] = new JLabel("TTL");
-		labels[11]
+		labels[12] = new JLabel("TTL");
+		labels[12]
 				.setToolTipText("Whether or not the software supports TTL, Transparent to traceroute.");
 
-		labels[12] = new JLabel("RWA");
-		labels[12]
+		labels[13] = new JLabel("RWA");
+		labels[13]
 				.setToolTipText("Whether or not the software supports RWA, Reject-with-answer.");
 
-		labels[13] = new JLabel("DMZ");
-		labels[13]
+		labels[14] = new JLabel("DMZ");
+		labels[14]
 				.setToolTipText("Whether or not the software supports a DMZ, de-militarized zone.");
 
-		labels[14] = new JLabel("ToD Filter");
-		labels[14]
+		labels[15] = new JLabel("ToD Filter");
+		labels[15]
 				.setToolTipText("Whether or not the software supports ToDFilter, Time of day filter.");
 
-		labels[15] = new JLabel("Forwarding");
-		labels[15]
+		labels[16] = new JLabel("Forwarding");
+		labels[16]
 				.setToolTipText("Whether or not the software supports forwarding.");
 
-		labels[16] = new JLabel("Port Forwarding");
-		labels[16]
+		labels[17] = new JLabel("Port Forwarding");
+		labels[17]
 				.setToolTipText("Whether or not the software supports port forwarding.");
 
-		labels[17] = new JLabel("QoS");
-		labels[17]
+		labels[18] = new JLabel("QoS");
+		labels[18]
 				.setToolTipText("Whether or not the software supports QoS, quality of service.");
 
-		labels[18] = new JLabel("Tarpit");
-		labels[18]
+		labels[19] = new JLabel("Tarpit");
+		labels[19]
 				.setToolTipText("Whether or not the software supports TP, tarpit.");
 
 
@@ -353,103 +364,119 @@ public class FirewallNewView extends JFrame implements SoftwareView,
 		panel.add(labels[2]);
 		panel.add(hasStatefulFirewall);
 		childrenCount = childrenCount+2;
+		
+		
+		// Whether or not the software supports stateful firewall
+		labels[3].setLabelFor(hasApplicationFirewall);
+		hasApplicationFirewall = new JCheckBox();
+		hasApplicationFirewall.setMaximumSize(tfSize);
+		hasApplicationFirewall.setPreferredSize(tfSize);
+		hasApplicationFirewall.setToolTipText(labels[3].getToolTipText());
+		hasApplicationFirewall.setActionCommand("StatefulFW");
+		hasApplicationFirewall.addActionListener(this);
+
+		hasApplicationFirewall.setSelected(mainFW.HasApplicationFirewall());
+
+		panel.add(labels[3]);
+		panel.add(hasApplicationFirewall);
+		childrenCount = childrenCount+2;
 
 
 
 		// Whether or not the software supports DPI, Deep package inspection.
-		labels[3].setLabelFor(hasDPI);
+		labels[4].setLabelFor(hasDPI);
 		hasDPI = new JCheckBox();
 		hasDPI.setMaximumSize(tfSize);
 		hasDPI.setPreferredSize(tfSize);
-		hasDPI.setToolTipText(labels[3].getToolTipText());
+		hasDPI.setToolTipText(labels[4].getToolTipText());
 		hasDPI.setActionCommand("HasDPI");
 		hasDPI.addActionListener(this);
 
 		hasDPI.setSelected(mainFW.HasDPI());
 
-		panel.add(labels[3]);
+		panel.add(labels[4]);
 		panel.add(hasDPI);
 		childrenCount = childrenCount+2;
 
 
 
 		// Whether or not the software has proxy feature
-		labels[4].setLabelFor(hasProxy);
+		labels[5].setLabelFor(hasProxy);
 		hasProxy = new JCheckBox();
 		hasProxy.setMaximumSize(tfSize);
 		hasProxy.setPreferredSize(tfSize);
-		hasProxy.setToolTipText(labels[4].getToolTipText());
+		hasProxy.setToolTipText(labels[5].getToolTipText());
 		hasProxy.setActionCommand("HasProxy");
 		hasProxy.addActionListener(this);
 
 		hasProxy.setSelected(mainFW.HasProxy());
 
-		panel.add(labels[4]);
+		panel.add(labels[5]);
 		panel.add(hasProxy);
 		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software has NAT feature
-		labels[5].setLabelFor(hasNAT);
+		labels[6].setLabelFor(hasNAT);
 		hasNAT = new JCheckBox();
 		hasNAT.setMaximumSize(tfSize);
 		hasNAT.setPreferredSize(tfSize);
-		hasNAT.setToolTipText(labels[5].getToolTipText());
+		hasNAT.setToolTipText(labels[6].getToolTipText());
 		hasNAT.setActionCommand("HasNAT");
 		hasNAT.addActionListener(this);
 
 		hasNAT.setSelected(mainFW.HasNAT());
 
-		panel.add(labels[5]);
+		panel.add(labels[6]);
 		panel.add(hasNAT);
 		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software has VPN feature
-		labels[6].setLabelFor(hasVPN);
+		labels[7].setLabelFor(hasVPN);
 		hasVPN = new JCheckBox();
 		hasVPN.setMaximumSize(tfSize);
 		hasVPN.setPreferredSize(tfSize);
-		hasVPN.setToolTipText(labels[6].getToolTipText());
+		hasVPN.setToolTipText(labels[7].getToolTipText());
 		hasVPN.setActionCommand("HasVPN");
 		hasVPN.addActionListener(this);
 
 		hasVPN.setSelected(mainFW.HasVPN());
 
-		panel.add(labels[6]);
+		panel.add(labels[7]);
 		panel.add(hasVPN);
 		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software has antivirus feature
-		labels[7].setLabelFor(hasAntivirus);
+		labels[8].setLabelFor(hasAntivirus);
 		hasAntivirus = new JCheckBox();
 		hasAntivirus.setMaximumSize(tfSize);
 		hasAntivirus.setPreferredSize(tfSize);
-		hasAntivirus.setToolTipText(labels[7].getToolTipText());
+		hasAntivirus.setToolTipText(labels[8].getToolTipText());
 		hasAntivirus.setActionCommand("HasAV");
 		hasAntivirus.addActionListener(this);
 
 		hasAntivirus.setSelected(mainFW.HasAntivirus());
 
-		panel.add(labels[7]);
+		panel.add(labels[8]);
 		panel.add(hasAntivirus);
 		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software has IDS, Intrusion Detection System,
 		// feature
-		labels[8].setLabelFor(hasIDS);
+		labels[9].setLabelFor(hasIDS);
 		hasIDS = new JCheckBox();
 		hasIDS.setMaximumSize(tfSize);
 		hasIDS.setPreferredSize(tfSize);
-		hasIDS.setToolTipText(labels[8].getToolTipText());
+		hasIDS.setToolTipText(labels[9].getToolTipText());
 		hasIDS.setActionCommand("HasIDS");
 		hasIDS.addActionListener(this);
 
 		hasIDS.setSelected(mainFW.HasIDS());
 
-		panel.add(labels[8]);
+		panel.add(labels[9]);
 		panel.add(hasIDS);
 		childrenCount = childrenCount+2;
 
@@ -459,161 +486,161 @@ public class FirewallNewView extends JFrame implements SoftwareView,
 
 		// Whether or not the software supports Modularity, third-party modules
 		// to extend functionality
-		labels[9].setLabelFor(supportsModularity);
+		labels[10].setLabelFor(supportsModularity);
 		supportsModularity = new JCheckBox();
 		supportsModularity.setMaximumSize(tfSize);
 		supportsModularity.setPreferredSize(tfSize);
-		supportsModularity.setToolTipText(labels[9].getToolTipText());
+		supportsModularity.setToolTipText(labels[10].getToolTipText());
 		supportsModularity.setActionCommand("SupportsModularity");
 		supportsModularity.addActionListener(this);
 
 		supportsModularity.setSelected(mainFW.SupportsModularity());
 
-		panel.add(labels[9]);
+		panel.add(labels[10]);
 		panel.add(supportsModularity);
 		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports IP version 6
-		labels[10].setLabelFor(supportsIPv6);
+		labels[11].setLabelFor(supportsIPv6);
 		supportsIPv6 = new JCheckBox();
 		supportsIPv6.setMaximumSize(tfSize);
 		supportsIPv6.setPreferredSize(tfSize);
-		supportsIPv6.setToolTipText(labels[10].getToolTipText());
+		supportsIPv6.setToolTipText(labels[11].getToolTipText());
 		supportsIPv6.setActionCommand("SupporsIPv6");
 		supportsIPv6.addActionListener(this);
 
 		supportsIPv6.setSelected(mainFW.SupportsIPv6());
 
-		panel.add(labels[10]);
+		panel.add(labels[11]);
 		panel.add(supportsIPv6);
 		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports TTL, Transparent to traceroute
-		labels[11].setLabelFor(supportsTTL);
+		labels[12].setLabelFor(supportsTTL);
 		supportsTTL = new JCheckBox();
 		supportsTTL.setMaximumSize(tfSize);
 		supportsTTL.setPreferredSize(tfSize);
-		supportsTTL.setToolTipText(labels[11].getToolTipText());
+		supportsTTL.setToolTipText(labels[12].getToolTipText());
 		supportsTTL.setActionCommand("SupportsTTL");
 		supportsTTL.addActionListener(this);
 
 		supportsTTL.setSelected(mainFW.SupportsTTL());
 
-		panel.add(labels[11]);
+		panel.add(labels[12]);
 		panel.add(supportsTTL);
 		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports RWA, Reject-with-answer
-		labels[12].setLabelFor(supportsRWA);
+		labels[13].setLabelFor(supportsRWA);
 		supportsRWA = new JCheckBox();
 		supportsRWA.setMaximumSize(tfSize);
 		supportsRWA.setPreferredSize(tfSize);
-		supportsRWA.setToolTipText(labels[12].getToolTipText());
+		supportsRWA.setToolTipText(labels[13].getToolTipText());
 		supportsRWA.setActionCommand("SupportsRWA");
 		supportsRWA.addActionListener(this);
 
 		supportsRWA.setSelected(mainFW.SupportsRWA());
 
-		panel.add(labels[12]);
+		panel.add(labels[13]);
 		panel.add(supportsRWA);
 		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports a DMZ, de-militarized zone
-		labels[13].setLabelFor(supportsDMZ);
+		labels[14].setLabelFor(supportsDMZ);
 		supportsDMZ = new JCheckBox();
 		supportsDMZ.setMaximumSize(tfSize);
 		supportsDMZ.setPreferredSize(tfSize);
-		supportsDMZ.setToolTipText(labels[13].getToolTipText());
+		supportsDMZ.setToolTipText(labels[14].getToolTipText());
 		supportsDMZ.setActionCommand("SupportsDMZ");
 		supportsDMZ.addActionListener(this);
 
 		supportsDMZ.setSelected(mainFW.SupportsDMZ());
 
-		panel.add(labels[13]);
+		panel.add(labels[14]);
 		panel.add(supportsDMZ);
 		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports ToDFilter, Time of day filter
-		labels[14].setLabelFor(supportsToD);
+		labels[15].setLabelFor(supportsToD);
 		supportsToD = new JCheckBox();
 		supportsToD.setMaximumSize(tfSize);
 		supportsToD.setPreferredSize(tfSize);
-		supportsToD.setToolTipText(labels[14].getToolTipText());
+		supportsToD.setToolTipText(labels[15].getToolTipText());
 		supportsToD.setActionCommand("SupportsToD");
 		supportsToD.addActionListener(this);
 
 		supportsToD.setSelected(mainFW.SupportsToD());
 
-		panel.add(labels[14]);
+		panel.add(labels[15]);
 		panel.add(supportsToD);
 		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports forwarding
-		labels[15].setLabelFor(supportsForwarding);
+		labels[16].setLabelFor(supportsForwarding);
 		supportsForwarding = new JCheckBox();
 		supportsForwarding.setMaximumSize(tfSize);
 		supportsForwarding.setPreferredSize(tfSize);
-		supportsForwarding.setToolTipText(labels[15].getToolTipText());
+		supportsForwarding.setToolTipText(labels[16].getToolTipText());
 		supportsForwarding.setActionCommand("SupportsForwarding");
 		supportsForwarding.addActionListener(this);
 
 		supportsForwarding.setSelected(mainFW.SupportsForwarding());
 
-		panel.add(labels[15]);
+		panel.add(labels[16]);
 		panel.add(supportsForwarding);
 		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports port forwarding
-		labels[16].setLabelFor(supportsPortForwarding);
+		labels[17].setLabelFor(supportsPortForwarding);
 		supportsPortForwarding = new JCheckBox();
 		supportsPortForwarding.setMaximumSize(tfSize);
 		supportsPortForwarding.setPreferredSize(tfSize);
-		supportsPortForwarding.setToolTipText(labels[16].getToolTipText());
+		supportsPortForwarding.setToolTipText(labels[17].getToolTipText());
 		supportsPortForwarding.setActionCommand("SupportsPortForwarding");
 		supportsPortForwarding.addActionListener(this);
 
 		supportsPortForwarding.setSelected(mainFW.SupportsPortForwarding());
 
-		panel.add(labels[16]);
+		panel.add(labels[17]);
 		panel.add(supportsPortForwarding);
 		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports QoS, quality of service
-		labels[17].setLabelFor(supportsQos);
+		labels[18].setLabelFor(supportsQos);
 		supportsQos = new JCheckBox();
 		supportsQos.setMaximumSize(tfSize);
 		supportsQos.setPreferredSize(tfSize);
-		supportsQos.setToolTipText(labels[17].getToolTipText());
+		supportsQos.setToolTipText(labels[18].getToolTipText());
 		supportsQos.setActionCommand("SupportsQoS");
 		supportsQos.addActionListener(this);
 
 		supportsQos.setSelected(mainFW.SupportsQos());
 
-		panel.add(labels[17]);
+		panel.add(labels[18]);
 		panel.add(supportsQos);
 		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports TP, tarpit
-		labels[18].setLabelFor(supportsTarpit);
+		labels[19].setLabelFor(supportsTarpit);
 		supportsTarpit = new JCheckBox();
 		supportsTarpit.setMaximumSize(tfSize);
 		supportsTarpit.setPreferredSize(tfSize);
-		supportsTarpit.setToolTipText(labels[18].getToolTipText());
+		supportsTarpit.setToolTipText(labels[19].getToolTipText());
 		supportsTarpit.setActionCommand("SupportsTP");
 		supportsTarpit.addActionListener(this);
 
 		supportsTarpit.setSelected(mainFW.SupportsTarpit());
 
-		panel.add(labels[18]);
+		panel.add(labels[19]);
 		panel.add(supportsTarpit);
 		childrenCount = childrenCount+2;
 
@@ -631,9 +658,8 @@ public class FirewallNewView extends JFrame implements SoftwareView,
 	
 	
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
 	 * 
-	 * @return
 	 */
 	private JPanel createButtons()
 	{
@@ -657,42 +683,6 @@ public class FirewallNewView extends JFrame implements SoftwareView,
 	}
 	
 	
-	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @author Bahram Malaekeh
-	 */
-	private class SharedListSelectionHandler implements ListSelectionListener
-	{
-		/*
-		 * (non-Javadoc)
-		 * @see
-		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
-		 * event.ListSelectionEvent)
-		 */
-		public void valueChanged(ListSelectionEvent e)
-		{
-			int[] indeces = supportedOS.getSelectedIndices();
-
-			if ( indeces.length == 0 )
-			{
-				OSs = null;
-			}
-			else
-			{
-				// Creates an array of strings with the length of the array with
-				// the selected indices.
-				OSs = new String[indeces.length];
-
-				// Find out which indexes are selected.
-				for ( int i = 0; i < indeces.length; i++ )
-				{
-					OSs[i] = (String) supportedOS.getSelectedValues()[i];
-				}
-			}
-		}
-	}
-
 
 	@Override
 	public void save()
@@ -762,11 +752,34 @@ public class FirewallNewView extends JFrame implements SoftwareView,
 			// Saves the current values of the new motherboard.
 			save();
 			
-			// Sets an array with the newly added software object
-			mainObj.setSoftware(SoftwareManagment.addSoftware(mainFW, mainObj));
+			
+			// Checks whether or not the software is compatible with the OS
+			if ( SoftwareManagment.validateSoftware(mainFW, mainObj) )
+			{
+				// Sets an array with the newly added software object
+				mainObj.setSoftware(SoftwareManagment.addSoftware(mainFW,
+						mainObj));
 
-			// Closes the JFrame.
-			this.dispose();
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				if ( view != null )
+				{
+					view.updateViewInfo();
+				}
+
+
+				// Closes the JFrame.
+				this.dispose();
+			}
+			else
+			{
+				JOptionPane
+						.showMessageDialog(this,
+								"The supported Operating System chosen is not " +
+								"compatible with the objects Operating System");
+			}
 
 		}
 		else if ( e.getActionCommand().equals("cancel") )
@@ -776,5 +789,40 @@ public class FirewallNewView extends JFrame implements SoftwareView,
 
 	}
 
+	
+	/**
+	 * Handles the selections that are made in the "Supported Operating Systems" JList.
+	 *  
+	 */
+	private class SharedListSelectionHandler implements ListSelectionListener
+	{
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
+		 * event.ListSelectionEvent)
+		 */
+		public void valueChanged(ListSelectionEvent e)
+		{
+			int[] indeces = supportedOS.getSelectedIndices();
+
+			if ( indeces.length == 0 )
+			{
+				OSs = null;
+			}
+			else
+			{
+				// Creates an array of strings with the length of the array with
+				// the selected indices.
+				OSs = new String[indeces.length];
+
+				// Find out which indexes are selected.
+				for ( int i = 0; i < indeces.length; i++ )
+				{
+					OSs[i] = (String) supportedOS.getSelectedValues()[i];
+				}
+			}
+		}
+	}
 
 }

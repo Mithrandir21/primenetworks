@@ -153,9 +153,8 @@ public class DatabaseNewView extends JFrame implements SoftwareView,ActionListen
 	
 	
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
 	 * 
-	 * @return
 	 */
 	private JPanel createButtons()
 	{

@@ -478,8 +478,8 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Function for replacing a spesific given component with a given new
-	 * component. TODO - CHECK COMPATABILITY OF OLD AND NEW COMPONENT
+	 * Function for replacing a specific given component with a given new
+	 * component. 
 	 * 
 	 * @param NewComponent
 	 *            The component to replace the previous one.
@@ -516,9 +516,7 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Function to add component(s) to the the components list. NOTES - THE
-	 * SYSTEM WILL CHECK AT AN EARLIER POINT TOO SEE IF THERE IS ROOM FOR THESE
-	 * COMPONENTS
+	 * Function to add component(s) to the the components list. 
 	 * 
 	 * @param NewComponents
 	 *            An array of new components.
@@ -658,9 +656,7 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Function to add device(s) to the the connected devices list. NOTES - THE
-	 * SYSTEM WILL CHECK AT AN EARLIER POINT TOO SEE IF THERE IS ROOM FOR THESE
-	 * COMPONENTS
+	 * Function to add device(s) to the the connected devices list.
 	 * 
 	 * @param NewConnectedDevices
 	 *            An array of new devices.
@@ -676,9 +672,7 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Function to add device(s) to the the connected devices list. NOTES - THE
-	 * SYSTEM WILL CHECK AT AN EARLIER POINT TOO SEE IF THERE IS ROOM FOR THESE
-	 * COMPONENTS
+	 * Function to add device(s) to the the connected devices list. 
 	 * 
 	 * @param NewConnectedDevice
 	 *            A new device.

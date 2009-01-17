@@ -6,6 +6,8 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -26,6 +28,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -47,7 +50,7 @@ import software.OperatingSystem;
  * 
  * @author Bahram Malaekeh
  */
-public class OSNewView extends JFrame implements SoftwareView,ActionListener
+public class OSNewView extends JFrame implements SoftwareView, ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -86,7 +89,7 @@ public class OSNewView extends JFrame implements SoftwareView,ActionListener
 	public OSNewView(Object obj, OperatingSystem OS)
 	{
 		super("New Backup");
-		
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -148,7 +151,7 @@ public class OSNewView extends JFrame implements SoftwareView,ActionListener
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(buttons, c);
-		
+
 
 
 		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
@@ -156,13 +159,17 @@ public class OSNewView extends JFrame implements SoftwareView,ActionListener
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
-	
+
 	
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software}
-	 * specific options. The layout of the returned panel will be
-	 * {@link SpringLayout}.
-	 */
+	 * This method creates and returns a JPanel that contains all the
+	 * different settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
+	 * all the different components in the JPanel in grids.
+	 * 
+	 * @param OS The Software that will be examined and will fill inn the fields.
+	 * @return A JPanel that contains fields to set the given objects settings.
+	 */	
 	private JPanel createSpesificInfo(OperatingSystem OS)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -182,7 +189,7 @@ public class OSNewView extends JFrame implements SoftwareView,ActionListener
 		labels[3] = new JLabel("64-bit");
 		labels[3].setToolTipText("Whether or not the OS is 64-Bit.");
 
-		
+
 		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 
@@ -213,7 +220,7 @@ public class OSNewView extends JFrame implements SoftwareView,ActionListener
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		childrenCount = childrenCount+2;
+		childrenCount = childrenCount + 2;
 
 
 
@@ -231,7 +238,7 @@ public class OSNewView extends JFrame implements SoftwareView,ActionListener
 
 		panel.add(labels[1]);
 		panel.add(encryptedFileSystem);
-		childrenCount = childrenCount+2;
+		childrenCount = childrenCount + 2;
 
 
 
@@ -249,7 +256,7 @@ public class OSNewView extends JFrame implements SoftwareView,ActionListener
 
 		panel.add(labels[2]);
 		panel.add(hasGUI);
-		childrenCount = childrenCount+2;
+		childrenCount = childrenCount + 2;
 
 
 
@@ -268,24 +275,24 @@ public class OSNewView extends JFrame implements SoftwareView,ActionListener
 
 		panel.add(labels[3]);
 		panel.add(is64bit);
-		childrenCount = childrenCount+2;
+		childrenCount = childrenCount + 2;
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows,
+																		// cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
 
 		return panel;
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
 	 * 
-	 * @return
 	 */
 	private JPanel createButtons()
 	{
@@ -340,12 +347,24 @@ public class OSNewView extends JFrame implements SoftwareView,ActionListener
 		{
 			// Saves the current values of the new motherboard.
 			save();
-			
-			SoftwareManagment.changeOperatingSystem(mainOS, mainObj);
+
+
+			// Sets an array with the newly added software object
+			mainObj.setSoftware(SoftwareManagment.addSoftware(mainOS, mainObj));
+
+
+			// Updates the views of the object to correctly show the
+			// current info.
+			ObjectView view = PrimeMain1.getObjectView(mainObj);
+			if ( view != null )
+			{
+				view.updateViewInfo();
+			}
 
 
 			// Closes the JFrame.
 			this.dispose();
+
 
 		}
 		else if ( e.getActionCommand().equals("cancel") )
@@ -353,12 +372,11 @@ public class OSNewView extends JFrame implements SoftwareView,ActionListener
 			this.dispose();
 		}
 	}
-	
-	
+
+
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @author Bahram Malaekeh
+	 * Handles the selections that are made in the "Supported Operating Systems" JList.
+	 *  
 	 */
 	class SharedListSelectionHandler implements ListSelectionListener
 	{

@@ -140,13 +140,16 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 		this.add(buttons, c);
 	}
 
-
+	
 	/**
-	 * Javadoc-TODO - Description
+	 * This method creates and returns a JPanel that contains all the
+	 * different settings of the given Hardware object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
+	 * all the different components in the JPanel in grids.
 	 * 
-	 * @param GPU
-	 * @return
-	 */
+	 * @param GPU The Hardware that will be examined and will fill inn the fields.
+	 * @return A JPanel that contains fields to set the given objects settings.
+	 */	
 	private JPanel createSpesificInfo(GraphicsCard GPU)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -389,13 +392,12 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
-	 * validateNecessaryData()
+
+
+	/**
+	 * Checks and validates the name and description for this hardware object.
 	 */
-	@Override
-	public boolean validateNecessaryData()
+	public boolean nameAndDescriptionCheck()
 	{
 		// Checks the name of the motherboard
 		if ( name.getText().length() < 1 || name.getText().length() > 255 )
@@ -473,13 +475,5 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 
 			// TODO - isIntegrated
 		}
-	}
-
-
-	@Override
-	public boolean validateData()
-	{
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

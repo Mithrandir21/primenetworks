@@ -166,12 +166,16 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 		this.add(buttons, c);
 	}
 
-
+	
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software}
-	 * specific options. The layout of the returned panel will be
-	 * {@link SpringLayout}.
-	 */
+	 * This method creates and returns a JPanel that contains all the
+	 * different settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
+	 * all the different components in the JPanel in grids.
+	 * 
+	 * @param secSuite The Software that will be examined and will fill inn the fields.
+	 * @return A JPanel that contains fields to set the given objects settings.
+	 */	
 	private JPanel createSpesificInfo(SecuritySuite secSuite)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -451,7 +455,7 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 		mainSecSuite.sethasProxy(hasProxy.isSelected());
 
 
-		if ( actDate.getText() != "" )
+		if ( !actDate.getText().equalsIgnoreCase("") )
 		{
 			Date tempDate = null;
 
@@ -467,7 +471,7 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 			mainSecSuite.setActivationDate(tempDate);
 		}
 
-		if ( expDate.getText() != "" )
+		if ( !expDate.getText().equalsIgnoreCase("") )
 		{
 			Date tempDate = null;
 
@@ -522,9 +526,8 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @author Bahram Malaekeh
+	 * Handles the selections that are made in the "Supported Operating Systems" JList.
+	 *  
 	 */
 	private class SharedListSelectionHandler implements ListSelectionListener
 	{

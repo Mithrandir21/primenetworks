@@ -148,8 +148,16 @@ public class InternalNICView extends JPanel implements HardwareViewInterface,
 		this.add(buttons, c);
 	}
 
-
-
+	
+	/**
+	 * This method creates and returns a JPanel that contains all the
+	 * different settings of the given Hardware object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
+	 * all the different components in the JPanel in grids.
+	 * 
+	 * @param NIC The Hardware that will be examined and will fill inn the fields.
+	 * @return A JPanel that contains fields to set the given objects settings.
+	 */	
 	private JPanel createSpesificInfo(InternalNetworksCard NIC)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -371,17 +379,6 @@ public class InternalNICView extends JPanel implements HardwareViewInterface,
 		IntNIC.setSupportsIPv6(supIPv6.isSelected());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @seegraphics.GUI.objectView.Hardware.HardwareView.HardwareView#
-	 * validateNecessaryData()
-	 */
-	@Override
-	public boolean validateNecessaryData()
-	{
-		// TODO Auto-generated method stub
-		return true;
-	}
 
 
 
@@ -450,14 +447,5 @@ public class InternalNICView extends JPanel implements HardwareViewInterface,
 				}
 			}
 		}
-	}
-
-
-
-	@Override
-	public boolean validateData()
-	{
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

@@ -3,6 +3,8 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -21,6 +23,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -29,6 +32,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import logistical.cleanup;
+import managment.SoftwareManagment;
 
 import objects.Object;
 import objects.Software;
@@ -45,8 +51,7 @@ import software.OperatingSystem;
  * 
  * @author Bahram Malaekeh
  */
-public class OSEditView extends JPanel implements SoftwareView,
-		ActionListener
+public class OSEditView extends JPanel implements SoftwareView, ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -146,12 +151,16 @@ public class OSEditView extends JPanel implements SoftwareView,
 		this.add(buttons, c);
 	}
 
-
+	
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software}
-	 * specific options. The layout of the returned panel will be
-	 * {@link SpringLayout}.
-	 */
+	 * This method creates and returns a JPanel that contains all the
+	 * different settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
+	 * all the different components in the JPanel in grids.
+	 * 
+	 * @param OS The Software that will be examined and will fill inn the fields.
+	 * @return A JPanel that contains fields to set the given objects settings.
+	 */	
 	private JPanel createSpesificInfo(OperatingSystem OS)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -171,7 +180,7 @@ public class OSEditView extends JPanel implements SoftwareView,
 		labels[3] = new JLabel("64-bit");
 		labels[3].setToolTipText("Whether or not the OS is 64-Bit.");
 
-		
+
 		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 
@@ -202,7 +211,7 @@ public class OSEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		childrenCount = childrenCount+2;
+		childrenCount = childrenCount + 2;
 
 
 
@@ -220,7 +229,7 @@ public class OSEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[1]);
 		panel.add(encryptedFileSystem);
-		childrenCount = childrenCount+2;
+		childrenCount = childrenCount + 2;
 
 
 
@@ -238,7 +247,7 @@ public class OSEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[2]);
 		panel.add(hasGUI);
-		childrenCount = childrenCount+2;
+		childrenCount = childrenCount + 2;
 
 
 
@@ -257,11 +266,12 @@ public class OSEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[3]);
 		panel.add(is64bit);
-		childrenCount = childrenCount+2;
+		childrenCount = childrenCount + 2;
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows,
+																		// cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
@@ -305,18 +315,69 @@ public class OSEditView extends JPanel implements SoftwareView,
 
 			String command = check.getActionCommand();
 
-			if ( command.equals("removeComp") )
+			if ( command.equals("removeSoft") )
 			{
-				
+				int answer = JOptionPane
+						.showConfirmDialog(
+								this,
+								"By removing this Operating "
+										+ "System from the machine there might be other software that will no "
+										+ "longer be compatible with the system and hence will be removed as well."
+										+ "\nDo you still wish to perform this action?",
+								"Verify", JOptionPane.YES_NO_OPTION);
+
+				// If the user verifies the choice
+				if ( answer == JOptionPane.YES_OPTION )
+				{
+					// Removes the OS from the software array of the main object
+					mainObj.setSoftware(SoftwareManagment.removeSoftware(
+							mainOS, mainObj));
+
+					// All the software of the main obj(without the OS)
+					Software[] software = mainObj.getSoftware();
+
+					// Goes through all the software
+					for ( int i = 0; i < software.length; i++ )
+					{
+						
+						// The test does not include instances of Operating system
+						if ( !( software[i] instanceof OperatingSystem) )
+						{
+							// Checks whether or not the given software is still
+							// compatible
+							if ( !(SoftwareManagment.validateSoftware(
+									software[i], mainObj)) )
+							{
+								// If the software is not compatible the index of
+								// that software will be set to null
+								software[i] = null;
+							}
+						}
+					}
+					
+					// Removes all the null pointers in an array
+					software = cleanup.cleanObjectArray(software);
+					
+					// Sets the remaining software as the software of the main object
+					mainObj.setSoftware(software);
+					
+					
+					// Updates the views of the object to correctly show the
+					// current info.
+					ObjectView view = PrimeMain1.getObjectView(mainObj);
+					if(view != null)
+					{
+						view.updateViewInfo();
+					}
+				}
 			}
 		}
 	}
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @author Bahram Malaekeh
+	 * Handles the selections that are made in the "Supported Operating Systems" JList.
+	 *  
 	 */
 	class SharedListSelectionHandler implements ListSelectionListener
 	{

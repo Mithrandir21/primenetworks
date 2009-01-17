@@ -20,7 +20,9 @@ import objects.Object;
 
 
 /**
- * Description NEEDED!
+ * This class contains methods and functions that perform action on graphical components.
+ * Like finding and selecting indexes in JComboBoxes or JLists.
+ * Or arranging components in panels or frames.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -154,11 +156,13 @@ public class GraphicalFunctions
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This method looks for the given possibilities in the given data.
+	 * If any are found the indexes of those are selected in the given list
+	 * and that list is returned. 
 	 * 
-	 * @param list
-	 * @param possibilities
-	 * @param data
+	 * @param list The list that will have selected indexes.
+	 * @param possibilities The information the method will look for in data. 
+	 * @param data The data that will be searched.
 	 * @return Returns the indexes of the given data in the array of
 	 *         possibilities.
 	 */
@@ -186,40 +190,59 @@ public class GraphicalFunctions
 
 		return list;
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
-	 * TODO - Description
+	 * This method takes all the component inside the given parent container and
+	 * orders them so that there are no more then 6 components in any one row.
+	 * This method is mostly used by the Object View like Hardware and Software
+	 * views that show settings options.
 	 * 
+	 * @param parent
+	 *            The container that holds the components that are to be
+	 *            arranged.
+	 * @param numberOfFields
+	 *            The number of components in the container.
+	 * @param initialX
+	 *            The initial x location that the first component should be
+	 *            placed.
+	 * @param initialY
+	 *            The initial y location that the first component should be
+	 *            placed.
+	 * @param xPad
+	 *            The x padding that all components will have.
+	 * @param yPad
+	 *            The y padding that all components will have.
 	 */
 	public static void make6xGrid(Container parent, int numberOfFields,
 			int initialX, int initialY, int xPad, int yPad)
 	{
 		Dimension tfSize = new Dimension(90, 20);
-		
+
 		int rows = 1;
-		
-		while(numberOfFields>6)
+
+		while ( numberOfFields > 6 )
 		{
-			numberOfFields=numberOfFields-6;
+			numberOfFields = numberOfFields - 6;
 			rows++;
 		}
-		
-		while(numberOfFields>-2)
+
+		while ( numberOfFields > -2 )
 		{
 			JLabel temp1 = new JLabel("");
 			temp1.setMaximumSize(tfSize);
 			temp1.setPreferredSize(tfSize);
-			
+
 			parent.add(temp1);
-			
+
 			numberOfFields--;
 		}
 
-		
-		SpringUtilities.makeCompactGrid(parent, rows, 6, initialX, initialY, xPad, yPad);
-		
+
+		SpringUtilities.makeCompactGrid(parent, rows, 6, initialX, initialY,
+				xPad, yPad);
+
 	}
 }

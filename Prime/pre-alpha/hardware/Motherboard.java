@@ -241,7 +241,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the number of CPU slots on the MB.
+	 * Get the number of CPU slots on the motherboard.
 	 */
 	public int getMaxCPUs()
 	{
@@ -250,7 +250,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the number of PCI slots on the MB.
+	 * Get the number of PCI slots on the motherboard.
 	 */
 	public int getMaxPCIs()
 	{
@@ -259,7 +259,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the number of RAM slots on the MB.
+	 * Get the number of RAM slots on the motherboard.
 	 */
 	public int getMaxRAMs()
 	{
@@ -268,7 +268,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the number of USB slots on the MB
+	 * Get the number of USB slots on the motherboard.
 	 */
 	public int getMaxUSBs()
 	{
@@ -277,7 +277,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the number of DUC slots on the MB.
+	 * Get the number of DUC slots on the motherboard.
 	 */
 	public int getMaxDUCs()
 	{
@@ -286,7 +286,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the number of integrated LAN ports on the MB.
+	 * Get the number of integrated LAN ports on the v.
 	 */
 	public int getMaxLANs()
 	{
@@ -295,7 +295,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the type DUC connection on the MB. IDE, ATA, SATA and so on.
+	 * Get the type DUC connection on the motherboard. IDE, ATA, SATA and so on.
 	 */
 	public String getDUCconnectionType()
 	{
@@ -304,7 +304,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the graphical port type on the MB. AGP, PCI, PCI-Express and so on.
+	 * Get the graphical port type on the motherboard. AGP, PCI, PCI-Express and so on.
 	 */
 	public String getGraphicalPort()
 	{
@@ -313,7 +313,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the RAM type on the MB. DDR, DDR2 and so on.
+	 * Get the RAM type on the motherboard. DDR, DDR2 and so on.
 	 */
 	public String getRAMtype()
 	{
@@ -322,7 +322,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the whether or not there is an integrated audio card on the MB.
+	 * Get the whether or not there is an integrated audio card on the motherboard.
 	 */
 	public boolean audioCardIsIntegrated()
 	{
@@ -331,7 +331,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the whether or not there is an integrated graphical card on the MB.
+	 * Get the whether or not there is an integrated graphical card on the motherboard.
 	 */
 	public boolean graphicalCardIsIntegrated()
 	{
@@ -340,7 +340,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the whether or not there is an integrated LAN card on the MB.
+	 * Get a boolean on whether or not there is an integrated LAN card on the motherboard.
 	 */
 	public boolean LANcardIsIntegrated()
 	{
@@ -349,7 +349,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the number of integrated LAN ports.
 	 * 
 	 * @return the maxIntegLANs
 	 */
@@ -360,7 +360,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Get a boolean on whether or not there is an integrated Audio card on the motherboard.
 	 * 
 	 * @return the integAudioCard
 	 */
@@ -371,7 +371,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Get a boolean on whether or not there is an integrated Graphical card on the motherboard.
 	 * 
 	 * @return the integGraphicalCard
 	 */
@@ -382,7 +382,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Get a boolean on whether or not there is an integrated LAN card on the motherboard.
 	 * 
 	 * @return the integLANcard
 	 */
@@ -393,7 +393,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the number of CPU ports that are available.
 	 * 
 	 * @return the cPUPortsAvailable
 	 */
@@ -404,7 +404,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the number of PCI ports that are available.
 	 * 
 	 * @return the pCIPortsAvailable
 	 */
@@ -415,7 +415,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the number of RAM ports that are available.
 	 * 
 	 * @return the rAMPortsAvailable
 	 */
@@ -426,7 +426,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the number of USB ports that are available.
 	 * 
 	 * @return the uSBPortsAvailable
 	 */
@@ -437,7 +437,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the number of DUC ports that are available.
 	 * 
 	 * @return the dUCPortsAvailable
 	 */
@@ -448,7 +448,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the number of LAN ports that are available.
 	 * 
 	 * @return the integLANPortsAvailable
 	 */
@@ -459,7 +459,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Description NEEDED!
+	 * Get a boolean on whether or not there is a Graphical Card installed on the motherboard.
 	 * 
 	 * @return the graphicsCard
 	 */
@@ -477,7 +477,7 @@ public class Motherboard extends Hardware implements Serializable
 	// SET METHODES
 
 	/**
-	 * Set method for producers of the MB.
+	 * Set method for producers of the motherboard.
 	 */
 	public void setProducer(String MBProducer)
 	{
@@ -486,7 +486,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for form of the MB.
+	 * Set method for form of the motherboard.
 	 */
 	public void setForm(String MBform)
 	{
@@ -495,7 +495,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for socket type of the MB.
+	 * Set method for socket type of the motherboard.
 	 */
 	public void setSocket(String MBsocket)
 	{
@@ -504,7 +504,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for bus speed of the MB
+	 * Set method for bus speed of the motherboard.
 	 */
 	public void setBusSpeed(int MBbusSpeed)
 	{
@@ -513,7 +513,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for chipset of the MB.
+	 * Set method for chipset of the motherboard.
 	 */
 	public void setChipset(String MBchipset)
 	{
@@ -522,7 +522,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for number of CPU ports of the MB.
+	 * Set method for number of CPU ports of the motherboard.
 	 */
 	public void setMaxCPUs(int MBmaxCPUs)
 	{
@@ -550,7 +550,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for number of PCI slots of the MB.
+	 * Set method for number of PCI slots of the motherboard.
 	 */
 	public void setMaxPCIs(int MBmaxPCIs)
 	{
@@ -559,7 +559,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for number of RAM slots of the MB.
+	 * Set method for number of RAM slots of the motherboard.
 	 */
 	public void setMaxRAMs(int MBmaxRAMs)
 	{
@@ -568,7 +568,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for number of DUC ports of the MB.
+	 * Set method for number of DUC ports of the motherboard.
 	 */
 	public void setMaxDUCs(int MBmaxDUCs)
 	{
@@ -577,7 +577,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for number of USB slots of the MB.
+	 * Set method for number of USB slots of the motherboard.
 	 */
 	public void setMaxUSBs(int MBmaxUSBs)
 	{
@@ -586,7 +586,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for number of LAN ports of the MB.
+	 * Set method for number of LAN ports of the motherboard.
 	 */
 	public void setMaxIntegratedLANs(int MBmaxIntegLANs)
 	{
@@ -595,7 +595,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for type of graphical port on the MB.
+	 * Set method for type of graphical port on the motherboard.
 	 */
 	public void setGraphicalPort(String MBgraphicalPortType)
 	{
@@ -604,7 +604,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for type of DUC port on the MB.
+	 * Set method for type of DUC port on the motherboard.
 	 */
 	public void setDUCconnectionType(String MBDUCconnectionType)
 	{
@@ -613,7 +613,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for type of RAM port on the MB.
+	 * Set method for type of RAM port on the motherboard.
 	 */
 	public void setRAMtype(String MBRAMtype)
 	{
@@ -623,7 +623,7 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * Set method for whether or not the is present a integrated audio card on
-	 * the MB.
+	 * the motherboard.
 	 */
 	public void setIntegAudioCard(boolean MBhasIntegratedAudio)
 	{
@@ -633,7 +633,7 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * Set method for whether or not the is present a integrated graphical card
-	 * on the MB.
+	 * on the v.
 	 */
 	public void setIntegGraphicalCard(boolean MBhasIntegratedGraphicalCard)
 	{
@@ -643,7 +643,7 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * Set method for whether or not the is present a integrated LAN card on the
-	 * MB.
+	 * motherboard.
 	 */
 	public void setIntegLANcard(boolean MBhasIntegratedLANcard)
 	{
@@ -653,7 +653,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Description NEEDED!
+	 * Set method for whether or not the is present a graphical card on the
+	 * motherboard.
 	 * 
 	 * @param graphicsCard
 	 *            the graphicsCard to set
@@ -666,7 +667,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets the graphical port type on the motherboard.
 	 * 
 	 * @param graphicalPortType
 	 *            the graphicalPortType to set
@@ -678,7 +679,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets the number CPU ports available.
 	 * 
 	 * @param portsAvailable
 	 *            the cPUPortsAvailable to set
@@ -691,7 +692,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description
+	 * Makes one CPU port available by add to the integer that keep track
+	 * of how make port are available.
 	 */
 	public void makeOneCPUportAvailable()
 	{
@@ -701,7 +703,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description
+	 * Makes one CPU port unavailable by removing from the integer that keep track
+	 * of how make port are available.
 	 */
 	public void makeOneCPUportTaken()
 	{
@@ -710,7 +713,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets the number PCI ports available.
 	 * 
 	 * @param portsAvailable
 	 *            the pCIPortsAvailable to set
@@ -723,7 +726,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description
+	 * Makes one PCI port available by add to the integer that keep track
+	 * of how make port are available.
 	 */
 	public void makeOnePCIportAvailable()
 	{
@@ -733,7 +737,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description
+	 * Makes one PCI port unavailable by removing from the integer that keep track
+	 * of how make port are available.
 	 */
 	public void makeOnePCIportTaken()
 	{
@@ -742,7 +747,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets the number RAM ports available.
 	 * 
 	 * @param portsAvailable
 	 *            the rAMPortsAvailable to set
@@ -755,7 +760,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description
+	 * Makes one RAM port available by add to the integer that keep track
+	 * of how make port are available.
 	 */
 	public void makeOneRAMportAvailable()
 	{
@@ -765,7 +771,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description
+	 * Makes one RAM port unavailable by removing from the integer that keep track
+	 * of how make port are available.
 	 */
 	public void makeOneRAMportTaken()
 	{
@@ -773,7 +780,7 @@ public class Motherboard extends Hardware implements Serializable
 	}
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets the number USB ports available.
 	 * 
 	 * @param portsAvailable
 	 *            the uSBPortsAvailable to set
@@ -786,7 +793,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description
+	 * Makes one USB port available by add to the integer that keep track
+	 * of how make port are available.
 	 */
 	public void makeOneUSBportAvailable()
 	{
@@ -796,7 +804,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description
+	 * Makes one USB port unavailable by removing from the integer that keep track
+	 * of how make port are available.
 	 */
 	public void makeOneUSBportTaken()
 	{
@@ -804,7 +813,7 @@ public class Motherboard extends Hardware implements Serializable
 	}
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets the number DUC ports available.
 	 * 
 	 * @param portsAvailable
 	 *            the dUCPortsAvailable to set
@@ -817,7 +826,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description
+	 * Makes one DUC port available by add to the integer that keep track
+	 * of how make port are available.
 	 */
 	public void makeOneDUCportAvailable()
 	{
@@ -827,7 +837,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description
+	 * Makes one DUC port unavailable by removing from the integer that keep track
+	 * of how make port are available.
 	 */
 	public void makeOneDUCportTaken()
 	{
@@ -836,7 +847,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets the number LAN ports available.
 	 * 
 	 * @param integLANPortsAvailable
 	 *            the integLANPortsAvailable to set
@@ -849,7 +860,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description
+	 * Makes one LAN port available by add to the integer that keep track
+	 * of how make port are available.
 	 */
 	public void makeOneIntLANportAvailable()
 	{
@@ -859,7 +871,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * TODO - Description
+	 * Makes one LAN port unavailable by removing from the integer that keep track
+	 * of how make port are available.
 	 */
 	public void makeOneIntLANportTaken()
 	{

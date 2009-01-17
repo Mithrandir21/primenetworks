@@ -3,6 +3,8 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -23,6 +25,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -164,13 +167,17 @@ public class EmailNewView extends JFrame implements SoftwareView,
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
-	
+
 	
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software}
-	 * specific options. The layout of the returned panel will be
-	 * {@link SpringLayout}.
-	 */
+	 * This method creates and returns a JPanel that contains all the
+	 * different settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
+	 * all the different components in the JPanel in grids.
+	 * 
+	 * @param email The Software that will be examined and will fill inn the fields.
+	 * @return A JPanel that contains fields to set the given objects settings.
+	 */	
 	private JPanel createSpesificInfo(Email email)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -345,9 +352,8 @@ public class EmailNewView extends JFrame implements SoftwareView,
 	
 	
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
 	 * 
-	 * @return
 	 */
 	private JPanel createButtons()
 	{
@@ -410,11 +416,33 @@ public class EmailNewView extends JFrame implements SoftwareView,
 			// Saves the current values of the new motherboard.
 			save();
 			
-			// Sets an array with the newly added software object
-			mainObj.setSoftware(SoftwareManagment.addSoftware(mainEmail, mainObj));
+			// Checks whether or not the software is compatible with the OS
+			if ( SoftwareManagment.validateSoftware(mainEmail, mainObj) )
+			{
+				// Sets an array with the newly added software object
+				mainObj.setSoftware(SoftwareManagment.addSoftware(mainEmail,
+						mainObj));
 
-			// Closes the JFrame.
-			this.dispose();
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				if ( view != null )
+				{
+					view.updateViewInfo();
+				}
+
+
+				// Closes the JFrame.
+				this.dispose();
+			}
+			else
+			{
+				JOptionPane
+						.showMessageDialog(this,
+								"The supported Operating System chosen is not " +
+								"compatible with the objects Operating System");
+			}
 
 		}
 		else if ( e.getActionCommand().equals("cancel") )
@@ -426,9 +454,8 @@ public class EmailNewView extends JFrame implements SoftwareView,
 	
 	
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @author Bahram Malaekeh
+	 * Handles the selections that are made in the "Supported Operating Systems" JList.
+	 *  
 	 */
 	class SharedListSelectionHandler implements ListSelectionListener
 	{

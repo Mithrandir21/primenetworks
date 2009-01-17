@@ -21,7 +21,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import objects.Clients;
 import objects.Object;
+import objects.Servers;
 import software.Antivirus;
 import software.Backup;
 import software.Database;
@@ -44,7 +46,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 {
 
 	private Object givenObject = null;
-	
+
 	private SoftwareEditor SWeditor = null;
 
 
@@ -459,6 +461,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 			d.gridy = c.gridy++;
 		}
 
+		
 		d.gridy = c.gridy++;
 		d.weightx = 1;
 		d.weighty = 1;
@@ -466,23 +469,35 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 		d.gridheight = 1;
 		d.insets = new Insets(10, 10, 10, 10);
 
+		
+		if ( obj instanceof Clients || obj instanceof Servers )
+		{
+			JPanel buttons = new JPanel();
+			buttons.setLayout(new FlowLayout(FlowLayout.LEADING));
 
+			Button edit = new Button("Edit Software");
+			edit.addActionListener(this);
+			edit.setActionCommand("edit");
 
-		JPanel buttons = new JPanel();
-		buttons.setLayout(new FlowLayout(FlowLayout.LEADING));
+			Button addNew = new Button("Install Software");
+			addNew.addActionListener(this);
+			addNew.setActionCommand("newSoft");
 
-		Button edit = new Button("Edit");
-		edit.addActionListener(this);
-		edit.setActionCommand("edit");
+			buttons.add(edit);
+			buttons.add(addNew);
 
-		Button addNew = new Button("Install Software");
-		addNew.addActionListener(this);
-		addNew.setActionCommand("newSoft");
-
-		buttons.add(edit);
-		buttons.add(addNew);
-
-		this.add(buttons, d);
+			this.add(buttons, d);
+		}
+		else
+		{
+			JPanel note = new JPanel();
+			note.setLayout(new FlowLayout(FlowLayout.LEADING));
+			
+			JLabel text = new JLabel("You can currently not add software to infrastructure or peripherals.");
+			note.add(text);
+			
+			this.add(note,d);
+		}
 
 	}
 
@@ -564,7 +579,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 	{
 		if ( e.getActionCommand().equals("edit") )
 		{
-			SWeditor = new SoftwareEditor (givenObject);
+			SWeditor = new SoftwareEditor(givenObject);
 		}
 		else if ( e.getActionCommand().equals("newSoft") )
 		{

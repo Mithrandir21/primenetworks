@@ -401,7 +401,11 @@ public class ComponentsManagment
 
 	// COMPONENTS CHECKS
 	/**
-	 * TODO - Description
+	 * This method process all the changes made to the software the object contains.
+	 * It first finds the motherboard of the given object and then calls all the other
+	 * methods in this class to validate the software for compatibility.
+	 * 
+	 * @param obj The object that contains the software which will be validated.
 	 */
 	public static void processAllChanges(Object obj)
 	{
@@ -740,10 +744,15 @@ public class ComponentsManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Checks, and if possible, adds the given cpu to the components array
+	 * of the given Object. 
+	 * The checks consists of tests on whether or not the there are 
+	 * available sockets on the motherboard.
 	 * 
-	 * @param mb
-	 * @param cpu
+	 * @param mainObj The main object. (Like a desktop or a server).
+	 * @param mb The objects motherboard.
+	 * @param cpu The CPU that will be tested and, if possible, added to the object.
+	 * @param comp This will be the component that message to the user will be shown over.
 	 * @return Returns true or false based on whether or not the given CPU
 	 *         object is added to the main object.
 	 */
@@ -791,12 +800,15 @@ public class ComponentsManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Checks, and if possible, adds the given ram to the components array
+	 * of the given Object. 
+	 * The checks consists of tests on whether or not the there are 
+	 * available ports on the motherboard.
 	 * 
-	 * @param mainObj
-	 * @param mb
-	 * @param ram
-	 * @param comp
+	 * @param mainObj The main object. (Like a desktop or a server).
+	 * @param mb The objects motherboard.
+	 * @param ram The RAM that will be tested and, if possible, added to the object.
+	 * @param comp This will be the component that message to the user will be shown over.
 	 * @return Returns true or false based on whether or not the given Ram
 	 *         object is added to the main object.
 	 */
@@ -844,10 +856,15 @@ public class ComponentsManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Checks, and if possible, adds the given harddisc to the components array
+	 * of the given Object. 
+	 * The checks consists of tests on whether or not the there are 
+	 * available ports on the motherboard.
 	 * 
-	 * @param mb
-	 * @param hdd
+	 * @param mainObj The main object. (Like a desktop or a server).
+	 * @param mb The objects motherboard.
+	 * @param hdd The HDD that will be tested and, if possible, added to the object.
+	 * @param comp This will be the component that message to the user will be shown over.
 	 * @return Returns true or false based on whether or not the given HDD
 	 *         object is added to the main object.
 	 */
@@ -896,10 +913,15 @@ public class ComponentsManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Checks, and if possible, adds the given discdrive to the components array
+	 * of the given Object. 
+	 * The checks consists of tests on whether or not the there are 
+	 * available ports on the motherboard.
 	 * 
-	 * @param mb
-	 * @param dics
+	 * @param mainObj The main object. (Like a desktop or a server).
+	 * @param mb The objects motherboard.
+	 * @param dics The Discdrive that will be tested and, if possible, added to the object.
+	 * @param comp This will be the component that message to the user will be shown over.
 	 * @return Returns true or false based on whether or not the given Discdrive
 	 *         object is added to the main object.
 	 */
@@ -946,10 +968,15 @@ public class ComponentsManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Checks, and if possible, adds the given graphicsCard to the components array
+	 * of the given Object. 
+	 * The checks consists of tests on whether or not the there are 
+	 * available ports on the motherboard.
 	 * 
-	 * @param mb
-	 * @param GPU
+	 * @param mainObj The main object. (Like a desktop or a server).
+	 * @param mb The objects motherboard.
+	 * @param GPU The GraphicsCard that will be tested and, if possible, added to the object.
+	 * @param comp This will be the component that message to the user will be shown over.
 	 * @return Returns true or false based on whether or not the given Ram
 	 *         object is added to the main object.
 	 */
@@ -995,10 +1022,15 @@ public class ComponentsManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Checks, and if possible, adds the given Internal Networks Card to the components array
+	 * of the given Object. 
+	 * The checks consists of tests on whether or not the there are 
+	 * available ports on the motherboard.
 	 * 
-	 * @param mb
-	 * @param nic
+	 * @param mainObj The main object. (Like a desktop or a server).
+	 * @param mb The objects motherboard.
+	 * @param nic The Internal Networks Card that will be tested and, if possible, added to the object.
+	 * @param comp This will be the component that message to the user will be shown over.
 	 * @return Returns true or false based on whether or not the given NIC
 	 *         object is added to the main object.
 	 */
@@ -1030,10 +1062,15 @@ public class ComponentsManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Checks, and if possible, adds the given External Networks Card to the components array
+	 * of the given Object. 
+	 * The checks consists of tests on whether or not the there are 
+	 * available ports on the motherboard.
 	 * 
-	 * @param mb
-	 * @param nic
+	 * @param mainObj The main object. (Like a desktop or a server).
+	 * @param mb The objects motherboard.
+	 * @param nic The External Networks Card that will be tested and, if possible, added to the object.
+	 * @param comp This will be the component that message to the user will be shown over.
 	 * @return Returns true or false based on whether or not the given NIC
 	 *         object is added to the main object.
 	 */
@@ -1265,11 +1302,13 @@ public class ComponentsManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Finds and returns all the objects that are connected to the given object
+	 * with the given connection type. Returns an array of object with the connected
+	 * object, if any are found.
 	 * 
-	 * @param connectedTo
-	 * @param conType
-	 * @return Returns all the object connected to the given object with the
+	 * @param connectedTo The object that will be examined for connections to other objects.
+	 * @param conType The type of connection between the two objects.
+	 * @return Returns all the objects connected to the given object with the
 	 *         given connection type
 	 */
 	public static Object[] connectedToBy(Object connectedTo, String conType)
