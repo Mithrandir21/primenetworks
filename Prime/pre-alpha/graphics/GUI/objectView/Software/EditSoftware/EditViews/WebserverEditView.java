@@ -267,7 +267,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 				.setToolTipText("Whether or not the software supports ASP .Net.");
 
 
-		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 
 		// --------------------------------------------------------------
@@ -298,7 +297,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -315,7 +313,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[1]);
 		panel.add(hasVirtualHosting);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -332,7 +329,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[2]);
 		panel.add(hasCompression);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -349,7 +345,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[3]);
 		panel.add(supportsBasic);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -366,7 +361,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[4]);
 		panel.add(supportsDigest);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -383,7 +377,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[5]);
 		panel.add(supportsSSL);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -400,7 +393,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[6]);
 		panel.add(supportsTSL);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -417,7 +409,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[7]);
 		panel.add(supportsIPv6);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -434,7 +425,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[8]);
 		panel.add(supportsSSI);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -451,7 +441,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[9]);
 		panel.add(supportsCGI);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -469,7 +458,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[10]);
 		panel.add(supportsSCGI);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -486,7 +474,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[11]);
 		panel.add(supportsFastCGI);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -503,7 +490,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[12]);
 		panel.add(supportsJSP);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -520,7 +506,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[13]);
 		panel.add(supportsPHP);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -537,7 +522,6 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[14]);
 		panel.add(supportsASP);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -554,13 +538,12 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[15]);
 		panel.add(supportsASPnet);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 

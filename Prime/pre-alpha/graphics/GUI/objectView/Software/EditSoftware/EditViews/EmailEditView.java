@@ -202,7 +202,6 @@ public class EmailEditView extends JPanel implements SoftwareView,
 				.setToolTipText("Whether or not the software supports webmail.");
 
 
-		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 
 
@@ -233,7 +232,6 @@ public class EmailEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		childrenCount = childrenCount+2;
 
 
 
@@ -250,7 +248,6 @@ public class EmailEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[1]);
 		panel.add(supportsPOP3);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports SMTP.
@@ -266,7 +263,6 @@ public class EmailEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[2]);
 		panel.add(supportsSMTP);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports IMAP.
@@ -282,7 +278,6 @@ public class EmailEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[3]);
 		panel.add(supportsIMAP);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports NNTP.
@@ -298,7 +293,6 @@ public class EmailEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[4]);
 		panel.add(supportsNNTP);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports SSL.
@@ -314,7 +308,6 @@ public class EmailEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[5]);
 		panel.add(supportsSSL);
-		childrenCount = childrenCount+2;
 
 
 
@@ -331,12 +324,11 @@ public class EmailEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[6]);
 		panel.add(supportsWebmail);
-		childrenCount = childrenCount+2;
 
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 

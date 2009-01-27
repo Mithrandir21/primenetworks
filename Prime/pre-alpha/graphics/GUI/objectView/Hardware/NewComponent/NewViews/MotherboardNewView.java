@@ -734,12 +734,8 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 
 
 
-
-
-
-
 		// Lay out the panel.
-		SpringUtilities.makeCompactGrid(panel, 6, 6, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 

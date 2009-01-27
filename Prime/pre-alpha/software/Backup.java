@@ -163,8 +163,6 @@ public class Backup extends Software implements Serializable
 	
 	/**
 	 * TODO - Description NEEDED!
-	 * 
-	 * @return the duplicate
 	 */
 	public void setDuplicate(int dup)
 	{

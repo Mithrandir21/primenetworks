@@ -221,7 +221,6 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 		labels[9].setToolTipText("Whether or not the software supports HTTPS.");
 
 
-		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 
 
@@ -252,7 +251,6 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		childrenCount = childrenCount+2;
 
 
 
@@ -269,7 +267,6 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[1]);
 		panel.add(caching);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software has Web proxy feature
@@ -285,7 +282,6 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[2]);
 		panel.add(webProxy);
-		childrenCount = childrenCount+2;
 
 
 
@@ -302,7 +298,6 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[3]);
 		panel.add(anonymizingProxy);
-		childrenCount = childrenCount+2;
 
 
 
@@ -319,7 +314,6 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[4]);
 		panel.add(transparentProxy);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software has reverse proxy feature
@@ -335,7 +329,6 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[5]);
 		panel.add(reverseProxy);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports IP version 6
@@ -351,7 +344,6 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[6]);
 		panel.add(supportsIPv6);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports SSL
@@ -367,7 +359,6 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[7]);
 		panel.add(supportsSSL);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports TSL
@@ -383,7 +374,6 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[8]);
 		panel.add(supportsTSL);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports HTTPS
@@ -399,11 +389,10 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[9]);
 		panel.add(supportsHTTPS);
-		childrenCount = childrenCount+2;
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 

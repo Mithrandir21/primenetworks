@@ -189,7 +189,6 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 		labels[4].setToolTipText("Whether or not the AV is activated.");
 
 
-		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
 		
@@ -220,7 +219,6 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		childrenCount = childrenCount+2;
 		
 
 
@@ -255,7 +253,6 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 
 		panel.add(labels[1]);
 		panel.add(actDate);
-		childrenCount = childrenCount+2;
 
 
 		// The Expiration date
@@ -289,7 +286,6 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 
 		panel.add(labels[2]);
 		panel.add(expDate);
-		childrenCount = childrenCount+2;
 
 
 
@@ -303,7 +299,6 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 
 		panel.add(labels[3]);
 		panel.add(license);
-		childrenCount = childrenCount+2;
 
 		
 
@@ -319,11 +314,10 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 
 		panel.add(labels[4]);
 		panel.add(activated);
-		childrenCount = childrenCount+2;
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 		

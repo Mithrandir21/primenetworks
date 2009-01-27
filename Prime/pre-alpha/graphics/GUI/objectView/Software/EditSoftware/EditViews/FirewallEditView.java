@@ -292,7 +292,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 				.setToolTipText("Whether or not the software supports TP, tarpit.");
 
 
-		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 
 
@@ -322,7 +321,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports network firewall
@@ -338,7 +336,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[1]);
 		panel.add(hasNetworkFirewall);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports stateful firewall
@@ -354,7 +351,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[2]);
 		panel.add(hasStatefulFirewall);
-		childrenCount = childrenCount+2;
 
 
 
@@ -371,7 +367,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[3]);
 		panel.add(hasDPI);
-		childrenCount = childrenCount+2;
 
 
 
@@ -388,7 +383,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[4]);
 		panel.add(hasProxy);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software has NAT feature
@@ -404,7 +398,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[5]);
 		panel.add(hasNAT);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software has VPN feature
@@ -420,7 +413,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[6]);
 		panel.add(hasVPN);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software has antivirus feature
@@ -436,7 +428,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[7]);
 		panel.add(hasAntivirus);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software has IDS, Intrusion Detection System,
@@ -453,7 +444,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[8]);
 		panel.add(hasIDS);
-		childrenCount = childrenCount+2;
 
 
 
@@ -473,7 +463,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[9]);
 		panel.add(supportsModularity);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports IP version 6
@@ -489,7 +478,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[10]);
 		panel.add(supportsIPv6);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports TTL, Transparent to traceroute
@@ -505,7 +493,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[11]);
 		panel.add(supportsTTL);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports RWA, Reject-with-answer
@@ -521,7 +508,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[12]);
 		panel.add(supportsRWA);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports a DMZ, de-militarized zone
@@ -537,7 +523,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[13]);
 		panel.add(supportsDMZ);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports ToDFilter, Time of day filter
@@ -553,7 +538,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[14]);
 		panel.add(supportsToD);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports forwarding
@@ -569,7 +553,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[15]);
 		panel.add(supportsForwarding);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports port forwarding
@@ -585,7 +568,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[16]);
 		panel.add(supportsPortForwarding);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports QoS, quality of service
@@ -601,7 +583,6 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[17]);
 		panel.add(supportsQos);
-		childrenCount = childrenCount+2;
 
 
 		// Whether or not the software supports TP, tarpit
@@ -617,12 +598,11 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[18]);
 		panel.add(supportsTarpit);
-		childrenCount = childrenCount+2;
 
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 

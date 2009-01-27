@@ -213,7 +213,6 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 				.setToolTipText("The date the license for the software expires.");
 
 
-		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
 
@@ -245,7 +244,6 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -262,7 +260,6 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[1]);
 		panel.add(activated);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -277,7 +274,6 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[2]);
 		panel.add(license);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -294,7 +290,6 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[3]);
 		panel.add(hasAntivirus);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -316,7 +311,6 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[4]);
 		panel.add(hasFirewall);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -333,7 +327,6 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[5]);
 		panel.add(hasProxy);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -366,7 +359,6 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[6]);
 		panel.add(actDate);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
@@ -399,14 +391,13 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[7]);
 		panel.add(expDate);
-		childrenCount = childrenCount+2;
 
 		// --------------------------------------------------------------
 
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 

@@ -203,7 +203,6 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 		labels[9] = new JLabel("64 Bit");
 		labels[9].setToolTipText("Whether or not the CPU is a 64 Bit CPU.");
 
-		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 
 
@@ -218,7 +217,6 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		panel.add(labels[0]);
 		panel.add(producerField);
-		childrenCount = childrenCount+2;
 
 
 
@@ -240,7 +238,6 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		panel.add(labels[1]);
 		panel.add(socket);
-		childrenCount = childrenCount+2;
 
 
 
@@ -271,7 +268,6 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		panel.add(labels[2]);
 		panel.add(mhz);
-		childrenCount = childrenCount+2;
 
 
 		// The level 1 cache
@@ -291,7 +287,6 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		panel.add(labels[3]);
 		panel.add(level1Cache);
-		childrenCount = childrenCount+2;
 
 
 		// The level 2 cache
@@ -312,7 +307,6 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		panel.add(labels[4]);
 		panel.add(level2Cache);
-		childrenCount = childrenCount+2;
 
 
 		// The nanometer
@@ -332,7 +326,6 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		panel.add(labels[5]);
 		panel.add(nanometer);
-		childrenCount = childrenCount+2;
 
 
 		// The front side bus
@@ -352,7 +345,6 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		panel.add(labels[6]);
 		panel.add(fsb);
-		childrenCount = childrenCount+2;
 
 
 		// The dual core check box
@@ -367,7 +359,6 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		panel.add(labels[7]);
 		panel.add(dualCore);
-		childrenCount = childrenCount+2;
 
 
 		// The dual quad check box
@@ -382,7 +373,6 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		panel.add(labels[8]);
 		panel.add(quadCore);
-		childrenCount = childrenCount+2;
 
 
 		// The 64 bit check box
@@ -399,11 +389,10 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		panel.add(labels[9]);
 		panel.add(bit64);
-		childrenCount = childrenCount+2;
 
 		
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 

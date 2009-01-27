@@ -377,33 +377,9 @@ public class CPUView extends JPanel implements HardwareViewInterface, ActionList
 		bit64.setSelected(cpu.is64Bit());
 
 
-		panel.add(labels[9]);
-		panel.add(bit64);
-
-		JLabel temp1 = new JLabel("");
-		temp1.setMaximumSize(tfSize);
-		temp1.setPreferredSize(tfSize);
-
-		JLabel temp2 = new JLabel("");
-		temp2.setMaximumSize(tfSize);
-		temp2.setPreferredSize(tfSize);
-
-		JLabel temp3 = new JLabel("");
-		temp3.setMaximumSize(tfSize);
-		temp3.setPreferredSize(tfSize);
-
-		JLabel temp4 = new JLabel("");
-		temp4.setMaximumSize(tfSize);
-		temp4.setPreferredSize(tfSize);
-		// adding components so that the layout is right
-		panel.add(temp1);
-		panel.add(temp2);
-		panel.add(temp3);
-		panel.add(temp4);
-
 
 		// Lay out the panel.
-		SpringUtilities.makeCompactGrid(panel, 4, 6, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 

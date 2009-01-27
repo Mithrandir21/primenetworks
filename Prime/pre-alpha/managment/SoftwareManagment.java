@@ -86,6 +86,8 @@ public class SoftwareManagment
 	 * @param sw
 	 * @param obj
 	 * @return
+	 * 			Returns an Software array with the given object removed from the given
+	 * 			objects software array.
 	 */
 	public static Software[] removeSoftware(Software sw, Object obj)
 	{
@@ -271,7 +273,7 @@ public class SoftwareManagment
 	 * TODO - Write Method explanation
 	 * 
 	 * @param sw
-	 * @param obj
+	 * @param os
 	 */
 	public static boolean validateSoftware(Software sw, OperatingSystem os)
 	{

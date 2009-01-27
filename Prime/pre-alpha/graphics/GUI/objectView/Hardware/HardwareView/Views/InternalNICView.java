@@ -320,6 +320,12 @@ public class InternalNICView extends JPanel implements HardwareViewInterface,
 
 		panel.add(labels[6]);
 		panel.add(supIPv6);
+		
+
+		// Lay out the panel.
+		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+				10, 10, // initX, initY
+				20, 20); // xPad, yPad
 
 
 

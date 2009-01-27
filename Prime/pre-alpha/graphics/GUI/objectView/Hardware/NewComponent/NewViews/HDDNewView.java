@@ -324,7 +324,7 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 
 
 		// Lay out the panel.
-		SpringUtilities.makeCompactGrid(panel, 2, 6, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 

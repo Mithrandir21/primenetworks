@@ -245,4 +245,39 @@ public class GraphicalFunctions
 				xPad, yPad);
 
 	}
+	
+	
+	
+	/**
+	 * This method takes all the component inside the given parent container and
+	 * orders them so that there are no more then 1 components in any one row.
+	 * This method is mostly used by the Object View like Hardware and Software
+	 * views that show settings options.
+	 * 
+	 * @param parent
+	 *            The container that holds the components that are to be
+	 *            arranged.
+	 * @param numberOfFields
+	 *            The number of components in the container.
+	 * @param initialX
+	 *            The initial x location that the first component should be
+	 *            placed.
+	 * @param initialY
+	 *            The initial y location that the first component should be
+	 *            placed.
+	 * @param xPad
+	 *            The x padding that all components will have.
+	 * @param yPad
+	 *            The y padding that all components will have.
+	 */
+	public static void make1xGrid(Container parent, int numberOfFields,
+			int initialX, int initialY, int xPad, int yPad)
+	{
+		int rows = numberOfFields;
+
+
+		SpringUtilities.makeCompactGrid(parent, rows, 1, initialX, initialY,
+				xPad, yPad);
+
+	}
 }

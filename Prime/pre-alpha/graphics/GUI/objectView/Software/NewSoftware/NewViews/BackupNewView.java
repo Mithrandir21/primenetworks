@@ -195,7 +195,6 @@ public class BackupNewView extends JFrame implements SoftwareView,
 				.setToolTipText("How many duplicates of the backup the software keeps track of.");
 
 
-		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 
 
@@ -225,7 +224,6 @@ public class BackupNewView extends JFrame implements SoftwareView,
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		childrenCount = childrenCount + 2;
 
 
 		// Whether or not the software can use compression
@@ -241,7 +239,6 @@ public class BackupNewView extends JFrame implements SoftwareView,
 
 		panel.add(labels[2]);
 		panel.add(compression);
-		childrenCount = childrenCount + 2;
 
 
 		// Whether or not the software can use encryption
@@ -257,7 +254,6 @@ public class BackupNewView extends JFrame implements SoftwareView,
 
 		panel.add(labels[3]);
 		panel.add(encryption);
-		childrenCount = childrenCount + 2;
 
 
 		// The type of backup
@@ -271,7 +267,6 @@ public class BackupNewView extends JFrame implements SoftwareView,
 
 		panel.add(labels[1]);
 		panel.add(backupType);
-		childrenCount = childrenCount + 2;
 
 
 		// The number of copies keeps
@@ -291,11 +286,10 @@ public class BackupNewView extends JFrame implements SoftwareView,
 
 		panel.add(labels[4]);
 		panel.add(duplicate);
-		childrenCount = childrenCount + 2;
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows,
+		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows,
 																		// cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad

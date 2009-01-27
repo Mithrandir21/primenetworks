@@ -305,8 +305,8 @@ public class ArrayManagment
 	 * 
 	 * @param array
 	 *            The array that is to be checked.
-	 * @param searchObjects
-	 *            The objects that is to be searched for.
+	 * @param searchObject
+	 *            The object that is to be searched for.
 	 * @return The array of booleans that tells, by way of the index, which
 	 *         object are found.
 	 */

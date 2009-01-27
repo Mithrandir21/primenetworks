@@ -280,26 +280,8 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 		panel.add(speed);
 
 
-		JLabel temp1 = new JLabel("");
-		temp1.setMaximumSize(tfSize);
-		temp1.setPreferredSize(tfSize);
-
-		JLabel temp2 = new JLabel("");
-		temp2.setMaximumSize(tfSize);
-		temp2.setPreferredSize(tfSize);
-
-
-
-
-		// adding components so that the layout is right
-		panel.add(temp1);
-		panel.add(temp2);
-
-
-
-
 		// Lay out the panel.
-		SpringUtilities.makeCompactGrid(panel, 2, 6, // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 

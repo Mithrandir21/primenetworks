@@ -190,7 +190,6 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 		labels[3].setToolTipText("Whether or not the OS is 64-Bit.");
 
 
-		int childrenCount = 0;
 		Dimension tfSize = new Dimension(90, 20);
 
 
@@ -220,7 +219,6 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		childrenCount = childrenCount + 2;
 
 
 
@@ -238,7 +236,6 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 
 		panel.add(labels[1]);
 		panel.add(encryptedFileSystem);
-		childrenCount = childrenCount + 2;
 
 
 
@@ -256,7 +253,6 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 
 		panel.add(labels[2]);
 		panel.add(hasGUI);
-		childrenCount = childrenCount + 2;
 
 
 
@@ -275,12 +271,11 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 
 		panel.add(labels[3]);
 		panel.add(is64bit);
-		childrenCount = childrenCount + 2;
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, childrenCount, // rows,
-																		// cols
+		graphics.GraphicalFunctions.make6xGrid(panel,  // rows,
+				panel.getComponentCount(),// cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
