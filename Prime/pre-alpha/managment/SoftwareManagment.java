@@ -6,16 +6,6 @@ package managment;
 
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.ObjectView;
-import graphics.GUI.objectView.Software.EditSoftware.EditViews.AntivirusEditView;
-import graphics.GUI.objectView.Software.EditSoftware.EditViews.BackupEditView;
-import graphics.GUI.objectView.Software.EditSoftware.EditViews.DatabaseEditView;
-import graphics.GUI.objectView.Software.EditSoftware.EditViews.EmailEditView;
-import graphics.GUI.objectView.Software.EditSoftware.EditViews.FirewallEditView;
-import graphics.GUI.objectView.Software.EditSoftware.EditViews.OSEditView;
-import graphics.GUI.objectView.Software.EditSoftware.EditViews.OfficeSuiteEditView;
-import graphics.GUI.objectView.Software.EditSoftware.EditViews.ProxyEditView;
-import graphics.GUI.objectView.Software.EditSoftware.EditViews.SecuritySuiteEditView;
-import graphics.GUI.objectView.Software.EditSoftware.EditViews.WebserverEditView;
 import logistical.cleanup;
 import objects.Object;
 import objects.Software;
@@ -417,6 +407,8 @@ public class SoftwareManagment
 
 
 	/**
+	 * TODO - Write Method explanation
+	 * 
 	 * @param os
 	 * @param obj
 	 */

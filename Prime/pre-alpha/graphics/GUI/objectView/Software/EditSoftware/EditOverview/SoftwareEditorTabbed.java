@@ -1,7 +1,6 @@
 package graphics.GUI.objectView.Software.EditSoftware.EditOverview;
 
 
-import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditViews.AntivirusEditView;
 import graphics.GUI.objectView.Software.EditSoftware.EditViews.BackupEditView;
@@ -18,7 +17,6 @@ import java.awt.Component;
 
 import javax.swing.JTabbedPane;
 
-import managment.ComponentsManagment;
 import managment.SoftwareManagment;
 import objects.Object;
 import objects.Software;
@@ -69,83 +67,82 @@ public class SoftwareEditorTabbed extends JTabbedPane
 	{
 		Software[] software = obj.getSoftware();
 
-		
+
 		String ending = " options and values.";
-		
-		
-		for( int i = 0; i < software.length; i++)
+
+
+		for ( int i = 0; i < software.length; i++ )
 		{
-			if( software[i] instanceof Antivirus )
+			if ( software[i] instanceof Antivirus )
 			{
 				String desc = "Antivirus" + ending;
 				this.addTab("Antivirus", null, new AntivirusEditView(obj,
-						 (Antivirus) software[i]), desc);
+						(Antivirus) software[i]), desc);
 			}
-			else if( software[i] instanceof Backup )
+			else if ( software[i] instanceof Backup )
 			{
 				String desc = "Backup" + ending;
 				this.addTab("Backup", null, new BackupEditView(obj,
-						 (Backup) software[i]), desc);
+						(Backup) software[i]), desc);
 			}
-			else if( software[i] instanceof Database )
+			else if ( software[i] instanceof Database )
 			{
 				String desc = "Database" + ending;
 				this.addTab("Database", null, new DatabaseEditView(obj,
-						 (Database) software[i]), desc);
+						(Database) software[i]), desc);
 			}
-			else if( software[i] instanceof Email )
+			else if ( software[i] instanceof Email )
 			{
 				String desc = "Email" + ending;
 				this.addTab("Email", null, new EmailEditView(obj,
-						 (Email) software[i]), desc);
+						(Email) software[i]), desc);
 			}
-			else if( software[i] instanceof Firewall )
+			else if ( software[i] instanceof Firewall )
 			{
 				String desc = "Firewall" + ending;
 				this.addTab("Firewall", null, new FirewallEditView(obj,
-						 (Firewall) software[i]), desc);
+						(Firewall) software[i]), desc);
 			}
-			else if( software[i] instanceof OfficeSuite )
+			else if ( software[i] instanceof OfficeSuite )
 			{
 				String desc = "OfficeSuite" + ending;
 				this.addTab("OfficeSuite", null, new OfficeSuiteEditView(obj,
-						 (OfficeSuite) software[i]), desc);
+						(OfficeSuite) software[i]), desc);
 			}
-			else if( software[i] instanceof OperatingSystem )
+			else if ( software[i] instanceof OperatingSystem )
 			{
 				String desc = "OperatingSystem" + ending;
 				this.addTab("OperatingSystem", null, new OSEditView(obj,
-						 (OperatingSystem) software[i]), desc);
+						(OperatingSystem) software[i]), desc);
 			}
-			else if( software[i] instanceof Proxy )
+			else if ( software[i] instanceof Proxy )
 			{
 				String desc = "Proxy" + ending;
 				this.addTab("Proxy", null, new ProxyEditView(obj,
-						 (Proxy) software[i]), desc);
+						(Proxy) software[i]), desc);
 			}
-			else if( software[i] instanceof SecuritySuite )
+			else if ( software[i] instanceof SecuritySuite )
 			{
 				String desc = "SecuritySuite" + ending;
-				this.addTab("SecuritySuite", null, new SecuritySuiteEditView(obj,
-						 (SecuritySuite) software[i]), desc);
+				this.addTab("SecuritySuite", null, new SecuritySuiteEditView(
+						obj, (SecuritySuite) software[i]), desc);
 			}
-			else if( software[i] instanceof Webserver )
+			else if ( software[i] instanceof Webserver )
 			{
 				String desc = "Webserver" + ending;
 				this.addTab("Webserver", null, new WebserverEditView(obj,
-						 (Webserver) software[i]), desc);
+						(Webserver) software[i]), desc);
 			}
 		}
 
 	}
-	
-	
-	
+
+
+
 	/**
 	 * This method calls the save methods on all the different SoftwareViews and
 	 * if the boolean given is true, calls also the validation methods on all
 	 * views. If any of the validations fail, none save methods will be called.
-	 * 
 	 */
 	public void save()
 	{
@@ -159,8 +156,8 @@ public class SoftwareEditorTabbed extends JTabbedPane
 
 			((SoftwareView) comp).save();
 		}
-		
-		
+
+
 		// Process all changes to the software of the object
 		SoftwareManagment.processAllChanges(mainobj);
 	}

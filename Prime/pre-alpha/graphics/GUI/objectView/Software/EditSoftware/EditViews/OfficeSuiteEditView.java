@@ -24,7 +24,6 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import objects.Object;
-import objects.Software;
 import software.OfficeSuite;
 
 
@@ -126,16 +125,18 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareView,
 		this.add(buttons, c);
 	}
 
-	
+
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
-	 * @param offSuite The Software that will be examined and will fill inn the fields.
+	 * @param offSuite
+	 *            The Software that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(OfficeSuite offSuite)
 	{
 		JPanel panel = new JPanel(new SpringLayout());

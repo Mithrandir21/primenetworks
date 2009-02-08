@@ -304,7 +304,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the graphical port type on the motherboard. AGP, PCI, PCI-Express and so on.
+	 * Get the graphical port type on the motherboard. AGP, PCI, PCI-Express and
+	 * so on.
 	 */
 	public String getGraphicalPort()
 	{
@@ -322,7 +323,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the whether or not there is an integrated audio card on the motherboard.
+	 * Get the whether or not there is an integrated audio card on the
+	 * motherboard.
 	 */
 	public boolean audioCardIsIntegrated()
 	{
@@ -331,7 +333,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the whether or not there is an integrated graphical card on the motherboard.
+	 * Get the whether or not there is an integrated graphical card on the
+	 * motherboard.
 	 */
 	public boolean graphicalCardIsIntegrated()
 	{
@@ -340,7 +343,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get a boolean on whether or not there is an integrated LAN card on the motherboard.
+	 * Get a boolean on whether or not there is an integrated LAN card on the
+	 * motherboard.
 	 */
 	public boolean LANcardIsIntegrated()
 	{
@@ -360,7 +364,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get a boolean on whether or not there is an integrated Audio card on the motherboard.
+	 * Get a boolean on whether or not there is an integrated Audio card on the
+	 * motherboard.
 	 * 
 	 * @return the integAudioCard
 	 */
@@ -371,7 +376,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get a boolean on whether or not there is an integrated Graphical card on the motherboard.
+	 * Get a boolean on whether or not there is an integrated Graphical card on
+	 * the motherboard.
 	 * 
 	 * @return the integGraphicalCard
 	 */
@@ -382,7 +388,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get a boolean on whether or not there is an integrated LAN card on the motherboard.
+	 * Get a boolean on whether or not there is an integrated LAN card on the
+	 * motherboard.
 	 * 
 	 * @return the integLANcard
 	 */
@@ -459,7 +466,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get a boolean on whether or not there is a Graphical Card installed on the motherboard.
+	 * Get a boolean on whether or not there is a Graphical Card installed on
+	 * the motherboard.
 	 * 
 	 * @return the graphicsCard
 	 */
@@ -692,8 +700,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one CPU port available by add to the integer that keep track
-	 * of how make port are available.
+	 * Makes one CPU port available by add to the integer that keep track of how
+	 * make port are available.
 	 */
 	public void makeOneCPUportAvailable()
 	{
@@ -703,8 +711,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one CPU port unavailable by removing from the integer that keep track
-	 * of how make port are available.
+	 * Makes one CPU port unavailable by removing from the integer that keep
+	 * track of how make port are available.
 	 */
 	public void makeOneCPUportTaken()
 	{
@@ -726,8 +734,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one PCI port available by add to the integer that keep track
-	 * of how make port are available.
+	 * Makes one PCI port available by add to the integer that keep track of how
+	 * make port are available.
 	 */
 	public void makeOnePCIportAvailable()
 	{
@@ -737,8 +745,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one PCI port unavailable by removing from the integer that keep track
-	 * of how make port are available.
+	 * Makes one PCI port unavailable by removing from the integer that keep
+	 * track of how make port are available.
 	 */
 	public void makeOnePCIportTaken()
 	{
@@ -760,8 +768,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one RAM port available by add to the integer that keep track
-	 * of how make port are available.
+	 * Makes one RAM port available by add to the integer that keep track of how
+	 * make port are available.
 	 */
 	public void makeOneRAMportAvailable()
 	{
@@ -771,8 +779,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one RAM port unavailable by removing from the integer that keep track
-	 * of how make port are available.
+	 * Makes one RAM port unavailable by removing from the integer that keep
+	 * track of how make port are available.
 	 */
 	public void makeOneRAMportTaken()
 	{
@@ -793,8 +801,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one USB port available by add to the integer that keep track
-	 * of how make port are available.
+	 * Makes one USB port available by add to the integer that keep track of how
+	 * make port are available.
 	 */
 	public void makeOneUSBportAvailable()
 	{
@@ -804,8 +812,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one USB port unavailable by removing from the integer that keep track
-	 * of how make port are available.
+	 * Makes one USB port unavailable by removing from the integer that keep
+	 * track of how make port are available.
 	 */
 	public void makeOneUSBportTaken()
 	{
@@ -826,8 +834,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one DUC port available by add to the integer that keep track
-	 * of how make port are available.
+	 * Makes one DUC port available by add to the integer that keep track of how
+	 * make port are available.
 	 */
 	public void makeOneDUCportAvailable()
 	{
@@ -837,8 +845,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one DUC port unavailable by removing from the integer that keep track
-	 * of how make port are available.
+	 * Makes one DUC port unavailable by removing from the integer that keep
+	 * track of how make port are available.
 	 */
 	public void makeOneDUCportTaken()
 	{
@@ -860,8 +868,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one LAN port available by add to the integer that keep track
-	 * of how make port are available.
+	 * Makes one LAN port available by add to the integer that keep track of how
+	 * make port are available.
 	 */
 	public void makeOneIntLANportAvailable()
 	{
@@ -871,8 +879,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one LAN port unavailable by removing from the integer that keep track
-	 * of how make port are available.
+	 * Makes one LAN port unavailable by removing from the integer that keep
+	 * track of how make port are available.
 	 */
 	public void makeOneIntLANportTaken()
 	{

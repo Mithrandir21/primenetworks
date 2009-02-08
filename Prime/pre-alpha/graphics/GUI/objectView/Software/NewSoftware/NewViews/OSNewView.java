@@ -28,7 +28,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -39,9 +38,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import managment.SoftwareManagment;
-
 import objects.Object;
-import objects.Software;
 import software.OperatingSystem;
 
 
@@ -160,16 +157,18 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 		this.setVisible(true);
 	}
 
-	
+
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
-	 * @param OS The Software that will be examined and will fill inn the fields.
+	 * @param OS
+	 *            The Software that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(OperatingSystem OS)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -274,7 +273,7 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel,  // rows,
+		graphics.GraphicalFunctions.make6xGrid(panel, // rows,
 				panel.getComponentCount(),// cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
@@ -286,8 +285,8 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 
 
 	/**
-	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
-	 * 
+	 * Creates a JPanel with two buttons that are listened for by
+	 * actionlisteners.
 	 */
 	private JPanel createButtons()
 	{
@@ -370,8 +369,8 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 
 
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems" JList.
-	 *  
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
 	 */
 	class SharedListSelectionHandler implements ListSelectionListener
 	{

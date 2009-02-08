@@ -1,5 +1,6 @@
 package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
+
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
@@ -41,7 +42,9 @@ import managment.SoftwareManagment;
 import objects.Object;
 import software.Antivirus;
 
-public class AntivirusNewView extends JFrame implements SoftwareView,ActionListener
+
+public class AntivirusNewView extends JFrame implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -71,11 +74,11 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 	private Object mainObj;
 
 	private Antivirus mainAV;
-	
-	
+
+
 	/**
 	 * TODO - Description NEEDED!
-	 *
+	 * 
 	 * @param obj
 	 * @param av
 	 */
@@ -144,7 +147,7 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(buttons, c);
-		
+
 
 
 		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
@@ -152,17 +155,19 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
-	
-	
+
+
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
-	 * @param av The software that will be examined and will fill inn the fields.
+	 * @param av
+	 *            The software that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(Antivirus av)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -170,8 +175,9 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 
 
 		labels[0] = new JLabel("Supported OS");
-		labels[0].setToolTipText("The supported Operating Systems by the software.");
-		
+		labels[0]
+				.setToolTipText("The supported Operating Systems by the software.");
+
 		labels[1] = new JLabel("Activated Date");
 		labels[1].setToolTipText("The date that the AV was activated.");
 
@@ -180,15 +186,15 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 
 		labels[3] = new JLabel("License");
 		labels[3].setToolTipText("The license key for the AV.");
-		
+
 		labels[4] = new JLabel("Activated");
 		labels[4].setToolTipText("Whether or not the AV is activated.");
 
 
 		Dimension tfSize = new Dimension(90, 20);
 		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
-		
-		
+
+
 		// The supported operating systems by the Antivirus software.
 		labels[0].setLabelFor(supportedOS);
 		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
@@ -215,7 +221,7 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		
+
 
 
 		// The Activated date
@@ -237,7 +243,7 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 			System.out.println("Error - AntivirusEditView - Activated Date");
 		}
 
-		if( av.getActivationDate() != null )
+		if ( av.getActivationDate() != null )
 		{
 			actDate.setText(parsedAct.toString());
 		}
@@ -269,8 +275,8 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 			// DO nothing.
 			System.out.println("Error - AntivirusEditView - Expiration Date");
 		}
-		
-		if( av.getActivationDate() != null )
+
+		if ( av.getActivationDate() != null )
 		{
 			expDate.setText(parsedExp.toString());
 		}
@@ -296,7 +302,7 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 		panel.add(labels[3]);
 		panel.add(license);
 
-		
+
 
 		// Whether or not the AV has been avtivated.
 		labels[4].setLabelFor(activated);
@@ -313,18 +319,19 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-		
+
 
 		return panel;
 	}
 
-	
+
 	/**
-	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
-	 * 
+	 * Creates a JPanel with two buttons that are listened for by
+	 * actionlisteners.
 	 */
 	private JPanel createButtons()
 	{
@@ -346,7 +353,7 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 
 		return buttons;
 	}
-	
+
 	@Override
 	public void save()
 	{
@@ -361,7 +368,7 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 		{
 			mainAV.setDescription(desc.getText());
 		}
-		
+
 		if ( supportedOS.getSelectedIndex() != -1 )
 		{
 			mainAV.setSupportedOperatingSystems(OSs);
@@ -369,7 +376,8 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 
 		if ( !actDate.getText().equalsIgnoreCase("") )
 		{
-			System.out.println("Dette er helt teit." + "\"" + actDate.getText() +"\"");
+			System.out.println("Dette er helt teit." + "\"" + actDate.getText()
+					+ "\"");
 			Date tempDate = null;
 
 			try
@@ -404,7 +412,7 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 
 		mainAV.setActivated(activated.isSelected());
 
-		if ( !license.getText().equalsIgnoreCase(""))
+		if ( !license.getText().equalsIgnoreCase("") )
 		{
 			mainAV.setLicense(license.getText());
 		}
@@ -417,8 +425,8 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 		{
 			// Saves the current values of the new motherboard.
 			save();
-			
-			
+
+
 			// Checks whether or not the software is compatible with the OS
 			if ( SoftwareManagment.validateSoftware(mainAV, mainObj) )
 			{
@@ -442,12 +450,13 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 			else
 			{
 				JOptionPane
-						.showMessageDialog(this,
-								"The supported Operating System chosen is not " +
-								"compatible with the objects Operating System");
+						.showMessageDialog(
+								this,
+								"The supported Operating System chosen is not "
+										+ "compatible with the objects Operating System");
 			}
 
-			
+
 		}
 		else if ( e.getActionCommand().equals("cancel") )
 		{
@@ -456,11 +465,11 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 
 	}
 
-	
-	
+
+
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems" JList.
-	 *  
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
 	 */
 	private class SharedListSelectionHandler implements ListSelectionListener
 	{
@@ -492,5 +501,5 @@ public class AntivirusNewView extends JFrame implements SoftwareView,ActionListe
 			}
 		}
 	}
-	
+
 }

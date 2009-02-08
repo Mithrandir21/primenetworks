@@ -4,6 +4,7 @@ package infrastructure;
 import java.io.Serializable;
 
 import logistical.RackFunctions;
+import managment.ArrayManagment;
 import managment.ComponentsManagment;
 import objects.Infrastructure;
 import objects.Object;
@@ -140,7 +141,7 @@ public class Rack extends Infrastructure implements Serializable
 	public Object[] getSpesificUnits(Class<Object> unitClass)
 			throws ObjectNotFoundException
 	{
-		Object[] unitsFound = ComponentsManagment.getSpesificComponents(
+		Object[] unitsFound = ArrayManagment.getSpesificComponents(
 				unitClass, units, unitsCounter);
 
 		return unitsFound;

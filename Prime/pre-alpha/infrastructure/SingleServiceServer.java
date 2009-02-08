@@ -3,6 +3,7 @@ package infrastructure;
 
 import java.io.Serializable;
 
+import managment.ArrayManagment;
 import managment.ComponentsManagment;
 import objects.Infrastructure;
 import objects.Object;
@@ -147,7 +148,7 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	public Object[] getSpesificComponents(Class<?> ComponentClass)
 			throws ObjectNotFoundException
 	{
-		Object[] componentsFound = ComponentsManagment.getSpesificComponents(
+		Object[] componentsFound = ArrayManagment.getSpesificComponents(
 				ComponentClass, components, componentCounter);
 
 		return componentsFound;
@@ -166,7 +167,7 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	public Object[] getSpesificConncetedDevices(Class<?> connectedDeviceClass)
 			throws ObjectNotFoundException
 	{
-		Object[] componentsFound = ComponentsManagment.getSpesificComponents(
+		Object[] componentsFound = ArrayManagment.getSpesificComponents(
 				connectedDeviceClass, components, componentCounter);
 
 		return componentsFound;

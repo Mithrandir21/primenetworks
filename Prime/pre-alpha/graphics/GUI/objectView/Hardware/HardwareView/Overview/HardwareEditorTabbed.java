@@ -144,16 +144,16 @@ public class HardwareEditorTabbed extends JTabbedPane
 			boolean[] verified = new boolean[this.getComponentCount()];
 			
 			// FIXME
-//			/**
-//			 * Goes through all the views and gets the validation status of each
-//			 * one and places that boolean in the validation array.
-//			 */
-//			for ( int i = 0; i < this.getComponentCount(); i++ )
-//			{
-//				Component comp = this.getComponent(i);
-//
-//				verified[i] = ((HardwareViewInterface) comp).validateNecessaryData();
-//			}
+			/**
+			 * Goes through all the views and gets the validation status of each
+			 * one and places that boolean in the validation array.
+			 */
+			for ( int i = 0; i < this.getComponentCount(); i++ )
+			{
+				Component comp = this.getComponent(i);
+
+				verified[i] = ((HardwareViewInterface) comp).validateNecessaryData();
+			}
 
 			/**
 			 * If any of the validation function in any of the views return

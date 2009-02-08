@@ -6,6 +6,7 @@ package graphics;
 
 import graphics.GUI.menues.GenericPrimeMenuBar;
 import graphics.GUI.menues.GenericPrimeToolbar;
+import graphics.GUI.messageArea.MessageTabbed;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.properties.PropertiesArea;
 import graphics.GUI.selectArea.TabbedSelection;
@@ -21,7 +22,6 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.SplashScreen;
 import java.awt.Toolkit;
@@ -40,7 +40,6 @@ import java.util.Iterator;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
@@ -64,11 +63,13 @@ public class PrimeMain1 extends JFrame
 	public static int width, height;
 
 	// Main window panel setup
-	private JPanel toolbarPanel, selectionPanel, workareaPanel, messagesPanel;
+	private JPanel toolbarPanel, selectionPanel, workareaPanel;
 
 	// The JPanel where the properties of any selected object or network
 	// overview is shown.
 	public static JPanel propertiesPanel;
+	
+	private static JPanel messagesPanel;
 
 	static JXMultiSplitPane multiSplitPane = new JXMultiSplitPane();
 
@@ -229,7 +230,8 @@ public class PrimeMain1 extends JFrame
 		 * the user about different aspects of their network setup.
 		 */
 		// Creates a new panel with a GridBagLayout.
-		messagesPanel = new JPanel(new GridBagLayout());
+//		messagesPanel = new JPanel(new GridLayout(0,1));
+		messagesPanel = new JPanel(new BorderLayout());
 
 		// Constraints for the window
 		GridBagConstraints conMessagesPanel = new GridBagConstraints();
@@ -240,7 +242,8 @@ public class PrimeMain1 extends JFrame
 		// Sets the border around the panel
 		messagesPanel.setBorder(grayline);
 
-		messagesPanel.add(new JLabel("Messages"));
+		messagesPanel.add(new MessageTabbed(), BorderLayout.CENTER);
+//		messagesPanel.add(new JLabel("Messages"));
 
 
 		/*
@@ -423,6 +426,34 @@ public class PrimeMain1 extends JFrame
 		PropertiesArea temp = (PropertiesArea) propertiesPanel.getComponent(0);
 
 		temp.newObjectSelectedPropertiesTab(obj);
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static void updateCanvasAndObjectInfo()
+	{
+		runCanvasObjectCheck();
+	}
+	
+	
+	
+	/**
+	 * Runs a check on all the objects on the current canvas
+	 * and passed that information over to the JTable that shows¨
+	 * different errors, warnings and notices.
+	 */
+	public static void runCanvasObjectCheck()
+	{
+		Object[] children = currentCanvas.getObjectsOnTheScene();
+		
+		
+		MessageTabbed msgTab = (MessageTabbed) messagesPanel.getComponent(0);
+		
+		msgTab.addHardwareTab(children);
 	}
 	
 	

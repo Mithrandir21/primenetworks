@@ -20,7 +20,7 @@ public class Antivirus extends Software implements Serializable
 	 * Datafields for an abstract antivirus These will contain the values of any
 	 * antivirus object
 	 */
-	
+
 	// Supported Operating systems
 	private String[] supportedOperatingSystems;
 
@@ -109,7 +109,7 @@ public class Antivirus extends Software implements Serializable
 
 
 	// SET METHODES
-	
+
 
 	/**
 	 * Sets an array with the names of the supported Operating Systems.
@@ -121,7 +121,7 @@ public class Antivirus extends Software implements Serializable
 	{
 		this.supportedOperatingSystems = supportedOperatingSystems;
 	}
-	
+
 
 	/**
 	 * Sets the antivirus to activated.

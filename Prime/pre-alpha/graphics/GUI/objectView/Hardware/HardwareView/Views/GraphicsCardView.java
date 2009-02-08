@@ -7,7 +7,6 @@ package graphics.GUI.objectView.Hardware.HardwareView.Views;
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 import hardware.GraphicsCard;
@@ -140,16 +139,18 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 		this.add(buttons, c);
 	}
 
-	
+
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Hardware object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
-	 * @param GPU The Hardware that will be examined and will fill inn the fields.
+	 * @param GPU
+	 *            The Hardware that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(GraphicsCard GPU)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -328,7 +329,8 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
@@ -476,5 +478,12 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 
 			// TODO - isIntegrated
 		}
+	}
+
+
+	@Override
+	public boolean validateNecessaryData()
+	{
+		return true;
 	}
 }

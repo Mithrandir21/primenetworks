@@ -446,4 +446,11 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface,
 			}
 		}
 	}
+
+
+	@Override
+	public boolean validateNecessaryData()
+	{
+		return true;
+	}
 }

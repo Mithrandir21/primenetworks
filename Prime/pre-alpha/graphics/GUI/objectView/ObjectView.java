@@ -169,6 +169,7 @@ public class ObjectView extends JFrame implements ActionListener
 						.setDescription(view.genObjView.textarea.getText());
 			}
 
+			PrimeMain1.updateCanvasAndObjectInfo();
 			PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject());
 
 			PrimeMain1.removeObjectView(currentObject);
@@ -191,7 +192,7 @@ public class ObjectView extends JFrame implements ActionListener
 						.setDescription(view.genObjView.textarea.getText());
 			}
 
-
+			PrimeMain1.updateCanvasAndObjectInfo();
 			PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject());
 		}
 		else

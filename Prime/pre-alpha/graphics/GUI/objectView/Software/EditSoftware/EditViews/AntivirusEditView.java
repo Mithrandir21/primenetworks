@@ -35,11 +35,8 @@ import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import managment.ComponentsManagment;
 import managment.SoftwareManagment;
-
 import objects.Object;
-import objects.Software;
 import software.Antivirus;
 
 
@@ -53,7 +50,8 @@ import software.Antivirus;
  * 
  * @author Bahram Malaekeh
  */
-public class AntivirusEditView extends JPanel implements SoftwareView, ActionListener
+public class AntivirusEditView extends JPanel implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -157,16 +155,18 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 		this.add(buttons, c);
 	}
 
-	
+
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
-	 * @param av The Software that will be examined and will fill inn the fields.
+	 * @param av
+	 *            The Software that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpecificInfo(Antivirus av)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -174,8 +174,9 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 
 
 		labels[0] = new JLabel("Supported OS");
-		labels[0].setToolTipText("The supported Operating Systems by the software.");
-		
+		labels[0]
+				.setToolTipText("The supported Operating Systems by the software.");
+
 		labels[1] = new JLabel("Activated Date");
 		labels[1].setToolTipText("The date that the AV was activated.");
 
@@ -184,15 +185,15 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 
 		labels[3] = new JLabel("License");
 		labels[3].setToolTipText("The license key for the AV.");
-		
+
 		labels[4] = new JLabel("Activated");
 		labels[4].setToolTipText("Whether or not the AV is activated.");
 
 
 		Dimension tfSize = new Dimension(90, 20);
 		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
-		
-		
+
+
 		// The supported operating systems by the Antivirus software.
 		labels[0].setLabelFor(supportedOS);
 		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
@@ -219,7 +220,7 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 
 		panel.add(labels[0]);
 		panel.add(listPane);
-		
+
 
 
 		// The Activated date
@@ -241,7 +242,7 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 			System.out.println("Error - AntivirusEditView - Activated Date");
 		}
 
-		if( av.getActivationDate() != null )
+		if ( av.getActivationDate() != null )
 		{
 			actDate.setText(parsedAct.toString());
 		}
@@ -273,8 +274,8 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 			// DO nothing.
 			System.out.println("Error - AntivirusEditView - Expiration Date");
 		}
-		
-		if( av.getActivationDate() != null )
+
+		if ( av.getActivationDate() != null )
 		{
 			expDate.setText(parsedExp.toString());
 		}
@@ -300,7 +301,7 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 		panel.add(labels[3]);
 		panel.add(license);
 
-		
+
 
 		// Whether or not the AV has been avtivated.
 		labels[4].setLabelFor(activated);
@@ -317,10 +318,11 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-		
+
 
 		return panel;
 	}
@@ -342,12 +344,12 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 		{
 			mainAV.setDescription(desc.getText());
 		}
-		
+
 		if ( supportedOS.getSelectedIndex() != -1 )
 		{
 			mainAV.setSupportedOperatingSystems(OSs);
 		}
-		
+
 		if ( !actDate.getText().equalsIgnoreCase("") )
 		{
 			Date tempDate = null;
@@ -404,26 +406,27 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 				// Will remove the first variable from the list of components
 				// that will be returned and set as the components for the main
 				// object.
-//				mainObj.setAllComponents(ComponentsManagment.removeComponent(
-//						CPUobj, mainObj.getComponents(), mainObj
-//								.getComponents().length));
-				mainObj.setSoftware(SoftwareManagment.removeSoftware(mainAV, mainObj));
+				// mainObj.setAllComponents(ComponentsManagment.removeComponent(
+				// CPUobj, mainObj.getComponents(), mainObj
+				// .getComponents().length));
+				mainObj.setSoftware(SoftwareManagment.removeSoftware(mainAV,
+						mainObj));
 
 				// Updates the views of the object to correctly show the
 				// current info.
 				ObjectView view = PrimeMain1.getObjectView(mainObj);
-				if(view != null)
+				if ( view != null )
 				{
 					view.updateViewInfo();
 				}
 			}
 		}
 	}
-	
-	
+
+
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems" JList.
-	 *  
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
 	 */
 	private class SharedListSelectionHandler implements ListSelectionListener
 	{

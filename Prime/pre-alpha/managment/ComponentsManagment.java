@@ -359,7 +359,7 @@ public class ComponentsManagment
 				try
 				{
 					// Find the components with the given class on a motherboard
-					returned = ComponentsManagment.getSpesificComponents(
+					returned = ArrayManagment.getSpesificComponents(
 							componentClass, mainObj.getComponents(), mainObj
 									.getComponents().length);
 				}
@@ -415,7 +415,7 @@ public class ComponentsManagment
 
 		try
 		{
-			mb = (Motherboard) ComponentsManagment.getSpesificComponents(
+			mb = (Motherboard) ArrayManagment.getSpesificComponents(
 					Motherboard.class, components, components.length)[0];
 		}
 		catch ( ObjectNotFoundException e1 )
@@ -464,7 +464,7 @@ public class ComponentsManagment
 		try
 		{
 			// Gets all the CPU components in the components array.
-			Object[] cpus = ComponentsManagment.getSpesificComponents(
+			Object[] cpus = ArrayManagment.getSpesificComponents(
 					CPU.class, components, components.length);
 
 			for ( int i = 0; i < cpus.length; i++ )
@@ -507,7 +507,7 @@ public class ComponentsManagment
 		try
 		{
 			// Gets all the Discdrive components in the components array.
-			Object[] drives = ComponentsManagment.getSpesificComponents(
+			Object[] drives = ArrayManagment.getSpesificComponents(
 					Discdrive.class, components, components.length);
 
 			// 
@@ -549,7 +549,7 @@ public class ComponentsManagment
 		{
 			// Gets all the ExternalNetworksCard components in the components
 			// array.
-			Object[] extNICs = ComponentsManagment.getSpesificComponents(
+			Object[] extNICs = ArrayManagment.getSpesificComponents(
 					ExternalNetworksCard.class, components, components.length);
 
 			// 
@@ -558,7 +558,7 @@ public class ComponentsManagment
 				ExternalNetworksCard extNIC = (ExternalNetworksCard) extNICs[i];
 
 				// if ( mb.getUSBPortsAvailable() )
-				// {
+				// { TODO - External NIC check
 				// // Removes the actual components.
 				// obj.setAllComponents(ComponentsManagment.removeComponent(
 				// extNIC, components, components.length));
@@ -586,7 +586,7 @@ public class ComponentsManagment
 		{
 			// Gets all the ExternalNetworksCard components in the components
 			// array.
-			Object[] intNICs = ComponentsManagment.getSpesificComponents(
+			Object[] intNICs = ArrayManagment.getSpesificComponents(
 					InternalNetworksCard.class, components, components.length);
 
 			// 
@@ -628,7 +628,7 @@ public class ComponentsManagment
 		try
 		{
 			// Gets all the GraphicsCard components in the components array.
-			Object[] GPUs = ComponentsManagment.getSpesificComponents(
+			Object[] GPUs = ArrayManagment.getSpesificComponents(
 					GraphicsCard.class, components, components.length);
 
 			// 
@@ -669,7 +669,7 @@ public class ComponentsManagment
 		try
 		{
 			// Gets all the HDD components in the components array.
-			Object[] HDDs = ComponentsManagment.getSpesificComponents(
+			Object[] HDDs = ArrayManagment.getSpesificComponents(
 					HDD.class, components, components.length);
 
 			// If the port to the motherboard is not the same
@@ -710,7 +710,7 @@ public class ComponentsManagment
 		try
 		{
 			// Gets all the Ram components in the components array.
-			Object[] RAMs = ComponentsManagment.getSpesificComponents(
+			Object[] RAMs = ArrayManagment.getSpesificComponents(
 					Ram.class, components, components.length);
 
 			// 
@@ -1103,73 +1103,6 @@ public class ComponentsManagment
 
 
 	// SEARCH FUNCTIONS
-	/**
-	 * Get specific components by searching for components with the give class
-	 * type.
-	 * 
-	 * @return Returns an array of components that match with the given class.
-	 * @param componentCounter
-	 *            The counter that tells how many components are in the current
-	 *            components array.
-	 * @param components
-	 *            The current components list.
-	 * @throws ObjectNotFoundException
-	 *             Throws an exception which states that there were not objects
-	 *             found with the given class.
-	 */
-	@SuppressWarnings("unchecked")
-	public static Object[] getSpesificComponents(Class ComponentClass,
-			Object[] components, int componentCounter)
-			throws ObjectNotFoundException
-	{
-		// boolean to check whether the object is found or not
-		boolean objectNotFound = true;
-
-		// Counter for number of components found
-		int tempCounter = 0;
-
-		// Container that will hold all the found components
-		Object[] componentsFound = new Object[componentCounter];
-
-
-		// Searches for components of the given class
-		for ( int i = 0; i < componentCounter; i++ )
-		{
-			/*
-			 * If the given components class matches the present components
-			 * class, it will be added to the container
-			 */
-			if ( components[i].getClass().equals(ComponentClass) )
-			{
-				componentsFound[tempCounter] = components[i];
-
-				tempCounter++;
-
-				objectNotFound = false;
-			}
-		}
-
-
-		// Checks whether all the objects were found and removed
-		if ( objectNotFound == true )
-		{
-			ObjectNotFoundException exception = new ObjectNotFoundException(
-					"Object(s) with the given component, "
-							+ ComponentClass.getCanonicalName()
-							+ " were not found.", ComponentClass);
-
-			throw exception;
-		}
-
-
-
-		// Cleans the array of any null pointers at the end
-		componentsFound = cleanup.cleanObjectArray(componentsFound);
-
-		return componentsFound;
-	}
-
-
 
 	/**
 	 * Get specific components by searching for components with the give class

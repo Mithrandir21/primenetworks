@@ -34,7 +34,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import objects.Object;
-import objects.Software;
 import software.SecuritySuite;
 
 
@@ -166,16 +165,18 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 		this.add(buttons, c);
 	}
 
-	
+
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
-	 * @param secSuite The Software that will be examined and will fill inn the fields.
+	 * @param secSuite
+	 *            The Software that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(SecuritySuite secSuite)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -185,7 +186,7 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 		labels[0] = new JLabel("Supported OS");
 		labels[0]
 				.setToolTipText("The supported Operating Systems by the software.");
-		
+
 		labels[1] = new JLabel("Activated");
 		labels[1].setToolTipText("Whether or not the AV is activated.");
 
@@ -397,7 +398,8 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
@@ -517,8 +519,8 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView,
 
 
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems" JList.
-	 *  
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
 	 */
 	private class SharedListSelectionHandler implements ListSelectionListener
 	{

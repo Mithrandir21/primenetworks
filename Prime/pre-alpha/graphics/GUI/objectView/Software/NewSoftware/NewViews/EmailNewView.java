@@ -36,9 +36,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import managment.SoftwareManagment;
-
 import objects.Object;
-import objects.Software;
 import software.Email;
 
 
@@ -84,20 +82,20 @@ public class EmailNewView extends JFrame implements SoftwareView,
 	private Object mainObj;
 
 	private Email mainEmail;
-	
-	
-	
+
+
+
 
 	/**
 	 * TODO - Description NEEDED!
-	 *
+	 * 
 	 * @param obj
 	 * @param email
 	 */
 	public EmailNewView(Object obj, Email email)
 	{
 		super("New Backup");
-		
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -159,7 +157,7 @@ public class EmailNewView extends JFrame implements SoftwareView,
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(buttons, c);
-		
+
 
 
 		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
@@ -168,16 +166,18 @@ public class EmailNewView extends JFrame implements SoftwareView,
 		this.setVisible(true);
 	}
 
-	
+
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
-	 * @param email The Software that will be examined and will fill inn the fields.
+	 * @param email
+	 *            The Software that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(Email email)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -334,18 +334,19 @@ public class EmailNewView extends JFrame implements SoftwareView,
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
 
 		return panel;
 	}
-	
-	
+
+
 	/**
-	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
-	 * 
+	 * Creates a JPanel with two buttons that are listened for by
+	 * actionlisteners.
 	 */
 	private JPanel createButtons()
 	{
@@ -367,7 +368,7 @@ public class EmailNewView extends JFrame implements SoftwareView,
 
 		return buttons;
 	}
-	
+
 
 	@Override
 	public void save()
@@ -407,7 +408,7 @@ public class EmailNewView extends JFrame implements SoftwareView,
 		{
 			// Saves the current values of the new motherboard.
 			save();
-			
+
 			// Checks whether or not the software is compatible with the OS
 			if ( SoftwareManagment.validateSoftware(mainEmail, mainObj) )
 			{
@@ -431,9 +432,10 @@ public class EmailNewView extends JFrame implements SoftwareView,
 			else
 			{
 				JOptionPane
-						.showMessageDialog(this,
-								"The supported Operating System chosen is not " +
-								"compatible with the objects Operating System");
+						.showMessageDialog(
+								this,
+								"The supported Operating System chosen is not "
+										+ "compatible with the objects Operating System");
 			}
 
 		}
@@ -443,11 +445,11 @@ public class EmailNewView extends JFrame implements SoftwareView,
 		}
 
 	}
-	
-	
+
+
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems" JList.
-	 *  
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
 	 */
 	class SharedListSelectionHandler implements ListSelectionListener
 	{

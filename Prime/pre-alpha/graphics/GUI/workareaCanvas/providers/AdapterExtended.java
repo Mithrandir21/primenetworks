@@ -43,7 +43,7 @@ public class AdapterExtended extends Adapter
 			{
 				// Casts the object to an WidgetObject
 				WidgetObject widgetobj = (WidgetObject) widget;
-				
+
 				// The widgetobjects object
 				Object obj = widgetobj.getObject();
 
@@ -52,10 +52,11 @@ public class AdapterExtended extends Adapter
 				{
 					// Gets the view, if there exist any, with the given object
 					ObjectView view = PrimeMain1.getObjectView(obj);
-					
+
 					// There exist no view with the given object.
-					// Which means that there exist no open view for the given object.
-					if( view == null ) 
+					// Which means that there exist no open view for the given
+					// object.
+					if ( view == null )
 					{
 						// Creates a new ObjectView object with the WidgetObject
 						// that has been cast.
@@ -68,8 +69,8 @@ public class AdapterExtended extends Adapter
 					{
 						// Brings the pre-existing ObjectView to the front.
 						view.toFront();
-//						JOptionPane.showMessageDialog(null,
-//								"Only one object can be edited at a time.");
+						// JOptionPane.showMessageDialog(null,
+						// "Only one object can be edited at a time.");
 					}
 				}
 				// If button1 is clicked only once.

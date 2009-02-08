@@ -3,6 +3,7 @@
  */
 package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
+
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
@@ -41,16 +42,14 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import managment.SoftwareManagment;
-
 import objects.Object;
-import objects.Software;
 import software.SecuritySuite;
+
 
 /**
  * TODO - Description NEEDED!
- *
- * @author Bahram Malaekeh
  * 
+ * @author Bahram Malaekeh
  */
 public class SecuritySuiteNewView extends JFrame implements SoftwareView,
 		ActionListener
@@ -109,7 +108,7 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView,
 	public SecuritySuiteNewView(Object obj, SecuritySuite secSuite)
 	{
 		super("New Backup");
-		
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -171,7 +170,7 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView,
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(buttons, c);
-		
+
 
 
 		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
@@ -180,16 +179,18 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView,
 		this.setVisible(true);
 	}
 
-	
+
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
-	 * @param secSuite The Software that will be examined and will fill inn the fields.
+	 * @param secSuite
+	 *            The Software that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(SecuritySuite secSuite)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -199,7 +200,7 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView,
 		labels[0] = new JLabel("Supported OS");
 		labels[0]
 				.setToolTipText("The supported Operating Systems by the software.");
-		
+
 		labels[1] = new JLabel("Activated");
 		labels[1].setToolTipText("Whether or not the AV is activated.");
 
@@ -411,7 +412,8 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView,
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
@@ -419,12 +421,12 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView,
 
 		return panel;
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
-	 * 
+	 * Creates a JPanel with two buttons that are listened for by
+	 * actionlisteners.
 	 */
 	private JPanel createButtons()
 	{
@@ -524,7 +526,7 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView,
 		{
 			// Saves the current values of the new motherboard.
 			save();
-			
+
 			// Checks whether or not the software is compatible with the OS
 			if ( SoftwareManagment.validateSoftware(mainSecSuite, mainObj) )
 			{
@@ -548,9 +550,10 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView,
 			else
 			{
 				JOptionPane
-						.showMessageDialog(this,
-								"The supported Operating System chosen is not " +
-								"compatible with the objects Operating System");
+						.showMessageDialog(
+								this,
+								"The supported Operating System chosen is not "
+										+ "compatible with the objects Operating System");
 			}
 
 		}
@@ -560,11 +563,11 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView,
 		}
 
 	}
-	
-	
+
+
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems" JList.
-	 *  
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
 	 */
 	private class SharedListSelectionHandler implements ListSelectionListener
 	{

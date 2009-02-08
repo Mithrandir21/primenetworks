@@ -9,7 +9,6 @@ import exceptions.ObjectNotFoundInArrayException;
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
@@ -43,6 +42,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import managment.ArrayManagment;
 import managment.ComponentsManagment;
 import objects.Object;
 
@@ -172,16 +172,18 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 		this.add(buttons, c);
 	}
 
-	
+
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Hardware object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
-	 * @param mb The Hardware that will be examined and will fill inn the fields.
+	 * @param mb
+	 *            The Hardware that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(Motherboard mb)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -728,7 +730,8 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
@@ -868,7 +871,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 				try
 				{
 					// Gets all the CPUs from the objects components array.
-					comp = ComponentsManagment.getSpesificComponents(CPU.class,
+					comp = ArrayManagment.getSpesificComponents(CPU.class,
 							mainObj.getComponents(),
 							mainObj.getComponents().length);
 
@@ -924,7 +927,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 				try
 				{
 					// Gets all the CPUs from the objects components array.
-					comp = ComponentsManagment.getSpesificComponents(
+					comp = ArrayManagment.getSpesificComponents(
 							ExternalNetworksCard.class,
 							mainObj.getComponents(),
 							mainObj.getComponents().length);
@@ -982,7 +985,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 				try
 				{
 					// Gets all the CPUs from the objects components array.
-					comp = ComponentsManagment.getSpesificComponents(Ram.class,
+					comp = ArrayManagment.getSpesificComponents(Ram.class,
 							mainObj.getComponents(),
 							mainObj.getComponents().length);
 
@@ -1044,15 +1047,13 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 				try
 				{
 					// Gets all the CPUs from the objects components array.
-					Object[] compHDD = ComponentsManagment
-							.getSpesificComponents(HDD.class, mainObj
-									.getComponents(),
-									mainObj.getComponents().length);
+					Object[] compHDD = ArrayManagment.getSpesificComponents(
+							HDD.class, mainObj.getComponents(), mainObj
+									.getComponents().length);
 
-					Object[] compDisc = ComponentsManagment
-							.getSpesificComponents(Discdrive.class, mainObj
-									.getComponents(),
-									mainObj.getComponents().length);
+					Object[] compDisc = ArrayManagment.getSpesificComponents(
+							Discdrive.class, mainObj.getComponents(), mainObj
+									.getComponents().length);
 
 					comp = new Object[compDisc.length + compHDD.length];
 
@@ -1292,7 +1293,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 					// Updates the views of the object to correctly show the
 					// current info.
 					ObjectView view = PrimeMain1.getObjectView(mainObj);
-					if(view != null)
+					if ( view != null )
 					{
 						view.updateViewInfo();
 					}

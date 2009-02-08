@@ -7,7 +7,6 @@ package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
@@ -486,5 +485,12 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 				}
 			}
 		}
+	}
+
+
+	@Override
+	public boolean validateNecessaryData()
+	{
+		return true;
 	}
 }

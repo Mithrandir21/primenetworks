@@ -15,8 +15,8 @@ import hardware.Ram;
 
 
 /**
- * In this class the systems standard internal components are made and served to the rest of 
- * the system. When any new object is made, the internal components 
+ * In this class the systems standard internal components are made and served to
+ * the rest of the system. When any new object is made, the internal components
  * such as motherboard or CPU will be provided by the functions in this class.
  * 
  * @author Bahram Malaekeh
@@ -27,9 +27,10 @@ public class MakeStandardInternalComponents
 	// GETTERS
 
 	/**
-	 * Creates and returns what the system will regard as the standard Motherboard.
-	 * It is this motherboard that will be the base for all the newly created
-	 * computers in the system. It is given a certain set of ports and sockets.
+	 * Creates and returns what the system will regard as the standard
+	 * Motherboard. It is this motherboard that will be the base for all the
+	 * newly created computers in the system. It is given a certain set of ports
+	 * and sockets.
 	 * 
 	 * @return A new motherboard
 	 */
@@ -47,9 +48,10 @@ public class MakeStandardInternalComponents
 
 
 	/**
-	 * Creates and returns what the system will regard as the standard Motherboard for hardware
-	 * that require a motherboard but do not require all the ports and sockets that a normal
-	 * motherboard would provide, such as infrastructure or peripherals.
+	 * Creates and returns what the system will regard as the standard
+	 * Motherboard for hardware that require a motherboard but do not require
+	 * all the ports and sockets that a normal motherboard would provide, such
+	 * as infrastructure or peripherals.
 	 * 
 	 * @return A new motherboard
 	 */
@@ -122,10 +124,11 @@ public class MakeStandardInternalComponents
 
 
 	/**
-	 * Creates and returns what the system will regard as the standard external NIC.
-	 * This nic will also contain a mac address. This mac address will mostly contain
-	 * "0", but the last digits will be the number of components on the canvas.
-	 * This is done so that each individual nic can have a different mac address. 
+	 * Creates and returns what the system will regard as the standard external
+	 * NIC. This nic will also contain a mac address. This mac address will
+	 * mostly contain "0", but the last digits will be the number of components
+	 * on the canvas. This is done so that each individual nic can have a
+	 * different mac address.
 	 * 
 	 * @return A new external NIC
 	 */
@@ -157,12 +160,12 @@ public class MakeStandardInternalComponents
 
 
 	/**
-	 * Creates and returns what the system will regard as the standard internal NIC.
-	 * This nic will also contain a mac address. This mac address will mostly contain
-	 * "0", but the last digits will be the number of components on the canvas.
-	 * This is done so that each individual nic can have a different mac address.
+	 * Creates and returns what the system will regard as the standard internal
+	 * NIC. This nic will also contain a mac address. This mac address will
+	 * mostly contain "0", but the last digits will be the number of components
+	 * on the canvas. This is done so that each individual nic can have a
+	 * different mac address.
 	 * 
-	 *  
 	 * @return A new internal NIC
 	 */
 	public InternalNetworksCard getSt_IntNIC()

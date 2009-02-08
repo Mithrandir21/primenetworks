@@ -38,9 +38,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import managment.SoftwareManagment;
-
 import objects.Object;
-import objects.Software;
 import software.Proxy;
 
 /**

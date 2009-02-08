@@ -35,7 +35,6 @@ import javax.swing.event.ListSelectionListener;
 
 import logistical.cleanup;
 import managment.SoftwareManagment;
-
 import objects.Object;
 import objects.Software;
 import software.OperatingSystem;
@@ -151,16 +150,18 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		this.add(buttons, c);
 	}
 
-	
+
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
-	 * @param OS The Software that will be examined and will fill inn the fields.
+	 * @param OS
+	 *            The Software that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(OperatingSystem OS)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -265,8 +266,9 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows,
-																		// cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows,
+				// cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
@@ -334,33 +336,36 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 					// Goes through all the software
 					for ( int i = 0; i < software.length; i++ )
 					{
-						
-						// The test does not include instances of Operating system
-						if ( !( software[i] instanceof OperatingSystem) )
+
+						// The test does not include instances of Operating
+						// system
+						if ( !(software[i] instanceof OperatingSystem) )
 						{
 							// Checks whether or not the given software is still
 							// compatible
 							if ( !(SoftwareManagment.validateSoftware(
 									software[i], mainObj)) )
 							{
-								// If the software is not compatible the index of
+								// If the software is not compatible the index
+								// of
 								// that software will be set to null
 								software[i] = null;
 							}
 						}
 					}
-					
+
 					// Removes all the null pointers in an array
 					software = cleanup.cleanObjectArray(software);
-					
-					// Sets the remaining software as the software of the main object
+
+					// Sets the remaining software as the software of the main
+					// object
 					mainObj.setSoftware(software);
-					
-					
+
+
 					// Updates the views of the object to correctly show the
 					// current info.
 					ObjectView view = PrimeMain1.getObjectView(mainObj);
-					if(view != null)
+					if ( view != null )
 					{
 						view.updateViewInfo();
 					}
@@ -371,8 +376,8 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 
 
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems" JList.
-	 *  
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
 	 */
 	class SharedListSelectionHandler implements ListSelectionListener
 	{

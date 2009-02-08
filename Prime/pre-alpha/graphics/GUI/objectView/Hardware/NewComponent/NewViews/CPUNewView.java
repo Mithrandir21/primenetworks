@@ -525,4 +525,11 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 	}
 
 
+	@Override
+	public boolean validateNecessaryData()
+	{
+		return true;
+	}
+
+
 }

@@ -50,8 +50,8 @@ public class OfficeSuite extends Software implements Serializable
 			supportedFormats = formats;
 		}
 	}
-	
-	
+
+
 
 	/**
 	 * Returns an array with the names of the supported Operating Systems.
@@ -62,9 +62,9 @@ public class OfficeSuite extends Software implements Serializable
 	{
 		return supportedOperatingSystems;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Sets an array with the names of the supported Operating Systems.
 	 * 

@@ -3,10 +3,6 @@
  */
 package graphics.GUI.objectView.Hardware;
 
-import hardware.CPU;
-
-import javax.swing.JPanel;
-import objects.Object;
 
 
 /**
@@ -22,5 +18,12 @@ public interface HardwareViewInterface
 	 * Here the actual data is written to the object.
 	 */
 	public void save();
+
+	
+	/**
+	 * This function should be used to validate the information
+	 * set in the view.
+	 */
+	public boolean validateNecessaryData();
 
 }

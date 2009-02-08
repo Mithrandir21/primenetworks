@@ -5,14 +5,14 @@ package graphics.GUI.properties.objectTypes;
 
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
-import objects.Object;
-
 import java.awt.Dimension;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import objects.Object;
 
 /**
  * TODO - Description NEEDED!

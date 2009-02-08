@@ -6,6 +6,7 @@ import hardware.Motherboard;
 import java.io.Serializable;
 
 import logistical.cleanup;
+import managment.ArrayManagment;
 import managment.ComponentsManagment;
 import connections.Connection;
 import connections.DeviceConnection;
@@ -332,7 +333,7 @@ public abstract class Object implements Serializable
 	public Object[] getSpesificComponents(Class<?> ComponentClass)
 			throws ObjectNotFoundException
 	{
-		Object[] componentsFound = ComponentsManagment.getSpesificComponents(
+		Object[] componentsFound = ArrayManagment.getSpesificComponents(
 				ComponentClass, components, componentCounter);
 
 		return componentsFound;
@@ -349,7 +350,7 @@ public abstract class Object implements Serializable
 	public Object[] getSpesificConncetedDevices(Class<?> connectedDeviceClass)
 			throws ObjectNotFoundException
 	{
-		Object[] componentsFound = ComponentsManagment.getSpesificComponents(
+		Object[] componentsFound = ArrayManagment.getSpesificComponents(
 				connectedDeviceClass, components, componentCounter);
 
 		return componentsFound;

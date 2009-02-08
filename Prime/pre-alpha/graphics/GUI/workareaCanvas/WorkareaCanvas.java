@@ -32,6 +32,7 @@ import java.awt.dnd.DropTargetListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -41,12 +42,15 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
 
+import objects.Object;
+
 import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.border.BorderFactory;
 import org.netbeans.api.visual.model.ObjectScene;
 import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Scene;
+import org.netbeans.api.visual.widget.Widget;
 
 import peripheral.Scanner;
 import servers.BackupServer;
@@ -235,6 +239,43 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 
 	/**
+	 * This method gets all the objects on the scene.
+	 */
+	public Object[] getObjectsOnTheScene()
+	{
+		// Get a list of Widgets in the mainlayer
+		List<Widget> l = mainLayer.getChildren();
+
+		// Converts that list to an array of Objects
+		java.lang.Object[] childrenTemp = l.toArray();
+
+		// Creates an array with the length of the all the children on the
+		// canvas
+		WidgetObject[] childrenWidgets = new WidgetObject[childrenTemp.length];
+
+		// Casts all the objects in the converted list to widgetobjects
+		for ( int i = 0; i < childrenWidgets.length; i++ )
+		{
+			childrenWidgets[i] = (WidgetObject) childrenTemp[i];
+		}
+
+		// Creates an array with the length of the all the children on the
+		// canvas
+		Object[] childrenObject = new Object[childrenTemp.length];
+
+		// Gets and places all the objects from within every widgetobject in an
+		// array
+		for ( int i = 0; i < childrenObject.length; i++ )
+		{
+			childrenObject[i] = childrenWidgets[i].getObject();
+		}
+
+		// Returns an array with only the scenes objects.
+		return childrenObject;
+	}
+
+
+	/**
 	 * Gets the number of Networks cards on the Scene.
 	 * 
 	 * @return Returns the number of network cards on the scene. Both
@@ -381,7 +422,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 		Transferable tr = dtde.getTransferable();
 		DataFlavor f[] = tr.getTransferDataFlavors();
 		WidgetObject newObject = null;
-
 
 		try
 		{
@@ -542,6 +582,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 		doRepaint();
 
 		PrimeMain1.updatePropertiesCanvasArea();
+		PrimeMain1.updateCanvasAndObjectInfo();
+
 
 		scene.revalidate();
 		scene.repaint();
@@ -557,6 +599,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 		connectionLayer.revalidate();
 		connectionLayer.repaint();
+
 
 		// WorkareaTabbed.canvasScroll.repaint();
 		// WorkareaSceneScroll.canvas.repaint();
@@ -701,9 +744,11 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 				addWidgetObject(newWidgetObject, new Point(0, 0));
 			}
+
+
+			cleanUp();
 		}
 	}
-
 
 
 	/**

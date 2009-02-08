@@ -7,7 +7,6 @@ package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
-import graphics.GUI.SpringUtilities;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
@@ -50,8 +49,8 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class InternalNICNewView extends JFrame implements HardwareViewInterface,
-		ActionListener
+public class InternalNICNewView extends JFrame implements
+		HardwareViewInterface, ActionListener
 {
 	private JTextField name = new JTextField(25);
 
@@ -170,14 +169,16 @@ public class InternalNICNewView extends JFrame implements HardwareViewInterface,
 
 
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Hardware object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
-	 * @param NIC The Hardware that will be examined and will fill inn the fields.
+	 * @param NIC
+	 *            The Hardware that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(InternalNetworksCard NIC)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -342,7 +343,8 @@ public class InternalNICNewView extends JFrame implements HardwareViewInterface,
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
@@ -352,8 +354,8 @@ public class InternalNICNewView extends JFrame implements HardwareViewInterface,
 
 
 	/**
-	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
-	 * 
+	 * Creates a JPanel with two buttons that are listened for by
+	 * actionlisteners.
 	 */
 	private JPanel createButtons()
 	{
@@ -440,7 +442,7 @@ public class InternalNICNewView extends JFrame implements HardwareViewInterface,
 			// Updates the views of the object to correctly show the
 			// current info.
 			ObjectView view = PrimeMain1.getObjectView(mainObj);
-			if(view != null)
+			if ( view != null )
 			{
 				view.updateViewInfo();
 			}
@@ -491,5 +493,12 @@ public class InternalNICNewView extends JFrame implements HardwareViewInterface,
 				}
 			}
 		}
+	}
+
+
+	@Override
+	public boolean validateNecessaryData()
+	{
+		return true;
 	}
 }

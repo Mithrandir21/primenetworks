@@ -25,7 +25,6 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import objects.Object;
-import objects.Software;
 import software.OfficeSuite;
 
 public class OfficeSuiteNewView extends JFrame implements SoftwareView,

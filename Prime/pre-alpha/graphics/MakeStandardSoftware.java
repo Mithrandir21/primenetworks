@@ -14,18 +14,19 @@ import software.Webserver;
 
 
 /**
-/**
- * In this class the systems standard internal components are made and served to the rest of 
- * the system. When any new object is made, the internal components 
- * such as motherboard or CPU will be provided by the functions in this class.
- *
+ * /** In this class the systems standard internal components are made and
+ * served to the rest of the system. When any new object is made, the internal
+ * components such as motherboard or CPU will be provided by the functions in
+ * this class.
+ * 
  * @author Bahram Malaekeh
  */
 public class MakeStandardSoftware
 {
-	
+
 	/**
-	 * Creates and returns what the system will regard as the standard Antivirus.
+	 * Creates and returns what the system will regard as the standard
+	 * Antivirus.
 	 * 
 	 * @return A new antivirus
 	 */
@@ -40,7 +41,8 @@ public class MakeStandardSoftware
 
 
 	/**
-	 * Creates and returns what the system will regard as the standard Backup software.
+	 * Creates and returns what the system will regard as the standard Backup
+	 * software.
 	 * 
 	 * @return A new Backup software
 	 */
@@ -70,8 +72,8 @@ public class MakeStandardSoftware
 
 
 	/**
-	 * Creates and returns what the system will regard as the standard Email software.
-	 * This is software that can read emails.
+	 * Creates and returns what the system will regard as the standard Email
+	 * software. This is software that can read emails.
 	 * 
 	 * @return A new Email software
 	 */
@@ -100,8 +102,8 @@ public class MakeStandardSoftware
 
 
 	/**
-	 * Creates and returns what the system will regard as the standard Office Suite.
-	 * This suite has a set of predefined file types it supports. Other
+	 * Creates and returns what the system will regard as the standard Office
+	 * Suite. This suite has a set of predefined file types it supports. Other
 	 * file types can be added by the user.
 	 * 
 	 * @return A new Office Suite
@@ -126,12 +128,12 @@ public class MakeStandardSoftware
 
 
 	/**
-	 * Creates and returns what the system will regard as the standard Operating System.
-	 * This Operating system will be the software that all software that
+	 * Creates and returns what the system will regard as the standard Operating
+	 * System. This Operating system will be the software that all software that
 	 * is to be installed on the system will be checked against for
-	 * compatibility. 
-	 * If the user has added other Operating systems to the machine, 
-	 * those will also be included in the check for software compatibility, 
+	 * compatibility. If the user has added other Operating systems to the
+	 * machine, those will also be included in the check for software
+	 * compatibility,
 	 * 
 	 * @return A new Operating System
 	 */
@@ -161,7 +163,8 @@ public class MakeStandardSoftware
 
 
 	/**
-	 * Creates and returns what the system will regard as the standard Security Suite.
+	 * Creates and returns what the system will regard as the standard Security
+	 * Suite.
 	 * 
 	 * @return A new Security Suite
 	 */
@@ -170,15 +173,16 @@ public class MakeStandardSoftware
 		SecuritySuite secSuite = new SecuritySuite("Standard Security Suite",
 				"This is the system standard Security Suite.", "1", false,
 				false, false);
-		
-		
+
+
 		return secSuite;
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Creates and returns what the system will regard as the standard Webserver.
+	 * Creates and returns what the system will regard as the standard
+	 * Webserver.
 	 * 
 	 * @return A new Webserver
 	 */
@@ -186,7 +190,7 @@ public class MakeStandardSoftware
 	{
 		Webserver ws = new Webserver("Standard Webserver",
 				"This is the system standard Webserver.", "1");
-		
+
 		return ws;
 	}
 }

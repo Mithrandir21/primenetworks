@@ -3,6 +3,7 @@ package managment;
 
 import logistical.cleanup;
 import objects.Object;
+import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
 import exceptions.StringNotFoundInArrayException;
 
@@ -186,6 +187,71 @@ public class ArrayManagment
 
 	// SEARCH FUNCTIONS
 
+	/**
+	 * Get specific components by searching for components with the give class
+	 * type.
+	 * 
+	 * @return Returns an array of components that match with the given class.
+	 * @param componentCounter
+	 *            The counter that tells how many components are in the current
+	 *            components array.
+	 * @param components
+	 *            The current components list.
+	 * @throws ObjectNotFoundException
+	 *             Throws an exception which states that there were not objects
+	 *             found with the given class.
+	 */
+	@SuppressWarnings("unchecked")
+	public static Object[] getSpesificComponents(Class ComponentClass,
+			Object[] components, int componentCounter)
+			throws ObjectNotFoundException
+	{
+		// boolean to check whether the object is found or not
+		boolean objectNotFound = true;
+
+		// Counter for number of components found
+		int tempCounter = 0;
+
+		// Container that will hold all the found components
+		Object[] componentsFound = new Object[componentCounter];
+
+
+		// Searches for components of the given class
+		for ( int i = 0; i < componentCounter; i++ )
+		{
+			/*
+			 * If the given components class matches the present components
+			 * class, it will be added to the container
+			 */
+			if ( components[i].getClass().equals(ComponentClass) )
+			{
+				componentsFound[tempCounter] = components[i];
+
+				tempCounter++;
+
+				objectNotFound = false;
+			}
+		}
+
+
+		// Checks whether all the objects were found and removed
+		if ( objectNotFound == true )
+		{
+			ObjectNotFoundException exception = new ObjectNotFoundException(
+					"Object(s) with the given component, "
+							+ ComponentClass.getCanonicalName()
+							+ " were not found.", ComponentClass);
+
+			throw exception;
+		}
+
+
+
+		// Cleans the array of any null pointers at the end
+		componentsFound = cleanup.cleanObjectArray(componentsFound);
+
+		return componentsFound;
+	}
 
 
 
@@ -222,8 +288,8 @@ public class ArrayManagment
 
 		return foundObject;
 	}
-	
-	
+
+
 	/**
 	 * Check function to determine whether or not the the given array contains
 	 * the given object.
@@ -233,7 +299,8 @@ public class ArrayManagment
 	 * @param searchObject
 	 *            The object that is to be searched for.
 	 */
-	public static int arrayContainsReturnsIndex(Object[] array, Object searchObject)
+	public static int arrayContainsReturnsIndex(Object[] array,
+			Object searchObject)
 	{
 		// Boolean to tell whether or not the given object is found within the
 		// given array.
@@ -296,9 +363,9 @@ public class ArrayManagment
 
 		return foundObject;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Check function to determine whether or not the the given array contains
 	 * the given searchObject.
@@ -329,5 +396,119 @@ public class ArrayManagment
 		}
 
 		return foundObject;
+	}
+
+
+
+	/**
+	 * TODO - Description
+	 */
+	public static java.lang.Object[][] add5ArraySpaces(java.lang.Object[][] data)
+	{
+		java.lang.Object[][] temp = null;
+
+		if ( data != null )
+		{
+			// Makes a new objects array with 5 additional indexes.
+			temp = new java.lang.Object[data.length + 5][data[0].length];
+
+			for ( int i = 0; i < data.length; i++ )
+			{
+				if ( data[i] != null )
+				{
+					for ( int j = 0; j < data[i].length; j++ )
+					{
+						temp[i][j] = data[i][j].toString();
+					}
+				}
+			}
+		}
+		// This means that the data received was null
+		else
+		{
+			// Returns an empty array with 5 indexes
+			return new java.lang.Object[5][4];
+		}
+
+		// Returns the newly made array with 5 extra indexes at the end
+		return temp;
+
+	}
+
+
+	/**
+	 * TODO - Description
+	 */
+	public static String[][] add5ArraySpaces(String[][] data)
+	{
+		String[][] temp = null;
+
+		if ( data != null )
+		{
+			// Makes a new objects array with 5 additional indexes.
+			temp = new String[data.length + 5][data[0].length];
+
+			for ( int i = 0; i < data.length; i++ )
+			{
+				if ( data[i][0] != null )
+				{
+					for ( int j = 0; j < data[i].length; j++ )
+					{
+						temp[i][j] = data[i][j].toString();
+					}
+				}
+			}
+		}
+		
+		// This means that the data received was null
+		else
+		{
+			// Returns an empty array with 5 indexes
+			return new String[5][4];
+		}
+
+		// Returns the newly made array with 5 extra indexes at the end
+		return temp;
+
+	}
+	
+	
+	
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static String[][] removeEmptyIndexes(String[][] data)
+	{
+		if ( data != null )
+		{
+			int notEmptySpaces = 0;
+			
+			
+			for ( int i = 0; i < data.length; i++ )
+			{
+				if ( data[i][0] != null )
+				{
+					notEmptySpaces++;
+				}
+			}
+			
+			
+			String[][] temp = new String[notEmptySpaces][data[0].length];
+			
+			
+			for( int i = 0; i < temp.length; i++ )
+			{
+				for( int j = 0; j < temp[i].length; j++ )
+				{
+					temp[i][j] = data[i][j];
+				}
+			}
+			
+			return temp;
+		}
+		
+		
+		return data;
 	}
 }

@@ -32,7 +32,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import objects.Object;
-import objects.Software;
 import software.Backup;
 
 
@@ -154,16 +153,18 @@ public class BackupEditView extends JPanel implements SoftwareView,
 		this.add(buttons, c);
 	}
 
-	
+
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
-	 * @param back The Software that will be examined and will fill inn the fields.
+	 * @param back
+	 *            The Software that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(Backup back)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -171,19 +172,24 @@ public class BackupEditView extends JPanel implements SoftwareView,
 
 
 		labels[0] = new JLabel("Supported OS");
-		labels[0].setToolTipText("The supported Operating Systems by the software.");
+		labels[0]
+				.setToolTipText("The supported Operating Systems by the software.");
 
 		labels[1] = new JLabel("Backup Type");
-		labels[1].setToolTipText("The type of backup.(\"Complete\" or just \"Changes\")");
+		labels[1]
+				.setToolTipText("The type of backup.(\"Complete\" or just \"Changes\")");
 
 		labels[2] = new JLabel("Supports Compression");
-		labels[2].setToolTipText("Whether or not the software support compression.");
+		labels[2]
+				.setToolTipText("Whether or not the software support compression.");
 
 		labels[3] = new JLabel("Supports Encryption");
-		labels[3].setToolTipText("Whether or not the software support encryption.");
-		
+		labels[3]
+				.setToolTipText("Whether or not the software support encryption.");
+
 		labels[4] = new JLabel("Duplicates");
-		labels[4].setToolTipText("How many duplicates of the backup the software keeps track of.");
+		labels[4]
+				.setToolTipText("How many duplicates of the backup the software keeps track of.");
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -245,8 +251,8 @@ public class BackupEditView extends JPanel implements SoftwareView,
 
 		panel.add(labels[3]);
 		panel.add(encryption);
-		
-		
+
+
 		// The type of backup
 		labels[1].setLabelFor(backupType);
 		backupType = new JTextField();
@@ -278,12 +284,13 @@ public class BackupEditView extends JPanel implements SoftwareView,
 		panel.add(labels[4]);
 		panel.add(duplicate);
 
-		
+
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
-		
+
 
 		return panel;
 	}
@@ -320,8 +327,8 @@ public class BackupEditView extends JPanel implements SoftwareView,
 		// Whether or not the software can use encryption
 		mainBack.setSupportsEncryption(encryption.isSelected());
 
-		
-		if ( duplicate.getSelectedItem().toString() != "" ) 
+
+		if ( duplicate.getSelectedItem().toString() != "" )
 		{
 			// The number of copies keeps
 			mainBack.setDuplicate(Integer.parseInt(duplicate.getSelectedItem()
@@ -338,8 +345,8 @@ public class BackupEditView extends JPanel implements SoftwareView,
 
 
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems" JList.
-	 *  
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
 	 */
 	private class SharedListSelectionHandler implements ListSelectionListener
 	{

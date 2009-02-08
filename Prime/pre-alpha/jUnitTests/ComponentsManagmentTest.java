@@ -2,6 +2,7 @@ package jUnitTests;
 
 
 import junit.framework.TestCase;
+import managment.ArrayManagment;
 import managment.ComponentsManagment;
 import objects.Object;
 
@@ -242,7 +243,7 @@ public class ComponentsManagmentTest extends TestCase
 
 		try
 		{
-			found = ComponentsManagment.getSpesificComponents(Desktop.class,
+			found = ArrayManagment.getSpesificComponents(Desktop.class,
 					components, components.length);
 		}
 		catch ( ObjectNotFoundException e )

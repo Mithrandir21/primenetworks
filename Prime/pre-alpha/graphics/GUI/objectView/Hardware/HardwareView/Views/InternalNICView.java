@@ -454,4 +454,12 @@ public class InternalNICView extends JPanel implements HardwareViewInterface,
 			}
 		}
 	}
+
+
+
+	@Override
+	public boolean validateNecessaryData()
+	{
+		return true;
+	}
 }

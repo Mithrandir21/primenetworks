@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import logistical.cleanup;
+import managment.ArrayManagment;
 import managment.ComponentsManagment;
 import objects.Object;
 import peripheral.Printer;
@@ -403,13 +404,13 @@ public class NetworkObjectView extends JPanel
 
 		try
 		{
-			mbObj = (Motherboard) ComponentsManagment.getSpesificComponents(
+			mbObj = (Motherboard) ArrayManagment.getSpesificComponents(
 					Motherboard.class, obj.getComponents(),
 					obj.getComponents().length)[0];
 
 
 
-			Object[] cpusArray = ComponentsManagment.getSpesificComponents(
+			Object[] cpusArray = ArrayManagment.getSpesificComponents(
 					CPU.class, obj.getComponents(), obj.getComponents().length);
 
 			cpus = new CPU[cpusArray.length];
@@ -420,7 +421,7 @@ public class NetworkObjectView extends JPanel
 
 
 
-			Object[] hddsArray = ComponentsManagment.getSpesificComponents(
+			Object[] hddsArray = ArrayManagment.getSpesificComponents(
 					HDD.class, obj.getComponents(), obj.getComponents().length);
 
 

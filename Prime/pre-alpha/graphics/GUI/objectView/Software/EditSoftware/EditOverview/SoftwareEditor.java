@@ -20,8 +20,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import objects.ExternalHardware;
-import objects.Infrastructure;
 import objects.Object;
 import objects.Software;
 
