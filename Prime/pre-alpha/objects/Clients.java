@@ -21,7 +21,7 @@ public abstract class Clients extends Object implements Serializable
 	// NETWORK INFORMATION FIELDS
 
 	// Desktop rating
-	private int desktopRate;
+	private int clientRate;
 
 	// Nodes before it reaches the first router outside of the systems own
 	// routers, i.e. the Internet.
@@ -125,6 +125,30 @@ public abstract class Clients extends Object implements Serializable
 	public void setNumberOfJumps(int jumps)
 	{
 		numberOfNodes = jumps;
+	}
+
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @return the clientRate
+	 */
+	public int getClientRate()
+	{
+		return clientRate;
+	}
+
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @param clientRate the clientRate to set
+	 */
+	public void setClientRate(int clientRate)
+	{
+		this.clientRate = clientRate;
 	}
 
 }

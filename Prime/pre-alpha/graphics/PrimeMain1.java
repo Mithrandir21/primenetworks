@@ -453,7 +453,7 @@ public class PrimeMain1 extends JFrame
 		
 		MessageTabbed msgTab = (MessageTabbed) messagesPanel.getComponent(0);
 		
-		msgTab.addHardwareTab(children);
+		msgTab.processAllObjects(children);
 	}
 	
 	

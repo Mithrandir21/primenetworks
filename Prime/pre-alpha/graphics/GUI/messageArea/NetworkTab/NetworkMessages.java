@@ -25,20 +25,10 @@ public class NetworkMessages extends JScrollPane
 	/**
 	 * TODO - Description NEEDED!
 	 */
-	public NetworkMessages(Object[] objects)
+	public NetworkMessages(Object[] objects, String[][] data)
 	{
 		String[] columnNames = { "Object Name", "Network(?) Type",
 				"Description", "Message Type" };
-
-		String[][] data = null;
-
-		for ( int i = 0; i < objects.length; i++ )
-		{
-			data = NetworkProcessing.processNetwork(data, objects[i], true,
-					true, true);
-		}
-		
-		data = ArrayManagment.removeEmptyIndexes(data);
 
 		table = new MessageJTable(data, columnNames);
 
@@ -65,7 +55,7 @@ public class NetworkMessages extends JScrollPane
 			column = table.getColumnModel().getColumn(i);
 			if ( i == 2 )
 			{
-				column.setPreferredWidth(1000); // third column is bigger
+				column.setPreferredWidth(700); // third column is bigger
 			}
 			else
 			{

@@ -41,6 +41,7 @@ public class GeneralPropertiesView
 		nameField.setMaximumSize(tfSize);
 		nameField.setPreferredSize(tfSize);
 		nameLabel.setLabelFor(nameField);
+		nameLabel.setName("Name Canvas");
 		panel.add(nameField);
 		
 		
@@ -53,6 +54,7 @@ public class GeneralPropertiesView
 		JTextField objectCountField = new JTextField("" + canvas.getNumberOfWidgetsOnTheScene());
 		objectCountField.setMaximumSize(tfSize);
 		objectCountField.setPreferredSize(tfSize);
+		objectCountField.setEditable(false);
 		objectCountLabel.setLabelFor(objectCountField);
 		panel.add(objectCountField);
 		
@@ -76,7 +78,7 @@ public class GeneralPropertiesView
 		JTextField nameField = new JTextField(obj.getObjectName());
 		nameField.setMaximumSize(tfSize);
 		nameField.setPreferredSize(tfSize);
-		nameField.setName("name");
+		nameField.setName("Name Object");
 		nameLabel.setLabelFor(nameField);
 		panel.add(nameField);
 
@@ -90,7 +92,7 @@ public class GeneralPropertiesView
 		JTextField supConIntField = new JTextField(10);
 		supConIntField.setMaximumSize(tfSize);
 		supConIntField.setPreferredSize(tfSize);
-		nameField.setName("supConInt");
+		supConIntField.setName("supConInt");
 		supConIntLabel.setLabelFor(supConIntField);
 		panel.add(supConIntField);
 		
@@ -105,7 +107,7 @@ public class GeneralPropertiesView
 		numConField.setEditable(false);
 		numConField.setMaximumSize(tfSize);
 		numConField.setPreferredSize(tfSize);
-		nameField.setName("numCon");
+		numConField.setName("numCon");
 		numConLabel.setLabelFor(numConField);
 		panel.add(numConField);
 		
@@ -121,7 +123,7 @@ public class GeneralPropertiesView
 		numbJumpsField.setEditable(false);
 		numbJumpsField.setMaximumSize(tfSize);
 		numbJumpsField.setPreferredSize(tfSize);
-		nameField.setName("numbJumps");
+		numbJumpsField.setName("numbJumps");
 		numbJumpsLabel.setLabelFor(numbJumpsField);
 		panel.add(numbJumpsField);
 	}

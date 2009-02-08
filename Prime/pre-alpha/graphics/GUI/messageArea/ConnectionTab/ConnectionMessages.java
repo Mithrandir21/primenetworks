@@ -25,20 +25,10 @@ public class ConnectionMessages extends JScrollPane
 	/**
 	 * TODO - Description NEEDED!
 	 */
-	public ConnectionMessages(Object[] objects)
+	public ConnectionMessages(Object[] objects, String[][] data)
 	{
 		String[] columnNames = { "Object Name", "Connection Type",
 				"Description", "Message Type" };
-
-		String[][] data = null;
-
-		for ( int i = 0; i < objects.length; i++ )
-		{
-			data = ConnectionProcessing.processConnections(data, objects[i],
-					true, true, true);
-		}
-		
-		data = ArrayManagment.removeEmptyIndexes(data);
 
 		table = new MessageJTable(data, columnNames);
 
@@ -65,7 +55,7 @@ public class ConnectionMessages extends JScrollPane
 			column = table.getColumnModel().getColumn(i);
 			if ( i == 2 )
 			{
-				column.setPreferredWidth(1000); // third column is bigger
+				column.setPreferredWidth(700); // third column is bigger
 			}
 			else
 			{

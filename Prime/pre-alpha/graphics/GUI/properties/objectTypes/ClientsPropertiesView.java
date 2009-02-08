@@ -4,6 +4,8 @@
 package graphics.GUI.properties.objectTypes;
 
 
+import graphics.GraphicalFunctions;
+
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -12,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import objects.Clients;
 import objects.Object;
 
 
@@ -58,7 +61,12 @@ public class ClientsPropertiesView
 		Dimension tfSize = new Dimension(5, 20);
 		comboBox.setMaximumSize(tfSize);
 		comboBox.setPreferredSize(tfSize);
-		comboBox.setName("rates");
+		comboBox.setName("Client Rates");
+
+		Clients client = (Clients) obj;
+
+		comboBox.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(rates, client
+				.getClientRate()));
 
 
 		panel.add(comboBox);

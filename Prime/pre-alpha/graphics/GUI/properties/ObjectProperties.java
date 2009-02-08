@@ -13,14 +13,20 @@ import graphics.GUI.properties.objectTypes.ServersPropertiesView;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import java.awt.Button;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import objects.Clients;
 import objects.Object;
+import objects.Servers;
 
 
 /**
@@ -30,9 +36,9 @@ import objects.Object;
  */
 public class ObjectProperties extends JPanel implements ActionListener
 {
-	Object objectViewed = null;
-
-
+	private Object objectViewed = null;
+	
+	private WorkareaCanvas canvasViewed = null;
 
 	/**
 	 * TODO - Description NEEDED!
@@ -41,6 +47,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 	 */
 	public ObjectProperties(WorkareaCanvas canvas)
 	{
+		canvasViewed = canvas;
+		
 		this.setLayout(new SpringLayout());
 
 		GeneralPropertiesView.getGeneralCanvasProperties(this, canvas);
@@ -186,6 +194,84 @@ public class ObjectProperties extends JPanel implements ActionListener
 	{
 		if ( e.getActionCommand().equals("save") )
 		{
+			Component[] comp = this.getComponents();
+		
+			for( int i = 0; i < comp.length; i++ )
+			{
+				String compName = comp[i].getName();
+				if( comp[i] instanceof JComboBox )
+				{
+					if(compName.equals("Client Rates"))
+					{
+						Clients clientObj = (Clients) objectViewed;
+						
+						JComboBox rates = (JComboBox) comp[i];
+						
+						int theRate = Integer.parseInt(rates.getSelectedItem().toString());
+						
+						clientObj.setClientRate(theRate);
+					}
+				}
+				else if( comp[i] instanceof JTextField )
+				{
+					if(compName.equals("Name Canvas"))
+					{
+						JTextField field = (JTextField) comp[i];
+						
+						String canvasName = field.getText();
+						
+						if( canvasName.equals("") )
+						{
+							canvasViewed.setName(canvasName);
+						}
+					}
+					else if(compName.equals("Name Object"))
+					{
+						JTextField field = (JTextField) comp[i];
+						
+						String objName = field.getText();
+						
+						if( objName.equals("") )
+						{
+							objectViewed.setObjectName(objName);
+						}
+					}
+					else if(compName.equals("supConInt"))
+					{
+						
+					}
+					else if(compName.equals("supRemoteAccProto"))
+					{
+						
+					}
+					else if(compName.equals("Main SW Name"))
+					{
+						
+					}
+				}
+				else if( comp[i] instanceof JCheckBox )
+				{
+					if(compName.equals("supOnSiteAccess"))
+					{
+						lhdlkfhdlknullpointer
+						JCheckBox box = (JCheckBox) comp[i];
+						
+						Servers server = (Servers) objectViewed;
+						
+						server.setSupportsOnSiteAccess(box.isSelected());
+					}
+					else if(compName.equals("supRemoteAccess"))
+					{
+						JCheckBox box = (JCheckBox) comp[i];
+						
+						Servers server = (Servers) objectViewed;
+						
+						server.setSupportsRemoteAccess(box.isSelected());
+					}
+				}
+			}
+		
+
 
 		}
 	}

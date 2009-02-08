@@ -4,8 +4,10 @@
 package graphics.GUI.messageArea.SoftwareTab;
 
 
+import hardware.Motherboard;
 import managment.ArrayManagment;
 import objects.Object;
+import software.OperatingSystem;
 import exceptions.ObjectNotFoundException;
 
 
@@ -60,7 +62,16 @@ public class SoftwareProcessing
 	 */
 	private static String[][] getCriticalErrors(String[][] data, Object obj)
 	{
-		// TODO - SoftwareProcessing - Errors
+		// Operaing System
+		if ( !(containsSoftwareOfClass(obj, OperatingSystem.class)) )
+		{
+			String[] info = { obj.getObjectName(), "Operaring System",
+					"This object does not have an Operating System.",
+					"Software Error" };
+			data = addError(data, info);
+		}
+		
+		
 		return data;
 	}
 
@@ -135,10 +146,10 @@ public class SoftwareProcessing
 		}
 		catch ( ObjectNotFoundException e )
 		{
-			return true;
+			return false;
 		}
 
-		return false;
+		return true;
 	}
 
 

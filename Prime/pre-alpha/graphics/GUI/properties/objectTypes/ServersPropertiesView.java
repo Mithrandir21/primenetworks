@@ -6,6 +6,7 @@ package graphics.GUI.properties.objectTypes;
 
 import java.awt.Dimension;
 
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -40,7 +41,7 @@ public class ServersPropertiesView
 						+ "on-site-access, i.e. it has a keyboard, mouse and screen.");
 		panel.add(supOnSiteAccessLabel);
 
-		JTextField supOnSiteAccessField = new JTextField(10);
+		JCheckBox supOnSiteAccessField = new JCheckBox();
 		supOnSiteAccessField.setMaximumSize(tfSize);
 		supOnSiteAccessField.setPreferredSize(tfSize);
 		supOnSiteAccessField.setName("supOnSiteAccess");
@@ -54,7 +55,7 @@ public class ServersPropertiesView
 				.setToolTipText("Whether or not this device supports remote access.");
 		panel.add(supRemoteAccessLabel);
 
-		JTextField supRemoteAccessField = new JTextField(10);
+		JCheckBox supRemoteAccessField = new JCheckBox();
 		supRemoteAccessField.setMaximumSize(tfSize);
 		supRemoteAccessField.setPreferredSize(tfSize);
 		supOnSiteAccessField.setName("supRemoteAccess");
@@ -71,7 +72,7 @@ public class ServersPropertiesView
 		JTextField supRemoteAccProtoField = new JTextField(10);
 		supRemoteAccProtoField.setMaximumSize(tfSize);
 		supRemoteAccProtoField.setPreferredSize(tfSize);
-		supOnSiteAccessField.setName("supRemoteAccProto");
+		supRemoteAccProtoField.setName("supRemoteAccProto");
 		supRemoteAccProtoLabel.setLabelFor(supRemoteAccProtoField);
 		panel.add(supRemoteAccProtoField);
 
@@ -85,7 +86,7 @@ public class ServersPropertiesView
 		JTextField mainSWnameField = new JTextField(10);
 		mainSWnameField.setMaximumSize(tfSize);
 		mainSWnameField.setPreferredSize(tfSize);
-		supOnSiteAccessField.setName("mainSWname");
+		mainSWnameField.setName("Main SW Name");
 		mainSWnameLabel.setLabelFor(mainSWnameField);
 		panel.add(mainSWnameField);
 
