@@ -218,7 +218,7 @@ public class SceneConnectProvider implements ConnectProvider
 	}
 
 
-	// TODO - Add user-added connection types
+	// FIXME - Add user-added connection types
 	private Class<?> getConClass(String type)
 	{
 		if ( type.equals("RJ-45") )

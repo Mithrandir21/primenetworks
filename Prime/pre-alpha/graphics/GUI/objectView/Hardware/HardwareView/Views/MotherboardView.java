@@ -12,7 +12,6 @@ import graphics.PrimeMain1;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
-import graphics.GUI.workareaCanvas.WorkareaCanvasActions;
 import hardware.CPU;
 import hardware.Discdrive;
 import hardware.ExternalNetworksCard;
@@ -41,6 +40,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+
+import actions.graphicalActions.WorkareaCanvasActions;
 
 import managment.ArrayManagment;
 import managment.ComponentsManagment;

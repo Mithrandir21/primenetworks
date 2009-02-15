@@ -5,7 +5,8 @@ public interface SoftwareView
 {
 
 	/**
-	 * TODO - Description
+	 * This function will be called any time the information within the
+	 * class that has implemented this interface is to be saved.
 	 */
 	public void save();
 }

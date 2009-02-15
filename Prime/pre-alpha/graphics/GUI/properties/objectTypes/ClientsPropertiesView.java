@@ -19,7 +19,7 @@ import objects.Object;
 
 
 /**
- * TODO - Description NEEDED!
+ * CLASSDesc - Description NEEDED!
  * 
  * @author Bahram Malaekeh
  */
@@ -33,9 +33,13 @@ public class ClientsPropertiesView
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * This function populates the given JPanel with information about the the
+	 * given Object.
 	 * 
+	 * @param panel
+	 *            The JPanel that is to be populated.
 	 * @param obj
+	 *            The Object that is to populate the given JPanel.
 	 */
 	public static void getClientsPropertiesView(JPanel panel, Object obj)
 	{
@@ -65,8 +69,8 @@ public class ClientsPropertiesView
 
 		Clients client = (Clients) obj;
 
-		comboBox.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(rates, client
-				.getClientRate()));
+		comboBox.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(rates,
+				client.getClientRate()));
 
 
 		panel.add(comboBox);

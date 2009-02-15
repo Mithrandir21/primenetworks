@@ -92,7 +92,6 @@ public class ComponentsManagment
 				}
 				catch ( Exception e )
 				{
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					return components;
 				}
@@ -150,7 +149,6 @@ public class ComponentsManagment
 			}
 			catch ( Exception e )
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return components;
 			}
@@ -298,7 +296,6 @@ public class ComponentsManagment
 			}
 			catch ( Exception e )
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -463,6 +460,7 @@ public class ComponentsManagment
 
 		try
 		{
+			// FIXME - How to get an objects motherboard.
 			// Gets all the CPU components in the components array.
 			Object[] cpus = ArrayManagment.getSpesificComponents(
 					CPU.class, components, components.length);

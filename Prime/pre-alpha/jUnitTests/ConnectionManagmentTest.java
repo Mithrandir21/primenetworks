@@ -196,7 +196,6 @@ public class ConnectionManagmentTest extends TestCase
 		}
 		catch ( ConnectionDoesNotExist e )
 		{
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
@@ -258,12 +257,10 @@ public class ConnectionManagmentTest extends TestCase
 		}
 		catch ( ConnectionDoesNotExist e )
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		catch ( ConnectionDoesExist e )
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

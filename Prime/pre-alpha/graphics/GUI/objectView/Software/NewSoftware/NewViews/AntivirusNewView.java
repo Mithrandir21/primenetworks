@@ -77,10 +77,15 @@ public class AntivirusNewView extends JFrame implements SoftwareView,
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * A constructor for this class that will create a new JFrame which
+	 * will contain fields for the adjustment of the newly created 
+	 * Antivirus software that will, if saved, be added to the software
+	 * list of the given Object.
 	 * 
 	 * @param obj
+	 * 			The Object that the given software will be added to, if saved.
 	 * @param av
+	 * 			The Software object that can be adjusted and then saved.
 	 */
 	public AntivirusNewView(Object obj, Antivirus av)
 	{

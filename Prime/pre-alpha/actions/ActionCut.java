@@ -50,8 +50,6 @@ public class ActionCut extends AbstractAction
 
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-
 		JOptionPane.showMessageDialog(null,
 				"You want to perform a \"Cut\" action.");
 	}

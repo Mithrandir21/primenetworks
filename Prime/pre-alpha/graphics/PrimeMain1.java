@@ -63,13 +63,17 @@ public class PrimeMain1 extends JFrame
 	public static int width, height;
 
 	// Main window panel setup
-	private JPanel toolbarPanel, selectionPanel, workareaPanel;
+	private JPanel toolbarPanel, selectionPanel;
 
 	// The JPanel where the properties of any selected object or network
 	// overview is shown.
 	public static JPanel propertiesPanel;
 	
+	// The JPanel that will show information about the objects and the network.
 	private static JPanel messagesPanel;
+	
+	// The JPanel that will hold all the canvas.
+	private static JPanel workareaPanel;
 
 	static JXMultiSplitPane multiSplitPane = new JXMultiSplitPane();
 
@@ -286,7 +290,7 @@ public class PrimeMain1 extends JFrame
 
 		multiSplitPane.add(toolbarPanel, "toolbarLeaf");
 		multiSplitPane.add(selectionPanel, "selectionLeaf");
-		multiSplitPane.add(workareaPanel, "workareaLeaf");
+		multiSplitPane.add(getWorkareaPanel(), "workareaLeaf");
 		multiSplitPane.add(propertiesPanel, "propertiesLeaf");
 		multiSplitPane.add(messagesPanel, "messagesLeaf");
 
@@ -431,7 +435,8 @@ public class PrimeMain1 extends JFrame
 	
 	
 	/**
-	 * TODO - Description
+	 * Thi method runs all update function. These include functions to
+	 * update the canvas, properties panel and messages panel.
 	 * 
 	 */
 	public static void updateCanvasAndObjectInfo()
@@ -502,5 +507,27 @@ public class PrimeMain1 extends JFrame
 		{
 			objView.remove(view);
 		}
+	}
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @param workareaPanel the workareaPanel to set
+	 */
+	public static void setWorkareaPanel(JPanel workareaPanel)
+	{
+		PrimeMain1.workareaPanel = workareaPanel;
+	}
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 *
+	 * @return the workareaPanel
+	 */
+	public static JPanel getWorkareaPanel()
+	{
+		return workareaPanel;
 	}
 }

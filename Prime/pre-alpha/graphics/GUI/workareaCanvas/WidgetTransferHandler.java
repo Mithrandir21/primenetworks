@@ -12,10 +12,16 @@ import widgetManipulation.WidgetObject;
 
 
 /**
- * @author Bam
+ * TODO - Description NEEDED!
+ *
+ * @author Bahram Malaekeh
+ * 
  */
 public class WidgetTransferHandler extends TransferHandler
 {
+	/* (non-Javadoc)
+	 * @see javax.swing.TransferHandler#canImport(javax.swing.TransferHandler.TransferSupport)
+	 */
 	@Override
 	public boolean canImport(TransferSupport support)
 	{
@@ -29,6 +35,10 @@ public class WidgetTransferHandler extends TransferHandler
 		return false;
 	}
 
+	
+	/* (non-Javadoc)
+	 * @see javax.swing.TransferHandler#importData(javax.swing.TransferHandler.TransferSupport)
+	 */
 	@Override
 	public boolean importData(TransferSupport support)
 	{

@@ -15,7 +15,7 @@ import java.io.Serializable;
 public abstract class Clients extends Object implements Serializable
 {
 
-	// TODO - Create a standalone, singel purpose client class.
+	// FIXME - Create a standalone, singel purpose client class.
 
 
 	// NETWORK INFORMATION FIELDS
@@ -130,7 +130,7 @@ public abstract class Clients extends Object implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the rating of an instance of this class.
 	 *
 	 * @return the clientRate
 	 */
@@ -142,7 +142,7 @@ public abstract class Clients extends Object implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets the rating of an instance of this class.
 	 *
 	 * @param clientRate the clientRate to set
 	 */

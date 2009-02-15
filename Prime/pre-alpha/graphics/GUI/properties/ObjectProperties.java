@@ -4,7 +4,7 @@
 package graphics.GUI.properties;
 
 
-import graphics.GUI.SpringUtilities;
+import graphics.GraphicalFunctions;
 import graphics.GUI.properties.objectTypes.ClientsPropertiesView;
 import graphics.GUI.properties.objectTypes.GeneralPropertiesView;
 import graphics.GUI.properties.objectTypes.InfrastructuresPropertiesView;
@@ -37,18 +37,19 @@ import objects.Servers;
 public class ObjectProperties extends JPanel implements ActionListener
 {
 	private Object objectViewed = null;
-	
+
 	private WorkareaCanvas canvasViewed = null;
 
 	/**
-	 * TODO - Description NEEDED!
+	 * A class constructor that takes a WorkareaCanvas and creates
+	 * places information about that canvas on to this JPanel.
 	 * 
 	 * @param canvas
 	 */
 	public ObjectProperties(WorkareaCanvas canvas)
 	{
 		canvasViewed = canvas;
-		
+
 		this.setLayout(new SpringLayout());
 
 		GeneralPropertiesView.getGeneralCanvasProperties(this, canvas);
@@ -59,8 +60,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 
 		// Lay out the panel.
-		SpringUtilities.makeCompactGrid(this, this.getComponentCount(), 1, // rows,
-																			// cols
+		graphics.GraphicalFunctions.make1xGrid(this, this.getComponentCount(), // rows,
+				// cols
 				6, 6, // initX, initY
 				6, 6); // xPad, yPad
 
@@ -68,10 +69,10 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 
 
-
-
 	/**
-	 * TODO - Description NEEDED!
+	 * A constructor for the class that takes the given Object and 
+	 * places information about that object on this JPanel. The information
+	 * dependings on what kind of class the given object is.
 	 * 
 	 * @param object
 	 */
@@ -84,7 +85,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 		this.setLayout(new SpringLayout());
 
 
-		showStandardButtons(object);
+		showStandardProperties(object);
 
 
 		if ( object instanceof clients.Desktop
@@ -123,7 +124,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 		// Lay out the panel.
 		graphics.GraphicalFunctions.make1xGrid(this, this.getComponentCount(), // rows,
-																				// cols
+				// cols
 				6, 6, // initX, initY
 				6, 6); // xPad, yPad
 
@@ -131,9 +132,9 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 
 	/**
-	 * TODO - Description
+	 * Adds the standard properties which normally is name and description.
 	 */
-	private void showStandardButtons(Object object)
+	private void showStandardProperties(Object object)
 	{
 		GeneralPropertiesView.getGeneralObjectProperties(this, object);
 	}
@@ -141,7 +142,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 
 	/**
-	 * TODO - Description
+	 * Adds the desktop properties to this JPanel.
 	 */
 	private void showDesktopProperties(Object object)
 	{
@@ -149,18 +150,24 @@ public class ObjectProperties extends JPanel implements ActionListener
 	}
 
 	/**
-	 * TODO - Description
+	 * Adds the server properties to this JPanel.
 	 */
 	private void showServerProperties(Object object)
 	{
 		ServersPropertiesView.getServersPropertiesView(this, object);
 	}
 
+	/**
+	 * Adds the peripheral properties to this JPanel.
+	 */
 	private void showPeripheralProperties(Object object)
 	{
 		PeripheralsPropertiesView.getPeripheralsPropertiesView(this, object);
 	}
 
+	/**
+	 * Adds the infrastructure properties to this JPanel.
+	 */
 	private void showInfrastructurProperties(Object object)
 	{
 		InfrastructuresPropertiesView.getInfrastructuresPropertiesView(this,
@@ -195,84 +202,92 @@ public class ObjectProperties extends JPanel implements ActionListener
 		if ( e.getActionCommand().equals("save") )
 		{
 			Component[] comp = this.getComponents();
-		
-			for( int i = 0; i < comp.length; i++ )
+
+			for ( int i = 0; i < comp.length; i++ )
 			{
 				String compName = comp[i].getName();
-				if( comp[i] instanceof JComboBox )
+
+				if ( compName != null )
 				{
-					if(compName.equals("Client Rates"))
+					if ( comp[i] instanceof JComboBox )
 					{
-						Clients clientObj = (Clients) objectViewed;
-						
-						JComboBox rates = (JComboBox) comp[i];
-						
-						int theRate = Integer.parseInt(rates.getSelectedItem().toString());
-						
-						clientObj.setClientRate(theRate);
-					}
-				}
-				else if( comp[i] instanceof JTextField )
-				{
-					if(compName.equals("Name Canvas"))
-					{
-						JTextField field = (JTextField) comp[i];
-						
-						String canvasName = field.getText();
-						
-						if( canvasName.equals("") )
+						if ( compName.equals("Client Rates") )
 						{
-							canvasViewed.setName(canvasName);
+							Clients clientObj = (Clients) objectViewed;
+
+							JComboBox rates = (JComboBox) comp[i];
+
+							int theRate = Integer.parseInt(rates
+									.getSelectedItem().toString());
+
+							clientObj.setClientRate(theRate);
 						}
 					}
-					else if(compName.equals("Name Object"))
+					else if ( comp[i] instanceof JTextField )
 					{
-						JTextField field = (JTextField) comp[i];
-						
-						String objName = field.getText();
-						
-						if( objName.equals("") )
+						if ( compName.equals("Name Canvas") )
 						{
-							objectViewed.setObjectName(objName);
+							JTextField field = (JTextField) comp[i];
+
+							String canvasName = field.getText();
+							// FIXME Canvas Name Update
+							if ( !(canvasName.equals("")) )
+							{
+								canvasViewed.setName(canvasName);
+							}
+						}
+						else if ( compName.equals("Name Object") )
+						{
+							// Gets the JTextField component
+							JTextField field = (JTextField) comp[i];
+
+							// Gets the text inside that field
+							String objName = field.getText();
+
+							// If the text is not blank
+							if ( !(objName.equals("")) )
+							{
+								// Updates the name of the LabelWidget on the scene
+								objectViewed = GraphicalFunctions.updateWidgetObjectCanvasName(objectViewed, objName);
+								
+								// Sets the name of the object
+								objectViewed.setObjectName(objName);
+							}
+						}
+						else if ( compName.equals("supConInt") )
+						{
+
+						}
+						else if ( compName.equals("supRemoteAccProto") )
+						{
+
+						}
+						else if ( compName.equals("Main SW Name") )
+						{
+
 						}
 					}
-					else if(compName.equals("supConInt"))
+					else if ( comp[i] instanceof JCheckBox )
 					{
-						
-					}
-					else if(compName.equals("supRemoteAccProto"))
-					{
-						
-					}
-					else if(compName.equals("Main SW Name"))
-					{
-						
-					}
-				}
-				else if( comp[i] instanceof JCheckBox )
-				{
-					if(compName.equals("supOnSiteAccess"))
-					{
-						lhdlkfhdlknullpointer
-						JCheckBox box = (JCheckBox) comp[i];
-						
-						Servers server = (Servers) objectViewed;
-						
-						server.setSupportsOnSiteAccess(box.isSelected());
-					}
-					else if(compName.equals("supRemoteAccess"))
-					{
-						JCheckBox box = (JCheckBox) comp[i];
-						
-						Servers server = (Servers) objectViewed;
-						
-						server.setSupportsRemoteAccess(box.isSelected());
+						if ( compName.equals("supOnSiteAccess") )
+						{
+							JCheckBox box = (JCheckBox) comp[i];
+							
+							Servers server = (Servers) objectViewed;
+
+							server.setSupportsOnSiteAccess(box.isSelected());
+						}
+						else if ( compName.equals("supRemoteAccess") )
+						{
+							JCheckBox box = (JCheckBox) comp[i];
+
+							Servers server = (Servers) objectViewed;
+
+							server.setSupportsRemoteAccess(box.isSelected());
+						}
 					}
 				}
 			}
-		
-
-
 		}
 	}
 }

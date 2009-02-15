@@ -24,6 +24,10 @@ import javax.swing.event.ChangeListener;
 public class WorkareaTabbed extends JTabbedPane
 {
 
+	/**
+	 * A constructor for this class that add a changeListener that will call
+	 * doRepaint on the WorkareaCanvas when any change occurs.
+	 */
 	public WorkareaTabbed()
 	{
 		createNewCanvasTab("AA");
@@ -48,7 +52,7 @@ public class WorkareaTabbed extends JTabbedPane
 				// Gets the workareaCanvas that the scrollPane contains.
 				WorkareaCanvas currentCanvas = currentScrollPane.getCanvas();
 
-				// Repaints the entier canvas.(Avoids NullPointerExeption errors
+				// Repaints the entire canvas.(Avoids NullPointerExeption errors
 				// from swing).
 				currentCanvas.doRepaint();
 
@@ -68,7 +72,13 @@ public class WorkareaTabbed extends JTabbedPane
 
 
 	/**
-	 * TODO - Description
+	 * The function creates a new WorkareaSceneScroll and places that component
+	 * within a new tab with the given name. The tab is then added to this
+	 * JTabbedPane.
+	 * 
+	 * @param name
+	 *            The name of the tab that is to contain the new
+	 *            WorkareaSceneScroll.
 	 */
 	public void createNewCanvasTab(String name)
 	{
@@ -83,9 +93,6 @@ public class WorkareaTabbed extends JTabbedPane
 
 		this.setPreferredSize(new Dimension(width, height));
 
-		addTab(name, icon, canvasScroll);
+		this.addTab(name, icon, canvasScroll);
 	}
-
-
-
 }

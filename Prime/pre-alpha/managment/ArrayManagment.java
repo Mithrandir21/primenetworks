@@ -400,8 +400,19 @@ public class ArrayManagment
 
 
 
+
 	/**
-	 * TODO - Description
+	 * This function creates a new java.lang.Object array with 5 more
+	 * indexes then the given Object array. It then copies over the 
+	 * information in the given array into the new array, which
+	 * leaves an array with 5 free spaces at the end.
+	 * 
+	 * @param data
+	 * 			The array that will be copied over to a new array
+	 * 			with 5 additional empty indexes at the end.
+	 * @return
+	 * 			A new Object double array that will contain 5 new
+	 * 			empty indexes at the end.
 	 */
 	public static java.lang.Object[][] add5ArraySpaces(java.lang.Object[][] data)
 	{
@@ -436,8 +447,19 @@ public class ArrayManagment
 	}
 
 
+
 	/**
-	 * TODO - Description
+	 * This function creates a new String array with 5 more
+	 * indexes then the given String array. It then copies over the 
+	 * information in the given array into the new array, which
+	 * leaves an array with 5 free spaces at the end.
+	 * 
+	 * @param data
+	 * 			The array that will be copied over to a new array
+	 * 			with 5 additional empty indexes at the end.
+	 * @return
+	 * 			A new String double array that will contain 5 new
+	 * 			empty indexes at the end.
 	 */
 	public static String[][] add5ArraySpaces(String[][] data)
 	{
@@ -475,8 +497,19 @@ public class ArrayManagment
 	
 	
 	/**
-	 * TODO - Description
+	 * This method removes any empty first level index from the given 
+	 * data.
 	 * 
+	 */
+	/**
+	 * This method removes any empty first level index from the given 
+	 * data.
+	 * 
+	 * @param data
+	 * 			The array that will be checked for empty array
+	 * 			indexes.
+	 * @return
+	 * 			Return a new array with no empty indexes.
 	 */
 	public static String[][] removeEmptyIndexes(String[][] data)
 	{

@@ -42,7 +42,6 @@ public class ArrayManagmentTest extends TestCase
 		}
 		catch ( Exception e )
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -81,7 +80,6 @@ public class ArrayManagmentTest extends TestCase
 		}
 		catch ( Exception e )
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -106,7 +104,6 @@ public class ArrayManagmentTest extends TestCase
 		}
 		catch ( StringNotFoundInArrayException e )
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -141,7 +138,6 @@ public class ArrayManagmentTest extends TestCase
 		}
 		catch ( Exception e )
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

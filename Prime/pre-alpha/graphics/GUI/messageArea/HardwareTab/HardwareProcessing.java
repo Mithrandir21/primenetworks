@@ -21,10 +21,28 @@ import exceptions.ObjectNotFoundException;
  */
 public class HardwareProcessing
 {
-	private int errorsFound = 0;
-
 	/**
-	 * TODO - Description
+	 * This method processes an Object for critical errors,
+	 * warnings and notices. It then returns a multidimentional String array
+	 * that contains the messages the user will be shown about the object.  
+	 * 
+	 * @param curData
+	 * 			The current multidimentional String array with possible previous
+	 * 			data.
+	 * @param obj
+	 * 			The Object that is to be examined.
+	 * @param CheckCritical
+	 * 			A boolean saying if the Object should be checked for
+	 * 			critical errors.
+	 * @param CheckWarnings
+	 * 			A boolean saying if the Object should be checked for
+	 * 			warnings.
+	 * @param CheckNotices
+	 * 			A boolean saying if the Object should be checked for
+	 * 			notices.
+	 * @return
+	 * 			Returns a new multidimentional String array with possible
+	 * 			messages for the user about the given Object.
 	 */
 	public static String[][] processHardware(String[][] curData, Object obj,
 			boolean CheckCritical, boolean CheckWarnings, boolean CheckNotices)
@@ -61,7 +79,18 @@ public class HardwareProcessing
 
 
 	/**
-	 * TODO - Description
+	 * Examines the given object for possible critical errors and 
+	 * adds messages to the given multidimentional String array 
+	 * which will then be used to populate a JTable.
+	 * 
+	 * @param data
+	 * 			The data container with possible previous messages
+	 * 			for the user. 
+	 * @param obj
+	 * 			The object that is to be examined.
+	 * @return
+	 * 			The data container with possible new messages
+	 * 			for the user in addition to the old messages.
 	 */
 	private static String[][] getCriticalErrors(String[][] data, Object obj)
 	{
@@ -112,7 +141,18 @@ public class HardwareProcessing
 
 
 	/**
-	 * TODO - Description
+	 * Examines the given object for possible warnings and 
+	 * adds messages to the given multidimentional String array 
+	 * which will then be used to populate a JTable.
+	 * 
+	 * @param data
+	 * 			The data container with possible previous messages
+	 * 			for the user. 
+	 * @param obj
+	 * 			The object that is to be examined.
+	 * @return
+	 * 			The data container with possible new messages
+	 * 			for the user in addition to the old messages.
 	 */
 	private static String[][] getWarnings(String[][] data, Object obj)
 	{
@@ -122,7 +162,18 @@ public class HardwareProcessing
 
 
 	/**
-	 * TODO - Description
+	 * Examines the given object for possible notices and 
+	 * adds messages to the given multidimentional String array 
+	 * which will then be used to populate a JTable.
+	 * 
+	 * @param data
+	 * 			The data container with possible previous messages
+	 * 			for the user. 
+	 * @param obj
+	 * 			The object that is to be examined.
+	 * @return
+	 * 			The data container with possible new messages
+	 * 			for the user in addition to the old messages.
 	 */
 	private static String[][] getNotices(String[][] data, Object obj)
 	{
@@ -132,7 +183,18 @@ public class HardwareProcessing
 
 
 	/**
-	 * TODO - Description
+	 * Adds the given String array to the given multidimentional String
+	 * array that contains all the messages the user will be shown.
+	 * 
+	 * @param data
+	 * 			The data container with possible previous messages
+	 * 			for the user. 
+	 * @param info
+	 * 			The new information that will be added to the data
+	 * 			array with messages.
+	 * @return
+	 * 			The data container with the new message
+	 * 			for the user in addition to the possible old messages.
 	 */
 	private static String[][] addError(String[][] data, String[] info)
 	{

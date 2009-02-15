@@ -29,7 +29,7 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class GeneralObjectView extends JPanel implements ActionListener
+public class GeneralObjectView extends JPanel
 {
 	public JTextField nametext;
 
@@ -268,18 +268,4 @@ public class GeneralObjectView extends JPanel implements ActionListener
 
 		return decsArea;
 	}
-
-
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
 }

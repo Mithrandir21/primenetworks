@@ -317,7 +317,7 @@ public class RAMView extends JPanel implements HardwareViewInterface, ActionList
 
 
 	/**
-	 * TODO - Description
+	 * This method validates necessary information that is being saved.
 	 * 
 	 */
 	public boolean validateNecessaryData()

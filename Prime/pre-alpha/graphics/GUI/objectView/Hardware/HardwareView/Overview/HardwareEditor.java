@@ -30,7 +30,7 @@ import objects.Object;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * CLASSDesc - Description NEEDED!
  * 
  * @author Bahram Malaekeh
  */

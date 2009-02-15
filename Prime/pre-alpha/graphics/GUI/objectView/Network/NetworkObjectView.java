@@ -47,7 +47,7 @@ public class NetworkObjectView extends JPanel
 	private Object givenObject = null;
 
 	/**
-	 * TODO - Description NEEDED!
+	 * A constructor for the class.
 	 */
 	public NetworkObjectView(Object obj)
 	{
@@ -57,7 +57,9 @@ public class NetworkObjectView extends JPanel
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This method sets the layout and adds two JPanel with information about
+	 * objects connected the given object. One of the panels are for objects
+	 * connected by way of USB and the other one by way of RJ-45.
 	 * 
 	 * @param obj
 	 */
@@ -97,10 +99,13 @@ public class NetworkObjectView extends JPanel
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This method passes the object on the right function depending on the
+	 * conType string.
 	 * 
 	 * @param obj
+	 *            The object that is to be passed on.
 	 * @param conType
+	 *            The string that detemines the type of connecion.
 	 * @return
 	 */
 	private JPanel determine(Object obj, String conType)
@@ -124,10 +129,13 @@ public class NetworkObjectView extends JPanel
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates and returns a JPanel that contains information about the objects
+	 * that are connected to the given object by way of USB.
 	 * 
 	 * @param obj
-	 * @return
+	 *            The Object that is to be examined for connections.
+	 * @return A JPanel with information about objects connections by way of
+	 *         USB.
 	 */
 	private JPanel USBpanel(Object obj)
 	{
@@ -209,10 +217,13 @@ public class NetworkObjectView extends JPanel
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates and returns a JPanel that contains information about the objects
+	 * that are connected to the given object by way of RJ-45.
 	 * 
 	 * @param obj
-	 * @return
+	 *            The Object that is to be examined for connections.
+	 * @return A JPanel with information about objects connections by way of
+	 *         RJ-45.
 	 */
 	private JPanel LANpanel(Object obj)
 	{
@@ -293,10 +304,12 @@ public class NetworkObjectView extends JPanel
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates a JPanel that will contains key information about the given
+	 * object depending on the class of the Object.
 	 * 
 	 * @param obj
-	 * @return
+	 *            The Object that is to be examined.
+	 * @return The JPanel with the specific information.
 	 */
 	private JPanel createPanel(Object obj)
 	{
@@ -370,10 +383,12 @@ public class NetworkObjectView extends JPanel
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Returns a String array with information about the given Object.
 	 * 
 	 * @param obj
-	 * @return
+	 *            The object that is to be examined.
+	 * @return An array with information about the given object, like name,
+	 *         description, number of cpus, etc.
 	 */
 	private String[] check(Object obj)
 	{
@@ -440,7 +455,7 @@ public class NetworkObjectView extends JPanel
 
 		if ( mbObj != null )
 		{
-			if ( mbObj.getSocket() != "" ) 
+			if ( mbObj.getSocket() != "" )
 			{
 				info[2] = "Socket: " + mbObj.getSocket();
 			}
@@ -573,10 +588,6 @@ public class NetworkObjectView extends JPanel
 			}
 		}
 
-
 		return panel;
 	}
-
-
-
 }

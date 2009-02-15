@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * CLASSDesc - Description NEEDED!
  * 
  * @author Bahram Malaekeh
  */
@@ -18,10 +18,12 @@ public class Infrastructure extends Object implements Serializable
 {
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for any Infrastructure object.
 	 * 
 	 * @param Name
+	 *            The name of the Object.
 	 * @param Desc
+	 *            The description of the object.
 	 */
 	public Infrastructure(String Name, String Desc)
 	{
@@ -30,11 +32,14 @@ public class Infrastructure extends Object implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for any Infrastructure object.
 	 * 
 	 * @param Name
+	 *            The name of the Object.
 	 * @param Desc
+	 *            The description of the object.
 	 * @param SupConInt
+	 *            A String array of supported interfaces.
 	 */
 	public Infrastructure(String Name, String Desc, String[] SupConInt)
 	{
@@ -43,11 +48,15 @@ public class Infrastructure extends Object implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for any Infrastructure object.
 	 * 
 	 * @param Name
+	 *            The name of the Object.
 	 * @param Desc
+	 *            The description of the object.
 	 * @param objectComponents
+	 *            An Objects array that contains the objects internal
+	 *            components.
 	 */
 	public Infrastructure(String Name, String Desc, Object[] objectComponents)
 	{
@@ -56,12 +65,16 @@ public class Infrastructure extends Object implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for any Infrastructure object.
 	 * 
 	 * @param Name
+	 *            The name of the Object.
 	 * @param Desc
+	 *            The description of the object.
 	 * @param SupConInt
+	 *            A String array of supported interfaces.
 	 * @param mb
+	 * 			  The objects Motherboard.
 	 */
 	public Infrastructure(String Name, String Desc, String[] SupConInt,
 			Motherboard mb)
@@ -71,12 +84,17 @@ public class Infrastructure extends Object implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for any Infrastructure object.
 	 * 
 	 * @param Name
+	 *            The name of the Object.
 	 * @param Desc
+	 *            The description of the object.
 	 * @param SupConInt
+	 *            A String array of supported interfaces.
 	 * @param objectComponents
+	 *            An Objects array that contains the objects internal
+	 *            components.
 	 */
 	public Infrastructure(String Name, String Desc, String[] SupConInt,
 			Object[] objectComponents)

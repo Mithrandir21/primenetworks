@@ -8,22 +8,14 @@ import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.WidgetIcon;
 import graphics.GUI.selectArea.CreateObjectDragged;
-import graphics.GUI.workareaCanvas.providers.AdapterExtended;
 import graphics.GUI.workareaCanvas.providers.CanvasMenu;
-import graphics.GUI.workareaCanvas.providers.CreateProvider;
-import graphics.GUI.workareaCanvas.providers.JMenuProvider;
-import graphics.GUI.workareaCanvas.providers.SceneConnectProvider;
 import hardware.ExternalNetworksCard;
 import hardware.InternalNetworksCard;
 import infrastructure.Hub;
 import infrastructure.Router;
 import infrastructure.Switch;
 
-import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
@@ -31,7 +23,6 @@ import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -45,9 +36,7 @@ import javax.swing.TransferHandler;
 import objects.Object;
 
 import org.netbeans.api.visual.action.ActionFactory;
-import org.netbeans.api.visual.border.BorderFactory;
 import org.netbeans.api.visual.model.ObjectScene;
-import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
@@ -59,6 +48,7 @@ import servers.HTTPServer;
 import servers.MailServer;
 import servers.ProxyServer;
 import widgetManipulation.WidgetObject;
+import actions.graphicalActions.WorkareaCanvasActions;
 import clients.Laptop;
 import connections.Connection;
 
@@ -104,7 +94,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 	private Connection[] connections = new Connection[5];
 
 
-	// TODO - Create array of amount of different object types on the scene.
+	// FIXME - Create array of amount of different object types on the scene.
 	private int numberOfWidgetsOnTheScene = 0;
 
 	private int numberOfNICs = 0;
@@ -125,7 +115,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 		myView.setTransferHandler(TransHandler);
 
 		dt = new DropTarget(myView, this);
-
 
 		// scene.getActions().addAction(ActionFactory.createSelectAction(new
 		// CreateProvider()));
@@ -285,7 +274,28 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 	{
 		return numberOfNICs;
 	}
+	
+	
+	/**
+	 * Adds one int to the number of Widgets on the
+	 * canvas scene.
+	 */
+	public void addToNumberOfWidgetsOnTheCanvas()
+	{
+		numberOfWidgetsOnTheScene++;
+	}
 
+	
+	
+	/**
+	 * Subtracts one int from the the number of Widgets
+	 * on the canvas scene.
+	 */
+	public void subtractFromNumberOgWidgetsOnTheCanvas()
+	{
+		numberOfWidgetsOnTheScene--;
+	}
+	
 
 	/**
 	 * Gets the array of connections between objects. <i>Note: These connections
@@ -418,50 +428,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 	@Override
 	public void drop(DropTargetDropEvent dtde)
 	{
-		// System.out.println("Drag Drop");
-		Transferable tr = dtde.getTransferable();
-		DataFlavor f[] = tr.getTransferDataFlavors();
-		WidgetObject newObject = null;
-
-		try
-		{
-			newObject = (WidgetObject) tr.getTransferData(new DataFlavor(
-					WidgetObject.class, "Widget Object"));
-
-			Dimension objectSize = newObject.getImageDimension();
-
-			Point objectPoint = dtde.getLocation();
-
-			dtde = null;
-
-
-			int height = objectPoint.x - (objectSize.height / 2);
-
-			int width = objectPoint.y - (objectSize.width / 2);
-
-			objectPoint.setLocation(height, width);
-
-
-			// objectPoint.setLocation(objectPoint);
-
-
-			// LabelWidget i = new LabelWidget(scene, "This is it");
-
-
-			addWidgetObject(newObject, objectPoint);
-
-
-			cleanUp();
-		}
-		catch ( UnsupportedFlavorException e )
-		{
-			System.out.println("WorkareaCanvas - UnsupportedFlavorException");
-		}
-		catch ( IOException e )
-		{
-			System.out.println("WorkareaCanvas - IOException");
-		}
-
+		WorkareaCanvasActions.createWidgetOnCanvas(dtde, this);
 	}
 
 
@@ -480,96 +447,14 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 
 	/**
-	 * Adds the given WidgetObject at the given point on the scene. This method
-	 * adds all the functionality that a widgetObject will have like being able
-	 * to connect to other widgets, being clicked or dragged. It also sets a
-	 * description and places an empty border around the widgetObject.
+	 * Adds the given WidgetObject at the given point on the scene.
 	 * 
 	 * @param newObject
 	 * @param objectPoint
 	 */
-	private void addWidgetObject(WidgetObject newObject, Point objectPoint)
+	public void addWidgetObject(WidgetObject newObject, Point objectPoint)
 	{
-		// int n = JOptionPane.showConfirmDialog(this, "Would you like to add a
-		// new "
-		// + newObject.getObject().getName() + "?", "An Inane Question",
-		// JOptionPane.YES_NO_OPTION);
-
-		if ( true )
-		{
-			Point sceneLocation = scene.convertViewToScene(objectPoint);
-
-
-			newObject.setPreferredLocation(sceneLocation);
-
-
-			newObject.getActions().addAction(
-					ActionFactory.createExtendedConnectAction(interactionLayer,
-							new SceneConnectProvider()));
-
-
-			//			
-			newObject.getActions().addAction(
-					ActionFactory.createSelectAction(new CreateProvider()));
-
-
-			newObject.getActions().addAction(
-					ActionFactory.createAlignWithMoveAction(mainLayer,
-							interactionLayer, null));
-
-
-
-			newObject.getActions().addAction(new AdapterExtended());
-
-
-			LabelWidget objectLabel = new LabelWidget(scene, newObject
-					.getObject().getObjectName());
-
-			newObject.addChild(objectLabel);
-
-
-			newObject.setToolTipText(newObject.getObject().getDescription());
-
-
-			// Adds hovering action to the widget.
-			// newObject.getActions().addAction(
-			// ActionFactory.createHoverAction(new WidgetHoverProvider()));
-
-
-			newObject.getActions().addAction(
-					ActionFactory.createPopupMenuAction(new JMenuProvider()));
-
-
-
-			// newObject.getActions().addAction(ActionFactory.
-			// createRectangularSelectAction(
-			// ActionFactory.createDefaultRectangularSelectDecorator(scene),
-			// interactionLayer,
-			// ActionFactory.createObjectSceneRectangularSelectProvider(scene)));
-
-
-			// ----------DIFFERENT BORDERS------------
-			newObject.setBorder(BorderFactory.createEmptyBorder());
-
-			// newObject.setBorder(BorderFactory.createDashedBorder(Color.black,
-			// 5, 5));
-
-			// newObject.setBorder(BorderFactory.createBevelBorder(false));
-
-			// newObject.setBorder(BorderFactory.createResizeBorder(5));
-
-			// newObject.setBorder(BorderFactory.createRoundedBorder(10, 10,
-			// Color.white, Color.black));
-
-			// newObject.getActions().addAction(ActionFactory.
-			// createAddRemoveControlPointAction(1.0,3.0));
-			// ---------------------------------------
-
-			mainLayer.addChild(newObject);
-			numberOfWidgetsOnTheScene++;
-
-			cleanUp();
-		}
+		WorkareaCanvasActions.addWidgetToCanvas(newObject, objectPoint, this);
 	}
 
 
@@ -599,10 +484,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 		connectionLayer.revalidate();
 		connectionLayer.repaint();
-
-
-		// WorkareaTabbed.canvasScroll.repaint();
-		// WorkareaSceneScroll.canvas.repaint();
 	}
 
 
@@ -615,6 +496,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 	{
 		JMenuItem action = (JMenuItem) e.getSource();
 
+		
+		
 		String actionName = "";
 
 

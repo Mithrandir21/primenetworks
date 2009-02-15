@@ -480,7 +480,7 @@ public abstract class Object implements Serializable
 
 	/**
 	 * Function for replacing a specific given component with a given new
-	 * component. 
+	 * component.
 	 * 
 	 * @param NewComponent
 	 *            The component to replace the previous one.
@@ -517,7 +517,7 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Function to add component(s) to the the components list. 
+	 * Function to add components to the components list.
 	 * 
 	 * @param NewComponents
 	 *            An array of new components.
@@ -534,7 +534,7 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Functino to add component to the components list.
 	 * 
 	 * @param NewComponent
 	 */
@@ -673,7 +673,7 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Function to add device(s) to the the connected devices list. 
+	 * Function to add device(s) to the the connected devices list.
 	 * 
 	 * @param NewConnectedDevice
 	 *            A new device.
@@ -799,7 +799,8 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Releases all the Network(LAN or RJ-45) connections on the objects
+	 * motherboard.
 	 */
 	public void releaseAllNetworkConnectionPorts()
 	{
@@ -807,12 +808,14 @@ public abstract class Object implements Serializable
 
 		try
 		{
-			objectAmotherboard = (Motherboard) getSpesificComponents(Motherboard.class)[0];
+			objectAmotherboard = 
+				(Motherboard) getSpesificComponents(Motherboard.class)[0];
 		}
 		catch ( ObjectNotFoundException e )
 		{
 			System.out
-					.println("Object - releaseConnectionPorts - Network connection - cant find Motherboard");
+					.println("Object - releaseConnectionPorts " +
+							"- Network connection - cant find Motherboard");
 		}
 
 		// Sets the arrays on the actual motherboard component to an array
@@ -825,9 +828,13 @@ public abstract class Object implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Releases a single connection port on the objects motherboard.
+	 * The type of port released depends on the class of the given
+	 * connection.
 	 * 
 	 * @param con
+	 * 			The connection that is to determine what kind of 
+	 * 			port is to be released.
 	 * @throws PortIsNotRegisteredOnMotherboard
 	 */
 	public void releaseSingelConnectionPort(Connection con)

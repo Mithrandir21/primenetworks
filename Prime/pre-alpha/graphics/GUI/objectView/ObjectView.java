@@ -1,6 +1,7 @@
 package graphics.GUI.objectView;
 
 
+import graphics.GraphicalFunctions;
 import graphics.PrimeMain1;
 
 import java.awt.Button;
@@ -19,6 +20,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import managment.CanvasManagment;
 import objects.Object;
 
 import org.netbeans.api.visual.widget.LabelWidget;
@@ -136,32 +138,8 @@ public class ObjectView extends JFrame implements ActionListener
 		{
 			String viewNameText = view.genObjView.nametext.getText();
 
-			if ( !currentObject.getObjectName().equals(viewNameText) )
-			{
-				currentObject.setObjectName(viewNameText);
-
-				List<Widget> children = widgetObj.getChildren();
-
-				LabelWidget label = null;
-
-
-				for ( Iterator<Widget> iter = children.iterator(); iter
-						.hasNext(); )
-				{
-					Widget temp = iter.next();
-					if ( temp instanceof LabelWidget )
-					{
-						label = (LabelWidget) temp;
-					}
-				}
-
-				if ( label != null )
-				{
-					label.setLabel(viewNameText);
-				}
-			}
-
-
+			currentObject = GraphicalFunctions.updateWidgetObjectCanvasName(currentObject, widgetObj, viewNameText);
+			
 			if ( !currentObject.getDescription().equals(
 					view.genObjView.textarea.getText()) )
 			{
@@ -178,11 +156,9 @@ public class ObjectView extends JFrame implements ActionListener
 		}
 		else if ( e.getActionCommand().equals("apply") )
 		{
-			if ( !currentObject.getObjectName().equals(
-					view.genObjView.nametext.getText()) )
-			{
-				currentObject.setObjectName(view.genObjView.nametext.getText());
-			}
+			String viewNameText = view.genObjView.nametext.getText();
+
+			currentObject = GraphicalFunctions.updateWidgetObjectCanvasName(currentObject, widgetObj, viewNameText);
 
 
 			if ( !currentObject.getDescription().equals(
@@ -209,7 +185,8 @@ public class ObjectView extends JFrame implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This method calls the UpdateTabInfo method in the ObjectViewTabbed
+	 * class to update the information about the current object.
 	 */
 	public void updateViewInfo()
 	{
@@ -218,8 +195,9 @@ public class ObjectView extends JFrame implements ActionListener
 	
 	
 	/**
-	 * TODO - Description
+	 * Gets the object that is currently i view.
 	 * 
+	 * @return The in view object.
 	 */
 	public Object getObject()
 	{

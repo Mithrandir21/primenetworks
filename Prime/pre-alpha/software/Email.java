@@ -39,7 +39,7 @@ public class Email extends Software implements Serializable
 	private boolean supportsWebmail;
 
 
-	// TODO - Authentication remains to be fixed.
+	// FIXME - Authentication remains to be fixed.
 
 
 	public Email(String Name, String Desc, String Version)

@@ -18,7 +18,7 @@ import objects.Object;
 public class InternalConnection extends Connection implements Serializable
 {
 
-	// TODO - Consider Internal Connection
+	// FIXME - Consider Internal Connection
 
 	/**
 	 * A class constructor for the internal connection.

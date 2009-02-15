@@ -48,7 +48,6 @@ public class ActionPaste extends AbstractAction
 
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(null,
 				"You want to perform a \"Paste\" action.");
 	}

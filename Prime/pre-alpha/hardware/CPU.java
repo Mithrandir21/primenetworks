@@ -146,16 +146,6 @@ public class CPU extends Hardware implements Serializable
 	 * @param fsb
 	 *            The front side bus of the CPU.
 	 */
-	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param Name
-	 * @param Desc
-	 * @param CPUsocket
-	 * @param level1CPUcache
-	 * @param level2CPUcache
-	 * @param fsb
-	 */
 	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache,
 			int level2CPUcache, int fsb)
 	{

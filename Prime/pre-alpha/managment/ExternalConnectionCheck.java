@@ -21,7 +21,7 @@ public class ExternalConnectionCheck
 	public static boolean checkMBexternalPorts(Motherboard MB,
 			Object[] connectedDevices, Object a)
 	{
-		// TODO - Check if this is needed
+		// FIXME - Check if this is needed
 		return false;
 	}
 

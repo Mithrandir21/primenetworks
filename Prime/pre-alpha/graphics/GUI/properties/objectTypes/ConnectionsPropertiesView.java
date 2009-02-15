@@ -13,7 +13,7 @@ import objects.Object;
 
 
 /**
- * TODO - Description NEEDED!
+ * CLASSDesc - Description NEEDED!
  * 
  * @author Bahram Malaekeh
  */
@@ -34,7 +34,6 @@ public class ConnectionsPropertiesView extends JPanel implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
 
 	}
 }

@@ -6,6 +6,12 @@ import java.io.Serializable;
 import objects.Software;
 
 
+/**
+ * TODO - Description NEEDED!
+ *
+ * @author Bahram Malaekeh
+ * 
+ */
 public class Backup extends Software implements Serializable
 {
 
@@ -27,6 +33,14 @@ public class Backup extends Software implements Serializable
 
 
 	// FIXME - Fix backup.
+	/**
+	 * A constructor for the class that passes on the given parameters
+	 * to the constructors of the super class.
+	 *
+	 * @param Name
+	 * @param Desc
+	 * @param Version
+	 */
 	public Backup(String Name, String Desc, String Version)
 	{
 		super(Name, Desc, Version);
@@ -35,7 +49,7 @@ public class Backup extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Returns an array with the names of the supported Operating Systems.
 	 * 
 	 * @return the supportedOperatingSystems
 	 */
@@ -47,7 +61,7 @@ public class Backup extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the type of backup the backup software keeps.
 	 * 
 	 * @return the backupType
 	 */
@@ -59,7 +73,7 @@ public class Backup extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets whether or not the backup supports compression.
 	 * 
 	 * @return the compression
 	 */
@@ -71,7 +85,7 @@ public class Backup extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets whether or not the backup supports encryption.
 	 * 
 	 * @return the encryption
 	 */
@@ -83,7 +97,7 @@ public class Backup extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets the number of duplicates the backup keeps.
 	 * 
 	 * @return the duplicate
 	 */
@@ -97,7 +111,7 @@ public class Backup extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets an array with the names of the supported Operating Systems.
 	 * 
 	 * @param supportedOperatingSystems
 	 *            the supportedOperatingSystems to set
@@ -110,7 +124,7 @@ public class Backup extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets the type of backup type. Like Full backup or incremental.
 	 * 
 	 * @param backupType
 	 *            the backupType to set
@@ -123,7 +137,7 @@ public class Backup extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets whether or not the backup supports compression.
 	 * 
 	 * @param compression
 	 *            the compression to set
@@ -136,7 +150,7 @@ public class Backup extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets whether or not the backup supports encryption.
 	 * 
 	 * @param encryption
 	 *            the encryption to set
@@ -145,24 +159,11 @@ public class Backup extends Software implements Serializable
 	{
 		this.encryption = encryption;
 	}
-
-
-
-	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @param duplicate
-	 *            the duplicate to set
-	 */
-	public void setSupportsDuplicate(int duplicate)
-	{
-		this.duplicate = duplicate;
-	}
 	
 	
 	
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets the number of duplicates of the backup the software keeps.
 	 */
 	public void setDuplicate(int dup)
 	{

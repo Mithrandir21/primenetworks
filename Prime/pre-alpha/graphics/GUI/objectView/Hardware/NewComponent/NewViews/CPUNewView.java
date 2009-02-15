@@ -40,7 +40,7 @@ import objects.Object;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
  */
@@ -77,10 +77,15 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for this class that will create a new JFrame which
+	 * will contain fields for the adjustment of the newly created 
+	 * CPU hardware that will, if saved, be added to the hardware
+	 * list of the given Object.
 	 * 
 	 * @param obj
-	 * @param cpu
+	 * 			The Object that the given hardware will be added to, if saved.
+	 * @param av
+	 * 			The Hardware object that can be adjusted and then saved.
 	 */
 	public CPUNewView(Object obj, CPU cpu)
 	{

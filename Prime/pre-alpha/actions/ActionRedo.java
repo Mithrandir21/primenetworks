@@ -36,7 +36,6 @@ public class ActionRedo extends AbstractAction
 
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(null,
 				"You want to perform a \"Redo\" action.");
 	}

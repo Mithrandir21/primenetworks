@@ -76,10 +76,15 @@ public class BackupNewView extends JFrame implements SoftwareView,
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 *
+	 * A constructor for this class that will create a new JFrame which
+	 * will contain fields for the adjustment of the newly created 
+	 * Backup software that will, if saved, be added to the software
+	 * list of the given Object.
+	 * 
 	 * @param obj
-	 * @param back
+	 * 			The Object that the given software will be added to, if saved.
+	 * @param av
+	 * 			The Software object that can be adjusted and then saved.
 	 */
 	public BackupNewView(Object obj, Backup back)
 	{
@@ -325,6 +330,9 @@ public class BackupNewView extends JFrame implements SoftwareView,
 
 
 
+	/* (non-Javadoc)
+	 * @see graphics.GUI.objectView.Software.SoftwareView#save()
+	 */
 	@Override
 	public void save()
 	{
@@ -364,6 +372,9 @@ public class BackupNewView extends JFrame implements SoftwareView,
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{

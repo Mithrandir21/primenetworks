@@ -5,24 +5,35 @@ package graphics;
 
 
 import graphics.GUI.SpringUtilities;
+import graphics.GUI.workareaCanvas.WorkareaCanvas;
+import graphics.GUI.workareaCanvas.WorkareaTabbed;
 
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
+import managment.CanvasManagment;
 import managment.ComponentsManagment;
 import objects.Object;
 
+import org.netbeans.api.visual.widget.LabelWidget;
+import org.netbeans.api.visual.widget.Widget;
+
+import widgetManipulation.WidgetObject;
+
 
 /**
- * This class contains methods and functions that perform action on graphical components.
- * Like finding and selecting indexes in JComboBoxes or JLists.
- * Or arranging components in panels or frames.
+ * This class contains methods and functions that perform action on graphical
+ * components. Like finding and selecting indexes in JComboBoxes or JLists. Or
+ * arranging components in panels or frames.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -156,13 +167,16 @@ public class GraphicalFunctions
 
 
 	/**
-	 * This method looks for the given possibilities in the given data.
-	 * If any are found the indexes of those are selected in the given list
-	 * and that list is returned. 
+	 * This method looks for the given possibilities in the given data. If any
+	 * are found the indexes of those are selected in the given list and that
+	 * list is returned.
 	 * 
-	 * @param list The list that will have selected indexes.
-	 * @param possibilities The information the method will look for in data. 
-	 * @param data The data that will be searched.
+	 * @param list
+	 *            The list that will have selected indexes.
+	 * @param possibilities
+	 *            The information the method will look for in data.
+	 * @param data
+	 *            The data that will be searched.
 	 * @return Returns the indexes of the given data in the array of
 	 *         possibilities.
 	 */
@@ -245,9 +259,9 @@ public class GraphicalFunctions
 				xPad, yPad);
 
 	}
-	
-	
-	
+
+
+
 	/**
 	 * This method takes all the component inside the given parent container and
 	 * orders them so that there are no more then 1 components in any one row.
@@ -279,5 +293,148 @@ public class GraphicalFunctions
 		SpringUtilities.makeCompactGrid(parent, rows, 1, initialX, initialY,
 				xPad, yPad);
 
+	}
+
+
+
+
+	/**
+	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on
+	 * the canvas.
+	 * 
+	 * @param obj
+	 * @param widgetObj
+	 * @param name
+	 * @return
+	 */
+	public static Object updateWidgetObjectCanvasName(Object obj,
+			WidgetObject widgetObj, String name)
+	{
+		if ( !(obj.getObjectName().equals(name)) )
+		{
+			obj.setObjectName(name);
+
+			List<Widget> children = widgetObj.getChildren();
+
+			LabelWidget label = null;
+
+
+			for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
+			{
+				Widget temp = iter.next();
+				if ( temp instanceof LabelWidget )
+				{
+					label = (LabelWidget) temp;
+				}
+			}
+
+			if ( label != null )
+			{
+				label.setLabel(name);
+			}
+		}
+
+
+		return obj;
+	}
+
+
+
+	/**
+	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on
+	 * the canvas. This method finds the WidgetObject that contains the given
+	 * object in all the different canvases.
+	 * 
+	 * @param obj
+	 * @param name
+	 * @return
+	 */
+	public static Object updateWidgetObjectCanvasName(Object obj, String name)
+	{
+		WidgetObject widgetObj = CanvasManagment.findWidgetObject(obj,
+				PrimeMain1.canvases);
+
+
+		if ( !(obj.getObjectName().equals(name)) )
+		{
+			obj.setObjectName(name);
+
+			List<Widget> children = widgetObj.getChildren();
+
+			LabelWidget label = null;
+
+			for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
+			{
+				Widget temp = iter.next();
+				if ( temp instanceof LabelWidget )
+				{
+					label = (LabelWidget) temp;
+				}
+			}
+
+			if ( label != null )
+			{
+				label.setLabel(name);
+			}
+		}
+
+
+		return obj;
+	}
+
+
+
+
+	/**
+	 * FIXME - FIX the update canvasName function.
+	 */
+	public static void updateCanvasNames()
+	{
+		JPanel workpanel = PrimeMain1.getWorkareaPanel();
+		
+		WorkareaTabbed pane = (WorkareaTabbed) workpanel.getComponent(0);
+		
+		int tabCount = pane.getTabCount();
+		
+		for( int i = 0; i<tabCount; i++ )
+		{
+//			WorkareaSceneScroll canvasScroll = (WorkareaSceneScroll) pane.getTabComponentAt(i);
+			
+			if(pane.getTabComponentAt(i) == null)
+			{
+				System.out.println("feil");
+			}
+			else// FIXME - UPDATING Canvas Tab Name
+			{
+				System.out.println("riktig");
+			}
+		}
+	}
+
+
+
+	/**
+	 * Updates all the LabelWidgets on the scene with the name of the
+	 * object name that is within the WidgetObject.
+	 * 
+	 */
+	public static void updateWidgetObjectNamesOnAllCanvas()
+	{
+		WorkareaCanvas[] canvases = PrimeMain1.canvases;
+
+
+		for ( int i = 0; i < canvases.length; i++ )
+		{
+			List<Widget> children = canvases[i].getMainLayer().getChildren();
+			
+			for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
+			{
+				WidgetObject temp = (WidgetObject) iter.next();
+				
+				
+				updateWidgetObjectCanvasName(temp.getObject(), temp, temp.getObject().getObjectName());
+			}
+			
+		}
 	}
 }

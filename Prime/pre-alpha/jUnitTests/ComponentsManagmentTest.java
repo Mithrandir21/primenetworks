@@ -57,7 +57,6 @@ public class ComponentsManagmentTest extends TestCase
 		}
 		catch ( Exception e )
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -98,7 +97,6 @@ public class ComponentsManagmentTest extends TestCase
 		}
 		catch ( Exception e1 )
 		{
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -125,7 +123,6 @@ public class ComponentsManagmentTest extends TestCase
 		}
 		catch ( ObjectNotFoundInArrayException e )
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -163,7 +160,6 @@ public class ComponentsManagmentTest extends TestCase
 		}
 		catch ( Exception e1 )
 		{
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -224,7 +220,6 @@ public class ComponentsManagmentTest extends TestCase
 		}
 		catch ( Exception e1 )
 		{
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -248,7 +243,6 @@ public class ComponentsManagmentTest extends TestCase
 		}
 		catch ( ObjectNotFoundException e )
 		{
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 

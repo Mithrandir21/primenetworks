@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import objects.Object;
+import objects.Servers;
 
 
 /**
@@ -30,6 +31,9 @@ public class ServersPropertiesView
 	 */
 	public static void getServersPropertiesView(JPanel panel, Object obj)
 	{
+		Servers server = (Servers) obj;
+		
+		
 		Dimension tfSize = new Dimension(5, 20);
 
 
@@ -42,6 +46,7 @@ public class ServersPropertiesView
 		panel.add(supOnSiteAccessLabel);
 
 		JCheckBox supOnSiteAccessField = new JCheckBox();
+		supOnSiteAccessField.setSelected(server.supportsOnSiteAccess());
 		supOnSiteAccessField.setMaximumSize(tfSize);
 		supOnSiteAccessField.setPreferredSize(tfSize);
 		supOnSiteAccessField.setName("supOnSiteAccess");
@@ -56,9 +61,10 @@ public class ServersPropertiesView
 		panel.add(supRemoteAccessLabel);
 
 		JCheckBox supRemoteAccessField = new JCheckBox();
+		supRemoteAccessField.setSelected(server.supportsRemoteAccess());
 		supRemoteAccessField.setMaximumSize(tfSize);
 		supRemoteAccessField.setPreferredSize(tfSize);
-		supOnSiteAccessField.setName("supRemoteAccess");
+		supRemoteAccessField.setName("supRemoteAccess");
 		supRemoteAccessLabel.setLabelFor(supRemoteAccessField);
 		panel.add(supRemoteAccessField);
 

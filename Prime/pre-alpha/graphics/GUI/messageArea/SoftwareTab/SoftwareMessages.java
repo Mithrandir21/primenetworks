@@ -23,7 +23,15 @@ public class SoftwareMessages extends JScrollPane
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * A constructor for the class that creates a JScrollPane that will 
+	 * contains a JTable with possible messages for the user
+	 * about the given Object.
+	 *
+	 * @param objects
+	 * 			The objects that are to be examined.
+	 * @param data
+	 * 			The multidimentional String array with possible previous
+	 * 			messages for the user.  
 	 */
 	public SoftwareMessages(Object[] objects, String[][] data)
 	{
@@ -43,9 +51,8 @@ public class SoftwareMessages extends JScrollPane
 	}
 
 
-
 	/**
-	 * TODO - Description
+	 * Sets the width of the column that contains the actual message information.
 	 */
 	private void setColumnWidths()
 	{
@@ -62,13 +69,5 @@ public class SoftwareMessages extends JScrollPane
 				column.setPreferredWidth(150);
 			}
 		}
-	}
-
-
-	/**
-	 * TODO - Description
-	 */
-	public void setData()
-	{
 	}
 }

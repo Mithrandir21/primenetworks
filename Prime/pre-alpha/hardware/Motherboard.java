@@ -104,7 +104,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 
-	// TODO : Set up a number of connection to a network card object
+	// FIXME : Set up a number of connection to a network card object
 
 
 

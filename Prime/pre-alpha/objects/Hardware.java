@@ -18,7 +18,7 @@ public abstract class Hardware extends Object implements Serializable
 {
 
 
-	// TODO - Create a component rating system.
+	// FIXME - Create a component rating system.
 
 
 	/**

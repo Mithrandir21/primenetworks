@@ -4,8 +4,15 @@
 package managment;
 
 
+import java.util.Iterator;
+import java.util.List;
+
+import org.netbeans.api.visual.widget.LabelWidget;
+import org.netbeans.api.visual.widget.Widget;
+
 import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
+import widgetManipulation.WidgetObject;
 
 
 /**
@@ -103,6 +110,68 @@ public class CanvasManagment
 		}
 
 		// Has not found any canvases with that name.
+		return null;
+	}
+
+
+	/**
+	 * Finds and returns the WidgetObject that contains an Object that is equal
+	 * to the given object.
+	 * 
+	 * @param obj
+	 * @param canvas
+	 * @return
+	 */
+	public static WidgetObject findWidgetObject(Object obj,
+			WorkareaCanvas canvas)
+	{
+		List<Widget> children = canvas.getMainLayer().getChildren();
+
+
+		for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
+		{
+			WidgetObject temp = (WidgetObject) iter.next();
+
+			if ( temp.getObject().equals(obj) )
+			{
+				return temp;
+			}
+		}
+
+
+		return null;
+	}
+
+
+
+	/**
+	 * Finds and returns the WidgetObject that contains an Object that is equal
+	 * to the given object. This method checks an array of canvases.
+	 * 
+	 * @param obj
+	 * @param canvas
+	 * @return
+	 */
+	public static WidgetObject findWidgetObject(Object obj,
+			WorkareaCanvas[] canvas)
+	{
+		for ( int i = 0; i < canvas.length; i++ )
+		{
+			List<Widget> children = canvas[i].getMainLayer().getChildren();
+
+
+			for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
+			{
+				WidgetObject temp = (WidgetObject) iter.next();
+
+				if ( temp.getObject().equals(obj) )
+				{
+					return temp;
+				}
+			}
+		}
+
+
 		return null;
 	}
 }

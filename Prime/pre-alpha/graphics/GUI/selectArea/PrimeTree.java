@@ -47,7 +47,6 @@ public class PrimeTree extends JScrollPane implements TreeSelectionListener
 		tree.getSelectionModel().setSelectionMode(
 				TreeSelectionModel.SINGLE_TREE_SELECTION);
 
-		// Javadoc-TODO Comment.
 		tree.setDragEnabled(true);
 
 
