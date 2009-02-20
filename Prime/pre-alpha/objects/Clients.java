@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * An abstract super class for all client objects in the system, including
- * {@link clients.Desktop Desktop} and {@link clients.Laptop Laptop}. MUST ADD
+ * {@link objects.clientObjects.Desktop Desktop} and {@link objects.clientObjects.Laptop Laptop}. MUST ADD
  * INFO!
  * 
  * @author Bahram Malaekeh

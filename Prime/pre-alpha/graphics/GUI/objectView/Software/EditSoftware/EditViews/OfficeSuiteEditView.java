@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import objects.Object;
-import software.OfficeSuite;
+import objects.softwareObjects.OfficeSuite;
 
 
 /**

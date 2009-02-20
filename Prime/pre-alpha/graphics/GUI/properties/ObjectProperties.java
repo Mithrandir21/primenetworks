@@ -88,29 +88,29 @@ public class ObjectProperties extends JPanel implements ActionListener
 		showStandardProperties(object);
 
 
-		if ( object instanceof clients.Desktop
-				|| object instanceof clients.Laptop )
+		if ( object instanceof objects.clientObjects.Desktop
+				|| object instanceof objects.clientObjects.Laptop )
 		{
 			showDesktopProperties(object);
 		}
-		else if ( object instanceof servers.HTTPServer
-				|| object instanceof servers.BackupServer
-				|| object instanceof servers.MailServer
-				|| object instanceof servers.FirewallServer
-				|| object instanceof servers.ProxyServer )
+		else if ( object instanceof objects.serverObjects.HTTPServer
+				|| object instanceof objects.serverObjects.BackupServer
+				|| object instanceof objects.serverObjects.MailServer
+				|| object instanceof objects.serverObjects.FirewallServer
+				|| object instanceof objects.serverObjects.ProxyServer )
 		{
 			showServerProperties(object);
 		}
-		else if ( object instanceof hardware.HDD )
+		else if ( object instanceof objects.hardwareObjects.HDD )
 		{
 		}
-		else if ( object instanceof peripheral.Scanner )
+		else if ( object instanceof objects.peripheralObjects.Scanner )
 		{
 			showPeripheralProperties(object);
 		}
-		else if ( object instanceof infrastructure.Hub
-				|| object instanceof infrastructure.Switch
-				|| object instanceof infrastructure.Router )
+		else if ( object instanceof objects.infrastructureObjects.Hub
+				|| object instanceof objects.infrastructureObjects.Switch
+				|| object instanceof objects.infrastructureObjects.Router )
 		{
 			showInfrastructurProperties(object);
 		}

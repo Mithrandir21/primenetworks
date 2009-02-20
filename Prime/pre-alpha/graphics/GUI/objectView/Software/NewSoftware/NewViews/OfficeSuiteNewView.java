@@ -25,7 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import objects.Object;
-import software.OfficeSuite;
+import objects.softwareObjects.OfficeSuite;
 
 public class OfficeSuiteNewView extends JFrame implements SoftwareView,
 		ActionListener

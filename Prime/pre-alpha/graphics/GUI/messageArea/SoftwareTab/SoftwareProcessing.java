@@ -4,10 +4,10 @@
 package graphics.GUI.messageArea.SoftwareTab;
 
 
-import hardware.Motherboard;
 import managment.ArrayManagment;
 import objects.Object;
-import software.OperatingSystem;
+import objects.hardwareObjects.Motherboard;
+import objects.softwareObjects.OperatingSystem;
 import exceptions.ObjectNotFoundException;
 
 

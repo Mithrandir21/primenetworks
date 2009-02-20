@@ -1,9 +1,10 @@
 package objects;
 
 
-import hardware.Motherboard;
 
 import java.io.Serializable;
+
+import objects.hardwareObjects.Motherboard;
 
 import logistical.cleanup;
 import managment.ArrayManagment;
@@ -152,7 +153,7 @@ public abstract class Object implements Serializable
 	/**
 	 * The constructor of the object superclass. All objects must have both a
 	 * name and description. This constructor also sets the initial components
-	 * that an object starts of with. Like {@link hardware.Motherboard
+	 * that an object starts of with. Like {@link objects.hardwareObjects.Motherboard
 	 * motherboards}.
 	 * 
 	 * @param Name
@@ -179,7 +180,7 @@ public abstract class Object implements Serializable
 	 * The constructor of the object superclass. All objects must have both a
 	 * name and description. This constructor also sets the supported user
 	 * interfaces the object supports and sets the initial components that an
-	 * object starts of with. Like {@link hardware.Motherboard motherboards}.
+	 * object starts of with. Like {@link objects.hardwareObjects.Motherboard motherboards}.
 	 * 
 	 * @param Name
 	 *            The name of an object
@@ -208,7 +209,7 @@ public abstract class Object implements Serializable
 	 * The constructor of the object superclass. All objects must have both a
 	 * name and description. This constructor also sets the supported user
 	 * interfaces the object supports and set the objects
-	 * {@link hardware.Motherboard motherboards}. This constructor is good for
+	 * {@link objects.hardwareObjects.Motherboard motherboards}. This constructor is good for
 	 * the creation of infrastructure which may only have a motherboard.
 	 * 
 	 * @param Name
@@ -219,7 +220,7 @@ public abstract class Object implements Serializable
 	 *            The supported connection interfaces an instance of a object
 	 *            supports.
 	 * @param objectMB
-	 *            The {@link hardware.Motherboard motherboard} of an object.
+	 *            The {@link objects.hardwareObjects.Motherboard motherboard} of an object.
 	 */
 	public Object(String Name, String Desc, String[] SupConInt,
 			Motherboard objectMB)
@@ -718,7 +719,7 @@ public abstract class Object implements Serializable
 	/**
 	 * Releases all the connection ports on a motherboard by determining what
 	 * kind of class the connection is an instance of, and then clearing the
-	 * correct ports on the {@link hardware.Motherboard motherboard} of the
+	 * correct ports on the {@link objects.hardwareObjects.Motherboard motherboard} of the
 	 * object.
 	 */
 	public void releaseAllConnectionPorts(Connection con)

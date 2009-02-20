@@ -9,11 +9,6 @@ import graphics.PrimeMain1;
 import graphics.WidgetIcon;
 import graphics.GUI.selectArea.CreateObjectDragged;
 import graphics.GUI.workareaCanvas.providers.CanvasMenu;
-import hardware.ExternalNetworksCard;
-import hardware.InternalNetworksCard;
-import infrastructure.Hub;
-import infrastructure.Router;
-import infrastructure.Switch;
 
 import java.awt.Point;
 import java.awt.dnd.DropTarget;
@@ -34,6 +29,18 @@ import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
 
 import objects.Object;
+import objects.clientObjects.Laptop;
+import objects.hardwareObjects.ExternalNetworksCard;
+import objects.hardwareObjects.InternalNetworksCard;
+import objects.infrastructureObjects.Hub;
+import objects.infrastructureObjects.Router;
+import objects.infrastructureObjects.Switch;
+import objects.peripheralObjects.Scanner;
+import objects.serverObjects.BackupServer;
+import objects.serverObjects.FirewallServer;
+import objects.serverObjects.HTTPServer;
+import objects.serverObjects.MailServer;
+import objects.serverObjects.ProxyServer;
 
 import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.model.ObjectScene;
@@ -41,15 +48,8 @@ import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
 
-import peripheral.Scanner;
-import servers.BackupServer;
-import servers.FirewallServer;
-import servers.HTTPServer;
-import servers.MailServer;
-import servers.ProxyServer;
 import widgetManipulation.WidgetObject;
 import actions.graphicalActions.WorkareaCanvasActions;
-import clients.Laptop;
 import connections.Connection;
 
 
@@ -72,34 +72,42 @@ import connections.Connection;
 public class WorkareaCanvas extends JPanel implements DropTargetListener,
 		ActionListener
 {
+	// The Name of the canvas
 	private String CanvasName;
 
+	// The transferHandler that will take care of the drag and drop feature for the canvas
 	private TransferHandler TransHandler = new WidgetTransferHandler();
 
 	private DropTarget dt;
 
 	private JPopupMenu popup = CanvasMenu.createPopupMenu(this);
 
-
+	// The scene on the canvas which all objects and layers will be placed
 	private ObjectScene scene = new ObjectScene();
 
 	private JComponent myView = scene.createView();
-
+	
+	// The main layer of the scene where the WidgetObjects are placed
 	private LayerWidget mainLayer;
 
+	// The interaction layer where the interaction between the user and the WidgetObjects takes place
 	private LayerWidget interactionLayer;
 
+	// The connection layer where the connections between WidgetObjects are placed
 	private LayerWidget connectionLayer;
 
+	// An array that will contain all the canvases connection, which are represented by a
+	// WidgetExtendedConnection.
 	private Connection[] connections = new Connection[5];
 
 
-	// FIXME - Create array of amount of different object types on the scene.
+	// FIXME - Create array of amount of different object types on the scene
 	private int numberOfWidgetsOnTheScene = 0;
 
+	// The number of Network cards on the canvas
 	private int numberOfNICs = 0;
 
-
+	// The current WidgetObject in view
 	private WidgetObject currentWidgetObject = null;
 
 
@@ -124,7 +132,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 		scene.getActions().addAction(ActionFactory.createZoomAction());
 		scene.getActions().addAction(ActionFactory.createPanAction());
 
-		// This is the main layer of the scene where the widgets, objects, are
+		// This is the main layer of the scene where the WidgetsObjects are
 		// placed.
 		mainLayer = new LayerWidget(scene);
 		scene.addChild(mainLayer);
@@ -191,7 +199,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 	/**
 	 * Gets the interaction layer of the scene. This is where the actions a user
-	 * sees take place like clicks and menues.
+	 * sees take place like clicks and menus.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the interactionLayer
@@ -365,7 +373,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 
 	/**
-	 * Adds 1 to the number of nics on the scene.
+	 * Adds 1 to the number of network cards on the scene.
 	 */
 	public void addNIC()
 	{

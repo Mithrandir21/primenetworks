@@ -37,7 +37,7 @@ import logistical.cleanup;
 import managment.SoftwareManagment;
 import objects.Object;
 import objects.Software;
-import software.OperatingSystem;
+import objects.softwareObjects.OperatingSystem;
 
 
 /**

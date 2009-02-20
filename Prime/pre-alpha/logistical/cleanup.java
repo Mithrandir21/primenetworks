@@ -3,7 +3,7 @@ package logistical;
 
 import objects.Object;
 import objects.Software;
-import software.OperatingSystem;
+import objects.softwareObjects.OperatingSystem;
 import connections.Connection;
 import connections.DeviceConnection;
 import connections.InternalConnection;

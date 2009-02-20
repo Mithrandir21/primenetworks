@@ -26,7 +26,7 @@ import javax.swing.SpringLayout;
 
 import objects.Object;
 import objects.Software;
-import software.Database;
+import objects.softwareObjects.Database;
 
 public class DatabaseNewView extends JFrame implements SoftwareView,ActionListener
 {

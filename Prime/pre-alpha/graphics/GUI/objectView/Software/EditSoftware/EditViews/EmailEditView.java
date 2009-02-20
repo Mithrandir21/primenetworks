@@ -31,7 +31,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import objects.Object;
-import software.Email;
+import objects.softwareObjects.Email;
 
 
 /**

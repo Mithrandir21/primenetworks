@@ -12,13 +12,6 @@ import graphics.PrimeMain1;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
-import hardware.CPU;
-import hardware.Discdrive;
-import hardware.ExternalNetworksCard;
-import hardware.GraphicsCard;
-import hardware.HDD;
-import hardware.Motherboard;
-import hardware.Ram;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -46,6 +39,13 @@ import actions.graphicalActions.WorkareaCanvasActions;
 import managment.ArrayManagment;
 import managment.ComponentsManagment;
 import objects.Object;
+import objects.hardwareObjects.CPU;
+import objects.hardwareObjects.Discdrive;
+import objects.hardwareObjects.ExternalNetworksCard;
+import objects.hardwareObjects.GraphicsCard;
+import objects.hardwareObjects.HDD;
+import objects.hardwareObjects.Motherboard;
+import objects.hardwareObjects.Ram;
 
 
 /**

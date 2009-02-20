@@ -36,7 +36,7 @@ import javax.swing.event.ListSelectionListener;
 
 import managment.SoftwareManagment;
 import objects.Object;
-import software.Firewall;
+import objects.softwareObjects.Firewall;
 
 public class FirewallNewView extends JFrame implements SoftwareView,
 		ActionListener

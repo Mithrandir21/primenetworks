@@ -5,12 +5,12 @@ import junit.framework.TestCase;
 import managment.ArrayManagment;
 import managment.ComponentsManagment;
 import objects.Object;
+import objects.clientObjects.Desktop;
+import objects.peripheralObjects.ExternalHDD;
+import objects.serverObjects.HTTPServer;
 
 import org.junit.Test;
 
-import peripheral.ExternalHDD;
-import servers.HTTPServer;
-import clients.Desktop;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
 

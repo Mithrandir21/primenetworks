@@ -39,7 +39,7 @@ import javax.swing.event.ListSelectionListener;
 
 import managment.SoftwareManagment;
 import objects.Object;
-import software.Proxy;
+import objects.softwareObjects.Proxy;
 
 /**
  * TODO - Description NEEDED!

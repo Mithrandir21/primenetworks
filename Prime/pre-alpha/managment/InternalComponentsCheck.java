@@ -1,14 +1,14 @@
 package managment;
 
 
-import hardware.CPU;
-import hardware.Discdrive;
-import hardware.GraphicsCard;
-import hardware.HDD;
-import hardware.InternalNetworksCard;
-import hardware.Motherboard;
-import hardware.Ram;
 import objects.Object;
+import objects.hardwareObjects.CPU;
+import objects.hardwareObjects.Discdrive;
+import objects.hardwareObjects.GraphicsCard;
+import objects.hardwareObjects.HDD;
+import objects.hardwareObjects.InternalNetworksCard;
+import objects.hardwareObjects.Motherboard;
+import objects.hardwareObjects.Ram;
 
 
 // FIXME -- Find out what to do with this.

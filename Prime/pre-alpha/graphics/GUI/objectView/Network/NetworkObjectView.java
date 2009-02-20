@@ -3,12 +3,6 @@ package graphics.GUI.objectView.Network;
 
 import exceptions.ObjectNotFoundException;
 import graphics.ImageLocator;
-import hardware.CPU;
-import hardware.HDD;
-import hardware.Motherboard;
-import infrastructure.Hub;
-import infrastructure.Router;
-import infrastructure.Switch;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,15 +20,21 @@ import logistical.cleanup;
 import managment.ArrayManagment;
 import managment.ComponentsManagment;
 import objects.Object;
-import peripheral.Printer;
-import peripheral.Scanner;
-import servers.BackupServer;
-import servers.FirewallServer;
-import servers.HTTPServer;
-import servers.MailServer;
-import servers.ProxyServer;
-import clients.Desktop;
-import clients.Laptop;
+import objects.clientObjects.Desktop;
+import objects.clientObjects.Laptop;
+import objects.hardwareObjects.CPU;
+import objects.hardwareObjects.HDD;
+import objects.hardwareObjects.Motherboard;
+import objects.infrastructureObjects.Hub;
+import objects.infrastructureObjects.Router;
+import objects.infrastructureObjects.Switch;
+import objects.peripheralObjects.Printer;
+import objects.peripheralObjects.Scanner;
+import objects.serverObjects.BackupServer;
+import objects.serverObjects.FirewallServer;
+import objects.serverObjects.HTTPServer;
+import objects.serverObjects.MailServer;
+import objects.serverObjects.ProxyServer;
 
 
 /**

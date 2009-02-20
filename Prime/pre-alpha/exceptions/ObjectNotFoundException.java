@@ -7,8 +7,8 @@ import objects.Object;
 /**
  * This is exception class extends the super class, {@link java.lang.Exception
  * Exception} class. It is an exception made to handle situations that occur
- * when a object class, such as a {@link hardware.CPU CPU} or
- * {@link hardware.HDD motherboard}, is searched for and not found. It also
+ * when a object class, such as a {@link objects.hardwareObjects.CPU CPU} or
+ * {@link objects.hardwareObjects.HDD motherboard}, is searched for and not found. It also
  * contains a datafield for the object that was not found.
  * 
  * @author Bahram Malaekeh

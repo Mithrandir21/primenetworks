@@ -4,8 +4,8 @@
 package exceptions;
 
 
-import hardware.Motherboard;
 import objects.Object;
+import objects.hardwareObjects.Motherboard;
 
 
 /**

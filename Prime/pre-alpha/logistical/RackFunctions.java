@@ -1,10 +1,10 @@
 package logistical;
 
 
-import infrastructure.RackHub;
-import infrastructure.RackRouter;
-import infrastructure.RackSwitch;
 import objects.Object;
+import objects.infrastructureObjects.RackHub;
+import objects.infrastructureObjects.RackRouter;
+import objects.infrastructureObjects.RackSwitch;
 
 
 /**

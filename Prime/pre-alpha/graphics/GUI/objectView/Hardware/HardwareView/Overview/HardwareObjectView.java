@@ -3,14 +3,6 @@ package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
 import graphics.ImageLocator;
 import graphics.GUI.objectView.Hardware.NewComponent.NewOverview.NewComponentChoice;
-import hardware.CPU;
-import hardware.Discdrive;
-import hardware.ExternalNetworksCard;
-import hardware.GraphicsCard;
-import hardware.HDD;
-import hardware.InternalNetworksCard;
-import hardware.Motherboard;
-import hardware.Ram;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -30,6 +22,14 @@ import javax.swing.JPanel;
 import objects.Clients;
 import objects.Object;
 import objects.Servers;
+import objects.hardwareObjects.CPU;
+import objects.hardwareObjects.Discdrive;
+import objects.hardwareObjects.ExternalNetworksCard;
+import objects.hardwareObjects.GraphicsCard;
+import objects.hardwareObjects.HDD;
+import objects.hardwareObjects.InternalNetworksCard;
+import objects.hardwareObjects.Motherboard;
+import objects.hardwareObjects.Ram;
 
 
 /**

@@ -13,14 +13,6 @@ import graphics.GUI.objectView.Hardware.HardwareView.Views.HDDView;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.InternalNICView;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.MotherboardView;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.RAMView;
-import hardware.CPU;
-import hardware.Discdrive;
-import hardware.ExternalNetworksCard;
-import hardware.GraphicsCard;
-import hardware.HDD;
-import hardware.InternalNetworksCard;
-import hardware.Motherboard;
-import hardware.Ram;
 
 import java.awt.Component;
 
@@ -28,6 +20,14 @@ import javax.swing.JTabbedPane;
 
 import managment.ComponentsManagment;
 import objects.Object;
+import objects.hardwareObjects.CPU;
+import objects.hardwareObjects.Discdrive;
+import objects.hardwareObjects.ExternalNetworksCard;
+import objects.hardwareObjects.GraphicsCard;
+import objects.hardwareObjects.HDD;
+import objects.hardwareObjects.InternalNetworksCard;
+import objects.hardwareObjects.Motherboard;
+import objects.hardwareObjects.Ram;
 
 
 /**

@@ -20,16 +20,16 @@ import javax.swing.JTabbedPane;
 import managment.SoftwareManagment;
 import objects.Object;
 import objects.Software;
-import software.Antivirus;
-import software.Backup;
-import software.Database;
-import software.Email;
-import software.Firewall;
-import software.OfficeSuite;
-import software.OperatingSystem;
-import software.Proxy;
-import software.SecuritySuite;
-import software.Webserver;
+import objects.softwareObjects.Antivirus;
+import objects.softwareObjects.Backup;
+import objects.softwareObjects.Database;
+import objects.softwareObjects.Email;
+import objects.softwareObjects.Firewall;
+import objects.softwareObjects.OfficeSuite;
+import objects.softwareObjects.OperatingSystem;
+import objects.softwareObjects.Proxy;
+import objects.softwareObjects.SecuritySuite;
+import objects.softwareObjects.Webserver;
 
 
 /**

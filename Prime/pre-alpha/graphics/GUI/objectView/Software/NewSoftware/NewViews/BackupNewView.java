@@ -38,7 +38,7 @@ import javax.swing.event.ListSelectionListener;
 
 import managment.SoftwareManagment;
 import objects.Object;
-import software.Backup;
+import objects.softwareObjects.Backup;
 
 
 public class BackupNewView extends JFrame implements SoftwareView,

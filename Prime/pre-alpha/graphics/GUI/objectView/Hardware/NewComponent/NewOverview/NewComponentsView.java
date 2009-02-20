@@ -15,14 +15,6 @@ import graphics.GUI.objectView.Hardware.NewComponent.NewViews.HDDNewView;
 import graphics.GUI.objectView.Hardware.NewComponent.NewViews.InternalNICNewView;
 import graphics.GUI.objectView.Hardware.NewComponent.NewViews.MotherboardNewView;
 import graphics.GUI.objectView.Hardware.NewComponent.NewViews.RAMNewView;
-import hardware.CPU;
-import hardware.Discdrive;
-import hardware.ExternalNetworksCard;
-import hardware.GraphicsCard;
-import hardware.HDD;
-import hardware.InternalNetworksCard;
-import hardware.Motherboard;
-import hardware.Ram;
 
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
@@ -35,6 +27,14 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import objects.Object;
+import objects.hardwareObjects.CPU;
+import objects.hardwareObjects.Discdrive;
+import objects.hardwareObjects.ExternalNetworksCard;
+import objects.hardwareObjects.GraphicsCard;
+import objects.hardwareObjects.HDD;
+import objects.hardwareObjects.InternalNetworksCard;
+import objects.hardwareObjects.Motherboard;
+import objects.hardwareObjects.Ram;
 
 
 /**

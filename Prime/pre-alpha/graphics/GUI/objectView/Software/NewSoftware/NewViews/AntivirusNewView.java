@@ -40,7 +40,7 @@ import javax.swing.event.ListSelectionListener;
 
 import managment.SoftwareManagment;
 import objects.Object;
-import software.Antivirus;
+import objects.softwareObjects.Antivirus;
 
 
 public class AntivirusNewView extends JFrame implements SoftwareView,

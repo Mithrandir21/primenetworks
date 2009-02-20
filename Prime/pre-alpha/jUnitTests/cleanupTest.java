@@ -4,12 +4,12 @@ package jUnitTests;
 import junit.framework.TestCase;
 import logistical.cleanup;
 import objects.Object;
+import objects.clientObjects.Desktop;
+import objects.peripheralObjects.ExternalHDD;
+import objects.serverObjects.HTTPServer;
 
 import org.junit.Test;
 
-import peripheral.ExternalHDD;
-import servers.HTTPServer;
-import clients.Desktop;
 
 
 public class cleanupTest extends TestCase

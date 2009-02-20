@@ -1,11 +1,11 @@
 package managment;
 
 
-import hardware.Motherboard;
 import objects.Object;
-import peripheral.Keyboard;
-import peripheral.Monitor;
-import peripheral.Mouse;
+import objects.hardwareObjects.Motherboard;
+import objects.peripheralObjects.Keyboard;
+import objects.peripheralObjects.Monitor;
+import objects.peripheralObjects.Mouse;
 
 
 

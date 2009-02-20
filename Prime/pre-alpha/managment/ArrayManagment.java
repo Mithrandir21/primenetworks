@@ -11,8 +11,8 @@ import exceptions.StringNotFoundInArrayException;
 /**
  * Class that contains different function that add, remove and replace
  * components from a given array. It is used in the different parts of the
- * program, specially {@link clients.Desktop Desktops}, {@link clients.Laptop
- * Laptops}, {@link objects.Servers Servers} and {@link infrastructure.Rack
+ * program, specially {@link objects.clientObjects.Desktop Desktops}, {@link objects.clientObjects.Laptop
+ * Laptops}, {@link objects.Servers Servers} and {@link objects.infrastructureObjects.Rack
  * Racks}.
  * 
  * @author Bahram Malaekeh

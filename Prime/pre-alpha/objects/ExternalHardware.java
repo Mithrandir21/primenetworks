@@ -1,15 +1,16 @@
 package objects;
 
 
-import hardware.Motherboard;
 
 import java.io.Serializable;
+
+import objects.hardwareObjects.Motherboard;
 
 
 /**
  * An abstract super class for all external hardware objects in the system,
- * including {@link peripheral.ExternalHDD ExternalHDD},
- * {@link peripheral.Printer Printer} and {@link peripheral.Monitor Monitor}.
+ * including {@link objects.peripheralObjects.ExternalHDD ExternalHDD},
+ * {@link objects.peripheralObjects.Printer Printer} and {@link objects.peripheralObjects.Monitor Monitor}.
  * The class contains different constructors so the system can easily create
  * different object with the available information. There are constructors that
  * create object only with a name and a description, and there are constructors
@@ -99,7 +100,7 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 *            An array of strings that describes the supported connection
 	 *            interfaces.
 	 * @param deviceMB
-	 *            The initial {@link hardware.Motherboard motherboard} the
+	 *            The initial {@link objects.hardwareObjects.Motherboard motherboard} the
 	 *            hardware has.
 	 */
 	public ExternalHardware(String Name, String Desc, String[] SupConInt,

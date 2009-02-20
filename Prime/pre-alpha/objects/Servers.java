@@ -10,7 +10,7 @@ import exceptions.StringNotFoundInArrayException;
 
 /**
  * An abstract super class for all servers objects in the system, including
- * {@link clients.Desktop MUST CHANGE} and {@link clients.Laptop MUST CHANGE}.
+ * {@link objects.clientObjects.Desktop MUST CHANGE} and {@link objects.clientObjects.Laptop MUST CHANGE}.
  * MUST ADD INFO!
  * 
  * @author Bahram Malaekeh

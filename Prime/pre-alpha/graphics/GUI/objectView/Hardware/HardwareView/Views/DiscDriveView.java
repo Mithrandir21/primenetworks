@@ -10,7 +10,6 @@ import graphics.PrimeMain1;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
-import hardware.Discdrive;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -34,6 +33,7 @@ import javax.swing.SpringLayout;
 
 import managment.ComponentsManagment;
 import objects.Object;
+import objects.hardwareObjects.Discdrive;
 
 
 /**

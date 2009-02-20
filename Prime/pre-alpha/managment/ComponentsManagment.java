@@ -7,26 +7,26 @@ import javax.swing.JOptionPane;
 
 import logistical.cleanup;
 import objects.Object;
+import objects.hardwareObjects.CPU;
+import objects.hardwareObjects.Discdrive;
+import objects.hardwareObjects.ExternalNetworksCard;
+import objects.hardwareObjects.GraphicsCard;
+import objects.hardwareObjects.HDD;
+import objects.hardwareObjects.InternalNetworksCard;
+import objects.hardwareObjects.Motherboard;
+import objects.hardwareObjects.Ram;
 import connections.Connection;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.ObjectView;
-import hardware.CPU;
-import hardware.Discdrive;
-import hardware.ExternalNetworksCard;
-import hardware.GraphicsCard;
-import hardware.HDD;
-import hardware.InternalNetworksCard;
-import hardware.Motherboard;
-import hardware.Ram;
 
 
 /**
  * Class that contains different function that add, remove and replace
  * components from a given array. It is used in the different parts of the
- * program, specially {@link clients.Desktop Desktops}, {@link clients.Laptop
- * Laptops}, {@link objects.Servers Servers} and {@link infrastructure.Rack
+ * program, specially {@link objects.clientObjects.Desktop Desktops}, {@link objects.clientObjects.Laptop
+ * Laptops}, {@link objects.Servers Servers} and {@link objects.infrastructureObjects.Rack
  * Racks}.
  * 
  * @author Bahram Malaekeh

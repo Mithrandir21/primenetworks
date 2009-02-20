@@ -40,7 +40,7 @@ import javax.swing.event.ListSelectionListener;
 
 import managment.SoftwareManagment;
 import objects.Object;
-import software.Webserver;
+import objects.softwareObjects.Webserver;
 
 
 /**

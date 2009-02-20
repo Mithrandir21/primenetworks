@@ -4,9 +4,10 @@
 package objects;
 
 
-import hardware.Motherboard;
 
 import java.io.Serializable;
+
+import objects.hardwareObjects.Motherboard;
 
 
 /**

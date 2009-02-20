@@ -6,12 +6,12 @@ import javax.swing.JOptionPane;
 import junit.framework.TestCase;
 import managment.ConnectionManagment;
 import objects.Object;
+import objects.clientObjects.Desktop;
+import objects.peripheralObjects.ExternalHDD;
+import objects.serverObjects.HTTPServer;
 
 import org.junit.Test;
 
-import peripheral.ExternalHDD;
-import servers.HTTPServer;
-import clients.Desktop;
 import connections.Connection;
 import connections.InternalConnection;
 import connections.NetworkConnection;

@@ -6,8 +6,8 @@ import java.io.Serializable;
 
 /**
  * An abstract super class for all hardware objects in the system, including
- * {@link software.Webserver Webserver}, {@link software.OperatingSystem
- * Operating System} and {@link software.Firewall Firewall}. MUST ADD INFO
+ * {@link objects.softwareObjects.Webserver Webserver}, {@link objects.softwareObjects.OperatingSystem
+ * Operating System} and {@link objects.softwareObjects.Firewall Firewall}. MUST ADD INFO
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1

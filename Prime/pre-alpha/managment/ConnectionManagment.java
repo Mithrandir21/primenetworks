@@ -2,13 +2,13 @@ package managment;
 
 
 import graphics.PrimeMain1;
-import hardware.InternalNetworksCard;
-import hardware.Motherboard;
 
 import javax.swing.JOptionPane;
 
 import logistical.cleanup;
 import objects.Object;
+import objects.hardwareObjects.InternalNetworksCard;
+import objects.hardwareObjects.Motherboard;
 import connections.Connection;
 import connections.DeviceConnection;
 import connections.InternalConnection;

@@ -4,13 +4,13 @@
 package graphics.GUI.messageArea.HardwareTab;
 
 
-import hardware.CPU;
-import hardware.HDD;
-import hardware.Motherboard;
-import hardware.Ram;
 import managment.ArrayManagment;
 import objects.Object;
-import clients.ThinClient;
+import objects.clientObjects.ThinClient;
+import objects.hardwareObjects.CPU;
+import objects.hardwareObjects.HDD;
+import objects.hardwareObjects.Motherboard;
+import objects.hardwareObjects.Ram;
 import exceptions.ObjectNotFoundException;
 
 

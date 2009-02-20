@@ -34,7 +34,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import objects.Object;
-import software.SecuritySuite;
+import objects.softwareObjects.SecuritySuite;
 
 
 /**

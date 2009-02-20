@@ -29,7 +29,7 @@ public class WidgetIcon extends JLabel
 {
 	/**
 	 * This represents the class type what the icon represents. Like
-	 * {@link clients.Desktop Desktop}.
+	 * {@link objects.clientObjects.Desktop Desktop}.
 	 */
 	Class<?> classType;
 

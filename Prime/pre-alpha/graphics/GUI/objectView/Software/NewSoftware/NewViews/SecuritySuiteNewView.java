@@ -43,7 +43,7 @@ import javax.swing.event.ListSelectionListener;
 
 import managment.SoftwareManagment;
 import objects.Object;
-import software.SecuritySuite;
+import objects.softwareObjects.SecuritySuite;
 
 
 /**

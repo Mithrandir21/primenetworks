@@ -6,9 +6,6 @@ package graphics.GUI.selectArea;
 
 import graphics.ImageLocator;
 import graphics.WidgetIcon;
-import infrastructure.Hub;
-import infrastructure.Router;
-import infrastructure.Switch;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -22,16 +19,20 @@ import javax.swing.JSeparator;
 import javax.swing.JToolBar;
 import javax.swing.border.Border;
 
-import peripheral.Printer;
-import peripheral.Scanner;
-import servers.BackupServer;
-import servers.FirewallServer;
-import servers.HTTPServer;
-import servers.MailServer;
-import servers.ProxyServer;
-import clients.Desktop;
-import clients.Laptop;
-import clients.ThinClient;
+import objects.clientObjects.Desktop;
+import objects.clientObjects.Laptop;
+import objects.clientObjects.ThinClient;
+import objects.infrastructureObjects.Hub;
+import objects.infrastructureObjects.Router;
+import objects.infrastructureObjects.Switch;
+import objects.peripheralObjects.Printer;
+import objects.peripheralObjects.Scanner;
+import objects.serverObjects.BackupServer;
+import objects.serverObjects.FirewallServer;
+import objects.serverObjects.HTTPServer;
+import objects.serverObjects.MailServer;
+import objects.serverObjects.ProxyServer;
+
 
 
 /**

@@ -315,35 +315,44 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	 */
 	public void addNewMessageTab(String labelText, JScrollPane content)
 	{
+		// The ImageIcon that will be shown and will remove a tab if pressed
 		ImageIcon closeXIcon = ImageLocator.getImageIconObject("Close");
+		
+		// The dimensions of the new button.
 		Dimension closeButtonSize = new Dimension(
 				closeXIcon.getIconWidth() + 5, closeXIcon.getIconHeight() + 5);
 
+		// The actual panel that will be the component panel which the JLabel and the button
+		// will be placed inside.
 		JPanel tab = new JPanel();
+		
+		// The Panel is not opaque
 		tab.setOpaque(false);
 
-
+		// The JLabel that will show the name of the tab
 		JLabel tabLabel = new JLabel(labelText);
 
-
+		// The button that will be represented by the ImageIcon
 		JButton tabCloseButton = new JButton(closeXIcon);
 		tabCloseButton.setName(labelText);
 		tabCloseButton.setPreferredSize(closeButtonSize);
 		tabCloseButton.addActionListener(this);
 
+		// Adds the label and then the button to the panel.
 		tab.add(tabLabel, BorderLayout.WEST);
 		tab.add(tabCloseButton, BorderLayout.EAST);
 
+		// Sets the name of the JScrollPane parameter
 		content.setName(labelText);
+		
+		// Adds the JScrollPane to the list of contents of the different tabs
 		contents.add(content);
 
 		// Add the tab to the tabbed pane.
-
 		this.addTab(labelText, content);
 
 		// Instead of using a String/Icon combination for the tab,
 		// use our panel instead.
-
 		this.setTabComponentAt(this.getTabCount() - 1, tab);
 	}
 
@@ -354,18 +363,23 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
+		// Since there is no other components in this class that can call the actionperformed method
+		// then the created JButton, we cast the source of the event as a JButton.
 		JButton button = (JButton) e.getSource();
 
 		String contentName = button.getName();
 		JScrollPane test = null;
 
+		// This is the current number of tabs 
 		int arraySize = contents.size();
 
-
+		// Goes through the list of tab contents until it fins one that matches the given button name.
 		for ( int i = 0; i < arraySize; i++ )
 		{
 			test = contents.get(i);
 			
+			// If the name of the button and the name of the content match, the button to close that
+			// tab with the given content has been pressed and the tab is removed.
 			if ( test.getName() != null && test.getName().equals(contentName) )
 			{
 				this.remove(test);

@@ -6,21 +6,21 @@ package graphics.GUI.selectArea;
 
 import graphics.PrimeMain1;
 import graphics.WidgetIcon;
-import hardware.Motherboard;
-import infrastructure.Hub;
-import infrastructure.Router;
-import infrastructure.Switch;
 import objects.Object;
 import objects.Software;
-import peripheral.Printer;
-import peripheral.Scanner;
-import servers.BackupServer;
-import servers.FirewallServer;
-import servers.HTTPServer;
-import servers.MailServer;
-import servers.ProxyServer;
-import clients.Desktop;
-import clients.Laptop;
+import objects.clientObjects.Desktop;
+import objects.clientObjects.Laptop;
+import objects.hardwareObjects.Motherboard;
+import objects.infrastructureObjects.Hub;
+import objects.infrastructureObjects.Router;
+import objects.infrastructureObjects.Switch;
+import objects.peripheralObjects.Printer;
+import objects.peripheralObjects.Scanner;
+import objects.serverObjects.BackupServer;
+import objects.serverObjects.FirewallServer;
+import objects.serverObjects.HTTPServer;
+import objects.serverObjects.MailServer;
+import objects.serverObjects.ProxyServer;
 
 
 /**
