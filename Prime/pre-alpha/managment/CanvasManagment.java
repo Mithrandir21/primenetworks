@@ -7,7 +7,6 @@ package managment;
 import java.util.Iterator;
 import java.util.List;
 
-import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.Widget;
 
 import graphics.PrimeMain1;
@@ -120,7 +119,7 @@ public class CanvasManagment
 	 * 
 	 * @param obj
 	 * @param canvas
-	 * @return
+	 * @return The WidgetObject that contains the given object.
 	 */
 	public static WidgetObject findWidgetObject(Object obj,
 			WorkareaCanvas canvas)
@@ -150,7 +149,7 @@ public class CanvasManagment
 	 * 
 	 * @param obj
 	 * @param canvas
-	 * @return
+	 * @return The WidgetObject that contains the given object.
 	 */
 	public static WidgetObject findWidgetObject(Object obj,
 			WorkareaCanvas[] canvas)

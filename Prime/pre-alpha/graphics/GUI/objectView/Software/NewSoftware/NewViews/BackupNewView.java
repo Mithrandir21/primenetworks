@@ -83,7 +83,7 @@ public class BackupNewView extends JFrame implements SoftwareView,
 	 * 
 	 * @param obj
 	 * 			The Object that the given software will be added to, if saved.
-	 * @param av
+	 * @param back
 	 * 			The Software object that can be adjusted and then saved.
 	 */
 	public BackupNewView(Object obj, Backup back)

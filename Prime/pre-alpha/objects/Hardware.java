@@ -10,7 +10,7 @@ import objects.hardwareObjects.Motherboard;
 /**
  * An abstract super class for all hardware objects in the system, including
  * {@link objects.Servers Servers}, {@link objects.Clients Clients} and
- * {@link peripheral Peripherals}. MUST ADD INFO
+ * Peripherals. MUST ADD INFO
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1

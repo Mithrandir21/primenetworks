@@ -53,70 +53,70 @@ public class CreateObjectDragged
 	{
 		Object newObject = null;
 		String objectType = iconObject.getClassType().getName();
-
+		
 		createComponentsArray();
 		createSoftwareArray();
 
-		if ( objectType.equals("clients.Desktop") )
+		if ( objectType.equals("objects.clientObjects.Desktop") )
 		{
 			newObject = createDefaultDesktop(iconObject,
 					numberOfWidgetsOnTheScene);
 		}
-		else if ( objectType.equals("clients.Laptop") )
+		else if ( objectType.equals("objects.clientObjects.Laptop") )
 		{
 			newObject = createDefaultLaptop(iconObject,
 					numberOfWidgetsOnTheScene);
 		}
-		else if ( objectType.equals("clients.ThinClient") )
+		else if ( objectType.equals("objects.clientObjects.ThinClient") )
 		{
 			newObject = createDefaultThinClient(iconObject,
 					numberOfWidgetsOnTheScene);
 		}
-		else if ( objectType.equals("servers.HTTPServer") )
+		else if ( objectType.equals("objects.serverObjects.HTTPServer") )
 		{
 			newObject = createDefaultHTTPServer(iconObject,
 					numberOfWidgetsOnTheScene);
 		}
-		else if ( objectType.equals("servers.BackupServer") )
+		else if ( objectType.equals("objects.serverObjects.BackupServer") )
 		{
 			newObject = createDefaultBackupServer(iconObject,
 					numberOfWidgetsOnTheScene);
 		}
-		else if ( objectType.equals("servers.MailServer") )
+		else if ( objectType.equals("objects.serverObjects.MailServer") )
 		{
 			newObject = createDefaultMailServer(iconObject,
 					numberOfWidgetsOnTheScene);
 		}
-		else if ( objectType.equals("servers.FirewallServer") )
+		else if ( objectType.equals("objects.serverObjects.FirewallServer") )
 		{
 			newObject = createDefaultFirewallServer(iconObject,
 					numberOfWidgetsOnTheScene);
 		}
-		else if ( objectType.equals("servers.ProxyServer") )
+		else if ( objectType.equals("objects.serverObjects.ProxyServer") )
 		{
 			newObject = createDefaultProxyServer(iconObject,
 					numberOfWidgetsOnTheScene);
 		}
-		else if ( objectType.equals("peripheral.Scanner") )
+		else if ( objectType.equals("objects.peripheralObjects.Scanner") )
 		{
 			newObject = createDefaultScanner(iconObject,
 					numberOfWidgetsOnTheScene);
 		}
-		else if ( objectType.equals("peripheral.Printer") )
+		else if ( objectType.equals("objects.peripheralObjects.Printer") )
 		{
 			newObject = createDefaultPrinter(iconObject,
 					numberOfWidgetsOnTheScene);
 		}
-		else if ( objectType.equals("infrastructure.Hub") )
+		else if ( objectType.equals("objects.infrastructureObjects.Hub") )
 		{
 			newObject = createDefaultHub(iconObject, numberOfWidgetsOnTheScene);
 		}
-		else if ( objectType.equals("infrastructure.Switch") )
+		else if ( objectType.equals("objects.infrastructureObjects.Switch") )
 		{
 			newObject = createDefaultSwitch(iconObject,
 					numberOfWidgetsOnTheScene);
 		}
-		else if ( objectType.equals("infrastructure.Router") )
+		else if ( objectType.equals("objects.infrastructureObjects.Router") )
 		{
 			newObject = createDefaultRouter(iconObject,
 					numberOfWidgetsOnTheScene);

@@ -6,7 +6,6 @@ package graphics.GUI.messageArea.SoftwareTab;
 
 import managment.ArrayManagment;
 import objects.Object;
-import objects.hardwareObjects.Motherboard;
 import objects.softwareObjects.OperatingSystem;
 import exceptions.ObjectNotFoundException;
 

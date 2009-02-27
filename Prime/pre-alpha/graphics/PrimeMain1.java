@@ -246,7 +246,9 @@ public class PrimeMain1 extends JFrame
 		// Sets the border around the panel
 		messagesPanel.setBorder(grayline);
 
-		messagesPanel.add(new MessageTabbed(), BorderLayout.CENTER);
+		MessageTabbed msgTabs = new MessageTabbed();
+		messagesPanel.add(msgTabs, BorderLayout.CENTER);
+		msgTabs.createInitialTabs();
 //		messagesPanel.add(new JLabel("Messages"));
 
 
@@ -472,7 +474,7 @@ public class PrimeMain1 extends JFrame
 		Iterator<ObjectView> i = objView.iterator();
 		while (i.hasNext()) 
 		{
-			ObjectView objViewTest = (ObjectView) i.next();
+			ObjectView objViewTest = i.next();
 			
 			if(obj == objViewTest.getObject())
 			{

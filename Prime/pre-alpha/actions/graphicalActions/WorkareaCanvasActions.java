@@ -60,7 +60,7 @@ public class WorkareaCanvasActions
 		{
 			newObject = (WidgetObject) tr.getTransferData(new DataFlavor(
 					WidgetObject.class, "Widget Object"));
-
+			
 			Dimension objectSize = newObject.getImageDimension();
 
 			Point objectPoint = dtde.getLocation();

@@ -11,7 +11,6 @@ import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
 
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -24,6 +23,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -45,8 +45,8 @@ import objects.hardwareObjects.Motherboard;
  * 
  * @author Bahram Malaekeh
  */
-public class MotherboardNewView extends JFrame implements HardwareViewInterface,
-		ActionListener
+public class MotherboardNewView extends JFrame implements
+		HardwareViewInterface, ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -181,14 +181,16 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 
 
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Hardware object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
-	 * @param mb The Hardware that will be examined and will fill inn the fields.
+	 * @param mb
+	 *            The Hardware that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(Motherboard mb)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -735,7 +737,8 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
@@ -747,8 +750,8 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 
 
 	/**
-	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
-	 * 
+	 * Creates a JPanel with two buttons that are listened for by
+	 * actionlisteners.
 	 */
 	private JPanel createButtons()
 	{
@@ -756,11 +759,11 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button("Save");
+		JButton save = new JButton("Save");
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button("Cancel");
+		JButton cancel = new JButton("Cancel");
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -780,60 +783,69 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( e.getActionCommand().equals("save") )
+		if ( e.getSource() instanceof JButton )
 		{
-			int answer = JOptionPane
-					.showConfirmDialog(
-							this,
-							"By saving a new motherboard ALL the machines other components will be removed. Do you wish to do this?",
-							"Verify", JOptionPane.YES_NO_OPTION);
-
-
-			// If the answer is not No.
-			if ( answer != 1 )
+			if ( e.getActionCommand().equals("save") )
 			{
-				// Saves the current values of the new motherboard.
-				save();
-
-				// We have to remove all connection between this object and
-				// other objects on the canvas
-				WorkareaCanvasActions.removeAllConnectionsToFromObject(
-						PrimeMain1.currentCanvas, mainObj);
+				int answer = JOptionPane
+						.showConfirmDialog(
+								this,
+								"By saving a new motherboard ALL the machines other components will be removed. Do you wish to do this?",
+								"Verify", JOptionPane.YES_NO_OPTION);
 
 
-				// Since the motherboard is where most of the connections are
-				// placed we first have to remove all connections to the
-				// devices.
-				mainObj.removeAllConnections();
-
-				// Then we have to remove all the components that a object
-				// contains.
-				mainObj.removeAllComponents();
-
-				// Now that the object has no connections to other components
-				// and device
-				// we can add the motherboard object.
-				mainObj.addComponent(mbObj);
-
-				// Updates the views of the object to correctly show the
-				// current info.
-				ObjectView view = PrimeMain1.getObjectView(mainObj);
-				if(view != null)
+				// If the answer is not No.
+				if ( answer != 1 )
 				{
-					view.updateViewInfo();
+					// Saves the current values of the new motherboard.
+					save();
+
+					
+					// We have to remove all connection between this object and
+					// other objects on the canvas
+					WorkareaCanvasActions.removeAllConnectionsToFromObject(
+							PrimeMain1.currentCanvas, mainObj);
+
+					
+					// Since the motherboard is where most of the connections
+					// are
+					// placed we first have to remove all connections to the
+					// devices.
+					mainObj.removeAllConnections();
+
+					
+					// Then we have to remove all the components that a object
+					// contains.
+					mainObj.removeAllComponents();
+
+					
+					// Now that the object has no connections to other
+					// components
+					// and device
+					// we can add the motherboard object.
+					mainObj.addComponent(mbObj);
+
+					
+					// Updates the views of the object to correctly show the
+					// current info.
+					ObjectView view = PrimeMain1.getObjectView(mainObj);
+					if ( view != null )
+					{
+						view.updateViewInfo();
+					}
+
+
+					// Closes the JFrame.
+					this.dispose();
 				}
 
+			}
+			else
+			{
+				assert (e.getActionCommand().equals("cancel"));
 
-				// Closes the JFrame.
 				this.dispose();
 			}
-
-		}
-		else
-		{
-			assert (e.getActionCommand().equals("cancel"));
-
-			this.dispose();
 		}
 
 
@@ -880,7 +892,7 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 			mbObj.setBusSpeed(Integer.parseInt(busSpeeds.getSelectedItem()
 					.toString()));
 		}
-
+		
 		if ( chipsetField.getText() != "" )
 		{
 			mbObj.setChipset(chipsetField.getText());
@@ -890,7 +902,7 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 		{
 			mbObj.setGraphicalPort(gpuPorts.getSelectedItem().toString());
 		}
-
+		
 		if ( true )
 		{
 			mbObj.setDUCconnectionType(DUCPorts.getSelectedItem().toString());
@@ -900,14 +912,14 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 		{
 			mbObj.setRAMtype(RAMPorts.getSelectedItem().toString());
 		}
-
+		
 
 		mbObj.setIntegAudioCard(intAudioCard.isSelected());
 		mbObj.setIntegGraphicalCard(intGPU.isSelected());
 		mbObj.setIntegLANcard(intNIC.isSelected());
 		mbObj.setGraphicsCard(GPUinstalled.isSelected());
 
-
+		
 		if ( CPUsockets.getSelectedItem().toString() != "" )
 		{
 			mbObj.setMaxCPUs(Integer.parseInt(CPUsockets.getSelectedItem()
@@ -919,7 +931,7 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 			mbObj.setMaxPCIs(Integer.parseInt(PCIslots.getSelectedItem()
 					.toString()));
 		}
-
+		
 		if ( RAMslots.getSelectedItem().toString() != "" )
 		{
 			mbObj.setMaxRAMs(Integer.parseInt(RAMslots.getSelectedItem()
@@ -943,6 +955,7 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 			mbObj.setMaxIntegratedLANs(Integer.parseInt(LANports
 					.getSelectedItem().toString()));
 		}
+
 	}
 
 

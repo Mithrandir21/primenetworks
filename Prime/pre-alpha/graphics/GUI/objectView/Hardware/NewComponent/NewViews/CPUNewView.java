@@ -84,7 +84,7 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 	 * 
 	 * @param obj
 	 * 			The Object that the given hardware will be added to, if saved.
-	 * @param av
+	 * @param cpu
 	 * 			The Hardware object that can be adjusted and then saved.
 	 */
 	public CPUNewView(Object obj, CPU cpu)

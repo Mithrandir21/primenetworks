@@ -628,7 +628,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 				newObject = new CreateObjectDragged().CreateObject(
 						newObjectIcon, numberOfWidgetsOnTheScene);
 
-
 				newWidgetObject = new WidgetObject(scene, newObject, objectIcon
 						.getImage());
 

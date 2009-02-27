@@ -39,7 +39,7 @@ public class GenericPrimeMenuBar extends JMenuBar
 	ImageIcon icon = ImageLocator.getImageIconObject("java");
 
 	// The menu buttons at the top of the screen
-	private JMenu file, edit, tools, help;
+	private JMenu file, edit, view, tools, help;
 
 
 	/**
@@ -51,6 +51,8 @@ public class GenericPrimeMenuBar extends JMenuBar
 		initMenuFile();
 
 		initMenuEdit();
+		
+		initMenuView();
 
 		initMenuTools();
 
@@ -137,6 +139,28 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 		this.add(edit);
 	}
+	
+	
+	/**
+	 * This function creates the JMenu "Views". (More actions will be added at a
+	 * later stage.)
+	 */
+	private void initMenuView()
+	{
+		// View menu
+		view = new JMenu("Views");
+		view.setMnemonic('V');
+		
+		
+		JMenu submenu = new JMenu("A submenu");
+		view.add(submenu);
+		
+		
+
+
+		this.add(view);
+	}
+	
 
 
 	/**

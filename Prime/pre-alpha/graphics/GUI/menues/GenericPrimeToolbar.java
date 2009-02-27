@@ -109,7 +109,6 @@ public class GenericPrimeToolbar extends JMenuBar
 		ActionCopy openFile = new ActionCopy("Copy", tempIcon);
 
 		tempIcon = ImageLocator.getImageIconObject("Paste");
-		;
 		ActionPaste save = new ActionPaste("Paste", tempIcon);
 		
 

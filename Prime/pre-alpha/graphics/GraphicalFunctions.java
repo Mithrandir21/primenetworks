@@ -305,7 +305,7 @@ public class GraphicalFunctions
 	 * @param obj
 	 * @param widgetObj
 	 * @param name
-	 * @return
+	 * @return The object with the updated name
 	 */
 	public static Object updateWidgetObjectCanvasName(Object obj,
 			WidgetObject widgetObj, String name)
@@ -347,7 +347,7 @@ public class GraphicalFunctions
 	 * 
 	 * @param obj
 	 * @param name
-	 * @return
+	 * @return The object with the updated name
 	 */
 	public static Object updateWidgetObjectCanvasName(Object obj, String name)
 	{

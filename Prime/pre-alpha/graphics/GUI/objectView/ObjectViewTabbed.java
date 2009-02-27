@@ -9,6 +9,7 @@ import graphics.GUI.objectView.Visual.VisualObjectView;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.ScrollPaneConstants;
 
 import objects.Object;
 
@@ -52,7 +53,7 @@ public class ObjectViewTabbed extends JTabbedPane
 		JScrollPane scrollPaneHW = new JScrollPane(hardObjView);
 		scrollPaneHW.setViewportView(hardObjView);
 		scrollPaneHW
-				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		this.addTab("Hardware", null, scrollPaneHW, hardwareDesc);
 
 
@@ -61,7 +62,7 @@ public class ObjectViewTabbed extends JTabbedPane
 		JScrollPane scrollPaneSW = new JScrollPane(softObjView);
 		scrollPaneSW.setViewportView(softObjView);
 		scrollPaneSW
-				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		this.addTab("Software", null, scrollPaneSW, softDesc);
 
 

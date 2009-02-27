@@ -124,8 +124,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					{
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(d);
-						info[2] = "Expires: " + cal.DAY_OF_MONTH + "/"
-								+ cal.MONTH + "/" + cal.YEAR;
+						info[2] = "Expires: " + Calendar.DAY_OF_MONTH + "/"
+								+ Calendar.MONTH + "/" + Calendar.YEAR;
 					}
 
 					text = antiVirusObj.getDescription();

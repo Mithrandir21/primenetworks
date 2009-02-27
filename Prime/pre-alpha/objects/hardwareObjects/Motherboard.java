@@ -534,26 +534,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public void setMaxCPUs(int MBmaxCPUs)
 	{
-		int occupied = maxCPUs - CPUPortsAvailable;
-
-
-		for ( int i = occupied; i == 0; )
-		{
-			if ( i < 0 )
-			{
-
-			}
-			else
-			{
-
-			}
-		}
-
-
 		maxCPUs = MBmaxCPUs;
-
-
-
 	}
 
 
