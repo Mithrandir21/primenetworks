@@ -18,6 +18,7 @@ import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -70,7 +71,7 @@ import connections.Connection;
  */
 
 public class WorkareaCanvas extends JPanel implements DropTargetListener,
-		ActionListener
+		ActionListener, Serializable
 {
 	// The Name of the canvas
 	private String CanvasName;

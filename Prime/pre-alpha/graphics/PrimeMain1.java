@@ -31,9 +31,12 @@ import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -98,13 +101,14 @@ public class PrimeMain1 extends JFrame
 
 	// The variable for the object that is in view.
 	private static ArrayList<ObjectView> objView = new ArrayList<ObjectView>(1);
+	
 
 
 	// Constructor
 	public PrimeMain1()
 	{
 		super("Prime");
-
+		
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
