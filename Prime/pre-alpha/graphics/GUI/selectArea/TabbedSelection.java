@@ -9,6 +9,7 @@ package graphics.GUI.selectArea;
 
 
 import graphics.ImageLocator;
+import graphics.GUI.selectArea.PrimeJTree.PrimeTree;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;

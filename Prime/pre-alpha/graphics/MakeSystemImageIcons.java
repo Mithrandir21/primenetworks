@@ -48,38 +48,7 @@ public class MakeSystemImageIcons
 
 	}
 
-
-	// Process all files and directories under dir
-	public static void visitAllDirsAndFiles(File dir)
-	{
-
-		if ( dir.isDirectory() )
-		{
-
-			String[] children = dir.list();
-			for ( int i = 0; i < children.length; i++ )
-			{
-				visitAllDirsAndFiles(new File(dir, children[i]));
-			}
-		}
-	}
-
-	// Process only directories under dir
-	public static void visitAllDirs(File dir)
-	{
-		if ( dir.isDirectory() )
-		{
-			String[] children = dir.list();
-			for ( int i = 0; i < children.length; i++ )
-			{
-				System.out.println(children[i]);
-
-				visitAllDirs(new File(dir, children[i]));
-			}
-		}
-	}
-
-
+	
 	/**
 	 * Goes through all files and directories under a given folder. It finds and
 	 * sets all files within this given folder with the file extensions *.png,
