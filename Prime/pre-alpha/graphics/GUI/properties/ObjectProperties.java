@@ -41,44 +41,52 @@ public class ObjectProperties extends JPanel implements ActionListener
 	private WorkareaCanvas canvasViewed = null;
 
 	/**
-	 * A class constructor that takes a WorkareaCanvas and creates
-	 * places information about that canvas on to this JPanel.
+	 * A class constructor that takes a WorkareaCanvas and creates places
+	 * information about that canvas on to this JPanel.
 	 * 
 	 * @param canvas
 	 */
 	public ObjectProperties(WorkareaCanvas canvas)
 	{
-		canvasViewed = canvas;
+		if ( canvas != null )
+		{
+			canvasViewed = canvas;
 
-		this.setLayout(new SpringLayout());
+			this.setLayout(new SpringLayout());
 
-		GeneralPropertiesView.getGeneralCanvasProperties(this, canvas);
+			GeneralPropertiesView.getGeneralCanvasProperties(this, canvas);
 
-		JPanel buttons = createButtons();
+			JPanel buttons = createButtons();
 
-		this.add(buttons);
+			this.add(buttons);
 
 
-		// Lay out the panel.
-		graphics.GraphicalFunctions.make1xGrid(this, this.getComponentCount(), // rows,
-				// cols
-				6, 6, // initX, initY
-				6, 6); // xPad, yPad
-
+			// Lay out the panel.
+			graphics.GraphicalFunctions.make1xGrid(this, this.getComponentCount(), // rows
+																					// ,
+					// cols
+					6, 6, // initX, initY
+					6, 6); // xPad, yPad
+		}
+		else
+		{
+			this.removeAll();
+		}
 	}
 
 
 
 	/**
-	 * A constructor for the class that takes the given Object and 
-	 * places information about that object on this JPanel. The information
-	 * dependings on what kind of class the given object is.
+	 * A constructor for the class that takes the given Object and places
+	 * information about that object on this JPanel. The information dependings
+	 * on what kind of class the given object is.
 	 * 
 	 * @param object
 	 */
 	public ObjectProperties(Object object)
 	{
-
+		if( object != null )
+		{
 		objectViewed = object;
 
 
@@ -123,10 +131,16 @@ public class ObjectProperties extends JPanel implements ActionListener
 		// this.setComponentZOrder(buttons, 0);
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make1xGrid(this, this.getComponentCount(), // rows,
+		graphics.GraphicalFunctions.make1xGrid(this, this.getComponentCount(), // rows
+																				// ,
 				// cols
 				6, 6, // initX, initY
 				6, 6); // xPad, yPad
+		}
+		else
+		{
+			this.removeAll();
+		}
 
 	}
 
@@ -170,8 +184,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 	 */
 	private void showInfrastructurProperties(Object object)
 	{
-		InfrastructuresPropertiesView.getInfrastructuresPropertiesView(this,
-				object);
+		InfrastructuresPropertiesView.getInfrastructuresPropertiesView(this, object);
 	}
 
 
@@ -217,8 +230,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 							JComboBox rates = (JComboBox) comp[i];
 
-							int theRate = Integer.parseInt(rates
-									.getSelectedItem().toString());
+							int theRate = Integer.parseInt(rates.getSelectedItem().toString());
 
 							clientObj.setClientRate(theRate);
 						}
@@ -247,9 +259,11 @@ public class ObjectProperties extends JPanel implements ActionListener
 							// If the text is not blank
 							if ( !(objName.equals("")) )
 							{
-								// Updates the name of the LabelWidget on the scene
-								objectViewed = GraphicalFunctions.updateWidgetObjectCanvasName(objectViewed, objName);
-								
+								// Updates the name of the LabelWidget on the
+								// scene
+								objectViewed = GraphicalFunctions.updateWidgetObjectCanvasName(
+										objectViewed, objName);
+
 								// Sets the name of the object
 								objectViewed.setObjectName(objName);
 							}
@@ -272,7 +286,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 						if ( compName.equals("supOnSiteAccess") )
 						{
 							JCheckBox box = (JCheckBox) comp[i];
-							
+
 							Servers server = (Servers) objectViewed;
 
 							server.setSupportsOnSiteAccess(box.isSelected());

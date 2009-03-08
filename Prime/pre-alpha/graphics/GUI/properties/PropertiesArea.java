@@ -50,7 +50,14 @@ public class PropertiesArea extends JTabbedPane
 	{
 		scrollArea.newObjectSelectedPropertiesTab(object);
 
-		addTab(object.getObjectName(), scrollArea);
+		if( object != null)
+		{
+			addTab(object.getObjectName(), scrollArea);
+		}
+		else
+		{
+			addTab("", scrollArea);
+		}
 	}
 
 
@@ -63,7 +70,13 @@ public class PropertiesArea extends JTabbedPane
 	{
 		scrollArea.newObjectSelectedPropertiesTab(canvas);
 
-		addTab(canvas.getCanvasName(), scrollArea);
-
+		if( canvas != null)
+		{
+			addTab(canvas.getCanvasName(), scrollArea);
+		}
+		else
+		{
+			addTab("", scrollArea);
+		}
 	}
 }

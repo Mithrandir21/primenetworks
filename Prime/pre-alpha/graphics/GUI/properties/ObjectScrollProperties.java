@@ -37,8 +37,8 @@ public class ObjectScrollProperties extends JScrollPane
 
 		this.setViewportView(objProp);
 	}
-
-
+	
+	
 
 	/**
 	 * Sets the view inside the JScrollPane to a new ObjectProperties with the

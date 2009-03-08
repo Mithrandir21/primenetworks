@@ -7,6 +7,7 @@ import java.io.File;
 import java.util.Enumeration;
 import java.util.NoSuchElementException;
 
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 /**
@@ -15,7 +16,7 @@ import javax.swing.tree.TreeNode;
  * @author Kirill Grouchnikov
  * Expanded by Bahram Malaekeh
  */
-public class FileTreeNode implements TreeNode
+public class FileTreeNode extends DefaultMutableTreeNode
 {
 	/**
 	 * Node file.

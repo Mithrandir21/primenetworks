@@ -68,6 +68,9 @@ public class PrimeMain1 extends JFrame
 	// Main window panel setup
 	private JPanel toolbarPanel, selectionPanel;
 
+	// The tab selection area where one can open projects and create new objects
+	private static TabbedSelection tabSelection;
+	
 	// The JPanel where the properties of any selected object or network
 	// overview is shown.
 	public static JPanel propertiesPanel;
@@ -208,7 +211,8 @@ public class PrimeMain1 extends JFrame
 
 		// selectionPanel.add(new JLabel("Selection"));
 
-		selectionPanel.add(new TabbedSelection());
+		tabSelection = new TabbedSelection();
+		selectionPanel.add(tabSelection);
 
 
 
@@ -413,6 +417,15 @@ public class PrimeMain1 extends JFrame
 		g.drawString("Loading " + comps[(frame / 5) % 4] + "...", 120, 150);
 	}
 
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 */
+	public static void updatePrimeTree()
+	{
+		tabSelection.getPrimeTree();
+	}
 
 
 	/**

@@ -37,7 +37,8 @@ public class PrimeFileTreeCellRenderer extends DefaultTreeCellRenderer
 	 * File system view.
 	 */
 	protected static FileSystemView fsv = FileSystemView.getFileSystemView();
-
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -50,7 +51,6 @@ public class PrimeFileTreeCellRenderer extends DefaultTreeCellRenderer
 	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel,
 			boolean expanded, boolean leaf, int row, boolean hasFocus)
 	{
-		
 		FileTreeNode ftn = (FileTreeNode) value;
 		File file = ftn.getFile();
 		String filename = "";
