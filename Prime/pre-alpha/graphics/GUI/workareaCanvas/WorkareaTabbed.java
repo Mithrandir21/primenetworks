@@ -41,10 +41,10 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 	 */
 	public WorkareaTabbed()
 	{
-		createNewCanvasTab("AA", new WorkareaSceneScroll("AA"));
-		createNewCanvasTab("BB", new WorkareaSceneScroll("BB"));
-		createNewCanvasTab("CC", new WorkareaSceneScroll("CC"));
-		createNewCanvasTab("DD", new WorkareaSceneScroll("DD"));
+//		createNewCanvasTab("AA", new WorkareaSceneScroll("AA"));
+//		createNewCanvasTab("BB", new WorkareaSceneScroll("BB"));
+//		createNewCanvasTab("CC", new WorkareaSceneScroll("CC"));
+//		createNewCanvasTab("DD", new WorkareaSceneScroll("DD"));
 
 
 		addChangeListener(new ChangeListener()
@@ -80,7 +80,9 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 		});
 
 
-
+		int width = (int) (PrimeMain1.width * 0.60);
+		int height = (int) (PrimeMain1.width * 0.60);
+		this.setPreferredSize(new Dimension(width, height));
 	}
 
 
@@ -102,8 +104,6 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 
 		int width = (int) (PrimeMain1.width * 0.60);
 		int height = (int) (PrimeMain1.width * 0.60);
-
-
 		this.setPreferredSize(new Dimension(width, height));
 
 		this.addTab(name, icon, canvasScroll);
@@ -117,7 +117,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 	 * @param name
 	 * @param canvasScroll
 	 */
-	public void createNewCanvasTab(String name, WorkareaSceneScroll canvasScroll)
+	public void createNewCanvasTab(WorkareaSceneScroll canvasScroll)
 	{
 		// The ImageIcon that will be shown and will remove a tab if pressed
 		ImageIcon closeXIcon = ImageLocator.getImageIconObject("Close");
@@ -125,6 +125,8 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 		// The dimensions of the new button.
 		Dimension closeButtonSize = new Dimension(
 				closeXIcon.getIconWidth() + 5, closeXIcon.getIconHeight() + 5);
+		
+		String name = canvasScroll.getCanvas().getCanvasName();
 		
 		
 		// The actual panel that will be the component panel which the JLabel
@@ -164,8 +166,6 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 		
 		int width = (int) (PrimeMain1.width * 0.60);
 		int height = (int) (PrimeMain1.width * 0.60);
-
-
 		this.setPreferredSize(new Dimension(width, height));
 	}
 	
@@ -208,7 +208,6 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 				// removed.
 				if ( tabName != null && tabName.equals(contentName) )
 				{
-
 					this.remove(test);
 					canvases.remove(i);
 					return;

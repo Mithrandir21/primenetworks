@@ -110,6 +110,12 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 	// The current WidgetObject in view
 	private WidgetObject currentWidgetObject = null;
+	
+	// A boolean saying if the canvas has been saved
+	private boolean saved = false;
+	
+	// A boolean saying if the canvas has been changed in any way
+	private boolean changed = false;
 
 
 
@@ -233,6 +239,28 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 	public int getNumberOfWidgetsOnTheScene()
 	{
 		return numberOfWidgetsOnTheScene;
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 *
+	 * @return the saved
+	 */
+	public boolean isSaved()
+	{
+		return saved;
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 *
+	 * @return the changed
+	 */
+	public boolean isChanged()
+	{
+		return changed;
 	}
 
 
@@ -371,6 +399,28 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 		}
 	}
 
+
+
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 *
+	 * @param saved the saved to set
+	 */
+	public void setSaved(boolean saved)
+	{
+		this.saved = saved;
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 *
+	 * @param changed the changed to set
+	 */
+	public void setChanged(boolean changed)
+	{
+		this.changed = changed;
+	}
 
 
 	/**

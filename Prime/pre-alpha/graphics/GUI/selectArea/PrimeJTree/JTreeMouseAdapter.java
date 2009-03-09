@@ -6,9 +6,8 @@ package graphics.GUI.selectArea.PrimeJTree;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.File;
 
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTree;
@@ -52,16 +51,25 @@ public class JTreeMouseAdapter extends MouseAdapter
 		int y = e.getY();
 		JTree tree = (JTree) e.getSource();
 		TreePath path = tree.getPathForLocation(x, y);
-		if ( path == null )
-			return;
 
-		tree.setSelectionPath(path);
+		// If the mouse was right clicked on any of the nodes in the JTree
+		if ( path != null )
+		{
+			tree.setSelectionPath(path);
 
-		FileTreeNode obj = (FileTreeNode) path.getLastPathComponent();
+			FileTreeNode obj = (FileTreeNode) path.getLastPathComponent();
 
-		JPopupMenu popup = getFileMenu(obj);
-		
-		popup.show(tree, x, y);
+			JPopupMenu popup = getFileMenu(obj);
+			
+			popup.show(tree, x, y);
+		}
+		// If the mouse was right clicked on the empty area in the selection area
+		else
+		{
+			JPopupMenu popup = getJTreeMenu();
+			
+			popup.show(tree, x, y);
+		}
 	}
 	
 
@@ -126,24 +134,60 @@ public class JTreeMouseAdapter extends MouseAdapter
 	{
 		JTreeJMenuItemListener listener = new JTreeJMenuItemListener(file, tree);
 		
-		JPopupMenu popup = new JPopupMenu();
+		JPopupMenu itemPopup = new JPopupMenu();
 		
 		JMenuItem openFile = new JMenuItem("Open Network");
 		openFile.setActionCommand("Open Network");
 		openFile.addActionListener(listener);
 		
-		popup.add(openFile);
+		itemPopup.add(openFile);
 		
 		
 		JMenuItem deleteFile = new JMenuItem("Delete Network");
 		deleteFile.setActionCommand("Delete Network");
 		deleteFile.addActionListener(listener);
 		
-		popup.add(deleteFile);
+		itemPopup.add(deleteFile);
+
+		
+		return itemPopup;		
+	}
+	
+	
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @return
+	 */
+	private JPopupMenu getJTreeMenu()
+	{
+		JTreeJMenuListener listener = new JTreeJMenuListener(tree);
+		
+		JPopupMenu menuPopup = new JPopupMenu();
+		
+		JMenuItem newNetwork = new JMenuItem("New Network");
+		newNetwork.setActionCommand("New Network");
+		newNetwork.addActionListener(listener);
+		
+		menuPopup.add(newNetwork);
 		
 		
+		JMenu subMenu = new JMenu("A sub menu");
+		
+		JMenuItem subItem1 = new JMenuItem("Action 1");
+		
+		JMenuItem subItem2 = new JMenuItem("Action 2");
+		
+		subMenu.add(subItem1);
+		subMenu.add(subItem2);
 		
 		
-		return popup;		
+		menuPopup.add(subMenu);
+		
+		
+		return menuPopup;
 	}
 }

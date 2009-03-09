@@ -31,12 +31,9 @@ import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -80,6 +77,8 @@ public class PrimeMain1 extends JFrame
 	
 	// The JPanel that will hold all the canvas.
 	private static JPanel workareaPanel;
+	
+	public static WorkareaTabbed workTab;
 
 	static JXMultiSplitPane multiSplitPane = new JXMultiSplitPane();
 
@@ -277,10 +276,10 @@ public class PrimeMain1 extends JFrame
 		// Sets the border around the panel
 		workareaPanel.setBorder(grayline);
 
-		// workareaPanel.add(new JLabel("Workarea"));
-
+		workTab = new WorkareaTabbed();
+		
 		// workareaPanel.add(new WorkareaCanvas());
-		workareaPanel.add(new WorkareaTabbed());
+		workareaPanel.add(workTab);
 
 
 
@@ -424,7 +423,9 @@ public class PrimeMain1 extends JFrame
 	 */
 	public static void updatePrimeTree()
 	{
-		tabSelection.getPrimeTree();
+		tabSelection.getPrimeTree().createTree();
+		tabSelection.validate();
+		tabSelection.repaint();
 	}
 
 

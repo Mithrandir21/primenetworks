@@ -6,6 +6,7 @@ package graphics.GUI.selectArea.PrimeJTree;
 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -13,11 +14,13 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 
@@ -43,7 +46,22 @@ public class PrimeTree extends JPanel// implements MouseListener
 	public PrimeTree()
 	{
 		this.setLayout(new BorderLayout());
-
+		
+		createTree();
+	}
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param file
+	 */
+	public void createTree()
+	{
+		// Removes all the previous jscrolls with jtrees
+		this.removeAll();
+		
 		// File[] roots = File.listRoots();
 		File root = new File("Data");
 
@@ -53,7 +71,7 @@ public class PrimeTree extends JPanel// implements MouseListener
 
 		this.tree.setCellRenderer(new PrimeFileTreeCellRenderer());
 
-		this.tree.setRootVisible(true);
+		this.tree.setRootVisible(false);
 		
 //		this.tree.addTreeSelectionListener(this);
 
@@ -61,9 +79,14 @@ public class PrimeTree extends JPanel// implements MouseListener
 
 		final JScrollPane jsp = new JScrollPane(this.tree);
 
-		// jsp.setBorder(new EmptyBorder(0, 0, 0, 0));
+//		 this.tree.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		this.add(jsp, BorderLayout.CENTER);
+	}
+	
+	private void emptyJScrollPane()
+	{
+		
 	}
 	
 	
