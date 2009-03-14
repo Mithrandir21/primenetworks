@@ -26,8 +26,7 @@ public class PrimeJTreeActions
 	 */
 	public static void openFile(FileTreeNode file)
 	{
-		JOptionPane.showMessageDialog(null, "You have tried to open the " + file.getFile().getName()
-				+ " canvas.");
+		FileManagment.openWorkareaCanvas(file.getFile());
 	}
 	
 	

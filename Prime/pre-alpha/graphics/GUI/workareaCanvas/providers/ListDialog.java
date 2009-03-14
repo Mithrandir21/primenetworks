@@ -74,10 +74,19 @@ import javax.swing.ListSelectionModel;
  */
 public class ListDialog extends JDialog implements ActionListener
 {
+	/**
+	 * 
+	 */
 	private static ListDialog dialog;
 
+	/**
+	 * 
+	 */
 	private static String value = "";
 
+	/**
+	 * 
+	 */
 	private JList list;
 
 	/**
@@ -102,6 +111,11 @@ public class ListDialog extends JDialog implements ActionListener
 	}
 
 
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param newValue
+	 */
 	private void setValue(String newValue)
 	{
 		value = newValue;
@@ -109,6 +123,17 @@ public class ListDialog extends JDialog implements ActionListener
 	}
 
 
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 *
+	 * @param frame
+	 * @param locationComp
+	 * @param labelText
+	 * @param title
+	 * @param data
+	 * @param initialValue
+	 * @param longValue
+	 */
 	private ListDialog(Frame frame, Component locationComp, String labelText,
 			String title, Object[] data, String initialValue, String longValue)
 	{
@@ -187,6 +212,9 @@ public class ListDialog extends JDialog implements ActionListener
 	}
 
 	// Handle clicks on the Set and Cancel buttons.
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		if ( "Set".equals(e.getActionCommand()) )

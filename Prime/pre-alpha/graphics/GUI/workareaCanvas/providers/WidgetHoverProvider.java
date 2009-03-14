@@ -18,11 +18,15 @@ import widgetManipulation.WidgetObject;
 public class WidgetHoverProvider implements HoverProvider
 {
 
+	/* (non-Javadoc)
+	 * @see org.netbeans.api.visual.action.HoverProvider#widgetHovered(org.netbeans.api.visual.widget.Widget)
+	 */
 	@Override
 	public void widgetHovered(Widget widget)
 	{
 		if ( widget != null )
 		{
+			// FIXME - make something out of this.
 			// System.out.println(widget.getToolTipText());
 			WidgetObject wid = (WidgetObject) widget;
 			// wid.setBorder(BorderFactory.createRoundedBorder(10, 10,

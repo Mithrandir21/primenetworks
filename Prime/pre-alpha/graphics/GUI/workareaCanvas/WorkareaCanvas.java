@@ -8,7 +8,7 @@ import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.WidgetIcon;
 import graphics.GUI.selectArea.CreateObjectDragged;
-import graphics.GUI.workareaCanvas.providers.CanvasMenu;
+import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas.JMenuWorkareaCanvas;
 
 import java.awt.Point;
 import java.awt.dnd.DropTarget;
@@ -18,6 +18,7 @@ import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -25,11 +26,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
 
 import objects.Object;
+import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
 import objects.hardwareObjects.ExternalNetworksCard;
 import objects.hardwareObjects.InternalNetworksCard;
@@ -70,34 +71,38 @@ import connections.Connection;
  * @version 0.1
  */
 
-public class WorkareaCanvas extends JPanel implements DropTargetListener,
-		ActionListener, Serializable
+public class WorkareaCanvas extends JPanel implements Serializable, DropTargetListener,
+		ActionListener
 {
 	// The Name of the canvas
 	private String CanvasName;
 
-	// The transferHandler that will take care of the drag and drop feature for the canvas
+	// The transferHandler that will take care of the drag and drop feature for
+	// the canvas
 	private TransferHandler TransHandler = new WidgetTransferHandler();
 
 	private DropTarget dt;
 
-	private JPopupMenu popup = CanvasMenu.createPopupMenu(this);
+	// private JPopupMenu popup = CanvasMenu.createPopupMenu(this);
 
 	// The scene on the canvas which all objects and layers will be placed
 	private ObjectScene scene = new ObjectScene();
 
 	private JComponent myView = scene.createView();
-	
+
 	// The main layer of the scene where the WidgetObjects are placed
 	private LayerWidget mainLayer;
 
-	// The interaction layer where the interaction between the user and the WidgetObjects takes place
+	// The interaction layer where the interaction between the user and the
+	// WidgetObjects takes place
 	private LayerWidget interactionLayer;
 
-	// The connection layer where the connections between WidgetObjects are placed
+	// The connection layer where the connections between WidgetObjects are
+	// placed
 	private LayerWidget connectionLayer;
 
-	// An array that will contain all the canvases connection, which are represented by a
+	// An array that will contain all the canvases connection, which are
+	// represented by a
 	// WidgetExtendedConnection.
 	private Connection[] connections = new Connection[5];
 
@@ -110,10 +115,10 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 	// The current WidgetObject in view
 	private WidgetObject currentWidgetObject = null;
-	
+
 	// A boolean saying if the canvas has been saved
 	private boolean saved = false;
-	
+
 	// A boolean saying if the canvas has been changed in any way
 	private boolean changed = false;
 
@@ -133,11 +138,16 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 		// scene.getActions().addAction(ActionFactory.createSelectAction(new
 		// CreateProvider()));
+		// this.addMouseListener(new WorkareaCanvasListener(this));
+
 
 
 		// Adds the zoom feature to the scene.
 		scene.getActions().addAction(ActionFactory.createZoomAction());
 		scene.getActions().addAction(ActionFactory.createPanAction());
+		scene.getActions().addAction(
+				ActionFactory.createPopupMenuAction(new JMenuWorkareaCanvas(this)));
+
 
 		// This is the main layer of the scene where the WidgetsObjects are
 		// placed.
@@ -244,7 +254,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the saved
 	 */
 	public boolean isSaved()
@@ -255,7 +265,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the changed
 	 */
 	public boolean isChanged()
@@ -311,28 +321,26 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 	{
 		return numberOfNICs;
 	}
-	
-	
+
+
 	/**
-	 * Adds one int to the number of Widgets on the
-	 * canvas scene.
+	 * Adds one int to the number of Widgets on the canvas scene.
 	 */
 	public void addToNumberOfWidgetsOnTheCanvas()
 	{
 		numberOfWidgetsOnTheScene++;
 	}
 
-	
-	
+
+
 	/**
-	 * Subtracts one int from the the number of Widgets
-	 * on the canvas scene.
+	 * Subtracts one int from the the number of Widgets on the canvas scene.
 	 */
 	public void subtractFromNumberOgWidgetsOnTheCanvas()
 	{
 		numberOfWidgetsOnTheScene--;
 	}
-	
+
 
 	/**
 	 * Gets the array of connections between objects. <i>Note: These connections
@@ -403,8 +411,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
-	 * @param saved the saved to set
+	 * 
+	 * @param saved
+	 *            the saved to set
 	 */
 	public void setSaved(boolean saved)
 	{
@@ -414,8 +423,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
-	 * @param changed the changed to set
+	 * 
+	 * @param changed
+	 *            the changed to set
 	 */
 	public void setChanged(boolean changed)
 	{
@@ -440,6 +450,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#dragEnter(java.awt.dnd.DropTargetDragEvent
 	 * )
@@ -454,6 +465,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#dragExit(java.awt.dnd.DropTargetEvent)
 	 */
@@ -467,6 +479,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#dragOver(java.awt.dnd.DropTargetDragEvent
 	 * )
@@ -481,6 +494,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
 	 */
@@ -494,6 +508,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @seejava.awt.dnd.DropTargetListener#dropActionChanged(java.awt.dnd.
 	 * DropTargetDragEvent)
 	 */
@@ -528,6 +543,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 		PrimeMain1.updatePropertiesCanvasArea();
 		PrimeMain1.updateCanvasAndObjectInfo();
 
+		changed = true;
 
 		scene.revalidate();
 		scene.repaint();
@@ -548,6 +564,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -555,8 +572,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 	{
 		JMenuItem action = (JMenuItem) e.getSource();
 
-		
-		
 		String actionName = "";
 
 
@@ -577,16 +592,16 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 			if ( actionName.equals("DeleteConnectionsObject") )
 			{
-				WorkareaCanvasActions.removeAllConnectionsToFromObject(this,
-						currentWidgetObject.getObject());
+				WorkareaCanvasActions.removeAllConnectionsToFromObject(this, currentWidgetObject
+						.getObject());
 			}
 			else if ( actionName.equals("DeleteThisObject") )
 			{
 				WorkareaCanvasActions.deleteCurrentObject(this);
 			}
-			else if ( actionName.equals("CreateNewST_Laptop_Item") )
+			else if ( actionName.equals("CreateNewST_Desktop_Item") )
 			{
-				objectType = Laptop.class;
+				objectType = Desktop.class;
 				objectIcon = ImageLocator.getImageIconObject("Desktop");
 
 				set = true;
@@ -594,7 +609,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 			else if ( actionName.equals("CreateNewST_Laptop_Item") )
 			{
 				objectType = Laptop.class;
-				objectIcon = ImageLocator.getImageIconObject("Desktop");
+				objectIcon = ImageLocator.getImageIconObject("Laptop");
 
 				set = true;
 			}
@@ -672,15 +687,13 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 
 			if ( set == true )
 			{
-				WidgetIcon newObjectIcon = new WidgetIcon(objectIcon,
-						objectType);
+				WidgetIcon newObjectIcon = new WidgetIcon(objectIcon, objectType);
 
 
-				newObject = new CreateObjectDragged().CreateObject(
-						newObjectIcon, numberOfWidgetsOnTheScene);
+				newObject = new CreateObjectDragged().CreateObject(newObjectIcon,
+						numberOfWidgetsOnTheScene);
 
-				newWidgetObject = new WidgetObject(scene, newObject, objectIcon
-						.getImage());
+				newWidgetObject = new WidgetObject(scene, newObject, objectIcon.getImage());
 
 
 				addWidgetObject(newWidgetObject, new Point(0, 0));
@@ -715,6 +728,99 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener,
 				}
 			});
 		}
+	}
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param out
+	 */
+	public void writeThisObjectOut(java.io.ObjectOutputStream out)
+	{
+		try
+		{
+			writeObject(out);
+		}
+		catch ( IOException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	
+	
+	public void readThisObjectIn(java.io.ObjectInputStream in)
+	{
+		try
+		{
+			readObject(in);
+		}
+		catch ( IOException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch ( ClassNotFoundException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param out
+	 * @throws IOException
+	 */
+	private void writeObject(java.io.ObjectOutputStream out) throws IOException
+	{
+		out.writeObject(CanvasName);
+		out.writeObject(TransHandler);
+		out.writeObject(dt);
+//		out.writeObject(scene);
+//		out.writeObject(myView);
+//		out.writeObject(mainLayer);
+//		out.writeObject(interactionLayer);
+//		out.writeObject(connectionLayer);
+		out.writeObject(connections);
+		out.writeObject(numberOfWidgetsOnTheScene);
+		out.writeObject(numberOfNICs);
+		out.writeObject(currentWidgetObject);
+		out.writeObject(saved);
+		out.writeObject(changed);
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param in
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	private void readObject(java.io.ObjectInputStream in) throws IOException,
+			ClassNotFoundException
+	{
+		in.defaultReadObject();
+		CanvasName = (String) in.readObject();
+		TransHandler = (TransferHandler) in.readObject();
+		dt = (DropTarget) in.readObject();
+		scene = (ObjectScene) in.readObject();
+		myView = (JComponent) in.readObject();
+		mainLayer = (LayerWidget) in.readObject();
+		interactionLayer = (LayerWidget) in.readObject();
+		connectionLayer = (LayerWidget) in.readObject();
+		connections = (Connection[]) in.readObject();
+		numberOfWidgetsOnTheScene = (int) in.readInt();
+		numberOfNICs = (int) in.readInt();
+		currentWidgetObject = (WidgetObject) in.readObject();
+		saved = (boolean) in.readBoolean();
+		changed = (boolean) in.readBoolean();
 	}
 
 

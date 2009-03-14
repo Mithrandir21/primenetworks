@@ -27,6 +27,20 @@ public class WorkareaSceneScroll extends JScrollPane
 		canvas = new WorkareaCanvas();
 		createNewCanvas(name);
 	}
+	
+	
+	/**
+	 * A constructor that takes a WorkareaCanvas and sets it to the classes
+	 * private WorkareaCanvas.
+	 * 
+	 * @param canvas
+	 * 				The WorkareaCanvas that is to be placed inside the tab.
+	 */
+	public WorkareaSceneScroll(WorkareaCanvas canvas)
+	{
+		this.canvas = canvas;
+		createNewCanvas(canvas.getCanvasName());
+	}
 
 
 

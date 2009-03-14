@@ -16,11 +16,14 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import managment.FileManagment;
 
 
 /**
@@ -32,20 +35,15 @@ import javax.swing.event.ChangeListener;
 public class WorkareaTabbed extends JTabbedPane implements ActionListener
 {
 	private ArrayList<WorkareaSceneScroll> canvases = new ArrayList<WorkareaSceneScroll>();
-	
-	
-	
+
+
+
 	/**
 	 * A constructor for this class that add a changeListener that will call
 	 * doRepaint on the WorkareaCanvas when any change occurs.
 	 */
 	public WorkareaTabbed()
 	{
-//		createNewCanvasTab("AA", new WorkareaSceneScroll("AA"));
-//		createNewCanvasTab("BB", new WorkareaSceneScroll("BB"));
-//		createNewCanvasTab("CC", new WorkareaSceneScroll("CC"));
-//		createNewCanvasTab("DD", new WorkareaSceneScroll("DD"));
-
 
 		addChangeListener(new ChangeListener()
 		{
@@ -65,11 +63,12 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 				if ( currentScrollPane != null )
 				{
 					currentCanvas = currentScrollPane.getCanvas();
-					// Repaints the entire canvas.(Avoids NullPointerExeption errors
+					// Repaints the entire canvas.(Avoids NullPointerExeption
+					// errors
 					// from swing).
 					currentCanvas.doRepaint();
 				}
-				
+
 				// Sets the current working canvas to the canvas that is
 				// actually shown in the
 				// JTabbedPane scrollPane.
@@ -108,9 +107,35 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 
 		this.addTab(name, icon, canvasScroll);
 	}
+	
+	
+	
+	/**
+	 * The function creates a new WorkareaSceneScroll and places that component
+	 * within a new tab with the given name. The tab is then added to this
+	 * JTabbedPane.
+	 * 
+	 * @param canvas
+	 *            The canvas that will be placed inside the new
+	 *            WorkareaSceneScroll.
+	 */
+	public void createNewCanvasTab(WorkareaCanvas canvas)
+	{
+		WorkareaSceneScroll canvasScroll = new WorkareaSceneScroll(canvas);
 
+		// Creates the image for the tab
+		ImageIcon icon = ImageLocator.getImageIconObject("java");
+
+		int width = (int) (PrimeMain1.width * 0.60);
+		int height = (int) (PrimeMain1.width * 0.60);
+		this.setPreferredSize(new Dimension(width, height));
+
+		this.addTab(canvas.getCanvasName(), icon, canvasScroll);
+	}
 	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -121,14 +146,14 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 	{
 		// The ImageIcon that will be shown and will remove a tab if pressed
 		ImageIcon closeXIcon = ImageLocator.getImageIconObject("Close");
-		
+
 		// The dimensions of the new button.
-		Dimension closeButtonSize = new Dimension(
-				closeXIcon.getIconWidth() + 5, closeXIcon.getIconHeight() + 5);
-		
+		Dimension closeButtonSize = new Dimension(closeXIcon.getIconWidth() + 5, closeXIcon
+				.getIconHeight() + 5);
+
 		String name = canvasScroll.getCanvas().getCanvasName();
-		
-		
+
+
 		// The actual panel that will be the component panel which the JLabel
 		// and the button
 		// will be placed inside.
@@ -149,7 +174,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 		// Adds the label and then the button to the panel.
 		tab.add(tabLabel, BorderLayout.WEST);
 		tab.add(tabCloseButton, BorderLayout.EAST);
-		
+
 		// Sets the name of the JScrollPane parameter
 		canvasScroll.setName(name);
 		// Adds the JScrollPane to the list of contents of the different
@@ -162,24 +187,24 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 		// Instead of using a String/Icon combination for the tab,
 		// use our panel instead.
 		this.setTabComponentAt(this.getTabCount() - 1, tab);
-		
-		
+
+
 		int width = (int) (PrimeMain1.width * 0.60);
 		int height = (int) (PrimeMain1.width * 0.60);
 		this.setPreferredSize(new Dimension(width, height));
 	}
-	
-	
-	
+
+
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-
 		if ( e.getSource() instanceof JButton )
 		{
 			// Since there is no other components in this class that can call
@@ -189,7 +214,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 			JButton button = (JButton) e.getSource();
 
 			String contentName = button.getName();
-			JScrollPane test = null;
+			WorkareaSceneScroll test = null;
 
 			// This is the current number of tabs
 			int arraySize = canvases.size();
@@ -208,9 +233,36 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 				// removed.
 				if ( tabName != null && tabName.equals(contentName) )
 				{
-					this.remove(test);
-					canvases.remove(i);
-					return;
+					// The options the user will be presented with.
+					Object[] options = { "Save", "Dont save", "Cancel" };
+
+					// Asks the user whether or not to save
+					int answer = JOptionPane
+							.showOptionDialog(null, "This canvas has not been saved, do you want to save this canvas?",
+									"Save", JOptionPane.WARNING_MESSAGE,
+									JOptionPane.WARNING_MESSAGE, null, options, null);
+					// Save
+					if(answer == 0)
+					{
+						System.out.print("Saving....");
+						// Saves the canvas to a file.
+						FileManagment.saveWorkareaCanvas(test.getCanvas());
+						this.remove(test);
+						canvases.remove(i);
+						return;
+					}
+					// Dont save.
+					else if(answer == 1)
+					{
+						this.remove(test);
+						canvases.remove(i);
+						return;
+					}
+					else
+					{
+						return;
+					}
+						
 				}
 
 				test = null;

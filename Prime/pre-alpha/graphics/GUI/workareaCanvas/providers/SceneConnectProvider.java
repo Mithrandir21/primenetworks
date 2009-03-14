@@ -37,6 +37,9 @@ import connections.WidgetExtendedConnection;
 public class SceneConnectProvider implements ConnectProvider
 {
 
+	/* (non-Javadoc)
+	 * @see org.netbeans.api.visual.action.ConnectProvider#createConnection(org.netbeans.api.visual.widget.Widget, org.netbeans.api.visual.widget.Widget)
+	 */
 	public void createConnection(Widget sourceWidget, Widget targetWidget)
 	{
 		// Either the source or the target widget is not an object, which would
@@ -167,11 +170,17 @@ public class SceneConnectProvider implements ConnectProvider
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.netbeans.api.visual.action.ConnectProvider#hasCustomTargetWidgetResolver(org.netbeans.api.visual.widget.Scene)
+	 */
 	public boolean hasCustomTargetWidgetResolver(Scene scene)
 	{
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.netbeans.api.visual.action.ConnectProvider#isSourceWidget(org.netbeans.api.visual.widget.Widget)
+	 */
 	public boolean isSourceWidget(Widget sourceWidget)
 	{
 		if ( sourceWidget instanceof WidgetObject )
@@ -182,6 +191,9 @@ public class SceneConnectProvider implements ConnectProvider
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.netbeans.api.visual.action.ConnectProvider#isTargetWidget(org.netbeans.api.visual.widget.Widget, org.netbeans.api.visual.widget.Widget)
+	 */
 	public ConnectorState isTargetWidget(Widget sourceWidget,
 			Widget targetWidget)
 	{
@@ -196,6 +208,9 @@ public class SceneConnectProvider implements ConnectProvider
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.netbeans.api.visual.action.ConnectProvider#resolveTargetWidget(org.netbeans.api.visual.widget.Scene, java.awt.Point)
+	 */
 	public Widget resolveTargetWidget(Scene sourceWidget, Point sceneLocation)
 	{
 		return null;
@@ -203,6 +218,13 @@ public class SceneConnectProvider implements ConnectProvider
 
 
 
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param a
+	 * @param b
+	 * @return
+	 */
 	private boolean checkSupportsConnection(Object a, Object b)
 	{
 		return ConnectionManagment.checkDeviceConnectiontypeSupport(a, b,
@@ -211,6 +233,12 @@ public class SceneConnectProvider implements ConnectProvider
 
 
 
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param widget
+	 * @return
+	 */
 	private Class<?> getObjectClass(WidgetObject widget)
 	{
 		Class<?> type = widget.getObject().getClass();
@@ -219,6 +247,12 @@ public class SceneConnectProvider implements ConnectProvider
 
 
 	// FIXME - Add user-added connection types
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param type
+	 * @return
+	 */
 	private Class<?> getConClass(String type)
 	{
 		if ( type.equals("RJ-45") )

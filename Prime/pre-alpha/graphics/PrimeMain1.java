@@ -299,7 +299,7 @@ public class PrimeMain1 extends JFrame
 
 		multiSplitPane.add(toolbarPanel, "toolbarLeaf");
 		multiSplitPane.add(selectionPanel, "selectionLeaf");
-		multiSplitPane.add(getWorkareaPanel(), "workareaLeaf");
+		multiSplitPane.add(workareaPanel, "workareaLeaf");
 		multiSplitPane.add(propertiesPanel, "propertiesLeaf");
 		multiSplitPane.add(messagesPanel, "messagesLeaf");
 
@@ -539,6 +539,18 @@ public class PrimeMain1 extends JFrame
 	{
 		PrimeMain1.workareaPanel = workareaPanel;
 	}
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @return workareaPanel the workareaPanel to get
+	 */
+	public static JPanel getWorkareaPanel()
+	{
+		return workareaPanel;
+	}
 
 
 	/**
@@ -546,8 +558,8 @@ public class PrimeMain1 extends JFrame
 	 *
 	 * @return the workareaPanel
 	 */
-	public static JPanel getWorkareaPanel()
+	public static WorkareaTabbed getWorkarea()
 	{
-		return workareaPanel;
+		return workTab;
 	}
 }

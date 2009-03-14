@@ -6,8 +6,8 @@ import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import graphics.GUI.workareaCanvas.providers.AdapterExtended;
 import graphics.GUI.workareaCanvas.providers.CreateProvider;
-import graphics.GUI.workareaCanvas.providers.JMenuProvider;
 import graphics.GUI.workareaCanvas.providers.SceneConnectProvider;
+import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget.JMenuWidget;
 
 import java.awt.Dimension;
 import java.awt.Point;
@@ -42,25 +42,24 @@ import connections.WidgetExtendedConnection;
  */
 public class WorkareaCanvasActions
 {
-	
+
 	/**
-	 * Creates a WidgetObject and adds that object to a given
-	 * point gotten from the dropTargetDropEvent.
-	 *  
+	 * Creates a WidgetObject and adds that object to a given point gotten from
+	 * the dropTargetDropEvent.
+	 * 
 	 * @param dtde
 	 * @param canvas
 	 */
-	public static void createWidgetOnCanvas(DropTargetDropEvent dtde,
-			WorkareaCanvas canvas)
+	public static void createWidgetOnCanvas(DropTargetDropEvent dtde, WorkareaCanvas canvas)
 	{
 		Transferable tr = dtde.getTransferable();
 		WidgetObject newObject = null;
 
 		try
 		{
-			newObject = (WidgetObject) tr.getTransferData(new DataFlavor(
-					WidgetObject.class, "Widget Object"));
-			
+			newObject = (WidgetObject) tr.getTransferData(new DataFlavor(WidgetObject.class,
+					"Widget Object"));
+
 			Dimension objectSize = newObject.getImageDimension();
 
 			Point objectPoint = dtde.getLocation();
@@ -81,16 +80,15 @@ public class WorkareaCanvasActions
 		}
 		catch ( UnsupportedFlavorException e )
 		{
-			System.out
-					.println("ActionCreateWidgetObject - UnsupportedFlavorException");
+			System.out.println("ActionCreateWidgetObject - UnsupportedFlavorException");
 		}
 		catch ( IOException e )
 		{
 			System.out.println("ActionCreateWidgetObject - IOException");
 		}
 	}
-	
-	
+
+
 	/**
 	 * Adds the given WidgetObject at the given point on the scene. This method
 	 * adds all the functionality that a widgetObject will have like being able
@@ -101,8 +99,8 @@ public class WorkareaCanvasActions
 	 * @param objectPoint
 	 * @param canvas
 	 */
-	public static void addWidgetToCanvas(WidgetObject newObject,
-			Point objectPoint, WorkareaCanvas canvas)
+	public static void addWidgetToCanvas(WidgetObject newObject, Point objectPoint,
+			WorkareaCanvas canvas)
 	{
 		Point sceneLocation = canvas.getScene().convertViewToScene(objectPoint);
 
@@ -111,26 +109,25 @@ public class WorkareaCanvasActions
 
 
 		newObject.getActions().addAction(
-				ActionFactory.createExtendedConnectAction(canvas
-						.getInteractionLayer(), new SceneConnectProvider()));
+				ActionFactory.createExtendedConnectAction(canvas.getInteractionLayer(),
+						new SceneConnectProvider()));
 
 
 		//			
-		newObject.getActions().addAction(
-				ActionFactory.createSelectAction(new CreateProvider()));
+		newObject.getActions().addAction(ActionFactory.createSelectAction(new CreateProvider()));
 
 
 		newObject.getActions().addAction(
-				ActionFactory.createAlignWithMoveAction(canvas.getMainLayer(),
-						canvas.getInteractionLayer(), null));
+				ActionFactory.createAlignWithMoveAction(canvas.getMainLayer(), canvas
+						.getInteractionLayer(), null));
 
 
 
 		newObject.getActions().addAction(new AdapterExtended());
 
 
-		LabelWidget objectLabel = new LabelWidget(canvas.getScene(), newObject
-				.getObject().getObjectName());
+		LabelWidget objectLabel = new LabelWidget(canvas.getScene(), newObject.getObject()
+				.getObjectName());
 
 		newObject.addChild(objectLabel);
 
@@ -144,7 +141,7 @@ public class WorkareaCanvasActions
 
 
 		newObject.getActions().addAction(
-				ActionFactory.createPopupMenuAction(new JMenuProvider()));
+				ActionFactory.createPopupMenuAction(new JMenuWidget(canvas)));
 
 
 
@@ -177,25 +174,25 @@ public class WorkareaCanvasActions
 
 		canvas.cleanUp();
 	}
-	
+
 
 	/**
-	 * This function removes the given WidgetObject from the given canvas.
-	 * It also removes all the connections to and from the given widgetobject.
+	 * This function removes the given WidgetObject from the given canvas. It
+	 * also removes all the connections to and from the given widgetobject.
 	 * 
 	 * @param canvas
-	 * 			The canvas that the object is to be removed from.
+	 *            The canvas that the object is to be removed from.
 	 * @param obj
-	 * 			The WidgetObject that is to be removed.
+	 *            The WidgetObject that is to be removed.
 	 */
 	public static void deleteObject(WorkareaCanvas canvas, WidgetObject obj)
 	{
 		removeAllConnectionsToFromObject(canvas, obj.getObject());
 
-		PrimeMain1.currentCanvas.getMainLayer().removeChild(obj);
+		canvas.getMainLayer().removeChild(obj);
 
 
-		PrimeMain1.currentCanvas.setCurrentWidgetObject(null);
+		canvas.setCurrentWidgetObject(null);
 	}
 
 
@@ -208,14 +205,15 @@ public class WorkareaCanvasActions
 	 */
 	public static void deleteCurrentObject(WorkareaCanvas canvas)
 	{
-		WidgetObject obj = PrimeMain1.currentCanvas.getCurrentWidgetObject();
+		WidgetObject obj = canvas.getCurrentWidgetObject();
 
 		removeAllConnectionsToFromObject(canvas, obj.getObject());
 
-		PrimeMain1.currentCanvas.getMainLayer().removeChild(obj);
+		canvas.getMainLayer().removeChild(obj);
 
 
-		PrimeMain1.currentCanvas.setCurrentWidgetObject(null);
+
+		canvas.setCurrentWidgetObject(null);
 	}
 
 
@@ -241,8 +239,7 @@ public class WorkareaCanvasActions
 	 * @param obj
 	 *            The object which has the connections that are to be removed.
 	 */
-	public static void removeAllConnectionsToFromObject(WorkareaCanvas canvas,
-			Object obj)
+	public static void removeAllConnectionsToFromObject(WorkareaCanvas canvas, Object obj)
 	{
 		Object[] connectedObjects = obj.getConnectedDevices();
 
@@ -254,18 +251,16 @@ public class WorkareaCanvasActions
 			{
 				try
 				{
-					removeConnectionFromConnectionLayer(canvas,
-							ConnectionManagment.getConnection(canvasCons, obj,
-									connectedObjects[i]));
-
-					canvas.setConnections(ConnectionManagment.breakConnection(
+					removeConnectionFromConnectionLayer(canvas, ConnectionManagment.getConnection(
 							canvasCons, obj, connectedObjects[i]));
+
+					canvas.setConnections(ConnectionManagment.breakConnection(canvasCons, obj,
+							connectedObjects[i]));
 				}
 				catch ( ConnectionDoesNotExist e )
 				{
 					System.out.println(e.getMessage());
-					System.out
-							.println("removeAllConnectionsToFromObject - breakConnection");
+					System.out.println("removeAllConnectionsToFromObject - breakConnection");
 				}
 			}
 		}
@@ -292,8 +287,7 @@ public class WorkareaCanvasActions
 	 * @param con
 	 *            The connection to be removed.
 	 */
-	public static void removeConnectionFromConnectionLayer(
-			WorkareaCanvas canvas, Connection con)
+	public static void removeConnectionFromConnectionLayer(WorkareaCanvas canvas, Connection con)
 	{
 		List<Widget> list = canvas.getConnectionLayer().getChildren();
 
@@ -333,8 +327,7 @@ public class WorkareaCanvasActions
 	 */
 	public static void removeConnectionFromConnectionLayer(Connection con)
 	{
-		List<Widget> list = PrimeMain1.currentCanvas.getConnectionLayer()
-				.getChildren();
+		List<Widget> list = PrimeMain1.currentCanvas.getConnectionLayer().getChildren();
 
 		WidgetExtendedConnection temp = null;
 
@@ -372,8 +365,7 @@ public class WorkareaCanvasActions
 	 * @param canvas
 	 *            The given that the connection is to be removed from.
 	 */
-	public static void removeConnectionFromCanvas(Connection con,
-			WorkareaCanvas canvas)
+	public static void removeConnectionFromCanvas(Connection con, WorkareaCanvas canvas)
 	{
 		List<Widget> list = canvas.getConnectionLayer().getChildren();
 
