@@ -71,17 +71,16 @@ import connections.Connection;
  * @version 0.1
  */
 
-public class WorkareaCanvas extends JPanel implements Serializable, DropTargetListener,
-		ActionListener
+public class WorkareaCanvas extends JPanel implements Serializable, DropTargetListener
 {
 	// The Name of the canvas
-	private String CanvasName;
+	private String CanvasName = "";
 
 	// The transferHandler that will take care of the drag and drop feature for
 	// the canvas
 	private TransferHandler TransHandler = new WidgetTransferHandler();
 
-	private DropTarget dt;
+	private DropTarget dt = null;
 
 	// private JPopupMenu popup = CanvasMenu.createPopupMenu(this);
 
@@ -91,15 +90,15 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	private JComponent myView = scene.createView();
 
 	// The main layer of the scene where the WidgetObjects are placed
-	private LayerWidget mainLayer;
+	private LayerWidget mainLayer = null;
 
 	// The interaction layer where the interaction between the user and the
 	// WidgetObjects takes place
-	private LayerWidget interactionLayer;
+	private LayerWidget interactionLayer = null;
 
 	// The connection layer where the connections between WidgetObjects are
 	// placed
-	private LayerWidget connectionLayer;
+	private LayerWidget connectionLayer = null;
 
 	// An array that will contain all the canvases connection, which are
 	// represented by a
@@ -374,7 +373,70 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	{
 		CanvasName = canvasName;
 	}
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param scene
+	 */
+	public void setScene(ObjectScene scene)
+	{
+		this.scene = scene;
+	}
+	
+	
+	
+	
+	/**
+	 * Sets the view of the scene. Scene can only be viewed through a view like
+	 * this.
+	 * 
+	 * @see org.netbeans.api.visual.widget.Scene#getView() View
+	 */
+	public void setMyView(JComponent view)
+	{
+		myView = view;
+	}
 
+
+	/**
+	 * Sets the main layer of the scene. This is where the {@link WidgetObject
+	 * WidgetObjects} are placed.
+	 * 
+	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
+	 */
+	public void setMainLayer(LayerWidget main)
+	{
+		mainLayer = main;
+	}
+
+
+	/**
+	 * Sets the interaction layer of the scene. This is where the actions a user
+	 * sees take place like clicks and menus.
+	 * 
+	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
+	 */
+	public void setInteractionLayer(LayerWidget inter)
+	{
+		interactionLayer = inter;
+	}
+
+
+	/**
+	 * Sets the connection layer of the scene. This is where the
+	 * {@link connections.WidgetExtendedConnection connections} between objects
+	 * in the scene are placed.
+	 * 
+	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
+	 */
+	public void getConnectionLayer(LayerWidget con)
+	{
+		connectionLayer = con;
+	}
+	
 
 	/**
 	 * Sets the connections array for the canvas. <i>Note: These connections are
@@ -526,9 +588,12 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	 * @param newObject
 	 * @param objectPoint
 	 */
-	public void addWidgetObject(WidgetObject newObject, Point objectPoint)
+	public void addWidgetObject(WidgetObject newObject, Point objectPoint, boolean withCleanUp)
 	{
-		WorkareaCanvasActions.addWidgetToCanvas(newObject, objectPoint, this);
+		// Sets the location of the object.
+		newObject.getObject().setLocation(objectPoint);
+		
+		WorkareaCanvasActions.addWidgetToCanvas(newObject, objectPoint, this, withCleanUp);
 	}
 
 
@@ -562,147 +627,6 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	}
 
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	public void actionPerformed(ActionEvent e)
-	{
-		JMenuItem action = (JMenuItem) e.getSource();
-
-		String actionName = "";
-
-
-		if ( action.getName() != null )
-		{
-			actionName = action.getName();
-		}
-
-
-		if ( !actionName.equals("") )
-		{
-
-			boolean set = false;
-			Class<?> objectType = null;
-			ImageIcon objectIcon = null;
-			objects.Object newObject = null;
-			WidgetObject newWidgetObject = null;
-
-			if ( actionName.equals("DeleteConnectionsObject") )
-			{
-				WorkareaCanvasActions.removeAllConnectionsToFromObject(this, currentWidgetObject
-						.getObject());
-			}
-			else if ( actionName.equals("DeleteThisObject") )
-			{
-				WorkareaCanvasActions.deleteCurrentObject(this);
-			}
-			else if ( actionName.equals("CreateNewST_Desktop_Item") )
-			{
-				objectType = Desktop.class;
-				objectIcon = ImageLocator.getImageIconObject("Desktop");
-
-				set = true;
-			}
-			else if ( actionName.equals("CreateNewST_Laptop_Item") )
-			{
-				objectType = Laptop.class;
-				objectIcon = ImageLocator.getImageIconObject("Laptop");
-
-				set = true;
-			}
-			else if ( actionName.equals("CreateNewST_HTTPServer_Item") )
-			{
-				objectType = HTTPServer.class;
-				objectIcon = ImageLocator.getImageIconObject("Web-server");
-
-				set = true;
-			}
-			else if ( actionName.equals("CreateNewST_MailServer_Item") )
-			{
-				objectType = MailServer.class;
-				objectIcon = ImageLocator.getImageIconObject("Email-server");
-
-				set = true;
-			}
-			else if ( actionName.equals("CreateNewST_BackupServer_Item") )
-			{
-				objectType = BackupServer.class;
-				objectIcon = ImageLocator.getImageIconObject("Data-server");
-
-				set = true;
-			}
-			else if ( actionName.equals("CreateNewST_FirewallServer_Item") )
-			{
-				objectType = FirewallServer.class;
-				objectIcon = ImageLocator.getImageIconObject("Firewall-server");
-
-				set = true;
-			}
-			else if ( actionName.equals("CreateNewST_ProxyServer_Item") )
-			{
-				objectType = ProxyServer.class;
-				objectIcon = ImageLocator.getImageIconObject("Proxy-server");
-
-				set = true;
-			}
-			else if ( actionName.equals("CreateNewST_Hub_Item") )
-			{
-				objectType = Hub.class;
-				objectIcon = ImageLocator.getImageIconObject("Hub");
-
-				set = true;
-			}
-			else if ( actionName.equals("CreateNewST_Switch_Item") )
-			{
-				objectType = Switch.class;
-				objectIcon = ImageLocator.getImageIconObject("Switch");
-
-				set = true;
-			}
-			else if ( actionName.equals("CreateNewST_Router_Item") )
-			{
-				objectType = Router.class;
-				objectIcon = ImageLocator.getImageIconObject("Router");
-
-				set = true;
-			}
-			else if ( actionName.equals("CreateNewST_WirelessRouter_Item") )
-			{
-				objectType = Router.class;
-				objectIcon = ImageLocator.getImageIconObject("WirelessRouter");
-
-				set = true;
-			}
-			else if ( actionName.equals("CreateNewST_Scanner_Item") )
-			{
-				objectType = Scanner.class;
-				objectIcon = ImageLocator.getImageIconObject("Scanner");
-
-				set = true;
-			}
-
-
-			if ( set == true )
-			{
-				WidgetIcon newObjectIcon = new WidgetIcon(objectIcon, objectType);
-
-
-				newObject = new CreateObjectDragged().CreateObject(newObjectIcon,
-						numberOfWidgetsOnTheScene);
-
-				newWidgetObject = new WidgetObject(scene, newObject, objectIcon.getImage());
-
-
-				addWidgetObject(newWidgetObject, new Point(0, 0));
-			}
-
-
-			cleanUp();
-		}
-	}
 
 
 	/**
@@ -729,99 +653,4 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 			});
 		}
 	}
-	
-	
-	
-	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @param out
-	 */
-	public void writeThisObjectOut(java.io.ObjectOutputStream out)
-	{
-		try
-		{
-			writeObject(out);
-		}
-		catch ( IOException e )
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	
-	
-	public void readThisObjectIn(java.io.ObjectInputStream in)
-	{
-		try
-		{
-			readObject(in);
-		}
-		catch ( IOException e )
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch ( ClassNotFoundException e )
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-
-	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @param out
-	 * @throws IOException
-	 */
-	private void writeObject(java.io.ObjectOutputStream out) throws IOException
-	{
-		out.writeObject(CanvasName);
-		out.writeObject(TransHandler);
-		out.writeObject(dt);
-//		out.writeObject(scene);
-//		out.writeObject(myView);
-//		out.writeObject(mainLayer);
-//		out.writeObject(interactionLayer);
-//		out.writeObject(connectionLayer);
-		out.writeObject(connections);
-		out.writeObject(numberOfWidgetsOnTheScene);
-		out.writeObject(numberOfNICs);
-		out.writeObject(currentWidgetObject);
-		out.writeObject(saved);
-		out.writeObject(changed);
-	}
-
-
-	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @param in
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 */
-	private void readObject(java.io.ObjectInputStream in) throws IOException,
-			ClassNotFoundException
-	{
-		in.defaultReadObject();
-		CanvasName = (String) in.readObject();
-		TransHandler = (TransferHandler) in.readObject();
-		dt = (DropTarget) in.readObject();
-		scene = (ObjectScene) in.readObject();
-		myView = (JComponent) in.readObject();
-		mainLayer = (LayerWidget) in.readObject();
-		interactionLayer = (LayerWidget) in.readObject();
-		connectionLayer = (LayerWidget) in.readObject();
-		connections = (Connection[]) in.readObject();
-		numberOfWidgetsOnTheScene = (int) in.readInt();
-		numberOfNICs = (int) in.readInt();
-		currentWidgetObject = (WidgetObject) in.readObject();
-		saved = (boolean) in.readBoolean();
-		changed = (boolean) in.readBoolean();
-	}
-
-
 }

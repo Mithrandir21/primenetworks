@@ -2,13 +2,13 @@ package objects;
 
 
 
+import java.awt.Point;
 import java.io.Serializable;
-
-import objects.hardwareObjects.Motherboard;
 
 import logistical.cleanup;
 import managment.ArrayManagment;
 import managment.ComponentsManagment;
+import objects.hardwareObjects.Motherboard;
 import connections.Connection;
 import connections.DeviceConnection;
 import connections.InternalConnection;
@@ -97,9 +97,16 @@ public abstract class Object implements Serializable
 	private int connectedDevicesCounter;
 
 
-	// THE SOFTWARE
-
+	/**
+	 * The software that will be running on the object.
+	 */
 	private Software[] software;
+	
+	
+	/**
+	 * The location of the object on a scene.
+	 */
+	private Point location;
 
 
 
@@ -373,6 +380,17 @@ public abstract class Object implements Serializable
 
 
 	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 *
+	 * @return the location
+	 */
+	public Point getLocation()
+	{
+		return location;
+	}
+
+
+	/**
 	 * Sets the name of the object.
 	 */
 	public void setObjectName(String ObjectName)
@@ -476,6 +494,17 @@ public abstract class Object implements Serializable
 	public void setSoftware(Software[] software)
 	{
 		this.software = software;
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 *
+	 * @param location the location to set
+	 */
+	public void setLocation(Point location)
+	{
+		this.location = location;
 	}
 
 

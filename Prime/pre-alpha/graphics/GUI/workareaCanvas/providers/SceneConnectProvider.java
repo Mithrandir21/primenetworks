@@ -7,6 +7,7 @@ package graphics.GUI.workareaCanvas.providers;
 import exceptions.ConnectionDoesExist;
 import exceptions.ConnectionsIsNotPossible;
 import graphics.PrimeMain1;
+import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import java.awt.Point;
 
@@ -36,9 +37,28 @@ import connections.WidgetExtendedConnection;
  */
 public class SceneConnectProvider implements ConnectProvider
 {
+	/**
+	 * The WorkareaCanvas this ConnectProvider belongs to.
+	 */
+	private WorkareaCanvas canvas;
 
-	/* (non-Javadoc)
-	 * @see org.netbeans.api.visual.action.ConnectProvider#createConnection(org.netbeans.api.visual.widget.Widget, org.netbeans.api.visual.widget.Widget)
+
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 * 
+	 * @param canvas
+	 */
+	public SceneConnectProvider(WorkareaCanvas canvas)
+	{
+		this.canvas = canvas;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.netbeans.api.visual.action.ConnectProvider#createConnection(org.netbeans
+	 * .api.visual.widget.Widget, org.netbeans.api.visual.widget.Widget)
 	 */
 	public void createConnection(Widget sourceWidget, Widget targetWidget)
 	{
@@ -55,10 +75,8 @@ public class SceneConnectProvider implements ConnectProvider
 		WidgetObject TargetWidObj = (WidgetObject) targetWidget;
 
 		// Gets the compatible interfaces between the two devices.
-		String[] compInter = ConnectionManagment
-				.getCompatibleConnectionInterfaces(SourceWidObj.getObject()
-						.getSupportedConnectionInterfaces(), TargetWidObj
-						.getObject().getSupportedConnectionInterfaces());
+		String[] compInter = ConnectionManagment.getCompatibleConnectionInterfaces(SourceWidObj.getObject()
+				.getSupportedConnectionInterfaces(), TargetWidObj.getObject().getSupportedConnectionInterfaces());
 
 
 		// If the compatible interfaces between the two devices are not 0.
@@ -67,18 +85,14 @@ public class SceneConnectProvider implements ConnectProvider
 
 			// Creates a dialog that shows the different available connection
 			// types.
-			String conType = ListDialog.showDialog(null, null,
-					"Connection type", "Connection", compInter, null, null);
+			String conType = ListDialog.showDialog(null, null, "Connection type", "Connection", compInter, null, null);
 
 
 			// If a connection type is not selected.
 			if ( conType == null )
 			{
-				JOptionPane
-						.showMessageDialog(
-								null,
-								"You must choose a connection type for a connection to be made.",
-								"alert", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "You must choose a connection type for a connection to be made.",
+						"alert", JOptionPane.ERROR_MESSAGE);
 			}
 			// If the cancel butten is pressed.
 			else if ( conType == "Cancelled" )
@@ -99,17 +113,11 @@ public class SceneConnectProvider implements ConnectProvider
 
 					// Creates the connection between the two devices(Not on the
 					// scene).
-					con = ConnectionManagment.makeConnection(
-							PrimeMain1.currentCanvas.getConnections(),
-							"Connection"
-									+ PrimeMain1.currentCanvas
-											.getNumberOfWidgetsOnTheScene(),
-							"Connection between "
-									+ SourceWidObj.getObject().getObjectName()
-									+ " and "
-									+ TargetWidObj.getObject().getObjectName()
-									+ ".", SourceWidObj.getObject(),
-							TargetWidObj.getObject(), conType, conClass);
+					con = ConnectionManagment.makeConnection(canvas.getConnections(), "Connection"
+							+ canvas.getNumberOfWidgetsOnTheScene(), "Connection between "
+							+ SourceWidObj.getObject().getObjectName() + " and "
+							+ TargetWidObj.getObject().getObjectName() + ".", SourceWidObj.getObject(), TargetWidObj
+							.getObject(), conType, conClass);
 
 
 					// Adds the connection to the connections array of each
@@ -120,66 +128,62 @@ public class SceneConnectProvider implements ConnectProvider
 
 					// Creates the connection between the two devices on the
 					// scene.
-					WidgetExtendedConnection connection = new WidgetExtendedConnection(
-							PrimeMain1.currentCanvas.getScene(), con);
+					WidgetExtendedConnection connection = new WidgetExtendedConnection(canvas.getScene(), con);
 
 
 					// Adds the connection to the connection array for the
 					// workareacanvas.
-					ConnectionManagment.addConnection(con, false);
+					ConnectionManagment.addConnection(con, false, canvas);
 
 					// The array anchor
 					connection.setTargetAnchorShape(AnchorShape.NONE);
 					connection.setToolTipText("This is a connection");
 					connection.getActions().addAction(new AdapterExtended());
-					connection.setSourceAnchor(AnchorFactory
-							.createRectangularAnchor(sourceWidget));
-					connection.setTargetAnchor(AnchorFactory
-							.createRectangularAnchor(targetWidget));
-					PrimeMain1.currentCanvas.getConnectionLayer().addChild(
-							connection);
+					connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(sourceWidget));
+					connection.setTargetAnchor(AnchorFactory.createRectangularAnchor(targetWidget));
+					canvas.getConnectionLayer().addChild(connection);
 
 				}
 				// If there already exists a connection between the two given
 				// objects.
 				catch ( ConnectionDoesExist e )
 				{
-					JOptionPane
-							.showMessageDialog(
-									null,
-									"There already exists a connection between these two objects.",
-									"alert", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "There already exists a connection between these two objects.",
+							"alert", JOptionPane.ERROR_MESSAGE);
 				}
 				// If a connection between the two given objects is impossible.
 				catch ( ConnectionsIsNotPossible e )
 				{
-					JOptionPane
-							.showMessageDialog(
-									null,
-									"A connection between these two objects is not possible.",
-									"alert", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "A connection between these two objects is not possible.",
+							"alert", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null,
-					"These two objects cannot connect to eachother because they dont"
-							+ " support the same ports.", "alert",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "These two objects cannot connect to eachother because they dont"
+					+ " support the same ports.", "alert", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.netbeans.api.visual.action.ConnectProvider#hasCustomTargetWidgetResolver(org.netbeans.api.visual.widget.Scene)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.netbeans.api.visual.action.ConnectProvider#hasCustomTargetWidgetResolver
+	 * (org.netbeans.api.visual.widget.Scene)
 	 */
 	public boolean hasCustomTargetWidgetResolver(Scene scene)
 	{
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.netbeans.api.visual.action.ConnectProvider#isSourceWidget(org.netbeans.api.visual.widget.Widget)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.netbeans.api.visual.action.ConnectProvider#isSourceWidget(org.netbeans
+	 * .api.visual.widget.Widget)
 	 */
 	public boolean isSourceWidget(Widget sourceWidget)
 	{
@@ -191,14 +195,16 @@ public class SceneConnectProvider implements ConnectProvider
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.netbeans.api.visual.action.ConnectProvider#isTargetWidget(org.netbeans.api.visual.widget.Widget, org.netbeans.api.visual.widget.Widget)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.netbeans.api.visual.action.ConnectProvider#isTargetWidget(org.netbeans
+	 * .api.visual.widget.Widget, org.netbeans.api.visual.widget.Widget)
 	 */
-	public ConnectorState isTargetWidget(Widget sourceWidget,
-			Widget targetWidget)
+	public ConnectorState isTargetWidget(Widget sourceWidget, Widget targetWidget)
 	{
-		if ( sourceWidget != targetWidget
-				&& targetWidget instanceof WidgetObject )
+		if ( sourceWidget != targetWidget && targetWidget instanceof WidgetObject )
 		{
 			return ConnectorState.ACCEPT;
 		}
@@ -208,8 +214,12 @@ public class SceneConnectProvider implements ConnectProvider
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.netbeans.api.visual.action.ConnectProvider#resolveTargetWidget(org.netbeans.api.visual.widget.Scene, java.awt.Point)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.netbeans.api.visual.action.ConnectProvider#resolveTargetWidget(org
+	 * .netbeans.api.visual.widget.Scene, java.awt.Point)
 	 */
 	public Widget resolveTargetWidget(Scene sourceWidget, Point sceneLocation)
 	{
@@ -227,8 +237,7 @@ public class SceneConnectProvider implements ConnectProvider
 	 */
 	private boolean checkSupportsConnection(Object a, Object b)
 	{
-		return ConnectionManagment.checkDeviceConnectiontypeSupport(a, b,
-				"RJ-45");
+		return ConnectionManagment.checkDeviceConnectiontypeSupport(a, b, "RJ-45");
 	}
 
 

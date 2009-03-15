@@ -123,14 +123,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 	{
 		WorkareaSceneScroll canvasScroll = new WorkareaSceneScroll(canvas);
 
-		// Creates the image for the tab
-		ImageIcon icon = ImageLocator.getImageIconObject("java");
-
-		int width = (int) (PrimeMain1.width * 0.60);
-		int height = (int) (PrimeMain1.width * 0.60);
-		this.setPreferredSize(new Dimension(width, height));
-
-		this.addTab(canvas.getCanvasName(), icon, canvasScroll);
+		createNewCanvasTab(canvasScroll);
 	}
 	
 
@@ -244,7 +237,6 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 					// Save
 					if(answer == 0)
 					{
-						System.out.print("Saving....");
 						// Saves the canvas to a file.
 						FileManagment.saveWorkareaCanvas(test.getCanvas());
 						this.remove(test);

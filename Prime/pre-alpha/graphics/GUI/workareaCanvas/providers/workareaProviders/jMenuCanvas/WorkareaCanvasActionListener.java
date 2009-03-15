@@ -191,7 +191,7 @@ public class WorkareaCanvasActionListener implements ActionListener
 						.getImage());
 
 				// Adds the given object to the given location
-				canvas.addWidgetObject(newWidgetObject, location);
+				canvas.addWidgetObject(newWidgetObject, location, true);
 			}
 
 		}

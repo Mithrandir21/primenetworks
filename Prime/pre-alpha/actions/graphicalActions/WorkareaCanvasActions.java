@@ -2,7 +2,10 @@ package actions.graphicalActions;
 
 
 import exceptions.ConnectionDoesNotExist;
+import graphics.ImageLocator;
 import graphics.PrimeMain1;
+import graphics.WidgetIcon;
+import graphics.GUI.selectArea.CreateObjectDragged;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import graphics.GUI.workareaCanvas.providers.AdapterExtended;
 import graphics.GUI.workareaCanvas.providers.CreateProvider;
@@ -19,8 +22,22 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.ImageIcon;
+
 import managment.ConnectionManagment;
 import objects.Object;
+import objects.clientObjects.Desktop;
+import objects.clientObjects.Laptop;
+import objects.infrastructureObjects.Hub;
+import objects.infrastructureObjects.Router;
+import objects.infrastructureObjects.Switch;
+import objects.peripheralObjects.Scanner;
+import objects.serverObjects.BackupServer;
+import objects.serverObjects.FirewallServer;
+import objects.serverObjects.HTTPServer;
+import objects.serverObjects.MailServer;
+import objects.serverObjects.ProxyServer;
+import objects.softwareObjects.Webserver;
 
 import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.border.BorderFactory;
@@ -73,7 +90,7 @@ public class WorkareaCanvasActions
 
 			objectPoint.setLocation(height, width);
 
-			canvas.addWidgetObject(newObject, objectPoint);
+			canvas.addWidgetObject(newObject, objectPoint, true);
 
 
 			canvas.cleanUp();
@@ -87,6 +104,126 @@ public class WorkareaCanvasActions
 			System.out.println("ActionCreateWidgetObject - IOException");
 		}
 	}
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param obj
+	 * @param canvas
+	 */
+	public static void addObjectToCanvas(Object obj, WorkareaCanvas canvas)
+	{
+		boolean set = false;
+		Class<?> objectType = null;
+		ImageIcon objectIcon = null;
+		objects.Object newObject = obj;
+		WidgetObject newWidgetObject = null;
+		
+		
+		if ( obj.getClass().equals(Desktop.class) )
+		{
+			objectType = Desktop.class;
+			objectIcon = ImageLocator.getImageIconObject("Desktop");
+
+			set = true;
+		}
+		else if ( obj.getClass().equals(Laptop.class) )
+		{
+			objectType = Laptop.class;
+			objectIcon = ImageLocator.getImageIconObject("Laptop");
+
+			set = true;
+		}
+		else if ( obj.getClass().equals(Webserver.class) )
+		{
+			objectType = HTTPServer.class;
+			objectIcon = ImageLocator.getImageIconObject("Web-server");
+
+			set = true;
+		}
+		else if ( obj.getClass().equals(MailServer.class) )
+		{
+			objectType = MailServer.class;
+			objectIcon = ImageLocator.getImageIconObject("Email-server");
+
+			set = true;
+		}
+		else if ( obj.getClass().equals(BackupServer.class) )
+		{
+			objectType = BackupServer.class;
+			objectIcon = ImageLocator.getImageIconObject("Data-server");
+
+			set = true;
+		}
+		else if ( obj.getClass().equals(FirewallServer.class) )
+		{
+			objectType = FirewallServer.class;
+			objectIcon = ImageLocator.getImageIconObject("Firewall-server");
+
+			set = true;
+		}
+		else if ( obj.getClass().equals(ProxyServer.class) )
+		{
+			objectType = ProxyServer.class;
+			objectIcon = ImageLocator.getImageIconObject("Proxy-server");
+
+			set = true;
+		}
+		else if ( obj.getClass().equals(Hub.class) )
+		{
+			objectType = Hub.class;
+			objectIcon = ImageLocator.getImageIconObject("Hub");
+
+			set = true;
+		}
+		else if ( obj.getClass().equals(Switch.class) )
+		{
+			objectType = Switch.class;
+			objectIcon = ImageLocator.getImageIconObject("Switch");
+
+			set = true;
+		}
+		else if ( obj.getClass().equals(Router.class) )
+		{
+			objectType = Router.class;
+			objectIcon = ImageLocator.getImageIconObject("Router");
+
+			set = true;
+		}
+		else if ( obj.getClass().equals(Router.class) )
+		{
+			objectType = Router.class;
+			objectIcon = ImageLocator.getImageIconObject("WirelessRouter");
+
+			set = true;
+		}
+		else if ( obj.getClass().equals(Scanner.class) )
+		{
+			objectType = Scanner.class;
+			objectIcon = ImageLocator.getImageIconObject("Scanner");
+
+			set = true;
+		}
+		
+		
+		
+		if ( set == true )
+		{
+			WidgetIcon newObjectIcon = new WidgetIcon(objectIcon,
+					objectType);
+
+
+			// Creates a new WidgetObject that will be added to the scene
+			newWidgetObject = new WidgetObject(canvas.getScene(), newObject, objectIcon
+					.getImage());
+
+			// Adds the given object to the given location
+			canvas.addWidgetObject(newWidgetObject, obj.getLocation(), false);
+		}
+	}
+	
 
 
 	/**
@@ -100,7 +237,7 @@ public class WorkareaCanvasActions
 	 * @param canvas
 	 */
 	public static void addWidgetToCanvas(WidgetObject newObject, Point objectPoint,
-			WorkareaCanvas canvas)
+			WorkareaCanvas canvas, boolean withCleanUp)
 	{
 		Point sceneLocation = canvas.getScene().convertViewToScene(objectPoint);
 
@@ -110,7 +247,7 @@ public class WorkareaCanvasActions
 
 		newObject.getActions().addAction(
 				ActionFactory.createExtendedConnectAction(canvas.getInteractionLayer(),
-						new SceneConnectProvider()));
+						new SceneConnectProvider(canvas)));
 
 
 		//			
@@ -172,7 +309,10 @@ public class WorkareaCanvasActions
 		canvas.getMainLayer().addChild(newObject);
 		canvas.addToNumberOfWidgetsOnTheCanvas();
 
-		canvas.cleanUp();
+		if(withCleanUp)
+		{
+			canvas.cleanUp();
+		}
 	}
 
 

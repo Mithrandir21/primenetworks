@@ -12,6 +12,7 @@ import org.netbeans.api.visual.widget.Widget;
 import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import widgetManipulation.WidgetObject;
+import objects.Object;
 
 
 /**
@@ -130,13 +131,41 @@ public class CanvasManagment
 		for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
 		{
 			WidgetObject temp = (WidgetObject) iter.next();
-
-			if ( temp.getObject().equals(obj) )
+			
+			if ( temp.getObject().getObjectName().equals(obj.getObjectName()) )
 			{
 				return temp;
 			}
 		}
 
+		return null;
+	}
+	
+	
+	
+	/**
+	 * Finds and returns the WidgetObject that contains an Object based on the name
+	 * of the object and the given object.
+	 * 
+	 * @param obj
+	 * @param canvas
+	 * @return The WidgetObject that contains the given object.
+	 */
+	public static WidgetObject findWidgetObjectByObjectName(Object obj,
+			WorkareaCanvas canvas)
+	{
+		List<Widget> children = canvas.getMainLayer().getChildren();
+
+
+		for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
+		{
+			WidgetObject temp = (WidgetObject) iter.next();
+			
+			if ( temp.getObject().getObjectName().equals(obj.getObjectName()) )
+			{
+				return temp;
+			}
+		}
 
 		return null;
 	}
