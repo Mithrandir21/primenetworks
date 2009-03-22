@@ -1,9 +1,6 @@
 package managment;
 
 
-import graphics.PrimeMain1;
-import graphics.GUI.workareaCanvas.WorkareaCanvas;
-
 import javax.swing.JOptionPane;
 
 import logistical.cleanup;
@@ -20,6 +17,7 @@ import exceptions.ConnectionDoesNotExist;
 import exceptions.ConnectionsIsNotPossible;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
+import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 
 /**

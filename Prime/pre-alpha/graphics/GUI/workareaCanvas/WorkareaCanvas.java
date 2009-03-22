@@ -4,10 +4,7 @@
 package graphics.GUI.workareaCanvas;
 
 
-import graphics.ImageLocator;
 import graphics.PrimeMain1;
-import graphics.WidgetIcon;
-import graphics.GUI.selectArea.CreateObjectDragged;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas.JMenuWorkareaCanvas;
 
 import java.awt.Point;
@@ -16,33 +13,17 @@ import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
 
 import objects.Object;
-import objects.clientObjects.Desktop;
-import objects.clientObjects.Laptop;
 import objects.hardwareObjects.ExternalNetworksCard;
 import objects.hardwareObjects.InternalNetworksCard;
-import objects.infrastructureObjects.Hub;
-import objects.infrastructureObjects.Router;
-import objects.infrastructureObjects.Switch;
-import objects.peripheralObjects.Scanner;
-import objects.serverObjects.BackupServer;
-import objects.serverObjects.FirewallServer;
-import objects.serverObjects.HTTPServer;
-import objects.serverObjects.MailServer;
-import objects.serverObjects.ProxyServer;
 
 import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.model.ObjectScene;
@@ -58,14 +39,11 @@ import connections.Connection;
 
 
 /**
- * A visual canvas that will hold all the object of any given network. The
- * object can be moved around, deleted or connected to other object. The canvas
- * has a come special feature like zooming, scrolling and panning. The canvas
- * has D'n'D(Drag and Drop) features. Any Widget can be dragged and dropped onto
- * the the canvas. The widget will then be converted into a {@link WidgetObject
- * WidgetObject} and a standard object will be created. The object class depends
- * on the class of the dragged widget. The object will be created and place
- * within the WidgetObject.
+ * A visual canvas that will hold all the object of any given network. The object can be moved around, deleted or
+ * connected to other object. The canvas has a come special feature like zooming, scrolling and panning. The canvas has
+ * D'n'D(Drag and Drop) features. Any Widget can be dragged and dropped onto the the canvas. The widget will then be
+ * converted into a {@link WidgetObject WidgetObject} and a standard object will be created. The object class depends on
+ * the class of the dragged widget. The object will be created and place within the WidgetObject.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -92,17 +70,13 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	// The main layer of the scene where the WidgetObjects are placed
 	private LayerWidget mainLayer = null;
 
-	// The interaction layer where the interaction between the user and the
-	// WidgetObjects takes place
+	// The interaction layer where the interaction between the user and the WidgetObjects takes place
 	private LayerWidget interactionLayer = null;
 
-	// The connection layer where the connections between WidgetObjects are
-	// placed
+	// The connection layer where the connections between WidgetObjects are placed
 	private LayerWidget connectionLayer = null;
 
-	// An array that will contain all the canvases connection, which are
-	// represented by a
-	// WidgetExtendedConnection.
+	// An array that will contain all the canvases connection, which are represented by a WidgetExtendedConnection.
 	private Connection[] connections = new Connection[5];
 
 
@@ -125,10 +99,34 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 
 	/**
-	 * A constructor for the canvas class. This constructor will set the drop
-	 * handling and all the special features the canvas has.
+	 * A constructor for the canvas class. This constructor will set the drop handling and all the special features the
+	 * canvas has.
 	 */
 	public WorkareaCanvas()
+	{
+		makeCanvasReady();
+	}
+
+
+	/**
+	 * A constructor for the canvas class.
+	 * 
+	 * @param canvasName
+	 *            The name of the Canvas.
+	 */
+	public WorkareaCanvas(String canvasName)
+	{
+		this.setCanvasName(canvasName);
+		makeCanvasReady();
+	}
+
+
+
+
+	/**
+	 * This constructor will set the drop handling and all the special features the canvas has.
+	 */
+	public void makeCanvasReady()
 	{
 		// Creating the actual view
 		myView.setTransferHandler(TransHandler);
@@ -144,8 +142,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 		// Adds the zoom feature to the scene.
 		scene.getActions().addAction(ActionFactory.createZoomAction());
 		scene.getActions().addAction(ActionFactory.createPanAction());
-		scene.getActions().addAction(
-				ActionFactory.createPopupMenuAction(new JMenuWorkareaCanvas(this)));
+		scene.getActions().addAction(ActionFactory.createPopupMenuAction(new JMenuWorkareaCanvas(this)));
 
 
 		// This is the main layer of the scene where the WidgetsObjects are
@@ -161,6 +158,9 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 		// objects are shown.
 		connectionLayer = new LayerWidget(scene);
 		scene.addChild(connectionLayer);
+
+		saved = false;
+		changed = false;
 	}
 
 
@@ -188,8 +188,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 
 	/**
-	 * Gets the view of the scene. Scene can only be viewed through a view like
-	 * this.
+	 * Gets the view of the scene. Scene can only be viewed through a view like this.
 	 * 
 	 * @see org.netbeans.api.visual.widget.Scene#getView() View
 	 * @return the myView
@@ -201,8 +200,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 
 	/**
-	 * Gets the main layer of the scene. This is where the {@link WidgetObject
-	 * WidgetObjects} are placed.
+	 * Gets the main layer of the scene. This is where the {@link WidgetObject WidgetObjects} are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the mainLayer
@@ -214,8 +212,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 
 	/**
-	 * Gets the interaction layer of the scene. This is where the actions a user
-	 * sees take place like clicks and menus.
+	 * Gets the interaction layer of the scene. This is where the actions a user sees take place like clicks and menus.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the interactionLayer
@@ -227,9 +224,8 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 
 	/**
-	 * Gets the connection layer of the scene. This is where the
-	 * {@link connections.WidgetExtendedConnection connections} between objects
-	 * in the scene are placed.
+	 * Gets the connection layer of the scene. This is where the {@link connections.WidgetExtendedConnection
+	 * connections} between objects in the scene are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the connectionLayer
@@ -271,6 +267,35 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	{
 		return changed;
 	}
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @return
+	 */
+	public WidgetObject[] getWidgetObjectsOnTheScene()
+	{
+		// Get a list of Widgets in the mainlayer
+		List<Widget> l = mainLayer.getChildren();
+
+		// Converts that list to an array of Objects
+		java.lang.Object[] childrenTemp = l.toArray();
+
+		// Creates an array with the length of the all the children on the
+		// canvas
+		WidgetObject[] childrenWidgets = new WidgetObject[childrenTemp.length];
+
+		// Casts all the objects in the converted list to widgetobjects
+		for ( int i = 0; i < childrenWidgets.length; i++ )
+		{
+			childrenWidgets[i] = (WidgetObject) childrenTemp[i];
+		}
+		
+		
+		return childrenWidgets;
+	}
+	
 
 
 	/**
@@ -293,7 +318,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 		{
 			childrenWidgets[i] = (WidgetObject) childrenTemp[i];
 		}
-
+		
 		// Creates an array with the length of the all the children on the
 		// canvas
 		Object[] childrenObject = new Object[childrenTemp.length];
@@ -313,8 +338,8 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	/**
 	 * Gets the number of Networks cards on the Scene.
 	 * 
-	 * @return Returns the number of network cards on the scene. Both
-	 *         {@link InternalNetworksCard}s and {@link ExternalNetworksCard}s.
+	 * @return Returns the number of network cards on the scene. Both {@link InternalNetworksCard}s and
+	 *         {@link ExternalNetworksCard}s.
 	 */
 	public int getNumberOfNICsOnTheScene()
 	{
@@ -342,9 +367,8 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 
 	/**
-	 * Gets the array of connections between objects. <i>Note: These connections
-	 * are not the visual connections shown on the scene, but the actual
-	 * connections between the objects within the different widgetObjects.</i>
+	 * Gets the array of connections between objects. <i>Note: These connections are not the visual connections shown on
+	 * the scene, but the actual connections between the objects within the different widgetObjects.</i>
 	 */
 	public Connection[] getConnections()
 	{
@@ -373,9 +397,9 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	{
 		CanvasName = canvasName;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -385,13 +409,12 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	{
 		this.scene = scene;
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
-	 * Sets the view of the scene. Scene can only be viewed through a view like
-	 * this.
+	 * Sets the view of the scene. Scene can only be viewed through a view like this.
 	 * 
 	 * @see org.netbeans.api.visual.widget.Scene#getView() View
 	 */
@@ -402,8 +425,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 
 	/**
-	 * Sets the main layer of the scene. This is where the {@link WidgetObject
-	 * WidgetObjects} are placed.
+	 * Sets the main layer of the scene. This is where the {@link WidgetObject WidgetObjects} are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 */
@@ -414,8 +436,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 
 	/**
-	 * Sets the interaction layer of the scene. This is where the actions a user
-	 * sees take place like clicks and menus.
+	 * Sets the interaction layer of the scene. This is where the actions a user sees take place like clicks and menus.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 */
@@ -426,9 +447,8 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 
 	/**
-	 * Sets the connection layer of the scene. This is where the
-	 * {@link connections.WidgetExtendedConnection connections} between objects
-	 * in the scene are placed.
+	 * Sets the connection layer of the scene. This is where the {@link connections.WidgetExtendedConnection
+	 * connections} between objects in the scene are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 */
@@ -436,12 +456,11 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	{
 		connectionLayer = con;
 	}
-	
+
 
 	/**
-	 * Sets the connections array for the canvas. <i>Note: These connections are
-	 * not the visual connections shown on the scene, but the actual connections
-	 * between the objects within the different widgetObjects.</i>
+	 * Sets the connections array for the canvas. <i>Note: These connections are not the visual connections shown on the
+	 * scene, but the actual connections between the objects within the different widgetObjects.</i>
 	 * 
 	 * @param connections
 	 */
@@ -513,9 +532,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * java.awt.dnd.DropTargetListener#dragEnter(java.awt.dnd.DropTargetDragEvent
-	 * )
+	 * @see java.awt.dnd.DropTargetListener#dragEnter(java.awt.dnd.DropTargetDragEvent )
 	 */
 	@Override
 	public void dragEnter(DropTargetDragEvent dtde)
@@ -528,8 +545,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * java.awt.dnd.DropTargetListener#dragExit(java.awt.dnd.DropTargetEvent)
+	 * @see java.awt.dnd.DropTargetListener#dragExit(java.awt.dnd.DropTargetEvent)
 	 */
 	@Override
 	public void dragExit(DropTargetEvent dte)
@@ -542,9 +558,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * java.awt.dnd.DropTargetListener#dragOver(java.awt.dnd.DropTargetDragEvent
-	 * )
+	 * @see java.awt.dnd.DropTargetListener#dragOver(java.awt.dnd.DropTargetDragEvent )
 	 */
 	@Override
 	public void dragOver(DropTargetDragEvent dtde)
@@ -557,8 +571,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
+	 * @see java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
 	 */
 	@Override
 	public void drop(DropTargetDropEvent dtde)
@@ -571,8 +584,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @seejava.awt.dnd.DropTargetListener#dropActionChanged(java.awt.dnd.
-	 * DropTargetDragEvent)
+	 * @seejava.awt.dnd.DropTargetListener#dropActionChanged(java.awt.dnd. DropTargetDragEvent)
 	 */
 	@Override
 	public void dropActionChanged(DropTargetDragEvent dtde)
@@ -592,14 +604,14 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	{
 		// Sets the location of the object.
 		newObject.getObject().setLocation(objectPoint);
-		
+
 		WorkareaCanvasActions.addWidgetToCanvas(newObject, objectPoint, this, withCleanUp);
 	}
 
 
 	/**
-	 * This method cleans up the canvas. The scene and all the views are
-	 * repainted and revalidated. The properties panel is also updated.
+	 * This method cleans up the canvas. The scene and all the views are repainted and revalidated. The properties panel
+	 * is also updated.
 	 */
 	public void cleanUp()
 	{
@@ -624,6 +636,29 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 		connectionLayer.revalidate();
 		connectionLayer.repaint();
+	}
+	
+	
+	
+	
+	/**
+	 * This function goes through all the widgetObjects on the scene and sets the
+	 * location of the widget on the scene to the location of the object within the
+	 * WidgetObject.
+	 */
+	public void revalidateWidgetLocations()
+	{
+		WidgetObject[] widgets = getWidgetObjectsOnTheScene();
+
+		// Iterates through the Object list
+		for ( int i = 0; i<widgets.length; i++ )
+		{
+			// Gets the object from the widget
+			Object obj = widgets[i].getObject();
+			
+			// Sets the object location
+			obj.setLocation(widgets[i].getLocation());
+		}
 	}
 
 

@@ -13,6 +13,7 @@ import graphics.GUI.selectArea.TabbedSelection;
 import graphics.GUI.statusArea.PrimeStatusBar;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import graphics.GUI.workareaCanvas.WorkareaTabbed;
+import graphics.services.PrimeService;
 
 import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
@@ -40,9 +41,12 @@ import java.util.Iterator;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import managment.CanvasManagment;
+import managment.FileManagment;
 import objects.Object;
 
 import org.jdesktop.swingx.JXMultiSplitPane;
@@ -59,6 +63,9 @@ import org.jdesktop.swingx.MultiSplitLayout.Node;
 @SuppressWarnings("serial")
 public class PrimeMain1 extends JFrame
 {
+	// Daemon services running
+	private static PrimeService services;
+	
 	// Variables to place the height and width of the main screen.
 	public static int width, height;
 
@@ -110,6 +117,8 @@ public class PrimeMain1 extends JFrame
 	public PrimeMain1()
 	{
 		super("Prime");
+		
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -323,14 +332,15 @@ public class PrimeMain1 extends JFrame
 	public static void main(String[] args)
 	{
 		PrimeMain1 temp = new PrimeMain1();
-
+		
+//		services = new PrimeService();
+		
 		temp.addWindowListener(new WindowAdapter()
 		{
 			@Override
 			public void windowClosing(WindowEvent ev)
 			{
-				// SaveLayoutModel();
-				System.exit(0);
+				exitProcess();
 			}
 		});
 
@@ -561,5 +571,48 @@ public class PrimeMain1 extends JFrame
 	public static WorkareaTabbed getWorkarea()
 	{
 		return workTab;
+	}
+	
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 */
+	private static void exitProcess()
+	{
+//		services.stopAll();
+		
+		
+		WorkareaCanvas[] changes = CanvasManagment.canvasesHaveChanged(canvases);
+		
+		// There were some canvases that were changed
+		if( changes != null )
+		{
+			// The options the user will be presented with.
+			String[] options = { "Save", "Dont save", "Cancel" };
+			
+			// Asks the user whether or not to save
+			int answer = JOptionPane.showOptionDialog(null,
+					"There are Networks that have not been saved, do you want to save the Networks?", "Save",
+					JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options, null);
+			
+			// Save
+			if ( answer == 0 )
+			{
+				FileManagment.saveCanvases(changes);
+				System.exit(0);
+			}
+			// Dont save
+			else if ( answer == 1 )
+			{
+				System.exit(0);
+			}
+		}
+		else
+		{
+			System.exit(0);
+		}
 	}
 }

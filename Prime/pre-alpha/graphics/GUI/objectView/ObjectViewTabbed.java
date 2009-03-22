@@ -65,11 +65,12 @@ public class ObjectViewTabbed extends JTabbedPane
 				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		this.addTab("Software", null, scrollPaneSW, softDesc);
 
-
+		
 		netObjView = new NetworkObjectView(obj);
 		String netDesc = "General information and option";
 		this.addTab("Network", null, netObjView, netDesc);
 
+		
 		visObjView = new VisualObjectView(obj);
 		String visDesc = "General information and option";
 		this.addTab("Visual", null, visObjView, visDesc);

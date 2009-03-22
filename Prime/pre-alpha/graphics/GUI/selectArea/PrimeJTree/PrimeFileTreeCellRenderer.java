@@ -3,7 +3,6 @@
  */
 package graphics.GUI.selectArea.PrimeJTree;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.io.File;
 import java.util.HashMap;

@@ -18,7 +18,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -54,8 +53,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 				JTabbedPane pane = (JTabbedPane) evt.getSource();
 
 				// Gets the scrollPane that the JTabbedPane contains.
-				WorkareaSceneScroll currentScrollPane = (WorkareaSceneScroll) pane
-						.getSelectedComponent();
+				WorkareaSceneScroll currentScrollPane = (WorkareaSceneScroll) pane.getSelectedComponent();
 
 				// Gets the workareaCanvas that the scrollPane contains.
 				WorkareaCanvas currentCanvas = null;
@@ -107,9 +105,9 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 
 		this.addTab(name, icon, canvasScroll);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * The function creates a new WorkareaSceneScroll and places that component
 	 * within a new tab with the given name. The tab is then added to this
@@ -125,7 +123,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 
 		createNewCanvasTab(canvasScroll);
 	}
-	
+
 
 
 
@@ -141,8 +139,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 		ImageIcon closeXIcon = ImageLocator.getImageIconObject("Close");
 
 		// The dimensions of the new button.
-		Dimension closeButtonSize = new Dimension(closeXIcon.getIconWidth() + 5, closeXIcon
-				.getIconHeight() + 5);
+		Dimension closeButtonSize = new Dimension(closeXIcon.getIconWidth() + 5, closeXIcon.getIconHeight() + 5);
 
 		String name = canvasScroll.getCanvas().getCanvasName();
 
@@ -207,35 +204,51 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 			JButton button = (JButton) e.getSource();
 
 			String contentName = button.getName();
-			WorkareaSceneScroll test = null;
 
-			// This is the current number of tabs
-			int arraySize = canvases.size();
+			removeTabWithCanvas(contentName, true);
+		}
+	}
 
-			// Goes through the list of tab contents until it finds one that
-			// matches the given button name.
-			for ( int i = 0; i < arraySize; i++ )
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param canvas
+	 */
+	public void removeTabWithCanvas(String canvasName, boolean verify)
+	{
+		WorkareaSceneScroll test = null;
+
+		// This is the current number of tabs
+		int arraySize = canvases.size();
+
+		// Goes through the list of tab contents until it finds one that
+		// matches the given button name.
+		for ( int i = 0; i < arraySize; i++ )
+		{
+			test = canvases.get(i);
+
+			String tabName = test.getName();
+
+			// If the name of the button and the name of the content match,
+			// the button to close that
+			// tab with the given content has been pressed and the tab is
+			// removed.
+			if ( tabName != null && tabName.equals(canvasName) )
 			{
-				test = canvases.get(i);
-
-				String tabName = test.getName();
-
-				// If the name of the button and the name of the content match,
-				// the button to close that
-				// tab with the given content has been pressed and the tab is
-				// removed.
-				if ( tabName != null && tabName.equals(contentName) )
+				if ( verify )
 				{
 					// The options the user will be presented with.
 					Object[] options = { "Save", "Dont save", "Cancel" };
 
 					// Asks the user whether or not to save
-					int answer = JOptionPane
-							.showOptionDialog(null, "This canvas has not been saved, do you want to save this canvas?",
-									"Save", JOptionPane.WARNING_MESSAGE,
-									JOptionPane.WARNING_MESSAGE, null, options, null);
+					int answer = JOptionPane.showOptionDialog(null,
+							"This canvas has not been saved, do you want to save this canvas?", "Save",
+							JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options, null);
+					
 					// Save
-					if(answer == 0)
+					if ( answer == 0 )
 					{
 						// Saves the canvas to a file.
 						FileManagment.saveWorkareaCanvas(test.getCanvas());
@@ -244,7 +257,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 						return;
 					}
 					// Dont save.
-					else if(answer == 1)
+					else if ( answer == 1 )
 					{
 						this.remove(test);
 						canvases.remove(i);
@@ -254,11 +267,54 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 					{
 						return;
 					}
-						
 				}
+				else
+				{
+					this.remove(test);
+					canvases.remove(i);
+					return;
+				}
+			}
 
-				test = null;
+			test = null;
+		}
+	}
+	
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param canvasName
+	 * @return Returns true if there exists a tab with the given name and false there does not.
+	 */
+	public boolean existsTabWithGivenName(String canvasName)
+	{
+		WorkareaSceneScroll test = null;
+
+		// This is the current number of tabs
+		int arraySize = canvases.size();
+
+		// Goes through the list of tab contents until it finds one that
+		// matches the given button name.
+		for ( int i = 0; i < arraySize; i++ )
+		{
+			test = canvases.get(i);
+
+			String names = test.getName();
+
+			// If the name of the button and the name of the content match,
+			// the button to close that
+			// tab with the given content has been pressed and the tab is
+			// removed.
+			if ( names != null && names.equalsIgnoreCase(canvasName) )
+			{
+				return true;
 			}
 		}
+		
+		
+		return false;
 	}
 }

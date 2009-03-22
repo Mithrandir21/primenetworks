@@ -1,16 +1,13 @@
 package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas;
 
 
-import java.awt.Point;
-
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
-import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget.WorkareaWidgetActionListener;
+
+import java.awt.Point;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-
-import org.netbeans.api.visual.widget.Widget;
 
 
 /**

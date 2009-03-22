@@ -6,7 +6,6 @@ package graphics.GUI.selectArea.PrimeJTree;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.JTree;
 

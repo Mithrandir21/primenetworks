@@ -13,12 +13,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import objects.Object;
-
 import widgetManipulation.WidgetObject;
 
 
@@ -65,7 +65,6 @@ public class ObjectView extends JFrame implements ActionListener
 		JPanel panel = new JPanel();
 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
 
 		view = new ObjectViewTabbed(currentObject);
 

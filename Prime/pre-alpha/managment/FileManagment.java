@@ -12,7 +12,9 @@ import graphics.GUI.workareaCanvas.providers.AdapterExtended;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -22,15 +24,15 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTree;
 
+import objects.Object;
+
 import org.netbeans.api.visual.anchor.AnchorFactory;
 import org.netbeans.api.visual.anchor.AnchorShape;
 
-import connections.Connection;
-import connections.WidgetExtendedConnection;
-
-import objects.Object;
 import widgetManipulation.WidgetObject;
 import actions.graphicalActions.WorkareaCanvasActions;
+import connections.Connection;
+import connections.WidgetExtendedConnection;
 
 
 /**
@@ -49,10 +51,40 @@ public class FileManagment
 	 */
 	public static void saveWorkareaCanvas(WorkareaCanvas canvas)
 	{
+		File file = new File("./Data/" + canvas.getCanvasName() + ".dat");
+
+		saveCanvas(canvas, file);
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param canvas
+	 * @param file
+	 */
+	public static void saveWorkareaCanvas(WorkareaCanvas canvas, File file)
+	{
+		saveCanvas(canvas, file);
+	}
+
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param canvas
+	 * @param file
+	 */
+	private static void saveCanvas(WorkareaCanvas canvas, File file)
+	{
+		// Revalidates the locations of the objects on the scene
+		canvas.revalidateWidgetLocations();
+
 		try
 		{
-			// The file that will be examined and read for canvas information
-			FileOutputStream fout = new FileOutputStream("./Data/" + canvas.getCanvasName() + ".dat");
+			FileOutputStream fout = new FileOutputStream(file);
 
 			// The object stream file
 			ObjectOutputStream oos = new ObjectOutputStream(fout);
@@ -70,25 +102,23 @@ public class FileManagment
 			// The objects on the canvas
 			Object[] objects = canvas.getObjectsOnTheScene();
 
+			// The ArrayList of object that are on the canvas
+			ArrayList<Object> objectList = new ArrayList<Object>();
 
-			// There must be some objects on the canvas for there to be saved
-			// any widgetObjects
+
+			// There must be some objects on the canvas for there to be saved any widgetObjects
 			if ( objects.length > 0 )
 			{
-				// The ArrayList of object that are on the canvas
-				ArrayList<Object> objectList = new ArrayList<Object>();
-
-				
-				// Goes through all the object on the canvas and adds then to
-				// the arraylist.
+				// Goes through all the object on the canvas and adds then to the arraylist
 				for ( int i = 0; i < objects.length; i++ )
 				{
 					objectList.add(objects[i]);
 				}
 
-				// Writes out the objects in the form of an arraylist.
-				oos.writeObject(objectList);
 			}
+
+			// Writes out the objects in the form of an arraylist, even if it is empty
+			oos.writeObject(objectList);
 
 			oos.flush();
 
@@ -102,25 +132,21 @@ public class FileManagment
 			// The canvas connections
 			Connection[] connections = canvas.getConnections();
 
+			// The ArrayList that will hold the connections
+			ArrayList<Connection> connectionList = new ArrayList<Connection>();
 
-			// The must be at least on connection on the canvas for there to be
-			// saved any connections
-			if ( connections.length > 0 )
+			// The must be at least on connection on the canvas for there to be saved any connections
+			if ( connections.length > 0 && connections[0] != null )
 			{
-				// The ArrayList that will hold the connections
-				ArrayList<Connection> connectionList = new ArrayList<Connection>();
-
-				// Goes through all the connections on the canvas and adds them
-				// to the ArrayList
+				// Goes through all the connections on the canvas and adds them to the ArrayList
 				for ( int i = 0; i < connections.length; i++ )
 				{
 					connectionList.add(connections[i]);
 				}
-
-				// Writes out the connections ArrayList
-				oos.writeObject(connectionList);
 			}
 
+			// Writes out the connections ArrayList, even if it is empty
+			oos.writeObject(connectionList);
 
 			// END OF WRITE CONNECTIONS
 
@@ -134,31 +160,7 @@ public class FileManagment
 		}
 
 		canvas.setSaved(true);
-	}
-
-
-	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @param canvas
-	 * @param file
-	 */
-	public static void saveWorkareaCanvas(WorkareaCanvas canvas, File file)
-	{
-		try
-		{
-			FileOutputStream fout = new FileOutputStream(file);
-			ObjectOutputStream oos = new ObjectOutputStream(fout);
-			// XMLEncoder e = new XMLEncoder(oos);
-			// e.writeObject(canvas);
-			// e.flush();
-			// e.writeObject(canvas.getScene());
-			// e.close();
-		}
-		catch ( Exception e )
-		{
-			e.printStackTrace();
-		}
+		canvas.setChanged(false);
 	}
 
 
@@ -174,21 +176,21 @@ public class FileManagment
 		File file = fileNode.getFile();
 
 
-		// If the file is a directory
-		if ( file.isDirectory() )
-		{
-			JOptionPane.showMessageDialog(null, "This \n" + file.getName() + "\n" + "is a directory at\n"
-					+ file.getAbsolutePath());
-
-			return;
-		}
-
 
 		// If the file does not exist
 		if ( !file.exists() )
 		{
 			JOptionPane.showMessageDialog(null, "This file\n" + file.getName() + "\n" + "does not exist in location\n"
-					+ file.getAbsolutePath());
+					+ file.getAbsolutePath(), "Error", JOptionPane.ERROR_MESSAGE);
+
+			return;
+		}
+
+		// If the file is a directory
+		if ( file.isDirectory() )
+		{
+			JOptionPane.showMessageDialog(null, "This \n" + file.getName() + "\n" + "is a directory at\n"
+					+ file.getAbsolutePath(), "Error", JOptionPane.ERROR_MESSAGE);
 
 			return;
 		}
@@ -196,47 +198,81 @@ public class FileManagment
 		// If the file can not be written to(hence not deleted)
 		if ( !file.canWrite() )
 		{
-			JOptionPane.showMessageDialog(null, "This file\n" + file.getName() + "\n" + "is write protected.");
+			JOptionPane.showMessageDialog(null, "This file\n" + file.getName() + "\n" + "is write protected.", "Error",
+					JOptionPane.ERROR_MESSAGE);
 
 			return;
 		}
 
+		// Gets the canvas name, if possible, from the file
+		String canvasName = getCanvasName(file);
 
+		// Creates an empty canvas
+		WorkareaCanvas canvas = null;
 
-		// Attempt to delete it
-		boolean success = file.delete();
-
-		if ( !success )
+		// If the name of the canvas was possible to the from the file
+		if ( canvasName != null )
 		{
-			JOptionPane.showMessageDialog(null, "The file\n" + file.getName() + "\n" + "was NOT successfully deleted.");
+			canvas = CanvasManagment.findCanvas(canvasName);
 		}
+
+		// No open canvas was found
+		if ( canvas == null )
+		{
+			// Attempt to delete it
+			boolean success = file.delete();
+
+			if ( !success )
+			{
+				JOptionPane.showMessageDialog(null, "The file\n" + file.getName() + "\n"
+						+ "was NOT successfully deleted.", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else
+			{
+				// Reloads
+				PrimeMain1.updatePrimeTree();
+
+				JOptionPane.showMessageDialog(null, "The file\n" + file.getName() + "\n" + "was successfully deleted.",
+						"Success", JOptionPane.PLAIN_MESSAGE);
+			}
+		}
+		// There was an open canvas found
 		else
 		{
-			// Reloads
-			PrimeMain1.updatePrimeTree();
+			// TODO - Close canvas, remove it from the canvas array and then
+			// delete the canvas
 
-			JOptionPane.showMessageDialog(null, "The file\n" + file.getName() + "\n" + "was successfully deleted.");
+			// Attempt to delete it
+			boolean success = file.delete();
 
+			if ( !success )
+			{
+				JOptionPane.showMessageDialog(null, "The file\n" + file.getName() + "\n"
+						+ "was NOT successfully deleted.", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else
+			{
+				// Reloads
+				PrimeMain1.updatePrimeTree();
 
+				// Removes the WorkareScroll with the canvas
+				PrimeMain1.workTab.removeTabWithCanvas(canvasName, false);
+
+				// Removed the canvas from the systems canvas array
+				CanvasManagment.removeWorkareaCanvas(canvas);
+
+				JOptionPane.showMessageDialog(null, "The file\n" + file.getName() + "\n" + "was successfully deleted.",
+						"Success", JOptionPane.PLAIN_MESSAGE);
+			}
 		}
 	}
 
 
-	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @param canvas
-	 */
-	public static void deleteWorkareaCanvas(WorkareaCanvas canvas)
-	{
-
-	}
-
-
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates a new WorkareaCanvas. The user is asked what the name of the new workareaCanvas will be.
+	 * The new WorkareaCanvas is then opened in the workarea.
 	 * 
 	 */
 	public static void newWorkareaCanvas()
@@ -244,20 +280,98 @@ public class FileManagment
 		String nameOfCanvas = (String) JOptionPane.showInputDialog(null, "Network Name", "New Network Name",
 				JOptionPane.QUESTION_MESSAGE);
 
-		if ( Pattern.matches("([a-zA-ZøæåØÆÅ_0-9])*", nameOfCanvas) )
-		{
-			// First creates the WorkareaSceneScroll object that will hold
-			WorkareaSceneScroll newScroll = new WorkareaSceneScroll(nameOfCanvas);
+		newCanvas(nameOfCanvas);
+	}
 
-			// Then we add the JScrollPane to the Screen
-			PrimeMain1.workTab.createNewCanvasTab(newScroll);
-			PrimeMain1.workTab.revalidate();
-			PrimeMain1.workTab.repaint();
-		}
-		else
+
+
+	/**
+	 * Creates a new WorkareaCanvas. The new WorkareaCanvas is opened in the workarea.
+	 * The name of the new WorkareaCanvas will be the given String.
+	 * 
+	 * @param nameOfCanvas
+	 */
+	public static void newWorkareaCanvas(String nameOfCanvas)
+	{
+		newCanvas(nameOfCanvas);
+	}
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param nameOfCanvas
+	 */
+	private static void newCanvas(String nameOfCanvas)
+	{
+
+		// IF the user has canceled
+		if ( nameOfCanvas != null )
 		{
-			JOptionPane.showMessageDialog(null, "This name, (" + nameOfCanvas + "), is not an accepted name.\n"
-					+ "The name can only contains letters, numbers and an underscore.");
+			if ( Pattern.matches("([a-zA-ZøæåØÆÅ_0-9])*", nameOfCanvas) )
+			{
+				// Checks whether or not there exist a canvas with the same
+				if ( !CanvasManagment.canvasExists(nameOfCanvas) )
+				{
+					WorkareaCanvas canvas = new WorkareaCanvas(nameOfCanvas);
+
+					// First creates the WorkareaSceneScroll object that will
+					// hold
+					WorkareaSceneScroll newScroll = new WorkareaSceneScroll(canvas);
+
+
+					// Tries to write out the WorkareaCanvas to a file
+					try
+					{
+						FileOutputStream fout = new FileOutputStream("./Data/" + canvas.getCanvasName() + ".dat");
+
+
+						// The object stream file
+						ObjectOutputStream oos = new ObjectOutputStream(fout);
+
+						// Writes out the name of the canvas
+						oos.writeObject(nameOfCanvas);
+
+
+						oos.flush();
+						oos.close();
+
+						// Saves the canvas and creates the correct End Of File
+						saveWorkareaCanvas(canvas);
+
+						// Then we add the JScrollPane to the Screen
+						PrimeMain1.workTab.createNewCanvasTab(newScroll);
+
+						// Reloads the JTree
+						PrimeMain1.updatePrimeTree();
+
+						PrimeMain1.workTab.revalidate();
+						PrimeMain1.workTab.repaint();
+					}
+					catch ( FileNotFoundException e )
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					catch ( IOException e )
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "There exist a Canvas with the same name as this Canvas.",
+							"Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "This name, (" + nameOfCanvas + "), is not an accepted name.\n"
+						+ "The name can only contains letters, numbers and an underscore.");
+			}
 		}
 
 		// Maybe add the new canvas to the JTree and save it?
@@ -266,29 +380,60 @@ public class FileManagment
 
 
 
+
 	/**
-	 * Javadoc-TODO - Description
+	 * This method opens a WorkareaCanvas from the given file. It adds the opened canvas the systems Workarea where the
+	 * WorkareaCanvas can be edited. It also adds all the objects and connections to the canvas.
+	 * 
+	 * @param file
+	 */
+	public static void openWorkareaCanvas(File file)
+	{
+		openCanvas(file);
+	}
+
+
+
+	/**
+	 * This method opens a WorkareaCanvas from the given file. It adds the opened canvas the systems Workarea where the
+	 * WorkareaCanvas can be edited. It also adds all the objects and connections to the canvas.
+	 * 
+	 * This method creates a File from the given string.
+	 * 
+	 * @param canvasName
+	 */
+	public static void openWorkareaCanvas(String canvasName)
+	{
+		File file = new File("./Data/" + canvasName + ".dat");
+
+		openCanvas(file);
+	}
+
+
+
+
+	/**
+	 * This method opens a WorkareaCanvas from the given file. It adds the opened canvas the systems Workarea where the
+	 * WorkareaCanvas can be edited. It also adds all the objects and connections to the canvas.
 	 * 
 	 * @param file
 	 */
 	@SuppressWarnings("unchecked")
-	public static void openWorkareaCanvas(File file)
+	private static void openCanvas(File file)
 	{
 		WorkareaCanvas canvas = new WorkareaCanvas();
 
+
 		try
 		{
-			// The input file that is going to be read from.
 			FileInputStream fin = new FileInputStream(file);
 
-			// The input stream
 			ObjectInputStream ois = new ObjectInputStream(fin);
 
-			// Read the name of the canvas
-			String canvasName = (String) ois.readObject();
+			// The name of the canvas
+			String name = (String) ois.readObject();
 
-			// Sets the canvas name
-			canvas.setCanvasName(canvasName);
+			canvas.setCanvasName(name);
 
 
 			// READS THE OBJECTS THAT ARE TO BE PLACED ON THE CANVAS
@@ -310,27 +455,31 @@ public class FileManagment
 				it.next();
 			}
 
-			// The objects array
-			Object[] objects = new Object[objectArraySize];
-
-			// The index of the objects array
-			int objectIndex = 0;
-
-			// Iterates through the list and adds the objects to the objects
-			// array
-			for ( Iterator it = objectList.iterator(); it.hasNext(); )
+			// If there were any objects found
+			if ( objectArraySize > 0 )
 			{
-				objects[objectIndex] = (Object) it.next();
-				objectIndex++;
-			}
+				// The objects array
+				Object[] objects = new Object[objectArraySize];
 
-			// Goes through the array of objects and adds them to the newly made
-			// canvas
-			for ( int i = 0; i < objects.length; i++ )
-			{
-				WorkareaCanvasActions.addObjectToCanvas(objects[i], canvas);
-			}
+				// The index of the objects array
+				int objectIndex = 0;
 
+				// Iterates through the list and adds the objects to the objects array
+				for ( Iterator it = objectList.iterator(); it.hasNext(); )
+				{
+					objects[objectIndex] = (Object) it.next();
+					objectIndex++;
+				}
+
+				// Goes through the array of objects and adds them to the newly made canvas
+				for ( int i = 0; i < objects.length; i++ )
+				{
+					if ( objects[i] != null )
+					{
+						WorkareaCanvasActions.addObjectToCanvas(objects[i], canvas);
+					}
+				}
+			}
 
 			// END OF READ OBJECTS
 
@@ -356,53 +505,54 @@ public class FileManagment
 				it.next();
 			}
 
-			// The connection array
-			Connection[] connections = new Connection[connectionArraySize];
-
-			// The index of the connection array
-			int connectionIndex = 0;
-
-			// Iterates through the list and adds the connections to the
-			// connections array
-			for ( Iterator it = connectionList.iterator(); it.hasNext(); )
+			// If there were any objects found
+			if ( connectionArraySize > 0 )
 			{
-				connections[connectionIndex] = (Connection) it.next();
-				connectionIndex++;
-			}
+				// The connection array
+				Connection[] connections = new Connection[connectionArraySize];
 
+				// The index of the connection array
+				int connectionIndex = 0;
 
-			// Goes through the entire connections array and adds the
-			// connections to the WorkareaCanvas
-			for ( int i = 0; i < connections.length; i++ )
-			{
-				if ( connections[i] != null )
+				// Iterates through the list and adds the connections to the connections array
+				for ( Iterator it = connectionList.iterator(); it.hasNext(); )
 				{
-					// Creates the connection between the two devices on the
-					// scene.
-					WidgetExtendedConnection connection = new WidgetExtendedConnection(canvas.getScene(),
-							connections[i]);
+					connections[connectionIndex] = (Connection) it.next();
+					connectionIndex++;
+				}
 
 
-					// Find the two object which are to be connected on the
-					// canvas
-					WidgetObject sourceWidget = CanvasManagment.findWidgetObjectByObjectName(connections[i]
-							.getObject1(), canvas);
-					WidgetObject targetWidget = CanvasManagment.findWidgetObjectByObjectName(connections[i]
-							.getObject2(), canvas);
+				// Goes through the entire connections array and adds the connections to the WorkareaCanvas
+				for ( int i = 0; i < connections.length; i++ )
+				{
+					if ( connections[i] != null )
+					{
+						// Creates the connection between the two devices on the scene.
+						WidgetExtendedConnection connection = new WidgetExtendedConnection(canvas.getScene(),
+								connections[i]);
 
-					// Adds the connection to the connection array for the
-					// WorkareaCanvas.
-					ConnectionManagment.addConnection(connections[i], false, canvas);
 
-					// The array anchor
-					connection.setTargetAnchorShape(AnchorShape.NONE);
-					connection.setToolTipText("This is a connection");
-					connection.getActions().addAction(new AdapterExtended());
-					connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(sourceWidget));
-					connection.setTargetAnchor(AnchorFactory.createRectangularAnchor(targetWidget));
-					canvas.getConnectionLayer().addChild(connection);
+						// Find the two object which are to be connected on the canvas
+						WidgetObject sourceWidget = CanvasManagment.findWidgetObjectByObjectName(connections[i]
+								.getObject1(), canvas);
+						WidgetObject targetWidget = CanvasManagment.findWidgetObjectByObjectName(connections[i]
+								.getObject2(), canvas);
+
+						// Adds the connection to the connection array for the WorkareaCanvas
+						ConnectionManagment.addConnection(connections[i], false, canvas);
+
+						// The array anchor
+						connection.setTargetAnchorShape(AnchorShape.NONE);
+						connection.setToolTipText("This is a connection");
+						connection.getActions().addAction(new AdapterExtended());
+						connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(sourceWidget));
+						connection.setTargetAnchor(AnchorFactory.createRectangularAnchor(targetWidget));
+						canvas.getConnectionLayer().addChild(connection);
+					}
 				}
 			}
+
+			// END OF CONNECTIONS
 
 
 			ois.close();
@@ -418,39 +568,81 @@ public class FileManagment
 
 
 
+
+
+
+
+
 	/**
-	 * Javadoc-TODO - Description
+	 * Finds the first part of any given string divided by one "." symbol.
 	 * 
-	 * @param canvasName
+	 * @param file
+	 * @return Returns the first part of the given file name without the ".*".
 	 */
-	public static void openWorkareaCanvas(String canvasName)
+	public static String getCanvasName(File file)
 	{
-		WorkareaCanvas canvas = null;
+		String[] names = file.getName().split("\\.");
 
-		try
+		// As long as there are only two parts to the filename, *name* and
+		// ".dat"
+		if ( names.length == 2 && names[1].equalsIgnoreCase("dat") )
 		{
-			FileInputStream fin = new FileInputStream(canvasName + ".dat");
-			ObjectInputStream ois = new ObjectInputStream(fin);
+			String name = names[0];
 
-
-
-
-
-
-		}
-		catch ( Exception e )
-		{
-			e.printStackTrace();
+			return name;
 		}
 
-		if ( canvas == null )
+
+		return null;
+	}
+
+
+
+
+	/**
+	 * Finds the first part of any given string divided by "." symbol.
+	 * 
+	 * @param file
+	 * @return Returns the first part of the given string without the ".*".
+	 */
+	public String getCanvasName(String string)
+	{
+		String[] names = string.split("\\.");
+
+		// As long as there are only two parts to the filename, *name* and
+		// ".dat"
+		if ( names.length == 2 && names[1].equalsIgnoreCase("dat") )
 		{
-			System.out.println("Still not right. Canvas == null");
+			String name = names[0];
+
+			return name;
 		}
-		else
+
+
+		return null;
+	}
+
+
+
+	/**
+	 * This function goes through all the given WorkareaCanvases and checks if the canvas has been changed since last
+	 * save. If it has been changed, it saves that canvas.
+	 * 
+	 * @param canvases
+	 *            The workareaCanvases that are to be checked and saved
+	 */
+	public static void saveCanvases(WorkareaCanvas[] canvases)
+	{
+		for ( int i = 0; i < canvases.length; i++ )
 		{
-			System.out.println(canvas.getCanvasName());
-			PrimeMain1.getWorkarea().createNewCanvasTab(canvas);
+			if ( canvases[i] != null )
+			{
+				// If the canvas has not been saved(since the last change) and there has been some change
+				if ( canvases[i].isSaved() != true && canvases[i].isChanged() == true )
+				{
+					saveWorkareaCanvas(canvases[i]);
+				}
+			}
 		}
 	}
 

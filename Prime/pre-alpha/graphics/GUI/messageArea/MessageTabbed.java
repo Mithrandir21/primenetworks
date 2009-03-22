@@ -29,7 +29,6 @@ import javax.swing.JTabbedPane;
 
 import logistical.cleanup;
 import managment.ArrayManagment;
-
 import objects.Clients;
 import objects.ExternalHardware;
 import objects.Infrastructure;

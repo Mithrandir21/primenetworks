@@ -34,10 +34,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
-import actions.graphicalActions.WorkareaCanvasActions;
-
 import objects.Object;
 import objects.hardwareObjects.Motherboard;
+import actions.graphicalActions.WorkareaCanvasActions;
 
 
 /**

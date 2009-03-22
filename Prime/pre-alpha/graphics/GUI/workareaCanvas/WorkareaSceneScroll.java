@@ -76,6 +76,7 @@ public class WorkareaSceneScroll extends JScrollPane
 
 		this.setViewportView(canvas.getMyView());
 
+		// Adds the canvas the array of currently active WorkareaCanvas
 		CanvasManagment.addCanvas(canvas, name);
 	}
 

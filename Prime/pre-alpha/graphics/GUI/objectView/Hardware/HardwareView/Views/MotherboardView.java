@@ -34,8 +34,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
-import actions.graphicalActions.WorkareaCanvasActions;
-
 import managment.ArrayManagment;
 import managment.ComponentsManagment;
 import objects.Object;
@@ -46,6 +44,7 @@ import objects.hardwareObjects.GraphicsCard;
 import objects.hardwareObjects.HDD;
 import objects.hardwareObjects.Motherboard;
 import objects.hardwareObjects.Ram;
+import actions.graphicalActions.WorkareaCanvasActions;
 
 
 /**

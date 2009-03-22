@@ -4,7 +4,6 @@
 package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas;
 
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
-import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget.JPopupWidgetMenu;
 
 import java.awt.Point;
 

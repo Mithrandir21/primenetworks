@@ -1,10 +1,8 @@
 package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget;
 
 
-import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 

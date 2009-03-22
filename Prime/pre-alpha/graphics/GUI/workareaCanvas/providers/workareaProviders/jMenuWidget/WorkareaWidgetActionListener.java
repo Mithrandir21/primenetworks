@@ -3,28 +3,14 @@
  */
 package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget;
 
-import graphics.ImageLocator;
-import graphics.WidgetIcon;
-import graphics.GUI.selectArea.CreateObjectDragged;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 
-import objects.clientObjects.Laptop;
-import objects.infrastructureObjects.Hub;
-import objects.infrastructureObjects.Router;
-import objects.infrastructureObjects.Switch;
-import objects.peripheralObjects.Scanner;
-import objects.serverObjects.BackupServer;
-import objects.serverObjects.FirewallServer;
-import objects.serverObjects.HTTPServer;
-import objects.serverObjects.MailServer;
-import objects.serverObjects.ProxyServer;
 import widgetManipulation.WidgetObject;
 import actions.graphicalActions.WorkareaCanvasActions;
 

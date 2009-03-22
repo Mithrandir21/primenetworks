@@ -6,23 +6,12 @@ package graphics.GUI.selectArea.PrimeJTree;
 
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 
 
 /**
@@ -83,12 +72,6 @@ public class PrimeTree extends JPanel// implements MouseListener
 
 		this.add(jsp, BorderLayout.CENTER);
 	}
-	
-	private void emptyJScrollPane()
-	{
-		
-	}
-	
 	
 	
 	/**
@@ -165,9 +148,11 @@ public class PrimeTree extends JPanel// implements MouseListener
 		else
 		{
 			String name = dir.getName();
-
+			
+			String[] parts = dir.getName().split("\\.");
+			
 			// Adds the files that end with ".dat" to the files arrayList
-			if ( name.contains(".dat") )
+			if ( name.contains(".dat") && parts.length == 2 )
 			{
 				files.add(dir);
 			}
@@ -176,4 +161,8 @@ public class PrimeTree extends JPanel// implements MouseListener
 
 		return files;
 	}
+	
+	
+	
+	
 }

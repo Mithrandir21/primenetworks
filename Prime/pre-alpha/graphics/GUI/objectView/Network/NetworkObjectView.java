@@ -80,7 +80,7 @@ public class NetworkObjectView extends JPanel
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 10, 10);
 
-
+		
 		this.add(determine(obj, "USB"), c);
 
 

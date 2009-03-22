@@ -110,36 +110,4 @@ public class AdapterExtended extends Adapter
 		}
 		return State.REJECTED;
 	}
-
-
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.netbeans.api.visual.action.WidgetAction$Adapter#mouseEntered(org.
-	 * netbeans.api.visual.widget.Widget,
-	 * org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
-	 */
-	@Override
-	public State mouseEntered(Widget widget, WidgetMouseEvent event)
-	{
-		// System.out.println("Mouse entered");
-		return State.REJECTED;
-	}
-
-
-
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.netbeans.api.visual.action.WidgetAction$Adapter#mouseExited(org.netbeans
-	 * .api.visual.widget.Widget,
-	 * org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
-	 */
-	@Override
-	public State mouseExited(Widget widget, WidgetMouseEvent event)
-	{
-		// System.out.println("Mouse exited");
-		return State.REJECTED;
-	}
-
 }

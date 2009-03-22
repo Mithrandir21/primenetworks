@@ -26,9 +26,7 @@ import objects.serverObjects.FirewallServer;
 import objects.serverObjects.HTTPServer;
 import objects.serverObjects.MailServer;
 import objects.serverObjects.ProxyServer;
-
 import widgetManipulation.WidgetObject;
-import actions.graphicalActions.WorkareaCanvasActions;
 
 /**
  * Javadoc-TODO - Description NEEDED!

@@ -6,7 +6,6 @@ package graphics.GUI.workareaCanvas.providers;
 
 import exceptions.ConnectionDoesExist;
 import exceptions.ConnectionsIsNotPossible;
-import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import java.awt.Point;

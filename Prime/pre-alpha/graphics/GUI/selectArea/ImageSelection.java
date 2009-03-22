@@ -26,6 +26,7 @@ public class ImageSelection extends TransferHandler
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.swing.TransferHandler#getSourceActions(javax.swing.JComponent)
 	 */
 	@Override
@@ -38,8 +39,8 @@ public class ImageSelection extends TransferHandler
 
 	/*
 	 * (non-Javadoc)
-	 * @see
-	 * javax.swing.TransferHandler#createTransferable(javax.swing.JComponent)
+	 * 
+	 * @see javax.swing.TransferHandler#createTransferable(javax.swing.JComponent)
 	 */
 	@Override
 	public Transferable createTransferable(JComponent comp)
@@ -48,11 +49,16 @@ public class ImageSelection extends TransferHandler
 		{
 			WidgetIcon icon = (WidgetIcon) comp;
 
-			Object newObject = new CreateObjectDragged().CreateObject(icon,
-					PrimeMain1.currentCanvas.getNumberOfWidgetsOnTheScene());
+			if ( PrimeMain1.currentCanvas != null )
+			{
 
-			return new WidgetObject(PrimeMain1.currentCanvas.getScene(),
-					newObject, icon.getIconImage());
+				Object newObject = new CreateObjectDragged().CreateObject(icon, PrimeMain1.currentCanvas
+						.getNumberOfWidgetsOnTheScene());
+
+				return new WidgetObject(PrimeMain1.currentCanvas.getScene(), newObject, icon.getIconImage());
+			}
+
+			return null;
 		}
 		return null;
 	}

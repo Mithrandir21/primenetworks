@@ -5,7 +5,6 @@ import exceptions.ConnectionDoesNotExist;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.WidgetIcon;
-import graphics.GUI.selectArea.CreateObjectDragged;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import graphics.GUI.workareaCanvas.providers.AdapterExtended;
 import graphics.GUI.workareaCanvas.providers.CreateProvider;
@@ -37,7 +36,6 @@ import objects.serverObjects.FirewallServer;
 import objects.serverObjects.HTTPServer;
 import objects.serverObjects.MailServer;
 import objects.serverObjects.ProxyServer;
-import objects.softwareObjects.Webserver;
 
 import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.border.BorderFactory;
@@ -50,10 +48,9 @@ import connections.WidgetExtendedConnection;
 
 
 /**
- * In this class the methods for the manipulation of the WidgetObject on any
- * canvas is placed. These methods include the removal of connections between
- * widgetObject, the removal of the WidgetObjects them selfs and other methods
- * that are necessary for the maintenance of the canvas..
+ * In this class the methods for the manipulation of the WidgetObject on any canvas is placed. These methods include the
+ * removal of connections between widgetObject, the removal of the WidgetObjects them selfs and other methods that are
+ * necessary for the maintenance of the canvas..
  * 
  * @author Bahram Malaekeh
  */
@@ -61,8 +58,7 @@ public class WorkareaCanvasActions
 {
 
 	/**
-	 * Creates a WidgetObject and adds that object to a given point gotten from
-	 * the dropTargetDropEvent.
+	 * Creates a WidgetObject and adds that object to a given point gotten from the dropTargetDropEvent.
 	 * 
 	 * @param dtde
 	 * @param canvas
@@ -74,8 +70,7 @@ public class WorkareaCanvasActions
 
 		try
 		{
-			newObject = (WidgetObject) tr.getTransferData(new DataFlavor(WidgetObject.class,
-					"Widget Object"));
+			newObject = (WidgetObject) tr.getTransferData(new DataFlavor(WidgetObject.class, "Widget Object"));
 
 			Dimension objectSize = newObject.getImageDimension();
 
@@ -104,9 +99,9 @@ public class WorkareaCanvasActions
 			System.out.println("ActionCreateWidgetObject - IOException");
 		}
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -120,8 +115,8 @@ public class WorkareaCanvasActions
 		ImageIcon objectIcon = null;
 		objects.Object newObject = obj;
 		WidgetObject newWidgetObject = null;
-		
-		
+
+
 		if ( obj.getClass().equals(Desktop.class) )
 		{
 			objectType = Desktop.class;
@@ -136,7 +131,7 @@ public class WorkareaCanvasActions
 
 			set = true;
 		}
-		else if ( obj.getClass().equals(Webserver.class) )
+		else if ( obj.getClass().equals(HTTPServer.class) )
 		{
 			objectType = HTTPServer.class;
 			objectIcon = ImageLocator.getImageIconObject("Web-server");
@@ -206,38 +201,35 @@ public class WorkareaCanvasActions
 
 			set = true;
 		}
-		
-		
-		
+
+
+
 		if ( set == true )
 		{
-			WidgetIcon newObjectIcon = new WidgetIcon(objectIcon,
-					objectType);
+			WidgetIcon newObjectIcon = new WidgetIcon(objectIcon, objectType);
 
 
 			// Creates a new WidgetObject that will be added to the scene
-			newWidgetObject = new WidgetObject(canvas.getScene(), newObject, objectIcon
-					.getImage());
+			newWidgetObject = new WidgetObject(canvas.getScene(), newObject, objectIcon.getImage());
 
 			// Adds the given object to the given location
 			canvas.addWidgetObject(newWidgetObject, obj.getLocation(), false);
 		}
 	}
-	
+
 
 
 	/**
-	 * Adds the given WidgetObject at the given point on the scene. This method
-	 * adds all the functionality that a widgetObject will have like being able
-	 * to connect to other widgets, being clicked or dragged. It also sets a
+	 * Adds the given WidgetObject at the given point on the scene. This method adds all the functionality that a
+	 * widgetObject will have like being able to connect to other widgets, being clicked or dragged. It also sets a
 	 * description and places an empty border around the widgetObject.
 	 * 
 	 * @param newObject
 	 * @param objectPoint
 	 * @param canvas
 	 */
-	public static void addWidgetToCanvas(WidgetObject newObject, Point objectPoint,
-			WorkareaCanvas canvas, boolean withCleanUp)
+	public static void addWidgetToCanvas(WidgetObject newObject, Point objectPoint, WorkareaCanvas canvas,
+			boolean withCleanUp)
 	{
 		Point sceneLocation = canvas.getScene().convertViewToScene(objectPoint);
 
@@ -255,16 +247,14 @@ public class WorkareaCanvasActions
 
 
 		newObject.getActions().addAction(
-				ActionFactory.createAlignWithMoveAction(canvas.getMainLayer(), canvas
-						.getInteractionLayer(), null));
+				ActionFactory.createAlignWithMoveAction(canvas.getMainLayer(), canvas.getInteractionLayer(), null));
 
 
 
 		newObject.getActions().addAction(new AdapterExtended());
 
 
-		LabelWidget objectLabel = new LabelWidget(canvas.getScene(), newObject.getObject()
-				.getObjectName());
+		LabelWidget objectLabel = new LabelWidget(canvas.getScene(), newObject.getObject().getObjectName());
 
 		newObject.addChild(objectLabel);
 
@@ -277,8 +267,7 @@ public class WorkareaCanvasActions
 		// ActionFactory.createHoverAction(new WidgetHoverProvider()));
 
 
-		newObject.getActions().addAction(
-				ActionFactory.createPopupMenuAction(new JMenuWidget(canvas)));
+		newObject.getActions().addAction(ActionFactory.createPopupMenuAction(new JMenuWidget(canvas)));
 
 
 
@@ -309,7 +298,7 @@ public class WorkareaCanvasActions
 		canvas.getMainLayer().addChild(newObject);
 		canvas.addToNumberOfWidgetsOnTheCanvas();
 
-		if(withCleanUp)
+		if ( withCleanUp )
 		{
 			canvas.cleanUp();
 		}
@@ -317,8 +306,8 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * This function removes the given WidgetObject from the given canvas. It
-	 * also removes all the connections to and from the given widgetobject.
+	 * This function removes the given WidgetObject from the given canvas. It also removes all the connections to and
+	 * from the given widgetobject.
 	 * 
 	 * @param canvas
 	 *            The canvas that the object is to be removed from.
@@ -337,8 +326,8 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * This method deletes the currently selected object from the given canvas.
-	 * It also removes all connection to and from the WidgetObject.
+	 * This method deletes the currently selected object from the given canvas. It also removes all connection to and
+	 * from the WidgetObject.
 	 * 
 	 * @param canvas
 	 *            The canvas that object it to be removed from.
@@ -370,9 +359,8 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * This method removes all connection to and from the given object. it also
-	 * removes those connections from the array of connection in the given
-	 * canvas.
+	 * This method removes all connection to and from the given object. it also removes those connections from the array
+	 * of connection in the given canvas.
 	 * 
 	 * @param canvas
 	 *            The canvas where the connections are to be removed from.
@@ -391,11 +379,10 @@ public class WorkareaCanvasActions
 			{
 				try
 				{
-					removeConnectionFromConnectionLayer(canvas, ConnectionManagment.getConnection(
-							canvasCons, obj, connectedObjects[i]));
-
-					canvas.setConnections(ConnectionManagment.breakConnection(canvasCons, obj,
+					removeConnectionFromConnectionLayer(canvas, ConnectionManagment.getConnection(canvasCons, obj,
 							connectedObjects[i]));
+
+					canvas.setConnections(ConnectionManagment.breakConnection(canvasCons, obj, connectedObjects[i]));
 				}
 				catch ( ConnectionDoesNotExist e )
 				{
@@ -419,8 +406,7 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * Removes the given {@link connections.Connection Connection} from the
-	 * given canvas.
+	 * Removes the given {@link connections.Connection Connection} from the given canvas.
 	 * 
 	 * @param canvas
 	 *            The canvas which the connection is to be removed from.
@@ -459,8 +445,7 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * Removes the given {@link connections.Connection Connection} from the
-	 * currently active canvas.
+	 * Removes the given {@link connections.Connection Connection} from the currently active canvas.
 	 * 
 	 * @param con
 	 *            The connection to be removed.
@@ -497,8 +482,7 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * Removes the given {@link connections.Connection Connection} from the
-	 * given canvas.
+	 * Removes the given {@link connections.Connection Connection} from the given canvas.
 	 * 
 	 * @param con
 	 *            The connection to be removed.
@@ -531,5 +515,33 @@ public class WorkareaCanvasActions
 		{
 			canvas.getConnectionLayer().removeChild(temp);
 		}
+	}
+
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param canvases
+	 */
+	public static void revalidateWidgetLocations(WorkareaCanvas[] canvases)
+	{
+		for ( int i = 0; i < canvases.length; i++ )
+		{
+			canvases[i].revalidateWidgetLocations();
+		}
+	}
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param canvases
+	 */
+	public static void revalidateWidgetLocations(WorkareaCanvas canvas)
+	{
+		canvas.revalidateWidgetLocations();
 	}
 }
