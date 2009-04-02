@@ -10,9 +10,8 @@ import objects.softwareObjects.Proxy;
 
 
 /**
- * A representation of a proxy server. This server serves the rest of network
- * with information depending on the layout of the network itself and the
- * purpose giving to the device by the network administrator.
+ * A representation of a proxy server. This server serves the rest of network with information depending on the layout
+ * of the network itself and the purpose giving to the device by the network administrator.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -35,13 +34,11 @@ public class ProxyServer extends Servers implements Serializable
 	 * @param ProxySWname
 	 *            The name of the application that the server is set to run.
 	 * @param ProxySWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param ProxySWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public ProxyServer(String Name, String Desc, String ProxySWname,
-			String ProxySWdesc, String ProxySWversion)
+	public ProxyServer(String Name, String Desc, String ProxySWname, String ProxySWdesc, String ProxySWversion)
 	{
 		super(Name, Desc);
 
@@ -62,13 +59,12 @@ public class ProxyServer extends Servers implements Serializable
 	 * @param ProxySWname
 	 *            The name of the application that the server is set to run.
 	 * @param ProxySWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param ProxySWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public ProxyServer(String Name, String Desc, String[] SupConInt,
-			String ProxySWname, String ProxySWdesc, String ProxySWversion)
+	public ProxyServer(String Name, String Desc, String[] SupConInt, String ProxySWname, String ProxySWdesc,
+			String ProxySWversion)
 	{
 		super(Name, Desc, SupConInt);
 
@@ -90,13 +86,12 @@ public class ProxyServer extends Servers implements Serializable
 	 * @param ProxySWname
 	 *            The name of the application that the server is set to run.
 	 * @param ProxySWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param ProxySWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public ProxyServer(String Name, String Desc, Object[] DesktopComponents,
-			String ProxySWname, String ProxySWdesc, String ProxySWversion)
+	public ProxyServer(String Name, String Desc, Object[] DesktopComponents, String ProxySWname, String ProxySWdesc,
+			String ProxySWversion)
 	{
 		super(Name, Desc, DesktopComponents);
 
@@ -118,14 +113,12 @@ public class ProxyServer extends Servers implements Serializable
 	 * @param ProxySWname
 	 *            The name of the application that the server is set to run.
 	 * @param ProxySWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param ProxySWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public ProxyServer(String Name, String Desc, String[] SupConInt,
-			Object[] DesktopComponents, String ProxySWname, String ProxySWdesc,
-			String ProxySWversion)
+	public ProxyServer(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents, String ProxySWname,
+			String ProxySWdesc, String ProxySWversion)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 

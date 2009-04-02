@@ -31,7 +31,5 @@ public class MessageJTable extends JTable
 	public boolean getScrollableTracksViewportHeight()
 	{
 		return false;
-		// return getParent() instanceof JViewport
-		// && getPreferredSize().height < getParent().getHeight();
 	}
 }

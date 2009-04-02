@@ -66,39 +66,39 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 	private JPanel secSuitePanel = null;
 
 	private JPanel webserverPanel = null;
-	
+
 	private Antivirus avobj = null;
-	
+
 	private Backup backupObj = null;
-	
+
 	private Database dbObj = null;
-	
+
 	private Email emailObj = null;
-	
+
 	private Firewall fwObj = null;
-	
+
 	private OfficeSuite offSuiteObj = null;
-	
+
 	private OperatingSystem osObj = null;
-	
+
 	private Proxy proxyObj = null;
-	
+
 	private SecuritySuite secSuiteObj = null;
-	
+
 	private Webserver webServerObj = null;
-	
-	
+
+
 	private Object mainObj = null;
-	
-	
-	
+
+
+
 	public NewSoftwaresViews(Object obj)
 	{
 		mainObj = obj;
-		
+
 		this.setLayout(new GridLayout(0, 2, 3, 5));
-		
-		
+
+
 		// Antivirus software
 		ImageIcon avtemp = ImageLocator.getImageIconObject("Motherboard");
 
@@ -133,10 +133,10 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		avPanel = SoftwareObjectView.createSoftwareJPanel(avInfo, avtemp);
 		avPanel.addMouseListener(this);
 		avPanel.setName("Avtivirus");
-		
-		
-		
-		
+
+
+
+
 		// Backup software
 		ImageIcon backtemp = ImageLocator.getImageIconObject("CPU");
 
@@ -171,10 +171,10 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		backupPanel = SoftwareObjectView.createSoftwareJPanel(backInfo, backtemp);
 		backupPanel.addMouseListener(this);
 		backupPanel.setName("Backup");
-		
-		
-		
-		
+
+
+
+
 		// Database software
 		ImageIcon dbtemp = ImageLocator.getImageIconObject("Harddisc");
 
@@ -209,9 +209,9 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		dbPanel = SoftwareObjectView.createSoftwareJPanel(dbInfo, dbtemp);
 		dbPanel.addMouseListener(this);
 		dbPanel.setName("Database");
-		
-		
-		
+
+
+
 		// Email software
 		ImageIcon Emailtemp = ImageLocator.getImageIconObject("Harddisc");
 
@@ -246,9 +246,9 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		emailPanel = SoftwareObjectView.createSoftwareJPanel(emailInfo, Emailtemp);
 		emailPanel.addMouseListener(this);
 		emailPanel.setName("Email");
-		
-		
-		
+
+
+
 		// Firewall software
 		ImageIcon fwtemp = ImageLocator.getImageIconObject("Harddisc");
 
@@ -283,9 +283,9 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		fwPanel = SoftwareObjectView.createSoftwareJPanel(fwInfo, fwtemp);
 		fwPanel.addMouseListener(this);
 		fwPanel.setName("Firewall");
-		
-		
-		
+
+
+
 		// Office Suite software
 		ImageIcon offSuitetemp = ImageLocator.getImageIconObject("Harddisc");
 
@@ -320,9 +320,9 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		offSuitePanel = SoftwareObjectView.createSoftwareJPanel(offSuiteInfo, offSuitetemp);
 		offSuitePanel.addMouseListener(this);
 		offSuitePanel.setName("Office Suite");
-		
-		
-		
+
+
+
 		// Operating System software
 		ImageIcon OStemp = ImageLocator.getImageIconObject("Harddisc");
 
@@ -357,9 +357,9 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		osPanel = SoftwareObjectView.createSoftwareJPanel(OSInfo, OStemp);
 		osPanel.addMouseListener(this);
 		osPanel.setName("Operating System");
-		
-		
-		
+
+
+
 		// Proxy software
 		ImageIcon proxytemp = ImageLocator.getImageIconObject("Harddisc");
 
@@ -394,9 +394,9 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		proxyPanel = SoftwareObjectView.createSoftwareJPanel(proxyInfo, proxytemp);
 		proxyPanel.addMouseListener(this);
 		proxyPanel.setName("Proxy");
-		
-		
-		
+
+
+
 		// Security Suite software
 		ImageIcon secSuitetemp = ImageLocator.getImageIconObject("Harddisc");
 
@@ -431,9 +431,9 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		secSuitePanel = SoftwareObjectView.createSoftwareJPanel(secSuiteInfo, secSuitetemp);
 		secSuitePanel.addMouseListener(this);
 		secSuitePanel.setName("Security Suite");
-		
-		
-		
+
+
+
 		// Websesrver software
 		ImageIcon webSertemp = ImageLocator.getImageIconObject("Harddisc");
 
@@ -468,9 +468,9 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		webserverPanel = SoftwareObjectView.createSoftwareJPanel(webSerInfo, webSertemp);
 		webserverPanel.addMouseListener(this);
 		webserverPanel.setName("Webserver");
-		
-		
-		
+
+
+
 		this.add(avPanel);
 		this.add(backupPanel);
 		this.add(dbPanel);

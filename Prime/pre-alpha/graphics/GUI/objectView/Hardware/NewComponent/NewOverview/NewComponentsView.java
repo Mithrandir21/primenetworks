@@ -400,8 +400,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		assert intNICtemp != null;
 
 		// Create internal NIC JPanel
-		intNICPanel = HardwareObjectView.createHardwareJPanel(intNICinfo,
-				intNICtemp);
+		intNICPanel = HardwareObjectView.createHardwareJPanel(intNICinfo, intNICtemp);
 		intNICPanel.addMouseListener(this);
 		intNICPanel.setName("Int NIC");
 
@@ -447,8 +446,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		assert extNICtemp != null;
 
 		// Create external NIC JPanel
-		extNICPanel = HardwareObjectView.createHardwareJPanel(extNICinfo,
-				extNICtemp);
+		extNICPanel = HardwareObjectView.createHardwareJPanel(extNICinfo, extNICtemp);
 		extNICPanel.addMouseListener(this);
 		extNICPanel.setName("Ext NIC");
 
@@ -475,12 +473,9 @@ public class NewComponentsView extends JPanel implements MouseListener
 
 		if ( panel.getName().equals("Motherboard") )
 		{
-			int answer = JOptionPane
-					.showConfirmDialog(
-							this,
-							"By creating a new motherboard all the machines other components will be removed.\n"
-									+ "Do you wish to do this?", "Caution",
-							JOptionPane.YES_NO_OPTION);
+			int answer = JOptionPane.showConfirmDialog(this,
+					"By creating a new motherboard all the machines other components will be removed.\n"
+							+ "Do you wish to do this?", "Caution", JOptionPane.YES_NO_OPTION);
 
 			// If the answer is not No.
 			if ( answer != 1 )

@@ -14,9 +14,8 @@ import javax.swing.ImageIcon;
 
 
 /**
- * A class that contains methods for the creation and collection of the system
- * standard ImageIcon that are used, among other thing, for the creation of
- * objects or buttons.
+ * A class that contains methods for the creation and collection of the system standard ImageIcon that are used, among
+ * other thing, for the creation of objects or buttons.
  * 
  * @author Bahram Malaekeh
  */
@@ -24,8 +23,8 @@ public class MakeSystemImageIcons
 {
 
 	/**
-	 * Gets the URL of this class to be used to locate all the system images and
-	 * Icons. It calls the method visitAllFiles.
+	 * Gets the URL of this class to be used to locate all the system images and Icons. It calls the method
+	 * visitAllFiles.
 	 */
 	public void getImageIcons()
 	{
@@ -48,13 +47,11 @@ public class MakeSystemImageIcons
 
 	}
 
-	
+
 	/**
-	 * Goes through all files and directories under a given folder. It finds and
-	 * sets all files within this given folder with the file extensions *.png,
-	 * *.jpg and *.gif. It then creates ImageIcons of these files and adds them
-	 * to the system standard ImageIcons, located in PrimeMain1, for later use
-	 * in objects or buttons.
+	 * Goes through all files and directories under a given folder. It finds and sets all files within this given folder
+	 * with the file extensions *.png, *.jpg and *.gif. It then creates ImageIcons of these files and adds them to the
+	 * system standard ImageIcons, located in PrimeMain1, for later use in objects or buttons.
 	 */
 	public static void visitAllFiles(File dir)
 	{
@@ -70,15 +67,13 @@ public class MakeSystemImageIcons
 		{
 			String name = dir.getName();
 
-			if ( name.contains(".png") || name.contains(".jpg")
-					|| name.contains(".gif") )
+			if ( name.contains(".png") || name.contains(".jpg") || name.contains(".gif") )
 			{
 				try
 				{
 					name = name.substring(0, (name.length() - 4));
 
-					ImageIcon toBeAdded = ImageLocator.createImageIcon(dir
-							.toURI().toURL());
+					ImageIcon toBeAdded = ImageLocator.createImageIcon(dir.toURI().toURL());
 					toBeAdded.setDescription(name);
 
 					PrimeMain1.images.add(toBeAdded);

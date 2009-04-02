@@ -35,17 +35,14 @@ import objects.softwareObjects.Proxy;
 
 
 /**
- * A JPanel that will contain fields and options for a presentation and
- * modification of an {@link Proxy Proxy} Software. The panel is made up of 3
- * JPanel ordered in a column. The first one contains the name and description
- * of the object. The second panel contains the specific software options. The
- * third panel contains the button that can remove the software from the
- * computer.
+ * A JPanel that will contain fields and options for a presentation and modification of an {@link Proxy Proxy} Software.
+ * The panel is made up of 3 JPanel ordered in a column. The first one contains the name and description of the object.
+ * The second panel contains the specific software options. The third panel contains the button that can remove the
+ * software from the computer.
  * 
  * @author Bahram Malaekeh
  */
-public class ProxyEditView extends JPanel implements SoftwareView,
-		ActionListener
+public class ProxyEditView extends JPanel implements SoftwareView, ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -166,16 +163,16 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 		this.add(buttons, c);
 	}
 
-	
+
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different settings of the given Software object.
+	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
+	 * the JPanel in grids.
 	 * 
-	 * @param proxy The Software that will be examined and will fill inn the fields.
+	 * @param proxy
+	 *            The Software that will be examined and will fill inn the fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(Proxy proxy)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -183,32 +180,25 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 
 		labels[0] = new JLabel("Supported OS");
-		labels[0]
-				.setToolTipText("The supported Operating Systems by the software.");
+		labels[0].setToolTipText("The supported Operating Systems by the software.");
 
 		labels[1] = new JLabel("Chaching");
-		labels[1]
-				.setToolTipText("Whether or not the software has caching feature.");
+		labels[1].setToolTipText("Whether or not the software has caching feature.");
 
 		labels[2] = new JLabel("Proxy");
-		labels[2]
-				.setToolTipText("Whether or not the software has Web proxy feature.");
+		labels[2].setToolTipText("Whether or not the software has Web proxy feature.");
 
 		labels[3] = new JLabel("Anonymizing");
-		labels[3]
-				.setToolTipText("Whether or not the software has Anonymizing proxy feature.");
+		labels[3].setToolTipText("Whether or not the software has Anonymizing proxy feature.");
 
 		labels[4] = new JLabel("Transparent Proxy");
-		labels[4]
-				.setToolTipText("Whether or not the software has transparent proxy feature.");
+		labels[4].setToolTipText("Whether or not the software has transparent proxy feature.");
 
 		labels[5] = new JLabel("Reverse Proxy");
-		labels[5]
-				.setToolTipText("Whether or not the software has reverse proxy feature.");
+		labels[5].setToolTipText("Whether or not the software has reverse proxy feature.");
 
 		labels[6] = new JLabel("Supports IPv6");
-		labels[6]
-				.setToolTipText("Whether or not the software supports IP version 6.");
+		labels[6].setToolTipText("Whether or not the software supports IP version 6.");
 
 		labels[7] = new JLabel("Supports SSL");
 		labels[7].setToolTipText("Whether or not the software supports SSL.");
@@ -226,25 +216,21 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 		// The supported operating systems by the Proxy software.
 		labels[0].setLabelFor(supportedOS);
-		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
-				"Windows Vista", "Linux", "Novell" };
+		String[] listData = { "Windows 98", "Windows 2000", "Windows XP", "Windows Vista", "Linux", "Novell" };
 		supportedOS = new JList(listData);
 		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
-		listSelectionModel
-				.addListSelectionListener(new SharedListSelectionHandler());
+		listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supportedOS);
 		listPane.setMaximumSize(new Dimension(90, 60));
 		listPane.setPreferredSize(new Dimension(90, 60));
-		listSelectionModel
-				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		listSelectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		if ( mainProxy.getSupportedOperatingSystems() != null )
 		{
 			if ( mainProxy.getSupportedOperatingSystems().length > 0 )
 			{
-				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, listData, mainProxy
-								.getSupportedOperatingSystems()));
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(supportedOS, listData, mainProxy
+						.getSupportedOperatingSystems()));
 			}
 		}
 
@@ -402,6 +388,7 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see graphics.GUI.objectView.Software.SoftwareEditView#save()
 	 */
 	@Override
@@ -443,8 +430,8 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 	/*
 	 * (non-Javadoc)
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -498,15 +485,14 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 
 	/**
 	 * Handles the selections that are made in the "Supported Operating Systems" JList.
-	 *  
+	 * 
 	 */
 	private class SharedListSelectionHandler implements ListSelectionListener
 	{
 		/*
 		 * (non-Javadoc)
-		 * @see
-		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
-		 * event.ListSelectionEvent)
+		 * 
+		 * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing. event.ListSelectionEvent)
 		 */
 		public void valueChanged(ListSelectionEvent e)
 		{

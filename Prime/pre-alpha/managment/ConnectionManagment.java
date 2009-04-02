@@ -21,14 +21,11 @@ import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 
 /**
- * A method class for the management of any type of connection within the
- * system. A connection is a physical link, be it wired or wireless, between two
- * components in the system. Examples of this are connections between switches
- * and computers, swithes and other switches, computers and printers, servers
- * and routers and so on. <br>
- * The class contains methodes like making connections, breaking connection or
- * changing connection. There are additional methods that help with the
- * managment of connections.
+ * A method class for the management of any type of connection within the system. A connection is a physical link, be it
+ * wired or wireless, between two components in the system. Examples of this are connections between switches and
+ * computers, swithes and other switches, computers and printers, servers and routers and so on. <br>
+ * The class contains methodes like making connections, breaking connection or changing connection. There are additional
+ * methods that help with the managment of connections.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -37,11 +34,10 @@ public class ConnectionManagment
 {
 
 	/**
-	 * Creates connections between two components. This can be both device
-	 * connections, network connections or internal connections.
+	 * Creates connections between two components. This can be both device connections, network connections or internal
+	 * connections.
 	 * 
-	 * @return Returns, if possible, a connection object that represents a
-	 *         connection between the two objects.
+	 * @return Returns, if possible, a connection object that represents a connection between the two objects.
 	 */
 	@SuppressWarnings("unchecked")
 	public static Connection makeConnection(Connection[] existingConnections, String conName, String conDesc,
@@ -72,8 +68,8 @@ public class ConnectionManagment
 
 
 		/*
-		 * If there is no previous connection between A and B, and they both
-		 * support the connection type, a connection is made between them.
+		 * If there is no previous connection between A and B, and they both support the connection type, a connection
+		 * is made between them.
 		 */
 		if ( conClass.equals(DeviceConnection.class) )
 		{
@@ -94,14 +90,12 @@ public class ConnectionManagment
 
 
 	/**
-	 * Breaks connections between two components in the system. It removes the
-	 * connection from the array of existing connections. This methode throws
-	 * {@link exceptions.ConnectionDoesNotExist ConnectionDoesNotExist}
-	 * exception, if there is no connection between the two given objects.
+	 * Breaks connections between two components in the system. It removes the connection from the array of existing
+	 * connections. This methode throws {@link exceptions.ConnectionDoesNotExist ConnectionDoesNotExist} exception, if
+	 * there is no connection between the two given objects.
 	 * 
-	 * @return Returns the given connections array without the connection
-	 *         between the two given object. The array is cleaned for any empty
-	 *         indexs.
+	 * @return Returns the given connections array without the connection between the two given object. The array is
+	 *         cleaned for any empty indexs.
 	 */
 	public static Connection[] breakConnection(Connection[] existingConnections, Object objectA, Object objectB)
 			throws ConnectionDoesNotExist
@@ -117,9 +111,8 @@ public class ConnectionManagment
 
 
 		/*
-		 * Checks to see if object A is the first object in any connection. Then
-		 * if it finds object A as the first object, it looks for object B at
-		 * the same index as object A.
+		 * Checks to see if object A is the first object in any connection. Then if it finds object A as the first
+		 * object, it looks for object B at the same index as object A.
 		 */
 		for ( int i = 0; i < existingConnections.length; i++ )
 		{
@@ -158,9 +151,8 @@ public class ConnectionManagment
 		if ( foundCon == false )
 		{
 			/*
-			 * Checks to see if object B is the first object in any connection.
-			 * Then if it find object B as the first object, it looks for object
-			 * A at the same index as object B.
+			 * Checks to see if object B is the first object in any connection. Then if it find object B as the first
+			 * object, it looks for object A at the same index as object B.
 			 */
 			for ( int i = 0; i < existingConnections.length; i++ )
 			{
@@ -206,14 +198,12 @@ public class ConnectionManagment
 
 
 	/**
-	 * This method changes a connection between A and B, to be a connection
-	 * between A and C. This is done by changing the second object in the
-	 * connection to point to object C instead of object B. There is also checks
-	 * done to see if there really is a connection between A and B, and if there
-	 * is any prior connections between A and C.
+	 * This method changes a connection between A and B, to be a connection between A and C. This is done by changing
+	 * the second object in the connection to point to object C instead of object B. There is also checks done to see if
+	 * there really is a connection between A and B, and if there is any prior connections between A and C.
 	 * 
-	 * @return Returns an array of connections where the connection between A
-	 *         and B has been changed to a connection between A and C.
+	 * @return Returns an array of connections where the connection between A and B has been changed to a connection
+	 *         between A and C.
 	 */
 	public static Connection[] changeConnection(Connection[] existingConnections, Object objectA,
 			Object objectToBeRemoved, Object objectC) throws ConnectionDoesNotExist, ConnectionDoesExist
@@ -235,9 +225,8 @@ public class ConnectionManagment
 
 
 		/*
-		 * Checks to see if object A is the first object in any connection. Then
-		 * if it find object A as the first object, it looks for object B at the
-		 * same index as object A.
+		 * Checks to see if object A is the first object in any connection. Then if it find object A as the first
+		 * object, it looks for object B at the same index as object A.
 		 */
 		for ( int i = 0; i < existingConnections.length; i++ )
 		{
@@ -258,9 +247,8 @@ public class ConnectionManagment
 		}
 
 		/*
-		 * Checks to see if object B is the first object in any connection. Then
-		 * if it find object B as the first object, it looks for object A at the
-		 * same index as object B.
+		 * Checks to see if object B is the first object in any connection. Then if it find object B as the first
+		 * object, it looks for object A at the same index as object B.
 		 */
 		for ( int i = 0; i < existingConnections.length; i++ )
 		{
@@ -286,8 +274,7 @@ public class ConnectionManagment
 
 
 	/**
-	 * Searches and, if found, returns a {@link Connection Connection} between
-	 * the two given objects.
+	 * Searches and, if found, returns a {@link Connection Connection} between the two given objects.
 	 * 
 	 * @param existingConnections
 	 *            The array of existing connections.
@@ -314,9 +301,8 @@ public class ConnectionManagment
 
 
 		/*
-		 * Checks to see if object A is the first object in any connection. Then
-		 * if it finds object A as the first object, it looks for object B at
-		 * the same index as object A.
+		 * Checks to see if object A is the first object in any connection. Then if it finds object A as the first
+		 * object, it looks for object B at the same index as object A.
 		 */
 		for ( int i = 0; i < existingConnections.length; i++ )
 		{
@@ -338,9 +324,8 @@ public class ConnectionManagment
 		if ( foundCon == false )
 		{
 			/*
-			 * Checks to see if object B is the first object in any connection.
-			 * Then if it find object B as the first object, it looks for object
-			 * A at the same index as object B.
+			 * Checks to see if object B is the first object in any connection. Then if it find object B as the first
+			 * object, it looks for object A at the same index as object B.
 			 */
 			for ( int i = 0; i < existingConnections.length; i++ )
 			{
@@ -365,11 +350,10 @@ public class ConnectionManagment
 
 
 	/**
-	 * Checks to see if both the devices that are to be connected support the
-	 * connecting interface.
+	 * Checks to see if both the devices that are to be connected support the connecting interface.
 	 * 
-	 * @return Returns true if both the devices support the interface, and false
-	 *         if one or both do not support the interface.
+	 * @return Returns true if both the devices support the interface, and false if one or both do not support the
+	 *         interface.
 	 */
 	public static boolean checkDeviceConnectiontypeSupport(Object objectA, Object objectB, String type)
 	{
@@ -415,8 +399,7 @@ public class ConnectionManagment
 
 
 	/**
-	 * Checks to see if a connections array contains any connections between
-	 * object A and object B.
+	 * Checks to see if a connections array contains any connections between object A and object B.
 	 * 
 	 * @return Returns true if a connection is found and false if not.
 	 */
@@ -425,9 +408,8 @@ public class ConnectionManagment
 		if ( existingConnections != null )
 		{
 			/*
-			 * Checks to see if object A is the first object in any connection.
-			 * Then if it find object A as the first object, it looks for object
-			 * B at the same index as object A.
+			 * Checks to see if object A is the first object in any connection. Then if it find object A as the first
+			 * object, it looks for object B at the same index as object A.
 			 */
 			for ( int i = 0; i < existingConnections.length; i++ )
 			{
@@ -447,9 +429,8 @@ public class ConnectionManagment
 			}
 
 			/*
-			 * Checks to see if object B is the first object in any connection.
-			 * Then if it find object B as the first object, it looks for object
-			 * A at the same index as object B.
+			 * Checks to see if object B is the first object in any connection. Then if it find object B as the first
+			 * object, it looks for object A at the same index as object B.
 			 */
 			for ( int i = 0; i < existingConnections.length; i++ )
 			{
@@ -475,8 +456,7 @@ public class ConnectionManagment
 
 
 	/**
-	 * Checks to see if a connections container contains any connections between
-	 * object A and object B.
+	 * Checks to see if a connections container contains any connections between object A and object B.
 	 * 
 	 * @return Returns true if a connection is found and false if not.
 	 */
@@ -486,9 +466,8 @@ public class ConnectionManagment
 		if ( connectionContainer != null )
 		{
 			/*
-			 * Checks to see if object A is the first object in any connection.
-			 * Then if it find object A as the first object, it looks for object
-			 * B at the same index as object A.
+			 * Checks to see if object A is the first object in any connection. Then if it find object A as the first
+			 * object, it looks for object B at the same index as object A.
 			 */
 			for ( int i = 0; i < connectionContainer.length; i++ )
 			{
@@ -516,9 +495,8 @@ public class ConnectionManagment
 			}
 		}
 		/*
-		 * Checks to see if object B is the first object in any connection. Then
-		 * if it find object B as the first object, it looks for object A at the
-		 * same index as object B.
+		 * Checks to see if object B is the first object in any connection. Then if it find object B as the first
+		 * object, it looks for object A at the same index as object B.
 		 */
 		for ( int i = 0; i < connectionContainer.length; i++ )
 		{
@@ -549,8 +527,8 @@ public class ConnectionManagment
 
 
 	/**
-	 * In this function the availability of the ports to which the connection is
-	 * to be made is checked and, if available, set.
+	 * In this function the availability of the ports to which the connection is to be made is checked and, if
+	 * available, set.
 	 */
 	public static boolean checkAndSetPortAvailability(Object objectA, Object objectB, String conType)
 			throws ConnectionsIsNotPossible
@@ -576,8 +554,7 @@ public class ConnectionManagment
 		if ( conType == "RJ-45" )
 		{
 			/*
-			 * These two values will be changed or the function will get some
-			 * exceptions and will not move on.
+			 * These two values will be changed or the function will get some exceptions and will not move on.
 			 */
 			int indexA = 0;
 			int indexB = 0;
@@ -650,9 +627,8 @@ public class ConnectionManagment
 
 
 			/**
-			 * If the function gets to this point it means that both the
-			 * motherboards on the objects have available LAN ports and the
-			 * indexes are retrieved.
+			 * If the function gets to this point it means that both the motherboards on the objects have available LAN
+			 * ports and the indexes are retrieved.
 			 */
 
 			// Sets the arrays on the actual motherboard components.
@@ -667,8 +643,7 @@ public class ConnectionManagment
 		else if ( conType == "USB" )
 		{
 			/**
-			 * These two values will be changed or the function will get some
-			 * exceptions and will not move on.
+			 * These two values will be changed or the function will get some exceptions and will not move on.
 			 */
 			int indexA = 0;
 			int indexB = 0;
@@ -719,9 +694,8 @@ public class ConnectionManagment
 
 
 			/**
-			 * The function gets to this point it means that both the
-			 * motherboards on the objects have available ports and the indexes
-			 * are retrieved.
+			 * The function gets to this point it means that both the motherboards on the objects have available ports
+			 * and the indexes are retrieved.
 			 */
 
 			// Sets the arrays on the actual motherboard components.
@@ -739,19 +713,15 @@ public class ConnectionManagment
 
 
 	/**
-	 * This function add a connection to the connection array of the currently
-	 * selected canvas. The function also gives the developer the opportunity to
-	 * add a check function which checks to see whether or not the connection
-	 * that is to be added already exists in the connection array of the
-	 * currently selected canvas.
+	 * This function add a connection to the connection array of the currently selected canvas. The function also gives
+	 * the developer the opportunity to add a check function which checks to see whether or not the connection that is
+	 * to be added already exists in the connection array of the currently selected canvas.
 	 * 
 	 * @param newCon
 	 *            The connection to be added to the currently selected canvas.
 	 * @param withCheck
-	 *            The boolean which tells the function whether or not to run a
-	 *            check as to see if the connection thats is to be added already
-	 *            exists in the connection array of the currently selected
-	 *            canvas.
+	 *            The boolean which tells the function whether or not to run a check as to see if the connection thats
+	 *            is to be added already exists in the connection array of the currently selected canvas.
 	 */
 	public static boolean addConnection(Connection newCon, boolean withCheck, WorkareaCanvas canvas)
 	{
@@ -797,8 +767,7 @@ public class ConnectionManagment
 
 
 	/**
-	 * This function extends the connection array of the currently selected
-	 * canvas with 5 indexes.
+	 * This function extends the connection array of the currently selected canvas with 5 indexes.
 	 */
 	private static void extendConnectionArray(WorkareaCanvas canvas)
 	{
@@ -816,9 +785,8 @@ public class ConnectionManagment
 
 
 	/**
-	 * This function returns an array of strings that contain strings found in
-	 * both the given arrays. This method is use to find compatible user
-	 * interfaces supported by two objects.
+	 * This function returns an array of strings that contain strings found in both the given arrays. This method is use
+	 * to find compatible user interfaces supported by two objects.
 	 */
 	public static String[] getCompatibleConnectionInterfaces(String[] a, String[] b)
 	{

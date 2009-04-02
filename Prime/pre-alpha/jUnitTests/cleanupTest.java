@@ -22,16 +22,13 @@ public class cleanupTest extends TestCase
 		Object[] components = new Object[5];
 
 		// A desktop object thats is to be added.
-		Desktop newComponent1 = new Desktop("newComponent1", "Desc",
-				new Object[1]);
+		Desktop newComponent1 = new Desktop("newComponent1", "Desc", new Object[1]);
 
 		// A server object thats is to be added.
-		HTTPServer newComponent2 = new HTTPServer("newComponent2", "Desc", "1",
-				"2", "3");
+		HTTPServer newComponent2 = new HTTPServer("newComponent2", "Desc", "1", "2", "3");
 
 		// A external hardware object thats is to be added.
-		ExternalHDD newComponent3 = new ExternalHDD("newComponent2", "Desc",
-				"1", 2, new String[1]);
+		ExternalHDD newComponent3 = new ExternalHDD("newComponent2", "Desc", "1", 2, new String[1]);
 
 		// Adds a null pointer for clean up to handle.
 		components[0] = newComponent1;

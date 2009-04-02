@@ -7,8 +7,7 @@ import objects.Software;
 
 
 /**
- * This class represents an officesuite program. It contains information on what
- * kind of formats are supported. <br>
+ * This class represents an officesuite program. It contains information on what kind of formats are supported. <br>
  * <br>
  * FIXME - Work is needed on this class. More functions and information.
  * 
@@ -18,8 +17,7 @@ import objects.Software;
 public class OfficeSuite extends Software implements Serializable
 {
 	/*
-	 * Datafields for an abstract webserver These will contain the values of any
-	 * webserver object
+	 * Datafields for an abstract webserver These will contain the values of any webserver object
 	 */
 	// Supported Operating systems
 	private String[] supportedOperatingSystems;
@@ -28,8 +26,7 @@ public class OfficeSuite extends Software implements Serializable
 	private String[] supportedFormats;
 
 
-	public OfficeSuite(String Name, String Desc, String Version,
-			String[] OfficeSupportedFormats)
+	public OfficeSuite(String Name, String Desc, String Version, String[] OfficeSupportedFormats)
 	{
 		super(Name, Desc, Version);
 		if ( OfficeSupportedFormats[0] != null )

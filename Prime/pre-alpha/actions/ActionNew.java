@@ -11,6 +11,8 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+import managment.FileManagment;
+
 
 /**
  * Description NEEDED!
@@ -29,7 +31,7 @@ public class ActionNew extends AbstractAction
 	public ActionNew(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This is a New action");
+		putValue(SHORT_DESCRIPTION, "Creates a new Network");
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_N));
 	}
 
@@ -42,16 +44,19 @@ public class ActionNew extends AbstractAction
 	public ActionNew(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This is a New action");
+		putValue(SHORT_DESCRIPTION, "Creates a new Network");
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_N));
 	}
 
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
-
-		JOptionPane.showMessageDialog(null,
-				"You want to perform a \"New\" action.");
+		FileManagment.newWorkareaCanvas();
 	}
 
 }

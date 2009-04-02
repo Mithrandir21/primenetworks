@@ -8,9 +8,8 @@ import objects.hardwareObjects.Motherboard;
 
 
 /**
- * An abstract super class for all hardware objects in the system, including
- * {@link objects.Servers Servers}, {@link objects.Clients Clients} and
- * Peripherals. MUST ADD INFO
+ * An abstract super class for all hardware objects in the system, including {@link objects.Servers Servers},
+ * {@link objects.Clients Clients} and Peripherals. MUST ADD INFO
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -72,8 +71,7 @@ public abstract class Hardware extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the hardware decvice.
 	 */
-	public Hardware(String Name, String Desc, String[] SupConInt,
-			Object[] DesktopComponents)
+	public Hardware(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 	}
@@ -87,8 +85,7 @@ public abstract class Hardware extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the hardware decvice.
 	 */
-	public Hardware(String Name, String Desc, String[] SupConInt,
-			Motherboard objectMB)
+	public Hardware(String Name, String Desc, String[] SupConInt, Motherboard objectMB)
 	{
 		super(Name, Desc, SupConInt, objectMB);
 	}

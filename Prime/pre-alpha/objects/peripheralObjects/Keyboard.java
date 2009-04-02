@@ -7,9 +7,8 @@ import objects.ExternalHardware;
 
 
 /**
- * This class represents a keyboard. This device can be connected to any device
- * that supports the conncetion type of this device. It contains information on
- * what kind of capability the keyboard has and what kind of connection
+ * This class represents a keyboard. This device can be connected to any device that supports the conncetion type of
+ * this device. It contains information on what kind of capability the keyboard has and what kind of connection
  * interface it has.
  * 
  * @author Bahram Malaekeh
@@ -33,8 +32,7 @@ public class Keyboard extends ExternalHardware implements Serializable
 	 * @param KeyboardConnectionInterface
 	 *            The connection interface supported by a keyboard.
 	 */
-	public Keyboard(String Name, String Desc,
-			String[] KeyboardConnectionInterface)
+	public Keyboard(String Name, String Desc, String[] KeyboardConnectionInterface)
 	{
 		super(Name, Desc, KeyboardConnectionInterface);
 	}

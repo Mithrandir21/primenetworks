@@ -32,8 +32,7 @@ public class AllTests
 
 		suite.addTestSuite(cleanupTest.class);
 		/*
-		 * suite.addTestSuite(ContainerLogisticTest.class);
-		 * suite.addTestSuite(RackFunctionsTest.class);
+		 * suite.addTestSuite(ContainerLogisticTest.class); suite.addTestSuite(RackFunctionsTest.class);
 		 */
 		// ///////////////////////////////////////////
 		// $JUnit-END$

@@ -75,8 +75,7 @@ public class NewComponentChoice extends JFrame
 
 		c.add(panel, cons);
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}

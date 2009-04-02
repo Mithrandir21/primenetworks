@@ -12,8 +12,7 @@ import connections.NetworkConnection;
 
 
 /**
- * Class that contains different cleanup and support functions that are used in
- * the different parts of the program.
+ * Class that contains different cleanup and support functions that are used in the different parts of the program.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -58,8 +57,8 @@ public class cleanup
 
 		return results;
 	}
-	
-	
+
+
 	/**
 	 * Function to remove null pointer from the an array of objects.
 	 */
@@ -97,9 +96,9 @@ public class cleanup
 
 		return results;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Function to remove null pointer from the an array of software objects.
 	 */
@@ -138,8 +137,8 @@ public class cleanup
 		return results;
 	}
 
-	
-	
+
+
 	/**
 	 * Function to remove null pointer from the an array of objects.
 	 */
@@ -177,8 +176,8 @@ public class cleanup
 
 		return results;
 	}
-	
-	
+
+
 
 
 	/**
@@ -339,8 +338,7 @@ public class cleanup
 	/**
 	 * Function to remove null pointer from the an array of InternalConnections.
 	 */
-	public static InternalConnection[] cleanObjectArray(
-			InternalConnection[] array)
+	public static InternalConnection[] cleanObjectArray(InternalConnection[] array)
 	{
 
 		// Temporary counter for the function
@@ -376,9 +374,8 @@ public class cleanup
 
 
 	/**
-	 * Function to remove null pointer from the an array of booleans. Its
-	 * arranged after the given boolean so that the given boolean is placed
-	 * first and the rest is placed afterwards.
+	 * Function to remove null pointer from the an array of booleans. Its arranged after the given boolean so that the
+	 * given boolean is placed first and the rest is placed afterwards.
 	 */
 	public static boolean[] cleanObjectArray(boolean[] array, boolean given)
 	{

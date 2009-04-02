@@ -7,10 +7,9 @@ import objects.ExternalHardware;
 
 
 /**
- * This class represents a mouse. This device can be connected to any device
- * that supports the conncetion type of this device. It contains information on
- * what kind of capability the mouse has and what kind of connection interface
- * it has.
+ * This class represents a mouse. This device can be connected to any device that supports the conncetion type of this
+ * device. It contains information on what kind of capability the mouse has and what kind of connection interface it
+ * has.
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1

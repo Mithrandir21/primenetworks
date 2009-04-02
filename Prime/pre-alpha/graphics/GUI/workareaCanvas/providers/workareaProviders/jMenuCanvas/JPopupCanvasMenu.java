@@ -27,8 +27,7 @@ public class JPopupCanvasMenu
 
 
 	/**
-	 * The class that will listen for actions and then perform the correct
-	 * action.
+	 * The class that will listen for actions and then perform the correct action.
 	 */
 	private WorkareaCanvasActionListener canvasActListener;
 
@@ -55,10 +54,8 @@ public class JPopupCanvasMenu
 	 * The function calls the menu creator and returns the finished JPopupMenu.
 	 * 
 	 * @param Point
-	 *            The location(Point) on the WorkareaCanvas that the menu will
-	 *            be shown at
-	 * @return The JPopupMenu that will be shown when a user right clicks on an
-	 *         empty part of a WorkareaCanvas.
+	 *            The location(Point) on the WorkareaCanvas that the menu will be shown at
+	 * @return The JPopupMenu that will be shown when a user right clicks on an empty part of a WorkareaCanvas.
 	 */
 	public JPopupMenu createPopupMenu(Point localLocation)
 	{
@@ -100,7 +97,7 @@ public class JPopupCanvasMenu
 		JMenuItem submenuPeripheral = createAddPeripheral(new JMenu("Add Peripheral"));
 		submenuAdd.add(submenuPeripheral);
 
-		
+
 
 		popup.add(submenuAdd);
 	}
@@ -171,7 +168,7 @@ public class JPopupCanvasMenu
 
 
 	/**
-	 * Creates the menus for the creation infrastructur objects. 
+	 * Creates the menus for the creation infrastructur objects.
 	 */
 	private JMenuItem createAddInfrastructur(JMenuItem submenuInfrastructur)
 	{
@@ -198,6 +195,10 @@ public class JPopupCanvasMenu
 		menuItem.addActionListener(canvasActListener);
 		submenuInfrastructur.add(menuItem);
 
+		menuItem = new JMenuItem("Internet");
+		menuItem.setActionCommand("CreateNewST_Internet_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuInfrastructur.add(menuItem);
 
 		return submenuInfrastructur;
 	}
@@ -206,7 +207,7 @@ public class JPopupCanvasMenu
 
 
 	/**
-	 * Creates the menus for the creation peripheral objects. 
+	 * Creates the menus for the creation peripheral objects.
 	 */
 	private JMenuItem createAddPeripheral(JMenuItem submenuPeripheral)
 	{

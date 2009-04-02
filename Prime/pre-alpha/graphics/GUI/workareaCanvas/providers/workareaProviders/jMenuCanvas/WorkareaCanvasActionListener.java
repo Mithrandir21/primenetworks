@@ -3,6 +3,7 @@
  */
 package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas;
 
+
 import graphics.ImageLocator;
 import graphics.WidgetIcon;
 import graphics.GUI.selectArea.CreateObjectDragged;
@@ -18,6 +19,7 @@ import javax.swing.JMenuItem;
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
 import objects.infrastructureObjects.Hub;
+import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.peripheralObjects.Scanner;
@@ -28,9 +30,10 @@ import objects.serverObjects.MailServer;
 import objects.serverObjects.ProxyServer;
 import widgetManipulation.WidgetObject;
 
+
 /**
  * Javadoc-TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
@@ -40,35 +43,39 @@ public class WorkareaCanvasActionListener implements ActionListener
 	 * The canvas that the menu will be shown on.
 	 */
 	private WorkareaCanvas canvas;
-	
-	
+
+
 	/**
 	 * The location where the user has right clicked.
 	 */
 	private Point location;
-	
-	
+
+
 	/**
 	 * A constructor for this class.
-	 *
-	 * @param canvas The WorkareaCanvas that the menu will be shown on.
-	 * @param newObjPoint The location(Point) that the menu will be shown at.
+	 * 
+	 * @param canvas
+	 *            The WorkareaCanvas that the menu will be shown on.
+	 * @param newObjPoint
+	 *            The location(Point) that the menu will be shown at.
 	 */
 	public WorkareaCanvasActionListener(WorkareaCanvas canvas, Point newObjPoint)
 	{
 		this.canvas = canvas;
 		location = newObjPoint;
 	}
-	
-	
-	/* (non-Javadoc)
+
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		JMenuItem action = (JMenuItem) e.getSource();
-		
+
 		String actionName = "";
 
 
@@ -171,22 +178,27 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 				set = true;
 			}
-			
-			
-			
+			else if ( actionName.equals("CreateNewST_Internet_Item") )
+			{
+				objectType = Internet.class;
+				objectIcon = ImageLocator.getImageIconObject("Internet");
+
+				set = true;
+			}
+
+
+
 			if ( set == true )
 			{
-				WidgetIcon newObjectIcon = new WidgetIcon(objectIcon,
-						objectType);
+				WidgetIcon newObjectIcon = new WidgetIcon(objectIcon, objectType);
 
 
 				// Creates a new Object that will be added to the WidgetObject
-				newObject = new CreateObjectDragged().CreateObject(
-						newObjectIcon, canvas.getNumberOfWidgetsOnTheScene());
+				newObject = new CreateObjectDragged()
+						.CreateObject(newObjectIcon, canvas.getNumberOfWidgetsOnTheScene());
 
 				// Creates a new WidgetObject that will be added to the scene
-				newWidgetObject = new WidgetObject(canvas.getScene(), newObject, objectIcon
-						.getImage());
+				newWidgetObject = new WidgetObject(canvas.getScene(), newObject, objectIcon.getImage());
 
 				// Adds the given object to the given location
 				canvas.addWidgetObject(newWidgetObject, location, true);

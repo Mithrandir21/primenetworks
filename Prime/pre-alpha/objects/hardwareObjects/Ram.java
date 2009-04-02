@@ -7,10 +7,9 @@ import objects.Hardware;
 
 
 /**
- * This class represents a RAM within a {@link objects.Servers server} or
- * {@link objects.Clients client} machine. It can be a server, a desktop or a
- * laptop. It contains information on what kind of capability the RAM has and
- * what kind of system it can fit into.
+ * This class represents a RAM within a {@link objects.Servers server} or {@link objects.Clients client} machine. It can
+ * be a server, a desktop or a laptop. It contains information on what kind of capability the RAM has and what kind of
+ * system it can fit into.
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -22,7 +21,7 @@ public class Ram extends Hardware implements Serializable
 	private String producer;
 
 	// The type of ram. DDR,DDR2,DDR3 and so on.
-	private String type;
+	private String port;
 
 	// The subtype of the ram type, DIMM and so on.
 	private String subtype;
@@ -51,7 +50,7 @@ public class Ram extends Hardware implements Serializable
 	{
 		super(Name, Desc);
 
-		type = ramType;
+		port = ramType;
 		size = ramSize;
 	}
 
@@ -72,9 +71,9 @@ public class Ram extends Hardware implements Serializable
 	/**
 	 * Get the type of the ram.
 	 */
-	public String getType()
+	public String getPort()
 	{
-		return type;
+		return port;
 	}
 
 
@@ -119,9 +118,9 @@ public class Ram extends Hardware implements Serializable
 	/**
 	 * Set method for type of the ram.
 	 */
-	public void setType(String ramType)
+	public void setPort(String ramPort)
 	{
-		type = ramType;
+		port = ramPort;
 	}
 
 

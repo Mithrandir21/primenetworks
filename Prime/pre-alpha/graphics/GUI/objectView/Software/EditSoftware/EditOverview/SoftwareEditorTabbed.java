@@ -55,13 +55,11 @@ public class SoftwareEditorTabbed extends JTabbedPane
 
 
 	/**
-	 * Creates and adds tabs to this JTabbedPane instance based on the class of
-	 * the software on the given object, such as {@link OperatingSystem},
-	 * {@link Antivirus} or {@link Firewall}.
+	 * Creates and adds tabs to this JTabbedPane instance based on the class of the software on the given object, such
+	 * as {@link OperatingSystem}, {@link Antivirus} or {@link Firewall}.
 	 * 
 	 * @param obj
-	 *            The object that holds the software which in turn are the basis
-	 *            for the creation of the hardware views.
+	 *            The object that holds the software which in turn are the basis for the creation of the hardware views.
 	 */
 	public void populateTabs(Object obj)
 	{
@@ -76,62 +74,52 @@ public class SoftwareEditorTabbed extends JTabbedPane
 			if ( software[i] instanceof Antivirus )
 			{
 				String desc = "Antivirus" + ending;
-				this.addTab("Antivirus", null, new AntivirusEditView(obj,
-						(Antivirus) software[i]), desc);
+				this.addTab("Antivirus", null, new AntivirusEditView(obj, (Antivirus) software[i]), desc);
 			}
 			else if ( software[i] instanceof Backup )
 			{
 				String desc = "Backup" + ending;
-				this.addTab("Backup", null, new BackupEditView(obj,
-						(Backup) software[i]), desc);
+				this.addTab("Backup", null, new BackupEditView(obj, (Backup) software[i]), desc);
 			}
 			else if ( software[i] instanceof Database )
 			{
 				String desc = "Database" + ending;
-				this.addTab("Database", null, new DatabaseEditView(obj,
-						(Database) software[i]), desc);
+				this.addTab("Database", null, new DatabaseEditView(obj, (Database) software[i]), desc);
 			}
 			else if ( software[i] instanceof Email )
 			{
 				String desc = "Email" + ending;
-				this.addTab("Email", null, new EmailEditView(obj,
-						(Email) software[i]), desc);
+				this.addTab("Email", null, new EmailEditView(obj, (Email) software[i]), desc);
 			}
 			else if ( software[i] instanceof Firewall )
 			{
 				String desc = "Firewall" + ending;
-				this.addTab("Firewall", null, new FirewallEditView(obj,
-						(Firewall) software[i]), desc);
+				this.addTab("Firewall", null, new FirewallEditView(obj, (Firewall) software[i]), desc);
 			}
 			else if ( software[i] instanceof OfficeSuite )
 			{
 				String desc = "OfficeSuite" + ending;
-				this.addTab("OfficeSuite", null, new OfficeSuiteEditView(obj,
-						(OfficeSuite) software[i]), desc);
+				this.addTab("OfficeSuite", null, new OfficeSuiteEditView(obj, (OfficeSuite) software[i]), desc);
 			}
 			else if ( software[i] instanceof OperatingSystem )
 			{
 				String desc = "OperatingSystem" + ending;
-				this.addTab("OperatingSystem", null, new OSEditView(obj,
-						(OperatingSystem) software[i]), desc);
+				this.addTab("OperatingSystem", null, new OSEditView(obj, (OperatingSystem) software[i]), desc);
 			}
 			else if ( software[i] instanceof Proxy )
 			{
 				String desc = "Proxy" + ending;
-				this.addTab("Proxy", null, new ProxyEditView(obj,
-						(Proxy) software[i]), desc);
+				this.addTab("Proxy", null, new ProxyEditView(obj, (Proxy) software[i]), desc);
 			}
 			else if ( software[i] instanceof SecuritySuite )
 			{
 				String desc = "SecuritySuite" + ending;
-				this.addTab("SecuritySuite", null, new SecuritySuiteEditView(
-						obj, (SecuritySuite) software[i]), desc);
+				this.addTab("SecuritySuite", null, new SecuritySuiteEditView(obj, (SecuritySuite) software[i]), desc);
 			}
 			else if ( software[i] instanceof Webserver )
 			{
 				String desc = "Webserver" + ending;
-				this.addTab("Webserver", null, new WebserverEditView(obj,
-						(Webserver) software[i]), desc);
+				this.addTab("Webserver", null, new WebserverEditView(obj, (Webserver) software[i]), desc);
 			}
 		}
 
@@ -140,15 +128,13 @@ public class SoftwareEditorTabbed extends JTabbedPane
 
 
 	/**
-	 * This method calls the save methods on all the different SoftwareViews and
-	 * if the boolean given is true, calls also the validation methods on all
-	 * views. If any of the validations fail, none save methods will be called.
+	 * This method calls the save methods on all the different SoftwareViews and if the boolean given is true, calls
+	 * also the validation methods on all views. If any of the validations fail, none save methods will be called.
 	 */
 	public void save()
 	{
 		/**
-		 * Goes through all the views and saves the values since none of the
-		 * views failed its validation.
+		 * Goes through all the views and saves the values since none of the views failed its validation.
 		 */
 		for ( int i = 0; i < this.getComponentCount(); i++ )
 		{

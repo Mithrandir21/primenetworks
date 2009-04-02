@@ -230,6 +230,12 @@ public class CanvasManagment
 						// Removes the null pointer in the array
 						PrimeMain1.canvases = logistical.cleanup.cleanObjectArray(PrimeMain1.canvases);
 
+						// If all the canvases have been removed, a new array with one index is created
+						if ( PrimeMain1.canvases.length == 0 )
+						{
+							PrimeMain1.canvases = new WorkareaCanvas[1];
+						}
+
 						return;
 					}
 				}
@@ -240,9 +246,10 @@ public class CanvasManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function removes WorkareaCanvas with the given name from the systems WorkareaCanvas array.
 	 * 
 	 * @param canvas
+	 *            The name of the workareaCanvas that is to be removed.
 	 */
 	public static void removeWorkareaCanvas(String canvasName)
 	{
@@ -285,10 +292,11 @@ public class CanvasManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Finds a WorkareaCanvas in the systems canvas array.
 	 * 
 	 * @param canvas
-	 * @return
+	 *            The searched for WorkareaCanvas.
+	 * @return True if he WorkareaCanvas was found and False if not.
 	 */
 	public static boolean canvasExists(WorkareaCanvas canvas)
 	{
@@ -309,10 +317,11 @@ public class CanvasManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Finds a WorkareaCanvas with the given name in the systems canvas array.
 	 * 
 	 * @param canvas
-	 * @return
+	 *            The name of the searched for WorkareaCanvas.
+	 * @return True if he WorkareaCanvas was found and False if not.
 	 */
 	public static boolean canvasExists(String canvasName)
 	{
@@ -336,10 +345,14 @@ public class CanvasManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * The method goes through all the given WorkareaCanvases given and returns a WorkareaCanvas array containing the
+	 * WorkareaCanvases that have been changed and not been saved. If no workareaCanvases are found, it will return a
+	 * null pointer.
 	 * 
 	 * @param canvases
-	 * @return
+	 *            There WorkareaCanvseses to be searched.
+	 * @return The WorkareaCanvases that have changed, but not been saved. Or a null pointer if no WorkareaCanvases are
+	 *         found.
 	 */
 	public static WorkareaCanvas[] canvasesHaveChanged(WorkareaCanvas[] canvases)
 	{

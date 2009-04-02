@@ -21,12 +21,12 @@ import actions.ActionOpenfile;
 import actions.ActionPaste;
 import actions.ActionSave;
 import actions.ActionSaveAll;
+import actions.toolbar.ActionSettings;
 
 
 /**
- * This class creates the a generic {@link JMenuBar JMenuBar} for the main
- * windows of the program. This JMenuBar will include the menues "File", "Edit",
- * "Tools" and "Help". (More menues should be added at a later point.)
+ * This class creates the a generic {@link JMenuBar JMenuBar} for the main windows of the program. This JMenuBar will
+ * include the menues "File", "Edit", "Tools" and "Help". (More menues should be added at a later point.)
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -43,15 +43,14 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 
 	/**
-	 * This function class all the functions that initiate the creation of the
-	 * different menues.
+	 * This function class all the functions that initiate the creation of the different menues.
 	 */
 	public GenericPrimeMenuBar()
 	{
 		initMenuFile();
 
 		initMenuEdit();
-		
+
 		initMenuView();
 
 		initMenuTools();
@@ -65,9 +64,8 @@ public class GenericPrimeMenuBar extends JMenuBar
 	// SETUP FOR THE MENUES
 
 	/**
-	 * This function creates the JMenu "File". It adds the actions "New",
-	 * "Open", "Save", "Save All" and "Exit". (More actions will be added at a
-	 * later stage.)
+	 * This function creates the JMenu "File". It adds the actions "New", "Open", "Save", "Save All" and "Exit". (More
+	 * actions will be added at a later stage.)
 	 */
 	private void initMenuFile()
 	{
@@ -105,8 +103,8 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 
 	/**
-	 * This function creates the JMenu "File". It adds the actions "Undo",
-	 * "Cut", "Copy" and "Paste". (More actions will be added at a later stage.)
+	 * This function creates the JMenu "File". It adds the actions "Undo", "Cut", "Copy" and "Paste". (More actions will
+	 * be added at a later stage.)
 	 */
 	private void initMenuEdit()
 	{
@@ -139,33 +137,31 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 		this.add(edit);
 	}
-	
-	
+
+
 	/**
-	 * This function creates the JMenu "Views". (More actions will be added at a
-	 * later stage.)
+	 * This function creates the JMenu "Views". (More actions will be added at a later stage.)
 	 */
 	private void initMenuView()
 	{
 		// View menu
 		view = new JMenu("Views");
 		view.setMnemonic('V');
-		
-		
+
+
 		JMenu submenu = new JMenu("A submenu");
 		view.add(submenu);
-		
-		
+
+
 
 
 		this.add(view);
 	}
-	
+
 
 
 	/**
-	 * This function creates the JMenu "Tools". (More actions will be added at a
-	 * later stage.)
+	 * This function creates the JMenu "Tools". (More actions will be added at a later stage.)
 	 */
 	private void initMenuTools()
 	{
@@ -174,13 +170,18 @@ public class GenericPrimeMenuBar extends JMenuBar
 		tools.setMnemonic('T');
 
 
+		JMenuItem openSettings = new JMenuItem(new ActionSettings("Settings"));
+		openSettings.setIcon(null);
+		tools.add(openSettings);
+
+
+
 		this.add(tools);
 	}
 
 
 	/**
-	 * This function creates the JMenu "Help". (More actions will be added at a
-	 * later stage.)
+	 * This function creates the JMenu "Help". (More actions will be added at a later stage.)
 	 */
 	private void initMenuHelp()
 	{
@@ -194,14 +195,12 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 
 	/**
-	 * This function sets the keystroke association with the spesific action.
-	 * Eksampel: "Undo" with "Ctrl + Z" It sets the keystroke to the default
-	 * keystroke choosen, which normally is the "Alt" key.
+	 * This function sets the keystroke association with the spesific action. Eksampel: "Undo" with "Ctrl + Z" It sets
+	 * the keystroke to the default keystroke choosen, which normally is the "Alt" key.
 	 */
 	private JMenuItem setKeystroke(JMenuItem item, char key)
 	{
-		item.setAccelerator(KeyStroke.getKeyStroke(key, Toolkit
-				.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+		item.setAccelerator(KeyStroke.getKeyStroke(key, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
 
 		return item;
 	}

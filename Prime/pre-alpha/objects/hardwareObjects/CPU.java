@@ -7,10 +7,9 @@ import objects.Hardware;
 
 
 /**
- * This class represents a CPU within a {@link objects.Servers server} or
- * {@link objects.Clients client} machine. It can be a server, a desktop or a
- * laptop. It contains information on what kind of capability the CPU has and
- * what kind of system it can fit into.
+ * This class represents a CPU within a {@link objects.Servers server} or {@link objects.Clients client} machine. It can
+ * be a server, a desktop or a laptop. It contains information on what kind of capability the CPU has and what kind of
+ * system it can fit into.
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -114,8 +113,7 @@ public class CPU extends Hardware implements Serializable
 	 * @param level2CPUcache
 	 *            The cache size in KB. Normally 256 - 1024 KB.
 	 */
-	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache,
-			int level2CPUcache)
+	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache, int level2CPUcache)
 	{
 		super(Name, Desc);
 
@@ -146,8 +144,7 @@ public class CPU extends Hardware implements Serializable
 	 * @param fsb
 	 *            The front side bus of the CPU.
 	 */
-	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache,
-			int level2CPUcache, int fsb)
+	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache, int level2CPUcache, int fsb)
 	{
 		super(Name, Desc);
 
@@ -178,11 +175,9 @@ public class CPU extends Hardware implements Serializable
 	 * @param fsb
 	 *            The front side bus of the CPU.
 	 * @param nm
-	 *            The nanometer of the CPU. Its the size that one block takes
-	 *            up.
+	 *            The nanometer of the CPU. Its the size that one block takes up.
 	 */
-	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache,
-			int level2CPUcache, int fsb, int nm)
+	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache, int level2CPUcache, int fsb, int nm)
 	{
 		super(Name, Desc);
 
@@ -213,13 +208,12 @@ public class CPU extends Hardware implements Serializable
 	 * @param fsb
 	 *            The front side bus of the CPU.
 	 * @param nm
-	 *            The nanometer of the CPU. Its the size that one block takes
-	 *            up.
+	 *            The nanometer of the CPU. Its the size that one block takes up.
 	 * @param bit
 	 *            The boolean variable that tells if the CPU is a 64 bit CPU.
 	 */
-	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache,
-			int level2CPUcache, int fsb, int nm, boolean bit)
+	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache, int level2CPUcache, int fsb, int nm,
+			boolean bit)
 	{
 		super(Name, Desc);
 
@@ -293,8 +287,7 @@ public class CPU extends Hardware implements Serializable
 
 	// Get the busSpeed of the CPU
 	/**
-	 * Get the bus speed of the CPU. The speed of transfer between the main
-	 * components of the system.
+	 * Get the bus speed of the CPU. The speed of transfer between the main components of the system.
 	 */
 	public int getBusSpeed()
 	{

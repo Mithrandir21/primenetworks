@@ -15,10 +15,9 @@ import objects.Object;
 
 
 /**
- * This is the properties class that is an extension of the JTabbedPane class.
- * It is here the information about either the canvas or the WidgetObject i
- * shown. It will react on changes in what canvas i currently selected or clicks
- * on WidgetObjects on the scene.
+ * This is the properties class that is an extension of the JTabbedPane class. It is here the information about either
+ * the canvas or the WidgetObject i shown. It will react on changes in what canvas i currently selected or clicks on
+ * WidgetObjects on the scene.
  * 
  * @author Bahram Malaekeh
  */
@@ -27,8 +26,8 @@ public class PropertiesArea extends JTabbedPane
 	private ObjectScrollProperties scrollArea = new ObjectScrollProperties();
 
 	/**
-	 * The constructor for the class that will set both the height and width of
-	 * the component depending on the screen size.
+	 * The constructor for the class that will set both the height and width of the component depending on the screen
+	 * size.
 	 */
 	public PropertiesArea()
 	{
@@ -43,14 +42,13 @@ public class PropertiesArea extends JTabbedPane
 
 
 	/**
-	 * Creates and adds a new properties view with the information from the
-	 * given object.
+	 * Creates and adds a new properties view with the information from the given object.
 	 */
 	public void newObjectSelectedPropertiesTab(Object object)
 	{
 		scrollArea.newObjectSelectedPropertiesTab(object);
 
-		if( object != null)
+		if ( object != null )
 		{
 			addTab(object.getObjectName(), scrollArea);
 		}
@@ -63,14 +61,13 @@ public class PropertiesArea extends JTabbedPane
 
 
 	/**
-	 * Creates and adds a new properties view with the information from the
-	 * given canvas.
+	 * Creates and adds a new properties view with the information from the given canvas.
 	 */
 	public void newObjectSelectedPropertiesTab(WorkareaCanvas canvas)
 	{
 		scrollArea.newObjectSelectedPropertiesTab(canvas);
 
-		if( canvas != null)
+		if ( canvas != null )
 		{
 			addTab(canvas.getCanvasName(), scrollArea);
 		}

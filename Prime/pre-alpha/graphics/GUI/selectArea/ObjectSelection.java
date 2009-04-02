@@ -5,6 +5,7 @@ package graphics.GUI.selectArea;
 
 
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.WidgetIcon;
 
 import java.awt.Color;
@@ -24,6 +25,7 @@ import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
 import objects.clientObjects.ThinClient;
 import objects.infrastructureObjects.Hub;
+import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.peripheralObjects.Printer;
@@ -67,8 +69,8 @@ public class ObjectSelection extends JPanel
 		initExternalHardwareButtonIcons();
 
 		initInfrastructureButtonIcons();
-		
-		this.setPreferredSize(new Dimension(250, 300));
+
+		this.setPreferredSize(new Dimension(270, getCompSize()));
 	}
 
 
@@ -97,24 +99,19 @@ public class ObjectSelection extends JPanel
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("Data-server", BackupServer.class,
-				"Backup Server"));
+		this.add(makeImageIcon("Data-server", BackupServer.class, "Backup Server"));
 
 		this.add(new JToolBar.Separator());
 
-		this
-				.add(makeImageIcon("Email-server", MailServer.class,
-						"Email Server"));
+		this.add(makeImageIcon("Email-server", MailServer.class, "Email Server"));
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("Firewall-server", FirewallServer.class,
-				"Firewall Server"));
+		this.add(makeImageIcon("Firewall-server", FirewallServer.class, "Firewall Server"));
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("Proxy-server", ProxyServer.class,
-				"Proxy Server"));
+		this.add(makeImageIcon("Proxy-server", ProxyServer.class, "Proxy Server"));
 
 		this.add(new JToolBar.Separator());
 
@@ -152,8 +149,11 @@ public class ObjectSelection extends JPanel
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("WirelessRouter", Router.class,
-				"Wireless Router"));
+		this.add(makeImageIcon("WirelessRouter", Router.class, "Wireless Router"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Internet", Internet.class, "Internet"));
 
 		this.add(new JToolBar.Separator());
 
@@ -167,6 +167,7 @@ public class ObjectSelection extends JPanel
 	{
 		ImageIcon Icon = ImageLocator.getImageIconObject(name);
 		WidgetIcon iconButton = new WidgetIcon(Icon, objectType, text);
+		iconButton.setSize(Icon.getIconWidth(), Icon.getIconHeight());
 
 		iconButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		iconButton.setAlignmentY(Component.TOP_ALIGNMENT);
@@ -190,6 +191,25 @@ public class ObjectSelection extends JPanel
 		return label;
 	}
 
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @return
+	 */
+	private int getCompSize()
+	{
+		int size = 0;
+
+		for ( int i = 0; i < this.getComponentCount(); i++ )
+		{
+			size += this.getComponent(i).getHeight();
+		}
+
+
+		return size + (this.getComponentCount() * 5);
+	}
 
 
 }

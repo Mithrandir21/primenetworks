@@ -18,7 +18,9 @@ import widgetManipulation.WidgetObject;
 public class WidgetHoverProvider implements HoverProvider
 {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.netbeans.api.visual.action.HoverProvider#widgetHovered(org.netbeans.api.visual.widget.Widget)
 	 */
 	@Override

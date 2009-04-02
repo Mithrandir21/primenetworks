@@ -9,8 +9,7 @@ import objects.Software;
 public class Database extends Software implements Serializable
 {
 	/*
-	 * Datafields for an abstract webserver These will contain the values of any
-	 * webserver object
+	 * Datafields for an abstract webserver These will contain the values of any webserver object
 	 */
 
 	// Supported Operating systems

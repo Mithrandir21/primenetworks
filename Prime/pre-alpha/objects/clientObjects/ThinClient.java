@@ -1,6 +1,8 @@
 package objects.clientObjects;
 
+
 import objects.Object;
+
 
 public class ThinClient extends Object
 {

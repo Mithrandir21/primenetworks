@@ -9,13 +9,15 @@ import widgetManipulation.WidgetObject;
 
 /**
  * Javadoc-TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
 public class LabelTextFieldEditor implements TextFieldInplaceEditor
 {
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.netbeans.api.visual.action.TextFieldInplaceEditor#getText(org.netbeans.api.visual.widget.Widget)
 	 */
 	@Override
@@ -24,7 +26,9 @@ public class LabelTextFieldEditor implements TextFieldInplaceEditor
 		return ((WidgetObject) widget).getLabel();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.netbeans.api.visual.action.TextFieldInplaceEditor#isEnabled(org.netbeans.api.visual.widget.Widget)
 	 */
 	@Override
@@ -33,8 +37,11 @@ public class LabelTextFieldEditor implements TextFieldInplaceEditor
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.netbeans.api.visual.action.TextFieldInplaceEditor#setText(org.netbeans.api.visual.widget.Widget, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.netbeans.api.visual.action.TextFieldInplaceEditor#setText(org.netbeans.api.visual.widget.Widget,
+	 * java.lang.String)
 	 */
 	@Override
 	public void setText(Widget widget, String text)

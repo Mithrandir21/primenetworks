@@ -52,8 +52,7 @@ public abstract class Container implements Serializable
 		// Check to see if the specific object already exist in the container
 		if ( container.contains(obj) )
 		{
-			throw new ObjectExistInContainer("This object,"
-					+ obj.getObjectName()
+			throw new ObjectExistInContainer("This object," + obj.getObjectName()
 					+ ", already exist in this container.", obj);
 		}
 
@@ -66,14 +65,12 @@ public abstract class Container implements Serializable
 	/**
 	 * Description
 	 */
-	public boolean removeObject(Object obj)
-			throws ObjectDoesNotExistInContainer
+	public boolean removeObject(Object obj) throws ObjectDoesNotExistInContainer
 	{
 		// Checks to see if object really exist in the container
 		if ( !container.contains(obj) )
 		{
-			throw new ObjectDoesNotExistInContainer("This object,"
-					+ obj.getObjectName()
+			throw new ObjectDoesNotExistInContainer("This object," + obj.getObjectName()
 					+ ", does not exist in this container.", obj);
 		}
 

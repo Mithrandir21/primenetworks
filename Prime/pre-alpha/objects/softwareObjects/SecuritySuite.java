@@ -8,10 +8,9 @@ import objects.Software;
 
 
 /**
- * This class represents an security suite program. It contains information on
- * whether or not the security suite contains a firewall, an antivirus and/or a
- * proxy. It also contains information about the activation of the software, the
- * license of the software and the activation/expiration date for the software.
+ * This class represents an security suite program. It contains information on whether or not the security suite
+ * contains a firewall, an antivirus and/or a proxy. It also contains information about the activation of the software,
+ * the license of the software and the activation/expiration date for the software.
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -19,8 +18,7 @@ import objects.Software;
 public class SecuritySuite extends Software implements Serializable
 {
 	/*
-	 * Datafields for an Security Suite. These will contain the values of any
-	 * Security Suite object.
+	 * Datafields for an Security Suite. These will contain the values of any Security Suite object.
 	 */
 	// Supported Operating systems
 	private String[] supportedOperatingSystems;
@@ -67,8 +65,8 @@ public class SecuritySuite extends Software implements Serializable
 	 * @param SShasProxy
 	 *            Whether or not the security suite contains an proxy.
 	 */
-	public SecuritySuite(String Name, String Desc, String Version,
-			boolean SShasAntivirus, boolean SShasFirewall, boolean SShasProxy)
+	public SecuritySuite(String Name, String Desc, String Version, boolean SShasAntivirus, boolean SShasFirewall,
+			boolean SShasProxy)
 	{
 		super(Name, Desc, Version);
 

@@ -41,12 +41,10 @@ import objects.softwareObjects.OperatingSystem;
 
 
 /**
- * A JPanel that will contain fields and options for a presentation and
- * modification of an {@link OperatingSystem OperatingSystem} Software. The
- * panel is made up of 3 JPanel ordered in a column. The first one contains the
- * name and description of the object. The second panel contains the specific
- * software options. The third panel contains the button that can remove the
- * software from the computer.
+ * A JPanel that will contain fields and options for a presentation and modification of an {@link OperatingSystem
+ * OperatingSystem} Software. The panel is made up of 3 JPanel ordered in a column. The first one contains the name and
+ * description of the object. The second panel contains the specific software options. The third panel contains the
+ * button that can remove the software from the computer.
  * 
  * @author Bahram Malaekeh
  */
@@ -152,14 +150,12 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 
 
 	/**
-	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
-	 * the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different settings of the given Software object.
+	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
+	 * the JPanel in grids.
 	 * 
 	 * @param OS
-	 *            The Software that will be examined and will fill inn the
-	 *            fields.
+	 *            The Software that will be examined and will fill inn the fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
 	 */
 	private JPanel createSpesificInfo(OperatingSystem OS)
@@ -172,8 +168,7 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		labels[0].setToolTipText("The supported file systems by the OS.");
 
 		labels[1] = new JLabel("Supports Encrypted FS");
-		labels[1]
-				.setToolTipText("Whether or not the OS supports an encrypted file system.");
+		labels[1].setToolTipText("Whether or not the OS supports an encrypted file system.");
 
 		labels[2] = new JLabel("Has GUI");
 		labels[2].setToolTipText("Whether or not the OS has a GUI.");
@@ -188,24 +183,22 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 
 		// The supported file system.
 		labels[0].setLabelFor(supportedFS);
-		String[] listData = { "FAT16", "FAT32", "NTFS", "EXT", "EXT2", "EXT3",
-				"EXT4", "ReiserFS", "Reiser4", "ZFS", "XFS" };
+		String[] listData = { "FAT16", "FAT32", "NTFS", "EXT", "EXT2", "EXT3", "EXT4", "ReiserFS", "Reiser4", "ZFS",
+				"XFS" };
 		supportedFS = new JList(listData);
 		ListSelectionModel listSelectionModel = supportedFS.getSelectionModel();
-		listSelectionModel
-				.addListSelectionListener(new SharedListSelectionHandler());
+		listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supportedFS);
 		listPane.setMaximumSize(new Dimension(160, 60));
 		listPane.setPreferredSize(new Dimension(160, 60));
-		listSelectionModel
-				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		listSelectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		if ( mainOS.getSupportedFS() != null )
 		{
 			if ( mainOS.getSupportedFS().length > 0 )
 			{
-				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedFS, listData, mainOS.getSupportedFS()));
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(supportedFS, listData, mainOS
+						.getSupportedFS()));
 			}
 		}
 
@@ -266,8 +259,7 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel,
-				panel.getComponentCount(), // rows,
+		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows,
 				// cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
@@ -314,21 +306,16 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 
 			if ( command.equals("removeSoft") )
 			{
-				int answer = JOptionPane
-						.showConfirmDialog(
-								this,
-								"By removing this Operating "
-										+ "System from the machine there might be other software that will no "
-										+ "longer be compatible with the system and hence will be removed as well."
-										+ "\nDo you still wish to perform this action?",
-								"Verify", JOptionPane.YES_NO_OPTION);
+				int answer = JOptionPane.showConfirmDialog(this, "By removing this Operating "
+						+ "System from the machine there might be other software that will no "
+						+ "longer be compatible with the system and hence will be removed as well."
+						+ "\nDo you still wish to perform this action?", "Verify", JOptionPane.YES_NO_OPTION);
 
 				// If the user verifies the choice
 				if ( answer == JOptionPane.YES_OPTION )
 				{
 					// Removes the OS from the software array of the main object
-					mainObj.setSoftware(SoftwareManagment.removeSoftware(
-							mainOS, mainObj));
+					mainObj.setSoftware(SoftwareManagment.removeSoftware(mainOS, mainObj));
 
 					// All the software of the main obj(without the OS)
 					Software[] software = mainObj.getSoftware();
@@ -343,8 +330,7 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 						{
 							// Checks whether or not the given software is still
 							// compatible
-							if ( !(SoftwareManagment.validateSoftware(
-									software[i], mainObj)) )
+							if ( !(SoftwareManagment.validateSoftware(software[i], mainObj)) )
 							{
 								// If the software is not compatible the index
 								// of
@@ -376,16 +362,14 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 
 
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems"
-	 * JList.
+	 * Handles the selections that are made in the "Supported Operating Systems" JList.
 	 */
 	class SharedListSelectionHandler implements ListSelectionListener
 	{
 		/*
 		 * (non-Javadoc)
-		 * @see
-		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
-		 * event.ListSelectionEvent)
+		 * 
+		 * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing. event.ListSelectionEvent)
 		 */
 		public void valueChanged(ListSelectionEvent e)
 		{

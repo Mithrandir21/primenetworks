@@ -7,11 +7,9 @@ import objects.Hardware;
 
 
 /**
- * This class represents a diskdrive within a {@link objects.Servers server} or
- * {@link objects.Clients client} machine. It can be a server, a desktop or a
- * laptop. It contains information on what kind of capability the diskdrive has
- * and what kind of system it can fit into. The diskdrive can be anything from a
- * CDROM or DVD-Burner to a Blu-Ray-Burner.
+ * This class represents a diskdrive within a {@link objects.Servers server} or {@link objects.Clients client} machine.
+ * It can be a server, a desktop or a laptop. It contains information on what kind of capability the diskdrive has and
+ * what kind of system it can fit into. The diskdrive can be anything from a CDROM or DVD-Burner to a Blu-Ray-Burner.
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1

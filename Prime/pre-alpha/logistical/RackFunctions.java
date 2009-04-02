@@ -8,8 +8,8 @@ import objects.infrastructureObjects.RackSwitch;
 
 
 /**
- * Functions class that contains functions to manage and manipulate the content
- * of a rack. Functions like calculating shelf space.
+ * Functions class that contains functions to manage and manipulate the content of a rack. Functions like calculating
+ * shelf space.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -18,8 +18,7 @@ public class RackFunctions
 {
 
 	/**
-	 * Calculates the number of shelfs needed to contain all the units in the
-	 * given array of units.
+	 * Calculates the number of shelfs needed to contain all the units in the given array of units.
 	 * 
 	 * @return The number of shelfs needed.
 	 */

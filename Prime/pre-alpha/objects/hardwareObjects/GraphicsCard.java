@@ -7,13 +7,11 @@ import objects.Hardware;
 
 
 /**
- * This class represents a graphical card within a {@link objects.Servers
- * server} or {@link objects.Clients client} machine. It can be a server, a
- * desktop or a laptop. It contains information on what kind of capability the
- * graphical card has and what kind of system it can fit into. <br>
+ * This class represents a graphical card within a {@link objects.Servers server} or {@link objects.Clients client}
+ * machine. It can be a server, a desktop or a laptop. It contains information on what kind of capability the graphical
+ * card has and what kind of system it can fit into. <br>
  * <br>
- * <b>Notation</b>: The graphical card will be referred to as "GC" in the
- * remainder of this document.
+ * <b>Notation</b>: The graphical card will be referred to as "GC" in the remainder of this document.
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -60,8 +58,8 @@ public class GraphicsCard extends Hardware implements Serializable
 	 * @param GCisIntegrated
 	 *            Whether or not the GC is integrated on the MB.
 	 */
-	public GraphicsCard(String Name, String Desc, String GCtype, int GCram,
-			String GCoutputInterface, boolean GCisIntegrated)
+	public GraphicsCard(String Name, String Desc, String GCtype, int GCram, String GCoutputInterface,
+			boolean GCisIntegrated)
 	{
 		super(Name, Desc);
 
@@ -132,8 +130,7 @@ public class GraphicsCard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the information on whether or not the GC is integrated on the
-	 * motherboard or not.
+	 * Get the information on whether or not the GC is integrated on the motherboard or not.
 	 */
 	public boolean getIsIntegrated()
 	{

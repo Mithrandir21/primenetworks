@@ -8,7 +8,7 @@ import objects.Software;
 
 /**
  * TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
@@ -34,9 +34,8 @@ public class Backup extends Software implements Serializable
 
 	// FIXME - Fix backup.
 	/**
-	 * A constructor for the class that passes on the given parameters
-	 * to the constructors of the super class.
-	 *
+	 * A constructor for the class that passes on the given parameters to the constructors of the super class.
+	 * 
 	 * @param Name
 	 * @param Desc
 	 * @param Version
@@ -106,7 +105,7 @@ public class Backup extends Software implements Serializable
 		return duplicate;
 	}
 
-	
+
 	// SET METHODES
 
 
@@ -159,9 +158,9 @@ public class Backup extends Software implements Serializable
 	{
 		this.encryption = encryption;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Sets the number of duplicates of the backup the software keeps.
 	 */

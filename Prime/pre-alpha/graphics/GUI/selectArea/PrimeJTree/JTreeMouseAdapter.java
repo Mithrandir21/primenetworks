@@ -60,20 +60,22 @@ public class JTreeMouseAdapter extends MouseAdapter
 			FileTreeNode obj = (FileTreeNode) path.getLastPathComponent();
 
 			JPopupMenu popup = getFileMenu(obj);
-			
+
 			popup.show(tree, x, y);
 		}
 		// If the mouse was right clicked on the empty area in the selection area
 		else
 		{
 			JPopupMenu popup = getJTreeMenu();
-			
+
 			popup.show(tree, x, y);
 		}
 	}
-	
 
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.MouseAdapter#mousePressed(java.awt.event.MouseEvent)
 	 */
 	public void mousePressed(MouseEvent e)
@@ -82,11 +84,13 @@ public class JTreeMouseAdapter extends MouseAdapter
 		{
 			myPopupEvent(e);
 		}
-		
-	}
-	
 
-	/* (non-Javadoc)
+	}
+
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.MouseAdapter#mouseReleased(java.awt.event.MouseEvent)
 	 */
 	public void mouseReleased(MouseEvent e)
@@ -96,9 +100,11 @@ public class JTreeMouseAdapter extends MouseAdapter
 			myPopupEvent(e);
 		}
 	}
-	
-	
-	/* (non-Javadoc)
+
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.MouseAdapter#mouseClicked(java.awt.event.MouseEvent)
 	 */
 	public void mouseClicked(MouseEvent e)
@@ -116,14 +122,14 @@ public class JTreeMouseAdapter extends MouseAdapter
 			tree.setSelectionPath(path);
 
 			FileTreeNode obj = (FileTreeNode) path.getLastPathComponent();
-			
+
 			PrimeJTreeActions.openFile(obj);
 		}
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -133,30 +139,30 @@ public class JTreeMouseAdapter extends MouseAdapter
 	private JPopupMenu getFileMenu(FileTreeNode file)
 	{
 		JTreeJMenuItemListener listener = new JTreeJMenuItemListener(file, tree);
-		
+
 		JPopupMenu itemPopup = new JPopupMenu();
-		
+
 		JMenuItem openFile = new JMenuItem("Open Network");
 		openFile.setActionCommand("Open Network");
 		openFile.addActionListener(listener);
-		
+
 		itemPopup.add(openFile);
-		
-		
+
+
 		JMenuItem deleteFile = new JMenuItem("Delete Network");
 		deleteFile.setActionCommand("Delete Network");
 		deleteFile.addActionListener(listener);
-		
+
 		itemPopup.add(deleteFile);
 
-		
-		return itemPopup;		
+
+		return itemPopup;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -165,29 +171,29 @@ public class JTreeMouseAdapter extends MouseAdapter
 	private JPopupMenu getJTreeMenu()
 	{
 		JTreeJMenuListener listener = new JTreeJMenuListener(tree);
-		
+
 		JPopupMenu menuPopup = new JPopupMenu();
-		
+
 		JMenuItem newNetwork = new JMenuItem("New Network");
 		newNetwork.setActionCommand("New Network");
 		newNetwork.addActionListener(listener);
-		
+
 		menuPopup.add(newNetwork);
-		
-		
+
+
 		JMenu subMenu = new JMenu("A sub menu");
-		
+
 		JMenuItem subItem1 = new JMenuItem("Action 1");
-		
+
 		JMenuItem subItem2 = new JMenuItem("Action 2");
-		
+
 		subMenu.add(subItem1);
 		subMenu.add(subItem2);
-		
-		
+
+
 		menuPopup.add(subMenu);
-		
-		
+
+
 		return menuPopup;
 	}
 }

@@ -2,8 +2,8 @@ package exceptions;
 
 
 /**
- * ConnectionDoesNotExist exception will be thrown when a connection is searched
- * for between two objects that do not have a connection between them.
+ * ConnectionDoesNotExist exception will be thrown when a connection is searched for between two objects that do not
+ * have a connection between them.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -19,9 +19,8 @@ public class ConnectionDoesNotExist extends Exception
 
 
 	/**
-	 * Constructs a new exception with parameters for two {@link Object Objects}
-	 * . The two parameters will be the two objects that should, but do not,
-	 * have a connection between them.
+	 * Constructs a new exception with parameters for two {@link Object Objects} . The two parameters will be the two
+	 * objects that should, but do not, have a connection between them.
 	 * 
 	 * @param a
 	 *            An {@link Object Objects} in the connection.
@@ -40,13 +39,13 @@ public class ConnectionDoesNotExist extends Exception
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Throwable#getMessage()
 	 */
 	@Override
 	public String getMessage()
 	{
-		String output = "There exists no connection between object a, " + a
-				+ " and object b, " + b + ".";
+		String output = "There exists no connection between object a, " + a + " and object b, " + b + ".";
 
 		return output;
 	}

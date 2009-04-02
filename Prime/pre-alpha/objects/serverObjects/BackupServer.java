@@ -10,9 +10,8 @@ import objects.softwareObjects.Backup;
 
 
 /**
- * A representation of a backup server. This server will backup different
- * information from one or multiple parts of the network. <b>The functionality
- * of the device is yet to be implemented.</b>
+ * A representation of a backup server. This server will backup different information from one or multiple parts of the
+ * network. <b>The functionality of the device is yet to be implemented.</b>
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -38,13 +37,11 @@ public class BackupServer extends Servers implements Serializable
 	 * @param BackupSWname
 	 *            The name of the application that the server is set to run.
 	 * @param BackupSWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param BackupSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public BackupServer(String Name, String Desc, String BackupSWname,
-			String BackupSWdesc, String BackupSWversion)
+	public BackupServer(String Name, String Desc, String BackupSWname, String BackupSWdesc, String BackupSWversion)
 	{
 		super(Name, Desc);
 
@@ -66,13 +63,12 @@ public class BackupServer extends Servers implements Serializable
 	 * @param BackupSWname
 	 *            The name of the application that the server is set to run.
 	 * @param BackupSWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param BackupSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public BackupServer(String Name, String Desc, String[] SupConInt,
-			String BackupSWname, String BackupSWdesc, String BackupSWversion)
+	public BackupServer(String Name, String Desc, String[] SupConInt, String BackupSWname, String BackupSWdesc,
+			String BackupSWversion)
 	{
 		super(Name, Desc, SupConInt);
 
@@ -94,13 +90,12 @@ public class BackupServer extends Servers implements Serializable
 	 * @param BackupSWname
 	 *            The name of the application that the server is set to run.
 	 * @param BackupSWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param BackupSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public BackupServer(String Name, String Desc, Object[] DesktopComponents,
-			String BackupSWname, String BackupSWdesc, String BackupSWversion)
+	public BackupServer(String Name, String Desc, Object[] DesktopComponents, String BackupSWname, String BackupSWdesc,
+			String BackupSWversion)
 	{
 		super(Name, Desc, DesktopComponents);
 
@@ -122,13 +117,11 @@ public class BackupServer extends Servers implements Serializable
 	 * @param BackupSWname
 	 *            The name of the application that the server is set to run.
 	 * @param BackupSWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param BackupSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public BackupServer(String Name, String Desc, String[] SupConInt,
-			Object[] DesktopComponents, String BackupSWname,
+	public BackupServer(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents, String BackupSWname,
 			String BackupSWdesc, String BackupSWversion)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);

@@ -1,5 +1,6 @@
 package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
+
 import graphics.ImageLocator;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
@@ -28,7 +29,8 @@ import objects.Object;
 import objects.Software;
 import objects.softwareObjects.Database;
 
-public class DatabaseNewView extends JFrame implements SoftwareView,ActionListener
+
+public class DatabaseNewView extends JFrame implements SoftwareView, ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -42,8 +44,8 @@ public class DatabaseNewView extends JFrame implements SoftwareView,ActionListen
 
 	private Database mainDB;
 
-	
-	
+
+
 	/**
 	 * Constructor for the software view.
 	 * 
@@ -55,7 +57,7 @@ public class DatabaseNewView extends JFrame implements SoftwareView,ActionListen
 	public DatabaseNewView(Object obj, Database db)
 	{
 		super("New Backup");
-		
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -109,20 +111,18 @@ public class DatabaseNewView extends JFrame implements SoftwareView,ActionListen
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(buttons, c);
-		
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
+
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
-	
-	
+
+
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software}
-	 * specific options. The layout of the returned panel will be
-	 * {@link SpringLayout}.
+	 * Creates the JPanel that will contain the {@link Software Software} specific options. The layout of the returned
+	 * panel will be {@link SpringLayout}.
 	 */
 	private JPanel createSpesificInfo(Database db)
 	{
@@ -149,9 +149,9 @@ public class DatabaseNewView extends JFrame implements SoftwareView,ActionListen
 		return panel;
 	}
 
-	
-	
-	
+
+
+
 	/**
 	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
 	 * 
@@ -183,7 +183,7 @@ public class DatabaseNewView extends JFrame implements SoftwareView,ActionListen
 	public void save()
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
@@ -192,7 +192,7 @@ public class DatabaseNewView extends JFrame implements SoftwareView,ActionListen
 	public void actionPerformed(ActionEvent e)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }

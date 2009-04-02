@@ -13,21 +13,22 @@ import widgetManipulation.WidgetObject;
 
 /**
  * TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
 public class WidgetTransferHandler extends TransferHandler
 {
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.swing.TransferHandler#canImport(javax.swing.TransferHandler.TransferSupport)
 	 */
 	@Override
 	public boolean canImport(TransferSupport support)
 	{
 		DataFlavor flavors[] = support.getDataFlavors();
-		if ( flavors[0].equals(new DataFlavor(WidgetObject.class,
-				"Widget Object")) )
+		if ( flavors[0].equals(new DataFlavor(WidgetObject.class, "Widget Object")) )
 		{
 			return true;
 		}
@@ -35,8 +36,10 @@ public class WidgetTransferHandler extends TransferHandler
 		return false;
 	}
 
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.swing.TransferHandler#importData(javax.swing.TransferHandler.TransferSupport)
 	 */
 	@Override

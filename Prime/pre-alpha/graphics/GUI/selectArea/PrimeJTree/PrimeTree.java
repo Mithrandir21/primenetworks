@@ -20,7 +20,7 @@ import javax.swing.JTree;
  * @author Bahram Malaekeh
  * @version 0.1
  */
-public class PrimeTree extends JPanel// implements MouseListener
+public class PrimeTree extends JPanel
 {
 
 	/**
@@ -35,12 +35,12 @@ public class PrimeTree extends JPanel// implements MouseListener
 	public PrimeTree()
 	{
 		this.setLayout(new BorderLayout());
-		
+
 		createTree();
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -50,7 +50,7 @@ public class PrimeTree extends JPanel// implements MouseListener
 	{
 		// Removes all the previous jscrolls with jtrees
 		this.removeAll();
-		
+
 		// File[] roots = File.listRoots();
 		File root = new File("Data");
 
@@ -61,19 +61,19 @@ public class PrimeTree extends JPanel// implements MouseListener
 		this.tree.setCellRenderer(new PrimeFileTreeCellRenderer());
 
 		this.tree.setRootVisible(false);
-		
-//		this.tree.addTreeSelectionListener(this);
+
+		// this.tree.addTreeSelectionListener(this);
 
 		this.tree.addMouseListener(new JTreeMouseAdapter(tree));
 
 		final JScrollPane jsp = new JScrollPane(this.tree);
 
-//		 this.tree.setBorder(BorderFactory.createLineBorder(Color.black));
+		// this.tree.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		this.add(jsp, BorderLayout.CENTER);
 	}
-	
-	
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -83,7 +83,7 @@ public class PrimeTree extends JPanel// implements MouseListener
 	{
 		return tree;
 	}
-	
+
 
 
 	/**
@@ -132,8 +132,8 @@ public class PrimeTree extends JPanel// implements MouseListener
 
 
 	/**
-	 * Goes through all files and directories under a given folder. It finds and
-	 * sets all files within this given folder with the file extensions *.dat.
+	 * Goes through all files and directories under a given folder. It finds and sets all files within this given folder
+	 * with the file extensions *.dat.
 	 */
 	public static ArrayList<File> visitAllFiles(File dir, ArrayList<File> files)
 	{
@@ -148,9 +148,9 @@ public class PrimeTree extends JPanel// implements MouseListener
 		else
 		{
 			String name = dir.getName();
-			
+
 			String[] parts = dir.getName().split("\\.");
-			
+
 			// Adds the files that end with ".dat" to the files arrayList
 			if ( name.contains(".dat") && parts.length == 2 )
 			{
@@ -161,8 +161,8 @@ public class PrimeTree extends JPanel// implements MouseListener
 
 		return files;
 	}
-	
-	
-	
-	
+
+
+
+
 }

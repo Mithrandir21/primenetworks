@@ -9,9 +9,8 @@ import objects.hardwareObjects.Motherboard;
 
 
 /**
- * This class represents a scanner. This device can be connected to any device
- * that supports the conncetion type of this device. It contains information on
- * what kind of capability the printer machine has and what kind of connection
+ * This class represents a scanner. This device can be connected to any device that supports the conncetion type of this
+ * device. It contains information on what kind of capability the printer machine has and what kind of connection
  * interface is has.
  * 
  * @author Bahram Malaekeh
@@ -32,14 +31,11 @@ public class Scanner extends ExternalHardware implements Serializable
 	 *            The description of the scanner.
 	 * @param Sresolution
 	 *            Maximum resolution of a scanner. <br>
-	 *            This can be a NULL pointer. The value will then be a NULL
-	 *            pointer.
+	 *            This can be a NULL pointer. The value will then be a NULL pointer.
 	 * @param SconnectionInterfaces
-	 *            Connection interfaces supported by the scanner. An array of
-	 *            Strings.
+	 *            Connection interfaces supported by the scanner. An array of Strings.
 	 */
-	public Scanner(String Name, String Desc, String Sresolution,
-			String[] SconnectionInterfaces)
+	public Scanner(String Name, String Desc, String Sresolution, String[] SconnectionInterfaces)
 	{
 		super(Name, Desc, SconnectionInterfaces);
 
@@ -59,14 +55,11 @@ public class Scanner extends ExternalHardware implements Serializable
 	 *            The description of the scanner.
 	 * @param Sresolution
 	 *            Maximum resolution of a scanner. <br>
-	 *            This can be a NULL pointer. The value will then be a NULL
-	 *            pointer.
+	 *            This can be a NULL pointer. The value will then be a NULL pointer.
 	 * @param SconnectionInterfaces
-	 *            Connection interfaces supported by the scanner. An array of
-	 *            Strings.
+	 *            Connection interfaces supported by the scanner. An array of Strings.
 	 */
-	public Scanner(String Name, String Desc, String Sresolution,
-			String[] SconnectionInterfaces, Motherboard objectMB)
+	public Scanner(String Name, String Desc, String Sresolution, String[] SconnectionInterfaces, Motherboard objectMB)
 	{
 		super(Name, Desc, SconnectionInterfaces, objectMB);
 

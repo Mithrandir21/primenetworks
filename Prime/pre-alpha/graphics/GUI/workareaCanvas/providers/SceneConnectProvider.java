@@ -55,9 +55,8 @@ public class SceneConnectProvider implements ConnectProvider
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.netbeans.api.visual.action.ConnectProvider#createConnection(org.netbeans
-	 * .api.visual.widget.Widget, org.netbeans.api.visual.widget.Widget)
+	 * @see org.netbeans.api.visual.action.ConnectProvider#createConnection(org.netbeans .api.visual.widget.Widget,
+	 * org.netbeans.api.visual.widget.Widget)
 	 */
 	public void createConnection(Widget sourceWidget, Widget targetWidget)
 	{
@@ -168,8 +167,7 @@ public class SceneConnectProvider implements ConnectProvider
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.netbeans.api.visual.action.ConnectProvider#hasCustomTargetWidgetResolver
+	 * @see org.netbeans.api.visual.action.ConnectProvider#hasCustomTargetWidgetResolver
 	 * (org.netbeans.api.visual.widget.Scene)
 	 */
 	public boolean hasCustomTargetWidgetResolver(Scene scene)
@@ -180,9 +178,7 @@ public class SceneConnectProvider implements ConnectProvider
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.netbeans.api.visual.action.ConnectProvider#isSourceWidget(org.netbeans
-	 * .api.visual.widget.Widget)
+	 * @see org.netbeans.api.visual.action.ConnectProvider#isSourceWidget(org.netbeans .api.visual.widget.Widget)
 	 */
 	public boolean isSourceWidget(Widget sourceWidget)
 	{
@@ -197,9 +193,8 @@ public class SceneConnectProvider implements ConnectProvider
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.netbeans.api.visual.action.ConnectProvider#isTargetWidget(org.netbeans
-	 * .api.visual.widget.Widget, org.netbeans.api.visual.widget.Widget)
+	 * @see org.netbeans.api.visual.action.ConnectProvider#isTargetWidget(org.netbeans .api.visual.widget.Widget,
+	 * org.netbeans.api.visual.widget.Widget)
 	 */
 	public ConnectorState isTargetWidget(Widget sourceWidget, Widget targetWidget)
 	{
@@ -216,9 +211,8 @@ public class SceneConnectProvider implements ConnectProvider
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.netbeans.api.visual.action.ConnectProvider#resolveTargetWidget(org
-	 * .netbeans.api.visual.widget.Scene, java.awt.Point)
+	 * @see org.netbeans.api.visual.action.ConnectProvider#resolveTargetWidget(org .netbeans.api.visual.widget.Scene,
+	 * java.awt.Point)
 	 */
 	public Widget resolveTargetWidget(Scene sourceWidget, Point sceneLocation)
 	{

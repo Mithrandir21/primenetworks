@@ -5,9 +5,9 @@ import java.io.Serializable;
 
 
 /**
- * An abstract super class for all hardware objects in the system, including
- * {@link objects.softwareObjects.Webserver Webserver}, {@link objects.softwareObjects.OperatingSystem
- * Operating System} and {@link objects.softwareObjects.Firewall Firewall}. MUST ADD INFO
+ * An abstract super class for all hardware objects in the system, including {@link objects.softwareObjects.Webserver
+ * Webserver}, {@link objects.softwareObjects.OperatingSystem Operating System} and
+ * {@link objects.softwareObjects.Firewall Firewall}. MUST ADD INFO
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -27,8 +27,8 @@ public abstract class Software extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the software.
 	 * @param SWversion
-	 *            The version of the software. This can contain a NULL pointer,
-	 *            which will then result in the version being set to "0.0.1".
+	 *            The version of the software. This can contain a NULL pointer, which will then result in the version
+	 *            being set to "0.0.1".
 	 */
 	public Software(String Name, String Desc, String SWversion)
 	{

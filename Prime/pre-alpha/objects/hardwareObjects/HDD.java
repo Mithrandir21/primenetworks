@@ -7,13 +7,11 @@ import objects.Hardware;
 
 
 /**
- * This class represents a harddrive within a {@link objects.Servers server} or
- * {@link objects.Clients client} machine. It can be a server, a desktop or a
- * laptop. It contains information on what kind of capability the harddrive has
- * and what kind of system it can fit into. <br>
+ * This class represents a harddrive within a {@link objects.Servers server} or {@link objects.Clients client} machine.
+ * It can be a server, a desktop or a laptop. It contains information on what kind of capability the harddrive has and
+ * what kind of system it can fit into. <br>
  * <br>
- * <b>Notation</b>: The harddrive will be refered to as "HDD" in the remainder
- * of this document.
+ * <b>Notation</b>: The harddrive will be refered to as "HDD" in the remainder of this document.
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -25,7 +23,7 @@ public class HDD extends Hardware implements Serializable
 	private String producer;
 
 	// The type of HDD. IDE,ATA,SATA,SCSI,USB and so on.
-	private String type;
+	private String port;
 
 	// The subtype of the HDD type, SATA-150, USB2, ATA-100 and so on.
 	private String subtype;
@@ -57,7 +55,7 @@ public class HDD extends Hardware implements Serializable
 	{
 		super(Name, Desc);
 
-		type = HDDType;
+		port = HDDType;
 		size = HDDSize;
 	}
 
@@ -79,9 +77,9 @@ public class HDD extends Hardware implements Serializable
 	/**
 	 * Get the type of the HDD.
 	 */
-	public String getType()
+	public String getPort()
 	{
-		return type;
+		return port;
 	}
 
 
@@ -135,9 +133,9 @@ public class HDD extends Hardware implements Serializable
 	/**
 	 * Set method for type of the HDD.
 	 */
-	public void setType(String HDDType)
+	public void setPort(String HDDport)
 	{
-		type = HDDType;
+		port = HDDport;
 	}
 
 

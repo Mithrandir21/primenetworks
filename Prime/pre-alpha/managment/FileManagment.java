@@ -45,9 +45,11 @@ public class FileManagment
 {
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Saves the given WorkareaCanvas. This function creates a file object from the name of the WorkareaCanvas and
+	 * passes that on the function that actually saves the WorkareaCanvas.
 	 * 
 	 * @param canvas
+	 *            The WorkareaCanvas to be written out.
 	 */
 	public static void saveWorkareaCanvas(WorkareaCanvas canvas)
 	{
@@ -58,10 +60,12 @@ public class FileManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Saves the given WorkareaCanvas to the given File.
 	 * 
 	 * @param canvas
+	 *            The WorkareaCanvas to be written out.
 	 * @param file
+	 *            The File which the WorkareaCanvas will be written to.
 	 */
 	public static void saveWorkareaCanvas(WorkareaCanvas canvas, File file)
 	{
@@ -72,10 +76,13 @@ public class FileManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Saves the given WorkareaCanvas in the given File. The name of the WorkareaCanvas is written out to the file as an
+	 * object, so is an ArrayList of the WidgetObjects and Connections on the WorkareaCanvas.
 	 * 
 	 * @param canvas
+	 *            The WorkareaCanvas to be written out.
 	 * @param file
+	 *            The File which the WorkareaCanvas will be written to.
 	 */
 	private static void saveCanvas(WorkareaCanvas canvas, File file)
 	{
@@ -166,9 +173,11 @@ public class FileManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function removes WorkareaCanvas with the given name from the system. It also deletes the file that contains
+	 * the workareaCanvas from the file system, so this is permanent.
 	 * 
 	 * @param file
+	 *            The file that contains the WorkareaCanvas.
 	 */
 	public static void deleteWorkareaCanvas(FileTreeNode fileNode, JTree tree)
 	{
@@ -271,8 +280,8 @@ public class FileManagment
 
 
 	/**
-	 * Creates a new WorkareaCanvas. The user is asked what the name of the new workareaCanvas will be.
-	 * The new WorkareaCanvas is then opened in the workarea.
+	 * Creates a new WorkareaCanvas. The user is asked what the name of the new workareaCanvas will be. The new
+	 * WorkareaCanvas is then opened in the workarea.
 	 * 
 	 */
 	public static void newWorkareaCanvas()
@@ -286,8 +295,8 @@ public class FileManagment
 
 
 	/**
-	 * Creates a new WorkareaCanvas. The new WorkareaCanvas is opened in the workarea.
-	 * The name of the new WorkareaCanvas will be the given String.
+	 * Creates a new WorkareaCanvas. The new WorkareaCanvas is opened in the workarea. The name of the new
+	 * WorkareaCanvas will be the given String.
 	 * 
 	 * @param nameOfCanvas
 	 */
@@ -299,9 +308,12 @@ public class FileManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates a new WorkareaCanvas with the given name. The name is checked to see if it matched with the allowed
+	 * symbols, which are letters, numbers and underscore. After the WorkareaCanvas is created it is added to the
+	 * programs workarea.
 	 * 
 	 * @param nameOfCanvas
+	 *            The name that the WorkareaCanvas will have, after being checked.
 	 */
 	private static void newCanvas(String nameOfCanvas)
 	{

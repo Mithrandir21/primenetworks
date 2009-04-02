@@ -10,9 +10,8 @@ import javax.swing.ImageIcon;
 
 
 /**
- * This class contains methods that get images, ImageIcons, from a given URL or
- * finds and returns an ImageIcon based on whether or not the given String is
- * the name of any of the ImageIcons in the systems main ImageIcons.
+ * This class contains methods that get images, ImageIcons, from a given URL or finds and returns an ImageIcon based on
+ * whether or not the given String is the name of any of the ImageIcons in the systems main ImageIcons.
  * 
  * @author Bahram Malaekeh
  */
@@ -47,8 +46,8 @@ public class ImageLocator
 
 
 	/**
-	 * Finds and returns an ImageIcon based on whether or not the given String
-	 * is the name of any of the ImageIcons in the systems main ImageIcons.
+	 * Finds and returns an ImageIcon based on whether or not the given String is the name of any of the ImageIcons in
+	 * the systems main ImageIcons.
 	 */
 	public static ImageIcon getImageIconObject(String name)
 	{

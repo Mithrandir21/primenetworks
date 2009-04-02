@@ -48,8 +48,7 @@ public class ActionPaste extends AbstractAction
 
 	public void actionPerformed(ActionEvent e)
 	{
-		JOptionPane.showMessageDialog(null,
-				"You want to perform a \"Paste\" action.");
+		JOptionPane.showMessageDialog(null, "You want to perform a \"Paste\" action.");
 	}
 
 }

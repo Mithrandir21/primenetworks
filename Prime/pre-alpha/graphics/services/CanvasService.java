@@ -3,9 +3,10 @@
  */
 package graphics.services;
 
+
 /**
  * Javadoc-TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
@@ -15,27 +16,29 @@ public class CanvasService implements Runnable
 	 * 
 	 */
 	private volatile Thread service;
-	
-	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
+	 * 
 	 */
 	public CanvasService()
 	{
 		service = new Thread(this);
 		service.start();
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Runnable#run()
 	 */
 	@Override
 	public void run()
 	{
 		Thread thisThread = Thread.currentThread();
-		
+
 		while ( service == thisThread )
 		{
 			try
@@ -44,13 +47,13 @@ public class CanvasService implements Runnable
 			}
 			catch ( InterruptedException e )
 			{
-				
+
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -60,8 +63,8 @@ public class CanvasService implements Runnable
 		service = new Thread(this);
 		service.start();
 	}
-	
-	
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -70,5 +73,5 @@ public class CanvasService implements Runnable
 	{
 		service = null;
 	}
-	
+
 }

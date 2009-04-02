@@ -36,8 +36,7 @@ public class ActionUndo extends AbstractAction
 
 	public void actionPerformed(ActionEvent e)
 	{
-		JOptionPane.showMessageDialog(null,
-				"You want to perform a \"Undo\" action.");
+		JOptionPane.showMessageDialog(null, "You want to perform a \"Undo\" action.");
 	}
 
 }

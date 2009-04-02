@@ -105,16 +105,15 @@ public class HardwareEditor extends JFrame implements ActionListener
 
 		c.add(panel);
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
 
 
 	/**
-	 * Creates a JPanel that shows an Icon representing the hardware object and
-	 * two fields with the name and description of the hardware object.
+	 * Creates a JPanel that shows an Icon representing the hardware object and two fields with the name and description
+	 * of the hardware object.
 	 * 
 	 * @param hw
 	 *            The actual hardware object.
@@ -124,11 +123,9 @@ public class HardwareEditor extends JFrame implements ActionListener
 	 *            A JTextField that will contain the name of the object.
 	 * @param desc
 	 *            A JTextArea that holds the description of the object.
-	 * @return Returns the created JPanel with all the information about the
-	 *         hardware object.
+	 * @return Returns the created JPanel with all the information about the hardware object.
 	 */
-	public static JPanel GeneralInfo(Hardware hw, ImageIcon icon,
-			JTextField name, JTextArea desc)
+	public static JPanel GeneralInfo(Hardware hw, ImageIcon icon, JTextField name, JTextArea desc)
 	{
 		JPanel genPanel = new JPanel();
 		genPanel.setLayout(new GridBagLayout());
@@ -210,12 +207,12 @@ public class HardwareEditor extends JFrame implements ActionListener
 
 		return genPanel;
 	}
-	
-	
+
+
 	/*
 	 * (non-Javadoc)
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -225,8 +222,7 @@ public class HardwareEditor extends JFrame implements ActionListener
 			boolean verify = true;
 
 			// If the object is an instance of infrastructure.
-			if ( givenObject instanceof Infrastructure
-					|| givenObject instanceof ExternalHardware )
+			if ( givenObject instanceof Infrastructure || givenObject instanceof ExternalHardware )
 			{
 				verify = false;
 			}
@@ -243,8 +239,7 @@ public class HardwareEditor extends JFrame implements ActionListener
 			boolean verify = true;
 
 			// If the object is an instance of infrastructure.
-			if ( givenObject instanceof Infrastructure
-					|| givenObject instanceof ExternalHardware )
+			if ( givenObject instanceof Infrastructure || givenObject instanceof ExternalHardware )
 			{
 				verify = false;
 			}
@@ -263,9 +258,8 @@ public class HardwareEditor extends JFrame implements ActionListener
 
 
 	/**
-	 * This function is used for when hardware information is changed or when a
-	 * component is added or removed from an object. It redraws the views that
-	 * show all current hardware information.
+	 * This function is used for when hardware information is changed or when a component is added or removed from an
+	 * object. It redraws the views that show all current hardware information.
 	 */
 	public void HardwarePanelRevalidate()
 	{

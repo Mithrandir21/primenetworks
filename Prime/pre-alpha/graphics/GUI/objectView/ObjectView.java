@@ -100,8 +100,7 @@ public class ObjectView extends JFrame implements ActionListener
 
 		c.add(panel);
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 
@@ -120,8 +119,8 @@ public class ObjectView extends JFrame implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -131,12 +130,10 @@ public class ObjectView extends JFrame implements ActionListener
 			String viewNameText = view.genObjView.nametext.getText();
 
 			currentObject = GraphicalFunctions.updateWidgetObjectCanvasName(currentObject, widgetObj, viewNameText);
-			
-			if ( !currentObject.getDescription().equals(
-					view.genObjView.textarea.getText()) )
+
+			if ( !currentObject.getDescription().equals(view.genObjView.textarea.getText()) )
 			{
-				currentObject
-						.setDescription(view.genObjView.textarea.getText());
+				currentObject.setDescription(view.genObjView.textarea.getText());
 			}
 
 			PrimeMain1.updateCanvasAndObjectInfo();
@@ -153,11 +150,9 @@ public class ObjectView extends JFrame implements ActionListener
 			currentObject = GraphicalFunctions.updateWidgetObjectCanvasName(currentObject, widgetObj, viewNameText);
 
 
-			if ( !currentObject.getDescription().equals(
-					view.genObjView.textarea.getText()) )
+			if ( !currentObject.getDescription().equals(view.genObjView.textarea.getText()) )
 			{
-				currentObject
-						.setDescription(view.genObjView.textarea.getText());
+				currentObject.setDescription(view.genObjView.textarea.getText());
 			}
 
 			PrimeMain1.updateCanvasAndObjectInfo();
@@ -177,15 +172,15 @@ public class ObjectView extends JFrame implements ActionListener
 
 
 	/**
-	 * This method calls the UpdateTabInfo method in the ObjectViewTabbed
-	 * class to update the information about the current object.
+	 * This method calls the UpdateTabInfo method in the ObjectViewTabbed class to update the information about the
+	 * current object.
 	 */
 	public void updateViewInfo()
 	{
 		view.updateTabInfo();
 	}
-	
-	
+
+
 	/**
 	 * Gets the object that is currently i view.
 	 * 

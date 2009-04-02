@@ -7,10 +7,9 @@ import objects.ExternalHardware;
 
 
 /**
- * This class represents computer speakers. This device can be connected to any
- * device that supports the conncetion type of this device. It contains
- * information on what kind of capability the speakers have and what kind of
- * connection interface they have.
+ * This class represents computer speakers. This device can be connected to any device that supports the conncetion type
+ * of this device. It contains information on what kind of capability the speakers have and what kind of connection
+ * interface they have.
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -36,8 +35,7 @@ public class Speakers extends ExternalHardware implements Serializable
 	 * @param Speakerssatellites
 	 *            The number of satellites, actual speakers.
 	 */
-	public Speakers(String Name, String Desc, int Speakerssatellites,
-			String[] ConnectionInterfaces)
+	public Speakers(String Name, String Desc, int Speakerssatellites, String[] ConnectionInterfaces)
 	{
 		super(Name, Desc, ConnectionInterfaces);
 

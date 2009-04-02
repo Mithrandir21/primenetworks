@@ -9,10 +9,9 @@ import objects.hardwareObjects.Motherboard;
 
 
 /**
- * This class represents a printer. This device can be connected to any device
- * that supports the conncetion type of this device. It contains information on
- * what kind of capability the printer has and what kind of connection interface
- * is has.
+ * This class represents a printer. This device can be connected to any device that supports the conncetion type of this
+ * device. It contains information on what kind of capability the printer has and what kind of connection interface is
+ * has.
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -38,11 +37,9 @@ public class Printer extends ExternalHardware implements Serializable
 	 * @param PprinterType
 	 *            Type of printer. ink or laser.
 	 * @param PconnectionInterfaces
-	 *            Connection interfaces supported by the printer. An array of
-	 *            Strings.
+	 *            Connection interfaces supported by the printer. An array of Strings.
 	 */
-	public Printer(String Name, String Desc, String PprinterType,
-			String[] PconnectionInterfaces)
+	public Printer(String Name, String Desc, String PprinterType, String[] PconnectionInterfaces)
 	{
 		super(Name, Desc, PconnectionInterfaces);
 
@@ -60,11 +57,9 @@ public class Printer extends ExternalHardware implements Serializable
 	 * @param PprinterType
 	 *            Type of printer. ink or laser.
 	 * @param PconnectionInterfaces
-	 *            Connection interfaces supported by the printer. An array of
-	 *            Strings.
+	 *            Connection interfaces supported by the printer. An array of Strings.
 	 */
-	public Printer(String Name, String Desc, String PprinterType,
-			String[] PconnectionInterfaces, Motherboard objectMB)
+	public Printer(String Name, String Desc, String PprinterType, String[] PconnectionInterfaces, Motherboard objectMB)
 	{
 		super(Name, Desc, PconnectionInterfaces, objectMB);
 

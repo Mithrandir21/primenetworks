@@ -38,8 +38,8 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * A constructor for this class that add a changeListener that will call
-	 * doRepaint on the WorkareaCanvas when any change occurs.
+	 * A constructor for this class that add a changeListener that will call doRepaint on the WorkareaCanvas when any
+	 * change occurs.
 	 */
 	public WorkareaTabbed()
 	{
@@ -84,13 +84,11 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * The function creates a new WorkareaSceneScroll and places that component
-	 * within a new tab with the given name. The tab is then added to this
-	 * JTabbedPane.
+	 * The function creates a new WorkareaSceneScroll and places that component within a new tab with the given name.
+	 * The tab is then added to this JTabbedPane.
 	 * 
 	 * @param name
-	 *            The name of the tab that is to contain the new
-	 *            WorkareaSceneScroll.
+	 *            The name of the tab that is to contain the new WorkareaSceneScroll.
 	 */
 	public void createNewCanvasTab(String name)
 	{
@@ -109,13 +107,11 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * The function creates a new WorkareaSceneScroll and places that component
-	 * within a new tab with the given name. The tab is then added to this
-	 * JTabbedPane.
+	 * The function creates a new WorkareaSceneScroll and places that component within a new tab with the given name.
+	 * The tab is then added to this JTabbedPane.
 	 * 
 	 * @param canvas
-	 *            The canvas that will be placed inside the new
-	 *            WorkareaSceneScroll.
+	 *            The canvas that will be placed inside the new WorkareaSceneScroll.
 	 */
 	public void createNewCanvasTab(WorkareaCanvas canvas)
 	{
@@ -128,10 +124,11 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function creates a new JPanel that will be added as the Tab for the given {@link WorkareaSceneScroll}. There
+	 * will be placed an image in the JPanel which will be able to close the tab when pressed.
 	 * 
-	 * @param name
 	 * @param canvasScroll
+	 *            The {@link WorkareaSceneScroll} that will be placed inside a Tab with a custom Tab fane.
 	 */
 	public void createNewCanvasTab(WorkareaSceneScroll canvasScroll)
 	{
@@ -189,8 +186,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -212,9 +208,12 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function removes the Tab with the given name from this JTabbedPane. It can also check, if the given boolean
+	 * is set to true, check the {@link WorkareaCanvas} which is inside the tab. If the {@link WorkareaCanvas} has been
+	 * altered and not saved, it will ask the user if they wish to save the {@link WorkareaCanvas}.
 	 * 
 	 * @param canvas
+	 *            The name of {@link WorkareaCanvas} tad to be removed.
 	 */
 	public void removeTabWithCanvas(String canvasName, boolean verify)
 	{
@@ -246,7 +245,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 					int answer = JOptionPane.showOptionDialog(null,
 							"This canvas has not been saved, do you want to save this canvas?", "Save",
 							JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options, null);
-					
+
 					// Save
 					if ( answer == 0 )
 					{
@@ -279,10 +278,10 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 			test = null;
 		}
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -313,8 +312,8 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 				return true;
 			}
 		}
-		
-		
+
+
 		return false;
 	}
 }

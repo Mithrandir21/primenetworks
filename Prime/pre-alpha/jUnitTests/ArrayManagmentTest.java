@@ -25,9 +25,8 @@ public class ArrayManagmentTest extends TestCase
 
 
 	/**
-	 * This testes the addItem function that should add a String to an array of
-	 * Strings. The function checks whether or not the String already exists in
-	 * the array.
+	 * This testes the addItem function that should add a String to an array of Strings. The function checks whether or
+	 * not the String already exists in the array.
 	 */
 	@Test
 	public void testAddItems()
@@ -63,9 +62,8 @@ public class ArrayManagmentTest extends TestCase
 
 
 	/**
-	 * This testes the function to remove a String from an array of Strings. The
-	 * function also removes null pointers from the array so that there are no
-	 * null pointers left after the String removal.
+	 * This testes the function to remove a String from an array of Strings. The function also removes null pointers
+	 * from the array so that there are no null pointers left after the String removal.
 	 */
 	@Test
 	public void testRemoveItems()
@@ -122,8 +120,7 @@ public class ArrayManagmentTest extends TestCase
 
 
 	/**
-	 * This testes the function that changes one String at and index in an array
-	 * with another.
+	 * This testes the function that changes one String at and index in an array with another.
 	 */
 	@Test
 	public void testChangeArrayItem()

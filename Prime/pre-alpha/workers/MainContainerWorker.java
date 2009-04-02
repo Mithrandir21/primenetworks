@@ -180,8 +180,7 @@ public class MainContainerWorker
 	 * 
 	 * @throws ObjectDoesNotExistInContainer
 	 */
-	public boolean removeObject(Object object)
-			throws ObjectDoesNotExistInContainer
+	public boolean removeObject(Object object) throws ObjectDoesNotExistInContainer
 	{
 		if ( object instanceof Hardware )
 		{

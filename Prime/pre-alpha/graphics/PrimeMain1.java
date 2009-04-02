@@ -65,7 +65,7 @@ public class PrimeMain1 extends JFrame
 {
 	// Daemon services running
 	private static PrimeService services;
-	
+
 	// Variables to place the height and width of the main screen.
 	public static int width, height;
 
@@ -74,17 +74,17 @@ public class PrimeMain1 extends JFrame
 
 	// The tab selection area where one can open projects and create new objects
 	private static TabbedSelection tabSelection;
-	
+
 	// The JPanel where the properties of any selected object or network
 	// overview is shown.
 	public static JPanel propertiesPanel;
-	
+
 	// The JPanel that will show information about the objects and the network.
 	private static JPanel messagesPanel;
-	
+
 	// The JPanel that will hold all the canvas.
 	private static JPanel workareaPanel;
-	
+
 	public static WorkareaTabbed workTab;
 
 	static JXMultiSplitPane multiSplitPane = new JXMultiSplitPane();
@@ -104,22 +104,22 @@ public class PrimeMain1 extends JFrame
 
 	// A pointer to where all standard internal components are kept.
 	public static MakeStandardInternalComponents standard_internal_components = new MakeStandardInternalComponents();
-	
+
 	// A pointer to where all standard softwares are kept.
 	public static MakeStandardSoftware standard_software = new MakeStandardSoftware();
 
 	// The variable for the object that is in view.
 	private static ArrayList<ObjectView> objView = new ArrayList<ObjectView>(1);
-	
+
 
 
 	// Constructor
 	public PrimeMain1()
 	{
 		super("Prime");
-		
+
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -176,8 +176,7 @@ public class PrimeMain1 extends JFrame
 
 
 		/*
-		 * SETUP FOR THE toolbarPanel PANEL. This panel will contain all the
-		 * toolbar buttons and icons.
+		 * SETUP FOR THE toolbarPanel PANEL. This panel will contain all the toolbar buttons and icons.
 		 */
 		// Creates a new panel with a GridBagLayout.
 		toolbarPanel = new JPanel(new BorderLayout());
@@ -199,11 +198,9 @@ public class PrimeMain1 extends JFrame
 		// toolbarPanel.add(new JLabel("Toolbar"));
 
 		/*
-		 * SETUP FOR THE selectionPanel PANEL. This panel will contain all the
-		 * selectable icons that can be places within the workarea, like client,
-		 * server or printer icons. This will also contain the Project selection
-		 * tab, where a user can pick different projects to work on in the
-		 * workarea.
+		 * SETUP FOR THE selectionPanel PANEL. This panel will contain all the selectable icons that can be places
+		 * within the workarea, like client, server or printer icons. This will also contain the Project selection tab,
+		 * where a user can pick different projects to work on in the workarea.
 		 */
 		// Creates a new panel with a GridBagLayout.
 		selectionPanel = new JPanel(new GridLayout());
@@ -225,8 +222,8 @@ public class PrimeMain1 extends JFrame
 
 
 		/*
-		 * SETUP FOR THE propertiesPanel PANEL. This panel will contain some, if
-		 * not all, of the properties of the selected object.
+		 * SETUP FOR THE propertiesPanel PANEL. This panel will contain some, if not all, of the properties of the
+		 * selected object.
 		 */
 		// Creates a new panel with a GridBagLayout.
 		propertiesPanel = new JPanel(new BorderLayout());
@@ -245,12 +242,11 @@ public class PrimeMain1 extends JFrame
 		// propertiesPanel.setPreferredSize(new Dimension(200,300));
 
 		/*
-		 * SETUP FOR THE messagesPanel PANEL. This panel will contain the
-		 * errors, warnings, and suggestions tabs that will give information to
-		 * the user about different aspects of their network setup.
+		 * SETUP FOR THE messagesPanel PANEL. This panel will contain the errors, warnings, and suggestions tabs that
+		 * will give information to the user about different aspects of their network setup.
 		 */
 		// Creates a new panel with a GridBagLayout.
-//		messagesPanel = new JPanel(new GridLayout(0,1));
+		// messagesPanel = new JPanel(new GridLayout(0,1));
 		messagesPanel = new JPanel(new BorderLayout());
 
 		// Constraints for the window
@@ -260,18 +256,17 @@ public class PrimeMain1 extends JFrame
 		conMessagesPanel.fill = GridBagConstraints.BOTH;
 
 		// Sets the border around the panel
-		messagesPanel.setBorder(grayline);
+		// messagesPanel.setBorder(grayline);
 
 		MessageTabbed msgTabs = new MessageTabbed();
 		messagesPanel.add(msgTabs, BorderLayout.CENTER);
 		msgTabs.createInitialTabs();
-//		messagesPanel.add(new JLabel("Messages"));
+		// messagesPanel.add(new JLabel("Messages"));
 
 
 		/*
-		 * SETUP FOR THE workareaPanel PANEL. This panel will contain the actual
-		 * work area where all of the icons and connection will be shown. This
-		 * is where the "map" of the network will be.
+		 * SETUP FOR THE workareaPanel PANEL. This panel will contain the actual work area where all of the icons and
+		 * connection will be shown. This is where the "map" of the network will be.
 		 */
 		// Creates a new panel with a GridBagLayout.
 		workareaPanel = new JPanel(new BorderLayout());
@@ -283,10 +278,10 @@ public class PrimeMain1 extends JFrame
 		// conWorkareaPanel.fill = GridBagConstraints.BOTH;
 
 		// Sets the border around the panel
-		workareaPanel.setBorder(grayline);
+		// workareaPanel.setBorder(grayline);
 
 		workTab = new WorkareaTabbed();
-		
+
 		// workareaPanel.add(new WorkareaCanvas());
 		workareaPanel.add(workTab);
 
@@ -327,14 +322,14 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * Description
+	 * The programs Main function.
 	 */
 	public static void main(String[] args)
 	{
 		PrimeMain1 temp = new PrimeMain1();
-		
-//		services = new PrimeService();
-		
+
+		// services = new PrimeService();
+
 		temp.addWindowListener(new WindowAdapter()
 		{
 			@Override
@@ -353,8 +348,7 @@ public class PrimeMain1 extends JFrame
 	{
 		try
 		{
-			XMLEncoder output = new XMLEncoder(new BufferedOutputStream(
-					new FileOutputStream("PrimeLayoutModel.xml")));
+			XMLEncoder output = new XMLEncoder(new BufferedOutputStream(new FileOutputStream("PrimeLayoutModel.xml")));
 
 			output.writeObject(multiSplitPane);
 			output.close();
@@ -372,8 +366,7 @@ public class PrimeMain1 extends JFrame
 	private void makeLayoutModel()
 	{
 		String layoutDef = "(COLUMN (LEAF name=toolbarLeaf) (ROW (LEAF name=selectionLeaf) "
-				+ "(COLUMN (ROW (LEAF name=workareaLeaf weight=0.6) "
-				+ "(LEAF name=propertiesLeaf weight=0.2) )"
+				+ "(COLUMN (ROW (LEAF name=workareaLeaf weight=0.6) " + "(LEAF name=propertiesLeaf weight=0.2) )"
 				+ "(LEAF name=messagesLeaf weight=1)  ) ) )";
 
 		// JOptionPane.showMessageDialog(null,"Error Loading layout Model.");
@@ -388,15 +381,13 @@ public class PrimeMain1 extends JFrame
 	private void LoadLayoutModel()
 	{
 		String layoutDef = "(COLUMN (LEAF name=toolbarLeaf) (ROW (LEAF name=selectionLeaf) "
-				+ "(COLUMN (ROW (LEAF name=workareaLeaf weight=0.6) "
-				+ "(LEAF name=propertiesLeaf weight=0.2) )"
+				+ "(COLUMN (ROW (LEAF name=workareaLeaf weight=0.6) " + "(LEAF name=propertiesLeaf weight=0.2) )"
 				+ "(LEAF name=messagesLeaf weight=1)  ) ) )";
 
 
 		try
 		{
-			XMLDecoder d = new XMLDecoder(new BufferedInputStream(
-					new FileInputStream("PrimeLayoutModel.xml")));
+			XMLDecoder d = new XMLDecoder(new BufferedInputStream(new FileInputStream("PrimeLayoutModel.xml")));
 
 
 			multiSplitPane = (JXMultiSplitPane) (d.readObject());
@@ -415,6 +406,7 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
+	 * 
 	 */
 	static void renderSplashFrame(Graphics2D g, int frame)
 	{
@@ -426,9 +418,10 @@ public class PrimeMain1 extends JFrame
 		g.drawString("Loading " + comps[(frame / 5) % 4] + "...", 120, 150);
 	}
 
-	
+
 	/**
-	 * Javadoc-TODO - Description
+	 * This method calls on functions that update the programs JTree, which shows available {@link WorkareaCanvas
+	 * WorkareaCanvases}.
 	 * 
 	 */
 	public static void updatePrimeTree()
@@ -440,8 +433,7 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * Updates the properties panel with information from the currently selected
-	 * canvas.
+	 * Updates the properties panel with information from the currently selected canvas.
 	 */
 	public static void updatePropertiesCanvasArea()
 	{
@@ -461,61 +453,60 @@ public class PrimeMain1 extends JFrame
 
 		temp.newObjectSelectedPropertiesTab(obj);
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Thi method runs all update function. These include functions to
-	 * update the canvas, properties panel and messages panel.
+	 * Thi method runs all update function. These include functions to update the canvas, properties panel and messages
+	 * panel.
 	 * 
 	 */
 	public static void updateCanvasAndObjectInfo()
 	{
 		runCanvasObjectCheck();
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Runs a check on all the objects on the current canvas
-	 * and passed that information over to the JTable that shows¨
+	 * Runs a check on all the objects on the current canvas and passed that information over to the JTable that shows¨
 	 * different errors, warnings and notices.
 	 */
 	public static void runCanvasObjectCheck()
 	{
 		Object[] children = currentCanvas.getObjectsOnTheScene();
-		
-		
+
+
 		MessageTabbed msgTab = (MessageTabbed) messagesPanel.getComponent(0);
-		
+
 		msgTab.processAllObjects(children);
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Searches the object views that exist to find the given object
-	 * as one of the views main object. If found that view is returned.
+	 * Searches the object views that exist to find the given object as one of the views main object. If found that view
+	 * is returned.
 	 */
 	public static ObjectView getObjectView(Object obj)
 	{
 		Iterator<ObjectView> i = objView.iterator();
-		while (i.hasNext()) 
+		while ( i.hasNext() )
 		{
 			ObjectView objViewTest = i.next();
-			
-			if(obj == objViewTest.getObject())
+
+			if ( obj == objViewTest.getObject() )
 			{
 				return objViewTest;
 			}
-            
-        }
-		
+
+		}
+
 		return null;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Adds a view to the arraylist of views.
 	 */
@@ -523,17 +514,16 @@ public class PrimeMain1 extends JFrame
 	{
 		objView.add(view);
 	}
-	
-	
+
+
 	/**
-	 * Removes the view, if it exist, that has as its main object
-	 * the given object.
+	 * Removes the view, if it exist, that has as its main object the given object.
 	 */
 	public static void removeObjectView(Object obj)
 	{
 		ObjectView view = getObjectView(obj);
-		
-		if(view != null)
+
+		if ( view != null )
 		{
 			objView.remove(view);
 		}
@@ -541,19 +531,19 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 *
-	 * @param workareaPanel the workareaPanel to set
+	 * Sets the actual JPanel that contains the WorkareaTabbed where all the systems {@link WorkareaCanvas
+	 * WorkareaCanvases} area shown.
 	 */
 	public static void setWorkareaPanel(JPanel workareaPanel)
 	{
 		PrimeMain1.workareaPanel = workareaPanel;
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Javadoc-TODO - Description
+	 * Gets the actual JPanel that contains the WorkareaTabbed where all the systems {@link WorkareaCanvas
+	 * WorkareaCanvases} area shown.
 	 * 
 	 * @return workareaPanel the workareaPanel to get
 	 */
@@ -564,40 +554,42 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 *
+	 * Gets the WorkareaTabbed which contains the tabs with {@link WorkareaCanvas} inside.
+	 * 
 	 * @return the workareaPanel
 	 */
 	public static WorkareaTabbed getWorkarea()
 	{
 		return workTab;
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
-	 * Javadoc-TODO - Description
+	 * This function is the systems Exit process. This will be called if a user wants to close the program. It will
+	 * check the {@link WorkareaCanvas WorkareaCanvases} in the system to check if any are altered and ask the user if
+	 * they wish to save those altered {@link WorkareaCanvas WorkareaCanvases}.
 	 * 
 	 */
 	private static void exitProcess()
 	{
-//		services.stopAll();
-		
-		
+		// services.stopAll();
+
+
 		WorkareaCanvas[] changes = CanvasManagment.canvasesHaveChanged(canvases);
-		
+
 		// There were some canvases that were changed
-		if( changes != null )
+		if ( changes != null )
 		{
 			// The options the user will be presented with.
 			String[] options = { "Save", "Dont save", "Cancel" };
-			
+
 			// Asks the user whether or not to save
 			int answer = JOptionPane.showOptionDialog(null,
 					"There are Networks that have not been saved, do you want to save the Networks?", "Save",
 					JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options, null);
-			
+
 			// Save
 			if ( answer == 0 )
 			{

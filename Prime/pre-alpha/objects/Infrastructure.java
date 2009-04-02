@@ -56,8 +56,7 @@ public class Infrastructure extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the object.
 	 * @param objectComponents
-	 *            An Objects array that contains the objects internal
-	 *            components.
+	 *            An Objects array that contains the objects internal components.
 	 */
 	public Infrastructure(String Name, String Desc, Object[] objectComponents)
 	{
@@ -75,10 +74,9 @@ public class Infrastructure extends Object implements Serializable
 	 * @param SupConInt
 	 *            A String array of supported interfaces.
 	 * @param mb
-	 * 			  The objects Motherboard.
+	 *            The objects Motherboard.
 	 */
-	public Infrastructure(String Name, String Desc, String[] SupConInt,
-			Motherboard mb)
+	public Infrastructure(String Name, String Desc, String[] SupConInt, Motherboard mb)
 	{
 		super(Name, Desc, SupConInt, mb);
 	}
@@ -94,11 +92,9 @@ public class Infrastructure extends Object implements Serializable
 	 * @param SupConInt
 	 *            A String array of supported interfaces.
 	 * @param objectComponents
-	 *            An Objects array that contains the objects internal
-	 *            components.
+	 *            An Objects array that contains the objects internal components.
 	 */
-	public Infrastructure(String Name, String Desc, String[] SupConInt,
-			Object[] objectComponents)
+	public Infrastructure(String Name, String Desc, String[] SupConInt, Object[] objectComponents)
 	{
 		super(Name, Desc, SupConInt, objectComponents);
 	}

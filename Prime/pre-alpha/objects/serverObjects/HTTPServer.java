@@ -10,9 +10,8 @@ import objects.softwareObjects.Webserver;
 
 
 /**
- * A representation of a web server. This server serves, whoever has access to
- * connect to it with, with websites. The content of the sites depend on the
- * purpose decided by the network administrator.
+ * A representation of a web server. This server serves, whoever has access to connect to it with, with websites. The
+ * content of the sites depend on the purpose decided by the network administrator.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -35,19 +34,17 @@ public class HTTPServer extends Servers implements Serializable
 	 * @param WebserverSWname
 	 *            The name of the application that the server is set to run.
 	 * @param WebserverSWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param WebserverSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public HTTPServer(String Name, String Desc, String WebserverSWname,
-			String WebserverSWdesc, String WebserverSWversion)
+	public HTTPServer(String Name, String Desc, String WebserverSWname, String WebserverSWdesc,
+			String WebserverSWversion)
 	{
 		super(Name, Desc);
 
 		// Creates a Webserver software object
-		Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
-				WebserverSWversion);
+		Webserver = new Webserver(WebserverSWname, WebserverSWdesc, WebserverSWversion);
 		Software[] sw = { Webserver };
 		super.setSoftware(sw);
 	}
@@ -64,20 +61,17 @@ public class HTTPServer extends Servers implements Serializable
 	 * @param WebserverSWname
 	 *            The name of the application that the server is set to run.
 	 * @param WebserverSWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param WebserverSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public HTTPServer(String Name, String Desc, String[] SupConInt,
-			String WebserverSWname, String WebserverSWdesc,
+	public HTTPServer(String Name, String Desc, String[] SupConInt, String WebserverSWname, String WebserverSWdesc,
 			String WebserverSWversion)
 	{
 		super(Name, Desc, SupConInt);
 
 		// Creates a Webserver software object
-		Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
-				WebserverSWversion);
+		Webserver = new Webserver(WebserverSWname, WebserverSWdesc, WebserverSWversion);
 		Software[] sw = { Webserver };
 		super.setSoftware(sw);
 	}
@@ -94,20 +88,17 @@ public class HTTPServer extends Servers implements Serializable
 	 * @param WebserverSWname
 	 *            The name of the application that the server is set to run.
 	 * @param WebserverSWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param WebserverSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public HTTPServer(String Name, String Desc, Object[] DesktopComponents,
-			String WebserverSWname, String WebserverSWdesc,
-			String WebserverSWversion)
+	public HTTPServer(String Name, String Desc, Object[] DesktopComponents, String WebserverSWname,
+			String WebserverSWdesc, String WebserverSWversion)
 	{
 		super(Name, Desc, DesktopComponents);
 
 		// Creates a Webserver software object
-		Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
-				WebserverSWversion);
+		Webserver = new Webserver(WebserverSWname, WebserverSWdesc, WebserverSWversion);
 		Software[] sw = { Webserver };
 		super.setSoftware(sw);
 	}
@@ -124,20 +115,17 @@ public class HTTPServer extends Servers implements Serializable
 	 * @param WebserverSWname
 	 *            The name of the application that the server is set to run.
 	 * @param WebserverSWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param WebserverSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public HTTPServer(String Name, String Desc, String[] SupConInt,
-			Object[] DesktopComponents, String WebserverSWname,
+	public HTTPServer(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents, String WebserverSWname,
 			String WebserverSWdesc, String WebserverSWversion)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 
 		// Creates a Webserver software object
-		Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
-				WebserverSWversion);
+		Webserver = new Webserver(WebserverSWname, WebserverSWdesc, WebserverSWversion);
 		Software[] sw = { Webserver };
 		super.setSoftware(sw);
 	}

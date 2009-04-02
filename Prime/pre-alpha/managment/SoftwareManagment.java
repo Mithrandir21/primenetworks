@@ -75,9 +75,7 @@ public class SoftwareManagment
 	/**
 	 * @param sw
 	 * @param obj
-	 * @return
-	 * 			Returns an Software array with the given object removed from the given
-	 * 			objects software array.
+	 * @return Returns an Software array with the given object removed from the given objects software array.
 	 */
 	public static Software[] removeSoftware(Software sw, Object obj)
 	{
@@ -103,9 +101,8 @@ public class SoftwareManagment
 
 
 	/**
-	 * This function processes all the changes that has been made to
-	 * the given object. It calls on method that validate and, if necessary,
-	 * remove hardware from the the object.
+	 * This function processes all the changes that has been made to the given object. It calls on method that validate
+	 * and, if necessary, remove hardware from the the object.
 	 */
 	public static void processAllChanges(Object obj)
 	{
@@ -146,15 +143,13 @@ public class SoftwareManagment
 
 
 	/**
-	 * The method validates the given software in the given object.
-	 * It checks for compatibility between the objects Operating system
-	 * and the Operating systems supported by the given software.
+	 * The method validates the given software in the given object. It checks for compatibility between the objects
+	 * Operating system and the Operating systems supported by the given software.
 	 * 
 	 * @param sw
-	 * 			The software that is to be validated.
+	 *            The software that is to be validated.
 	 * @param obj
-	 * 			The object that the software is to be validated
-	 * 			against.
+	 *            The object that the software is to be validated against.
 	 */
 	public static boolean validateSoftware(Software sw, Object obj)
 	{
@@ -267,9 +262,8 @@ public class SoftwareManagment
 
 
 	/**
-	 * The function goes through all the Operating systems the
-	 *  given software supports and checks whether or not any of them
-	 *  match up against the given Operating system.
+	 * The function goes through all the Operating systems the given software supports and checks whether or not any of
+	 * them match up against the given Operating system.
 	 * 
 	 * @param sw
 	 * @param os
@@ -377,9 +371,8 @@ public class SoftwareManagment
 
 
 	/**
-	 * Finds the first OperatingSystem instance in the software array of the
-	 * given Object and returns that Software object. If it does not exist, it
-	 * will return a null pointer.
+	 * Finds the first OperatingSystem instance in the software array of the given Object and returns that Software
+	 * object. If it does not exist, it will return a null pointer.
 	 */
 	public static OperatingSystem[] getOperatingSystem(Object obj)
 	{
@@ -416,9 +409,8 @@ public class SoftwareManagment
 
 
 	/**
-	 * This method removes all the software within the object and
-	 * replaces them with an array of software only populated by the
-	 * given Operating System object.
+	 * This method removes all the software within the object and replaces them with an array of software only populated
+	 * by the given Operating System object.
 	 * 
 	 * @param os
 	 * @param obj

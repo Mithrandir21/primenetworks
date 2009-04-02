@@ -1,5 +1,6 @@
 package graphics.GUI.selectArea;
 
+
 /*
  * TabbedPaneDemo.java requires one additional file:
  *   images/middle.gif.
@@ -17,36 +18,37 @@ import javax.swing.JTabbedPane;
 
 /**
  * Javadoc-TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
 public class TabbedSelection extends JTabbedPane
 {
-	
+
 	/**
 	 * 
 	 */
 	PrimeTree primeTree = new PrimeTree();
-	
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
+	 * 
 	 */
 	public TabbedSelection()
 	{
 
 
-		ImageIcon icon = ImageLocator.getImageIconObject("java");
 
 
-
+		ImageIcon objects = ImageLocator.getImageIconObject("Objects");
 		JComponent panel4 = new ObjectSelection();
 		JScrollPane scrollArea = new JScrollPane(panel4);
-		this.addTab("Unit Area", icon, scrollArea, "Unit Area");
+		scrollArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		this.addTab("Unit Area", objects, scrollArea, "Unit Area");
 
-
-		this.addTab("Network Models", null, primeTree, "Network Models");
+		
+		ImageIcon networks = ImageLocator.getImageIconObject("Networks");
+		this.addTab("Network Models", networks, primeTree, "Network Models");
 
 
 
@@ -56,9 +58,9 @@ public class TabbedSelection extends JTabbedPane
 		// The following line enables to use scrolling tabs.
 		this.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 

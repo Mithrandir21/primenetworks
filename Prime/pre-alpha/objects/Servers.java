@@ -9,9 +9,8 @@ import exceptions.StringNotFoundInArrayException;
 
 
 /**
- * An abstract super class for all servers objects in the system, including
- * {@link objects.clientObjects.Desktop MUST CHANGE} and {@link objects.clientObjects.Laptop MUST CHANGE}.
- * MUST ADD INFO!
+ * An abstract super class for all servers objects in the system, including {@link objects.clientObjects.Desktop MUST
+ * CHANGE} and {@link objects.clientObjects.Laptop MUST CHANGE}. MUST ADD INFO!
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -28,7 +27,7 @@ public abstract class Servers extends Object implements Serializable
 
 	// Supports remote access
 	private boolean supportsRemoteAccess;
-	
+
 	// Supported remote access protocols
 	private String[] supportedRemoteAccessProtocols;
 
@@ -90,8 +89,7 @@ public abstract class Servers extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the server.
 	 */
-	public Servers(String Name, String Desc, String[] SupConInt,
-			Object[] DesktopComponents)
+	public Servers(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 	}
@@ -101,16 +99,15 @@ public abstract class Servers extends Object implements Serializable
 
 
 	/**
-	 * Get a boolean saying if this device supports on-site-access, which
-	 * implies that the device is at least connected to a mouse, keyboard and a
-	 * monitor.
+	 * Get a boolean saying if this device supports on-site-access, which implies that the device is at least connected
+	 * to a mouse, keyboard and a monitor.
 	 */
 	public boolean supportsOnSiteAccess()
 	{
 		return supportsOnSiteAccess;
 	}
 
-	
+
 	/**
 	 * Get a boolean saying if the device supports remote access.
 	 */
@@ -118,9 +115,9 @@ public abstract class Servers extends Object implements Serializable
 	{
 		return supportsRemoteAccess;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Get the protocols this device supports for access from a remote location.
 	 */
@@ -130,7 +127,7 @@ public abstract class Servers extends Object implements Serializable
 	}
 
 
-	
+
 	/**
 	 * Set the support of the device for On-Site-Access.
 	 */
@@ -139,8 +136,8 @@ public abstract class Servers extends Object implements Serializable
 		this.supportsOnSiteAccess = supportsOnSiteAccess;
 	}
 
-	
-	
+
+
 	/**
 	 * Set the support of the device for remote access.
 	 */
@@ -148,21 +145,19 @@ public abstract class Servers extends Object implements Serializable
 	{
 		this.supportsRemoteAccess = supportsRemoteAccess;
 	}
-	
-	
+
+
 	/**
-	 * Set an array of string with the protocols the device supports for remote
-	 * access.
+	 * Set an array of string with the protocols the device supports for remote access.
 	 */
-	public void setSupportedRemoteAccessProtocols(
-			String[] supportedRemoteAccessProtocols)
+	public void setSupportedRemoteAccessProtocols(String[] supportedRemoteAccessProtocols)
 	{
 
 		this.supportedRemoteAccessProtocols = supportedRemoteAccessProtocols;
 	}
-	
-	
-	
+
+
+
 
 	/**
 	 * Get the number of nodes between the maskin and the internet.
@@ -181,38 +176,33 @@ public abstract class Servers extends Object implements Serializable
 	{
 		numberOfNodes = jumps;
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Function to add protocols to the the remote access protocols list.
 	 * 
 	 * @param NewProtocols
 	 *            An array of new remote access protocols.
 	 */
-	public void addRemoteAccessProtocols(String[] NewProtocols)
-			throws Exception
+	public void addRemoteAccessProtocols(String[] NewProtocols) throws Exception
 	{
-		supportedRemoteAccessProtocols = ArrayManagment.addItems(NewProtocols,
-				supportedRemoteAccessProtocols);
+		supportedRemoteAccessProtocols = ArrayManagment.addItems(NewProtocols, supportedRemoteAccessProtocols);
 
 	}
 
 
 
 	/**
-	 * Function to remove remote access protocols from the array of remote
-	 * access protocols.
+	 * Function to remove remote access protocols from the array of remote access protocols.
 	 * 
 	 * @param ToBeRemoved
 	 *            Remote access protocol to be removed.
 	 */
-	public void removeRemoteAccessProtocols(String[] ToBeRemoved)
-			throws StringNotFoundInArrayException
+	public void removeRemoteAccessProtocols(String[] ToBeRemoved) throws StringNotFoundInArrayException
 	{
-		supportedRemoteAccessProtocols = ArrayManagment.removeItems(
-				ToBeRemoved, supportedRemoteAccessProtocols);
+		supportedRemoteAccessProtocols = ArrayManagment.removeItems(ToBeRemoved, supportedRemoteAccessProtocols);
 	}
 
 }

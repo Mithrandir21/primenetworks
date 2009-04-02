@@ -22,20 +22,17 @@ public class SoftwareMessages extends JScrollPane
 
 
 	/**
-	 * A constructor for the class that creates a JScrollPane that will 
-	 * contains a JTable with possible messages for the user
-	 * about the given Object.
-	 *
+	 * A constructor for the class that creates a JScrollPane that will contains a JTable with possible messages for the
+	 * user about the given Object.
+	 * 
 	 * @param objects
-	 * 			The objects that are to be examined.
+	 *            The objects that are to be examined.
 	 * @param data
-	 * 			The multidimentional String array with possible previous
-	 * 			messages for the user.  
+	 *            The multidimentional String array with possible previous messages for the user.
 	 */
 	public SoftwareMessages(Object[] objects, String[][] data)
 	{
-		String[] columnNames = { "Object Name", "Software Type", "Description",
-				"Message Type" };
+		String[] columnNames = { "Object Name", "Software Type", "Description", "Message Type" };
 
 		table = new MessageJTable(data, columnNames);
 

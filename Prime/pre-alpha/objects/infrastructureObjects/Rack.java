@@ -13,9 +13,8 @@ import exceptions.ObjectNotFoundInArrayException;
 
 
 /**
- * This class represents a 19-inch rack. This rack is basicly a container for
- * different units, like switches and routers. It contains information abour how
- * many different units it can contain, depending on the unit sizes.
+ * This class represents a 19-inch rack. This rack is basicly a container for different units, like switches and
+ * routers. It contains information abour how many different units it can contain, depending on the unit sizes.
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -41,10 +40,9 @@ public class Rack extends Infrastructure implements Serializable
 
 
 	/**
-	 * Constructor for a rack class. This also creates an array that contains a
-	 * given number of object entires to contain the different units placed
-	 * within the rack. It also sets the number of currently contained units and
-	 * the number of currently occupied shelfs to 0.
+	 * Constructor for a rack class. This also creates an array that contains a given number of object entires to
+	 * contain the different units placed within the rack. It also sets the number of currently contained units and the
+	 * number of currently occupied shelfs to 0.
 	 * 
 	 * @param Name
 	 *            The name of the rack.
@@ -117,8 +115,7 @@ public class Rack extends Infrastructure implements Serializable
 
 
 	/**
-	 * Replaces the array that contains all the racks units with another array
-	 * of units.
+	 * Replaces the array that contains all the racks units with another array of units.
 	 * 
 	 * @param units
 	 *            The units that will replace the previous units.
@@ -133,16 +130,13 @@ public class Rack extends Infrastructure implements Serializable
 	// CLASS METHODES
 
 	/**
-	 * Get spesific units, like routers and switches, by searching for units
-	 * with the give class type.
+	 * Get spesific units, like routers and switches, by searching for units with the give class type.
 	 * 
 	 * @return Returns an array of units that match with the given class.
 	 */
-	public Object[] getSpesificUnits(Class<Object> unitClass)
-			throws ObjectNotFoundException
+	public Object[] getSpesificUnits(Class<Object> unitClass) throws ObjectNotFoundException
 	{
-		Object[] unitsFound = ArrayManagment.getSpesificComponents(
-				unitClass, units, unitsCounter);
+		Object[] unitsFound = ArrayManagment.getSpesificComponents(unitClass, units, unitsCounter);
 
 		return unitsFound;
 	}
@@ -157,13 +151,12 @@ public class Rack extends Infrastructure implements Serializable
 	public boolean addUnits(Object[] NewUnits) throws Exception
 	{
 		/*
-		 * If the number of shelfs needed by the new units is not bigger then
-		 * the number of shelfs available, the units will be installed.
+		 * If the number of shelfs needed by the new units is not bigger then the number of shelfs available, the units
+		 * will be installed.
 		 */
 		if ( !(RackFunctions.calculateShelfSpace(NewUnits) > (numberOfShelfs - occupiedShelfs)) )
 		{
-			units = ComponentsManagment.addComponents(NewUnits, units,
-					unitsCounter);
+			units = ComponentsManagment.addComponents(NewUnits, units, unitsCounter);
 
 			// Sets the new count for number of components in the array
 
@@ -188,13 +181,12 @@ public class Rack extends Infrastructure implements Serializable
 	public boolean changeUnit(Object NewUnit, Object OldUnit)
 	{
 		/*
-		 * If the number of shelfs needed by the new units is not bigger then
-		 * the number of shelfs available, the units will be installed.
+		 * If the number of shelfs needed by the new units is not bigger then the number of shelfs available, the units
+		 * will be installed.
 		 */
 		if ( !(RackFunctions.calculateShelfSpace(NewUnit) > (numberOfShelfs - occupiedShelfs)) )
 		{
-			units = ComponentsManagment.changeComponent(NewUnit, OldUnit,
-					units, unitsCounter);
+			units = ComponentsManagment.changeComponent(NewUnit, OldUnit, units, unitsCounter);
 
 			// Sets the new count for number of components in the array
 			unitsCounter = units.length;
@@ -212,11 +204,9 @@ public class Rack extends Infrastructure implements Serializable
 	 *            Units to be removed.
 	 */
 	@Override
-	public void removeComponent(Object[] ToBeRemoved)
-			throws ObjectNotFoundInArrayException
+	public void removeComponent(Object[] ToBeRemoved) throws ObjectNotFoundInArrayException
 	{
-		units = ComponentsManagment.removeComponents(ToBeRemoved, units,
-				unitsCounter);
+		units = ComponentsManagment.removeComponents(ToBeRemoved, units, unitsCounter);
 
 		// Sets the new count for number of components in the array
 		unitsCounter = units.length;

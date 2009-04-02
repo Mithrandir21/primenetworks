@@ -28,6 +28,7 @@ import objects.Object;
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
 import objects.infrastructureObjects.Hub;
+import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.peripheralObjects.Scanner;
@@ -103,10 +104,15 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function determines what kind of {@link Object} the given object is and adds that Object to the given
+	 * {@link WorkareaCanvas}. There is also an ImageIcon created that will serve as the ImageIcon for the
+	 * {@link WidgetObject} that will be created and added to the {@link WorkareaCanvas}.
 	 * 
 	 * @param obj
+	 *            The {@link Object} that will be examined and eventually added to the given {@link WorkareaCanvas}.
 	 * @param canvas
+	 *            The {@link WorkareaCanvas} that the given Object will be added to in the form of a
+	 *            {@link WidgetObject}.
 	 */
 	public static void addObjectToCanvas(Object obj, WorkareaCanvas canvas)
 	{
@@ -198,6 +204,13 @@ public class WorkareaCanvasActions
 		{
 			objectType = Scanner.class;
 			objectIcon = ImageLocator.getImageIconObject("Scanner");
+
+			set = true;
+		}
+		else if ( obj.getClass().equals(Internet.class) )
+		{
+			objectType = Internet.class;
+			objectIcon = ImageLocator.getImageIconObject("Internet");
 
 			set = true;
 		}
@@ -521,7 +534,8 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This method calls the revalidateWidgetLocations function in all the given {@link WorkareaCanvas WorkareaCanvases}
+	 * , which will update the locations on all the WidgetObjects on their respective scenes.
 	 * 
 	 * @param canvases
 	 */
@@ -536,7 +550,8 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This method calls the revalidateWidgetLocations function in the given {@link WorkareaCanvas}, which will update
+	 * the locations on all the WidgetObjects on the scenes.
 	 * 
 	 * @param canvases
 	 */

@@ -9,11 +9,10 @@ import exceptions.StringNotFoundInArrayException;
 
 
 /**
- * Class that contains different function that add, remove and replace
- * components from a given array. It is used in the different parts of the
- * program, specially {@link objects.clientObjects.Desktop Desktops}, {@link objects.clientObjects.Laptop
- * Laptops}, {@link objects.Servers Servers} and {@link objects.infrastructureObjects.Rack
- * Racks}.
+ * Class that contains different function that add, remove and replace components from a given array. It is used in the
+ * different parts of the program, specially {@link objects.clientObjects.Desktop Desktops},
+ * {@link objects.clientObjects.Laptop Laptops}, {@link objects.Servers Servers} and
+ * {@link objects.infrastructureObjects.Rack Racks}.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -29,11 +28,9 @@ public class ArrayManagment
 	 * @param Items
 	 *            The current items list.
 	 * @throws Exception
-	 *             Throws an exception with a message which says that the item
-	 *             is already present.
+	 *             Throws an exception with a message which says that the item is already present.
 	 */
-	public static String[] addItems(String[] NewItems, String[] Items)
-			throws Exception
+	public static String[] addItems(String[] NewItems, String[] Items) throws Exception
 	{
 		// The number of new items to be added to the items array
 		int numberOfNewItems = 0;
@@ -61,8 +58,7 @@ public class ArrayManagment
 		{
 			if ( areFound[i] == true )
 			{
-				throw new Exception("The items " + NewItems[i]
-						+ " is already present.");
+				throw new Exception("The items " + NewItems[i] + " is already present.");
 			}
 		}
 
@@ -93,12 +89,10 @@ public class ArrayManagment
 	 * @param items
 	 *            The current items list.
 	 * @throws ObjectNotFoundInArrayException
-	 *             Throws an exception which states that one or more of the
-	 *             items that are to be removed do not exist in the items array
-	 *             they are trying to be removed from.
+	 *             Throws an exception which states that one or more of the items that are to be removed do not exist in
+	 *             the items array they are trying to be removed from.
 	 */
-	public static String[] removeItems(String[] ToBeRemoved, String[] items)
-			throws StringNotFoundInArrayException
+	public static String[] removeItems(String[] ToBeRemoved, String[] items) throws StringNotFoundInArrayException
 	{
 		// booleans to check whether the objects to be removed are found or not
 		boolean[] objectFound = new boolean[ToBeRemoved.length];
@@ -134,8 +128,7 @@ public class ArrayManagment
 			if ( objectFound[i] == false )
 			{
 				StringNotFoundInArrayException exception = new StringNotFoundInArrayException(
-						"String was not found, hence cannot "
-								+ "be deleted. Contact systemadminstrator.",
+						"String was not found, hence cannot " + "be deleted. Contact systemadminstrator.",
 						ToBeRemoved[i]);
 
 				throw exception;
@@ -161,8 +154,7 @@ public class ArrayManagment
 	 * @param Items
 	 *            The current string list.
 	 */
-	public static String[] changeArrayItem(String NewItem, String OldItem,
-			String[] Items)
+	public static String[] changeArrayItem(String NewItem, String OldItem, String[] Items)
 	{
 		// Goes through all the strings and replaces the old string with the new
 		// one
@@ -188,22 +180,18 @@ public class ArrayManagment
 	// SEARCH FUNCTIONS
 
 	/**
-	 * Get specific components by searching for components with the give class
-	 * type.
+	 * Get specific components by searching for components with the give class type.
 	 * 
 	 * @return Returns an array of components that match with the given class.
 	 * @param componentCounter
-	 *            The counter that tells how many components are in the current
-	 *            components array.
+	 *            The counter that tells how many components are in the current components array.
 	 * @param components
 	 *            The current components list.
 	 * @throws ObjectNotFoundException
-	 *             Throws an exception which states that there were not objects
-	 *             found with the given class.
+	 *             Throws an exception which states that there were not objects found with the given class.
 	 */
 	@SuppressWarnings("unchecked")
-	public static Object[] getSpesificComponents(Class ComponentClass,
-			Object[] components, int componentCounter)
+	public static Object[] getSpesificComponents(Class ComponentClass, Object[] components, int componentCounter)
 			throws ObjectNotFoundException
 	{
 		// boolean to check whether the object is found or not
@@ -220,8 +208,7 @@ public class ArrayManagment
 		for ( int i = 0; i < componentCounter; i++ )
 		{
 			/*
-			 * If the given components class matches the present components
-			 * class, it will be added to the container
+			 * If the given components class matches the present components class, it will be added to the container
 			 */
 			if ( components[i].getClass().equals(ComponentClass) )
 			{
@@ -237,10 +224,8 @@ public class ArrayManagment
 		// Checks whether all the objects were found and removed
 		if ( objectNotFound == true )
 		{
-			ObjectNotFoundException exception = new ObjectNotFoundException(
-					"Object(s) with the given component, "
-							+ ComponentClass.getCanonicalName()
-							+ " were not found.", ComponentClass);
+			ObjectNotFoundException exception = new ObjectNotFoundException("Object(s) with the given component, "
+					+ ComponentClass.getCanonicalName() + " were not found.", ComponentClass);
 
 			throw exception;
 		}
@@ -257,8 +242,7 @@ public class ArrayManagment
 
 	// CHECK FUNCTIONS
 	/**
-	 * Check function to determine whether or not the the given array contains
-	 * the given object.
+	 * Check function to determine whether or not the the given array contains the given object.
 	 * 
 	 * @param array
 	 *            The array that is to be checked.
@@ -291,16 +275,14 @@ public class ArrayManagment
 
 
 	/**
-	 * Check function to determine whether or not the the given array contains
-	 * the given object.
+	 * Check function to determine whether or not the the given array contains the given object.
 	 * 
 	 * @param array
 	 *            The array that is to be checked.
 	 * @param searchObject
 	 *            The object that is to be searched for.
 	 */
-	public static int arrayContainsReturnsIndex(Object[] array,
-			Object searchObject)
+	public static int arrayContainsReturnsIndex(Object[] array, Object searchObject)
 	{
 		// Boolean to tell whether or not the given object is found within the
 		// given array.
@@ -327,15 +309,14 @@ public class ArrayManagment
 
 
 	/**
-	 * Check function to determine whether or not the the given array contains
-	 * any of the given objects in the searchObjects array.
+	 * Check function to determine whether or not the the given array contains any of the given objects in the
+	 * searchObjects array.
 	 * 
 	 * @param array
 	 *            The array that is to be checked.
 	 * @param searchObjects
 	 *            The objects that is to be searched for.
-	 * @return The array of booleans that tells, by way of the index, which
-	 *         object are found.
+	 * @return The array of booleans that tells, by way of the index, which object are found.
 	 */
 	public static boolean[] arrayContains(String[] array, String[] searchObjects)
 	{
@@ -367,15 +348,13 @@ public class ArrayManagment
 
 
 	/**
-	 * Check function to determine whether or not the the given array contains
-	 * the given searchObject.
+	 * Check function to determine whether or not the the given array contains the given searchObject.
 	 * 
 	 * @param array
 	 *            The array that is to be checked.
 	 * @param searchObject
 	 *            The object that is to be searched for.
-	 * @return The array of booleans that tells, by way of the index, which
-	 *         object are found.
+	 * @return The array of booleans that tells, by way of the index, which object are found.
 	 */
 	public static boolean arrayContains(String[] array, String searchObject)
 	{
@@ -402,17 +381,13 @@ public class ArrayManagment
 
 
 	/**
-	 * This function creates a new java.lang.Object array with 5 more
-	 * indexes then the given Object array. It then copies over the 
-	 * information in the given array into the new array, which
-	 * leaves an array with 5 free spaces at the end.
+	 * This function creates a new java.lang.Object array with 5 more indexes then the given Object array. It then
+	 * copies over the information in the given array into the new array, which leaves an array with 5 free spaces at
+	 * the end.
 	 * 
 	 * @param data
-	 * 			The array that will be copied over to a new array
-	 * 			with 5 additional empty indexes at the end.
-	 * @return
-	 * 			A new Object double array that will contain 5 new
-	 * 			empty indexes at the end.
+	 *            The array that will be copied over to a new array with 5 additional empty indexes at the end.
+	 * @return A new Object double array that will contain 5 new empty indexes at the end.
 	 */
 	public static java.lang.Object[][] add5ArraySpaces(java.lang.Object[][] data)
 	{
@@ -449,17 +424,12 @@ public class ArrayManagment
 
 
 	/**
-	 * This function creates a new String array with 5 more
-	 * indexes then the given String array. It then copies over the 
-	 * information in the given array into the new array, which
-	 * leaves an array with 5 free spaces at the end.
+	 * This function creates a new String array with 5 more indexes then the given String array. It then copies over the
+	 * information in the given array into the new array, which leaves an array with 5 free spaces at the end.
 	 * 
 	 * @param data
-	 * 			The array that will be copied over to a new array
-	 * 			with 5 additional empty indexes at the end.
-	 * @return
-	 * 			A new String double array that will contain 5 new
-	 * 			empty indexes at the end.
+	 *            The array that will be copied over to a new array with 5 additional empty indexes at the end.
+	 * @return A new String double array that will contain 5 new empty indexes at the end.
 	 */
 	public static String[][] add5ArraySpaces(String[][] data)
 	{
@@ -481,7 +451,7 @@ public class ArrayManagment
 				}
 			}
 		}
-		
+
 		// This means that the data received was null
 		else
 		{
@@ -493,31 +463,27 @@ public class ArrayManagment
 		return temp;
 
 	}
-	
-	
-	
+
+
+
 	/**
-	 * This method removes any empty first level index from the given 
-	 * data.
+	 * This method removes any empty first level index from the given data.
 	 * 
 	 */
 	/**
-	 * This method removes any empty first level index from the given 
-	 * data.
+	 * This method removes any empty first level index from the given data.
 	 * 
 	 * @param data
-	 * 			The array that will be checked for empty array
-	 * 			indexes.
-	 * @return
-	 * 			Return a new array with no empty indexes.
+	 *            The array that will be checked for empty array indexes.
+	 * @return Return a new array with no empty indexes.
 	 */
 	public static String[][] removeEmptyIndexes(String[][] data)
 	{
 		if ( data != null )
 		{
 			int notEmptySpaces = 0;
-			
-			
+
+
 			for ( int i = 0; i < data.length; i++ )
 			{
 				if ( data[i][0] != null )
@@ -525,23 +491,23 @@ public class ArrayManagment
 					notEmptySpaces++;
 				}
 			}
-			
-			
+
+
 			String[][] temp = new String[notEmptySpaces][data[0].length];
-			
-			
-			for( int i = 0; i < temp.length; i++ )
+
+
+			for ( int i = 0; i < temp.length; i++ )
 			{
-				for( int j = 0; j < temp[i].length; j++ )
+				for ( int j = 0; j < temp[i].length; j++ )
 				{
 					temp[i][j] = data[i][j];
 				}
 			}
-			
+
 			return temp;
 		}
-		
-		
+
+
 		return data;
 	}
 }

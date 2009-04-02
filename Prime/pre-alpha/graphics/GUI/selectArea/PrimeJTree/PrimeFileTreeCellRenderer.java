@@ -3,6 +3,7 @@
  */
 package graphics.GUI.selectArea.PrimeJTree;
 
+
 import java.awt.Component;
 import java.io.File;
 import java.util.HashMap;
@@ -14,11 +15,11 @@ import javax.swing.JTree;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+
 /**
  * Renderer for the file tree.
  * 
- * @author Kirill Grouchnikov
- * Expanded by Bahram Malaekeh 
+ * @author Kirill Grouchnikov Expanded by Bahram Malaekeh
  */
 public class PrimeFileTreeCellRenderer extends DefaultTreeCellRenderer
 {
@@ -36,24 +37,22 @@ public class PrimeFileTreeCellRenderer extends DefaultTreeCellRenderer
 	 * File system view.
 	 */
 	protected static FileSystemView fsv = FileSystemView.getFileSystemView();
-	
-	
+
+
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * javax.swing.tree.DefaultTreeCellRenderer#getTreeCellRendererComponent
-	 * (javax.swing.JTree, java.lang.Object, boolean, boolean, boolean, int,
-	 * boolean)
+	 * @see javax.swing.tree.DefaultTreeCellRenderer#getTreeCellRendererComponent (javax.swing.JTree, java.lang.Object,
+	 * boolean, boolean, boolean, int, boolean)
 	 */
 	@Override
-	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel,
-			boolean expanded, boolean leaf, int row, boolean hasFocus)
+	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,
+			boolean leaf, int row, boolean hasFocus)
 	{
 		FileTreeNode ftn = (FileTreeNode) value;
 		File file = ftn.getFile();
 		String filename = "";
-		
+
 		if ( file != null )
 		{
 			if ( ftn.isFileSystemRoot() )
@@ -70,10 +69,9 @@ public class PrimeFileTreeCellRenderer extends DefaultTreeCellRenderer
 				filename = file.getName();
 			}
 		}
-		
-		JLabel result = (JLabel) super.getTreeCellRendererComponent(tree, filename, sel,
-				expanded, leaf, row, hasFocus);
-		
+
+		JLabel result = (JLabel) super.getTreeCellRendererComponent(tree, filename, sel, expanded, leaf, row, hasFocus);
+
 		if ( file != null )
 		{
 			Icon icon = this.iconCache.get(filename);
@@ -82,10 +80,10 @@ public class PrimeFileTreeCellRenderer extends DefaultTreeCellRenderer
 				icon = fsv.getSystemIcon(file);
 				this.iconCache.put(filename, icon);
 			}
-			
+
 			result.setIcon(icon);
 		}
-		
+
 		return result;
 	}
 }

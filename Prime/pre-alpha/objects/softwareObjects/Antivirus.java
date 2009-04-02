@@ -8,8 +8,7 @@ import objects.Software;
 
 
 /**
- * This class represents an antivirus program. It contains information on
- * whether or not the license has been activated
+ * This class represents an antivirus program. It contains information on whether or not the license has been activated
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -17,8 +16,7 @@ import objects.Software;
 public class Antivirus extends Software implements Serializable
 {
 	/*
-	 * Datafields for an abstract antivirus These will contain the values of any
-	 * antivirus object
+	 * Datafields for an abstract antivirus These will contain the values of any antivirus object
 	 */
 
 	// Supported Operating systems
@@ -40,8 +38,7 @@ public class Antivirus extends Software implements Serializable
 
 
 	/**
-	 * Constructor of the antivirus software class. This will represent a single
-	 * program with a singel license.
+	 * Constructor of the antivirus software class. This will represent a single program with a singel license.
 	 * 
 	 * @param Name
 	 *            The name of the antivirus software.

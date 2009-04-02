@@ -248,9 +248,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @return the saved
+	 * Gets a boolean that tells whether or not this {@link WorkareaCanvas} has been saved.
 	 */
 	public boolean isSaved()
 	{
@@ -259,20 +257,18 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @return the changed
+	 * Gets a boolean that tells whether or not this {@link WorkareaCanvas} has been altered and not saved.
 	 */
 	public boolean isChanged()
 	{
 		return changed;
 	}
-	
-	
+
+
 	/**
-	 * Javadoc-TODO - Description
+	 * Gets all the {@link WidgetObject WidgetObjectes} on the scene of this {@link WorkareaCanvas}.
 	 * 
-	 * @return
+	 * @return An {@link WidgetObject} array with all the {@link WidgetObject WidgetObjectes} on the scene.
 	 */
 	public WidgetObject[] getWidgetObjectsOnTheScene()
 	{
@@ -291,11 +287,11 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 		{
 			childrenWidgets[i] = (WidgetObject) childrenTemp[i];
 		}
-		
-		
+
+
 		return childrenWidgets;
 	}
-	
+
 
 
 	/**
@@ -318,7 +314,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 		{
 			childrenWidgets[i] = (WidgetObject) childrenTemp[i];
 		}
-		
+
 		// Creates an array with the length of the all the children on the
 		// canvas
 		Object[] childrenObject = new Object[childrenTemp.length];
@@ -389,9 +385,6 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 	/**
 	 * Sets the given string as the canvas name.
-	 * 
-	 * @param canvasName
-	 *            The name of the canvas.
 	 */
 	public void setCanvasName(String canvasName)
 	{
@@ -401,9 +394,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 
 	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @param scene
+	 * Sets the WorkareaCanvases scene.
 	 */
 	public void setScene(ObjectScene scene)
 	{
@@ -491,10 +482,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param saved
-	 *            the saved to set
+	 * Sets a boolean on whether or not this {@link WorkareaCanvas} has been saved.
 	 */
 	public void setSaved(boolean saved)
 	{
@@ -503,10 +491,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param changed
-	 *            the changed to set
+	 * Sets a boolean on whether or not this {@link WorkareaCanvas} has been altered and not saved.
 	 */
 	public void setChanged(boolean changed)
 	{
@@ -637,25 +622,24 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 		connectionLayer.revalidate();
 		connectionLayer.repaint();
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
-	 * This function goes through all the widgetObjects on the scene and sets the
-	 * location of the widget on the scene to the location of the object within the
-	 * WidgetObject.
+	 * This function goes through all the widgetObjects on the scene and sets the location of the widget on the scene to
+	 * the location of the object within the WidgetObject.
 	 */
 	public void revalidateWidgetLocations()
 	{
 		WidgetObject[] widgets = getWidgetObjectsOnTheScene();
 
 		// Iterates through the Object list
-		for ( int i = 0; i<widgets.length; i++ )
+		for ( int i = 0; i < widgets.length; i++ )
 		{
 			// Gets the object from the widget
 			Object obj = widgets[i].getObject();
-			
+
 			// Sets the object location
 			obj.setLocation(widgets[i].getLocation());
 		}

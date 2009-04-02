@@ -19,10 +19,9 @@ public interface HardwareViewInterface
 	 */
 	public void save();
 
-	
+
 	/**
-	 * This function should be used to validate the information
-	 * set in the view.
+	 * This function should be used to validate the information set in the view.
 	 */
 	public boolean validateNecessaryData();
 

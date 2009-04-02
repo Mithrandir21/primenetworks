@@ -7,21 +7,18 @@ import objects.ExternalHardware;
 
 
 /**
- * This class represents a MultifunctionPrinter. This device can be connected to
- * any device that supports the connection type, USB and so on, of this device.
- * It contains information on what kind of capability the MultifunctionPrinter
- * machin has and what kind of connection interface is allows. It also includes
- * whether or not the machine has integrated a scanner and a fax. <br>
+ * This class represents a MultifunctionPrinter. This device can be connected to any device that supports the connection
+ * type, USB and so on, of this device. It contains information on what kind of capability the MultifunctionPrinter
+ * machin has and what kind of connection interface is allows. It also includes whether or not the machine has
+ * integrated a scanner and a fax. <br>
  * <br>
- * <b>Notation</b>: The MultifunctionPrinter will be referred to as "MFP" in the
- * remainder of this document. <br>
+ * <b>Notation</b>: The MultifunctionPrinter will be referred to as "MFP" in the remainder of this document. <br>
  * <br>
  * 
  * @author Bahram Malaekeh
  * @version 0.1
  */
-public class MultifunctionPrinter extends ExternalHardware implements
-		Serializable
+public class MultifunctionPrinter extends ExternalHardware implements Serializable
 {
 
 	// Whether or not the MFP has a printer
@@ -54,8 +51,7 @@ public class MultifunctionPrinter extends ExternalHardware implements
 	 * @param MFPConnectionInterfaces
 	 *            Connection interfaces supported by a MFP. A array of Strings.
 	 */
-	public MultifunctionPrinter(String Name, String Desc,
-			String[] MFPConnectionInterfaces)
+	public MultifunctionPrinter(String Name, String Desc, String[] MFPConnectionInterfaces)
 	{
 		super(Name, Desc, MFPConnectionInterfaces);
 
@@ -69,8 +65,7 @@ public class MultifunctionPrinter extends ExternalHardware implements
 	/**
 	 * Get info on if the MFP has a printer.
 	 * 
-	 * @return Returns a boolean stating whether or not the machine has a
-	 *         printer integrated.
+	 * @return Returns a boolean stating whether or not the machine has a printer integrated.
 	 */
 	public boolean getHasPrinter()
 	{
@@ -99,8 +94,7 @@ public class MultifunctionPrinter extends ExternalHardware implements
 	/**
 	 * Get info on if the MFP has a scanner.
 	 * 
-	 * @return Returns a boolean stating whether or not the machine has a
-	 *         scanner integrated.
+	 * @return Returns a boolean stating whether or not the machine has a scanner integrated.
 	 */
 	public boolean getHasScanner()
 	{
@@ -129,8 +123,7 @@ public class MultifunctionPrinter extends ExternalHardware implements
 	/**
 	 * Get info on if the MFP has a fax.
 	 * 
-	 * @return Returns a boolean stating whether or not the machine has a fax
-	 *         integrated.
+	 * @return Returns a boolean stating whether or not the machine has a fax integrated.
 	 */
 	public boolean getHasFax()
 	{

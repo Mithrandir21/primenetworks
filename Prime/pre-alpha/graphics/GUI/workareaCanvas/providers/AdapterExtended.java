@@ -16,9 +16,8 @@ import widgetManipulation.WidgetObject;
 
 
 /**
- * This class overrides some of the methods in the {@link Adapter Adapter}
- * class. The methods govern how widgets react to actions like clicks and mouse
- * movements.
+ * This class overrides some of the methods in the {@link Adapter Adapter} class. The methods govern how widgets react
+ * to actions like clicks and mouse movements.
  * 
  * @author Bahram Malaekeh
  */
@@ -26,9 +25,8 @@ public class AdapterExtended extends Adapter
 {
 	/*
 	 * (non-Javadoc)
-	 * @see
-	 * org.netbeans.api.visual.action.WidgetAction$Adapter#mouseClicked(org.
-	 * netbeans.api.visual.widget.Widget,
+	 * 
+	 * @see org.netbeans.api.visual.action.WidgetAction$Adapter#mouseClicked(org. netbeans.api.visual.widget.Widget,
 	 * org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
 	 */
 	@Override
@@ -78,15 +76,13 @@ public class AdapterExtended extends Adapter
 				{
 					// Updates the information panel with information from the
 					// selected object.
-					PrimeMain1
-							.updatePropertiesObjectArea(widgetobj.getObject());
+					PrimeMain1.updatePropertiesObjectArea(widgetobj.getObject());
 				}
 			}
 		}
 		else if ( widget instanceof ConnectionWidget )
 		{
-			System.out
-					.println("There is still work to be done. AdapterExtended - mouseClicked");
+			System.out.println("There is still work to be done. AdapterExtended - mouseClicked");
 		}
 
 		return State.REJECTED;
@@ -94,9 +90,8 @@ public class AdapterExtended extends Adapter
 
 	/*
 	 * (non-Javadoc)
-	 * @see
-	 * org.netbeans.api.visual.action.WidgetAction$Adapter#mousePressed(org.
-	 * netbeans.api.visual.widget.Widget,
+	 * 
+	 * @see org.netbeans.api.visual.action.WidgetAction$Adapter#mousePressed(org. netbeans.api.visual.widget.Widget,
 	 * org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
 	 */
 	@Override

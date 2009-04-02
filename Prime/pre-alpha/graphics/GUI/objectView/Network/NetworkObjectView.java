@@ -26,6 +26,7 @@ import objects.hardwareObjects.CPU;
 import objects.hardwareObjects.HDD;
 import objects.hardwareObjects.Motherboard;
 import objects.infrastructureObjects.Hub;
+import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.peripheralObjects.Printer;
@@ -57,9 +58,8 @@ public class NetworkObjectView extends JPanel
 
 
 	/**
-	 * This method sets the layout and adds two JPanel with information about
-	 * objects connected the given object. One of the panels are for objects
-	 * connected by way of USB and the other one by way of RJ-45.
+	 * This method sets the layout and adds two JPanel with information about objects connected the given object. One of
+	 * the panels are for objects connected by way of USB and the other one by way of RJ-45.
 	 * 
 	 * @param obj
 	 */
@@ -80,7 +80,7 @@ public class NetworkObjectView extends JPanel
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 10, 10);
 
-		
+
 		this.add(determine(obj, "USB"), c);
 
 
@@ -99,8 +99,7 @@ public class NetworkObjectView extends JPanel
 
 
 	/**
-	 * This method passes the object on the right function depending on the
-	 * conType string.
+	 * This method passes the object on the right function depending on the conType string.
 	 * 
 	 * @param obj
 	 *            The object that is to be passed on.
@@ -129,13 +128,12 @@ public class NetworkObjectView extends JPanel
 
 
 	/**
-	 * Creates and returns a JPanel that contains information about the objects
-	 * that are connected to the given object by way of USB.
+	 * Creates and returns a JPanel that contains information about the objects that are connected to the given object
+	 * by way of USB.
 	 * 
 	 * @param obj
 	 *            The Object that is to be examined for connections.
-	 * @return A JPanel with information about objects connections by way of
-	 *         USB.
+	 * @return A JPanel with information about objects connections by way of USB.
 	 */
 	private JPanel USBpanel(Object obj)
 	{
@@ -217,13 +215,12 @@ public class NetworkObjectView extends JPanel
 
 
 	/**
-	 * Creates and returns a JPanel that contains information about the objects
-	 * that are connected to the given object by way of RJ-45.
+	 * Creates and returns a JPanel that contains information about the objects that are connected to the given object
+	 * by way of RJ-45.
 	 * 
 	 * @param obj
 	 *            The Object that is to be examined for connections.
-	 * @return A JPanel with information about objects connections by way of
-	 *         RJ-45.
+	 * @return A JPanel with information about objects connections by way of RJ-45.
 	 */
 	private JPanel LANpanel(Object obj)
 	{
@@ -304,8 +301,7 @@ public class NetworkObjectView extends JPanel
 
 
 	/**
-	 * Creates a JPanel that will contains key information about the given
-	 * object depending on the class of the Object.
+	 * Creates a JPanel that will contains key information about the given object depending on the class of the Object.
 	 * 
 	 * @param obj
 	 *            The Object that is to be examined.
@@ -370,6 +366,10 @@ public class NetworkObjectView extends JPanel
 		{
 			icon = ImageLocator.getImageIconObject("Router");
 		}
+		else if ( obj instanceof Internet )
+		{
+			icon = ImageLocator.getImageIconObject("Internet");
+		}
 
 		String[] texts = check(obj);
 
@@ -387,8 +387,7 @@ public class NetworkObjectView extends JPanel
 	 * 
 	 * @param obj
 	 *            The object that is to be examined.
-	 * @return An array with information about the given object, like name,
-	 *         description, number of cpus, etc.
+	 * @return An array with information about the given object, like name, description, number of cpus, etc.
 	 */
 	private String[] check(Object obj)
 	{
@@ -419,14 +418,13 @@ public class NetworkObjectView extends JPanel
 
 		try
 		{
-			mbObj = (Motherboard) ArrayManagment.getSpesificComponents(
-					Motherboard.class, obj.getComponents(),
-					obj.getComponents().length)[0];
+			mbObj = (Motherboard) ArrayManagment.getSpesificComponents(Motherboard.class, obj.getComponents(), obj
+					.getComponents().length)[0];
 
 
 
-			Object[] cpusArray = ArrayManagment.getSpesificComponents(
-					CPU.class, obj.getComponents(), obj.getComponents().length);
+			Object[] cpusArray = ArrayManagment.getSpesificComponents(CPU.class, obj.getComponents(), obj
+					.getComponents().length);
 
 			cpus = new CPU[cpusArray.length];
 			for ( int i = 0; i < cpusArray.length; i++ )
@@ -436,8 +434,8 @@ public class NetworkObjectView extends JPanel
 
 
 
-			Object[] hddsArray = ArrayManagment.getSpesificComponents(
-					HDD.class, obj.getComponents(), obj.getComponents().length);
+			Object[] hddsArray = ArrayManagment.getSpesificComponents(HDD.class, obj.getComponents(), obj
+					.getComponents().length);
 
 
 			hdds = new HDD[hddsArray.length];
@@ -529,15 +527,13 @@ public class NetworkObjectView extends JPanel
 
 
 	/**
-	 * Creates a JPanel and adds the given Icon and Strings. The strings are
-	 * place vertical.
+	 * Creates a JPanel and adds the given Icon and Strings. The strings are place vertical.
 	 * 
 	 * @param texts
 	 *            The strings with the information about the Hardware component.
 	 * @param icon
 	 *            The ImageIcon that will represent the Hardware component.
-	 * @return Returns a JPanel with both the ImageIcon and the hardware
-	 *         information.
+	 * @return Returns a JPanel with both the ImageIcon and the hardware information.
 	 */
 	private static JPanel createJPanel(String[] texts, ImageIcon icon)
 	{

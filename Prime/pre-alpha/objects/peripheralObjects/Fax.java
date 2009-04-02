@@ -7,10 +7,9 @@ import objects.ExternalHardware;
 
 
 /**
- * This class represents a fax machine. This device can be connected to any
- * device that supports the conncetion type of this device. It contains
- * information on what kind of capability the fax machine has and what kind of
- * connection interface is has.
+ * This class represents a fax machine. This device can be connected to any device that supports the conncetion type of
+ * this device. It contains information on what kind of capability the fax machine has and what kind of connection
+ * interface is has.
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -37,11 +36,9 @@ public class Fax extends ExternalHardware implements Serializable
 	 * @param FfaxType
 	 *            Type of fax. ink or laser.
 	 * @param FconnectionInterfaces
-	 *            Connection interfaces supported by the fax. An array of
-	 *            Strings.
+	 *            Connection interfaces supported by the fax. An array of Strings.
 	 */
-	public Fax(String Name, String Desc, String FfaxType,
-			String[] FconnectionInterfaces)
+	public Fax(String Name, String Desc, String FfaxType, String[] FconnectionInterfaces)
 	{
 		super(Name, Desc, FconnectionInterfaces);
 

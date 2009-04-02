@@ -41,8 +41,7 @@ import objects.hardwareObjects.Discdrive;
  * 
  * @author Bahram Malaekeh
  */
-public class DiscDriveView extends JPanel implements HardwareViewInterface,
-		ActionListener
+public class DiscDriveView extends JPanel implements HardwareViewInterface, ActionListener
 {
 	private JTextField name = new JTextField(25);
 
@@ -136,16 +135,16 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 		this.add(buttons, c);
 	}
 
-	
+
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different settings of the given Hardware object.
+	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
+	 * the JPanel in grids.
 	 * 
-	 * @param disc The Hardware that will be examined and will fill inn the fields.
+	 * @param disc
+	 *            The Hardware that will be examined and will fill inn the fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(Discdrive disc)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -161,12 +160,10 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 		labels[2].setToolTipText("The discdrive port to the motherboard.");
 
 		labels[3] = new JLabel("Subtype");
-		labels[3]
-				.setToolTipText("The discdrive subtype. (DualLayer and Doublesided.)");
+		labels[3].setToolTipText("The discdrive subtype. (DualLayer and Doublesided.)");
 
 		labels[4] = new JLabel("Speed");
-		labels[4]
-				.setToolTipText("The speed of the discdrive.(2x, 4x, 6x and so on).");
+		labels[4].setToolTipText("The speed of the discdrive.(2x, 4x, 6x and so on).");
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -195,8 +192,7 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 		type.setActionCommand("Type");
 		type.addActionListener(this);
 
-		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				typeString, disc.getType()));
+		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(typeString, disc.getType()));
 
 
 		panel.add(labels[1]);
@@ -215,8 +211,7 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 		port.setActionCommand("Port");
 		port.addActionListener(this);
 
-		port.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				portString, disc.getPort()));
+		port.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(portString, disc.getPort()));
 
 
 		panel.add(labels[2]);
@@ -225,7 +220,7 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 
 		// The subtype of the ram
 		labels[3].setLabelFor(subtype);
-		String[] subtypeString = { "", "DualLayer", "DoubleSided", "DualLayer/DoubleSided"  };
+		String[] subtypeString = { "", "DualLayer", "DoubleSided", "DualLayer/DoubleSided" };
 		subtype = new JComboBox(subtypeString);
 		subtype.setMaximumSize(tfSize);
 		subtype.setPreferredSize(tfSize);
@@ -234,8 +229,7 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 		subtype.setActionCommand("Subtype");
 		subtype.addActionListener(this);
 
-		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				subtypeString, disc.getSubtype()));
+		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(subtypeString, disc.getSubtype()));
 
 
 		panel.add(labels[3]);
@@ -244,8 +238,7 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 
 		// The speed of the ram
 		labels[4].setLabelFor(speed);
-		String[] speedString = { "", "2", "4", "6", "8", "10", "12", "14",
-				"16", "18", "20", "22", "24", "32", "48" };
+		String[] speedString = { "", "2", "4", "6", "8", "10", "12", "14", "16", "18", "20", "22", "24", "32", "48" };
 		speed = new JComboBox(speedString);
 		speed.setMaximumSize(tfSize);
 		speed.setPreferredSize(tfSize);
@@ -254,8 +247,7 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 		speed.setActionCommand("Speed");
 		speed.addActionListener(this);
 
-		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				speedString, disc.getSpeed()));
+		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(speedString, disc.getSpeed()));
 
 
 		panel.add(labels[4]);
@@ -276,6 +268,7 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
 	 */
 	@Override
@@ -291,34 +284,25 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 			DiscObj.setDescription(desc.getText());
 		}
 
-		if ( producer.getText() != "" )
-		{
-			DiscObj.setProducer(producer.getText());
-		}
+		DiscObj.setProducer(producer.getText());
 
-		if ( type.getSelectedItem().toString() != "" )
-		{
-			DiscObj.setType(type.getSelectedItem().toString());
-		}
+		DiscObj.setType(type.getSelectedItem().toString());
 
-		if ( port.getSelectedItem().toString() != "" )
-		{
-			DiscObj.setPort(port.getSelectedItem().toString());
-		}
+		DiscObj.setPort(port.getSelectedItem().toString());
 
-		if ( subtype.getSelectedItem().toString() != "" )
-		{
-			DiscObj.setSubtype(subtype.getSelectedItem().toString());
-		}
+		DiscObj.setSubtype(subtype.getSelectedItem().toString());
 
 		if ( speed.getSelectedItem().toString() != "" )
 		{
-			DiscObj.setSpeed(Integer
-					.parseInt(type.getSelectedItem().toString()));
+			DiscObj.setSpeed(Integer.parseInt(type.getSelectedItem().toString()));
+		}
+		else
+		{
+			DiscObj.setSpeed(0);
 		}
 	}
 
-	
+
 	/**
 	 * Checks and validates the name and description for this hardware object.
 	 */
@@ -327,8 +311,7 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 		// Checks the name of the motherboard
 		if ( name.getText().length() < 1 || name.getText().length() > 255 )
 		{
-			JOptionPane.showMessageDialog(this,
-					"The component name must be between 1 and 255 characters.",
+			JOptionPane.showMessageDialog(this, "The component name must be between 1 and 255 characters.",
 					"Error - Name", JOptionPane.INFORMATION_MESSAGE);
 
 			return false;
@@ -337,12 +320,8 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 		// Checks the description of the motherboard.
 		if ( desc.getText().length() < 1 )
 		{
-			JOptionPane
-					.showMessageDialog(
-							this,
-							"The component description must be longer then 1 character.",
-							"Error - Description",
-							JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this, "The component description must be longer then 1 character.",
+					"Error - Description", JOptionPane.INFORMATION_MESSAGE);
 
 			return false;
 		}
@@ -369,10 +348,8 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 
 				String[] portString = { "", "IDE", "SATA", "USB" };
 
-				port = GraphicalFunctions.verifyChange(this, mainObj,
-						Discdrive.class, DiscObj.getPort(), port
-								.getSelectedItem().toString(), msg, portString,
-						port);
+				port = GraphicalFunctions.verifyChange(this, mainObj, Discdrive.class, DiscObj.getPort(), port
+						.getSelectedItem().toString(), msg, portString, port);
 			}
 		}
 		else if ( e.getSource() instanceof Button )
@@ -386,14 +363,13 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 				// Will remove the first variable from the list of components
 				// that will be returned and set as the components for the main
 				// object.
-				mainObj.setAllComponents(ComponentsManagment.removeComponent(
-						DiscObj, mainObj.getComponents(), mainObj
-								.getComponents().length));
+				mainObj.setAllComponents(ComponentsManagment.removeComponent(DiscObj, mainObj.getComponents(), mainObj
+						.getComponents().length));
 
 				// Updates the views of the object to correctly show the
 				// current info.
 				ObjectView view = PrimeMain1.getObjectView(mainObj);
-				if(view != null)
+				if ( view != null )
 				{
 					view.updateViewInfo();
 				}

@@ -140,22 +140,21 @@ public class RAMNewView extends JFrame implements HardwareViewInterface, ActionL
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
 
 
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different settings of the given Hardware object.
+	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
+	 * the JPanel in grids.
 	 * 
-	 * @param ram The Hardware that will be examined and will fill inn the fields.
+	 * @param ram
+	 *            The Hardware that will be examined and will fill inn the fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(Ram ram)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -204,8 +203,7 @@ public class RAMNewView extends JFrame implements HardwareViewInterface, ActionL
 		type.setActionCommand("Type");
 		type.addActionListener(this);
 
-		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				typeString, ram.getType()));
+		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(typeString, ram.getPort()));
 
 
 		panel.add(labels[1]);
@@ -224,8 +222,7 @@ public class RAMNewView extends JFrame implements HardwareViewInterface, ActionL
 		subtype.setActionCommand("Subtype");
 		subtype.addActionListener(this);
 
-		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				subtypeString, ram.getSubtype()));
+		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(subtypeString, ram.getSubtype()));
 
 
 		panel.add(labels[2]);
@@ -244,8 +241,7 @@ public class RAMNewView extends JFrame implements HardwareViewInterface, ActionL
 		size.setActionCommand("Subtype");
 		size.addActionListener(this);
 
-		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				sizeString, ram.getSize()));
+		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(sizeString, ram.getSize()));
 
 
 		panel.add(labels[3]);
@@ -255,8 +251,7 @@ public class RAMNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		// The speed of the ram
 		labels[4].setLabelFor(speed);
-		String[] speedString = { "", "66", "100", "133", "200", "266", "333",
-				"400", "466", "500", "533", "667", "800" };
+		String[] speedString = { "", "66", "100", "133", "200", "266", "333", "400", "466", "500", "533", "667", "800" };
 		speed = new JComboBox(speedString);
 		speed.setMaximumSize(tfSize);
 		speed.setPreferredSize(tfSize);
@@ -265,8 +260,7 @@ public class RAMNewView extends JFrame implements HardwareViewInterface, ActionL
 		speed.setActionCommand("Speed");
 		speed.addActionListener(this);
 
-		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				speedString, ram.getSpeed()));
+		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(speedString, ram.getSpeed()));
 
 
 		panel.add(labels[4]);
@@ -324,32 +318,32 @@ public class RAMNewView extends JFrame implements HardwareViewInterface, ActionL
 			RAMobj.setDescription(desc.getText());
 		}
 
-		if ( producer.getText() != "" )
-		{
-			RAMobj.setProducer(producer.getText());
-		}
+		RAMobj.setProducer(producer.getText());
 
-		if ( type.getSelectedItem().toString() != "" )
-		{
-			RAMobj.setType(type.getSelectedItem().toString());
-		}
+		RAMobj.setPort(type.getSelectedItem().toString());
 
-		if ( subtype.getSelectedItem().toString() != "" )
-		{
-			RAMobj.setSubtype(subtype.getSelectedItem().toString());
-		}
+		RAMobj.setSubtype(subtype.getSelectedItem().toString());
+
 
 		if ( size.getSelectedItem().toString() != "" )
 		{
 			RAMobj.setSize(Integer.parseInt(size.getSelectedItem().toString()));
 		}
+		else
+		{
+			RAMobj.setSize(0);
+		}
+
 
 		if ( speed.getSelectedItem().toString() != "" )
 		{
-			RAMobj
-					.setSpeed(Integer.parseInt(type.getSelectedItem()
-							.toString()));
+			RAMobj.setSpeed(Integer.parseInt(type.getSelectedItem().toString()));
 		}
+		else
+		{
+			RAMobj.setSpeed(0);
+		}
+
 	}
 
 
@@ -362,14 +356,13 @@ public class RAMNewView extends JFrame implements HardwareViewInterface, ActionL
 			// Saves the current values of the new motherboard.
 			save();
 
-			ComponentsManagment.processRAMmatch(mainObj, (Motherboard) mainObj
-					.getComponents()[0], RAMobj, this);
+			ComponentsManagment.processRAMmatch(mainObj, (Motherboard) mainObj.getComponents()[0], RAMobj, this);
 
 
 			// Updates the views of the object to correctly show the
 			// current info.
 			ObjectView view = PrimeMain1.getObjectView(mainObj);
-			if(view != null)
+			if ( view != null )
 			{
 				view.updateViewInfo();
 			}

@@ -13,7 +13,7 @@ import widgetManipulation.WidgetObject;
 
 /**
  * Javadoc-TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
@@ -24,30 +24,30 @@ public class JPopupWidgetMenu
 	 */
 	private JPopupMenu popup = new JPopupMenu();
 
-	
+
 	/**
 	 * 
 	 */
 	private WorkareaWidgetActionListener widgetActListener;
-	
-	
+
+
 	/**
 	 * 
 	 */
-	private WorkareaCanvas canvas; 
-	
-	
+	private WorkareaCanvas canvas;
+
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
+	 * 
 	 * @param canvas
 	 */
 	public JPopupWidgetMenu(WorkareaCanvas canvas)
 	{
 		this.canvas = canvas;
 	}
-	
-	
+
+
 
 	/**
 	 * Javadoc-TODO - Description
@@ -58,18 +58,18 @@ public class JPopupWidgetMenu
 	public JPopupMenu createPopupMenu(Widget widget)
 	{
 		widgetActListener = new WorkareaWidgetActionListener(canvas);
-		
+
 		canvas.setCurrentWidgetObject((WidgetObject) widget);
 
 
 		InitialMenues(canvas);
 
-		
-		
+
+
 		return popup;
 	}
 
-	
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -84,8 +84,7 @@ public class JPopupWidgetMenu
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);
 
-		menuItem = new JMenuItem(
-				"Delete all connection to and from this object");
+		menuItem = new JMenuItem("Delete all connection to and from this object");
 		menuItem.setActionCommand("DeleteConnectionsObject");
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);

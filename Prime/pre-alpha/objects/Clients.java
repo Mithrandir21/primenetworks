@@ -5,9 +5,8 @@ import java.io.Serializable;
 
 
 /**
- * An abstract super class for all client objects in the system, including
- * {@link objects.clientObjects.Desktop Desktop} and {@link objects.clientObjects.Laptop Laptop}. MUST ADD
- * INFO!
+ * An abstract super class for all client objects in the system, including {@link objects.clientObjects.Desktop Desktop}
+ * and {@link objects.clientObjects.Laptop Laptop}. MUST ADD INFO!
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -32,8 +31,8 @@ public abstract class Clients extends Object implements Serializable
 
 	/**
 	 * Constructor of a desktop computer.<br>
-	 * This constructor also sets the number of components in the system and the
-	 * desktop rating to "0"(since the rating system is not yet implemented).
+	 * This constructor also sets the number of components in the system and the desktop rating to "0"(since the rating
+	 * system is not yet implemented).
 	 * 
 	 * @param Name
 	 *            The name of the desktop.
@@ -49,8 +48,8 @@ public abstract class Clients extends Object implements Serializable
 
 	/**
 	 * Constructor of a desktop computer.<br>
-	 * This constructor also sets the number of components in the system and the
-	 * desktop rating to "0"(since the rating system is not yet implemented).
+	 * This constructor also sets the number of components in the system and the desktop rating to "0"(since the rating
+	 * system is not yet implemented).
 	 * 
 	 * @param Name
 	 *            The name of the desktop.
@@ -68,8 +67,8 @@ public abstract class Clients extends Object implements Serializable
 
 	/**
 	 * Constructor of a desktop computer.<br>
-	 * This constructor also sets the number of components in the system and the
-	 * desktop rating to "0"(since the rating system is not yet implemented).
+	 * This constructor also sets the number of components in the system and the desktop rating to "0"(since the rating
+	 * system is not yet implemented).
 	 * 
 	 * @param Name
 	 *            The name of the desktop.
@@ -86,21 +85,19 @@ public abstract class Clients extends Object implements Serializable
 
 	/**
 	 * Constructor of a desktop computer.<br>
-	 * This constructor also sets the number of components in the system and the
-	 * desktop rating to "0"(since the rating system is not yet implemented).
+	 * This constructor also sets the number of components in the system and the desktop rating to "0"(since the rating
+	 * system is not yet implemented).
 	 * 
 	 * @param Name
 	 *            The name of the desktop.
 	 * @param Desc
 	 *            The description of the desktop.
 	 * @param SupConInt
-	 *            An array of strings that describes the supported connection
-	 *            interfaces.
+	 *            An array of strings that describes the supported connection interfaces.
 	 * @param DesktopComponents
 	 *            The initial components an instance of a desktop has.
 	 */
-	public Clients(String Name, String Desc, String[] SupConInt,
-			Object[] DesktopComponents)
+	public Clients(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 	}
@@ -131,7 +128,7 @@ public abstract class Clients extends Object implements Serializable
 
 	/**
 	 * Gets the rating of an instance of this class.
-	 *
+	 * 
 	 * @return the clientRate
 	 */
 	public int getClientRate()
@@ -143,8 +140,9 @@ public abstract class Clients extends Object implements Serializable
 
 	/**
 	 * Sets the rating of an instance of this class.
-	 *
-	 * @param clientRate the clientRate to set
+	 * 
+	 * @param clientRate
+	 *            the clientRate to set
 	 */
 	public void setClientRate(int clientRate)
 	{

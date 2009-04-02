@@ -32,17 +32,15 @@ public class ServersPropertiesView
 	public static void getServersPropertiesView(JPanel panel, Object obj)
 	{
 		Servers server = (Servers) obj;
-		
-		
+
+
 		Dimension tfSize = new Dimension(5, 20);
 
 
 		// Supports on-site-access
-		JLabel supOnSiteAccessLabel = new JLabel("Supports On-Site-Access",
-				SwingConstants.TRAILING);
-		supOnSiteAccessLabel
-				.setToolTipText("Whether or not this device supports "
-						+ "on-site-access, i.e. it has a keyboard, mouse and screen.");
+		JLabel supOnSiteAccessLabel = new JLabel("Supports On-Site-Access", SwingConstants.TRAILING);
+		supOnSiteAccessLabel.setToolTipText("Whether or not this device supports "
+				+ "on-site-access, i.e. it has a keyboard, mouse and screen.");
 		panel.add(supOnSiteAccessLabel);
 
 		JCheckBox supOnSiteAccessField = new JCheckBox();
@@ -56,8 +54,7 @@ public class ServersPropertiesView
 
 		// Supports Remote Access
 		JLabel supRemoteAccessLabel = new JLabel("Supports Remote Access");
-		supRemoteAccessLabel
-				.setToolTipText("Whether or not this device supports remote access.");
+		supRemoteAccessLabel.setToolTipText("Whether or not this device supports remote access.");
 		panel.add(supRemoteAccessLabel);
 
 		JCheckBox supRemoteAccessField = new JCheckBox();
@@ -71,8 +68,7 @@ public class ServersPropertiesView
 
 		// Index 2 - Supported Remote Access Protocols
 		JLabel supRemoteAccProtoLabel = new JLabel("Supported Remote Protocols");
-		supRemoteAccProtoLabel
-				.setToolTipText("The supported remote access protocols.");
+		supRemoteAccProtoLabel.setToolTipText("The supported remote access protocols.");
 		panel.add(supRemoteAccProtoLabel);
 
 		JTextField supRemoteAccProtoField = new JTextField(10);
@@ -85,8 +81,7 @@ public class ServersPropertiesView
 
 		// Index 3 - Software name
 		JLabel mainSWnameLabel = new JLabel("Software Name");
-		mainSWnameLabel
-				.setToolTipText("The name of the main software running on this device.");
+		mainSWnameLabel.setToolTipText("The name of the main software running on this device.");
 		panel.add(mainSWnameLabel);
 
 		JTextField mainSWnameField = new JTextField(10);

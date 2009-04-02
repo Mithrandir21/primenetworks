@@ -7,13 +7,11 @@ import objects.ExternalHardware;
 
 
 /**
- * This class represents a external harddrive. This device can be connected to
- * any device that supports the conncetion type of this device. It contains
- * information on what kind of capability the harddrive has and what kind of
- * connection interface is has. <br>
+ * This class represents a external harddrive. This device can be connected to any device that supports the conncetion
+ * type of this device. It contains information on what kind of capability the harddrive has and what kind of connection
+ * interface is has. <br>
  * <br>
- * <b>Notation</b>: The external harddrive will be refered to as "externalHDD"
- * in the remainder of this document.
+ * <b>Notation</b>: The external harddrive will be refered to as "externalHDD" in the remainder of this document.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -50,8 +48,7 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	 * @param HDDSize
 	 *            The HDD size in GB
 	 */
-	public ExternalHDD(String Name, String Desc, String HDDType, int HDDSize,
-			String[] ConnectionInterface)
+	public ExternalHDD(String Name, String Desc, String HDDType, int HDDSize, String[] ConnectionInterface)
 	{
 		super(Name, Desc, ConnectionInterface);
 

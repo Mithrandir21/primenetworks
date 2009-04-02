@@ -3,6 +3,7 @@
  */
 package graphics.GUI.selectArea.PrimeJTree;
 
+
 import java.io.File;
 import java.util.Enumeration;
 import java.util.NoSuchElementException;
@@ -10,11 +11,11 @@ import java.util.NoSuchElementException;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 
+
 /**
  * A node in the file tree.
- *
- * @author Kirill Grouchnikov
- * Expanded by Bahram Malaekeh
+ * 
+ * @author Kirill Grouchnikov Expanded by Bahram Malaekeh
  */
 public class FileTreeNode extends DefaultMutableTreeNode
 {
@@ -117,8 +118,8 @@ public class FileTreeNode extends DefaultMutableTreeNode
 		};
 
 	}
-	
-	
+
+
 	/**
 	 * Returns the file.
 	 * 
@@ -128,8 +129,8 @@ public class FileTreeNode extends DefaultMutableTreeNode
 	{
 		return file;
 	}
-	
-	
+
+
 	/**
 	 * Indication whether this node corresponds to a file system root.
 	 * 
@@ -139,7 +140,7 @@ public class FileTreeNode extends DefaultMutableTreeNode
 	{
 		return isFileSystemRoot;
 	}
-	
+
 
 	/*
 	 * (non-Javadoc)

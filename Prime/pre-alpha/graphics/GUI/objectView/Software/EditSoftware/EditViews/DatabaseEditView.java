@@ -28,17 +28,14 @@ import objects.softwareObjects.Database;
 
 
 /**
- * A JPanel that will contain fields and options for a presentation and
- * modification of an {@link Database Database} Software. The panel is made up
- * of 3 JPanel ordered in a column. The first one contains the name and
- * description of the object. The second panel contains the specific software
- * options. The third panel contains the button that can remove the software
- * from the computer.
+ * A JPanel that will contain fields and options for a presentation and modification of an {@link Database Database}
+ * Software. The panel is made up of 3 JPanel ordered in a column. The first one contains the name and description of
+ * the object. The second panel contains the specific software options. The third panel contains the button that can
+ * remove the software from the computer.
  * 
  * @author Bahram Malaekeh
  */
-public class DatabaseEditView extends JPanel implements SoftwareView,
-		ActionListener
+public class DatabaseEditView extends JPanel implements SoftwareView, ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -125,16 +122,16 @@ public class DatabaseEditView extends JPanel implements SoftwareView,
 		this.add(buttons, c);
 	}
 
-	
+
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different settings of the given Software object.
+	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
+	 * the JPanel in grids.
 	 * 
-	 * @param db The Software that will be examined and will fill inn the fields.
+	 * @param db
+	 *            The Software that will be examined and will fill inn the fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(Database db)
 	{
 		JPanel panel = new JPanel(new SpringLayout());

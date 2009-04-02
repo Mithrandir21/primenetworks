@@ -10,9 +10,8 @@ import objects.softwareObjects.Firewall;
 
 
 /**
- * A representation of a firewall server. This firewall, usually standing
- * between the internet and the internal network, will accept, deny or proxy(if
- * function available) connections to the rest of the network.
+ * A representation of a firewall server. This firewall, usually standing between the internet and the internal network,
+ * will accept, deny or proxy(if function available) connections to the rest of the network.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -37,19 +36,17 @@ public class FirewallServer extends Servers implements Serializable
 	 * @param FirewallSWname
 	 *            The name of the application that the server is set to run.
 	 * @param FirewallSWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param FirewallSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public FirewallServer(String Name, String Desc, String FirewallSWname,
-			String FirewallSWdesc, String FirewallSWversion)
+	public FirewallServer(String Name, String Desc, String FirewallSWname, String FirewallSWdesc,
+			String FirewallSWversion)
 	{
 		super(Name, Desc);
 
 		// Creates a firewall software object
-		firewall = new Firewall(FirewallSWname, FirewallSWdesc,
-				FirewallSWversion);
+		firewall = new Firewall(FirewallSWname, FirewallSWdesc, FirewallSWversion);
 		Software[] sw = { firewall };
 		super.setSoftware(sw);
 	}
@@ -66,20 +63,17 @@ public class FirewallServer extends Servers implements Serializable
 	 * @param FirewallSWname
 	 *            The name of the application that the server is set to run.
 	 * @param FirewallSWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param FirewallSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public FirewallServer(String Name, String Desc, String[] SupConInt,
-			String FirewallSWname, String FirewallSWdesc,
+	public FirewallServer(String Name, String Desc, String[] SupConInt, String FirewallSWname, String FirewallSWdesc,
 			String FirewallSWversion)
 	{
 		super(Name, Desc, SupConInt);
 
 		// Creates a firewall software object
-		firewall = new Firewall(FirewallSWname, FirewallSWdesc,
-				FirewallSWversion);
+		firewall = new Firewall(FirewallSWname, FirewallSWdesc, FirewallSWversion);
 		Software[] sw = { firewall };
 		super.setSoftware(sw);
 	}
@@ -96,20 +90,17 @@ public class FirewallServer extends Servers implements Serializable
 	 * @param FirewallSWname
 	 *            The name of the application that the server is set to run.
 	 * @param FirewallSWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param FirewallSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public FirewallServer(String Name, String Desc, Object[] DesktopComponents,
-			String FirewallSWname, String FirewallSWdesc,
-			String FirewallSWversion)
+	public FirewallServer(String Name, String Desc, Object[] DesktopComponents, String FirewallSWname,
+			String FirewallSWdesc, String FirewallSWversion)
 	{
 		super(Name, Desc, DesktopComponents);
 
 		// Creates a firewall software object
-		firewall = new Firewall(FirewallSWname, FirewallSWdesc,
-				FirewallSWversion);
+		firewall = new Firewall(FirewallSWname, FirewallSWdesc, FirewallSWversion);
 		Software[] sw = { firewall };
 		super.setSoftware(sw);
 	}
@@ -128,20 +119,17 @@ public class FirewallServer extends Servers implements Serializable
 	 * @param FirewallSWname
 	 *            The name of the application that the server is set to run.
 	 * @param FirewallSWdesc
-	 *            The description of the application that the server is set to
-	 *            run.
+	 *            The description of the application that the server is set to run.
 	 * @param FirewallSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public FirewallServer(String Name, String Desc, String[] SupConInt,
-			Object[] DesktopComponents, String FirewallSWname,
-			String FirewallSWdesc, String FirewallSWversion)
+	public FirewallServer(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents,
+			String FirewallSWname, String FirewallSWdesc, String FirewallSWversion)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 
 		// Creates a firewall software object
-		firewall = new Firewall(FirewallSWname, FirewallSWdesc,
-				FirewallSWversion);
+		firewall = new Firewall(FirewallSWname, FirewallSWdesc, FirewallSWversion);
 		Software[] sw = { firewall };
 		super.setSoftware(sw);
 	}

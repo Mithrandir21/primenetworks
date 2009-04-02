@@ -48,8 +48,7 @@ import objects.softwareObjects.Webserver;
  * 
  * @author Bahram Malaekeh
  */
-public class WebserverNewView extends JFrame implements SoftwareView,
-		ActionListener
+public class WebserverNewView extends JFrame implements SoftwareView, ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -197,22 +196,19 @@ public class WebserverNewView extends JFrame implements SoftwareView,
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
 
 
 	/**
-	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
-	 * the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different settings of the given Software object.
+	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
+	 * the JPanel in grids.
 	 * 
 	 * @param webserver
-	 *            The Software that will be examined and will fill inn the
-	 *            fields.
+	 *            The Software that will be examined and will fill inn the fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
 	 */
 	private JPanel createSpesificInfo(Webserver webserver)
@@ -222,51 +218,40 @@ public class WebserverNewView extends JFrame implements SoftwareView,
 
 
 		labels[0] = new JLabel("Supported OS");
-		labels[0]
-				.setToolTipText("The supported Operating Systems by the software.");
+		labels[0].setToolTipText("The supported Operating Systems by the software.");
 
 		labels[1] = new JLabel("Supports Virtual Hosting");
-		labels[1]
-				.setToolTipText("Whether or not the software supports Virtual hosting feature.");
+		labels[1].setToolTipText("Whether or not the software supports Virtual hosting feature.");
 
 		labels[2] = new JLabel("Supports HTTP compression");
-		labels[2]
-				.setToolTipText("Whether or not the software supports HTTP compression.");
+		labels[2].setToolTipText("Whether or not the software supports HTTP compression.");
 
 		labels[3] = new JLabel("Supports Basic Access");
-		labels[3]
-				.setToolTipText("Whether or not the software supports basic access authentication.");
+		labels[3].setToolTipText("Whether or not the software supports basic access authentication.");
 
 		labels[4] = new JLabel("Supports Digest Access");
-		labels[4]
-				.setToolTipText("Whether or not the software supports digest access authentication.");
+		labels[4].setToolTipText("Whether or not the software supports digest access authentication.");
 
 		labels[5] = new JLabel("Supports SSL");
-		labels[5]
-				.setToolTipText("Whether or not the software supports SSL, Secure Sockets Layer.");
+		labels[5].setToolTipText("Whether or not the software supports SSL, Secure Sockets Layer.");
 
 		labels[6] = new JLabel("Supports TSL");
-		labels[6]
-				.setToolTipText("Whether or not the software supports TSL, Transport Layer Security.");
+		labels[6].setToolTipText("Whether or not the software supports TSL, Transport Layer Security.");
 
 		labels[7] = new JLabel("Supports IPv6");
 		labels[7].setToolTipText("Whether or not the software supports IPv6.");
 
 		labels[8] = new JLabel("Supports SSI");
-		labels[8]
-				.setToolTipText("Whether or not the software supports SSI, Server Side Includes.");
+		labels[8].setToolTipText("Whether or not the software supports SSI, Server Side Includes.");
 
 		labels[9] = new JLabel("Supports CGI");
-		labels[9]
-				.setToolTipText("Whether or not the software supports CGI, Common Gateway Interface.");
+		labels[9].setToolTipText("Whether or not the software supports CGI, Common Gateway Interface.");
 
 		labels[10] = new JLabel("Supports SCGI");
-		labels[10]
-				.setToolTipText("Whether or not the software supports SCGI, Simple Common Gateway Interface.");
+		labels[10].setToolTipText("Whether or not the software supports SCGI, Simple Common Gateway Interface.");
 
 		labels[11] = new JLabel("Supports FastCGI");
-		labels[11]
-				.setToolTipText("Whether or not the software supports FastCGI.");
+		labels[11].setToolTipText("Whether or not the software supports FastCGI.");
 
 		labels[12] = new JLabel("Supports JSP");
 		labels[12].setToolTipText("Whether or not the software supports JSP.");
@@ -278,8 +263,7 @@ public class WebserverNewView extends JFrame implements SoftwareView,
 		labels[14].setToolTipText("Whether or not the software supports ASP.");
 
 		labels[15] = new JLabel("Supports ASP .Net");
-		labels[15]
-				.setToolTipText("Whether or not the software supports ASP .Net.");
+		labels[15].setToolTipText("Whether or not the software supports ASP .Net.");
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -288,25 +272,21 @@ public class WebserverNewView extends JFrame implements SoftwareView,
 
 		// The supported operating systems by the Webserver software.
 		labels[0].setLabelFor(supportedOS);
-		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
-				"Windows Vista", "Linux", "Novell" };
+		String[] listData = { "Windows 98", "Windows 2000", "Windows XP", "Windows Vista", "Linux", "Novell" };
 		supportedOS = new JList(listData);
 		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
-		listSelectionModel
-				.addListSelectionListener(new SharedListSelectionHandler());
+		listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supportedOS);
 		listPane.setMaximumSize(new Dimension(130, 60));
 		listPane.setPreferredSize(new Dimension(130, 60));
-		listSelectionModel
-				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		listSelectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		if ( mainWebSer.getSupportedOperatingSystems() != null )
 		{
 			if ( mainWebSer.getSupportedOperatingSystems().length > 0 )
 			{
-				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, listData, mainWebSer
-								.getSupportedOperatingSystems()));
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(supportedOS, listData, mainWebSer
+						.getSupportedOperatingSystems()));
 			}
 		}
 
@@ -558,8 +538,7 @@ public class WebserverNewView extends JFrame implements SoftwareView,
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel,
-				panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
@@ -570,8 +549,7 @@ public class WebserverNewView extends JFrame implements SoftwareView,
 
 
 	/**
-	 * Creates a JPanel with two buttons that are listened for by
-	 * actionlisteners.
+	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
 	 */
 	private JPanel createButtons()
 	{
@@ -656,8 +634,7 @@ public class WebserverNewView extends JFrame implements SoftwareView,
 			if ( SoftwareManagment.validateSoftware(mainWebSer, mainObj) )
 			{
 				// Sets an array with the newly added software object
-				mainObj.setSoftware(SoftwareManagment.addSoftware(mainWebSer,
-						mainObj));
+				mainObj.setSoftware(SoftwareManagment.addSoftware(mainWebSer, mainObj));
 
 
 				// Updates the views of the object to correctly show the
@@ -674,11 +651,8 @@ public class WebserverNewView extends JFrame implements SoftwareView,
 			}
 			else
 			{
-				JOptionPane
-						.showMessageDialog(
-								this,
-								"The supported Operating System chosen is not "
-										+ "compatible with the objects Operating System");
+				JOptionPane.showMessageDialog(this, "The supported Operating System chosen is not "
+						+ "compatible with the objects Operating System");
 			}
 
 		}
@@ -690,16 +664,14 @@ public class WebserverNewView extends JFrame implements SoftwareView,
 
 
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems"
-	 * JList.
+	 * Handles the selections that are made in the "Supported Operating Systems" JList.
 	 */
 	private class SharedListSelectionHandler implements ListSelectionListener
 	{
 		/*
 		 * (non-Javadoc)
-		 * @see
-		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
-		 * event.ListSelectionEvent)
+		 * 
+		 * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing. event.ListSelectionEvent)
 		 */
 		public void valueChanged(ListSelectionEvent e)
 		{

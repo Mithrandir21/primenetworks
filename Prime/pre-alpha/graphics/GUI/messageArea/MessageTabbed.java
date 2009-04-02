@@ -58,10 +58,9 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	// No Need for constructor
 
 	/**
-	 * Processes all the objects given in the Objects array. The method
-	 * separates the different object classes and then passes the different
-	 * arrays with object to methods that will create multidimensional String
-	 * arrays with messages to the user about the given objects.
+	 * Processes all the objects given in the Objects array. The method separates the different object classes and then
+	 * passes the different arrays with object to methods that will create multidimensional String arrays with messages
+	 * to the user about the given objects.
 	 * 
 	 * @param objects
 	 */
@@ -135,15 +134,15 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 		addSoftwareTab(computerObj);
 
+		// FIXME - Add peripheral Processing
 	}
 
 
 
 	/**
-	 * This method will examine a network. Creates and adds at tab to this
-	 * JTabbedPane component. The tab will contain possible JScrollPane with a
-	 * JTable depending on whether or not the given objects creates any messages
-	 * that they user needs to know about the objects.
+	 * This method will examine a network. Creates and adds at tab to this JTabbedPane component. The tab will contain
+	 * possible JScrollPane with a JTable depending on whether or not the given objects creates any messages that they
+	 * user needs to know about the objects.
 	 * 
 	 * @param objects
 	 */
@@ -153,8 +152,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 		for ( int i = 0; i < objects.length; i++ )
 		{
-			data = NetworkProcessing.processNetwork(data, objects[i], true,
-					true, true);
+			data = NetworkProcessing.processNetwork(data, objects[i], true, true, true);
 		}
 
 		if ( data != null )
@@ -170,9 +168,8 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * This method will examine an array of connections. Creates and adds at tab
-	 * to this JTabbedPane component. The tab will contain possible JScrollPane
-	 * with a JTable depending on whether or not the given objects creates any
+	 * This method will examine an array of connections. Creates and adds at tab to this JTabbedPane component. The tab
+	 * will contain possible JScrollPane with a JTable depending on whether or not the given objects creates any
 	 * messages that they user needs to know about the objects.
 	 * 
 	 * @param objects
@@ -183,8 +180,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 		for ( int i = 0; i < objects.length; i++ )
 		{
-			data = ConnectionProcessing.processConnections(data, objects[i],
-					true, true, true);
+			data = ConnectionProcessing.processConnections(data, objects[i], true, true, true);
 		}
 
 		if ( data != null )
@@ -193,18 +189,16 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 			{
 				removeTab("Connections");
 				data = ArrayManagment.removeEmptyIndexes(data);
-				addNewMessageTab("Connections", new ConnectionMessages(objects,
-						data));
+				addNewMessageTab("Connections", new ConnectionMessages(objects, data));
 			}
 		}
 	}
 
 
 	/**
-	 * This method will examine software in objects. Creates and adds at tab to
-	 * this JTabbedPane component. The tab will contain possible JScrollPane
-	 * with a JTable depending on whether or not the given objects creates any
-	 * messages that they user needs to know about the objects.
+	 * This method will examine software in objects. Creates and adds at tab to this JTabbedPane component. The tab will
+	 * contain possible JScrollPane with a JTable depending on whether or not the given objects creates any messages
+	 * that they user needs to know about the objects.
 	 * 
 	 * @param objects
 	 */
@@ -214,8 +208,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 		for ( int i = 0; i < objects.length; i++ )
 		{
-			data = SoftwareProcessing.processSoftware(data, objects[i], true,
-					true, true);
+			data = SoftwareProcessing.processSoftware(data, objects[i], true, true, true);
 		}
 
 		if ( data != null )
@@ -224,18 +217,16 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 			{
 				removeTab("Software");
 				data = ArrayManagment.removeEmptyIndexes(data);
-				addNewMessageTab("Software",
-						new SoftwareMessages(objects, data));
+				addNewMessageTab("Software", new SoftwareMessages(objects, data));
 			}
 		}
 	}
 
 
 	/**
-	 * This method will examine an array of objects for hardware. Creates and
-	 * adds at tab to this JTabbedPane component. The tab will contain possible
-	 * JScrollPane with a JTable depending on whether or not the given objects
-	 * creates any messages that they user needs to know about the objects.
+	 * This method will examine an array of objects for hardware. Creates and adds at tab to this JTabbedPane component.
+	 * The tab will contain possible JScrollPane with a JTable depending on whether or not the given objects creates any
+	 * messages that they user needs to know about the objects.
 	 * 
 	 * @param objects
 	 */
@@ -245,8 +236,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 		for ( int i = 0; i < objects.length; i++ )
 		{
-			data = HardwareProcessing.processHardware(data, objects[i], true,
-					true, true);
+			data = HardwareProcessing.processHardware(data, objects[i], true, true, true);
 		}
 
 		if ( data != null )
@@ -255,8 +245,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 			{
 				removeTab("Hardware");
 				data = ArrayManagment.removeEmptyIndexes(data);
-				addNewMessageTab("Hardware",
-						new HardwareMessages(objects, data));
+				addNewMessageTab("Hardware", new HardwareMessages(objects, data));
 			}
 		}
 	}
@@ -264,8 +253,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * This method removes the tab with the given name from this class, which is
-	 * a JTabbedPane.
+	 * This method removes the tab with the given name from this class, which is a JTabbedPane.
 	 * 
 	 * @param title
 	 *            The title of the Tab that is to be removed.
@@ -309,8 +297,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 		ImageIcon closeXIcon = ImageLocator.getImageIconObject("Close");
 
 		// The dimensions of the new button.
-		Dimension closeButtonSize = new Dimension(
-				closeXIcon.getIconWidth() + 5, closeXIcon.getIconHeight() + 5);
+		Dimension closeButtonSize = new Dimension(closeXIcon.getIconWidth()+2, closeXIcon.getIconHeight()+2);
 
 		// The actual panel that will be the component panel which the JLabel
 		// and the button
@@ -354,8 +341,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	// GETTERS
 
 	/**
-	 * Gets the boolean that will tell whether or not the Network tab should be
-	 * shown.
+	 * Gets the boolean that will tell whether or not the Network tab should be shown.
 	 * 
 	 * @return the showNetworkTab
 	 */
@@ -367,8 +353,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Gets the boolean that will tell whether or not the Connection tab should
-	 * be shown.
+	 * Gets the boolean that will tell whether or not the Connection tab should be shown.
 	 * 
 	 * @return the showConnectionTab
 	 */
@@ -380,8 +365,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Gets the boolean that will tell whether or not the Software tab should be
-	 * shown.
+	 * Gets the boolean that will tell whether or not the Software tab should be shown.
 	 * 
 	 * @return the showSoftwareTab
 	 */
@@ -393,8 +377,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Gets the boolean that will tell whether or not the Hardware tab should be
-	 * shown.
+	 * Gets the boolean that will tell whether or not the Hardware tab should be shown.
 	 * 
 	 * @return the showHardwareTab
 	 */
@@ -408,8 +391,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	// SETTERS
 
 	/**
-	 * Sets the boolean that will tell whether or not the Network tab should be
-	 * shown.
+	 * Sets the boolean that will tell whether or not the Network tab should be shown.
 	 * 
 	 * @param showNetworkTab
 	 *            the showNetworkTab to set
@@ -422,8 +404,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Sets the boolean that will tell whether or not the Connection tab should
-	 * be shown.
+	 * Sets the boolean that will tell whether or not the Connection tab should be shown.
 	 * 
 	 * @param showConnectionTab
 	 *            the showConnectionTab to set
@@ -436,8 +417,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Sets the boolean that will tell whether or not the Software tab should be
-	 * shown.
+	 * Sets the boolean that will tell whether or not the Software tab should be shown.
 	 * 
 	 * @param showSoftwareTab
 	 *            the showSoftwareTab to set
@@ -450,8 +430,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Sets the boolean that will tell whether or not the Hardware tab should be
-	 * shown.
+	 * Sets the boolean that will tell whether or not the Hardware tab should be shown.
 	 * 
 	 * @param showHardwareTab
 	 *            the showHardwareTab to set
@@ -480,8 +459,8 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)

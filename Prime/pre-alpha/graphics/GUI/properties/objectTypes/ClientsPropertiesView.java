@@ -33,8 +33,7 @@ public class ClientsPropertiesView
 
 
 	/**
-	 * This function populates the given JPanel with information about the the
-	 * given Object.
+	 * This function populates the given JPanel with information about the the given Object.
 	 * 
 	 * @param panel
 	 *            The JPanel that is to be populated.
@@ -69,8 +68,7 @@ public class ClientsPropertiesView
 
 		Clients client = (Clients) obj;
 
-		comboBox.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(rates,
-				client.getClientRate()));
+		comboBox.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(rates, client.getClientRate()));
 
 
 		panel.add(comboBox);

@@ -21,9 +21,8 @@ import objects.Object;
 
 
 /**
- * This is a general view class. It will display, inside a JPanel, the general
- * information of an object, such as name and description. It also shows the
- * number of connection device this object is connected to.
+ * This is a general view class. It will display, inside a JPanel, the general information of an object, such as name
+ * and description. It also shows the number of connection device this object is connected to.
  * 
  * @author Bahram Malaekeh
  */
@@ -35,8 +34,7 @@ public class GeneralObjectView extends JPanel
 
 
 	/**
-	 * Creates and sets up the general information place within this JPanel
-	 * instance.
+	 * Creates and sets up the general information place within this JPanel instance.
 	 * 
 	 * @param obj
 	 *            The object that will be used to gather information from.
@@ -113,8 +111,7 @@ public class GeneralObjectView extends JPanel
 
 
 	/**
-	 * Creates a JPanel that only contains JLabels. Specifically the label for
-	 * type, name and description.
+	 * Creates a JPanel that only contains JLabels. Specifically the label for type, name and description.
 	 * 
 	 * @return Returns a JPanel with only Labels.
 	 */
@@ -146,8 +143,7 @@ public class GeneralObjectView extends JPanel
 
 
 	/**
-	 * Creates and returns a JPanel for text input. Specifically for type, name
-	 * and description.
+	 * Creates and returns a JPanel for text input. Specifically for type, name and description.
 	 * 
 	 * @param obj
 	 *            The object from which the fields get their original data from.
@@ -180,8 +176,8 @@ public class GeneralObjectView extends JPanel
 
 
 	/**
-	 * Creates and returns a JPanel with labels. Specifically the labels for
-	 * supported interfaces and number of connected devices.
+	 * Creates and returns a JPanel with labels. Specifically the labels for supported interfaces and number of
+	 * connected devices.
 	 * 
 	 * @return Returns the JPanel with the labels.
 	 */
@@ -208,8 +204,8 @@ public class GeneralObjectView extends JPanel
 
 
 	/**
-	 * Creates and returns a JPanel with text fields that can not be edited.
-	 * Specifically for number of connected devices and supported interfaces.
+	 * Creates and returns a JPanel with text fields that can not be edited. Specifically for number of connected
+	 * devices and supported interfaces.
 	 * 
 	 * @param obj
 	 *            The object where the fields get their data from.
@@ -221,14 +217,12 @@ public class GeneralObjectView extends JPanel
 		texts.setLayout(new BoxLayout(texts, BoxLayout.PAGE_AXIS));
 
 
-		JComboBox comboBox = new JComboBox(obj
-				.getSupportedConnectionInterfaces());
+		JComboBox comboBox = new JComboBox(obj.getSupportedConnectionInterfaces());
 		comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
 		comboBox.setMaximumSize(new Dimension(150, 20));
 		comboBox.setEditable(false);
 
-		JTextField numConDev = new JTextField(""
-				+ obj.getNumberOfConnectedDevices());
+		JTextField numConDev = new JTextField("" + obj.getNumberOfConnectedDevices());
 		numConDev.setAlignmentX(Component.LEFT_ALIGNMENT);
 		numConDev.setMaximumSize(new Dimension(150, 20));
 		numConDev.setEditable(false);
@@ -244,8 +238,7 @@ public class GeneralObjectView extends JPanel
 
 
 	/**
-	 * Creates and returns a JPanel with only a JTextArea that will hold the
-	 * description of the object.
+	 * Creates and returns a JPanel with only a JTextArea that will hold the description of the object.
 	 * 
 	 * @param obj
 	 *            The object where the JTextArea will get its data from.

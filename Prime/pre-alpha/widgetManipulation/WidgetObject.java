@@ -63,8 +63,7 @@ public class WidgetObject extends ImageWidget implements Transferable
 	 */
 	public Dimension getImageDimension()
 	{
-		return new Dimension(getImage().getHeight(null), getImage().getWidth(
-				null));
+		return new Dimension(getImage().getHeight(null), getImage().getWidth(null));
 	}
 
 
@@ -111,8 +110,7 @@ public class WidgetObject extends ImageWidget implements Transferable
 
 
 	// TRANSFERABLE IMPLEMENTATION
-	public WidgetObject getTransferData(DataFlavor flavor)
-			throws UnsupportedFlavorException, IOException
+	public WidgetObject getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException
 	{
 		// System.out.println("WidgetCanvas - getTransferData");
 		if ( isDataFlavorSupported(flavor) )

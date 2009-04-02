@@ -49,8 +49,7 @@ public class ActionSaveAll extends AbstractAction
 
 	public void actionPerformed(ActionEvent e)
 	{
-		JOptionPane.showMessageDialog(null,
-				"You want to perform a \"Save All\" action.");
+		JOptionPane.showMessageDialog(null, "You want to perform a \"Save All\" action.");
 	}
 
 }

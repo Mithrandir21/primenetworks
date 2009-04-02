@@ -11,15 +11,12 @@ import exceptions.StringNotFoundInArrayException;
 
 
 /**
- * A representation of a networking device called a switch. This device is
- * slightly more complex then a hub, but not nearly as complex as a router. This
- * device does almost the same as a hub does, but it also can identify where
- * communications should be forwarded because of previous activities to and from
- * a port. It will connected a certain port to the client that sends information
- * from that port, and forward any communications to that client directly to the
- * port that client uses to send communications from. This makes for much better
- * flow of communications, and somewhat better handling of connections between
- * networks.
+ * A representation of a networking device called a switch. This device is slightly more complex then a hub, but not
+ * nearly as complex as a router. This device does almost the same as a hub does, but it also can identify where
+ * communications should be forwarded because of previous activities to and from a port. It will connected a certain
+ * port to the client that sends information from that port, and forward any communications to that client directly to
+ * the port that client uses to send communications from. This makes for much better flow of communications, and
+ * somewhat better handling of connections between networks.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -68,16 +65,13 @@ public class Switch extends Infrastructure implements Serializable
 	 * @param Desc
 	 *            The description of the device.
 	 * @param outPorts
-	 *            The number of ports that can be connected to different
-	 *            computers or subnets.
+	 *            The number of ports that can be connected to different computers or subnets.
 	 * @param inPorts
-	 *            The number of ports that are meant to be used providers of
-	 *            internet access.
+	 *            The number of ports that are meant to be used providers of internet access.
 	 * @param DuplexSupport
 	 *            The supported duplex type on the device.
 	 */
-	public Switch(String Name, String Desc, String[] SupConInt,
-			Motherboard objectMB, int outPorts, int inPorts,
+	public Switch(String Name, String Desc, String[] SupConInt, Motherboard objectMB, int outPorts, int inPorts,
 			String[] DuplexSupport)
 	{
 		super(Name, Desc, SupConInt, objectMB);
@@ -163,8 +157,7 @@ public class Switch extends Infrastructure implements Serializable
 	/**
 	 * Gets the boolean on whether or not it supports wired conncetions.
 	 * 
-	 * @return A boolean on whether or not the device supports wired
-	 *         connections.
+	 * @return A boolean on whether or not the device supports wired connections.
 	 */
 	public boolean isSupportsWired()
 	{
@@ -177,8 +170,7 @@ public class Switch extends Infrastructure implements Serializable
 	/**
 	 * Get the boolean on whether or not it supports wireless connections.
 	 * 
-	 * @return A boolean on whether or not the device supports wireless
-	 *         connections.
+	 * @return A boolean on whether or not the device supports wireless connections.
 	 */
 	public boolean isSupportsWireless()
 	{
@@ -276,8 +268,7 @@ public class Switch extends Infrastructure implements Serializable
 	 * @param supportedRemoteManageProtocols
 	 *            the supportedRemoteManageProtocols to set
 	 */
-	public void setSupportedRemoteManageProtocols(
-			String[] supportedRemoteManageProtocols)
+	public void setSupportedRemoteManageProtocols(String[] supportedRemoteManageProtocols)
 	{
 
 		this.supportedRemoteManageProtocols = supportedRemoteManageProtocols;
@@ -291,8 +282,7 @@ public class Switch extends Infrastructure implements Serializable
 	 * @param supportedTransportProtocols
 	 *            the supportedTransportProtocols to set
 	 */
-	public void setSupportedTransportProtocols(
-			String[] supportedTransportProtocols)
+	public void setSupportedTransportProtocols(String[] supportedTransportProtocols)
 	{
 
 		this.supportedTransportProtocols = supportedTransportProtocols;
@@ -304,8 +294,7 @@ public class Switch extends Infrastructure implements Serializable
 	 * Sets the boolean on whether or not it supports wired conncetions.
 	 * 
 	 * @param supportsWired
-	 *            A boolean on whether or not the device supports wired
-	 *            connections.
+	 *            A boolean on whether or not the device supports wired connections.
 	 */
 	public void setSupportsWired(boolean supportsWired)
 	{
@@ -319,8 +308,7 @@ public class Switch extends Infrastructure implements Serializable
 	 * Sets the boolean on whether or not it supports wireless connections.
 	 * 
 	 * @param supportsWireless
-	 *            A boolean on whether or not the device supports wireless
-	 *            connections.
+	 *            A boolean on whether or not the device supports wireless connections.
 	 */
 	public void setSupportsWireless(boolean supportsWireless)
 	{
@@ -376,8 +364,7 @@ public class Switch extends Infrastructure implements Serializable
 	// Connection interfaces methodes.
 
 	/**
-	 * Function for replacing a spesific given connection interface with a given
-	 * new interface.
+	 * Function for replacing a spesific given connection interface with a given new interface.
 	 * 
 	 * @param NewItem
 	 *            The interface to replace the previous one.
@@ -386,23 +373,19 @@ public class Switch extends Infrastructure implements Serializable
 	 */
 	public void changeConncetionInterfacesItem(String NewItem, String OldItem)
 	{
-		conncetionInterfaces = ArrayManagment.changeArrayItem(NewItem, OldItem,
-				conncetionInterfaces);
+		conncetionInterfaces = ArrayManagment.changeArrayItem(NewItem, OldItem, conncetionInterfaces);
 	}
 
 
 	/**
-	 * Function to remove connection interfaces from the array of connection
-	 * interfaces.
+	 * Function to remove connection interfaces from the array of connection interfaces.
 	 * 
 	 * @param ToBeRemoved
 	 *            Connection interfaces to be removed.
 	 */
-	public void removeConncetionInterfacesItem(String[] ToBeRemoved)
-			throws StringNotFoundInArrayException
+	public void removeConncetionInterfacesItem(String[] ToBeRemoved) throws StringNotFoundInArrayException
 	{
-		conncetionInterfaces = ArrayManagment.removeItems(ToBeRemoved,
-				conncetionInterfaces);
+		conncetionInterfaces = ArrayManagment.removeItems(ToBeRemoved, conncetionInterfaces);
 	}
 
 
@@ -414,8 +397,7 @@ public class Switch extends Infrastructure implements Serializable
 	 */
 	public void addConncetionInterfacesItem(String[] NewItems) throws Exception
 	{
-		conncetionInterfaces = ArrayManagment.addItems(NewItems,
-				conncetionInterfaces);
+		conncetionInterfaces = ArrayManagment.addItems(NewItems, conncetionInterfaces);
 
 	}
 
@@ -424,8 +406,7 @@ public class Switch extends Infrastructure implements Serializable
 	// Link protocols methodes.
 
 	/**
-	 * Function for replacing a spesific given link protocol with a given new
-	 * protocol.
+	 * Function for replacing a spesific given link protocol with a given new protocol.
 	 * 
 	 * @param NewItem
 	 *            The protocol to replace the previous one.
@@ -434,8 +415,7 @@ public class Switch extends Infrastructure implements Serializable
 	 */
 	public void changeLinkProtocolItem(String NewItem, String OldItem)
 	{
-		supportedLinkProtocols = ArrayManagment.changeArrayItem(NewItem,
-				OldItem, supportedLinkProtocols);
+		supportedLinkProtocols = ArrayManagment.changeArrayItem(NewItem, OldItem, supportedLinkProtocols);
 	}
 
 
@@ -445,11 +425,9 @@ public class Switch extends Infrastructure implements Serializable
 	 * @param ToBeRemoved
 	 *            Link protocol to be removed.
 	 */
-	public void removeLinkProtocolItem(String[] ToBeRemoved)
-			throws StringNotFoundInArrayException
+	public void removeLinkProtocolItem(String[] ToBeRemoved) throws StringNotFoundInArrayException
 	{
-		supportedLinkProtocols = ArrayManagment.removeItems(ToBeRemoved,
-				supportedLinkProtocols);
+		supportedLinkProtocols = ArrayManagment.removeItems(ToBeRemoved, supportedLinkProtocols);
 	}
 
 
@@ -461,8 +439,7 @@ public class Switch extends Infrastructure implements Serializable
 	 */
 	public void addLinkProtocolItem(String[] NewItems) throws Exception
 	{
-		supportedLinkProtocols = ArrayManagment.addItems(NewItems,
-				supportedLinkProtocols);
+		supportedLinkProtocols = ArrayManagment.addItems(NewItems, supportedLinkProtocols);
 
 	}
 
@@ -470,34 +447,29 @@ public class Switch extends Infrastructure implements Serializable
 	// Remote management protocols methodes.
 
 	/**
-	 * Function for replacing a spesific given remote management protocol with a
-	 * given new protocol.
+	 * Function for replacing a spesific given remote management protocol with a given new protocol.
 	 * 
 	 * @param NewItem
 	 *            The protocol to replace the previous one.
 	 * @param OldItem
 	 *            The protocol to be replaced.
 	 */
-	public void changeRemoteManagementProtocolItem(String NewItem,
-			String OldItem)
+	public void changeRemoteManagementProtocolItem(String NewItem, String OldItem)
 	{
-		supportedRemoteManageProtocols = ArrayManagment.changeArrayItem(
-				NewItem, OldItem, supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.changeArrayItem(NewItem, OldItem,
+				supportedRemoteManageProtocols);
 	}
 
 
 	/**
-	 * Function to remove remote management protocols from the array of remote
-	 * management protocols.
+	 * Function to remove remote management protocols from the array of remote management protocols.
 	 * 
 	 * @param ToBeRemoved
 	 *            Link protocol to be removed.
 	 */
-	public void removeRemoteManagementProtocolsItem(String[] ToBeRemoved)
-			throws StringNotFoundInArrayException
+	public void removeRemoteManagementProtocolsItem(String[] ToBeRemoved) throws StringNotFoundInArrayException
 	{
-		supportedRemoteManageProtocols = ArrayManagment.removeItems(
-				ToBeRemoved, supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.removeItems(ToBeRemoved, supportedRemoteManageProtocols);
 	}
 
 
@@ -507,11 +479,9 @@ public class Switch extends Infrastructure implements Serializable
 	 * @param NewItems
 	 *            An array of new remote management protocols.
 	 */
-	public void addRemoteManagementProtocolsItem(String[] NewItems)
-			throws Exception
+	public void addRemoteManagementProtocolsItem(String[] NewItems) throws Exception
 	{
-		supportedRemoteManageProtocols = ArrayManagment.addItems(NewItems,
-				supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.addItems(NewItems, supportedRemoteManageProtocols);
 
 	}
 
@@ -520,8 +490,7 @@ public class Switch extends Infrastructure implements Serializable
 	// Transport protocols methodes.
 
 	/**
-	 * Function for replacing a spesific given transport protocol with a given
-	 * new protocol.
+	 * Function for replacing a spesific given transport protocol with a given new protocol.
 	 * 
 	 * @param NewItem
 	 *            The protocol to replace the previous one.
@@ -530,23 +499,20 @@ public class Switch extends Infrastructure implements Serializable
 	 */
 	public void changeTransportProtocolItems(String NewItem, String OldItem)
 	{
-		supportedRemoteManageProtocols = ArrayManagment.changeArrayItem(
-				NewItem, OldItem, supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.changeArrayItem(NewItem, OldItem,
+				supportedRemoteManageProtocols);
 	}
 
 
 	/**
-	 * Function to remove transport protocols from the array of transport
-	 * protocols.
+	 * Function to remove transport protocols from the array of transport protocols.
 	 * 
 	 * @param ToBeRemoved
 	 *            Link protocol to be removed.
 	 */
-	public void removeTransportProtocolItems(String[] ToBeRemoved)
-			throws StringNotFoundInArrayException
+	public void removeTransportProtocolItems(String[] ToBeRemoved) throws StringNotFoundInArrayException
 	{
-		supportedRemoteManageProtocols = ArrayManagment.removeItems(
-				ToBeRemoved, supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.removeItems(ToBeRemoved, supportedRemoteManageProtocols);
 	}
 
 
@@ -558,8 +524,7 @@ public class Switch extends Infrastructure implements Serializable
 	 */
 	public void addTransportProtocolItems(String[] NewItems) throws Exception
 	{
-		supportedRemoteManageProtocols = ArrayManagment.addItems(NewItems,
-				supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.addItems(NewItems, supportedRemoteManageProtocols);
 
 	}
 

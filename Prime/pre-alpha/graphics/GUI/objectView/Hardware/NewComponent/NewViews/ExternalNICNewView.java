@@ -49,8 +49,7 @@ import objects.hardwareObjects.Motherboard;
  * 
  * @author Bahram Malaekeh
  */
-public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
-		ActionListener
+public class ExternalNICNewView extends JFrame implements HardwareViewInterface, ActionListener
 {
 	private JTextField name = new JTextField(25);
 
@@ -151,22 +150,21 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
 
-	
+
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different settings of the given Hardware object.
+	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
+	 * the JPanel in grids.
 	 * 
-	 * @param NIC The Hardware that will be examined and will fill inn the fields.
+	 * @param NIC
+	 *            The Hardware that will be examined and will fill inn the fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(ExternalNetworksCard NIC)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -180,24 +178,19 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 		labels[1].setToolTipText("The MAC address of the NIC.");
 
 		labels[2] = new JLabel("Type");
-		labels[2]
-				.setToolTipText("The connection type supported by the NIC, ie. Wired or Wireless.");
+		labels[2].setToolTipText("The connection type supported by the NIC, ie. Wired or Wireless.");
 
 		labels[3] = new JLabel("Speed");
-		labels[3]
-				.setToolTipText("The speed of the NIC. 10 Mbps, 100 Mbps or 1000 Mbps.");
+		labels[3].setToolTipText("The speed of the NIC. 10 Mbps, 100 Mbps or 1000 Mbps.");
 
 		labels[4] = new JLabel("Protocol");
-		labels[4]
-				.setToolTipText("The NIC protocol. Ethernet, token and so on.");
+		labels[4].setToolTipText("The NIC protocol. Ethernet, token and so on.");
 
 		labels[5] = new JLabel("Supported Standars");
-		labels[5]
-				.setToolTipText("The standards supported by the NIC. IEEE 802.3, IEEE 802.3u and so on.");
+		labels[5].setToolTipText("The standards supported by the NIC. IEEE 802.3, IEEE 802.3u and so on.");
 
 		labels[6] = new JLabel("Supports IPv6");
-		labels[6]
-				.setToolTipText("Whether or not the NIC has support for IP version 6, IPv6.");
+		labels[6].setToolTipText("Whether or not the NIC has support for IP version 6, IPv6.");
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -238,8 +231,7 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 		conType.setActionCommand("ConnectionType");
 		conType.addActionListener(this);
 
-		conType.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				conTypeString, NIC.getConnectionType()));
+		conType.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(conTypeString, NIC.getConnectionType()));
 
 
 		panel.add(labels[2]);
@@ -258,8 +250,7 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 		transferSpeed.setActionCommand("Speed");
 		transferSpeed.addActionListener(this);
 
-		transferSpeed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				speedString, NIC.getSpeed()));
+		transferSpeed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(speedString, NIC.getSpeed()));
 
 
 		panel.add(labels[3]);
@@ -278,8 +269,7 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 		protocol.setActionCommand("Protocol");
 		protocol.addActionListener(this);
 
-		protocol.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				protocolString, NIC.getProtocol()));
+		protocol.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(protocolString, NIC.getProtocol()));
 
 
 		panel.add(labels[4]);
@@ -288,28 +278,24 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 
 		// The supported standards by the NIC.
 		labels[5].setLabelFor(supStandards);
-		String[] listData = { "802.3i", "802.3x", "802.3y", "802.3ab",
-				"802.3an", "802.11a", "802.11b", "802.11g", "802.11n",
-				"802.11y" };
+		String[] listData = { "802.3i", "802.3x", "802.3y", "802.3ab", "802.3an", "802.11a", "802.11b", "802.11g",
+				"802.11n", "802.11y" };
 		supStandards = new JList(listData);
 		supStandards.setMaximumSize(new Dimension(90, 60));
 		supStandards.setPreferredSize(new Dimension(90, 60));
-		ListSelectionModel listSelectionModel = supStandards
-				.getSelectionModel();
-		listSelectionModel
-				.addListSelectionListener(new SharedListSelectionHandler());
+		ListSelectionModel listSelectionModel = supStandards.getSelectionModel();
+		listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supStandards);
 		listPane.setMaximumSize(new Dimension(90, 60));
 		listPane.setPreferredSize(new Dimension(90, 60));
-		listSelectionModel
-				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		listSelectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		if ( NIC.getSupportedStandards() != null )
 		{
 			if ( NIC.getSupportedStandards().length > 0 )
 			{
-				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supStandards, listData, NIC.getSupportedStandards()));
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(supStandards, listData, NIC
+						.getSupportedStandards()));
 			}
 		}
 
@@ -384,32 +370,24 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 			extNIC.setDescription(desc.getText());
 		}
 
-		if ( producer.getText() != "" )
-		{
-			extNIC.setProducer(producer.getText());
-		}
+		extNIC.setProducer(producer.getText());
 
-		if ( MAC.getText() != "" )
-		{
-			extNIC.setMAC(MAC.getText());
-		}
+		extNIC.setMAC(MAC.getText());
 
-		if ( conType.getSelectedItem().toString() != "" )
-		{
-			extNIC.setType(conType.getSelectedItem().toString());
-		}
+		extNIC.setType(conType.getSelectedItem().toString());
+
 
 		if ( transferSpeed.getSelectedItem().toString() != "" )
 		{
-			extNIC.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem()
-					.toString()));
+			extNIC.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem().toString()));
+		}
+		else
+		{
+			extNIC.setSpeed(0);
 		}
 
-		if ( protocol.getSelectedItem().toString() != "" )
-		{
-			extNIC.setSupportedConnectionInterfaces(protocol.getSelectedItem()
-					.toString());
-		}
+
+		extNIC.setSupportedConnectionInterfaces(protocol.getSelectedItem().toString());
 
 		if ( supStandards.getSelectedIndex() == -1 )
 		{
@@ -419,7 +397,7 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 		extNIC.setSupportsIPv6(supIPv6.isSelected());
 	}
 
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -428,14 +406,14 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 			// Saves the current values of the new motherboard.
 			save();
 
-			ComponentsManagment.processExternalNICmatch(mainObj,
-					(Motherboard) mainObj.getComponents()[0], extNIC, this);
+			ComponentsManagment
+					.processExternalNICmatch(mainObj, (Motherboard) mainObj.getComponents()[0], extNIC, this);
 
 
 			// Updates the views of the object to correctly show the
 			// current info.
 			ObjectView view = PrimeMain1.getObjectView(mainObj);
-			if(view != null)
+			if ( view != null )
 			{
 				view.updateViewInfo();
 			}
@@ -460,9 +438,8 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 	{
 		/*
 		 * (non-Javadoc)
-		 * @see
-		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
-		 * event.ListSelectionEvent)
+		 * 
+		 * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing. event.ListSelectionEvent)
 		 */
 		public void valueChanged(ListSelectionEvent e)
 		{

@@ -43,8 +43,7 @@ import objects.hardwareObjects.Motherboard;
  * 
  * @author Bahram Malaekeh
  */
-public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
-		ActionListener
+public class DiscDriveNewView extends JFrame implements HardwareViewInterface, ActionListener
 {
 	private JTextField name = new JTextField(25);
 
@@ -147,22 +146,21 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
 
 
 	/**
-	 * This method creates and returns a JPanel that contains all the
-	 * different settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order
-	 * all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different settings of the given Hardware object.
+	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
+	 * the JPanel in grids.
 	 * 
-	 * @param disc The Hardware that will be examined and will fill inn the fields.
+	 * @param disc
+	 *            The Hardware that will be examined and will fill inn the fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
-	 */	
+	 */
 	private JPanel createSpesificInfo(Discdrive disc)
 	{
 		JPanel panel = new JPanel(new SpringLayout());
@@ -178,12 +176,10 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 		labels[2].setToolTipText("The discdrive port to the motherboard.");
 
 		labels[3] = new JLabel("Subtype");
-		labels[3]
-				.setToolTipText("The discdrive subtype. (DualLayer and Doublesided.)");
+		labels[3].setToolTipText("The discdrive subtype. (DualLayer and Doublesided.)");
 
 		labels[4] = new JLabel("Speed");
-		labels[4]
-				.setToolTipText("The speed of the discdrive.(2x, 4x, 6x and so on).");
+		labels[4].setToolTipText("The speed of the discdrive.(2x, 4x, 6x and so on).");
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -212,8 +208,7 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 		type.setActionCommand("Type");
 		type.addActionListener(this);
 
-		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				typeString, disc.getType()));
+		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(typeString, disc.getType()));
 
 
 		panel.add(labels[1]);
@@ -232,8 +227,7 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 		port.setActionCommand("Port");
 		port.addActionListener(this);
 
-		port.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				portString, disc.getPort()));
+		port.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(portString, disc.getPort()));
 
 
 		panel.add(labels[2]);
@@ -251,8 +245,7 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 		subtype.setActionCommand("Subtype");
 		subtype.addActionListener(this);
 
-		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				subtypeString, disc.getSubtype()));
+		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(subtypeString, disc.getSubtype()));
 
 
 		panel.add(labels[3]);
@@ -261,8 +254,7 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 
 		// The speed of the ram
 		labels[4].setLabelFor(speed);
-		String[] speedString = { "", "2", "4", "6", "8", "10", "12", "14",
-				"16", "18", "20", "22", "24", "32", "48" };
+		String[] speedString = { "", "2", "4", "6", "8", "10", "12", "14", "16", "18", "20", "22", "24", "32", "48" };
 		speed = new JComboBox(speedString);
 		speed.setMaximumSize(tfSize);
 		speed.setPreferredSize(tfSize);
@@ -271,8 +263,7 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 		speed.setActionCommand("Speed");
 		speed.addActionListener(this);
 
-		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
-				speedString, disc.getSpeed()));
+		speed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(speedString, disc.getSpeed()));
 
 
 		panel.add(labels[4]);
@@ -332,30 +323,22 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 			DiscObj.setDescription(desc.getText());
 		}
 
-		if ( producer.getText() != "" )
-		{
-			DiscObj.setProducer(producer.getText());
-		}
+		DiscObj.setProducer(producer.getText());
 
-		if ( type.getSelectedItem().toString() != "" )
-		{
-			DiscObj.setType(type.getSelectedItem().toString());
-		}
+		DiscObj.setType(type.getSelectedItem().toString());
 
-		if ( port.getSelectedItem().toString() != "" )
-		{
-			DiscObj.setPort(port.getSelectedItem().toString());
-		}
+		DiscObj.setPort(port.getSelectedItem().toString());
 
-		if ( subtype.getSelectedItem().toString() != "" )
-		{
-			DiscObj.setSubtype(subtype.getSelectedItem().toString());
-		}
+		DiscObj.setSubtype(subtype.getSelectedItem().toString());
+
 
 		if ( speed.getSelectedItem().toString() != "" )
 		{
-			DiscObj.setSpeed(Integer
-					.parseInt(type.getSelectedItem().toString()));
+			DiscObj.setSpeed(Integer.parseInt(type.getSelectedItem().toString()));
+		}
+		else
+		{
+			DiscObj.setSpeed(0);
 		}
 	}
 
@@ -368,14 +351,13 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 			// Saves the current values of the new motherboard.
 			save();
 
-			ComponentsManagment.processDiscDrivematch(mainObj,
-					(Motherboard) mainObj.getComponents()[0], DiscObj, this);
+			ComponentsManagment.processDiscDrivematch(mainObj, (Motherboard) mainObj.getComponents()[0], DiscObj, this);
 
 
 			// Updates the views of the object to correctly show the
 			// current info.
 			ObjectView view = PrimeMain1.getObjectView(mainObj);
-			if(view != null)
+			if ( view != null )
 			{
 				view.updateViewInfo();
 			}

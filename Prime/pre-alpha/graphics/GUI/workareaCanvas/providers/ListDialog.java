@@ -61,15 +61,14 @@ import javax.swing.ListSelectionModel;
  */
 
 /**
- * Use this modal dialog to let the user choose one string from a long list. See
- * ListDialogRunner.java for an example of using ListDialog. The basics:
+ * Use this modal dialog to let the user choose one string from a long list. See ListDialogRunner.java for an example of
+ * using ListDialog. The basics:
  * 
  * <pre>
  * String[] choices = { &quot;A&quot;, &quot;long&quot;, &quot;array&quot;, &quot;of&quot;, &quot;strings&quot; };
  * 
- * String selectedName = ListDialog.showDialog(componentInControllingFrame,
- * 		locatorComponent, &quot;A description of the list:&quot;, &quot;Dialog Title&quot;,
- * 		choices, choices[0]);
+ * String selectedName = ListDialog.showDialog(componentInControllingFrame, locatorComponent,
+ * 		&quot;A description of the list:&quot;, &quot;Dialog Title&quot;, choices, choices[0]);
  * </pre>
  */
 public class ListDialog extends JDialog implements ActionListener
@@ -90,21 +89,17 @@ public class ListDialog extends JDialog implements ActionListener
 	private JList list;
 
 	/**
-	 * Set up and show the dialog. The first Component argument determines which
-	 * frame the dialog depends on; it should be a component in the dialog's
-	 * controlling frame. The second Component argument should be null if you
-	 * want the dialog to come up with its left corner in the center of the
-	 * screen; otherwise, it should be the component on top of which the dialog
-	 * should appear.
+	 * Set up and show the dialog. The first Component argument determines which frame the dialog depends on; it should
+	 * be a component in the dialog's controlling frame. The second Component argument should be null if you want the
+	 * dialog to come up with its left corner in the center of the screen; otherwise, it should be the component on top
+	 * of which the dialog should appear.
 	 */
-	public static String showDialog(Component frameComp,
-			Component locationComp, String labelText, String title,
+	public static String showDialog(Component frameComp, Component locationComp, String labelText, String title,
 			String[] possibleValues, String initialValue, String longValue)
 	{
 
 		Frame frame = JOptionPane.getFrameForComponent(frameComp);
-		dialog = new ListDialog(frame, locationComp, labelText, title,
-				possibleValues, initialValue, longValue);
+		dialog = new ListDialog(frame, locationComp, labelText, title, possibleValues, initialValue, longValue);
 		dialog.setVisible(true);
 		return value;
 
@@ -125,7 +120,7 @@ public class ListDialog extends JDialog implements ActionListener
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
+	 * 
 	 * @param frame
 	 * @param locationComp
 	 * @param labelText
@@ -134,8 +129,8 @@ public class ListDialog extends JDialog implements ActionListener
 	 * @param initialValue
 	 * @param longValue
 	 */
-	private ListDialog(Frame frame, Component locationComp, String labelText,
-			String title, Object[] data, String initialValue, String longValue)
+	private ListDialog(Frame frame, Component locationComp, String labelText, String title, Object[] data,
+			String initialValue, String longValue)
 	{
 		super(frame, title, true);
 
@@ -212,7 +207,9 @@ public class ListDialog extends JDialog implements ActionListener
 	}
 
 	// Handle clicks on the Set and Cancel buttons.
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e)

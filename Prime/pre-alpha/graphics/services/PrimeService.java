@@ -10,25 +10,25 @@ package graphics.services;
  * @author Bahram Malaekeh
  * 
  */
-public class PrimeService 
+public class PrimeService
 {
 	/**
 	 * 
 	 */
 	private CanvasService canvasService;
 
-	
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
+	 * 
 	 */
 	public PrimeService()
 	{
 		canvasService = new CanvasService();
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -37,8 +37,8 @@ public class PrimeService
 	{
 		canvasService.run();
 	}
-	
-	
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -47,10 +47,10 @@ public class PrimeService
 	{
 		canvasService.serviceSuspend();
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 

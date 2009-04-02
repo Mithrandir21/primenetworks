@@ -7,14 +7,12 @@ import objects.Hardware;
 
 
 /**
- * This class represents a external networks interface card connected to
- * {@link objects.Servers server} or {@link objects.Clients client} machine. It
- * can be a server, a desktop or a laptop. It contains information on what kind
- * of capability the networks interface card has. It also contains information
- * on transfere speeds, MACs, connection types and so on. <br>
+ * This class represents a external networks interface card connected to {@link objects.Servers server} or
+ * {@link objects.Clients client} machine. It can be a server, a desktop or a laptop. It contains information on what
+ * kind of capability the networks interface card has. It also contains information on transfere speeds, MACs,
+ * connection types and so on. <br>
  * <br>
- * <b>Notation</b>: The networks interface card will be refered to as "NIC" in
- * the remainder of this document.
+ * <b>Notation</b>: The networks interface card will be refered to as "NIC" in the remainder of this document.
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -59,15 +57,14 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 * @param Desc
 	 *            The description of the MB.
 	 * @param NICproducer
-	 *            The company that produces the NIC. D-Link, Linksys, Cisco and
-	 *            so on.
+	 *            The company that produces the NIC. D-Link, Linksys, Cisco and so on.
 	 * @param NIC_MAC
 	 *            The MAC address of the NIC.
 	 * @param NICconnectionType
 	 *            The connection type of NIC. Wired or wireless.
 	 */
-	public ExternalNetworksCard(String Name, String Desc, String NICproducer,
-			String NIC_MAC, String NICconnectionType, String NICconncectedBy)
+	public ExternalNetworksCard(String Name, String Desc, String NICproducer, String NIC_MAC, String NICconnectionType,
+			String NICconncectedBy)
 	{
 		super(Name, Desc);
 

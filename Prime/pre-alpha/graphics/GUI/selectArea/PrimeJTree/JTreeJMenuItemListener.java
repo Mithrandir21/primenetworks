@@ -23,8 +23,8 @@ public class JTreeJMenuItemListener implements ActionListener
 	 * The file that was right clicked on
 	 */
 	private FileTreeNode file;
-	
-	
+
+
 	/**
 	 * The JTree that the file is in represented as a FileTreeNode.
 	 */
@@ -33,9 +33,10 @@ public class JTreeJMenuItemListener implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for this class.
 	 * 
 	 * @param file
+	 * @param tree
 	 */
 	public JTreeJMenuItemListener(FileTreeNode file, JTree tree)
 	{
@@ -44,6 +45,11 @@ public class JTreeJMenuItemListener implements ActionListener
 	}
 
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{

@@ -36,8 +36,7 @@ public class ActionRedo extends AbstractAction
 
 	public void actionPerformed(ActionEvent e)
 	{
-		JOptionPane.showMessageDialog(null,
-				"You want to perform a \"Redo\" action.");
+		JOptionPane.showMessageDialog(null, "You want to perform a \"Redo\" action.");
 	}
 
 }

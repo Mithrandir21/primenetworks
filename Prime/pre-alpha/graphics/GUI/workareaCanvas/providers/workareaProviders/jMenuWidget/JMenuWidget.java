@@ -13,32 +13,35 @@ import org.netbeans.api.visual.widget.Widget;
 
 /**
  * Javadoc-TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
 public class JMenuWidget implements PopupMenuProvider
 {
-	
+
 	/**
 	 * 
 	 */
 	private WorkareaCanvas canvas;
-	
-	
+
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
+	 * 
 	 * @param canvas
 	 */
 	public JMenuWidget(WorkareaCanvas canvas)
 	{
 		this.canvas = canvas;
 	}
-	
-	
-	/* (non-Javadoc)
-	 * @see org.netbeans.api.visual.action.PopupMenuProvider#getPopupMenu(org.netbeans.api.visual.widget.Widget, java.awt.Point)
+
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.netbeans.api.visual.action.PopupMenuProvider#getPopupMenu(org.netbeans.api.visual.widget.Widget,
+	 * java.awt.Point)
 	 */
 	@Override
 	public JPopupMenu getPopupMenu(Widget widget, Point localLocation)

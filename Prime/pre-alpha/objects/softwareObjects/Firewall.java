@@ -7,11 +7,10 @@ import objects.Software;
 
 
 /**
- * A class representing a software firewall. This software is meant to run on a
- * specific machine with the goal of separating different networks which are at
- * different trust levels. Its goal is to allow, deny or proxy any connection
- * from one network to another according to the rules that are given to it by
- * the administrator. FIXME - Description for all the class methods.
+ * A class representing a software firewall. This software is meant to run on a specific machine with the goal of
+ * separating different networks which are at different trust levels. Its goal is to allow, deny or proxy any connection
+ * from one network to another according to the rules that are given to it by the administrator. FIXME - Description for
+ * all the class methods.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -19,8 +18,7 @@ import objects.Software;
 public class Firewall extends Software implements Serializable
 {
 	/*
-	 * Datafields for an abstract webserver These will contain the values of any
-	 * webserver object
+	 * Datafields for an abstract webserver These will contain the values of any webserver object
 	 */
 	// Supported Operating systems
 	private String[] supportedOperatingSystems;
@@ -139,8 +137,7 @@ public class Firewall extends Software implements Serializable
 
 
 	/**
-	 * Get a boolean telling whether or not the firewall has a integrated
-	 * antivirus.
+	 * Get a boolean telling whether or not the firewall has a integrated antivirus.
 	 */
 	public boolean HasAntivirus()
 	{
@@ -153,8 +150,7 @@ public class Firewall extends Software implements Serializable
 
 
 	/**
-	 * Get a boolean that says if the firewall has an application level firewall
-	 * feature.
+	 * Get a boolean that says if the firewall has an application level firewall feature.
 	 */
 	public boolean HasApplicationFirewall()
 	{
@@ -167,8 +163,7 @@ public class Firewall extends Software implements Serializable
 
 
 	/**
-	 * Get a boolean that says if the firewall has a deep package inspection
-	 * firewall feature.
+	 * Get a boolean that says if the firewall has a deep package inspection firewall feature.
 	 */
 	public boolean HasDPI()
 	{

@@ -23,8 +23,7 @@ public class InternalComponentsCheck
 {
 
 	/**
-	 * Searches an array of components and finds the, if present, Motherboard
-	 * object.
+	 * Searches an array of components and finds the, if present, Motherboard object.
 	 */
 	public static Motherboard getMB(Object[] components)
 	{
@@ -32,8 +31,8 @@ public class InternalComponentsCheck
 		Motherboard MB = null;
 
 		/*
-		 * Searches for a Motherboard object until either the MB object is not
-		 * null or it reaches the end of the array of components.
+		 * Searches for a Motherboard object until either the MB object is not null or it reaches the end of the array
+		 * of components.
 		 */
 		for ( int i = 0; MB == null && i < components.length; i++ )
 		{
@@ -59,8 +58,7 @@ public class InternalComponentsCheck
 	 * Description
 	 */
 	@SuppressWarnings("unchecked")
-	public static boolean checkMBinternalPorts(Motherboard MB,
-			Object[] components, Object a)
+	public static boolean checkMBinternalPorts(Motherboard MB, Object[] components, Object a)
 	{
 		Class objectClass = a.getClass();
 
@@ -168,8 +166,7 @@ public class InternalComponentsCheck
 			}
 		}
 		// If the component is a HHD or Diskdrive component
-		else if ( objectClass.equals(HDD.class)
-				|| objectClass.equals(Discdrive.class) )
+		else if ( objectClass.equals(HDD.class) || objectClass.equals(Discdrive.class) )
 		{
 			// If the number returned it greater then 1, then there is room for
 			// the object
@@ -212,8 +209,7 @@ public class InternalComponentsCheck
 				Object currentObject = components[i];
 
 				// If the component is a internal networks card
-				if ( currentObject.getClass()
-						.equals(InternalNetworksCard.class) )
+				if ( currentObject.getClass().equals(InternalNetworksCard.class) )
 				{
 					portsAvailable--;
 				}
@@ -288,8 +284,7 @@ public class InternalComponentsCheck
 
 				// If the temporary object is an instance of a HDD or a
 				// diskdrive class
-				if ( objectClass.equals(HDD.class)
-						|| objectClass.equals(Discdrive.class) )
+				if ( objectClass.equals(HDD.class) || objectClass.equals(Discdrive.class) )
 				{
 					portsAvailable--;
 				}

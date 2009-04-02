@@ -41,8 +41,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 	private WorkareaCanvas canvasViewed = null;
 
 	/**
-	 * A class constructor that takes a WorkareaCanvas and creates places
-	 * information about that canvas on to this JPanel.
+	 * A class constructor that takes a WorkareaCanvas and creates places information about that canvas on to this
+	 * JPanel.
 	 * 
 	 * @param canvas
 	 */
@@ -63,7 +63,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 			// Lay out the panel.
 			graphics.GraphicalFunctions.make1xGrid(this, this.getComponentCount(), // rows
-																					// ,
+					// ,
 					// cols
 					6, 6, // initX, initY
 					6, 6); // xPad, yPad
@@ -77,65 +77,63 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 
 	/**
-	 * A constructor for the class that takes the given Object and places
-	 * information about that object on this JPanel. The information dependings
-	 * on what kind of class the given object is.
+	 * A constructor for the class that takes the given Object and places information about that object on this JPanel.
+	 * The information dependings on what kind of class the given object is.
 	 * 
 	 * @param object
 	 */
 	public ObjectProperties(Object object)
 	{
-		if( object != null )
+		if ( object != null )
 		{
-		objectViewed = object;
+			objectViewed = object;
 
 
-		this.setLayout(new SpringLayout());
+			this.setLayout(new SpringLayout());
 
 
-		showStandardProperties(object);
+			showStandardProperties(object);
 
 
-		if ( object instanceof objects.clientObjects.Desktop
-				|| object instanceof objects.clientObjects.Laptop )
-		{
-			showDesktopProperties(object);
-		}
-		else if ( object instanceof objects.serverObjects.HTTPServer
-				|| object instanceof objects.serverObjects.BackupServer
-				|| object instanceof objects.serverObjects.MailServer
-				|| object instanceof objects.serverObjects.FirewallServer
-				|| object instanceof objects.serverObjects.ProxyServer )
-		{
-			showServerProperties(object);
-		}
-		else if ( object instanceof objects.hardwareObjects.HDD )
-		{
-		}
-		else if ( object instanceof objects.peripheralObjects.Scanner )
-		{
-			showPeripheralProperties(object);
-		}
-		else if ( object instanceof objects.infrastructureObjects.Hub
-				|| object instanceof objects.infrastructureObjects.Switch
-				|| object instanceof objects.infrastructureObjects.Router )
-		{
-			showInfrastructurProperties(object);
-		}
+			if ( object instanceof objects.clientObjects.Desktop || object instanceof objects.clientObjects.Laptop )
+			{
+				showDesktopProperties(object);
+			}
+			else if ( object instanceof objects.serverObjects.HTTPServer
+					|| object instanceof objects.serverObjects.BackupServer
+					|| object instanceof objects.serverObjects.MailServer
+					|| object instanceof objects.serverObjects.FirewallServer
+					|| object instanceof objects.serverObjects.ProxyServer )
+			{
+				showServerProperties(object);
+			}
+			else if ( object instanceof objects.hardwareObjects.HDD )
+			{
+			}
+			else if ( object instanceof objects.peripheralObjects.Scanner )
+			{
+				showPeripheralProperties(object);
+			}
+			else if ( object instanceof objects.infrastructureObjects.Hub
+					|| object instanceof objects.infrastructureObjects.Switch
+					|| object instanceof objects.infrastructureObjects.Router )
+			{
+				showInfrastructurProperties(object);
+			}
 
 
-		JPanel buttons = createButtons();
+			JPanel buttons = createButtons();
 
-		this.add(buttons);
+			this.add(buttons);
 
-		// this.setComponentZOrder(buttons, 0);
+			// this.setComponentZOrder(buttons, 0);
 
-		// Lay out the panel.
-		graphics.GraphicalFunctions.make1xGrid(this, this.getComponentCount(), // rows
-																				// ,
-				// cols
-				6, 6, // initX, initY
-				6, 6); // xPad, yPad
+			// Lay out the panel.
+			graphics.GraphicalFunctions.make1xGrid(this, this.getComponentCount(), // rows
+					// ,
+					// cols
+					6, 6, // initX, initY
+					6, 6); // xPad, yPad
 		}
 		else
 		{
@@ -190,8 +188,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 
 	/**
-	 * Creates a JPanel with two buttons that are listened for by
-	 * actionlisteners.
+	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
 	 */
 	private JPanel createButtons()
 	{
@@ -261,8 +258,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 							{
 								// Updates the name of the LabelWidget on the
 								// scene
-								objectViewed = GraphicalFunctions.updateWidgetObjectCanvasName(
-										objectViewed, objName);
+								objectViewed = GraphicalFunctions.updateWidgetObjectCanvasName(objectViewed, objName);
 
 								// Sets the name of the object
 								objectViewed.setObjectName(objName);

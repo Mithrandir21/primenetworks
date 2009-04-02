@@ -22,9 +22,8 @@ import actions.ActionSaveAll;
 
 
 /**
- * The GenericPrimeToolbar represents a generic toolbar for the program. This is
- * where the buttons at the top of the program screen are created and added.
- * GenericPrimeToolbar is an extention of the JMenuBar class.
+ * The GenericPrimeToolbar represents a generic toolbar for the program. This is where the buttons at the top of the
+ * program screen are created and added. GenericPrimeToolbar is an extention of the JMenuBar class.
  * 
  * @author Bahram Malaekeh
  */
@@ -36,8 +35,7 @@ public class GenericPrimeToolbar extends JMenuBar
 
 
 	/**
-	 * Constructor for the GenericPrimeToolbar class. Here the different parts
-	 * of the toolbar are initiated.
+	 * Constructor for the GenericPrimeToolbar class. Here the different parts of the toolbar are initiated.
 	 */
 	public GenericPrimeToolbar()
 	{
@@ -56,8 +54,7 @@ public class GenericPrimeToolbar extends JMenuBar
 	// SETUP OF THE TOOLBAR
 
 	/**
-	 * This function creates the File toolbar. TODO - Get it working with the
-	 * panel.
+	 * This function creates the File toolbar. TODO - Get it working with the panel.
 	 */
 	private void initFileToolBar()
 	{
@@ -93,8 +90,7 @@ public class GenericPrimeToolbar extends JMenuBar
 
 
 	/**
-	 * This function creates the File toolbar. TODO - Get it working with the
-	 * panel.
+	 * This function creates the File toolbar. TODO - Get it working with the panel.
 	 */
 	private void initEditToolBar()
 	{
@@ -110,7 +106,7 @@ public class GenericPrimeToolbar extends JMenuBar
 
 		tempIcon = ImageLocator.getImageIconObject("Paste");
 		ActionPaste save = new ActionPaste("Paste", tempIcon);
-		
+
 
 		editToolBar.add(cut);
 		editToolBar.add(openFile);
