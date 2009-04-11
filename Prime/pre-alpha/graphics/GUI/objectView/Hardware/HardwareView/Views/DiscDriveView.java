@@ -32,6 +32,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import managment.ComponentsManagment;
+import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.Discdrive;
 
@@ -382,5 +383,12 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface, Acti
 	public boolean validateNecessaryData()
 	{
 		return true;
+	}
+
+
+	@Override
+	public Hardware getViewHardware()
+	{
+		return DiscObj;
 	}
 }

@@ -32,6 +32,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import managment.ComponentsManagment;
+import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.Ram;
 
@@ -339,6 +340,13 @@ public class RAMView extends JPanel implements HardwareViewInterface, ActionList
 		// Possibility for more checks on the CPU values.
 
 		return true;
+	}
+	
+	
+	@Override
+	public Hardware getViewHardware()
+	{
+		return RAMobj;
 	}
 
 

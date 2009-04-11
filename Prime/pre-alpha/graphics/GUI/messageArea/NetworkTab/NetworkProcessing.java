@@ -4,9 +4,10 @@
 package graphics.GUI.messageArea.NetworkTab;
 
 
+import exceptions.ObjectNotFoundException;
+import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import managment.ArrayManagment;
 import objects.Object;
-import exceptions.ObjectNotFoundException;
 
 
 /**
@@ -32,8 +33,8 @@ public class NetworkProcessing
 	 *            A boolean saying if the network should be checked for notices.
 	 * @return Returns a new multidimentional String array with possible messages for the user about the given network.
 	 */
-	public static String[][] processNetwork(String[][] curData, Object obj, boolean CheckCritical,
-			boolean CheckWarnings, boolean CheckNotices)
+	public static String[][] processNetwork(String[][] curData, Object obj, WorkareaCanvas canvas,
+			boolean CheckCritical, boolean CheckWarnings, boolean CheckNotices)
 	{
 		String[][] data = curData;
 

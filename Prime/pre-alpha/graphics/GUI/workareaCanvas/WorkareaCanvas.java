@@ -562,6 +562,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	public void drop(DropTargetDropEvent dtde)
 	{
 		WorkareaCanvasActions.createWidgetOnCanvas(dtde, this);
+		
 	}
 
 
@@ -602,7 +603,6 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	{
 		doRepaint();
 
-		PrimeMain1.updatePropertiesCanvasArea();
 		PrimeMain1.updateCanvasAndObjectInfo();
 
 		changed = true;

@@ -37,6 +37,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import managment.ComponentsManagment;
+import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.InternalNetworksCard;
 
@@ -438,5 +439,12 @@ public class InternalNICView extends JPanel implements HardwareViewInterface, Ac
 	public boolean validateNecessaryData()
 	{
 		return true;
+	}
+	
+
+	@Override
+	public Hardware getViewHardware()
+	{
+		return IntNIC;
 	}
 }

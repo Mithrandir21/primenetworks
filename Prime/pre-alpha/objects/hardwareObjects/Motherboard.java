@@ -225,7 +225,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the chipset of the Motherboard..
+	 * Get the chipset of the Motherboard.
 	 */
 	public String getChipset()
 	{
@@ -840,6 +840,10 @@ public class Motherboard extends Hardware implements Serializable
 
 	// CLASS METHODES
 
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 */
 	private void reset()
 	{
 		producer = "";
@@ -862,6 +866,21 @@ public class Motherboard extends Hardware implements Serializable
 		USBPortsAvailable = 0;
 		DUCPortsAvailable = 0;
 		IntegLANPortsAvailable = 0;
+	}
+	
+	
+	/**
+	 * Resets all the ports so that all ports are available.
+	 * Sets the port availability to the max port.
+	 */
+	public void resetAllComponents()
+	{
+		CPUPortsAvailable = maxCPUs;
+		PCIPortsAvailable = maxPCIs;
+		RAMPortsAvailable = maxRAMs;
+		USBPortsAvailable = maxUSBs;
+		DUCPortsAvailable = maxDUCs;
+		IntegLANPortsAvailable = maxIntegLANs;
 	}
 
 

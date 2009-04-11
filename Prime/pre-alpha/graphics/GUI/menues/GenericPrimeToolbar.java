@@ -19,6 +19,7 @@ import actions.ActionOpenfile;
 import actions.ActionPaste;
 import actions.ActionSave;
 import actions.ActionSaveAll;
+import actions.ActionUpdate;
 
 
 /**
@@ -44,17 +45,21 @@ public class GenericPrimeToolbar extends JMenuBar
 		this.add(new JToolBar.Separator());
 
 		initEditToolBar();
+		
+		this.add(new JToolBar.Separator());
+		
+		initNetworkAction();
 	}
 
 
 
-	private JToolBar fileToolBar, editToolBar;
+	private JToolBar fileToolBar, editToolBar, networkToolBar;
 
 
 	// SETUP OF THE TOOLBAR
 
 	/**
-	 * This function creates the File toolbar. TODO - Get it working with the panel.
+	 * This function creates the File JToolbar. 
 	 */
 	private void initFileToolBar()
 	{
@@ -90,7 +95,7 @@ public class GenericPrimeToolbar extends JMenuBar
 
 
 	/**
-	 * This function creates the File toolbar. TODO - Get it working with the panel.
+	 * This function creates the File JToolbar.
 	 */
 	private void initEditToolBar()
 	{
@@ -113,6 +118,30 @@ public class GenericPrimeToolbar extends JMenuBar
 		editToolBar.add(save);
 
 		this.add(editToolBar);
+		tempIcon = null;
+	}
+	
+	
+	
+	
+	/**
+	 * This function creates the Network functions JToolbar.
+	 */
+	private void initNetworkAction()
+	{
+		networkToolBar = new JToolBar("Networking");
+		networkToolBar.setFloatable(false);
+		
+		
+		tempIcon = ImageLocator.getImageIconObject("Update");
+		ActionUpdate cut = new ActionUpdate("Cut", tempIcon);
+		
+		
+		
+		networkToolBar.add(cut);
+		
+		
+		this.add(networkToolBar);
 		tempIcon = null;
 	}
 }

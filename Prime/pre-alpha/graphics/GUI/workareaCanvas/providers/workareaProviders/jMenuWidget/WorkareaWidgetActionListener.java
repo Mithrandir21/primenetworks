@@ -4,15 +4,14 @@
 package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget;
 
 
+import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 
-import widgetManipulation.WidgetObject;
 import actions.graphicalActions.WorkareaCanvasActions;
 
 
@@ -57,11 +56,6 @@ public class WorkareaWidgetActionListener implements ActionListener
 
 		if ( !actionName.equals("") )
 		{
-			boolean set = false;
-			Class<?> objectType = null;
-			ImageIcon objectIcon = null;
-			objects.Object newObject = null;
-			WidgetObject newWidgetObject = null;
 
 			if ( actionName.equals("DeleteConnectionsObject") )
 			{
@@ -71,7 +65,10 @@ public class WorkareaWidgetActionListener implements ActionListener
 			else if ( actionName.equals("DeleteThisObject") )
 			{
 				WorkareaCanvasActions.deleteCurrentObject(canvas);
+				
+				PrimeMain1.runCanvasObjectCheck();
 			}
+
 		}
 	}
 

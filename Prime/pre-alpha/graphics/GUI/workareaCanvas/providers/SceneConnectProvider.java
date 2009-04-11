@@ -60,8 +60,7 @@ public class SceneConnectProvider implements ConnectProvider
 	 */
 	public void createConnection(Widget sourceWidget, Widget targetWidget)
 	{
-		// Either the source or the target widget is not an object, which would
-		// result in a NullPOinterException.
+		// Either the source or the target widget is not an object, which would result in a NullPOinterException.
 		if ( sourceWidget == null || targetWidget == null )
 		{
 			return;
@@ -81,13 +80,12 @@ public class SceneConnectProvider implements ConnectProvider
 		if ( compInter.length > 0 )
 		{
 
-			// Creates a dialog that shows the different available connection
-			// types.
+			// Creates a dialog that shows the different available connection types.
 			String conType = ListDialog.showDialog(null, null, "Connection type", "Connection", compInter, null, null);
 
 
 			// If a connection type is not selected.
-			if ( conType == null )
+			if ( conType == null && compInter.length > 1 )
 			{
 				JOptionPane.showMessageDialog(null, "You must choose a connection type for a connection to be made.",
 						"alert", JOptionPane.ERROR_MESSAGE);
@@ -97,20 +95,23 @@ public class SceneConnectProvider implements ConnectProvider
 			{
 
 			}
-			// Else a connection type is chosen and the "Create connection"
-			// button is pressed.
+			// Else a connection type is chosen and the "Create connection" button is pressed.
 			else
 			{
+				// If there is only one connection type and the user has chosen to create a connection
+				// that one connection type will be set as the conType.
+				if ( compInter.length == 1 )
+				{
+					conType = compInter[0];
+				}
 
 				Connection con = null;
 				try
 				{
-					// Gets the connection class, Networkconnection,
-					// deviceconnection, etc.
+					// Gets the connection class, NetworkConnection, DeviceConnection, etc.
 					Class<?> conClass = getConClass(conType);
 
-					// Creates the connection between the two devices(Not on the
-					// scene).
+					// Creates the connection between the two devices(Not on the scene).
 					con = ConnectionManagment.makeConnection(canvas.getConnections(), "Connection"
 							+ canvas.getNumberOfWidgetsOnTheScene(), "Connection between "
 							+ SourceWidObj.getObject().getObjectName() + " and "
@@ -118,19 +119,16 @@ public class SceneConnectProvider implements ConnectProvider
 							.getObject(), conType, conClass);
 
 
-					// Adds the connection to the connections array of each
-					// object.
+					// Adds the connection to the connections array of each object.
 					SourceWidObj.getObject().addConnection(con);
 					TargetWidObj.getObject().addConnection(con);
 
 
-					// Creates the connection between the two devices on the
-					// scene.
+					// Creates the connection between the two devices on the scene.
 					WidgetExtendedConnection connection = new WidgetExtendedConnection(canvas.getScene(), con);
 
 
-					// Adds the connection to the connection array for the
-					// workareacanvas.
+					// Adds the connection to the connection array for the WorkareaCanvas.
 					ConnectionManagment.addConnection(con, false, canvas);
 
 					// The array anchor

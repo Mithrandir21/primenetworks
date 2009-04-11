@@ -33,6 +33,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import managment.ComponentsManagment;
+import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.Discdrive;
 import objects.hardwareObjects.Motherboard;
@@ -378,5 +379,13 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface, A
 	public boolean validateNecessaryData()
 	{
 		return true;
+	}
+	
+	
+	
+	@Override
+	public Hardware getViewHardware()
+	{
+		return DiscObj;
 	}
 }

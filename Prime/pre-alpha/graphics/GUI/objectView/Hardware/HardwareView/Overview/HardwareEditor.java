@@ -4,7 +4,10 @@
 package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
 
+import graphics.GUI.objectView.Hardware.HardwareViewInterface;
+
 import java.awt.Button;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -49,65 +52,7 @@ public class HardwareEditor extends JFrame implements ActionListener
 	{
 		super("Edit hardware");
 
-		givenObject = obj;
-
-		// Get the default toolkit
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-
-		// Get the current screen size
-		Dimension scrnsize = toolkit.getScreenSize();
-
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
-
-
-		// Get the content pane for this object
-		Container c = this.getContentPane();
-
-		JPanel panel = new JPanel();
-
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-
-		view = new HardwareEditorTabbed(obj);
-
-		panel.add(view);
-
-
-
-		JPanel buttons = new JPanel();
-		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
-
-		Button save = new Button("Save");
-		save.addActionListener(this);
-		save.setActionCommand("save");
-
-		Button apply = new Button("Apply");
-		apply.addActionListener(this);
-		apply.setActionCommand("apply");
-
-		Button cancel = new Button("Cancel");
-		cancel.addActionListener(this);
-		cancel.setActionCommand("cancel");
-
-
-		buttons.add(save);
-		buttons.add(apply);
-		buttons.add(cancel);
-
-		buttons.setMaximumSize(new Dimension((int) scrnsize.getWidth(), 1));
-
-		panel.add(buttons);
-
-
-
-		c.add(panel);
-
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
-		this.setVisible(true);
+		createNewEditorTab(obj);
 	}
 
 
@@ -209,6 +154,70 @@ public class HardwareEditor extends JFrame implements ActionListener
 	}
 
 
+	public void createNewEditorTab(Object obj)
+	{
+		givenObject = obj;
+
+		// Get the default toolkit
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+
+		// Get the current screen size
+		Dimension scrnsize = toolkit.getScreenSize();
+
+
+		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
+
+		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+
+
+		// Get the content pane for this object
+		Container c = this.getContentPane();
+
+		JPanel panel = new JPanel();
+
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+
+		view = new HardwareEditorTabbed(obj);
+
+		panel.add(view);
+
+
+
+		JPanel buttons = new JPanel();
+		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
+
+		Button save = new Button("Save");
+		save.addActionListener(this);
+		save.setActionCommand("save");
+
+		Button apply = new Button("Apply");
+		apply.addActionListener(this);
+		apply.setActionCommand("apply");
+
+		Button cancel = new Button("Cancel");
+		cancel.addActionListener(this);
+		cancel.setActionCommand("cancel");
+
+
+		buttons.add(save);
+		buttons.add(apply);
+		buttons.add(cancel);
+
+		buttons.setMaximumSize(new Dimension((int) scrnsize.getWidth(), 1));
+
+		panel.add(buttons);
+
+
+
+		c.add(panel);
+
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
+		this.setSize(width, height);
+		this.setVisible(true);
+	}
+
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -253,6 +262,34 @@ public class HardwareEditor extends JFrame implements ActionListener
 
 			this.dispose();
 		}
+	}
+
+
+
+	/**
+	 * Tries to set the tab which contains the given object as the focused tab.
+	 * 
+	 * @param obj
+	 *            The hardware object which the search for tab should contain.
+	 */
+	public void setTabFocus(Hardware obj)
+	{
+		int tabCount = view.getTabCount();
+
+		for ( int i = 0; i < tabCount; i++ )
+		{
+			// Gets the component at the given index tab
+			Component comp = view.getComponent(i);
+
+			// If the hardware object returned by the component, which implements HardwareViewInterface, equals the
+			// given object.
+			if ( ((HardwareViewInterface) comp).getViewHardware().equals(obj) )
+			{
+				view.setSelectedIndex(i);
+				return;
+			}
+		}
+
 	}
 
 

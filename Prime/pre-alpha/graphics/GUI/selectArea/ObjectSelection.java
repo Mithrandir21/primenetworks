@@ -5,7 +5,6 @@ package graphics.GUI.selectArea;
 
 
 import graphics.ImageLocator;
-import graphics.PrimeMain1;
 import graphics.WidgetIcon;
 
 import java.awt.Color;

@@ -48,7 +48,7 @@ public abstract class Object implements Serializable
 
 
 
-	// THE MASKIN ITSELF
+	// THE MACHINE ITSELF
 
 	/**
 	 * An array that contains pointers to the objects that make up a computer.

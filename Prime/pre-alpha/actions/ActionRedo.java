@@ -32,6 +32,19 @@ public class ActionRedo extends AbstractAction
 		putValue(SHORT_DESCRIPTION, "This is a Redo action");
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_Y));
 	}
+	
+	
+	/**
+	 * Description NEEDED!
+	 * 
+	 * @param text
+	 */
+	public ActionRedo(String text)
+	{
+		super(text);
+		putValue(SHORT_DESCRIPTION, "This is a Redo action");
+		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_Y));
+	}
 
 
 	public void actionPerformed(ActionEvent e)

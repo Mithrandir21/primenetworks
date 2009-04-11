@@ -7,7 +7,6 @@ package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import java.awt.Point;
-import java.lang.reflect.Constructor;
 
 import javax.swing.JPopupMenu;
 

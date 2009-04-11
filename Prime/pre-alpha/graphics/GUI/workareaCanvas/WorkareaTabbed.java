@@ -73,6 +73,8 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 				PrimeMain1.currentCanvas = currentCanvas;
 
 				PrimeMain1.updatePropertiesCanvasArea();
+				
+				PrimeMain1.runCanvasObjectCheck();
 			}
 		});
 
@@ -212,7 +214,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 	 * is set to true, check the {@link WorkareaCanvas} which is inside the tab. If the {@link WorkareaCanvas} has been
 	 * altered and not saved, it will ask the user if they wish to save the {@link WorkareaCanvas}.
 	 * 
-	 * @param canvas
+	 * @param canvasName
 	 *            The name of {@link WorkareaCanvas} tad to be removed.
 	 */
 	public void removeTabWithCanvas(String canvasName, boolean verify)

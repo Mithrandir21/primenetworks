@@ -176,8 +176,10 @@ public class FileManagment
 	 * This function removes WorkareaCanvas with the given name from the system. It also deletes the file that contains
 	 * the workareaCanvas from the file system, so this is permanent.
 	 * 
-	 * @param file
+	 * @param fileNode
 	 *            The file that contains the WorkareaCanvas.
+	 * @param tree
+	 *            The JTree that the fileNode will be deleted from.
 	 */
 	public static void deleteWorkareaCanvas(FileTreeNode fileNode, JTree tree)
 	{
@@ -614,7 +616,7 @@ public class FileManagment
 	/**
 	 * Finds the first part of any given string divided by "." symbol.
 	 * 
-	 * @param file
+	 * @param string
 	 * @return Returns the first part of the given string without the ".*".
 	 */
 	public String getCanvasName(String string)

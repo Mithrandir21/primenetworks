@@ -79,7 +79,7 @@ public class SoftwareProcessing
 	 */
 	private static String[][] getCriticalErrors(String[][] data, Object obj)
 	{
-		// Operaing System
+		// Operating System
 		if ( !(containsSoftwareOfClass(obj, OperatingSystem.class)) )
 		{
 			String[] info = { obj.getObjectName(), "Operaring System",

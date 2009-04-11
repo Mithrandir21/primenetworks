@@ -33,6 +33,18 @@ public class ActionUndo extends AbstractAction
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_Z));
 	}
 
+	
+	/**
+	 * Description NEEDED!
+	 * 
+	 * @param text
+	 */
+	public ActionUndo(String text)
+	{
+		super(text);
+		putValue(SHORT_DESCRIPTION, "This is a Undo action");
+		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_Z));
+	}
 
 	public void actionPerformed(ActionEvent e)
 	{

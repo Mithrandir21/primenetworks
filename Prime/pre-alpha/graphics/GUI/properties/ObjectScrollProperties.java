@@ -18,6 +18,8 @@ import objects.Object;
  */
 public class ObjectScrollProperties extends JScrollPane
 {
+	private ObjectProperties objProp;
+	
 	public ObjectScrollProperties()
 	{
 		setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -31,7 +33,7 @@ public class ObjectScrollProperties extends JScrollPane
 	 */
 	public void newObjectSelectedPropertiesTab(Object object)
 	{
-		ObjectProperties objProp = new ObjectProperties(object);
+		objProp = new ObjectProperties(object);
 
 		this.setViewportView(objProp);
 	}
@@ -43,8 +45,17 @@ public class ObjectScrollProperties extends JScrollPane
 	 */
 	public void newObjectSelectedPropertiesTab(WorkareaCanvas canvas)
 	{
-		ObjectProperties objProp = new ObjectProperties(canvas);
+		objProp = new ObjectProperties(canvas);
 
 		this.setViewportView(objProp);
+	}
+	
+	
+	/**
+	 * @return Returns the ObjectPropertie Panel that contains the actual fields and buttons.
+	 */
+	public ObjectProperties getObjectPropertiePanel()
+	{
+		return objProp;
 	}
 }

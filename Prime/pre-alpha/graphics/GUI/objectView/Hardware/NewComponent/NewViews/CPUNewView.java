@@ -34,6 +34,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import managment.ComponentsManagment;
+import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.CPU;
 import objects.hardwareObjects.Motherboard;
@@ -541,5 +542,11 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 		return true;
 	}
 
+	
+	@Override
+	public Hardware getViewHardware()
+	{
+		return CPUobj;
+	}
 
 }

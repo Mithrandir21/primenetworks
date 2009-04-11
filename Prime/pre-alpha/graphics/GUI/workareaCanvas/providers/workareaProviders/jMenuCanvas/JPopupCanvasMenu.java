@@ -53,7 +53,7 @@ public class JPopupCanvasMenu
 	/**
 	 * The function calls the menu creator and returns the finished JPopupMenu.
 	 * 
-	 * @param Point
+	 * @param localLocation
 	 *            The location(Point) on the WorkareaCanvas that the menu will be shown at
 	 * @return The JPopupMenu that will be shown when a user right clicks on an empty part of a WorkareaCanvas.
 	 */

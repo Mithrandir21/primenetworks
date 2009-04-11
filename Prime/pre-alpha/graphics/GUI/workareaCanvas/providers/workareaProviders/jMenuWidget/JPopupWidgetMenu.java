@@ -53,7 +53,7 @@ public class JPopupWidgetMenu
 	 * Javadoc-TODO - Description
 	 * 
 	 * @param widget
-	 * @return
+	 * @return The JPopupMenu
 	 */
 	public JPopupMenu createPopupMenu(Widget widget)
 	{

@@ -21,7 +21,12 @@ import actions.ActionOpenfile;
 import actions.ActionPaste;
 import actions.ActionSave;
 import actions.ActionSaveAll;
+import actions.toolbar.ActionAllMessageView;
+import actions.toolbar.ActionConnectionMessage;
+import actions.toolbar.ActionHardwareMessage;
+import actions.toolbar.ActionNetworkMessage;
 import actions.toolbar.ActionSettings;
+import actions.toolbar.ActionSoftwareMessage;
 
 
 /**
@@ -149,9 +154,40 @@ public class GenericPrimeMenuBar extends JMenuBar
 		view.setMnemonic('V');
 
 
-		JMenu submenu = new JMenu("A submenu");
-		view.add(submenu);
+		JMenu submenu = new JMenu("Message Views");
+		
+		
+		JMenuItem allViews = new JMenuItem(new ActionAllMessageView("All Message Views"));
+		allViews.setIcon(null);
+		submenu.add(allViews);
+		
 
+		// Adds a separator to the menu
+		submenu.addSeparator();
+
+		
+		
+		JMenuItem netMsg = new JMenuItem(new ActionNetworkMessage("Network Messages"));
+		netMsg.setIcon(null);
+		submenu.add(netMsg);
+		
+		
+		JMenuItem conMsg = new JMenuItem(new ActionConnectionMessage("Connection Messages"));
+		conMsg.setIcon(null);
+		submenu.add(conMsg);
+		
+		
+		JMenuItem softMsg = new JMenuItem(new ActionSoftwareMessage("Software Messages"));
+		softMsg.setIcon(null);
+		submenu.add(softMsg);
+		
+		
+		JMenuItem hardMsg = new JMenuItem(new ActionHardwareMessage("Hardware Messages"));
+		hardMsg.setIcon(null);
+		submenu.add(hardMsg);
+
+		
+		view.add(submenu);
 
 
 

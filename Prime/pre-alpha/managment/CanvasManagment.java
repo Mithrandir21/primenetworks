@@ -248,7 +248,7 @@ public class CanvasManagment
 	/**
 	 * This function removes WorkareaCanvas with the given name from the systems WorkareaCanvas array.
 	 * 
-	 * @param canvas
+	 * @param canvasName
 	 *            The name of the workareaCanvas that is to be removed.
 	 */
 	public static void removeWorkareaCanvas(String canvasName)
@@ -319,7 +319,7 @@ public class CanvasManagment
 	/**
 	 * Finds a WorkareaCanvas with the given name in the systems canvas array.
 	 * 
-	 * @param canvas
+	 * @param canvasName
 	 *            The name of the searched for WorkareaCanvas.
 	 * @return True if he WorkareaCanvas was found and False if not.
 	 */

@@ -80,7 +80,7 @@ public class PrimeMain1 extends JFrame
 	public static JPanel propertiesPanel;
 
 	// The JPanel that will show information about the objects and the network.
-	private static JPanel messagesPanel;
+	public static JPanel messagesPanel;
 
 	// The JPanel that will hold all the canvas.
 	private static JPanel workareaPanel;
@@ -109,7 +109,8 @@ public class PrimeMain1 extends JFrame
 	public static MakeStandardSoftware standard_software = new MakeStandardSoftware();
 
 	// The variable for the object that is in view.
-	private static ArrayList<ObjectView> objView = new ArrayList<ObjectView>(1);
+	public static ArrayList<ObjectView> objView = new ArrayList<ObjectView>(1);
+	// FIXME - Change the way ObjectViews are handled
 
 
 
@@ -474,12 +475,15 @@ public class PrimeMain1 extends JFrame
 	 */
 	public static void runCanvasObjectCheck()
 	{
-		Object[] children = currentCanvas.getObjectsOnTheScene();
+		// If there is no canvas open
+		if ( currentCanvas != null )
+		{
+			Object[] children = currentCanvas.getObjectsOnTheScene();
 
+			MessageTabbed msgTab = (MessageTabbed) messagesPanel.getComponent(0);
 
-		MessageTabbed msgTab = (MessageTabbed) messagesPanel.getComponent(0);
-
-		msgTab.processAllObjects(children);
+			msgTab.processAllObjects(children);
+		}
 	}
 
 

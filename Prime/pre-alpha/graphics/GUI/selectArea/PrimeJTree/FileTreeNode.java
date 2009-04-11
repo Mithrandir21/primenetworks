@@ -123,7 +123,6 @@ public class FileTreeNode extends DefaultMutableTreeNode
 	/**
 	 * Returns the file.
 	 * 
-	 * @return
 	 */
 	public File getFile()
 	{
@@ -134,7 +133,6 @@ public class FileTreeNode extends DefaultMutableTreeNode
 	/**
 	 * Indication whether this node corresponds to a file system root.
 	 * 
-	 * @return
 	 */
 	public boolean isFileSystemRoot()
 	{

@@ -5,6 +5,8 @@ package graphics.GUI.messageArea;
 
 
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
+import graphics.Settings;
 import graphics.GUI.messageArea.ConnectionTab.ConnectionMessages;
 import graphics.GUI.messageArea.ConnectionTab.ConnectionProcessing;
 import graphics.GUI.messageArea.HardwareTab.HardwareMessages;
@@ -16,15 +18,14 @@ import graphics.GUI.messageArea.SoftwareTab.SoftwareProcessing;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import logistical.cleanup;
@@ -44,18 +45,49 @@ import connections.Connection;
  */
 public class MessageTabbed extends JTabbedPane implements ActionListener
 {
-	private ArrayList<JScrollPane> contents = new ArrayList<JScrollPane>();
-
-	private boolean showNetworkTab = true;
-
-	private boolean showConnectionTab = true;
-
-	private boolean showSoftwareTab = true;
-
-	private boolean showHardwareTab = true;
+	private JPanel netMsgPanel;
 
 
-	// No Need for constructor
+	private JPanel conMsgPanel;
+
+
+	private JPanel softMsgPanel;
+
+
+	private JPanel hardMsgPanel;
+
+
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 * 
+	 */
+	public MessageTabbed()
+	{
+		netMsgPanel = new JPanel(new GridLayout());
+		netMsgPanel.setEnabled(false);
+
+
+		conMsgPanel = new JPanel(new GridLayout());
+		conMsgPanel.setEnabled(false);
+
+
+		softMsgPanel = new JPanel(new GridLayout());
+		softMsgPanel.setEnabled(false);
+
+
+		hardMsgPanel = new JPanel(new GridLayout());
+		hardMsgPanel.setEnabled(false);
+
+
+		int width = (int) (PrimeMain1.width * 0.70);
+
+		int height = (int) (PrimeMain1.height * 0.11);
+
+
+		this.setMaximumSize(new Dimension(width, height));
+		this.setPreferredSize(new Dimension(width, height));
+	}
+
 
 	/**
 	 * Processes all the objects given in the Objects array. The method separates the different object classes and then
@@ -128,13 +160,19 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 		infraObj = cleanup.cleanObjectArray(infraObj);
 
 
-		addHardwareTab(computerObj);
+		// Processes all the objects and gets the messages
+		processHardwareMessage(computerObj);
 
-		addConnectionTab(conObj);
+		processConnectionMessage(conObj);
 
-		addSoftwareTab(computerObj);
+		processSoftwareMessage(computerObj);
 
 		// FIXME - Add peripheral Processing
+
+
+
+		this.revalidate();
+		this.repaint();
 	}
 
 
@@ -146,23 +184,35 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	 * 
 	 * @param objects
 	 */
-	public void addNetworkTab(Object[] objects)
+	public void processNetworkMessage(Object[] objects)
 	{
 		String[][] data = null;
 
 		for ( int i = 0; i < objects.length; i++ )
 		{
-			data = NetworkProcessing.processNetwork(data, objects[i], true, true, true);
+			data = NetworkProcessing.processNetwork(data, objects[i], PrimeMain1.currentCanvas,
+					Settings.showNetworkErrorMessages, Settings.showNetworkWarningMessages,
+					Settings.showNetworkNoticeMessages);
 		}
 
 		if ( data != null )
 		{
 			if ( data[0][0] != null )
 			{
-				removeTab("Network");
+				netMsgPanel.removeAll();
+
 				data = ArrayManagment.removeEmptyIndexes(data);
-				addNewMessageTab("Network", new NetworkMessages(objects, data));
+
+				netMsgPanel.add(new NetworkMessages(objects, data));
 			}
+			else
+			{
+				netMsgPanel.removeAll();
+			}
+		}
+		else
+		{
+			netMsgPanel.removeAll();
 		}
 	}
 
@@ -174,23 +224,35 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	 * 
 	 * @param objects
 	 */
-	public void addConnectionTab(Object[] objects)
+	public void processConnectionMessage(Object[] objects)
 	{
 		String[][] data = null;
 
 		for ( int i = 0; i < objects.length; i++ )
 		{
-			data = ConnectionProcessing.processConnections(data, objects[i], true, true, true);
+			data = ConnectionProcessing.processConnections(data, objects[i], PrimeMain1.currentCanvas,
+					Settings.showConnectionErrorMessages, Settings.showConnectionWarningMessages,
+					Settings.showConnectionNoticeMessages);
 		}
 
 		if ( data != null )
 		{
 			if ( data[0][0] != null )
 			{
-				removeTab("Connections");
+				conMsgPanel.removeAll();
+
 				data = ArrayManagment.removeEmptyIndexes(data);
-				addNewMessageTab("Connections", new ConnectionMessages(objects, data));
+
+				conMsgPanel.add(new ConnectionMessages(objects, data));
 			}
+			else
+			{
+				conMsgPanel.removeAll();
+			}
+		}
+		else
+		{
+			conMsgPanel.removeAll();
 		}
 	}
 
@@ -202,23 +264,34 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	 * 
 	 * @param objects
 	 */
-	public void addSoftwareTab(Object[] objects)
+	public void processSoftwareMessage(Object[] objects)
 	{
 		String[][] data = null;
 
 		for ( int i = 0; i < objects.length; i++ )
 		{
-			data = SoftwareProcessing.processSoftware(data, objects[i], true, true, true);
+			data = SoftwareProcessing.processSoftware(data, objects[i], Settings.showSoftwareErrorMessages,
+					Settings.showSoftwareWarningMessages, Settings.showSoftwareNoticeMessages);
 		}
 
 		if ( data != null )
 		{
 			if ( data[0][0] != null )
 			{
-				removeTab("Software");
+				softMsgPanel.removeAll();
+
 				data = ArrayManagment.removeEmptyIndexes(data);
-				addNewMessageTab("Software", new SoftwareMessages(objects, data));
+
+				softMsgPanel.add(new SoftwareMessages(objects, data));
 			}
+			else
+			{
+				softMsgPanel.removeAll();
+			}
+		}
+		else
+		{
+			softMsgPanel.removeAll();
 		}
 	}
 
@@ -230,23 +303,34 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	 * 
 	 * @param objects
 	 */
-	public void addHardwareTab(Object[] objects)
+	public void processHardwareMessage(Object[] objects)
 	{
 		String[][] data = null;
 
 		for ( int i = 0; i < objects.length; i++ )
 		{
-			data = HardwareProcessing.processHardware(data, objects[i], true, true, true);
+			data = HardwareProcessing.processHardware(data, objects[i], Settings.showHardwareErrorMessages,
+					Settings.showHardwareWarningMessages, Settings.showHardwareNoticeMessages);
 		}
 
 		if ( data != null )
 		{
 			if ( data[0][0] != null )
 			{
-				removeTab("Hardware");
+				hardMsgPanel.removeAll();
+
 				data = ArrayManagment.removeEmptyIndexes(data);
-				addNewMessageTab("Hardware", new HardwareMessages(objects, data));
+
+				hardMsgPanel.add(new HardwareMessages(objects, data));
 			}
+			else
+			{
+				hardMsgPanel.removeAll();
+			}
+		}
+		else
+		{
+			hardMsgPanel.removeAll();
 		}
 	}
 
@@ -291,21 +375,22 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	 * @param content
 	 *            The content that will be shown within the tab.
 	 */
-	public void addNewMessageTab(String labelText, JScrollPane content)
+	public void addNewMessageTab(String labelText, JPanel content)
 	{
 		// The ImageIcon that will be shown and will remove a tab if pressed
 		ImageIcon closeXIcon = ImageLocator.getImageIconObject("Close");
 
 		// The dimensions of the new button.
-		Dimension closeButtonSize = new Dimension(closeXIcon.getIconWidth()+2, closeXIcon.getIconHeight()+2);
+		Dimension closeButtonSize = new Dimension(closeXIcon.getIconWidth() + 2, closeXIcon.getIconHeight() + 2);
 
-		// The actual panel that will be the component panel which the JLabel
-		// and the button
+		// The actual panel that will be the component panel which the JLabel and the button
 		// will be placed inside.
 		JPanel tab = new JPanel();
 
 		// The Panel is not opaque
 		tab.setOpaque(false);
+
+		tab.setName(labelText);
 
 		// The JLabel that will show the name of the tab
 		JLabel tabLabel = new JLabel(labelText);
@@ -320,16 +405,12 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 		tab.add(tabLabel, BorderLayout.WEST);
 		tab.add(tabCloseButton, BorderLayout.EAST);
 
-		if ( content != null )
-		{
-			// Sets the name of the JScrollPane parameter
-			content.setName(labelText);
-			// Adds the JScrollPane to the list of contents of the different
-			// tabs
-			contents.add(content);
-		}
+		// Sets the name of the JPanel parameter
+		content.setName(labelText);
 
-		// Add the tab to the tabbed pane.
+		content.setEnabled(true);
+
+		// Add the tab to the JTabbed pane.
 		this.addTab(labelText, content);
 
 		// Instead of using a String/Icon combination for the tab,
@@ -338,121 +419,184 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	}
 
 
-	// GETTERS
-
-	/**
-	 * Gets the boolean that will tell whether or not the Network tab should be shown.
-	 * 
-	 * @return the showNetworkTab
-	 */
-	public boolean getShowNetworkTab()
-	{
-		return showNetworkTab;
-	}
 
 
 
 	/**
-	 * Gets the boolean that will tell whether or not the Connection tab should be shown.
+	 * Javadoc-TODO - Description
 	 * 
-	 * @return the showConnectionTab
 	 */
-	public boolean getShowConnectionTab()
-	{
-		return showConnectionTab;
-	}
-
-
-
-	/**
-	 * Gets the boolean that will tell whether or not the Software tab should be shown.
-	 * 
-	 * @return the showSoftwareTab
-	 */
-	public boolean getShowSoftwareTab()
-	{
-		return showSoftwareTab;
-	}
-
-
-
-	/**
-	 * Gets the boolean that will tell whether or not the Hardware tab should be shown.
-	 * 
-	 * @return the showHardwareTab
-	 */
-	public boolean getShowHardwareTab()
-	{
-		return showHardwareTab;
-	}
-
-
-
-	// SETTERS
-
-	/**
-	 * Sets the boolean that will tell whether or not the Network tab should be shown.
-	 * 
-	 * @param showNetworkTab
-	 *            the showNetworkTab to set
-	 */
-	public void setShowNetworkTab(boolean showNetworkTab)
-	{
-		this.showNetworkTab = showNetworkTab;
-	}
-
-
-
-	/**
-	 * Sets the boolean that will tell whether or not the Connection tab should be shown.
-	 * 
-	 * @param showConnectionTab
-	 *            the showConnectionTab to set
-	 */
-	public void setShowConnectionTab(boolean showConnectionTab)
-	{
-		this.showConnectionTab = showConnectionTab;
-	}
-
-
-
-	/**
-	 * Sets the boolean that will tell whether or not the Software tab should be shown.
-	 * 
-	 * @param showSoftwareTab
-	 *            the showSoftwareTab to set
-	 */
-	public void setShowSoftwareTab(boolean showSoftwareTab)
-	{
-		this.showSoftwareTab = showSoftwareTab;
-	}
-
-
-
-	/**
-	 * Sets the boolean that will tell whether or not the Hardware tab should be shown.
-	 * 
-	 * @param showHardwareTab
-	 *            the showHardwareTab to set
-	 */
-	public void setShowHardwareTab(boolean showHardwareTab)
-	{
-		this.showHardwareTab = showHardwareTab;
-	}
-
-
-
-
-
 	public void createInitialTabs()
 	{
-		addNewMessageTab("Network", new JScrollPane());
+		createNetworkMessagePanel();
 
-		addNewMessageTab("Connections", new JScrollPane());
+		createConnectionMessagePanel();
 
-		addNewMessageTab("Software", new JScrollPane());
+		createSoftwareMessagePanel();
 
-		addNewMessageTab("Hardware", new JScrollPane());
+		createHardwareMessagePanel();
+	}
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 */
+	public void createNetworkMessagePanel()
+	{
+		// If the JPanel is not enabled
+		if ( !netMsgPanel.isEnabled() )
+		{
+			addNewMessageTab("Network", netMsgPanel);
+		}
+		else
+		{
+			focusOnNetworkTab();
+		}
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 */
+	public void createConnectionMessagePanel()
+	{
+		// If the JPanel is not enabled
+		if ( !conMsgPanel.isEnabled() )
+		{
+			addNewMessageTab("Connection", conMsgPanel);
+		}
+		else
+		{
+			focusOnConnectionTab();
+		}
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 */
+	public void createSoftwareMessagePanel()
+	{
+		// If the JPanel is not enabled
+		if ( !softMsgPanel.isEnabled() )
+		{
+			addNewMessageTab("Software", softMsgPanel);
+		}
+		else
+		{
+			focusOnSoftwareTab();
+		}
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 */
+	public void createHardwareMessagePanel()
+	{
+		// If the JPanel is not enabled
+		if ( !hardMsgPanel.isEnabled() )
+		{
+			addNewMessageTab("Hardware", hardMsgPanel);
+		}
+		else
+		{
+			focusOnHardwareTab();
+		}
+	}
+
+
+	/**
+	 * Focuses on the Network tab if the tab exists.
+	 */
+	public void focusOnNetworkTab()
+	{
+		// Gets the index of the network tab
+		int index = getIndexOfTab("Network");
+
+		if ( index != -1 )
+		{
+			this.setSelectedIndex(index);
+		}
+	}
+	
+	/**
+	 * Focuses on the Connection tab if the tab exists.
+	 */
+	public void focusOnConnectionTab()
+	{
+		// Gets the index of the connection tab
+		int index = getIndexOfTab("Connection");
+
+		if ( index != -1 )
+		{
+			this.setSelectedIndex(index);
+		}
+	}
+
+	/**
+	 * Focuses on the Software tab if the tab exists.
+	 */
+	public void focusOnSoftwareTab()
+	{
+		// Gets the index of the software tab
+		int index = getIndexOfTab("Software");
+
+		if ( index != -1 )
+		{
+			this.setSelectedIndex(index);
+		}
+	}
+
+	/**
+	 * Focuses on the Hardware tab if the tab exists.
+	 */
+	public void focusOnHardwareTab()
+	{
+		// Gets the index of the hardware tab
+		int index = getIndexOfTab("Hardware");
+
+		if ( index != -1 )
+		{
+			this.setSelectedIndex(index);
+		}
+	}
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param name
+	 * @return
+	 */
+	private int getIndexOfTab(String name)
+	{
+		// This is the current number of tabs
+		int arraySize = this.getTabCount();
+
+		// Goes through the list of tab contents until it finds one that matches the given button name.
+		for ( int i = 0; i < arraySize; i++ )
+		{
+			JPanel test = (JPanel) this.getTabComponentAt(i);
+
+			String tabName = test.getName();
+
+			// If the name of the button and the name of the content match, the button to close that
+			// tab with the given content has been pressed and the tab is removed.
+			if ( tabName != null && tabName.equals(name) )
+			{
+				return i;
+			}
+		}
+
+		// If no tab was found with the given name
+		return -1;
 	}
 
 
@@ -468,51 +612,45 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 		if ( e.getSource() instanceof JButton )
 		{
-			// Since there is no other components in this class that can call
-			// the actionperformed method
-			// then the created JButton, we cast the source of the event as a
-			// JButton.
+			// Since there is no other components in this class that can call the ActionPerformed method
+			// then the created JButton, we cast the source of the event as a JButton.
 			JButton button = (JButton) e.getSource();
 
 			String contentName = button.getName();
-			JScrollPane test = null;
+			JPanel test = null;
 
 			// This is the current number of tabs
-			int arraySize = contents.size();
+			int arraySize = this.getTabCount();
 
-			// Goes through the list of tab contents until it fins one that
-			// matches the given button name.
+			// Goes through the list of tab contents until it finds one that matches the given button name.
 			for ( int i = 0; i < arraySize; i++ )
 			{
-				test = contents.get(i);
+				test = (JPanel) this.getTabComponentAt(i);
 
 				String tabName = test.getName();
 
-				// If the name of the button and the name of the content match,
-				// the button to close that
-				// tab with the given content has been pressed and the tab is
-				// removed.
+				// If the name of the button and the name of the content match, the button to close that
+				// tab with the given content has been pressed and the tab is removed.
 				if ( tabName != null && tabName.equals(contentName) )
 				{
 					if ( tabName.equals("Network") )
 					{
-						showNetworkTab = false;
+						netMsgPanel.setEnabled(false);
 					}
-					else if ( tabName.equals("Connections") )
+					else if ( tabName.equals("Connection") )
 					{
-						showConnectionTab = false;
+						conMsgPanel.setEnabled(false);
 					}
 					else if ( tabName.equals("Software") )
 					{
-						showSoftwareTab = false;
+						softMsgPanel.setEnabled(false);
 					}
 					else if ( tabName.equals("Hardware") )
 					{
-						showHardwareTab = false;
+						hardMsgPanel.setEnabled(false);
 					}
 
-					this.remove(test);
-					contents.remove(i);
+					this.remove(i);
 					return;
 				}
 

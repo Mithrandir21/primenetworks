@@ -56,8 +56,7 @@ public class AdapterExtended extends Adapter
 					// object.
 					if ( view == null )
 					{
-						// Creates a new ObjectView object with the WidgetObject
-						// that has been cast.
+						// Creates a new ObjectView object with the WidgetObject that has been cast.
 						ObjectView objView = new ObjectView(widgetobj);
 
 						// Adds the view to the arraylist of object views.
@@ -74,8 +73,7 @@ public class AdapterExtended extends Adapter
 				// If button1 is clicked only once.
 				else if ( event.getClickCount() == 1 )
 				{
-					// Updates the information panel with information from the
-					// selected object.
+					// Updates the information panel with information from the selected object.
 					PrimeMain1.updatePropertiesObjectArea(widgetobj.getObject());
 				}
 			}
@@ -103,6 +101,22 @@ public class AdapterExtended extends Adapter
 			widget.bringToFront();
 			return State.CONSUMED;
 		}
+		return State.REJECTED;
+	}
+
+
+
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.netbeans.api.visual.action.WidgetAction.Adapter#keyPressed(org.netbeans.api.visual.widget.Widget,
+	 * org.netbeans.api.visual.action.WidgetAction.WidgetKeyEvent)
+	 */
+	@Override
+	public State keyPressed(Widget widget, WidgetKeyEvent event)
+	{
+		System.out.println(event.getKeyChar());
 		return State.REJECTED;
 	}
 }

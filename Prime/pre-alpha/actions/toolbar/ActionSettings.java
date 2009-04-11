@@ -6,13 +6,10 @@ package actions.toolbar;
 
 import graphics.GUI.settings.SettingsOverview;
 
-import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 
 /**

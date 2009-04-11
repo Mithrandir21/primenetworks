@@ -43,8 +43,6 @@ public class PrimeTree extends JPanel
 
 	/**
 	 * Javadoc-TODO - Description
-	 * 
-	 * @param file
 	 */
 	public void createTree()
 	{
@@ -77,7 +75,6 @@ public class PrimeTree extends JPanel
 	/**
 	 * Javadoc-TODO - Description
 	 * 
-	 * @return
 	 */
 	public JTree getJTree()
 	{
@@ -90,7 +87,6 @@ public class PrimeTree extends JPanel
 	 * Javadoc-TODO - Description
 	 * 
 	 * @param root
-	 * @return
 	 */
 	private File[] getFiles(File root)
 	{

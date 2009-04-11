@@ -4,9 +4,13 @@
 package graphics.GUI.properties.objectTypes;
 
 
+import graphics.PrimeMain1;
+import graphics.GUI.properties.PropertiesArea;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import java.awt.Dimension;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -79,6 +83,20 @@ public class GeneralPropertiesView
 		nameField.setMaximumSize(tfSize);
 		nameField.setPreferredSize(tfSize);
 		nameField.setName("Name Object");
+		nameField.addKeyListener
+	      (new KeyAdapter() 
+	      {
+	          public void keyPressed(KeyEvent e)
+	          {
+	            int key = e.getKeyCode();
+	            if (key == KeyEvent.VK_ENTER) 
+	            {
+	            	PropertiesArea objPro = (PropertiesArea) PrimeMain1.propertiesPanel.getComponent(0);
+	            	objPro.getObjectPropertiePanel().saveAction();
+	            }
+	          }
+	       }
+	       );
 		nameLabel.setLabelFor(nameField);
 		panel.add(nameField);
 

@@ -54,7 +54,8 @@ public class PropertiesArea extends JTabbedPane
 		}
 		else
 		{
-			addTab("", scrollArea);
+//			addTab("", scrollArea);
+			this.removeAll();
 		}
 	}
 
@@ -73,7 +74,17 @@ public class PropertiesArea extends JTabbedPane
 		}
 		else
 		{
-			addTab("", scrollArea);
+//			addTab("", scrollArea);
+			this.removeAll();
 		}
+	}
+	
+	
+	/**
+	 * @return Returns the ObjectPropertie Panel that contains the actual fields and buttons.
+	 */
+	public ObjectProperties getObjectPropertiePanel()
+	{
+		return scrollArea.getObjectPropertiePanel();
 	}
 }

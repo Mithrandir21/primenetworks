@@ -39,6 +39,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import managment.ComponentsManagment;
+import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.ExternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
@@ -469,5 +470,12 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 	public boolean validateNecessaryData()
 	{
 		return true;
+	}
+	
+
+	@Override
+	public Hardware getViewHardware()
+	{
+		return extNIC;
 	}
 }

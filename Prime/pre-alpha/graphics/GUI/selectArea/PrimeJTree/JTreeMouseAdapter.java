@@ -4,6 +4,8 @@
 package graphics.GUI.selectArea.PrimeJTree;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -13,6 +15,8 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTree;
 import javax.swing.tree.TreePath;
 
+import managment.FileManagment;
+
 
 /**
  * Javadoc-TODO - Description NEEDED!
@@ -20,13 +24,19 @@ import javax.swing.tree.TreePath;
  * @author Bahram Malaekeh
  * 
  */
-public class JTreeMouseAdapter extends MouseAdapter
+public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 {
 
 	/**
-	 * 
+	 * The JTree that the file is in represented as a FileTreeNode.
 	 */
 	private JTree tree;
+	
+	
+	/**
+	 * The file that was right clicked on
+	 */
+	private FileTreeNode file;
 
 
 	/**
@@ -138,20 +148,20 @@ public class JTreeMouseAdapter extends MouseAdapter
 	 */
 	private JPopupMenu getFileMenu(FileTreeNode file)
 	{
-		JTreeJMenuItemListener listener = new JTreeJMenuItemListener(file, tree);
+		this.file = file;
 
 		JPopupMenu itemPopup = new JPopupMenu();
 
 		JMenuItem openFile = new JMenuItem("Open Network");
 		openFile.setActionCommand("Open Network");
-		openFile.addActionListener(listener);
+		openFile.addActionListener(this);
 
 		itemPopup.add(openFile);
 
 
 		JMenuItem deleteFile = new JMenuItem("Delete Network");
 		deleteFile.setActionCommand("Delete Network");
-		deleteFile.addActionListener(listener);
+		deleteFile.addActionListener(this);
 
 		itemPopup.add(deleteFile);
 
@@ -170,13 +180,11 @@ public class JTreeMouseAdapter extends MouseAdapter
 	 */
 	private JPopupMenu getJTreeMenu()
 	{
-		JTreeJMenuListener listener = new JTreeJMenuListener(tree);
-
 		JPopupMenu menuPopup = new JPopupMenu();
 
 		JMenuItem newNetwork = new JMenuItem("New Network");
 		newNetwork.setActionCommand("New Network");
-		newNetwork.addActionListener(listener);
+		newNetwork.addActionListener(this);
 
 		menuPopup.add(newNetwork);
 
@@ -195,5 +203,31 @@ public class JTreeMouseAdapter extends MouseAdapter
 
 
 		return menuPopup;
+	}
+	
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		if ( e.getActionCommand().equalsIgnoreCase("Open Network") )
+		{
+			PrimeJTreeActions.openFile(file);
+		}
+		else if ( e.getActionCommand().equalsIgnoreCase("Delete Network") )
+		{
+			PrimeJTreeActions.deleteFile(file, tree);
+		}
+		else if ( e.getActionCommand().equalsIgnoreCase("New Network") )
+		{
+			FileManagment.newWorkareaCanvas();
+		}
+		
+
 	}
 }

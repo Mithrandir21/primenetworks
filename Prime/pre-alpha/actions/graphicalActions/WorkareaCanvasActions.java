@@ -31,6 +31,7 @@ import objects.infrastructureObjects.Hub;
 import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
+import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
 import objects.serverObjects.BackupServer;
 import objects.serverObjects.FirewallServer;
@@ -88,6 +89,8 @@ public class WorkareaCanvasActions
 
 			canvas.addWidgetObject(newObject, objectPoint, true);
 
+			// Updates the sidebar with the object properties
+			PrimeMain1.updatePropertiesObjectArea(newObject.getObject());
 
 			canvas.cleanUp();
 		}
@@ -204,6 +207,13 @@ public class WorkareaCanvasActions
 		{
 			objectType = Scanner.class;
 			objectIcon = ImageLocator.getImageIconObject("Scanner");
+
+			set = true;
+		}
+		else if ( obj.getClass().equals(Printer.class) )
+		{
+			objectType = Printer.class;
+			objectIcon = ImageLocator.getImageIconObject("Printer");
 
 			set = true;
 		}
@@ -390,17 +400,22 @@ public class WorkareaCanvasActions
 		{
 			for ( int i = 0; i < connectedObjects.length; i++ )
 			{
-				try
+				if ( connectedObjects[i] != null )
 				{
-					removeConnectionFromConnectionLayer(canvas, ConnectionManagment.getConnection(canvasCons, obj,
-							connectedObjects[i]));
+					try
+					{
+						removeConnectionFromConnectionLayer(canvas, ConnectionManagment.getConnection(canvasCons, obj,
+								connectedObjects[i]));
 
-					canvas.setConnections(ConnectionManagment.breakConnection(canvasCons, obj, connectedObjects[i]));
-				}
-				catch ( ConnectionDoesNotExist e )
-				{
-					System.out.println(e.getMessage());
-					System.out.println("removeAllConnectionsToFromObject - breakConnection");
+						canvas
+								.setConnections(ConnectionManagment.breakConnection(canvasCons, obj,
+										connectedObjects[i]));
+					}
+					catch ( ConnectionDoesNotExist e )
+					{
+						System.out.println(e.getMessage());
+						System.out.println("removeAllConnectionsToFromObject - breakConnection");
+					}
 				}
 			}
 		}
@@ -553,7 +568,7 @@ public class WorkareaCanvasActions
 	 * This method calls the revalidateWidgetLocations function in the given {@link WorkareaCanvas}, which will update
 	 * the locations on all the WidgetObjects on the scenes.
 	 * 
-	 * @param canvases
+	 * @param canvas
 	 */
 	public static void revalidateWidgetLocations(WorkareaCanvas canvas)
 	{

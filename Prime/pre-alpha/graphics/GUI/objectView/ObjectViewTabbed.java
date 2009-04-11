@@ -71,6 +71,15 @@ public class ObjectViewTabbed extends JTabbedPane
 		String visDesc = "General information and option";
 		this.addTab("Visual", null, visObjView, visDesc);
 	}
+	
+	
+	/**
+	 * Gets the hardware editor that where hardware can be edited.
+	 */
+	public HardwareObjectView getHardwareEditor()
+	{
+		return hardObjView;
+	}
 
 
 

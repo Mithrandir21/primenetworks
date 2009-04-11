@@ -36,6 +36,7 @@ import javax.swing.SpringLayout;
 
 import managment.ArrayManagment;
 import managment.ComponentsManagment;
+import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.CPU;
 import objects.hardwareObjects.Discdrive;
@@ -760,6 +761,11 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 		return true;
 	}
 
+	@Override
+	public Hardware getViewHardware()
+	{
+		return mbObj;
+	}
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -1209,7 +1215,10 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 					// Then we have to remove all the components that a object
 					// contains.
 					mainObj.removeAllComponents();
-
+					
+					
+					// Resets all the ports so that all ports are available.
+					mbObj.resetAllComponents();
 
 					// Now that the object has no connections to other
 					// components

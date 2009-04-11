@@ -174,7 +174,7 @@ public class HardwareProcessing
 					{
 						String message = "There is no speed set for this CPU, " + temp.getObjectName()
 								+ ". This will make it difficult to evaluate the device.";
-						String[] info = { obj.getObjectName(), "CPU", message, "Hardware Error" };
+						String[] info = { obj.getObjectName(), "CPU", message, "Hardware Notice" };
 						data = addError(data, info);
 					}
 

@@ -24,7 +24,7 @@ public class HardwareMessages extends JScrollPane
 
 
 	/**
-	 * A constructor for the class that creates a JScrollPane that will contains a JTable with possible messages for the
+	 * A constructor for the class that creates a JScrollPane that will contain a JTable with possible messages for the
 	 * user about the given Object.
 	 * 
 	 * @param objects
@@ -42,7 +42,7 @@ public class HardwareMessages extends JScrollPane
 
 		setColumnWidths();
 
-		// table.setPreferredScrollableViewportSize(new Dimension(700,300));
+//		 table.setPreferredScrollableViewportSize(new Dimension(700,300));
 		table.setFillsViewportHeight(false);
 
 		setViewportView(table);

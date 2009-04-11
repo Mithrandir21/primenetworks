@@ -29,6 +29,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import managment.ComponentsManagment;
+import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.HDD;
 
@@ -437,5 +438,13 @@ public class HDDView extends JPanel implements HardwareViewInterface, ActionList
 	public boolean validateNecessaryData()
 	{
 		return true;
+	}
+	
+	
+
+	@Override
+	public Hardware getViewHardware()
+	{
+		return mainHDD;
 	}
 }

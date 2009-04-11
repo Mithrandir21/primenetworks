@@ -33,6 +33,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import managment.ComponentsManagment;
+import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.Motherboard;
 import objects.hardwareObjects.Ram;
@@ -383,5 +384,13 @@ public class RAMNewView extends JFrame implements HardwareViewInterface, ActionL
 	public boolean validateNecessaryData()
 	{
 		return true;
+	}
+	
+	
+
+	@Override
+	public Hardware getViewHardware()
+	{
+		return RAMobj;
 	}
 }

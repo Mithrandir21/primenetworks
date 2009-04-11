@@ -63,8 +63,6 @@ public class TabbedSelection extends JTabbedPane
 
 	/**
 	 * Javadoc-TODO - Description
-	 * 
-	 * @return
 	 */
 	public PrimeTree getPrimeTree()
 	{

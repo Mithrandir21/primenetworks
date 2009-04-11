@@ -5,6 +5,7 @@ package graphics.GUI.properties;
 
 
 import graphics.GraphicalFunctions;
+import graphics.PrimeMain1;
 import graphics.GUI.properties.objectTypes.ClientsPropertiesView;
 import graphics.GUI.properties.objectTypes.GeneralPropertiesView;
 import graphics.GUI.properties.objectTypes.InfrastructuresPropertiesView;
@@ -20,6 +21,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
@@ -204,100 +206,124 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 		return buttons;
 	}
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 */
+	public void saveAction()
+	{
+		Component[] comp = this.getComponents();
+
+		for ( int i = 0; i < comp.length; i++ )
+		{
+			String compName = comp[i].getName();
+
+			if ( compName != null )
+			{
+				if ( comp[i] instanceof JComboBox )
+				{
+					if ( compName.equals("Client Rates") )
+					{
+						Clients clientObj = (Clients) objectViewed;
+
+						JComboBox rates = (JComboBox) comp[i];
+
+						int theRate = Integer.parseInt(rates.getSelectedItem().toString());
+
+						clientObj.setClientRate(theRate);
+					}
+				}
+				else if ( comp[i] instanceof JTextField )
+				{
+					if ( compName.equals("Name Canvas") )
+					{
+						JTextField field = (JTextField) comp[i];
+
+						String canvasName = field.getText();
+						// FIXME Canvas Name Update
+						if ( !(canvasName.equals("")) )
+						{
+							canvasViewed.setName(canvasName);
+						}
+					}
+					else if ( compName.equals("Name Object") )
+					{
+						// Gets the JTextField component
+						JTextField field = (JTextField) comp[i];
+
+						// Gets the text inside that field
+						String objName = field.getText();
+
+						// If the text is not blank
+						if ( !(objName.equals("")) )
+						{
+							// Updates the name of the LabelWidget on the
+							// scene
+							objectViewed = GraphicalFunctions.updateWidgetObjectCanvasName(objectViewed, objName);
+
+							// Sets the name of the object
+							objectViewed.setObjectName(objName);
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, "You must specify a name for this Object.",
+									"Error", JOptionPane.ERROR_MESSAGE);
+							
+							// Focuses on the JTextField 
+							comp[i].requestFocusInWindow();
+						}
+					}
+					else if ( compName.equals("supConInt") )
+					{
+
+					}
+					else if ( compName.equals("supRemoteAccProto") )
+					{
+
+					}
+					else if ( compName.equals("Main SW Name") )
+					{
+
+					}
+				}
+				else if ( comp[i] instanceof JCheckBox )
+				{
+					if ( compName.equals("supOnSiteAccess") )
+					{
+						JCheckBox box = (JCheckBox) comp[i];
+
+						Servers server = (Servers) objectViewed;
+
+						server.setSupportsOnSiteAccess(box.isSelected());
+					}
+					else if ( compName.equals("supRemoteAccess") )
+					{
+						JCheckBox box = (JCheckBox) comp[i];
+
+						Servers server = (Servers) objectViewed;
+
+						server.setSupportsRemoteAccess(box.isSelected());
+					}
+				}
+			}
+		}
+		
+		PrimeMain1.currentCanvas.cleanUp();
+	}
+	
 
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		if ( e.getActionCommand().equals("save") )
 		{
-			Component[] comp = this.getComponents();
-
-			for ( int i = 0; i < comp.length; i++ )
-			{
-				String compName = comp[i].getName();
-
-				if ( compName != null )
-				{
-					if ( comp[i] instanceof JComboBox )
-					{
-						if ( compName.equals("Client Rates") )
-						{
-							Clients clientObj = (Clients) objectViewed;
-
-							JComboBox rates = (JComboBox) comp[i];
-
-							int theRate = Integer.parseInt(rates.getSelectedItem().toString());
-
-							clientObj.setClientRate(theRate);
-						}
-					}
-					else if ( comp[i] instanceof JTextField )
-					{
-						if ( compName.equals("Name Canvas") )
-						{
-							JTextField field = (JTextField) comp[i];
-
-							String canvasName = field.getText();
-							// FIXME Canvas Name Update
-							if ( !(canvasName.equals("")) )
-							{
-								canvasViewed.setName(canvasName);
-							}
-						}
-						else if ( compName.equals("Name Object") )
-						{
-							// Gets the JTextField component
-							JTextField field = (JTextField) comp[i];
-
-							// Gets the text inside that field
-							String objName = field.getText();
-
-							// If the text is not blank
-							if ( !(objName.equals("")) )
-							{
-								// Updates the name of the LabelWidget on the
-								// scene
-								objectViewed = GraphicalFunctions.updateWidgetObjectCanvasName(objectViewed, objName);
-
-								// Sets the name of the object
-								objectViewed.setObjectName(objName);
-							}
-						}
-						else if ( compName.equals("supConInt") )
-						{
-
-						}
-						else if ( compName.equals("supRemoteAccProto") )
-						{
-
-						}
-						else if ( compName.equals("Main SW Name") )
-						{
-
-						}
-					}
-					else if ( comp[i] instanceof JCheckBox )
-					{
-						if ( compName.equals("supOnSiteAccess") )
-						{
-							JCheckBox box = (JCheckBox) comp[i];
-
-							Servers server = (Servers) objectViewed;
-
-							server.setSupportsOnSiteAccess(box.isSelected());
-						}
-						else if ( compName.equals("supRemoteAccess") )
-						{
-							JCheckBox box = (JCheckBox) comp[i];
-
-							Servers server = (Servers) objectViewed;
-
-							server.setSupportsRemoteAccess(box.isSelected());
-						}
-					}
-				}
-			}
-		}
+			saveAction();
+		}	
 	}
 }

@@ -4,8 +4,6 @@
 package objects.infrastructureObjects;
 
 
-import java.io.Serializable;
-
 import objects.Object;
 import objects.hardwareObjects.Motherboard;
 

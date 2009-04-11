@@ -4,9 +4,10 @@
 package graphics.GUI.messageArea.ConnectionTab;
 
 
+import exceptions.ObjectNotFoundException;
+import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import managment.ArrayManagment;
 import objects.Object;
-import exceptions.ObjectNotFoundException;
 
 
 /**
@@ -33,8 +34,8 @@ public class ConnectionProcessing
 	 * @return Returns a new multidimentional String array with possible messages for the user about the given
 	 *         connection.
 	 */
-	public static String[][] processConnections(String[][] curData, Object obj, boolean CheckCritical,
-			boolean CheckWarnings, boolean CheckNotices)
+	public static String[][] processConnections(String[][] curData, Object obj, WorkareaCanvas canvas,
+			boolean CheckCritical, boolean CheckWarnings, boolean CheckNotices)
 	{
 		String[][] data = curData;
 

@@ -732,7 +732,7 @@ public class ComponentsManagment
 				// First we add the component to the components list of the main
 				// object.
 				mainObj.addComponent(cpu);
-
+				
 				// Then we set the ports to the motherboard
 				mb.makeOneCPUportTaken();
 			}

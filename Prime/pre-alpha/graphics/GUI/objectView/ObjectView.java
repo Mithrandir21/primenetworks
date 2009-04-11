@@ -16,6 +16,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import objects.Object;
@@ -57,6 +58,13 @@ public class ObjectView extends JFrame implements ActionListener
 		int width = ((int) scrnsize.getWidth()) / 2;
 
 		int height = ((int) scrnsize.getHeight()) / 2;
+
+		// Set size for the settings JFrame
+		Dimension size = new Dimension(700, 525);
+
+		int initYLocation = (scrnsize.height - size.height) / 3;
+		int initXLocation = (scrnsize.width - size.width) / 2;
+
 
 
 		// Get the content pane for this object
@@ -100,8 +108,9 @@ public class ObjectView extends JFrame implements ActionListener
 
 		c.add(panel);
 
+		this.setSize(size);
+		this.setLocation(initXLocation, initYLocation);
 		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
 		this.setVisible(true);
 
 
@@ -127,21 +136,40 @@ public class ObjectView extends JFrame implements ActionListener
 	{
 		if ( e.getActionCommand().equals("save") )
 		{
+			// Gets the String from the JTextField
 			String viewNameText = view.genObjView.nametext.getText();
 
-			currentObject = GraphicalFunctions.updateWidgetObjectCanvasName(currentObject, widgetObj, viewNameText);
-
-			if ( !currentObject.getDescription().equals(view.genObjView.textarea.getText()) )
+			// If the name of the object is anything other then ""
+			if ( !viewNameText.equals("") )
 			{
-				currentObject.setDescription(view.genObjView.textarea.getText());
+				// Updates the name of the WidgetObject on the Scene
+				currentObject = GraphicalFunctions.updateWidgetObjectCanvasName(currentObject, widgetObj, viewNameText);
+
+				// Sets the new name as the Widgets tooltip
+				widgetObj.setToolTipText(viewNameText);
+
+				// If the description in the JTextArea is different then the objects current description
+				if ( !currentObject.getDescription().equals(view.genObjView.textarea.getText()) )
+				{
+					currentObject.setDescription(view.genObjView.textarea.getText());
+				}
+
+
+				PrimeMain1.updateCanvasAndObjectInfo();
+				PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject());
+
+				PrimeMain1.removeObjectView(currentObject);
+
+				this.dispose();
 			}
-
-			PrimeMain1.updateCanvasAndObjectInfo();
-			PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject());
-
-			PrimeMain1.removeObjectView(currentObject);
-
-			this.dispose();
+			else
+			{
+				JOptionPane.showMessageDialog(null, "You must specify a name for this Object.",
+						"Error", JOptionPane.ERROR_MESSAGE);
+				
+				// Focuses on the name JTextField
+				view.genObjView.nametext.requestFocusInWindow();
+			}
 		}
 		else if ( e.getActionCommand().equals("apply") )
 		{
@@ -178,6 +206,15 @@ public class ObjectView extends JFrame implements ActionListener
 	public void updateViewInfo()
 	{
 		view.updateTabInfo();
+	}
+	
+	
+	/**
+	 * @return Returns the ObjectViewTabbed that contains the object views.
+	 */
+	public ObjectViewTabbed getObjectView()
+	{
+		return view;
 	}
 
 

@@ -481,8 +481,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 			if ( answer != 1 )
 			{
 				new MotherboardNewView(mainObj, mbObj);
-				// Creates a new object after the first object is passed to the
-				// view.
+				// Creates a new object after the first object is passed to the view.
 				mbObj = PrimeMain1.standard_internal_components.getSt_MB();
 			}
 		}

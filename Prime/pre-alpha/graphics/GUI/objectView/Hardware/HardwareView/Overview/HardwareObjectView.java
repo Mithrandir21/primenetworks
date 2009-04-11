@@ -414,7 +414,9 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			hwCount++;
 
 
-			this.add(createHardwareJPanel(info, temp), c);
+			JPanel panel = createHardwareJPanel(info, temp);
+			panel.addMouseListener(new HardwareMouseListener(panel, givenObject, hwObj[i]));
+			this.add(panel, c);
 
 			if ( hwCount % 2 == 0 )
 			{
@@ -575,6 +577,19 @@ public class HardwareObjectView extends JPanel implements ActionListener
 
 		return panel;
 	}
+	
+	
+	
+	/**
+	 * Gets the hardware editor that where hardware can be edited.
+	 */
+	public HardwareEditor createNewHardwareEditor(Object obj)
+	{
+		return new HardwareEditor(obj);
+	}
+	
+	
+	
 
 	/*
 	 * (non-Javadoc)
