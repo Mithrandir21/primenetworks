@@ -50,7 +50,7 @@ public class PrimeTree extends JPanel
 		this.removeAll();
 
 		// File[] roots = File.listRoots();
-		File root = new File("Data");
+		File root = new File("./resource/Data");
 
 		FileTreeNode rootTreeNode = new FileTreeNode(getFiles(root));
 

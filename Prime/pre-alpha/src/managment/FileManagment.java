@@ -53,7 +53,7 @@ public class FileManagment
 	 */
 	public static void saveWorkareaCanvas(WorkareaCanvas canvas)
 	{
-		File file = new File("./Data/" + canvas.getCanvasName() + ".dat");
+		File file = new File("./resource/Data/" + canvas.getCanvasName() + ".dat");
 
 		saveCanvas(canvas, file);
 	}
