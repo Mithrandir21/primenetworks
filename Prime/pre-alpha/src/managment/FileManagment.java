@@ -338,7 +338,7 @@ public class FileManagment
 					// Tries to write out the WorkareaCanvas to a file
 					try
 					{
-						FileOutputStream fout = new FileOutputStream("./Data/" + canvas.getCanvasName() + ".dat");
+						FileOutputStream fout = new FileOutputStream("./resource/Data/" + canvas.getCanvasName() + ".dat");
 
 
 						// The object stream file

@@ -7,8 +7,6 @@ package graphics;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 import javax.swing.ImageIcon;
 
@@ -28,23 +26,11 @@ public class MakeSystemImageIcons
 	 */
 	public void getImageIcons()
 	{
-		URL url = this.getClass().getResource("images");
-		URI uri = null;
-
-		try
-		{
-			String t = url.toString();
-			uri = new URI(t);
-		}
-		catch ( URISyntaxException e )
-		{
-			e.printStackTrace();
-		}
+		URI uri = new File("./resource/images").toURI();
 
 		File folder = new File(uri);
 
 		visitAllFiles(folder);
-
 	}
 
 
