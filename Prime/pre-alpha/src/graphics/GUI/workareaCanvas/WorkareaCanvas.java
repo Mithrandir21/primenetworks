@@ -5,6 +5,7 @@ package graphics.GUI.workareaCanvas;
 
 
 import graphics.PrimeMain1;
+import graphics.GUI.workareaCanvas.providers.WorkareaCanvasListener;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas.JMenuWorkareaCanvas;
 
 import java.awt.Point;
@@ -143,6 +144,9 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 		scene.getActions().addAction(ActionFactory.createZoomAction());
 		scene.getActions().addAction(ActionFactory.createPanAction());
 		scene.getActions().addAction(ActionFactory.createPopupMenuAction(new JMenuWorkareaCanvas(this)));
+		
+		
+		scene.getActions().addAction(new WorkareaCanvasListener());
 
 
 		// This is the main layer of the scene where the WidgetsObjects are
@@ -522,7 +526,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	@Override
 	public void dragEnter(DropTargetDragEvent dtde)
 	{
-		// System.out.println(getCanvasName());
+//		 System.out.println("Drag Enter");
 	}
 
 
@@ -535,7 +539,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	@Override
 	public void dragExit(DropTargetEvent dte)
 	{
-		// System.out.println("Drag Exit");
+//		 System.out.println("Drag Exit");
 	}
 
 
@@ -548,7 +552,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	@Override
 	public void dragOver(DropTargetDragEvent dtde)
 	{
-		// System.out.println("Drag Over");
+//		System.out.println("Drag Over");
 	}
 
 
@@ -574,9 +578,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	 */
 	@Override
 	public void dropActionChanged(DropTargetDragEvent dtde)
-	{
-
-	}
+	{}
 
 
 

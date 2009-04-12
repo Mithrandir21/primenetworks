@@ -45,6 +45,9 @@ public class AdapterExtended extends Adapter
 				// The widgetobjects object
 				Object obj = widgetobj.getObject();
 
+				// Updates the information panel with information from the selected object.
+				PrimeMain1.updatePropertiesObjectArea(widgetobj.getObject());
+
 				// If button1 is double clicked.
 				if ( event.getClickCount() == 2 )
 				{
@@ -70,22 +73,17 @@ public class AdapterExtended extends Adapter
 						// "Only one object can be edited at a time.");
 					}
 				}
-				// If button1 is clicked only once.
-				else if ( event.getClickCount() == 1 )
-				{
-					// Updates the information panel with information from the selected object.
-					PrimeMain1.updatePropertiesObjectArea(widgetobj.getObject());
-				}
 			}
 		}
 		else if ( widget instanceof ConnectionWidget )
 		{
-			System.out.println("There is still work to be done. AdapterExtended - mouseClicked");
+			System.out.println("There is still work to be done. AdapterExtended - mouseClicked - ConnectionWidget");
 		}
 
 		return State.REJECTED;
 	}
 
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -101,22 +99,6 @@ public class AdapterExtended extends Adapter
 			widget.bringToFront();
 			return State.CONSUMED;
 		}
-		return State.REJECTED;
-	}
-
-
-
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.netbeans.api.visual.action.WidgetAction.Adapter#keyPressed(org.netbeans.api.visual.widget.Widget,
-	 * org.netbeans.api.visual.action.WidgetAction.WidgetKeyEvent)
-	 */
-	@Override
-	public State keyPressed(Widget widget, WidgetKeyEvent event)
-	{
-		System.out.println(event.getKeyChar());
 		return State.REJECTED;
 	}
 }

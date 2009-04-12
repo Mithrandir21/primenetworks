@@ -44,6 +44,20 @@ public class GeneralPropertiesView
 		JTextField nameField = new JTextField(canvas.getCanvasName());
 		nameField.setMaximumSize(tfSize);
 		nameField.setPreferredSize(tfSize);
+		nameField.addKeyListener
+	      (new KeyAdapter() 
+	      {
+	          public void keyPressed(KeyEvent e)
+	          {
+	            int key = e.getKeyCode();
+	            if (key == KeyEvent.VK_ENTER) 
+	            {
+	            	PropertiesArea objPro = (PropertiesArea) PrimeMain1.propertiesPanel.getComponent(0);
+	            	objPro.getObjectPropertiePanel().saveAction();
+	            }
+	          }
+	       }
+	       );
 		nameLabel.setLabelFor(nameField);
 		nameLabel.setName("Name Canvas");
 		panel.add(nameField);

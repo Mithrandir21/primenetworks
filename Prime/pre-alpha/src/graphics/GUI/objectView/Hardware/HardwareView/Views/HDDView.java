@@ -260,7 +260,7 @@ public class HDDView extends JPanel implements HardwareViewInterface, ActionList
 		// The transfer speed of the hdd
 		labels[4].setLabelFor(transferSpeed);
 		String[] transSpeedString = { "", "16", "33", "66", "80", "133", "150", "300", "600" };
-		transferSpeed = new JComboBox(typeString);
+		transferSpeed = new JComboBox(transSpeedString);
 		transferSpeed.setMaximumSize(tfSize);
 		transferSpeed.setPreferredSize(tfSize);
 		transferSpeed.setBackground(Color.WHITE);

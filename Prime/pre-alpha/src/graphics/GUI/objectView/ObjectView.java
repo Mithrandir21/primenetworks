@@ -136,55 +136,11 @@ public class ObjectView extends JFrame implements ActionListener
 	{
 		if ( e.getActionCommand().equals("save") )
 		{
-			// Gets the String from the JTextField
-			String viewNameText = view.genObjView.nametext.getText();
-
-			// If the name of the object is anything other then ""
-			if ( !viewNameText.equals("") )
-			{
-				// Updates the name of the WidgetObject on the Scene
-				currentObject = GraphicalFunctions.updateWidgetObjectCanvasName(currentObject, widgetObj, viewNameText);
-
-				// Sets the new name as the Widgets tooltip
-				widgetObj.setToolTipText(viewNameText);
-
-				// If the description in the JTextArea is different then the objects current description
-				if ( !currentObject.getDescription().equals(view.genObjView.textarea.getText()) )
-				{
-					currentObject.setDescription(view.genObjView.textarea.getText());
-				}
-
-
-				PrimeMain1.updateCanvasAndObjectInfo();
-				PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject());
-
-				PrimeMain1.removeObjectView(currentObject);
-
-				this.dispose();
-			}
-			else
-			{
-				JOptionPane.showMessageDialog(null, "You must specify a name for this Object.",
-						"Error", JOptionPane.ERROR_MESSAGE);
-				
-				// Focuses on the name JTextField
-				view.genObjView.nametext.requestFocusInWindow();
-			}
+			save(true);
 		}
 		else if ( e.getActionCommand().equals("apply") )
 		{
-			String viewNameText = view.genObjView.nametext.getText();
-
-			currentObject = GraphicalFunctions.updateWidgetObjectCanvasName(currentObject, widgetObj, viewNameText);
-
-
-			if ( !currentObject.getDescription().equals(view.genObjView.textarea.getText()) )
-			{
-				currentObject.setDescription(view.genObjView.textarea.getText());
-			}
-
-			PrimeMain1.updateCanvasAndObjectInfo();
-			PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject());
+			save(false);
 		}
 		else
 		{
@@ -195,6 +151,54 @@ public class ObjectView extends JFrame implements ActionListener
 			this.dispose();
 		}
 
+	}
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 */
+	public void save(boolean closeObjectView)
+	{
+		// Gets the String from the JTextField
+		String viewNameText = view.genObjView.nametext.getText();
+
+		// If the name of the object is anything other then ""
+		if ( !viewNameText.equals("") )
+		{
+			// Updates the name of the WidgetObject on the Scene
+			currentObject = GraphicalFunctions.updateWidgetObjectCanvasName(currentObject, widgetObj, viewNameText);
+
+			// Sets the new name as the Widgets tooltip
+			widgetObj.setToolTipText(viewNameText);
+
+			// If the description in the JTextArea is different then the objects current description
+			if ( !currentObject.getDescription().equals(view.genObjView.textarea.getText()) )
+			{
+				currentObject.setDescription(view.genObjView.textarea.getText());
+			}
+
+
+			PrimeMain1.updateCanvasAndObjectInfo();
+			PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject());
+
+			PrimeMain1.removeObjectView(currentObject);
+
+			// If closeObjectView is true, this JFrame is closed
+			if( closeObjectView )
+			{
+				this.dispose();
+			}
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(null, "You must specify a name for this Object.",
+					"Error", JOptionPane.ERROR_MESSAGE);
+			
+			// Focuses on the name JTextField
+			view.genObjView.nametext.requestFocusInWindow();
+		}
 	}
 
 

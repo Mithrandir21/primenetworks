@@ -1,12 +1,16 @@
 package graphics.GUI.objectView.General;
 
 
+import graphics.PrimeMain1;
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -149,7 +153,7 @@ public class GeneralObjectView extends JPanel
 	 *            The object from which the fields get their original data from.
 	 * @return The JPanel with the fields and the data from the object.
 	 */
-	private JPanel createGeneralInfoPanelMiddleLeft(Object obj)
+	private JPanel createGeneralInfoPanelMiddleLeft(final Object obj)
 	{
 		JPanel texts = new JPanel();
 		texts.setLayout(new BoxLayout(texts, BoxLayout.PAGE_AXIS));
@@ -164,6 +168,20 @@ public class GeneralObjectView extends JPanel
 		nametext = new JTextField(obj.getObjectName());
 		nametext.setAlignmentX(Component.LEFT_ALIGNMENT);
 		nametext.setMaximumSize(new Dimension(150, 20));
+		nametext.addKeyListener
+	      (new KeyAdapter() 
+	      {
+	          public void keyPressed(KeyEvent e)
+	          {
+	            int key = e.getKeyCode();
+	            if (key == KeyEvent.VK_ENTER) 
+	            {
+	            	// Saves the object info(when the user presses enter)
+	            	PrimeMain1.getObjectView(obj).save(true);
+	            }
+	          }
+	       }
+	       );
 
 		texts.add(typetext);
 		texts.add(Box.createRigidArea(new Dimension(0, 20)));

@@ -301,7 +301,7 @@ public class RAMView extends JPanel implements HardwareViewInterface, ActionList
 
 		if ( speed.getSelectedItem().toString() != "" )
 		{
-			RAMobj.setSpeed(Integer.parseInt(type.getSelectedItem().toString()));
+			RAMobj.setSpeed(Integer.parseInt(speed.getSelectedItem().toString()));
 		}
 		else
 		{

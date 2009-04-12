@@ -16,6 +16,9 @@ import javax.swing.SwingConstants;
 
 import objects.Clients;
 import objects.Object;
+import objects.clientObjects.Desktop;
+import objects.clientObjects.Laptop;
+import objects.clientObjects.ThinClient;
 
 
 /**
@@ -42,11 +45,27 @@ public class ClientsPropertiesView
 	 */
 	public static void getClientsPropertiesView(JPanel panel, Object obj)
 	{
-		// Desktop Rate
-		JLabel dekstopRate = new JLabel("Desktop Rate", SwingConstants.TRAILING);
-		dekstopRate.setToolTipText("The desktop rating...");
-		panel.add(dekstopRate);
-
+		if ( obj instanceof Desktop )
+		{
+			// Desktop Rate
+			JLabel desktopRate = new JLabel("Desktop Rate", SwingConstants.TRAILING);
+			desktopRate.setToolTipText("The desktop rating...");
+			panel.add(desktopRate);
+		}
+		else if( obj instanceof Laptop )
+		{
+			// Laptop Rate
+			JLabel laptopRate = new JLabel("Laptop Rate", SwingConstants.TRAILING);
+			laptopRate.setToolTipText("The laptop rating...");
+			panel.add(laptopRate);
+		}
+		else if( obj instanceof ThinClient )
+		{
+			// ThinClient Rate
+			JLabel thinClientRate = new JLabel("Thin Client Rate", SwingConstants.TRAILING);
+			thinClientRate.setToolTipText("The thin client rating...");
+			panel.add(thinClientRate);
+		}
 
 		String[] rates = new String[20];
 		int temp = 5;

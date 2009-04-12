@@ -245,7 +245,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 						// FIXME Canvas Name Update
 						if ( !(canvasName.equals("")) )
 						{
-							canvasViewed.setName(canvasName);
+							//canvasViewed.setName(canvasName);
 						}
 					}
 					else if ( compName.equals("Name Object") )

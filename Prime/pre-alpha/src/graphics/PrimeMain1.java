@@ -43,6 +43,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.ToolTipManager;
 import javax.swing.border.Border;
 
 import managment.CanvasManagment;
@@ -164,6 +165,9 @@ public class PrimeMain1 extends JFrame
 				splash.close();
 			}
 		}
+		
+		// Sets the programs tooltip delay
+		ToolTipManager.sharedInstance().setDismissDelay(10000);
 
 
 		// Creates the system icons and places them in the ImageIcon array.

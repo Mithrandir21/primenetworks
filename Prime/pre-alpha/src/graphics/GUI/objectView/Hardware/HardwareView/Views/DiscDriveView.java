@@ -295,7 +295,7 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface, Acti
 
 		if ( speed.getSelectedItem().toString() != "" )
 		{
-			DiscObj.setSpeed(Integer.parseInt(type.getSelectedItem().toString()));
+			DiscObj.setSpeed(Integer.parseInt(speed.getSelectedItem().toString()));
 		}
 		else
 		{

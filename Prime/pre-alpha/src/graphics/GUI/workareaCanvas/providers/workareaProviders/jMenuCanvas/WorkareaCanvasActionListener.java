@@ -5,6 +5,7 @@ package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas;
 
 
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.WidgetIcon;
 import graphics.GUI.selectArea.CreateObjectDragged;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
@@ -202,6 +203,9 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 				// Adds the given object to the given location
 				canvas.addWidgetObject(newWidgetObject, location, true);
+				
+				// Updates the sidebar with the object properties
+				PrimeMain1.updatePropertiesObjectArea(newObject);
 			}
 
 		}
