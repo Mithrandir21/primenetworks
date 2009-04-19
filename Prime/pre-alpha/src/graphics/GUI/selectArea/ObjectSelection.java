@@ -27,6 +27,7 @@ import objects.infrastructureObjects.Hub;
 import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
+import objects.infrastructureObjects.WirelessRouter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
 import objects.serverObjects.BackupServer;
@@ -148,7 +149,7 @@ public class ObjectSelection extends JPanel
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("WirelessRouter", Router.class, "Wireless Router"));
+		this.add(makeImageIcon("WirelessRouter", WirelessRouter.class, "Wireless Router"));
 
 		this.add(new JToolBar.Separator());
 

@@ -15,6 +15,7 @@ import objects.infrastructureObjects.Hub;
 import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
+import objects.infrastructureObjects.WirelessRouter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
 import objects.serverObjects.BackupServer;
@@ -107,6 +108,10 @@ public class CreateObjectDragged
 		{
 			newObject = createDefaultRouter(iconObject, numberOfWidgetsOnTheScene);
 		}
+		else if ( objectType.equals("objects.infrastructureObjects.WirelessRouter") )
+		{
+			newObject = createDefaultWirelessRouter(iconObject, numberOfWidgetsOnTheScene);
+		}
 		else if ( objectType.equals("objects.infrastructureObjects.Internet") )
 		{
 			newObject = createDefaultInternet(iconObject, numberOfWidgetsOnTheScene);
@@ -175,7 +180,7 @@ public class CreateObjectDragged
 	{
 		String objectName = "Laptop" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
+		String[] supportedConnectionInterfaces = { "RJ-45", "USB", "Wireless" };
 
 		if ( objectDesc == "" )
 		{
@@ -500,6 +505,33 @@ public class CreateObjectDragged
 
 
 		return new Router(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport);
+	}
+	
+	
+	
+	public Router createDefaultWirelessRouter(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	{
+		String objectName = "Wireless Router" + numberOfWidgetsOnTheScene;
+		String objectDesc = iconObject.getDescription();
+
+		String[] SupConInt = { "RJ-45", "Wireless" };
+		int outPorts = 4;
+		int inPorts = 4;
+		String[] DuplexSupport = { "Full Duplex" };
+
+		if ( objectDesc == "" )
+		{
+			objectDesc = objectName;
+		}
+
+		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
+
+		objectMB.setIntegLANcard(true);
+		objectMB.setMaxIntegratedLANs(4);
+		objectMB.setIntegLANPortsAvailable(4);
+
+
+		return new WirelessRouter(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport, true);
 	}
 
 

@@ -8,6 +8,7 @@ import exceptions.ConnectionDoesExist;
 import exceptions.ConnectionsIsNotPossible;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
+import java.awt.BasicStroke;
 import java.awt.Point;
 
 import javax.swing.JOptionPane;
@@ -131,8 +132,30 @@ public class SceneConnectProvider implements ConnectProvider
 					// Adds the connection to the connection array for the WorkareaCanvas.
 					ConnectionManagment.addConnection(con, false, canvas);
 
+					BasicStroke stroke = null;
+
+					if ( con.getConnectionType().equals("Wireless") )
+					{
+						stroke = new BasicStroke(1.0f, // Width
+								BasicStroke.JOIN_BEVEL, // End cap
+								BasicStroke.CAP_BUTT, // Join style
+								5.0f, // Miter limit
+								new float[] { 21.0f, 13.0f }, // Dash pattern
+								0.0f); // Dash phase
+					}
+					else
+					{
+						stroke = new BasicStroke(1.0f,// Width
+								BasicStroke.JOIN_BEVEL, // End cap
+								BasicStroke.CAP_BUTT, // Join style
+								5.0f, // Miter limit
+								new float[] { 1.0f }, // Dash pattern
+								0.0f); // Dash phase
+					}
+
 					// The array anchor
 					connection.setTargetAnchorShape(AnchorShape.NONE);
+					connection.setStroke(stroke);
 					connection.setToolTipText("This is a connection");
 					connection.getActions().addAction(new AdapterExtended());
 					connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(sourceWidget));

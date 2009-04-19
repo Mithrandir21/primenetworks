@@ -5,21 +5,21 @@ import graphics.PrimeMain1;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
 
 import objects.Object;
 
@@ -43,131 +43,24 @@ public class GeneralObjectView extends JPanel
 	 * @param obj
 	 *            The object that will be used to gather information from.
 	 */
-	public GeneralObjectView(Object obj)
+	public GeneralObjectView(final Object obj)
 	{
-		this.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
+		// Panel that will hold everything, and then be added to this JPanel class
+		JPanel jPanel1 = new JPanel();
+		
+		// The Class of the object
+		JLabel classLabel = new JLabel();
+		classLabel.setText("Type");
+		JTextField classField = new JTextField();
+        classField.setEditable(false);
+        classField.setText(obj.getClass().getSimpleName());
+		
 
-		c.fill = GridBagConstraints.BOTH;
-
-
-		// Left labels.
-		c.gridx = 0;
-		c.gridy = 0;
-		c.weightx = 0.10;
-		c.weighty = 1;
-		c.gridwidth = 1;
-		c.gridheight = 2;
-		c.insets = new Insets(20, 2, 2, 5);
-
-		this.add(createGeneralInfoPanelLeft(), c);
-
-
-		// Middle left text
-		c.gridx = 2;
-		c.gridy = 0;
-		c.weightx = 0.25;
-		c.weighty = 0.5;
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		c.insets = new Insets(20, 2, 2, 2);
-
-		this.add(createGeneralInfoPanelMiddleLeft(obj), c);
-
-
-		// Middle right labels
-		c.gridx = 3;
-		c.gridy = 0;
-		c.weightx = 0.25;
-		c.weighty = 0.5;
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		c.insets = new Insets(20, 2, 2, 2);
-
-		this.add(createGeneralInfoPanelMiddleRight(), c);
-
-
-		// Right text
-		c.gridx = 4;
-		c.gridy = 0;
-		c.weightx = 0.5;
-		c.weighty = 0.5;
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		c.insets = new Insets(20, 2, 2, 2);
-
-		this.add(createGeneralInfoPanelRight(obj), c);
-
-
-		// Bottom textarea
-		c.gridx = 1;
-		c.gridy = 1;
-		c.weightx = 0.5;
-		c.weighty = 0.25;
-		c.gridwidth = 4;
-		c.gridheight = 1;
-		c.insets = new Insets(2, 2, 2, 2);
-
-		this.add(createGeneralInfoPanelBottom(obj), c);
-
-
-	}
-
-
-	/**
-	 * Creates a JPanel that only contains JLabels. Specifically the label for type, name and description.
-	 * 
-	 * @return Returns a JPanel with only Labels.
-	 */
-	private JPanel createGeneralInfoPanelLeft()
-	{
-		JPanel labels = new JPanel();
-		labels.setLayout(new BoxLayout(labels, BoxLayout.PAGE_AXIS));
-
-		JLabel typeLabel = new JLabel("Type");
-		typeLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
-
-		JLabel nameLabel = new JLabel("Name");
-		nameLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
-
-
-
-		JLabel descLabel = new JLabel("Description");
-		descLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
-
-
-		labels.add(typeLabel);
-		labels.add(Box.createRigidArea(new Dimension(0, 20)));
-		labels.add(nameLabel);
-		labels.add(Box.createVerticalGlue());
-		labels.add(descLabel);
-
-		return labels;
-	}
-
-
-	/**
-	 * Creates and returns a JPanel for text input. Specifically for type, name and description.
-	 * 
-	 * @param obj
-	 *            The object from which the fields get their original data from.
-	 * @return The JPanel with the fields and the data from the object.
-	 */
-	private JPanel createGeneralInfoPanelMiddleLeft(final Object obj)
-	{
-		JPanel texts = new JPanel();
-		texts.setLayout(new BoxLayout(texts, BoxLayout.PAGE_AXIS));
-
-
-
-		JTextField typetext = new JTextField(obj.getClass().getSimpleName());
-		typetext.setAlignmentX(Component.LEFT_ALIGNMENT);
-		typetext.setMaximumSize(new Dimension(150, 20));
-		typetext.setEditable(false);
-
-		nametext = new JTextField(obj.getObjectName());
-		nametext.setAlignmentX(Component.LEFT_ALIGNMENT);
-		nametext.setMaximumSize(new Dimension(150, 20));
+        // The name of the object
+		JLabel nameLabel = new JLabel();
+		nameLabel.setText("Name");
+		nametext = new JTextField();
+		nametext.setText(obj.getObjectName());
 		nametext.addKeyListener
 	      (new KeyAdapter() 
 	      {
@@ -183,98 +76,95 @@ public class GeneralObjectView extends JPanel
 	       }
 	       );
 
-		texts.add(typetext);
-		texts.add(Box.createRigidArea(new Dimension(0, 20)));
-		texts.add(nametext);
+		
+		// The supported connections interfaces
+        JLabel supConLabel = new JLabel();
+        supConLabel.setText("Supported Interfaces");
+        JComboBox subConCombo = new JComboBox();
+        subConCombo.setModel(new DefaultComboBoxModel(obj.getSupportedConnectionInterfaces()));
+        
+        // The number of jumps to the closest Internet object
+        JLabel jumpsLabel = new JLabel();
+        jumpsLabel.setText("Number Of Jumps");
+        JTextField jumpsField = new JTextField();
+        jumpsField.setEditable(false);
+        jumpsField.setText("0");
+        
+        
+        // The description of the object
+        JScrollPane descScroll = new JScrollPane();
+        JLabel descLabel = new JLabel();
+        descLabel.setText("Description");
+        textarea = new JTextArea();
+        // FIXME - Save the description of the object in the objectView
+        textarea.setColumns(20);
+        textarea.setRows(5);
+        textarea.setText(obj.getDescription());
+        descScroll.setViewportView(textarea);
 
+        
 
-		return texts;
-	}
+        // The layout of the Panel
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addComponent(nameLabel)
+                    .addComponent(classLabel)
+                    .addComponent(descLabel))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nametext)
+                            .addComponent(classField, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(supConLabel)
+                            .addComponent(jumpsLabel))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jumpsField)
+                            .addComponent(subConCombo, 0, 82, Short.MAX_VALUE)))
+                    .addComponent(descScroll, GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE))
+                .addGap(119, 119, 119))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(classLabel)
+                    .addComponent(classField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(supConLabel)
+                    .addComponent(subConCombo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameLabel)
+                    .addComponent(nametext, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jumpsLabel)
+                    .addComponent(jumpsField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(descLabel)
+                    .addComponent(descScroll, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67))
+        );
 
-
-
-	/**
-	 * Creates and returns a JPanel with labels. Specifically the labels for supported interfaces and number of
-	 * connected devices.
-	 * 
-	 * @return Returns the JPanel with the labels.
-	 */
-	private JPanel createGeneralInfoPanelMiddleRight()
-	{
-		JPanel labels = new JPanel();
-		labels.setLayout(new BoxLayout(labels, BoxLayout.PAGE_AXIS));
-
-
-		JLabel supIntLabel = new JLabel("Supported Interfaces");
-		supIntLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
-
-		JLabel conLabel = new JLabel("Number of connected devices");
-		conLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
-
-		labels.add(supIntLabel);
-		labels.add(Box.createRigidArea(new Dimension(0, 50)));
-		labels.add(conLabel);
-
-
-		return labels;
-	}
-
-
-
-	/**
-	 * Creates and returns a JPanel with text fields that can not be edited. Specifically for number of connected
-	 * devices and supported interfaces.
-	 * 
-	 * @param obj
-	 *            The object where the fields get their data from.
-	 * @return The JPanel that contains the fields and the data.
-	 */
-	private JPanel createGeneralInfoPanelRight(Object obj)
-	{
-		JPanel texts = new JPanel();
-		texts.setLayout(new BoxLayout(texts, BoxLayout.PAGE_AXIS));
-
-
-		JComboBox comboBox = new JComboBox(obj.getSupportedConnectionInterfaces());
-		comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
-		comboBox.setMaximumSize(new Dimension(150, 20));
-		comboBox.setEditable(false);
-
-		JTextField numConDev = new JTextField("" + obj.getNumberOfConnectedDevices());
-		numConDev.setAlignmentX(Component.LEFT_ALIGNMENT);
-		numConDev.setMaximumSize(new Dimension(150, 20));
-		numConDev.setEditable(false);
-
-		texts.add(comboBox);
-		texts.add(Box.createRigidArea(new Dimension(0, 50)));
-		texts.add(numConDev);
-
-		return texts;
-	}
-
-
-
-
-	/**
-	 * Creates and returns a JPanel with only a JTextArea that will hold the description of the object.
-	 * 
-	 * @param obj
-	 *            The object where the JTextArea will get its data from.
-	 * @return The JPanel that hold the JTextArea with the information.
-	 */
-	private JPanel createGeneralInfoPanelBottom(Object obj)
-	{
-		JPanel decsArea = new JPanel();
-		decsArea.setLayout(new GridLayout(0, 1));
-
-		textarea = new JTextArea(obj.getDescription(), 5, 10);
-		textarea.setEditable(true);
-
-		JScrollPane scrollArea = new JScrollPane(textarea);
-		scrollArea.setPreferredSize(new Dimension(150, 15));
-
-		decsArea.add(scrollArea);
-
-		return decsArea;
+        
+        // The layout of this JPanel class
+        javax.swing.GroupLayout layout = new GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, 381, GroupLayout.PREFERRED_SIZE)
+        );
 	}
 }

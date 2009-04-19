@@ -4,6 +4,7 @@
 package widgetManipulation;
 
 
+
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.datatransfer.DataFlavor;
@@ -34,15 +35,15 @@ public class WidgetObject extends ImageWidget implements Transferable
 
 
 	/**
-	 * @param canvas
+	 * @param scene
 	 * @param obj
 	 * @param objImg
 	 */
-	public WidgetObject(Scene canvas, Object obj, Image objImg)
+	public WidgetObject(Scene scene, Object obj, Image objImg)
 	{
-		super(canvas, objImg);
+		super(scene, objImg);
 		object = obj;
-
+		
 		setFlavor();
 	}
 

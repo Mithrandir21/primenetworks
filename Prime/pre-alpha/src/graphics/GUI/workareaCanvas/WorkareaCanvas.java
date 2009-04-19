@@ -5,6 +5,8 @@ package graphics.GUI.workareaCanvas;
 
 
 import graphics.PrimeMain1;
+import graphics.GUI.workareaCanvas.providers.PrimeObjectSceneRectangularSelectProvider;
+import graphics.GUI.workareaCanvas.providers.PrimeRectangularSelectDecorator;
 import graphics.GUI.workareaCanvas.providers.WorkareaCanvasListener;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas.JMenuWorkareaCanvas;
 
@@ -17,6 +19,8 @@ import java.awt.dnd.DropTargetListener;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -27,10 +31,12 @@ import objects.hardwareObjects.ExternalNetworksCard;
 import objects.hardwareObjects.InternalNetworksCard;
 
 import org.netbeans.api.visual.action.ActionFactory;
+import org.netbeans.api.visual.action.WidgetAction;
 import org.netbeans.api.visual.model.ObjectScene;
 import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
+import org.netbeans.modules.visual.action.RectangularSelectAction;
 
 import widgetManipulation.WidgetObject;
 import actions.graphicalActions.WorkareaCanvasActions;
@@ -144,8 +150,8 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 		scene.getActions().addAction(ActionFactory.createZoomAction());
 		scene.getActions().addAction(ActionFactory.createPanAction());
 		scene.getActions().addAction(ActionFactory.createPopupMenuAction(new JMenuWorkareaCanvas(this)));
-		
-		
+
+
 		scene.getActions().addAction(new WorkareaCanvasListener());
 
 
@@ -162,6 +168,15 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 		// objects are shown.
 		connectionLayer = new LayerWidget(scene);
 		scene.addChild(connectionLayer);
+
+
+		scene.getActions().addAction(
+				new RectangularSelectAction(new PrimeRectangularSelectDecorator(scene), interactionLayer,
+						new PrimeObjectSceneRectangularSelectProvider(this)));
+
+		// For creating key-to-action feature
+		// WidgetAction createActionMapAction (InputMap inputMap, ActionMap actionMap)
+
 
 		saved = false;
 		changed = false;
@@ -186,6 +201,18 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	 * @return the scene
 	 */
 	public Scene getScene()
+	{
+		return scene;
+	}
+	
+	
+	/**
+	 * Gets the scene.
+	 * 
+	 * @see org.netbeans.api.visual.widget.Scene Scene
+	 * @return the scene
+	 */
+	public ObjectScene getObjectScene()
 	{
 		return scene;
 	}
@@ -526,7 +553,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	@Override
 	public void dragEnter(DropTargetDragEvent dtde)
 	{
-//		 System.out.println("Drag Enter");
+		// System.out.println("Drag Enter");
 	}
 
 
@@ -539,7 +566,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	@Override
 	public void dragExit(DropTargetEvent dte)
 	{
-//		 System.out.println("Drag Exit");
+		// System.out.println("Drag Exit");
 	}
 
 
@@ -552,7 +579,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	@Override
 	public void dragOver(DropTargetDragEvent dtde)
 	{
-//		System.out.println("Drag Over");
+		// System.out.println("Drag Over");
 	}
 
 
@@ -566,7 +593,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	public void drop(DropTargetDropEvent dtde)
 	{
 		WorkareaCanvasActions.createWidgetOnCanvas(dtde, this);
-		
+
 	}
 
 
@@ -578,7 +605,8 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	 */
 	@Override
 	public void dropActionChanged(DropTargetDragEvent dtde)
-	{}
+	{
+	}
 
 
 

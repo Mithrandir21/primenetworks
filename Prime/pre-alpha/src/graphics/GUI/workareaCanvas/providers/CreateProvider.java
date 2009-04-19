@@ -1,10 +1,14 @@
 package graphics.GUI.workareaCanvas.providers;
 
 
+import graphics.PrimeMain1;
+
 import java.awt.Point;
 
 import org.netbeans.api.visual.action.SelectProvider;
 import org.netbeans.api.visual.widget.Widget;
+
+import widgetManipulation.WidgetObject;
 
 
 /**
@@ -45,6 +49,15 @@ public class CreateProvider implements SelectProvider
 	 */
 	public void select(Widget relatedWidget, Point localLocation, boolean invertSelection)
 	{
+		if ( relatedWidget instanceof WidgetObject )
+		{
+			relatedWidget.bringToFront();
+
+			WidgetObject widgetobj = (WidgetObject) relatedWidget;
+
+			// Updates the information panel with information from the selected object.
+			PrimeMain1.updatePropertiesObjectArea(widgetobj.getObject());
+		}
 	}
 
 }

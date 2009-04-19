@@ -10,6 +10,7 @@ import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import graphics.GUI.workareaCanvas.WorkareaSceneScroll;
 import graphics.GUI.workareaCanvas.providers.AdapterExtended;
 
+import java.awt.BasicStroke;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -323,7 +324,7 @@ public class FileManagment
 		// IF the user has canceled
 		if ( nameOfCanvas != null )
 		{
-			if ( Pattern.matches("([a-zA-ZøæåØÆÅ_0-9])*", nameOfCanvas) )
+			if ( Pattern.matches("([a-zA-ZøæåØÆÅ_0-9 ])*", nameOfCanvas) )
 			{
 				// Checks whether or not there exist a canvas with the same
 				if ( !CanvasManagment.canvasExists(nameOfCanvas) )
@@ -555,8 +556,30 @@ public class FileManagment
 						// Adds the connection to the connection array for the WorkareaCanvas
 						ConnectionManagment.addConnection(connections[i], false, canvas);
 
+						BasicStroke stroke = null;
+						
+						if( connections[i].getConnectionType().equals("Wireless") )
+						{
+							stroke = new BasicStroke(1.0f,        // Width
+			                           BasicStroke.JOIN_BEVEL,    // End cap
+			                           BasicStroke.CAP_BUTT,      // Join style
+			                           5.0f,                      // Miter limit
+			                           new float[] { 21.0f, 13.0f } , // Dash pattern
+			                           0.0f);                     // Dash phase
+						}
+						else
+						{
+							stroke = new BasicStroke(1.0f,// Width
+									BasicStroke.JOIN_BEVEL, // End cap
+									BasicStroke.CAP_BUTT, // Join style
+									5.0f, // Miter limit
+									new float[] { 1.0f }, // Dash pattern
+									0.0f); // Dash phase
+						}
+
 						// The array anchor
 						connection.setTargetAnchorShape(AnchorShape.NONE);
+						connection.setStroke(stroke);
 						connection.setToolTipText("This is a connection");
 						connection.getActions().addAction(new AdapterExtended());
 						connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(sourceWidget));

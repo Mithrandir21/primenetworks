@@ -11,6 +11,8 @@ import graphics.GUI.workareaCanvas.providers.CreateProvider;
 import graphics.GUI.workareaCanvas.providers.SceneConnectProvider;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget.JMenuWidget;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.datatransfer.DataFlavor;
@@ -31,6 +33,7 @@ import objects.infrastructureObjects.Hub;
 import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
+import objects.infrastructureObjects.WirelessRouter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
 import objects.serverObjects.BackupServer;
@@ -40,11 +43,17 @@ import objects.serverObjects.MailServer;
 import objects.serverObjects.ProxyServer;
 
 import org.netbeans.api.visual.action.ActionFactory;
+import org.netbeans.api.visual.action.AlignWithMoveDecorator;
+import org.netbeans.api.visual.action.WidgetAction;
 import org.netbeans.api.visual.border.BorderFactory;
+import org.netbeans.api.visual.widget.ConnectionWidget;
 import org.netbeans.api.visual.widget.LabelWidget;
+import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
+import org.netbeans.modules.visual.action.SingleLayerAlignWithWidgetCollector;
 
 import widgetManipulation.WidgetObject;
+import widgetManipulation.MoveWidgetObjectProvider;
 import connections.Connection;
 import connections.WidgetExtendedConnection;
 
@@ -196,9 +205,9 @@ public class WorkareaCanvasActions
 
 			set = true;
 		}
-		else if ( obj.getClass().equals(Router.class) )
+		else if ( obj.getClass().equals(WirelessRouter.class) )
 		{
-			objectType = Router.class;
+			objectType = WirelessRouter.class;
 			objectIcon = ImageLocator.getImageIconObject("WirelessRouter");
 
 			set = true;
@@ -254,29 +263,31 @@ public class WorkareaCanvasActions
 	public static void addWidgetToCanvas(WidgetObject newObject, Point objectPoint, WorkareaCanvas canvas,
 			boolean withCleanUp)
 	{
+		// Gets the point the Widget has on the scene
 		Point sceneLocation = canvas.getScene().convertViewToScene(objectPoint);
 
-
+		// Sets the point on the scene as the widgets preferred location
 		newObject.setPreferredLocation(sceneLocation);
 
-
+		// Here the create a connection between widgets on the scene is created
 		newObject.getActions().addAction(
 				ActionFactory.createExtendedConnectAction(canvas.getInteractionLayer(),
 						new SceneConnectProvider(canvas)));
 
 
-		//			
+		// Adds the action of a user clicking on any object on a scene
 		newObject.getActions().addAction(ActionFactory.createSelectAction(new CreateProvider()));
 
-
+		// Creates and add the move with align action
 		newObject.getActions().addAction(
 				ActionFactory.createAlignWithMoveAction(canvas.getMainLayer(), canvas.getInteractionLayer(), null));
 
 
-
+		// Adds the double clicking feature for the WidgetObject 
 		newObject.getActions().addAction(new AdapterExtended());
 
 
+		// Creates the LabelWidget that is placed on scene
 		LabelWidget objectLabel = new LabelWidget(canvas.getScene(), newObject.getObject().getObjectName());
 
 		newObject.addChild(objectLabel);

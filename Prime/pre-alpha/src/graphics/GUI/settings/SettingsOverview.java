@@ -102,7 +102,7 @@ public class SettingsOverview extends JFrame
 		
 		
 		this.setSize(size);
-		this.setResizable(false);
+//		this.setResizable(false);
 		this.setLocation(initXLocation, initYLocation);
 		// this.setExtendedState(Frame.MAXIMIZED_BOTH);
 		this.setVisible(true);
