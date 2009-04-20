@@ -22,6 +22,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import managment.CanvasManagment;
 import managment.FileManagment;
 
 
@@ -62,18 +63,16 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 				{
 					currentCanvas = currentScrollPane.getCanvas();
 					// Repaints the entire canvas.(Avoids NullPointerExeption
-					// errors
-					// from swing).
+					// errors from swing).
 					currentCanvas.doRepaint();
 				}
 
 				// Sets the current working canvas to the canvas that is
-				// actually shown in the
-				// JTabbedPane scrollPane.
+				// actually shown in the JTabbedPane scrollPane.
 				PrimeMain1.currentCanvas = currentCanvas;
 
 				PrimeMain1.updatePropertiesCanvasArea();
-				
+
 				PrimeMain1.runCanvasObjectCheck();
 			}
 		});
@@ -119,7 +118,44 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 	{
 		WorkareaSceneScroll canvasScroll = new WorkareaSceneScroll(canvas);
 
-		createNewCanvasTab(canvasScroll);
+		createNewCanvasTab(canvasScroll, -1);
+	}
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param canvas
+	 * @param Name
+	 */
+	public void updateCanvasName(WorkareaCanvas canvas, String Name)
+	{
+		// Check whether or not there exists a tab with the given canvas name
+		if ( existsTabWithGivenName(canvas.getCanvasName()) )
+		{
+			// This is the current number of tabs
+			int arraySize = this.getTabCount();
+
+			// Goes through the list of tab contents until it finds one that matches the given button name.
+			for ( int i = 0; i < arraySize; i++ )
+			{
+				// Gets the tab component for the current tab.
+				JPanel tabPanel = (JPanel) this.getTabComponentAt(i);
+
+				// Gets the JLabel that contains the name of the WorkareaCanvas in the tab
+				JLabel label = (JLabel) tabPanel.getComponent(0);
+
+				// If the JLabel text is the same as the given string
+				if ( label.getText().equals(canvas.getCanvasName()) )
+				{
+					// Changes the label of the tab
+					FileManagment.changeFileName(canvas, Name);
+					label.setText(Name);
+					return;
+				}
+			}
+		}
 	}
 
 
@@ -130,9 +166,10 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 	 * will be placed an image in the JPanel which will be able to close the tab when pressed.
 	 * 
 	 * @param canvasScroll
-	 *            The {@link WorkareaSceneScroll} that will be placed inside a Tab with a custom Tab fane.
+	 *            The {@link WorkareaSceneScroll} that will be placed inside a Tab with a custom Tab fan.
+	 * @param tabIndex
 	 */
-	public void createNewCanvasTab(WorkareaSceneScroll canvasScroll)
+	public void createNewCanvasTab(WorkareaSceneScroll canvasScroll, int tabIndex)
 	{
 		// The ImageIcon that will be shown and will remove a tab if pressed
 		ImageIcon closeXIcon = ImageLocator.getImageIconObject("Close");
@@ -170,12 +207,23 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 		// tabs
 		canvases.add(canvasScroll);
 
-		// Add the tab to the tabbed pane.
-		this.addTab(name, canvasScroll);
 
-		// Instead of using a String/Icon combination for the tab,
-		// use our panel instead.
-		this.setTabComponentAt(this.getTabCount() - 1, tab);
+		if ( tabIndex == -1 )
+		{
+			// Add the tab to the tabbed pane.
+			this.addTab(name, canvasScroll);
+
+			// Instead of using a String/Icon combination for the tab, use our panel instead.
+			this.setTabComponentAt(this.getTabCount() - 1, tab);
+		}
+		else
+		{
+			// Add the tab to the tabbed pane.
+			this.insertTab(name, null, canvasScroll, null, tabIndex);
+
+			// Instead of using a String/Icon combination for the tab, use our panel instead.
+			this.setTabComponentAt(tabIndex, tab);
+		}
 
 
 		int width = (int) (PrimeMain1.width * 0.60);
@@ -215,7 +263,43 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 	 * altered and not saved, it will ask the user if they wish to save the {@link WorkareaCanvas}.
 	 * 
 	 * @param canvasName
-	 *            The name of {@link WorkareaCanvas} tad to be removed.
+	 *            The name of {@link WorkareaCanvas} tab to be removed.
+	 */
+	public int indexOfTabWithCanvas(String canvasName)
+	{
+		// This is the current number of tabs
+		int arraySize = this.getTabCount();
+
+		// Goes through the list of tab contents until it finds one that matches the given button name.
+		for ( int i = 0; i < arraySize; i++ )
+		{
+			// Gets the tab component for the current tab.
+			JPanel tabPanel = (JPanel) this.getTabComponentAt(i);
+
+			// Gets the JLabel that contains the name of the WorkareaCanvas in the tab
+			JLabel label = (JLabel) tabPanel.getComponent(0);
+
+			// If the JLabel text is the same as the given string
+			if ( label.getText().equals(canvasName) )
+			{
+				// Returns the index of the tab
+				return i;
+			}
+		}
+
+
+		return -1;
+	}
+
+
+
+	/**
+	 * This function removes the Tab with the given name from this JTabbedPane. It can also check, if the given boolean
+	 * is set to true, check the {@link WorkareaCanvas} which is inside the tab. If the {@link WorkareaCanvas} has been
+	 * altered and not saved, it will ask the user if they wish to save the {@link WorkareaCanvas}.
+	 * 
+	 * @param canvasName
+	 *            The name of {@link WorkareaCanvas} tab to be removed.
 	 */
 	public void removeTabWithCanvas(String canvasName, boolean verify)
 	{
@@ -233,9 +317,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 			String tabName = test.getName();
 
 			// If the name of the button and the name of the content match,
-			// the button to close that
-			// tab with the given content has been pressed and the tab is
-			// removed.
+			// the button to close that tab with the given content has been pressed and the tab is removed.
 			if ( tabName != null && tabName.equals(canvasName) )
 			{
 				if ( verify )
@@ -253,15 +335,17 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 					{
 						// Saves the canvas to a file.
 						FileManagment.saveWorkareaCanvas(test.getCanvas());
-						this.remove(test);
+						this.removeTabAt(i);
 						canvases.remove(i);
+						CanvasManagment.removeWorkareaCanvas(test.getCanvas());
 						return;
 					}
 					// Dont save.
 					else if ( answer == 1 )
 					{
-						this.remove(test);
+						this.removeTabAt(i);
 						canvases.remove(i);
+						CanvasManagment.removeWorkareaCanvas(test.getCanvas());
 						return;
 					}
 					else
@@ -271,8 +355,9 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 				}
 				else
 				{
-					this.remove(test);
+					this.removeTabAt(i);
 					canvases.remove(i);
+					CanvasManagment.removeWorkareaCanvas(test.getCanvas());
 					return;
 				}
 			}

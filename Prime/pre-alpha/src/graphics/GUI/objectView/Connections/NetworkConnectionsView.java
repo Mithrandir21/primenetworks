@@ -1,4 +1,4 @@
-package graphics.GUI.objectView.Network;
+package graphics.GUI.objectView.Connections;
 
 
 import exceptions.ObjectNotFoundException;
@@ -43,14 +43,14 @@ import objects.serverObjects.ProxyServer;
  * 
  * @author Bahram Malaekeh
  */
-public class NetworkObjectView extends JPanel
+public class NetworkConnectionsView extends JPanel
 {
 	private Object givenObject = null;
 
 	/**
 	 * A constructor for the class.
 	 */
-	public NetworkObjectView(Object obj)
+	public NetworkConnectionsView(Object obj)
 	{
 		populateInfo(obj);
 	}

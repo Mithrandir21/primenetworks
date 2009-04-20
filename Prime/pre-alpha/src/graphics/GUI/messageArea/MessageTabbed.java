@@ -18,6 +18,7 @@ import graphics.GUI.messageArea.SoftwareTab.SoftwareProcessing;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -167,8 +168,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 		processSoftwareMessage(computerObj);
 
-		// FIXME - Add peripheral Processing
-
+		processNetworkMessage(computerObj);
 
 
 		this.revalidate();
@@ -188,12 +188,8 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	{
 		String[][] data = null;
 
-		for ( int i = 0; i < objects.length; i++ )
-		{
-			data = NetworkProcessing.processNetwork(data, objects[i], PrimeMain1.currentCanvas,
-					Settings.showNetworkErrorMessages, Settings.showNetworkWarningMessages,
-					Settings.showNetworkNoticeMessages);
-		}
+		data = NetworkProcessing.processNetwork(data, PrimeMain1.currentCanvas, Settings.showNetworkErrorMessages,
+				Settings.showNetworkWarningMessages, Settings.showNetworkNoticeMessages);
 
 		if ( data != null )
 		{
@@ -204,15 +200,21 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 				data = ArrayManagment.removeEmptyIndexes(data);
 
 				netMsgPanel.add(new NetworkMessages(objects, data));
+
+				boldTab("Network");
 			}
 			else
 			{
 				netMsgPanel.removeAll();
+
+				unboldTab("Network");
 			}
 		}
 		else
 		{
 			netMsgPanel.removeAll();
+
+			unboldTab("Network");
 		}
 	}
 
@@ -244,15 +246,21 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 				data = ArrayManagment.removeEmptyIndexes(data);
 
 				conMsgPanel.add(new ConnectionMessages(objects, data));
+
+				boldTab("Connection");
 			}
 			else
 			{
 				conMsgPanel.removeAll();
+
+				unboldTab("Connection");
 			}
 		}
 		else
 		{
 			conMsgPanel.removeAll();
+
+			unboldTab("Connection");
 		}
 	}
 
@@ -283,15 +291,21 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 				data = ArrayManagment.removeEmptyIndexes(data);
 
 				softMsgPanel.add(new SoftwareMessages(objects, data));
+
+				boldTab("Software");
 			}
 			else
 			{
 				softMsgPanel.removeAll();
+
+				unboldTab("Software");
 			}
 		}
 		else
 		{
 			softMsgPanel.removeAll();
+
+			unboldTab("Software");
 		}
 	}
 
@@ -322,15 +336,21 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 				data = ArrayManagment.removeEmptyIndexes(data);
 
 				hardMsgPanel.add(new HardwareMessages(objects, data));
+
+				boldTab("Hardware");
 			}
 			else
 			{
 				hardMsgPanel.removeAll();
+
+				unboldTab("Hardware");
 			}
 		}
 		else
 		{
 			hardMsgPanel.removeAll();
+
+			unboldTab("Hardware");
 		}
 	}
 
@@ -392,8 +412,14 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 		tab.setName(labelText);
 
+
 		// The JLabel that will show the name of the tab
 		JLabel tabLabel = new JLabel(labelText);
+
+		Font f = tabLabel.getFont();
+
+		// Unbold
+		tabLabel.setFont(f.deriveFont(f.getStyle() ^ Font.BOLD));
 
 		// The button that will be represented by the ImageIcon
 		JButton tabCloseButton = new JButton(closeXIcon);
@@ -524,7 +550,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 			this.setSelectedIndex(index);
 		}
 	}
-	
+
 	/**
 	 * Focuses on the Connection tab if the tab exists.
 	 */
@@ -564,6 +590,80 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 		if ( index != -1 )
 		{
 			this.setSelectedIndex(index);
+		}
+	}
+
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param name
+	 * @return
+	 */
+	private void boldTab(String name)
+	{
+		// This is the current number of tabs
+		int arraySize = this.getTabCount();
+
+		// Goes through the list of tab contents until it finds one that matches the given button name.
+		for ( int i = 0; i < arraySize; i++ )
+		{
+			JPanel test = (JPanel) this.getTabComponentAt(i);
+
+			String tabName = test.getName();
+
+			// If the name of the button and the name of the content match, the button to close that
+			// tab with the given content has been pressed and the tab is removed.
+			if ( tabName != null && tabName.equals(name) )
+			{
+				JLabel label = (JLabel) test.getComponent(0);
+
+				Font f = label.getFont();
+
+				// bold
+				if ( !f.isBold() )
+				{
+					label.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param name
+	 * @return
+	 */
+	private void unboldTab(String name)
+	{
+		// This is the current number of tabs
+		int arraySize = this.getTabCount();
+
+		// Goes through the list of tab contents until it finds one that matches the given button name.
+		for ( int i = 0; i < arraySize; i++ )
+		{
+			JPanel test = (JPanel) this.getTabComponentAt(i);
+
+			String tabName = test.getName();
+
+			// If the name of the button and the name of the content match, the button to close that
+			// tab with the given content has been pressed and the tab is removed.
+			if ( tabName != null && tabName.equals(name) )
+			{
+				JLabel label = (JLabel) test.getComponent(0);
+
+				Font f = label.getFont();
+
+				// Unbold
+				if ( f.isBold() )
+				{
+					label.setFont(f.deriveFont(f.getStyle() ^ Font.BOLD));
+				}
+			}
 		}
 	}
 

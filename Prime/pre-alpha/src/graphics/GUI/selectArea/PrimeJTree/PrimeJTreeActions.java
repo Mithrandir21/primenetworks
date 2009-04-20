@@ -55,7 +55,7 @@ public class PrimeJTreeActions
 	 */
 	public static void deleteFile(FileTreeNode file, JTree tree)
 	{
-		FileManagment.deleteWorkareaCanvas(file, tree);
+		FileManagment.deleteWorkareaCanvas(file);
 	}
 
 

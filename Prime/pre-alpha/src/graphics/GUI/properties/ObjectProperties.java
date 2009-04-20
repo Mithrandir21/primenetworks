@@ -26,6 +26,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import managment.CanvasManagment;
+import managment.FileManagment;
+
 import objects.Clients;
 import objects.Object;
 import objects.Servers;
@@ -90,12 +93,9 @@ public class ObjectProperties extends JPanel implements ActionListener
 		{
 			objectViewed = object;
 
-
 			this.setLayout(new SpringLayout());
 
-
 			showStandardProperties(object);
-
 
 			if ( object instanceof objects.clientObjects.Desktop || object instanceof objects.clientObjects.Laptop )
 			{
@@ -206,8 +206,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 		return buttons;
 	}
-	
-	
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -237,15 +237,25 @@ public class ObjectProperties extends JPanel implements ActionListener
 				}
 				else if ( comp[i] instanceof JTextField )
 				{
-					if ( compName.equals("Name Canvas") )
+					if ( compName.equals("Name_Canvas") )
 					{
 						JTextField field = (JTextField) comp[i];
 
 						String canvasName = field.getText();
-						// FIXME Canvas Name Update
 						if ( !(canvasName.equals("")) )
 						{
-							//canvasViewed.setName(canvasName);
+							// No canvas was found with the name
+							if ( !(FileManagment.fileWorkareaCanvasExist(canvasViewed,canvasName)) )
+							{
+								PrimeMain1.workTab.updateCanvasName(canvasViewed, canvasName);
+							}
+							else
+							{
+								JOptionPane.showMessageDialog(null, "There already exist a Network with the name "
+										+ "\"" + canvasName + "\".", "Error", JOptionPane.ERROR_MESSAGE);
+								
+								field.setText(canvasViewed.getCanvasName());
+							}
 						}
 					}
 					else if ( compName.equals("Name Object") )
@@ -268,10 +278,10 @@ public class ObjectProperties extends JPanel implements ActionListener
 						}
 						else
 						{
-							JOptionPane.showMessageDialog(null, "You must specify a name for this Object.",
-									"Error", JOptionPane.ERROR_MESSAGE);
-							
-							// Focuses on the JTextField 
+							JOptionPane.showMessageDialog(null, "You must specify a name for this Object.", "Error",
+									JOptionPane.ERROR_MESSAGE);
+
+							// Focuses on the JTextField
 							comp[i].requestFocusInWindow();
 						}
 					}
@@ -309,13 +319,15 @@ public class ObjectProperties extends JPanel implements ActionListener
 				}
 			}
 		}
-		
+
 		PrimeMain1.currentCanvas.cleanUp();
 	}
-	
 
 
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
@@ -324,6 +336,6 @@ public class ObjectProperties extends JPanel implements ActionListener
 		if ( e.getActionCommand().equals("save") )
 		{
 			saveAction();
-		}	
+		}
 	}
 }

@@ -32,7 +32,7 @@ public class NetworkMessages extends JScrollPane
 	 */
 	public NetworkMessages(Object[] objects, String[][] data)
 	{
-		String[] columnNames = { "Object Name", "Network(?) Type", "Description", "Message Type" };
+		String[] columnNames = { "Name", "Type", "Description", "Message Type" };
 
 		table = new MessageJTable(data, columnNames);
 

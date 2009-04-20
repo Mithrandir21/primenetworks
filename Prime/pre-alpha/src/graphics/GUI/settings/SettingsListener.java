@@ -4,6 +4,7 @@
 package graphics.GUI.settings;
 
 
+import graphics.PrimeMain1;
 import graphics.Settings;
 
 import java.awt.event.ActionEvent;
@@ -69,6 +70,10 @@ public class SettingsListener implements ActionListener
 	
 	
 	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 */
 	private void setMessagesSettings()
 	{
 		Settings.showHardwareErrorMessages = messageCheckBox[0].isSelected();
@@ -86,5 +91,7 @@ public class SettingsListener implements ActionListener
 		Settings.showNetworkErrorMessages = messageCheckBox[9].isSelected();
 		Settings.showNetworkWarningMessages = messageCheckBox[10].isSelected();
 		Settings.showNetworkNoticeMessages = messageCheckBox[11].isSelected();
+		
+		PrimeMain1.updateCanvasAndObjectInfo();
 	}
 }

@@ -6,6 +6,7 @@ package graphics.GUI.workareaCanvas.providers;
 
 import exceptions.ConnectionDoesExist;
 import exceptions.ConnectionsIsNotPossible;
+import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import java.awt.BasicStroke;
@@ -161,7 +162,7 @@ public class SceneConnectProvider implements ConnectProvider
 					connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(sourceWidget));
 					connection.setTargetAnchor(AnchorFactory.createRectangularAnchor(targetWidget));
 					canvas.getConnectionLayer().addChild(connection);
-
+					PrimeMain1.updateCanvasAndObjectInfo();
 				}
 				// If there already exists a connection between the two given
 				// objects.

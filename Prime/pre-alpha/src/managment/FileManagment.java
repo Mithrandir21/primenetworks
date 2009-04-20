@@ -90,86 +90,310 @@ public class FileManagment
 		// Revalidates the locations of the objects on the scene
 		canvas.revalidateWidgetLocations();
 
-		try
+		boolean verified = checkAndVerify(canvas);
+
+		if ( verified )
 		{
-			FileOutputStream fout = new FileOutputStream(file);
-
-			// The object stream file
-			ObjectOutputStream oos = new ObjectOutputStream(fout);
-
-			// The name of the canvas
-			String nameOfCanvas = canvas.getCanvasName();
-
-			// Writes out the name of the canvas
-			oos.writeObject(nameOfCanvas);
-
-
-
-			// WRITE OBJECTS ON THE CANVAS
-
-			// The objects on the canvas
-			Object[] objects = canvas.getObjectsOnTheScene();
-
-			// The ArrayList of object that are on the canvas
-			ArrayList<Object> objectList = new ArrayList<Object>();
-
-
-			// There must be some objects on the canvas for there to be saved any widgetObjects
-			if ( objects.length > 0 )
+			try
 			{
-				// Goes through all the object on the canvas and adds then to the arraylist
-				for ( int i = 0; i < objects.length; i++ )
+				FileOutputStream fout = new FileOutputStream(file);
+
+				// The object stream file
+				ObjectOutputStream oos = new ObjectOutputStream(fout);
+
+				// The name of the canvas
+				String nameOfCanvas = canvas.getCanvasName();
+
+				// Writes out the name of the canvas
+				oos.writeObject(nameOfCanvas);
+
+				// Writes out the serial number of the canvas
+				oos.writeDouble(canvas.getSerial());
+
+
+
+				// WRITE OBJECTS ON THE CANVAS
+
+				// The objects on the canvas
+				Object[] objects = canvas.getObjectsOnTheScene();
+
+				// The ArrayList of object that are on the canvas
+				ArrayList<Object> objectList = new ArrayList<Object>();
+
+
+				// There must be some objects on the canvas for there to be saved any widgetObjects
+				if ( objects.length > 0 )
 				{
-					objectList.add(objects[i]);
+					// Goes through all the object on the canvas and adds then to the arraylist
+					for ( int i = 0; i < objects.length; i++ )
+					{
+						objectList.add(objects[i]);
+					}
+
 				}
 
-			}
+				// Writes out the objects in the form of an arraylist, even if it is empty
+				oos.writeObject(objectList);
 
-			// Writes out the objects in the form of an arraylist, even if it is empty
-			oos.writeObject(objectList);
-
-			oos.flush();
+				oos.flush();
 
 
-			// END OF WRITE OBJECTS
+				// END OF WRITE OBJECTS
 
 
 
-			// WRITE CONNECTIONS ON THE CANVAS
+				// WRITE CONNECTIONS ON THE CANVAS
 
-			// The canvas connections
-			Connection[] connections = canvas.getConnections();
+				// The canvas connections
+				Connection[] connections = canvas.getConnections();
 
-			// The ArrayList that will hold the connections
-			ArrayList<Connection> connectionList = new ArrayList<Connection>();
+				// The ArrayList that will hold the connections
+				ArrayList<Connection> connectionList = new ArrayList<Connection>();
 
-			// The must be at least on connection on the canvas for there to be saved any connections
-			if ( connections.length > 0 && connections[0] != null )
-			{
-				// Goes through all the connections on the canvas and adds them to the ArrayList
-				for ( int i = 0; i < connections.length; i++ )
+				// The must be at least on connection on the canvas for there to be saved any connections
+				if ( connections.length > 0 && connections[0] != null )
 				{
-					connectionList.add(connections[i]);
+					// Goes through all the connections on the canvas and adds them to the ArrayList
+					for ( int i = 0; i < connections.length; i++ )
+					{
+						connectionList.add(connections[i]);
+					}
 				}
+
+				// Writes out the connections ArrayList, even if it is empty
+				oos.writeObject(connectionList);
+
+				// END OF WRITE CONNECTIONS
+
+
+				oos.close();
+			}
+			catch ( Exception e )
+			{
+				e.printStackTrace();
 			}
 
-			// Writes out the connections ArrayList, even if it is empty
-			oos.writeObject(connectionList);
+			canvas.setSaved(true);
+			canvas.setChanged(false);
 
-			// END OF WRITE CONNECTIONS
+			// Reloads the JTree
+			PrimeMain1.updatePrimeTree();
 
-
-
-			oos.close();
+			PrimeMain1.workTab.revalidate();
+			PrimeMain1.workTab.repaint();
 		}
-		catch ( Exception e )
-		{
-			e.printStackTrace();
-		}
-
-		canvas.setSaved(true);
-		canvas.setChanged(false);
 	}
+
+
+
+
+	/**
+	 * This function checks whether or not there exist a file containing a WorkareaCanvas with the same and serial as
+	 * the given WorkareaCanvas. If not true is returned. If there exists a WorkareaCanvas with the same name, but not
+	 * serial number the user is asked to verify overwriting that file.
+	 * 
+	 * @param canvas
+	 * @return
+	 */
+	private static boolean checkAndVerify(WorkareaCanvas canvas)
+	{
+		String canvasName = canvas.getCanvasName();
+		double canvasSerial = canvas.getSerial();
+
+		// Creates a file object(not the actual file)
+		File file = new File("./resource/Data/" + canvas.getCanvasName() + ".dat");
+
+		// If the file(network) exists
+		if ( file.exists() )
+		{
+			try
+			{
+				FileInputStream fin = new FileInputStream(file);
+
+				ObjectInputStream ois = new ObjectInputStream(fin);
+
+				// The name of the file canvas
+				String name = (String) ois.readObject();
+
+				// The serial of the file network
+				double serial = ois.readDouble();
+
+				// If the name of the file network is the same as the name of the given WorkareaCanvas
+				if ( name.equalsIgnoreCase(canvasName) )
+				{
+					// If the serial from the file is not the same as the serial from the given WorkareaCanvas
+					if ( serial != canvasSerial )
+					{
+						int answer = JOptionPane.showConfirmDialog(null,
+								"There exists a network with given name. Do you wish to overwrite that file?",
+								"Overwrite", JOptionPane.YES_NO_OPTION);
+
+						// The user answers "yes"
+						if ( answer == 0 )
+						{
+							return true;
+						}
+						else
+						{
+							return false;
+						}
+					}
+					else
+					{
+						return true;
+					}
+				}
+			}
+			catch ( FileNotFoundException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch ( IOException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch ( ClassNotFoundException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+
+		return true;
+	}
+
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param canvas
+	 * @return
+	 */
+	public static boolean fileWorkareaCanvasExist(WorkareaCanvas canvas, String newName)
+	{
+		String canvasName = canvas.getCanvasName();
+
+		// Creates a file object(not the actual file)
+		File file = new File("./resource/Data/" + newName + ".dat");
+
+		// If the file(network) exists
+		if ( file.exists() )
+		{
+			try
+			{
+				FileInputStream fin = new FileInputStream(file);
+
+				ObjectInputStream ois = new ObjectInputStream(fin);
+
+				// The name of the file canvas
+				String name = (String) ois.readObject();
+
+
+				// If the name of the file network is the same as the name of the given WorkareaCanvas
+				if ( name.equalsIgnoreCase(newName) )
+				{
+					return true;
+				}
+			}
+			catch ( FileNotFoundException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch ( IOException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch ( ClassNotFoundException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+
+		return false;
+	}
+
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param canvas
+	 * @param newName
+	 */
+	public static void changeFileName(WorkareaCanvas canvas, String newName)
+	{
+		// Checks to see whether a canvas file actually exists
+		if ( fileWorkareaCanvasExist(canvas, canvas.getCanvasName()) )
+		{
+			// Creates a file object(not the actual file)
+			File file = new File("./resource/Data/" + canvas.getCanvasName() + ".dat");
+
+			// Creates a new file object with the new name
+			File fileNew = new File("./resource/Data/" + newName + ".dat");
+
+			// Gets the index of the curent tab where the workareaCanvas is placed
+			int index = PrimeMain1.workTab.indexOfTabWithCanvas(canvas.getCanvasName());
+			
+			// Removes the tab with that workareaCanvas
+			PrimeMain1.workTab.removeTabWithCanvas(canvas.getCanvasName(), false);
+
+			// Renames the file
+			boolean result = file.renameTo(fileNew);
+
+			// If the rename was not possible
+			if ( !result )
+			{
+				JOptionPane.showMessageDialog(null, "Rename was not possible.", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+
+			// Sets the WorkareaCanvas name
+			canvas.setCanvasName(newName);
+			
+			// Creates a new WorkareaSceneScroll
+			WorkareaSceneScroll workareaScroll = new WorkareaSceneScroll(canvas);
+
+			// Adds the WorkareaSceneScroll into a tab at the given index
+			PrimeMain1.workTab.createNewCanvasTab(workareaScroll, index);
+			
+			// Sets that index as selected
+			PrimeMain1.workTab.setSelectedIndex(index);
+			
+			// Saves the WorkareaCanvas to file
+			saveWorkareaCanvas(canvas);
+			
+			// Updates the JTree
+			PrimeMain1.updatePrimeTree();
+		}
+	}
+
+
+
+
+	/**
+	 * This function removes WorkareaCanvas with the given name from the system. It also deletes the file that contains
+	 * the workareaCanvas from the file system, so this is permanent.
+	 * 
+	 * @param fileNode
+	 *            The file that contains the WorkareaCanvas.
+	 */
+	public static void deleteWorkareaCanvas(FileTreeNode fileNode)
+	{
+		// Checks on the file before any work is done
+		File file = fileNode.getFile();
+
+		deleteWorkareaCanvas(file);
+	}
+
 
 
 
@@ -182,12 +406,8 @@ public class FileManagment
 	 * @param tree
 	 *            The JTree that the fileNode will be deleted from.
 	 */
-	public static void deleteWorkareaCanvas(FileTreeNode fileNode, JTree tree)
+	public static void deleteWorkareaCanvas(File file)
 	{
-		// Checks on the file before any work is done
-		File file = fileNode.getFile();
-
-
 
 		// If the file does not exist
 		if ( !file.exists() )
@@ -335,45 +555,14 @@ public class FileManagment
 					// hold
 					WorkareaSceneScroll newScroll = new WorkareaSceneScroll(canvas);
 
+					// Then we add the JScrollPane to the Screen
+					PrimeMain1.workTab.createNewCanvasTab(newScroll, -1);
 
-					// Tries to write out the WorkareaCanvas to a file
-					try
-					{
-						FileOutputStream fout = new FileOutputStream("./resource/Data/" + canvas.getCanvasName() + ".dat");
+					// Reloads the JTree
+					PrimeMain1.updatePrimeTree();
 
-
-						// The object stream file
-						ObjectOutputStream oos = new ObjectOutputStream(fout);
-
-						// Writes out the name of the canvas
-						oos.writeObject(nameOfCanvas);
-
-
-						oos.flush();
-						oos.close();
-
-						// Saves the canvas and creates the correct End Of File
-						saveWorkareaCanvas(canvas);
-
-						// Then we add the JScrollPane to the Screen
-						PrimeMain1.workTab.createNewCanvasTab(newScroll);
-
-						// Reloads the JTree
-						PrimeMain1.updatePrimeTree();
-
-						PrimeMain1.workTab.revalidate();
-						PrimeMain1.workTab.repaint();
-					}
-					catch ( FileNotFoundException e )
-					{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					catch ( IOException e )
-					{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					PrimeMain1.workTab.revalidate();
+					PrimeMain1.workTab.repaint();
 
 				}
 				else
@@ -447,9 +636,11 @@ public class FileManagment
 
 			// The name of the canvas
 			String name = (String) ois.readObject();
-
 			canvas.setCanvasName(name);
 
+			// The serial of the network
+			double serial = ois.readDouble();
+			canvas.setSerial(serial);
 
 			// READS THE OBJECTS THAT ARE TO BE PLACED ON THE CANVAS
 
@@ -557,15 +748,15 @@ public class FileManagment
 						ConnectionManagment.addConnection(connections[i], false, canvas);
 
 						BasicStroke stroke = null;
-						
-						if( connections[i].getConnectionType().equals("Wireless") )
+
+						if ( connections[i].getConnectionType().equals("Wireless") )
 						{
-							stroke = new BasicStroke(1.0f,        // Width
-			                           BasicStroke.JOIN_BEVEL,    // End cap
-			                           BasicStroke.CAP_BUTT,      // Join style
-			                           5.0f,                      // Miter limit
-			                           new float[] { 21.0f, 13.0f } , // Dash pattern
-			                           0.0f);                     // Dash phase
+							stroke = new BasicStroke(1.0f, // Width
+									BasicStroke.JOIN_BEVEL, // End cap
+									BasicStroke.CAP_BUTT, // Join style
+									5.0f, // Miter limit
+									new float[] { 21.0f, 13.0f }, // Dash pattern
+									0.0f); // Dash phase
 						}
 						else
 						{
@@ -594,8 +785,19 @@ public class FileManagment
 
 			ois.close();
 		}
-		catch ( Exception e )
+		catch ( FileNotFoundException e )
 		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch ( IOException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch ( ClassNotFoundException e )
+		{
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

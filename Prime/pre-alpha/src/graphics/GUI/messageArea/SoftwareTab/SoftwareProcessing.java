@@ -6,6 +6,8 @@ package graphics.GUI.messageArea.SoftwareTab;
 
 import managment.ArrayManagment;
 import objects.Object;
+import objects.softwareObjects.Antivirus;
+import objects.softwareObjects.Firewall;
 import objects.softwareObjects.OperatingSystem;
 import exceptions.ObjectNotFoundException;
 
@@ -86,6 +88,24 @@ public class SoftwareProcessing
 					"This object does not have an Operating System.", "Software Error" };
 			data = addError(data, info);
 		}
+		
+		
+		// More then one AV
+		if ( moreThenOneSoftware(obj, Antivirus.class) )
+		{
+			String[] info = { obj.getObjectName(), "Antivirus",
+					"This object contains more the one Antivirus software.", "Software Error" };
+			data = addError(data, info);
+		}
+		
+		
+		// More then one FW
+		if ( moreThenOneSoftware(obj, Firewall.class) )
+		{
+			String[] info = { obj.getObjectName(), "Firewall",
+					"This object contains more the one Firewall software.", "Software Error" };
+			data = addError(data, info);
+		}
 
 
 		return data;
@@ -106,7 +126,16 @@ public class SoftwareProcessing
 	 */
 	private static String[][] getWarnings(String[][] data, Object obj)
 	{
-		// TODO - SoftwareProcessing - Warnings
+		
+		// More then one Operating system
+		if ( moreThenOneSoftware(obj, OperatingSystem.class) )
+		{
+			String[] info = { obj.getObjectName(), "Operating System",
+					"This object contains more the one Operating System.", "Software Warning" };
+			data = addError(data, info);
+		}
+
+
 		return data;
 	}
 

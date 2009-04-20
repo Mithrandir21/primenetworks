@@ -1,9 +1,9 @@
 package graphics.GUI.objectView;
 
 
+import graphics.GUI.objectView.Connections.NetworkConnectionsView;
 import graphics.GUI.objectView.General.GeneralObjectView;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareObjectView;
-import graphics.GUI.objectView.Network.NetworkObjectView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareObjectView;
 import graphics.GUI.objectView.Visual.VisualObjectView;
 
@@ -27,7 +27,7 @@ public class ObjectViewTabbed extends JTabbedPane
 
 	public SoftwareObjectView softObjView;
 
-	public NetworkObjectView netObjView;
+	public NetworkConnectionsView netObjView;
 
 	public VisualObjectView visObjView;
 
@@ -62,7 +62,7 @@ public class ObjectViewTabbed extends JTabbedPane
 		this.addTab("Software", null, scrollPaneSW, softDesc);
 
 
-		netObjView = new NetworkObjectView(obj);
+		netObjView = new NetworkConnectionsView(obj);
 		String netDesc = "General information and option";
 		this.addTab("Network", null, netObjView, netDesc);
 

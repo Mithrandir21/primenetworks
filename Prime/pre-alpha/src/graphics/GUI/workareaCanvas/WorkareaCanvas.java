@@ -60,6 +60,9 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 {
 	// The Name of the canvas
 	private String CanvasName = "";
+	
+	// The individual serialnumber of the workareacanvas
+	private double serial = 0;
 
 	// The transferHandler that will take care of the drag and drop feature for
 	// the canvas
@@ -135,6 +138,9 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	 */
 	public void makeCanvasReady()
 	{
+		// A random number that will be the serial number of the network
+		serial = (Math.random())*50;
+		
 		// Creating the actual view
 		myView.setTransferHandler(TransHandler);
 
@@ -155,8 +161,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 		scene.getActions().addAction(new WorkareaCanvasListener());
 
 
-		// This is the main layer of the scene where the WidgetsObjects are
-		// placed.
+		// This is the main layer of the scene where the WidgetsObjects are placed.
 		mainLayer = new LayerWidget(scene);
 		scene.addChild(mainLayer);
 
@@ -164,8 +169,7 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 		interactionLayer = new LayerWidget(scene);
 		scene.addChild(interactionLayer);
 
-		// This is the connection layer where all the connections between the
-		// objects are shown.
+		// This is the connection layer where all the connections between the objects are shown.
 		connectionLayer = new LayerWidget(scene);
 		scene.addChild(connectionLayer);
 
@@ -191,6 +195,17 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	public String getCanvasName()
 	{
 		return CanvasName;
+	}
+
+
+	/**
+	 * Gets the unique network serial.
+	 *
+	 * @return the serial
+	 */
+	public double getSerial()
+	{
+		return serial;
 	}
 
 
@@ -425,6 +440,17 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 
 
 	/**
+	 * Sets the unique network serial.
+	 *
+	 * @param serial the serial to set
+	 */
+	public void setSerial(double serial)
+	{
+		this.serial = serial;
+	}
+
+
+	/**
 	 * Sets the WorkareaCanvases scene.
 	 */
 	public void setScene(ObjectScene scene)
@@ -632,8 +658,6 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	public void cleanUp()
 	{
 		doRepaint();
-
-		PrimeMain1.updateCanvasAndObjectInfo();
 
 		changed = true;
 

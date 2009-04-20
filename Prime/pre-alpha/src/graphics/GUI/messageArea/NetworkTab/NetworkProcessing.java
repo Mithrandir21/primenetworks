@@ -4,10 +4,16 @@
 package graphics.GUI.messageArea.NetworkTab;
 
 
+import connections.Connection;
 import exceptions.ObjectNotFoundException;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import managment.ArrayManagment;
 import objects.Object;
+import objects.infrastructureObjects.Hub;
+import objects.infrastructureObjects.Internet;
+import objects.infrastructureObjects.Router;
+import objects.infrastructureObjects.Switch;
+import objects.infrastructureObjects.WirelessRouter;
 
 
 /**
@@ -33,8 +39,8 @@ public class NetworkProcessing
 	 *            A boolean saying if the network should be checked for notices.
 	 * @return Returns a new multidimentional String array with possible messages for the user about the given network.
 	 */
-	public static String[][] processNetwork(String[][] curData, Object obj, WorkareaCanvas canvas,
-			boolean CheckCritical, boolean CheckWarnings, boolean CheckNotices)
+	public static String[][] processNetwork(String[][] curData, WorkareaCanvas canvas, boolean CheckCritical,
+			boolean CheckWarnings, boolean CheckNotices)
 	{
 		String[][] data = curData;
 
@@ -47,19 +53,19 @@ public class NetworkProcessing
 
 		if ( CheckCritical )
 		{
-			data = getCriticalErrors(data, obj);
+			data = getCriticalErrors(data, canvas);
 		}
 
 
 		if ( CheckWarnings )
 		{
-			data = getWarnings(data, obj);
+			data = getWarnings(data, canvas);
 		}
 
 
 		if ( CheckNotices )
 		{
-			data = getNotices(data, obj);
+			data = getNotices(data, canvas);
 		}
 
 		return data;
@@ -77,9 +83,39 @@ public class NetworkProcessing
 	 *            The network that is to be examined.
 	 * @return The data container with possible new messages for the user in addition to the old messages.
 	 */
-	private static String[][] getCriticalErrors(String[][] data, Object obj)
+	private static String[][] getCriticalErrors(String[][] data, WorkareaCanvas canvas)
 	{
-		// TODO - NetworkProcessing - Errors
+		// Gets all the objects on the given canvas
+		Object[] objects = canvas.getObjectsOnTheScene();
+
+
+		// Checks whether or not the Internet object is directly connected to a another Internet object
+		for ( int i = 0; i < objects.length; i++ )
+		{
+			if ( objects[i] instanceof Internet )
+			{
+				// Gets all the connected objects
+				Object[] connectedObject = objects[i].getConnectedDevices();
+
+				if ( connectedObject != null )
+				{
+					// Goes through all the connected objects
+					for ( int j = 0; j < connectedObject.length; j++ )
+					{
+						// If the connected object is a Internet object
+						if ( connectedObject[j] instanceof Internet )
+						{
+							String[] info = {
+									objects[i].getObjectName(),
+									"Internet Connected to Internet",
+									"This Internet access point is directly connected to another Internet access point.",
+									"Network Error" };
+							data = addError(data, info);
+						}
+					}
+				}
+			}
+		}
 		return data;
 	}
 
@@ -96,9 +132,64 @@ public class NetworkProcessing
 	 *            The network that is to be examined.
 	 * @return The data container with possible new messages for the user in addition to the old messages.
 	 */
-	private static String[][] getWarnings(String[][] data, Object obj)
+	private static String[][] getWarnings(String[][] data, WorkareaCanvas canvas)
 	{
-		// TODO - NetworkProcessing - Warnings
+		// Gets all the objects on the given canvas
+		Object[] objects = canvas.getObjectsOnTheScene();
+
+
+		// Check to see if the network contains a Internet Object
+		if ( !(containsObjectOfClass(objects, Internet.class)) )
+		{
+			String[] info = { canvas.getCanvasName(), "Internet",
+					"This network does not contain a Internet access point .", "Network Warning" };
+			data = addError(data, info);
+		}
+
+
+
+
+		// Check to see if the network contains a router/hub/switch/wireless Router Object
+		if ( !(containsObjectOfClass(objects, Router.class)) )
+		{
+			// HUB
+			if ( !(containsObjectOfClass(objects, Hub.class)) )
+			{
+				// Switch
+				if ( !(containsObjectOfClass(objects, Switch.class)) )
+				{
+					// WirelessRouter
+					if ( !(containsObjectOfClass(objects, WirelessRouter.class)) )
+					{
+						String[] info = {
+								canvas.getCanvasName(),
+								"Router",
+								"This network does not contain any network infrastructure like a router, hub or a switch.",
+								"Network Warning" };
+						data = addError(data, info);
+					}
+				}
+			}
+		}
+
+
+
+		// Goes through all objects and checks whether or not any object is not connected to anything
+		for ( int i = 0; i < objects.length; i++ )
+		{
+			if ( (objects[i].getConnectedDevices() == null) || (objects[i].getConnectedDevices().length < 1) )
+			{
+				String[] info = { objects[i].getObjectName(), "Not Connected",
+						"This Object is not connected to anything else in the network.", "Network Warning" };
+				data = addError(data, info);
+			}
+		}
+
+
+
+
+
+
 		return data;
 	}
 
@@ -114,7 +205,7 @@ public class NetworkProcessing
 	 *            The network that is to be examined.
 	 * @return The data container with possible new messages for the user in addition to the old messages.
 	 */
-	private static String[][] getNotices(String[][] data, Object obj)
+	private static String[][] getNotices(String[][] data, WorkareaCanvas canvas)
 	{
 		// TODO - NetworkProcessing - Notices
 		return data;
@@ -160,16 +251,15 @@ public class NetworkProcessing
 
 
 	/**
-	 * Checks if the given object lacks a hardware object in its get components array of the given class.
+	 * Checks if the given objects contains an object with the given class.
 	 */
-	private static boolean containsComponentOfClass(Object obj, Class<?> Class)
+	private static boolean containsObjectOfClass(Object[] objects, Class<?> Class)
 	{
 		// This test does nothing else then see if the function called throws an
-		// exception that means there was
-		// no object found with the given class.
+		// exception that means there was no object found with the given class.
 		try
 		{
-			ArrayManagment.getSpesificComponents(Class, obj.getComponents(), obj.getComponents().length);
+			ArrayManagment.getSpesificObjects(Class, objects, objects.length);
 		}
 		catch ( ObjectNotFoundException e )
 		{

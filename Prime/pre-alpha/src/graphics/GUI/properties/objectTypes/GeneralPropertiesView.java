@@ -59,7 +59,7 @@ public class GeneralPropertiesView
 	       }
 	       );
 		nameLabel.setLabelFor(nameField);
-		nameLabel.setName("Name Canvas");
+		nameField.setName("Name_Canvas");
 		panel.add(nameField);
 
 

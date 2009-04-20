@@ -315,22 +315,23 @@ public class WorkareaCanvasActions
 		// ----------DIFFERENT BORDERS------------
 		newObject.setBorder(BorderFactory.createEmptyBorder());
 
-		// newObject.setBorder(BorderFactory.createDashedBorder(Color.black,
-		// 5, 5));
+//		 newObject.setBorder(BorderFactory.createDashedBorder(Color.black,
+//		 5, 5));
 
-		// newObject.setBorder(BorderFactory.createBevelBorder(false));
+//		 newObject.setBorder(BorderFactory.createBevelBorder(true));
 
-		// newObject.setBorder(BorderFactory.createResizeBorder(5));
+//		 newObject.setBorder(BorderFactory.createResizeBorder(5));
 
-		// newObject.setBorder(BorderFactory.createRoundedBorder(10, 10,
-		// Color.white, Color.black));
+//		 newObject.setBorder(BorderFactory.createRoundedBorder(7, 7,
+//		 Color.white, Color.black));
 
-		// newObject.getActions().addAction(ActionFactory.
-		// createAddRemoveControlPointAction(1.0,3.0));
+//		 newObject.getActions().addAction(ActionFactory.
+//		 createAddRemoveControlPointAction(1.0,3.0));
 		// ---------------------------------------
 
 		canvas.getMainLayer().addChild(newObject);
 		canvas.addToNumberOfWidgetsOnTheCanvas();
+		PrimeMain1.updateCanvasAndObjectInfo();
 
 		if ( withCleanUp )
 		{

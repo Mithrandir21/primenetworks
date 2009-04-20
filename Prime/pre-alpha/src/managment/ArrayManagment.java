@@ -237,6 +237,69 @@ public class ArrayManagment
 
 		return componentsFound;
 	}
+	
+	
+	
+	
+	/**
+	 * Get specific objects by searching for objects with the give class type.
+	 * 
+	 * @return Returns an array of objects that match with the given class.
+	 * @param objectCounter
+	 *            The counter that tells how many objects are in the current objects array.
+	 * @param objects
+	 *            The current objects list.
+	 * @throws ObjectNotFoundException
+	 *             Throws an exception which states that there were not objects found with the given class.
+	 */
+	@SuppressWarnings("unchecked")
+	public static Object[] getSpesificObjects(Class objectClass, Object[] objects, int objectCounter)
+			throws ObjectNotFoundException
+	{
+		// boolean to check whether the object is found or not
+		boolean objectNotFound = true;
+
+		// Counter for number of components found
+		int tempCounter = 0;
+
+		// Container that will hold all the found object
+		Object[] objectsFound = new Object[objectCounter];
+
+
+		// Searches for object of the given class
+		for ( int i = 0; i < objectCounter; i++ )
+		{
+			/*
+			 * If the given object class matches the present object class, it will be added to the container
+			 */
+			if ( objects[i].getClass().equals(objectClass) )
+			{
+				objectsFound[tempCounter] = objects[i];
+
+				tempCounter++;
+
+				objectNotFound = false;
+			}
+		}
+
+
+		// Checks whether all the objects were found and removed
+		if ( objectNotFound == true )
+		{
+			ObjectNotFoundException exception = new ObjectNotFoundException("Object(s) of the given type, "
+					+ objectClass.getCanonicalName() + " were not found.", objectClass);
+
+			throw exception;
+		}
+
+
+
+		// Cleans the array of any null pointers at the end
+		objectsFound = cleanup.cleanObjectArray(objectsFound);
+
+		return objectsFound;
+	}
+	
 
 
 

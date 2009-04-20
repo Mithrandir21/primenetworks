@@ -323,6 +323,8 @@ public class PrimeMain1 extends JFrame
 		this.setExtendedState(Frame.MAXIMIZED_BOTH);
 		this.setVisible(true);
 
+		
+//		FileManagment.newWorkareaCanvas("New Network");
 	}
 
 
