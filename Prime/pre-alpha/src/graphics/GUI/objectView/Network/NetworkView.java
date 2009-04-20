@@ -1,4 +1,4 @@
-package graphics.GUI.objectView.Visual;
+package graphics.GUI.objectView.Network;
 
 
 import javax.swing.JPanel;
@@ -11,12 +11,12 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class VisualObjectView extends JPanel
+public class NetworkView extends JPanel
 {
 	/**
 	 * TODO - Description NEEDED!
 	 */
-	public VisualObjectView(Object obj)
+	public NetworkView(Object obj)
 	{
 
 	}

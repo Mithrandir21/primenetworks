@@ -4,8 +4,8 @@ package graphics.GUI.objectView;
 import graphics.GUI.objectView.Connections.NetworkConnectionsView;
 import graphics.GUI.objectView.General.GeneralObjectView;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareObjectView;
+import graphics.GUI.objectView.Network.NetworkView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareObjectView;
-import graphics.GUI.objectView.Visual.VisualObjectView;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -29,7 +29,7 @@ public class ObjectViewTabbed extends JTabbedPane
 
 	public NetworkConnectionsView netObjView;
 
-	public VisualObjectView visObjView;
+	public NetworkView visObjView;
 
 
 	/**
@@ -67,7 +67,7 @@ public class ObjectViewTabbed extends JTabbedPane
 		this.addTab("Network", null, netObjView, netDesc);
 
 
-		visObjView = new VisualObjectView(obj);
+		visObjView = new NetworkView(obj);
 		String visDesc = "General information and option";
 		this.addTab("Visual", null, visObjView, visDesc);
 	}
