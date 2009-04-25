@@ -12,6 +12,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.ScrollPaneConstants;
 
 import objects.Object;
+import widgetManipulation.WidgetObject;
 
 
 /**
@@ -39,14 +40,14 @@ public class ObjectViewTabbed extends JTabbedPane
 	 * @param obj
 	 *            The object that will be examined for information
 	 */
-	public ObjectViewTabbed(Object obj)
+	public ObjectViewTabbed(WidgetObject obj)
 	{
-		genObjView = new GeneralObjectView(obj);
+		genObjView = new GeneralObjectView(obj.getObject());
 		String genDesc = "General information and option";
 		this.addTab("General", null, genObjView, genDesc);
 
 
-		hardObjView = new HardwareObjectView(obj);
+		hardObjView = new HardwareObjectView(obj.getObject());
 		String hardwareDesc = "General information and option";
 		JScrollPane scrollPaneHW = new JScrollPane(hardObjView);
 		scrollPaneHW.setViewportView(hardObjView);
@@ -54,7 +55,7 @@ public class ObjectViewTabbed extends JTabbedPane
 		this.addTab("Hardware", null, scrollPaneHW, hardwareDesc);
 
 
-		softObjView = new SoftwareObjectView(obj);
+		softObjView = new SoftwareObjectView(obj.getObject());
 		String softDesc = "General information and option";
 		JScrollPane scrollPaneSW = new JScrollPane(softObjView);
 		scrollPaneSW.setViewportView(softObjView);
@@ -62,7 +63,7 @@ public class ObjectViewTabbed extends JTabbedPane
 		this.addTab("Software", null, scrollPaneSW, softDesc);
 
 
-		netObjView = new NetworkConnectionsView(obj);
+		netObjView = new NetworkConnectionsView(obj.getObject());
 		String netDesc = "General information and option";
 		this.addTab("Network", null, netObjView, netDesc);
 

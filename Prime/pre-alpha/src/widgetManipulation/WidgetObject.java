@@ -27,6 +27,8 @@ public class WidgetObject extends ImageWidget implements Transferable
 	// The object that the widget represents.
 	private Object object = null;
 
+	// The information regarding the widgets in the network
+	private WidgetNetworkInfo widNetInfo = new WidgetNetworkInfo();
 
 	private static final DataFlavor flavors[] = new DataFlavor[1];
 
@@ -43,7 +45,7 @@ public class WidgetObject extends ImageWidget implements Transferable
 	{
 		super(scene, objImg);
 		object = obj;
-		
+
 		setFlavor();
 	}
 
@@ -57,6 +59,17 @@ public class WidgetObject extends ImageWidget implements Transferable
 	{
 		return object;
 	}
+
+
+
+	/**
+	 * @return The information regarding the widget in a network.
+	 */
+	public WidgetNetworkInfo getWidgetNetworkInfo()
+	{
+		return widNetInfo;
+	}
+
 
 
 	/**
@@ -88,6 +101,17 @@ public class WidgetObject extends ImageWidget implements Transferable
 	public void setObject(Object object)
 	{
 		this.object = object;
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param netInfo
+	 */
+	public void setWidgetNetworkInfo(WidgetNetworkInfo netInfo)
+	{
+		widNetInfo = netInfo;
 	}
 
 

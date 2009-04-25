@@ -4,7 +4,6 @@
 package graphics.GUI.workareaCanvas;
 
 
-import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.providers.PrimeObjectSceneRectangularSelectProvider;
 import graphics.GUI.workareaCanvas.providers.PrimeRectangularSelectDecorator;
 import graphics.GUI.workareaCanvas.providers.WorkareaCanvasListener;
@@ -19,8 +18,6 @@ import java.awt.dnd.DropTargetListener;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.swing.ActionMap;
-import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -31,14 +28,16 @@ import objects.hardwareObjects.ExternalNetworksCard;
 import objects.hardwareObjects.InternalNetworksCard;
 
 import org.netbeans.api.visual.action.ActionFactory;
-import org.netbeans.api.visual.action.WidgetAction;
 import org.netbeans.api.visual.model.ObjectScene;
 import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
 import org.netbeans.modules.visual.action.RectangularSelectAction;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import widgetManipulation.WidgetObject;
+import widgetManipulation.WorkareaCanvasNetworkInfo;
 import actions.graphicalActions.WorkareaCanvasActions;
 import connections.Connection;
 
@@ -56,7 +55,7 @@ import connections.Connection;
  * @version 0.1
  */
 
-public class WorkareaCanvas extends JPanel implements Serializable, DropTargetListener
+public class WorkareaCanvas extends JPanel implements DropTargetListener
 {
 	// The Name of the canvas
 	private String CanvasName = "";
@@ -105,7 +104,11 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	// A boolean saying if the canvas has been changed in any way
 	private boolean changed = false;
 
-
+	
+	// The WorkareaCanvas network info
+	private WorkareaCanvasNetworkInfo networkInfo;
+	
+	
 
 
 	/**
@@ -181,6 +184,8 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 		// For creating key-to-action feature
 		// WidgetAction createActionMapAction (InputMap inputMap, ActionMap actionMap)
 
+		
+		networkInfo = new WorkareaCanvasNetworkInfo(this);
 
 		saved = false;
 		changed = false;
@@ -308,6 +313,17 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	public boolean isChanged()
 	{
 		return changed;
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 *
+	 * @return the networkInfo
+	 */
+	public WorkareaCanvasNetworkInfo getNetworkInfo()
+	{
+		return networkInfo;
 	}
 
 
@@ -553,6 +569,17 @@ public class WorkareaCanvas extends JPanel implements Serializable, DropTargetLi
 	public void setChanged(boolean changed)
 	{
 		this.changed = changed;
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 *
+	 * @param networkInfo the networkInfo to set
+	 */
+	public void setNetworkInfo(WorkareaCanvasNetworkInfo networkInfo)
+	{
+		this.networkInfo = networkInfo;
 	}
 
 

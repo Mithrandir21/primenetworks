@@ -11,8 +11,6 @@ import graphics.GUI.workareaCanvas.providers.CreateProvider;
 import graphics.GUI.workareaCanvas.providers.SceneConnectProvider;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget.JMenuWidget;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.datatransfer.DataFlavor;
@@ -43,17 +41,11 @@ import objects.serverObjects.MailServer;
 import objects.serverObjects.ProxyServer;
 
 import org.netbeans.api.visual.action.ActionFactory;
-import org.netbeans.api.visual.action.AlignWithMoveDecorator;
-import org.netbeans.api.visual.action.WidgetAction;
 import org.netbeans.api.visual.border.BorderFactory;
-import org.netbeans.api.visual.widget.ConnectionWidget;
 import org.netbeans.api.visual.widget.LabelWidget;
-import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
-import org.netbeans.modules.visual.action.SingleLayerAlignWithWidgetCollector;
 
 import widgetManipulation.WidgetObject;
-import widgetManipulation.MoveWidgetObjectProvider;
 import connections.Connection;
 import connections.WidgetExtendedConnection;
 

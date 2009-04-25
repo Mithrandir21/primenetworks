@@ -9,7 +9,6 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 
 import org.netbeans.api.visual.action.RectangularSelectDecorator;
-import org.netbeans.api.visual.model.ObjectState;
 import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
 

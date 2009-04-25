@@ -4,8 +4,6 @@
 package widgetManipulation;
 
 
-import graphics.PrimeMain1;
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Point;

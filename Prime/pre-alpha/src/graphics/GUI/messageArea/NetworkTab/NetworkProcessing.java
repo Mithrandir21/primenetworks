@@ -4,7 +4,6 @@
 package graphics.GUI.messageArea.NetworkTab;
 
 
-import connections.Connection;
 import exceptions.ObjectNotFoundException;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import managment.ArrayManagment;

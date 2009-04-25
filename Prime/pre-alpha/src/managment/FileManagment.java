@@ -23,7 +23,6 @@ import java.util.Iterator;
 import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTree;
 
 import objects.Object;
 
@@ -31,6 +30,7 @@ import org.netbeans.api.visual.anchor.AnchorFactory;
 import org.netbeans.api.visual.anchor.AnchorShape;
 
 import widgetManipulation.WidgetObject;
+import widgetManipulation.WorkareaCanvasNetworkInfo;
 import actions.graphicalActions.WorkareaCanvasActions;
 import connections.Connection;
 import connections.WidgetExtendedConnection;
@@ -109,6 +109,9 @@ public class FileManagment
 
 				// Writes out the serial number of the canvas
 				oos.writeDouble(canvas.getSerial());
+				
+				// Writes out the WorkareaCanvasNetworkInfo
+				oos.writeObject(canvas.getNetworkInfo());
 
 
 
@@ -218,6 +221,9 @@ public class FileManagment
 				// The serial of the file network
 				double serial = ois.readDouble();
 
+
+				ois.close();
+
 				// If the name of the file network is the same as the name of the given WorkareaCanvas
 				if ( name.equalsIgnoreCase(canvasName) )
 				{
@@ -243,6 +249,8 @@ public class FileManagment
 						return true;
 					}
 				}
+
+
 			}
 			catch ( FileNotFoundException e )
 			{
@@ -294,6 +302,9 @@ public class FileManagment
 				String name = (String) ois.readObject();
 
 
+				// Closes the file
+				ois.close();
+
 				// If the name of the file network is the same as the name of the given WorkareaCanvas
 				if ( name.equalsIgnoreCase(newName) )
 				{
@@ -330,7 +341,7 @@ public class FileManagment
 	 * @param canvas
 	 * @param newName
 	 */
-	public static void changeFileName(WorkareaCanvas canvas, String newName)
+	public static boolean changeFileName(WorkareaCanvas canvas, String newName)
 	{
 		// Checks to see whether a canvas file actually exists
 		if ( fileWorkareaCanvasExist(canvas, canvas.getCanvasName()) )
@@ -341,13 +352,7 @@ public class FileManagment
 			// Creates a new file object with the new name
 			File fileNew = new File("./resource/Data/" + newName + ".dat");
 
-			// Gets the index of the curent tab where the workareaCanvas is placed
-			int index = PrimeMain1.workTab.indexOfTabWithCanvas(canvas.getCanvasName());
-			
-			// Removes the tab with that workareaCanvas
-			PrimeMain1.workTab.removeTabWithCanvas(canvas.getCanvasName(), false);
-
-			// Renames the file
+			// Renames the old file
 			boolean result = file.renameTo(fileNew);
 
 			// If the rename was not possible
@@ -355,25 +360,23 @@ public class FileManagment
 			{
 				JOptionPane.showMessageDialog(null, "Rename was not possible.", "Error", JOptionPane.ERROR_MESSAGE);
 			}
+			else
+			{
 
-			// Sets the WorkareaCanvas name
-			canvas.setCanvasName(newName);
-			
-			// Creates a new WorkareaSceneScroll
-			WorkareaSceneScroll workareaScroll = new WorkareaSceneScroll(canvas);
+				// Sets the WorkareaCanvas name
+				canvas.setCanvasName(newName);
 
-			// Adds the WorkareaSceneScroll into a tab at the given index
-			PrimeMain1.workTab.createNewCanvasTab(workareaScroll, index);
-			
-			// Sets that index as selected
-			PrimeMain1.workTab.setSelectedIndex(index);
-			
-			// Saves the WorkareaCanvas to file
-			saveWorkareaCanvas(canvas);
-			
-			// Updates the JTree
-			PrimeMain1.updatePrimeTree();
+				// Saves the WorkareaCanvas to file
+				saveWorkareaCanvas(canvas, fileNew);
+
+				// Updates the JTree
+				PrimeMain1.updatePrimeTree();
+
+				return true;
+			}
 		}
+
+		return false;
 	}
 
 
@@ -386,12 +389,29 @@ public class FileManagment
 	 * @param fileNode
 	 *            The file that contains the WorkareaCanvas.
 	 */
-	public static void deleteWorkareaCanvas(FileTreeNode fileNode)
+	public static boolean deleteWorkareaCanvas(FileTreeNode fileNode)
 	{
 		// Checks on the file before any work is done
 		File file = fileNode.getFile();
 
-		deleteWorkareaCanvas(file);
+		return deleteWorkareaCanvas(file);
+	}
+
+
+
+	/**
+	 * This function removes WorkareaCanvas with the given name from the system. It also deletes the file that contains
+	 * the workareaCanvas from the file system, so this is permanent.
+	 * 
+	 * @param fileNode
+	 *            The file that contains the WorkareaCanvas.
+	 */
+	public static boolean deleteWorkareaCanvas(WorkareaCanvas canvas)
+	{
+		// Creates a file object(not the actual file)
+		File file = new File("./resource/Data/" + canvas.getCanvasName() + ".dat");
+
+		return deleteWorkareaCanvas(file);
 	}
 
 
@@ -406,7 +426,7 @@ public class FileManagment
 	 * @param tree
 	 *            The JTree that the fileNode will be deleted from.
 	 */
-	public static void deleteWorkareaCanvas(File file)
+	public static boolean deleteWorkareaCanvas(File file)
 	{
 
 		// If the file does not exist
@@ -415,7 +435,7 @@ public class FileManagment
 			JOptionPane.showMessageDialog(null, "This file\n" + file.getName() + "\n" + "does not exist in location\n"
 					+ file.getAbsolutePath(), "Error", JOptionPane.ERROR_MESSAGE);
 
-			return;
+			return false;
 		}
 
 		// If the file is a directory
@@ -424,7 +444,7 @@ public class FileManagment
 			JOptionPane.showMessageDialog(null, "This \n" + file.getName() + "\n" + "is a directory at\n"
 					+ file.getAbsolutePath(), "Error", JOptionPane.ERROR_MESSAGE);
 
-			return;
+			return false;
 		}
 
 		// If the file can not be written to(hence not deleted)
@@ -433,7 +453,7 @@ public class FileManagment
 			JOptionPane.showMessageDialog(null, "This file\n" + file.getName() + "\n" + "is write protected.", "Error",
 					JOptionPane.ERROR_MESSAGE);
 
-			return;
+			return false;
 		}
 
 		// Gets the canvas name, if possible, from the file
@@ -458,6 +478,8 @@ public class FileManagment
 			{
 				JOptionPane.showMessageDialog(null, "The file\n" + file.getName() + "\n"
 						+ "was NOT successfully deleted.", "Error", JOptionPane.ERROR_MESSAGE);
+
+				return false;
 			}
 			else
 			{
@@ -466,6 +488,8 @@ public class FileManagment
 
 				JOptionPane.showMessageDialog(null, "The file\n" + file.getName() + "\n" + "was successfully deleted.",
 						"Success", JOptionPane.PLAIN_MESSAGE);
+
+				return true;
 			}
 		}
 		// There was an open canvas found
@@ -481,6 +505,8 @@ public class FileManagment
 			{
 				JOptionPane.showMessageDialog(null, "The file\n" + file.getName() + "\n"
 						+ "was NOT successfully deleted.", "Error", JOptionPane.ERROR_MESSAGE);
+
+				return false;
 			}
 			else
 			{
@@ -495,6 +521,8 @@ public class FileManagment
 
 				JOptionPane.showMessageDialog(null, "The file\n" + file.getName() + "\n" + "was successfully deleted.",
 						"Success", JOptionPane.PLAIN_MESSAGE);
+
+				return true;
 			}
 		}
 	}
@@ -512,7 +540,7 @@ public class FileManagment
 		String nameOfCanvas = (String) JOptionPane.showInputDialog(null, "Network Name", "New Network Name",
 				JOptionPane.QUESTION_MESSAGE);
 
-		newCanvas(nameOfCanvas);
+		newCanvas(nameOfCanvas, null, null, null);
 	}
 
 
@@ -525,7 +553,20 @@ public class FileManagment
 	 */
 	public static void newWorkareaCanvas(String nameOfCanvas)
 	{
-		newCanvas(nameOfCanvas);
+		newCanvas(nameOfCanvas, null, null, null);
+	}
+	
+	
+	
+	/**
+	 * Creates a new WorkareaCanvas. The new WorkareaCanvas is opened in the workarea. The name of the new
+	 * WorkareaCanvas will be the given String.
+	 * 
+	 * @param nameOfCanvas
+	 */
+	public static void newWorkareaCanvas(String nameOfCanvas, String IPfrom, String IPto, String networkDesc)
+	{
+		newCanvas(nameOfCanvas, IPfrom, IPto, networkDesc);
 	}
 
 
@@ -538,7 +579,7 @@ public class FileManagment
 	 * @param nameOfCanvas
 	 *            The name that the WorkareaCanvas will have, after being checked.
 	 */
-	private static void newCanvas(String nameOfCanvas)
+	private static void newCanvas(String nameOfCanvas, String IPfrom, String IPto, String networkDesc)
 	{
 
 		// IF the user has canceled
@@ -550,6 +591,19 @@ public class FileManagment
 				if ( !CanvasManagment.canvasExists(nameOfCanvas) )
 				{
 					WorkareaCanvas canvas = new WorkareaCanvas(nameOfCanvas);
+					
+					if( IPfrom != null && IPto != null)
+					{
+						WorkareaCanvasNetworkInfo netInfo = canvas.getNetworkInfo();
+						
+						netInfo.setIpRangeFrom(IPfrom);
+						
+						netInfo.setIpRangeTo(IPto);
+						
+						netInfo.setNetworkNotes(networkDesc);
+						
+						canvas.setNetworkInfo(netInfo);
+					}
 
 					// First creates the WorkareaSceneScroll object that will
 					// hold
@@ -641,6 +695,10 @@ public class FileManagment
 			// The serial of the network
 			double serial = ois.readDouble();
 			canvas.setSerial(serial);
+			
+			// Reads the WorkareaCanvasNetworkInfo
+			canvas.setNetworkInfo((WorkareaCanvasNetworkInfo) ois.readObject());
+			
 
 			// READS THE OBJECTS THAT ARE TO BE PLACED ON THE CANVAS
 
@@ -822,8 +880,7 @@ public class FileManagment
 	{
 		String[] names = file.getName().split("\\.");
 
-		// As long as there are only two parts to the filename, *name* and
-		// ".dat"
+		// As long as there are only two parts to the filename, *name* and ".dat"
 		if ( names.length == 2 && names[1].equalsIgnoreCase("dat") )
 		{
 			String name = names[0];
@@ -848,8 +905,7 @@ public class FileManagment
 	{
 		String[] names = string.split("\\.");
 
-		// As long as there are only two parts to the filename, *name* and
-		// ".dat"
+		// As long as there are only two parts to the filename, *name* and ".dat"
 		if ( names.length == 2 && names[1].equalsIgnoreCase("dat") )
 		{
 			String name = names[0];

@@ -4,6 +4,8 @@
 package managment;
 
 
+import exceptions.NotValidIPAddress;
+import exceptions.RangeIsNotValidException;
 import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
@@ -235,7 +237,7 @@ public class CanvasManagment
 						{
 							PrimeMain1.canvases = new WorkareaCanvas[1];
 						}
-
+						
 						return;
 					}
 				}
@@ -382,5 +384,5 @@ public class CanvasManagment
 
 		return change;
 	}
-
+	
 }

@@ -55,7 +55,7 @@ public class ActionNew extends AbstractAction
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		FileManagment.newWorkareaCanvas();
+		new graphics.GUI.workareaCanvas.CreateNewWorkareaCanvas();
 	}
 
 }

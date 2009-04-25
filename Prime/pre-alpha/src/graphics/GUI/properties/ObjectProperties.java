@@ -26,9 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
-import managment.CanvasManagment;
 import managment.FileManagment;
-
 import objects.Clients;
 import objects.Object;
 import objects.Servers;

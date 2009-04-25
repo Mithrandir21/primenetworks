@@ -4,20 +4,14 @@
 package graphics.GUI.workareaCanvas.providers;
 
 
-import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
-import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.geom.Line2D;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
 
 import org.netbeans.api.visual.action.RectangularSelectProvider;
 import org.netbeans.api.visual.model.ObjectScene;
-import org.netbeans.api.visual.widget.ConnectionWidget;
-import org.netbeans.api.visual.widget.Widget;
 
 import widgetManipulation.WidgetObject;
 

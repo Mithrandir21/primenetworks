@@ -60,7 +60,7 @@ public class ObjectView extends JFrame implements ActionListener
 		int height = ((int) scrnsize.getHeight()) / 2;
 
 		// Set size for the settings JFrame
-		Dimension size = new Dimension(700, 525);
+		Dimension size = new Dimension(650, 525);
 
 		int initYLocation = (scrnsize.height - size.height) / 3;
 		int initXLocation = (scrnsize.width - size.width) / 2;
@@ -74,7 +74,7 @@ public class ObjectView extends JFrame implements ActionListener
 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		view = new ObjectViewTabbed(currentObject);
+		view = new ObjectViewTabbed(obj);
 
 		panel.add(view);
 
@@ -110,7 +110,7 @@ public class ObjectView extends JFrame implements ActionListener
 
 		this.setSize(size);
 		this.setLocation(initXLocation, initYLocation);
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension(650, 525));
 		this.setVisible(true);
 
 
