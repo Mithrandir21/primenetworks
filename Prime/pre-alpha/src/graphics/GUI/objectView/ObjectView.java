@@ -152,14 +152,39 @@ public class ObjectView extends JFrame implements ActionListener
 		}
 
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
 	 */
 	public void save(boolean closeObjectView)
+	{
+		// Saves the information in the general view
+		if( saveGeneralView() )
+		{
+			
+		}
+		
+		
+		// If closeObjectView is true, this JFrame is closed
+		if ( closeObjectView )
+		{
+			this.dispose();
+		}
+
+	}
+
+
+
+	/**
+	 * Saves the information in the general view. Checks the fields and gives the user
+	 * feedback if the name field is 
+	 * 
+	 * @return
+	 */
+	private boolean saveGeneralView()
 	{
 		// Gets the String from the JTextField
 		String viewNameText = view.genObjView.nametext.getText();
@@ -184,20 +209,18 @@ public class ObjectView extends JFrame implements ActionListener
 			PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject());
 
 			PrimeMain1.removeObjectView(currentObject);
-
-			// If closeObjectView is true, this JFrame is closed
-			if( closeObjectView )
-			{
-				this.dispose();
-			}
+			
+			return true;
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null, "You must specify a name for this Object.",
-					"Error", JOptionPane.ERROR_MESSAGE);
-			
+			JOptionPane.showMessageDialog(null, "You must specify a name for this Object.", "Error",
+					JOptionPane.ERROR_MESSAGE);
+
 			// Focuses on the name JTextField
 			view.genObjView.nametext.requestFocusInWindow();
+			
+			return false;
 		}
 	}
 
@@ -211,8 +234,8 @@ public class ObjectView extends JFrame implements ActionListener
 	{
 		view.updateTabInfo();
 	}
-	
-	
+
+
 	/**
 	 * @return Returns the ObjectViewTabbed that contains the object views.
 	 */

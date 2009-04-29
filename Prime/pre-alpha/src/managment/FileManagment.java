@@ -109,7 +109,7 @@ public class FileManagment
 
 				// Writes out the serial number of the canvas
 				oos.writeDouble(canvas.getSerial());
-				
+
 				// Writes out the WorkareaCanvasNetworkInfo
 				oos.writeObject(canvas.getNetworkInfo());
 
@@ -540,7 +540,7 @@ public class FileManagment
 		String nameOfCanvas = (String) JOptionPane.showInputDialog(null, "Network Name", "New Network Name",
 				JOptionPane.QUESTION_MESSAGE);
 
-		newCanvas(nameOfCanvas, null, null, null);
+		newCanvas(nameOfCanvas, null, null, null, null);
 	}
 
 
@@ -553,20 +553,21 @@ public class FileManagment
 	 */
 	public static void newWorkareaCanvas(String nameOfCanvas)
 	{
-		newCanvas(nameOfCanvas, null, null, null);
+		newCanvas(nameOfCanvas, null, null, null, null);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Creates a new WorkareaCanvas. The new WorkareaCanvas is opened in the workarea. The name of the new
 	 * WorkareaCanvas will be the given String.
 	 * 
 	 * @param nameOfCanvas
 	 */
-	public static void newWorkareaCanvas(String nameOfCanvas, String IPfrom, String IPto, String networkDesc)
+	public static void newWorkareaCanvas(String nameOfCanvas, String netmask, String IPfrom, String IPto,
+			String networkDesc)
 	{
-		newCanvas(nameOfCanvas, IPfrom, IPto, networkDesc);
+		newCanvas(nameOfCanvas, netmask, IPfrom, IPto, networkDesc);
 	}
 
 
@@ -579,7 +580,7 @@ public class FileManagment
 	 * @param nameOfCanvas
 	 *            The name that the WorkareaCanvas will have, after being checked.
 	 */
-	private static void newCanvas(String nameOfCanvas, String IPfrom, String IPto, String networkDesc)
+	private static void newCanvas(String nameOfCanvas, String netmask, String IPfrom, String IPto, String networkDesc)
 	{
 
 		// IF the user has canceled
@@ -591,18 +592,30 @@ public class FileManagment
 				if ( !CanvasManagment.canvasExists(nameOfCanvas) )
 				{
 					WorkareaCanvas canvas = new WorkareaCanvas(nameOfCanvas);
-					
-					if( IPfrom != null && IPto != null)
+
+					if ( netmask != null && IPfrom != null && IPto != null )
 					{
-						WorkareaCanvasNetworkInfo netInfo = canvas.getNetworkInfo();
-						
-						netInfo.setIpRangeFrom(IPfrom);
-						
-						netInfo.setIpRangeTo(IPto);
-						
-						netInfo.setNetworkNotes(networkDesc);
-						
-						canvas.setNetworkInfo(netInfo);
+						// If the netmask, ip from and ip to strings are not ""
+						if ( (!netmask.equals("")) && (!(IPfrom.equals(""))) && (!(IPto.equals(""))) )
+						{
+							// Creates a new network info object
+							WorkareaCanvasNetworkInfo netInfo = canvas.getNetworkInfo();
+
+							// Sets the netmask of the network
+							netInfo.setNetmask(netmask);
+
+							// Sets the IP range start of the network
+							netInfo.setIpRangeFrom(IPfrom);
+
+							// Sets the IP range end of the network
+							netInfo.setIpRangeTo(IPto);
+
+							// Sets the network notes
+							netInfo.setNetworkNotes(networkDesc);
+
+							// Sets the newly created network info object as the networks info object
+							canvas.setNetworkInfo(netInfo);
+						}
 					}
 
 					// First creates the WorkareaSceneScroll object that will
@@ -695,10 +708,10 @@ public class FileManagment
 			// The serial of the network
 			double serial = ois.readDouble();
 			canvas.setSerial(serial);
-			
+
 			// Reads the WorkareaCanvasNetworkInfo
 			canvas.setNetworkInfo((WorkareaCanvasNetworkInfo) ois.readObject());
-			
+
 
 			// READS THE OBJECTS THAT ARE TO BE PLACED ON THE CANVAS
 

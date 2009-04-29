@@ -330,8 +330,10 @@ public class WorkareaCanvasActions
 			canvas.cleanUp();
 		}
 	}
-
-
+	
+	
+	
+	
 	/**
 	 * This function removes the given WidgetObject from the given canvas. It also removes all the connections to and
 	 * from the given widgetobject.

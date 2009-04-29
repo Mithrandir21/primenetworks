@@ -10,6 +10,8 @@ import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -30,6 +32,8 @@ import javax.swing.WindowConstants;
 
 import exceptions.NotValidIPAddress;
 import exceptions.RangeIsNotValidException;
+import graphics.PrimeMain1;
+import graphics.GUI.properties.PropertiesArea;
 
 import managment.FileManagment;
 import managment.NetworkManagment;
@@ -102,18 +106,17 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 		nameLabel.setText("Network Name");
 
 
+
 		// The activate settings check box
 		settingsCheck.addActionListener(this);
 		settingsCheck.setActionCommand("settings");
 		settingsCheck.setText("IP Network Settings");
 
 
-		// // The netmask label and combo box
-		// netmaskLabel.setText("IP Netmask");
-		// netmaskCombo.setModel(new DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-		// netmaskLabel.setVisible(false);
-		// netmaskLabel.setEnabled(false);
-		netmaskCombo.setVisible(false);
+		// The netmask label and combo box
+		netmaskLabel.setText("IP Netmask");
+		netmaskCombo.setModel(new DefaultComboBoxModel(new String[] { "255.255.255.0", "255.255.0.0", "255.0.0.0" }));
+		netmaskLabel.setEnabled(false);
 		netmaskCombo.setEnabled(false);
 
 
@@ -155,8 +158,8 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 						.addGap(18, 18, 18).addGroup(
 								layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(rangeToField,
 										GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE).addComponent(netmaskCombo, 0,
-										126, Short.MAX_VALUE).addComponent(rangeFromField, GroupLayout.DEFAULT_SIZE, 126,
-										Short.MAX_VALUE)).addGap(173, 173, 173)).addGroup(
+										126, Short.MAX_VALUE).addComponent(rangeFromField, GroupLayout.DEFAULT_SIZE,
+										126, Short.MAX_VALUE)).addGap(173, 173, 173)).addGroup(
 				GroupLayout.Alignment.TRAILING,
 				layout.createSequentialGroup().addContainerGap(32, Short.MAX_VALUE).addGroup(
 						layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(jScrollPane1,
@@ -208,7 +211,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		JButton save = new JButton("Create Network");
+		final JButton save = new JButton("Create Network");
 		save.addActionListener(this);
 		save.setActionCommand("create_network");
 
@@ -225,11 +228,26 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 		panel.add(buttons);
 
 
+
+		// Sets up the "Enter" button for the namefield
+		nameField.addKeyListener(new KeyAdapter()
+		{
+			public void keyPressed(KeyEvent e)
+			{
+				int key = e.getKeyCode();
+				if ( key == KeyEvent.VK_ENTER )
+				{
+					save.doClick();
+				}
+			}
+		});
+
+
 		this.add(panel);
 
 
-		int initYLocation = (scrnsize.height - this.getSize().height) / 3;
-		int initXLocation = (scrnsize.width - this.getSize().width) / 2;
+		int initYLocation = (scrnsize.height - this.getSize().height) / 4;
+		int initXLocation = (scrnsize.width - this.getSize().width) / 3;
 
 
 		this.setSize(454, 440);
@@ -251,6 +269,8 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 		{
 			if ( settingsCheck.isSelected() )
 			{
+				netmaskLabel.setEnabled(true);
+				netmaskCombo.setEnabled(true);
 				rangeFrom.setEnabled(true);
 				rangeFromField.setEnabled(true);
 				rangeTo.setEnabled(true);
@@ -258,6 +278,8 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 			}
 			else
 			{
+				netmaskLabel.setEnabled(false);
+				netmaskCombo.setEnabled(false);
 				rangeFrom.setEnabled(false);
 				rangeFromField.setEnabled(false);
 				rangeTo.setEnabled(false);
@@ -280,9 +302,10 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 								// Checks whether or not the range between the two is valid
 								if ( NetworkManagment.processRange(rangeFromField.getText(), rangeToField.getText()) )
 								{
-									FileManagment.newWorkareaCanvas(nameField.getText(), rangeFromField.getText(),
-											rangeToField.getText(), descTextarea.getText());
-									
+									FileManagment.newWorkareaCanvas(nameField.getText(), netmaskCombo.getSelectedItem()
+											.toString(), rangeFromField.getText(), rangeToField.getText(), descTextarea
+											.getText());
+
 									this.dispose();
 								}
 							}
@@ -293,18 +316,29 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 								JOptionPane.showMessageDialog(null, output, "Error", JOptionPane.ERROR_MESSAGE);
 							}
 						}
+						else
+						{
+							JOptionPane
+							.showMessageDialog(null, "You must set the end of the IP range.", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+					}
+					else
+					{
+						JOptionPane
+						.showMessageDialog(null, "You must set the start of the IP range.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				else
 				{
 					FileManagment.newWorkareaCanvas(nameField.getText());
-					
+
 					this.dispose();
 				}
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(null, "The network most have a name.", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane
+						.showMessageDialog(null, "The network most have a name.", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 
 		}

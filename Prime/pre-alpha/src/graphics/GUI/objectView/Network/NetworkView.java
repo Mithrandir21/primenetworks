@@ -214,4 +214,17 @@ public class NetworkView extends JPanel
 						LayoutStyle.ComponentPlacement.RELATED).addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE,
 						182, Short.MAX_VALUE).addContainerGap()));
 	}
+	
+	
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 */
+	public void save(boolean closeObjectView)
+	{
+		
+	}
 }

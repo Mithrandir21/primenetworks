@@ -91,7 +91,6 @@ public class GeneralObjectView extends JPanel
         JLabel descLabel = new JLabel();
         descLabel.setText("Description");
         textarea = new JTextArea();
-        // FIXME - Save the description of the object in the objectView
         textarea.setColumns(20);
         textarea.setRows(5);
         textarea.setText(obj.getDescription());
