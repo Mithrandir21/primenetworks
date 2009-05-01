@@ -38,7 +38,7 @@ public class ValidationTest extends TestCase
 		{
 			System.out.println();
 			System.out.println("String to be tested: " + strings[i]);
-			System.out.println(checkLogic.validateWidgetName(strings[i]));
+			System.out.println(checkLogic.validateName(strings[i]));
 		}
 	}
 	

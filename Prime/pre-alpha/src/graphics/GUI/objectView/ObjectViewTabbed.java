@@ -28,9 +28,9 @@ public class ObjectViewTabbed extends JTabbedPane
 
 	public SoftwareObjectView softObjView;
 
-	public NetworkConnectionsView netObjView;
+	public NetworkConnectionsView conObjView;
 
-	public NetworkView visObjView;
+	public NetworkView netObjView;
 
 
 	/**
@@ -63,14 +63,14 @@ public class ObjectViewTabbed extends JTabbedPane
 		this.addTab("Software", null, scrollPaneSW, softDesc);
 
 
-		netObjView = new NetworkConnectionsView(obj.getObject());
+		conObjView = new NetworkConnectionsView(obj.getObject());
 		String netDesc = "General information and option";
-		this.addTab("Network", null, netObjView, netDesc);
+		this.addTab("Connections", null, conObjView, netDesc);
 
 
-		visObjView = new NetworkView(obj);
+		netObjView = new NetworkView(obj);
 		String visDesc = "General information and option";
-		this.addTab("Visual", null, visObjView, visDesc);
+		this.addTab("Network", null, netObjView, visDesc);
 	}
 	
 	

@@ -148,7 +148,7 @@ public class NetworkView extends JPanel
 																								layout
 																										.createSequentialGroup()
 																										.addComponent(
-																												widgetMacField,
+																												widgetDefaultGatewayField,
 																												GroupLayout.PREFERRED_SIZE,
 																												152,
 																												GroupLayout.PREFERRED_SIZE)
@@ -183,7 +183,7 @@ public class NetworkView extends JPanel
 																														.addPreferredGap(
 																																LayoutStyle.ComponentPlacement.RELATED)
 																														.addComponent(
-																																widgetDefaultGatewayField,
+																																widgetNetworkNameField,
 																																GroupLayout.PREFERRED_SIZE,
 																																152,
 																																GroupLayout.PREFERRED_SIZE)
@@ -195,7 +195,7 @@ public class NetworkView extends JPanel
 																												layout
 																														.createSequentialGroup()
 																														.addComponent(
-																																widgetNetworkNameField,
+																																widgetMacField																																,
 																																GroupLayout.PREFERRED_SIZE,
 																																152,
 																																GroupLayout.PREFERRED_SIZE)
@@ -219,16 +219,16 @@ public class NetworkView extends JPanel
 						layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(widgetIPlabel).addComponent(
 								widgetIPfield, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 								GroupLayout.PREFERRED_SIZE).addComponent(widgetNetworkNameLabel, GroupLayout.PREFERRED_SIZE, 14,
-								GroupLayout.PREFERRED_SIZE).addComponent(widgetDefaultGatewayField, GroupLayout.PREFERRED_SIZE,
+								GroupLayout.PREFERRED_SIZE).addComponent(widgetNetworkNameField, GroupLayout.PREFERRED_SIZE,
 								GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(
 						layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(widgetSubnetLabel).addComponent(
 								widgetSubnetField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 								GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(
 						layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(widgetMacLabel).addComponent(
-								widgetNetworkNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								widgetMacField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 								GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(
 						layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(widgetDefaultGatewayLabel).addComponent(
-								widgetMacField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								widgetDefaultGatewayField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 								GroupLayout.PREFERRED_SIZE)).addGap(67, 67, 67).addComponent(widgetNotesLabel).addPreferredGap(
 						LayoutStyle.ComponentPlacement.RELATED).addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE,
 						182, Short.MAX_VALUE).addContainerGap()));

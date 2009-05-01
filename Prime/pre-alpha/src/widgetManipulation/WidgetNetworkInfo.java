@@ -197,7 +197,7 @@ public class WidgetNetworkInfo
 			this.MAC = MAC;
 			return true;
 		}
-
+		
 		return false;
 	}
 

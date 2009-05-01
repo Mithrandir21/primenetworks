@@ -19,7 +19,11 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import logistical.checkLogic;
+import managment.NetworkManagment;
+
 import objects.Object;
+import widgetManipulation.WidgetNetworkInfo;
 import widgetManipulation.WidgetObject;
 
 
@@ -128,8 +132,8 @@ public class ObjectView extends JFrame implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -157,19 +161,21 @@ public class ObjectView extends JFrame implements ActionListener
 
 	/**
 	 * Javadoc-TODO - Description
-	 * 
 	 */
 	public void save(boolean closeObjectView)
 	{
+		boolean errorFound = false;
+
 		// Saves the information in the general view
-		if( saveGeneralView() )
+		if ( saveGeneralView() )
 		{
-			
+			// Saves the network information about the widget
+			errorFound = saveNetworkView();
 		}
-		
-		
+
+
 		// If closeObjectView is true, this JFrame is closed
-		if ( closeObjectView )
+		if ( closeObjectView && (errorFound == false) )
 		{
 			this.dispose();
 		}
@@ -179,8 +185,8 @@ public class ObjectView extends JFrame implements ActionListener
 
 
 	/**
-	 * Saves the information in the general view. Checks the fields and gives the user
-	 * feedback if the name field is 
+	 * Saves the information in the general view. Checks the fields and gives
+	 * the user feedback if the name field is
 	 * 
 	 * @return
 	 */
@@ -189,19 +195,23 @@ public class ObjectView extends JFrame implements ActionListener
 		// Gets the String from the JTextField
 		String viewNameText = view.genObjView.nametext.getText();
 
-		// If the name of the object is anything other then ""
-		if ( !viewNameText.equals("") )
+		// Validates the name
+		if ( checkLogic.validateName(viewNameText) )
 		{
 			// Updates the name of the WidgetObject on the Scene
-			currentObject = GraphicalFunctions.updateWidgetObjectCanvasName(currentObject, widgetObj, viewNameText);
+			currentObject = GraphicalFunctions.updateWidgetObjectCanvasName(
+					currentObject, widgetObj, viewNameText);
 
 			// Sets the new name as the Widgets tooltip
 			widgetObj.setToolTipText(viewNameText);
 
-			// If the description in the JTextArea is different then the objects current description
-			if ( !currentObject.getDescription().equals(view.genObjView.textarea.getText()) )
+			// If the description in the JTextArea is different then the
+			// objects current description
+			if ( !currentObject.getDescription().equals(
+					view.genObjView.textarea.getText()) )
 			{
-				currentObject.setDescription(view.genObjView.textarea.getText());
+				currentObject
+						.setDescription(view.genObjView.textarea.getText());
 			}
 
 
@@ -209,33 +219,137 @@ public class ObjectView extends JFrame implements ActionListener
 			PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject());
 
 			PrimeMain1.removeObjectView(currentObject);
-			
+
 			return true;
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null, "You must specify a name for this Object.", "Error",
+			JOptionPane.showMessageDialog(null,
+					"You must specify a name for this Object.", "Error",
 					JOptionPane.ERROR_MESSAGE);
 
 			// Focuses on the name JTextField
 			view.genObjView.nametext.requestFocusInWindow();
-			
+
 			return false;
 		}
-	}
-	
-	
-	
-	private boolean saveNetworkView()
-	{
-		return false;
 	}
 
 
 
 	/**
-	 * This method calls the UpdateTabInfo method in the ObjectViewTabbed class to update the information about the
-	 * current object.
+	 * TODO - Description
+	 */
+	private boolean saveNetworkView()
+	{
+		WidgetNetworkInfo info = widgetObj.getWidgetNetworkInfo();
+
+		boolean errorFound = false;
+
+
+		// Validates IP address and then sets it. If false is returned, the
+		// user will be given a error message.
+		if ( !(view.netObjView.widgetIPfield.getText().equals("")) )
+		{
+			if ( !(info.setIp(view.netObjView.widgetIPfield.getText())) )
+			{
+				JOptionPane.showMessageDialog(null,
+						"The IP is not a valid IP.", "Error",
+						JOptionPane.ERROR_MESSAGE);
+
+				errorFound = true;
+			}
+		}
+
+		// Validates and sets subnet
+		if ( !(view.netObjView.widgetSubnetField.getText().equals("")) )
+		{
+			if ( !(info.setNetmask(view.netObjView.widgetSubnetField.getText())) )
+			{
+				// If not other error has been given
+				if ( errorFound != true )
+				{
+					JOptionPane.showMessageDialog(null,
+							"The netmask is not a valid netmask.", "Error",
+							JOptionPane.ERROR_MESSAGE);
+
+					errorFound = true;
+				}
+			}
+		}
+
+		// Validates and sets MAC address
+		if ( !(view.netObjView.widgetMacField.getText().equals("")) )
+		{
+			if ( !(info.setMAC(view.netObjView.widgetMacField.getText())) )
+			{
+				// If not other error has been given
+				if ( errorFound != true )
+				{
+					JOptionPane.showMessageDialog(null,
+							"The MAC address is not a valid MAC address.",
+							"Error", JOptionPane.ERROR_MESSAGE);
+
+					errorFound = true;
+				}
+			}
+		}
+
+		// Validates and sets Default gateway
+		if ( !(view.netObjView.widgetDefaultGatewayField.getText().equals("")) )
+		{
+			if ( !(info
+					.setDefaultGateway(view.netObjView.widgetDefaultGatewayField
+							.getText())) )
+			{
+				// If not other error has been given
+				if ( errorFound != true )
+				{
+					JOptionPane.showMessageDialog(null,
+							"The IP of the Default Gateway is not a valid IP.",
+							"Error", JOptionPane.ERROR_MESSAGE);
+
+					errorFound = true;
+				}
+			}
+		}
+
+		// Validates and sets widget name
+		if ( !(view.netObjView.widgetNetworkNameField.getText().equals("")) )
+		{
+			if ( checkLogic.validateName(view.netObjView.widgetNetworkNameField
+					.getText()) )
+			{
+				info.setNetworkName(view.netObjView.widgetNetworkNameField
+						.getText());
+			}
+			else
+			{
+				// If not other error has been given
+				if ( errorFound != true )
+				{
+					JOptionPane.showMessageDialog(null,
+							"The Network Name is not a valid name.", "Error",
+							JOptionPane.ERROR_MESSAGE);
+
+					errorFound = true;
+				}
+			}
+		}
+
+
+		// Sets the widget notes (can be anything)
+		info.setWidgetNotes(view.netObjView.widgetNotesArea.getText());
+
+
+		return errorFound;
+	}
+
+
+
+	/**
+	 * This method calls the UpdateTabInfo method in the ObjectViewTabbed class
+	 * to update the information about the current object.
 	 */
 	public void updateViewInfo()
 	{

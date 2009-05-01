@@ -537,10 +537,7 @@ public class FileManagment
 	 */
 	public static void newWorkareaCanvas()
 	{
-		String nameOfCanvas = (String) JOptionPane.showInputDialog(null, "Network Name", "New Network Name",
-				JOptionPane.QUESTION_MESSAGE);
-
-		newCanvas(nameOfCanvas, null, null, null, null);
+		new graphics.GUI.workareaCanvas.CreateNewWorkareaCanvas();
 	}
 
 
