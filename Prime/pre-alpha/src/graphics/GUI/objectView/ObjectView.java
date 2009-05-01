@@ -228,7 +228,7 @@ public class ObjectView extends JFrame implements ActionListener
 	
 	private boolean saveNetworkView()
 	{
-		
+		return false;
 	}
 
 

@@ -4,10 +4,10 @@ import java.util.regex.Pattern;
 
 public class checkLogic
 {
-	public static boolean checkForIllegalCharacters(String text)
+	public static boolean validateWidgetName(String text)
 	{
-		Pattern test = Pattern.compile("");
+		Pattern test = Pattern.compile("\\w");
 		
-		return true;
+		return test.pattern().matches(text);
 	}
 }
