@@ -4,10 +4,18 @@ import java.util.regex.Pattern;
 
 public class checkLogic
 {
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param text
+	 * @return
+	 */
 	public static boolean validateWidgetName(String text)
 	{
-		Pattern test = Pattern.compile("\\w");
+		String pat = "([\\w\\-_øæåØÆÅ\\d\\s]+)";
 		
-		return test.pattern().matches(text);
+		Pattern test = Pattern.compile(pat);
+		
+		return test.matcher(text).matches();
 	}
 }
