@@ -19,71 +19,91 @@ import widgetManipulation.WidgetObject;
  */
 public class NetworkView extends JPanel
 {
+	private JLabel widgetIPlabel = new JLabel();
+	public JTextField widgetIPfield = new JTextField();
+	
+	
+	private JLabel widgetSubnetLabel = new JLabel();
+	public JTextField widgetSubnetField = new JTextField();
+	
+	
+	private JLabel widgetMacLabel = new JLabel();
+	public JTextField widgetMacField = new JTextField();
+	
+	
+	private JLabel widgetDefaultGatewayLabel = new JLabel();
+	public JTextField widgetDefaultGatewayField = new JTextField();
+	
+	
+	private JLabel widgetNetworkNameLabel = new JLabel();
+	public JTextField widgetNetworkNameField = new JTextField();
+	
+	
+	private JLabel widgetNotesLabel = new JLabel();
+	public JTextArea widgetNotesArea = new JTextArea();
+	
+
+	
 	/**
-	 * TODO - Description NEEDED!
+	 * Javadoc-TODO - Description NEEDED!
+	 *
+	 * @param obj
 	 */
 	public NetworkView(WidgetObject obj)
 	{
-		JLabel jLabel1 = new JLabel();
-		jLabel1.setText("IP");
-		JTextField jTextField1 = new JTextField();
+		
+		widgetIPlabel.setText("IP");
 
 		if ( obj.getWidgetNetworkInfo().getIp() != null )
 		{
-			jTextField1.setText(obj.getWidgetNetworkInfo().getIp());
+			widgetIPfield.setText(obj.getWidgetNetworkInfo().getIp());
 		}
 
 
-		JLabel jLabel2 = new JLabel();
-		jLabel2.setText("Subnet");
-		JTextField jTextField2 = new JTextField();
+		
+		widgetSubnetLabel.setText("Subnet");
 
 		if ( obj.getWidgetNetworkInfo().getNetmask() != null )
 		{
-			jTextField2.setText(obj.getWidgetNetworkInfo().getNetmask());
+			widgetSubnetField.setText(obj.getWidgetNetworkInfo().getNetmask());
 		}
 
 
 
-		JLabel jLabel4 = new JLabel();
-		jLabel4.setText("MAC");
-		JTextField jTextField4 = new JTextField();
+		
+		widgetMacLabel.setText("MAC");
 
 		if ( obj.getWidgetNetworkInfo().getMAC() != null )
 		{
-			jTextField4.setText(obj.getWidgetNetworkInfo().getMAC());
+			widgetMacField.setText(obj.getWidgetNetworkInfo().getMAC());
 		}
 
 
-		JLabel jLabel6 = new JLabel();
-		jLabel6.setText("Default Gateway");
-		JTextField jTextField5 = new JTextField();
+		widgetDefaultGatewayLabel.setText("Default Gateway");
 
 		if ( obj.getWidgetNetworkInfo().getDefaultGateway() != null )
 		{
-			jTextField5.setText(obj.getWidgetNetworkInfo().getDefaultGateway());
+			widgetDefaultGatewayField.setText(obj.getWidgetNetworkInfo().getDefaultGateway());
 		}
 
 
-		JLabel jLabel3 = new JLabel();
-		jLabel3.setText("Network Name");
-		JTextField jTextField3 = new JTextField();
+		
+		widgetNetworkNameLabel.setText("Network Name");
 
 		if ( obj.getWidgetNetworkInfo().getNetworkName() != null )
 		{
-			jTextField3.setText(obj.getWidgetNetworkInfo().getNetworkName());
+			widgetNetworkNameField.setText(obj.getWidgetNetworkInfo().getNetworkName());
 		}
 
 
 
-		JLabel jLabel5 = new JLabel();
-		jLabel5.setText("Network Notes");
-		JTextArea jTextArea1 = new JTextArea();
+		
+		widgetNotesLabel.setText("Network Notes");
 		JScrollPane jScrollPane1 = new JScrollPane();
 
 		if ( obj.getWidgetNetworkInfo().getWidgetNotes() != null )
 		{
-			jTextArea1.setText(obj.getWidgetNetworkInfo().getWidgetNotes());
+			widgetNotesArea.setText(obj.getWidgetNetworkInfo().getWidgetNotes());
 		}
 
 
@@ -92,10 +112,9 @@ public class NetworkView extends JPanel
 
 
 
-
-		jTextArea1.setColumns(20);
-		jTextArea1.setRows(5);
-		jScrollPane1.setViewportView(jTextArea1);
+		widgetNotesArea.setColumns(20);
+		widgetNotesArea.setRows(5);
+		jScrollPane1.setViewportView(widgetNotesArea);
 
 		GroupLayout layout = new GroupLayout(this);
 		this.setLayout(layout);
@@ -115,10 +134,10 @@ public class NetworkView extends JPanel
 																		.addGroup(
 																				layout.createParallelGroup(
 																						GroupLayout.Alignment.TRAILING)
-																						.addComponent(jLabel1)
-																						.addComponent(jLabel4)
-																						.addComponent(jLabel2)
-																						.addComponent(jLabel6))
+																						.addComponent(widgetIPlabel)
+																						.addComponent(widgetMacLabel)
+																						.addComponent(widgetSubnetLabel)
+																						.addComponent(widgetDefaultGatewayLabel))
 																		.addPreferredGap(
 																				LayoutStyle.ComponentPlacement.RELATED)
 																		.addGroup(
@@ -129,7 +148,7 @@ public class NetworkView extends JPanel
 																								layout
 																										.createSequentialGroup()
 																										.addComponent(
-																												jTextField4,
+																												widgetMacField,
 																												GroupLayout.PREFERRED_SIZE,
 																												152,
 																												GroupLayout.PREFERRED_SIZE)
@@ -147,10 +166,10 @@ public class NetworkView extends JPanel
 																																				GroupLayout.Alignment.TRAILING,
 																																				false)
 																																		.addComponent(
-																																				jTextField2,
+																																				widgetSubnetField,
 																																				GroupLayout.Alignment.LEADING)
 																																		.addComponent(
-																																				jTextField1,
+																																				widgetIPfield,
 																																				GroupLayout.Alignment.LEADING,
 																																				GroupLayout.PREFERRED_SIZE,
 																																				152,
@@ -160,11 +179,11 @@ public class NetworkView extends JPanel
 																																55,
 																																Short.MAX_VALUE)
 																														.addComponent(
-																																jLabel3)
+																																widgetNetworkNameLabel)
 																														.addPreferredGap(
 																																LayoutStyle.ComponentPlacement.RELATED)
 																														.addComponent(
-																																jTextField5,
+																																widgetDefaultGatewayField,
 																																GroupLayout.PREFERRED_SIZE,
 																																152,
 																																GroupLayout.PREFERRED_SIZE)
@@ -176,7 +195,7 @@ public class NetworkView extends JPanel
 																												layout
 																														.createSequentialGroup()
 																														.addComponent(
-																																jTextField3,
+																																widgetNetworkNameField,
 																																GroupLayout.PREFERRED_SIZE,
 																																152,
 																																GroupLayout.PREFERRED_SIZE)
@@ -193,38 +212,25 @@ public class NetworkView extends JPanel
 																								GroupLayout.PREFERRED_SIZE,
 																								553,
 																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(jLabel5))
+																						.addComponent(widgetNotesLabel))
 																		.addContainerGap(43, Short.MAX_VALUE)))));
 		layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(
 				layout.createSequentialGroup().addGap(49, 49, 49).addGroup(
-						layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(jLabel1).addComponent(
-								jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE).addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 14,
-								GroupLayout.PREFERRED_SIZE).addComponent(jTextField5, GroupLayout.PREFERRED_SIZE,
+						layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(widgetIPlabel).addComponent(
+								widgetIPfield, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE).addComponent(widgetNetworkNameLabel, GroupLayout.PREFERRED_SIZE, 14,
+								GroupLayout.PREFERRED_SIZE).addComponent(widgetDefaultGatewayField, GroupLayout.PREFERRED_SIZE,
 								GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(
-						layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(jLabel2).addComponent(
-								jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+						layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(widgetSubnetLabel).addComponent(
+								widgetSubnetField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 								GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(
-						layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(jLabel4).addComponent(
-								jTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+						layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(widgetMacLabel).addComponent(
+								widgetNetworkNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 								GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(
-						layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(jLabel6).addComponent(
-								jTextField4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)).addGap(67, 67, 67).addComponent(jLabel5).addPreferredGap(
+						layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(widgetDefaultGatewayLabel).addComponent(
+								widgetMacField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)).addGap(67, 67, 67).addComponent(widgetNotesLabel).addPreferredGap(
 						LayoutStyle.ComponentPlacement.RELATED).addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE,
 						182, Short.MAX_VALUE).addContainerGap()));
-	}
-	
-	
-	
-	
-	
-	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 */
-	public void save(boolean closeObjectView)
-	{
-		
 	}
 }

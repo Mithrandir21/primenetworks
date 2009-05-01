@@ -223,6 +223,13 @@ public class ObjectView extends JFrame implements ActionListener
 			return false;
 		}
 	}
+	
+	
+	
+	private boolean saveNetworkView()
+	{
+		
+	}
 
 
 
