@@ -1,4 +1,4 @@
-package graphics.GUI.workareaCanvas.providers;
+package widgetManipulation.Providers;
 
 
 import graphics.PrimeMain1;

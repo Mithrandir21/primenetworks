@@ -1,16 +1,24 @@
 package managment;
 
 
+import java.awt.BasicStroke;
+
 import javax.swing.JOptionPane;
 
 import logistical.cleanup;
 import objects.Object;
 import objects.hardwareObjects.InternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
+
+import org.netbeans.api.visual.anchor.AnchorFactory;
+import org.netbeans.api.visual.anchor.AnchorShape;
+
+import widgetManipulation.WidgetObject;
 import connections.Connection;
 import connections.DeviceConnection;
 import connections.InternalConnection;
 import connections.NetworkConnection;
+import connections.WidgetExtendedConnection;
 import containers.ConnectionContainer;
 import exceptions.ConnectionDoesExist;
 import exceptions.ConnectionDoesNotExist;
@@ -18,6 +26,7 @@ import exceptions.ConnectionsIsNotPossible;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
+import graphics.GUI.workareaCanvas.providers.AdapterExtended;
 
 
 /**
@@ -83,6 +92,62 @@ public class ConnectionManagment
 		{
 			connection = new NetworkConnection(conName, conDesc, objectA, objectB, type);
 		}
+
+
+		return connection;
+	}
+
+
+
+	/**
+	 * Modifies a {@link WidgetExtendedConnection} object to be represented by a specific {@link BasicStroke}. 
+	 * It also sets the source and target anchors of the WidgetExtendedConnection.
+	 * The BasicStroke depends on the type of connection between the two objects. 
+	 * If the it is a wireless connection, the stroke will be dotted. If the connection is by a
+	 * physical cable, it will be a straight line.
+	 * 
+	 * 
+	 * @param canvas The {@link WorkareaCanvas network} that the connection exists in.
+	 * @param con The system {@link Connection} that is the actual connection between the Objects.
+	 * @param connection The {@link WidgetExtendedConnection} widget representing the connection in the the network.
+	 * @param sourceWidget The {@link WidgetObject} the connection originates at.
+	 * @param TargetWidObj The {@link WidgetObject} the connection is destined for.
+	 * @return A {@link WidgetExtendedConnection} with a specific {@link BasicStroke}.
+	 */
+	public static WidgetExtendedConnection createWidgetExtendedConnection(WorkareaCanvas canvas, Connection con,
+			WidgetExtendedConnection connection,WidgetObject SourceWidObj,WidgetObject TargetWidObj)
+	{
+		// Adds the connection to the connection array for the WorkareaCanvas.
+		ConnectionManagment.addConnection(con, false, canvas);
+
+		BasicStroke stroke = null;
+
+		if ( con.getConnectionType().equals("Wireless") )
+		{
+			stroke = new BasicStroke(1.0f, // Width
+					BasicStroke.JOIN_BEVEL, // End cap
+					BasicStroke.CAP_BUTT, // Join style
+					5.0f, // Miter limit
+					new float[] { 21.0f, 13.0f }, // Dash pattern
+					0.0f); // Dash phase
+		}
+		else
+		{
+			stroke = new BasicStroke(1.0f,// Width
+					BasicStroke.JOIN_BEVEL, // End cap
+					BasicStroke.CAP_BUTT, // Join style
+					5.0f, // Miter limit
+					new float[] { 1.0f }, // Dash pattern
+					0.0f); // Dash phase
+		}
+
+		// The array anchor
+		connection.setTargetAnchorShape(AnchorShape.NONE);
+		connection.setStroke(stroke);
+		connection.setToolTipText("This is a connection");
+		connection.getActions().addAction(new AdapterExtended());
+		connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(SourceWidObj));
+		connection.setTargetAnchor(AnchorFactory.createRectangularAnchor(TargetWidObj));
 
 
 		return connection;

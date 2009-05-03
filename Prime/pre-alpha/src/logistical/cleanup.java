@@ -3,8 +3,10 @@ package logistical;
 
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import objects.Object;
+import objects.Room;
 import objects.Software;
 import objects.softwareObjects.OperatingSystem;
+import widgetManipulation.WidgetRoom;
 import connections.Connection;
 import connections.DeviceConnection;
 import connections.InternalConnection;
@@ -361,6 +363,81 @@ public class cleanup
 
 		// Makes the array that is to hold the results
 		InternalConnection[] results = new InternalConnection[counter];
+
+		// Creates a new array that will copy all the non-null objects.
+		for ( int i = 0; i < counter; i++ )
+		{
+			results[i] = Tempresults[i];
+		}
+
+		return results;
+	}
+	
+	
+	
+	/**
+	 * Function to remove null pointer from the an array of WidgetRoom.
+	 */
+	public static WidgetRoom[] cleanObjectArray(WidgetRoom[] array)
+	{
+
+		// Temporary counter for the function
+		int counter = 0;
+
+		// Makes an array with given length
+		WidgetRoom[] Tempresults = new WidgetRoom[array.length];
+
+		// Goes through all of the found components array and moves those that
+		// are not null
+		for ( int i = 0; i < array.length; i++ )
+		{
+			if ( array[i] != null )
+			{
+				Tempresults[counter] = array[i];
+
+				counter++;
+			}
+		}
+
+		// Makes the array that is to hold the results
+		WidgetRoom[] results = new WidgetRoom[counter];
+
+		// Creates a new array that will copy all the non-null objects.
+		for ( int i = 0; i < counter; i++ )
+		{
+			results[i] = Tempresults[i];
+		}
+
+		return results;
+	}
+	
+	
+	/**
+	 * Function to remove null pointer from the an array of Room.
+	 */
+	public static Room[] cleanObjectArray(Room[] array)
+	{
+
+		// Temporary counter for the function
+		int counter = 0;
+
+		// Makes an array with given length
+		Room[] Tempresults = new Room[array.length];
+
+		// Goes through all of the found components array and moves those that
+		// are not null
+		for ( int i = 0; i < array.length; i++ )
+		{
+			if ( array[i] != null )
+			{
+				Tempresults[counter] = array[i];
+
+				counter++;
+			}
+		}
+
+		// Makes the array that is to hold the results
+		Room[] results = new Room[counter];
 
 		// Creates a new array that will copy all the non-null objects.
 		for ( int i = 0; i < counter; i++ )

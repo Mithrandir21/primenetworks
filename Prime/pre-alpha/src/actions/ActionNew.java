@@ -10,11 +10,9 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
-import managment.FileManagment;
-
 
 /**
- * Description NEEDED!
+ * This class is used by the system to call  
  * 
  * @author Bahram Malaekeh
  * @version 0.1

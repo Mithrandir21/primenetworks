@@ -7,10 +7,8 @@ package widgetManipulation;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import java.io.Serializable;
-import java.util.regex.Pattern;
 
 import managment.NetworkManagment;
-import managment.RangeNotBigEnoughException;
 
 
 /**

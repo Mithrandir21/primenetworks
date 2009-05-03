@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphics.GUI.workareaCanvas.providers;
+package widgetManipulation.Providers;
 
 
 import graphics.GUI.workareaCanvas.WorkareaCanvas;

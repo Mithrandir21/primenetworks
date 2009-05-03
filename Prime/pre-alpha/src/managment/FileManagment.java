@@ -8,9 +8,7 @@ import graphics.PrimeMain1;
 import graphics.GUI.selectArea.PrimeJTree.FileTreeNode;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import graphics.GUI.workareaCanvas.WorkareaSceneScroll;
-import graphics.GUI.workareaCanvas.providers.AdapterExtended;
 
-import java.awt.BasicStroke;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -25,10 +23,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 import objects.Object;
-
-import org.netbeans.api.visual.anchor.AnchorFactory;
-import org.netbeans.api.visual.anchor.AnchorShape;
-
+import objects.Room;
 import widgetManipulation.WidgetObject;
 import widgetManipulation.WorkareaCanvasNetworkInfo;
 import actions.graphicalActions.WorkareaCanvasActions;
@@ -166,7 +161,35 @@ public class FileManagment
 				// Writes out the connections ArrayList, even if it is empty
 				oos.writeObject(connectionList);
 
+				oos.flush();
+
 				// END OF WRITE CONNECTIONS
+
+
+				// WRITE ROOMS ON THE CANVAS
+
+				// The canvas rooms
+				Room[] rooms = canvas.getNetworkRooms();
+
+				// The ArrayList that will hold the rooms objects
+				ArrayList<Room> roomList = new ArrayList<Room>();
+
+				// The must be at least on room on the canvas for there to be saved any rooms
+				if ( rooms.length > 0 && rooms[0] != null )
+				{
+					// Goes through all the rooms on the canvas and adds them to the ArrayList
+					for ( int i = 0; i < rooms.length; i++ )
+					{
+						roomList.add(rooms[i]);
+					}
+				}
+
+				// Writes out the room ArrayList, even if it is empty
+				oos.writeObject(roomList);
+
+				oos.flush();
+
+				// END OF WRITE ROOMS
 
 
 				oos.close();
@@ -812,43 +835,69 @@ public class FileManagment
 						WidgetObject targetWidget = CanvasManagment.findWidgetObjectByObjectName(connections[i]
 								.getObject2(), canvas);
 
-						// Adds the connection to the connection array for the WorkareaCanvas
-						ConnectionManagment.addConnection(connections[i], false, canvas);
-
-						BasicStroke stroke = null;
-
-						if ( connections[i].getConnectionType().equals("Wireless") )
-						{
-							stroke = new BasicStroke(1.0f, // Width
-									BasicStroke.JOIN_BEVEL, // End cap
-									BasicStroke.CAP_BUTT, // Join style
-									5.0f, // Miter limit
-									new float[] { 21.0f, 13.0f }, // Dash pattern
-									0.0f); // Dash phase
-						}
-						else
-						{
-							stroke = new BasicStroke(1.0f,// Width
-									BasicStroke.JOIN_BEVEL, // End cap
-									BasicStroke.CAP_BUTT, // Join style
-									5.0f, // Miter limit
-									new float[] { 1.0f }, // Dash pattern
-									0.0f); // Dash phase
-						}
-
-						// The array anchor
-						connection.setTargetAnchorShape(AnchorShape.NONE);
-						connection.setStroke(stroke);
-						connection.setToolTipText("This is a connection");
-						connection.getActions().addAction(new AdapterExtended());
-						connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(sourceWidget));
-						connection.setTargetAnchor(AnchorFactory.createRectangularAnchor(targetWidget));
+						// Creates the whole connection with all actions
+						connection = ConnectionManagment.createWidgetExtendedConnection(canvas, connections[i],
+								connection, sourceWidget, targetWidget);
+						
+						
+						// Add the connection the connection layer
 						canvas.getConnectionLayer().addChild(connection);
 					}
 				}
 			}
 
 			// END OF CONNECTIONS
+
+
+
+			// READ THE NETWORK ROOMS
+
+
+			// The ArrayList that will hold all the rooms
+			ArrayList<Room> roomList = new ArrayList<Room>();
+
+			// Reads inn the ArrayList from the file stream
+			roomList = (ArrayList<Room>) ois.readObject();
+
+			// The size of the new Room array
+			int roomArraySize = 0;
+
+			// Iterates through the room list
+			for ( Iterator it = roomList.iterator(); it.hasNext(); )
+			{
+				roomArraySize++;
+				it.next();
+			}
+
+			// If there were any objects found
+			if ( roomArraySize > 0 )
+			{
+				// The room array
+				Room[] rooms = new Room[roomArraySize];
+
+				// The index of the room array
+				int roomIndex = 0;
+
+				// Iterates through the list and adds the room to the room array
+				for ( Iterator it = roomList.iterator(); it.hasNext(); )
+				{
+					rooms[roomIndex] = (Room) it.next();
+					roomIndex++;
+				}
+
+				// Goes through the entire connections array and adds the connections to the WorkareaCanvas
+				for ( int i = 0; i < rooms.length; i++ )
+				{
+					if ( rooms[i] != null )
+					{
+						RoomManagment.addRoom(canvas, rooms[i]);
+					}
+				}
+			}
+
+
+			// END OF READ NETWORK ROOMS
+
 
 
 			ois.close();

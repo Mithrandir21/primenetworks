@@ -11,7 +11,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.ScrollPaneConstants;
 
-import objects.Object;
 import widgetManipulation.WidgetObject;
 
 

@@ -111,7 +111,12 @@ public class PrimeMain1 extends JFrame
 
 	// The variable for the object that is in view.
 	public static ArrayList<ObjectView> objView = new ArrayList<ObjectView>(1);
+
 	// FIXME - Change the way ObjectViews are handled
+
+	// A status saying whether or not the system is currently trying to create a connection between two object on
+	// the workareaCanvas.
+	public static boolean connecting = false;
 
 
 
@@ -165,7 +170,7 @@ public class PrimeMain1 extends JFrame
 				splash.close();
 			}
 		}
-		
+
 		// Sets the programs tooltip delay
 		ToolTipManager.sharedInstance().setDismissDelay(10000);
 
@@ -323,8 +328,8 @@ public class PrimeMain1 extends JFrame
 		this.setExtendedState(Frame.MAXIMIZED_BOTH);
 		this.setVisible(true);
 
-		
-//		FileManagment.newWorkareaCanvas("New Network");
+
+		// FileManagment.newWorkareaCanvas("New Network");
 	}
 
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphics.GUI.workareaCanvas.providers;
+package widgetManipulation.Providers;
 
 
 import org.netbeans.api.visual.action.HoverProvider;

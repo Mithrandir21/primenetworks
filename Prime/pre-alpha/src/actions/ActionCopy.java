@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  * Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * @version 0.1
+ * @version 1
  */
 public class ActionCopy extends AbstractAction
 {

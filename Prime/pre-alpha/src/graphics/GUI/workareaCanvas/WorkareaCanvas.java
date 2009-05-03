@@ -4,8 +4,6 @@
 package graphics.GUI.workareaCanvas;
 
 
-import graphics.GUI.workareaCanvas.providers.PrimeObjectSceneRectangularSelectProvider;
-import graphics.GUI.workareaCanvas.providers.PrimeRectangularSelectDecorator;
 import graphics.GUI.workareaCanvas.providers.WorkareaCanvasListener;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas.JMenuWorkareaCanvas;
 
@@ -15,7 +13,6 @@ import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
-import java.io.Serializable;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -24,6 +21,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
 
 import objects.Object;
+import objects.Room;
 import objects.hardwareObjects.ExternalNetworksCard;
 import objects.hardwareObjects.InternalNetworksCard;
 
@@ -32,12 +30,12 @@ import org.netbeans.api.visual.model.ObjectScene;
 import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
-import org.netbeans.modules.visual.action.RectangularSelectAction;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
+import widgetManipulation.PrimeRectangularSelectDecorator;
 import widgetManipulation.WidgetObject;
+import widgetManipulation.WidgetRoom;
 import widgetManipulation.WorkareaCanvasNetworkInfo;
+import widgetManipulation.Providers.PrimeObjectSceneRectangularSelectProvider;
 import actions.graphicalActions.WorkareaCanvasActions;
 import connections.Connection;
 
@@ -81,12 +79,18 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 	// The interaction layer where the interaction between the user and the WidgetObjects takes place
 	private LayerWidget interactionLayer = null;
+	
+	// The room layer where the network rooms will be placed
+	private LayerWidget roomLayer = null;
 
 	// The connection layer where the connections between WidgetObjects are placed
 	private LayerWidget connectionLayer = null;
 
 	// An array that will contain all the canvases connection, which are represented by a WidgetExtendedConnection.
 	private Connection[] connections = new Connection[5];
+	
+	// The current WidgetObject in view
+	private WidgetObject currentWidgetObject = null;
 
 
 	// FIXME - Create array of amount of different object types on the scene
@@ -94,9 +98,6 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 	// The number of Network cards on the canvas
 	private int numberOfNICs = 0;
-
-	// The current WidgetObject in view
-	private WidgetObject currentWidgetObject = null;
 
 	// A boolean saying if the canvas has been saved
 	private boolean saved = false;
@@ -166,7 +167,11 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 		// This is the main layer of the scene where the WidgetsObjects are placed.
 		mainLayer = new LayerWidget(scene);
-		scene.addChild(mainLayer);
+		scene.addChild(mainLayer);		
+		
+		// This is room layer
+		roomLayer = new LayerWidget(scene);
+		scene.addChild(roomLayer);
 
 		// This is the interaction layer
 		interactionLayer = new LayerWidget(scene);
@@ -178,7 +183,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 
 		scene.getActions().addAction(
-				new RectangularSelectAction(new PrimeRectangularSelectDecorator(scene), interactionLayer,
+				new RectangularAreaSelection(new PrimeRectangularSelectDecorator(this), interactionLayer,
 						new PrimeObjectSceneRectangularSelectProvider(this)));
 
 		// For creating key-to-action feature
@@ -271,6 +276,17 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 	public LayerWidget getInteractionLayer()
 	{
 		return interactionLayer;
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 *
+	 * @return the roomLayer
+	 */
+	public LayerWidget getRoomLayer()
+	{
+		return roomLayer;
 	}
 
 
@@ -391,6 +407,76 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 		// Returns an array with only the scenes objects.
 		return childrenObject;
 	}
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @return
+	 */
+	public WidgetRoom[] getNetworkWidgetRooms()
+	{
+		// Get a list of Widgets in the mainlayer
+		List<Widget> l = roomLayer.getChildren();
+
+		// Converts that list to an array of Objects
+		java.lang.Object[] roomTemp = l.toArray();
+		
+		// Creates an array with the length of the all the children on the canvas
+		WidgetRoom[] roomWidgets = new WidgetRoom[roomTemp.length];
+
+		// Casts all the objects in the converted list to widgetobjects
+		for ( int i = 0; i < roomWidgets.length; i++ )
+		{
+			roomWidgets[i] = (WidgetRoom) roomTemp[i];
+		}
+
+		// Returns an array with only the scenes objects.
+		return roomWidgets;
+	}
+	
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @return
+	 */
+	public Room[] getNetworkRooms()
+	{
+		// Get a list of Widgets in the mainlayer
+		List<Widget> l = roomLayer.getChildren();
+
+		// Converts that list to an array of Objects
+		java.lang.Object[] roomTemp = l.toArray();
+		
+		// Creates an array with the length of the all the children on the canvas
+		WidgetRoom[] roomWidgets = new WidgetRoom[roomTemp.length];
+
+		// Casts all the objects in the converted list to widgetobjects
+		for ( int i = 0; i < roomWidgets.length; i++ )
+		{
+			roomWidgets[i] = (WidgetRoom) roomTemp[i];
+		}
+		
+		// Creates an array with the length of the all the children on the
+		// canvas
+		Room[] rooms = new Room[roomTemp.length];
+
+		// Gets and places all the objects from within every widgetobject in an
+		// array
+		for ( int i = 0; i < rooms.length; i++ )
+		{
+			rooms[i] = roomWidgets[i].getRoom();
+		}
+
+		// Returns an array with only the scenes objects.
+		return rooms;
+	}
+	
+	
+	
 
 
 	/**
@@ -507,6 +593,17 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 	public void setInteractionLayer(LayerWidget inter)
 	{
 		interactionLayer = inter;
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 *
+	 * @param roomLayer the roomLayer to set
+	 */
+	public void setRoomLayer(LayerWidget roomLayer)
+	{
+		this.roomLayer = roomLayer;
 	}
 
 

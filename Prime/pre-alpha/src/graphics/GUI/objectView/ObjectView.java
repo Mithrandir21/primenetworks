@@ -20,8 +20,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import logistical.checkLogic;
-import managment.NetworkManagment;
-
 import objects.Object;
 import widgetManipulation.WidgetNetworkInfo;
 import widgetManipulation.WidgetObject;

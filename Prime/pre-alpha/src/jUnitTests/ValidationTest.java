@@ -1,9 +1,9 @@
 package jUnitTests;
 
-import org.junit.Test;
-
 import junit.framework.TestCase;
 import logistical.checkLogic;
+
+import org.junit.Test;
 
 public class ValidationTest extends TestCase 
 {

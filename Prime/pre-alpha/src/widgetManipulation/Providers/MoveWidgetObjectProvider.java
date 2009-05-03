@@ -1,7 +1,7 @@
 /**
  * 
  */
-package widgetManipulation;
+package widgetManipulation.Providers;
 
 
 import java.awt.BasicStroke;

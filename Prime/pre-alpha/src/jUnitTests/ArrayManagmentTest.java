@@ -2,7 +2,6 @@ package jUnitTests;
 
 
 import junit.framework.TestCase;
-import logistical.checkLogic;
 import managment.ArrayManagment;
 
 import org.junit.Test;

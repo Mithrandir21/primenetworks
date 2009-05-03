@@ -4,7 +4,6 @@
 package graphics.GUI.workareaCanvas;
 
 
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
@@ -14,7 +13,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -30,14 +28,8 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
-import exceptions.NotValidIPAddress;
-import exceptions.RangeIsNotValidException;
-import graphics.PrimeMain1;
-import graphics.GUI.properties.PropertiesArea;
-
 import managment.FileManagment;
 import managment.NetworkManagment;
-import managment.RangeNotBigEnoughException;
 
 
 /**

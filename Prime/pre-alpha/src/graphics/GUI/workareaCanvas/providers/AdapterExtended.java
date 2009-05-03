@@ -33,7 +33,7 @@ public class AdapterExtended extends Adapter
 	public State mouseClicked(Widget widget, WidgetMouseEvent event)
 	{
 		// If the object is not an instance of a connection widget
-		if ( !(widget instanceof ConnectionWidget) )
+		if ( widget instanceof WidgetObject )
 		{
 			// If button1, which can be whatever depending on what the OS has
 			// chosen, is clicked.
@@ -79,11 +79,11 @@ public class AdapterExtended extends Adapter
 		{
 			System.out.println("There is still work to be done. AdapterExtended - mouseClicked - ConnectionWidget");
 		}
-
+		
 		return State.REJECTED;
 	}
 
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -99,6 +99,14 @@ public class AdapterExtended extends Adapter
 			widget.bringToFront();
 			return State.CONSUMED;
 		}
+		return State.REJECTED;
+	}
+
+
+
+	@Override
+	public State mouseReleased(Widget widget, WidgetMouseEvent event)
+	{
 		return State.REJECTED;
 	}
 }

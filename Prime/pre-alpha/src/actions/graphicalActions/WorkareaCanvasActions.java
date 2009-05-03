@@ -7,8 +7,6 @@ import graphics.PrimeMain1;
 import graphics.WidgetIcon;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import graphics.GUI.workareaCanvas.providers.AdapterExtended;
-import graphics.GUI.workareaCanvas.providers.CreateProvider;
-import graphics.GUI.workareaCanvas.providers.SceneConnectProvider;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget.JMenuWidget;
 
 import java.awt.Dimension;
@@ -46,6 +44,10 @@ import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.Widget;
 
 import widgetManipulation.WidgetObject;
+import widgetManipulation.WidgetRoom;
+import widgetManipulation.Actions.ExtendedWidgetConnectAction;
+import widgetManipulation.Providers.CreateProvider;
+import widgetManipulation.Providers.SceneConnectProvider;
 import connections.Connection;
 import connections.WidgetExtendedConnection;
 
@@ -261,13 +263,15 @@ public class WorkareaCanvasActions
 		// Sets the point on the scene as the widgets preferred location
 		newObject.setPreferredLocation(sceneLocation);
 
-		// Here the create a connection between widgets on the scene is created
+		// newObject.getActions().addAction(ActionFactory.createResizeAction());
+
+
+		// // Here the create a connection between widgets on the scene is created
 		newObject.getActions().addAction(
-				ActionFactory.createExtendedConnectAction(canvas.getInteractionLayer(),
-						new SceneConnectProvider(canvas)));
+				new ExtendedWidgetConnectAction(ActionFactory.createDefaultConnectDecorator(), canvas
+						.getInteractionLayer(), new SceneConnectProvider(canvas)));
 
-
-		// Adds the action of a user clicking on any object on a scene
+		// Adds the action of a user clicking on the object
 		newObject.getActions().addAction(ActionFactory.createSelectAction(new CreateProvider()));
 
 		// Creates and add the move with align action
@@ -275,7 +279,7 @@ public class WorkareaCanvasActions
 				ActionFactory.createAlignWithMoveAction(canvas.getMainLayer(), canvas.getInteractionLayer(), null));
 
 
-		// Adds the double clicking feature for the WidgetObject 
+		// Adds the double clicking feature for the WidgetObject
 		newObject.getActions().addAction(new AdapterExtended());
 
 
@@ -307,20 +311,22 @@ public class WorkareaCanvasActions
 		// ----------DIFFERENT BORDERS------------
 		newObject.setBorder(BorderFactory.createEmptyBorder());
 
-//		 newObject.setBorder(BorderFactory.createDashedBorder(Color.black,
-//		 5, 5));
+		// newObject.setBorder(BorderFactory.createDashedBorder(Color.black,
+		// 5, 5));
 
-//		 newObject.setBorder(BorderFactory.createBevelBorder(true));
+		// newObject.setBorder(BorderFactory.createBevelBorder(true));
 
-//		 newObject.setBorder(BorderFactory.createResizeBorder(5));
+		// newObject.setBorder(BorderFactory.createResizeBorder(5));
 
-//		 newObject.setBorder(BorderFactory.createRoundedBorder(7, 7,
-//		 Color.white, Color.black));
+		// newObject.setBorder(BorderFactory.createRoundedBorder(7, 7,
+		// Color.white, Color.black));
 
-//		 newObject.getActions().addAction(ActionFactory.
-//		 createAddRemoveControlPointAction(1.0,3.0));
+		// newObject.getActions().addAction(ActionFactory.
+		// createAddRemoveControlPointAction(1.0,3.0));
 		// ---------------------------------------
 
+
+		newObject.bringToFront();
 		canvas.getMainLayer().addChild(newObject);
 		canvas.addToNumberOfWidgetsOnTheCanvas();
 		PrimeMain1.updateCanvasAndObjectInfo();
@@ -330,10 +336,8 @@ public class WorkareaCanvasActions
 			canvas.cleanUp();
 		}
 	}
-	
-	
-	
-	
+
+
 	/**
 	 * This function removes the given WidgetObject from the given canvas. It also removes all the connections to and
 	 * from the given widgetobject.
@@ -516,29 +520,28 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * Removes the given {@link connections.Connection Connection} from the given canvas.
+	 * The function removes the given {@link WidgetRoom} from the systems current {@link WorkareaCanvas}, if the
+	 * WidgetRoom is found to be contained within the WorkareaCanvas.
 	 * 
-	 * @param con
-	 *            The connection to be removed.
-	 * @param canvas
-	 *            The given that the connection is to be removed from.
+	 * @param widRoom
+	 *            The {@link WidgetRoom} to be removed from the systems current {@link WorkareaCanvas}.
 	 */
-	public static void removeConnectionFromCanvas(Connection con, WorkareaCanvas canvas)
+	public static void removeRoom(WidgetRoom widRoom)
 	{
-		List<Widget> list = canvas.getConnectionLayer().getChildren();
+		List<Widget> list = PrimeMain1.currentCanvas.getRoomLayer().getChildren();
 
-		WidgetExtendedConnection temp = null;
+		WidgetRoom temp = null;
 
 		boolean found = false;
 
 
-		WidgetExtendedConnection testingWidget = null;
+		WidgetRoom testingWidget = null;
 
 		for ( Iterator<?> iter = list.iterator(); iter.hasNext(); )
 		{
-			testingWidget = (WidgetExtendedConnection) iter.next();
+			testingWidget = (WidgetRoom) iter.next();
 
-			if ( testingWidget.getConnection().equals(con) )
+			if ( testingWidget.equals(widRoom) )
 			{
 				found = true;
 				temp = testingWidget;
@@ -547,7 +550,45 @@ public class WorkareaCanvasActions
 
 		if ( found == true )
 		{
-			canvas.getConnectionLayer().removeChild(temp);
+			PrimeMain1.currentCanvas.getRoomLayer().removeChild(temp);
+		}
+	}
+
+
+
+
+	/**
+	 * The function removes the given {@link WidgetRoom} from the given {@link WorkareaCanvas}, if the WidgetRoom is
+	 * found to be contained within the WorkareaCanvas.
+	 * 
+	 * @param widRoom
+	 *            The {@link WidgetRoom} to be removed from the given {@link WorkareaCanvas}.
+	 */
+	public static void removeRoom(WorkareaCanvas canvas, WidgetRoom widRoom)
+	{
+		List<Widget> list = canvas.getRoomLayer().getChildren();
+
+		WidgetRoom temp = null;
+
+		boolean found = false;
+
+
+		WidgetRoom testingWidget = null;
+
+		for ( Iterator<?> iter = list.iterator(); iter.hasNext(); )
+		{
+			testingWidget = (WidgetRoom) iter.next();
+
+			if ( testingWidget.equals(widRoom) )
+			{
+				found = true;
+				temp = testingWidget;
+			}
+		}
+
+		if ( found == true )
+		{
+			canvas.getRoomLayer().removeChild(temp);
 		}
 	}
 

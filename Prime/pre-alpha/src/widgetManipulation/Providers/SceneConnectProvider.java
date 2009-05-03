@@ -1,15 +1,15 @@
 /**
  * 
  */
-package graphics.GUI.workareaCanvas.providers;
+package widgetManipulation.Providers;
 
 
 import exceptions.ConnectionDoesExist;
 import exceptions.ConnectionsIsNotPossible;
 import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
+import graphics.GUI.workareaCanvas.providers.ListDialog;
 
-import java.awt.BasicStroke;
 import java.awt.Point;
 
 import javax.swing.JOptionPane;
@@ -19,8 +19,6 @@ import objects.Object;
 
 import org.netbeans.api.visual.action.ConnectProvider;
 import org.netbeans.api.visual.action.ConnectorState;
-import org.netbeans.api.visual.anchor.AnchorFactory;
-import org.netbeans.api.visual.anchor.AnchorShape;
 import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
 
@@ -129,38 +127,11 @@ public class SceneConnectProvider implements ConnectProvider
 					// Creates the connection between the two devices on the scene.
 					WidgetExtendedConnection connection = new WidgetExtendedConnection(canvas.getScene(), con);
 
+					
+					// Creates the whole connection with all actions 
+					connection = ConnectionManagment.createWidgetExtendedConnection(canvas, con, connection, SourceWidObj, TargetWidObj);
 
-					// Adds the connection to the connection array for the WorkareaCanvas.
-					ConnectionManagment.addConnection(con, false, canvas);
-
-					BasicStroke stroke = null;
-
-					if ( con.getConnectionType().equals("Wireless") )
-					{
-						stroke = new BasicStroke(1.0f, // Width
-								BasicStroke.JOIN_BEVEL, // End cap
-								BasicStroke.CAP_BUTT, // Join style
-								5.0f, // Miter limit
-								new float[] { 21.0f, 13.0f }, // Dash pattern
-								0.0f); // Dash phase
-					}
-					else
-					{
-						stroke = new BasicStroke(1.0f,// Width
-								BasicStroke.JOIN_BEVEL, // End cap
-								BasicStroke.CAP_BUTT, // Join style
-								5.0f, // Miter limit
-								new float[] { 1.0f }, // Dash pattern
-								0.0f); // Dash phase
-					}
-
-					// The array anchor
-					connection.setTargetAnchorShape(AnchorShape.NONE);
-					connection.setStroke(stroke);
-					connection.setToolTipText("This is a connection");
-					connection.getActions().addAction(new AdapterExtended());
-					connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(sourceWidget));
-					connection.setTargetAnchor(AnchorFactory.createRectangularAnchor(targetWidget));
+					// Add the connection the connection layer
 					canvas.getConnectionLayer().addChild(connection);
 					PrimeMain1.updateCanvasAndObjectInfo();
 				}

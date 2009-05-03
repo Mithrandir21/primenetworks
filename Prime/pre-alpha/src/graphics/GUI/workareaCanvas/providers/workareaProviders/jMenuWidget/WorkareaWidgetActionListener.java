@@ -68,8 +68,10 @@ public class WorkareaWidgetActionListener implements ActionListener
 				
 				PrimeMain1.runCanvasObjectCheck();
 			}
-
 		}
+		
+		
+		canvas.cleanUp();
 	}
 
 }

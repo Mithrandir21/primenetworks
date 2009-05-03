@@ -1,16 +1,15 @@
 /**
  * 
  */
-package graphics.GUI.workareaCanvas.providers;
+package widgetManipulation;
 
 
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
+import graphics.GUI.workareaCanvas.WorkareaCanvas;
+import managment.RoomManagment;
 
 import org.netbeans.api.visual.action.RectangularSelectDecorator;
-import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
+
 
 
 /**
@@ -21,11 +20,11 @@ import org.netbeans.api.visual.widget.Widget;
  */
 public class PrimeRectangularSelectDecorator implements RectangularSelectDecorator
 {
-	private Scene scene;
+	private WorkareaCanvas canvas;
 
-	public PrimeRectangularSelectDecorator(Scene scene)
+	public PrimeRectangularSelectDecorator(WorkareaCanvas canvas)
 	{
-		this.scene = scene;
+		this.canvas = canvas;
 	}
 
 	/*
@@ -36,9 +35,9 @@ public class PrimeRectangularSelectDecorator implements RectangularSelectDecorat
 	@Override
 	public Widget createSelectionWidget()
 	{
-		Widget widget = new Widget (scene);
-		widget.setBorder(BorderFactory.createLineBorder(Color.black));
-//        widget.setBorder (scene.getLookFeel().getMiniBorder(ObjectState.createNormal().deriveSelected (true)));
+		WidgetRoom widget = RoomManagment.createWidgetRoom(canvas, "Testing");
+		
+		
 		return widget;
 	}
 
