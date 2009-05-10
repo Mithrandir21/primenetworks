@@ -19,7 +19,8 @@ import managment.FileManagment;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * A class extending {@link MouseAdapter} and implementing {@link ActionListener} which reacts to user clicking on a
+ * given JTree.
  * 
  * @author Bahram Malaekeh
  * 
@@ -31,8 +32,8 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 	 * The JTree that the file is in represented as a FileTreeNode.
 	 */
 	private JTree tree;
-	
-	
+
+
 	/**
 	 * The file that was right clicked on
 	 */
@@ -40,9 +41,11 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for the class that gets and sets the JTree field of the class, which is the JTree actions will take
+	 * place in.
 	 * 
 	 * @param tree
+	 *            The JTree actions will take place in and listened for.
 	 */
 	public JTreeMouseAdapter(JTree tree)
 	{
@@ -51,9 +54,11 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function determines the location of the {@link MouseEvent}(the click) and, depending on what the user has
+	 * clicked on, will instigate a JPopupMenu to show itself.
 	 * 
 	 * @param e
+	 *            The {@link MouseEvent} that will determine what and where a JPopupMenu will be shown.
 	 */
 	private void myPopupEvent(MouseEvent e)
 	{
@@ -141,10 +146,11 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates and returns a JPopupMenu to be shown for a {@link FileTreeNode}.
 	 * 
 	 * @param file
-	 * @return
+	 *            The {@link FileTreeNode} the return JPopupMenu will be applied to.
+	 * @return A JPopupMenu with actions for a {@link FileTreeNode}.
 	 */
 	private JPopupMenu getFileMenu(FileTreeNode file)
 	{
@@ -174,9 +180,9 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates and returns a JPopupMenu meant to be shown for no specific object in a JTree.
 	 * 
-	 * @return
+	 * @return A JPopupMenu meant for a JTree.
 	 */
 	private JPopupMenu getJTreeMenu()
 	{
@@ -204,9 +210,9 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 
 		return menuPopup;
 	}
-	
-	
-	
+
+
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -227,7 +233,7 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 		{
 			FileManagment.newWorkareaCanvas();
 		}
-		
+
 
 	}
 }

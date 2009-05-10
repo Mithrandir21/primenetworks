@@ -4,6 +4,8 @@
 package actions;
 
 
+import graphics.GUI.workareaCanvas.WorkareaCanvas;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -13,18 +15,20 @@ import javax.swing.JOptionPane;
 
 
 /**
- * Description NEEDED!
+ * An action class that will call function to open a {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
- * @version 0.1
+ * @version 1.0
  */
 public class ActionOpenfile extends AbstractAction
 {
 	/**
-	 * Description NEEDED!
+	 * A constructor for the class that takes a string, the action name, and a Icon.
 	 * 
 	 * @param text
+	 *            The name of the action.
 	 * @param icon
+	 *            The icon representing the action.
 	 */
 	public ActionOpenfile(String text, ImageIcon icon)
 	{
@@ -35,9 +39,10 @@ public class ActionOpenfile extends AbstractAction
 
 
 	/**
-	 * Description NEEDED!
+	 * A constructor for the class that takes a string which will be the name of the action.
 	 * 
 	 * @param text
+	 *            The name of the action.
 	 */
 	public ActionOpenfile(String text)
 	{
@@ -47,9 +52,13 @@ public class ActionOpenfile extends AbstractAction
 	}
 
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
-
 		JOptionPane.showMessageDialog(null, "You want to perform a \"Open File\" action.");
 	}
 

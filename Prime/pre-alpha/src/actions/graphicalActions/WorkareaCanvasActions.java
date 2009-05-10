@@ -40,6 +40,7 @@ import objects.serverObjects.ProxyServer;
 
 import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.border.BorderFactory;
+import org.netbeans.api.visual.layout.LayoutFactory;
 import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.Widget;
 
@@ -287,9 +288,10 @@ public class WorkareaCanvasActions
 		LabelWidget objectLabel = new LabelWidget(canvas.getScene(), newObject.getObject().getObjectName());
 
 		newObject.addChild(objectLabel);
-
+		
 
 		newObject.setToolTipText(newObject.getObject().getDescription());
+		newObject.setLayout(LayoutFactory.createAbsoluteLayout());
 
 
 		// Adds hovering action to the widget.
@@ -340,7 +342,7 @@ public class WorkareaCanvasActions
 
 	/**
 	 * This function removes the given WidgetObject from the given canvas. It also removes all the connections to and
-	 * from the given widgetobject.
+	 * from the given WidgetObject.
 	 * 
 	 * @param canvas
 	 *            The canvas that the object is to be removed from.

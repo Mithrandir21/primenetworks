@@ -21,14 +21,22 @@ import widgetManipulation.Actions.ResizeWidgetAction;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * The class contains various function for the management of {@link WidgetRoom WidgetRooms}.
+ * This includes functions to create rooms, adds rooms and remove rooms.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class RoomManagment
 {
-	public static WidgetRoom addRoomActions(WidgetRoom room)
+	
+	
+	/**
+	 * This function adds all the actions a WidgetRoom 
+	 * 
+	 * @param room
+	 * @return
+	 */
+	public static WidgetRoom addActionsToWidgetRoom(WidgetRoom room)
 	{
 		room.getActions().addAction(
 				new ResizeWidgetAction(ActionFactory.createFreeResizeStategy(), ActionFactory
@@ -95,7 +103,7 @@ public class RoomManagment
 	{
 		WidgetRoom widRoom = new WidgetRoom(canvas.getScene(), name);
 
-		widRoom = RoomManagment.addRoomActions(widRoom);
+		widRoom = RoomManagment.addActionsToWidgetRoom(widRoom);
 
 		return widRoom;
 	}
@@ -113,8 +121,46 @@ public class RoomManagment
 	{
 		WidgetRoom widRoom = new WidgetRoom(canvas.getScene(), room);
 
-		widRoom = RoomManagment.addRoomActions(widRoom);
+		widRoom = RoomManagment.addActionsToWidgetRoom(widRoom);
 
 		return widRoom;
+	}
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param canvas
+	 * @param widRoom
+	 * @return
+	 */
+	public static boolean deleteWidgetRoom(WorkareaCanvas canvas, WidgetRoom widRoom)
+	{
+		return false;
+	}
+	
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param canvas
+	 * @param name
+	 * @return
+	 */
+	public static boolean deleteWidgetRoom(WorkareaCanvas canvas, String name)
+	{
+		return false;
+	}
+	
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param canvas
+	 * @param room
+	 * @return
+	 */
+	public static boolean deleteWidgetRoom(WorkareaCanvas canvas, Room room)
+	{
+		return false;
 	}
 }

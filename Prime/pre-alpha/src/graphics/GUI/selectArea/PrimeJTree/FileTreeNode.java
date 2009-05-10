@@ -15,7 +15,7 @@ import javax.swing.tree.TreeNode;
 /**
  * A node in the file tree.
  * 
- * @author Kirill Grouchnikov Expanded by Bahram Malaekeh
+ * @author Kirill Grouchnikov(Expanded by Bahram Malaekeh)
  */
 public class FileTreeNode extends DefaultMutableTreeNode
 {

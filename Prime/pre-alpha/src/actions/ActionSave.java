@@ -13,18 +13,20 @@ import javax.swing.JOptionPane;
 
 
 /**
- * Description NEEDED!
+ * An action class that will perform a Save action.
  * 
  * @author Bahram Malaekeh
- * @version 0.1
+ * @version 1.0
  */
 public class ActionSave extends AbstractAction
 {
 	/**
-	 * Description NEEDED!
+	 * A constructor for the class that takes a string, the action name, and a Icon.
 	 * 
 	 * @param text
+	 *            The name of the action.
 	 * @param icon
+	 *            The icon representing the action.
 	 */
 	public ActionSave(String text, ImageIcon icon)
 	{
@@ -35,9 +37,10 @@ public class ActionSave extends AbstractAction
 
 
 	/**
-	 * Description NEEDED!
+	 * A constructor for the class that takes a string which will be the name of the action.
 	 * 
 	 * @param text
+	 *            The name of the action.
 	 */
 	public ActionSave(String text)
 	{
@@ -47,7 +50,9 @@ public class ActionSave extends AbstractAction
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e)

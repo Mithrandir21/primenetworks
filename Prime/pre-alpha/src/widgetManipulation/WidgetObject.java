@@ -105,7 +105,7 @@ public class WidgetObject extends ImageWidget implements Transferable
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Sets the {@link WidgetNetworkInfo} of this Object.
 	 * 
 	 * @param netInfo
 	 */

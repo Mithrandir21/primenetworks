@@ -13,18 +13,20 @@ import javax.swing.JOptionPane;
 
 
 /**
- * Description NEEDED!
+ * An action class that will perform a Redo action.
  * 
  * @author Bahram Malaekeh
- * @version 0.1
+ * @version 1.0
  */
 public class ActionRedo extends AbstractAction
 {
 	/**
-	 * Description NEEDED!
+	 * A constructor for the class that takes a string, the action name, and a Icon.
 	 * 
 	 * @param text
+	 *            The name of the action.
 	 * @param icon
+	 *            The icon representing the action.
 	 */
 	public ActionRedo(String text, ImageIcon icon)
 	{
@@ -32,12 +34,13 @@ public class ActionRedo extends AbstractAction
 		putValue(SHORT_DESCRIPTION, "This is a Redo action");
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_Y));
 	}
-	
-	
+
+
 	/**
-	 * Description NEEDED!
+	 * A constructor for the class that takes a string which will be the name of the action.
 	 * 
 	 * @param text
+	 *            The name of the action.
 	 */
 	public ActionRedo(String text)
 	{
@@ -47,6 +50,11 @@ public class ActionRedo extends AbstractAction
 	}
 
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		JOptionPane.showMessageDialog(null, "You want to perform a \"Redo\" action.");

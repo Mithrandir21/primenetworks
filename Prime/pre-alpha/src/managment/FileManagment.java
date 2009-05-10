@@ -32,7 +32,8 @@ import connections.WidgetExtendedConnection;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This class provides static functions that deal with the actual saving to file, reading from file and so on.
+ * {@link WorkareaCanvas WorkareaCanvases} are saved and loaded here. There are also testing and control functions.
  * 
  * @author Bahram Malaekeh
  * 
@@ -300,7 +301,8 @@ public class FileManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * The method check whether or not a file exist with the given newName String. If it does, the file is checked for a
+	 * WorkareaCanvas
 	 * 
 	 * @param canvas
 	 * @return
@@ -359,10 +361,15 @@ public class FileManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function renames the file a given {@link WorkareaCanvas} is located in(if is has ever been saved), to a file
+	 * with the given string. The function checks if the {@link WorkareaCanvas} exists.
 	 * 
 	 * @param canvas
+	 *            The {@link WorkareaCanvas} thats inside the file to be renamed.
 	 * @param newName
+	 *            The name of the new file.
+	 * 
+	 * @return True, if the file rename was successful, and false, if not.
 	 */
 	public static boolean changeFileName(WorkareaCanvas canvas, String newName)
 	{
@@ -838,8 +845,8 @@ public class FileManagment
 						// Creates the whole connection with all actions
 						connection = ConnectionManagment.createWidgetExtendedConnection(canvas, connections[i],
 								connection, sourceWidget, targetWidget);
-						
-						
+
+
 						// Add the connection the connection layer
 						canvas.getConnectionLayer().addChild(connection);
 					}

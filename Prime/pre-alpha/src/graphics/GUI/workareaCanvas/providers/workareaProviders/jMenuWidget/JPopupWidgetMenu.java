@@ -12,7 +12,7 @@ import widgetManipulation.WidgetObject;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * Class for the JPopupMenu for {@link WidgetObject WidgetObjects} on a {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
  * 
@@ -20,27 +20,28 @@ import widgetManipulation.WidgetObject;
 public class JPopupWidgetMenu
 {
 	/**
-	 * 
+	 * The JPopup instance.
 	 */
 	private JPopupMenu popup = new JPopupMenu();
 
 
 	/**
-	 * 
+	 * The Listener that will listen to menus selected by the user in the JPopupMenu.
 	 */
 	private WorkareaWidgetActionListener widgetActListener;
 
 
 	/**
-	 * 
+	 * The {@link WorkareaCanvas} the event will take place in.
 	 */
 	private WorkareaCanvas canvas;
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for this class that sets the {@link WorkareaCanvas} field.
 	 * 
 	 * @param canvas
+	 *            The {@link WorkareaCanvas} the event will take place in.
 	 */
 	public JPopupWidgetMenu(WorkareaCanvas canvas)
 	{
@@ -50,10 +51,11 @@ public class JPopupWidgetMenu
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates and sets up the the different fields of this class. It also returns the JpopupMenu shown to the user.
 	 * 
 	 * @param widget
-	 * @return The JPopupMenu
+	 *            The {@link WidgetObject} a JPopupMenu will be shown for.
+	 * @return The JPopupMenu the JpopupMenu shown to the user.
 	 */
 	public JPopupMenu createPopupMenu(Widget widget)
 	{
@@ -71,9 +73,10 @@ public class JPopupWidgetMenu
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Initiates the JPopupMenu and add all the different JMenuItems.
 	 * 
 	 * @param canvas
+	 *            The {@link WorkareaCanvas} the event will take place in.
 	 */
 	private void InitialMenues(WorkareaCanvas canvas)
 	{

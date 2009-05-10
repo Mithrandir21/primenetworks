@@ -841,7 +841,8 @@ public class Motherboard extends Hardware implements Serializable
 	// CLASS METHODES
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Resets all the fields for this Motherboard. All {@link String} fields will be set to "", all {@link Integer} will
+	 * be set to 0 and all {@link Boolean Booleans} will be set to false.
 	 * 
 	 */
 	private void reset()
@@ -867,11 +868,10 @@ public class Motherboard extends Hardware implements Serializable
 		DUCPortsAvailable = 0;
 		IntegLANPortsAvailable = 0;
 	}
-	
-	
+
+
 	/**
-	 * Resets all the ports so that all ports are available.
-	 * Sets the port availability to the max port.
+	 * Resets all the ports so that all ports are available. Sets the port availability to the max port.
 	 */
 	public void resetAllComponents()
 	{

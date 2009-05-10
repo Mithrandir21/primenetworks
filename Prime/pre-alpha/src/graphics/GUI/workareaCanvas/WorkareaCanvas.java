@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
 
+import logistical.cleanup;
 import objects.Object;
 import objects.Room;
 import objects.hardwareObjects.ExternalNetworksCard;
@@ -431,6 +432,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 		{
 			roomWidgets[i] = (WidgetRoom) roomTemp[i];
 		}
+		
+		
+		roomWidgets = cleanup.cleanObjectArray(roomWidgets);
 
 		// Returns an array with only the scenes objects.
 		return roomWidgets;
@@ -810,7 +814,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 	 */
 	public void revalidateWidgetLocations()
 	{
-		WidgetObject[] widgets = getWidgetObjectsOnTheScene();
+		
+		// The Widgets on the scene
+		WidgetObject[] widgets = this.getWidgetObjectsOnTheScene();
 
 		// Iterates through the Object list
 		for ( int i = 0; i < widgets.length; i++ )
@@ -820,6 +826,23 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 			// Sets the object location
 			obj.setLocation(widgets[i].getLocation());
+		}
+		
+		
+		// The rooms on the scene
+		WidgetRoom[] rooms = this.getNetworkWidgetRooms();
+
+		// Iterates through the Room list
+		for ( int i = 0; i < rooms.length; i++ )
+		{
+			// Gets the room from the widget
+			Room room = rooms[i].getRoom();
+
+			// Sets the rooms location
+			room.setLocation(rooms[i].getLocation());
+			
+			// Sets the rooms bounds
+			room.setBounds(rooms[i].getBounds());
 		}
 	}
 

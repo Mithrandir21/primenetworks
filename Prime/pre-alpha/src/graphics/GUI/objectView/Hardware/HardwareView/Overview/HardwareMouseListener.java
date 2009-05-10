@@ -7,6 +7,7 @@ package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.NewComponent.NewViews.MotherboardNewView;
+import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -56,7 +57,9 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates and pops up the JMenu coordinates gotten from the MouseEvent.
+	 * This menu is shown when right clicked on a Hardware Object in the HardwareView
+	 * of an Object on the {@link WorkareaCanvas}.
 	 * 
 	 * @param e
 	 */

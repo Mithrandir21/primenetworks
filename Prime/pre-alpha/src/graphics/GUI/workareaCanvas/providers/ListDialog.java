@@ -73,19 +73,10 @@ import javax.swing.ListSelectionModel;
  */
 public class ListDialog extends JDialog implements ActionListener
 {
-	/**
-	 * 
-	 */
 	private static ListDialog dialog;
 
-	/**
-	 * 
-	 */
 	private static String value = "";
 
-	/**
-	 * 
-	 */
 	private JList list;
 
 	/**
@@ -107,7 +98,7 @@ public class ListDialog extends JDialog implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Sets the value field of this class.
 	 * 
 	 * @param newValue
 	 */

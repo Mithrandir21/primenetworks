@@ -3,6 +3,7 @@
  */
 package actions.toolbar;
 
+
 import graphics.PrimeMain1;
 import graphics.GUI.messageArea.MessageTabbed;
 
@@ -11,19 +12,22 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
+
 /**
- * Javadoc-TODO - Description NEEDED!
- *
- * @author Bahram Malaekeh
+ * An action class that will open the Software Messages Panel.
  * 
+ * @author Bahram Malaekeh
+ * @version 1.0
  */
 public class ActionSoftwareMessage extends AbstractAction
 {
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for the class that takes a string, the action name, and a Icon.
 	 * 
 	 * @param text
+	 *            The name of the action.
 	 * @param icon
+	 *            The icon representing the action.
 	 */
 	public ActionSoftwareMessage(String text, ImageIcon icon)
 	{
@@ -33,9 +37,10 @@ public class ActionSoftwareMessage extends AbstractAction
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for the class that takes a string which will be the name of the action.
 	 * 
 	 * @param text
+	 *            The name of the action.
 	 */
 	public ActionSoftwareMessage(String text)
 	{
@@ -45,7 +50,9 @@ public class ActionSoftwareMessage extends AbstractAction
 
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
@@ -53,7 +60,7 @@ public class ActionSoftwareMessage extends AbstractAction
 	{
 		// Gets the MessageTabbed that contains the tabs
 		MessageTabbed msgTabs = (MessageTabbed) PrimeMain1.messagesPanel.getComponent(0);
-		
+
 		msgTabs.createSoftwareMessagePanel();
 	}
 

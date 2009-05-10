@@ -13,19 +13,21 @@ import javax.swing.ImageIcon;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * An action class that will open the Settings JFrame.
  * 
  * @author Bahram Malaekeh
- * 
+ * @version 1.0
  */
 public class ActionSettings extends AbstractAction
 {
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for the class that takes a string, the action name, and a Icon.
 	 * 
 	 * @param text
+	 *            The name of the action.
 	 * @param icon
+	 *            The icon representing the action.
 	 */
 	public ActionSettings(String text, ImageIcon icon)
 	{
@@ -35,9 +37,10 @@ public class ActionSettings extends AbstractAction
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for the class that takes a string which will be the name of the action.
 	 * 
 	 * @param text
+	 *            The name of the action.
 	 */
 	public ActionSettings(String text)
 	{
@@ -47,6 +50,11 @@ public class ActionSettings extends AbstractAction
 
 
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{

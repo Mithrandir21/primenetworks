@@ -15,6 +15,7 @@ import graphics.GUI.messageArea.NetworkTab.NetworkMessages;
 import graphics.GUI.messageArea.NetworkTab.NetworkProcessing;
 import graphics.GUI.messageArea.SoftwareTab.SoftwareMessages;
 import graphics.GUI.messageArea.SoftwareTab.SoftwareProcessing;
+import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -36,11 +37,17 @@ import objects.ExternalHardware;
 import objects.Infrastructure;
 import objects.Object;
 import objects.Servers;
+import widgetManipulation.WidgetObject;
 import connections.Connection;
 
 
 /**
- * TODO - Description NEEDED!
+ * A class that will contain the different Message Panel that will show the user messages regarding the
+ * {@link WorkareaCanvas} that is currently being displayed.
+ * 
+ * All tabs will be disabled in creation, and Tab titles will be shown in bold when content is added to the JTable
+ * inside each tab.
+ * 
  * 
  * @author Bahram Malaekeh
  */
@@ -59,8 +66,8 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
+	 * A constructor for this class that initiates the the different JPanels in this class. It also sets the preferred
+	 * size of this JTabbedPane.
 	 */
 	public MessageTabbed()
 	{
@@ -449,8 +456,8 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
-	 * 
+	 * Initiates all the different tabs and panels. This function will just call all the other creation function for the
+	 * different panels.
 	 */
 	public void createInitialTabs()
 	{
@@ -466,8 +473,8 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
-	 * 
+	 * Creates, if not already existing, a message panel for message about the {@link WorkareaCanvas} network. If the
+	 * panel already exists, it will set the focus of the JTabbedPane to the tab containing that panel.
 	 */
 	public void createNetworkMessagePanel()
 	{
@@ -484,8 +491,9 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
-	 * 
+	 * Creates, if not already existing, a message panel for message about the connection between {@link WidgetObject
+	 * WidgetObjects} in {@link WorkareaCanvas}. If the panel already exists, it will set the focus of the JTabbedPane
+	 * to the tab containing that panel.
 	 */
 	public void createConnectionMessagePanel()
 	{
@@ -502,8 +510,9 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
-	 * 
+	 * Creates, if not already existing, a message panel for message about the software on each {@link WidgetObject} in
+	 * the {@link WorkareaCanvas}. If the panel already exists, it will set the focus of the JTabbedPane to the tab
+	 * containing that panel.
 	 */
 	public void createSoftwareMessagePanel()
 	{
@@ -520,8 +529,9 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
-	 * 
+	 * Creates, if not already existing, a message panel for message about the hardware on each {@link WidgetObject} in
+	 * the {@link WorkareaCanvas}. If the panel already exists, it will set the focus of the JTabbedPane to the tab
+	 * containing that panel.
 	 */
 	public void createHardwareMessagePanel()
 	{
@@ -597,10 +607,11 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function finds the tab, if it exists, where the given string is equal the tab title. If the tab is found,
+	 * the font of the title in the tab will be set to <b>bold</b>.
 	 * 
 	 * @param name
-	 * @return
+	 *            The title of the tab where the font is to be set to bold.
 	 */
 	private void boldTab(String name)
 	{
@@ -633,10 +644,11 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function finds the tab, if it exists, where the given string is equal the tab title. If the tab is found,
+	 * the font of the title in the tab will be set to not bold.
 	 * 
 	 * @param name
-	 * @return
+	 *            The title of the tab where the font is to be set to unbold.
 	 */
 	private void unboldTab(String name)
 	{
@@ -670,10 +682,13 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Searches for a Tab where the {@link JPanel} within has a name equal to the given string. If such a tab exists,
+	 * the index of that tab in the JTabbedPane is returned. If no tab is found -1 is returned.
 	 * 
 	 * @param name
-	 * @return
+	 *            The name of the {@link JPanel} searched for inside this classes tabs.
+	 * @return The index where the tab with the {@link JPanel} that has the name equal to the given string is located.
+	 *         If it is not found, -1 will be returned.
 	 */
 	private int getIndexOfTab(String name)
 	{

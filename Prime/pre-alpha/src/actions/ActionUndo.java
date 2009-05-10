@@ -13,18 +13,20 @@ import javax.swing.JOptionPane;
 
 
 /**
- * Description NEEDED!
+ * An action class that will perform a Undo action.
  * 
  * @author Bahram Malaekeh
- * @version 0.1
+ * @version 1.0
  */
 public class ActionUndo extends AbstractAction
 {
 	/**
-	 * Description NEEDED!
+	 * A constructor for the class that takes a string, the action name, and a Icon.
 	 * 
 	 * @param text
+	 *            The name of the action.
 	 * @param icon
+	 *            The icon representing the action.
 	 */
 	public ActionUndo(String text, ImageIcon icon)
 	{
@@ -33,11 +35,12 @@ public class ActionUndo extends AbstractAction
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_Z));
 	}
 
-	
+
 	/**
-	 * Description NEEDED!
+	 * A constructor for the class that takes a string which will be the name of the action.
 	 * 
 	 * @param text
+	 *            The name of the action.
 	 */
 	public ActionUndo(String text)
 	{
@@ -46,6 +49,13 @@ public class ActionUndo extends AbstractAction
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_Z));
 	}
 
+
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		JOptionPane.showMessageDialog(null, "You want to perform a \"Undo\" action.");
