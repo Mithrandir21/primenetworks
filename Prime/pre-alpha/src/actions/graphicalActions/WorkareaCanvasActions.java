@@ -288,7 +288,7 @@ public class WorkareaCanvasActions
 		LabelWidget objectLabel = new LabelWidget(canvas.getScene(), newObject.getObject().getObjectName());
 
 		newObject.addChild(objectLabel);
-		
+
 
 		newObject.setToolTipText(newObject.getObject().getDescription());
 		newObject.setLayout(LayoutFactory.createAbsoluteLayout());
@@ -349,14 +349,21 @@ public class WorkareaCanvasActions
 	 * @param obj
 	 *            The WidgetObject that is to be removed.
 	 */
-	public static void deleteObject(WorkareaCanvas canvas, WidgetObject obj)
+	public static boolean deleteObject(WorkareaCanvas canvas, WidgetObject obj)
 	{
-		removeAllConnectionsToFromObject(canvas, obj.getObject());
+		if ( canvas.getMainLayer().getChildren().contains(obj) )
+		{
+			removeAllConnectionsToFromObject(canvas, obj.getObject());
 
-		canvas.getMainLayer().removeChild(obj);
+			canvas.getMainLayer().removeChild(obj);
 
 
-		canvas.setCurrentWidgetObject(null);
+			canvas.setCurrentWidgetObject(null);
+			
+			return true;
+		}
+		
+		return false;
 	}
 
 

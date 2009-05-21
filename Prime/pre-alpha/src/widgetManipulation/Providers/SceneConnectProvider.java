@@ -30,7 +30,7 @@ import connections.WidgetExtendedConnection;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class controls the creation of graphical connections on a {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
  */
@@ -43,9 +43,8 @@ public class SceneConnectProvider implements ConnectProvider
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param canvas
+	 * A constructor for the class that sets the {@link WorkareaCanvas} that an instance of this class will be applied
+	 * to.
 	 */
 	public SceneConnectProvider(WorkareaCanvas canvas)
 	{
@@ -127,9 +126,10 @@ public class SceneConnectProvider implements ConnectProvider
 					// Creates the connection between the two devices on the scene.
 					WidgetExtendedConnection connection = new WidgetExtendedConnection(canvas.getScene(), con);
 
-					
-					// Creates the whole connection with all actions 
-					connection = ConnectionManagment.createWidgetExtendedConnection(canvas, con, connection, SourceWidObj, TargetWidObj);
+
+					// Creates the whole connection with all actions
+					connection = ConnectionManagment.createWidgetExtendedConnection(canvas, con, connection,
+							SourceWidObj, TargetWidObj);
 
 					// Add the connection the connection layer
 					canvas.getConnectionLayer().addChild(connection);
@@ -215,13 +215,9 @@ public class SceneConnectProvider implements ConnectProvider
 
 
 	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @param a
-	 * @param b
-	 * @return
+	 * Checks whether or not the two given {@link Object Objects} support a connection of {@link NetworkConnection}.
 	 */
-	private boolean checkSupportsConnection(Object a, Object b)
+	private boolean checkSupportsNetworkConnection(Object a, Object b)
 	{
 		return ConnectionManagment.checkDeviceConnectiontypeSupport(a, b, "RJ-45");
 	}
@@ -229,10 +225,9 @@ public class SceneConnectProvider implements ConnectProvider
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Gets the Class of the given {@link WidgetObject}.
 	 * 
-	 * @param widget
-	 * @return
+	 * @return The {@link Class} of the given {@link WidgetObject}.
 	 */
 	private Class<?> getObjectClass(WidgetObject widget)
 	{
@@ -243,7 +238,7 @@ public class SceneConnectProvider implements ConnectProvider
 
 	// FIXME - Add user-added connection types
 	/**
-	 * Javadoc-TODO - Description
+	 * Returns a connection class depending on the given string. MUST BE WORKED ON.
 	 * 
 	 * @param type
 	 * @return

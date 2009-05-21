@@ -11,7 +11,9 @@ import exceptions.RangeIsNotValidException;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This class contains various functions and methods that are used in the management of Network
+ * information. 
+ * This includes for example methods for MAC addresses, IP addresses and processing of IP ranges. 
  * 
  * @author Bahram Malaekeh
  * 
@@ -54,11 +56,15 @@ public class NetworkManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function process two strings to see if there could be created a valid range of IP's between these two given
+	 * IP addresses. A boolean is returned saying if a valid range is possible. Takes two {@link String Strings} that
+	 * should be valid IP addresses. These are checked and validated.
 	 * 
 	 * @param from
+	 *            The start if the IP range.
 	 * @param to
-	 * @return
+	 *            The end of the IP range.
+	 * @return A boolean saying if a valid range is possible.
 	 */
 	public static boolean processRange(String fromIP, String toIP) throws RangeIsNotValidException, NotValidIPAddress,
 			RangeNotBigEnoughException
@@ -69,9 +75,9 @@ public class NetworkManagment
 		// Splits the toIP into strings on the symbol "."
 		String[] toString = toIP.split("\\.");
 
-		
+
 		// If the IP does not match the IP pattern(valid IP)
-		if ( fromString.length != 4 || (!(getIPpattern().matcher(fromIP).matches())))
+		if ( fromString.length != 4 || (!(getIPpattern().matcher(fromIP).matches())) )
 		{
 			throw new NotValidIPAddress(fromIP);
 		}
@@ -142,30 +148,34 @@ public class NetworkManagment
 		// If the method gets to this point the fromIP is larger then the toIP
 		throw new RangeIsNotValidException(fromIP, toIP);
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
-	 * Javadoc-TODO - Description
+	 * This function determines whether or not the first given String representing an IP is higher then the second given
+	 * String representing an IP.
 	 * 
 	 * @param fromIP
+	 *            The first IP(should be the lower IP).
 	 * @param toIP
-	 * @return
+	 *            The second IP(should be the higher IP).
+	 * @return A boolean on whether or not the first given IP is higher then the second IP.
 	 * @throws NotValidIPAddress
 	 * @throws RangeNotBigEnoughException
 	 */
-	public static boolean isIPhigherThenIP(String fromIP, String toIP) throws NotValidIPAddress, RangeNotBigEnoughException
+	public static boolean isIPhigherThenIP(String fromIP, String toIP) throws NotValidIPAddress,
+			RangeNotBigEnoughException
 	{
 		// Splits the fromIP into strings on the symbol "."
 		String[] fromString = fromIP.split("\\.");
 
 		// Splits the toIP into strings on the symbol "."
 		String[] toString = toIP.split("\\.");
-		
-		
+
+
 		// If the IP does not match the IP pattern(valid IP)
-		if ( fromString.length != 4 || (!(getIPpattern().matcher(fromIP).matches())))
+		if ( fromString.length != 4 || (!(getIPpattern().matcher(fromIP).matches())) )
 		{
 			throw new NotValidIPAddress(fromIP);
 		}
@@ -232,8 +242,8 @@ public class NetworkManagment
 				}
 			}
 		}
-		
-		
+
+
 		return false;
 	}
 

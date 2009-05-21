@@ -5,10 +5,10 @@ package graphics.services;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * The class contains all the service threads this system will be running. All services can be stopped and 
+ * started, all together or gotten and stop separately.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class PrimeService
 {
@@ -19,8 +19,7 @@ public class PrimeService
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
+	 * Constructor for this class that creates new instances of the threads in this class.
 	 */
 	public PrimeService()
 	{
@@ -30,8 +29,7 @@ public class PrimeService
 
 
 	/**
-	 * Javadoc-TODO - Description
-	 * 
+	 * Calls the Run function for the this classes threads.
 	 */
 	public synchronized void startCanvasService()
 	{
@@ -40,8 +38,7 @@ public class PrimeService
 
 
 	/**
-	 * Javadoc-TODO - Description
-	 * 
+	 * Calls the ServiceSuspend function for the this classes threads.
 	 */
 	public synchronized void stopCanvasService()
 	{
@@ -52,12 +49,24 @@ public class PrimeService
 
 
 	/**
-	 * Javadoc-TODO - Description
-	 * 
+	 * Calls the ServiceSuspend function for the all this classes threads.
 	 */
 	public void stopAll()
 	{
 		canvasService.serviceSuspend();
+	}
+
+
+	
+	// GETTERS
+	
+
+	/**
+	 * Gets the {@link CanvasService} thread.
+	 */
+	public CanvasService getCanvasService()
+	{
+		return canvasService;
 	}
 
 }

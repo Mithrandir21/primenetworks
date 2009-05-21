@@ -58,7 +58,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 {
 	// The Name of the canvas
 	private String CanvasName = "";
-	
+
 	// The individual serialnumber of the workareacanvas
 	private double serial = 0;
 
@@ -80,7 +80,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 	// The interaction layer where the interaction between the user and the WidgetObjects takes place
 	private LayerWidget interactionLayer = null;
-	
+
 	// The room layer where the network rooms will be placed
 	private LayerWidget roomLayer = null;
 
@@ -89,7 +89,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 	// An array that will contain all the canvases connection, which are represented by a WidgetExtendedConnection.
 	private Connection[] connections = new Connection[5];
-	
+
 	// The current WidgetObject in view
 	private WidgetObject currentWidgetObject = null;
 
@@ -106,11 +106,11 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 	// A boolean saying if the canvas has been changed in any way
 	private boolean changed = false;
 
-	
+
 	// The WorkareaCanvas network info
 	private WorkareaCanvasNetworkInfo networkInfo;
-	
-	
+
+
 
 
 	/**
@@ -144,8 +144,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 	public void makeCanvasReady()
 	{
 		// A random number that will be the serial number of the network
-		serial = (Math.random())*50;
-		
+		serial = (Math.random()) * 50;
+
 		// Creating the actual view
 		myView.setTransferHandler(TransHandler);
 
@@ -168,8 +168,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 		// This is the main layer of the scene where the WidgetsObjects are placed.
 		mainLayer = new LayerWidget(scene);
-		scene.addChild(mainLayer);		
-		
+		scene.addChild(mainLayer);
+
 		// This is room layer
 		roomLayer = new LayerWidget(scene);
 		scene.addChild(roomLayer);
@@ -190,7 +190,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 		// For creating key-to-action feature
 		// WidgetAction createActionMapAction (InputMap inputMap, ActionMap actionMap)
 
-		
+
 		networkInfo = new WorkareaCanvasNetworkInfo(this);
 
 		saved = false;
@@ -211,7 +211,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 	/**
 	 * Gets the unique network serial.
-	 *
+	 * 
 	 * @return the serial
 	 */
 	public double getSerial()
@@ -230,8 +230,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 	{
 		return scene;
 	}
-	
-	
+
+
 	/**
 	 * Gets the scene.
 	 * 
@@ -257,7 +257,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 
 	/**
-	 * Gets the main layer of the scene. This is where the {@link WidgetObject WidgetObjects} are placed.
+	 * Returns the main layer of the scene. This is where the {@link WidgetObject WidgetObjects} are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the mainLayer
@@ -269,7 +269,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 
 	/**
-	 * Gets the interaction layer of the scene. This is where the actions a user sees take place like clicks and menus.
+	 * Returns the interaction layer of the scene. This is where the actions a user sees take place like clicks and
+	 * menus.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the interactionLayer
@@ -281,9 +282,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 *
-	 * @return the roomLayer
+	 * Returns the {@link LayerWidget} that holds all the {@link WidgetRoom WidgetRooms}.
+	 * 
+	 * @return Returns the {@link LayerWidget} that holds all the {@link WidgetRoom WidgetRooms}.
 	 */
 	public LayerWidget getRoomLayer()
 	{
@@ -334,9 +335,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 *
-	 * @return the networkInfo
+	 * Gets the {@link WorkareaCanvasNetworkInfo} that holds network information like netmask and IP range.
+	 * 
+	 * @return A {@link WorkareaCanvasNetworkInfo} with the network information about the {@link WorkareaCanvas}.
 	 */
 	public WorkareaCanvasNetworkInfo getNetworkInfo()
 	{
@@ -408,13 +409,11 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 		// Returns an array with only the scenes objects.
 		return childrenObject;
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @return
+	 * This method gets all {@link WidgetRoom WidgetRooms} in the {@link WorkareaCanvas}.
 	 */
 	public WidgetRoom[] getNetworkWidgetRooms()
 	{
@@ -423,7 +422,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 		// Converts that list to an array of Objects
 		java.lang.Object[] roomTemp = l.toArray();
-		
+
 		// Creates an array with the length of the all the children on the canvas
 		WidgetRoom[] roomWidgets = new WidgetRoom[roomTemp.length];
 
@@ -432,20 +431,18 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 		{
 			roomWidgets[i] = (WidgetRoom) roomTemp[i];
 		}
-		
-		
+
 		roomWidgets = cleanup.cleanObjectArray(roomWidgets);
 
 		// Returns an array with only the scenes objects.
 		return roomWidgets;
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @return
+	 * This method gets all {@link Room Rooms} contained inside the {@link WidgetRoom WidgetRooms} in the
+	 * {@link WorkareaCanvas}.
 	 */
 	public Room[] getNetworkRooms()
 	{
@@ -454,7 +451,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 		// Converts that list to an array of Objects
 		java.lang.Object[] roomTemp = l.toArray();
-		
+
 		// Creates an array with the length of the all the children on the canvas
 		WidgetRoom[] roomWidgets = new WidgetRoom[roomTemp.length];
 
@@ -463,7 +460,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 		{
 			roomWidgets[i] = (WidgetRoom) roomTemp[i];
 		}
-		
+
 		// Creates an array with the length of the all the children on the
 		// canvas
 		Room[] rooms = new Room[roomTemp.length];
@@ -478,9 +475,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 		// Returns an array with only the scenes objects.
 		return rooms;
 	}
-	
-	
-	
+
+
+
 
 
 	/**
@@ -547,8 +544,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 	/**
 	 * Sets the unique network serial.
-	 *
-	 * @param serial the serial to set
+	 * 
+	 * @param serial
+	 *            the serial to set
 	 */
 	public void setSerial(double serial)
 	{
@@ -601,9 +599,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 *
-	 * @param roomLayer the roomLayer to set
+	 * Sets the room layer of the scene. This is where the {@link WidgetRoom WidgetRooms} are placed.
+	 * 
+	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 */
 	public void setRoomLayer(LayerWidget roomLayer)
 	{
@@ -674,9 +672,9 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 *
-	 * @param networkInfo the networkInfo to set
+	 * Sets the {@link WorkareaCanvasNetworkInfo} that holds network information like netmask and IP range.
+	 * 
+	 * @return A {@link WorkareaCanvasNetworkInfo} with the network information about the {@link WorkareaCanvas}.
 	 */
 	public void setNetworkInfo(WorkareaCanvasNetworkInfo networkInfo)
 	{
@@ -814,7 +812,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 	 */
 	public void revalidateWidgetLocations()
 	{
-		
+
 		// The Widgets on the scene
 		WidgetObject[] widgets = this.getWidgetObjectsOnTheScene();
 
@@ -827,8 +825,8 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 			// Sets the object location
 			obj.setLocation(widgets[i].getLocation());
 		}
-		
-		
+
+
 		// The rooms on the scene
 		WidgetRoom[] rooms = this.getNetworkWidgetRooms();
 
@@ -840,7 +838,7 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 
 			// Sets the rooms location
 			room.setLocation(rooms[i].getLocation());
-			
+
 			// Sets the rooms bounds
 			room.setBounds(rooms[i].getBounds());
 		}
