@@ -4,12 +4,16 @@
 package actions;
 
 
+import graphics.PrimeMain1;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
+import managment.FileManagment;
 
 
 /**
@@ -57,7 +61,8 @@ public class ActionSave extends AbstractAction
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		JOptionPane.showMessageDialog(null, "You want to perform a \"Save\" action.");
+		// Saves the current canvas
+		FileManagment.saveWorkareaCanvas(PrimeMain1.currentCanvas);
 	}
 
 

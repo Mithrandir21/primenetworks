@@ -998,11 +998,11 @@ public class FileManagment
 		{
 			if ( canvases[i] != null )
 			{
-				// If the canvas has not been saved(since the last change) and there has been some change
-				if ( canvases[i].isSaved() != true && canvases[i].isChanged() == true )
-				{
+//				// If the canvas has not been saved(since the last change) and there has been some change
+//				if ( canvases[i].isSaved() != true && canvases[i].isChanged() == true )
+//				{
 					saveWorkareaCanvas(canvases[i]);
-				}
+//				}
 			}
 		}
 	}

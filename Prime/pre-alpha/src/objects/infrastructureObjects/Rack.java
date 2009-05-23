@@ -13,8 +13,8 @@ import exceptions.ObjectNotFoundInArrayException;
 
 
 /**
- * This class represents a 19-inch rack. This rack is basicly a container for different units, like switches and
- * routers. It contains information abour how many different units it can contain, depending on the unit sizes.
+ * This class represents a 19-inch rack. This rack is basically a container for different units, like switches and
+ * routers. It contains information about how many different units it can contain, depending on the unit sizes.
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -22,11 +22,11 @@ import exceptions.ObjectNotFoundInArrayException;
 public class Rack extends Infrastructure implements Serializable
 {
 
-	// The number of spaces on a rack, usually refered to as "shelf" or "U".
+	// The number of spaces on a rack, usually referred to as "shelf" or "U".
 	private int numberOfShelfs;
 
 
-	// The number of curretly occupied shelfs
+	// The number of currently occupied shelfs
 	private int occupiedShelfs;
 
 
@@ -69,7 +69,7 @@ public class Rack extends Infrastructure implements Serializable
 
 
 
-	// Get and Set methodes for retrieving all datafields.
+	// Get and Set methods for retrieving all datafields.
 
 
 	// GET METHODES
@@ -130,7 +130,7 @@ public class Rack extends Infrastructure implements Serializable
 	// CLASS METHODES
 
 	/**
-	 * Get spesific units, like routers and switches, by searching for units with the give class type.
+	 * Get specific units, like routers and switches, by searching for units with the give class type.
 	 * 
 	 * @return Returns an array of units that match with the given class.
 	 */
@@ -171,7 +171,7 @@ public class Rack extends Infrastructure implements Serializable
 
 
 	/**
-	 * Function for replacing a spesific given unit with a given new unit.
+	 * Function for replacing a specific given unit with a given new unit.
 	 * 
 	 * @param NewUnit
 	 *            The unit to replace the previous one.

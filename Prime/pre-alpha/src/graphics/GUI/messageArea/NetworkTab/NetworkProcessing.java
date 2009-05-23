@@ -178,6 +178,8 @@ public class NetworkProcessing
 		{
 			if ( (objects[i].getConnectedDevices() == null) || (objects[i].getConnectedDevices().length < 1) )
 			{
+				System.out.println(objects[i].getConnectedDevices()==null);
+				
 				String[] info = { objects[i].getObjectName(), "Not Connected",
 						"This Object is not connected to anything else in the network.", "Network Warning" };
 				data = addError(data, info);
