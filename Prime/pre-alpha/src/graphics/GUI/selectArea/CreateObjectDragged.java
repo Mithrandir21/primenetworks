@@ -597,11 +597,11 @@ public class CreateObjectDragged
 		String[] supConIntWithWLan = new String[supportedConnectionInterfaces.length + 1];
 
 		// Adds all the previous supported connection interfaces to the new array
-		for ( int i = 0; i > supportedConnectionInterfaces.length; i++ )
+		for ( int i = 0; i < supportedConnectionInterfaces.length; i++ )
 		{
 			supConIntWithWLan[i] = supportedConnectionInterfaces[i];
 		}
-sdsd
+
 		// Places the Wireless string at the end of the array
 		supConIntWithWLan[supConIntWithWLan.length-1] = "Wireless";
 
@@ -618,8 +618,6 @@ sdsd
 		String objectDesc = iconObject.getDescription();
 
 		String[] SupConInt = { "RJ-45" };
-		int outPorts = 1;
-		int inPorts = 1;
 
 		if ( objectDesc == "" )
 		{
