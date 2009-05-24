@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import logistical.checkLogic;
+import managment.ComponentsManagment;
 import objects.Object;
 import widgetManipulation.WidgetNetworkInfo;
 import widgetManipulation.WidgetObject;
@@ -170,6 +171,10 @@ public class ObjectView extends JFrame implements ActionListener
 			// Saves the network information about the widget
 			errorFound = saveNetworkView();
 		}
+		
+		
+		// Sets the supported connection interfaces for the Object
+		currentObject.setSupportedConnectionInterfaces(ComponentsManagment.getSupportedInterfaces(currentObject));
 
 
 		// If closeObjectView is true, this JFrame is closed
@@ -214,7 +219,7 @@ public class ObjectView extends JFrame implements ActionListener
 
 
 			PrimeMain1.updateCanvasAndObjectInfo();
-			PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject());
+			PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject(), true);
 
 			PrimeMain1.removeObjectView(currentObject);
 

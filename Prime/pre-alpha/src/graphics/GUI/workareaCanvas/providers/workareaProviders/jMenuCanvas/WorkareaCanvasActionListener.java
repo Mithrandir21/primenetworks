@@ -205,7 +205,7 @@ public class WorkareaCanvasActionListener implements ActionListener
 				canvas.addWidgetObject(newWidgetObject, location, true);
 				
 				// Updates the sidebar with the object properties
-				PrimeMain1.updatePropertiesObjectArea(newObject);
+				PrimeMain1.updatePropertiesObjectArea(newObject, false);
 			}
 
 		}

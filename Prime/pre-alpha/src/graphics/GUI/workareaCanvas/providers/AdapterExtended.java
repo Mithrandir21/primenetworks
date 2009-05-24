@@ -46,7 +46,7 @@ public class AdapterExtended extends Adapter
 				Object obj = widgetobj.getObject();
 
 				// Updates the information panel with information from the selected object.
-				PrimeMain1.updatePropertiesObjectArea(widgetobj.getObject());
+				PrimeMain1.updatePropertiesObjectArea(widgetobj.getObject(), false);
 
 				// If button1 is double clicked.
 				if ( event.getClickCount() == 2 )
@@ -79,8 +79,9 @@ public class AdapterExtended extends Adapter
 		{
 			System.out.println("There is still work to be done. AdapterExtended - mouseClicked - ConnectionWidget");
 		}
-		
-		return State.REJECTED;
+
+		// Consumes the Action so that no other Listener picks up the action.
+		return State.CONSUMED;
 	}
 
 

@@ -732,7 +732,7 @@ public class ComponentsManagment
 				// First we add the component to the components list of the main
 				// object.
 				mainObj.addComponent(cpu);
-				
+
 				// Then we set the ports to the motherboard
 				mb.makeOneCPUportTaken();
 			}
@@ -1269,4 +1269,96 @@ public class ComponentsManagment
 
 		return foundComp;
 	}
+
+
+
+
+
+	/**
+	 * Determines and returns the supported interfaces depending on the hardware on the object.
+	 * 
+	 * @param obj
+	 *            The {@link Object} where supported interfaces are going to be searched for.
+	 * @return The interfaces supported by the given {@link Object}.
+	 */
+	public static String[] getSupportedInterfaces(Object obj)
+	{
+		String[] interfaces = new String[3];
+
+		// The components of the give object
+		Object[] components = obj.getComponents();
+
+		boolean lan = false;
+		boolean usb = false;
+		boolean wlan = false;
+
+
+		// Goes through all the components
+		for ( int i = 0; i < components.length; i++ )
+		{
+			if ( components[i] instanceof Motherboard )
+			{
+				Motherboard mbTemp = (Motherboard) components[i];
+
+				// LAN
+				if ( mbTemp.getMaxIntegLANs() > 0 && mbTemp.getMaxLANs() > 0 )
+				{
+					lan = true;
+				}
+
+				// USB
+				if ( mbTemp.getMaxUSBs() > 0 )
+				{
+					usb = true;
+				}
+			}
+			else if ( components[i] instanceof ExternalNetworksCard )
+			{
+				ExternalNetworksCard extNICtemp = (ExternalNetworksCard) components[i];
+
+				if ( extNICtemp.getConnectionType().equals("Wired") )
+				{
+					lan = true;
+				}
+				else if ( extNICtemp.getConnectionType().equals("Wireless") )
+				{
+					wlan = true;
+				}
+			}
+			else if ( components[i] instanceof InternalNetworksCard )
+			{
+				InternalNetworksCard intNICtemp = (InternalNetworksCard) components[i];
+
+				if ( intNICtemp.getConnectionType().equals("Wired") )
+				{
+					lan = true;
+				}
+				else if ( intNICtemp.getConnectionType().equals("Wireless") )
+				{
+					wlan = true;
+				}
+			}
+		}
+
+		if ( lan )
+		{
+			interfaces[0] = "RJ-45";
+		}
+
+		if ( usb )
+		{
+			interfaces[1] = "USB";
+		}
+
+		if ( wlan )
+		{
+			interfaces[2] = "Wireless";
+		}
+
+
+		interfaces = cleanup.cleanObjectArray(interfaces);
+
+		return interfaces;
+	}
+
 }

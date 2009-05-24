@@ -94,7 +94,7 @@ public class WorkareaCanvasActions
 			canvas.addWidgetObject(newObject, objectPoint, true);
 
 			// Updates the sidebar with the object properties
-			PrimeMain1.updatePropertiesObjectArea(newObject.getObject());
+			PrimeMain1.updatePropertiesObjectArea(newObject.getObject(), false);
 
 			canvas.cleanUp();
 		}

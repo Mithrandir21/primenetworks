@@ -371,7 +371,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 			else if ( hwObj[i] instanceof ExternalNetworksCard )
 			{
-				temp = ImageLocator.getImageIconObject("NIC");
+				temp = ImageLocator.getImageIconObject("ExternalNIC");
 
 				ExternalNetworksCard nicObj = (ExternalNetworksCard) hwObj[i];
 

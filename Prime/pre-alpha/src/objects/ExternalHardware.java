@@ -101,4 +101,22 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	{
 		super(Name, Desc, SupConInt, deviceMB);
 	}
+	
+	
+	/**
+	 * Constructor of an abstract hardware superclass.
+	 * 
+	 * @param Name
+	 *            The name of the hardware device.
+	 * @param Desc
+	 *            The description of the hardware device.
+	 * @param SupConInt
+	 *            An array of strings that describes the supported connection interfaces.
+	 * @param deviceMB
+	 *            The initial {@link objects.hardwareObjects.Motherboard motherboard} the hardware has.
+	 */
+	public ExternalHardware(String Name, String Desc, Motherboard deviceMB)
+	{
+		super(Name, Desc, deviceMB);
+	}
 }

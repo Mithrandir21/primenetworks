@@ -98,7 +98,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 			{
 				if ( swObj[i] instanceof Antivirus )
 				{
-					temp = ImageLocator.getImageIconObject("Data-server");
+					temp = ImageLocator.getImageIconObject("Antivirus-Software");
 
 					Antivirus antiVirusObj = (Antivirus) swObj[i];
 
@@ -135,7 +135,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof Backup )
 				{
-					temp = ImageLocator.getImageIconObject("CPU");
+					temp = ImageLocator.getImageIconObject("Backup-Software");
 
 					Backup backupObj = (Backup) swObj[i];
 
@@ -164,7 +164,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof Database )
 				{
-					temp = ImageLocator.getImageIconObject("Harddisc");
+					temp = ImageLocator.getImageIconObject("Database-Software");
 
 					Database hddObj = (Database) swObj[i];
 
@@ -193,7 +193,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof Email )
 				{
-					temp = ImageLocator.getImageIconObject("RAM");
+					temp = ImageLocator.getImageIconObject("Email-Software");
 
 					Email emailObj = (Email) swObj[i];
 
@@ -222,7 +222,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof Firewall )
 				{
-					temp = ImageLocator.getImageIconObject("Optical-Drive");
+					temp = ImageLocator.getImageIconObject("Firewall-Software");
 
 					Firewall firewallObj = (Firewall) swObj[i];
 
@@ -250,7 +250,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof OfficeSuite )
 				{
-					temp = ImageLocator.getImageIconObject("GPU");
+					temp = ImageLocator.getImageIconObject("OfficeSuite-Software");
 
 					OfficeSuite OffSuitObj = (OfficeSuite) swObj[i];
 
@@ -278,7 +278,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof OperatingSystem )
 				{
-					temp = ImageLocator.getImageIconObject("NIC");
+					temp = ImageLocator.getImageIconObject("OperatingSystem-Software");
 
 					OperatingSystem OSObj = (OperatingSystem) swObj[i];
 
@@ -307,7 +307,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof Proxy )
 				{
-					temp = ImageLocator.getImageIconObject("NIC");
+					temp = ImageLocator.getImageIconObject("Proxy-Software");
 
 					Proxy proxyObj = (Proxy) swObj[i];
 
@@ -336,7 +336,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof SecuritySuite )
 				{
-					temp = ImageLocator.getImageIconObject("NIC");
+					temp = ImageLocator.getImageIconObject("SecuritySuite-Software");
 
 					SecuritySuite secSuiteObj = (SecuritySuite) swObj[i];
 
@@ -365,7 +365,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof Webserver )
 				{
-					temp = ImageLocator.getImageIconObject("NIC");
+					temp = ImageLocator.getImageIconObject("Webserver-Software");
 
 					Webserver webServObj = (Webserver) swObj[i];
 

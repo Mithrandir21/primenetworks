@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import javax.swing.JTabbedPane;
 
 import objects.Object;
+import widgetManipulation.WidgetObject;
 
 
 /**
@@ -54,7 +55,7 @@ public class PropertiesArea extends JTabbedPane
 		}
 		else
 		{
-//			addTab("", scrollArea);
+			// addTab("", scrollArea);
 			this.removeAll();
 		}
 	}
@@ -74,17 +75,78 @@ public class PropertiesArea extends JTabbedPane
 		}
 		else
 		{
-//			addTab("", scrollArea);
+			// addTab("", scrollArea);
 			this.removeAll();
 		}
 	}
-	
-	
+
+
 	/**
 	 * @return Returns the ObjectPropertie Panel that contains the actual fields and buttons.
 	 */
 	public ObjectProperties getObjectPropertiePanel()
 	{
 		return scrollArea.getObjectPropertiePanel();
+	}
+
+
+
+	/**
+	 * Determines whether the given {@link WorkareaCanvas} is the {@link WorkareaCanvas} displayed in the Properties
+	 * area, by way of the names of the {@link WorkareaCanvas WorkareaCanvases}.
+	 * 
+	 * @param canvas
+	 *            The {@link WorkareaCanvas} to be tested.
+	 * @return Return boolean on whether the given {@link WorkareaCanvas} is currently being displayed in the Properties
+	 *         area.
+	 */
+	public boolean isGivenCanvasCurrent(WorkareaCanvas canvas)
+	{
+		// If the Properties area is not empty
+		if ( scrollArea.getObjectPropertiePanel() != null )
+		{
+			WorkareaCanvas showingCanvas = scrollArea.getObjectPropertiePanel().getCanvasViewed();
+
+			// If there is a workareaCanvas showing
+			if ( showingCanvas != null )
+			{
+				// Returns whether or not the given WorkareaCanvas name is the name of the currently shown
+				// WorkareaCanvas
+				return showingCanvas.getCanvasName().equals(canvas.getCanvasName());
+			}
+		}
+
+		// Returns false is there was not WorkareaCanvas showing
+		return false;
+	}
+
+
+
+	/**
+	 * Determines whether the given {@link Object} is the {@link Object} displayed in the Properties area,
+	 * by way of the names of the {@link Object Objects}.
+	 * 
+	 * @param object
+	 *            The {@link Object} to be tested.
+	 * @return Return boolean on whether the given {@link Object} is currently being displayed in the Properties
+	 *         area.
+	 */
+	public boolean isGivenObjectCurrent(Object object)
+	{ 
+		// If the Properties area is not empty
+		if ( scrollArea.getObjectPropertiePanel() != null )
+		{
+			Object showingObject = scrollArea.getObjectPropertiePanel().getObjectViewed();
+
+			// If there is a Object showing
+			if ( showingObject != null )
+			{
+				// Returns whether or not the given Object name is the name of the currently shown Object
+				return showingObject.getObjectName().equals(object.getObjectName());
+			}
+		}
+
+		// Returns false is there was not Object showing
+		return false;
 	}
 }

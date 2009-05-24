@@ -66,7 +66,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 				// actually shown in the JTabbedPane scrollPane.
 				PrimeMain1.currentCanvas = currentCanvas;
 
-				PrimeMain1.updatePropertiesCanvasArea();
+				PrimeMain1.updatePropertiesCanvasArea(false);
 
 				PrimeMain1.runCanvasObjectCheck();
 			}
@@ -150,7 +150,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 						label.setText(Name);
 					}
 
-					PrimeMain1.updatePropertiesCanvasArea();
+					PrimeMain1.updatePropertiesCanvasArea(true);
 
 					return;
 				}

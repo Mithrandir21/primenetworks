@@ -113,7 +113,7 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = ImageLocator.getImageIconObject("NIC");
+		ImageIcon icon = ImageLocator.getImageIconObject("ExternalNIC");
 		JPanel p1 = HardwareEditor.GeneralInfo(extNIC, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 

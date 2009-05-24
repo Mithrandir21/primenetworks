@@ -89,4 +89,18 @@ public abstract class Hardware extends Object implements Serializable
 	{
 		super(Name, Desc, SupConInt, objectMB);
 	}
+	
+	
+	/**
+	 * Constructor of an abstract hardware superclass.
+	 * 
+	 * @param Name
+	 *            The name of the hardware device.
+	 * @param Desc
+	 *            The description of the hardware decvice.
+	 */
+	public Hardware(String Name, String Desc, Motherboard objectMB)
+	{
+		super(Name, Desc, null,objectMB);
+	}
 }

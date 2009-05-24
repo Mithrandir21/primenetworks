@@ -76,7 +76,7 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareView, ActionL
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = ImageLocator.getImageIconObject("CPU");
+		ImageIcon icon = ImageLocator.getImageIconObject("OfficeSuite-Software");
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainOffSuite, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 

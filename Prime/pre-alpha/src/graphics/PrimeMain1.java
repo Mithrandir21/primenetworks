@@ -446,24 +446,59 @@ public class PrimeMain1 extends JFrame
 
 	/**
 	 * Updates the properties panel with information from the currently selected canvas.
+	 * 
+	 * @param override
+	 *            Whether or not the method should update the the properties area even if the {@link WorkareaCanvas}
+	 *            being shown has not be altered.
 	 */
-	public static void updatePropertiesCanvasArea()
+	public static void updatePropertiesCanvasArea(boolean override)
 	{
 		PropertiesArea temp = (PropertiesArea) propertiesPanel.getComponent(0);
 
-		temp.newObjectSelectedPropertiesTab(currentCanvas);
+		// If the method is to update the properties area regardless of whether or not the currently showing object
+		// is the same WorkareaCanvas
+		if ( override )
+		{
+			temp.newObjectSelectedPropertiesTab(currentCanvas);
+		}
+		else
+		{
+			// If the WorkareaCanvas shown in the properties area is not the same as the current WorkareaCanvas
+			if ( !(temp.isGivenCanvasCurrent(currentCanvas)) )
+			{
+				temp.newObjectSelectedPropertiesTab(currentCanvas);
+			}
+		}
 	}
-
 
 
 	/**
 	 * Updates the properties panel with information from the given object.
+	 * 
+	 * @param obj
+	 * @param override
+	 *            Whether or not the method should update the the properties area even if the {@link WorkareaCanvas}
+	 *            being shown has not be altered.
 	 */
-	public static void updatePropertiesObjectArea(Object obj)
+	public static void updatePropertiesObjectArea(Object obj, boolean override)
 	{
 		PropertiesArea temp = (PropertiesArea) propertiesPanel.getComponent(0);
 
-		temp.newObjectSelectedPropertiesTab(obj);
+		// If the method is to update the properties area regardless of whether or not the currently showing object
+		// is the same Object
+		if ( override )
+		{
+			temp.newObjectSelectedPropertiesTab(obj);
+		}
+		else
+		{
+			// If the WorkareaCanvas shown in the properties area is not the same as the current WorkareaCanvas
+			if ( !(temp.isGivenObjectCurrent(obj)) )
+			{
+				temp.newObjectSelectedPropertiesTab(obj);				
+			}
+		}
+		
 	}
 
 

@@ -68,6 +68,28 @@ public class Scanner extends ExternalHardware implements Serializable
 			resolution = Sresolution;
 		}
 	}
+	
+	
+	/**
+	 * Constructor of the scanner class.
+	 * 
+	 * @param Name
+	 *            The name of the scanner.
+	 * @param Desc
+	 *            The description of the scanner.
+	 * @param Sresolution
+	 *            Maximum resolution of a scanner. <br>
+	 *            This can be a NULL pointer. The value will then be a NULL pointer.
+	 */
+	public Scanner(String Name, String Desc, String Sresolution, Motherboard objectMB)
+	{
+		super(Name, Desc, objectMB);
+
+		if ( Sresolution != null )
+		{
+			resolution = Sresolution;
+		}
+	}
 
 
 	// Get and Set methodes for retrieving all datafields.

@@ -408,7 +408,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 
 
 		// extNIC
-		ImageIcon extNICtemp = ImageLocator.getImageIconObject("NIC");
+		ImageIcon extNICtemp = ImageLocator.getImageIconObject("ExternalNIC");
 
 		extNICObj = PrimeMain1.standard_internal_components.getSt_ExtNIC();
 

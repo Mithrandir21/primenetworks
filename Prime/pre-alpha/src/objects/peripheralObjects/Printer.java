@@ -65,6 +65,25 @@ public class Printer extends ExternalHardware implements Serializable
 
 		printerType = PprinterType;
 	}
+	
+	
+	
+	/**
+	 * Constructor of the printer class.
+	 * 
+	 * @param Name
+	 *            The name of the printer.
+	 * @param Desc
+	 *            The description of the printer.
+	 * @param PprinterType
+	 *            Type of printer. ink or laser.
+	 */
+	public Printer(String Name, String Desc, String PprinterType, Motherboard objectMB)
+	{
+		super(Name, Desc, objectMB);
+
+		printerType = PprinterType;
+	}
 
 
 	// Get and Set methodes for retrieving all datafields.

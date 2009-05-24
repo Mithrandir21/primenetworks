@@ -104,7 +104,7 @@ public class BackupEditView extends JPanel implements SoftwareView, ActionListen
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = ImageLocator.getImageIconObject("CPU");
+		ImageIcon icon = ImageLocator.getImageIconObject("Backup-Software");
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainBack, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 

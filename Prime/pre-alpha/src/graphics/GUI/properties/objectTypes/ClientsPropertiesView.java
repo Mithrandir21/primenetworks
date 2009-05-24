@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import objects.Clients;
@@ -29,8 +30,7 @@ import objects.clientObjects.ThinClient;
 public class ClientsPropertiesView
 {
 
-	// The client proterties labels
-
+	// The client properties labels
 	JLabel name;
 
 
@@ -45,6 +45,8 @@ public class ClientsPropertiesView
 	 */
 	public static void getClientsPropertiesView(JPanel panel, Object obj)
 	{
+		Dimension tfSize = new Dimension(5, 20);
+		
 		if ( obj instanceof Desktop )
 		{
 			// Desktop Rate
@@ -80,7 +82,6 @@ public class ClientsPropertiesView
 		JComboBox comboBox = new JComboBox(rates);
 		comboBox.setBackground(Color.white);
 		comboBox.setEditable(false);
-		Dimension tfSize = new Dimension(5, 20);
 		comboBox.setMaximumSize(tfSize);
 		comboBox.setPreferredSize(tfSize);
 		comboBox.setName("Client Rates");
@@ -88,7 +89,6 @@ public class ClientsPropertiesView
 		Clients client = (Clients) obj;
 
 		comboBox.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(rates, client.getClientRate()));
-
 
 		panel.add(comboBox);
 	}

@@ -26,10 +26,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import managment.CanvasManagment;
 import managment.FileManagment;
+import managment.NetworkManagment;
 import objects.Clients;
 import objects.Object;
 import objects.Servers;
+import widgetManipulation.WidgetObject;
 
 
 /**
@@ -81,7 +84,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 	/**
 	 * A constructor for the class that takes the given Object and places information about that object on this JPanel.
-	 * The information dependings on what kind of class the given object is.
+	 * The information depends on what kind of class the given object is.
 	 * 
 	 * @param object
 	 */
@@ -188,6 +191,26 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 
 	/**
+	 * Gets the {@link Object} viewed.
+	 */
+	public Object getObjectViewed()
+	{
+		return objectViewed;
+	}
+
+
+
+	/**
+	 * Gets the {@link WorkareaCanvas} viewed.
+	 */
+	public WorkareaCanvas getCanvasViewed()
+	{
+		return canvasViewed;
+	}
+
+
+
+	/**
 	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
 	 */
 	private JPanel createButtons()
@@ -214,6 +237,23 @@ public class ObjectProperties extends JPanel implements ActionListener
 	{
 		Component[] comp = this.getComponents();
 
+		// The IP range for a WorkareaCanvas
+		String IPrangeStart = null;
+		String IPrangeEnd = null;
+		
+		// The IP for a WidgetObject
+		String widgetIP = null;
+		
+		WidgetObject widObj = null;
+		
+		if( objectViewed != null )
+		{
+			// Gets the WidgetObject so that the IP address can be added
+			widObj = CanvasManagment.findWidgetObject(objectViewed, PrimeMain1.currentCanvas);
+		}
+
+
+
 		for ( int i = 0; i < comp.length; i++ )
 		{
 			String compName = comp[i].getName();
@@ -232,6 +272,20 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 						clientObj.setClientRate(theRate);
 					}
+					else if ( compName.equals("Netmask") )
+					{
+						// Casts the component to a JComboBox
+						JComboBox netmask = (JComboBox) comp[i];
+
+						// Casts the selected index to a String
+						String selected = netmask.getSelectedItem().toString();
+
+						// If the selected index is not ""
+						if ( !(selected.equals("")) )
+						{
+							canvasViewed.getNetworkInfo().setNetmask(selected);
+						}
+					}
 				}
 				else if ( comp[i] instanceof JTextField )
 				{
@@ -242,18 +296,47 @@ public class ObjectProperties extends JPanel implements ActionListener
 						String canvasName = field.getText();
 						if ( !(canvasName.equals("")) )
 						{
-							// No canvas was found with the name
-							if ( !(FileManagment.fileWorkareaCanvasExist(canvasViewed,canvasName)) )
+							// If the name of the currently selected WorkareaCanvas is not the same as the
+							// name of the name in the canvasName field.
+							if ( !(canvasViewed.getCanvasName().equals(canvasName)) )
 							{
-								PrimeMain1.workTab.updateCanvasName(canvasViewed, canvasName);
+								// No canvas was found with the name
+								if ( !(FileManagment.fileWorkareaCanvasExist(canvasViewed, canvasName)) )
+								{
+									PrimeMain1.workTab.updateCanvasName(canvasViewed, canvasName);
+								}
+								else
+								{
+									JOptionPane.showMessageDialog(null, "There already exist a Network with the name "
+											+ "\"" + canvasName + "\".", "Error", JOptionPane.ERROR_MESSAGE);
+
+									field.setText(canvasViewed.getCanvasName());
+								}
 							}
-							else
-							{
-								JOptionPane.showMessageDialog(null, "There already exist a Network with the name "
-										+ "\"" + canvasName + "\".", "Error", JOptionPane.ERROR_MESSAGE);
-								
-								field.setText(canvasViewed.getCanvasName());
-							}
+						}
+					}
+					else if ( compName.equals("IP range start") )
+					{
+						// Casts the component to a JTextField
+						JTextField field = (JTextField) comp[i];
+
+						// If the text in the JTextField is not ""
+						if ( !(field.getText().equals("")) )
+						{
+							// Sets the local IPrangeStart string that might be used later
+							IPrangeStart = new String(field.getText());
+						}
+					}
+					else if ( compName.equals("IP range end") )
+					{
+						// Casts the component to a JTextField
+						JTextField field = (JTextField) comp[i];
+
+						// If the text in the JTextField is not ""
+						if ( !(field.getText().equals("")) )
+						{
+							// Sets the local IPrangeEnd string that might be used later
+							IPrangeEnd = new String(field.getText());
 						}
 					}
 					else if ( compName.equals("Name Object") )
@@ -283,17 +366,31 @@ public class ObjectProperties extends JPanel implements ActionListener
 							comp[i].requestFocusInWindow();
 						}
 					}
+					else if ( compName.equals("Object IP") )
+					{
+						// Gets the JTextField component
+						JTextField field = (JTextField) comp[i];
+						
+						// Gets the text inside that field
+						String IP = field.getText();
+						
+						// If the text in the JTextField is not ""
+						if ( !(IP.equals("")) )
+						{
+							widgetIP = IP;
+						}
+					}
 					else if ( compName.equals("supConInt") )
 					{
-
+						// FIXME - ObjectProperties - supConInt
 					}
 					else if ( compName.equals("supRemoteAccProto") )
 					{
-
+						// FIXME - ObjectProperties - supRemoteAccProto
 					}
 					else if ( compName.equals("Main SW Name") )
 					{
-
+						// FIXME - ObjectProperties - Main SW Name
 					}
 				}
 				else if ( comp[i] instanceof JCheckBox )
@@ -318,7 +415,71 @@ public class ObjectProperties extends JPanel implements ActionListener
 			}
 		}
 
-		PrimeMain1.currentCanvas.cleanUp();
+
+		// Testing and setting of the IP range
+		// If none of the strings a null
+		if ( !(IPrangeStart == null) )
+		{
+			if ( !(IPrangeEnd == null) )
+			{
+				// Checks whether or not the range between the two is valid
+				try
+				{
+					if ( NetworkManagment.processRange(IPrangeStart, IPrangeEnd) )
+					{
+						canvasViewed.getNetworkInfo().setIpRangeFrom(IPrangeStart);
+						canvasViewed.getNetworkInfo().setIpRangeTo(IPrangeEnd);
+					}
+				}
+				catch ( Exception exp )
+				{
+					String output = exp.getMessage();
+
+					JOptionPane.showMessageDialog(null, output, "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "You must set the end of the IP range.", "Error",
+						JOptionPane.ERROR_MESSAGE);
+
+			}
+		}
+		else
+		{
+			if ( !(IPrangeEnd == null) )
+			{
+				JOptionPane.showMessageDialog(null, "You must set the start of the IP range.", "Error",
+						JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		
+		
+		// Setting the IP of the WidgetObject
+		if ( widObj != null && widgetIP != null ) 
+		{
+			// True if the IP was valid and set
+			boolean set = widObj.getWidgetNetworkInfo().setIp(widgetIP);
+			
+			// If the IP was not set 
+			if( !set )
+			{
+				JOptionPane.showMessageDialog(null, "The IP, " + widgetIP + ", was not valid.", "Error",
+						JOptionPane.ERROR_MESSAGE);
+				
+				// Updates the WidgetObject properties area 
+				PrimeMain1.updatePropertiesObjectArea(objectViewed, true);
+			}
+		}
+		
+
+
+		if ( objectViewed == null )
+		{
+			PrimeMain1.updatePropertiesCanvasArea(true);
+		}
+
+
 	}
 
 

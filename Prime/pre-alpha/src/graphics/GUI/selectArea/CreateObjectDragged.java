@@ -4,12 +4,14 @@
 package graphics.GUI.selectArea;
 
 
+import managment.ComponentsManagment;
 import graphics.PrimeMain1;
 import graphics.WidgetIcon;
 import objects.Object;
 import objects.Software;
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
+import objects.hardwareObjects.InternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
 import objects.infrastructureObjects.Hub;
 import objects.infrastructureObjects.Internet;
@@ -159,14 +161,18 @@ public class CreateObjectDragged
 	{
 		String objectName = "Desktop" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
 
 		if ( objectDesc == "" )
 		{
 			objectDesc = objectName;
 		}
 
-		Desktop temp = new Desktop(objectName, objectDesc, supportedConnectionInterfaces, st_components);
+		Desktop temp = new Desktop(objectName, objectDesc, st_components);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
 		temp.setSoftware(st_software);
@@ -180,14 +186,24 @@ public class CreateObjectDragged
 	{
 		String objectName = "Laptop" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		String[] supportedConnectionInterfaces = { "RJ-45", "USB", "Wireless" };
 
 		if ( objectDesc == "" )
 		{
 			objectDesc = objectName;
 		}
 
-		Laptop temp = new Laptop(objectName, objectDesc, supportedConnectionInterfaces, st_components);
+		Laptop temp = new Laptop(objectName, objectDesc, st_components);
+		
+		// Internal Wireless NIC
+		InternalNetworksCard intNIC = PrimeMain1.standard_internal_components.getSt_IntNIC();
+		intNIC.setType("Wireless");
+		
+		// Add the internal NIC to the list of components on the Object(not the "st_components" array of this class)
+		temp.addComponent(intNIC);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
 		temp.setSoftware(st_software);
@@ -201,7 +217,6 @@ public class CreateObjectDragged
 	{
 		String objectName = "Thin Client" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
 
 		if ( objectDesc == "" )
 		{
@@ -211,7 +226,11 @@ public class CreateObjectDragged
 		// TODO - ThinClient
 
 
-		Laptop temp = new Laptop(objectName, objectDesc, supportedConnectionInterfaces, st_components);
+		Laptop temp = new Laptop(objectName, objectDesc, st_components);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
 		temp.setSoftware(st_software);
@@ -225,7 +244,6 @@ public class CreateObjectDragged
 	{
 		String objectName = "HTTP Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
 
 		String ObjectSWname = "Apache";
 		String ObjectSWdesc = "Standard Webserver";
@@ -242,8 +260,12 @@ public class CreateObjectDragged
 		serverMB.setIntegLANPortsAvailable(2);
 
 
-		HTTPServer temp = new HTTPServer(objectName, objectDesc, supportedConnectionInterfaces, st_components,
-				ObjectSWname, ObjectSWdesc, ObjectSWversion);
+		HTTPServer temp = new HTTPServer(objectName, objectDesc, st_components, ObjectSWname, ObjectSWdesc,
+				ObjectSWversion);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
 		temp.setSoftware(st_software);
@@ -258,7 +280,6 @@ public class CreateObjectDragged
 	{
 		String objectName = "Backup Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
 
 		String ObjectSWname = "Backup";
 		String ObjectSWdesc = "Standard backup server";
@@ -275,8 +296,12 @@ public class CreateObjectDragged
 		serverMB.setIntegLANPortsAvailable(2);
 
 
-		BackupServer temp = new BackupServer(objectName, objectDesc, supportedConnectionInterfaces, st_components,
-				ObjectSWname, ObjectSWdesc, ObjectSWversion);
+		BackupServer temp = new BackupServer(objectName, objectDesc, st_components, ObjectSWname, ObjectSWdesc,
+				ObjectSWversion);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
 		temp.setSoftware(st_software);
@@ -290,7 +315,6 @@ public class CreateObjectDragged
 	{
 		String objectName = "Mail Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
 
 		String ObjectSWname = "Mail";
 		String ObjectSWdesc = "Standard mail server";
@@ -307,8 +331,12 @@ public class CreateObjectDragged
 		serverMB.setIntegLANPortsAvailable(2);
 
 
-		MailServer temp = new MailServer(objectName, objectDesc, supportedConnectionInterfaces, st_components,
-				ObjectSWname, ObjectSWdesc, ObjectSWversion);
+		MailServer temp = new MailServer(objectName, objectDesc, st_components, ObjectSWname, ObjectSWdesc,
+				ObjectSWversion);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
 		temp.setSoftware(st_software);
@@ -322,7 +350,6 @@ public class CreateObjectDragged
 	{
 		String objectName = "Firewall Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
 
 		String ObjectSWname = "Firewall";
 		String ObjectSWdesc = "Standard firewall server";
@@ -338,8 +365,12 @@ public class CreateObjectDragged
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
-		FirewallServer temp = new FirewallServer(objectName, objectDesc, supportedConnectionInterfaces, st_components,
-				ObjectSWname, ObjectSWdesc, ObjectSWversion);
+		FirewallServer temp = new FirewallServer(objectName, objectDesc, st_components, ObjectSWname, ObjectSWdesc,
+				ObjectSWversion);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
 		temp.setSoftware(st_software);
@@ -353,7 +384,6 @@ public class CreateObjectDragged
 	{
 		String objectName = "Proxy Server" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
-		String[] supportedConnectionInterfaces = { "RJ-45", "USB" };
 
 		String ObjectSWname = "ProxyServer";
 		String ObjectSWdesc = "Standard proxy server";
@@ -369,8 +399,12 @@ public class CreateObjectDragged
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
-		ProxyServer temp = new ProxyServer(objectName, objectDesc, supportedConnectionInterfaces, st_components,
-				ObjectSWname, ObjectSWdesc, ObjectSWversion);
+		ProxyServer temp = new ProxyServer(objectName, objectDesc, st_components, ObjectSWname, ObjectSWdesc,
+				ObjectSWversion);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		temp.setSoftware(st_software);
 
@@ -385,7 +419,6 @@ public class CreateObjectDragged
 		String objectDesc = iconObject.getDescription();
 
 		String Sresolution = "1280x1020";
-		String SconnectionInterfaces[] = { "USB" };
 
 		if ( objectDesc == "" )
 		{
@@ -398,7 +431,13 @@ public class CreateObjectDragged
 		objectMB.setUSBPortsAvailable(1);
 
 
-		return new Scanner(objectName, objectDesc, Sresolution, SconnectionInterfaces, objectMB);
+		Scanner temp = new Scanner(objectName, objectDesc, Sresolution, objectMB);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		return temp;
 	}
 
 
@@ -408,7 +447,6 @@ public class CreateObjectDragged
 		String objectDesc = iconObject.getDescription();
 
 		String Sresolution = "1280x1020";
-		String SconnectionInterfaces[] = { "USB" };
 
 		if ( objectDesc == "" )
 		{
@@ -421,7 +459,13 @@ public class CreateObjectDragged
 		objectMB.setUSBPortsAvailable(1);
 
 
-		return new Printer(objectName, objectDesc, Sresolution, SconnectionInterfaces, objectMB);
+		Printer temp = new Printer(objectName, objectDesc, Sresolution, objectMB);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		return temp;
 	}
 
 
@@ -432,7 +476,6 @@ public class CreateObjectDragged
 		String objectName = "Hub" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 
-		String[] SupConInt = { "RJ-45" };
 		int outPorts = 16;
 		int inPorts = 16;
 		String[] DuplexSupport = { "Full Duplex" };
@@ -449,7 +492,13 @@ public class CreateObjectDragged
 		objectMB.setIntegLANPortsAvailable(16);
 
 
-		return new Hub(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport);
+		Hub temp = new Hub(objectName, objectDesc, null, objectMB, outPorts, inPorts, DuplexSupport);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		return temp;
 	}
 
 
@@ -460,7 +509,6 @@ public class CreateObjectDragged
 		String objectName = "Switch" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 
-		String[] SupConInt = { "RJ-45" };
 		int outPorts = 16;
 		int inPorts = 16;
 		String[] DuplexSupport = { "Full Duplex" };
@@ -477,7 +525,13 @@ public class CreateObjectDragged
 		objectMB.setIntegLANPortsAvailable(16);
 
 
-		return new Switch(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport);
+		Switch temp = new Switch(objectName, objectDesc, null, objectMB, outPorts, inPorts, DuplexSupport);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		return temp;
 	}
 
 
@@ -487,7 +541,6 @@ public class CreateObjectDragged
 		String objectName = "Router" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 
-		String[] SupConInt = { "RJ-45" };
 		int outPorts = 4;
 		int inPorts = 4;
 		String[] DuplexSupport = { "Full Duplex" };
@@ -504,17 +557,22 @@ public class CreateObjectDragged
 		objectMB.setIntegLANPortsAvailable(4);
 
 
-		return new Router(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport);
+		Router temp = new Router(objectName, objectDesc, null, objectMB, outPorts, inPorts, DuplexSupport);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		return temp;
 	}
-	
-	
-	
+
+
+
 	public Router createDefaultWirelessRouter(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Wireless Router" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
 
-		String[] SupConInt = { "RJ-45", "Wireless" };
 		int outPorts = 4;
 		int inPorts = 4;
 		String[] DuplexSupport = { "Full Duplex" };
@@ -531,7 +589,26 @@ public class CreateObjectDragged
 		objectMB.setIntegLANPortsAvailable(4);
 
 
-		return new WirelessRouter(objectName, objectDesc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport, true);
+		WirelessRouter temp = new WirelessRouter(objectName, objectDesc, null, objectMB, outPorts, inPorts,
+				DuplexSupport, true);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		String[] supConIntWithWLan = new String[supportedConnectionInterfaces.length + 1];
+
+		// Adds all the previous supported connection interfaces to the new array
+		for ( int i = 0; i > supportedConnectionInterfaces.length; i++ )
+		{
+			supConIntWithWLan[i] = supportedConnectionInterfaces[i];
+		}
+sdsd
+		// Places the Wireless string at the end of the array
+		supConIntWithWLan[supConIntWithWLan.length-1] = "Wireless";
+
+
+		temp.setSupportedConnectionInterfaces(supConIntWithWLan);
+
+		return temp;
 	}
 
 

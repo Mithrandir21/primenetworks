@@ -501,7 +501,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 
 		// CPU sockets
-		String[] CPUsocketsStrings = { "", "1", "2", "3", "4", "5", "6" };
+		String[] CPUsocketsStrings = { "0", "1", "2", "3", "4", "5", "6" };
 		CPUsockets = new JComboBox(CPUsocketsStrings);
 		CPUsockets.setMaximumSize(tfSize);
 		CPUsockets.setMinimumSize(tfSize);
@@ -534,7 +534,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 
 		// PCI slots
-		String[] PCIslotsStrings = { "", "1", "2", "3", "4", "5", "6" };
+		String[] PCIslotsStrings = { "0", "1", "2", "3", "4", "5", "6" };
 		PCIslots = new JComboBox(PCIslotsStrings);
 		PCIslots.setMaximumSize(tfSize);
 		PCIslots.setMinimumSize(tfSize);
@@ -568,7 +568,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 
 		// RAM slots
-		String[] RAMslotsStrings = { "", "1", "2", "3", "4", "5", "6" };
+		String[] RAMslotsStrings = { "0", "1", "2", "3", "4", "5", "6" };
 		RAMslots = new JComboBox(RAMslotsStrings);
 		RAMslots.setMaximumSize(tfSize);
 		RAMslots.setMinimumSize(tfSize);
@@ -602,7 +602,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 
 		// USB slots
-		String[] USBportsStrings = { "", "1", "2", "3", "4", "5", "6" };
+		String[] USBportsStrings = { "0", "1", "2", "3", "4", "5", "6" };
 		USBports = new JComboBox(USBportsStrings);
 		USBports.setMaximumSize(tfSize);
 		USBports.setMinimumSize(tfSize);
@@ -636,7 +636,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 
 		// DUC ports
-		String[] DUCportsStrings = { "", "1", "2", "3", "4", "5", "6" };
+		String[] DUCportsStrings = { "0", "1", "2", "3", "4", "5", "6" };
 		DUCports = new JComboBox(DUCportsStrings);
 		DUCports.setMaximumSize(tfSize);
 		DUCports.setMinimumSize(tfSize);
@@ -670,7 +670,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 
 		// LAN ports
-		String[] LANportsStrings = { "", "1", "2", "3", "4", "5", "6" };
+		String[] LANportsStrings = { "0", "1", "2", "3", "4", "5", "6" };
 		LANports = new JComboBox(LANportsStrings);
 		LANports.setMaximumSize(tfSize);
 		LANports.setMinimumSize(tfSize);

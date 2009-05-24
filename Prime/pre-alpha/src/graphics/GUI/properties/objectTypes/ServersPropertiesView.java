@@ -53,7 +53,7 @@ public class ServersPropertiesView
 
 
 		// Supports Remote Access
-		JLabel supRemoteAccessLabel = new JLabel("Supports Remote Access");
+		JLabel supRemoteAccessLabel = new JLabel("Supports Remote Access", SwingConstants.TRAILING);
 		supRemoteAccessLabel.setToolTipText("Whether or not this device supports remote access.");
 		panel.add(supRemoteAccessLabel);
 
@@ -67,7 +67,7 @@ public class ServersPropertiesView
 
 
 		// Index 2 - Supported Remote Access Protocols
-		JLabel supRemoteAccProtoLabel = new JLabel("Supported Remote Protocols");
+		JLabel supRemoteAccProtoLabel = new JLabel("Supported Remote Protocols", SwingConstants.TRAILING);
 		supRemoteAccProtoLabel.setToolTipText("The supported remote access protocols.");
 		panel.add(supRemoteAccProtoLabel);
 
@@ -80,7 +80,7 @@ public class ServersPropertiesView
 
 
 		// Index 3 - Software name
-		JLabel mainSWnameLabel = new JLabel("Software Name");
+		JLabel mainSWnameLabel = new JLabel("Software Name", SwingConstants.TRAILING);
 		mainSWnameLabel.setToolTipText("The name of the main software running on this device.");
 		panel.add(mainSWnameLabel);
 

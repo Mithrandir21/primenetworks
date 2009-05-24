@@ -4,6 +4,8 @@
 package graphics.GUI.workareaCanvas.providers;
 
 
+import graphics.PrimeMain1;
+
 import org.netbeans.api.visual.action.WidgetAction.Adapter;
 import org.netbeans.api.visual.widget.Widget;
 
@@ -25,7 +27,11 @@ public class WorkareaCanvasListener extends Adapter
 	@Override
 	public State mouseClicked(Widget widget, WidgetMouseEvent event)
 	{
-		return State.REJECTED;
+		// Updates the properties area with the currently showing workareaCanvas, if it is not showing already
+		PrimeMain1.updatePropertiesCanvasArea(false);
+		
+		// Consumes the action so that other listeners do not pick up the action
+		return State.CONSUMED;
 	}
 
 

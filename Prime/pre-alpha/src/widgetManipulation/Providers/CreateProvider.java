@@ -56,7 +56,7 @@ public class CreateProvider implements SelectProvider
 			WidgetObject widgetobj = (WidgetObject) relatedWidget;
 
 			// Updates the information panel with information from the selected object.
-			PrimeMain1.updatePropertiesObjectArea(widgetobj.getObject());
+			PrimeMain1.updatePropertiesObjectArea(widgetobj.getObject(), false);
 		}
 	}
 

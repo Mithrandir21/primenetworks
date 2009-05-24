@@ -4,6 +4,7 @@
 package graphics.GUI.properties.objectTypes;
 
 
+import graphics.GraphicalFunctions;
 import graphics.PrimeMain1;
 import graphics.GUI.properties.PropertiesArea;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
@@ -12,12 +13,17 @@ import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import managment.CanvasManagment;
+
 import objects.Object;
+import widgetManipulation.WidgetObject;
 
 
 /**
@@ -44,20 +50,18 @@ public class GeneralPropertiesView
 		JTextField nameField = new JTextField(canvas.getCanvasName());
 		nameField.setMaximumSize(tfSize);
 		nameField.setPreferredSize(tfSize);
-		nameField.addKeyListener
-	      (new KeyAdapter() 
-	      {
-	          public void keyPressed(KeyEvent e)
-	          {
-	            int key = e.getKeyCode();
-	            if (key == KeyEvent.VK_ENTER) 
-	            {
-	            	PropertiesArea objPro = (PropertiesArea) PrimeMain1.propertiesPanel.getComponent(0);
-	            	objPro.getObjectPropertiePanel().saveAction();
-	            }
-	          }
-	       }
-	       );
+		nameField.addKeyListener(new KeyAdapter()
+		{
+			public void keyPressed(KeyEvent e)
+			{
+				int key = e.getKeyCode();
+				if ( key == KeyEvent.VK_ENTER )
+				{
+					PropertiesArea objPro = (PropertiesArea) PrimeMain1.propertiesPanel.getComponent(0);
+					objPro.getObjectPropertiePanel().saveAction();
+				}
+			}
+		});
 		nameLabel.setLabelFor(nameField);
 		nameField.setName("Name_Canvas");
 		panel.add(nameField);
@@ -76,6 +80,60 @@ public class GeneralPropertiesView
 		objectCountLabel.setLabelFor(objectCountField);
 		panel.add(objectCountField);
 
+
+		// The IP Mask of the Network
+		JLabel netmaskLabel = new JLabel("Netmask", SwingConstants.TRAILING);
+		netmaskLabel.setToolTipText("The network netmask.");
+		panel.add(netmaskLabel);
+
+		JComboBox netmaskCombo = new JComboBox();
+		netmaskCombo.setName("Netmask");
+		netmaskCombo.setMaximumSize(tfSize);
+		netmaskCombo.setPreferredSize(tfSize);
+		netmaskLabel.setLabelFor(netmaskCombo);
+		String[] netmasks = new String[] { "", "255.255.255.0", "255.255.0.0", "255.0.0.0" };
+		netmaskCombo.setModel(new DefaultComboBoxModel(netmasks));
+		netmaskCombo.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(netmasks, canvas.getNetworkInfo()
+				.getNetmask()));
+		panel.add(netmaskCombo);
+
+
+		// The start of the IP range
+		JLabel IPrangeStartLabel = new JLabel("IP Range Start", SwingConstants.TRAILING);
+		IPrangeStartLabel.setToolTipText("The start of the IP range.");
+		panel.add(IPrangeStartLabel);
+
+		JTextField IPrangeStartField = new JTextField();
+		IPrangeStartField.setName("IP range start");
+		String ipFrom = canvas.getNetworkInfo().getIpRangeFrom();
+		if ( !(ipFrom == null) )
+		{
+			IPrangeStartField.setText(ipFrom);
+		}
+
+		IPrangeStartField.setMaximumSize(tfSize);
+		IPrangeStartField.setPreferredSize(tfSize);
+		IPrangeStartLabel.setLabelFor(IPrangeStartField);
+		panel.add(IPrangeStartField);
+
+
+		// The start of the IP range
+		JLabel IPrangeEndLabel = new JLabel("IP Range End", SwingConstants.TRAILING);
+		IPrangeEndLabel.setToolTipText("The end of the IP range.");
+		panel.add(IPrangeEndLabel);
+
+		JTextField IPrangeEndField = new JTextField();
+		IPrangeEndField.setName("IP range end");
+		String ipTo = canvas.getNetworkInfo().getIpRangeTo();
+		if ( !(ipTo == null) )
+		{
+			IPrangeEndField.setText(ipTo);
+		}
+
+		IPrangeEndField.setMaximumSize(tfSize);
+		IPrangeEndField.setPreferredSize(tfSize);
+		IPrangeEndLabel.setLabelFor(IPrangeEndField);
+		panel.add(IPrangeEndField);
 	}
 
 
@@ -87,6 +145,10 @@ public class GeneralPropertiesView
 	{
 		Dimension tfSize = new Dimension(5, 20);
 
+		// Gets the WidgetObject so that the IP address can be added
+		WidgetObject widObj = CanvasManagment.findWidgetObject(obj, PrimeMain1.currentCanvas);
+
+
 
 		// Name
 		JLabel nameLabel = new JLabel("Name", SwingConstants.TRAILING);
@@ -97,20 +159,18 @@ public class GeneralPropertiesView
 		nameField.setMaximumSize(tfSize);
 		nameField.setPreferredSize(tfSize);
 		nameField.setName("Name Object");
-		nameField.addKeyListener
-	      (new KeyAdapter() 
-	      {
-	          public void keyPressed(KeyEvent e)
-	          {
-	            int key = e.getKeyCode();
-	            if (key == KeyEvent.VK_ENTER) 
-	            {
-	            	PropertiesArea objPro = (PropertiesArea) PrimeMain1.propertiesPanel.getComponent(0);
-	            	objPro.getObjectPropertiePanel().saveAction();
-	            }
-	          }
-	       }
-	       );
+		nameField.addKeyListener(new KeyAdapter()
+		{
+			public void keyPressed(KeyEvent e)
+			{
+				int key = e.getKeyCode();
+				if ( key == KeyEvent.VK_ENTER )
+				{
+					PropertiesArea objPro = (PropertiesArea) PrimeMain1.propertiesPanel.getComponent(0);
+					objPro.getObjectPropertiePanel().saveAction();
+				}
+			}
+		});
 		nameLabel.setLabelFor(nameField);
 		panel.add(nameField);
 
@@ -157,6 +217,28 @@ public class GeneralPropertiesView
 		numbJumpsField.setName("numbJumps");
 		numbJumpsLabel.setLabelFor(numbJumpsField);
 		panel.add(numbJumpsField);
+
+		// If not WidgetObject is found
+		if ( widObj != null )
+		{
+			// The IP of the object
+			JLabel IPLabel = new JLabel("Device IP", SwingConstants.TRAILING);
+			IPLabel.setToolTipText("The IP of the Object in the network.");
+			panel.add(IPLabel);
+
+			JTextField IPfield = new JTextField();
+			IPfield.setName("Object IP");
+			String ipFrom = widObj.getWidgetNetworkInfo().getIp();
+			if ( !(ipFrom == null) )
+			{
+				IPfield.setText(ipFrom);
+			}
+
+			IPfield.setMaximumSize(tfSize);
+			IPfield.setPreferredSize(tfSize);
+			IPLabel.setLabelFor(IPfield);
+			panel.add(IPfield);
+		}
 	}
 
 }

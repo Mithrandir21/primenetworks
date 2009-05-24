@@ -100,7 +100,7 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Antivirus software
-		ImageIcon avtemp = ImageLocator.getImageIconObject("Motherboard");
+		ImageIcon avtemp = ImageLocator.getImageIconObject("Antivirus-Software");
 
 		String[] avInfo = new String[3];
 
@@ -138,7 +138,7 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Backup software
-		ImageIcon backtemp = ImageLocator.getImageIconObject("CPU");
+		ImageIcon backtemp = ImageLocator.getImageIconObject("Backup-Software");
 
 		String[] backInfo = new String[3];
 
@@ -176,7 +176,7 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Database software
-		ImageIcon dbtemp = ImageLocator.getImageIconObject("Harddisc");
+		ImageIcon dbtemp = ImageLocator.getImageIconObject("Database-Software");
 
 		String[] dbInfo = new String[3];
 
@@ -213,7 +213,7 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Email software
-		ImageIcon Emailtemp = ImageLocator.getImageIconObject("Harddisc");
+		ImageIcon Emailtemp = ImageLocator.getImageIconObject("Email-Software");
 
 		String[] emailInfo = new String[3];
 
@@ -250,7 +250,7 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Firewall software
-		ImageIcon fwtemp = ImageLocator.getImageIconObject("Harddisc");
+		ImageIcon fwtemp = ImageLocator.getImageIconObject("Firewall-Software");
 
 		String[] fwInfo = new String[3];
 
@@ -287,7 +287,7 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Office Suite software
-		ImageIcon offSuitetemp = ImageLocator.getImageIconObject("Harddisc");
+		ImageIcon offSuitetemp = ImageLocator.getImageIconObject("OfficeSuite-Software");
 
 		String[] offSuiteInfo = new String[3];
 
@@ -324,7 +324,7 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Operating System software
-		ImageIcon OStemp = ImageLocator.getImageIconObject("Harddisc");
+		ImageIcon OStemp = ImageLocator.getImageIconObject("OperatingSystem-Software");
 
 		String[] OSInfo = new String[3];
 
@@ -361,7 +361,7 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Proxy software
-		ImageIcon proxytemp = ImageLocator.getImageIconObject("Harddisc");
+		ImageIcon proxytemp = ImageLocator.getImageIconObject("Proxy-Software");
 
 		String[] proxyInfo = new String[3];
 
@@ -398,7 +398,7 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Security Suite software
-		ImageIcon secSuitetemp = ImageLocator.getImageIconObject("Harddisc");
+		ImageIcon secSuitetemp = ImageLocator.getImageIconObject("SecuritySuite-Software");
 
 		String[] secSuiteInfo = new String[3];
 
@@ -435,7 +435,7 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Websesrver software
-		ImageIcon webSertemp = ImageLocator.getImageIconObject("Harddisc");
+		ImageIcon webSertemp = ImageLocator.getImageIconObject("Webserver-Software");
 
 		String[] webSerInfo = new String[3];
 

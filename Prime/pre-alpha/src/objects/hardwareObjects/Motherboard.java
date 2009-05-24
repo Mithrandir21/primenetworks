@@ -42,23 +42,23 @@ public class Motherboard extends Hardware implements Serializable
 	private String chipset;
 
 	// The number of CPU slots on the MB
-	private int maxCPUs;
+	private int maxCPUs = 0;
 
 	// The number of PCI slots on the MB
-	private int maxPCIs;
+	private int maxPCIs = 0;
 
 	// The number of RAM slots on the MB
-	private int maxRAMs;
+	private int maxRAMs = 0;
 
 	// The number of USB ports on the actual MB(not add-ons)
-	private int maxUSBs;
+	private int maxUSBs = 0;
 
 	// The number of DUC, Different Usage Connections(HDD,CDROM), ports on the
 	// MB
-	private int maxDUCs;
+	private int maxDUCs = 0;
 
 	// The number of integrated LAN ports, if any, on the MB
-	private int maxIntegLANs;
+	private int maxIntegLANs = 0;
 
 	// The type of graphical port on the MB
 	private String graphicalPortType;
