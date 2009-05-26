@@ -44,22 +44,7 @@ public class WidgetRoomAdapterExtended extends Adapter
 				// If button1 is double clicked.
 				if ( event.getClickCount() == 2 )
 				{
-					WidgetRoom room = (WidgetRoom) widget;
-					// The user types in the new name of the room
-					String roomName = JOptionPane.showInputDialog(null, "New name of the room?", "Name",
-							JOptionPane.QUESTION_MESSAGE);
-
-					// The user has pressed "Cancel"
-					if ( roomName != null )
-					{
-						// If the name typed in by the user is validatet
-						if ( RoomManagment.checkNewRoomName(roomName) )
-						{
-							RoomManagment.changeWidgetRoomName(room, roomName);
-
-							PrimeMain1.currentCanvas.cleanUp();
-						}
-					}
+					RoomManagment.changeWidgetRoomName(widget);
 				}
 			}
 			return State.CONSUMED;

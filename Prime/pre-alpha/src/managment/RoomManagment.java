@@ -15,6 +15,7 @@ import java.awt.Color;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 
 import logistical.checkLogic;
@@ -58,6 +59,10 @@ public class RoomManagment
 
 		// Clicking ability
 		room.getActions().addAction(new WidgetRoomAdapterExtended());
+		
+		room.getActions().addAction(
+				ActionFactory.createPopupMenuAction(new JMenuWidgetRoom(PrimeMain1.currentCanvas)));
+		
 
 		TitledBorder border = javax.swing.BorderFactory.createTitledBorder(new RoomBorder(Color.BLACK), "RoomName");
 		room.setBorder(border);
@@ -261,29 +266,6 @@ public class RoomManagment
 
 
 
-	/**
-	 * Changes the title of the {@link TitledBorder} surrounding the {@link WidgetRoom} and the name of the {@link Room}
-	 * inside the {@link WidgetRoom} object.
-	 * 
-	 * @param room
-	 * @param newName
-	 */
-	public static void changeWidgetRoomName(WidgetRoom room, String newName)
-	{
-		// Sets the name of the Room object inside the WidgetRoom
-		room.getRoom().setRoomName(newName);
-
-		// Creates a new TitledBorder with the given string
-		TitledBorder border = javax.swing.BorderFactory.createTitledBorder(new RoomBorder(Color.BLACK), newName);
-
-		// Sets the newly created TitledBorder as the border for the the given WidgetRoom.
-		room.setBorder(border);
-
-		// Repaints the given WidgetRoom
-		room.repaint();
-	}
-
-
 
 	/**
 	 * Javadoc-TODO - Description
@@ -343,14 +325,50 @@ public class RoomManagment
 						// Gets the size of the action chain
 						int size = roomWidgets[j].getActions().getActions().size();
 
-						// If the size is 3
-						if ( size == 3 )
+						// If the size is 4
+						if ( size == 4 )
 						{
 							// Removes the last action in the chain
 							roomWidgets[j].getActions().removeAction(size - 1);
 						}
 					}
 				}
+			}
+		}
+	}
+	
+	
+	
+	/**
+	 * Changes the title of the {@link TitledBorder} surrounding the {@link WidgetRoom} and the name of the {@link Room}
+	 * inside the {@link WidgetRoom} object.
+	 */
+	public static void changeWidgetRoomName(Widget widget)
+	{
+		WidgetRoom room = (WidgetRoom) widget;
+		// The user types in the new name of the room
+		String roomName = JOptionPane.showInputDialog(null, "New name of the room?", "Name",
+				JOptionPane.QUESTION_MESSAGE);
+
+		// The user has pressed "Cancel"
+		if ( roomName != null )
+		{
+			// If the name typed in by the user is validatet
+			if ( RoomManagment.checkNewRoomName(roomName) )
+			{
+				// Sets the name of the Room object inside the WidgetRoom
+				room.getRoom().setRoomName(roomName);
+
+				// Creates a new TitledBorder with the given string
+				TitledBorder border = javax.swing.BorderFactory.createTitledBorder(new RoomBorder(Color.BLACK), roomName);
+
+				// Sets the newly created TitledBorder as the border for the the given WidgetRoom.
+				room.setBorder(border);
+
+				// Repaints the given WidgetRoom
+				room.repaint();
+
+				PrimeMain1.currentCanvas.cleanUp();
 			}
 		}
 	}

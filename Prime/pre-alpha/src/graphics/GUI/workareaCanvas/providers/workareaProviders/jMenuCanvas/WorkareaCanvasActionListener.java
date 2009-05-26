@@ -19,10 +19,13 @@ import javax.swing.JMenuItem;
 
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
+import objects.clientObjects.ThinClient;
 import objects.infrastructureObjects.Hub;
 import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
+import objects.peripheralObjects.NetworkPrinter;
+import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
 import objects.serverObjects.BackupServer;
 import objects.serverObjects.FirewallServer;
@@ -109,6 +112,13 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 				set = true;
 			}
+			else if ( actionName.equals("CreateNewST_ThinClient_Item") )
+			{
+				objectType = Desktop.class;
+				objectIcon = ImageLocator.getImageIconObject("Screen");
+
+				set = true;
+			}
 			else if ( actionName.equals("CreateNewST_HTTPServer_Item") )
 			{
 				objectType = HTTPServer.class;
@@ -172,13 +182,6 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 				set = true;
 			}
-			else if ( actionName.equals("CreateNewST_Scanner_Item") )
-			{
-				objectType = Scanner.class;
-				objectIcon = ImageLocator.getImageIconObject("Scanner");
-
-				set = true;
-			}
 			else if ( actionName.equals("CreateNewST_Internet_Item") )
 			{
 				objectType = Internet.class;
@@ -186,6 +189,28 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 				set = true;
 			}
+			else if ( actionName.equals("CreateNewST_Scanner_Item") )
+			{
+				objectType = Scanner.class;
+				objectIcon = ImageLocator.getImageIconObject("Scanner");
+
+				set = true;
+			}
+			else if ( actionName.equals("CreateNewST_Printer_Item") )
+			{
+				objectType = Printer.class;
+				objectIcon = ImageLocator.getImageIconObject("Printer");
+
+				set = true;
+			}
+			else if ( actionName.equals("CreateNewST_NetworkPrinter_Item") )
+			{
+				objectType = NetworkPrinter.class;
+				objectIcon = ImageLocator.getImageIconObject("PrinterNetwork");
+
+				set = true;
+			}
+
 
 
 

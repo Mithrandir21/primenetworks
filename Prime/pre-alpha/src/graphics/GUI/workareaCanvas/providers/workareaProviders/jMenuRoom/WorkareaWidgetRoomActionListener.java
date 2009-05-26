@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 
+import managment.RoomManagment;
+
 import widgetManipulation.WidgetRoom;
 
 
@@ -18,7 +20,6 @@ import widgetManipulation.WidgetRoom;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class WorkareaWidgetRoomActionListener implements ActionListener
 {
@@ -26,8 +27,8 @@ public class WorkareaWidgetRoomActionListener implements ActionListener
 	 * 
 	 */
 	private WorkareaCanvas canvas;
-	
-	
+
+
 	/**
 	 * 
 	 */
@@ -40,7 +41,8 @@ public class WorkareaWidgetRoomActionListener implements ActionListener
 	 * 
 	 * @param canvas
 	 */
-	public WorkareaWidgetRoomActionListener(WorkareaCanvas canvas, WidgetRoom room)
+	public WorkareaWidgetRoomActionListener(WorkareaCanvas canvas,
+			WidgetRoom room)
 	{
 		this.canvas = canvas;
 		this.room = room;
@@ -65,11 +67,14 @@ public class WorkareaWidgetRoomActionListener implements ActionListener
 		{
 			if ( actionName.equals("DeleteRoom") )
 			{
-				System.out.println(room.getRoom().getRoomName() + "delete room");
+				// Calls the remove WidgetRoom function
+				RoomManagment.deleteWidgetRoom(canvas, room);
 			}
-			else if( actionName.equals("RenameRoom") )
+			else if ( actionName.equals("RenameRoom") )
 			{
-				System.out.println(room.getRoom().getRoomName() + "rename room");
+				// Call the function that asks the user for a new name and then
+				// sets that name as the name for the given room
+				RoomManagment.changeWidgetRoomName(room);
 			}
 		}
 

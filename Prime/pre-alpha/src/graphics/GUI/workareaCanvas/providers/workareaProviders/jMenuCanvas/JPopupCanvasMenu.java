@@ -121,6 +121,10 @@ public class JPopupCanvasMenu
 		menuItem.addActionListener(canvasActListener);
 		submenuDesktop.add(menuItem);
 
+		menuItem = new JMenuItem("Thin Client");
+		menuItem.setActionCommand("CreateNewST_ThinClient_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuDesktop.add(menuItem);
 
 
 		return submenuDesktop;
@@ -213,12 +217,21 @@ public class JPopupCanvasMenu
 	{
 
 		JMenuItem menuItem = new JMenuItem();
-
+		
 		menuItem = new JMenuItem("Scanner");
 		menuItem.setActionCommand("CreateNewST_Scanner_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuPeripheral.add(menuItem);
 
+		menuItem = new JMenuItem("Printer");
+		menuItem.setActionCommand("CreateNewST_Printer_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuPeripheral.add(menuItem);
+		
+		menuItem = new JMenuItem("Network Printer");
+		menuItem.setActionCommand("CreateNewST_NetworkPrinter_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuPeripheral.add(menuItem);
 
 		return submenuPeripheral;
 	}
