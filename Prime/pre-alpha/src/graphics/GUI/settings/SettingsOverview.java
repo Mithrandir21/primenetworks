@@ -125,9 +125,6 @@ public class SettingsOverview extends JFrame
 		tabs.addTab("Network Processing", frameIcon, new NetworkMessagesSettings(messagesCheckBox),
 				"Settings for processing of a network");
 
-		tabs.addTab("Network Processing", frameIcon, new JPanel(), "Settings for processing of a network");
-
-
 		return tabs;
 	}
 

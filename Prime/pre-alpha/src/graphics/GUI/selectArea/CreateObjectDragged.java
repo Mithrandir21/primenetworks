@@ -4,13 +4,17 @@
 package graphics.GUI.selectArea;
 
 
-import managment.ComponentsManagment;
+import exceptions.ObjectNotFoundException;
 import graphics.PrimeMain1;
 import graphics.WidgetIcon;
+import managment.ArrayManagment;
+import managment.ComponentsManagment;
 import objects.Object;
 import objects.Software;
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
+import objects.clientObjects.ThinClient;
+import objects.hardwareObjects.HDD;
 import objects.hardwareObjects.InternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
 import objects.infrastructureObjects.Hub;
@@ -218,7 +222,7 @@ public class CreateObjectDragged
 
 
 
-	public Laptop createDefaultThinClient(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	public ThinClient createDefaultThinClient(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Thin Client" + numberOfWidgetsOnTheScene;
 		String objectDesc = iconObject.getDescription();
@@ -228,10 +232,23 @@ public class CreateObjectDragged
 			objectDesc = objectName;
 		}
 
-		// TODO - ThinClient
+		
+		Object[] st_componentsWithOutHDD = null;
+		try
+		{	// Gets the HDD from the array of components
+			HDD removing = (HDD) ArrayManagment.getSpesificComponents(HDD.class, st_components, st_components.length)[0];
+			
+			// Removes the HDD from the array of components
+			st_componentsWithOutHDD = ComponentsManagment.removeComponent(removing, st_components, st_components.length);
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// This is impossible since the HDD has just been added at the top of this class 
+			e.printStackTrace();
+		}
 
-
-		Laptop temp = new Laptop(objectName, objectDesc, st_components);
+		
+		ThinClient temp = new ThinClient(objectName, objectDesc, st_componentsWithOutHDD);
 
 		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
 

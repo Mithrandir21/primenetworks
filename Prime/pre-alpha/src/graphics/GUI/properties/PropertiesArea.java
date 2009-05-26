@@ -12,7 +12,6 @@ import java.awt.Dimension;
 import javax.swing.JTabbedPane;
 
 import objects.Object;
-import widgetManipulation.WidgetObject;
 
 
 /**

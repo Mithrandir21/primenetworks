@@ -25,11 +25,13 @@ import managment.ConnectionManagment;
 import objects.Object;
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
+import objects.clientObjects.ThinClient;
 import objects.infrastructureObjects.Hub;
 import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.infrastructureObjects.WirelessRouter;
+import objects.peripheralObjects.NetworkPrinter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
 import objects.serverObjects.BackupServer;
@@ -144,6 +146,13 @@ public class WorkareaCanvasActions
 
 			set = true;
 		}
+		else if ( obj.getClass().equals(ThinClient.class) )
+		{
+			objectType = ThinClient.class;
+			objectIcon = ImageLocator.getImageIconObject("Screen");
+
+			set = true;
+		}
 		else if ( obj.getClass().equals(HTTPServer.class) )
 		{
 			objectType = HTTPServer.class;
@@ -207,6 +216,13 @@ public class WorkareaCanvasActions
 
 			set = true;
 		}
+		else if ( obj.getClass().equals(Internet.class) )
+		{
+			objectType = Internet.class;
+			objectIcon = ImageLocator.getImageIconObject("Internet");
+
+			set = true;
+		}
 		else if ( obj.getClass().equals(Scanner.class) )
 		{
 			objectType = Scanner.class;
@@ -221,10 +237,10 @@ public class WorkareaCanvasActions
 
 			set = true;
 		}
-		else if ( obj.getClass().equals(Internet.class) )
+		else if ( obj.getClass().equals(NetworkPrinter.class) )
 		{
-			objectType = Internet.class;
-			objectIcon = ImageLocator.getImageIconObject("Internet");
+			objectType = NetworkPrinter.class;
+			objectIcon = ImageLocator.getImageIconObject("PrinterNetwork");
 
 			set = true;
 		}

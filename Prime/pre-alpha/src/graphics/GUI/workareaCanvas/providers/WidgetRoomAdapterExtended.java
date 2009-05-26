@@ -4,19 +4,14 @@
 package graphics.GUI.workareaCanvas.providers;
 
 
-import graphics.PrimeMain1;
 import graphics.Settings;
 
 import java.awt.event.MouseEvent;
-
-import javax.swing.JOptionPane;
 
 import managment.RoomManagment;
 
 import org.netbeans.api.visual.action.WidgetAction.Adapter;
 import org.netbeans.api.visual.widget.Widget;
-
-import widgetManipulation.WidgetRoom;
 
 
 /**

@@ -114,7 +114,7 @@ public class WorkareaCanvasActionListener implements ActionListener
 			}
 			else if ( actionName.equals("CreateNewST_ThinClient_Item") )
 			{
-				objectType = Desktop.class;
+				objectType = ThinClient.class;
 				objectIcon = ImageLocator.getImageIconObject("Screen");
 
 				set = true;

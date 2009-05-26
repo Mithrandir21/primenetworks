@@ -21,7 +21,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import managment.CanvasManagment;
-
 import objects.Object;
 import widgetManipulation.WidgetObject;
 

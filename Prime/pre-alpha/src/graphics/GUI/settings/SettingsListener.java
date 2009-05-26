@@ -62,7 +62,7 @@ public class SettingsListener implements ActionListener
 			}
 			else if( command.equals("cancel") )
 			{
-				
+				settingsFrame.dispose();
 			}
 		}
 	}
