@@ -11,7 +11,6 @@ import org.netbeans.api.visual.action.RectangularSelectDecorator;
 import org.netbeans.api.visual.widget.Widget;
 
 
-
 /**
  * Javadoc-TODO - Description NEEDED!
  * 
@@ -35,10 +34,8 @@ public class PrimeRectangularSelectDecorator implements RectangularSelectDecorat
 	@Override
 	public Widget createSelectionWidget()
 	{
-		WidgetRoom widget = RoomManagment.createWidgetRoom(canvas, "Testing");
-		
+		WidgetRoom widget = RoomManagment.createWidgetRoom(canvas, "RoomName");
 		
 		return widget;
 	}
-
 }

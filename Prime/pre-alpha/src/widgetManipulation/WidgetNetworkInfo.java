@@ -4,6 +4,8 @@
 package widgetManipulation;
 
 
+import java.io.Serializable;
+
 import managment.NetworkManagment;
 
 
@@ -19,7 +21,7 @@ import managment.NetworkManagment;
  * @author Bahram Malaekeh
  * 
  */
-public class WidgetNetworkInfo
+public class WidgetNetworkInfo implements Serializable
 {
 	// The widgets IP in the network
 	private String ip = null;

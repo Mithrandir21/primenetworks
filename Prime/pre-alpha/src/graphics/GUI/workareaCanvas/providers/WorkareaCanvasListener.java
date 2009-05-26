@@ -61,33 +61,4 @@ public class WorkareaCanvasListener extends Adapter
 	{
 		return State.REJECTED;
 	}
-
-
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.netbeans.api.visual.action.WidgetAction.Adapter#keyPressed(org.netbeans.api.visual.widget.Widget,
-	 * org.netbeans.api.visual.action.WidgetAction.WidgetKeyEvent)
-	 */
-	@Override
-	public State keyPressed(Widget widget, WidgetKeyEvent event)
-	{
-		System.out.println(event.getKeyChar() + " 1");
-		return State.REJECTED;
-	}
-
-
-	public State keyTyped(Widget widget, WidgetKeyEvent event)
-	{
-		System.out.println(event.getKeyChar() + " 2");
-		return State.REJECTED;
-	}
-
-
-	public State keyReleased(Widget widget, WidgetKeyEvent event)
-	{
-		System.out.println(event.getKeyChar() + " 3");
-		return State.REJECTED;
-	}
 }

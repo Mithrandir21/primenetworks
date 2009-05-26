@@ -28,6 +28,7 @@ import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.infrastructureObjects.WirelessRouter;
+import objects.peripheralObjects.NetworkPrinter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
 import objects.serverObjects.BackupServer;
@@ -127,6 +128,10 @@ public class ObjectSelection extends JPanel
 		this.add(new JToolBar.Separator());
 
 		this.add(makeImageIcon("Printer", Printer.class, "Printer"));
+
+		this.add(new JToolBar.Separator());
+		
+		this.add(makeImageIcon("PrinterNetwork", NetworkPrinter.class, "Network Printer"));
 
 		this.add(new JToolBar.Separator());
 

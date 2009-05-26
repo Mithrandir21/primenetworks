@@ -4,8 +4,12 @@
 package managment;
 
 
+import graphics.PrimeMain1;
+import graphics.Settings;
 import graphics.GUI.RoomBorder;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
+import graphics.GUI.workareaCanvas.providers.WidgetRoomAdapterExtended;
+import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuRoom.JMenuWidgetRoom;
 
 import java.awt.Color;
 import java.util.Iterator;
@@ -13,9 +17,11 @@ import java.util.List;
 
 import javax.swing.border.TitledBorder;
 
+import logistical.checkLogic;
 import objects.Room;
 
 import org.netbeans.api.visual.action.ActionFactory;
+import org.netbeans.api.visual.action.WidgetAction;
 import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Widget;
 
@@ -32,8 +38,6 @@ import widgetManipulation.Actions.ResizeWidgetAction;
  */
 public class RoomManagment
 {
-
-
 	/**
 	 * This function adds all the actions a WidgetRoom has, like the ability to resize and move.
 	 * 
@@ -43,14 +47,19 @@ public class RoomManagment
 	 */
 	public static WidgetRoom addActionsToWidgetRoom(WidgetRoom room)
 	{
+		// Gives the WidgetRoom the ability to be resized
 		room.getActions().addAction(
 				new ResizeWidgetAction(ActionFactory.createFreeResizeStategy(), ActionFactory
 						.createDefaultResizeControlPointResolver(), ActionFactory.createDefaultResizeProvider()));
 
+		// Gives the WidgetRoom the ability to be moved
 		room.getActions().addAction(
 				new MoveRoomAction(ActionFactory.createFreeMoveStrategy(), ActionFactory.createDefaultMoveProvider()));
-		// asdasd
-		TitledBorder border = javax.swing.BorderFactory.createTitledBorder(new RoomBorder(Color.BLACK), "Testing");
+
+		// Clicking ability
+		room.getActions().addAction(new WidgetRoomAdapterExtended());
+
+		TitledBorder border = javax.swing.BorderFactory.createTitledBorder(new RoomBorder(Color.BLACK), "RoomName");
 		room.setBorder(border);
 		// widget.setBorder(new RoomBorder(Color.BLACK));
 		// widget.setBorder (scene.getLookFeel().getMiniBorder(ObjectState.createNormal().deriveSelected (true)));
@@ -234,5 +243,115 @@ public class RoomManagment
 		}
 
 		return false;
+	}
+
+
+
+
+	/**
+	 * Validates the given string as a {@link WidgetRoom} name.
+	 * 
+	 * @param room
+	 * @return
+	 */
+	public static boolean checkNewRoomName(String newName)
+	{
+		return checkLogic.validateName(newName);
+	}
+
+
+
+	/**
+	 * Changes the title of the {@link TitledBorder} surrounding the {@link WidgetRoom} and the name of the {@link Room}
+	 * inside the {@link WidgetRoom} object.
+	 * 
+	 * @param room
+	 * @param newName
+	 */
+	public static void changeWidgetRoomName(WidgetRoom room, String newName)
+	{
+		// Sets the name of the Room object inside the WidgetRoom
+		room.getRoom().setRoomName(newName);
+
+		// Creates a new TitledBorder with the given string
+		TitledBorder border = javax.swing.BorderFactory.createTitledBorder(new RoomBorder(Color.BLACK), newName);
+
+		// Sets the newly created TitledBorder as the border for the the given WidgetRoom.
+		room.setBorder(border);
+
+		// Repaints the given WidgetRoom
+		room.repaint();
+	}
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 */
+	public static void JPopupMenuesToggle()
+	{
+		// If the setting for the Room manipulation is set to true
+		if ( Settings.roomsManipulation )
+		{
+			// Goes through
+			for ( int i = 0; i < PrimeMain1.canvases.length; i++ )
+			{
+				if ( PrimeMain1.canvases[i] != null )
+				{
+					// List of all the Rooms on the Scene
+					List<Widget> l = PrimeMain1.canvases[i].getRoomLayer().getChildren();
+
+					// Converts that list to an array of Objects
+					java.lang.Object[] roomTemp = l.toArray();
+
+					// Creates an array with the length of the all the children on the canvas
+					WidgetRoom[] roomWidgets = new WidgetRoom[roomTemp.length];
+
+					// Casts all the objects in the converted list to widgetobjects
+					for ( int j = 0; j < roomWidgets.length; j++ )
+					{
+						roomWidgets[j] = (WidgetRoom) roomTemp[j];
+
+						// Add the JMenuPopup action the WidgetRoom
+						roomWidgets[j].getActions().addAction(
+								ActionFactory.createPopupMenuAction(new JMenuWidgetRoom(PrimeMain1.canvases[i])));
+					}
+				}
+			}
+		}
+		else
+		{
+			for ( int i = 0; i < PrimeMain1.canvases.length; i++ )
+			{
+				if ( PrimeMain1.canvases[i] != null )
+				{
+					// List of all the Rooms on the Scene
+					List<Widget> l = PrimeMain1.canvases[i].getRoomLayer().getChildren();
+
+					// Converts that list to an array of Objects
+					java.lang.Object[] roomTemp = l.toArray();
+
+					// Creates an array with the length of the all the children on the canvas
+					WidgetRoom[] roomWidgets = new WidgetRoom[roomTemp.length];
+
+					// Casts all the objects in the converted list to widgetobjects
+					for ( int j = 0; j < roomWidgets.length; j++ )
+					{
+						roomWidgets[j] = (WidgetRoom) roomTemp[j];
+
+						// Gets the size of the action chain
+						int size = roomWidgets[j].getActions().getActions().size();
+
+						// If the size is 3
+						if ( size == 3 )
+						{
+							// Removes the last action in the chain
+							roomWidgets[j].getActions().removeAction(size - 1);
+						}
+					}
+				}
+			}
+		}
 	}
 }

@@ -6,7 +6,9 @@ import java.awt.BasicStroke;
 import javax.swing.JOptionPane;
 
 import logistical.cleanup;
+import objects.Infrastructure;
 import objects.Object;
+import objects.hardwareObjects.ExternalNetworksCard;
 import objects.hardwareObjects.InternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
 
@@ -26,7 +28,7 @@ import exceptions.ConnectionsIsNotPossible;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
-import graphics.GUI.workareaCanvas.providers.AdapterExtended;
+import graphics.GUI.workareaCanvas.providers.WidgetAdapterExtended;
 
 
 /**
@@ -100,22 +102,26 @@ public class ConnectionManagment
 
 
 	/**
-	 * Modifies a {@link WidgetExtendedConnection} object to be represented by a specific {@link BasicStroke}. 
-	 * It also sets the source and target anchors of the WidgetExtendedConnection.
-	 * The BasicStroke depends on the type of connection between the two objects. 
-	 * If the it is a wireless connection, the stroke will be dotted. If the connection is by a
-	 * physical cable, it will be a straight line.
+	 * Modifies a {@link WidgetExtendedConnection} object to be represented by a specific {@link BasicStroke}. It also
+	 * sets the source and target anchors of the WidgetExtendedConnection. The BasicStroke depends on the type of
+	 * connection between the two objects. If the it is a wireless connection, the stroke will be dotted. If the
+	 * connection is by a physical cable, it will be a straight line.
 	 * 
 	 * 
-	 * @param canvas The {@link WorkareaCanvas network} that the connection exists in.
-	 * @param con The system {@link Connection} that is the actual connection between the Objects.
-	 * @param connection The {@link WidgetExtendedConnection} widget representing the connection in the the network.
-	 * @param sourceWidget The {@link WidgetObject} the connection originates at.
-	 * @param TargetWidObj The {@link WidgetObject} the connection is destined for.
+	 * @param canvas
+	 *            The {@link WorkareaCanvas network} that the connection exists in.
+	 * @param con
+	 *            The system {@link Connection} that is the actual connection between the Objects.
+	 * @param connection
+	 *            The {@link WidgetExtendedConnection} widget representing the connection in the the network.
+	 * @param sourceWidget
+	 *            The {@link WidgetObject} the connection originates at.
+	 * @param TargetWidObj
+	 *            The {@link WidgetObject} the connection is destined for.
 	 * @return A {@link WidgetExtendedConnection} with a specific {@link BasicStroke}.
 	 */
 	public static WidgetExtendedConnection createWidgetExtendedConnection(WorkareaCanvas canvas, Connection con,
-			WidgetExtendedConnection connection,WidgetObject SourceWidObj,WidgetObject TargetWidObj)
+			WidgetExtendedConnection connection, WidgetObject SourceWidObj, WidgetObject TargetWidObj)
 	{
 		// Adds the connection to the connection array for the WorkareaCanvas.
 		ConnectionManagment.addConnection(con, false, canvas);
@@ -145,7 +151,7 @@ public class ConnectionManagment
 		connection.setTargetAnchorShape(AnchorShape.NONE);
 		connection.setStroke(stroke);
 		connection.setToolTipText("This is a connection");
-		connection.getActions().addAction(new AdapterExtended());
+		connection.getActions().addAction(new WidgetAdapterExtended());
 		connection.setSourceAnchor(AnchorFactory.createRectangularAnchor(SourceWidObj));
 		connection.setTargetAnchor(AnchorFactory.createRectangularAnchor(TargetWidObj));
 
@@ -616,7 +622,7 @@ public class ConnectionManagment
 		}
 
 
-		if ( conType == "RJ-45" )
+		if ( conType.equals("RJ-45") )
 		{
 			/*
 			 * These two values will be changed or the function will get some exceptions and will not move on.
@@ -636,7 +642,7 @@ public class ConnectionManagment
 				if ( indexA < 1 )
 				{
 					JOptionPane.showMessageDialog(null, "There are no available integrated LAN ports on "
-							+ objectA.getObjectName(), "alert", JOptionPane.ERROR_MESSAGE);
+							+ objectA.getObjectName() + ".", "alert", JOptionPane.ERROR_MESSAGE);
 
 					return false;
 				}
@@ -651,7 +657,7 @@ public class ConnectionManagment
 				catch ( ObjectNotFoundException e )
 				{
 					JOptionPane.showMessageDialog(null, "A networkscard was not found inside "
-							+ objectA.getObjectName(), "alert", JOptionPane.ERROR_MESSAGE);
+							+ objectA.getObjectName() + ".", "alert", JOptionPane.ERROR_MESSAGE);
 
 					return false;
 				}
@@ -669,7 +675,7 @@ public class ConnectionManagment
 				if ( indexB < 1 )
 				{
 					JOptionPane.showMessageDialog(null, "There are no available integrated LAN ports on "
-							+ objectB.getObjectName(), "alert", JOptionPane.ERROR_MESSAGE);
+							+ objectB.getObjectName() + ".", "alert", JOptionPane.ERROR_MESSAGE);
 
 					return false;
 				}
@@ -684,7 +690,7 @@ public class ConnectionManagment
 				catch ( ObjectNotFoundException e )
 				{
 					JOptionPane.showMessageDialog(null, "A networkscard was not found inside "
-							+ objectB.getObjectName(), "alert", JOptionPane.ERROR_MESSAGE);
+							+ objectB.getObjectName() + ".", "alert", JOptionPane.ERROR_MESSAGE);
 
 					return false;
 				}
@@ -700,12 +706,201 @@ public class ConnectionManagment
 			objectAmotherboard.makeOneIntLANportTaken();
 			objectBmotherboard.makeOneIntLANportTaken();
 
-			// Adds each object to the other objects array of connection
-			// objects.
+			// Adds each object to the other objects array of connection objects.
 			objectA.addConnectedDevices(objectB);
 			objectB.addConnectedDevices(objectA);
 		}
-		else if ( conType == "USB" )
+		else if ( conType.equals("Wireless") )
+		{
+			Object ObjectAnic = null;
+			Object ObjectBnic = null;
+
+
+			// If objectA is not a infrastructure object
+			if ( !(objectA instanceof Infrastructure) )
+			{
+				try
+				{
+					// Gets all the InternalNICs
+					Object[] intNICs = objectA.getSpesificComponents(InternalNetworksCard.class);
+
+					// Goes through all the gotten InternalNICs
+					for ( int i = 0; i < intNICs.length; i++ )
+					{
+						InternalNetworksCard temp = (InternalNetworksCard) intNICs[i];
+
+						// If there is no Object connected to this InternalNIC
+						if ( temp.getConnectedObject() == null )
+						{
+							// If the connection type of the network card is Wireless
+							if ( temp.getConnectionType().equals("Wireless") )
+							{
+								// Sets the found InternalNetworksCard with no objects connected to it
+								ObjectAnic = temp;
+
+								// Ends loop
+								i = intNICs.length;
+							}
+						}
+					}
+
+				}
+				// No InternalNetworksCard was found, search for ExternalNetworksCard
+				catch ( ObjectNotFoundException internalException )
+				{
+					try
+					{
+						// Gets all the ExternalNICs
+						Object[] extNICs = objectA.getSpesificComponents(ExternalNetworksCard.class);
+
+						// Goes through all the gotten ExternalNICs
+						for ( int i = 0; i < extNICs.length; i++ )
+						{
+							ExternalNetworksCard temp = (ExternalNetworksCard) extNICs[i];
+
+							// If there is no Object connected to this ExternalNICs
+							if ( temp.getConnectedObject() == null )
+							{
+								// If the connection type of the network card is Wireless
+								if ( temp.getConnectionType().equals("Wireless") )
+								{
+									// Sets the found ExternalNetworksCard with no objects connected to it
+									ObjectAnic = temp;
+
+									// Ends loop
+									i = extNICs.length;
+								}
+							}
+						}
+
+					}
+					// No InternalNetworksCard or ExternalNetworksCard was found which was available
+					catch ( ObjectNotFoundException externalException )
+					{
+						JOptionPane.showMessageDialog(null, "No available network card was found on "
+								+ objectA.getObjectName() + ".", "alert", JOptionPane.ERROR_MESSAGE);
+
+						return false;
+					}
+				}
+			}
+
+
+
+			if ( !(objectB instanceof Infrastructure) )
+			{
+				try
+				{
+					// Gets all the InternalNICs
+					Object[] intNICs = objectB.getSpesificComponents(InternalNetworksCard.class);
+
+					// Goes through all the gotten InternalNICs
+					for ( int i = 0; i < intNICs.length; i++ )
+					{
+						InternalNetworksCard temp = (InternalNetworksCard) intNICs[i];
+
+						// If there is no Object connected to this InternalNIC
+						if ( temp.getConnectedObject() == null )
+						{
+							// If the connection type of the network card is Wireless
+							if ( temp.getConnectionType().equals("Wireless") )
+							{
+								// Sets the found InternalNetworksCard with no objects connected to it
+								ObjectBnic = temp;
+
+								// Ends loop
+								i = intNICs.length;
+							}
+						}
+					}
+
+				}
+				// No InternalNetworksCard was found, search for ExternalNetworksCard
+				catch ( ObjectNotFoundException internalException )
+				{
+					try
+					{
+						// Gets all the ExternalNICs
+						Object[] extNICs = objectB.getSpesificComponents(ExternalNetworksCard.class);
+
+						// Goes through all the gotten ExternalNICs
+						for ( int i = 0; i < extNICs.length; i++ )
+						{
+							ExternalNetworksCard temp = (ExternalNetworksCard) extNICs[i];
+
+							// If there is no Object connected to this ExternalNICs
+							if ( temp.getConnectedObject() == null )
+							{
+								// If the connection type of the network card is Wireless
+								if ( temp.getConnectionType().equals("Wireless") )
+								{
+									// Sets the found ExternalNetworksCard with no objects connected to it
+									ObjectBnic = temp;
+
+									// Ends loop
+									i = extNICs.length;
+								}
+							}
+						}
+
+					}
+					// No InternalNetworksCard or ExternalNetworksCard was found which was available
+					catch ( ObjectNotFoundException externalException )
+					{
+						JOptionPane.showMessageDialog(null, "No available network card was found on "
+								+ objectB.getObjectName() + ".", "alert", JOptionPane.ERROR_MESSAGE);
+
+						return false;
+					}
+				}
+			}
+
+
+			/**
+			 * If the function gets here, both the objects have contained a network card that is available and has the
+			 * connection type of Wireless.
+			 */
+			
+			
+			
+			// Sets the objects as the connected objects on the network cards
+			if( ObjectAnic instanceof InternalNetworksCard )
+			{
+				InternalNetworksCard temp = (InternalNetworksCard) ObjectAnic;
+				
+				// Sets objectB as the connected object of the network card
+				temp.setConnectedObject(objectB);
+			}
+			else if( ObjectAnic instanceof ExternalNetworksCard )
+			{
+				ExternalNetworksCard temp = (ExternalNetworksCard) ObjectAnic;
+
+				// Sets objectB as the connected object of the network card
+				temp.setConnectedObject(objectB);
+			}
+			
+
+			if( ObjectBnic instanceof InternalNetworksCard )
+			{
+				InternalNetworksCard temp = (InternalNetworksCard) ObjectBnic;
+
+				// Sets objectA as the connected object of the network card
+				temp.setConnectedObject(objectA);
+			}
+			else if( ObjectBnic instanceof ExternalNetworksCard )
+			{
+				ExternalNetworksCard temp = (ExternalNetworksCard) ObjectBnic;
+
+				// Sets objectA as the connected object of the network card
+				temp.setConnectedObject(objectA);
+			}
+
+
+			// Adds each object to the other objects array of connection objects.
+			objectA.addConnectedDevices(objectB);
+			objectB.addConnectedDevices(objectA);
+		}
+		else if ( conType.equals("USB") )
 		{
 			/**
 			 * These two values will be changed or the function will get some exceptions and will not move on.

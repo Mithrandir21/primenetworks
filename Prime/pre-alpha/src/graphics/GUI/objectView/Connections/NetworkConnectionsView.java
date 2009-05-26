@@ -22,6 +22,7 @@ import managment.ComponentsManagment;
 import objects.Object;
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
+import objects.clientObjects.ThinClient;
 import objects.hardwareObjects.CPU;
 import objects.hardwareObjects.HDD;
 import objects.hardwareObjects.Motherboard;
@@ -29,6 +30,8 @@ import objects.infrastructureObjects.Hub;
 import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
+import objects.infrastructureObjects.WirelessRouter;
+import objects.peripheralObjects.NetworkPrinter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
 import objects.serverObjects.BackupServer;
@@ -92,7 +95,7 @@ public class NetworkConnectionsView extends JPanel
 		c.gridheight = 1;
 
 
-		this.add(determine(obj, "RJ-45"), c);
+		this.add(determine(obj, "LAN & WLAN"), c);
 
 	}
 
@@ -116,7 +119,7 @@ public class NetworkConnectionsView extends JPanel
 		{
 			panel = USBpanel(obj);
 		}
-		else if ( conType.equals("RJ-45") )
+		else if ( conType.equals("LAN & WLAN") )
 		{
 			panel = LANpanel(obj);
 		}
@@ -226,7 +229,9 @@ public class NetworkConnectionsView extends JPanel
 	{
 		JPanel panel = null;
 
-		Object[] matched = ComponentsManagment.connectedToBy(obj, "RJ-45");
+		Object[] matchedLAN = ComponentsManagment.connectedToBy(obj, "RJ-45");
+		
+		Object[] matchedWLAN = ComponentsManagment.connectedToBy(obj, "Wireless");
 
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -247,13 +252,13 @@ public class NetworkConnectionsView extends JPanel
 		int hwCount = 0;
 
 
-		for ( int i = 0; i < matched.length; i++ )
+		for ( int i = 0; i < matchedLAN.length; i++ )
 		{
-			JPanel objPanel = createPanel(matched[i]);
+			JPanel objPanel = createPanel(matchedLAN[i]);
 			objPanel.setMaximumSize(new Dimension(90, 20));
 			objPanel.setPreferredSize(new Dimension(90, 20));
 
-			panel.add(createPanel(matched[i]), c);
+			panel.add(createPanel(matchedLAN[i]), c);
 
 			if ( i % 2 == 0 )
 			{
@@ -267,6 +272,29 @@ public class NetworkConnectionsView extends JPanel
 
 			hwCount++;
 		}
+		
+		
+		for ( int i = 0; i < matchedWLAN.length; i++ )
+		{
+			JPanel objPanel = createPanel(matchedWLAN[i]);
+			objPanel.setMaximumSize(new Dimension(90, 20));
+			objPanel.setPreferredSize(new Dimension(90, 20));
+
+			panel.add(createPanel(matchedWLAN[i]), c);
+
+			if ( i % 2 == 0 )
+			{
+				c.gridx++;
+			}
+			else
+			{
+				c.gridx = 0;
+				c.gridy++;
+			}
+
+			hwCount++;
+		}
+		
 
 
 		while ( hwCount < 10 )
@@ -291,7 +319,7 @@ public class NetworkConnectionsView extends JPanel
 
 
 		TitledBorder title;
-		title = BorderFactory.createTitledBorder("RJ-45");
+		title = BorderFactory.createTitledBorder("LAN & WLAN");
 		panel.setBorder(title);
 
 
@@ -321,10 +349,10 @@ public class NetworkConnectionsView extends JPanel
 		{
 			icon = ImageLocator.getImageIconObject("Laptop");
 		}
-		// else if(obj instanceof ThinClient)
-		// {
-		// icon = ImageLocator.getImageIconObject("ThinClient");
-		// }
+		 else if(obj instanceof ThinClient)
+		 {
+		 icon = ImageLocator.getImageIconObject("Screen");
+		 }
 		else if ( obj instanceof HTTPServer )
 		{
 			icon = ImageLocator.getImageIconObject("Web-server");
@@ -352,11 +380,14 @@ public class NetworkConnectionsView extends JPanel
 		else if ( obj instanceof Printer )
 		{
 			icon = ImageLocator.getImageIconObject("Printer");
+		}		
+		else if ( obj instanceof NetworkPrinter )
+		{
+			icon = ImageLocator.getImageIconObject("PrinterNetwork");
 		}
 		else if ( obj instanceof Hub )
 		{
 			icon = ImageLocator.getImageIconObject("Hub");
-
 		}
 		else if ( obj instanceof Switch )
 		{
@@ -365,6 +396,10 @@ public class NetworkConnectionsView extends JPanel
 		else if ( obj instanceof Router )
 		{
 			icon = ImageLocator.getImageIconObject("Router");
+		}
+		else if ( obj instanceof WirelessRouter )
+		{
+			icon = ImageLocator.getImageIconObject("WirelessRouter");
 		}
 		else if ( obj instanceof Internet )
 		{

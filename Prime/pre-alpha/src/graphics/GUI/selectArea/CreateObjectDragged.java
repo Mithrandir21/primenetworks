@@ -18,6 +18,7 @@ import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.infrastructureObjects.WirelessRouter;
+import objects.peripheralObjects.NetworkPrinter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
 import objects.serverObjects.BackupServer;
@@ -97,6 +98,10 @@ public class CreateObjectDragged
 		else if ( objectType.equals("objects.peripheralObjects.Printer") )
 		{
 			newObject = createDefaultPrinter(iconObject, numberOfWidgetsOnTheScene);
+		}
+		else if ( objectType.equals("objects.peripheralObjects.NetworkPrinter") )
+		{
+			newObject = createDefaultNetworkPrinter(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("objects.infrastructureObjects.Hub") )
 		{
@@ -460,6 +465,46 @@ public class CreateObjectDragged
 
 
 		Printer temp = new Printer(objectName, objectDesc, Sresolution, objectMB);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		return temp;
+	}
+	
+	
+	
+	public NetworkPrinter createDefaultNetworkPrinter(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	{
+		String objectName = "Printer" + numberOfWidgetsOnTheScene;
+		String objectDesc = iconObject.getDescription();
+
+		String Sresolution = "1280x1020";
+
+		if ( objectDesc == "" )
+		{
+			objectDesc = objectName;
+		}
+
+		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
+
+		objectMB.setMaxUSBs(1);
+		objectMB.setIntegLANcard(true);
+		objectMB.setMaxIntegratedLANs(1);
+		objectMB.setUSBPortsAvailable(1);
+		objectMB.setIntegLANPortsAvailable(1);
+
+
+		NetworkPrinter temp = new NetworkPrinter(objectName, objectDesc, Sresolution, objectMB);
+		
+		// Internal Wireless NIC
+		InternalNetworksCard intNIC = PrimeMain1.standard_internal_components.getSt_IntNIC();
+		intNIC.setType("Wireless");
+		
+		// Add the internal NIC to the list of components on the Object(not the "st_components" array of this class)
+		temp.addComponent(intNIC);
+		
 
 		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
 

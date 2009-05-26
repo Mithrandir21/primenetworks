@@ -6,7 +6,7 @@ import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.WidgetIcon;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
-import graphics.GUI.workareaCanvas.providers.AdapterExtended;
+import graphics.GUI.workareaCanvas.providers.WidgetAdapterExtended;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget.JMenuWidget;
 
 import java.awt.Dimension;
@@ -281,7 +281,7 @@ public class WorkareaCanvasActions
 
 
 		// Adds the double clicking feature for the WidgetObject
-		newObject.getActions().addAction(new AdapterExtended());
+		newObject.getActions().addAction(new WidgetAdapterExtended());
 
 
 		// Creates the LabelWidget that is placed on scene

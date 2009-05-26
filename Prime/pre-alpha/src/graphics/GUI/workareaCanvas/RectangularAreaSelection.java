@@ -2,6 +2,7 @@ package graphics.GUI.workareaCanvas;
 
 
 import graphics.PrimeMain1;
+import graphics.Settings;
 
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -42,6 +43,9 @@ public class RectangularAreaSelection extends LockedAdapter
 	}
 
 
+	/* (non-Javadoc)
+	 * @see org.netbeans.api.visual.action.WidgetAction.LockedAdapter#isLocked()
+	 */
 	@Override
 	protected boolean isLocked()
 	{
@@ -52,17 +56,15 @@ public class RectangularAreaSelection extends LockedAdapter
 	public State mousePressed(Widget widget, WidgetMouseEvent event)
 	{
 		// If the event button was the left click and the it was clicked once.
-		// This if also need the "ALT" button to be held
-		if ( (event.getButton() == MouseEvent.BUTTON1 && event.getClickCount() == 1)
-				&& ((event.getModifiers() & MouseEvent.ALT_MASK) != 0) )
+		if ( (event.getButton() == MouseEvent.BUTTON1 && event.getClickCount() == 1) && Settings.roomsManipulation )
 		{
 			// Creates the widgetRoom
 			selectionWidget = (WidgetRoom) decorator.createSelectionWidget();
 			assert selectionWidget != null;
-			
+
 			// Add the widgetRoom to the canvas
 			RoomManagment.addRoom(PrimeMain1.currentCanvas, selectionWidget);
-			
+
 			// Creates and sets the rectangle that is the bounds of the WidgetRoom
 			selectionSceneRectangle = new Rectangle(widget.convertLocalToScene(event.getPoint()));
 			move(widget, event.getPoint());
@@ -80,7 +82,18 @@ public class RectangularAreaSelection extends LockedAdapter
 			move(widget, event.getPoint());
 			// selectionWidget.getParentWidget ().removeChild (selectionWidget);
 			// provider.performSelection (selectionSceneRectangle);
+
+			// If the height or width of the WidgetRoom is less then 50 the WidgetRoom vil be removed
+			if( selectionWidget.getBounds().height < 50 && selectionWidget.getBounds().width < 50 )
+			{
+				// Removes the WidgetRoom from the roomLayer
+				selectionWidget.getParentWidget().removeChild(selectionWidget);
+			}
+			
 			selectionSceneRectangle = null;
+			
+			// Repaints roomLayer
+			roomLayer.repaint();
 		}
 		return State.REJECTED;
 	}
@@ -100,12 +113,12 @@ public class RectangularAreaSelection extends LockedAdapter
 
 	private void resolveSelectionWidgetLocationBounds()
 	{
-		// Sets the top left most location of the WidgetRoom 
+		// Sets the top left most location of the WidgetRoom
 		selectionWidget.setPreferredRoomLocation(selectionSceneRectangle.getLocation());
-		
+
 		int w = selectionSceneRectangle.width;
 		int h = selectionSceneRectangle.height;
-		
+
 		// Sets the bounds of the WidgetRooms
 		selectionWidget.setPreferredRoomBounds(new Rectangle(w >= 0 ? 0 : w, h >= 0 ? 0 : h, w >= 0 ? w : -w,
 				h >= 0 ? h : -h));

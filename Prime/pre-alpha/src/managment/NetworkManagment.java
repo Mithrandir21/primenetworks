@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import exceptions.NotValidIPAddress;
 import exceptions.RangeIsNotValidException;
+import exceptions.RangeNotBigEnoughException;
 
 
 /**

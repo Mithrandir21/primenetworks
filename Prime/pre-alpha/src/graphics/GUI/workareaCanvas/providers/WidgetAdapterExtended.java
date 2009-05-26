@@ -21,7 +21,7 @@ import widgetManipulation.WidgetObject;
  * 
  * @author Bahram Malaekeh
  */
-public class AdapterExtended extends Adapter
+public class WidgetAdapterExtended extends Adapter
 {
 	/*
 	 * (non-Javadoc)
@@ -35,8 +35,7 @@ public class AdapterExtended extends Adapter
 		// If the object is not an instance of a connection widget
 		if ( widget instanceof WidgetObject )
 		{
-			// If button1, which can be whatever depending on what the OS has
-			// chosen, is clicked.
+			// If button1, which can be whatever depending on what the OS has chosen, is clicked.
 			if ( event.getButton() == MouseEvent.BUTTON1 )
 			{
 				// Casts the object to an WidgetObject
@@ -79,6 +78,8 @@ public class AdapterExtended extends Adapter
 		{
 			System.out.println("There is still work to be done. AdapterExtended - mouseClicked - ConnectionWidget");
 		}
+
+			
 
 		// Consumes the Action so that no other Listener picks up the action.
 		return State.CONSUMED;

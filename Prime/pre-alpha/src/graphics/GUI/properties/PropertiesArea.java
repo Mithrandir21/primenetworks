@@ -112,7 +112,10 @@ public class PropertiesArea extends JTabbedPane
 			{
 				// Returns whether or not the given WorkareaCanvas name is the name of the currently shown
 				// WorkareaCanvas
-				return showingCanvas.getCanvasName().equals(canvas.getCanvasName());
+				if ( canvas != null )
+				{
+					return showingCanvas.getCanvasName().equals(canvas.getCanvasName());
+				}
 			}
 		}
 
@@ -123,16 +126,15 @@ public class PropertiesArea extends JTabbedPane
 
 
 	/**
-	 * Determines whether the given {@link Object} is the {@link Object} displayed in the Properties area,
-	 * by way of the names of the {@link Object Objects}.
+	 * Determines whether the given {@link Object} is the {@link Object} displayed in the Properties area, by way of the
+	 * names of the {@link Object Objects}.
 	 * 
 	 * @param object
 	 *            The {@link Object} to be tested.
-	 * @return Return boolean on whether the given {@link Object} is currently being displayed in the Properties
-	 *         area.
+	 * @return Return boolean on whether the given {@link Object} is currently being displayed in the Properties area.
 	 */
 	public boolean isGivenObjectCurrent(Object object)
-	{ 
+	{
 		// If the Properties area is not empty
 		if ( scrollArea.getObjectPropertiePanel() != null )
 		{
@@ -142,7 +144,10 @@ public class PropertiesArea extends JTabbedPane
 			if ( showingObject != null )
 			{
 				// Returns whether or not the given Object name is the name of the currently shown Object
-				return showingObject.getObjectName().equals(object.getObjectName());
+				if ( object != null )
+				{
+					return showingObject.getObjectName().equals(object.getObjectName());
+				}
 			}
 		}
 

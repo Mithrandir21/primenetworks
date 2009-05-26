@@ -43,4 +43,9 @@ public class Settings implements Serializable
 	public static boolean showNetworkWarningMessages = false;
 	
 	public static boolean showNetworkNoticeMessages = false;
+	
+	
+	
+	// CREATING ROOM BUTTON
+	public static boolean roomsManipulation = false;
 }

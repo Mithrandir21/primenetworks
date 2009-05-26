@@ -1,7 +1,7 @@
 /**
  * 
  */
-package managment;
+package exceptions;
 
 
 /**

@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
+import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 
 import actions.ActionCopy;
@@ -17,6 +18,7 @@ import actions.ActionCut;
 import actions.ActionNew;
 import actions.ActionOpenfile;
 import actions.ActionPaste;
+import actions.ActionRoom;
 import actions.ActionSave;
 import actions.ActionSaveAll;
 import actions.ActionUpdate;
@@ -134,11 +136,14 @@ public class GenericPrimeToolbar extends JMenuBar
 		
 		
 		tempIcon = ImageLocator.getImageIconObject("Update");
-		ActionUpdate cut = new ActionUpdate("Cut", tempIcon);
+		ActionUpdate update = new ActionUpdate("Update", tempIcon);
 		
+		tempIcon = ImageLocator.getImageIconObject("Room");
+		ActionRoom room = new ActionRoom("Room", tempIcon);
+		JToggleButton roomButton = new JToggleButton(room);
 		
-		
-		networkToolBar.add(cut);
+		networkToolBar.add(update);
+		networkToolBar.add(roomButton);
 		
 		
 		this.add(networkToolBar);

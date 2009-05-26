@@ -181,12 +181,14 @@ public class GeneralPropertiesView
 				+ " of connecting to, like USB og RJ-45.");
 		panel.add(supConIntLabel);
 
-		JTextField supConIntField = new JTextField(10);
-		supConIntField.setMaximumSize(tfSize);
-		supConIntField.setPreferredSize(tfSize);
-		supConIntField.setName("supConInt");
-		supConIntLabel.setLabelFor(supConIntField);
-		panel.add(supConIntField);
+		JComboBox subConCombo = new JComboBox();
+        subConCombo.setModel(new DefaultComboBoxModel(obj.getSupportedConnectionInterfaces()));
+        subConCombo.setMaximumSize(tfSize);
+        subConCombo.setPreferredSize(tfSize);
+        subConCombo.setEditable(false);
+        subConCombo.setName("supConInt");
+		supConIntLabel.setLabelFor(subConCombo);
+		panel.add(subConCombo);
 
 
 
