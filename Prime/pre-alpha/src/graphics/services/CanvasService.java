@@ -43,7 +43,7 @@ public class CanvasService implements Runnable
 			try
 			{
 				// DO SOMETHING
-				
+
 				// Makes the thread wait for a bit
 				Thread.sleep(1000);
 			}
@@ -57,9 +57,9 @@ public class CanvasService implements Runnable
 
 
 	/**
-	 * A resume function that will start a new tread and run it(just as the constructor). 
-	 * This function is necessary because you might want to a variables to this class and might not
-	 * want to create a new instance of the entire class to be able to start the thread again.
+	 * A resume function that will start a new tread and run it(just as the constructor). This function is necessary
+	 * because you might want to a variables to this class and might not want to create a new instance of the entire
+	 * class to be able to start the thread again.
 	 */
 	public synchronized void serviceResume()
 	{

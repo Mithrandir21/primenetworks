@@ -29,7 +29,7 @@ public class WorkareaCanvasListener extends Adapter
 	{
 		// Updates the properties area with the currently showing workareaCanvas, if it is not showing already
 		PrimeMain1.updatePropertiesCanvasArea(false);
-		
+
 		// Consumes the action so that other listeners do not pick up the action
 		return State.CONSUMED;
 	}

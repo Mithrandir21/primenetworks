@@ -237,10 +237,10 @@ public class ArrayManagment
 
 		return componentsFound;
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Get specific objects by searching for objects with the give class type.
 	 * 
@@ -299,7 +299,7 @@ public class ArrayManagment
 
 		return objectsFound;
 	}
-	
+
 
 
 

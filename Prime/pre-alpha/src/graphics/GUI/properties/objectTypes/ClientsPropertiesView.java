@@ -45,7 +45,7 @@ public class ClientsPropertiesView
 	public static void getClientsPropertiesView(JPanel panel, Object obj)
 	{
 		Dimension tfSize = new Dimension(5, 20);
-		
+
 		if ( obj instanceof Desktop )
 		{
 			// Desktop Rate
@@ -53,14 +53,14 @@ public class ClientsPropertiesView
 			desktopRate.setToolTipText("The desktop rating...");
 			panel.add(desktopRate);
 		}
-		else if( obj instanceof Laptop )
+		else if ( obj instanceof Laptop )
 		{
 			// Laptop Rate
 			JLabel laptopRate = new JLabel("Laptop Rate", SwingConstants.TRAILING);
 			laptopRate.setToolTipText("The laptop rating...");
 			panel.add(laptopRate);
 		}
-		else if( obj instanceof ThinClient )
+		else if ( obj instanceof ThinClient )
 		{
 			// ThinClient Rate
 			JLabel thinClientRate = new JLabel("Thin Client Rate", SwingConstants.TRAILING);

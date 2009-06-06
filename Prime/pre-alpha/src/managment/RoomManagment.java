@@ -12,6 +12,7 @@ import graphics.GUI.workareaCanvas.providers.WidgetRoomAdapterExtended;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuRoom.JMenuWidgetRoom;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import logistical.checkLogic;
 import objects.Room;
 
 import org.netbeans.api.visual.action.ActionFactory;
+import org.netbeans.api.visual.border.BorderFactory;
 import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Widget;
 
@@ -58,14 +60,16 @@ public class RoomManagment
 
 		// Clicking ability
 		room.getActions().addAction(new WidgetRoomAdapterExtended());
-		
-		room.getActions().addAction(
-				ActionFactory.createPopupMenuAction(new JMenuWidgetRoom(PrimeMain1.currentCanvas)));
-		
 
-		TitledBorder border = javax.swing.BorderFactory.createTitledBorder(new RoomBorder(Color.BLACK), "RoomName");
-		room.setBorder(border);
-		// widget.setBorder(new RoomBorder(Color.BLACK));
+		room.setPreferredSize(new Dimension(100, 100));
+
+		// TitledBorder border = javax.swing.BorderFactory.createTitledBorder(new RoomBorder(Color.BLACK), "Room Name");
+		// room.setBorder(border);
+
+		RoomBorder border = new RoomBorder(Color.BLACK);
+
+		room.setBorder(BorderFactory.createSwingBorder(room.getScene(), border));
+		// room.setBorder(new RoomBorder(Color.BLACK));
 		// widget.setBorder (scene.getLookFeel().getMiniBorder(ObjectState.createNormal().deriveSelected (true)));
 
 		room.bringToBack();
@@ -94,6 +98,7 @@ public class RoomManagment
 
 		widRoom.setPreferredLocation(canvas.getScene().convertViewToScene(room.getLocation()));
 		widRoom.setPreferredBounds(room.getBounds());
+
 
 		canvas.getRoomLayer().addChild(widRoom);
 	}
@@ -335,9 +340,9 @@ public class RoomManagment
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Changes the title of the {@link TitledBorder} surrounding the {@link WidgetRoom} and the name of the {@link Room}
 	 * inside the {@link WidgetRoom} object.
@@ -359,7 +364,8 @@ public class RoomManagment
 				room.getRoom().setRoomName(roomName);
 
 				// Creates a new TitledBorder with the given string
-				TitledBorder border = javax.swing.BorderFactory.createTitledBorder(new RoomBorder(Color.BLACK), roomName);
+				TitledBorder border = javax.swing.BorderFactory.createTitledBorder(new RoomBorder(Color.BLACK),
+						roomName);
 
 				// Sets the newly created TitledBorder as the border for the the given WidgetRoom.
 				room.setBorder(border);

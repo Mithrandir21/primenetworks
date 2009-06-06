@@ -495,10 +495,10 @@ public class PrimeMain1 extends JFrame
 			// If the WorkareaCanvas shown in the properties area is not the same as the current WorkareaCanvas
 			if ( !(temp.isGivenObjectCurrent(obj)) )
 			{
-				temp.newObjectSelectedPropertiesTab(obj);				
+				temp.newObjectSelectedPropertiesTab(obj);
 			}
 		}
-		
+
 	}
 
 

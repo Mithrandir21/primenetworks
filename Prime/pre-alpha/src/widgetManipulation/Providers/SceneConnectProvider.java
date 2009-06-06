@@ -103,7 +103,7 @@ public class SceneConnectProvider implements ConnectProvider
 				{
 					conType = compInter[0];
 				}
-				
+
 				Connection con = null;
 				try
 				{

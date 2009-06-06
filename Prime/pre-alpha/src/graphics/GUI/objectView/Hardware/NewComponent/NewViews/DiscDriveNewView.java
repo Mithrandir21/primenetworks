@@ -380,9 +380,9 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface, A
 	{
 		return true;
 	}
-	
-	
-	
+
+
+
 	@Override
 	public Hardware getViewHardware()
 	{

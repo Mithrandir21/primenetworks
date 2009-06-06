@@ -3,6 +3,7 @@
  */
 package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuRoom;
 
+
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import javax.swing.JMenuItem;
@@ -13,9 +14,10 @@ import org.netbeans.api.visual.widget.Widget;
 import widgetManipulation.WidgetObject;
 import widgetManipulation.WidgetRoom;
 
+
 /**
  * Javadoc-TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
@@ -25,21 +27,21 @@ public class JPopupWidgetRoomMenu
 	 * The JPopup instance.
 	 */
 	private JPopupMenu popup = new JPopupMenu();
-	
-	
+
+
 	/**
 	 * The Listener that will listen to menus selected by the user in the JPopupMenu.
 	 */
 	private WorkareaWidgetRoomActionListener widgetActListener;
 
-	
+
 	/**
 	 * The {@link WorkareaCanvas} the event will take place in.
 	 */
 	private WorkareaCanvas canvas;
-	
-	
-	
+
+
+
 	/**
 	 * A constructor for this class that sets the {@link WorkareaCanvas} field.
 	 * 
@@ -50,10 +52,10 @@ public class JPopupWidgetRoomMenu
 	{
 		this.canvas = canvas;
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Creates and sets up the the different fields of this class. It also returns the JpopupMenu shown to the user.
 	 * 
@@ -71,10 +73,10 @@ public class JPopupWidgetRoomMenu
 
 		return popup;
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Initiates the JPopupMenu and add all the different JMenuItems.
 	 * 

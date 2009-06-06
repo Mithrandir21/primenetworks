@@ -5,8 +5,8 @@ package graphics.services;
 
 
 /**
- * The class contains all the service threads this system will be running. All services can be stopped and 
- * started, all together or gotten and stop separately.
+ * The class contains all the service threads this system will be running. All services can be stopped and started, all
+ * together or gotten and stop separately.
  * 
  * @author Bahram Malaekeh
  */
@@ -57,9 +57,9 @@ public class PrimeService
 	}
 
 
-	
+
 	// GETTERS
-	
+
 
 	/**
 	 * Gets the {@link CanvasService} thread.

@@ -40,7 +40,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 
 	// Whether or not the NIC has support for IP version 6, IPv6
 	private boolean supportsIPv6;
-	
+
 	// The Object this NIC is connected to
 	private Object connectedObject;
 
@@ -138,7 +138,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 		return supportsIPv6;
 	}
 
-	
+
 	/**
 	 * Get the {@link Object} this NIC is connected to.
 	 */

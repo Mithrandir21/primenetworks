@@ -71,8 +71,8 @@ public class ObjectViewTabbed extends JTabbedPane
 		String visDesc = "General information and option";
 		this.addTab("Network", null, netObjView, visDesc);
 	}
-	
-	
+
+
 	/**
 	 * Gets the hardware editor that where hardware can be edited.
 	 */

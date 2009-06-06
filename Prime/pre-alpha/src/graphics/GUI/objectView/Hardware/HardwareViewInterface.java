@@ -3,6 +3,7 @@
  */
 package graphics.GUI.objectView.Hardware;
 
+
 import objects.Hardware;
 
 
@@ -26,8 +27,8 @@ public interface HardwareViewInterface
 	 * This function should be used to validate the information set in the view.
 	 */
 	public boolean validateNecessaryData();
-	
-	
+
+
 	/**
 	 * Returns the hardware the views is displaying.
 	 */

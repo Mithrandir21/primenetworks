@@ -97,9 +97,9 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 				connectionWidget = null;
 			}
 		}
-		
+
 		PrimeMain1.connecting = false;
-		
+
 		return state ? State.CONSUMED : State.REJECTED;
 	}
 

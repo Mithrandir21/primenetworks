@@ -130,7 +130,7 @@ public class ObjectSelection extends JPanel
 		this.add(makeImageIcon("Printer", Printer.class, "Printer"));
 
 		this.add(new JToolBar.Separator());
-		
+
 		this.add(makeImageIcon("PrinterNetwork", NetworkPrinter.class, "Network Printer"));
 
 		this.add(new JToolBar.Separator());

@@ -5,6 +5,8 @@ package managment;
 
 
 import graphics.PrimeMain1;
+import graphics.GUI.JPGFilter;
+import graphics.GUI.PNGFilter;
 import graphics.GUI.selectArea.PrimeJTree.FileTreeNode;
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 import graphics.GUI.workareaCanvas.WorkareaSceneScroll;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.regex.Pattern;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import objects.Object;
@@ -27,6 +30,7 @@ import objects.Room;
 import widgetManipulation.WidgetObject;
 import widgetManipulation.WorkareaCanvasNetworkInfo;
 import actions.graphicalActions.WorkareaCanvasActions;
+import canvasManipulation.CanvasExporter;
 import connections.Connection;
 import connections.WidgetExtendedConnection;
 
@@ -998,13 +1002,112 @@ public class FileManagment
 		{
 			if ( canvases[i] != null )
 			{
-//				// If the canvas has not been saved(since the last change) and there has been some change
-//				if ( canvases[i].isSaved() != true && canvases[i].isChanged() == true )
-//				{
-					saveWorkareaCanvas(canvases[i]);
-//				}
+				// // If the canvas has not been saved(since the last change) and there has been some change
+				// if ( canvases[i].isSaved() != true && canvases[i].isChanged() == true )
+				// {
+				saveWorkareaCanvas(canvases[i]);
+				// }
 			}
 		}
 	}
 
+
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param canvas
+	 */
+	public static void exportWorkareaCanvas(WorkareaCanvas canvas)
+	{
+		// The JFileChoose where the user will save the export
+		JFileChooser fc = new JFileChooser();
+		fc.setAcceptAllFileFilterUsed(false);
+
+		// Adds the filters
+		fc.addChoosableFileFilter(new JPGFilter());
+		fc.addChoosableFileFilter(new PNGFilter());
+
+		// Sets the selected file to the name of the
+		fc.setSelectedFile(new File(canvas.getCanvasName()));
+
+		// Shows the File chooser
+		int returnVal = fc.showSaveDialog(null);
+
+		// If the save button is pressed
+		if ( returnVal == JFileChooser.APPROVE_OPTION )
+		{
+			// Gets the file written/selected
+			File file = fc.getSelectedFile();
+
+			// Gets the absolute path of the file
+			String path = file.getAbsolutePath();
+
+			// Gets the extension that is currently selected
+			String extension = fc.getFileFilter().getDescription();
+
+
+			if ( extension.equals(".jpg") )
+			{
+				// If the file does not ends with the extension
+				if ( !(path.endsWith(extension)) )
+				{
+					// Creates a new file with the path of the file and the extension
+					file = new File(path + extension);
+				}
+
+
+				try
+				{
+					CanvasExporter.createImage(PrimeMain1.currentCanvas.getScene(), file, CanvasExporter.ImageType.JPG,
+							CanvasExporter.ZoomType.ACTUAL_SIZE, false, false, 100, 1000, 1000);
+				}
+				catch ( IOException e )
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else if ( extension.equals(".png") )
+			{
+				// If the file does not ends with the extension
+				if ( !(path.endsWith(extension)) )
+				{
+					// Creates a new file with the path of the file and the extension
+					file = new File(path + extension);
+				}
+
+
+				try
+				{
+					CanvasExporter.createImage(PrimeMain1.currentCanvas.getScene(), file, CanvasExporter.ImageType.PNG,
+							CanvasExporter.ZoomType.ACTUAL_SIZE, false, false, 100, 1000, 1000);
+				}
+				catch ( IOException e )
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param file
+	 * @param extension
+	 */
+	public static boolean verifyFileEnding(File file, String extension)
+	{
+		if ( file.getName().endsWith(extension) )
+		{
+			return true;
+		}
+
+		return false;
+	}
 }

@@ -217,7 +217,7 @@ public class JPopupCanvasMenu
 	{
 
 		JMenuItem menuItem = new JMenuItem();
-		
+
 		menuItem = new JMenuItem("Scanner");
 		menuItem.setActionCommand("CreateNewST_Scanner_Item");
 		menuItem.addActionListener(canvasActListener);
@@ -227,7 +227,7 @@ public class JPopupCanvasMenu
 		menuItem.setActionCommand("CreateNewST_Printer_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuPeripheral.add(menuItem);
-		
+
 		menuItem = new JMenuItem("Network Printer");
 		menuItem.setActionCommand("CreateNewST_NetworkPrinter_Item");
 		menuItem.addActionListener(canvasActListener);

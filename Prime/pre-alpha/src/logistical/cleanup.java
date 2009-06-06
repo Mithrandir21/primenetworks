@@ -372,9 +372,9 @@ public class cleanup
 
 		return results;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Function to remove null pointer from the an array of WidgetRoom.
 	 */
@@ -410,8 +410,8 @@ public class cleanup
 
 		return results;
 	}
-	
-	
+
+
 	/**
 	 * Function to remove null pointer from the an array of Room.
 	 */

@@ -341,8 +341,8 @@ public class RAMView extends JPanel implements HardwareViewInterface, ActionList
 
 		return true;
 	}
-	
-	
+
+
 	@Override
 	public Hardware getViewHardware()
 	{

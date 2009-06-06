@@ -88,8 +88,8 @@ public class SoftwareProcessing
 					"This object does not have an Operating System.", "Software Error" };
 			data = addError(data, info);
 		}
-		
-		
+
+
 		// More then one AV
 		if ( moreThenOneSoftware(obj, Antivirus.class) )
 		{
@@ -97,13 +97,13 @@ public class SoftwareProcessing
 					"This object contains more the one Antivirus software.", "Software Error" };
 			data = addError(data, info);
 		}
-		
-		
+
+
 		// More then one FW
 		if ( moreThenOneSoftware(obj, Firewall.class) )
 		{
-			String[] info = { obj.getObjectName(), "Firewall",
-					"This object contains more the one Firewall software.", "Software Error" };
+			String[] info = { obj.getObjectName(), "Firewall", "This object contains more the one Firewall software.",
+					"Software Error" };
 			data = addError(data, info);
 		}
 
@@ -126,7 +126,7 @@ public class SoftwareProcessing
 	 */
 	private static String[][] getWarnings(String[][] data, Object obj)
 	{
-		
+
 		// More then one Operating system
 		if ( moreThenOneSoftware(obj, OperatingSystem.class) )
 		{

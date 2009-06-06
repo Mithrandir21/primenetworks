@@ -46,30 +46,30 @@ public class SettingsListener implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource() instanceof JButton)
+		if ( e.getSource() instanceof JButton )
 		{
 			JButton button = (JButton) e.getSource();
 			String command = button.getActionCommand();
-			
-			if( command.equals("save") )
+
+			if ( command.equals("save") )
 			{
 				setMessagesSettings();
 				settingsFrame.dispose();
 			}
-			else if( command.equals("apply") )
+			else if ( command.equals("apply") )
 			{
 				setMessagesSettings();
 			}
-			else if( command.equals("cancel") )
+			else if ( command.equals("cancel") )
 			{
 				settingsFrame.dispose();
 			}
 		}
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 
@@ -79,19 +79,19 @@ public class SettingsListener implements ActionListener
 		Settings.showHardwareErrorMessages = messageCheckBox[0].isSelected();
 		Settings.showHardwareWarningMessages = messageCheckBox[1].isSelected();
 		Settings.showHardwareNoticeMessages = messageCheckBox[2].isSelected();
-		
+
 		Settings.showSoftwareErrorMessages = messageCheckBox[3].isSelected();
 		Settings.showSoftwareWarningMessages = messageCheckBox[4].isSelected();
 		Settings.showSoftwareNoticeMessages = messageCheckBox[5].isSelected();
-		
+
 		Settings.showConnectionErrorMessages = messageCheckBox[6].isSelected();
 		Settings.showConnectionWarningMessages = messageCheckBox[7].isSelected();
 		Settings.showConnectionNoticeMessages = messageCheckBox[8].isSelected();
-		
+
 		Settings.showNetworkErrorMessages = messageCheckBox[9].isSelected();
 		Settings.showNetworkWarningMessages = messageCheckBox[10].isSelected();
 		Settings.showNetworkNoticeMessages = messageCheckBox[11].isSelected();
-		
+
 		PrimeMain1.updateCanvasAndObjectInfo();
 	}
 }

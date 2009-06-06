@@ -15,6 +15,7 @@ import javax.swing.JToolBar;
 
 import actions.ActionCopy;
 import actions.ActionCut;
+import actions.ActionExport;
 import actions.ActionNew;
 import actions.ActionOpenfile;
 import actions.ActionPaste;
@@ -47,9 +48,9 @@ public class GenericPrimeToolbar extends JMenuBar
 		this.add(new JToolBar.Separator());
 
 		initEditToolBar();
-		
+
 		this.add(new JToolBar.Separator());
-		
+
 		initNetworkAction();
 	}
 
@@ -61,7 +62,7 @@ public class GenericPrimeToolbar extends JMenuBar
 	// SETUP OF THE TOOLBAR
 
 	/**
-	 * This function creates the File JToolbar. 
+	 * This function creates the File JToolbar.
 	 */
 	private void initFileToolBar()
 	{
@@ -81,11 +82,15 @@ public class GenericPrimeToolbar extends JMenuBar
 		tempIcon = ImageLocator.getImageIconObject("Save_all");
 		ActionSaveAll saveAll = new ActionSaveAll("Save All", tempIcon);
 
+		tempIcon = ImageLocator.getImageIconObject("Export");
+		ActionExport export = new ActionExport("Export", tempIcon);
+
 
 		fileToolBar.add(newFile);
 		fileToolBar.add(openFile);
 		fileToolBar.add(save);
 		fileToolBar.add(saveAll);
+		fileToolBar.add(export);
 
 
 
@@ -122,10 +127,10 @@ public class GenericPrimeToolbar extends JMenuBar
 		this.add(editToolBar);
 		tempIcon = null;
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * This function creates the Network functions JToolbar.
 	 */
@@ -133,19 +138,19 @@ public class GenericPrimeToolbar extends JMenuBar
 	{
 		networkToolBar = new JToolBar("Networking");
 		networkToolBar.setFloatable(false);
-		
-		
+
+
 		tempIcon = ImageLocator.getImageIconObject("Update");
 		ActionUpdate update = new ActionUpdate("Update", tempIcon);
-		
+
 		tempIcon = ImageLocator.getImageIconObject("Room");
 		ActionRoom room = new ActionRoom("Room", tempIcon);
 		JToggleButton roomButton = new JToggleButton(room);
-		
+
 		networkToolBar.add(update);
 		networkToolBar.add(roomButton);
-		
-		
+
+
 		this.add(networkToolBar);
 		tempIcon = null;
 	}

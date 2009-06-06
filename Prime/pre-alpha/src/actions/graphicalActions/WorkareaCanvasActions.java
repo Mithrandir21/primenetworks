@@ -375,10 +375,10 @@ public class WorkareaCanvasActions
 
 
 			canvas.setCurrentWidgetObject(null);
-			
+
 			return true;
 		}
-		
+
 		return false;
 	}
 

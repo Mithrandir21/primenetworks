@@ -474,7 +474,7 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface, A
 	{
 		return true;
 	}
-	
+
 
 	@Override
 	public Hardware getViewHardware()

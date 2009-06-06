@@ -34,9 +34,9 @@ public class RangeIsNotValidException extends Exception
 		this.from = from;
 		this.to = to;
 	}
-	
-	
-	
+
+
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -45,8 +45,9 @@ public class RangeIsNotValidException extends Exception
 	@Override
 	public String getMessage()
 	{
-		String output = "There can be created a valid IP range between these two IP address, " + from + " and " + to + ".";
-		
+		String output = "There can be created a valid IP range between these two IP address, " + from + " and " + to
+				+ ".";
+
 		return output;
 	}
 }

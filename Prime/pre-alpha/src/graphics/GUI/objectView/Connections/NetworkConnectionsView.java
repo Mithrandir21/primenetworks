@@ -230,7 +230,7 @@ public class NetworkConnectionsView extends JPanel
 		JPanel panel = null;
 
 		Object[] matchedLAN = ComponentsManagment.connectedToBy(obj, "RJ-45");
-		
+
 		Object[] matchedWLAN = ComponentsManagment.connectedToBy(obj, "Wireless");
 
 		panel = new JPanel(new GridBagLayout());
@@ -272,8 +272,8 @@ public class NetworkConnectionsView extends JPanel
 
 			hwCount++;
 		}
-		
-		
+
+
 		for ( int i = 0; i < matchedWLAN.length; i++ )
 		{
 			JPanel objPanel = createPanel(matchedWLAN[i]);
@@ -294,7 +294,7 @@ public class NetworkConnectionsView extends JPanel
 
 			hwCount++;
 		}
-		
+
 
 
 		while ( hwCount < 10 )
@@ -349,10 +349,10 @@ public class NetworkConnectionsView extends JPanel
 		{
 			icon = ImageLocator.getImageIconObject("Laptop");
 		}
-		 else if(obj instanceof ThinClient)
-		 {
-		 icon = ImageLocator.getImageIconObject("Screen");
-		 }
+		else if ( obj instanceof ThinClient )
+		{
+			icon = ImageLocator.getImageIconObject("Screen");
+		}
 		else if ( obj instanceof HTTPServer )
 		{
 			icon = ImageLocator.getImageIconObject("Web-server");
@@ -380,7 +380,7 @@ public class NetworkConnectionsView extends JPanel
 		else if ( obj instanceof Printer )
 		{
 			icon = ImageLocator.getImageIconObject("Printer");
-		}		
+		}
 		else if ( obj instanceof NetworkPrinter )
 		{
 			icon = ImageLocator.getImageIconObject("PrinterNetwork");

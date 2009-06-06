@@ -35,7 +35,7 @@ public class PrimeRectangularSelectDecorator implements RectangularSelectDecorat
 	public Widget createSelectionWidget()
 	{
 		WidgetRoom widget = RoomManagment.createWidgetRoom(canvas, "RoomName");
-		
+
 		return widget;
 	}
 }

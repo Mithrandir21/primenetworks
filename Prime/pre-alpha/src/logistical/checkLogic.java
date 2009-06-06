@@ -1,8 +1,10 @@
 package logistical;
 
+
 import java.util.regex.Pattern;
 
 import managment.NetworkManagment;
+
 
 public class checkLogic
 {
@@ -14,22 +16,22 @@ public class checkLogic
 	 */
 	public static boolean validateName(String text)
 	{
-		if( text.equals("")  )
+		if ( text.equals("") )
 		{
 			return false;
 		}
-		
+
 		// This pattern will allow letters, numbers, spaces, underscore
 		// and the letters Ø,Æ and Å.
 		String pat = "([\\w\\-_øæåØÆÅ\\d\\s]+)";
-		
+
 		Pattern test = Pattern.compile(pat);
 
 		return test.matcher(text).matches();
-		
+
 	}
-	
-	
+
+
 	/**
 	 * @param IP
 	 * @return

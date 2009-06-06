@@ -3,6 +3,7 @@
  */
 package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuRoom;
 
+
 import graphics.GUI.workareaCanvas.WorkareaCanvas;
 
 import java.awt.Point;
@@ -12,9 +13,10 @@ import javax.swing.JPopupMenu;
 import org.netbeans.api.visual.action.PopupMenuProvider;
 import org.netbeans.api.visual.widget.Widget;
 
+
 /**
  * Javadoc-TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
@@ -25,8 +27,8 @@ public class JMenuWidgetRoom implements PopupMenuProvider
 	 * 
 	 */
 	private WorkareaCanvas canvas;
-	
-	
+
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 
@@ -36,9 +38,9 @@ public class JMenuWidgetRoom implements PopupMenuProvider
 	{
 		this.canvas = canvas;
 	}
-	
-	
-	
+
+
+
 	@Override
 	public JPopupMenu getPopupMenu(Widget widget, Point localLocation)
 	{

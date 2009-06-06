@@ -19,7 +19,7 @@ import objects.Object;
 public class ObjectScrollProperties extends JScrollPane
 {
 	private ObjectProperties objProp;
-	
+
 	public ObjectScrollProperties()
 	{
 		setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -49,8 +49,8 @@ public class ObjectScrollProperties extends JScrollPane
 
 		this.setViewportView(objProp);
 	}
-	
-	
+
+
 	/**
 	 * @return Returns the ObjectPropertie Panel that contains the actual fields and buttons.
 	 */

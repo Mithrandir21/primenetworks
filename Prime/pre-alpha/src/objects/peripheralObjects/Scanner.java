@@ -68,8 +68,8 @@ public class Scanner extends ExternalHardware implements Serializable
 			resolution = Sresolution;
 		}
 	}
-	
-	
+
+
 	/**
 	 * Constructor of the scanner class.
 	 * 

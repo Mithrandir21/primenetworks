@@ -240,13 +240,13 @@ public class ObjectProperties extends JPanel implements ActionListener
 		// The IP range for a WorkareaCanvas
 		String IPrangeStart = null;
 		String IPrangeEnd = null;
-		
+
 		// The IP for a WidgetObject
 		String widgetIP = null;
-		
+
 		WidgetObject widObj = null;
-		
-		if( objectViewed != null )
+
+		if ( objectViewed != null )
 		{
 			// Gets the WidgetObject so that the IP address can be added
 			widObj = CanvasManagment.findWidgetObject(objectViewed, PrimeMain1.currentCanvas);
@@ -370,10 +370,10 @@ public class ObjectProperties extends JPanel implements ActionListener
 					{
 						// Gets the JTextField component
 						JTextField field = (JTextField) comp[i];
-						
+
 						// Gets the text inside that field
 						String IP = field.getText();
-						
+
 						// If the text in the JTextField is not ""
 						if ( !(IP.equals("")) )
 						{
@@ -453,25 +453,25 @@ public class ObjectProperties extends JPanel implements ActionListener
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		
-		
+
+
 		// Setting the IP of the WidgetObject
-		if ( widObj != null && widgetIP != null ) 
+		if ( widObj != null && widgetIP != null )
 		{
 			// True if the IP was valid and set
 			boolean set = widObj.getWidgetNetworkInfo().setIp(widgetIP);
-			
-			// If the IP was not set 
-			if( !set )
+
+			// If the IP was not set
+			if ( !set )
 			{
 				JOptionPane.showMessageDialog(null, "The IP, " + widgetIP + ", was not valid.", "Error",
 						JOptionPane.ERROR_MESSAGE);
-				
-				// Updates the WidgetObject properties area 
+
+				// Updates the WidgetObject properties area
 				PrimeMain1.updatePropertiesObjectArea(objectViewed, true);
 			}
 		}
-		
+
 
 
 		if ( objectViewed == null )

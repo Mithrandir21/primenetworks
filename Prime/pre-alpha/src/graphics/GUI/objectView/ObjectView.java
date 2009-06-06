@@ -131,8 +131,8 @@ public class ObjectView extends JFrame implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -171,8 +171,8 @@ public class ObjectView extends JFrame implements ActionListener
 			// Saves the network information about the widget
 			errorFound = saveNetworkView();
 		}
-		
-		
+
+
 		// Sets the supported connection interfaces for the Object
 		currentObject.setSupportedConnectionInterfaces(ComponentsManagment.getSupportedInterfaces(currentObject));
 
@@ -188,8 +188,7 @@ public class ObjectView extends JFrame implements ActionListener
 
 
 	/**
-	 * Saves the information in the general view. Checks the fields and gives
-	 * the user feedback if the name field is
+	 * Saves the information in the general view. Checks the fields and gives the user feedback if the name field is
 	 * 
 	 * @return
 	 */
@@ -202,19 +201,16 @@ public class ObjectView extends JFrame implements ActionListener
 		if ( checkLogic.validateName(viewNameText) )
 		{
 			// Updates the name of the WidgetObject on the Scene
-			currentObject = GraphicalFunctions.updateWidgetObjectCanvasName(
-					currentObject, widgetObj, viewNameText);
+			currentObject = GraphicalFunctions.updateWidgetObjectCanvasName(currentObject, widgetObj, viewNameText);
 
 			// Sets the new name as the Widgets tooltip
 			widgetObj.setToolTipText(viewNameText);
 
 			// If the description in the JTextArea is different then the
 			// objects current description
-			if ( !currentObject.getDescription().equals(
-					view.genObjView.textarea.getText()) )
+			if ( !currentObject.getDescription().equals(view.genObjView.textarea.getText()) )
 			{
-				currentObject
-						.setDescription(view.genObjView.textarea.getText());
+				currentObject.setDescription(view.genObjView.textarea.getText());
 			}
 
 
@@ -227,8 +223,7 @@ public class ObjectView extends JFrame implements ActionListener
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null,
-					"You must specify a name for this Object.", "Error",
+			JOptionPane.showMessageDialog(null, "You must specify a name for this Object.", "Error",
 					JOptionPane.ERROR_MESSAGE);
 
 			// Focuses on the name JTextField
@@ -256,9 +251,7 @@ public class ObjectView extends JFrame implements ActionListener
 		{
 			if ( !(info.setIp(view.netObjView.widgetIPfield.getText())) )
 			{
-				JOptionPane.showMessageDialog(null,
-						"The IP is not a valid IP.", "Error",
-						JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "The IP is not a valid IP.", "Error", JOptionPane.ERROR_MESSAGE);
 
 				errorFound = true;
 			}
@@ -272,8 +265,7 @@ public class ObjectView extends JFrame implements ActionListener
 				// If not other error has been given
 				if ( errorFound != true )
 				{
-					JOptionPane.showMessageDialog(null,
-							"The netmask is not a valid netmask.", "Error",
+					JOptionPane.showMessageDialog(null, "The netmask is not a valid netmask.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 
 					errorFound = true;
@@ -289,9 +281,8 @@ public class ObjectView extends JFrame implements ActionListener
 				// If not other error has been given
 				if ( errorFound != true )
 				{
-					JOptionPane.showMessageDialog(null,
-							"The MAC address is not a valid MAC address.",
-							"Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "The MAC address is not a valid MAC address.", "Error",
+							JOptionPane.ERROR_MESSAGE);
 
 					errorFound = true;
 				}
@@ -301,16 +292,13 @@ public class ObjectView extends JFrame implements ActionListener
 		// Validates and sets Default gateway
 		if ( !(view.netObjView.widgetDefaultGatewayField.getText().equals("")) )
 		{
-			if ( !(info
-					.setDefaultGateway(view.netObjView.widgetDefaultGatewayField
-							.getText())) )
+			if ( !(info.setDefaultGateway(view.netObjView.widgetDefaultGatewayField.getText())) )
 			{
 				// If not other error has been given
 				if ( errorFound != true )
 				{
-					JOptionPane.showMessageDialog(null,
-							"The IP of the Default Gateway is not a valid IP.",
-							"Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "The IP of the Default Gateway is not a valid IP.", "Error",
+							JOptionPane.ERROR_MESSAGE);
 
 					errorFound = true;
 				}
@@ -320,19 +308,16 @@ public class ObjectView extends JFrame implements ActionListener
 		// Validates and sets widget name
 		if ( !(view.netObjView.widgetNetworkNameField.getText().equals("")) )
 		{
-			if ( checkLogic.validateName(view.netObjView.widgetNetworkNameField
-					.getText()) )
+			if ( checkLogic.validateName(view.netObjView.widgetNetworkNameField.getText()) )
 			{
-				info.setNetworkName(view.netObjView.widgetNetworkNameField
-						.getText());
+				info.setNetworkName(view.netObjView.widgetNetworkNameField.getText());
 			}
 			else
 			{
 				// If not other error has been given
 				if ( errorFound != true )
 				{
-					JOptionPane.showMessageDialog(null,
-							"The Network Name is not a valid name.", "Error",
+					JOptionPane.showMessageDialog(null, "The Network Name is not a valid name.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 
 					errorFound = true;
@@ -351,8 +336,8 @@ public class ObjectView extends JFrame implements ActionListener
 
 
 	/**
-	 * This method calls the UpdateTabInfo method in the ObjectViewTabbed class
-	 * to update the information about the current object.
+	 * This method calls the UpdateTabInfo method in the ObjectViewTabbed class to update the information about the
+	 * current object.
 	 */
 	public void updateViewInfo()
 	{

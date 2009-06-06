@@ -285,7 +285,7 @@ public class GraphicalFunctions
 		{
 			// Sets the actual objects new Name
 			obj.setObjectName(name);
-			
+
 			List<Widget> children = widgetObj.getChildren();
 
 			LabelWidget label = null;

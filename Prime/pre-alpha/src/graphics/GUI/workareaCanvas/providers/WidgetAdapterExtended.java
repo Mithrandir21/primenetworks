@@ -79,7 +79,7 @@ public class WidgetAdapterExtended extends Adapter
 			System.out.println("There is still work to be done. AdapterExtended - mouseClicked - ConnectionWidget");
 		}
 
-			
+
 
 		// Consumes the Action so that no other Listener picks up the action.
 		return State.CONSUMED;

@@ -310,14 +310,14 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 						}
 						else
 						{
-							JOptionPane
-							.showMessageDialog(null, "You must set the end of the IP range.", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "You must set the end of the IP range.", "Error",
+									JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					else
 					{
-						JOptionPane
-						.showMessageDialog(null, "You must set the start of the IP range.", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "You must set the start of the IP range.", "Error",
+								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				else

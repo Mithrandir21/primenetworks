@@ -27,9 +27,9 @@ public class RangeNotBigEnoughException extends Exception
 	{
 		ip = text;
 	}
-	
-	
-	
+
+
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -39,7 +39,7 @@ public class RangeNotBigEnoughException extends Exception
 	public String getMessage()
 	{
 		String output = "You can not have a IP range with only a single IP, such as the given ip(" + ip + ").";
-		
+
 		return output;
 	}
 }

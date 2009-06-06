@@ -766,6 +766,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 	{
 		return mbObj;
 	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -1215,8 +1216,8 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 					// Then we have to remove all the components that a object
 					// contains.
 					mainObj.removeAllComponents();
-					
-					
+
+
 					// Resets all the ports so that all ports are available.
 					mbObj.resetAllComponents();
 

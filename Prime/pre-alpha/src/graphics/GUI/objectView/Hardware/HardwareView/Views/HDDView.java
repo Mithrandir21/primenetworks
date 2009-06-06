@@ -439,8 +439,8 @@ public class HDDView extends JPanel implements HardwareViewInterface, ActionList
 	{
 		return true;
 	}
-	
-	
+
+
 
 	@Override
 	public Hardware getViewHardware()

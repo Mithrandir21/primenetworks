@@ -202,11 +202,11 @@ public class CreateObjectDragged
 		}
 
 		Laptop temp = new Laptop(objectName, objectDesc, st_components);
-		
+
 		// Internal Wireless NIC
 		InternalNetworksCard intNIC = PrimeMain1.standard_internal_components.getSt_IntNIC();
 		intNIC.setType("Wireless");
-		
+
 		// Add the internal NIC to the list of components on the Object(not the "st_components" array of this class)
 		temp.addComponent(intNIC);
 
@@ -232,22 +232,23 @@ public class CreateObjectDragged
 			objectDesc = objectName;
 		}
 
-		
+
 		Object[] st_componentsWithOutHDD = null;
 		try
-		{	// Gets the HDD from the array of components
+		{ // Gets the HDD from the array of components
 			HDD removing = (HDD) ArrayManagment.getSpesificComponents(HDD.class, st_components, st_components.length)[0];
-			
+
 			// Removes the HDD from the array of components
-			st_componentsWithOutHDD = ComponentsManagment.removeComponent(removing, st_components, st_components.length);
+			st_componentsWithOutHDD = ComponentsManagment
+					.removeComponent(removing, st_components, st_components.length);
 		}
 		catch ( ObjectNotFoundException e )
 		{
-			// This is impossible since the HDD has just been added at the top of this class 
+			// This is impossible since the HDD has just been added at the top of this class
 			e.printStackTrace();
 		}
 
-		
+
 		ThinClient temp = new ThinClient(objectName, objectDesc, st_componentsWithOutHDD);
 
 		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
@@ -489,9 +490,9 @@ public class CreateObjectDragged
 
 		return temp;
 	}
-	
-	
-	
+
+
+
 	public NetworkPrinter createDefaultNetworkPrinter(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Printer" + numberOfWidgetsOnTheScene;
@@ -514,14 +515,14 @@ public class CreateObjectDragged
 
 
 		NetworkPrinter temp = new NetworkPrinter(objectName, objectDesc, Sresolution, objectMB);
-		
+
 		// Internal Wireless NIC
 		InternalNetworksCard intNIC = PrimeMain1.standard_internal_components.getSt_IntNIC();
 		intNIC.setType("Wireless");
-		
+
 		// Add the internal NIC to the list of components on the Object(not the "st_components" array of this class)
 		temp.addComponent(intNIC);
-		
+
 
 		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
 
@@ -665,7 +666,7 @@ public class CreateObjectDragged
 		}
 
 		// Places the Wireless string at the end of the array
-		supConIntWithWLan[supConIntWithWLan.length-1] = "Wireless";
+		supConIntWithWLan[supConIntWithWLan.length - 1] = "Wireless";
 
 
 		temp.setSupportedConnectionInterfaces(supConIntWithWLan);

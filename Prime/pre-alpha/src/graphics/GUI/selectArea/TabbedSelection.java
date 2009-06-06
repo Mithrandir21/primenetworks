@@ -44,13 +44,14 @@ public class TabbedSelection extends JTabbedPane
 		JComponent panel4 = new ObjectSelection();
 		JScrollPane scrollArea = new JScrollPane(panel4);
 		scrollArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+		// Increases how far the scroll bar scrolls on one step of a mouse wheel
+		scrollArea.getVerticalScrollBar().setUnitIncrement(10);
 		this.addTab("Unit Area", objects, scrollArea, "Unit Area");
 
-		
+
 		ImageIcon networks = ImageLocator.getImageIconObject("Networks");
 		this.addTab("Network Models", networks, primeTree, "Network Models");
-
-
 
 
 

@@ -3,6 +3,7 @@ package graphics.GUI.workareaCanvas;
 
 import graphics.PrimeMain1;
 import graphics.Settings;
+import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuRoom.JMenuWidgetRoom;
 
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -10,6 +11,7 @@ import java.awt.event.MouseEvent;
 
 import managment.RoomManagment;
 
+import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.action.RectangularSelectDecorator;
 import org.netbeans.api.visual.action.RectangularSelectProvider;
 import org.netbeans.api.visual.action.WidgetAction.LockedAdapter;
@@ -43,7 +45,9 @@ public class RectangularAreaSelection extends LockedAdapter
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.netbeans.api.visual.action.WidgetAction.LockedAdapter#isLocked()
 	 */
 	@Override
@@ -84,14 +88,19 @@ public class RectangularAreaSelection extends LockedAdapter
 			// provider.performSelection (selectionSceneRectangle);
 
 			// If the height or width of the WidgetRoom is less then 50 the WidgetRoom vil be removed
-			if( selectionWidget.getBounds().height < 50 && selectionWidget.getBounds().width < 50 )
+			if ( selectionWidget.getBounds().height < 50 && selectionWidget.getBounds().width < 50 )
 			{
 				// Removes the WidgetRoom from the roomLayer
 				selectionWidget.getParentWidget().removeChild(selectionWidget);
 			}
-			
+
+			// Add the JMenuPopup action the WidgetRoom
+			selectionWidget.getActions().addAction(
+					ActionFactory.createPopupMenuAction(new JMenuWidgetRoom(PrimeMain1.currentCanvas)));
+
+
 			selectionSceneRectangle = null;
-			
+
 			// Repaints roomLayer
 			roomLayer.repaint();
 		}

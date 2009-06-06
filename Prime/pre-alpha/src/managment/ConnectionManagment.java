@@ -828,8 +828,8 @@ public class ConnectionManagment
 						{
 							ExternalNetworksCard temp = (ExternalNetworksCard) extNICs[i];
 
-							
-							
+
+
 							// If there is no Object connected to this ExternalNICs
 							if ( temp.getConnectedObject() == null )
 							{
@@ -856,62 +856,62 @@ public class ConnectionManagment
 					}
 				}
 			}
-			
-			
+
+
 			// If either of the objects are null there cannot exist a connection between the two given objects
-			if( ObjectAnic == null && !(objectA instanceof Infrastructure) )
+			if ( ObjectAnic == null && !(objectA instanceof Infrastructure) )
 			{
-				JOptionPane.showMessageDialog(null, "No available network card was found on "
-						+ objectA.getObjectName() + ".", "alert", JOptionPane.ERROR_MESSAGE);
-				
+				JOptionPane.showMessageDialog(null, "No available network card was found on " + objectA.getObjectName()
+						+ ".", "alert", JOptionPane.ERROR_MESSAGE);
+
 				return false;
 			}
-			
-			
+
+
 			// If either of the objects are null there cannot exist a connection between the two given objects
-			if( ObjectBnic == null && !(objectB instanceof Infrastructure) )
+			if ( ObjectBnic == null && !(objectB instanceof Infrastructure) )
 			{
-				JOptionPane.showMessageDialog(null, "No available network card was found on "
-						+ objectB.getObjectName() + ".", "alert", JOptionPane.ERROR_MESSAGE);
-				
+				JOptionPane.showMessageDialog(null, "No available network card was found on " + objectB.getObjectName()
+						+ ".", "alert", JOptionPane.ERROR_MESSAGE);
+
 				return false;
 			}
-			
+
 
 
 			/**
 			 * If the function gets here, both the objects have contained a network card that is available and has the
 			 * connection type of Wireless.
 			 */
-			
-			
-			
-			
+
+
+
+
 			// Sets the objects as the connected objects on the network cards
-			if( ObjectAnic instanceof InternalNetworksCard )
+			if ( ObjectAnic instanceof InternalNetworksCard )
 			{
 				InternalNetworksCard temp = (InternalNetworksCard) ObjectAnic;
-				
+
 				// Sets objectB as the connected object of the network card
 				temp.setConnectedObject(objectB);
 			}
-			else if( ObjectAnic instanceof ExternalNetworksCard )
+			else if ( ObjectAnic instanceof ExternalNetworksCard )
 			{
 				ExternalNetworksCard temp = (ExternalNetworksCard) ObjectAnic;
 
 				// Sets objectB as the connected object of the network card
 				temp.setConnectedObject(objectB);
 			}
-			
 
-			if( ObjectBnic instanceof InternalNetworksCard )
+
+			if ( ObjectBnic instanceof InternalNetworksCard )
 			{
 				InternalNetworksCard temp = (InternalNetworksCard) ObjectBnic;
 
 				// Sets objectA as the connected object of the network card
 				temp.setConnectedObject(objectA);
 			}
-			else if( ObjectBnic instanceof ExternalNetworksCard )
+			else if ( ObjectBnic instanceof ExternalNetworksCard )
 			{
 				ExternalNetworksCard temp = (ExternalNetworksCard) ObjectBnic;
 
@@ -919,7 +919,7 @@ public class ConnectionManagment
 				temp.setConnectedObject(objectA);
 			}
 
-			
+
 
 			// Adds each object to the other objects array of connection objects.
 			objectA.addConnectedDevices(objectB);

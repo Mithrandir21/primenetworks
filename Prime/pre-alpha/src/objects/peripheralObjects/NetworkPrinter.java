@@ -10,7 +10,7 @@ import widgetManipulation.WidgetNetworkInfo;
 
 /**
  * This class represents a Network printer. This device is almost exactly the same as a {@link Printer}, but contains a
- * {@link WidgetNetworkInfo} object that contains information about the network infor for the device. 
+ * {@link WidgetNetworkInfo} object that contains information about the network infor for the device.
  * 
  * @author Bahram Malaekeh
  * 
@@ -72,10 +72,10 @@ public class NetworkPrinter extends Printer
 		super(Name, Desc, PprinterType, PconnectionInterfaces);
 	}
 
-	
-	
+
+
 	// GETTERS
-	
+
 	/**
 	 * Gets the {@link WidgetNetworkInfo} object containing the network information about this network printer.
 	 */
@@ -83,8 +83,8 @@ public class NetworkPrinter extends Printer
 	{
 		return info;
 	}
-	
-	
+
+
 	// SETTERS
 
 	/**

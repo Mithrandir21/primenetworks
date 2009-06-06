@@ -29,8 +29,8 @@ import org.netbeans.modules.visual.action.AlignWithSupport;
  */
 public class MoveWidgetObjectProvider extends AlignWithSupport implements MoveStrategy, MoveProvider
 {
-	
-	
+
+
 	private static final AlignWithMoveDecorator ALIGN_WITH_MOVE_DECORATOR_DEFAULT = new AlignWithMoveDecorator()
 	{
 		/*

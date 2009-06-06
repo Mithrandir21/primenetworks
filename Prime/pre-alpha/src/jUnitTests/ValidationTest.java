@@ -1,11 +1,13 @@
 package jUnitTests;
 
+
 import junit.framework.TestCase;
 import logistical.checkLogic;
 
 import org.junit.Test;
 
-public class ValidationTest extends TestCase 
+
+public class ValidationTest extends TestCase
 {
 	/**
 	 * Javadoc-TODO - Description
@@ -15,7 +17,7 @@ public class ValidationTest extends TestCase
 	public void testValidation()
 	{
 		String[] strings = new String[15];
-		
+
 		strings[0] = "a";
 		strings[1] = "abc123";
 		strings[2] = "abc_123";
@@ -31,15 +33,15 @@ public class ValidationTest extends TestCase
 		strings[12] = "#442asc";
 		strings[13] = " ttt";
 		strings[14] = "testing-test";
-		
-		
-		
-		for( int i = 0; i < strings.length; i++ )
+
+
+
+		for ( int i = 0; i < strings.length; i++ )
 		{
 			System.out.println();
 			System.out.println("String to be tested: " + strings[i]);
 			System.out.println(checkLogic.validateName(strings[i]));
 		}
 	}
-	
+
 }

@@ -181,11 +181,11 @@ public class GeneralPropertiesView
 		panel.add(supConIntLabel);
 
 		JComboBox subConCombo = new JComboBox();
-        subConCombo.setModel(new DefaultComboBoxModel(obj.getSupportedConnectionInterfaces()));
-        subConCombo.setMaximumSize(tfSize);
-        subConCombo.setPreferredSize(tfSize);
-        subConCombo.setEditable(false);
-        subConCombo.setName("supConInt");
+		subConCombo.setModel(new DefaultComboBoxModel(obj.getSupportedConnectionInterfaces()));
+		subConCombo.setMaximumSize(tfSize);
+		subConCombo.setPreferredSize(tfSize);
+		subConCombo.setEditable(false);
+		subConCombo.setName("supConInt");
 		supConIntLabel.setLabelFor(subConCombo);
 		panel.add(subConCombo);
 

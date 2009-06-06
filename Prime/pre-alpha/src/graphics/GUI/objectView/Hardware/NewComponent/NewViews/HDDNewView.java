@@ -436,8 +436,8 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 	{
 		return true;
 	}
-	
-	
+
+
 
 	@Override
 	public Hardware getViewHardware()

@@ -45,7 +45,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	// The connection type between the device and the computer it is connected
 	// to. FIXME - ConnectedBy externalNIC
 	private String connectedBy;
-	
+
 	// The Object this NIC is connected to
 	private Object connectedObject;
 
@@ -153,8 +153,8 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	{
 		return connectedBy;
 	}
-	
-	
+
+
 	/**
 	 * Get the {@link Object} this NIC is connected to.
 	 */

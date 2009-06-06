@@ -542,7 +542,7 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 		return true;
 	}
 
-	
+
 	@Override
 	public Hardware getViewHardware()
 	{

@@ -235,7 +235,7 @@ public class CanvasManagment
 						{
 							PrimeMain1.canvases = new WorkareaCanvas[1];
 						}
-						
+
 						return;
 					}
 				}
@@ -382,5 +382,5 @@ public class CanvasManagment
 
 		return change;
 	}
-	
+
 }

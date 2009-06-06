@@ -925,8 +925,8 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 	{
 		return true;
 	}
-	
-	
+
+
 
 	@Override
 	public Hardware getViewHardware()

@@ -9,6 +9,8 @@ import graphics.PrimeMain1;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import javax.swing.border.Border;
+
 import objects.Room;
 
 import org.netbeans.api.visual.widget.Scene;
@@ -25,6 +27,9 @@ public class WidgetRoom extends Widget
 {
 	// The room that the WidgetRoom will visually represent on a WorkareaCanvas
 	Room room;
+
+	// The border of the WidgetRoom
+	Border border;
 
 
 
@@ -59,7 +64,7 @@ public class WidgetRoom extends Widget
 
 
 		this.setPreferredLocation(room.getLocation());
-		this.setPreferredBounds(this.getBounds());
+		// this.setPreferredBounds(this.getBounds());
 	}
 
 
@@ -77,7 +82,6 @@ public class WidgetRoom extends Widget
 	}
 
 
-
 	// SETTERS
 
 
@@ -91,8 +95,6 @@ public class WidgetRoom extends Widget
 	{
 		this.room = room;
 	}
-
-
 
 
 	// CLASS METHODES
@@ -144,7 +146,7 @@ public class WidgetRoom extends Widget
 	@Override
 	public boolean isHitAt(Point localLocation)
 	{
-		if( PrimeMain1.connecting == true )
+		if ( PrimeMain1.connecting == true )
 		{
 			return false;
 		}
@@ -153,5 +155,4 @@ public class WidgetRoom extends Widget
 			return true;
 		}
 	}
-
 }

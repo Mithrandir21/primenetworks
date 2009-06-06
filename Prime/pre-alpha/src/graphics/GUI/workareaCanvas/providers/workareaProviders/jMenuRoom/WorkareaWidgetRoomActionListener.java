@@ -40,8 +40,7 @@ public class WorkareaWidgetRoomActionListener implements ActionListener
 	 * 
 	 * @param canvas
 	 */
-	public WorkareaWidgetRoomActionListener(WorkareaCanvas canvas,
-			WidgetRoom room)
+	public WorkareaWidgetRoomActionListener(WorkareaCanvas canvas, WidgetRoom room)
 	{
 		this.canvas = canvas;
 		this.room = room;
@@ -73,7 +72,8 @@ public class WorkareaWidgetRoomActionListener implements ActionListener
 			{
 				// Call the function that asks the user for a new name and then
 				// sets that name as the name for the given room
-				RoomManagment.changeWidgetRoomName(room);
+				// FIXME - RoomManagment.changeWidgetRoomName
+				// RoomManagment.changeWidgetRoomName(room);
 			}
 		}
 

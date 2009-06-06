@@ -63,6 +63,4 @@ public class ActionSave extends AbstractAction
 		// Saves the current canvas
 		FileManagment.saveWorkareaCanvas(PrimeMain1.currentCanvas);
 	}
-
-
 }

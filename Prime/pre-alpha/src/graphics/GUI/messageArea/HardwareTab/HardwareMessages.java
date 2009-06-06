@@ -42,7 +42,7 @@ public class HardwareMessages extends JScrollPane
 
 		setColumnWidths();
 
-//		 table.setPreferredScrollableViewportSize(new Dimension(700,300));
+		// table.setPreferredScrollableViewportSize(new Dimension(700,300));
 		table.setFillsViewportHeight(false);
 
 		setViewportView(table);

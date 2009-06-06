@@ -65,9 +65,9 @@ public class Printer extends ExternalHardware implements Serializable
 
 		printerType = PprinterType;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Constructor of the printer class.
 	 * 

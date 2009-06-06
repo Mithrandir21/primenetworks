@@ -89,8 +89,8 @@ public abstract class Hardware extends Object implements Serializable
 	{
 		super(Name, Desc, SupConInt, objectMB);
 	}
-	
-	
+
+
 	/**
 	 * Constructor of an abstract hardware superclass.
 	 * 
@@ -101,6 +101,6 @@ public abstract class Hardware extends Object implements Serializable
 	 */
 	public Hardware(String Name, String Desc, Motherboard objectMB)
 	{
-		super(Name, Desc, null,objectMB);
+		super(Name, Desc, null, objectMB);
 	}
 }

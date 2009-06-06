@@ -4,6 +4,8 @@
 package widgetManipulation.Actions;
 
 
+import graphics.Settings;
+
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 
@@ -46,7 +48,7 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 	public State mousePressed(Widget widget, WidgetMouseEvent event)
 	{
 		if ( (event.getButton() == MouseEvent.BUTTON1 && event.getClickCount() == 1)
-				&& (event.getModifiers() & MouseEvent.SHIFT_MASK) != 0 )
+				&& ((event.getModifiers() & MouseEvent.SHIFT_MASK) != 0) && Settings.roomsManipulation )
 		{
 			movingWidget = widget;
 			originalSceneLocation = provider.getOriginalLocation(widget);

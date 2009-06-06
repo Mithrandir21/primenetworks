@@ -15,11 +15,11 @@ public class AllTests
 
 		// MANAGMENT PACKAGE TESTS
 		// ///////////////////////////////////////////
-//		suite.addTestSuite(ArrayManagmentTest.class);
-//
-//		suite.addTestSuite(ComponentsManagmentTest.class);
-//
-//		suite.addTestSuite(ConnectionManagmentTest.class);
+		// suite.addTestSuite(ArrayManagmentTest.class);
+		//
+		// suite.addTestSuite(ComponentsManagmentTest.class);
+		//
+		// suite.addTestSuite(ConnectionManagmentTest.class);
 
 		// suite.addTestSuite(ExternalConnectionCheckTest.class);
 
@@ -30,8 +30,8 @@ public class AllTests
 		// LOGISTICAL PACKAGE TESTS
 		// ///////////////////////////////////////////
 
-//		suite.addTestSuite(cleanupTest.class);
-		
+		// suite.addTestSuite(cleanupTest.class);
+
 		suite.addTestSuite(ValidationTest.class);
 		/*
 		 * suite.addTestSuite(ContainerLogisticTest.class); suite.addTestSuite(RackFunctionsTest.class);

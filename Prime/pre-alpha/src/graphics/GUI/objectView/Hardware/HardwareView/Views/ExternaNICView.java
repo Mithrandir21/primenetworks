@@ -433,7 +433,7 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 	{
 		return true;
 	}
-	
+
 
 	@Override
 	public Hardware getViewHardware()

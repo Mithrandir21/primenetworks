@@ -440,7 +440,7 @@ public class InternalNICView extends JPanel implements HardwareViewInterface, Ac
 	{
 		return true;
 	}
-	
+
 
 	@Override
 	public Hardware getViewHardware()

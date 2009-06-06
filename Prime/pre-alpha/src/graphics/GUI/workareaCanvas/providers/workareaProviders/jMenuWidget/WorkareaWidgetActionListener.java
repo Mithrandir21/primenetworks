@@ -65,12 +65,12 @@ public class WorkareaWidgetActionListener implements ActionListener
 			else if ( actionName.equals("DeleteThisObject") )
 			{
 				WorkareaCanvasActions.deleteCurrentObject(canvas);
-				
+
 				PrimeMain1.runCanvasObjectCheck();
 			}
 		}
-		
-		
+
+
 		canvas.cleanUp();
 	}
 

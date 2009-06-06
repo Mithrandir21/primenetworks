@@ -21,16 +21,17 @@ public class NotValidIPAddress extends Exception
 	 * A constructor that set the given string as the exceptions field of text. The given String is the invalid IP
 	 * address string.
 	 * 
-	 * @param IPtext The invalid IP address string.
+	 * @param IPtext
+	 *            The invalid IP address string.
 	 */
 	public NotValidIPAddress(String IPtext)
 	{
 		text = IPtext;
 	}
-	
-	
-	
-	
+
+
+
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -40,8 +41,8 @@ public class NotValidIPAddress extends Exception
 	public String getMessage()
 	{
 		String output = "This, " + text + ", is not a valid IP address.";
-		
+
 		return output;
 	}
-	
+
 }

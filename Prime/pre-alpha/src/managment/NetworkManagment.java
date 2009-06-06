@@ -12,9 +12,8 @@ import exceptions.RangeNotBigEnoughException;
 
 
 /**
- * This class contains various functions and methods that are used in the management of Network
- * information. 
- * This includes for example methods for MAC addresses, IP addresses and processing of IP ranges. 
+ * This class contains various functions and methods that are used in the management of Network information. This
+ * includes for example methods for MAC addresses, IP addresses and processing of IP ranges.
  * 
  * @author Bahram Malaekeh
  * 

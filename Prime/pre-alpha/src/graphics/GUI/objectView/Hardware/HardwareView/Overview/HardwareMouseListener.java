@@ -57,9 +57,8 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 
 
 	/**
-	 * Creates and pops up the JMenu coordinates gotten from the MouseEvent.
-	 * This menu is shown when right clicked on a Hardware Object in the HardwareView
-	 * of an Object on the {@link WorkareaCanvas}.
+	 * Creates and pops up the JMenu coordinates gotten from the MouseEvent. This menu is shown when right clicked on a
+	 * Hardware Object in the HardwareView of an Object on the {@link WorkareaCanvas}.
 	 * 
 	 * @param e
 	 */

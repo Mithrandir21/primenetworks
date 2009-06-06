@@ -475,8 +475,8 @@ public class InternalNICNewView extends JFrame implements HardwareViewInterface,
 	{
 		return true;
 	}
-	
-	
+
+
 	@Override
 	public Hardware getViewHardware()
 	{

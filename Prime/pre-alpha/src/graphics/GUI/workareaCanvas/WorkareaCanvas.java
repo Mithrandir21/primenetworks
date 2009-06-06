@@ -45,13 +45,13 @@ import connections.Connection;
 
 /**
  * A visual canvas that will hold all the object of any given network. The object can be moved around, deleted or
- * connected to other object. The canvas has a come special feature like zooming, scrolling and panning. The canvas has
+ * connected to other object. The canvas has some special feature like zooming, scrolling and panning. The canvas has
  * D'n'D(Drag and Drop) features. Any Widget can be dragged and dropped onto the the canvas. The widget will then be
  * converted into a {@link WidgetObject WidgetObject} and a standard object will be created. The object class depends on
  * the class of the dragged widget. The object will be created and place within the WidgetObject.
  * 
  * @author Bahram Malaekeh
- * @version 0.1
+ * @version 1.0
  */
 
 public class WorkareaCanvas extends JPanel implements DropTargetListener
@@ -62,13 +62,10 @@ public class WorkareaCanvas extends JPanel implements DropTargetListener
 	// The individual serialnumber of the workareacanvas
 	private double serial = 0;
 
-	// The transferHandler that will take care of the drag and drop feature for
-	// the canvas
+	// The transferHandler that will take care of the drag and drop feature for the canvas
 	private TransferHandler TransHandler = new WidgetTransferHandler();
 
 	private DropTarget dt = null;
-
-	// private JPopupMenu popup = CanvasMenu.createPopupMenu(this);
 
 	// The scene on the canvas which all objects and layers will be placed
 	private ObjectScene scene = new ObjectScene();

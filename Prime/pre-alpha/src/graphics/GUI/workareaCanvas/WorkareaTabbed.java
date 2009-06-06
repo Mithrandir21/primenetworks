@@ -335,7 +335,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 				if ( label.getText().equals(canvasName) )
 				{
 					WorkareaSceneScroll test = (WorkareaSceneScroll) this.getComponentAt(i);
-					
+
 					if ( verify )
 					{
 						// The options the user will be presented with.

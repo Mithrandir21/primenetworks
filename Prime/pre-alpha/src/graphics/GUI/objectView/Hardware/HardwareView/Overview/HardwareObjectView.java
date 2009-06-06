@@ -577,9 +577,9 @@ public class HardwareObjectView extends JPanel implements ActionListener
 
 		return panel;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Gets the hardware editor that where hardware can be edited.
 	 */
@@ -587,9 +587,9 @@ public class HardwareObjectView extends JPanel implements ActionListener
 	{
 		return new HardwareEditor(obj);
 	}
-	
-	
-	
+
+
+
 
 	/*
 	 * (non-Javadoc)

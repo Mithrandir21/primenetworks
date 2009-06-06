@@ -101,8 +101,8 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	{
 		super(Name, Desc, SupConInt, deviceMB);
 	}
-	
-	
+
+
 	/**
 	 * Constructor of an abstract hardware superclass.
 	 * 

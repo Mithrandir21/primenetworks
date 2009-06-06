@@ -3,24 +3,26 @@
  */
 package objects.infrastructureObjects;
 
+
 import objects.hardwareObjects.Motherboard;
+
 
 /**
  * Javadoc-TODO - Description NEEDED!
- *
+ * 
  * @author Bahram Malaekeh
  * 
  */
 public class WirelessRouter extends Router
 {
-	
+
 	// Wireless feature
 	private boolean wireless;
-	
-	
+
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
+	 * 
 	 * @param Name
 	 * @param Desc
 	 * @param SupConInt
@@ -34,14 +36,14 @@ public class WirelessRouter extends Router
 			int inPorts, String[] DuplexSupport, boolean wifi)
 	{
 		super(Name, Desc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport);
-		
+
 		wireless = wifi;
 	}
 
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the wireless
 	 */
 	public boolean isWireless()
@@ -52,8 +54,9 @@ public class WirelessRouter extends Router
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
-	 * @param wireless the wireless to set
+	 * 
+	 * @param wireless
+	 *            the wireless to set
 	 */
 	public void setWireless(boolean wireless)
 	{

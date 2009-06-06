@@ -22,7 +22,7 @@ public class RoomBorder extends LineBorder
 
 	public RoomBorder(Color color)
 	{
-		super(color, 2, true);
+		super(color, 2, false);
 	}
 
 
