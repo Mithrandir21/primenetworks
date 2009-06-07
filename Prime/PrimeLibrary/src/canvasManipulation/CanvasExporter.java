@@ -80,6 +80,7 @@ public class CanvasExporter
 		}
 
 
+
 		Canvas2Image c2i = new Canvas2Image(canvas.getScene(), file);
 		BufferedImage image = c2i.createImage(imageType, zoomType, visibleAreaOnly, selectedOnly, quality,
 				getCanvasStart(canvas), getCanvasEnd(canvas), false);

@@ -184,13 +184,13 @@ public class Canvas2Image
 
 
 		// FIXME - Fix the size
-		bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
+		bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		g = bufferedImage.createGraphics();
 		// g.setBackground(Color.WHITE);
-		g.translate(100, 100);
+		g.translate(0, 0);
 		g.scale(_scale, _scale);
 		g.setColor(Color.WHITE);
-		g.fillRect(-100, -100, width, height);
+		g.fillRect(0, 0, width, height);
 		scene.paint(g);
 
 		// restore widget visibility
@@ -266,10 +266,10 @@ public class Canvas2Image
 	 * @param quality
 	 *            And integer value between 0-100. This is for JPG images only. Parameter is not used if an image type
 	 *            other than jpg is selected.
-	 * @param width
+	 * @param start
 	 *            Directly sets the horizontal dimension of the exported image. This is only used when the zoomType is
 	 *            ZoomType.CUSTOM_SIZE
-	 * @param height
+	 * @param start
 	 *            Directly sets the vertical dimension of the exported image. This is only used when the zoomType is
 	 *            ZoomType.CUSTOM_SIZE.
 	 * @param createImageMap
@@ -372,28 +372,25 @@ public class Canvas2Image
 			this.scale = _scale;
 		}
 
-		// FIXME - Fix the size
-		bufferedImage = new BufferedImage(rectangle.width, rectangle.height + 15, BufferedImage.TYPE_4BYTE_ABGR);
+
+		bufferedImage = new BufferedImage(rectangle.width, rectangle.height + 15, BufferedImage.TYPE_INT_RGB);
 		g = bufferedImage.createGraphics();
-		// g.setBackground(Color.WHITE);
 
-		Point translatePoint = new Point(0, 0);
+		System.out.println(start);
+		System.out.println(end);
+		System.out.println(rectangle);
 
-		if ( start.x < -2 )
-		{
-			translatePoint.x = +10;
-		}
 
-		if ( start.y < -2 )
-		{
-			translatePoint.y = +10;
-		}
-
-		g.translate(translatePoint.x, translatePoint.y);
+		g.translate(0, 0);
 		g.scale(_scale, _scale);
 		g.setColor(Color.WHITE);
-		g.fillRect(-translatePoint.x, -translatePoint.y, rectangle.width, rectangle.height + 15);
+		g.fillRect(0, 0, end.x, end.y + 15);
 		scene.paint(g);
+
+
+
+
+
 
 		// restore widget visibility
 		for ( Widget w : hiddenWidgets )

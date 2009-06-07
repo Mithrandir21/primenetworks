@@ -60,7 +60,10 @@ public class ActionSave extends AbstractAction
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		// Saves the current canvas
-		FileManagment.saveWorkareaCanvas(PrimeMain1.currentCanvas);
+		if ( PrimeMain1.currentCanvas != null )
+		{
+			// Saves the current canvas
+			FileManagment.saveWorkareaCanvas(PrimeMain1.currentCanvas);
+		}
 	}
 }
