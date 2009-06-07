@@ -19,7 +19,6 @@ import exceptions.StringNotFoundInArrayException;
  */
 public class ArrayManagment
 {
-
 	/**
 	 * Function to add items(s) to the an array of items(Strings).
 	 * 

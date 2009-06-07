@@ -792,11 +792,12 @@ public class FileManagment
 					{
 						Class<?> objClass = GraphicalFunctions.getObjectClass(objects[i]);
 						ImageIcon icon = GraphicalFunctions.getImageIconForObject(objects[i]);
-						
-						WidgetObject added = WorkareaCanvasActions.addObjectToCanvas(objects[i], canvas, objClass, icon);
-						
+
+						WidgetObject added = WorkareaCanvasActions
+								.addObjectToCanvas(objects[i], canvas, objClass, icon);
+
 						// Adds the actions that the new widget supports
-						ActionsAdder.makeWidgetObjectReady(canvas,added);
+						ActionsAdder.makeWidgetObjectReady(canvas, added);
 					}
 				}
 			}
@@ -914,7 +915,7 @@ public class FileManagment
 					if ( rooms[i] != null )
 					{
 						WidgetRoom room = RoomManagment.addRoom(canvas, rooms[i]);
-						
+
 						// Adds the actions supported by the WidgetRoom
 						ActionsAdder.makeWidgetRoomReady(canvas, room);
 					}
@@ -1076,8 +1077,8 @@ public class FileManagment
 
 				try
 				{
-					CanvasExporter.createImage(PrimeMain1.currentCanvas.getScene(), file, CanvasExporter.ImageType.JPG,
-							CanvasExporter.ZoomType.ACTUAL_SIZE, false, false, 100, 1000, 1000);
+					CanvasExporter.createImage(PrimeMain1.currentCanvas, file, CanvasExporter.ImageType.JPG,
+							CanvasExporter.ZoomType.ACTUAL_SIZE, false, false, 100, 1600, 1400);
 				}
 				catch ( IOException e )
 				{
@@ -1097,7 +1098,7 @@ public class FileManagment
 
 				try
 				{
-					CanvasExporter.createImage(PrimeMain1.currentCanvas.getScene(), file, CanvasExporter.ImageType.PNG,
+					CanvasExporter.createImage(PrimeMain1.currentCanvas, file, CanvasExporter.ImageType.PNG,
 							CanvasExporter.ZoomType.ACTUAL_SIZE, false, false, 100, 1000, 1000);
 				}
 				catch ( IOException e )
@@ -1107,22 +1108,5 @@ public class FileManagment
 				}
 			}
 		}
-	}
-
-
-	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @param file
-	 * @param extension
-	 */
-	public static boolean verifyFileEnding(File file, String extension)
-	{
-		if ( file.getName().endsWith(extension) )
-		{
-			return true;
-		}
-
-		return false;
 	}
 }
