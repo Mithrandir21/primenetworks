@@ -5,10 +5,9 @@ package canvasManipulation;
 
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -22,11 +21,13 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.FileImageOutputStream;
+import javax.swing.JOptionPane;
 
 import org.netbeans.api.visual.model.ObjectScene;
 import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
 
+import widgets.WorkareaCanvas;
 import canvasManipulation.CanvasExporter.ImageType;
 import canvasManipulation.CanvasExporter.ZoomType;
 
@@ -183,10 +184,8 @@ public class Canvas2Image
 		}
 
 
-		// FIXME - Fix the size
 		bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		g = bufferedImage.createGraphics();
-		// g.setBackground(Color.WHITE);
 		g.translate(0, 0);
 		g.scale(_scale, _scale);
 		g.setColor(Color.WHITE);
@@ -279,14 +278,10 @@ public class Canvas2Image
 	 *             If for some reason the file cannot be written, an IOExeption will be thrown.
 	 */
 	public BufferedImage createImage(ImageType imageType, ZoomType zoomType, boolean visibleAreaOnly,
-			boolean selectedOnly, int quality, Point start, Point end, boolean createImageMap) throws IOException
+			boolean selectedOnly, int quality, WorkareaCanvas canvas, boolean createImageMap) throws IOException
 	{
-
-		// Gets the Dimension of the scene which is to be exported
-		Dimension sceneDim = new Dimension((end.x - start.x), (end.y - start.y));
-
 		// Creates a rectangle with the starting point and the dimensions of the scene seleceted for export
-		Rectangle rectangle = new Rectangle(start.x, start.y, sceneDim.width, sceneDim.height);
+		Rectangle rectangle = canvas.getScene().getClientArea();
 
 
 		double _scale = scene.getZoomFactor();
@@ -373,23 +368,13 @@ public class Canvas2Image
 		}
 
 
-		bufferedImage = new BufferedImage(rectangle.width, rectangle.height + 15, BufferedImage.TYPE_INT_RGB);
+		bufferedImage = new BufferedImage(rectangle.width, rectangle.height, BufferedImage.TYPE_INT_RGB);
 		g = bufferedImage.createGraphics();
-
-		System.out.println(start);
-		System.out.println(end);
-		System.out.println(rectangle);
-
-
-		g.translate(0, 0);
+		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		g.scale(_scale, _scale);
 		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, end.x, end.y + 15);
+		g.fillRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 		scene.paint(g);
-
-
-
-
 
 
 		// restore widget visibility
@@ -400,37 +385,54 @@ public class Canvas2Image
 
 		if ( file != null )
 		{
-			FileImageOutputStream fo = new FileImageOutputStream(file);
+			boolean save = true;
 
-			if ( imageType == ImageType.JPG )
+			if ( file.exists() )
 			{
-				Iterator<?> iter = ImageIO.getImageWritersByFormatName("jpg");
-				ImageWriter writer = (ImageWriter) iter.next();
+				int answer = JOptionPane.showConfirmDialog(null,
+						"This file exists. Do you wish to overwrite the file?", "Confirm", JOptionPane.YES_NO_OPTION);
 
-				ImageWriteParam iwp = writer.getDefaultWriteParam();
-				iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-				if ( quality > 100 )
+				// The user has not pressed YES
+				if ( answer != 0 )
 				{
-					quality = 100;
+					save = false;
 				}
-				if ( quality < 0 )
-				{
-					quality = 0;
-				}
-				iwp.setCompressionQuality(quality / 100);
-				writer.setOutput(fo);
-				IIOImage image = new IIOImage(bufferedImage, null, null);
-				writer.write(null, image, iwp);
-
-				writer.dispose();
-			}
-			else
-			{
-				ImageIO.write(bufferedImage, "" + imageType, fo);
 			}
 
-			fo.flush();
-			fo.close();
+			if ( save )
+			{
+				FileImageOutputStream fo = new FileImageOutputStream(file);
+
+				if ( imageType == ImageType.JPG )
+				{
+					Iterator<?> iter = ImageIO.getImageWritersByFormatName("jpg");
+					ImageWriter writer = (ImageWriter) iter.next();
+
+					ImageWriteParam iwp = writer.getDefaultWriteParam();
+					iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+					if ( quality > 100 )
+					{
+						quality = 100;
+					}
+					if ( quality < 0 )
+					{
+						quality = 0;
+					}
+					iwp.setCompressionQuality(quality / 100);
+					writer.setOutput(fo);
+					IIOImage image = new IIOImage(bufferedImage, null, null);
+					writer.write(null, image, iwp);
+
+					writer.dispose();
+				}
+				else
+				{
+					ImageIO.write(bufferedImage, "" + imageType, fo);
+				}
+
+				fo.flush();
+				fo.close();
+			}
 		}
 
 		return bufferedImage;

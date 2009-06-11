@@ -28,13 +28,18 @@ import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.infrastructureObjects.WirelessRouter;
+import objects.peripheralObjects.Fax;
+import objects.peripheralObjects.MultifunctionPrinter;
+import objects.peripheralObjects.NetworkMultifunctionPrinter;
 import objects.peripheralObjects.NetworkPrinter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
 import objects.serverObjects.BackupServer;
+import objects.serverObjects.DatabaseServer;
 import objects.serverObjects.FirewallServer;
 import objects.serverObjects.HTTPServer;
 import objects.serverObjects.MailServer;
+import objects.serverObjects.PrinterServer;
 import objects.serverObjects.ProxyServer;
 import widgets.WidgetIcon;
 
@@ -105,6 +110,10 @@ public class ObjectSelection extends JPanel
 
 		this.add(new JToolBar.Separator());
 
+		this.add(makeImageIcon("Database-server", DatabaseServer.class, "Database Server"));
+
+		this.add(new JToolBar.Separator());
+
 		this.add(makeImageIcon("Email-server", MailServer.class, "Email Server"));
 
 		this.add(new JToolBar.Separator());
@@ -114,6 +123,10 @@ public class ObjectSelection extends JPanel
 		this.add(new JToolBar.Separator());
 
 		this.add(makeImageIcon("Proxy-server", ProxyServer.class, "Proxy Server"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Print-server", PrinterServer.class, "Printer Server"));
 
 		this.add(new JToolBar.Separator());
 
@@ -132,7 +145,20 @@ public class ObjectSelection extends JPanel
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("PrinterNetwork", NetworkPrinter.class, "Network Printer"));
+		this.add(makeImageIcon("Fax", Fax.class, "Fax"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("MultifunctionPrinter", MultifunctionPrinter.class, "MultifunctionPrinter"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("NetworkPrinter", NetworkPrinter.class, "Network Printer"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("NetworkMultifunctionPrinter", NetworkMultifunctionPrinter.class,
+				"Network MultifunctionPrinter"));
 
 		this.add(new JToolBar.Separator());
 
@@ -173,10 +199,10 @@ public class ObjectSelection extends JPanel
 	{
 		ImageIcon Icon = ImageLocator.getImageIconObject(name);
 		WidgetIcon iconButton = new WidgetIcon(Icon, objectType, text);
-		
+
 		// Sets up the WidgetIcon
 		GraphicalFunctions.widgetIconSetup(iconButton);
-		
+
 		iconButton.setSize(Icon.getIconWidth(), Icon.getIconHeight());
 
 		iconButton.setAlignmentX(Component.CENTER_ALIGNMENT);

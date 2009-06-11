@@ -24,13 +24,18 @@ import objects.infrastructureObjects.Hub;
 import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
+import objects.peripheralObjects.Fax;
+import objects.peripheralObjects.MultifunctionPrinter;
+import objects.peripheralObjects.NetworkMultifunctionPrinter;
 import objects.peripheralObjects.NetworkPrinter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
 import objects.serverObjects.BackupServer;
+import objects.serverObjects.DatabaseServer;
 import objects.serverObjects.FirewallServer;
 import objects.serverObjects.HTTPServer;
 import objects.serverObjects.MailServer;
+import objects.serverObjects.PrinterServer;
 import objects.serverObjects.ProxyServer;
 import widgets.WidgetIcon;
 import widgets.WidgetObject;
@@ -128,17 +133,24 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 				set = true;
 			}
-			else if ( actionName.equals("CreateNewST_MailServer_Item") )
-			{
-				objectType = MailServer.class;
-				objectIcon = ImageLocator.getImageIconObject("Email-server");
-
-				set = true;
-			}
 			else if ( actionName.equals("CreateNewST_BackupServer_Item") )
 			{
 				objectType = BackupServer.class;
 				objectIcon = ImageLocator.getImageIconObject("Data-server");
+
+				set = true;
+			}
+			else if ( actionName.equals("CreateNewST_DatabaseServer_Item") )
+			{
+				objectType = DatabaseServer.class;
+				objectIcon = ImageLocator.getImageIconObject("Database-server");
+
+				set = true;
+			}
+			else if ( actionName.equals("CreateNewST_MailServer_Item") )
+			{
+				objectType = MailServer.class;
+				objectIcon = ImageLocator.getImageIconObject("Email-server");
 
 				set = true;
 			}
@@ -153,6 +165,13 @@ public class WorkareaCanvasActionListener implements ActionListener
 			{
 				objectType = ProxyServer.class;
 				objectIcon = ImageLocator.getImageIconObject("Proxy-server");
+
+				set = true;
+			}
+			else if ( actionName.equals("CreateNewST_PrinterServer_Item") )
+			{
+				objectType = PrinterServer.class;
+				objectIcon = ImageLocator.getImageIconObject("Printer-server");
 
 				set = true;
 			}
@@ -205,10 +224,31 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 				set = true;
 			}
+			else if ( actionName.equals("CreateNewST_Fax_Item") )
+			{
+				objectType = Fax.class;
+				objectIcon = ImageLocator.getImageIconObject("Fax");
+
+				set = true;
+			}
+			else if ( actionName.equals("CreateNewST_MFP_Item") )
+			{
+				objectType = MultifunctionPrinter.class;
+				objectIcon = ImageLocator.getImageIconObject("MultifunctionPrinter");
+
+				set = true;
+			}
 			else if ( actionName.equals("CreateNewST_NetworkPrinter_Item") )
 			{
 				objectType = NetworkPrinter.class;
-				objectIcon = ImageLocator.getImageIconObject("PrinterNetwork");
+				objectIcon = ImageLocator.getImageIconObject("NetworkPrinter");
+
+				set = true;
+			}
+			else if ( actionName.equals("CreateNewST_NetworkMFP_Item") )
+			{
+				objectType = NetworkMultifunctionPrinter.class;
+				objectIcon = ImageLocator.getImageIconObject("NetworkMultifunctionPrinter");
 
 				set = true;
 			}
@@ -219,7 +259,7 @@ public class WorkareaCanvasActionListener implements ActionListener
 			if ( set == true )
 			{
 				WidgetIcon newObjectIcon = new WidgetIcon(objectIcon, objectType);
-				
+
 				// Sets up the WidgetIcon
 				GraphicalFunctions.widgetIconSetup(newObjectIcon);
 
@@ -233,9 +273,9 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 				// Adds the given object to the given location
 				canvas.addWidgetObject(newWidgetObject, location, true);
-				
+
 				// Adds the actions that the new widget supports
-				ActionsAdder.makeWidgetObjectReady(canvas,newWidgetObject);
+				ActionsAdder.makeWidgetObjectReady(canvas, newWidgetObject);
 
 				// Updates the sidebar with the object properties
 				PrimeMain1.updatePropertiesObjectArea(newObject, false);

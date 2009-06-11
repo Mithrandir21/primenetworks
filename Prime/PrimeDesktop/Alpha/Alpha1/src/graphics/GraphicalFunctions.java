@@ -39,13 +39,18 @@ import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.infrastructureObjects.WirelessRouter;
+import objects.peripheralObjects.Fax;
+import objects.peripheralObjects.MultifunctionPrinter;
+import objects.peripheralObjects.NetworkMultifunctionPrinter;
 import objects.peripheralObjects.NetworkPrinter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
 import objects.serverObjects.BackupServer;
+import objects.serverObjects.DatabaseServer;
 import objects.serverObjects.FirewallServer;
 import objects.serverObjects.HTTPServer;
 import objects.serverObjects.MailServer;
+import objects.serverObjects.PrinterServer;
 import objects.serverObjects.ProxyServer;
 
 import org.netbeans.api.visual.action.ActionFactory;
@@ -436,9 +441,9 @@ public class GraphicalFunctions
 
 		}
 	}
-	
-	
-	
+
+
+
 
 
 
@@ -547,9 +552,9 @@ public class GraphicalFunctions
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Gets the class of the given Object.
 	 * 
@@ -625,88 +630,108 @@ public class GraphicalFunctions
 
 		return null;
 	}
-	
-	
-	
+
+
+
 	/**
-	 * Returns a ImageIcon that represents the Object given. 
+	 * Returns a ImageIcon that represents the Object given.
 	 * 
 	 * @param obj
 	 * @return
 	 */
 	public static ImageIcon getImageIconForObject(Object obj)
 	{
-		if ( obj.getClass().equals(Desktop.class) )
+		if ( obj instanceof Desktop )
 		{
 			return ImageLocator.getImageIconObject("Desktop");
 		}
-		else if ( obj.getClass().equals(Laptop.class) )
+		else if ( obj instanceof Laptop )
 		{
 			return ImageLocator.getImageIconObject("Laptop");
 		}
-		else if ( obj.getClass().equals(ThinClient.class) )
+		else if ( obj instanceof ThinClient )
 		{
 			return ImageLocator.getImageIconObject("Screen");
 		}
-		else if ( obj.getClass().equals(HTTPServer.class) )
+		else if ( obj instanceof HTTPServer )
 		{
 			return ImageLocator.getImageIconObject("Web-server");
 		}
-		else if ( obj.getClass().equals(MailServer.class) )
-		{
-			return ImageLocator.getImageIconObject("Email-server");
-		}
-		else if ( obj.getClass().equals(BackupServer.class) )
+		else if ( obj instanceof BackupServer )
 		{
 			return ImageLocator.getImageIconObject("Data-server");
 		}
-		else if ( obj.getClass().equals(FirewallServer.class) )
+		else if ( obj instanceof DatabaseServer )
+		{
+			return ImageLocator.getImageIconObject("Database-server");
+		}
+		else if ( obj instanceof MailServer )
+		{
+			return ImageLocator.getImageIconObject("Email-server");
+		}
+		else if ( obj instanceof FirewallServer )
 		{
 			return ImageLocator.getImageIconObject("Firewall-server");
 		}
-		else if ( obj.getClass().equals(ProxyServer.class) )
+		else if ( obj instanceof ProxyServer )
 		{
 			return ImageLocator.getImageIconObject("Proxy-server");
 		}
-		else if ( obj.getClass().equals(Hub.class) )
+		else if ( obj instanceof PrinterServer )
 		{
-			return ImageLocator.getImageIconObject("Hub");
+			return ImageLocator.getImageIconObject("Printer-server");
 		}
-		else if ( obj.getClass().equals(Switch.class) )
-		{
-			return ImageLocator.getImageIconObject("Switch");
-		}
-		else if ( obj.getClass().equals(Router.class) )
-		{
-			return ImageLocator.getImageIconObject("Router");
-		}
-		else if ( obj.getClass().equals(WirelessRouter.class) )
-		{
-			return ImageLocator.getImageIconObject("WirelessRouter");
-		}
-		else if ( obj.getClass().equals(Internet.class) )
-		{
-			return ImageLocator.getImageIconObject("Internet");
-		}
-		else if ( obj.getClass().equals(Scanner.class) )
+		else if ( obj instanceof Scanner )
 		{
 			return ImageLocator.getImageIconObject("Scanner");
 		}
-		else if ( obj.getClass().equals(Printer.class) )
+		else if ( obj instanceof Printer )
 		{
 			return ImageLocator.getImageIconObject("Printer");
 		}
-		else if ( obj.getClass().equals(NetworkPrinter.class) )
+		else if ( obj instanceof Fax )
+		{
+			return ImageLocator.getImageIconObject("Fax");
+		}
+		else if ( obj instanceof MultifunctionPrinter )
+		{
+			return ImageLocator.getImageIconObject("MultifunctionPrinter");
+		}
+		else if ( obj instanceof NetworkPrinter )
 		{
 			return ImageLocator.getImageIconObject("PrinterNetwork");
 		}
-		
+		else if ( obj instanceof NetworkMultifunctionPrinter )
+		{
+			return ImageLocator.getImageIconObject("NetworkMultifunctionPrinter");
+		}
+		else if ( obj instanceof Hub )
+		{
+			return ImageLocator.getImageIconObject("Hub");
+		}
+		else if ( obj instanceof Switch )
+		{
+			return ImageLocator.getImageIconObject("Switch");
+		}
+		else if ( obj instanceof Router )
+		{
+			return ImageLocator.getImageIconObject("Router");
+		}
+		else if ( obj instanceof WirelessRouter )
+		{
+			return ImageLocator.getImageIconObject("WirelessRouter");
+		}
+		else if ( obj instanceof Internet )
+		{
+			return ImageLocator.getImageIconObject("Internet");
+		}
+
 		return null;
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * This method sets the widgetIcons, JLabel icon, transferhandler which takes care of the drag and drop
 	 * functionality. It also adds an mouseListener to the JLabel.

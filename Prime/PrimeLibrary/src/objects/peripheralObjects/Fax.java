@@ -4,6 +4,7 @@ package objects.peripheralObjects;
 import java.io.Serializable;
 
 import objects.ExternalHardware;
+import objects.hardwareObjects.Motherboard;
 
 
 /**
@@ -41,6 +42,49 @@ public class Fax extends ExternalHardware implements Serializable
 	public Fax(String Name, String Desc, String FfaxType, String[] FconnectionInterfaces)
 	{
 		super(Name, Desc, FconnectionInterfaces);
+
+		faxType = FfaxType;
+	}
+
+
+	/**
+	 * Constructor of the fax class.
+	 * 
+	 * @param Name
+	 *            The name of the fax.
+	 * @param Desc
+	 *            The description of the fax.
+	 * @param FfaxType
+	 *            Type of fax. ink or laser.
+	 * @param FconnectionInterfaces
+	 *            Connection interfaces supported by the fax. An array of Strings.
+	 * @param objectMB
+	 *            The {@link Motherboard} of the object.
+	 */
+	public Fax(String Name, String Desc, String FfaxType, String[] FconnectionInterfaces, Motherboard objectMB)
+	{
+		super(Name, Desc, FconnectionInterfaces, objectMB);
+
+		faxType = FfaxType;
+	}
+
+
+
+	/**
+	 * Constructor of the fax class.
+	 * 
+	 * @param Name
+	 *            The name of the fax.
+	 * @param Desc
+	 *            The description of the fax.
+	 * @param FfaxType
+	 *            Type of fax. ink or laser.
+	 * @param objectMB
+	 *            The {@link Motherboard} of the object.
+	 */
+	public Fax(String Name, String Desc, String FfaxType, Motherboard objectMB)
+	{
+		super(Name, Desc, objectMB);
 
 		faxType = FfaxType;
 	}

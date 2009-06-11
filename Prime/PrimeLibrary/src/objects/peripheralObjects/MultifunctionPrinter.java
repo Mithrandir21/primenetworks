@@ -4,6 +4,7 @@ package objects.peripheralObjects;
 import java.io.Serializable;
 
 import objects.ExternalHardware;
+import objects.hardwareObjects.Motherboard;
 
 
 /**
@@ -20,7 +21,6 @@ import objects.ExternalHardware;
  */
 public class MultifunctionPrinter extends ExternalHardware implements Serializable
 {
-
 	// Whether or not the MFP has a printer
 	private boolean hasPrinter;
 
@@ -58,9 +58,50 @@ public class MultifunctionPrinter extends ExternalHardware implements Serializab
 	}
 
 
+
+	/**
+	 * Constructor of the MFP class.
+	 * 
+	 * @param Name
+	 *            The name of the MFP.
+	 * @param Desc
+	 *            The description of the MFP.
+	 * @param MFPConnectionInterfaces
+	 *            Connection interfaces supported by a MFP. A array of Strings.
+	 * @param objectMB
+	 *            The {@link Motherboard} of the object.
+	 */
+	public MultifunctionPrinter(String Name, String Desc, String[] MFPConnectionInterfaces, Motherboard objectMB)
+	{
+		super(Name, Desc, MFPConnectionInterfaces, objectMB);
+	}
+
+
+
+	/**
+	 * Constructor of the MFP class.
+	 * 
+	 * @param Name
+	 *            The name of the MFP.
+	 * @param Desc
+	 *            The description of the MFP.
+	 * @param objectMB
+	 *            The {@link Motherboard} of the object.
+	 */
+	public MultifunctionPrinter(String Name, String Desc, Motherboard objectMB)
+	{
+		super(Name, Desc, objectMB);
+	}
+
+
 	// Get and Set methodes for retrieving all datafields.
 
 	// GET METHODES
+
+
+
+	// GETTERS
+
 
 	/**
 	 * Get info on if the MFP has a printer.
@@ -150,6 +191,7 @@ public class MultifunctionPrinter extends ExternalHardware implements Serializab
 
 
 	// SET METHODES
+
 
 	/**
 	 * Get info on whether or not the MFP has a printer.

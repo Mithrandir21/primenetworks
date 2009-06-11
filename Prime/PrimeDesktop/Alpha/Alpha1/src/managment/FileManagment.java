@@ -586,9 +586,9 @@ public class FileManagment
 	 * 
 	 * @param nameOfCanvas
 	 */
-	public static void newWorkareaCanvas(String nameOfCanvas)
+	public static boolean newWorkareaCanvas(String nameOfCanvas)
 	{
-		newCanvas(nameOfCanvas, null, null, null, null);
+		return newCanvas(nameOfCanvas, null, null, null, null);
 	}
 
 
@@ -599,10 +599,10 @@ public class FileManagment
 	 * 
 	 * @param nameOfCanvas
 	 */
-	public static void newWorkareaCanvas(String nameOfCanvas, String netmask, String IPfrom, String IPto,
+	public static boolean newWorkareaCanvas(String nameOfCanvas, String netmask, String IPfrom, String IPto,
 			String networkDesc)
 	{
-		newCanvas(nameOfCanvas, netmask, IPfrom, IPto, networkDesc);
+		return newCanvas(nameOfCanvas, netmask, IPfrom, IPto, networkDesc);
 	}
 
 
@@ -615,7 +615,7 @@ public class FileManagment
 	 * @param nameOfCanvas
 	 *            The name that the WorkareaCanvas will have, after being checked.
 	 */
-	private static void newCanvas(String nameOfCanvas, String netmask, String IPfrom, String IPto, String networkDesc)
+	private static boolean newCanvas(String nameOfCanvas, String netmask, String IPfrom, String IPto, String networkDesc)
 	{
 
 		// IF the user has canceled
@@ -672,14 +672,20 @@ public class FileManagment
 				{
 					JOptionPane.showMessageDialog(null, "There exist a Canvas with the same name as this Canvas.",
 							"Error", JOptionPane.ERROR_MESSAGE);
+
+					return false;
 				}
 			}
 			else
 			{
 				JOptionPane.showMessageDialog(null, "This name, (" + nameOfCanvas + "), is not an accepted name.\n"
 						+ "The name can only contains letters, numbers and an underscore.");
+
+				return false;
 			}
 		}
+
+		return true;
 
 		// Maybe add the new canvas to the JTree and save it?
 	}

@@ -82,8 +82,8 @@ public class WorkareaCanvasActions
 		{
 			System.out.println("ActionCreateWidgetObject - IOException");
 		}
-		
-		
+
+
 		return newObject;
 	}
 
@@ -146,7 +146,7 @@ public class WorkareaCanvasActions
 		newObject.addChild(objectLabel);
 
 
-		newObject.setToolTipText(newObject.getObject().getDescription());
+		// newObject.setToolTipText(newObject.getObject().getDescription());
 		newObject.setLayout(LayoutFactory.createAbsoluteLayout());
 
 

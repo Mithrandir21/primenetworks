@@ -13,8 +13,7 @@ import javax.swing.JLabel;
 
 /**
  * The WidgetIcon class represents an JLabel based icon that represents an {@link objects.Object Object} within the
- * system. This is a dragable object that can be dropped within the {@link widgets.WorkareaCanvas
- * Canvas}.
+ * system. This is a dragable object that can be dropped within the {@link widgets.WorkareaCanvas Canvas}.
  * 
  * @author Bahram Malaekeh
  */

@@ -21,13 +21,17 @@ import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.infrastructureObjects.WirelessRouter;
+import objects.peripheralObjects.Fax;
+import objects.peripheralObjects.MultifunctionPrinter;
 import objects.peripheralObjects.NetworkPrinter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
 import objects.serverObjects.BackupServer;
+import objects.serverObjects.DatabaseServer;
 import objects.serverObjects.FirewallServer;
 import objects.serverObjects.HTTPServer;
 import objects.serverObjects.MailServer;
+import objects.serverObjects.PrinterServer;
 import objects.serverObjects.ProxyServer;
 import widgets.WidgetIcon;
 
@@ -47,8 +51,8 @@ public class CreateObjectDragged
 
 
 	/**
-	 * Creates and returns an object based on the {@link widgets.WidgetIcon WidgetIcon} classType. The object created
-	 * is a standard object with very little extra information.
+	 * Creates and returns an object based on the {@link widgets.WidgetIcon WidgetIcon} classType. The object created is
+	 * a standard object with very little extra information.
 	 * 
 	 * @param iconObject
 	 *            The {@link widgets.WidgetIcon WidgetIcon} that contains the calssTypethats is the basis for the
@@ -95,6 +99,14 @@ public class CreateObjectDragged
 		{
 			newObject = createDefaultProxyServer(iconObject, numberOfWidgetsOnTheScene);
 		}
+		else if ( objectType.equals("objects.serverObjects.PrinterServer") )
+		{
+			newObject = createDefaultPrinterServer(iconObject, numberOfWidgetsOnTheScene);
+		}
+		else if ( objectType.equals("objects.serverObjects.DatabaseServer") )
+		{
+			newObject = createDefaultDatabaseServer(iconObject, numberOfWidgetsOnTheScene);
+		}
 		else if ( objectType.equals("objects.peripheralObjects.Scanner") )
 		{
 			newObject = createDefaultScanner(iconObject, numberOfWidgetsOnTheScene);
@@ -103,9 +115,21 @@ public class CreateObjectDragged
 		{
 			newObject = createDefaultPrinter(iconObject, numberOfWidgetsOnTheScene);
 		}
+		else if ( objectType.equals("objects.peripheralObjects.Fax") )
+		{
+			newObject = createDefaultFax(iconObject, numberOfWidgetsOnTheScene);
+		}
+		else if ( objectType.equals("objects.peripheralObjects.MultifunctionPrinter") )
+		{
+			newObject = createDefaultMFP(iconObject, numberOfWidgetsOnTheScene);
+		}
 		else if ( objectType.equals("objects.peripheralObjects.NetworkPrinter") )
 		{
 			newObject = createDefaultNetworkPrinter(iconObject, numberOfWidgetsOnTheScene);
+		}
+		else if ( objectType.equals("objects.peripheralObjects.NetworkMultifunctionPrinter") )
+		{
+			newObject = createDefaultNetworkMFP(iconObject, numberOfWidgetsOnTheScene);
 		}
 		else if ( objectType.equals("objects.infrastructureObjects.Hub") )
 		{
@@ -334,6 +358,41 @@ public class CreateObjectDragged
 
 
 
+	public DatabaseServer createDefaultDatabaseServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	{
+		String objectName = "Backup Server" + numberOfWidgetsOnTheScene;
+		String objectDesc = iconObject.getDescription();
+
+		String ObjectSWname = "Backup";
+		String ObjectSWdesc = "Standard backup server";
+		String ObjectSWversion = "1";
+
+		if ( objectDesc == "" )
+		{
+			objectDesc = objectName;
+		}
+
+		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setIntegLANcard(true);
+		serverMB.setMaxIntegratedLANs(2);
+		serverMB.setIntegLANPortsAvailable(2);
+
+
+		DatabaseServer temp = new DatabaseServer(objectName, objectDesc, st_components, ObjectSWname, ObjectSWdesc,
+				ObjectSWversion);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		// Adds OS
+		temp.setSoftware(st_software);
+
+		return temp;
+	}
+
+
+
 	public MailServer createDefaultMailServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Mail Server" + numberOfWidgetsOnTheScene;
@@ -436,6 +495,39 @@ public class CreateObjectDragged
 
 
 
+	public PrinterServer createDefaultPrinterServer(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	{
+		String objectName = "Printer Server" + numberOfWidgetsOnTheScene;
+		String objectDesc = iconObject.getDescription();
+
+		String ObjectSWname = "PrinterServer";
+		String ObjectSWdesc = "Standard printer server";
+		String ObjectSWversion = "1";
+
+		if ( objectDesc == "" )
+		{
+			objectDesc = objectName;
+		}
+
+		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setIntegLANcard(true);
+		serverMB.setMaxIntegratedLANs(2);
+		serverMB.setIntegLANPortsAvailable(2);
+
+		PrinterServer temp = new PrinterServer(objectName, objectDesc, st_components, ObjectSWname, ObjectSWdesc,
+				ObjectSWversion);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		temp.setSoftware(st_software);
+
+		return temp;
+	}
+
+
+
 	public Scanner createDefaultScanner(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Scanner" + numberOfWidgetsOnTheScene;
@@ -493,6 +585,66 @@ public class CreateObjectDragged
 
 
 
+	public Fax createDefaultFax(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	{
+		String objectName = "Fax" + numberOfWidgetsOnTheScene;
+		String objectDesc = iconObject.getDescription();
+
+		String Sresolution = "1280x1020";
+
+		if ( objectDesc == "" )
+		{
+			objectDesc = objectName;
+		}
+
+		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
+
+		objectMB.setMaxUSBs(1);
+		objectMB.setUSBPortsAvailable(1);
+		objectMB.setIntegLANcard(true);
+		objectMB.setMaxIntegratedLANs(1);
+		objectMB.setIntegLANPortsAvailable(1);
+
+
+		Fax temp = new Fax(objectName, objectDesc, Sresolution, objectMB);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		return temp;
+	}
+
+
+	public MultifunctionPrinter createDefaultMFP(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	{
+		String objectName = "MFP" + numberOfWidgetsOnTheScene;
+		String objectDesc = iconObject.getDescription();
+
+		String Sresolution[] = { "1280x1020" };
+
+		if ( objectDesc == "" )
+		{
+			objectDesc = objectName;
+		}
+
+		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
+
+		objectMB.setMaxUSBs(1);
+		objectMB.setUSBPortsAvailable(1);
+
+
+		MultifunctionPrinter temp = new MultifunctionPrinter(objectName, objectDesc, Sresolution, objectMB);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		return temp;
+	}
+
+
+
 	public NetworkPrinter createDefaultNetworkPrinter(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
 	{
 		String objectName = "Printer" + numberOfWidgetsOnTheScene;
@@ -516,12 +668,12 @@ public class CreateObjectDragged
 
 		NetworkPrinter temp = new NetworkPrinter(objectName, objectDesc, Sresolution, objectMB);
 
-		// Internal Wireless NIC
-		InternalNetworksCard intNIC = PrimeMain1.standard_internal_components.getSt_IntNIC();
-		intNIC.setType("Wireless");
+		// Internal NIC
+		// InternalNetworksCard intNIC = PrimeMain1.standard_internal_components.getSt_IntNIC();
+		// intNIC.setType("Wireless");
 
 		// Add the internal NIC to the list of components on the Object(not the "st_components" array of this class)
-		temp.addComponent(intNIC);
+		// temp.addComponent(intNIC);
 
 
 		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
@@ -530,6 +682,39 @@ public class CreateObjectDragged
 
 		return temp;
 	}
+
+
+
+	public MultifunctionPrinter createDefaultNetworkMFP(WidgetIcon iconObject, int numberOfWidgetsOnTheScene)
+	{
+		String objectName = "MFP" + numberOfWidgetsOnTheScene;
+		String objectDesc = iconObject.getDescription();
+
+		String Sresolution[] = { "1280x1020" };
+
+		if ( objectDesc == "" )
+		{
+			objectDesc = objectName;
+		}
+
+		Motherboard objectMB = PrimeMain1.standard_internal_components.getHw_MB();
+
+		objectMB.setMaxUSBs(1);
+		objectMB.setIntegLANcard(true);
+		objectMB.setMaxIntegratedLANs(1);
+		objectMB.setUSBPortsAvailable(1);
+		objectMB.setIntegLANPortsAvailable(1);
+
+
+		MultifunctionPrinter temp = new MultifunctionPrinter(objectName, objectDesc, Sresolution, objectMB);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		return temp;
+	}
+
 
 
 

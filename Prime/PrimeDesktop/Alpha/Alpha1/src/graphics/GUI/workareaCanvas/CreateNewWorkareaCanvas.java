@@ -4,6 +4,8 @@
 package graphics.GUI.workareaCanvas;
 
 
+import graphics.PrimeMain1;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
@@ -294,11 +296,24 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 								// Checks whether or not the range between the two is valid
 								if ( NetworkManagment.processRange(rangeFromField.getText(), rangeToField.getText()) )
 								{
-									FileManagment.newWorkareaCanvas(nameField.getText(), netmaskCombo.getSelectedItem()
-											.toString(), rangeFromField.getText(), rangeToField.getText(), descTextarea
-											.getText());
+									boolean created = FileManagment.newWorkareaCanvas(nameField.getText(), netmaskCombo
+											.getSelectedItem().toString(), rangeFromField.getText(), rangeToField
+											.getText(), descTextarea.getText());
 
-									this.dispose();
+									if ( created )
+									{
+										this.dispose();
+									}
+
+									// Gets the index of the Tab where the newly created WorkareaCanvas is placed
+									int index = PrimeMain1.workTab.indexOfTabWithCanvas(nameField.getText());
+
+									// If the index is not -1, which means that the tab was found
+									if ( index != -1 )
+									{
+										// Sets the focused on tab that contains the new WorkareaCanvas
+										PrimeMain1.workTab.setSelectedIndex(index);
+									}
 								}
 							}
 							catch ( Exception exp )
@@ -322,9 +337,22 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 				}
 				else
 				{
-					FileManagment.newWorkareaCanvas(nameField.getText());
+					boolean created = FileManagment.newWorkareaCanvas(nameField.getText());
 
-					this.dispose();
+					if ( created )
+					{
+						this.dispose();
+					}
+
+					// Gets the index of the Tab where the newly created WorkareaCanvas is placed
+					int index = PrimeMain1.workTab.indexOfTabWithCanvas(nameField.getText());
+
+					// If the index is not -1, which means that the tab was found
+					if ( index != -1 )
+					{
+						// Sets the focused on tab that contains the new WorkareaCanvas
+						PrimeMain1.workTab.setSelectedIndex(index);
+					}
 				}
 			}
 			else
@@ -339,6 +367,5 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 		{
 			this.dispose();
 		}
-
 	}
 }

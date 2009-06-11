@@ -26,6 +26,9 @@ public class WorkareaSceneScroll extends JScrollPane
 	 */
 	public WorkareaSceneScroll(String name)
 	{
+		this.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
+		setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
+
 		canvas = new WorkareaCanvas();
 		ActionsAdder.makeWorkareaCanvasReady(canvas);
 		createNewCanvas(name);
@@ -40,6 +43,9 @@ public class WorkareaSceneScroll extends JScrollPane
 	 */
 	public WorkareaSceneScroll(WorkareaCanvas canvas)
 	{
+		setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
+		setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
+
 		this.canvas = canvas;
 		createNewCanvas(canvas.getCanvasName());
 	}
@@ -78,6 +84,7 @@ public class WorkareaSceneScroll extends JScrollPane
 		setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
 
 		this.setViewportView(canvas.getMyView());
+
 
 		// Adds the canvas the array of currently active WorkareaCanvas
 		CanvasManagment.addCanvas(canvas, name);

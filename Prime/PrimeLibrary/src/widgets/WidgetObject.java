@@ -175,8 +175,4 @@ public class WidgetObject extends ImageWidget implements Transferable
 		// System.out.println("WidgetCanvas - " + flavors[0]);
 		return flavors;
 	}
-
-
-
-
 }

@@ -58,6 +58,8 @@ public class Printer extends ExternalHardware implements Serializable
 	 *            Type of printer. ink or laser.
 	 * @param PconnectionInterfaces
 	 *            Connection interfaces supported by the printer. An array of Strings.
+	 * @param objectMB
+	 *            The {@link Motherboard} of the object.
 	 */
 	public Printer(String Name, String Desc, String PprinterType, String[] PconnectionInterfaces, Motherboard objectMB)
 	{
@@ -77,6 +79,8 @@ public class Printer extends ExternalHardware implements Serializable
 	 *            The description of the printer.
 	 * @param PprinterType
 	 *            Type of printer. ink or laser.
+	 * @param objectMB
+	 *            The {@link Motherboard} of the object.
 	 */
 	public Printer(String Name, String Desc, String PprinterType, Motherboard objectMB)
 	{

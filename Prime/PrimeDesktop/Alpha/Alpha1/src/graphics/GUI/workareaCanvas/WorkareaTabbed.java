@@ -115,6 +115,8 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 		WorkareaSceneScroll canvasScroll = new WorkareaSceneScroll(canvas);
 
 		createNewCanvasTab(canvasScroll, -1);
+
+		setSelectedComponent(canvasScroll);
 	}
 
 

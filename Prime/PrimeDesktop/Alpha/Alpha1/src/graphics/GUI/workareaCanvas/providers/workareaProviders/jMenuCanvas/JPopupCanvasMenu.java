@@ -146,13 +146,18 @@ public class JPopupCanvasMenu
 		menuItem.addActionListener(canvasActListener);
 		submenuServer.add(menuItem);
 
-		menuItem = new JMenuItem("Mail Server");
-		menuItem.setActionCommand("CreateNewST_MailServer_Item");
+		menuItem = new JMenuItem("Backup Server");
+		menuItem.setActionCommand("CreateNewST_BackupServer_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuServer.add(menuItem);
 
-		menuItem = new JMenuItem("Backup Server");
-		menuItem.setActionCommand("CreateNewST_BackupServer_Item");
+		menuItem = new JMenuItem("Database Server");
+		menuItem.setActionCommand("CreateNewST_DatabaseServer_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuServer.add(menuItem);
+
+		menuItem = new JMenuItem("Mail Server");
+		menuItem.setActionCommand("CreateNewST_MailServer_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuServer.add(menuItem);
 
@@ -163,6 +168,11 @@ public class JPopupCanvasMenu
 
 		menuItem = new JMenuItem("Proxy Server");
 		menuItem.setActionCommand("CreateNewST_ProxyServer_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuServer.add(menuItem);
+
+		menuItem = new JMenuItem("Printer Server");
+		menuItem.setActionCommand("CreateNewST_PrinterServer_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuServer.add(menuItem);
 
@@ -229,8 +239,23 @@ public class JPopupCanvasMenu
 		menuItem.addActionListener(canvasActListener);
 		submenuPeripheral.add(menuItem);
 
+		menuItem = new JMenuItem("Fax");
+		menuItem.setActionCommand("CreateNewST_Fax_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuPeripheral.add(menuItem);
+
+		menuItem = new JMenuItem("MultiFunctionalPrinter");
+		menuItem.setActionCommand("CreateNewST_MFP_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuPeripheral.add(menuItem);
+
 		menuItem = new JMenuItem("Network Printer");
 		menuItem.setActionCommand("CreateNewST_NetworkPrinter_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuPeripheral.add(menuItem);
+
+		menuItem = new JMenuItem("Network MultiFunctionalPrinter");
+		menuItem.setActionCommand("CreateNewST_NetworkMFP_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuPeripheral.add(menuItem);
 
