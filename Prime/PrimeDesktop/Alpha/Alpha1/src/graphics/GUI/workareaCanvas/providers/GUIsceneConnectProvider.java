@@ -1,51 +1,42 @@
 /**
  * 
  */
-package widgetManipulation.Providers;
+package graphics.GUI.workareaCanvas.providers;
 
 
-import java.awt.Point;
+import exceptions.ConnectionDoesExist;
+import exceptions.ConnectionsIsNotPossible;
 
 import javax.swing.JOptionPane;
 
 import managment.ConnectionManagment;
-import objects.Object;
 
-import org.netbeans.api.visual.action.ConnectProvider;
-import org.netbeans.api.visual.action.ConnectorState;
-import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
 
+import widgetManipulation.Providers.ListDialog;
+import widgetManipulation.Providers.SceneConnectProvider;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
 import connections.Connection;
-import connections.DeviceConnection;
-import connections.NetworkConnection;
 import connections.WidgetExtendedConnection;
-import exceptions.ConnectionDoesExist;
-import exceptions.ConnectionsIsNotPossible;
 
 
 /**
- * This class controls the creation of graphical connections on a {@link WorkareaCanvas}.
+ * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
+ * 
  */
-public class SceneConnectProvider implements ConnectProvider
+public class GUIsceneConnectProvider extends SceneConnectProvider
 {
-	/**
-	 * The WorkareaCanvas this ConnectProvider belongs to.
-	 */
-	private WorkareaCanvas canvas;
-
 
 	/**
 	 * A constructor for the class that sets the {@link WorkareaCanvas} that an instance of this class will be applied
 	 * to.
 	 */
-	public SceneConnectProvider(WorkareaCanvas canvas)
+	public GUIsceneConnectProvider(WorkareaCanvas canvas)
 	{
-		this.setCanvas(canvas);
+		super(canvas);
 	}
 
 	/*
@@ -54,6 +45,7 @@ public class SceneConnectProvider implements ConnectProvider
 	 * @see org.netbeans.api.visual.action.ConnectProvider#createConnection(org.netbeans .api.visual.widget.Widget,
 	 * org.netbeans.api.visual.widget.Widget)
 	 */
+	@Override
 	public void createConnection(Widget sourceWidget, Widget targetWidget)
 	{
 		// Either the source or the target widget is not an object, which would result in a NullPOinterException.
@@ -128,6 +120,9 @@ public class SceneConnectProvider implements ConnectProvider
 					connection = ConnectionManagment.createWidgetExtendedConnection(getCanvas(), con, connection,
 							SourceWidObj, TargetWidObj);
 
+					// Adds the different actions
+					ActionsAdder.makeWidgetConnectionReady(getCanvas(), connection);
+
 					// Add the connection the connection layer
 					getCanvas().getConnectionLayer().addChild(connection);
 				}
@@ -151,135 +146,5 @@ public class SceneConnectProvider implements ConnectProvider
 			JOptionPane.showMessageDialog(null, "These two objects cannot connect to eachother because they dont"
 					+ " support the same ports.", "alert", JOptionPane.ERROR_MESSAGE);
 		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.netbeans.api.visual.action.ConnectProvider#hasCustomTargetWidgetResolver
-	 * (org.netbeans.api.visual.widget.Scene)
-	 */
-	public boolean hasCustomTargetWidgetResolver(Scene scene)
-	{
-		return false;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.netbeans.api.visual.action.ConnectProvider#isSourceWidget(org.netbeans .api.visual.widget.Widget)
-	 */
-	public boolean isSourceWidget(Widget sourceWidget)
-	{
-		if ( sourceWidget instanceof WidgetObject )
-		{
-			return true;
-		}
-
-		return false;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.netbeans.api.visual.action.ConnectProvider#isTargetWidget(org.netbeans .api.visual.widget.Widget,
-	 * org.netbeans.api.visual.widget.Widget)
-	 */
-	public ConnectorState isTargetWidget(Widget sourceWidget, Widget targetWidget)
-	{
-		if ( sourceWidget != targetWidget && targetWidget instanceof WidgetObject )
-		{
-			return ConnectorState.ACCEPT;
-		}
-		else
-		{
-			return ConnectorState.REJECT_AND_STOP;
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.netbeans.api.visual.action.ConnectProvider#resolveTargetWidget(org .netbeans.api.visual.widget.Scene,
-	 * java.awt.Point)
-	 */
-	public Widget resolveTargetWidget(Scene sourceWidget, Point sceneLocation)
-	{
-		return null;
-	}
-
-
-
-	/**
-	 * Checks whether or not the two given {@link Object Objects} support a connection of {@link NetworkConnection}.
-	 */
-	private boolean checkSupportsNetworkConnection(Object a, Object b)
-	{
-		return ConnectionManagment.checkDeviceConnectiontypeSupport(a, b, "RJ-45");
-	}
-
-
-
-	/**
-	 * Gets the Class of the given {@link WidgetObject}.
-	 * 
-	 * @return The {@link Class} of the given {@link WidgetObject}.
-	 */
-	private Class<?> getObjectClass(WidgetObject widget)
-	{
-		Class<?> type = widget.getObject().getClass();
-		return type;
-	}
-
-
-	// FIXME - Add user-added connection types
-	/**
-	 * Returns a connection class depending on the given string. MUST BE WORKED ON.
-	 * 
-	 * @param type
-	 * @return
-	 */
-	public Class<?> getConClass(String type)
-	{
-		if ( type.equals("RJ-45") )
-		{
-			return NetworkConnection.class;
-		}
-		else if ( type.equals("Wireless") )
-		{
-			return NetworkConnection.class;
-		}
-		else if ( type.equals("USB") )
-		{
-			return DeviceConnection.class;
-		}
-		else if ( type.equals("FireWire") )
-		{
-			return DeviceConnection.class;
-		}
-
-
-		return null;
-	}
-
-	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param canvas
-	 *            the canvas to set
-	 */
-	public void setCanvas(WorkareaCanvas canvas)
-	{
-		this.canvas = canvas;
-	}
-
-	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @return the canvas
-	 */
-	public WorkareaCanvas getCanvas()
-	{
-		return canvas;
 	}
 }

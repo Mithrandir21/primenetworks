@@ -102,31 +102,31 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				String text = null;
 
 				text = mbObj.getObjectName();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[0] = text;
 				}
 
 				text = mbObj.getForm();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[1] = "Form: " + text;
 				}
 
 				text = mbObj.getSocket();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[2] = "Socket: " + text;
 				}
 
 				text = mbObj.getGraphicalPort();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[3] = "GPU slot: " + text;
 				}
 
 				text = mbObj.getDescription();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[4] = text;
 				}
@@ -144,25 +144,25 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				String text = null;
 
 				text = cpuObj.getObjectName();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[0] = text;
 				}
 
 				text = cpuObj.getProducer();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[1] = "Producer: " + text;
 				}
 
 				text = cpuObj.getSocket();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[2] = "Socket: " + text;
 				}
 
 				text = cpuObj.getDescription();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[3] = text;
 				}
@@ -180,19 +180,19 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				String text = null;
 
 				text = hddObj.getObjectName();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[0] = text;
 				}
 
 				text = hddObj.getProducer();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[1] = "Producer: " + text;
 				}
 
 				text = hddObj.getSubtype();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[2] = "Type: " + text;
 				}
@@ -203,7 +203,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				}
 
 				text = hddObj.getDescription();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[4] = text;
 				}
@@ -220,19 +220,19 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				String text = null;
 
 				text = ramObj.getObjectName();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[0] = text;
 				}
 
 				text = ramObj.getProducer();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[1] = "Producer: " + text;
 				}
 
 				text = ramObj.getSubtype();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[2] = "Type: " + text;
 				}
@@ -243,7 +243,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				}
 
 				text = ramObj.getDescription();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[4] = text;
 				}
@@ -260,19 +260,19 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				String text = null;
 
 				text = discObj.getObjectName();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[0] = text;
 				}
 
 				text = discObj.getProducer();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[1] = "Producer: " + text;
 				}
 
 				text = discObj.getSubtype();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[2] = "Type: " + text;
 				}
@@ -283,7 +283,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				}
 
 				text = discObj.getDescription();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[4] = text;
 				}
@@ -306,13 +306,13 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				}
 
 				text = gpuObj.getProducer();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[1] = "Producer: " + text;
 				}
 
 				text = gpuObj.getOutputInterface();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[2] = "Output: " + text;
 				}
@@ -323,7 +323,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				}
 
 				text = gpuObj.getDescription();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[4] = text;
 				}
@@ -340,19 +340,19 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				String text = null;
 
 				text = nicObj.getObjectName();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[0] = text;
 				}
 
 				text = nicObj.getProducer();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[1] = "Producer: " + text;
 				}
 
 				text = nicObj.getProtocol();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[2] = "Output: " + text;
 				}
@@ -363,7 +363,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				}
 
 				text = nicObj.getDescription();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[4] = text;
 				}
@@ -380,19 +380,19 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				String text = null;
 
 				text = nicObj.getObjectName();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[0] = text;
 				}
 
 				text = nicObj.getProducer();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[1] = "Producer: " + text;
 				}
 
 				text = nicObj.getProtocol();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[2] = "Output: " + text;
 				}
@@ -403,7 +403,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				}
 
 				text = nicObj.getDescription();
-				if ( text != "" && text != null )
+				if ( text != null && text.length() > 0 )
 				{
 					info[4] = text;
 				}

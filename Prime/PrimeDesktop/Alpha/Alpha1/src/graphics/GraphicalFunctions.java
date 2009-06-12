@@ -679,7 +679,7 @@ public class GraphicalFunctions
 		}
 		else if ( obj instanceof PrinterServer )
 		{
-			return ImageLocator.getImageIconObject("Printer-server");
+			return ImageLocator.getImageIconObject("Print-server");
 		}
 		else if ( obj instanceof Scanner )
 		{

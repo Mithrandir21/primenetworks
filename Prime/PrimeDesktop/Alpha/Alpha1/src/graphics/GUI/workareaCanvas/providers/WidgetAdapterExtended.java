@@ -9,10 +9,11 @@ import java.awt.event.MouseEvent;
 import objects.Object;
 
 import org.netbeans.api.visual.action.WidgetAction.Adapter;
-import org.netbeans.api.visual.widget.ConnectionWidget;
 import org.netbeans.api.visual.widget.Widget;
 
 import widgets.WidgetObject;
+import connections.Connection;
+import connections.WidgetExtendedConnection;
 
 
 /**
@@ -74,11 +75,22 @@ public class WidgetAdapterExtended extends Adapter
 				}
 			}
 		}
-		else if ( widget instanceof ConnectionWidget )
+		else if ( widget instanceof WidgetExtendedConnection )
 		{
-			System.out.println("There is still work to be done. AdapterExtended - mouseClicked - ConnectionWidget");
-		}
+			// If button1, which can be whatever depending on what the OS has chosen, is clicked.
+			if ( event.getButton() == MouseEvent.BUTTON1 )
+			{
+				// Casts the object to an WidgetExtendedConnection
+				WidgetExtendedConnection conWidget = (WidgetExtendedConnection) widget;
 
+				// The connection
+				Connection con = conWidget.getConnection();
+
+
+			}
+			System.out
+					.println("There is still work to be done. AdapterExtended - mouseClicked - WidgetExtendedConnection");
+		}
 
 
 		// Consumes the Action so that no other Listener picks up the action.

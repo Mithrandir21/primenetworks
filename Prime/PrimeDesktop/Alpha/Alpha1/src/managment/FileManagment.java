@@ -869,6 +869,8 @@ public class FileManagment
 						connection = ConnectionManagment.createWidgetExtendedConnection(canvas, connections[i],
 								connection, sourceWidget, targetWidget);
 
+						// Adds the different actions
+						ActionsAdder.makeWidgetConnectionReady(canvas, connection);
 
 						// Add the connection the connection layer
 						canvas.getConnectionLayer().addChild(connection);

@@ -8,6 +8,7 @@ import graphics.GUI.workareaCanvas.CreateProvider;
 import graphics.GUI.workareaCanvas.RectangularAreaSelection;
 import graphics.GUI.workareaCanvas.WorkareaTargetListener;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas.JMenuWorkareaCanvas;
+import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuConnection.JMenuConnection;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget.JMenuWidget;
 
 import java.awt.dnd.DropTarget;
@@ -20,10 +21,10 @@ import widgetManipulation.Actions.ExtendedWidgetConnectAction;
 import widgetManipulation.Actions.MoveRoomAction;
 import widgetManipulation.Actions.ResizeWidgetAction;
 import widgetManipulation.Providers.PrimeObjectSceneRectangularSelectProvider;
-import widgetManipulation.Providers.SceneConnectProvider;
 import widgets.WidgetObject;
 import widgets.WidgetRoom;
 import widgets.WorkareaCanvas;
+import connections.WidgetExtendedConnection;
 
 
 /**
@@ -73,7 +74,7 @@ public class ActionsAdder
 		// // Here the create a connection between widgets on the scene is created
 		newObject.getActions().addAction(
 				new ExtendedWidgetConnectAction(ActionFactory.createDefaultConnectDecorator(), canvas
-						.getInteractionLayer(), new SceneConnectProvider(canvas)));
+						.getInteractionLayer(), new GUIsceneConnectProvider(canvas)));
 
 		// Adds the action of a user clicking on the object
 		newObject.getActions().addAction(ActionFactory.createSelectAction(new CreateProvider()));
@@ -93,9 +94,27 @@ public class ActionsAdder
 		// Cleans up the canvas
 		canvas.cleanUp();
 	}
-	
-	
-	
+
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @param canvas
+	 * @param newObject
+	 */
+	public static void makeWidgetConnectionReady(WorkareaCanvas canvas, WidgetExtendedConnection newCon)
+	{
+		// Adds the clicking ability
+		newCon.getActions().addAction(new WidgetAdapterExtended());
+
+		// Adds the JPopupMenu
+		newCon.getActions().addAction(ActionFactory.createPopupMenuAction(new JMenuConnection(canvas)));
+	}
+
+
+
 	/**
 	 * Javadoc-TODO - Description
 	 * 

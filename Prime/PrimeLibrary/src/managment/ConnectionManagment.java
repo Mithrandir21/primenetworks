@@ -142,7 +142,7 @@ public class ConnectionManagment
 					BasicStroke.JOIN_BEVEL, // End cap
 					BasicStroke.CAP_BUTT, // Join style
 					5.0f, // Miter limit
-					new float[] { 1.0f }, // Dash pattern
+					new float[] { 1.0f }, // Straight pattern
 					0.0f); // Dash phase
 		}
 
