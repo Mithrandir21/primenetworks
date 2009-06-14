@@ -17,10 +17,10 @@ import org.netbeans.api.visual.widget.Widget;
 
 
 /**
- * This class represents a {@link Widget} on a {@link WorkareaCanvas}. It will be shown on a {@link WorkareaCanvas}
+ * This class represents a {@link Widget} on a {@link WorkareaCanvas}. It will be shown on a {@link WorkareaCanvas} as
+ * an empty rectangle with a black rounded border.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class WidgetRoom extends Widget
 {
@@ -33,7 +33,7 @@ public class WidgetRoom extends Widget
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for the class that take a {@link Scene} and the name of the {@link Room} as an argument
 	 * 
 	 * @param scene
 	 * @param name

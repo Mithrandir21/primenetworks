@@ -128,6 +128,10 @@ public class ActionsAdder
 				new ResizeWidgetAction(ActionFactory.createFreeResizeStategy(), ActionFactory
 						.createDefaultResizeControlPointResolver(), ActionFactory.createDefaultResizeProvider()));
 
+		// Creates and add the move with align action
+		room.getActions().addAction(
+				ActionFactory.createAlignWithMoveAction(canvas.getRoomLayer(), canvas.getInteractionLayer(), null));
+
 		// Gives the WidgetRoom the ability to be moved
 		room.getActions().addAction(
 				new MoveRoomAction(ActionFactory.createFreeMoveStrategy(), ActionFactory.createDefaultMoveProvider()));

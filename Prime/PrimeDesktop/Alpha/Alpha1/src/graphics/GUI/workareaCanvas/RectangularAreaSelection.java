@@ -65,6 +65,7 @@ public class RectangularAreaSelection extends LockedAdapter
 		{
 			// Creates the widgetRoom
 			selectionWidget = (WidgetRoom) decorator.createSelectionWidget();
+
 			assert selectionWidget != null;
 
 			// Adds the actions supported by the WidgetRoom
