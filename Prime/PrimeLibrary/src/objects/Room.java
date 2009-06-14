@@ -10,10 +10,9 @@ import java.io.Serializable;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This class represents a Room. A room has only a name, location and bound.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class Room implements Serializable
 {
@@ -29,9 +28,10 @@ public class Room implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor that takes the name of the Room as an argument.
 	 * 
 	 * @param name
+	 *            The name of the Room.
 	 */
 	public Room(String name)
 	{
@@ -44,9 +44,7 @@ public class Room implements Serializable
 	// GETTERS
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @return the roomName
+	 * Gets the name of the Room.
 	 */
 	public String getRoomName()
 	{
@@ -55,9 +53,7 @@ public class Room implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @return the location
+	 * Gets the location of the Room, which will be the point of the top left corner of the room.
 	 */
 	public Point getLocation()
 	{
@@ -66,9 +62,7 @@ public class Room implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @return the bounds
+	 * Gets the bounds of the room, represented by a {@link Rectangle}.
 	 */
 	public Rectangle getBounds()
 	{
@@ -79,10 +73,7 @@ public class Room implements Serializable
 	// SETTERS
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param roomName
-	 *            the roomName to set
+	 * Sets the name of the Room.
 	 */
 	public void setRoomName(String roomName)
 	{
@@ -91,10 +82,7 @@ public class Room implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param location
-	 *            the location to set
+	 * Sets the location of the Room, which will be the point of the top left corner of the room.
 	 */
 	public void setLocation(Point location)
 	{
@@ -103,10 +91,7 @@ public class Room implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param bounds
-	 *            the bounds to set
+	 * Sets the bounds of the room, represented by a {@link Rectangle}.
 	 */
 	public void setBounds(Rectangle bounds)
 	{

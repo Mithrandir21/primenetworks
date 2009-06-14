@@ -20,15 +20,20 @@ import objects.softwareObjects.Webserver;
 
 
 /**
+ * Javadoc-TODO - Description NEEDED!
+ * 
  * @author Bahram Malaekeh
- * @version 0.1
+ * 
  */
 public class SoftwareManagment
 {
 
 	/**
+	 * Javadoc-TODO - Description
+	 * 
 	 * @param sw
 	 * @param obj
+	 * @return
 	 */
 	public static Software[] addSoftware(Software sw, Object obj)
 	{
@@ -71,6 +76,8 @@ public class SoftwareManagment
 
 
 	/**
+	 * Javadoc-TODO - Description
+	 * 
 	 * @param sw
 	 * @param obj
 	 * @return Returns an Software array with the given object removed from the given objects software array.

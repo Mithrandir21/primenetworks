@@ -7,7 +7,8 @@ import objects.Object;
 ;
 
 /**
- * Description NEEDED!
+ * This extension of the {@link Exception Exception} class is created and thrown when an object that is searched for is
+ * found in a specific container(when it should not be found in that container).
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -19,7 +20,7 @@ public class ObjectExistInContainer extends Exception
 
 
 	/**
-	 * Description NEEDED!
+	 * Constructor for this exception including the {@link Object} found.
 	 * 
 	 * @param message
 	 * @param FoundObject

@@ -39,7 +39,6 @@ public class ConnectionManagmentTest extends TestCase
 	@Test
 	public void testMakeConnection()
 	{
-
 		// Tries to create a connection between a desktop and HTTPserver.
 		Connection con1 = null;
 		try

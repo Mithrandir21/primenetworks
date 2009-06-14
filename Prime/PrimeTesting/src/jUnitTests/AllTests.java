@@ -15,22 +15,23 @@ public class AllTests
 
 		// MANAGMENT PACKAGE TESTS
 		// ///////////////////////////////////////////
-		// suite.addTestSuite(ArrayManagmentTest.class);
-		//
-		// suite.addTestSuite(ComponentsManagmentTest.class);
-		//
+		suite.addTestSuite(ArrayManagmentTest.class);
+
+		suite.addTestSuite(ComponentsManagmentTest.class);
+
+		// Requires a lot of work to get connections between two objects
 		// suite.addTestSuite(ConnectionManagmentTest.class);
 
-		// suite.addTestSuite(ExternalConnectionCheckTest.class);
+		suite.addTestSuite(ExternalConnectionCheckTest.class);
 
-		// suite.addTestSuite(InternalComponentsCheckTest.class);
+		suite.addTestSuite(InternalComponentsCheckTest.class);
 		// ///////////////////////////////////////////
 
 
 		// LOGISTICAL PACKAGE TESTS
 		// ///////////////////////////////////////////
 
-		// suite.addTestSuite(cleanupTest.class);
+		suite.addTestSuite(cleanupTest.class);
 
 		suite.addTestSuite(ValidationTest.class);
 		/*

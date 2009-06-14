@@ -33,7 +33,8 @@ import canvasManipulation.CanvasExporter.ZoomType;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This class contains two specific functions that exports the {@link Scene} of any {@link WorkareaCanvas} to a PNG or
+ * JPG file.
  * 
  * @author krichard (extended by Bahram Malaekeh)
  * 
@@ -242,7 +243,8 @@ public class Canvas2Image
 
 	/**
 	 * Takes the Scene and writes an image file according to the constraints defined by the caller. This returns a
-	 * BufferedImage of the Scene even if the file can not be written.
+	 * BufferedImage of the {@link Scene} even if the file can not be written. This function creates the image for the
+	 * entire {@link Scene}.
 	 * 
 	 * @param scene
 	 *            The Scene to be exported as an image.
@@ -265,12 +267,8 @@ public class Canvas2Image
 	 * @param quality
 	 *            And integer value between 0-100. This is for JPG images only. Parameter is not used if an image type
 	 *            other than jpg is selected.
-	 * @param start
-	 *            Directly sets the horizontal dimension of the exported image. This is only used when the zoomType is
-	 *            ZoomType.CUSTOM_SIZE
-	 * @param start
-	 *            Directly sets the vertical dimension of the exported image. This is only used when the zoomType is
-	 *            ZoomType.CUSTOM_SIZE.
+	 * @param canvas
+	 *            The {@link WorkareaCanvas} that is to exported.
 	 * @param createImageMap
 	 *            If true, the necessary steps are taken to setup the sequential call to getSceneImageMapCoordinates.
 	 * @return image The raw image that was written to the file.

@@ -85,7 +85,6 @@ public abstract class Connection extends Object implements Serializable
 
 
 
-
 	/**
 	 * Get the actual status of the connection, whether it be enabled or disabled.
 	 */
@@ -97,7 +96,7 @@ public abstract class Connection extends Object implements Serializable
 
 
 	/**
-	 * Description NEEDED!
+	 * Gets type of connection between the two objects.
 	 * 
 	 * @return the connection
 	 */
@@ -150,9 +149,7 @@ public abstract class Connection extends Object implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @return the connectionRate
+	 * Gets the connection rate between the two connected {@link Object Objects}.
 	 */
 	public int getConnectionRate()
 	{
@@ -165,10 +162,7 @@ public abstract class Connection extends Object implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @param connectionRate
-	 *            the connectionRate to set
+	 * Sets the connection rate between the two connected {@link Object Objects}.
 	 */
 	public void setConnectionRate(int connectionRate)
 	{
@@ -179,10 +173,7 @@ public abstract class Connection extends Object implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @param connection
-	 *            the connection to set
+	 * Sets the type of connection between the two objects
 	 */
 	public void setConnection(String connection)
 	{

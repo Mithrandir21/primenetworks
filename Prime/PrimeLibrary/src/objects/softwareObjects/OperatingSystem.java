@@ -3,11 +3,15 @@ package objects.softwareObjects;
 
 import java.io.Serializable;
 
+import objects.Clients;
+import objects.Servers;
 import objects.Software;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class represents a Operating system that will be installed on {@link Clients} and {@link Servers}. Other
+ * {@link Software} will be matched to this operating system to check for compatibility. It contains variables that say
+ * whether or not the OS supports different file systems and 64-bit.
  * 
  * @author Bahram Malaekeh
  */
@@ -32,11 +36,14 @@ public class OperatingSystem extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * A constructor for the class that takes the name, description and version of the OS.
 	 * 
 	 * @param Name
+	 *            The name of the Operating System.
 	 * @param Desc
+	 *            The description of the Operating System.
 	 * @param Version
+	 *            The version of the Operating System.
 	 */
 	public OperatingSystem(String Name, String Desc, String Version)
 	{
@@ -48,9 +55,7 @@ public class OperatingSystem extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @return the supportedFS
+	 * Gets the File Systems supported by the Operating System.
 	 */
 	public String[] getSupportedFS()
 	{
@@ -60,9 +65,7 @@ public class OperatingSystem extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @return the encryptedFileSystem
+	 * Gets a boolean on whether or not the system support encryption on the File System.
 	 */
 	public boolean isEncryptedFileSystem()
 	{
@@ -72,9 +75,7 @@ public class OperatingSystem extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @return the hasGUI
+	 * Gets a boolean on whether or not the system has a GUI.
 	 */
 	public boolean isHasGUI()
 	{
@@ -84,9 +85,7 @@ public class OperatingSystem extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @return the is64bit
+	 * Gets a boolean on whether or not the system supports 64-bit architecture.
 	 */
 	public boolean isIs64bit()
 	{
@@ -99,10 +98,7 @@ public class OperatingSystem extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @param supportedFS
-	 *            the supportedFS to set
+	 * Sets the File Systems supported by the Operating System.
 	 */
 	public void setSupportedFS(String[] supportedFS)
 	{
@@ -112,10 +108,7 @@ public class OperatingSystem extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @param encryptedFileSystem
-	 *            the encryptedFileSystem to set
+	 * Sets a boolean on whether or not the system support encryption on the File System.
 	 */
 	public void setEncryptedFileSystem(boolean encryptedFileSystem)
 	{
@@ -125,10 +118,7 @@ public class OperatingSystem extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @param hasGUI
-	 *            the hasGUI to set
+	 * Sets a boolean on whether or not the system has a GUI.
 	 */
 	public void setHasGUI(boolean hasGUI)
 	{
@@ -138,10 +128,7 @@ public class OperatingSystem extends Software implements Serializable
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @param is64bit
-	 *            the is64bit to set
+	 * Sets a boolean on whether or not the system supports 64-bit architecture.
 	 */
 	public void setIs64bit(boolean is64bit)
 	{

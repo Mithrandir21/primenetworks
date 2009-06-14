@@ -480,6 +480,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 		}
 
 
+		canvasViewed.cleanUp();
 	}
 
 

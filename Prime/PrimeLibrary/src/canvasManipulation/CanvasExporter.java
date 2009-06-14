@@ -12,12 +12,12 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This is a convenience class for exporting a Scene as an image file (PNG and JPG).
  * 
  * @author krichard (extended by Bahram Malaekeh)
  * 
  */
-public class CanvasExporter
+public final class CanvasExporter
 {
 	/**
 	 * Creates an instance of a SceneExporter object.

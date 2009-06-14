@@ -17,7 +17,7 @@ import org.netbeans.api.visual.widget.Widget;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This class represents a {@link Widget} on a {@link WorkareaCanvas}. It will be shown on a {@link WorkareaCanvas}
  * 
  * @author Bahram Malaekeh
  * 
