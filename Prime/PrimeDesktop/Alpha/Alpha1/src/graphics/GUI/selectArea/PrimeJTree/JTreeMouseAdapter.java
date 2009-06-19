@@ -15,7 +15,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTree;
 import javax.swing.tree.TreePath;
 
-import managment.FileManagment;
+import managment.DesktopFileManagment;
 
 
 /**
@@ -231,7 +231,7 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 		}
 		else if ( e.getActionCommand().equalsIgnoreCase("New Network") )
 		{
-			FileManagment.newWorkareaCanvas();
+			DesktopFileManagment.newWorkareaCanvas();
 		}
 
 

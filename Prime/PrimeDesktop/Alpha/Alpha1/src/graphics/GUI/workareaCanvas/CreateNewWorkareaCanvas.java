@@ -30,7 +30,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
-import managment.FileManagment;
+import managment.DesktopFileManagment;
 import managment.NetworkManagment;
 
 
@@ -296,7 +296,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 								// Checks whether or not the range between the two is valid
 								if ( NetworkManagment.processRange(rangeFromField.getText(), rangeToField.getText()) )
 								{
-									boolean created = FileManagment.newWorkareaCanvas(nameField.getText(), netmaskCombo
+									boolean created = DesktopFileManagment.newWorkareaCanvas(nameField.getText(), netmaskCombo
 											.getSelectedItem().toString(), rangeFromField.getText(), rangeToField
 											.getText(), descTextarea.getText());
 
@@ -337,7 +337,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 				}
 				else
 				{
-					boolean created = FileManagment.newWorkareaCanvas(nameField.getText());
+					boolean created = DesktopFileManagment.newWorkareaCanvas(nameField.getText());
 
 					if ( created )
 					{

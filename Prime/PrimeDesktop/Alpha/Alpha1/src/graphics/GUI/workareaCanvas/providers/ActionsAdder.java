@@ -11,9 +11,16 @@ import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas.JMenu
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuConnection.JMenuConnection;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget.JMenuWidget;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.dnd.DropTarget;
 
 import org.netbeans.api.visual.action.ActionFactory;
+import org.netbeans.api.visual.action.AlignWithMoveDecorator;
+import org.netbeans.api.visual.widget.ConnectionWidget;
+import org.netbeans.api.visual.widget.Scene;
+import org.netbeans.modules.visual.action.AlignWithMoveStrategyProvider;
+import org.netbeans.modules.visual.action.SingleLayerAlignWithWidgetCollector;
 
 import widgetManipulation.PrimeRectangularSelectDecorator;
 import widgetManipulation.WorkareaCanvasNetworkInfo;
@@ -128,15 +135,32 @@ public class ActionsAdder
 				new ResizeWidgetAction(ActionFactory.createFreeResizeStategy(), ActionFactory
 						.createDefaultResizeControlPointResolver(), ActionFactory.createDefaultResizeProvider()));
 
-		// Creates and add the move with align action
-		room.getActions().addAction(
-				ActionFactory.createAlignWithMoveAction(canvas.getRoomLayer(), canvas.getInteractionLayer(), null));
+		// Creates a Strategy and a Provider, in one, to be used for the logic behind moving a WidgetRoom
+		AlignWithMoveStrategyProvider sp = new AlignWithMoveStrategyProvider((new SingleLayerAlignWithWidgetCollector(
+				canvas.getRoomLayer(), true)), canvas.getInteractionLayer(), decorator, true);
 
 		// Gives the WidgetRoom the ability to be moved
-		room.getActions().addAction(
-				new MoveRoomAction(ActionFactory.createFreeMoveStrategy(), ActionFactory.createDefaultMoveProvider()));
+		room.getActions().addAction(new MoveRoomAction(sp, sp));
+
+		// Previous room moving logic
+		// room.getActions().addAction(
+		// new MoveRoomAction(ActionFactory.createFreeMoveStrategy(), ActionFactory.createDefaultMoveProvider()));
 
 		// Clicking ability
 		room.getActions().addAction(new WidgetRoomAdapterExtended());
 	}
+
+
+	private static AlignWithMoveDecorator decorator = new AlignWithMoveDecorator()
+	{
+		public ConnectionWidget createLineWidget(Scene scene)
+		{
+			ConnectionWidget widget = new ConnectionWidget(scene);
+			BasicStroke STROKE = new BasicStroke(1.0f, BasicStroke.JOIN_BEVEL, BasicStroke.CAP_BUTT, 5.0f, new float[] {
+					6.0f, 3.0f }, 0.0f);
+			widget.setStroke(STROKE);
+			widget.setForeground(Color.BLUE);
+			return widget;
+		}
+	};
 }

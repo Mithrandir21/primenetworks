@@ -46,7 +46,7 @@ import connections.WidgetExtendedConnection;
  * @author Bahram Malaekeh
  * 
  */
-public class FileManagment
+public class DesktopFileManagment
 {
 
 	/**
@@ -503,7 +503,7 @@ public class FileManagment
 		// If the name of the canvas was possible to the from the file
 		if ( canvasName != null )
 		{
-			canvas = CanvasManagment.findCanvas(canvasName);
+			canvas = DesktopCanvasManagment.findCanvas(canvasName);
 		}
 
 		// No open canvas was found
@@ -555,7 +555,7 @@ public class FileManagment
 				PrimeMain1.workTab.removeTabWithCanvas(canvasName, false);
 
 				// Removed the canvas from the systems canvas array
-				CanvasManagment.removeWorkareaCanvas(canvas);
+				DesktopCanvasManagment.removeWorkareaCanvas(canvas);
 
 				JOptionPane.showMessageDialog(null, "The file\n" + file.getName() + "\n" + "was successfully deleted.",
 						"Success", JOptionPane.PLAIN_MESSAGE);
@@ -624,7 +624,7 @@ public class FileManagment
 			if ( Pattern.matches("([a-zA-ZøæåØÆÅ_0-9 ])*", nameOfCanvas) )
 			{
 				// Checks whether or not there exist a canvas with the same
-				if ( !CanvasManagment.canvasExists(nameOfCanvas) )
+				if ( !DesktopCanvasManagment.canvasExists(nameOfCanvas) )
 				{
 					WorkareaCanvas canvas = new WorkareaCanvas(nameOfCanvas);
 					ActionsAdder.makeWorkareaCanvasReady(canvas);
@@ -860,10 +860,10 @@ public class FileManagment
 
 
 						// Find the two object which are to be connected on the canvas
-						WidgetObject sourceWidget = CanvasManagment.findWidgetObjectByObjectName(connections[i]
-								.getObject1(), canvas);
-						WidgetObject targetWidget = CanvasManagment.findWidgetObjectByObjectName(connections[i]
-								.getObject2(), canvas);
+						WidgetObject sourceWidget = CanvasManagment.findWidgetObject(connections[i].getObject1(),
+								canvas);
+						WidgetObject targetWidget = CanvasManagment.findWidgetObject(connections[i].getObject2(),
+								canvas);
 
 						// Creates the whole connection with all actions
 						connection = ConnectionManagment.createWidgetExtendedConnection(canvas, connections[i],

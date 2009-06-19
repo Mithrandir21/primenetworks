@@ -209,6 +209,7 @@ public class WorkareaCanvasActions
 
 			canvas.getMainLayer().removeChild(obj);
 
+			canvas.subtractFromNumberOgWidgetsOnTheCanvas();
 
 			canvas.setCurrentWidgetObject(null);
 
@@ -234,7 +235,7 @@ public class WorkareaCanvasActions
 
 		canvas.getMainLayer().removeChild(obj);
 
-
+		canvas.subtractFromNumberOgWidgetsOnTheCanvas();
 
 		canvas.setCurrentWidgetObject(null);
 	}

@@ -25,8 +25,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import logistical.checkLogic;
 import managment.CanvasManagment;
-import managment.FileManagment;
+import managment.DesktopFileManagment;
 import managment.NetworkManagment;
 import objects.Clients;
 import objects.Object;
@@ -301,7 +302,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 							if ( !(canvasViewed.getCanvasName().equals(canvasName)) )
 							{
 								// No canvas was found with the name
-								if ( !(FileManagment.fileWorkareaCanvasExist(canvasViewed, canvasName)) )
+								if ( !(DesktopFileManagment.fileWorkareaCanvasExist(canvasViewed, canvasName)) )
 								{
 									PrimeMain1.workTab.updateCanvasName(canvasViewed, canvasName);
 								}
@@ -347,23 +348,37 @@ public class ObjectProperties extends JPanel implements ActionListener
 						// Gets the text inside that field
 						String objName = field.getText();
 
-						// If the text is not blank
-						if ( !(objName.equals("")) )
+						// If the text is validated
+						if ( checkLogic.validateName(objName) )
 						{
-							// Updates the name of the LabelWidget on the
-							// scene
-							objectViewed = GraphicalFunctions.updateWidgetObjectCanvasName(objectViewed, objName);
+							if ( CanvasManagment.findWidgetObjectByObjectName(objName, PrimeMain1.currentCanvas) == null )
+							{
+								// Updates the name of the LabelWidget on the scene
+								objectViewed = GraphicalFunctions.updateWidgetObjectCanvasName(objectViewed, objName);
 
-							// Sets the name of the object
-							objectViewed.setObjectName(objName);
+								// Sets the name of the object
+								objectViewed.setObjectName(objName);
+							}
+							else
+							{
+								JOptionPane.showMessageDialog(null,
+										"There already exists a device in this network with the same name.", "Error",
+										JOptionPane.ERROR_MESSAGE);
+
+								// Sets the name back to the original name
+								field.setText(objectViewed.getObjectName());
+
+								// Focuses on the JTextField
+								field.requestFocusInWindow();
+							}
 						}
 						else
 						{
-							JOptionPane.showMessageDialog(null, "You must specify a name for this Object.", "Error",
-									JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "The name provided, " + objName
+									+ ", was not a valid name.", "Error", JOptionPane.ERROR_MESSAGE);
 
 							// Focuses on the JTextField
-							comp[i].requestFocusInWindow();
+							field.requestFocusInWindow();
 						}
 					}
 					else if ( compName.equals("Object IP") )
@@ -479,8 +494,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 			PrimeMain1.updatePropertiesCanvasArea(true);
 		}
 
-
-		canvasViewed.cleanUp();
+		PrimeMain1.currentCanvas.cleanUp();
 	}
 
 

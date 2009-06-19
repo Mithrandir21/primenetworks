@@ -92,9 +92,9 @@ public class JPopupWidgetRoomMenu
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);
 
-		menuItem = new JMenuItem("Rename this Room");
-		menuItem.setActionCommand("RenameRoom");
-		menuItem.addActionListener(widgetActListener);
-		popup.add(menuItem);
+		// menuItem = new JMenuItem("Rename this Room");
+		// menuItem.setActionCommand("RenameRoom");
+		// menuItem.addActionListener(widgetActListener);
+		// popup.add(menuItem);
 	}
 }

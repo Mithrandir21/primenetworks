@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
-import managment.FileManagment;
+import managment.DesktopFileManagment;
 
 
 /**
@@ -63,7 +63,7 @@ public class ActionSave extends AbstractAction
 		if ( PrimeMain1.currentCanvas != null )
 		{
 			// Saves the current canvas
-			FileManagment.saveWorkareaCanvas(PrimeMain1.currentCanvas);
+			DesktopFileManagment.saveWorkareaCanvas(PrimeMain1.currentCanvas);
 		}
 	}
 }

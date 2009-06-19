@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
-import managment.FileManagment;
+import managment.DesktopFileManagment;
 
 
 /**
@@ -62,7 +62,7 @@ public class ActionSaveAll extends AbstractAction
 	public void actionPerformed(ActionEvent e)
 	{
 		// Saves all the open WorkareaCanvases
-		FileManagment.saveCanvases(PrimeMain1.canvases);
+		DesktopFileManagment.saveCanvases(PrimeMain1.canvases);
 	}
 
 }

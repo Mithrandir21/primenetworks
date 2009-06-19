@@ -21,8 +21,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import managment.CanvasManagment;
-import managment.FileManagment;
+import managment.DesktopCanvasManagment;
+import managment.DesktopFileManagment;
 import widgets.WorkareaCanvas;
 
 
@@ -148,7 +148,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 				if ( label.getText().equals(canvas.getCanvasName()) )
 				{
 					// Changes the label of the tab
-					if ( FileManagment.changeFileName(canvas, Name) )
+					if ( DesktopFileManagment.changeFileName(canvas, Name) )
 					{
 						label.setText(Name);
 					}
@@ -353,16 +353,16 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 						if ( answer == 0 )
 						{
 							// Saves the canvas to a file.
-							FileManagment.saveWorkareaCanvas(test.getCanvas());
+							DesktopFileManagment.saveWorkareaCanvas(test.getCanvas());
 							this.removeTabAt(i);
-							CanvasManagment.removeWorkareaCanvas(test.getCanvas());
+							DesktopCanvasManagment.removeWorkareaCanvas(test.getCanvas());
 							return;
 						}
 						// Dont save.
 						else if ( answer == 1 )
 						{
 							this.removeTabAt(i);
-							CanvasManagment.removeWorkareaCanvas(test.getCanvas());
+							DesktopCanvasManagment.removeWorkareaCanvas(test.getCanvas());
 							return;
 						}
 						else
@@ -373,7 +373,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 					else
 					{
 						this.removeTabAt(i);
-						CanvasManagment.removeWorkareaCanvas(test.getCanvas());
+						DesktopCanvasManagment.removeWorkareaCanvas(test.getCanvas());
 						return;
 					}
 				}

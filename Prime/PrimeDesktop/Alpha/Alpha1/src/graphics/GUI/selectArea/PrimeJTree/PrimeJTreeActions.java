@@ -8,7 +8,7 @@ import graphics.PrimeMain1;
 
 import javax.swing.JTree;
 
-import managment.FileManagment;
+import managment.DesktopFileManagment;
 import widgets.WorkareaCanvas;
 
 
@@ -31,7 +31,7 @@ public class PrimeJTreeActions
 	public static void openFile(FileTreeNode file)
 	{
 		// Gets the name of the canvas depending on the file
-		String canvasName = FileManagment.getCanvasName(file.getFile());
+		String canvasName = DesktopFileManagment.getCanvasName(file.getFile());
 
 		// If a name was retrieved
 		if ( canvasName != null )
@@ -42,20 +42,20 @@ public class PrimeJTreeActions
 			// There does not exist a tab with that name already
 			if ( exists == false )
 			{
-				FileManagment.openWorkareaCanvas(file.getFile());
+				DesktopFileManagment.openWorkareaCanvas(file.getFile());
 			}
 		}
 	}
 
 
 	/**
-	 * The method calls on the DeleteWorkareaCanvas function in {@link FileManagment}.
+	 * The method calls on the DeleteWorkareaCanvas function in {@link DesktopFileManagment}.
 	 * 
 	 * @param file
 	 */
 	public static void deleteFile(FileTreeNode file, JTree tree)
 	{
-		FileManagment.deleteWorkareaCanvas(file);
+		DesktopFileManagment.deleteWorkareaCanvas(file);
 	}
 
 

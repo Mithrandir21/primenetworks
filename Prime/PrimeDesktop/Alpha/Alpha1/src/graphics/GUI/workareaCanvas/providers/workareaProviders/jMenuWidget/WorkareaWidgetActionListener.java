@@ -73,6 +73,8 @@ public class WorkareaWidgetActionListener implements ActionListener
 
 
 		canvas.cleanUp();
+
+		PrimeMain1.updatePropertiesCanvasArea(false);
 	}
 
 }

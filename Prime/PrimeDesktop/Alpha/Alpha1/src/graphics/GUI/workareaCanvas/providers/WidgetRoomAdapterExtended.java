@@ -4,8 +4,6 @@
 package graphics.GUI.workareaCanvas.providers;
 
 
-import graphics.GraphicalFunctions;
-
 import java.awt.event.MouseEvent;
 
 import managment.Settings;
@@ -39,7 +37,7 @@ public class WidgetRoomAdapterExtended extends Adapter
 				// If button1 is double clicked.
 				if ( event.getClickCount() == 2 )
 				{
-					GraphicalFunctions.changeWidgetRoomName(widget);
+					// GraphicalFunctions.changeWidgetRoomName(widget);
 				}
 			}
 			return State.CONSUMED;

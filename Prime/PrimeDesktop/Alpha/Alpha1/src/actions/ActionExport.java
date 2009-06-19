@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
-import managment.FileManagment;
+import managment.DesktopFileManagment;
 
 
 /**
@@ -60,7 +60,7 @@ public class ActionExport extends AbstractAction
 		// If the current canvas is not null
 		if ( PrimeMain1.currentCanvas != null )
 		{
-			FileManagment.exportWorkareaCanvas(PrimeMain1.currentCanvas);
+			DesktopFileManagment.exportWorkareaCanvas(PrimeMain1.currentCanvas);
 		}
 	}
 

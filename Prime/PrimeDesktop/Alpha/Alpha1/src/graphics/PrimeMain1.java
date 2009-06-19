@@ -46,7 +46,7 @@ import javax.swing.ToolTipManager;
 import javax.swing.border.Border;
 
 import managment.CanvasManagment;
-import managment.FileManagment;
+import managment.DesktopFileManagment;
 import objects.Object;
 
 import org.jdesktop.swingx.JXMultiSplitPane;
@@ -639,7 +639,7 @@ public class PrimeMain1 extends JFrame
 			// Save
 			if ( answer == 0 )
 			{
-				FileManagment.saveCanvases(changes);
+				DesktopFileManagment.saveCanvases(changes);
 				System.exit(0);
 			}
 			// Dont save

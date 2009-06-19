@@ -9,6 +9,7 @@ import graphics.ImageLocator;
 import java.awt.BorderLayout;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
@@ -82,15 +83,11 @@ public class GenericPrimeToolbar extends JMenuBar
 		tempIcon = ImageLocator.getImageIconObject("Save_all");
 		ActionSaveAll saveAll = new ActionSaveAll("Save All", tempIcon);
 
-		tempIcon = ImageLocator.getImageIconObject("Export");
-		ActionExport export = new ActionExport("Export", tempIcon);
-
 
 		fileToolBar.add(newFile);
 		fileToolBar.add(openFile);
 		fileToolBar.add(save);
 		fileToolBar.add(saveAll);
-		fileToolBar.add(export);
 
 
 
@@ -147,8 +144,13 @@ public class GenericPrimeToolbar extends JMenuBar
 		ActionRoom room = new ActionRoom("Room", tempIcon);
 		JToggleButton roomButton = new JToggleButton(room);
 
+		tempIcon = ImageLocator.getImageIconObject("Export");
+		ActionExport export = new ActionExport("Export", tempIcon);
+		JButton exportButton = new JButton(export);
+
 		networkToolBar.add(update);
 		networkToolBar.add(roomButton);
+		networkToolBar.add(exportButton);
 
 
 		this.add(networkToolBar);

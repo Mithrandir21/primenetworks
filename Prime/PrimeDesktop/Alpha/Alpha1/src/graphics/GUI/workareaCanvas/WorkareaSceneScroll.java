@@ -5,7 +5,7 @@ import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
 import javax.swing.JScrollPane;
 
-import managment.CanvasManagment;
+import managment.DesktopCanvasManagment;
 import widgets.WorkareaCanvas;
 
 
@@ -87,7 +87,7 @@ public class WorkareaSceneScroll extends JScrollPane
 
 
 		// Adds the canvas the array of currently active WorkareaCanvas
-		CanvasManagment.addCanvas(canvas, name);
+		DesktopCanvasManagment.addCanvas(canvas, name);
 	}
 
 
