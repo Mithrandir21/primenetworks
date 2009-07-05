@@ -38,14 +38,21 @@ public class JPopupWidgetMenu
 
 
 	/**
+	 * The {@link Widget} that the actions are to be performed for.
+	 */
+	private Widget widget;
+
+
+	/**
 	 * A constructor for this class that sets the {@link WorkareaCanvas} field.
 	 * 
 	 * @param canvas
 	 *            The {@link WorkareaCanvas} the event will take place in.
 	 */
-	public JPopupWidgetMenu(WorkareaCanvas canvas)
+	public JPopupWidgetMenu(WorkareaCanvas canvas, Widget widget)
 	{
 		this.canvas = canvas;
+		this.widget = widget;
 	}
 
 
@@ -59,7 +66,7 @@ public class JPopupWidgetMenu
 	 */
 	public JPopupMenu createPopupMenu(Widget widget)
 	{
-		widgetActListener = new WorkareaWidgetActionListener(canvas);
+		widgetActListener = new WorkareaWidgetActionListener(canvas, widget);
 
 		canvas.setCurrentWidgetObject((WidgetObject) widget);
 
@@ -82,6 +89,13 @@ public class JPopupWidgetMenu
 	{
 		JMenuItem menuItem;
 
+		menuItem = new JMenuItem("Open Device");
+		menuItem.setActionCommand("OpenDevice");
+		menuItem.addActionListener(widgetActListener);
+		popup.add(menuItem);
+
+		popup.addSeparator();
+
 		menuItem = new JMenuItem("Delete this object");
 		menuItem.setActionCommand("DeleteThisObject");
 		menuItem.addActionListener(widgetActListener);
@@ -89,21 +103,6 @@ public class JPopupWidgetMenu
 
 		menuItem = new JMenuItem("Delete all connection to and from this object");
 		menuItem.setActionCommand("DeleteConnectionsObject");
-		menuItem.addActionListener(widgetActListener);
-		popup.add(menuItem);
-
-		menuItem = new JMenuItem("A popup menu item");
-		menuItem.setActionCommand("CreateNewItem");
-		menuItem.addActionListener(widgetActListener);
-		popup.add(menuItem);
-
-		menuItem = new JMenuItem("Another popup menu item");
-		menuItem.setActionCommand("CreateAnotherNewItem");
-		menuItem.addActionListener(widgetActListener);
-		popup.add(menuItem);
-
-		menuItem = new JMenuItem("Yet Another popup menu item");
-		menuItem.setActionCommand("CreateYetAnotherNewItem");
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);
 	}

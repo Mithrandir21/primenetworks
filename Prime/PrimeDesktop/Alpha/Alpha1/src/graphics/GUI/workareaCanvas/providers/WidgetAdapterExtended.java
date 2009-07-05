@@ -12,8 +12,6 @@ import org.netbeans.api.visual.action.WidgetAction.Adapter;
 import org.netbeans.api.visual.widget.Widget;
 
 import widgets.WidgetObject;
-import connections.Connection;
-import connections.WidgetExtendedConnection;
 
 
 /**
@@ -55,8 +53,7 @@ public class WidgetAdapterExtended extends Adapter
 					ObjectView view = PrimeMain1.getObjectView(obj);
 
 					// There exist no view with the given object.
-					// Which means that there exist no open view for the given
-					// object.
+					// Which means that there exist no open view for the given object.
 					if ( view == null )
 					{
 						// Creates a new ObjectView object with the WidgetObject that has been cast.
@@ -74,22 +71,6 @@ public class WidgetAdapterExtended extends Adapter
 					}
 				}
 			}
-		}
-		else if ( widget instanceof WidgetExtendedConnection )
-		{
-			// If button1, which can be whatever depending on what the OS has chosen, is clicked.
-			if ( event.getButton() == MouseEvent.BUTTON1 )
-			{
-				// Casts the object to an WidgetExtendedConnection
-				WidgetExtendedConnection conWidget = (WidgetExtendedConnection) widget;
-
-				// The connection
-				Connection con = conWidget.getConnection();
-
-
-			}
-			System.out
-					.println("There is still work to be done. AdapterExtended - mouseClicked - WidgetExtendedConnection");
 		}
 
 

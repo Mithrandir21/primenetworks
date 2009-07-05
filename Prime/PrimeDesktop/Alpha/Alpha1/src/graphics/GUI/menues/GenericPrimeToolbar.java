@@ -139,6 +139,7 @@ public class GenericPrimeToolbar extends JMenuBar
 
 		tempIcon = ImageLocator.getImageIconObject("Update");
 		ActionUpdate update = new ActionUpdate("Update", tempIcon);
+		JButton updateButton = new JButton(update);
 
 		tempIcon = ImageLocator.getImageIconObject("Room");
 		ActionRoom room = new ActionRoom("Room", tempIcon);
@@ -148,7 +149,7 @@ public class GenericPrimeToolbar extends JMenuBar
 		ActionExport export = new ActionExport("Export", tempIcon);
 		JButton exportButton = new JButton(export);
 
-		networkToolBar.add(update);
+		networkToolBar.add(updateButton);
 		networkToolBar.add(roomButton);
 		networkToolBar.add(exportButton);
 

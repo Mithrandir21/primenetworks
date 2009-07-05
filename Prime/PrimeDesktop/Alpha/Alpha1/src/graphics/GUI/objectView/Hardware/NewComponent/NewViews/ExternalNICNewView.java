@@ -79,6 +79,12 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 
 
 
+	/**
+	 * Javadoc-TODO - Description NEEDED!
+	 * 
+	 * @param obj
+	 * @param NIC
+	 */
 	public ExternalNICNewView(Object obj, ExternalNetworksCard NIC)
 	{
 		super("New External NIC");
@@ -114,7 +120,7 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 		c.insets = new Insets(10, 10, 5, 10);
 
 		ImageIcon icon = ImageLocator.getImageIconObject("ExternalNIC");
-		JPanel p1 = HardwareEditor.GeneralInfo(extNIC, icon, name, desc);
+		JPanel p1 = HardwareEditor.GeneralInfo(NIC, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
 
@@ -129,7 +135,7 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 		c.gridheight = 1;
 		c.insets = new Insets(0, 10, 10, 10);
 
-		JPanel p2 = createSpesificInfo(extNIC);
+		JPanel p2 = createSpesificInfo(NIC);
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p2, c);
@@ -211,7 +217,7 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 
 		// The MAC address of the NIC
 		labels[1].setLabelFor(MAC);
-		MAC = new JTextField(12);
+		MAC = new JTextField(7);
 		MAC.setMaximumSize(tfSize);
 		MAC.setPreferredSize(tfSize);
 		MAC.setText(NIC.getMAC());
@@ -277,6 +283,21 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 		panel.add(protocol);
 
 
+		// The 64 bit check box
+		labels[6].setLabelFor(supIPv6);
+		supIPv6 = new JCheckBox();
+		supIPv6.setMaximumSize(tfSize);
+		supIPv6.setPreferredSize(tfSize);
+		supIPv6.setToolTipText(labels[6].getToolTipText());
+		supIPv6.setActionCommand("IPv6");
+		supIPv6.addActionListener(this);
+
+		supIPv6.setSelected(NIC.getIPv6support());
+
+		panel.add(labels[6]);
+		panel.add(supIPv6);
+
+
 		// The supported standards by the NIC.
 		labels[5].setLabelFor(supStandards);
 		String[] listData = { "802.3i", "802.3x", "802.3y", "802.3ab", "802.3an", "802.11a", "802.11b", "802.11g",
@@ -302,22 +323,6 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 
 		panel.add(labels[5]);
 		panel.add(listPane);
-
-
-
-		// The 64 bit check box
-		labels[6].setLabelFor(supIPv6);
-		supIPv6 = new JCheckBox();
-		supIPv6.setMaximumSize(tfSize);
-		supIPv6.setPreferredSize(tfSize);
-		supIPv6.setToolTipText(labels[6].getToolTipText());
-		supIPv6.setActionCommand("IPv6");
-		supIPv6.addActionListener(this);
-
-		supIPv6.setSelected(NIC.getIPv6support());
-
-		panel.add(labels[6]);
-		panel.add(supIPv6);
 
 
 		// Lay out the panel.

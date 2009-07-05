@@ -735,8 +735,6 @@ public class DesktopFileManagment
 	private static void openCanvas(File file)
 	{
 		WorkareaCanvas canvas = new WorkareaCanvas();
-		ActionsAdder.makeWorkareaCanvasReady(canvas);
-
 
 		try
 		{

@@ -47,7 +47,7 @@ public class JMenuWidget implements PopupMenuProvider
 	@Override
 	public JPopupMenu getPopupMenu(Widget widget, Point localLocation)
 	{
-		JPopupWidgetMenu provider = new JPopupWidgetMenu(canvas);
+		JPopupWidgetMenu provider = new JPopupWidgetMenu(canvas, widget);
 
 		return provider.createPopupMenu(widget);
 	}

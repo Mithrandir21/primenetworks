@@ -115,9 +115,6 @@ public class GraphicsCardNewView extends JFrame implements HardwareViewInterface
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
 
-
-
-
 		this.add(p1, c);
 
 

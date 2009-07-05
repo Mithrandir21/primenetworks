@@ -221,7 +221,7 @@ public class InternalNICNewView extends JFrame implements HardwareViewInterface,
 
 		// The MAC address of the NIC
 		labels[1].setLabelFor(MAC);
-		MAC = new JTextField(12);
+		MAC = new JTextField(7);
 		MAC.setMaximumSize(tfSize);
 		MAC.setPreferredSize(tfSize);
 		MAC.setText(NIC.getMAC());
@@ -287,6 +287,21 @@ public class InternalNICNewView extends JFrame implements HardwareViewInterface,
 		panel.add(protocol);
 
 
+		// The 64 bit check box
+		labels[6].setLabelFor(supIPv6);
+		supIPv6 = new JCheckBox();
+		supIPv6.setMaximumSize(tfSize);
+		supIPv6.setPreferredSize(tfSize);
+		supIPv6.setToolTipText(labels[6].getToolTipText());
+		supIPv6.setActionCommand("IPv6");
+		supIPv6.addActionListener(this);
+
+		supIPv6.setSelected(NIC.getIPv6support());
+
+		panel.add(labels[6]);
+		panel.add(supIPv6);
+
+
 		// The supported standards by the NIC.
 		labels[5].setLabelFor(supStandards);
 		String[] listData = { "802.3i", "802.3x", "802.3y", "802.3ab", "802.3an", "802.11a", "802.11b", "802.11g",
@@ -309,22 +324,6 @@ public class InternalNICNewView extends JFrame implements HardwareViewInterface,
 		}
 		panel.add(labels[5]);
 		panel.add(listPane);
-
-
-
-		// The 64 bit check box
-		labels[6].setLabelFor(supIPv6);
-		supIPv6 = new JCheckBox();
-		supIPv6.setMaximumSize(tfSize);
-		supIPv6.setPreferredSize(tfSize);
-		supIPv6.setToolTipText(labels[6].getToolTipText());
-		supIPv6.setActionCommand("IPv6");
-		supIPv6.addActionListener(this);
-
-		supIPv6.setSelected(NIC.getIPv6support());
-
-		panel.add(labels[6]);
-		panel.add(supIPv6);
 
 
 		// Lay out the panel.
