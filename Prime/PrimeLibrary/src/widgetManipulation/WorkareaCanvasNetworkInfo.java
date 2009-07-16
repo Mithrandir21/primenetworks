@@ -12,10 +12,10 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This class contains network information about a given {@link WorkareaCanvas}.
+ * This includes IP range and netmask.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class WorkareaCanvasNetworkInfo implements Serializable
 {
@@ -45,7 +45,9 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for the class that takes a {@link WorkareaCanvas} as the
+	 * only argument. This class will contain network information for that
+	 * {@link WorkareaCanvas}.
 	 * 
 	 * @param canvas
 	 *            The WorkareaCanvas this information class belongs to.
@@ -109,10 +111,8 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param netmask
-	 *            the netmask to set
+	 * Sets the netmask of the {@link WorkareaCanvas}. The given String is
+	 * validated before being set.
 	 */
 	public boolean setNetmask(String netmask)
 	{
@@ -130,11 +130,6 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	//
 	//
 	//
-	// /**
-	// * Javadoc-TODO - Description NEEDED!
-	// *
-	// * @return the availableIPs
-	// */
 	// public String[] getAvailableIPs()
 	// {
 	// return availableIPs;
@@ -143,10 +138,8 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param ipRangeFrom
-	 *            the ipRangeFrom to set
+	 * Sets the start of the IP range. The given String is validated before
+	 * being set.
 	 */
 	public boolean setIpRangeFrom(String ipRangeFrom)
 	{
@@ -163,10 +156,8 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param ipRangeTo
-	 *            the ipRangeTo to set
+	 * Sets the end of the IP range. The given String is validated before being
+	 * set.
 	 */
 	public boolean setIpRangeTo(String ipRangeTo)
 	{
@@ -184,10 +175,7 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param networkNotes
-	 *            the networkNotes to set
+	 * Sets the Network notes for the network.
 	 */
 	public void setNetworkNotes(String networkNotes)
 	{
@@ -196,12 +184,6 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 
 
 	//
-	// /**
-	// * Javadoc-TODO - Description NEEDED!
-	// *
-	// * @param availableIPs
-	// * the availableIPs to set
-	// */
 	// public void setAvailableIPs(String[] availableIPs)
 	// {
 	// this.availableIPs = availableIPs;
@@ -216,14 +198,17 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 
 	// FIXME - Do something about this
 	// /**
-	// * Gets the first available IP address in this classes array of available IPs. The IP which is returned is then
+	// * Gets the first available IP address in this classes array of available
+	// IPs. The IP which is returned is then
 	// * removed from the IP array.
 	// *
-	// * @return Returns the first available IP address. If none are found or the array is null, null is returned.
+	// * @return Returns the first available IP address. If none are found or
+	// the array is null, null is returned.
 	// */
 	// public String getFirstAvailableIP()
 	// {
-	// // If the available IPs array is not null and the first index is not empty
+	// // If the available IPs array is not null and the first index is not
+	// empty
 	// if ( availableIPs != null && !(availableIPs[0].equals("")) )
 	// {
 	// // Gets the available IP
@@ -248,7 +233,8 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	//
 	// public void createAvailableIPs()
 	// {
-	// // SINCE THE IP RANGES ARE CHECK AND VALIDATED ON WRITTING, THE WILL BE VALID.
+	// // SINCE THE IP RANGES ARE CHECK AND VALIDATED ON WRITTING, THE WILL BE
+	// VALID.
 	// // Splits the fromIP into strings on the symbol "."
 	// String[] fromString = ipRangeFrom.split("\\.");
 	//
@@ -317,7 +303,8 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	//
 	//
 	// /**
-	// * Adds the given String to the array of the currently available network IPs.
+	// * Adds the given String to the array of the currently available network
+	// IPs.
 	// *
 	// * @param IP
 	// * The IP to be added to the array of available network IPs.
@@ -337,7 +324,8 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	// // Adds the last IP
 	// ips[ips.length] = IP;
 	//
-	// // Sets the newly created IP array, with the new IP at the end, as the current network IP array
+	// // Sets the newly created IP array, with the new IP at the end, as the
+	// current network IP array
 	// availableIPs = ips;
 	// }
 

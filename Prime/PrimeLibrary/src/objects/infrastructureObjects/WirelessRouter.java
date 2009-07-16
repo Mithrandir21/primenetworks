@@ -8,10 +8,10 @@ import objects.hardwareObjects.Motherboard;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This class represents a Wireless {@link Router}. It contains only a boolean
+ * on whether or not the Wireless function is turned on or not.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class WirelessRouter extends Router
 {
@@ -32,8 +32,9 @@ public class WirelessRouter extends Router
 	 * @param DuplexSupport
 	 * @param wifi
 	 */
-	public WirelessRouter(String Name, String Desc, String[] SupConInt, Motherboard objectMB, int outPorts,
-			int inPorts, String[] DuplexSupport, boolean wifi)
+	public WirelessRouter(String Name, String Desc, String[] SupConInt,
+			Motherboard objectMB, int outPorts, int inPorts,
+			String[] DuplexSupport, boolean wifi)
 	{
 		super(Name, Desc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport);
 

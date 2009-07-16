@@ -17,8 +17,9 @@ import org.netbeans.api.visual.widget.Widget;
 
 
 /**
- * This class represents a {@link Widget} on a {@link WorkareaCanvas}. It will be shown on a {@link WorkareaCanvas} as
- * an empty rectangle with a black rounded border.
+ * This class represents a {@link Widget} on a {@link WorkareaCanvas}. It will
+ * be shown on a {@link WorkareaCanvas} as an empty rectangle with a black
+ * rounded border.
  * 
  * @author Bahram Malaekeh
  */
@@ -33,10 +34,15 @@ public class WidgetRoom extends Widget
 
 
 	/**
-	 * A constructor for the class that take a {@link Scene} and the name of the {@link Room} as an argument
+	 * A constructor for the class that take a {@link Scene} and the name of the
+	 * {@link Room} as an argument.
 	 * 
 	 * @param scene
+	 *            The {@link Scene} in a {@link WorkareaCanvas} that the
+	 *            {@link Widget} will be all to.
 	 * @param name
+	 *            THe name of the {@link Room} inside this class. Also the name
+	 *            of the {@link Widget} on the scene.
 	 */
 	public WidgetRoom(Scene scene, String name)
 	{
@@ -49,10 +55,14 @@ public class WidgetRoom extends Widget
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for the class that take a {@link Scene} and the name of the
+	 * {@link Room} as an argument.
 	 * 
 	 * @param scene
+	 *            The {@link Scene} in a {@link WorkareaCanvas} that the
+	 *            {@link Widget} will be all to.
 	 * @param room
+	 *            The {@link Room} inside this class.
 	 */
 	public WidgetRoom(Scene scene, Room room)
 	{
@@ -71,9 +81,8 @@ public class WidgetRoom extends Widget
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @return the room
+	 * Gets the {@link Room} that this {@link Widget} represents on a
+	 * {@link WorkareaCanvas}.
 	 */
 	public Room getRoom()
 	{
@@ -85,10 +94,8 @@ public class WidgetRoom extends Widget
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param room
-	 *            the room to set
+	 * Sets the {@link Room} that this {@link Widget} represents on a
+	 * {@link WorkareaCanvas}.
 	 */
 	public void setRoom(Room room)
 	{
@@ -98,10 +105,12 @@ public class WidgetRoom extends Widget
 
 	// CLASS METHODES
 	/**
-	 * Sets a preferred bounds that are specified relatively to the location of the widget.
+	 * Sets a preferred bounds that are specified relatively to the location of
+	 * the widget.
 	 * 
 	 * @param preferredBounds
-	 *            the preferred bounds; if null, then the preferred bounds are unset
+	 *            the preferred bounds; if null, then the preferred bounds are
+	 *            unset
 	 */
 	public void setPreferredRoomBounds(Rectangle preferredBounds)
 	{
@@ -112,9 +121,11 @@ public class WidgetRoom extends Widget
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Sets a preferred location of the top left corner of the widget.
 	 * 
-	 * @param location
+	 * @param preferredLocation
+	 *            The preferred location; if null, then the preferred bounds are
+	 *            unset
 	 */
 	public void setPreferredRoomLocation(Point preferredLocation)
 	{
@@ -124,7 +135,8 @@ public class WidgetRoom extends Widget
 
 
 	/**
-	 * Returns whether the layer widget requires to repainted after revalidation.
+	 * Returns whether the layer widget requires to repainted after
+	 * revalidation.
 	 * 
 	 * @return always false
 	 */
