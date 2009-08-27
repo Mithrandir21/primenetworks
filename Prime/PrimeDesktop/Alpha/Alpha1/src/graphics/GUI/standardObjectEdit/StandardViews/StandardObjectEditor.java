@@ -1,10 +1,11 @@
 /**
  * 
  */
-package graphics.GUI.objectView.Hardware.HardwareView.Overview;
+package graphics.GUI.standardObjectEdit.StandardViews;
 
 
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
+import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditorTabbed;
 
 import java.awt.Button;
 import java.awt.Component;
@@ -37,7 +38,7 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class HardwareEditor extends JFrame implements ActionListener
+public class StandardObjectEditor extends JFrame implements ActionListener
 {
 	private Object givenObject = null;
 
@@ -48,28 +49,27 @@ public class HardwareEditor extends JFrame implements ActionListener
 	 * 
 	 * @param obj
 	 */
-	public HardwareEditor(Object obj)
+	public StandardObjectEditor(Object obj)
 	{
-		super("Edit hardware");
+		super("Edit Standard Object");
 
 		createNewEditorTab(obj);
 	}
 
 
 	/**
-	 * Creates a JPanel that shows an Icon representing the hardware object and
-	 * two fields with the name and description of the hardware object.
+	 * Creates a JPanel that shows an Icon representing the standard object and two fields with the
+	 * name and description of the object.
 	 * 
 	 * @param hw
 	 *            The actual hardware object.
 	 * @param icon
-	 *            The Icon representing the hardware component.
+	 *            The Icon representing the component.
 	 * @param name
 	 *            A JTextField that will contain the name of the object.
 	 * @param desc
 	 *            A JTextArea that holds the description of the object.
-	 * @return Returns the created JPanel with all the information about the
-	 *         hardware object.
+	 * @return Returns the created JPanel with all the information about the hardware object.
 	 */
 	public static JPanel GeneralInfo(Hardware hw, ImageIcon icon,
 			JTextField name, JTextArea desc)
@@ -226,8 +226,7 @@ public class HardwareEditor extends JFrame implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -304,9 +303,8 @@ public class HardwareEditor extends JFrame implements ActionListener
 
 
 	/**
-	 * This function is used for when hardware information is changed or when a
-	 * component is added or removed from an object. It redraws the views that
-	 * show all current hardware information.
+	 * This function is used for when hardware information is changed or when a component is added
+	 * or removed from an object. It redraws the views that show all current hardware information.
 	 */
 	public void HardwarePanelRevalidate()
 	{

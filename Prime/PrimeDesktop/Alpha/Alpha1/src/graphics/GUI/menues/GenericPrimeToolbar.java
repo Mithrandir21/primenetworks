@@ -18,6 +18,7 @@ import actions.ActionCopy;
 import actions.ActionCut;
 import actions.ActionExport;
 import actions.ActionNew;
+import actions.ActionObjectEditing;
 import actions.ActionOpenfile;
 import actions.ActionPaste;
 import actions.ActionRoom;
@@ -27,8 +28,9 @@ import actions.ActionUpdate;
 
 
 /**
- * The GenericPrimeToolbar represents a generic toolbar for the program. This is where the buttons at the top of the
- * program screen are created and added. GenericPrimeToolbar is an extention of the JMenuBar class.
+ * The GenericPrimeToolbar represents a generic toolbar for the program. This is where the buttons
+ * at the top of the program screen are created and added. GenericPrimeToolbar is an extention of
+ * the JMenuBar class.
  * 
  * @author Bahram Malaekeh
  */
@@ -40,7 +42,8 @@ public class GenericPrimeToolbar extends JMenuBar
 
 
 	/**
-	 * Constructor for the GenericPrimeToolbar class. Here the different parts of the toolbar are initiated.
+	 * Constructor for the GenericPrimeToolbar class. Here the different parts of the toolbar are
+	 * initiated.
 	 */
 	public GenericPrimeToolbar()
 	{
@@ -53,11 +56,15 @@ public class GenericPrimeToolbar extends JMenuBar
 		this.add(new JToolBar.Separator());
 
 		initNetworkAction();
+
+		this.add(new JToolBar.Separator());
+
+		initEditingAction();
 	}
 
 
 
-	private JToolBar fileToolBar, editToolBar, networkToolBar;
+	private JToolBar fileToolBar, editToolBar, networkToolBar, editingToolBar;
 
 
 	// SETUP OF THE TOOLBAR
@@ -121,7 +128,7 @@ public class GenericPrimeToolbar extends JMenuBar
 		editToolBar.add(openFile);
 		editToolBar.add(save);
 
-		this.add(editToolBar);
+		this.add(editToolBar, BorderLayout.WEST);
 		tempIcon = null;
 	}
 
@@ -154,7 +161,29 @@ public class GenericPrimeToolbar extends JMenuBar
 		networkToolBar.add(exportButton);
 
 
-		this.add(networkToolBar);
+		this.add(networkToolBar, BorderLayout.WEST);
+		tempIcon = null;
+	}
+
+
+
+	/**
+	 * This function creates the Editing functions JToolbar.
+	 */
+	private void initEditingAction()
+	{
+		editingToolBar = new JToolBar("Editing");
+		editingToolBar.setFloatable(false);
+
+		tempIcon = ImageLocator.getImageIconObject("Objects");
+		ActionObjectEditing editing = new ActionObjectEditing("Objects",
+				tempIcon);
+		JButton editingButton = new JButton(editing);
+
+
+		editingToolBar.add(editingButton);
+
+		this.add(editingToolBar, BorderLayout.WEST);
 		tempIcon = null;
 	}
 }

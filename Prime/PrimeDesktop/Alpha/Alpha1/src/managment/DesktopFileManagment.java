@@ -40,25 +40,26 @@ import connections.WidgetExtendedConnection;
 
 
 /**
- * This class provides static functions that deal with the actual saving to file, reading from file and so on.
- * {@link WorkareaCanvas WorkareaCanvases} are saved and loaded here. There are also testing and control functions.
+ * This class provides static functions that deal with the actual saving to file, reading from file
+ * and so on. {@link WorkareaCanvas WorkareaCanvases} are saved and loaded here. There are also
+ * testing and control functions.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class DesktopFileManagment
 {
 
 	/**
-	 * Saves the given WorkareaCanvas. This function creates a file object from the name of the WorkareaCanvas and
-	 * passes that on the function that actually saves the WorkareaCanvas.
+	 * Saves the given WorkareaCanvas. This function creates a file object from the name of the
+	 * WorkareaCanvas and passes that on the function that actually saves the WorkareaCanvas.
 	 * 
 	 * @param canvas
 	 *            The WorkareaCanvas to be written out.
 	 */
 	public static void saveWorkareaCanvas(WorkareaCanvas canvas)
 	{
-		File file = new File("./resource/Data/" + canvas.getCanvasName() + ".dat");
+		File file = new File("./resource/Data/" + canvas.getCanvasName()
+				+ ".dat");
 
 		saveCanvas(canvas, file);
 	}
@@ -81,8 +82,9 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Saves the given WorkareaCanvas in the given File. The name of the WorkareaCanvas is written out to the file as an
-	 * object, so is an ArrayList of the WidgetObjects and Connections on the WorkareaCanvas.
+	 * Saves the given WorkareaCanvas in the given File. The name of the WorkareaCanvas is written
+	 * out to the file as an object, so is an ArrayList of the WidgetObjects and Connections on the
+	 * WorkareaCanvas.
 	 * 
 	 * @param canvas
 	 *            The WorkareaCanvas to be written out.
@@ -128,10 +130,12 @@ public class DesktopFileManagment
 				ArrayList<Object> objectList = new ArrayList<Object>();
 
 
-				// There must be some objects on the canvas for there to be saved any widgetObjects
+				// There must be some objects on the canvas for there to be
+				// saved any widgetObjects
 				if ( objects.length > 0 )
 				{
-					// Goes through all the object on the canvas and adds then to the arraylist
+					// Goes through all the object on the canvas and adds then
+					// to the arraylist
 					for ( int i = 0; i < objects.length; i++ )
 					{
 						objectList.add(objects[i]);
@@ -139,7 +143,8 @@ public class DesktopFileManagment
 
 				}
 
-				// Writes out the objects in the form of an arraylist, even if it is empty
+				// Writes out the objects in the form of an arraylist, even if
+				// it is empty
 				oos.writeObject(objectList);
 
 				oos.flush();
@@ -157,10 +162,12 @@ public class DesktopFileManagment
 				// The ArrayList that will hold the connections
 				ArrayList<Connection> connectionList = new ArrayList<Connection>();
 
-				// The must be at least on connection on the canvas for there to be saved any connections
+				// The must be at least on connection on the canvas for there to
+				// be saved any connections
 				if ( connections.length > 0 && connections[0] != null )
 				{
-					// Goes through all the connections on the canvas and adds them to the ArrayList
+					// Goes through all the connections on the canvas and adds
+					// them to the ArrayList
 					for ( int i = 0; i < connections.length; i++ )
 					{
 						connectionList.add(connections[i]);
@@ -183,10 +190,12 @@ public class DesktopFileManagment
 				// The ArrayList that will hold the rooms objects
 				ArrayList<Room> roomList = new ArrayList<Room>();
 
-				// The must be at least on room on the canvas for there to be saved any rooms
+				// The must be at least on room on the canvas for there to be
+				// saved any rooms
 				if ( rooms.length > 0 && rooms[0] != null )
 				{
-					// Goes through all the rooms on the canvas and adds them to the ArrayList
+					// Goes through all the rooms on the canvas and adds them to
+					// the ArrayList
 					for ( int i = 0; i < rooms.length; i++ )
 					{
 						roomList.add(rooms[i]);
@@ -223,9 +232,10 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This function checks whether or not there exist a file containing a WorkareaCanvas with the same and serial as
-	 * the given WorkareaCanvas. If not true is returned. If there exists a WorkareaCanvas with the same name, but not
-	 * serial number the user is asked to verify overwriting that file.
+	 * This function checks whether or not there exist a file containing a WorkareaCanvas with the
+	 * same and serial as the given WorkareaCanvas. If not true is returned. If there exists a
+	 * WorkareaCanvas with the same name, but not serial number the user is asked to verify
+	 * overwriting that file.
 	 * 
 	 * @param canvas
 	 * @return
@@ -236,7 +246,8 @@ public class DesktopFileManagment
 		double canvasSerial = canvas.getSerial();
 
 		// Creates a file object(not the actual file)
-		File file = new File("./resource/Data/" + canvas.getCanvasName() + ".dat");
+		File file = new File("./resource/Data/" + canvas.getCanvasName()
+				+ ".dat");
 
 		// If the file(network) exists
 		if ( file.exists() )
@@ -256,15 +267,19 @@ public class DesktopFileManagment
 
 				ois.close();
 
-				// If the name of the file network is the same as the name of the given WorkareaCanvas
+				// If the name of the file network is the same as the name of
+				// the given WorkareaCanvas
 				if ( name.equalsIgnoreCase(canvasName) )
 				{
-					// If the serial from the file is not the same as the serial from the given WorkareaCanvas
+					// If the serial from the file is not the same as the serial
+					// from the given WorkareaCanvas
 					if ( serial != canvasSerial )
 					{
-						int answer = JOptionPane.showConfirmDialog(null,
-								"There exists a network with given name. Do you wish to overwrite that file?",
-								"Overwrite", JOptionPane.YES_NO_OPTION);
+						int answer = JOptionPane
+								.showConfirmDialog(
+										null,
+										"There exists a network with given name. Do you wish to overwrite that file?",
+										"Overwrite", JOptionPane.YES_NO_OPTION);
 
 						// The user answers "yes"
 						if ( answer == 0 )
@@ -309,13 +324,14 @@ public class DesktopFileManagment
 
 
 	/**
-	 * The method check whether or not a file exist with the given newName String. If it does, the file is checked for a
-	 * WorkareaCanvas
+	 * The method check whether or not a file exist with the given newName String. If it does, the
+	 * file is checked for a WorkareaCanvas
 	 * 
 	 * @param canvas
 	 * @return
 	 */
-	public static boolean fileWorkareaCanvasExist(WorkareaCanvas canvas, String newName)
+	public static boolean fileWorkareaCanvasExist(WorkareaCanvas canvas,
+			String newName)
 	{
 		String canvasName = canvas.getCanvasName();
 
@@ -338,7 +354,8 @@ public class DesktopFileManagment
 				// Closes the file
 				ois.close();
 
-				// If the name of the file network is the same as the name of the given WorkareaCanvas
+				// If the name of the file network is the same as the name of
+				// the given WorkareaCanvas
 				if ( name.equalsIgnoreCase(newName) )
 				{
 					return true;
@@ -369,14 +386,14 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This function renames the file a given {@link WorkareaCanvas} is located in(if is has ever been saved), to a file
-	 * with the given string. The function checks if the {@link WorkareaCanvas} exists.
+	 * This function renames the file a given {@link WorkareaCanvas} is located in(if is has ever
+	 * been saved), to a file with the given string. The function checks if the
+	 * {@link WorkareaCanvas} exists.
 	 * 
 	 * @param canvas
 	 *            The {@link WorkareaCanvas} thats inside the file to be renamed.
 	 * @param newName
 	 *            The name of the new file.
-	 * 
 	 * @return True, if the file rename was successful, and false, if not.
 	 */
 	public static boolean changeFileName(WorkareaCanvas canvas, String newName)
@@ -385,7 +402,8 @@ public class DesktopFileManagment
 		if ( fileWorkareaCanvasExist(canvas, canvas.getCanvasName()) )
 		{
 			// Creates a file object(not the actual file)
-			File file = new File("./resource/Data/" + canvas.getCanvasName() + ".dat");
+			File file = new File("./resource/Data/" + canvas.getCanvasName()
+					+ ".dat");
 
 			// Creates a new file object with the new name
 			File fileNew = new File("./resource/Data/" + newName + ".dat");
@@ -396,7 +414,8 @@ public class DesktopFileManagment
 			// If the rename was not possible
 			if ( !result )
 			{
-				JOptionPane.showMessageDialog(null, "Rename was not possible.", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Rename was not possible.",
+						"Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else
 			{
@@ -421,8 +440,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This function removes WorkareaCanvas with the given name from the system. It also deletes the file that contains
-	 * the workareaCanvas from the file system, so this is permanent.
+	 * This function removes WorkareaCanvas with the given name from the system. It also deletes the
+	 * file that contains the workareaCanvas from the file system, so this is permanent.
 	 * 
 	 * @param fileNode
 	 *            The file that contains the WorkareaCanvas.
@@ -438,8 +457,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This function removes WorkareaCanvas with the given name from the system. It also deletes the file that contains
-	 * the workareaCanvas from the file system, so this is permanent.
+	 * This function removes WorkareaCanvas with the given name from the system. It also deletes the
+	 * file that contains the workareaCanvas from the file system, so this is permanent.
 	 * 
 	 * @param fileNode
 	 *            The file that contains the WorkareaCanvas.
@@ -447,7 +466,8 @@ public class DesktopFileManagment
 	public static boolean deleteWorkareaCanvas(WorkareaCanvas canvas)
 	{
 		// Creates a file object(not the actual file)
-		File file = new File("./resource/Data/" + canvas.getCanvasName() + ".dat");
+		File file = new File("./resource/Data/" + canvas.getCanvasName()
+				+ ".dat");
 
 		return deleteWorkareaCanvas(file);
 	}
@@ -456,8 +476,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This function removes WorkareaCanvas with the given name from the system. It also deletes the file that contains
-	 * the workareaCanvas from the file system, so this is permanent.
+	 * This function removes WorkareaCanvas with the given name from the system. It also deletes the
+	 * file that contains the workareaCanvas from the file system, so this is permanent.
 	 * 
 	 * @param fileNode
 	 *            The file that contains the WorkareaCanvas.
@@ -470,8 +490,10 @@ public class DesktopFileManagment
 		// If the file does not exist
 		if ( !file.exists() )
 		{
-			JOptionPane.showMessageDialog(null, "This file\n" + file.getName() + "\n" + "does not exist in location\n"
-					+ file.getAbsolutePath(), "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "This file\n" + file.getName()
+					+ "\n" + "does not exist in location\n"
+					+ file.getAbsolutePath(), "Error",
+					JOptionPane.ERROR_MESSAGE);
 
 			return false;
 		}
@@ -479,8 +501,9 @@ public class DesktopFileManagment
 		// If the file is a directory
 		if ( file.isDirectory() )
 		{
-			JOptionPane.showMessageDialog(null, "This \n" + file.getName() + "\n" + "is a directory at\n"
-					+ file.getAbsolutePath(), "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "This \n" + file.getName()
+					+ "\n" + "is a directory at\n" + file.getAbsolutePath(),
+					"Error", JOptionPane.ERROR_MESSAGE);
 
 			return false;
 		}
@@ -488,7 +511,8 @@ public class DesktopFileManagment
 		// If the file can not be written to(hence not deleted)
 		if ( !file.canWrite() )
 		{
-			JOptionPane.showMessageDialog(null, "This file\n" + file.getName() + "\n" + "is write protected.", "Error",
+			JOptionPane.showMessageDialog(null, "This file\n" + file.getName()
+					+ "\n" + "is write protected.", "Error",
 					JOptionPane.ERROR_MESSAGE);
 
 			return false;
@@ -514,8 +538,10 @@ public class DesktopFileManagment
 
 			if ( !success )
 			{
-				JOptionPane.showMessageDialog(null, "The file\n" + file.getName() + "\n"
-						+ "was NOT successfully deleted.", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "The file\n"
+						+ file.getName() + "\n"
+						+ "was NOT successfully deleted.", "Error",
+						JOptionPane.ERROR_MESSAGE);
 
 				return false;
 			}
@@ -524,7 +550,8 @@ public class DesktopFileManagment
 				// Reloads
 				PrimeMain1.updatePrimeTree();
 
-				JOptionPane.showMessageDialog(null, "The file\n" + file.getName() + "\n" + "was successfully deleted.",
+				JOptionPane.showMessageDialog(null, "The file\n"
+						+ file.getName() + "\n" + "was successfully deleted.",
 						"Success", JOptionPane.PLAIN_MESSAGE);
 
 				return true;
@@ -541,8 +568,10 @@ public class DesktopFileManagment
 
 			if ( !success )
 			{
-				JOptionPane.showMessageDialog(null, "The file\n" + file.getName() + "\n"
-						+ "was NOT successfully deleted.", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "The file\n"
+						+ file.getName() + "\n"
+						+ "was NOT successfully deleted.", "Error",
+						JOptionPane.ERROR_MESSAGE);
 
 				return false;
 			}
@@ -557,7 +586,8 @@ public class DesktopFileManagment
 				// Removed the canvas from the systems canvas array
 				DesktopCanvasManagment.removeWorkareaCanvas(canvas);
 
-				JOptionPane.showMessageDialog(null, "The file\n" + file.getName() + "\n" + "was successfully deleted.",
+				JOptionPane.showMessageDialog(null, "The file\n"
+						+ file.getName() + "\n" + "was successfully deleted.",
 						"Success", JOptionPane.PLAIN_MESSAGE);
 
 				return true;
@@ -569,9 +599,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Creates a new WorkareaCanvas. The user is asked what the name of the new workareaCanvas will be. The new
-	 * WorkareaCanvas is then opened in the workarea.
-	 * 
+	 * Creates a new WorkareaCanvas. The user is asked what the name of the new workareaCanvas will
+	 * be. The new WorkareaCanvas is then opened in the workarea.
 	 */
 	public static void newWorkareaCanvas()
 	{
@@ -581,8 +610,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Creates a new WorkareaCanvas. The new WorkareaCanvas is opened in the workarea. The name of the new
-	 * WorkareaCanvas will be the given String.
+	 * Creates a new WorkareaCanvas. The new WorkareaCanvas is opened in the workarea. The name of
+	 * the new WorkareaCanvas will be the given String.
 	 * 
 	 * @param nameOfCanvas
 	 */
@@ -594,13 +623,13 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Creates a new WorkareaCanvas. The new WorkareaCanvas is opened in the workarea. The name of the new
-	 * WorkareaCanvas will be the given String.
+	 * Creates a new WorkareaCanvas. The new WorkareaCanvas is opened in the workarea. The name of
+	 * the new WorkareaCanvas will be the given String.
 	 * 
 	 * @param nameOfCanvas
 	 */
-	public static boolean newWorkareaCanvas(String nameOfCanvas, String netmask, String IPfrom, String IPto,
-			String networkDesc)
+	public static boolean newWorkareaCanvas(String nameOfCanvas,
+			String netmask, String IPfrom, String IPto, String networkDesc)
 	{
 		return newCanvas(nameOfCanvas, netmask, IPfrom, IPto, networkDesc);
 	}
@@ -608,14 +637,15 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Creates a new WorkareaCanvas with the given name. The name is checked to see if it matched with the allowed
-	 * symbols, which are letters, numbers and underscore. After the WorkareaCanvas is created it is added to the
-	 * programs workarea.
+	 * Creates a new WorkareaCanvas with the given name. The name is checked to see if it matched
+	 * with the allowed symbols, which are letters, numbers and underscore. After the WorkareaCanvas
+	 * is created it is added to the programs workarea.
 	 * 
 	 * @param nameOfCanvas
 	 *            The name that the WorkareaCanvas will have, after being checked.
 	 */
-	private static boolean newCanvas(String nameOfCanvas, String netmask, String IPfrom, String IPto, String networkDesc)
+	private static boolean newCanvas(String nameOfCanvas, String netmask,
+			String IPfrom, String IPto, String networkDesc)
 	{
 
 		// IF the user has canceled
@@ -632,10 +662,12 @@ public class DesktopFileManagment
 					if ( netmask != null && IPfrom != null && IPto != null )
 					{
 						// If the netmask, ip from and ip to strings are not ""
-						if ( (!netmask.equals("")) && (!(IPfrom.equals(""))) && (!(IPto.equals(""))) )
+						if ( (!netmask.equals("")) && (!(IPfrom.equals("")))
+								&& (!(IPto.equals(""))) )
 						{
 							// Creates a new network info object
-							WorkareaCanvasNetworkInfo netInfo = canvas.getNetworkInfo();
+							WorkareaCanvasNetworkInfo netInfo = canvas
+									.getNetworkInfo();
 
 							// Sets the netmask of the network
 							netInfo.setNetmask(netmask);
@@ -649,14 +681,16 @@ public class DesktopFileManagment
 							// Sets the network notes
 							netInfo.setNetworkNotes(networkDesc);
 
-							// Sets the newly created network info object as the networks info object
+							// Sets the newly created network info object as the
+							// networks info object
 							canvas.setNetworkInfo(netInfo);
 						}
 					}
 
 					// First creates the WorkareaSceneScroll object that will
 					// hold
-					WorkareaSceneScroll newScroll = new WorkareaSceneScroll(canvas);
+					WorkareaSceneScroll newScroll = new WorkareaSceneScroll(
+							canvas);
 
 					// Then we add the JScrollPane to the Screen
 					PrimeMain1.workTab.createNewCanvasTab(newScroll, -1);
@@ -670,16 +704,24 @@ public class DesktopFileManagment
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null, "There exist a Canvas with the same name as this Canvas.",
-							"Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane
+							.showMessageDialog(
+									null,
+									"There exist a Canvas with the same name as this Canvas.",
+									"Error", JOptionPane.ERROR_MESSAGE);
 
 					return false;
 				}
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(null, "This name, (" + nameOfCanvas + "), is not an accepted name.\n"
-						+ "The name can only contains letters, numbers and an underscore.");
+				JOptionPane
+						.showMessageDialog(
+								null,
+								"This name, ("
+										+ nameOfCanvas
+										+ "), is not an accepted name.\n"
+										+ "The name can only contains letters, numbers and an underscore.");
 
 				return false;
 			}
@@ -695,8 +737,9 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This method opens a WorkareaCanvas from the given file. It adds the opened canvas the systems Workarea where the
-	 * WorkareaCanvas can be edited. It also adds all the objects and connections to the canvas.
+	 * This method opens a WorkareaCanvas from the given file. It adds the opened canvas the systems
+	 * Workarea where the WorkareaCanvas can be edited. It also adds all the objects and connections
+	 * to the canvas.
 	 * 
 	 * @param file
 	 */
@@ -708,10 +751,9 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This method opens a WorkareaCanvas from the given file. It adds the opened canvas the systems Workarea where the
-	 * WorkareaCanvas can be edited. It also adds all the objects and connections to the canvas.
-	 * 
-	 * This method creates a File from the given string.
+	 * This method opens a WorkareaCanvas from the given file. It adds the opened canvas the systems
+	 * Workarea where the WorkareaCanvas can be edited. It also adds all the objects and connections
+	 * to the canvas. This method creates a File from the given string.
 	 * 
 	 * @param canvasName
 	 */
@@ -726,8 +768,9 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This method opens a WorkareaCanvas from the given file. It adds the opened canvas the systems Workarea where the
-	 * WorkareaCanvas can be edited. It also adds all the objects and connections to the canvas.
+	 * This method opens a WorkareaCanvas from the given file. It adds the opened canvas the systems
+	 * Workarea where the WorkareaCanvas can be edited. It also adds all the objects and connections
+	 * to the canvas.
 	 * 
 	 * @param file
 	 */
@@ -782,7 +825,8 @@ public class DesktopFileManagment
 				// The index of the objects array
 				int objectIndex = 0;
 
-				// Iterates through the list and adds the objects to the objects array
+				// Iterates through the list and adds the objects to the objects
+				// array
 				for ( Iterator it = objectList.iterator(); it.hasNext(); )
 				{
 					objects[objectIndex] = (Object) it.next();
@@ -794,11 +838,14 @@ public class DesktopFileManagment
 				{
 					if ( objects[i] != null )
 					{
-						Class<?> objClass = GraphicalFunctions.getObjectClass(objects[i]);
-						ImageIcon icon = GraphicalFunctions.getImageIconForObject(objects[i]);
+						Class<?> objClass = GraphicalFunctions
+								.getObjectClass(objects[i]);
+						ImageIcon icon = GraphicalFunctions
+								.getImageIconForObject(objects[i]);
 
 						WidgetObject added = WorkareaCanvasActions
-								.addObjectToCanvas(objects[i], canvas, objClass, icon);
+								.addObjectToCanvas(objects[i], canvas,
+										objClass, icon);
 
 						// Adds the actions that the new widget supports
 						ActionsAdder.makeWidgetObjectReady(canvas, added);
@@ -839,7 +886,8 @@ public class DesktopFileManagment
 				// The index of the connection array
 				int connectionIndex = 0;
 
-				// Iterates through the list and adds the connections to the connections array
+				// Iterates through the list and adds the connections to the
+				// connections array
 				for ( Iterator it = connectionList.iterator(); it.hasNext(); )
 				{
 					connections[connectionIndex] = (Connection) it.next();
@@ -847,28 +895,36 @@ public class DesktopFileManagment
 				}
 
 
-				// Goes through the entire connections array and adds the connections to the WorkareaCanvas
+				// Goes through the entire connections array and adds the
+				// connections to the WorkareaCanvas
 				for ( int i = 0; i < connections.length; i++ )
 				{
 					if ( connections[i] != null )
 					{
-						// Creates the connection between the two devices on the scene.
-						WidgetExtendedConnection connection = new WidgetExtendedConnection(canvas.getScene(),
-								connections[i]);
+						// Creates the connection between the two devices on the
+						// scene.
+						WidgetExtendedConnection connection = new WidgetExtendedConnection(
+								canvas.getScene(), connections[i]);
 
 
-						// Find the two object which are to be connected on the canvas
-						WidgetObject sourceWidget = CanvasManagment.findWidgetObject(connections[i].getObject1(),
-								canvas);
-						WidgetObject targetWidget = CanvasManagment.findWidgetObject(connections[i].getObject2(),
-								canvas);
+						// Find the two object which are to be connected on the
+						// canvas
+						WidgetObject sourceWidget = CanvasManagment
+								.findWidgetObject(connections[i].getObject1(),
+										canvas);
+						WidgetObject targetWidget = CanvasManagment
+								.findWidgetObject(connections[i].getObject2(),
+										canvas);
 
 						// Creates the whole connection with all actions
-						connection = ConnectionManagment.createWidgetExtendedConnection(canvas, connections[i],
-								connection, sourceWidget, targetWidget);
+						connection = ConnectionManagment
+								.createWidgetExtendedConnection(canvas,
+										connections[i], connection,
+										sourceWidget, targetWidget);
 
 						// Adds the different actions
-						ActionsAdder.makeWidgetConnectionReady(canvas, connection);
+						ActionsAdder.makeWidgetConnectionReady(canvas,
+								connection);
 
 						// Add the connection the connection layer
 						canvas.getConnectionLayer().addChild(connection);
@@ -915,12 +971,14 @@ public class DesktopFileManagment
 					roomIndex++;
 				}
 
-				// Goes through the entire connections array and adds the connections to the WorkareaCanvas
+				// Goes through the entire connections array and adds the
+				// connections to the WorkareaCanvas
 				for ( int i = 0; i < rooms.length; i++ )
 				{
 					if ( rooms[i] != null )
 					{
-						WidgetRoom room = RoomManagment.addRoom(canvas, rooms[i]);
+						WidgetRoom room = RoomManagment.addRoom(canvas,
+								rooms[i]);
 
 						// Adds the actions supported by the WidgetRoom
 						ActionsAdder.makeWidgetRoomReady(canvas, room);
@@ -972,7 +1030,8 @@ public class DesktopFileManagment
 	{
 		String[] names = file.getName().split("\\.");
 
-		// As long as there are only two parts to the filename, *name* and ".dat"
+		// As long as there are only two parts to the filename, *name* and
+		// ".dat"
 		if ( names.length == 2 && names[1].equalsIgnoreCase("dat") )
 		{
 			String name = names[0];
@@ -997,7 +1056,8 @@ public class DesktopFileManagment
 	{
 		String[] names = string.split("\\.");
 
-		// As long as there are only two parts to the filename, *name* and ".dat"
+		// As long as there are only two parts to the filename, *name* and
+		// ".dat"
 		if ( names.length == 2 && names[1].equalsIgnoreCase("dat") )
 		{
 			String name = names[0];
@@ -1012,8 +1072,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This function goes through all the given WorkareaCanvases and checks if the canvas has been changed since last
-	 * save. If it has been changed, it saves that canvas.
+	 * This function goes through all the given WorkareaCanvases and checks if the canvas has been
+	 * changed since last save. If it has been changed, it saves that canvas.
 	 * 
 	 * @param canvases
 	 *            The workareaCanvases that are to be checked and saved
@@ -1024,8 +1084,10 @@ public class DesktopFileManagment
 		{
 			if ( canvases[i] != null )
 			{
-				// // If the canvas has not been saved(since the last change) and there has been some change
-				// if ( canvases[i].isSaved() != true && canvases[i].isChanged() == true )
+				// // If the canvas has not been saved(since the last change)
+				// and there has been some change
+				// if ( canvases[i].isSaved() != true && canvases[i].isChanged()
+				// == true )
 				// {
 				saveWorkareaCanvas(canvases[i]);
 				// }
@@ -1076,15 +1138,18 @@ public class DesktopFileManagment
 				// If the file does not ends with the extension
 				if ( !(path.endsWith(extension)) )
 				{
-					// Creates a new file with the path of the file and the extension
+					// Creates a new file with the path of the file and the
+					// extension
 					file = new File(path + extension);
 				}
 
 
 				try
 				{
-					CanvasExporter.createImage(PrimeMain1.currentCanvas, file, CanvasExporter.ImageType.JPG,
-							CanvasExporter.ZoomType.ACTUAL_SIZE, false, false, 100, 1600, 1400);
+					CanvasExporter.createImage(PrimeMain1.currentCanvas, file,
+							CanvasExporter.ImageType.JPG,
+							CanvasExporter.ZoomType.ACTUAL_SIZE, false, false,
+							100, 1600, 1400);
 				}
 				catch ( IOException e )
 				{
@@ -1097,15 +1162,18 @@ public class DesktopFileManagment
 				// If the file does not ends with the extension
 				if ( !(path.endsWith(extension)) )
 				{
-					// Creates a new file with the path of the file and the extension
+					// Creates a new file with the path of the file and the
+					// extension
 					file = new File(path + extension);
 				}
 
 
 				try
 				{
-					CanvasExporter.createImage(PrimeMain1.currentCanvas, file, CanvasExporter.ImageType.PNG,
-							CanvasExporter.ZoomType.ACTUAL_SIZE, false, false, 100, 1000, 1000);
+					CanvasExporter.createImage(PrimeMain1.currentCanvas, file,
+							CanvasExporter.ImageType.PNG,
+							CanvasExporter.ZoomType.ACTUAL_SIZE, false, false,
+							100, 1000, 1000);
 				}
 				catch ( IOException e )
 				{
@@ -1114,5 +1182,157 @@ public class DesktopFileManagment
 				}
 			}
 		}
+	}
+
+
+
+	/**
+	 * TODO - Description
+	 */
+	public static void saveObjectsFile()
+	{
+		File file = new File("./resource/objects.obj");
+
+
+		// If the Objects file exists
+		if ( file.exists() )
+		{
+			// If the pointer is to a file and not anything else
+			if ( file.isFile() )
+			{
+				// If the file can be written to
+				if ( file.canWrite() )
+				{
+					try
+					{
+						FileOutputStream fout = new FileOutputStream(file);
+
+						// The object stream file
+						ObjectOutputStream oos = new ObjectOutputStream(fout);
+
+						// Writes out the systems list of Objects even if it is
+						// empty
+						oos.writeObject(PrimeMain1.objectlist);
+
+						// Flushes the stream
+						oos.flush();
+
+						// Closes the stream
+						oos.close();
+					}
+					catch ( Exception e )
+					{
+						e.printStackTrace();
+					}
+				}
+				else
+				{
+					System.out.println("saveObjectsFile - file.canWrite()");
+				}
+			}
+			else
+			{
+				System.out.println("saveObjectsFile - file.isFile()");
+			}
+		}
+		else
+		{
+			try
+			{
+				FileOutputStream fout = new FileOutputStream(file);
+
+				// The object stream file
+				ObjectOutputStream oos = new ObjectOutputStream(fout);
+
+				// Writes out the systems list of Objects even if it is
+				// empty
+				oos.writeObject(PrimeMain1.objectlist);
+
+				// Flushes the stream
+				oos.flush();
+
+				// Closes the stream
+				oos.close();
+			}
+			catch ( Exception e )
+			{
+				e.printStackTrace();
+			}
+		}
+	}
+
+
+
+	/**
+	 * TODO - Description
+	 */
+	@SuppressWarnings("unchecked")
+	public static void openObjectsFile()
+	{
+		File file = new File("./resource/objects.obj");
+
+
+		// If the Objects file exists
+		if ( file.exists() )
+		{
+			// If the pointer is a file and nothing else
+			if ( file.isFile() )
+			{
+				// If the file can be read
+				if ( file.canRead() )
+				{
+					try
+					{
+						FileInputStream fin = new FileInputStream(file);
+
+						ObjectInputStream ois = new ObjectInputStream(fin);
+
+						// Reads inn the ArrayList from the file stream
+						PrimeMain1.objectlist = (ArrayList<Object>) ois
+								.readObject();
+
+						ois.close();
+					}
+					catch ( Exception e )
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else
+				{
+					System.out.println("openObjectsFile - file.canRead()");
+				}
+			}
+			else
+			{
+				// FIXME - FIX this
+				System.out.println("openObjectsFile - file.isFile()");
+			}
+		}
+		else
+		{
+			System.out.println("openObjectsFile - file.exists()");
+		}
+	}
+
+
+
+	/**
+	 * TODO - Description
+	 */
+	public static boolean objectsFileExists()
+	{
+		File file = new File("./resource/objects.obj");
+
+		if ( file.exists() )
+		{
+			if ( file.isFile() )
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

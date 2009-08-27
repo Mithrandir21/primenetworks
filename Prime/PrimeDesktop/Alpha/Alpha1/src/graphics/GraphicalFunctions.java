@@ -65,8 +65,9 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * This class contains methods and functions that perform action on graphical components. Like finding and selecting
- * indexes in JComboBoxes or JLists. Or arranging components in panels or frames.
+ * This class contains methods and functions that perform action on graphical components. Like
+ * finding and selecting indexes in JComboBoxes or JLists. Or arranging components in panels or
+ * frames.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -77,13 +78,15 @@ public class GraphicalFunctions
 
 
 	/**
-	 * This method find and returns the index of data if it is found in the array of strings. If not it will return 0;
+	 * This method find and returns the index of data if it is found in the array of strings. If not
+	 * it will return 0;
 	 * 
 	 * @param strings
 	 *            The array that is searched for the data.
 	 * @param data
 	 *            The integer that is searched for in the array of strings(converted to Integers).
-	 * @return Returns the index in the array where the data has been found. If not found, 0 will be returned.
+	 * @return Returns the index in the array where the data has been found. If not found, 0 will be
+	 *         returned.
 	 */
 	public static int getIndexInJComboBox(String[] strings, int data)
 	{
@@ -107,13 +110,15 @@ public class GraphicalFunctions
 
 
 	/**
-	 * This method find and returns the index of data if it is found in the array of strings. If not it will return 0;
+	 * This method find and returns the index of data if it is found in the array of strings. If not
+	 * it will return 0;
 	 * 
 	 * @param strings
 	 *            The array that is searched for the data.
 	 * @param data
 	 *            The string that is searched for in the array of strings.
-	 * @return Returns the index in the array where the data has been found. If not found, 0 will be returned.
+	 * @return Returns the index in the array where the data has been found. If not found, 0 will be
+	 *         returned.
 	 */
 	public static int getIndexInJComboBox(String[] strings, String data)
 	{
@@ -137,10 +142,11 @@ public class GraphicalFunctions
 
 
 	/**
-	 * This function does verifies that a component with the given class exists in the components array of the main
-	 * selected component. If it does the function then checks to verify that the input slot/socket matches with the
-	 * slot/socket of the found component. If the two slots/sockets do not match the user is asked to verify their
-	 * choice that will then lead to the removal of the incompatible component.
+	 * This function does verifies that a component with the given class exists in the components
+	 * array of the main selected component. If it does the function then checks to verify that the
+	 * input slot/socket matches with the slot/socket of the found component. If the two
+	 * slots/sockets do not match the user is asked to verify their choice that will then lead to
+	 * the removal of the incompatible component.
 	 * 
 	 * @param comp
 	 *            The components that will be the ancestor of the JOptionPane.
@@ -159,25 +165,28 @@ public class GraphicalFunctions
 	 * @param combo
 	 *            The JComboBox itself.
 	 */
-	public static JComboBox verifyChange(Component comp, Object mainObj, Class<?> componentClass, String mbVariable,
-			String newVariable, String msg, String[] strings, JComboBox combo)
+	public static JComboBox verifyChange(Component comp, Object mainObj,
+			Class<?> componentClass, String mbVariable, String newVariable,
+			String msg, String[] strings, JComboBox combo)
 	{
 		if ( mbVariable != "" && mbVariable != null )
 		{
-			if ( ComponentsManagment.containsComponent(componentClass, mainObj.getComponents(),
-					mainObj.getComponents().length) )
+			if ( ComponentsManagment.containsComponent(componentClass, mainObj
+					.getComponents(), mainObj.getComponents().length) )
 			{
 
 				if ( !mbVariable.equals(newVariable) )
 				{
-					int n = JOptionPane.showConfirmDialog(comp, msg, "Verify", JOptionPane.YES_NO_OPTION);
+					int n = JOptionPane.showConfirmDialog(comp, msg, "Verify",
+							JOptionPane.YES_NO_OPTION);
 
 
 					// If the answer is "No"
 					if ( n == 1 )
 					{
 
-						combo.setSelectedIndex(getIndexInJComboBox(strings, mbVariable));
+						combo.setSelectedIndex(getIndexInJComboBox(strings,
+								mbVariable));
 					}
 				}
 			}
@@ -189,8 +198,8 @@ public class GraphicalFunctions
 
 
 	/**
-	 * This method looks for the given possibilities in the given data. If any are found the indexes of those are
-	 * selected in the given list and that list is returned.
+	 * This method looks for the given possibilities in the given data. If any are found the indexes
+	 * of those are selected in the given list and that list is returned.
 	 * 
 	 * @param list
 	 *            The list that will have selected indexes.
@@ -200,7 +209,8 @@ public class GraphicalFunctions
 	 *            The data that will be searched.
 	 * @return Returns the indexes of the given data in the array of possibilities.
 	 */
-	public static JList getIndexInJList(JList list, String[] possibilities, String[] data)
+	public static JList getIndexInJList(JList list, String[] possibilities,
+			String[] data)
 	{
 		int[] indices = new int[data.length];
 
@@ -228,9 +238,9 @@ public class GraphicalFunctions
 
 
 	/**
-	 * This method takes all the component inside the given parent container and orders them so that there are no more
-	 * then 6 components in any one row. This method is mostly used by the Object View like Hardware and Software views
-	 * that show settings options.
+	 * This method takes all the component inside the given parent container and orders them so that
+	 * there are no more then 6 components in any one row. This method is mostly used by the Object
+	 * View like Hardware and Software views that show settings options.
 	 * 
 	 * @param parent
 	 *            The container that holds the components that are to be arranged.
@@ -245,7 +255,8 @@ public class GraphicalFunctions
 	 * @param yPad
 	 *            The y padding that all components will have.
 	 */
-	public static void make6xGrid(Container parent, int numberOfFields, int initialX, int initialY, int xPad, int yPad)
+	public static void make6xGrid(Container parent, int numberOfFields,
+			int initialX, int initialY, int xPad, int yPad)
 	{
 		Dimension tfSize = new Dimension(90, 20);
 
@@ -269,16 +280,17 @@ public class GraphicalFunctions
 		}
 
 
-		SpringUtilities.makeCompactGrid(parent, rows, 6, initialX, initialY, xPad, yPad);
+		SpringUtilities.makeCompactGrid(parent, rows, 6, initialX, initialY,
+				xPad, yPad);
 
 	}
 
 
 
 	/**
-	 * This method takes all the component inside the given parent container and orders them so that there are no more
-	 * then 1 components in any one row. This method is mostly used by the Object View like Hardware and Software views
-	 * that show settings options.
+	 * This method takes all the component inside the given parent container and orders them so that
+	 * there are no more then 1 components in any one row. This method is mostly used by the Object
+	 * View like Hardware and Software views that show settings options.
 	 * 
 	 * @param parent
 	 *            The container that holds the components that are to be arranged.
@@ -293,12 +305,14 @@ public class GraphicalFunctions
 	 * @param yPad
 	 *            The y padding that all components will have.
 	 */
-	public static void make1xGrid(Container parent, int numberOfFields, int initialX, int initialY, int xPad, int yPad)
+	public static void make1xGrid(Container parent, int numberOfFields,
+			int initialX, int initialY, int xPad, int yPad)
 	{
 		int rows = numberOfFields;
 
 
-		SpringUtilities.makeCompactGrid(parent, rows, 1, initialX, initialY, xPad, yPad);
+		SpringUtilities.makeCompactGrid(parent, rows, 1, initialX, initialY,
+				xPad, yPad);
 
 	}
 
@@ -313,7 +327,8 @@ public class GraphicalFunctions
 	 * @param name
 	 * @return The object with the updated name
 	 */
-	public static Object updateWidgetObjectCanvasName(Object obj, WidgetObject widgetObj, String name)
+	public static Object updateWidgetObjectCanvasName(Object obj,
+			WidgetObject widgetObj, String name)
 	{
 		if ( !(obj.getObjectName().equals(name)) )
 		{
@@ -347,8 +362,8 @@ public class GraphicalFunctions
 
 
 	/**
-	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on the canvas. This method finds the
-	 * WidgetObject that contains the given object in all the different canvases.
+	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on the canvas. This
+	 * method finds the WidgetObject that contains the given object in all the different canvases.
 	 * 
 	 * @param obj
 	 * @param name
@@ -356,7 +371,8 @@ public class GraphicalFunctions
 	 */
 	public static Object updateWidgetObjectCanvasName(Object obj, String name)
 	{
-		WidgetObject widgetObj = CanvasManagment.findWidgetObject(obj, PrimeMain1.canvases);
+		WidgetObject widgetObj = CanvasManagment.findWidgetObject(obj,
+				PrimeMain1.canvases);
 
 
 		if ( !(obj.getObjectName().equals(name)) )
@@ -402,7 +418,8 @@ public class GraphicalFunctions
 
 		for ( int i = 0; i < tabCount; i++ )
 		{
-			// WorkareaSceneScroll canvasScroll = (WorkareaSceneScroll) pane.getTabComponentAt(i);
+			// WorkareaSceneScroll canvasScroll = (WorkareaSceneScroll)
+			// pane.getTabComponentAt(i);
 
 			if ( pane.getTabComponentAt(i) == null )
 			{
@@ -419,8 +436,8 @@ public class GraphicalFunctions
 
 
 	/**
-	 * Updates all the LabelWidgets on the scene with the name of the object name that is within the WidgetObject.
-	 * 
+	 * Updates all the LabelWidgets on the scene with the name of the object name that is within the
+	 * WidgetObject.
 	 */
 	public static void updateWidgetObjectNamesOnAllCanvas()
 	{
@@ -436,7 +453,8 @@ public class GraphicalFunctions
 				WidgetObject temp = (WidgetObject) iter.next();
 
 
-				updateWidgetObjectCanvasName(temp.getObject(), temp, temp.getObject().getObjectName());
+				updateWidgetObjectCanvasName(temp.getObject(), temp, temp
+						.getObject().getObjectName());
 			}
 
 		}
@@ -450,7 +468,6 @@ public class GraphicalFunctions
 
 	/**
 	 * Javadoc-TODO - Description
-	 * 
 	 */
 	public static void JPopupMenuesToggle()
 	{
@@ -463,22 +480,29 @@ public class GraphicalFunctions
 				if ( PrimeMain1.canvases[i] != null )
 				{
 					// List of all the Rooms on the Scene
-					List<Widget> l = PrimeMain1.canvases[i].getRoomLayer().getChildren();
+					List<Widget> l = PrimeMain1.canvases[i].getRoomLayer()
+							.getChildren();
 
 					// Converts that list to an array of Objects
 					java.lang.Object[] roomTemp = l.toArray();
 
-					// Creates an array with the length of the all the children on the canvas
+					// Creates an array with the length of the all the children
+					// on the canvas
 					WidgetRoom[] roomWidgets = new WidgetRoom[roomTemp.length];
 
-					// Casts all the objects in the converted list to widgetobjects
+					// Casts all the objects in the converted list to
+					// widgetobjects
 					for ( int j = 0; j < roomWidgets.length; j++ )
 					{
 						roomWidgets[j] = (WidgetRoom) roomTemp[j];
 
 						// Add the JMenuPopup action the WidgetRoom
-						roomWidgets[j].getActions().addAction(
-								ActionFactory.createPopupMenuAction(new JMenuWidgetRoom(PrimeMain1.canvases[i])));
+						roomWidgets[j]
+								.getActions()
+								.addAction(
+										ActionFactory
+												.createPopupMenuAction(new JMenuWidgetRoom(
+														PrimeMain1.canvases[i])));
 					}
 				}
 			}
@@ -490,21 +514,25 @@ public class GraphicalFunctions
 				if ( PrimeMain1.canvases[i] != null )
 				{
 					// List of all the Rooms on the Scene
-					List<Widget> l = PrimeMain1.canvases[i].getRoomLayer().getChildren();
+					List<Widget> l = PrimeMain1.canvases[i].getRoomLayer()
+							.getChildren();
 
 					// Converts that list to an array of Objects
 					java.lang.Object[] roomTemp = l.toArray();
 
-					// Creates an array with the length of the all the children on the canvas
+					// Creates an array with the length of the all the children
+					// on the canvas
 					WidgetRoom[] roomWidgets = new WidgetRoom[roomTemp.length];
 
-					// Casts all the objects in the converted list to widgetobjects
+					// Casts all the objects in the converted list to
+					// widgetobjects
 					for ( int j = 0; j < roomWidgets.length; j++ )
 					{
 						roomWidgets[j] = (WidgetRoom) roomTemp[j];
 
 						// Gets the size of the action chain
-						int size = roomWidgets[j].getActions().getActions().size();
+						int size = roomWidgets[j].getActions().getActions()
+								.size();
 
 						// If the size is 4
 						if ( size == 4 )
@@ -521,15 +549,15 @@ public class GraphicalFunctions
 
 
 	/**
-	 * Changes the title of the {@link TitledBorder} surrounding the {@link WidgetRoom} and the name of the {@link Room}
-	 * inside the {@link WidgetRoom} object.
+	 * Changes the title of the {@link TitledBorder} surrounding the {@link WidgetRoom} and the name
+	 * of the {@link Room} inside the {@link WidgetRoom} object.
 	 */
 	public static void changeWidgetRoomName(Widget widget)
 	{
 		WidgetRoom room = (WidgetRoom) widget;
 		// The user types in the new name of the room
-		String roomName = JOptionPane.showInputDialog(null, "New name of the room?", "Name",
-				JOptionPane.QUESTION_MESSAGE);
+		String roomName = JOptionPane.showInputDialog(null,
+				"New name of the room?", "Name", JOptionPane.QUESTION_MESSAGE);
 
 		// The user has pressed "Cancel"
 		if ( roomName != null )
@@ -541,10 +569,12 @@ public class GraphicalFunctions
 				room.getRoom().setRoomName(roomName);
 
 				// Creates a new TitledBorder with the given string
-				TitledBorder border = javax.swing.BorderFactory.createTitledBorder(new RoomBorder(Color.BLACK),
-						roomName);
+				TitledBorder border = javax.swing.BorderFactory
+						.createTitledBorder(new RoomBorder(Color.BLACK),
+								roomName);
 
-				// Sets the newly created TitledBorder as the border for the the given WidgetRoom.
+				// Sets the newly created TitledBorder as the border for the the
+				// given WidgetRoom.
 				room.setBorder(border);
 
 				// Repaints the given WidgetRoom
@@ -655,31 +685,31 @@ public class GraphicalFunctions
 		}
 		else if ( obj instanceof HTTPServer )
 		{
-			return ImageLocator.getImageIconObject("Web-server");
+			return ImageLocator.getImageIconObject("HTTP Server");
 		}
 		else if ( obj instanceof BackupServer )
 		{
-			return ImageLocator.getImageIconObject("Data-server");
+			return ImageLocator.getImageIconObject("Backup Server");
 		}
 		else if ( obj instanceof DatabaseServer )
 		{
-			return ImageLocator.getImageIconObject("Database-server");
+			return ImageLocator.getImageIconObject("Database Server");
 		}
 		else if ( obj instanceof MailServer )
 		{
-			return ImageLocator.getImageIconObject("Email-server");
+			return ImageLocator.getImageIconObject("Mail Server");
 		}
 		else if ( obj instanceof FirewallServer )
 		{
-			return ImageLocator.getImageIconObject("Firewall-server");
+			return ImageLocator.getImageIconObject("Firewall Server");
 		}
 		else if ( obj instanceof ProxyServer )
 		{
-			return ImageLocator.getImageIconObject("Proxy-server");
+			return ImageLocator.getImageIconObject("Proxy Server");
 		}
 		else if ( obj instanceof PrinterServer )
 		{
-			return ImageLocator.getImageIconObject("Print-server");
+			return ImageLocator.getImageIconObject("Printer Server");
 		}
 		else if ( obj instanceof Scanner )
 		{
@@ -703,7 +733,8 @@ public class GraphicalFunctions
 		}
 		else if ( obj instanceof NetworkMultifunctionPrinter )
 		{
-			return ImageLocator.getImageIconObject("NetworkMultifunctionPrinter");
+			return ImageLocator
+					.getImageIconObject("NetworkMultifunctionPrinter");
 		}
 		else if ( obj instanceof Hub )
 		{
@@ -733,12 +764,44 @@ public class GraphicalFunctions
 
 
 	/**
-	 * This method sets the widgetIcons, JLabel icon, transferhandler which takes care of the drag and drop
-	 * functionality. It also adds an mouseListener to the JLabel.
+	 * This method sets the widgetIcons, JLabel icon, transferhandler which takes care of the drag
+	 * and drop functionality. It also adds an mouseListener to the JLabel.
 	 */
 	public static void widgetIconSetup(WidgetIcon widget)
 	{
 		widget.addMouseListener(new TransferWidgetIconListener());
 		widget.setTransferHandler(new ImageSelection());
+	}
+
+
+
+	/**
+	 * This function shortens a String to 30 chars if the string is longer then 30 char. It adds 3
+	 * "." at the end of the shortend string.
+	 */
+	public static String verifyDescriptionLength(String Desc)
+	{
+		String shortDesc = "";
+
+		// If the string is longer then 30 chars
+		if ( Desc.length() > 30 )
+		{
+			// Goes through the first 27 chars
+			for ( int i = 0; i < 27; i++ )
+			{
+				shortDesc = new StringBuffer(shortDesc).insert(i,
+						Desc.charAt(i)).toString();
+			}
+
+			shortDesc = new StringBuffer(shortDesc).insert(27, ".").toString();
+			shortDesc = new StringBuffer(shortDesc).insert(28, ".").toString();
+			shortDesc = new StringBuffer(shortDesc).insert(29, ".").toString();
+		}
+		else
+		{
+			return Desc;
+		}
+
+		return shortDesc;
 	}
 }

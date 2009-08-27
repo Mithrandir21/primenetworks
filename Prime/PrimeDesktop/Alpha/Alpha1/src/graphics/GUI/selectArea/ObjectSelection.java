@@ -63,6 +63,9 @@ public class ObjectSelection extends JPanel
 
 
 
+	/**
+	 * TODO - Description NEEDED!
+	 */
 	public ObjectSelection()
 	{
 
@@ -77,7 +80,7 @@ public class ObjectSelection extends JPanel
 
 		initInfrastructureButtonIcons();
 
-		this.setPreferredSize(new Dimension(270, getCompSize()));
+		this.setPreferredSize(new Dimension(290, getCompSize()));
 	}
 
 
@@ -91,7 +94,7 @@ public class ObjectSelection extends JPanel
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("Screen", ThinClient.class, "Thin Client"));
+		this.add(makeImageIcon("Thin Client", ThinClient.class, "Thin Client"));
 
 		this.add(new JToolBar.Separator());
 
@@ -102,31 +105,36 @@ public class ObjectSelection extends JPanel
 
 	private void initServerButtonIcons()
 	{
-		this.add(makeImageIcon("Web-server", HTTPServer.class, "Web Server"));
+		this.add(makeImageIcon("HTTP Server", HTTPServer.class, "HTTP Server"));
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("Data-server", BackupServer.class, "Backup Server"));
+		this.add(makeImageIcon("Backup Server", BackupServer.class,
+				"Backup Server"));
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("Database-server", DatabaseServer.class, "Database Server"));
+		this.add(makeImageIcon("Database Server", DatabaseServer.class,
+				"Database Server"));
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("Email-server", MailServer.class, "Email Server"));
+		this.add(makeImageIcon("Mail Server", MailServer.class, "Mail Server"));
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("Firewall-server", FirewallServer.class, "Firewall Server"));
+		this.add(makeImageIcon("Firewall Server", FirewallServer.class,
+				"Firewall Server"));
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("Proxy-server", ProxyServer.class, "Proxy Server"));
+		this.add(makeImageIcon("Proxy Server", ProxyServer.class,
+				"Proxy Server"));
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("Print-server", PrinterServer.class, "Printer Server"));
+		this.add(makeImageIcon("Printer Server", PrinterServer.class,
+				"Printer Server"));
 
 		this.add(new JToolBar.Separator());
 
@@ -149,16 +157,17 @@ public class ObjectSelection extends JPanel
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("MultifunctionPrinter", MultifunctionPrinter.class, "MultifunctionPrinter"));
+		this.add(makeImageIcon("MFP", MultifunctionPrinter.class, "MFP"));
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("NetworkPrinter", NetworkPrinter.class, "Network Printer"));
+		this.add(makeImageIcon("Network Printer", NetworkPrinter.class,
+				"Network Printer"));
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("NetworkMultifunctionPrinter", NetworkMultifunctionPrinter.class,
-				"Network MultifunctionPrinter"));
+		this.add(makeImageIcon("Network MFP",
+				NetworkMultifunctionPrinter.class, "Network MFP"));
 
 		this.add(new JToolBar.Separator());
 
@@ -181,7 +190,8 @@ public class ObjectSelection extends JPanel
 
 		this.add(new JToolBar.Separator());
 
-		this.add(makeImageIcon("WirelessRouter", WirelessRouter.class, "Wireless Router"));
+		this.add(makeImageIcon("Wireless Router", WirelessRouter.class,
+				"Wireless Router"));
 
 		this.add(new JToolBar.Separator());
 
@@ -198,7 +208,19 @@ public class ObjectSelection extends JPanel
 	private WidgetIcon makeImageIcon(String name, Class objectType, String text)
 	{
 		ImageIcon Icon = ImageLocator.getImageIconObject(name);
-		WidgetIcon iconButton = new WidgetIcon(Icon, objectType, text);
+
+		WidgetIcon iconButton = null;
+
+		try
+		{
+			iconButton = new WidgetIcon(Icon, objectType, text);
+		}
+		catch ( Exception e )
+		{
+			System.out.println("NullPointerException" + " - " + name + "\n\n");
+			System.exit(0);
+		}
+
 
 		// Sets up the WidgetIcon
 		GraphicalFunctions.widgetIconSetup(iconButton);

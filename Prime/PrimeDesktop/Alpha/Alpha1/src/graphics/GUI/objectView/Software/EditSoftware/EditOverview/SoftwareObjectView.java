@@ -1,6 +1,7 @@
 package graphics.GUI.objectView.Software.EditSoftware.EditOverview;
 
 
+import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.GUI.objectView.Software.NewSoftware.NewOverview.NewSoftwareChoice;
 
@@ -61,8 +62,9 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 
 
 	/**
-	 * Creates and places JPanels with some information about the internal components of the given object. It packs the
-	 * JPanel and places them two in a row.
+	 * Creates and places JPanels with some information about the internal
+	 * components of the given object. It packs the JPanel and places them two
+	 * in a row.
 	 * 
 	 * @param obj
 	 */
@@ -98,7 +100,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 			{
 				if ( swObj[i] instanceof Antivirus )
 				{
-					temp = ImageLocator.getImageIconObject("Antivirus-Software");
+					temp = ImageLocator
+							.getImageIconObject("Antivirus-Software");
 
 					Antivirus antiVirusObj = (Antivirus) swObj[i];
 
@@ -123,7 +126,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					{
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(d);
-						info[2] = "Expires: " + Calendar.DAY_OF_MONTH + "/" + Calendar.MONTH + "/" + Calendar.YEAR;
+						info[2] = "Expires: " + Calendar.DAY_OF_MONTH + "/"
+								+ Calendar.MONTH + "/" + Calendar.YEAR;
 					}
 
 					text = antiVirusObj.getDescription();
@@ -250,7 +254,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof OfficeSuite )
 				{
-					temp = ImageLocator.getImageIconObject("OfficeSuite-Software");
+					temp = ImageLocator
+							.getImageIconObject("OfficeSuite-Software");
 
 					OfficeSuite OffSuitObj = (OfficeSuite) swObj[i];
 
@@ -278,7 +283,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof OperatingSystem )
 				{
-					temp = ImageLocator.getImageIconObject("OperatingSystem-Software");
+					temp = ImageLocator
+							.getImageIconObject("OperatingSystem-Software");
 
 					OperatingSystem OSObj = (OperatingSystem) swObj[i];
 
@@ -336,7 +342,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof SecuritySuite )
 				{
-					temp = ImageLocator.getImageIconObject("SecuritySuite-Software");
+					temp = ImageLocator
+							.getImageIconObject("SecuritySuite-Software");
 
 					SecuritySuite secSuiteObj = (SecuritySuite) swObj[i];
 
@@ -365,7 +372,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof Webserver )
 				{
-					temp = ImageLocator.getImageIconObject("Webserver-Software");
+					temp = ImageLocator
+							.getImageIconObject("Webserver-Software");
 
 					Webserver webServObj = (Webserver) swObj[i];
 
@@ -412,8 +420,9 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 			}
 		}
 		/**
-		 * Creates empty JPanels and adds them to the main panel until there are 8 panels in the main panel. This is
-		 * done so that the panels that actually have content will be placed correctly.
+		 * Creates empty JPanels and adds them to the main panel until there are
+		 * 8 panels in the main panel. This is done so that the panels that
+		 * actually have content will be placed correctly.
 		 */
 		while ( swCount < 8 )
 		{
@@ -490,7 +499,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 			JPanel note = new JPanel();
 			note.setLayout(new FlowLayout(FlowLayout.LEADING));
 
-			JLabel text = new JLabel("You can currently not add software to infrastructure or peripherals.");
+			JLabel text = new JLabel(
+					"You can currently not add software to infrastructure or peripherals.");
 			note.add(text);
 
 			this.add(note, d);
@@ -503,13 +513,15 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 
 
 	/**
-	 * Creates a JPanel and adds the given Icon and Strings. The strings are place vertical.
+	 * Creates a JPanel and adds the given Icon and Strings. The strings are
+	 * place vertical.
 	 * 
 	 * @param texts
 	 *            The strings with the information about the Hardware component.
 	 * @param icon
 	 *            The ImageIcon that will represent the Hardware component.
-	 * @return Returns a JPanel with both the ImageIcon and the hardware information.
+	 * @return Returns a JPanel with both the ImageIcon and the hardware
+	 *         information.
 	 */
 	public static JPanel createSoftwareJPanel(String[] texts, ImageIcon icon)
 	{
@@ -553,7 +565,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 		{
 			if ( texts[i] != null )
 			{
-				JLabel text = new JLabel(texts[i]);
+				JLabel text = new JLabel(GraphicalFunctions
+						.verifyDescriptionLength(texts[i]));
 				// text.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				panel.add(text, d);
 				d.gridy++;
@@ -563,7 +576,6 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 
 		return panel;
 	}
-
 
 
 
@@ -586,9 +598,10 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 
 
 	/**
-	 * This method removes all the JPanels showing the components information and then creates them again with the
-	 * current information. This method is used when hardware information is changed or a component is added or removed.
-	 * It also calls the update function in the Hardware Editor view.
+	 * This method removes all the JPanels showing the components information
+	 * and then creates them again with the current information. This method is
+	 * used when hardware information is changed or a component is added or
+	 * removed. It also calls the update function in the Hardware Editor view.
 	 */
 	public void updateTabInfo()
 	{

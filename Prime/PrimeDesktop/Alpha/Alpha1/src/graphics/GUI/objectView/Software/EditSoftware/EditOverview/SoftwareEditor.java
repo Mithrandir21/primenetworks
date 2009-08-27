@@ -11,12 +11,12 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -95,7 +95,8 @@ public class SoftwareEditor extends JFrame implements ActionListener
 
 		c.add(panel);
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
+				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
@@ -103,8 +104,8 @@ public class SoftwareEditor extends JFrame implements ActionListener
 
 
 	/**
-	 * Creates a JPanel that shows an Icon representing the hardware object and two fields with the name and description
-	 * of the hardware object.
+	 * Creates a JPanel that shows an Icon representing the hardware object and
+	 * two fields with the name and description of the hardware object.
 	 * 
 	 * @param sw
 	 *            The actual hardware object.
@@ -114,9 +115,11 @@ public class SoftwareEditor extends JFrame implements ActionListener
 	 *            A JTextField that will contain the name of the object.
 	 * @param desc
 	 *            A JTextArea that holds the description of the object.
-	 * @return Returns the created JPanel with all the information about the hardware object.
+	 * @return Returns the created JPanel with all the information about the
+	 *         hardware object.
 	 */
-	public static JPanel GeneralInfo(Software sw, ImageIcon icon, JTextField name, JTextArea desc)
+	public static JPanel GeneralInfo(Software sw, ImageIcon icon,
+			JTextField name, JTextArea desc)
 	{
 		JPanel genPanel = new JPanel();
 		genPanel.setLayout(new GridBagLayout());
@@ -189,11 +192,14 @@ public class SoftwareEditor extends JFrame implements ActionListener
 		d.gridheight = 1;
 		d.anchor = GridBagConstraints.LINE_START;
 
+		// Description
+		JScrollPane descScroll = new JScrollPane();
 		desc.setName("Description");
-		desc.setBorder(BorderFactory.createEtchedBorder());
 		desc.setText(sw.getDescription());
 		desc.setFont(t.getFont());
-		genPanel.add(desc, d);
+		descScroll.setViewportView(desc);
+
+		genPanel.add(descScroll, d);
 
 
 		return genPanel;
@@ -227,8 +233,9 @@ public class SoftwareEditor extends JFrame implements ActionListener
 
 
 	/**
-	 * This function is used for when software information is changed or when a component is added or removed from an
-	 * object. It redraws the views that show all current software information.
+	 * This function is used for when software information is changed or when a
+	 * component is added or removed from an object. It redraws the views that
+	 * show all current software information.
 	 */
 	public void SoftwarePanelRevalidate()
 	{

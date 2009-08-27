@@ -4,6 +4,7 @@
 package objects.peripheralObjects;
 
 
+import objects.hardwareObjects.Motherboard;
 import widgetManipulation.WidgetNetworkInfo;
 
 
@@ -11,7 +12,6 @@ import widgetManipulation.WidgetNetworkInfo;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class NetworkMultifunctionPrinter extends MultifunctionPrinter
 {
@@ -26,10 +26,32 @@ public class NetworkMultifunctionPrinter extends MultifunctionPrinter
 	 * @param Desc
 	 * @param MFPConnectionInterfaces
 	 */
-	public NetworkMultifunctionPrinter(String Name, String Desc, String[] MFPConnectionInterfaces)
+	public NetworkMultifunctionPrinter(String Name, String Desc,
+			String[] MFPConnectionInterfaces)
 	{
 		super(Name, Desc, MFPConnectionInterfaces);
 	}
+
+
+
+	/**
+	 * Constructor of the MFP class.
+	 * 
+	 * @param Name
+	 *            The name of the MFP.
+	 * @param Desc
+	 *            The description of the MFP.
+	 * @param MFPConnectionInterfaces
+	 *            Connection interfaces supported by a MFP. A array of Strings.
+	 * @param objectMB
+	 *            The {@link Motherboard} of the object.
+	 */
+	public NetworkMultifunctionPrinter(String Name, String Desc,
+			String[] MFPConnectionInterfaces, Motherboard objectMB)
+	{
+		super(Name, Desc, MFPConnectionInterfaces, objectMB);
+	}
+
 
 
 

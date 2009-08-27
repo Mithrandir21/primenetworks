@@ -7,18 +7,15 @@ package widgets;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
+import javax.swing.JButton;
 
 
 /**
- * The WidgetIcon class represents an JLabel based icon that represents an {@link objects.Object
- * Object} within the system. This is a dragable object that can be dropped within the
- * {@link widgets.WorkareaCanvas Canvas}.
+ * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
  */
-public class WidgetIcon extends JLabel
+public class WidgetButton extends JButton
 {
 	/**
 	 * This represents the class type what the icon represents. Like
@@ -38,18 +35,16 @@ public class WidgetIcon extends JLabel
 
 
 
-
 	/**
-	 * A constructor that creates a JLabel icon with the given ImageIcon and sets the classType of
-	 * the represented {@link objects.Object Object}. The constructor also adds a mouseListener and
-	 * sets a transferhandler for the JLabel icon.
+	 * A constructor that creates a JButton icon with the given ImageIcon and sets the classType of
+	 * the represented {@link objects.Object Object}.
 	 * 
 	 * @param icon
 	 *            The icon that is to represent the {@link objects.Object Object}.
 	 * @param objectType
 	 *            The object class of the represented {@link objects.Object Object}.
 	 */
-	public WidgetIcon(ImageIcon icon, Class<?> objectType)
+	public WidgetButton(ImageIcon icon, Class<?> objectType)
 	{
 		super(icon);
 		img = icon.getImage();
@@ -59,18 +54,17 @@ public class WidgetIcon extends JLabel
 
 
 	/**
-	 * A constructor that creates a JLabel icon with the given ImageIcon, sets the classType of the
-	 * represented {@link objects.Object Object} and gives the JLabel icon a name. The constructor
-	 * also adds a mouseListener and sets a transferhandler for the JLabel icon.
+	 * A constructor that creates a JButton icon with the given ImageIcon, sets the classType of the
+	 * represented {@link objects.Object Object} and gives the JButton icon a name.
 	 * 
 	 * @param icon
 	 *            The icon that is to represent the {@link objects.Object Object}.
 	 * @param objectType
 	 *            The object class of the represented {@link objects.Object Object}.
 	 * @param name
-	 *            The name of the JLabel.
+	 *            The name of the JButton.
 	 */
-	public WidgetIcon(ImageIcon icon, Class<?> objectType, String name)
+	public WidgetButton(ImageIcon icon, Class<?> objectType, String name)
 	{
 		super(icon);
 		img = icon.getImage();
@@ -80,21 +74,20 @@ public class WidgetIcon extends JLabel
 
 
 	/**
-	 * A constructor that creates a JLabel icon with the given ImageIcon, sets the classType of the
-	 * represented {@link objects.Object Object}, gives the JLabel icon a name and sets a
-	 * description of the object representer. The constructor also adds a mouseListener and sets a
-	 * transferhandler for the JLabel icon.
+	 * A constructor that creates a JButton icon with the given ImageIcon, sets the classType of the
+	 * represented {@link objects.Object Object}, gives the JButton icon a name and sets a
+	 * description of the object representer.
 	 * 
 	 * @param icon
 	 *            The icon that is to represent the {@link objects.Object Object}.
 	 * @param objectType
 	 *            The object class of the represented {@link objects.Object Object}.
 	 * @param name
-	 *            The name of the JLabel.
+	 *            The name of the JButton.
 	 * @param desc
-	 *            The description of the represented
+	 *            The description of the represented.
 	 */
-	public WidgetIcon(ImageIcon icon, Class<?> objectType, String name,
+	public WidgetButton(ImageIcon icon, Class<?> objectType, String name,
 			String desc)
 	{
 		super(icon);
@@ -108,7 +101,7 @@ public class WidgetIcon extends JLabel
 	// GETTERS
 
 	/**
-	 * @return The class of the {@link objects.Object Object} that the JLabel icon represents.
+	 * @return The class of the {@link objects.Object Object} that the JButton icon represents.
 	 */
 	public Class<?> getClassType()
 	{
@@ -117,7 +110,8 @@ public class WidgetIcon extends JLabel
 
 
 	/**
-	 * @return The description of the {@link objects.Object Object} that the JLabel icon represents.
+	 * @return The description of the {@link objects.Object Object} that the JButton icon
+	 *         represents.
 	 */
 	public String getDescription()
 	{
@@ -127,7 +121,7 @@ public class WidgetIcon extends JLabel
 
 
 	/**
-	 * @return Returns the image that is shown as the JLabel icon.
+	 * @return Returns the image that is shown as the JButton icon.
 	 */
 	public Image getIconImage()
 	{

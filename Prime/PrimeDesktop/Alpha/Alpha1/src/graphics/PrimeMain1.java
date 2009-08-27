@@ -4,6 +4,7 @@
 package graphics;
 
 
+import graphics.GUI.CreateObjects;
 import graphics.GUI.menues.GenericPrimeMenuBar;
 import graphics.GUI.menues.GenericPrimeToolbar;
 import graphics.GUI.messageArea.MessageTabbed;
@@ -113,6 +114,9 @@ public class PrimeMain1 extends JFrame
 	// The variable for the object that is in view.
 	public static ArrayList<ObjectView> objView = new ArrayList<ObjectView>(1);
 
+	// The arraylist of the systems standard Objects
+	public static ArrayList<Object> objectlist = new ArrayList<Object>();
+
 	// FIXME - Change the way ObjectViews are handled
 
 
@@ -139,8 +143,7 @@ public class PrimeMain1 extends JFrame
 
 		if ( splash == null )
 		{
-			// System.out.println("SplashScreen.getSplashScreen() returned
-			// null");
+			// System.out.println("SplashScreen.getSplashScreen() returned null");
 		}
 		else
 		{
@@ -176,13 +179,31 @@ public class PrimeMain1 extends JFrame
 		standard_Image_Icons.getImageIcons();
 
 
+		// OBJECTS LIST
+		// If a file exist with the System Objects
+		if ( DesktopFileManagment.objectsFileExists() )
+		{
+			// Reads in the Objects
+			DesktopFileManagment.openObjectsFile();
+		}
+		else
+		{
+			// Creates new Standard Object
+			CreateObjects.createStandardObject();
+
+			// Creates a new Objects list file
+			DesktopFileManagment.saveObjectsFile();
+		}
+
+
 		// SETUP FOR THE OEVERALL GUI
 		// Get the content pane for this object
 		Container c = this.getContentPane();
 
 
 		/*
-		 * SETUP FOR THE toolbarPanel PANEL. This panel will contain all the toolbar buttons and icons.
+		 * SETUP FOR THE toolbarPanel PANEL. This panel will contain all the toolbar buttons and
+		 * icons.
 		 */
 		// Creates a new panel with a GridBagLayout.
 		toolbarPanel = new JPanel(new BorderLayout());
@@ -204,9 +225,10 @@ public class PrimeMain1 extends JFrame
 		// toolbarPanel.add(new JLabel("Toolbar"));
 
 		/*
-		 * SETUP FOR THE selectionPanel PANEL. This panel will contain all the selectable icons that can be places
-		 * within the workarea, like client, server or printer icons. This will also contain the Project selection tab,
-		 * where a user can pick different projects to work on in the workarea.
+		 * SETUP FOR THE selectionPanel PANEL. This panel will contain all the selectable icons that
+		 * can be places within the workarea, like client, server or printer icons. This will also
+		 * contain the Project selection tab, where a user can pick different projects to work on in
+		 * the workarea.
 		 */
 		// Creates a new panel with a GridBagLayout.
 		selectionPanel = new JPanel(new GridLayout());
@@ -228,8 +250,8 @@ public class PrimeMain1 extends JFrame
 
 
 		/*
-		 * SETUP FOR THE propertiesPanel PANEL. This panel will contain some, if not all, of the properties of the
-		 * selected object.
+		 * SETUP FOR THE propertiesPanel PANEL. This panel will contain some, if not all, of the
+		 * properties of the selected object.
 		 */
 		// Creates a new panel with a GridBagLayout.
 		propertiesPanel = new JPanel(new BorderLayout());
@@ -248,8 +270,9 @@ public class PrimeMain1 extends JFrame
 		// propertiesPanel.setPreferredSize(new Dimension(200,300));
 
 		/*
-		 * SETUP FOR THE messagesPanel PANEL. This panel will contain the errors, warnings, and suggestions tabs that
-		 * will give information to the user about different aspects of their network setup.
+		 * SETUP FOR THE messagesPanel PANEL. This panel will contain the errors, warnings, and
+		 * suggestions tabs that will give information to the user about different aspects of their
+		 * network setup.
 		 */
 		// Creates a new panel with a GridBagLayout.
 		// messagesPanel = new JPanel(new GridLayout(0,1));
@@ -271,8 +294,9 @@ public class PrimeMain1 extends JFrame
 
 
 		/*
-		 * SETUP FOR THE workareaPanel PANEL. This panel will contain the actual work area where all of the icons and
-		 * connection will be shown. This is where the "map" of the network will be.
+		 * SETUP FOR THE workareaPanel PANEL. This panel will contain the actual work area where all
+		 * of the icons and connection will be shown. This is where the "map" of the network will
+		 * be.
 		 */
 		// Creates a new panel with a GridBagLayout.
 		workareaPanel = new JPanel(new BorderLayout());
@@ -328,7 +352,6 @@ public class PrimeMain1 extends JFrame
 		// FileManagment.newWorkareaCanvas("New Network");
 	}
 
-
 	/**
 	 * The programs Main function.
 	 */
@@ -356,7 +379,8 @@ public class PrimeMain1 extends JFrame
 	{
 		try
 		{
-			XMLEncoder output = new XMLEncoder(new BufferedOutputStream(new FileOutputStream("PrimeLayoutModel.xml")));
+			XMLEncoder output = new XMLEncoder(new BufferedOutputStream(
+					new FileOutputStream("PrimeLayoutModel.xml")));
 
 			output.writeObject(multiSplitPane);
 			output.close();
@@ -374,7 +398,8 @@ public class PrimeMain1 extends JFrame
 	private void makeLayoutModel()
 	{
 		String layoutDef = "(COLUMN (LEAF name=toolbarLeaf) (ROW (LEAF name=selectionLeaf) "
-				+ "(COLUMN (ROW (LEAF name=workareaLeaf weight=0.6) " + "(LEAF name=propertiesLeaf weight=0.2) )"
+				+ "(COLUMN (ROW (LEAF name=workareaLeaf weight=0.6) "
+				+ "(LEAF name=propertiesLeaf weight=0.2) )"
 				+ "(LEAF name=messagesLeaf weight=1)  ) ) )";
 
 		// JOptionPane.showMessageDialog(null,"Error Loading layout Model.");
@@ -389,13 +414,15 @@ public class PrimeMain1 extends JFrame
 	private void LoadLayoutModel()
 	{
 		String layoutDef = "(COLUMN (LEAF name=toolbarLeaf) (ROW (LEAF name=selectionLeaf) "
-				+ "(COLUMN (ROW (LEAF name=workareaLeaf weight=0.6) " + "(LEAF name=propertiesLeaf weight=0.2) )"
+				+ "(COLUMN (ROW (LEAF name=workareaLeaf weight=0.6) "
+				+ "(LEAF name=propertiesLeaf weight=0.2) )"
 				+ "(LEAF name=messagesLeaf weight=1)  ) ) )";
 
 
 		try
 		{
-			XMLDecoder d = new XMLDecoder(new BufferedInputStream(new FileInputStream("PrimeLayoutModel.xml")));
+			XMLDecoder d = new XMLDecoder(new BufferedInputStream(
+					new FileInputStream("PrimeLayoutModel.xml")));
 
 
 			multiSplitPane = (JXMultiSplitPane) (d.readObject());
@@ -428,9 +455,8 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * This method calls on functions that update the programs JTree, which shows available {@link WorkareaCanvas
-	 * WorkareaCanvases}.
-	 * 
+	 * This method calls on functions that update the programs JTree, which shows available
+	 * {@link WorkareaCanvas WorkareaCanvases}.
 	 */
 	public static void updatePrimeTree()
 	{
@@ -444,14 +470,15 @@ public class PrimeMain1 extends JFrame
 	 * Updates the properties panel with information from the currently selected canvas.
 	 * 
 	 * @param override
-	 *            Whether or not the method should update the the properties area even if the {@link WorkareaCanvas}
-	 *            being shown has not be altered.
+	 *            Whether or not the method should update the the properties area even if the
+	 *            {@link WorkareaCanvas} being shown has not be altered.
 	 */
 	public static void updatePropertiesCanvasArea(boolean override)
 	{
 		PropertiesArea temp = (PropertiesArea) propertiesPanel.getComponent(0);
 
-		// If the method is to update the properties area regardless of whether or not the currently showing object
+		// If the method is to update the properties area regardless of whether
+		// or not the currently showing object
 		// is the same WorkareaCanvas
 		if ( override )
 		{
@@ -459,7 +486,8 @@ public class PrimeMain1 extends JFrame
 		}
 		else
 		{
-			// If the WorkareaCanvas shown in the properties area is not the same as the current WorkareaCanvas
+			// If the WorkareaCanvas shown in the properties area is not the
+			// same as the current WorkareaCanvas
 			if ( !(temp.isGivenCanvasCurrent(currentCanvas)) )
 			{
 				temp.newObjectSelectedPropertiesTab(currentCanvas);
@@ -473,14 +501,15 @@ public class PrimeMain1 extends JFrame
 	 * 
 	 * @param obj
 	 * @param override
-	 *            Whether or not the method should update the the properties area even if the {@link WorkareaCanvas}
-	 *            being shown has not be altered.
+	 *            Whether or not the method should update the the properties area even if the
+	 *            {@link WorkareaCanvas} being shown has not be altered.
 	 */
 	public static void updatePropertiesObjectArea(Object obj, boolean override)
 	{
 		PropertiesArea temp = (PropertiesArea) propertiesPanel.getComponent(0);
 
-		// If the method is to update the properties area regardless of whether or not the currently showing object
+		// If the method is to update the properties area regardless of whether
+		// or not the currently showing object
 		// is the same Object
 		if ( override )
 		{
@@ -488,7 +517,8 @@ public class PrimeMain1 extends JFrame
 		}
 		else
 		{
-			// If the WorkareaCanvas shown in the properties area is not the same as the current WorkareaCanvas
+			// If the WorkareaCanvas shown in the properties area is not the
+			// same as the current WorkareaCanvas
 			if ( !(temp.isGivenObjectCurrent(obj)) )
 			{
 				temp.newObjectSelectedPropertiesTab(obj);
@@ -500,9 +530,8 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * Thi method runs all update function. These include functions to update the canvas, properties panel and messages
-	 * panel.
-	 * 
+	 * Thi method runs all update function. These include functions to update the canvas, properties
+	 * panel and messages panel.
 	 */
 	public static void updateCanvasAndObjectInfo()
 	{
@@ -512,8 +541,8 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * Runs a check on all the objects on the current canvas and passed that information over to the JTable that shows¨
-	 * different errors, warnings and notices.
+	 * Runs a check on all the objects on the current canvas and passed that information over to the
+	 * JTable that shows¨ different errors, warnings and notices.
 	 */
 	public static void runCanvasObjectCheck()
 	{
@@ -522,7 +551,8 @@ public class PrimeMain1 extends JFrame
 		{
 			Object[] children = currentCanvas.getObjectsOnTheScene();
 
-			MessageTabbed msgTab = (MessageTabbed) messagesPanel.getComponent(0);
+			MessageTabbed msgTab = (MessageTabbed) messagesPanel
+					.getComponent(0);
 
 			msgTab.processAllObjects(children);
 		}
@@ -531,8 +561,8 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * Searches the object views that exist to find the given object as one of the views main object. If found that view
-	 * is returned.
+	 * Searches the object views that exist to find the given object as one of the views main
+	 * object. If found that view is returned.
 	 */
 	public static ObjectView getObjectView(Object obj)
 	{
@@ -577,8 +607,8 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * Sets the actual JPanel that contains the WorkareaTabbed where all the systems {@link WorkareaCanvas
-	 * WorkareaCanvases} area shown.
+	 * Sets the actual JPanel that contains the WorkareaTabbed where all the systems
+	 * {@link WorkareaCanvas WorkareaCanvases} area shown.
 	 */
 	public static void setWorkareaPanel(JPanel workareaPanel)
 	{
@@ -588,8 +618,8 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * Gets the actual JPanel that contains the WorkareaTabbed where all the systems {@link WorkareaCanvas
-	 * WorkareaCanvases} area shown.
+	 * Gets the actual JPanel that contains the WorkareaTabbed where all the systems
+	 * {@link WorkareaCanvas WorkareaCanvases} area shown.
 	 * 
 	 * @return workareaPanel the workareaPanel to get
 	 */
@@ -613,17 +643,20 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * This function is the systems Exit process. This will be called if a user wants to close the program. It will
-	 * check the {@link WorkareaCanvas WorkareaCanvases} in the system to check if any are altered and ask the user if
-	 * they wish to save those altered {@link WorkareaCanvas WorkareaCanvases}.
-	 * 
+	 * This function is the systems Exit process. This will be called if a user wants to close the
+	 * program. It will check the {@link WorkareaCanvas WorkareaCanvases} in the system to check if
+	 * any are altered and ask the user if they wish to save those altered {@link WorkareaCanvas
+	 * WorkareaCanvases}.
 	 */
 	private static void exitProcess()
 	{
 		// services.stopAll();
 
+		// Saves the systems Objects list
+		DesktopFileManagment.saveObjectsFile();
 
-		WorkareaCanvas[] changes = CanvasManagment.canvasesHaveChanged(canvases);
+		WorkareaCanvas[] changes = CanvasManagment
+				.canvasesHaveChanged(canvases);
 
 		// There were some canvases that were changed
 		if ( changes != null )
@@ -632,9 +665,12 @@ public class PrimeMain1 extends JFrame
 			String[] options = { "Save", "Dont save", "Cancel" };
 
 			// Asks the user whether or not to save
-			int answer = JOptionPane.showOptionDialog(null,
-					"There are Networks that have not been saved, do you want to save the Networks?", "Save",
-					JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE, null, options, null);
+			int answer = JOptionPane
+					.showOptionDialog(
+							null,
+							"There are Networks that have not been saved, do you want to save the Networks?",
+							"Save", JOptionPane.WARNING_MESSAGE,
+							JOptionPane.WARNING_MESSAGE, null, options, null);
 
 			// Save
 			if ( answer == 0 )

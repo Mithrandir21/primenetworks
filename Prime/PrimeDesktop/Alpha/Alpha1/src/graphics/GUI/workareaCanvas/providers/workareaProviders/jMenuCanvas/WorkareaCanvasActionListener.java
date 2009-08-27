@@ -7,7 +7,7 @@ package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas;
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
-import graphics.GUI.selectArea.CreateObjectDragged;
+import graphics.GUI.CreateObjects;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
 import java.awt.Point;
@@ -265,7 +265,7 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 
 				// Creates a new Object that will be added to the WidgetObject
-				newObject = new CreateObjectDragged()
+				newObject = new CreateObjects()
 						.CreateObject(newObjectIcon, canvas.getNumberOfWidgetsOnTheScene());
 
 				// Creates a new WidgetObject that will be added to the scene
