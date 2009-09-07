@@ -2,11 +2,14 @@ package managment;
 
 
 import java.awt.Component;
+import java.awt.Point;
 
 import javax.swing.JOptionPane;
 
 import logistical.cleanup;
+import objects.Hardware;
 import objects.Object;
+import objects.Software;
 import objects.hardwareObjects.CPU;
 import objects.hardwareObjects.Discdrive;
 import objects.hardwareObjects.ExternalNetworksCard;
@@ -21,10 +24,11 @@ import exceptions.ObjectNotFoundInArrayException;
 
 
 /**
- * Class that contains different function that add, remove and replace components from a given
- * array. It is used in the different parts of the program, specially
- * {@link objects.clientObjects.Desktop Desktops}, {@link objects.clientObjects.Laptop Laptops},
- * {@link objects.Servers Servers} and {@link objects.infrastructureObjects.Rack Racks}.
+ * Class that contains different function that add, remove and replace
+ * components from a given array. It is used in the different parts of the
+ * program, specially {@link objects.clientObjects.Desktop Desktops},
+ * {@link objects.clientObjects.Laptop Laptops}, {@link objects.Servers Servers}
+ * and {@link objects.infrastructureObjects.Rack Racks}.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -38,12 +42,13 @@ public class ComponentsManagment
 	 * @param NewComponents
 	 *            An array of new components.
 	 * @param componentCounter
-	 *            The counter that tells how many components are in the current components array.
+	 *            The counter that tells how many components are in the current
+	 *            components array.
 	 * @param components
 	 *            The current components list.
 	 * @throws Exception
-	 *             Throws an exception with a message which says that the component is already
-	 *             present.
+	 *             Throws an exception with a message which says that the
+	 *             component is already present.
 	 */
 	public static Object[] addComponents(Object[] NewComponents,
 			Object[] components, int componentCounter)
@@ -122,8 +127,8 @@ public class ComponentsManagment
 	 * @param components
 	 *            The current components list.
 	 * @throws Exception
-	 *             Throws an exception with a message which says that the component is already
-	 *             present.
+	 *             Throws an exception with a message which says that the
+	 *             component is already present.
 	 */
 	public static Object[] addComponent(Object NewComponent, Object[] components)
 	{
@@ -171,12 +176,14 @@ public class ComponentsManagment
 	 * @param ToBeRemoved
 	 *            Component to be removed.
 	 * @param componentCounter
-	 *            The counter that tells how many components are in the current components array.
+	 *            The counter that tells how many components are in the current
+	 *            components array.
 	 * @param components
 	 *            The current components list.
 	 * @throws ObjectNotFoundInArrayException
-	 *             Throws an exception which states that one or more of the object that to be
-	 *             removed do not exist in the components object they are trying to be removed from.
+	 *             Throws an exception which states that one or more of the
+	 *             object that to be removed do not exist in the components
+	 *             object they are trying to be removed from.
 	 */
 	public static Object[] removeComponents(Object[] ToBeRemoved,
 			Object[] components, int componentCounter)
@@ -259,14 +266,16 @@ public class ComponentsManagment
 	}
 
 	/**
-	 * Function for replacing a specific given component with a given new component.
+	 * Function for replacing a specific given component with a given new
+	 * component.
 	 * 
 	 * @param NewComponent
 	 *            The component to replace the previous one.
 	 * @param OldComponent
 	 *            The component to be replaced.
 	 * @param componentCounter
-	 *            The counter that tells how many components are in the current components array.
+	 *            The counter that tells how many components are in the current
+	 *            components array.
 	 * @param components
 	 *            The current components list.
 	 */
@@ -318,8 +327,9 @@ public class ComponentsManagment
 
 
 	/**
-	 * This method will remove any component with the given class from the component list of the
-	 * this classes object if the given Variable does not match the given newVariable.
+	 * This method will remove any component with the given class from the
+	 * component list of the this classes object if the given Variable does not
+	 * match the given newVariable.
 	 * 
 	 * @param componentClass
 	 *            The class of the components that might be removed.
@@ -328,7 +338,8 @@ public class ComponentsManagment
 	 * @param newVariable
 	 *            The editor variable that will be checked for differences.
 	 * @param mainObj
-	 *            The object that the objects with the given class will be removed from.
+	 *            The object that the objects with the given class will be
+	 *            removed from.
 	 */
 	public static void removeComponentFromObject(Class<?> componentClass,
 			String variable, String newVariable, Object mainObj)
@@ -379,9 +390,10 @@ public class ComponentsManagment
 
 	// COMPONENTS CHECKS
 	/**
-	 * This method process all the changes made to the software the object contains. It first finds
-	 * the motherboard of the given object and then calls all the other methods in this class to
-	 * validate the software for compatibility.
+	 * This method process all the changes made to the software the object
+	 * contains. It first finds the motherboard of the given object and then
+	 * calls all the other methods in this class to validate the software for
+	 * compatibility.
 	 * 
 	 * @param obj
 	 *            The object that contains the software which will be validated.
@@ -403,7 +415,8 @@ public class ComponentsManagment
 			e1.printStackTrace();
 		}
 
-		// FIXME - Fix the remove ports function where the mb has less ports then connected
+		// FIXME - Fix the remove ports function where the mb has less ports
+		// then connected
 		// System.out.println(mb.getMaxLANs());
 		// System.out.println(mb.getMaxIntegLANs());
 		// System.out.println(mb.getIntegLANPortsAvailable());
@@ -428,8 +441,8 @@ public class ComponentsManagment
 
 
 	/**
-	 * Checks compatibility of the any CPU component with the motherboard. Removes the ones that are
-	 * not compatible.
+	 * Checks compatibility of the any CPU component with the motherboard.
+	 * Removes the ones that are not compatible.
 	 */
 	public static void processCPUchanges(Motherboard mb, Object obj)
 	{
@@ -472,8 +485,8 @@ public class ComponentsManagment
 
 
 	/**
-	 * Checks compatibility of the any DicsDrive component with the motherboard. Removes the ones
-	 * that are not compatible.
+	 * Checks compatibility of the any DicsDrive component with the motherboard.
+	 * Removes the ones that are not compatible.
 	 */
 	public static void processDiscDriveChanges(Motherboard mb, Object obj)
 	{
@@ -515,8 +528,8 @@ public class ComponentsManagment
 
 
 	/**
-	 * Checks compatibility of the any ExternalNIC component with the motherboard. Removes the ones
-	 * that are not compatible.
+	 * Checks compatibility of the any ExternalNIC component with the
+	 * motherboard. Removes the ones that are not compatible.
 	 */
 	public static void processExternalNICchanges(Motherboard mb, Object obj)
 	{
@@ -552,8 +565,8 @@ public class ComponentsManagment
 
 
 	/**
-	 * Checks compatibility of the any InternalNIC component with the motherboard. Removes the ones
-	 * that are not compatible.
+	 * Checks compatibility of the any InternalNIC component with the
+	 * motherboard. Removes the ones that are not compatible.
 	 */
 	public static void processInternalNICchanges(Motherboard mb, Object obj)
 	{
@@ -597,8 +610,8 @@ public class ComponentsManagment
 
 
 	/**
-	 * Checks compatibility of the any GPU component with the motherboard. Removes the ones that are
-	 * not compatible.
+	 * Checks compatibility of the any GPU component with the motherboard.
+	 * Removes the ones that are not compatible.
 	 */
 	public static void processGPUchanges(Motherboard mb, Object obj)
 	{
@@ -638,8 +651,8 @@ public class ComponentsManagment
 
 
 	/**
-	 * Checks compatibility of the any HDD component with the motherboard. Removes the ones that are
-	 * not compatible.
+	 * Checks compatibility of the any HDD component with the motherboard.
+	 * Removes the ones that are not compatible.
 	 */
 	public static void processHDDchanges(Motherboard mb, Object obj)
 	{
@@ -681,8 +694,8 @@ public class ComponentsManagment
 
 
 	/**
-	 * Checks compatibility of the any RAM component with the motherboard. Removes the ones that are
-	 * not compatible.
+	 * Checks compatibility of the any RAM component with the motherboard.
+	 * Removes the ones that are not compatible.
 	 */
 	public static void processRAMchanges(Motherboard mb, Object obj)
 	{
@@ -726,20 +739,22 @@ public class ComponentsManagment
 
 
 	/**
-	 * Checks, and if possible, adds the given cpu to the components array of the given Object. The
-	 * checks consists of tests on whether or not the there are available sockets on the
-	 * motherboard.
+	 * Checks, and if possible, adds the given cpu to the components array of
+	 * the given Object. The checks consists of tests on whether or not the
+	 * there are available sockets on the motherboard.
 	 * 
 	 * @param mainObj
 	 *            The main object. (Like a desktop or a server).
 	 * @param mb
 	 *            The objects motherboard.
 	 * @param cpu
-	 *            The CPU that will be tested and, if possible, added to the object.
+	 *            The CPU that will be tested and, if possible, added to the
+	 *            object.
 	 * @param comp
-	 *            This will be the component that message to the user will be shown over.
-	 * @return Returns true or false based on whether or not the given CPU object is added to the
-	 *         main object.
+	 *            This will be the component that message to the user will be
+	 *            shown over.
+	 * @return Returns true or false based on whether or not the given CPU
+	 *         object is added to the main object.
 	 */
 	public static boolean processCPUmatch(Object mainObj, Motherboard mb,
 			CPU cpu, Component comp)
@@ -785,19 +800,22 @@ public class ComponentsManagment
 
 
 	/**
-	 * Checks, and if possible, adds the given ram to the components array of the given Object. The
-	 * checks consists of tests on whether or not the there are available ports on the motherboard.
+	 * Checks, and if possible, adds the given ram to the components array of
+	 * the given Object. The checks consists of tests on whether or not the
+	 * there are available ports on the motherboard.
 	 * 
 	 * @param mainObj
 	 *            The main object. (Like a desktop or a server).
 	 * @param mb
 	 *            The objects motherboard.
 	 * @param ram
-	 *            The RAM that will be tested and, if possible, added to the object.
+	 *            The RAM that will be tested and, if possible, added to the
+	 *            object.
 	 * @param comp
-	 *            This will be the component that message to the user will be shown over.
-	 * @return Returns true or false based on whether or not the given Ram object is added to the
-	 *         main object.
+	 *            This will be the component that message to the user will be
+	 *            shown over.
+	 * @return Returns true or false based on whether or not the given Ram
+	 *         object is added to the main object.
 	 */
 	public static boolean processRAMmatch(Object mainObj, Motherboard mb,
 			Ram ram, Component comp)
@@ -843,20 +861,22 @@ public class ComponentsManagment
 
 
 	/**
-	 * Checks, and if possible, adds the given harddisc to the components array of the given Object.
-	 * The checks consists of tests on whether or not the there are available ports on the
-	 * motherboard.
+	 * Checks, and if possible, adds the given harddisc to the components array
+	 * of the given Object. The checks consists of tests on whether or not the
+	 * there are available ports on the motherboard.
 	 * 
 	 * @param mainObj
 	 *            The main object. (Like a desktop or a server).
 	 * @param mb
 	 *            The objects motherboard.
 	 * @param hdd
-	 *            The HDD that will be tested and, if possible, added to the object.
+	 *            The HDD that will be tested and, if possible, added to the
+	 *            object.
 	 * @param comp
-	 *            This will be the component that message to the user will be shown over.
-	 * @return Returns true or false based on whether or not the given HDD object is added to the
-	 *         main object.
+	 *            This will be the component that message to the user will be
+	 *            shown over.
+	 * @return Returns true or false based on whether or not the given HDD
+	 *         object is added to the main object.
 	 */
 	public static boolean processHDDmatch(Object mainObj, Motherboard mb,
 			HDD hdd, Component comp)
@@ -903,20 +923,22 @@ public class ComponentsManagment
 
 
 	/**
-	 * Checks, and if possible, adds the given discdrive to the components array of the given
-	 * Object. The checks consists of tests on whether or not the there are available ports on the
-	 * motherboard.
+	 * Checks, and if possible, adds the given discdrive to the components array
+	 * of the given Object. The checks consists of tests on whether or not the
+	 * there are available ports on the motherboard.
 	 * 
 	 * @param mainObj
 	 *            The main object. (Like a desktop or a server).
 	 * @param mb
 	 *            The objects motherboard.
 	 * @param dics
-	 *            The Discdrive that will be tested and, if possible, added to the object.
+	 *            The Discdrive that will be tested and, if possible, added to
+	 *            the object.
 	 * @param comp
-	 *            This will be the component that message to the user will be shown over.
-	 * @return Returns true or false based on whether or not the given Discdrive object is added to
-	 *         the main object.
+	 *            This will be the component that message to the user will be
+	 *            shown over.
+	 * @return Returns true or false based on whether or not the given Discdrive
+	 *         object is added to the main object.
 	 */
 	public static boolean processDiscDrivematch(Object mainObj, Motherboard mb,
 			Discdrive dics, Component comp)
@@ -961,20 +983,22 @@ public class ComponentsManagment
 
 
 	/**
-	 * Checks, and if possible, adds the given graphicsCard to the components array of the given
-	 * Object. The checks consists of tests on whether or not the there are available ports on the
-	 * motherboard.
+	 * Checks, and if possible, adds the given graphicsCard to the components
+	 * array of the given Object. The checks consists of tests on whether or not
+	 * the there are available ports on the motherboard.
 	 * 
 	 * @param mainObj
 	 *            The main object. (Like a desktop or a server).
 	 * @param mb
 	 *            The objects motherboard.
 	 * @param GPU
-	 *            The GraphicsCard that will be tested and, if possible, added to the object.
+	 *            The GraphicsCard that will be tested and, if possible, added
+	 *            to the object.
 	 * @param comp
-	 *            This will be the component that message to the user will be shown over.
-	 * @return Returns true or false based on whether or not the given Ram object is added to the
-	 *         main object.
+	 *            This will be the component that message to the user will be
+	 *            shown over.
+	 * @return Returns true or false based on whether or not the given Ram
+	 *         object is added to the main object.
 	 */
 	public static boolean processGPUmatch(Object mainObj, Motherboard mb,
 			GraphicsCard GPU, Component comp)
@@ -1018,21 +1042,22 @@ public class ComponentsManagment
 
 
 	/**
-	 * Checks, and if possible, adds the given Internal Networks Card to the components array of the
-	 * given Object. The checks consists of tests on whether or not the there are available ports on
-	 * the motherboard.
+	 * Checks, and if possible, adds the given Internal Networks Card to the
+	 * components array of the given Object. The checks consists of tests on
+	 * whether or not the there are available ports on the motherboard.
 	 * 
 	 * @param mainObj
 	 *            The main object. (Like a desktop or a server).
 	 * @param mb
 	 *            The objects motherboard.
 	 * @param nic
-	 *            The Internal Networks Card that will be tested and, if possible, added to the
-	 *            object.
+	 *            The Internal Networks Card that will be tested and, if
+	 *            possible, added to the object.
 	 * @param comp
-	 *            This will be the component that message to the user will be shown over.
-	 * @return Returns true or false based on whether or not the given NIC object is added to the
-	 *         main object.
+	 *            This will be the component that message to the user will be
+	 *            shown over.
+	 * @return Returns true or false based on whether or not the given NIC
+	 *         object is added to the main object.
 	 */
 	public static boolean processInternalNICmatch(Object mainObj,
 			Motherboard mb, InternalNetworksCard nic, Component comp)
@@ -1062,21 +1087,22 @@ public class ComponentsManagment
 
 
 	/**
-	 * Checks, and if possible, adds the given External Networks Card to the components array of the
-	 * given Object. The checks consists of tests on whether or not the there are available ports on
-	 * the motherboard.
+	 * Checks, and if possible, adds the given External Networks Card to the
+	 * components array of the given Object. The checks consists of tests on
+	 * whether or not the there are available ports on the motherboard.
 	 * 
 	 * @param mainObj
 	 *            The main object. (Like a desktop or a server).
 	 * @param mb
 	 *            The objects motherboard.
 	 * @param nic
-	 *            The External Networks Card that will be tested and, if possible, added to the
-	 *            object.
+	 *            The External Networks Card that will be tested and, if
+	 *            possible, added to the object.
 	 * @param comp
-	 *            This will be the component that message to the user will be shown over.
-	 * @return Returns true or false based on whether or not the given NIC object is added to the
-	 *         main object.
+	 *            This will be the component that message to the user will be
+	 *            shown over.
+	 * @return Returns true or false based on whether or not the given NIC
+	 *         object is added to the main object.
 	 */
 	public static boolean processExternalNICmatch(Object mainObj,
 			Motherboard mb, ExternalNetworksCard nic, Component comp)
@@ -1111,16 +1137,18 @@ public class ComponentsManagment
 	// SEARCH FUNCTIONS
 
 	/**
-	 * Get specific components by searching for components with the give class type.
+	 * Get specific components by searching for components with the give class
+	 * type.
 	 * 
 	 * @return Returns an array of components that match with the given class.
 	 * @param componentCounter
-	 *            The counter that tells how many components are in the current components array.
+	 *            The counter that tells how many components are in the current
+	 *            components array.
 	 * @param components
 	 *            The current components list.
 	 * @throws ObjectNotFoundException
-	 *             Throws an exception which states that there were not objects found with the given
-	 *             class.
+	 *             Throws an exception which states that there were not objects
+	 *             found with the given class.
 	 */
 	@SuppressWarnings("unchecked")
 	public static boolean containsComponent(Class ComponentClass,
@@ -1142,8 +1170,8 @@ public class ComponentsManagment
 			if ( components[i] != null )
 			{
 				/*
-				 * If the given components class matches the present components class, it will be
-				 * added to the container
+				 * If the given components class matches the present components
+				 * class, it will be added to the container
 				 */
 				if ( components[i].getClass().equals(ComponentClass) )
 				{
@@ -1168,7 +1196,8 @@ public class ComponentsManagment
 
 	// CHECK FUNCTIONS
 	/**
-	 * Check function to determine whether or not the the given array contains the given object.
+	 * Check function to determine whether or not the the given array contains
+	 * the given object.
 	 * 
 	 * @param array
 	 *            The array that is to be checked.
@@ -1199,14 +1228,15 @@ public class ComponentsManagment
 
 
 	/**
-	 * Check function to determine whether or not the the given array contains any of the given
-	 * objects in the searchObjects array.
+	 * Check function to determine whether or not the the given array contains
+	 * any of the given objects in the searchObjects array.
 	 * 
 	 * @param array
 	 *            The array that is to be checked.
 	 * @param searchObjects
 	 *            The objects that is to be searched for.
-	 * @return The array of booleans that tells, by way of the index, which object are found.
+	 * @return The array of booleans that tells, by way of the index, which
+	 *         object are found.
 	 */
 	public static boolean[] arrayContains(Object[] array, Object[] searchObjects)
 	{
@@ -1240,14 +1270,17 @@ public class ComponentsManagment
 
 
 	/**
-	 * Finds and returns all the objects that are connected to the given object with the given
-	 * connection type. Returns an array of object with the connected object, if any are found.
+	 * Finds and returns all the objects that are connected to the given object
+	 * with the given connection type. Returns an array of object with the
+	 * connected object, if any are found.
 	 * 
 	 * @param connectedTo
-	 *            The object that will be examined for connections to other objects.
+	 *            The object that will be examined for connections to other
+	 *            objects.
 	 * @param conType
 	 *            The type of connection between the two objects.
-	 * @return Returns all the objects connected to the given object with the given connection type
+	 * @return Returns all the objects connected to the given object with the
+	 *         given connection type
 	 */
 	public static Object[] connectedToBy(Object connectedTo, String conType)
 	{
@@ -1341,10 +1374,12 @@ public class ComponentsManagment
 
 
 	/**
-	 * Determines and returns the supported interfaces depending on the hardware on the object.
+	 * Determines and returns the supported interfaces depending on the hardware
+	 * on the object.
 	 * 
 	 * @param obj
-	 *            The {@link Object} where supported interfaces are going to be searched for.
+	 *            The {@link Object} where supported interfaces are going to be
+	 *            searched for.
 	 * @return The interfaces supported by the given {@link Object}.
 	 */
 	public static String[] getSupportedInterfaces(Object obj)
@@ -1425,6 +1460,72 @@ public class ComponentsManagment
 		interfaces = cleanup.cleanObjectArray(interfaces);
 
 		return interfaces;
+	}
+
+
+
+
+
+	/**
+	 * This method does a deep copy of the given {@link Object}. It clones the
+	 * given object, doing a "shallow" clone first. It then goes through the
+	 * {@link Hardware} and {@link Software} arrays inside the given
+	 * {@link Object} and clones each array index individually. It then places
+	 * the newly cloned hardware/software objects into a new array and places
+	 * those arrays into the the clone of the given object. The x and y
+	 * locations of the object is also added to by 30 each.
+	 */
+	public static Object deepObjectCopy(Object copyFrom)
+	{
+		Object copyTo = copyFrom.clone();
+
+		// --------------------------------------------------
+
+		// Copies the components to a new array
+		Object[] oldComponents = copyFrom.getComponents();
+		Object[] newComponents = new Object[oldComponents.length];
+
+		if ( oldComponents[0] != null )
+		{
+			for ( int i = 0; i < oldComponents.length; i++ )
+			{
+				newComponents[i] = oldComponents[i].clone();
+			}
+		}
+
+		// Copies the components of the copyFrom object to copyTo object
+		copyTo.setAllComponents(newComponents);
+
+		// --------------------------------------------------
+
+		// Copies the software to a new array
+		Software[] oldSoftware = copyFrom.getSoftware();
+		Software[] newSoftware = new Software[oldSoftware.length];
+
+
+		if ( oldSoftware[0] != null )
+		{
+			for ( int i = 0; i < oldSoftware.length; i++ )
+			{
+				newSoftware[i] = (Software) oldSoftware[i].clone();
+			}
+		}
+
+		// Copies the software of the copyFrom object to copyTo object
+		copyTo.setSoftware(newSoftware);
+
+		// --------------------------------------------------
+
+		if ( copyFrom.getLocation() != null )
+		{
+			Point newLocation = new Point(copyFrom.getLocation().x + 30,
+					copyFrom.getLocation().y + 30);
+			copyTo.setLocation(newLocation);
+		}
+
+		// --------------------------------------------------
+
+		return copyTo;
 	}
 
 }

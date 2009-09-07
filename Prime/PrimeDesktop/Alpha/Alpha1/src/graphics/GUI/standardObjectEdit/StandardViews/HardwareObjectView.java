@@ -33,10 +33,10 @@ import objects.hardwareObjects.Ram;
 
 
 /**
- * This class extends the JPanel class and contains methods to create smaller JPanel that are placed
- * inside this JPanel which show information about the internal components of any object in the
- * system. It also is the place the one can open a HardwareEditor JFrame to edit the hardware
- * information.
+ * This class extends the JPanel class and contains methods to create smaller
+ * JPanel that are placed inside this JPanel which show information about the
+ * internal components of any object in the system. It also is the place the one
+ * can open a HardwareEditor JFrame to edit the hardware information.
  * 
  * @author Bahram Malaekeh
  */
@@ -60,8 +60,9 @@ public class HardwareObjectView extends JPanel implements ActionListener
 
 
 	/**
-	 * Creates and places JPanels with some information about the internal components of the given
-	 * object. It packs the JPanel and places them two in a row.
+	 * Creates and places JPanels with some information about the internal
+	 * components of the given object. It packs the JPanel and places them two
+	 * in a row.
 	 * 
 	 * @param obj
 	 */
@@ -433,9 +434,9 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		}
 
 		/**
-		 * Creates empty JPanels and adds them to the main panel until there are 8 panels in the
-		 * main panel. This is done so that the panels that actually have content will be placed
-		 * correctly.
+		 * Creates empty JPanels and adds them to the main panel until there are
+		 * 8 panels in the main panel. This is done so that the panels that
+		 * actually have content will be placed correctly.
 		 */
 		while ( hwCount < 8 )
 		{
@@ -527,13 +528,15 @@ public class HardwareObjectView extends JPanel implements ActionListener
 
 
 	/**
-	 * Creates a JPanel and adds the given Icon and Strings. The strings are place vertical.
+	 * Creates a JPanel and adds the given Icon and Strings. The strings are
+	 * place vertical.
 	 * 
 	 * @param texts
 	 *            The strings with the information about the Hardware component.
 	 * @param icon
 	 *            The ImageIcon that will represent the Hardware component.
-	 * @return Returns a JPanel with both the ImageIcon and the hardware information.
+	 * @return Returns a JPanel with both the ImageIcon and the hardware
+	 *         information.
 	 */
 	public static JPanel createHardwareJPanel(String[] texts, ImageIcon icon)
 	{
@@ -604,7 +607,8 @@ public class HardwareObjectView extends JPanel implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -622,10 +626,10 @@ public class HardwareObjectView extends JPanel implements ActionListener
 
 
 	/**
-	 * This method removes all the JPanels showing the components information and then creates them
-	 * again with the current information. This method is used when hardware information is changed
-	 * or a component is added or removed. It also calls the update function in the Hardware Editor
-	 * view.
+	 * This method removes all the JPanels showing the components information
+	 * and then creates them again with the current information. This method is
+	 * used when hardware information is changed or a component is added or
+	 * removed. It also calls the update function in the Hardware Editor view.
 	 */
 	public void updateTabInfo()
 	{

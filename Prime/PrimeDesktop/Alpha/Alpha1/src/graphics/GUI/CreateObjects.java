@@ -38,26 +38,26 @@ import widgets.WidgetIcon;
 
 
 /**
- * A class that contains only one public method that returns an object based on the given
- * {@link widgets.WidgetIcon WidgetIcon}.
+ * A class that contains only one public method that returns an object based on
+ * the given {@link widgets.WidgetIcon WidgetIcon}.
  * 
  * @author Bahram Malaekeh
  */
 public class CreateObjects
 {
 
-	private static Object[] st_components = new Object[5];
-
-	private static Software[] st_software = new Software[1];
+	// private static Software[] st_software = new Software[1];
 
 
 	/**
-	 * Creates and returns an object based on the {@link widgets.WidgetIcon WidgetIcon} classType.
-	 * The object created is a standard object with very little extra information.
+	 * Creates and returns an object based on the {@link widgets.WidgetIcon
+	 * WidgetIcon} classType. The object created is a standard object with very
+	 * little extra information.
 	 * 
 	 * @param iconObject
-	 *            The {@link widgets.WidgetIcon WidgetIcon} that contains the calssTypethats is the
-	 *            basis for the creation of the return object.
+	 *            The {@link widgets.WidgetIcon WidgetIcon} that contains the
+	 *            calssTypethats is the basis for the creation of the return
+	 *            object.
 	 * @return Object The newly created standard object.
 	 */
 	public Object CreateObject(WidgetIcon iconObject,
@@ -67,342 +67,121 @@ public class CreateObjects
 		String objectType = iconObject.getClassType().getName();
 		String desc = iconObject.getDescription();
 
-		if ( objectType.equals("objects.clientObjects.Desktop") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
 
-			}
-			catch ( ObjectNotFoundException e )
+		try
+		{
+			// Gets the object in the given ArrayList with the given class
+			newObject = ArrayManagment.getSpesificComponent(iconObject
+					.getClassType(), PrimeMain1.objectlist);
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			if ( objectType.equals("objects.clientObjects.Desktop") )
 			{
-				// If the Object with the given class was not found in the arraylist
 				newObject = createDefaultDesktop(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-
-
-		}
-		else if ( objectType.equals("objects.clientObjects.Laptop") )
-		{
-			try
+			else if ( objectType.equals("objects.clientObjects.Laptop") )
 			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-			}
-			catch ( ObjectNotFoundException e )
-			{
-				// If the Object with the given class was not found in the arraylist
 				newObject = createDefaultLaptop(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.clientObjects.ThinClient") )
-		{
-			try
+			else if ( objectType.equals("objects.clientObjects.ThinClient") )
 			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-			}
-			catch ( ObjectNotFoundException e )
-			{
-				// If the Object with the given class was not found in the arraylist
 				newObject = createDefaultThinClient(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.serverObjects.HTTPServer") )
-		{
-			try
+			else if ( objectType.equals("objects.serverObjects.HTTPServer") )
 			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
-			{
-				// If the Object with the given class was not found in the arraylist
 				newObject = createDefaultHTTPServer(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.serverObjects.BackupServer") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType.equals("objects.serverObjects.BackupServer") )
 			{
 				newObject = createDefaultBackupServer(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.serverObjects.MailServer") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType.equals("objects.serverObjects.MailServer") )
 			{
 				newObject = createDefaultMailServer(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.serverObjects.FirewallServer") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType.equals("objects.serverObjects.FirewallServer") )
 			{
 				newObject = createDefaultFirewallServer(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.serverObjects.ProxyServer") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType.equals("objects.serverObjects.ProxyServer") )
 			{
 				newObject = createDefaultProxyServer(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.serverObjects.PrinterServer") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType.equals("objects.serverObjects.PrinterServer") )
 			{
 				newObject = createDefaultPrinterServer(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.serverObjects.DatabaseServer") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType.equals("objects.serverObjects.DatabaseServer") )
 			{
 				newObject = createDefaultDatabaseServer(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.peripheralObjects.Scanner") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType.equals("objects.peripheralObjects.Scanner") )
 			{
 				newObject = createDefaultScanner(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.peripheralObjects.Printer") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType.equals("objects.peripheralObjects.Printer") )
 			{
 				newObject = createDefaultPrinter(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.peripheralObjects.Fax") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType.equals("objects.peripheralObjects.Fax") )
 			{
 				newObject = createDefaultFax(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType
-				.equals("objects.peripheralObjects.MultifunctionPrinter") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType
+					.equals("objects.peripheralObjects.MultifunctionPrinter") )
 			{
 				newObject = createDefaultMFP(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.peripheralObjects.NetworkPrinter") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType
+					.equals("objects.peripheralObjects.NetworkPrinter") )
 			{
 				newObject = createDefaultNetworkPrinter(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType
-				.equals("objects.peripheralObjects.NetworkMultifunctionPrinter") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType
+					.equals("objects.peripheralObjects.NetworkMultifunctionPrinter") )
 			{
 				newObject = createDefaultNetworkMFP(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.infrastructureObjects.Hub") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType.equals("objects.infrastructureObjects.Hub") )
 			{
 				newObject = createDefaultHub(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.infrastructureObjects.Switch") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType.equals("objects.infrastructureObjects.Switch") )
 			{
 				newObject = createDefaultSwitch(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.infrastructureObjects.Router") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType.equals("objects.infrastructureObjects.Router") )
 			{
 				newObject = createDefaultRouter(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType
-				.equals("objects.infrastructureObjects.WirelessRouter") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType
+					.equals("objects.infrastructureObjects.WirelessRouter") )
 			{
 				newObject = createDefaultWirelessRouter(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
-		}
-		else if ( objectType.equals("objects.infrastructureObjects.Internet") )
-		{
-			try
-			{
-				newObject = ArrayManagment.getSpesificComponent(iconObject
-						.getClassType(), PrimeMain1.objectlist);
-
-			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType
+					.equals("objects.infrastructureObjects.Internet") )
 			{
 				newObject = createDefaultInternet(desc);
-				newObject.setObjectName(newObject.getObjectName()
-						+ numberOfWidgetsOnTheScene);
 			}
+
+			// Adds the numbers of Widgets on the canvas to the end of the
+			// object name.
+			newObject.setObjectName(newObject.getObjectName()
+					+ numberOfWidgetsOnTheScene);
 		}
 
-		return newObject;
+
+
+		return ComponentsManagment.deepObjectCopy(newObject);
 	}
-
-
 
 	/**
 	 * Creates all the system default objects.
 	 */
 	public static void createStandardObject()
 	{
-		createComponentsArray();
-		createSoftwareArray();
-
 		PrimeMain1.objectlist.add(createDefaultDesktop(""));
 		PrimeMain1.objectlist.add(createDefaultLaptop(""));
 		PrimeMain1.objectlist.add(createDefaultThinClient(""));
@@ -431,32 +210,40 @@ public class CreateObjects
 	/**
 	 * 
 	 */
-	private static void createComponentsArray()
+	private static Object[] createComponentsArray()
 	{
-		st_components[0] = PrimeMain1.standard_internal_components.getSt_MB();
+		Object[] components = new Object[5];
 
-		Motherboard mb = (Motherboard) st_components[0];
+		components[0] = PrimeMain1.standard_internal_components.getSt_MB();
+
+		Motherboard mb = (Motherboard) components[0];
 
 		mb.makeOneCPUportTaken();
 		mb.makeOneRAMportTaken();
 		mb.makeOneDUCportTaken();// For the CPU
 		mb.makeOneDUCportTaken();// For the HDD
 
-		st_components[0] = mb;
-		st_components[1] = PrimeMain1.standard_internal_components.getSt_CPU();
-		st_components[2] = PrimeMain1.standard_internal_components.getSt_RAM();
-		st_components[3] = PrimeMain1.standard_internal_components.getSt_HDD();
-		st_components[4] = PrimeMain1.standard_internal_components
-				.getSt_DVDRW();
+		components[0] = mb;
+		components[1] = PrimeMain1.standard_internal_components.getSt_CPU();
+		components[2] = PrimeMain1.standard_internal_components.getSt_RAM();
+		components[3] = PrimeMain1.standard_internal_components.getSt_HDD();
+		components[4] = PrimeMain1.standard_internal_components.getSt_DVDRW();
+
+
+		return components;
 	}
 
 
 	/**
 	 * 
 	 */
-	private static void createSoftwareArray()
+	private static Software[] createSoftwareArray()
 	{
+		Software[] st_software = new Software[1];
 		st_software[0] = PrimeMain1.standard_software.getSt_OS();
+
+
+		return st_software;
 	}
 
 
@@ -471,7 +258,8 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
-		Desktop temp = new Desktop(objectName, objectDesc, st_components);
+		Desktop temp = new Desktop(objectName, objectDesc,
+				createComponentsArray());
 
 		String[] supportedConnectionInterfaces = ComponentsManagment
 				.getSupportedInterfaces(temp);
@@ -480,7 +268,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(st_software);
+		temp.setSoftware(createSoftwareArray());
 
 		return temp;
 	}
@@ -501,7 +289,8 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
-		Laptop temp = new Laptop(objectName, objectDesc, st_components);
+		Laptop temp = new Laptop(objectName, objectDesc,
+				createComponentsArray());
 
 		// Internal Wireless NIC
 		InternalNetworksCard intNIC = PrimeMain1.standard_internal_components
@@ -518,7 +307,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(st_software);
+		temp.setSoftware(createSoftwareArray());
 
 		return temp;
 	}
@@ -534,6 +323,8 @@ public class CreateObjects
 		{
 			objectDesc = objectName;
 		}
+
+		Object[] st_components = createComponentsArray();
 
 
 		Object[] st_componentsWithOutHDD = null;
@@ -563,7 +354,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(st_software);
+		temp.setSoftware(createSoftwareArray());
 
 		return temp;
 	}
@@ -584,6 +375,10 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
+		Object[] st_components = createComponentsArray();
+
+
+
 		Motherboard serverMB = (Motherboard) st_components[0];
 		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
@@ -599,7 +394,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(st_software);
+		temp.setSoftware(createSoftwareArray());
 
 		return temp;
 	}
@@ -621,6 +416,9 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
+		Object[] st_components = createComponentsArray();
+
+
 		Motherboard serverMB = (Motherboard) st_components[0];
 		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
@@ -636,7 +434,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(st_software);
+		temp.setSoftware(createSoftwareArray());
 
 		return temp;
 	}
@@ -657,6 +455,9 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
+		Object[] st_components = createComponentsArray();
+
+
 		Motherboard serverMB = (Motherboard) st_components[0];
 		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
@@ -672,7 +473,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(st_software);
+		temp.setSoftware(createSoftwareArray());
 
 		return temp;
 	}
@@ -693,6 +494,9 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
+		Object[] st_components = createComponentsArray();
+
+
 		Motherboard serverMB = (Motherboard) st_components[0];
 		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
@@ -708,7 +512,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(st_software);
+		temp.setSoftware(createSoftwareArray());
 
 		return temp;
 	}
@@ -729,6 +533,9 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
+		Object[] st_components = createComponentsArray();
+
+
 		Motherboard serverMB = (Motherboard) st_components[0];
 		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
@@ -743,7 +550,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(st_software);
+		temp.setSoftware(createSoftwareArray());
 
 		return temp;
 	}
@@ -764,6 +571,9 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
+		Object[] st_components = createComponentsArray();
+
+
 		Motherboard serverMB = (Motherboard) st_components[0];
 		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
@@ -777,7 +587,7 @@ public class CreateObjects
 
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
-		temp.setSoftware(st_software);
+		temp.setSoftware(createSoftwareArray());
 
 		return temp;
 	}
@@ -798,6 +608,9 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
+		Object[] st_components = createComponentsArray();
+
+
 		Motherboard serverMB = (Motherboard) st_components[0];
 		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
@@ -811,7 +624,7 @@ public class CreateObjects
 
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
-		temp.setSoftware(st_software);
+		temp.setSoftware(createSoftwareArray());
 
 		return temp;
 	}

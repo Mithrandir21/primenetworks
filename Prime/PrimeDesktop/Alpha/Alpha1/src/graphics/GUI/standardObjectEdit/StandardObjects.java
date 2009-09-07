@@ -98,7 +98,8 @@ public class StandardObjects extends JFrame implements ActionListener
 
 		this.setSize(size);
 		this.setLocation(initXLocation, initYLocation);
-		this.setMinimumSize(size);
+		this.setResizable(false);
+		
 		this.setVisible(true);
 	}
 

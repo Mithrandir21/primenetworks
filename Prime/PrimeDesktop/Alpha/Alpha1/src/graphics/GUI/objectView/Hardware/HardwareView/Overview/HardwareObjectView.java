@@ -417,7 +417,6 @@ public class HardwareObjectView extends JPanel implements ActionListener
 
 			hwCount++;
 
-
 			JPanel panel = createHardwareJPanel(info, temp);
 			panel.addMouseListener(new HardwareMouseListener(panel,
 					givenObject, hwObj[i]));
