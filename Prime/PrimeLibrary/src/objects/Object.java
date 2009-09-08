@@ -342,7 +342,7 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * Get spesific components by searching for components with the give class
+	 * Get specific components by searching for components with the give class
 	 * type.
 	 * 
 	 * @return Returns an array of components that match with the given class.
@@ -358,7 +358,7 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * Get spesific connceted device by searching for devices with the give
+	 * Get specific connected device by searching for devices with the give
 	 * class type.
 	 * 
 	 * @return Returns an array of connected devices that match with the given

@@ -17,13 +17,13 @@ import java.io.Serializable;
 public class Room implements Serializable
 {
 	// The name of the room
-	String roomName;
+	private String roomName;
 
 	// The top left corner location of the room
-	Point location;
+	private Point location;
 
 	// The bounds of the room, the size
-	Rectangle bounds;
+	private Rectangle bounds;
 
 
 

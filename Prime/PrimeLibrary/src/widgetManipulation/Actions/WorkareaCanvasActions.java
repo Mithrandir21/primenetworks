@@ -83,7 +83,6 @@ public class WorkareaCanvasActions
 			System.out.println("ActionCreateWidgetObject - IOException");
 		}
 
-
 		return newObject;
 	}
 

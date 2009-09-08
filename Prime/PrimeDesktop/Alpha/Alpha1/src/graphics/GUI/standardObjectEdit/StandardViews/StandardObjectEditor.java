@@ -6,6 +6,7 @@ package graphics.GUI.standardObjectEdit.StandardViews;
 
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditorTabbed;
+import graphics.GUI.standardObjectEdit.ObjectViewTabbed;
 
 import java.awt.Button;
 import java.awt.Component;
@@ -42,7 +43,7 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 {
 	private Object givenObject = null;
 
-	private HardwareEditorTabbed view;
+	private ObjectViewTabbed view;
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
@@ -183,7 +184,7 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
 
-		view = new HardwareEditorTabbed(obj);
+		view = new ObjectViewTabbed(obj);
 
 		panel.add(view);
 

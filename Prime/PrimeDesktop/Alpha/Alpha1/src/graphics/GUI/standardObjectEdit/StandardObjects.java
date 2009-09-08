@@ -114,9 +114,11 @@ public class StandardObjects extends JFrame implements ActionListener
 	{
 		if ( e.getActionCommand().equals("save") )
 		{
+			
 		}
 		else if ( e.getActionCommand().equals("apply") )
 		{
+			
 		}
 		else
 		{
