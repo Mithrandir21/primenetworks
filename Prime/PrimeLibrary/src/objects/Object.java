@@ -1263,8 +1263,8 @@ public abstract class Object implements Serializable, Cloneable
 
 	/**
 	 * This just calls the clone() method of the super class of all classes,
-	 * java.lang.Object. It is placed so that when cloned is called, there will
-	 * be no need to cast it to this class.
+	 * java.lang.Object. It is placed here so that when cloned is called, there
+	 * will be no need to cast it to this class.
 	 */
 	@Override
 	public Object clone()

@@ -33,11 +33,10 @@ import canvasManipulation.CanvasExporter.ZoomType;
 
 
 /**
- * This class contains two specific functions that exports the {@link Scene} of any {@link WorkareaCanvas} to a PNG or
- * JPG file.
+ * This class contains two specific functions that exports the {@link Scene} of
+ * any {@link WorkareaCanvas} to a PNG or JPG file.
  * 
  * @author krichard (extended by Bahram Malaekeh)
- * 
  */
 public class Canvas2Image
 {
@@ -55,6 +54,14 @@ public class Canvas2Image
 	private double scale;
 
 
+	/**
+	 * Constructor for this class.
+	 * 
+	 * @param scene
+	 *            The scene that is to be written out as an Image.
+	 * @param file
+	 *            The {@link File} the scene will be written out to.
+	 */
 	public Canvas2Image(Scene scene, File file)
 	{
 		this.scene = scene;
@@ -63,44 +70,53 @@ public class Canvas2Image
 
 
 	/**
-	 * Takes the Scene and writes an image file according to the constraints defined by the caller. This returns a
-	 * BufferedImage of the Scene even if the file can not be written.
+	 * Takes the Scene and writes an image file according to the constraints
+	 * defined by the caller. This returns a BufferedImage of the Scene even if
+	 * the file can not be written.
 	 * 
 	 * @param scene
 	 *            The Scene to be exported as an image.
 	 * @param file
-	 *            The file used to store the exported image. If null, then it is assumed that the raw image is to be
-	 *            returned only and not written to a file.
+	 *            The file used to store the exported image. If null, then it is
+	 *            assumed that the raw image is to be returned only and not
+	 *            written to a file.
 	 * @param SceneExporter
 	 *            .ImageType The image type to be exported for the image map.
 	 * @param SceneExporter
-	 *            .ZoomType Defines the strategy by which to set the exporting scale factor. Note that certain
-	 *            parameters are nullified by the choice of ZoomType. For instance, if ZoomType.CUSTOM_SIZE is not
-	 *            chosen, then the width and height parameters are not used.
+	 *            .ZoomType Defines the strategy by which to set the exporting
+	 *            scale factor. Note that certain parameters are nullified by
+	 *            the choice of ZoomType. For instance, if ZoomType.CUSTOM_SIZE
+	 *            is not chosen, then the width and height parameters are not
+	 *            used.
 	 * @param visibleAreaOnly
-	 *            Eliminates all zoom features. If true, the exported image will be a created from the visible area of
-	 *            the scene.
+	 *            Eliminates all zoom features. If true, the exported image will
+	 *            be a created from the visible area of the scene.
 	 * @param selectedOnly
-	 *            Create an image including only the objects selected on the scene. Note that this feature requires that
-	 *            the scene is an instance of an ObjectScene since it is the implementation that allows for object
-	 *            selection.
+	 *            Create an image including only the objects selected on the
+	 *            scene. Note that this feature requires that the scene is an
+	 *            instance of an ObjectScene since it is the implementation that
+	 *            allows for object selection.
 	 * @param quality
-	 *            And integer value between 0-100. This is for JPG images only. Parameter is not used if an image type
-	 *            other than jpg is selected.
+	 *            And integer value between 0-100. This is for JPG images only.
+	 *            Parameter is not used if an image type other than jpg is
+	 *            selected.
 	 * @param width
-	 *            Directly sets the horizontal dimension of the exported image. This is only used when the zoomType is
-	 *            ZoomType.CUSTOM_SIZE
+	 *            Directly sets the horizontal dimension of the exported image.
+	 *            This is only used when the zoomType is ZoomType.CUSTOM_SIZE
 	 * @param height
-	 *            Directly sets the vertical dimension of the exported image. This is only used when the zoomType is
-	 *            ZoomType.CUSTOM_SIZE.
+	 *            Directly sets the vertical dimension of the exported image.
+	 *            This is only used when the zoomType is ZoomType.CUSTOM_SIZE.
 	 * @param createImageMap
-	 *            If true, the necessary steps are taken to setup the sequential call to getSceneImageMapCoordinates.
+	 *            If true, the necessary steps are taken to setup the sequential
+	 *            call to getSceneImageMapCoordinates.
 	 * @return image The raw image that was written to the file.
 	 * @throws java.io.IOException
-	 *             If for some reason the file cannot be written, an IOExeption will be thrown.
+	 *             If for some reason the file cannot be written, an IOExeption
+	 *             will be thrown.
 	 */
-	public BufferedImage createImage(ImageType imageType, ZoomType zoomType, boolean visibleAreaOnly,
-			boolean selectedOnly, int quality, int width, int height, boolean createImageMap) throws IOException
+	public BufferedImage createImage(ImageType imageType, ZoomType zoomType,
+			boolean visibleAreaOnly, boolean selectedOnly, int quality,
+			int width, int height, boolean createImageMap) throws IOException
 	{
 		double _scale = scene.getZoomFactor();
 
@@ -118,7 +134,8 @@ public class Canvas2Image
 
 		if ( selectedOnly )
 		{
-			// in order to use getSelectedObject the scene must be an ObjectScene
+			// in order to use getSelectedObject the scene must be an
+			// ObjectScene
 			if ( scene instanceof ObjectScene )
 			{
 
@@ -153,10 +170,12 @@ public class Canvas2Image
 			case CUSTOM_SIZE:
 				_imageWidth = width;
 				_imageHeight = height;
-				_scale = Math.min((double) width / (double) sceneRec.width, (double) height / (double) sceneRec.height);
+				_scale = Math.min((double) width / (double) sceneRec.width,
+						(double) height / (double) sceneRec.height);
 				break;
 			case FIT_IN_WINDOW:
-				_scale = Math.min((double) viewRect.width / (double) sceneRec.width, (double) viewRect.height
+				_scale = Math.min((double) viewRect.width
+						/ (double) sceneRec.width, (double) viewRect.height
 						/ (double) sceneRec.height);
 				_imageWidth = (int) ((double) sceneRec.width * _scale);
 				_imageHeight = (int) ((double) sceneRec.height * _scale);
@@ -173,7 +192,8 @@ public class Canvas2Image
 			}
 		}
 
-		// Note that the field variable are being set to method local variable. This
+		// Note that the field variable are being set to method local variable.
+		// This
 		// is for the call to getSceneImageMapCoordinates that will come since
 		// createImageMap is true.
 		if ( createImageMap )
@@ -185,7 +205,8 @@ public class Canvas2Image
 		}
 
 
-		bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		bufferedImage = new BufferedImage(width, height,
+				BufferedImage.TYPE_INT_RGB);
 		g = bufferedImage.createGraphics();
 		g.translate(0, 0);
 		g.scale(_scale, _scale);
@@ -242,43 +263,53 @@ public class Canvas2Image
 
 
 	/**
-	 * Takes the Scene and writes an image file according to the constraints defined by the caller. This returns a
-	 * BufferedImage of the {@link Scene} even if the file can not be written. This function creates the image for the
-	 * entire {@link Scene}.
+	 * Takes the Scene and writes an image file according to the constraints
+	 * defined by the caller. This returns a BufferedImage of the {@link Scene}
+	 * even if the file can not be written. This function creates the image for
+	 * the entire {@link Scene}.
 	 * 
 	 * @param scene
 	 *            The Scene to be exported as an image.
 	 * @param file
-	 *            The file used to store the exported image. If null, then it is assumed that the raw image is to be
-	 *            returned only and not written to a file.
+	 *            The file used to store the exported image. If null, then it is
+	 *            assumed that the raw image is to be returned only and not
+	 *            written to a file.
 	 * @param SceneExporter
 	 *            .ImageType The image type to be exported for the image map.
 	 * @param SceneExporter
-	 *            .ZoomType Defines the strategy by which to set the exporting scale factor. Note that certain
-	 *            parameters are nullified by the choice of ZoomType. For instance, if ZoomType.CUSTOM_SIZE is not
-	 *            chosen, then the width and height parameters are not used.
+	 *            .ZoomType Defines the strategy by which to set the exporting
+	 *            scale factor. Note that certain parameters are nullified by
+	 *            the choice of ZoomType. For instance, if ZoomType.CUSTOM_SIZE
+	 *            is not chosen, then the width and height parameters are not
+	 *            used.
 	 * @param visibleAreaOnly
-	 *            Eliminates all zoom features. If true, the exported image will be a created from the visible area of
-	 *            the scene.
+	 *            Eliminates all zoom features. If true, the exported image will
+	 *            be a created from the visible area of the scene.
 	 * @param selectedOnly
-	 *            Create an image including only the objects selected on the scene. Note that this feature requires that
-	 *            the scene is an instance of an ObjectScene since it is the implementation that allows for object
-	 *            selection.
+	 *            Create an image including only the objects selected on the
+	 *            scene. Note that this feature requires that the scene is an
+	 *            instance of an ObjectScene since it is the implementation that
+	 *            allows for object selection.
 	 * @param quality
-	 *            And integer value between 0-100. This is for JPG images only. Parameter is not used if an image type
-	 *            other than jpg is selected.
+	 *            And integer value between 0-100. This is for JPG images only.
+	 *            Parameter is not used if an image type other than jpg is
+	 *            selected.
 	 * @param canvas
 	 *            The {@link WorkareaCanvas} that is to exported.
 	 * @param createImageMap
-	 *            If true, the necessary steps are taken to setup the sequential call to getSceneImageMapCoordinates.
+	 *            If true, the necessary steps are taken to setup the sequential
+	 *            call to getSceneImageMapCoordinates.
 	 * @return image The raw image that was written to the file.
 	 * @throws java.io.IOException
-	 *             If for some reason the file cannot be written, an IOExeption will be thrown.
+	 *             If for some reason the file cannot be written, an IOExeption
+	 *             will be thrown.
 	 */
-	public BufferedImage createImage(ImageType imageType, ZoomType zoomType, boolean visibleAreaOnly,
-			boolean selectedOnly, int quality, WorkareaCanvas canvas, boolean createImageMap) throws IOException
+	public BufferedImage createImage(ImageType imageType, ZoomType zoomType,
+			boolean visibleAreaOnly, boolean selectedOnly, int quality,
+			WorkareaCanvas canvas, boolean createImageMap) throws IOException
 	{
-		// Creates a rectangle with the starting point and the dimensions of the scene seleceted for export
+		// Creates a rectangle with the starting point and the dimensions of the
+		// scene seleceted for export
 		Rectangle rectangle = canvas.getScene().getClientArea();
 
 
@@ -298,7 +329,8 @@ public class Canvas2Image
 
 		if ( selectedOnly )
 		{
-			// in order to use getSelectedObject the scene must be an ObjectScene
+			// in order to use getSelectedObject the scene must be an
+			// ObjectScene
 			if ( scene instanceof ObjectScene )
 			{
 
@@ -333,11 +365,13 @@ public class Canvas2Image
 			case CUSTOM_SIZE:
 				_imageWidth = rectangle.width;
 				_imageHeight = rectangle.height;
-				_scale = Math.min((double) rectangle.width / (double) sceneRec.width, (double) rectangle.height
+				_scale = Math.min((double) rectangle.width
+						/ (double) sceneRec.width, (double) rectangle.height
 						/ (double) sceneRec.height);
 				break;
 			case FIT_IN_WINDOW:
-				_scale = Math.min((double) viewRect.width / (double) sceneRec.width, (double) viewRect.height
+				_scale = Math.min((double) viewRect.width
+						/ (double) sceneRec.width, (double) viewRect.height
 						/ (double) sceneRec.height);
 				_imageWidth = (int) ((double) sceneRec.width * _scale);
 				_imageHeight = (int) ((double) sceneRec.height * _scale);
@@ -354,7 +388,8 @@ public class Canvas2Image
 			}
 		}
 
-		// Note that the field variable are being set to method local variable. This
+		// Note that the field variable are being set to method local variable.
+		// This
 		// is for the call to getSceneImageMapCoordinates that will come since
 		// createImageMap is true.
 		if ( createImageMap )
@@ -366,9 +401,11 @@ public class Canvas2Image
 		}
 
 
-		bufferedImage = new BufferedImage(rectangle.width, rectangle.height, BufferedImage.TYPE_INT_RGB);
+		bufferedImage = new BufferedImage(rectangle.width, rectangle.height,
+				BufferedImage.TYPE_INT_RGB);
 		g = bufferedImage.createGraphics();
-		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+				RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		g.scale(_scale, _scale);
 		g.setColor(Color.WHITE);
 		g.fillRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
@@ -388,7 +425,8 @@ public class Canvas2Image
 			if ( file.exists() )
 			{
 				int answer = JOptionPane.showConfirmDialog(null,
-						"This file exists. Do you wish to overwrite the file?", "Confirm", JOptionPane.YES_NO_OPTION);
+						"This file exists. Do you wish to overwrite the file?",
+						"Confirm", JOptionPane.YES_NO_OPTION);
 
 				// The user has not pressed YES
 				if ( answer != 0 )
@@ -403,7 +441,8 @@ public class Canvas2Image
 
 				if ( imageType == ImageType.JPG )
 				{
-					Iterator<?> iter = ImageIO.getImageWritersByFormatName("jpg");
+					Iterator<?> iter = ImageIO
+							.getImageWritersByFormatName("jpg");
 					ImageWriter writer = (ImageWriter) iter.next();
 
 					ImageWriteParam iwp = writer.getDefaultWriteParam();

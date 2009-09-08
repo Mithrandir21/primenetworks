@@ -7,8 +7,9 @@ import objects.Object;
 
 
 /**
- * A representation of a internal connection between two devices. This can be between a hdd and a motherboard, a CPU and
- * a motherboard, hot-swap HDD and a server and so on. So any connection within a computer is representanted by an
+ * A representation of a internal connection between two devices. This can be
+ * between a hdd and a motherboard, a CPU and a motherboard, hot-swap HDD and a
+ * server and so on. So any connection within a computer is represented by an
  * internalConnection object.
  * 
  * @author Bahram Malaekeh
@@ -27,7 +28,8 @@ public class InternalConnection extends Connection implements Serializable
 	 * @param To
 	 *            The object which is to be connected to.
 	 */
-	public InternalConnection(String Name, String Desc, Object From, Object To, String connection)
+	public InternalConnection(String Name, String Desc, Object From, Object To,
+			String connection)
 	{
 		super(Name, Desc, From, To, connection);
 	}

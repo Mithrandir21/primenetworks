@@ -11,7 +11,8 @@ import javax.swing.JButton;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class represents a JButton which contains a pointer to an {@link Object}
+ * class that the JButton will represent.
  * 
  * @author Bahram Malaekeh
  */
@@ -36,13 +37,15 @@ public class WidgetButton extends JButton
 
 
 	/**
-	 * A constructor that creates a JButton icon with the given ImageIcon and sets the classType of
-	 * the represented {@link objects.Object Object}.
+	 * A constructor that creates a JButton icon with the given ImageIcon and
+	 * sets the classType of the represented {@link objects.Object Object}.
 	 * 
 	 * @param icon
-	 *            The icon that is to represent the {@link objects.Object Object}.
+	 *            The icon that is to represent the {@link objects.Object
+	 *            Object}.
 	 * @param objectType
-	 *            The object class of the represented {@link objects.Object Object}.
+	 *            The object class of the represented {@link objects.Object
+	 *            Object}.
 	 */
 	public WidgetButton(ImageIcon icon, Class<?> objectType)
 	{
@@ -54,13 +57,16 @@ public class WidgetButton extends JButton
 
 
 	/**
-	 * A constructor that creates a JButton icon with the given ImageIcon, sets the classType of the
-	 * represented {@link objects.Object Object} and gives the JButton icon a name.
+	 * A constructor that creates a JButton icon with the given ImageIcon, sets
+	 * the classType of the represented {@link objects.Object Object} and gives
+	 * the JButton icon a name.
 	 * 
 	 * @param icon
-	 *            The icon that is to represent the {@link objects.Object Object}.
+	 *            The icon that is to represent the {@link objects.Object
+	 *            Object}.
 	 * @param objectType
-	 *            The object class of the represented {@link objects.Object Object}.
+	 *            The object class of the represented {@link objects.Object
+	 *            Object}.
 	 * @param name
 	 *            The name of the JButton.
 	 */
@@ -74,14 +80,16 @@ public class WidgetButton extends JButton
 
 
 	/**
-	 * A constructor that creates a JButton icon with the given ImageIcon, sets the classType of the
-	 * represented {@link objects.Object Object}, gives the JButton icon a name and sets a
-	 * description of the object representer.
+	 * A constructor that creates a JButton icon with the given ImageIcon, sets
+	 * the classType of the represented {@link objects.Object Object}, gives the
+	 * JButton icon a name and sets a description of the object representer.
 	 * 
 	 * @param icon
-	 *            The icon that is to represent the {@link objects.Object Object}.
+	 *            The icon that is to represent the {@link objects.Object
+	 *            Object}.
 	 * @param objectType
-	 *            The object class of the represented {@link objects.Object Object}.
+	 *            The object class of the represented {@link objects.Object
+	 *            Object}.
 	 * @param name
 	 *            The name of the JButton.
 	 * @param desc
@@ -101,7 +109,8 @@ public class WidgetButton extends JButton
 	// GETTERS
 
 	/**
-	 * @return The class of the {@link objects.Object Object} that the JButton icon represents.
+	 * @return The class of the {@link objects.Object Object} that the JButton
+	 *         icon represents.
 	 */
 	public Class<?> getClassType()
 	{
@@ -110,8 +119,8 @@ public class WidgetButton extends JButton
 
 
 	/**
-	 * @return The description of the {@link objects.Object Object} that the JButton icon
-	 *         represents.
+	 * @return The description of the {@link objects.Object Object} that the
+	 *         JButton icon represents.
 	 */
 	public String getDescription()
 	{

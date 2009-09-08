@@ -23,7 +23,8 @@ public class InternalComponentsCheck
 {
 
 	/**
-	 * Searches an array of components and finds the, if present, Motherboard object.
+	 * Searches an array of components and finds the, if present, Motherboard
+	 * object.
 	 */
 	public static Motherboard getMB(Object[] components)
 	{
@@ -31,8 +32,8 @@ public class InternalComponentsCheck
 		Motherboard MB = null;
 
 		/*
-		 * Searches for a Motherboard object until either the MB object is not null or it reaches the end of the array
-		 * of components.
+		 * Searches for a Motherboard object until either the MB object is not
+		 * null or it reaches the end of the array of components.
 		 */
 		for ( int i = 0; MB == null && i < components.length; i++ )
 		{
@@ -52,30 +53,35 @@ public class InternalComponentsCheck
 
 
 
-
-
 	/**
-	 * Checks whether or not the given {@link Motherboard} has the available ports to enable connection of the given
-	 * {@link Object}.
+	 * Checks whether or not the given {@link Motherboard} has the available
+	 * ports to enable connection to the given {@link Object}.
 	 * 
 	 * @param MB
-	 *            The {@link Motherboard} that is to be tested for a available ports.
+	 *            The {@link Motherboard} that is to be tested for a available
+	 *            ports.
 	 * @param components
-	 *            The {@link Object Objects} connected to the {@link Motherboard} already.
+	 *            The {@link Object Objects} connected to the
+	 *            {@link Motherboard} already.
 	 * @param newComponent
-	 *            The new component that wants to connect to the given {@link Motherboard}.
-	 * @return True or false depending on whether the {@link Motherboard} has the necessary ports available.
+	 *            The new component that wants to connect to the given
+	 *            {@link Motherboard}.
+	 * @return True or false depending on whether the {@link Motherboard} has
+	 *         the necessary ports available.
 	 */
 	@SuppressWarnings("unchecked")
-	public static boolean checkMBinternalPorts(Motherboard MB, Object[] components, Object newComponent)
+	public static boolean checkMBinternalPorts(Motherboard MB,
+			Object[] components, Object newComponent)
 	{
 		Class objectClass = newComponent.getClass();
 
 
-		// Checks to find out what kind of object is to be installed if the component is a CPU component
+		// Checks to find out what kind of object is to be installed if the
+		// component is a CPU component
 		if ( objectClass.equals(CPU.class) )
 		{
-			// If the number returned it greater then 1, then there is room for the object
+			// If the number returned it greater then 1, then there is room for
+			// the object
 			if ( checkMB_CPUports(MB.getMaxCPUs(), components) > 0 )
 			{
 				return true;
@@ -161,7 +167,8 @@ public class InternalComponentsCheck
 		// If the component is a RAM component
 		else if ( objectClass.equals(Ram.class) )
 		{
-			// If the number returned it greater then 1, then there is room for the object
+			// If the number returned it greater then 1, then there is room for
+			// the object
 			if ( checkMB_RAMports(MB.getMaxRAMs(), components) > 0 )
 			{
 				return true;
@@ -172,7 +179,8 @@ public class InternalComponentsCheck
 			}
 		}
 		// If the component is a HHD or Diskdrive component
-		else if ( objectClass.equals(HDD.class) || objectClass.equals(Discdrive.class) )
+		else if ( objectClass.equals(HDD.class)
+				|| objectClass.equals(Discdrive.class) )
 		{
 			// If the number returned it greater then 1, then there is room for
 			// the object
@@ -193,18 +201,18 @@ public class InternalComponentsCheck
 
 
 
-
-
 	/**
-	 * Gets the number of available ports, from the given {@link Integer} that represents the maximum number of ports on
-	 * the {@link Motherboard}.
+	 * Gets the number of available ports, from the given {@link Integer} that
+	 * represents the maximum number of ports on the {@link Motherboard}.
 	 * 
 	 * @param maxPCIs
 	 *            The maximum number of ports on the {@link Motherboard}.
 	 * @param components
-	 *            The components that are already connected to the {@link Motherboard}, which will be checked for
-	 *            matching devices that connect to a PCI port.
-	 * @return The number of available ports after all the matching components from the {@link Object Components} array.
+	 *            The components that are already connected to the
+	 *            {@link Motherboard}, which will be checked for matching
+	 *            devices that connect to a PCI port.
+	 * @return The number of available ports after all the matching components
+	 *         from the {@link Object Components} array.
 	 */
 	public static int checkMB_PCIports(int maxPCIs, Object[] components)
 	{
@@ -219,7 +227,8 @@ public class InternalComponentsCheck
 				Object currentObject = components[i];
 
 				// If the component is a internal networks card
-				if ( currentObject.getClass().equals(InternalNetworksCard.class) )
+				if ( currentObject.getClass()
+						.equals(InternalNetworksCard.class) )
 				{
 					portsAvailable--;
 				}
@@ -247,15 +256,17 @@ public class InternalComponentsCheck
 
 
 	/**
-	 * Gets the number of available ports, from the given {@link Integer} that represents the maximum number of ports on
-	 * the {@link Motherboard}.
+	 * Gets the number of available ports, from the given {@link Integer} that
+	 * represents the maximum number of ports on the {@link Motherboard}.
 	 * 
-	 * @param maxPCIs
+	 * @param maxCPUs
 	 *            The maximum number of ports on the {@link Motherboard}.
 	 * @param components
-	 *            The components that are already connected to the {@link Motherboard}, which will be checked for
-	 *            matching devices that connect to a CPU port.
-	 * @return The number of available ports after all the matching components from the {@link Object Components} array.
+	 *            The components that are already connected to the
+	 *            {@link Motherboard}, which will be checked for matching
+	 *            devices that connect to a CPU port.
+	 * @return The number of available ports after all the matching components
+	 *         from the {@link Object Components} array.
 	 */
 	public static int checkMB_CPUports(int maxCPUs, Object[] components)
 	{
@@ -284,15 +295,17 @@ public class InternalComponentsCheck
 
 
 	/**
-	 * Gets the number of available ports, from the given {@link Integer} that represents the maximum number of ports on
-	 * the {@link Motherboard}.
+	 * Gets the number of available ports, from the given {@link Integer} that
+	 * represents the maximum number of ports on the {@link Motherboard}.
 	 * 
-	 * @param maxPCIs
+	 * @param maxDUCs
 	 *            The maximum number of ports on the {@link Motherboard}.
 	 * @param components
-	 *            The components that are already connected to the {@link Motherboard}, which will be checked for
-	 *            matching devices that connect to a DUC port.
-	 * @return The number of available ports after all the matching components from the {@link Object Components} array.
+	 *            The components that are already connected to the
+	 *            {@link Motherboard}, which will be checked for matching
+	 *            devices that connect to a DUC port.
+	 * @return The number of available ports after all the matching components
+	 *         from the {@link Object Components} array.
 	 */
 	public static int checkMB_DUCports(int maxDUCs, Object[] components)
 	{
@@ -309,7 +322,8 @@ public class InternalComponentsCheck
 
 				// If the temporary object is an instance of a HDD or a
 				// diskdrive class
-				if ( objectClass.equals(HDD.class) || objectClass.equals(Discdrive.class) )
+				if ( objectClass.equals(HDD.class)
+						|| objectClass.equals(Discdrive.class) )
 				{
 					portsAvailable--;
 				}
@@ -322,15 +336,17 @@ public class InternalComponentsCheck
 
 
 	/**
-	 * Gets the number of available ports, from the given {@link Integer} that represents the maximum number of ports on
-	 * the {@link Motherboard}.
+	 * Gets the number of available ports, from the given {@link Integer} that
+	 * represents the maximum number of ports on the {@link Motherboard}.
 	 * 
-	 * @param maxPCIs
+	 * @param maxRAMs
 	 *            The maximum number of ports on the {@link Motherboard}.
 	 * @param components
-	 *            The components that are already connected to the {@link Motherboard}, which will be checked for
-	 *            matching devices that connect to a RAM port.
-	 * @return The number of available ports after all the matching components from the {@link Object Components} array.
+	 *            The components that are already connected to the
+	 *            {@link Motherboard}, which will be checked for matching
+	 *            devices that connect to a RAM port.
+	 * @return The number of available ports after all the matching components
+	 *         from the {@link Object Components} array.
 	 */
 	public static int checkMB_RAMports(int maxRAMs, Object[] components)
 	{

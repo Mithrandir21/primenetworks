@@ -24,7 +24,7 @@ import exceptions.ObjectNotFoundInArrayException;
 
 
 /**
- * Class that contains different function that add, remove and replace
+ * Class that contains different functions that add, remove and replace
  * components from a given array. It is used in the different parts of the
  * program, specially {@link objects.clientObjects.Desktop Desktops},
  * {@link objects.clientObjects.Laptop Laptops}, {@link objects.Servers Servers}
@@ -1474,6 +1474,10 @@ public class ComponentsManagment
 	 * the newly cloned hardware/software objects into a new array and places
 	 * those arrays into the the clone of the given object. The x and y
 	 * locations of the object is also added to by 30 each.
+	 * 
+	 * @param copyFrom
+	 *            The {@link Object} that is to be copied.
+	 * @return An exact deep copy of the given {@link Object}.
 	 */
 	public static Object deepObjectCopy(Object copyFrom)
 	{

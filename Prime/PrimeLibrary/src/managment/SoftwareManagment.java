@@ -4,8 +4,11 @@
 package managment;
 
 
+import java.awt.Desktop;
+
 import logistical.cleanup;
 import objects.Object;
+import objects.Servers;
 import objects.Software;
 import objects.softwareObjects.Antivirus;
 import objects.softwareObjects.Backup;
@@ -20,20 +23,29 @@ import objects.softwareObjects.Webserver;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * Class that contains different functions that adds, removes and replaces
+ * software. These functions work in regards to {@link Object Objects}, such as
+ * a {@link Desktop} or a {@link Servers}.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class SoftwareManagment
 {
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function creates a new array of {@link Software} from the array of
+	 * software in the given {@link Object}. It then adds the given
+	 * {@link Software} to the newly created software array and returns that
+	 * array.
 	 * 
 	 * @param sw
+	 *            The {@link Software} to be added.
 	 * @param obj
-	 * @return
+	 *            The {@link Object} that holds the current array of
+	 *            {@link Software}.
+	 * @return A new array of {@link Software} that will contain all the
+	 *         software given by the given {@link Object} and the given
+	 *         {@link Software}.
 	 */
 	public static Software[] addSoftware(Software sw, Object obj)
 	{
@@ -53,10 +65,8 @@ public class SoftwareManagment
 
 
 			// The index which is the same as the length of the current software
-			// array
-			// will be exactly one index behind the end of all the current
-			// software.
-			// Therefore the new software will be placed there.
+			// array will be exactly one index behind the end of all the current
+			// software. Therefore the new software will be placed there.
 			newSW[curSW.length] = sw;
 		}
 		else
@@ -76,11 +86,21 @@ public class SoftwareManagment
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function creates a new array of {@link Software} from the array of
+	 * software in the given {@link Object}. It then removes the given
+	 * {@link Software} from the newly created software array and returns that
+	 * array. If the given {@link Software} is not found in the array of the
+	 * given {@link Object}, no changes will be made to the {@link Software}
+	 * array.
 	 * 
 	 * @param sw
+	 *            The {@link Software} to be removed.
 	 * @param obj
-	 * @return Returns an Software array with the given object removed from the given objects software array.
+	 *            The {@link Object} that holds the current array of
+	 *            {@link Software}.
+	 * @return A new array of {@link Software} that will contain all the
+	 *         software given by the given {@link Object}, minus the
+	 *         {@link Software} object given.
 	 */
 	public static Software[] removeSoftware(Software sw, Object obj)
 	{
@@ -106,8 +126,9 @@ public class SoftwareManagment
 
 
 	/**
-	 * This function processes all the changes that has been made to the given object. It calls on method that validate
-	 * and, if necessary, remove hardware from the the object.
+	 * This function processes all the changes that has been made to the given
+	 * object. It calls on method that validate and, if necessary, remove
+	 * hardware from the the object.
 	 */
 	public static void processAllChanges(Object obj)
 	{
@@ -140,8 +161,9 @@ public class SoftwareManagment
 
 
 	/**
-	 * The method validates the given software in the given object. It checks for compatibility between the objects
-	 * Operating system and the Operating systems supported by the given software.
+	 * The method validates the given software in the given object. It checks
+	 * for compatibility between the objects Operating system and the Operating
+	 * systems supported by the given software.
 	 * 
 	 * @param sw
 	 *            The software that is to be validated.
@@ -259,8 +281,9 @@ public class SoftwareManagment
 
 
 	/**
-	 * The function goes through all the Operating systems the given software supports and checks whether or not any of
-	 * them match up against the given Operating system.
+	 * The function goes through all the Operating systems the given software
+	 * supports and checks whether or not any of them match up against the given
+	 * Operating system.
 	 * 
 	 * @param sw
 	 * @param os
@@ -368,8 +391,9 @@ public class SoftwareManagment
 
 
 	/**
-	 * Finds the first OperatingSystem instance in the software array of the given Object and returns that Software
-	 * object. If it does not exist, it will return a null pointer.
+	 * Finds the first OperatingSystem instance in the software array of the
+	 * given Object and returns that Software object. If it does not exist, it
+	 * will return a null pointer.
 	 */
 	public static OperatingSystem[] getOperatingSystem(Object obj)
 	{
@@ -406,11 +430,17 @@ public class SoftwareManagment
 
 
 	/**
-	 * This method removes all the software within the object and replaces them with an array of software only populated
-	 * by the given Operating System object.
+	 * This method removes all the software within the given object and replaces
+	 * them with an array of software only populated by the given Operating
+	 * System object.
 	 * 
 	 * @param os
+	 *            The {@link OperatingSystem} object that is to be the only
+	 *            {@link Software} object "installed" on the given
+	 *            {@link Object}.
 	 * @param obj
+	 *            The {@link Object} where the new {@link OperatingSystem} is to
+	 *            be "installed".
 	 */
 	public static void formatSystem(OperatingSystem os, Object obj)
 	{

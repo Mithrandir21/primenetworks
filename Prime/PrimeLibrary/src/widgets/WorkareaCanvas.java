@@ -33,11 +33,14 @@ import connections.Connection;
 
 
 /**
- * A visual canvas that will hold all the object of any given network. The object can be moved around, deleted or
- * connected to other object. The canvas has some special feature like zooming, scrolling and panning. The canvas has
- * D'n'D(Drag and Drop) features. Any Widget can be dragged and dropped onto the the canvas. The widget will then be
- * converted into a {@link WidgetObject WidgetObject} and a standard object will be created. The object class depends on
- * the class of the dragged widget. The object will be created and place within the WidgetObject.
+ * A visual canvas that will hold all the object of any given network. The
+ * object can be moved around, deleted or connected to other object. The canvas
+ * has some special feature like zooming, scrolling and panning. The canvas has
+ * D'n'D(Drag and Drop) features. Any Widget can be dragged and dropped onto the
+ * the canvas. The widget will then be converted into a {@link WidgetObject
+ * WidgetObject} and a standard object will be created. The object class depends
+ * on the class of the dragged widget. The object will be created and place
+ * within the WidgetObject.
  * 
  * @author Bahram Malaekeh
  * @version 1.0
@@ -51,7 +54,8 @@ public class WorkareaCanvas extends JPanel
 	// The individual serialnumber of the workareacanvas
 	private double serial = 0;
 
-	// The transferHandler that will take care of the drag and drop feature for the canvas
+	// The transferHandler that will take care of the drag and drop feature for
+	// the canvas
 	private TransferHandler TransHandler = new WidgetTransferHandler();
 
 	private DropTarget dt = null;
@@ -64,16 +68,19 @@ public class WorkareaCanvas extends JPanel
 	// The main layer of the scene where the WidgetObjects are placed
 	private LayerWidget mainLayer = null;
 
-	// The interaction layer where the interaction between the user and the WidgetObjects takes place
+	// The interaction layer where the interaction between the user and the
+	// WidgetObjects takes place
 	private LayerWidget interactionLayer = null;
 
 	// The room layer where the network rooms will be placed
 	private LayerWidget roomLayer = null;
 
-	// The connection layer where the connections between WidgetObjects are placed
+	// The connection layer where the connections between WidgetObjects are
+	// placed
 	private LayerWidget connectionLayer = null;
 
-	// An array that will contain all the canvases connection, which are represented by a WidgetExtendedConnection.
+	// An array that will contain all the canvases connection, which are
+	// represented by a WidgetExtendedConnection.
 	private Connection[] connections = new Connection[5];
 
 	// The current WidgetObject in view
@@ -100,8 +107,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * A constructor for the canvas class. This constructor will set the drop handling and all the special features the
-	 * canvas has.
+	 * A constructor for the canvas class. This constructor will set the drop
+	 * handling and all the special features the canvas has.
 	 */
 	public WorkareaCanvas()
 	{
@@ -125,12 +132,13 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * This constructor will set the drop handling and all the special features the canvas has.
+	 * This constructor will set the drop handling and all the special features
+	 * the canvas has.
 	 */
 	public void makeCanvasReady()
 	{
 		// A random number that will be the serial number of the network
-		serial = (Math.random()) * 50;
+		serial = (Math.random()) * 500;
 
 		// Creating the actual view
 		myView.setTransferHandler(TransHandler);
@@ -140,7 +148,8 @@ public class WorkareaCanvas extends JPanel
 		// this.addMouseListener(new WorkareaCanvasListener(this));
 
 
-		// This is the main layer of the scene where the WidgetsObjects are placed.
+		// This is the main layer of the scene where the WidgetsObjects are
+		// placed.
 		mainLayer = new LayerWidget(scene);
 		scene.addChild(mainLayer);
 
@@ -152,7 +161,8 @@ public class WorkareaCanvas extends JPanel
 		interactionLayer = new LayerWidget(scene);
 		scene.addChild(interactionLayer);
 
-		// This is the connection layer where all the connections between the objects are shown.
+		// This is the connection layer where all the connections between the
+		// objects are shown.
 		connectionLayer = new LayerWidget(scene);
 		scene.addChild(connectionLayer);
 
@@ -185,7 +195,7 @@ public class WorkareaCanvas extends JPanel
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the dt
 	 */
 	public DropTarget getDropTarget()
@@ -219,7 +229,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Gets the view of the scene. Scene can only be viewed through a view like this.
+	 * Gets the view of the scene. Scene can only be viewed through a view like
+	 * this.
 	 * 
 	 * @see org.netbeans.api.visual.widget.Scene#getView() View
 	 * @return the myView
@@ -231,7 +242,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Returns the main layer of the scene. This is where the {@link WidgetObject WidgetObjects} are placed.
+	 * Returns the main layer of the scene. This is where the
+	 * {@link WidgetObject WidgetObjects} are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the mainLayer
@@ -243,8 +255,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Returns the interaction layer of the scene. This is where the actions a user sees take place like clicks and
-	 * menus.
+	 * Returns the interaction layer of the scene. This is where the actions a
+	 * user sees take place like clicks and menus.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the interactionLayer
@@ -256,9 +268,11 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Returns the {@link LayerWidget} that holds all the {@link WidgetRoom WidgetRooms}.
+	 * Returns the {@link LayerWidget} that holds all the {@link WidgetRoom
+	 * WidgetRooms}.
 	 * 
-	 * @return Returns the {@link LayerWidget} that holds all the {@link WidgetRoom WidgetRooms}.
+	 * @return Returns the {@link LayerWidget} that holds all the
+	 *         {@link WidgetRoom WidgetRooms}.
 	 */
 	public LayerWidget getRoomLayer()
 	{
@@ -267,8 +281,9 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Gets the connection layer of the scene. This is where the {@link connections.WidgetExtendedConnection
-	 * connections} between objects in the scene are placed.
+	 * Gets the connection layer of the scene. This is where the
+	 * {@link connections.WidgetExtendedConnection connections} between objects
+	 * in the scene are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the connectionLayer
@@ -291,7 +306,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Gets a boolean that tells whether or not this {@link WorkareaCanvas} has been saved.
+	 * Gets a boolean that tells whether or not this {@link WorkareaCanvas} has
+	 * been saved.
 	 */
 	public boolean isSaved()
 	{
@@ -300,7 +316,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Gets a boolean that tells whether or not this {@link WorkareaCanvas} has been altered and not saved.
+	 * Gets a boolean that tells whether or not this {@link WorkareaCanvas} has
+	 * been altered and not saved.
 	 */
 	public boolean isChanged()
 	{
@@ -309,9 +326,11 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Gets the {@link WorkareaCanvasNetworkInfo} that holds network information like netmask and IP range.
+	 * Gets the {@link WorkareaCanvasNetworkInfo} that holds network information
+	 * like netmask and IP range.
 	 * 
-	 * @return A {@link WorkareaCanvasNetworkInfo} with the network information about the {@link WorkareaCanvas}.
+	 * @return A {@link WorkareaCanvasNetworkInfo} with the network information
+	 *         about the {@link WorkareaCanvas}.
 	 */
 	public WorkareaCanvasNetworkInfo getNetworkInfo()
 	{
@@ -320,9 +339,11 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Gets all the {@link WidgetObject WidgetObjectes} on the scene of this {@link WorkareaCanvas}.
+	 * Gets all the {@link WidgetObject WidgetObjectes} on the scene of this
+	 * {@link WorkareaCanvas}.
 	 * 
-	 * @return An {@link WidgetObject} array with all the {@link WidgetObject WidgetObjectes} on the scene.
+	 * @return An {@link WidgetObject} array with all the {@link WidgetObject
+	 *         WidgetObjectes} on the scene.
 	 */
 	public WidgetObject[] getWidgetObjectsOnTheScene()
 	{
@@ -387,7 +408,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * This method gets all {@link WidgetRoom WidgetRooms} in the {@link WorkareaCanvas}.
+	 * This method gets all {@link WidgetRoom WidgetRooms} in the
+	 * {@link WorkareaCanvas}.
 	 */
 	public WidgetRoom[] getNetworkWidgetRooms()
 	{
@@ -397,7 +419,8 @@ public class WorkareaCanvas extends JPanel
 		// Converts that list to an array of Objects
 		java.lang.Object[] roomTemp = l.toArray();
 
-		// Creates an array with the length of the all the children on the canvas
+		// Creates an array with the length of the all the children on the
+		// canvas
 		WidgetRoom[] roomWidgets = new WidgetRoom[roomTemp.length];
 
 		// Casts all the objects in the converted list to widgetobjects
@@ -415,8 +438,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * This method gets all {@link Room Rooms} contained inside the {@link WidgetRoom WidgetRooms} in the
-	 * {@link WorkareaCanvas}.
+	 * This method gets all {@link Room Rooms} contained inside the
+	 * {@link WidgetRoom WidgetRooms} in the {@link WorkareaCanvas}.
 	 */
 	public Room[] getNetworkRooms()
 	{
@@ -426,7 +449,8 @@ public class WorkareaCanvas extends JPanel
 		// Converts that list to an array of Objects
 		java.lang.Object[] roomTemp = l.toArray();
 
-		// Creates an array with the length of the all the children on the canvas
+		// Creates an array with the length of the all the children on the
+		// canvas
 		WidgetRoom[] roomWidgets = new WidgetRoom[roomTemp.length];
 
 		// Casts all the objects in the converted list to widgetobjects
@@ -457,8 +481,8 @@ public class WorkareaCanvas extends JPanel
 	/**
 	 * Gets the number of Networks cards on the Scene.
 	 * 
-	 * @return Returns the number of network cards on the scene. Both {@link InternalNetworksCard}s and
-	 *         {@link ExternalNetworksCard}s.
+	 * @return Returns the number of network cards on the scene. Both
+	 *         {@link InternalNetworksCard}s and {@link ExternalNetworksCard}s.
 	 */
 	public int getNumberOfNICsOnTheScene()
 	{
@@ -486,8 +510,9 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Gets the array of connections between objects. <i>Note: These connections are not the visual connections shown on
-	 * the scene, but the actual connections between the objects within the different widgetObjects.</i>
+	 * Gets the array of connections between objects. <i>Note: These connections
+	 * are not the visual connections shown on the scene, but the actual
+	 * connections between the objects within the different widgetObjects.</i>
 	 */
 	public Connection[] getConnections()
 	{
@@ -526,11 +551,11 @@ public class WorkareaCanvas extends JPanel
 	{
 		this.serial = serial;
 	}
-	
-	
+
+
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 *
+	 * 
 	 * @return the dt
 	 */
 	public void setDropTarget(DropTarget dt)
@@ -551,7 +576,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Sets the view of the scene. Scene can only be viewed through a view like this.
+	 * Sets the view of the scene. Scene can only be viewed through a view like
+	 * this.
 	 * 
 	 * @see org.netbeans.api.visual.widget.Scene#getView() View
 	 */
@@ -562,7 +588,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Sets the main layer of the scene. This is where the {@link WidgetObject WidgetObjects} are placed.
+	 * Sets the main layer of the scene. This is where the {@link WidgetObject
+	 * WidgetObjects} are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 */
@@ -573,7 +600,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Sets the interaction layer of the scene. This is where the actions a user sees take place like clicks and menus.
+	 * Sets the interaction layer of the scene. This is where the actions a user
+	 * sees take place like clicks and menus.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 */
@@ -584,7 +612,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Sets the room layer of the scene. This is where the {@link WidgetRoom WidgetRooms} are placed.
+	 * Sets the room layer of the scene. This is where the {@link WidgetRoom
+	 * WidgetRooms} are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 */
@@ -595,8 +624,9 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Sets the connection layer of the scene. This is where the {@link connections.WidgetExtendedConnection
-	 * connections} between objects in the scene are placed.
+	 * Sets the connection layer of the scene. This is where the
+	 * {@link connections.WidgetExtendedConnection connections} between objects
+	 * in the scene are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 */
@@ -607,8 +637,9 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Sets the connections array for the canvas. <i>Note: These connections are not the visual connections shown on the
-	 * scene, but the actual connections between the objects within the different widgetObjects.</i>
+	 * Sets the connections array for the canvas. <i>Note: These connections are
+	 * not the visual connections shown on the scene, but the actual connections
+	 * between the objects within the different widgetObjects.</i>
 	 * 
 	 * @param connections
 	 */
@@ -639,7 +670,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Sets a boolean on whether or not this {@link WorkareaCanvas} has been saved.
+	 * Sets a boolean on whether or not this {@link WorkareaCanvas} has been
+	 * saved.
 	 */
 	public void setSaved(boolean saved)
 	{
@@ -648,7 +680,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Sets a boolean on whether or not this {@link WorkareaCanvas} has been altered and not saved.
+	 * Sets a boolean on whether or not this {@link WorkareaCanvas} has been
+	 * altered and not saved.
 	 */
 	public void setChanged(boolean changed)
 	{
@@ -657,9 +690,11 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Sets the {@link WorkareaCanvasNetworkInfo} that holds network information like netmask and IP range.
+	 * Sets the {@link WorkareaCanvasNetworkInfo} that holds network information
+	 * like netmask and IP range.
 	 * 
-	 * @return A {@link WorkareaCanvasNetworkInfo} with the network information about the {@link WorkareaCanvas}.
+	 * @return A {@link WorkareaCanvasNetworkInfo} with the network information
+	 *         about the {@link WorkareaCanvas}.
 	 */
 	public void setNetworkInfo(WorkareaCanvasNetworkInfo networkInfo)
 	{
@@ -682,18 +717,20 @@ public class WorkareaCanvas extends JPanel
 	 * @param newObject
 	 * @param objectPoint
 	 */
-	public void addWidgetObject(WidgetObject newObject, Point objectPoint, boolean withCleanUp)
+	public void addWidgetObject(WidgetObject newObject, Point objectPoint,
+			boolean withCleanUp)
 	{
 		// Sets the location of the object.
 		newObject.getObject().setLocation(objectPoint);
 
-		WorkareaCanvasActions.addWidgetToCanvas(newObject, objectPoint, this, withCleanUp);
+		WorkareaCanvasActions.addWidgetToCanvas(newObject, objectPoint, this,
+				withCleanUp);
 	}
 
 
 	/**
-	 * This method cleans up the canvas. The scene and all the views are repainted and revalidated. The properties panel
-	 * is also updated.
+	 * This method cleans up the canvas. The scene and all the views are
+	 * repainted and revalidated. The properties panel is also updated.
 	 */
 	public void cleanUp()
 	{
@@ -721,8 +758,9 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * This function goes through all the widgetObjects on the scene and sets the location of the widget on the scene to
-	 * the location of the object within the WidgetObject.
+	 * This function goes through all the widgetObjects on the scene and sets
+	 * the location of the widget on the scene to the location of the object
+	 * within the WidgetObject.
 	 */
 	public void revalidateWidgetLocations()
 	{
@@ -762,7 +800,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * I HATE EVERYBODY!!!!!
+	 * This function stops the random NullPointerExceptions. (Combined
+	 * org.netbeans.api and Java bug).
 	 */
 	public void doRepaint()
 	{
