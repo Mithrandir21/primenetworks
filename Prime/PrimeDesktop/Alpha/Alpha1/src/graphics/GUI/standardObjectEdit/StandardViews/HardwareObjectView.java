@@ -645,4 +645,29 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		this.repaint();
 		this.revalidate();
 	}
+
+
+	/**
+	 * This method removes all the JPanels showing the components information
+	 * and then creates them again with the information from the given Object.
+	 * This method is used when hardware object is changed.It also calls the
+	 * update function in the Hardware Editor view.
+	 */
+	public void changeObjectView(Object obj)
+	{
+		if ( hwEditor != null )
+		{
+			hwEditor.HardwarePanelRevalidate();
+		}
+
+		givenObject = obj;
+
+
+		this.removeAll();
+
+		this.populiateInfo(givenObject);
+
+		this.repaint();
+		this.revalidate();
+	}
 }

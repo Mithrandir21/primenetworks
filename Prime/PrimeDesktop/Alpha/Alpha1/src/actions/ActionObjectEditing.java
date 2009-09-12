@@ -4,6 +4,7 @@
 package actions;
 
 
+import graphics.PrimeMain1;
 import graphics.GUI.standardObjectEdit.StandardObjects;
 
 import java.awt.event.ActionEvent;
@@ -20,7 +21,8 @@ import javax.swing.ImageIcon;
 public class ActionObjectEditing extends AbstractAction
 {
 	/**
-	 * A constructor for the class that takes a string, the action name, and a Icon.
+	 * A constructor for the class that takes a string, the action name, and a
+	 * Icon.
 	 * 
 	 * @param text
 	 *            The name of the action.
@@ -38,7 +40,9 @@ public class ActionObjectEditing extends AbstractAction
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
-		new StandardObjects();
+		// Creates and places a new StandardObjects JFrame into the system main
+		// registry.
+		PrimeMain1.stdObjView = new StandardObjects();
 	}
 
 }

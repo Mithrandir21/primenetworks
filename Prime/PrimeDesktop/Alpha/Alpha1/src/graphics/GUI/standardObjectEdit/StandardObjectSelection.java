@@ -4,11 +4,14 @@
 package graphics.GUI.standardObjectEdit;
 
 
+import exceptions.ObjectNotFoundException;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -17,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.Border;
 
+import managment.ArrayManagment;
 import objects.Clients;
 import objects.ExternalHardware;
 import objects.Infrastructure;
@@ -30,7 +34,7 @@ import widgets.WidgetButton;
  * 
  * @author Bahram Malaekeh
  */
-public class StandardObjectSelection extends JPanel
+public class StandardObjectSelection extends JPanel implements ActionListener
 {
 
 	// A simple border that is gray
@@ -167,11 +171,13 @@ public class StandardObjectSelection extends JPanel
 		}
 		catch ( Exception e )
 		{
-			System.out.println("NullPointerException" + " - " + name + "\n\n");
+			System.out.println("NullPointerException - StandardObjectSelection"
+					+ " - " + name + "\n\n");
 			System.exit(0);
 		}
 		//
-		// Dimension dim = new Dimension(super.getWidth(), Icon.getIconHeight());
+		// Dimension dim = new Dimension(super.getWidth(),
+		// Icon.getIconHeight());
 		//
 		// iconButton.setSize(dim);
 		// iconButton.setPreferredSize(dim);
@@ -180,6 +186,8 @@ public class StandardObjectSelection extends JPanel
 		iconButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		iconButton.setAlignmentY(Component.TOP_ALIGNMENT);
 		// iconButton.setBorder(grayline);
+
+		iconButton.addActionListener(this);
 
 		return iconButton;
 	}
@@ -209,5 +217,36 @@ public class StandardObjectSelection extends JPanel
 		}
 
 		return false;
+	}
+
+
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent event)
+	{
+		WidgetButton button = (WidgetButton) event.getSource();
+
+		Object newObject = null;
+
+		try
+		{
+			// Gets the object in the given ArrayList with the given class
+			newObject = ArrayManagment.getSpesificComponent(button
+					.getClassType(), PrimeMain1.objectlist);
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			System.out.println("Selected object, " + button.getName()
+					+ ", was not found in the array of standard objects.");
+			e.printStackTrace();
+		}
+
+		// Changes the object currently viewed
+		PrimeMain1.stdObjView.getSplitView().getHardStdObjView()
+				.changeObjectView(newObject);
 	}
 }

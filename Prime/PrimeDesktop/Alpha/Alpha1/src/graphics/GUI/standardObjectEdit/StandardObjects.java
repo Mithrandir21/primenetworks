@@ -4,6 +4,8 @@
 package graphics.GUI.standardObjectEdit;
 
 
+import graphics.PrimeMain1;
+
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Container;
@@ -12,6 +14,8 @@ import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -30,6 +34,9 @@ public class StandardObjects extends JFrame implements ActionListener
 	// A simple border that is gray
 	Border grayline = BorderFactory.createLineBorder(Color.GRAY);
 
+	// The JPanel that holds both the array of object buttons and the
+	// visual standard object view.
+	private StandardViewSpilt splitView;
 
 	/**
 	 * TODO - Description NEEDED!
@@ -59,7 +66,7 @@ public class StandardObjects extends JFrame implements ActionListener
 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		JPanel splitView = new StandardViewSpilt();
+		splitView = new StandardViewSpilt();
 		splitView.setBorder(grayline);
 
 		panel.add(splitView);
@@ -99,31 +106,59 @@ public class StandardObjects extends JFrame implements ActionListener
 		this.setSize(size);
 		this.setLocation(initXLocation, initYLocation);
 		this.setResizable(false);
-		
+
 		this.setVisible(true);
+
+
+		// Resets the objectView object when closed.
+		this.addWindowListener(new WindowAdapter()
+		{
+			@Override
+			public void windowClosing(WindowEvent ev)
+			{
+				// Removes the pointer to this Object in the system registry.
+				PrimeMain1.stdObjView = null;
+			}
+		});
+	}
+
+
+
+	/**
+	 * Gets the pointer to the splitview tat holds the views for the standard
+	 * Objects.
+	 * 
+	 * @return the splitView
+	 */
+	public StandardViewSpilt getSplitView()
+	{
+		return splitView;
 	}
 
 
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		if ( e.getActionCommand().equals("save") )
 		{
-			
+
 		}
 		else if ( e.getActionCommand().equals("apply") )
 		{
-			
+
 		}
 		else
 		{
 			assert e.getActionCommand().equals("cancel");
 
+			// Removes the pointer to this Object in the system registry.
+			PrimeMain1.stdObjView = null;
 
 			this.dispose();
 		}
