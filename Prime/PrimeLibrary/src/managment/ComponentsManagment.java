@@ -548,12 +548,7 @@ public class ComponentsManagment
 			{
 				ExternalNetworksCard extNIC = (ExternalNetworksCard) extNICs[i];
 
-				// if ( mb.getUSBPortsAvailable() )
-				// { TODO - External NIC check
-				// // Removes the actual components.
-				// obj.setAllComponents(ComponentsManagment.removeComponent(
-				// extNIC, components, components.length));
-				// }
+
 			}
 		}
 		catch ( ObjectNotFoundException e )
@@ -1119,7 +1114,7 @@ public class ComponentsManagment
 			// FIXME - MUST BE CHECKED
 
 			// Then we set the ports to the motherboard
-			mb.makeOneIntLANportTaken();
+			mb.makeOneUSBportTaken();
 		}
 		// If there are not available type.
 		else

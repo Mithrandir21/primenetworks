@@ -21,7 +21,9 @@ import javax.swing.border.Border;
 
 
 /**
- * TODO - Description NEEDED!
+ * This JFrame will show a selection JScrollPane that show all the systems
+ * Standard Objects and a JPanel that shows all components of the selected
+ * standard object.
  * 
  * @author Bahram Malaekeh
  */
@@ -35,7 +37,9 @@ public class StandardObjects extends JFrame
 	private StandardViewSpilt splitView;
 
 	/**
-	 * TODO - Description NEEDED!
+	 * A constructor for this class that sets the JFrame name, size and the
+	 * location of the top left corner of the frame. It also adds a new
+	 * {@link StandardViewSpilt} to the JFrame.
 	 */
 	public StandardObjects()
 	{

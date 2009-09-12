@@ -4,8 +4,6 @@
 package graphics.GUI.standardObjectEdit;
 
 
-import java.awt.Component;
-
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
@@ -18,10 +16,11 @@ import graphics.GUI.objectView.Hardware.HardwareView.Views.InternalNICView;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.MotherboardView;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.RAMView;
 
+import java.awt.Component;
+
 import javax.swing.JTabbedPane;
 
 import managment.ComponentsManagment;
-
 import objects.Object;
 import objects.hardwareObjects.CPU;
 import objects.hardwareObjects.Discdrive;
@@ -34,7 +33,8 @@ import objects.hardwareObjects.Ram;
 
 
 /**
- * TODO - Description NEEDED!
+ * The JTabbedPane class that will show one tab for every component the selected
+ * Object contains.
  * 
  * @author Bahram Malaekeh
  */
@@ -49,19 +49,20 @@ public class ObjectViewTabbed extends JTabbedPane
 	 */
 	public ObjectViewTabbed(Object obj)
 	{
-		 mainobj = obj;
+		mainobj = obj;
 		populateTabs(obj);
 	}
 
 
 
 	/**
-	 * Creates and adds tabs to this JTabbedPane instance based on the class of the internal
-	 * components of the given object, such as Motherboard, CPU or RAM.
+	 * Creates and adds tabs to this JTabbedPane instance based on the class of
+	 * the internal components of the given object, such as Motherboard, CPU or
+	 * RAM.
 	 * 
 	 * @param obj
-	 *            The object that holds the internal components which in turn are the basis for the
-	 *            creation of the hardware views.
+	 *            The object that holds the internal components which in turn
+	 *            are the basis for the creation of the hardware views.
 	 */
 	public void populateTabs(Object obj)
 	{
@@ -120,17 +121,19 @@ public class ObjectViewTabbed extends JTabbedPane
 			}
 		}
 	}
-	
-	
+
+
 	/**
-	 * This method calls the save methods on all the different HardwareViews and if the boolean
-	 * given is true, calls also the validation methods on all views. If any of the validations
-	 * fail, none off the save methods will be called.
+	 * This method calls the save methods on all the different HardwareViews and
+	 * if the boolean given is true, calls also the validation methods on all
+	 * views. If any of the validations fail, none off the save methods will be
+	 * called.
 	 * 
 	 * @param verify
 	 *            Boolean saying if validation should be run on the data.
-	 * @return If the save methods in each of the views does not return false, which would mean that
-	 *         it did not save, the method will return true. Else it will return false;
+	 * @return If the save methods in each of the views does not return false,
+	 *         which would mean that it did not save, the method will return
+	 *         true. Else it will return false;
 	 */
 	public boolean save(boolean verify)
 	{
@@ -145,8 +148,8 @@ public class ObjectViewTabbed extends JTabbedPane
 
 			// FIXME
 			/**
-			 * Goes through all the views and gets the validation status of each one and places that
-			 * boolean in the validation array.
+			 * Goes through all the views and gets the validation status of each
+			 * one and places that boolean in the validation array.
 			 */
 			for ( int i = 0; i < this.getComponentCount(); i++ )
 			{
@@ -157,9 +160,10 @@ public class ObjectViewTabbed extends JTabbedPane
 			}
 
 			/**
-			 * If any of the validation function in any of the views return false the loop will end
-			 * and none of the values for any of the views will be saved. The JFrame will also not
-			 * exit so the user has a chance to change the value.
+			 * If any of the validation function in any of the views return
+			 * false the loop will end and none of the values for any of the
+			 * views will be saved. The JFrame will also not exit so the user
+			 * has a chance to change the value.
 			 */
 			for ( int i = 0; i < verified.length; i++ )
 			{
@@ -174,8 +178,8 @@ public class ObjectViewTabbed extends JTabbedPane
 		if ( validationFailed == false )
 		{
 			/**
-			 * Goes through all the views and saves the values since none of the views failed its
-			 * validation.
+			 * Goes through all the views and saves the values since none of the
+			 * views failed its validation.
 			 */
 			for ( int i = 0; i < this.getComponentCount(); i++ )
 			{
@@ -207,8 +211,8 @@ public class ObjectViewTabbed extends JTabbedPane
 		else
 		{
 			/**
-			 * Shows that at least one of the validations have failed and that nothing has been
-			 * saved.
+			 * Shows that at least one of the validations have failed and that
+			 * nothing has been saved.
 			 */
 			return false;
 		}

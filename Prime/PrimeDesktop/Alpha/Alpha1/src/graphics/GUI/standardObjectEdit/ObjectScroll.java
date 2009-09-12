@@ -8,15 +8,25 @@ import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
 
+import widgets.WidgetButton;
+
 
 /**
- * TODO - Description NEEDED!
+ * This class extends the {@link JScrollPane} class. Here are contained the
+ * {@link WidgetButton WidgetButtons} that represent the systems standard
+ * objects.
  * 
  * @author Bahram Malaekeh
  */
 public class ObjectScroll extends JScrollPane
 {
 
+	/**
+	 * A constructor for this class. It sets the vertical scroll bat policy to
+	 * "always on", sets the scroll increment to 10, sets the scroll view to a
+	 * new {@link StandardObjectSelection} and sets the preferred size of the
+	 * scroll pane.
+	 */
 	public ObjectScroll()
 	{
 		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);

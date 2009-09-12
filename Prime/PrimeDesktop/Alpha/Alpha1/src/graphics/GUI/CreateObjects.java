@@ -67,7 +67,6 @@ public class CreateObjects
 		String objectType = iconObject.getClassType().getName();
 		String desc = iconObject.getDescription();
 
-
 		try
 		{
 			// Gets the object in the given ArrayList with the given class
@@ -165,16 +164,18 @@ public class CreateObjects
 			{
 				newObject = createDefaultInternet(desc);
 			}
-
-			// Adds the numbers of Widgets on the canvas to the end of the
-			// object name.
-			newObject.setObjectName(newObject.getObjectName()
-					+ numberOfWidgetsOnTheScene);
 		}
 
+		// Makes a exact copy of the object
+		Object copiedObject = ComponentsManagment.deepObjectCopy(newObject);
+
+		// Adds the numbers of Widgets on the canvas to the end of the
+		// object name.
+		copiedObject.setObjectName(newObject.getObjectName()
+				+ Integer.toString(numberOfWidgetsOnTheScene));
 
 
-		return ComponentsManagment.deepObjectCopy(newObject);
+		return copiedObject;
 	}
 
 	/**
