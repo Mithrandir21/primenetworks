@@ -44,7 +44,8 @@ import objects.hardwareObjects.Motherboard;
  * 
  * @author Bahram Malaekeh
  */
-public class HDDNewView extends JFrame implements HardwareViewInterface, ActionListener
+public class HDDNewView extends JFrame implements HardwareViewInterface,
+		ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -148,19 +149,22 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
+				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
 
 
 	/**
-	 * This method creates and returns a JPanel that contains all the different settings of the given Hardware object.
-	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
-	 * the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Hardware object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
 	 * @param hdd
-	 *            The Hardware that will be examined and will fill inn the fields.
+	 *            The Hardware that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
 	 */
 	private JPanel createSpesificInfo(HDD hdd)
@@ -175,13 +179,15 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 		labels[1].setToolTipText("The hdd type.");
 
 		labels[2] = new JLabel("Subtype");
-		labels[2].setToolTipText("The hdd subtype. (ATA-100, SATA-150 and so on.)");
+		labels[2]
+				.setToolTipText("The hdd subtype. (ATA-100, SATA-150 and so on.)");
 
 		labels[3] = new JLabel("Size");
 		labels[3].setToolTipText("The size of the HDD measured in GB.");
 
 		labels[4] = new JLabel("Speed");
-		labels[4].setToolTipText("The transfer speed of the HDD measured in MB.");
+		labels[4]
+				.setToolTipText("The transfer speed of the HDD measured in MB.");
 
 		labels[5] = new JLabel("RPM");
 		labels[5].setToolTipText("The number of disk rotations per minute.");
@@ -213,7 +219,8 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 		type.setActionCommand("Type");
 		type.addActionListener(this);
 
-		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(typeString, hdd.getPort()));
+		type.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				typeString, hdd.getPort()));
 
 
 		panel.add(labels[1]);
@@ -223,7 +230,8 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		// The subtype of the hdd
 		labels[2].setLabelFor(subtype);
-		String[] subtypeString = { "", "ATA-100", "ATA-133", "SATA-150", "SATA-300", "USBv1", "USBv2", "eSATA" };
+		String[] subtypeString = { "", "ATA-100", "ATA-133", "SATA-150",
+				"SATA-300", "USBv1", "USBv2", "eSATA" };
 		subtype = new JComboBox(subtypeString);
 		subtype.setMaximumSize(tfSize);
 		subtype.setPreferredSize(tfSize);
@@ -232,7 +240,8 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 		subtype.setActionCommand("Subtype");
 		subtype.addActionListener(this);
 
-		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(subtypeString, hdd.getSubtype()));
+		subtype.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				subtypeString, hdd.getSubtype()));
 
 
 		panel.add(labels[2]);
@@ -269,7 +278,8 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 		size.setActionCommand("size");
 		size.addActionListener(this);
 
-		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(sizeString, hdd.getSize()));
+		size.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				sizeString, hdd.getSize()));
 
 		panel.add(labels[3]);
 		panel.add(size);
@@ -278,7 +288,8 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		// The transfer speed of the hdd
 		labels[4].setLabelFor(transferSpeed);
-		String[] transSpeedString = { "", "16", "33", "66", "80", "133", "150", "300", "600" };
+		String[] transSpeedString = { "", "16", "33", "66", "80", "133", "150",
+				"300", "600" };
 		transferSpeed = new JComboBox(typeString);
 		transferSpeed.setMaximumSize(tfSize);
 		transferSpeed.setPreferredSize(tfSize);
@@ -287,7 +298,8 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 		transferSpeed.setActionCommand("Speed");
 		transferSpeed.addActionListener(this);
 
-		transferSpeed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(transSpeedString, hdd.getSpeed()));
+		transferSpeed.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				transSpeedString, hdd.getSpeed()));
 
 
 		panel.add(labels[4]);
@@ -306,7 +318,8 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 		rpm.setActionCommand("Speed");
 		rpm.addActionListener(this);
 
-		rpm.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(rpmString, hdd.getRPM()));
+		rpm.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(rpmString,
+				hdd.getRPM()));
 
 
 		panel.add(labels[5]);
@@ -314,7 +327,8 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
@@ -324,8 +338,8 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 
 
 	/**
-	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
-	 * 
+	 * Creates a JPanel with two buttons that are listened for by
+	 * actionlisteners.
 	 */
 	private JPanel createButtons()
 	{
@@ -371,7 +385,9 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		if ( size.getSelectedItem().toString() != "" )
 		{
-			mainHDD.setSize(Integer.parseInt(size.getSelectedItem().toString()));
+			mainHDD
+					.setSize(Integer
+							.parseInt(size.getSelectedItem().toString()));
 		}
 		else
 		{
@@ -381,7 +397,8 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		if ( transferSpeed.getSelectedItem().toString() != "" )
 		{
-			mainHDD.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem().toString()));
+			mainHDD.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem()
+					.toString()));
 		}
 		else
 		{
@@ -408,7 +425,8 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 			// Saves the current values of the new motherboard.
 			save();
 
-			ComponentsManagment.processHDDmatch(mainObj, (Motherboard) mainObj.getComponents()[0], mainHDD, this);
+			ComponentsManagment.processHDDmatch(mainObj, (Motherboard) mainObj
+					.getComponents()[0], mainHDD, this);
 
 
 			// Updates the views of the object to correctly show the
@@ -417,6 +435,13 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 			if ( view != null )
 			{
 				view.updateViewInfo();
+			}
+			// If no view is returned, then the standard object view is open
+			// and that should be updated.
+			else if ( PrimeMain1.stdObjView != null )
+			{
+				PrimeMain1.stdObjView.getSplitView().getHardStdObjView()
+						.updateTabInfo();
 			}
 
 

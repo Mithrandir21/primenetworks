@@ -45,7 +45,8 @@ import objects.hardwareObjects.Motherboard;
  * 
  * @author Bahram Malaekeh
  */
-public class CPUNewView extends JFrame implements HardwareViewInterface, ActionListener
+public class CPUNewView extends JFrame implements HardwareViewInterface,
+		ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -78,8 +79,9 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 
 	/**
-	 * A constructor for this class that will create a new JFrame which will contain fields for the adjustment of the
-	 * newly created CPU hardware that will, if saved, be added to the hardware list of the given Object.
+	 * A constructor for this class that will create a new JFrame which will
+	 * contain fields for the adjustment of the newly created CPU hardware that
+	 * will, if saved, be added to the hardware list of the given Object.
 	 * 
 	 * @param obj
 	 *            The Object that the given hardware will be added to, if saved.
@@ -154,19 +156,22 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
+				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
 
 
 	/**
-	 * This method creates and returns a JPanel that contains all the different settings of the given Hardware object.
-	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
-	 * the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Hardware object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
 	 * @param cpu
-	 *            The hardware that will be examined and will fill inn the fields.
+	 *            The hardware that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
 	 */
 	private JPanel createSpesificInfo(CPU cpu)
@@ -191,7 +196,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 		labels[4].setToolTipText("The size of the level 2 cache.");
 
 		labels[5] = new JLabel("Nanometers");
-		labels[5].setToolTipText("The amount of space taken up by a block on the CPU.");
+		labels[5]
+				.setToolTipText("The amount of space taken up by a block on the CPU.");
 
 		labels[6] = new JLabel("FSB");
 		labels[6].setToolTipText("The fsb, Front Side Bus, of the CPU.");
@@ -224,7 +230,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		// The socket
 		labels[1].setLabelFor(socket);
-		String[] socketsStrings = { "", "Intel 775", "Intel 939", "AMD AM2", "AMD AM2+" };
+		String[] socketsStrings = { "", "Intel 775", "Intel 939", "AMD AM2",
+				"AMD AM2+" };
 		socket = new JComboBox(socketsStrings);
 		socket.setMaximumSize(tfSize);
 		socket.setPreferredSize(tfSize);
@@ -233,7 +240,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 		socket.setActionCommand("Socket");
 		socket.addActionListener(this);
 
-		socket.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(socketsStrings, cpu.getSocket()));
+		socket.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				socketsStrings, cpu.getSocket()));
 
 
 		panel.add(labels[1]);
@@ -262,7 +270,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 		mhz.setActionCommand("Speed");
 		mhz.addActionListener(this);
 
-		mhz.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(mhertz, cpu.getSpeed()));
+		mhz.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(mhertz, cpu
+				.getSpeed()));
 
 
 		panel.add(labels[2]);
@@ -280,8 +289,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 		level1Cache.setActionCommand("Level 1 Cache");
 		level1Cache.addActionListener(this);
 
-		level1Cache.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(level1CacheStrings, cpu
-				.getLevel1CacheSize()));
+		level1Cache.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				level1CacheStrings, cpu.getLevel1CacheSize()));
 
 
 		panel.add(labels[3]);
@@ -290,7 +299,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		// The level 2 cache
 		labels[4].setLabelFor(level2Cache);
-		String[] level2CacheStrings = { "", "8", "16", "32", "64", "128", "256", "512", "1024", "2048" };
+		String[] level2CacheStrings = { "", "8", "16", "32", "64", "128",
+				"256", "512", "1024", "2048" };
 		level2Cache = new JComboBox(level2CacheStrings);
 		level2Cache.setMaximumSize(tfSize);
 		level2Cache.setPreferredSize(tfSize);
@@ -299,8 +309,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 		level2Cache.setActionCommand("Level 1 Cache");
 		level2Cache.addActionListener(this);
 
-		level2Cache.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(level2CacheStrings, cpu
-				.getLevel2CacheSize()));
+		level2Cache.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				level2CacheStrings, cpu.getLevel2CacheSize()));
 
 
 		panel.add(labels[4]);
@@ -318,7 +328,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 		nanometer.setActionCommand("Nanometer");
 		nanometer.addActionListener(this);
 
-		nanometer.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(nanometerStrings, cpu.getNanometer()));
+		nanometer.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				nanometerStrings, cpu.getNanometer()));
 
 
 		panel.add(labels[5]);
@@ -336,7 +347,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 		fsb.setActionCommand("FSB");
 		fsb.addActionListener(this);
 
-		fsb.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(fsbStrings, cpu.getBusSpeed()));
+		fsb.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(fsbStrings,
+				cpu.getBusSpeed()));
 
 
 		panel.add(labels[6]);
@@ -388,7 +400,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
@@ -398,8 +411,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 
 	/**
-	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
-	 * 
+	 * Creates a JPanel with two buttons that are listened for by
+	 * actionlisteners.
 	 */
 	private JPanel createButtons()
 	{
@@ -431,7 +444,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 			// Saves the current values of the new motherboard.
 			save();
 
-			ComponentsManagment.processCPUmatch(mainObj, (Motherboard) mainObj.getComponents()[0], CPUobj, this);
+			ComponentsManagment.processCPUmatch(mainObj, (Motherboard) mainObj
+					.getComponents()[0], CPUobj, this);
 
 
 			// Updates the views of the object to correctly show the
@@ -440,6 +454,13 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 			if ( view != null )
 			{
 				view.updateViewInfo();
+			}
+			// If no view is returned, then the standard object view is open
+			// and that should be updated.
+			else if ( PrimeMain1.stdObjView != null )
+			{
+				PrimeMain1.stdObjView.getSplitView().getHardStdObjView()
+						.updateTabInfo();
 			}
 
 
@@ -485,7 +506,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		if ( level1Cache.getSelectedItem().toString() != "" )
 		{
-			CPUobj.setLevel1CacheSize(Integer.parseInt(level1Cache.getSelectedItem().toString()));
+			CPUobj.setLevel1CacheSize(Integer.parseInt(level1Cache
+					.getSelectedItem().toString()));
 		}
 		else
 		{
@@ -495,7 +517,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		if ( level2Cache.getSelectedItem().toString() != "" )
 		{
-			CPUobj.setLevel2CacheSize(Integer.parseInt(level2Cache.getSelectedItem().toString()));
+			CPUobj.setLevel2CacheSize(Integer.parseInt(level2Cache
+					.getSelectedItem().toString()));
 		}
 		else
 		{
@@ -505,7 +528,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface, ActionL
 
 		if ( nanometer.getSelectedItem().toString() != "" )
 		{
-			CPUobj.setNanometer(Integer.parseInt(nanometer.getSelectedItem().toString()));
+			CPUobj.setNanometer(Integer.parseInt(nanometer.getSelectedItem()
+					.toString()));
 		}
 		else
 		{

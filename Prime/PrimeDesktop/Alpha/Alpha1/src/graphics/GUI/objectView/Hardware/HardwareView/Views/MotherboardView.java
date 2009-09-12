@@ -175,12 +175,14 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 
 	/**
-	 * This method creates and returns a JPanel that contains all the different settings of the
-	 * given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid}
-	 * to order all the different components in the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Hardware object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
 	 * @param mb
-	 *            The Hardware that will be examined and will fill inn the fields.
+	 *            The Hardware that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
 	 */
 	private JPanel createSpesificInfo(Motherboard mb)
@@ -741,7 +743,8 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 	/*
 	 * (non-Javadoc)
-	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#validateData()
+	 * @see
+	 * graphics.GUI.objectView.Hardware.HardwareView.HardwareView#validateData()
 	 */
 	public boolean validateNecessaryData()
 	{
@@ -1164,7 +1167,8 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -1277,8 +1281,10 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 							PrimeMain1.currentCanvas, mainObj);
 
 
-					// Since the motherboard is where most of the connections are
-					// placed we first have to remove all connections to the devices.
+					// Since the motherboard is where most of the connections
+					// are
+					// placed we first have to remove all connections to the
+					// devices.
 					mainObj.removeAllConnections();
 
 
@@ -1303,6 +1309,14 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 					if ( view != null )
 					{
 						view.updateViewInfo();
+					}
+					// If no view is returned, then the standard object view is
+					// open
+					// and that should be updated.
+					else if ( PrimeMain1.stdObjView != null )
+					{
+						PrimeMain1.stdObjView.getSplitView()
+								.getHardStdObjView().updateTabInfo();
 					}
 				}
 			}

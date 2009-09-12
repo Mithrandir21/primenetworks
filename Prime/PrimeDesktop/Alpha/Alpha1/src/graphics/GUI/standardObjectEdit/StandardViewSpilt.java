@@ -71,7 +71,7 @@ public class StandardViewSpilt extends JPanel
 
 
 		JPanel viewPanel = new JPanel();
-		viewPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+//		viewPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
 		hardStdObjView = new HardwareObjectView(PrimeMain1.objectlist.get(0));
 

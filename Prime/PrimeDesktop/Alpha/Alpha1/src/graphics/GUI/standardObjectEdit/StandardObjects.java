@@ -6,14 +6,10 @@ package graphics.GUI.standardObjectEdit;
 
 import graphics.PrimeMain1;
 
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -29,7 +25,7 @@ import javax.swing.border.Border;
  * 
  * @author Bahram Malaekeh
  */
-public class StandardObjects extends JFrame implements ActionListener
+public class StandardObjects extends JFrame
 {
 	// A simple border that is gray
 	Border grayline = BorderFactory.createLineBorder(Color.GRAY);
@@ -71,35 +67,6 @@ public class StandardObjects extends JFrame implements ActionListener
 
 		panel.add(splitView);
 
-
-
-		JPanel buttons = new JPanel();
-		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
-		buttons.setBorder(grayline);
-
-		Button save = new Button("Save");
-		save.addActionListener(this);
-		save.setActionCommand("save");
-
-		Button apply = new Button("Apply");
-		apply.addActionListener(this);
-		apply.setActionCommand("apply");
-
-		Button cancel = new Button("cancel");
-		cancel.addActionListener(this);
-		cancel.setActionCommand("cancel");
-
-
-		buttons.add(save);
-		buttons.add(apply);
-		buttons.add(cancel);
-
-		buttons.setMaximumSize(new Dimension((int) scrnsize.getWidth(), 1));
-
-		panel.add(buttons);
-
-
-
 		c.add(panel);
 
 
@@ -134,34 +101,4 @@ public class StandardObjects extends JFrame implements ActionListener
 	{
 		return splitView;
 	}
-
-
-
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		if ( e.getActionCommand().equals("save") )
-		{
-
-		}
-		else if ( e.getActionCommand().equals("apply") )
-		{
-
-		}
-		else
-		{
-			assert e.getActionCommand().equals("cancel");
-
-			// Removes the pointer to this Object in the system registry.
-			PrimeMain1.stdObjView = null;
-
-			this.dispose();
-		}
-	}
-
 }

@@ -3,6 +3,7 @@ package graphics.GUI.standardObjectEdit.StandardViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.GUI.objectView.Hardware.NewComponent.NewOverview.NewComponentChoice;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -619,7 +620,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		}
 		else if ( e.getActionCommand().equals("newComp") )
 		{
-			// new NewComponentChoice(givenObject);
+			new NewComponentChoice(givenObject);
 		}
 	}
 
