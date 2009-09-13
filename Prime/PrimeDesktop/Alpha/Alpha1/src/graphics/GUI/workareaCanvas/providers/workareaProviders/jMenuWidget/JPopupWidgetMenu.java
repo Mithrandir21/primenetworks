@@ -2,6 +2,8 @@ package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget;
 
 
 
+import graphics.PrimeMain1;
+
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -12,10 +14,10 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * Class for the JPopupMenu for {@link WidgetObject WidgetObjects} on a {@link WorkareaCanvas}.
+ * Class for the JPopupMenu for {@link WidgetObject WidgetObjects} on a
+ * {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class JPopupWidgetMenu
 {
@@ -26,7 +28,8 @@ public class JPopupWidgetMenu
 
 
 	/**
-	 * The Listener that will listen to menus selected by the user in the JPopupMenu.
+	 * The Listener that will listen to menus selected by the user in the
+	 * JPopupMenu.
 	 */
 	private WorkareaWidgetActionListener widgetActListener;
 
@@ -58,7 +61,8 @@ public class JPopupWidgetMenu
 
 
 	/**
-	 * Creates and sets up the the different fields of this class. It also returns the JpopupMenu shown to the user.
+	 * Creates and sets up the the different fields of this class. It also
+	 * returns the JpopupMenu shown to the user.
 	 * 
 	 * @param widget
 	 *            The {@link WidgetObject} a JPopupMenu will be shown for.
@@ -94,6 +98,34 @@ public class JPopupWidgetMenu
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);
 
+
+		popup.addSeparator();
+
+
+		menuItem = new JMenuItem("Copy Object");
+		menuItem.setActionCommand("CopyObject");
+		menuItem.addActionListener(widgetActListener);
+		popup.add(menuItem);
+
+
+		menuItem = new JMenuItem("Cut Object");
+		menuItem.setActionCommand("CutObject");
+		menuItem.addActionListener(widgetActListener);
+		popup.add(menuItem);
+
+
+		menuItem = new JMenuItem("Paste Object");
+		menuItem.setActionCommand("PasteObject");
+		menuItem.addActionListener(widgetActListener);
+		// If neither the copy or cut pointers point to anything, the past
+		// button will be disabled
+		if ( PrimeMain1.copyWidget == null && PrimeMain1.cutWidget == null )
+		{
+			menuItem.setEnabled(false);
+		}
+		popup.add(menuItem);
+
+
 		popup.addSeparator();
 
 		menuItem = new JMenuItem("Delete this object");
@@ -101,7 +133,8 @@ public class JPopupWidgetMenu
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);
 
-		menuItem = new JMenuItem("Delete all connection to and from this object");
+		menuItem = new JMenuItem(
+				"Delete all connection to and from this object");
 		menuItem.setActionCommand("DeleteConnectionsObject");
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);

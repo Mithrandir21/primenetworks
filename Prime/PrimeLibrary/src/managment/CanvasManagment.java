@@ -10,6 +10,7 @@ import java.util.List;
 import logistical.cleanup;
 import objects.Object;
 
+import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
 
 import widgets.WidgetObject;
@@ -20,7 +21,6 @@ import widgets.WorkareaCanvas;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class CanvasManagment
 {
@@ -28,15 +28,19 @@ public class CanvasManagment
 
 	 */
 	/**
-	 * Searches and, find found, returns a canvas from the systems canvases with the given name.
+	 * Searches and, find found, returns a canvas from the systems canvases with
+	 * the given name.
 	 * 
 	 * @param canvasName
 	 *            The name of the canvas that is searched for.
 	 * @param canvases
-	 *            The {@link WorkareaCanvas WorkareaCanvases} that are to be searched.
-	 * @return Returns null if no {@link WorkareaCanvas} with the given name is found.
+	 *            The {@link WorkareaCanvas WorkareaCanvases} that are to be
+	 *            searched.
+	 * @return Returns null if no {@link WorkareaCanvas} with the given name is
+	 *         found.
 	 */
-	public static WorkareaCanvas findCanvas(String canvasName, WorkareaCanvas[] canvases)
+	public static WorkareaCanvas findCanvas(String canvasName,
+			WorkareaCanvas[] canvases)
 	{
 		for ( int i = 0; i < canvases.length; i++ )
 		{
@@ -56,13 +60,47 @@ public class CanvasManagment
 
 
 	/**
-	 * Finds and returns the WidgetObject that contains an Object that is equal to the given object.
+	 * Searches and, find found, returns a canvas from the systems canvases with
+	 * the given name.
+	 * 
+	 * @param canvasName
+	 *            The name of the canvas that is searched for.
+	 * @param canvases
+	 *            The {@link WorkareaCanvas WorkareaCanvases} that are to be
+	 *            searched.
+	 * @return Returns null if no {@link WorkareaCanvas} with the given name is
+	 *         found.
+	 */
+	public static WorkareaCanvas findCanvas(Scene scene,
+			WorkareaCanvas[] canvases)
+	{
+		for ( int i = 0; i < canvases.length; i++ )
+		{
+			if ( canvases[i] != null )
+			{
+				if ( canvases[i].getScene().equals(scene) )
+				{
+					return canvases[i];
+				}
+			}
+		}
+
+		// Has not found any canvases with that name.
+		return null;
+	}
+
+
+
+	/**
+	 * Finds and returns the WidgetObject that contains an Object that is equal
+	 * to the given object.
 	 * 
 	 * @param obj
 	 * @param canvas
 	 * @return The WidgetObject that contains the given object.
 	 */
-	public static WidgetObject findWidgetObject(Object obj, WorkareaCanvas canvas)
+	public static WidgetObject findWidgetObject(Object obj,
+			WorkareaCanvas canvas)
 	{
 		List<Widget> children = canvas.getMainLayer().getChildren();
 
@@ -83,13 +121,15 @@ public class CanvasManagment
 
 
 	/**
-	 * Finds and returns the WidgetObject that contains an Object based on the name of the object and the given object.
+	 * Finds and returns the WidgetObject that contains an Object based on the
+	 * name of the object and the given object.
 	 * 
 	 * @param obj
 	 * @param canvas
 	 * @return The WidgetObject that contains the given object.
 	 */
-	public static WidgetObject findWidgetObjectByObjectName(String name, WorkareaCanvas canvas)
+	public static WidgetObject findWidgetObjectByObjectName(String name,
+			WorkareaCanvas canvas)
 	{
 		List<Widget> children = canvas.getMainLayer().getChildren();
 
@@ -110,15 +150,17 @@ public class CanvasManagment
 
 
 	/**
-	 * Finds and returns the WidgetObject that contains an Object that is equal to the given object. This method checks
-	 * an array of canvases.
+	 * Finds and returns the WidgetObject that contains an Object that is equal
+	 * to the given object. This method checks an array of canvases.
 	 * 
 	 * @param obj
 	 * @param canvas
-	 *            The {@link WorkareaCanvas WorkareaCanvases} that are to be searched.
+	 *            The {@link WorkareaCanvas WorkareaCanvases} that are to be
+	 *            searched.
 	 * @return The WidgetObject that contains the given object.
 	 */
-	public static WidgetObject findWidgetObject(Object obj, WorkareaCanvas[] canvas)
+	public static WidgetObject findWidgetObject(Object obj,
+			WorkareaCanvas[] canvas)
 	{
 		for ( int i = 0; i < canvas.length; i++ )
 		{
@@ -148,16 +190,19 @@ public class CanvasManagment
 	 * @param canvas
 	 *            The searched for WorkareaCanvas.
 	 * @param canvases
-	 *            The {@link WorkareaCanvas WorkareaCanvases} that are to be searched.
+	 *            The {@link WorkareaCanvas WorkareaCanvases} that are to be
+	 *            searched.
 	 * @return True if he WorkareaCanvas was found and False if not.
 	 */
-	public static boolean canvasExists(WorkareaCanvas canvas, WorkareaCanvas[] canvases)
+	public static boolean canvasExists(WorkareaCanvas canvas,
+			WorkareaCanvas[] canvases)
 	{
 		for ( int i = 0; i < canvases.length; i++ )
 		{
 			if ( canvases[i] != null )
 			{
-				if ( canvases[i].getCanvasName().equalsIgnoreCase(canvas.getCanvasName()) )
+				if ( canvases[i].getCanvasName().equalsIgnoreCase(
+						canvas.getCanvasName()) )
 				{
 					return true;
 				}
@@ -175,10 +220,12 @@ public class CanvasManagment
 	 * @param canvasName
 	 *            The name of the searched for WorkareaCanvas.
 	 * @param canvases
-	 *            The {@link WorkareaCanvas WorkareaCanvases} that are to be searched.
+	 *            The {@link WorkareaCanvas WorkareaCanvases} that are to be
+	 *            searched.
 	 * @return True if he WorkareaCanvas was found and False if not.
 	 */
-	public static boolean canvasExists(String canvasName, WorkareaCanvas[] canvases)
+	public static boolean canvasExists(String canvasName,
+			WorkareaCanvas[] canvases)
 	{
 		for ( int i = 0; i < canvases.length; i++ )
 		{
@@ -199,14 +246,15 @@ public class CanvasManagment
 
 
 	/**
-	 * The method goes through all the given WorkareaCanvases given and returns a WorkareaCanvas array containing the
-	 * WorkareaCanvases that have been changed and not been saved. If no workareaCanvases are found, it will return a
-	 * null pointer.
+	 * The method goes through all the given WorkareaCanvases given and returns
+	 * a WorkareaCanvas array containing the WorkareaCanvases that have been
+	 * changed and not been saved. If no workareaCanvases are found, it will
+	 * return a null pointer.
 	 * 
 	 * @param canvases
 	 *            There WorkareaCanvseses to be searched.
-	 * @return The WorkareaCanvases that have changed, but not been saved. Or a null pointer if no WorkareaCanvases are
-	 *         found.
+	 * @return The WorkareaCanvases that have changed, but not been saved. Or a
+	 *         null pointer if no WorkareaCanvases are found.
 	 */
 	public static WorkareaCanvas[] canvasesHaveChanged(WorkareaCanvas[] canvases)
 	{
@@ -217,7 +265,8 @@ public class CanvasManagment
 		{
 			if ( canvases[i] != null )
 			{
-				if ( canvases[i].isSaved() != true && canvases[i].isChanged() == true )
+				if ( canvases[i].isSaved() != true
+						&& canvases[i].isChanged() == true )
 				{
 					change[i] = canvases[i];
 				}

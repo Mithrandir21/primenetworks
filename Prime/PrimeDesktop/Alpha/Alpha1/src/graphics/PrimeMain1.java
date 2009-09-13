@@ -55,6 +55,7 @@ import org.jdesktop.swingx.JXMultiSplitPane;
 import org.jdesktop.swingx.MultiSplitLayout;
 import org.jdesktop.swingx.MultiSplitLayout.Node;
 
+import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
 
 
@@ -120,6 +121,14 @@ public class PrimeMain1 extends JFrame
 
 	// The arraylist of the systems standard Objects
 	public static ArrayList<Object> objectlist = new ArrayList<Object>();
+
+	// The "Copy widget" widget holder
+	public static WidgetObject copyWidget = null;
+
+	// The "Cut widget" widget holder
+	public static WidgetObject cutWidget = null;
+
+
 
 	// FIXME - Change the way ObjectViews are handled
 

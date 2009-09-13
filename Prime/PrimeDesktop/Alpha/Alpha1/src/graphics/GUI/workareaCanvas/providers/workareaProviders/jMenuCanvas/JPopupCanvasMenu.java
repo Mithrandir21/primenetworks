@@ -2,6 +2,8 @@ package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas;
 
 
 
+import graphics.PrimeMain1;
+
 import java.awt.Point;
 
 import javax.swing.JMenu;
@@ -12,10 +14,8 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * The class that provides a JPopupMenu to be shown on any given canvas.
- * 
- * The methods in the class both creates and returns the menus.
- * 
+ * The class that provides a JPopupMenu to be shown on any given canvas. The
+ * methods in the class both creates and returns the menus.
  * 
  * @author Bahram Malaekeh
  */
@@ -28,7 +28,8 @@ public class JPopupCanvasMenu
 
 
 	/**
-	 * The class that will listen for actions and then perform the correct action.
+	 * The class that will listen for actions and then perform the correct
+	 * action.
 	 */
 	private WorkareaCanvasActionListener canvasActListener;
 
@@ -55,14 +56,36 @@ public class JPopupCanvasMenu
 	 * The function calls the menu creator and returns the finished JPopupMenu.
 	 * 
 	 * @param localLocation
-	 *            The location(Point) on the WorkareaCanvas that the menu will be shown at
-	 * @return The JPopupMenu that will be shown when a user right clicks on an empty part of a WorkareaCanvas.
+	 *            The location(Point) on the WorkareaCanvas that the menu will
+	 *            be shown at
+	 * @return The JPopupMenu that will be shown when a user right clicks on an
+	 *         empty part of a WorkareaCanvas.
 	 */
 	public JPopupMenu createPopupMenu(Point localLocation)
 	{
-		// The action listener that will determine what actions from the JPopupMenu
+		// The action listener that will determine what actions from the
+		// JPopupMenu
 		// the user wants to perform.
-		canvasActListener = new WorkareaCanvasActionListener(canvas, localLocation);
+		canvasActListener = new WorkareaCanvasActionListener(canvas,
+				localLocation);
+
+		// -------------------------------
+		JMenuItem menuItem;
+
+		menuItem = new JMenuItem("Paste Object");
+		menuItem.setActionCommand("PasteObject");
+		menuItem.addActionListener(canvasActListener);
+		// If neither the copy or cut pointers point to anything, the past
+		// button will be disabled
+		if ( PrimeMain1.copyWidget == null && PrimeMain1.cutWidget == null )
+		{
+			menuItem.setEnabled(false);
+		}
+		popup.add(menuItem);
+		// --------------------------------
+
+		popup.addSeparator();
+
 
 		ObjectCreationMenues();
 
@@ -74,7 +97,6 @@ public class JPopupCanvasMenu
 
 	/**
 	 * Creates the initial submenus.
-	 * 
 	 */
 	private void ObjectCreationMenues()
 	{
@@ -91,11 +113,13 @@ public class JPopupCanvasMenu
 		submenuAdd.add(submenuServer);
 
 
-		JMenuItem submenuInfrastructur = createAddInfrastructur(new JMenu("Add Infrastructur"));
+		JMenuItem submenuInfrastructur = createAddInfrastructur(new JMenu(
+				"Add Infrastructur"));
 		submenuAdd.add(submenuInfrastructur);
 
 
-		JMenuItem submenuPeripheral = createAddPeripheral(new JMenu("Add Peripheral"));
+		JMenuItem submenuPeripheral = createAddPeripheral(new JMenu(
+				"Add Peripheral"));
 		submenuAdd.add(submenuPeripheral);
 
 

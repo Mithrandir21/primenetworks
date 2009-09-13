@@ -1498,21 +1498,22 @@ public class ComponentsManagment
 		// --------------------------------------------------
 
 		// Copies the software to a new array
-		Software[] oldSoftware = copyFrom.getSoftware();
-		Software[] newSoftware = new Software[oldSoftware.length];
-
-
-		if ( oldSoftware[0] != null )
+		if ( copyFrom.getSoftware() != null )
 		{
-			for ( int i = 0; i < oldSoftware.length; i++ )
+			Software[] oldSoftware = copyFrom.getSoftware();
+			Software[] newSoftware = new Software[oldSoftware.length];
+
+			if ( oldSoftware[0] != null )
 			{
-				newSoftware[i] = (Software) oldSoftware[i].clone();
+				for ( int i = 0; i < oldSoftware.length; i++ )
+				{
+					newSoftware[i] = (Software) oldSoftware[i].clone();
+				}
 			}
+
+			// Copies the software of the copyFrom object to copyTo object
+			copyTo.setSoftware(newSoftware);
 		}
-
-		// Copies the software of the copyFrom object to copyTo object
-		copyTo.setSoftware(newSoftware);
-
 		// --------------------------------------------------
 
 		if ( copyFrom.getLocation() != null )
@@ -1526,5 +1527,4 @@ public class ComponentsManagment
 
 		return copyTo;
 	}
-
 }

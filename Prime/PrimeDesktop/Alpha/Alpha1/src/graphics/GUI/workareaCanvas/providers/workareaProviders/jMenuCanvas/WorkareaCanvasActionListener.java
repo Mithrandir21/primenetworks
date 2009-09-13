@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 
+import managment.CanvasManagment;
+import managment.ComponentsManagment;
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
 import objects.clientObjects.ThinClient;
@@ -37,6 +39,7 @@ import objects.serverObjects.HTTPServer;
 import objects.serverObjects.MailServer;
 import objects.serverObjects.PrinterServer;
 import objects.serverObjects.ProxyServer;
+import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetIcon;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
@@ -46,7 +49,6 @@ import widgets.WorkareaCanvas;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class WorkareaCanvasActionListener implements ActionListener
 {
@@ -79,8 +81,8 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -234,7 +236,8 @@ public class WorkareaCanvasActionListener implements ActionListener
 			else if ( actionName.equals("CreateNewST_MFP_Item") )
 			{
 				objectType = MultifunctionPrinter.class;
-				objectIcon = ImageLocator.getImageIconObject("MultifunctionPrinter");
+				objectIcon = ImageLocator
+						.getImageIconObject("MultifunctionPrinter");
 
 				set = true;
 			}
@@ -248,7 +251,8 @@ public class WorkareaCanvasActionListener implements ActionListener
 			else if ( actionName.equals("CreateNewST_NetworkMFP_Item") )
 			{
 				objectType = NetworkMultifunctionPrinter.class;
-				objectIcon = ImageLocator.getImageIconObject("NetworkMultifunctionPrinter");
+				objectIcon = ImageLocator
+						.getImageIconObject("NetworkMultifunctionPrinter");
 
 				set = true;
 			}
@@ -258,18 +262,20 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 			if ( set == true )
 			{
-				WidgetIcon newObjectIcon = new WidgetIcon(objectIcon, objectType);
+				WidgetIcon newObjectIcon = new WidgetIcon(objectIcon,
+						objectType);
 
 				// Sets up the WidgetIcon
 				GraphicalFunctions.widgetIconSetup(newObjectIcon);
 
 
 				// Creates a new Object that will be added to the WidgetObject
-				newObject = new CreateObjects()
-						.CreateObject(newObjectIcon, canvas.getNumberOfWidgetsOnTheScene());
+				newObject = new CreateObjects().CreateObject(newObjectIcon,
+						canvas.getNumberOfWidgetsOnTheScene());
 
 				// Creates a new WidgetObject that will be added to the scene
-				newWidgetObject = new WidgetObject(canvas.getScene(), newObject, objectIcon.getImage());
+				newWidgetObject = new WidgetObject(canvas.getScene(),
+						newObject, objectIcon.getImage());
 
 				// Adds the given object to the given location
 				canvas.addWidgetObject(newWidgetObject, location, true);
@@ -279,6 +285,70 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 				// Updates the sidebar with the object properties
 				PrimeMain1.updatePropertiesObjectArea(newObject, false);
+			}
+
+
+			// Wants to paste a new WidgetObject on the canvas
+			if ( actionName.equals("PasteObject") )
+			{
+				// The user wants to paste a new WidgetObject, but not replace
+				// the current WidgetObject
+				WidgetObject copyFrom = null;
+
+
+				// Either the cut or copy pointers will be used
+				if ( PrimeMain1.copyWidget != null )
+				{
+					copyFrom = PrimeMain1.copyWidget;
+				}
+				else
+				{
+					assert PrimeMain1.cutWidget != null;
+
+					copyFrom = PrimeMain1.cutWidget;
+				}
+
+
+				// The location of the new Widget
+				Point newLocation = new Point(location);
+
+				// Creates a deep copy of the object within the classes Widget
+				newObject = ComponentsManagment.deepObjectCopy(copyFrom
+						.getObject());
+
+				// Creates a new WidgetObject
+				WidgetObject newWidget = new WidgetObject(canvas.getScene(),
+						newObject, copyFrom.getImage());
+
+				// Sets the location of the object
+				newWidget.getObject().setLocation(newLocation);
+
+				// Adds the newly created WidgetObject to the classes canvas
+				canvas.addWidgetObject(newWidget, newLocation, true);
+
+				// Adds the clicking actions to the Widget on the scene
+				ActionsAdder.makeWidgetObjectReady(canvas, newWidget);
+
+
+				// When the paste function is finished, the cut and copy should
+				// be reset to null. If the Cut object is the one used, that
+				// object will be removed from the canvas
+				if ( PrimeMain1.copyWidget != null )
+				{
+					PrimeMain1.copyWidget = null;
+				}
+				else
+				{
+					// Assures that the pointer is not null
+					assert PrimeMain1.cutWidget != null;
+
+					// Removes the object from the canvas
+					WorkareaCanvasActions.deleteObject(CanvasManagment
+							.findCanvas(PrimeMain1.cutWidget.getScene(),
+									PrimeMain1.canvases), PrimeMain1.cutWidget);
+
+					PrimeMain1.cutWidget = null;
+				}
 			}
 
 		}
