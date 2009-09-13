@@ -15,15 +15,14 @@ import widgets.WidgetObject;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class CreateProvider implements SelectProvider
 {
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.netbeans.api.visual.action.SelectProvider#isAimingAllowed(org.netbeans.api.visual.widget.Widget,
-	 * java.awt.Point, boolean)
+	 * @see
+	 * org.netbeans.api.visual.action.SelectProvider#isAimingAllowed(org.netbeans
+	 * .api.visual.widget.Widget, java.awt.Point, boolean)
 	 */
 	public boolean isAimingAllowed(Widget arg0, Point arg1, boolean arg2)
 	{
@@ -32,9 +31,9 @@ public class CreateProvider implements SelectProvider
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.netbeans.api.visual.action.SelectProvider#isSelectionAllowed(org.netbeans.api.visual.widget.Widget,
-	 * java.awt.Point, boolean)
+	 * @see
+	 * org.netbeans.api.visual.action.SelectProvider#isSelectionAllowed(org.
+	 * netbeans.api.visual.widget.Widget, java.awt.Point, boolean)
 	 */
 	public boolean isSelectionAllowed(Widget arg0, Point arg1, boolean arg2)
 	{
@@ -43,11 +42,12 @@ public class CreateProvider implements SelectProvider
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.netbeans.api.visual.action.SelectProvider#select(org.netbeans.api.visual.widget.Widget, java.awt.Point,
-	 * boolean)
+	 * @see
+	 * org.netbeans.api.visual.action.SelectProvider#select(org.netbeans.api
+	 * .visual.widget.Widget, java.awt.Point, boolean)
 	 */
-	public void select(Widget relatedWidget, Point localLocation, boolean invertSelection)
+	public void select(Widget relatedWidget, Point localLocation,
+			boolean invertSelection)
 	{
 		if ( relatedWidget instanceof WidgetObject )
 		{
@@ -55,7 +55,11 @@ public class CreateProvider implements SelectProvider
 
 			WidgetObject widgetobj = (WidgetObject) relatedWidget;
 
-			// Updates the information panel with information from the selected object.
+			// Sets the current WidgetObject for the systems current canvas
+			PrimeMain1.currentCanvas.setCurrentWidgetObject(widgetobj);
+
+			// Updates the information panel with information from the selected
+			// object.
 			PrimeMain1.updatePropertiesObjectArea(widgetobj.getObject(), false);
 		}
 	}

@@ -42,7 +42,15 @@ public class ActionObjectEditing extends AbstractAction
 	{
 		// Creates and places a new StandardObjects JFrame into the system main
 		// registry.
-		PrimeMain1.stdObjView = new StandardObjects();
+
+		if ( PrimeMain1.stdObjView == null )
+		{
+			PrimeMain1.stdObjView = new StandardObjects();
+		}
+		else
+		{
+			PrimeMain1.stdObjView.toFront();
+		}
 	}
 
 }

@@ -7,17 +7,20 @@ package graphics.GUI.standardObjectEdit;
 import graphics.PrimeMain1;
 import graphics.GUI.standardObjectEdit.StandardViews.HardwareObjectView;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import widgets.WidgetButton;
+
 
 /**
- * TODO - Description NEEDED!
+ * This extended JPanel is split in two(30/70), where the first part is a
+ * JScrollPane that holds {@link WidgetButton WidgetButtons} of all the standard
+ * objects, and the second part will hold component information for each
+ * selected standard object.
  * 
  * @author Bahram Malaekeh
  */
@@ -29,7 +32,7 @@ public class StandardViewSpilt extends JPanel
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * A constructor for this class.
 	 */
 	public StandardViewSpilt()
 	{
@@ -71,7 +74,7 @@ public class StandardViewSpilt extends JPanel
 
 
 		JPanel viewPanel = new JPanel();
-//		viewPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		// viewPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
 		hardStdObjView = new HardwareObjectView(PrimeMain1.objectlist.get(0));
 

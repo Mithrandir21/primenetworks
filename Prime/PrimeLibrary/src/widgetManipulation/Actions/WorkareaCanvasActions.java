@@ -188,8 +188,6 @@ public class WorkareaCanvasActions
 		// newObject.setBorder(BorderFactory.createRoundedBorder(7, 7,
 		// Color.white, Color.black));
 
-		// newObject.getActions().addAction(ActionFactory.
-		// createAddRemoveControlPointAction(1.0,3.0));
 		// ---------------------------------------
 
 

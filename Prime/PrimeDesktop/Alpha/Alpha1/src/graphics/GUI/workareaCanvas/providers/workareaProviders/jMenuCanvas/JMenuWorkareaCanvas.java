@@ -5,6 +5,8 @@ package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas;
 
 
 
+import graphics.PrimeMain1;
+
 import java.awt.Point;
 
 import javax.swing.JPopupMenu;
@@ -19,7 +21,6 @@ import widgets.WorkareaCanvas;
  * This class provides a JPopupMenu by implementing the PopupMenuProvider.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class JMenuWorkareaCanvas implements PopupMenuProvider
 {
@@ -43,13 +44,16 @@ public class JMenuWorkareaCanvas implements PopupMenuProvider
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.netbeans.api.visual.action.PopupMenuProvider#getPopupMenu(org.netbeans.api.visual.widget.Widget,
-	 * java.awt.Point)
+	 * @see
+	 * org.netbeans.api.visual.action.PopupMenuProvider#getPopupMenu(org.netbeans
+	 * .api.visual.widget.Widget, java.awt.Point)
 	 */
 	@Override
 	public JPopupMenu getPopupMenu(Widget widget, Point localLocation)
 	{
+		// Sets the current WidgetObject for the systems current canvas
+		PrimeMain1.currentCanvas.setCurrentWidgetObject(null);
+
 		JPopupCanvasMenu provider = new JPopupCanvasMenu(canvas);
 
 

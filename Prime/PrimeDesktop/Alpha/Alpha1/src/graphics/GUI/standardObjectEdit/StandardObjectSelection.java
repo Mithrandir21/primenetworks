@@ -30,7 +30,8 @@ import widgets.WidgetButton;
 
 
 /**
- * TODO - Description NEEDED!
+ * This extended JPnel class will contain {@link WidgetButton WidgetButtons} of
+ * all the systems standard object.
  * 
  * @author Bahram Malaekeh
  */
@@ -42,7 +43,8 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * A constructor that calls all the initiation function this class holds to
+	 * set up the different standard object buttons.
 	 */
 	public StandardObjectSelection()
 	{
@@ -70,7 +72,8 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 
 
 	/**
-	 * TODO - Description
+	 * Sets up {@link WidgetButton WidgetButtons} for sub classes of
+	 * {@link Clients}.
 	 */
 	private void intiClients()
 	{
@@ -90,7 +93,8 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 
 
 	/**
-	 * TODO - Description
+	 * Sets up {@link WidgetButton WidgetButtons} for sub classes of
+	 * {@link Servers}.
 	 */
 	private void initServers()
 	{
@@ -110,7 +114,8 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 
 
 	/**
-	 * TODO - Description
+	 * Sets up {@link WidgetButton WidgetButtons} for sub classes of
+	 * {@link ExternalHardware}.
 	 */
 	private void initExternalHardware()
 	{
@@ -131,7 +136,8 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 
 
 	/**
-	 * TODO - Description
+	 * Sets up {@link WidgetButton WidgetButtons} for sub classes of
+	 * {@link Infrastructure}.
 	 */
 	private void initInfrastructure()
 	{
@@ -155,7 +161,8 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 
 
 	/**
-	 * TODO - Description
+	 * This function creates a {@link WidgetButton} to be placed to represent a
+	 * standard {@link Object}.
 	 */
 	@SuppressWarnings("unchecked")
 	private WidgetButton makeImageIcon(String name, Class objectType,
@@ -194,7 +201,11 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 
 
 	/**
-	 * TODO - Description
+	 * This function checks whether or not the second parameter(givenClass) is a
+	 * subclass of the first parameter(rightClass).
+	 * 
+	 * @return Returns a boolean on whether or not the second parameter(Class)
+	 *         is a subclass of the first parameter.
 	 */
 	@SuppressWarnings("unchecked")
 	public boolean superClassCheck(Class rightClass, Class givenClass)

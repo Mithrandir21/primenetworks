@@ -4,12 +4,13 @@
 package actions;
 
 
+import graphics.PrimeMain1;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 
 /**
@@ -21,7 +22,8 @@ import javax.swing.JOptionPane;
 public class ActionCut extends AbstractAction
 {
 	/**
-	 * A constructor for the class that takes a string, the action name, and a Icon.
+	 * A constructor for the class that takes a string, the action name, and a
+	 * Icon.
 	 * 
 	 * @param text
 	 *            The name of the action.
@@ -37,7 +39,8 @@ public class ActionCut extends AbstractAction
 
 
 	/**
-	 * A constructor for the class that takes a string which will be the name of the action.
+	 * A constructor for the class that takes a string which will be the name of
+	 * the action.
 	 * 
 	 * @param text
 	 *            The name of the action.
@@ -53,12 +56,28 @@ public class ActionCut extends AbstractAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		JOptionPane.showMessageDialog(null, "You want to perform a \"Cut\" action.");
+
+		// Sets the copyWidget pointer to null
+		PrimeMain1.copyWidget = null;
+
+		if ( PrimeMain1.currentCanvas != null )
+		{
+			if ( PrimeMain1.currentCanvas.getCurrentWidgetObject() != null )
+			{
+				// Sets the widget as the widget to be cut(copied and deleted)
+				PrimeMain1.cutWidget = PrimeMain1.currentCanvas
+						.getCurrentWidgetObject();
+			}
+			else
+			{
+				PrimeMain1.cutWidget = null;
+			}
+		}
 	}
 
 }

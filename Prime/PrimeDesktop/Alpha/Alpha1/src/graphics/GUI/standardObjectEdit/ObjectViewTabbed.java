@@ -43,7 +43,8 @@ public class ObjectViewTabbed extends JTabbedPane
 	private Object mainobj;
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for this class sets the main object of the class and calls
+	 * this classes populateTabs function.
 	 * 
 	 * @param obj
 	 */
