@@ -192,6 +192,8 @@ public class ConnectionManagment
 			Connection[] existingConnections, Object objectA, Object objectB)
 			throws ConnectionDoesNotExist
 	{
+		System.out.println(objectA);
+		System.out.println(objectB);
 
 		// Checks to see if there really is a connection between A and B
 		if ( checkConnectionExistence(existingConnections, objectA, objectB) == false )

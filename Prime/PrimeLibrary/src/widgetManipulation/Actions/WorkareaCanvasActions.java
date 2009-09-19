@@ -287,6 +287,7 @@ public class WorkareaCanvasActions
 			{
 				if ( connectedObjects[i] != null )
 				{
+					System.out.println(connectedObjects[i].getObjectName());
 					try
 					{
 						// Removes the WidgetExtendedConnection from the

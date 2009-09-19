@@ -836,7 +836,7 @@ public abstract class Object implements Serializable, Cloneable
 			// of booleans with the given length of the last array, but where
 			// all the indexes are false.
 			objectAmotherboard.setMaxIntegratedLANs(objectAmotherboard
-					.getIntegLANPortsAvailable());
+					.getMaxIntegLANs());
 
 		}
 	}
@@ -844,14 +844,18 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * Removes all connected devices, network connections and resets the
-	 * connected devices counter.
+	 * Removes all connected devices(USB), network(LAN) connections and resets
+	 * the connected devices counter.
 	 */
 	public void removeAllConnections()
 	{
 		removeAllConnectedDevices();
 
 		removeAllNetworkConnections();
+
+		releaseAllNetworkConnectionPorts();
+
+		releaseAllUSBConnectionPorts();
 
 		resetConnectedDevicesCounter();
 	}
@@ -880,6 +884,31 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
+	 * Releases all the USB connections on the objects motherboard.
+	 */
+	public void releaseAllUSBConnectionPorts()
+	{
+		Motherboard objectAmotherboard = null;
+
+		try
+		{
+			objectAmotherboard = (Motherboard) getSpesificComponents(Motherboard.class)[0];
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			System.out.println("Object - releaseConnectionPorts "
+					+ "- Network connection - cant find Motherboard");
+		}
+
+		// Sets the arrays on the actual motherboard component to an array
+		// of booleans with the given length of the last array, but where
+		// all the indexes are false.
+		objectAmotherboard
+				.setUSBPortsAvailable(objectAmotherboard.getMaxUSBs());
+	}
+
+
+	/**
 	 * Releases all the Network(LAN or RJ-45) connections on the objects
 	 * motherboard.
 	 */
@@ -901,8 +930,7 @@ public abstract class Object implements Serializable, Cloneable
 		// of booleans with the given length of the last array, but where
 		// all the indexes are false.
 		objectAmotherboard.setIntegLANPortsAvailable(objectAmotherboard
-				.getIntegLANPortsAvailable());
-
+				.getMaxIntegLANs());
 	}
 
 

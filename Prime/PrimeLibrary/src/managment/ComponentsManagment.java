@@ -1489,21 +1489,15 @@ public class ComponentsManagment
 			for ( int i = 0; i < oldComponents.length; i++ )
 			{
 				newComponents[i] = oldComponents[i].clone();
-
-				if ( i == 0 )
-				{
-					// If the first index is not zero, there will be a
-					// Motherboard
-					Motherboard temp = (Motherboard) newComponents[0];
-
-					// Sets all the integrated LAN ports a available
-					temp.setIntegLANPortsAvailable(temp.getMaxIntegLANs());
-				}
 			}
 		}
 
 		// Copies the components of the copyFrom object to copyTo object
 		copyTo.setAllComponents(newComponents);
+
+		// Removes all the connection the newly created object contains.
+		copyTo.removeAllConnections();
+
 
 		// --------------------------------------------------
 
@@ -1537,6 +1531,11 @@ public class ComponentsManagment
 
 		// Creates a new serial number for the copied object
 		copyTo.createRandomLongSerial();
+
+		// --------------------------------------------------
+
+
+
 
 		return copyTo;
 	}
