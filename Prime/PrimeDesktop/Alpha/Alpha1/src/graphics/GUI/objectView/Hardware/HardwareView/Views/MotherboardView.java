@@ -713,7 +713,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 		for ( int i = 1; i < LANportsStrings.length; i++ )
 		{
 			if ( Integer.parseInt(LANports.getItemAt(i).toString()) == (mb
-					.getMaxLANs()) )
+					.getMaxIntegLANs()) )
 			{
 				LANportsIndex = i;
 				i = LANportsStrings.length;

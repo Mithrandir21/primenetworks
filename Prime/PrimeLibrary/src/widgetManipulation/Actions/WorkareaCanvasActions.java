@@ -82,11 +82,11 @@ public class WorkareaCanvasActions
 		catch ( UnsupportedFlavorException e )
 		{
 			System.out
-					.println("ActionCreateWidgetObject - UnsupportedFlavorException");
+					.println("WorkareaCanvasActions - UnsupportedFlavorException");
 		}
 		catch ( IOException e )
 		{
-			System.out.println("ActionCreateWidgetObject - IOException");
+			System.out.println("WorkareaCanvasActions - IOException");
 		}
 
 		return newObject;

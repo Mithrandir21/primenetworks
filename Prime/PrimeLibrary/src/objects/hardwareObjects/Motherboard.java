@@ -7,17 +7,21 @@ import objects.Hardware;
 
 
 /**
- * This class represents a motherboard of a {@link objects.Servers server} or {@link objects.Clients client} machine. It
- * can be a server, a desktop or a laptop. It contains information on what kind of capability the motherboard has, what
- * kind of ports it has, how many slots it has for different cards, how many CPUs can be installed and so on. <br>
+ * This class represents a motherboard of a {@link objects.Servers server} or
+ * {@link objects.Clients client} machine. It can be a server, a desktop or a
+ * laptop. It contains information on what kind of capability the motherboard
+ * has, what kind of ports it has, how many slots it has for different cards,
+ * how many CPUs can be installed and so on. <br>
  * <br>
- * <b>Notation</b>: The motherboard will be refered to as "MB" in the remainder of this document. <br>
+ * <b>Notation</b>: The motherboard will be refered to as "MB" in the remainder
+ * of this document. <br>
  * <br>
  * <br>
  * Changelog 0.2
  * <p>
- * Changed HDD connections to DUC, Different Usage Connections, to better suit the actual function of the port which is
- * a port for both HDDs and CDROMs among other things.
+ * Changed HDD connections to DUC, Different Usage Connections, to better suit
+ * the actual function of the port which is a port for both HDDs and CDROMs
+ * among other things.
  * </p>
  * 
  * @author Bahram Malaekeh
@@ -79,8 +83,8 @@ public class Motherboard extends Hardware implements Serializable
 	private boolean LANcardIntegrated;
 
 	/*
-	 * Boolean on whether or not a graphics card is set on the AGP or PCI-E port, depending on what kind of port is set
-	 * on the graphicalPortType.
+	 * Boolean on whether or not a graphics card is set on the AGP or PCI-E
+	 * port, depending on what kind of port is set on the graphicalPortType.
 	 */
 	private boolean isGraphicsCardInstalled;
 
@@ -116,7 +120,8 @@ public class Motherboard extends Hardware implements Serializable
 	 * @param MBform
 	 *            The form of Motherboard.
 	 * @param MBsocket
-	 *            The subtype of the Motherboard type, Socket 775, Socket 939 and so on.
+	 *            The subtype of the Motherboard type, Socket 775, Socket 939
+	 *            and so on.
 	 * @param MBramType
 	 *            The ram type of the motherboard.
 	 * @param MBmaxCPUs
@@ -136,10 +141,12 @@ public class Motherboard extends Hardware implements Serializable
 	 * @param MBintegAudioCard
 	 *            Boolean on whether or not the MB has an integrated Audio card.
 	 */
-	public Motherboard(String Name, String Desc, String MBproducer, String MBform, String MBsocket, String MBramType,
-			int MBmaxCPUs, int MBmaxPCIs, int MBmaxRAMs, int MBmaxUSBs, int MBmaxDUCs, String MBDUCconnectionType,
-			String MBgraphicalPort, boolean MBintegLANcard, boolean MBintegGraphicalCard, boolean MBintegAudioCard,
-			int MBmaxIntegLanPorts)
+	public Motherboard(String Name, String Desc, String MBproducer,
+			String MBform, String MBsocket, String MBramType, int MBmaxCPUs,
+			int MBmaxPCIs, int MBmaxRAMs, int MBmaxUSBs, int MBmaxDUCs,
+			String MBDUCconnectionType, String MBgraphicalPort,
+			boolean MBintegLANcard, boolean MBintegGraphicalCard,
+			boolean MBintegAudioCard, int MBmaxIntegLanPorts)
 	{
 		super(Name, Desc);
 
@@ -279,9 +286,11 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the number of integrated LAN ports on the v.
+	 * Gets the number of integrated LAN ports.
+	 * 
+	 * @return the maxIntegLANs
 	 */
-	public int getMaxLANs()
+	public int getMaxIntegLANs()
 	{
 		return maxIntegLANs;
 	}
@@ -297,7 +306,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the graphical port type on the motherboard. AGP, PCI, PCI-Express and so on.
+	 * Get the graphical port type on the motherboard. AGP, PCI, PCI-Express and
+	 * so on.
 	 */
 	public String getGraphicalPort()
 	{
@@ -315,7 +325,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the whether or not there is an integrated audio card on the motherboard.
+	 * Get the whether or not there is an integrated audio card on the
+	 * motherboard.
 	 */
 	public boolean audioCardIsIntegrated()
 	{
@@ -324,7 +335,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the whether or not there is an integrated graphical card on the motherboard.
+	 * Get the whether or not there is an integrated graphical card on the
+	 * motherboard.
 	 */
 	public boolean graphicalCardIsIntegrated()
 	{
@@ -333,7 +345,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get a boolean on whether or not there is an integrated LAN card on the motherboard.
+	 * Get a boolean on whether or not there is an integrated LAN card on the
+	 * motherboard.
 	 */
 	public boolean LANcardIsIntegrated()
 	{
@@ -342,18 +355,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Gets the number of integrated LAN ports.
-	 * 
-	 * @return the maxIntegLANs
-	 */
-	public int getMaxIntegLANs()
-	{
-		return maxIntegLANs;
-	}
-
-
-	/**
-	 * Get a boolean on whether or not there is an integrated Audio card on the motherboard.
+	 * Get a boolean on whether or not there is an integrated Audio card on the
+	 * motherboard.
 	 * 
 	 * @return the integAudioCard
 	 */
@@ -364,7 +367,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get a boolean on whether or not there is an integrated Graphical card on the motherboard.
+	 * Get a boolean on whether or not there is an integrated Graphical card on
+	 * the motherboard.
 	 * 
 	 * @return the integGraphicalCard
 	 */
@@ -375,7 +379,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get a boolean on whether or not there is an integrated LAN card on the motherboard.
+	 * Get a boolean on whether or not there is an integrated LAN card on the
+	 * motherboard.
 	 * 
 	 * @return the integLANcard
 	 */
@@ -452,7 +457,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get a boolean on whether or not there is a Graphical Card installed on the motherboard.
+	 * Get a boolean on whether or not there is a Graphical Card installed on
+	 * the motherboard.
 	 * 
 	 * @return the graphicsCard
 	 */
@@ -596,7 +602,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for whether or not the is present a integrated audio card on the motherboard.
+	 * Set method for whether or not the is present a integrated audio card on
+	 * the motherboard.
 	 */
 	public void setIntegAudioCard(boolean MBhasIntegratedAudio)
 	{
@@ -605,7 +612,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for whether or not the is present a integrated graphical card on the v.
+	 * Set method for whether or not the is present a integrated graphical card
+	 * on the v.
 	 */
 	public void setIntegGraphicalCard(boolean MBhasIntegratedGraphicalCard)
 	{
@@ -614,7 +622,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for whether or not the is present a integrated LAN card on the motherboard.
+	 * Set method for whether or not the is present a integrated LAN card on the
+	 * motherboard.
 	 */
 	public void setIntegLANcard(boolean MBhasIntegratedLANcard)
 	{
@@ -624,7 +633,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for whether or not the is present a graphical card on the motherboard.
+	 * Set method for whether or not the is present a graphical card on the
+	 * motherboard.
 	 * 
 	 * @param graphicsCard
 	 *            the graphicsCard to set
@@ -662,7 +672,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one CPU port available by add to the integer that keep track of how make port are available.
+	 * Makes one CPU port available by add to the integer that keep track of how
+	 * make port are available.
 	 */
 	public void makeOneCPUportAvailable()
 	{
@@ -672,7 +683,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one CPU port unavailable by removing from the integer that keep track of how make port are available.
+	 * Makes one CPU port unavailable by removing from the integer that keep
+	 * track of how make port are available.
 	 */
 	public void makeOneCPUportTaken()
 	{
@@ -694,7 +706,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one PCI port available by add to the integer that keep track of how make port are available.
+	 * Makes one PCI port available by add to the integer that keep track of how
+	 * make port are available.
 	 */
 	public void makeOnePCIportAvailable()
 	{
@@ -704,7 +717,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one PCI port unavailable by removing from the integer that keep track of how make port are available.
+	 * Makes one PCI port unavailable by removing from the integer that keep
+	 * track of how make port are available.
 	 */
 	public void makeOnePCIportTaken()
 	{
@@ -726,7 +740,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one RAM port available by add to the integer that keep track of how make port are available.
+	 * Makes one RAM port available by add to the integer that keep track of how
+	 * make port are available.
 	 */
 	public void makeOneRAMportAvailable()
 	{
@@ -736,7 +751,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one RAM port unavailable by removing from the integer that keep track of how make port are available.
+	 * Makes one RAM port unavailable by removing from the integer that keep
+	 * track of how make port are available.
 	 */
 	public void makeOneRAMportTaken()
 	{
@@ -757,7 +773,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one USB port available by add to the integer that keep track of how make port are available.
+	 * Makes one USB port available by add to the integer that keep track of how
+	 * make port are available.
 	 */
 	public void makeOneUSBportAvailable()
 	{
@@ -767,7 +784,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one USB port unavailable by removing from the integer that keep track of how make port are available.
+	 * Makes one USB port unavailable by removing from the integer that keep
+	 * track of how make port are available.
 	 */
 	public void makeOneUSBportTaken()
 	{
@@ -788,7 +806,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one DUC port available by add to the integer that keep track of how make port are available.
+	 * Makes one DUC port available by add to the integer that keep track of how
+	 * make port are available.
 	 */
 	public void makeOneDUCportAvailable()
 	{
@@ -798,7 +817,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one DUC port unavailable by removing from the integer that keep track of how make port are available.
+	 * Makes one DUC port unavailable by removing from the integer that keep
+	 * track of how make port are available.
 	 */
 	public void makeOneDUCportTaken()
 	{
@@ -820,7 +840,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one LAN port available by add to the integer that keep track of how make port are available.
+	 * Makes one LAN port available by add to the integer that keep track of how
+	 * make port are available.
 	 */
 	public void makeOneIntLANportAvailable()
 	{
@@ -830,7 +851,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Makes one LAN port unavailable by removing from the integer that keep track of how make port are available.
+	 * Makes one LAN port unavailable by removing from the integer that keep
+	 * track of how make port are available.
 	 */
 	public void makeOneIntLANportTaken()
 	{
@@ -841,9 +863,9 @@ public class Motherboard extends Hardware implements Serializable
 	// CLASS METHODES
 
 	/**
-	 * Resets all the fields for this Motherboard. All {@link String} fields will be set to "", all {@link Integer} will
-	 * be set to 0 and all {@link Boolean Booleans} will be set to false.
-	 * 
+	 * Resets all the fields for this Motherboard. All {@link String} fields
+	 * will be set to "", all {@link Integer} will be set to 0 and all
+	 * {@link Boolean Booleans} will be set to false.
 	 */
 	private void reset()
 	{
@@ -871,7 +893,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Resets all the ports so that all ports are available. Sets the port availability to the max port.
+	 * Resets all the ports so that all ports are available. Sets the port
+	 * availability to the max port.
 	 */
 	public void resetAllComponents()
 	{
@@ -887,8 +910,8 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * This method returns the first available index in an array of booleans that is set to false. If none are found, it
-	 * will return -1.
+	 * This method returns the first available index in an array of booleans
+	 * that is set to false. If none are found, it will return -1.
 	 */
 	public int firstAvailableIndex(boolean[] array)
 	{

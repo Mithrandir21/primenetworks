@@ -61,7 +61,22 @@ public class CreateProvider implements SelectProvider
 			// Updates the information panel with information from the selected
 			// object.
 			PrimeMain1.updatePropertiesObjectArea(widgetobj.getObject(), false);
+
+			for ( int i = 0; i < PrimeMain1.currentCanvas.getConnections().length; i++ )
+			{
+				if ( PrimeMain1.currentCanvas.getConnections()[i] != null )
+				{
+					System.out.println(PrimeMain1.currentCanvas
+							.getConnections()[i].getObject1()
+							+ " - "
+							+ PrimeMain1.currentCanvas.getConnections()[i]
+									.getObject2());
+				}
+				else
+				{
+					System.out.println("Number " + i + " is empty");
+				}
+			}
 		}
 	}
-
 }

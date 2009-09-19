@@ -48,8 +48,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 	private WorkareaCanvas canvasViewed = null;
 
 	/**
-	 * A class constructor that takes a WorkareaCanvas and creates places information about that canvas on to this
-	 * JPanel.
+	 * A class constructor that takes a WorkareaCanvas and creates places
+	 * information about that canvas on to this JPanel.
 	 * 
 	 * @param canvas
 	 */
@@ -69,7 +69,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 
 			// Lay out the panel.
-			graphics.GraphicalFunctions.make1xGrid(this, this.getComponentCount(), // rows
+			graphics.GraphicalFunctions.make1xGrid(this, this
+					.getComponentCount(), // rows
 					// ,
 					// cols
 					6, 6, // initX, initY
@@ -84,8 +85,9 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 
 	/**
-	 * A constructor for the class that takes the given Object and places information about that object on this JPanel.
-	 * The information depends on what kind of class the given object is.
+	 * A constructor for the class that takes the given Object and places
+	 * information about that object on this JPanel. The information depends on
+	 * what kind of class the given object is.
 	 * 
 	 * @param object
 	 */
@@ -99,7 +101,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 			showStandardProperties(object);
 
-			if ( object instanceof objects.clientObjects.Desktop || object instanceof objects.clientObjects.Laptop )
+			if ( object instanceof objects.clientObjects.Desktop
+					|| object instanceof objects.clientObjects.Laptop )
 			{
 				showDesktopProperties(object);
 			}
@@ -133,7 +136,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 			// this.setComponentZOrder(buttons, 0);
 
 			// Lay out the panel.
-			graphics.GraphicalFunctions.make1xGrid(this, this.getComponentCount(), // rows
+			graphics.GraphicalFunctions.make1xGrid(this, this
+					.getComponentCount(), // rows
 					// ,
 					// cols
 					6, 6, // initX, initY
@@ -186,7 +190,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 	 */
 	private void showInfrastructurProperties(Object object)
 	{
-		InfrastructuresPropertiesView.getInfrastructuresPropertiesView(this, object);
+		InfrastructuresPropertiesView.getInfrastructuresPropertiesView(this,
+				object);
 	}
 
 
@@ -212,7 +217,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 
 	/**
-	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
+	 * Creates a JPanel with two buttons that are listened for by
+	 * actionlisteners.
 	 */
 	private JPanel createButtons()
 	{
@@ -232,7 +238,6 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 	/**
 	 * Javadoc-TODO - Description
-	 * 
 	 */
 	public void saveAction()
 	{
@@ -250,7 +255,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 		if ( objectViewed != null )
 		{
 			// Gets the WidgetObject so that the IP address can be added
-			widObj = CanvasManagment.findWidgetObject(objectViewed, PrimeMain1.currentCanvas);
+			widObj = CanvasManagment.findWidgetObject(objectViewed,
+					PrimeMain1.currentCanvas);
 		}
 
 
@@ -269,7 +275,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 						JComboBox rates = (JComboBox) comp[i];
 
-						int theRate = Integer.parseInt(rates.getSelectedItem().toString());
+						int theRate = Integer.parseInt(rates.getSelectedItem()
+								.toString());
 
 						clientObj.setClientRate(theRate);
 					}
@@ -297,19 +304,28 @@ public class ObjectProperties extends JPanel implements ActionListener
 						String canvasName = field.getText();
 						if ( !(canvasName.equals("")) )
 						{
-							// If the name of the currently selected WorkareaCanvas is not the same as the
+							// If the name of the currently selected
+							// WorkareaCanvas is not the same as the
 							// name of the name in the canvasName field.
-							if ( !(canvasViewed.getCanvasName().equals(canvasName)) )
+							if ( !(canvasViewed.getCanvasName()
+									.equals(canvasName)) )
 							{
 								// No canvas was found with the name
-								if ( !(DesktopFileManagment.fileWorkareaCanvasExist(canvasViewed, canvasName)) )
+								if ( !(DesktopFileManagment
+										.fileWorkareaCanvasExist(canvasViewed,
+												canvasName)) )
 								{
-									PrimeMain1.workTab.updateCanvasName(canvasViewed, canvasName);
+									PrimeMain1.workTab.updateCanvasName(
+											canvasViewed, canvasName);
 								}
 								else
 								{
-									JOptionPane.showMessageDialog(null, "There already exist a Network with the name "
-											+ "\"" + canvasName + "\".", "Error", JOptionPane.ERROR_MESSAGE);
+									JOptionPane
+											.showMessageDialog(null,
+													"There already exist a Network with the name "
+															+ "\"" + canvasName
+															+ "\".", "Error",
+													JOptionPane.ERROR_MESSAGE);
 
 									field.setText(canvasViewed.getCanvasName());
 								}
@@ -324,7 +340,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 						// If the text in the JTextField is not ""
 						if ( !(field.getText().equals("")) )
 						{
-							// Sets the local IPrangeStart string that might be used later
+							// Sets the local IPrangeStart string that might be
+							// used later
 							IPrangeStart = new String(field.getText());
 						}
 					}
@@ -336,7 +353,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 						// If the text in the JTextField is not ""
 						if ( !(field.getText().equals("")) )
 						{
-							// Sets the local IPrangeEnd string that might be used later
+							// Sets the local IPrangeEnd string that might be
+							// used later
 							IPrangeEnd = new String(field.getText());
 						}
 					}
@@ -351,31 +369,49 @@ public class ObjectProperties extends JPanel implements ActionListener
 						// If the text is validated
 						if ( checkLogic.validateName(objName) )
 						{
-							if ( CanvasManagment.findWidgetObjectByObjectName(objName, PrimeMain1.currentCanvas) == null )
+							WidgetObject foundWidget = CanvasManagment
+									.findWidgetObjectByObjectName(objName,
+											PrimeMain1.currentCanvas);
+
+							if ( foundWidget == null )
 							{
-								// Updates the name of the LabelWidget on the scene
-								objectViewed = GraphicalFunctions.updateWidgetObjectCanvasName(objectViewed, objName);
+								// Updates the name of the LabelWidget on the
+								// scene
+								objectViewed = GraphicalFunctions
+										.updateWidgetObjectCanvasName(
+												objectViewed, objName);
 
 								// Sets the name of the object
 								objectViewed.setObjectName(objName);
 							}
 							else
 							{
-								JOptionPane.showMessageDialog(null,
-										"There already exists a device in this network with the same name.", "Error",
-										JOptionPane.ERROR_MESSAGE);
+								// If the WidgetObject found contains a
+								// different Object
+								if ( !(foundWidget.getObject()
+										.equals(objectViewed)) )
+								{
+									JOptionPane
+											.showMessageDialog(
+													null,
+													"There already exists a device in this network with the same name.",
+													"Error",
+													JOptionPane.ERROR_MESSAGE);
 
-								// Sets the name back to the original name
-								field.setText(objectViewed.getObjectName());
+									// Sets the name back to the original name
+									field.setText(objectViewed.getObjectName());
 
-								// Focuses on the JTextField
-								field.requestFocusInWindow();
+									// Focuses on the JTextField
+									field.requestFocusInWindow();
+								}
 							}
 						}
 						else
 						{
-							JOptionPane.showMessageDialog(null, "The name provided, " + objName
-									+ ", was not a valid name.", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null,
+									"The name provided, " + objName
+											+ ", was not a valid name.",
+									"Error", JOptionPane.ERROR_MESSAGE);
 
 							// Focuses on the JTextField
 							field.requestFocusInWindow();
@@ -440,9 +476,11 @@ public class ObjectProperties extends JPanel implements ActionListener
 				// Checks whether or not the range between the two is valid
 				try
 				{
-					if ( NetworkManagment.processRange(IPrangeStart, IPrangeEnd) )
+					if ( NetworkManagment
+							.processRange(IPrangeStart, IPrangeEnd) )
 					{
-						canvasViewed.getNetworkInfo().setIpRangeFrom(IPrangeStart);
+						canvasViewed.getNetworkInfo().setIpRangeFrom(
+								IPrangeStart);
 						canvasViewed.getNetworkInfo().setIpRangeTo(IPrangeEnd);
 					}
 				}
@@ -450,12 +488,14 @@ public class ObjectProperties extends JPanel implements ActionListener
 				{
 					String output = exp.getMessage();
 
-					JOptionPane.showMessageDialog(null, output, "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, output, "Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(null, "You must set the end of the IP range.", "Error",
+				JOptionPane.showMessageDialog(null,
+						"You must set the end of the IP range.", "Error",
 						JOptionPane.ERROR_MESSAGE);
 
 			}
@@ -464,7 +504,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 		{
 			if ( !(IPrangeEnd == null) )
 			{
-				JOptionPane.showMessageDialog(null, "You must set the start of the IP range.", "Error",
+				JOptionPane.showMessageDialog(null,
+						"You must set the start of the IP range.", "Error",
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}
@@ -479,7 +520,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 			// If the IP was not set
 			if ( !set )
 			{
-				JOptionPane.showMessageDialog(null, "The IP, " + widgetIP + ", was not valid.", "Error",
+				JOptionPane.showMessageDialog(null, "The IP, " + widgetIP
+						+ ", was not valid.", "Error",
 						JOptionPane.ERROR_MESSAGE);
 
 				// Updates the WidgetObject properties area
@@ -501,8 +543,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)

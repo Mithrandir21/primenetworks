@@ -4,6 +4,7 @@ package objects;
 
 import java.awt.Point;
 import java.io.Serializable;
+import java.util.Random;
 
 import logistical.cleanup;
 import managment.ArrayManagment;
@@ -34,6 +35,9 @@ public abstract class Object implements Serializable, Cloneable
 	 * 
 	 */
 	private static final long serialVersionUID = 215161254854759898L;
+
+
+	private long objectSerial;
 
 
 	/**
@@ -134,6 +138,9 @@ public abstract class Object implements Serializable, Cloneable
 		componentCounter = 0;
 
 		components = null;
+
+		// Creates a random LONG serial number for the object
+		createRandomLongSerial();
 	}
 
 
@@ -159,6 +166,9 @@ public abstract class Object implements Serializable, Cloneable
 		componentCounter = 0;
 
 		components = null;
+
+		// Creates a random LONG serial number for the object
+		createRandomLongSerial();
 	}
 
 
@@ -185,6 +195,9 @@ public abstract class Object implements Serializable, Cloneable
 		componentCounter = objectComponents.length;
 
 		components = objectComponents;
+
+		// Creates a random LONG serial number for the object
+		createRandomLongSerial();
 	}
 
 
@@ -216,6 +229,9 @@ public abstract class Object implements Serializable, Cloneable
 		componentCounter = objectComponents.length;
 
 		components = objectComponents;
+
+		// Creates a random LONG serial number for the object
+		createRandomLongSerial();
 	}
 
 
@@ -249,6 +265,22 @@ public abstract class Object implements Serializable, Cloneable
 
 		components = new Object[1];
 		components[0] = objectMB;
+
+		// Creates a random LONG serial number for the object
+		createRandomLongSerial();
+	}
+
+
+
+	/**
+	 * TODO - Description
+	 */
+	public void createRandomLongSerial()
+	{
+		// Default seed comes from system time.
+		Random r = new Random();
+
+		objectSerial = r.nextLong();
 	}
 
 
@@ -256,6 +288,15 @@ public abstract class Object implements Serializable, Cloneable
 	// Get and Set methodes for retrieving all datafields.
 
 	// GET METHODES
+
+	/**
+	 * Gets the serial of the object.
+	 */
+	public long getObjectSerial()
+	{
+		return objectSerial;
+	}
+
 
 	/**
 	 * Returns the name of the object.

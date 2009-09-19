@@ -1397,7 +1397,8 @@ public class ComponentsManagment
 				Motherboard mbTemp = (Motherboard) components[i];
 
 				// LAN
-				if ( mbTemp.getMaxIntegLANs() > 0 && mbTemp.getMaxLANs() > 0 )
+				if ( mbTemp.getMaxIntegLANs() > 0
+						&& mbTemp.getMaxIntegLANs() > 0 )
 				{
 					lan = true;
 				}
@@ -1460,7 +1461,6 @@ public class ComponentsManagment
 
 
 
-
 	/**
 	 * This method does a deep copy of the given {@link Object}. It clones the
 	 * given object, doing a "shallow" clone first. It then goes through the
@@ -1489,6 +1489,16 @@ public class ComponentsManagment
 			for ( int i = 0; i < oldComponents.length; i++ )
 			{
 				newComponents[i] = oldComponents[i].clone();
+
+				if ( i == 0 )
+				{
+					// If the first index is not zero, there will be a
+					// Motherboard
+					Motherboard temp = (Motherboard) newComponents[0];
+
+					// Sets all the integrated LAN ports a available
+					temp.setIntegLANPortsAvailable(temp.getMaxIntegLANs());
+				}
 			}
 		}
 
@@ -1524,6 +1534,9 @@ public class ComponentsManagment
 		}
 
 		// --------------------------------------------------
+
+		// Creates a new serial number for the copied object
+		copyTo.createRandomLongSerial();
 
 		return copyTo;
 	}

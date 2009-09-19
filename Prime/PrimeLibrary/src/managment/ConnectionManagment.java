@@ -213,11 +213,13 @@ public class ConnectionManagment
 			if ( existingConnections[i] != null )
 			{
 				// If the first object is found
-				if ( existingConnections[i].getObject1().equals(objectA) )
+				if ( existingConnections[i].getObject1().getObjectSerial() == objectA
+						.getObjectSerial() )
 				{
 					// If the second object is found at the same index as the
 					// first one
-					if ( existingConnections[i].getObject2().equals(objectB) )
+					if ( existingConnections[i].getObject2().getObjectSerial() == objectB
+							.getObjectSerial() )
 					{
 						// Removes the both objects from each others internal
 						// connected device array.
@@ -254,13 +256,14 @@ public class ConnectionManagment
 				if ( existingConnections[i] != null )
 				{
 					// If the second object is found
-					if ( existingConnections[i].getObject1().equals(objectB) )
+					if ( existingConnections[i].getObject1().getObjectSerial() == objectB
+							.getObjectSerial() )
 					{
 						// If the first object is found at the same index as the
 						// first
 						// one
 						if ( existingConnections[i].getObject2()
-								.equals(objectA) )
+								.getObjectSerial() == objectA.getObjectSerial() )
 						{
 							// Removes the both objects from each others
 							// internal
@@ -337,13 +340,13 @@ public class ConnectionManagment
 			if ( existingConnections[i] != null )
 			{
 				// If the first object is found
-				if ( existingConnections[i].getObject1().equals(objectA) )
+				if ( existingConnections[i].getObject1().getObjectSerial() == objectA
+						.getObjectSerial() )
 				{
 					// If the second object is found at the same index as the
-					// first
-					// one
-					if ( existingConnections[i].getObject2().equals(
-							objectToBeRemoved) )
+					// first one
+					if ( existingConnections[i].getObject2().getObjectSerial() == objectToBeRemoved
+							.getObjectSerial() )
 					{
 						existingConnections[i].setObject2(objectC);
 					}
@@ -361,13 +364,14 @@ public class ConnectionManagment
 			if ( existingConnections[i] != null )
 			{
 				// If the second object is found
-				if ( existingConnections[i].getObject1().equals(
-						objectToBeRemoved) )
+				if ( existingConnections[i].getObject1().getObjectSerial() == objectToBeRemoved
+						.getObjectSerial() )
 				{
 					// If the first object is found at the same index as the
 					// first
 					// one
-					if ( existingConnections[i].getObject1().equals(objectA) )
+					if ( existingConnections[i].getObject1().getObjectSerial() == objectA
+							.getObjectSerial() )
 					{
 						existingConnections[i].setObject2(objectC);
 					}
@@ -418,11 +422,13 @@ public class ConnectionManagment
 			if ( existingConnections[i] != null )
 			{
 				// If the first object is found
-				if ( existingConnections[i].getObject1().equals(objectA) )
+				if ( existingConnections[i].getObject1().getObjectSerial() == objectA
+						.getObjectSerial() )
 				{
 					// If the second object is found at the same index as the
 					// first one
-					if ( existingConnections[i].getObject2().equals(objectB) )
+					if ( existingConnections[i].getObject2().getObjectSerial() == objectB
+							.getObjectSerial() )
 					{
 						return existingConnections[i];
 					}
@@ -442,11 +448,12 @@ public class ConnectionManagment
 				if ( existingConnections[i] != null )
 				{
 					// If the second object is found
-					if ( existingConnections[i].getObject1().equals(objectB) )
+					if ( existingConnections[i].getObject1().getObjectSerial() == objectB
+							.getObjectSerial() )
 					{
 						// If the first object is found
 						if ( existingConnections[i].getObject2()
-								.equals(objectA) )
+								.getObjectSerial() == objectA.getObjectSerial() )
 						{
 							return existingConnections[i];
 						}
@@ -532,12 +539,13 @@ public class ConnectionManagment
 				if ( existingConnections[i] != null )
 				{
 					// If the first object is found
-					if ( existingConnections[i].getObject1().equals(objectA) )
+					if ( existingConnections[i].getObject1().getObjectSerial() == objectA
+							.getObjectSerial() )
 					{
 						// If the second object is found at the same index as
 						// the first one.
 						if ( existingConnections[i].getObject2()
-								.equals(objectB) )
+								.getObjectSerial() == objectB.getObjectSerial() )
 						{
 							return true;
 						}
@@ -555,13 +563,14 @@ public class ConnectionManagment
 				if ( existingConnections[i] != null )
 				{
 					// If the second object is found
-					if ( existingConnections[i].getObject1().equals(objectB) )
+					if ( existingConnections[i].getObject1().getObjectSerial() == objectB
+							.getObjectSerial() )
 					{
 						// If the first object is found at the same index as the
 						// first
 						// one
 						if ( existingConnections[i].getObject2()
-								.equals(objectA) )
+								.getObjectSerial() == objectA.getObjectSerial() )
 						{
 							return true;
 						}
@@ -571,7 +580,6 @@ public class ConnectionManagment
 		}
 		return false;
 	}
-
 
 
 	/**
@@ -611,7 +619,8 @@ public class ConnectionManagment
 
 					// If the second object is found as the second object in the
 					// connection
-					if ( temp.getObject2().equals(objectB) )
+					if ( temp.getObject2().getObjectSerial() == objectB
+							.getObjectSerial() )
 					{
 						return true;
 					}
@@ -641,7 +650,8 @@ public class ConnectionManagment
 
 				// If the second object is found as the second object in the
 				// connection
-				if ( temp.getObject2().equals(objectA) )
+				if ( temp.getObject2().getObjectSerial() == objectA
+						.getObjectSerial() )
 				{
 					return true;
 				}
