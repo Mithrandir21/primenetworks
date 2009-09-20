@@ -1535,8 +1535,6 @@ public class ComponentsManagment
 		// --------------------------------------------------
 
 
-
-
 		return copyTo;
 	}
 }
