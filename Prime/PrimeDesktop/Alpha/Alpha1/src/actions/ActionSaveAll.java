@@ -9,9 +9,9 @@ import graphics.PrimeMain1;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
+import logistical.AbstractSystemAction;
 import managment.DesktopFileManagment;
 
 
@@ -21,10 +21,11 @@ import managment.DesktopFileManagment;
  * @author Bahram Malaekeh
  * @version 1.0
  */
-public class ActionSaveAll extends AbstractAction
+public class ActionSaveAll extends AbstractSystemAction
 {
 	/**
-	 * A constructor for the class that takes a string, the action name, and a Icon.
+	 * A constructor for the class that takes a string, the action name, and a
+	 * Icon.
 	 * 
 	 * @param text
 	 *            The name of the action.
@@ -41,7 +42,8 @@ public class ActionSaveAll extends AbstractAction
 
 
 	/**
-	 * A constructor for the class that takes a string which will be the name of the action.
+	 * A constructor for the class that takes a string which will be the name of
+	 * the action.
 	 * 
 	 * @param text
 	 *            The name of the action.
@@ -56,8 +58,8 @@ public class ActionSaveAll extends AbstractAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e)
 	{

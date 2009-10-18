@@ -9,8 +9,9 @@ import graphics.PrimeMain1;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
+
+import logistical.AbstractSystemAction;
 
 
 /**
@@ -19,7 +20,7 @@ import javax.swing.ImageIcon;
  * @author Bahram Malaekeh
  * @version 1.0
  */
-public class ActionCopy extends AbstractAction
+public class ActionCopy extends AbstractSystemAction
 {
 	/**
 	 * A constructor for the class that takes a string, the action name, and a

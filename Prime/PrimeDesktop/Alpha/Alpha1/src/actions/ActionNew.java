@@ -8,22 +8,24 @@ package actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
+import logistical.AbstractSystemAction;
 import widgets.WorkareaCanvas;
 
 
 /**
- * An action class that will call function to create a new {@link WorkareaCanvas}.
+ * An action class that will call function to create a new
+ * {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
  * @version 1.0
  */
-public class ActionNew extends AbstractAction
+public class ActionNew extends AbstractSystemAction
 {
 	/**
-	 * A constructor for the class that takes a string, the action name, and a Icon.
+	 * A constructor for the class that takes a string, the action name, and a
+	 * Icon.
 	 * 
 	 * @param text
 	 *            The name of the action.
@@ -39,7 +41,8 @@ public class ActionNew extends AbstractAction
 
 
 	/**
-	 * A constructor for the class that takes a string which will be the name of the action.
+	 * A constructor for the class that takes a string which will be the name of
+	 * the action.
 	 * 
 	 * @param text
 	 *            The name of the action.
@@ -54,8 +57,8 @@ public class ActionNew extends AbstractAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e)
 	{

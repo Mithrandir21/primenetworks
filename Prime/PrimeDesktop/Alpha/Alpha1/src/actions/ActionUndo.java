@@ -4,12 +4,15 @@
 package actions;
 
 
+import graphics.PrimeMain1;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+
+import logistical.AbstractSystemAction;
+import logistical.CanvasUndoManager;
 
 
 /**
@@ -18,10 +21,11 @@ import javax.swing.JOptionPane;
  * @author Bahram Malaekeh
  * @version 1.0
  */
-public class ActionUndo extends AbstractAction
+public class ActionUndo extends AbstractSystemAction
 {
 	/**
-	 * A constructor for the class that takes a string, the action name, and a Icon.
+	 * A constructor for the class that takes a string, the action name, and a
+	 * Icon.
 	 * 
 	 * @param text
 	 *            The name of the action.
@@ -37,7 +41,8 @@ public class ActionUndo extends AbstractAction
 
 
 	/**
-	 * A constructor for the class that takes a string which will be the name of the action.
+	 * A constructor for the class that takes a string which will be the name of
+	 * the action.
 	 * 
 	 * @param text
 	 *            The name of the action.
@@ -53,12 +58,28 @@ public class ActionUndo extends AbstractAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		JOptionPane.showMessageDialog(null, "You want to perform a \"Undo\" action.");
+		// If the current canvas is not null
+		if ( PrimeMain1.currentCanvas != null )
+		{
+			// Gets the canvases undomanager
+			CanvasUndoManager manager = PrimeMain1.currentCanvas
+					.getUndoManager();
+
+			// If the manager has an undo to perform
+			if ( manager.canUndo() )
+			{
+				// performs the undo
+				manager.undo();
+
+				// Cleans up the canvas
+				PrimeMain1.currentCanvas.cleanUp();
+			}
+		}
 	}
 
 }

@@ -21,16 +21,18 @@ import actions.ActionNew;
 import actions.ActionObjectEditing;
 import actions.ActionOpenfile;
 import actions.ActionPaste;
+import actions.ActionRedo;
 import actions.ActionRoom;
 import actions.ActionSave;
 import actions.ActionSaveAll;
+import actions.ActionUndo;
 import actions.ActionUpdate;
 
 
 /**
- * The GenericPrimeToolbar represents a generic toolbar for the program. This is where the buttons
- * at the top of the program screen are created and added. GenericPrimeToolbar is an extention of
- * the JMenuBar class.
+ * The GenericPrimeToolbar represents a generic toolbar for the program. This is
+ * where the buttons at the top of the program screen are created and added.
+ * GenericPrimeToolbar is an extention of the JMenuBar class.
  * 
  * @author Bahram Malaekeh
  */
@@ -42,8 +44,8 @@ public class GenericPrimeToolbar extends JMenuBar
 
 
 	/**
-	 * Constructor for the GenericPrimeToolbar class. Here the different parts of the toolbar are
-	 * initiated.
+	 * Constructor for the GenericPrimeToolbar class. Here the different parts
+	 * of the toolbar are initiated.
 	 */
 	public GenericPrimeToolbar()
 	{
@@ -52,6 +54,10 @@ public class GenericPrimeToolbar extends JMenuBar
 		this.add(new JToolBar.Separator());
 
 		initEditToolBar();
+
+		this.add(new JToolBar.Separator());
+
+		initStepsActions();
 
 		this.add(new JToolBar.Separator());
 
@@ -64,7 +70,8 @@ public class GenericPrimeToolbar extends JMenuBar
 
 
 
-	private JToolBar fileToolBar, editToolBar, networkToolBar, editingToolBar;
+	private JToolBar fileToolBar, editToolBar, stepsToolBar, networkToolBar,
+			editingToolBar;
 
 
 	// SETUP OF THE TOOLBAR
@@ -129,6 +136,32 @@ public class GenericPrimeToolbar extends JMenuBar
 		editToolBar.add(save);
 
 		this.add(editToolBar, BorderLayout.WEST);
+		tempIcon = null;
+	}
+
+
+
+	/**
+	 * This function creates the Steps functions JToolbar.
+	 */
+	private void initStepsActions()
+	{
+		stepsToolBar = new JToolBar("Steps");
+		stepsToolBar.setFloatable(false);
+
+		tempIcon = ImageLocator.getImageIconObject("Undo");
+		ActionUndo undo = new ActionUndo("Undo", tempIcon);
+
+
+		tempIcon = ImageLocator.getImageIconObject("Redo");
+		ActionRedo redo = new ActionRedo("Redo", tempIcon);
+
+
+		stepsToolBar.add(undo);
+		stepsToolBar.add(redo);
+
+
+		this.add(stepsToolBar, BorderLayout.WEST);
 		tempIcon = null;
 	}
 

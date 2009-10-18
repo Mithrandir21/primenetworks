@@ -8,9 +8,9 @@ import graphics.GraphicalFunctions;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
+import logistical.AbstractSystemAction;
 import managment.Settings;
 
 
@@ -18,12 +18,12 @@ import managment.Settings;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
-public class ActionRoom extends AbstractAction
+public class ActionRoom extends AbstractSystemAction
 {
 	/**
-	 * A constructor for the class that takes a string, the action name, and a Icon.
+	 * A constructor for the class that takes a string, the action name, and a
+	 * Icon.
 	 * 
 	 * @param text
 	 *            The name of the action.
@@ -38,7 +38,8 @@ public class ActionRoom extends AbstractAction
 
 
 	/**
-	 * A constructor for the class that takes a string which will be the name of the action.
+	 * A constructor for the class that takes a string which will be the name of
+	 * the action.
 	 * 
 	 * @param text
 	 *            The name of the action.
@@ -53,8 +54,8 @@ public class ActionRoom extends AbstractAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)

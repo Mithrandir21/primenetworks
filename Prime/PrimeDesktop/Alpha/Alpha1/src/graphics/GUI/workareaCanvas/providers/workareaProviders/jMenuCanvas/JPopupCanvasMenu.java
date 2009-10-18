@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 import widgets.WorkareaCanvas;
+import actions.ActionPaste;
 
 
 /**
@@ -72,7 +73,7 @@ public class JPopupCanvasMenu
 		// -------------------------------
 		JMenuItem menuItem;
 
-		menuItem = new JMenuItem("Paste Object");
+		menuItem = new JMenuItem(new ActionPaste("Paste Object"));
 		menuItem.setActionCommand("PasteObject");
 		menuItem.addActionListener(canvasActListener);
 		// If neither the copy or cut pointers point to anything, the past

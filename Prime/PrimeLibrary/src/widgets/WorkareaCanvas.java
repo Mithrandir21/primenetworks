@@ -13,7 +13,9 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
+import javax.swing.undo.UndoableEdit;
 
+import logistical.CanvasUndoManager;
 import logistical.cleanup;
 import objects.Object;
 import objects.Room;
@@ -101,9 +103,11 @@ public class WorkareaCanvas extends JPanel
 	// A boolean saying if the canvas has been changed in any way
 	private boolean changed = false;
 
-
 	// The WorkareaCanvas network info
 	private WorkareaCanvasNetworkInfo networkInfo;
+
+	// The undo manager for this canvas
+	private CanvasUndoManager undoManager;
 
 
 
@@ -167,6 +171,9 @@ public class WorkareaCanvas extends JPanel
 		// objects are shown.
 		connectionLayer = new LayerWidget(scene);
 		scene.addChild(connectionLayer);
+
+		// Initiates the undomanager for this canvas
+		undoManager = new CanvasUndoManager(this);
 
 		saved = false;
 		changed = false;
@@ -534,6 +541,17 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
+	 * TODO - Description NEEDED!
+	 * 
+	 * @return the undoManager
+	 */
+	public CanvasUndoManager getUndoManager()
+	{
+		return undoManager;
+	}
+
+
+	/**
 	 * Sets the given string as the canvas name.
 	 */
 	public void setCanvasName(String canvasName)
@@ -747,6 +765,15 @@ public class WorkareaCanvas extends JPanel
 
 		WorkareaCanvasActions.addWidgetToCanvas(newObject, objectPoint, this,
 				withCleanUp);
+	}
+
+
+	/**
+	 * Adds a undoable action to the canvases undomanager.
+	 */
+	public void addUndoableAction(UndoableEdit action)
+	{
+		undoManager.addEdit(action);
 	}
 
 

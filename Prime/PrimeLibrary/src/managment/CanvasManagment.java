@@ -171,7 +171,8 @@ public class CanvasManagment
 			{
 				WidgetObject temp = (WidgetObject) iter.next();
 
-				if ( temp.getObject().equals(obj) )
+				if ( temp.getObject().getObjectSerial() == obj
+						.getObjectSerial() )
 				{
 					return temp;
 				}

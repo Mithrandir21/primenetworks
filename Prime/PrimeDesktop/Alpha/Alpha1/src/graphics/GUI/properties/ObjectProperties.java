@@ -4,7 +4,6 @@
 package graphics.GUI.properties;
 
 
-import graphics.GraphicalFunctions;
 import graphics.PrimeMain1;
 import graphics.GUI.properties.objectTypes.ClientsPropertiesView;
 import graphics.GUI.properties.objectTypes.GeneralPropertiesView;
@@ -34,6 +33,7 @@ import objects.Object;
 import objects.Servers;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
+import actions.ActionChangeWidgetObjectName;
 
 
 /**
@@ -375,14 +375,41 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 							if ( foundWidget == null )
 							{
-								// Updates the name of the LabelWidget on the
-								// scene
-								objectViewed = GraphicalFunctions
-										.updateWidgetObjectCanvasName(
-												objectViewed, objName);
+								// Finds the WidgetObject with the given Object
+								WidgetObject widgetObj = CanvasManagment
+										.findWidgetObject(objectViewed,
+												PrimeMain1.canvases);
 
-								// Sets the name of the object
-								objectViewed.setObjectName(objName);
+								// Creates an action
+								ActionChangeWidgetObjectName changeNameAction = new ActionChangeWidgetObjectName(
+										"Change WidgetObject Name", widgetObj,
+										objName);
+
+								// Finds the workareacanvas
+								WorkareaCanvas tempCanvas = CanvasManagment
+										.findCanvas(widgetObj.getScene(),
+												PrimeMain1.canvases);
+
+								if ( tempCanvas != null )
+								{
+									// Adds the action to the canvases
+									// undomanager
+									tempCanvas
+											.addUndoableAction(changeNameAction);
+
+									// Performs the action
+									changeNameAction.performAction();
+								}
+
+
+								// // Updates the name of the LabelWidget on the
+								// // scene
+								// objectViewed = GraphicalFunctions
+								// .updateWidgetObjectCanvasName(
+								// objectViewed, objName);
+								//
+								// // Sets the name of the object
+								// objectViewed.setObjectName(objName);
 							}
 							else
 							{
@@ -538,7 +565,6 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 		PrimeMain1.currentCanvas.cleanUp();
 	}
-
 
 
 	/*

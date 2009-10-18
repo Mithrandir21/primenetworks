@@ -9,8 +9,9 @@ import graphics.GUI.standardObjectEdit.StandardObjects;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
+
+import logistical.AbstractSystemAction;
 
 
 /**
@@ -18,7 +19,7 @@ import javax.swing.ImageIcon;
  * 
  * @author Bahram Malaekeh
  */
-public class ActionObjectEditing extends AbstractAction
+public class ActionObjectEditing extends AbstractSystemAction
 {
 	/**
 	 * A constructor for the class that takes a string, the action name, and a

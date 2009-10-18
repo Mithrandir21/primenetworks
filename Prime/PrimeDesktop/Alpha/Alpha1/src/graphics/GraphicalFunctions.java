@@ -65,9 +65,9 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * This class contains methods and functions that perform action on graphical components. Like
- * finding and selecting indexes in JComboBoxes or JLists. Or arranging components in panels or
- * frames.
+ * This class contains methods and functions that perform action on graphical
+ * components. Like finding and selecting indexes in JComboBoxes or JLists. Or
+ * arranging components in panels or frames.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -78,15 +78,16 @@ public class GraphicalFunctions
 
 
 	/**
-	 * This method find and returns the index of data if it is found in the array of strings. If not
-	 * it will return 0;
+	 * This method find and returns the index of data if it is found in the
+	 * array of strings. If not it will return 0;
 	 * 
 	 * @param strings
 	 *            The array that is searched for the data.
 	 * @param data
-	 *            The integer that is searched for in the array of strings(converted to Integers).
-	 * @return Returns the index in the array where the data has been found. If not found, 0 will be
-	 *         returned.
+	 *            The integer that is searched for in the array of
+	 *            strings(converted to Integers).
+	 * @return Returns the index in the array where the data has been found. If
+	 *         not found, 0 will be returned.
 	 */
 	public static int getIndexInJComboBox(String[] strings, int data)
 	{
@@ -110,15 +111,15 @@ public class GraphicalFunctions
 
 
 	/**
-	 * This method find and returns the index of data if it is found in the array of strings. If not
-	 * it will return 0;
+	 * This method find and returns the index of data if it is found in the
+	 * array of strings. If not it will return 0;
 	 * 
 	 * @param strings
 	 *            The array that is searched for the data.
 	 * @param data
 	 *            The string that is searched for in the array of strings.
-	 * @return Returns the index in the array where the data has been found. If not found, 0 will be
-	 *         returned.
+	 * @return Returns the index in the array where the data has been found. If
+	 *         not found, 0 will be returned.
 	 */
 	public static int getIndexInJComboBox(String[] strings, String data)
 	{
@@ -142,16 +143,18 @@ public class GraphicalFunctions
 
 
 	/**
-	 * This function does verifies that a component with the given class exists in the components
-	 * array of the main selected component. If it does the function then checks to verify that the
-	 * input slot/socket matches with the slot/socket of the found component. If the two
-	 * slots/sockets do not match the user is asked to verify their choice that will then lead to
-	 * the removal of the incompatible component.
+	 * This function does verifies that a component with the given class exists
+	 * in the components array of the main selected component. If it does the
+	 * function then checks to verify that the input slot/socket matches with
+	 * the slot/socket of the found component. If the two slots/sockets do not
+	 * match the user is asked to verify their choice that will then lead to the
+	 * removal of the incompatible component.
 	 * 
 	 * @param comp
 	 *            The components that will be the ancestor of the JOptionPane.
 	 * @param mainObj
-	 *            The main component. The object which all other objects are children of.
+	 *            The main component. The object which all other objects are
+	 *            children of.
 	 * @param componentClass
 	 *            The class of the component that will be searched for.
 	 * @param mbVariable
@@ -198,8 +201,9 @@ public class GraphicalFunctions
 
 
 	/**
-	 * This method looks for the given possibilities in the given data. If any are found the indexes
-	 * of those are selected in the given list and that list is returned.
+	 * This method looks for the given possibilities in the given data. If any
+	 * are found the indexes of those are selected in the given list and that
+	 * list is returned.
 	 * 
 	 * @param list
 	 *            The list that will have selected indexes.
@@ -207,7 +211,8 @@ public class GraphicalFunctions
 	 *            The information the method will look for in data.
 	 * @param data
 	 *            The data that will be searched.
-	 * @return Returns the indexes of the given data in the array of possibilities.
+	 * @return Returns the indexes of the given data in the array of
+	 *         possibilities.
 	 */
 	public static JList getIndexInJList(JList list, String[] possibilities,
 			String[] data)
@@ -238,18 +243,22 @@ public class GraphicalFunctions
 
 
 	/**
-	 * This method takes all the component inside the given parent container and orders them so that
-	 * there are no more then 6 components in any one row. This method is mostly used by the Object
-	 * View like Hardware and Software views that show settings options.
+	 * This method takes all the component inside the given parent container and
+	 * orders them so that there are no more then 6 components in any one row.
+	 * This method is mostly used by the Object View like Hardware and Software
+	 * views that show settings options.
 	 * 
 	 * @param parent
-	 *            The container that holds the components that are to be arranged.
+	 *            The container that holds the components that are to be
+	 *            arranged.
 	 * @param numberOfFields
 	 *            The number of components in the container.
 	 * @param initialX
-	 *            The initial x location that the first component should be placed.
+	 *            The initial x location that the first component should be
+	 *            placed.
 	 * @param initialY
-	 *            The initial y location that the first component should be placed.
+	 *            The initial y location that the first component should be
+	 *            placed.
 	 * @param xPad
 	 *            The x padding that all components will have.
 	 * @param yPad
@@ -288,18 +297,22 @@ public class GraphicalFunctions
 
 
 	/**
-	 * This method takes all the component inside the given parent container and orders them so that
-	 * there are no more then 1 components in any one row. This method is mostly used by the Object
-	 * View like Hardware and Software views that show settings options.
+	 * This method takes all the component inside the given parent container and
+	 * orders them so that there are no more then 1 components in any one row.
+	 * This method is mostly used by the Object View like Hardware and Software
+	 * views that show settings options.
 	 * 
 	 * @param parent
-	 *            The container that holds the components that are to be arranged.
+	 *            The container that holds the components that are to be
+	 *            arranged.
 	 * @param numberOfFields
 	 *            The number of components in the container.
 	 * @param initialX
-	 *            The initial x location that the first component should be placed.
+	 *            The initial x location that the first component should be
+	 *            placed.
 	 * @param initialY
-	 *            The initial y location that the first component should be placed.
+	 *            The initial y location that the first component should be
+	 *            placed.
 	 * @param xPad
 	 *            The x padding that all components will have.
 	 * @param yPad
@@ -320,7 +333,8 @@ public class GraphicalFunctions
 
 
 	/**
-	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on the canvas.
+	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on
+	 * the canvas.
 	 * 
 	 * @param obj
 	 * @param widgetObj
@@ -360,10 +374,51 @@ public class GraphicalFunctions
 	}
 
 
+	/**
+	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on
+	 * the canvas. This method finds the WidgetObject that contains the given
+	 * object in all the different canvases.
+	 * 
+	 * @param obj
+	 * @param name
+	 * @return The object with the updated name
+	 */
+	public static Object updateWidgetObjectCanvasName(WidgetObject obj,
+			String name)
+	{
+		if ( !(obj.getObject().getObjectName().equals(name)) )
+		{
+			obj.getObject().setObjectName(name);
+
+			List<Widget> children = obj.getChildren();
+
+			LabelWidget label = null;
+
+			for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
+			{
+				Widget temp = iter.next();
+				if ( temp instanceof LabelWidget )
+				{
+					label = (LabelWidget) temp;
+				}
+			}
+
+			if ( label != null )
+			{
+				label.setLabel(name);
+			}
+		}
+
+
+		return obj.getObject();
+	}
+
+
 
 	/**
-	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on the canvas. This
-	 * method finds the WidgetObject that contains the given object in all the different canvases.
+	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on
+	 * the canvas. This method finds the WidgetObject that contains the given
+	 * object in all the different canvases.
 	 * 
 	 * @param obj
 	 * @param name
@@ -436,8 +491,8 @@ public class GraphicalFunctions
 
 
 	/**
-	 * Updates all the LabelWidgets on the scene with the name of the object name that is within the
-	 * WidgetObject.
+	 * Updates all the LabelWidgets on the scene with the name of the object
+	 * name that is within the WidgetObject.
 	 */
 	public static void updateWidgetObjectNamesOnAllCanvas()
 	{
@@ -549,8 +604,9 @@ public class GraphicalFunctions
 
 
 	/**
-	 * Changes the title of the {@link TitledBorder} surrounding the {@link WidgetRoom} and the name
-	 * of the {@link Room} inside the {@link WidgetRoom} object.
+	 * Changes the title of the {@link TitledBorder} surrounding the
+	 * {@link WidgetRoom} and the name of the {@link Room} inside the
+	 * {@link WidgetRoom} object.
 	 */
 	public static void changeWidgetRoomName(Widget widget)
 	{
@@ -764,8 +820,9 @@ public class GraphicalFunctions
 
 
 	/**
-	 * This method sets the widgetIcons, JLabel icon, transferhandler which takes care of the drag
-	 * and drop functionality. It also adds an mouseListener to the JLabel.
+	 * This method sets the widgetIcons, JLabel icon, transferhandler which
+	 * takes care of the drag and drop functionality. It also adds an
+	 * mouseListener to the JLabel.
 	 */
 	public static void widgetIconSetup(WidgetIcon widget)
 	{
@@ -776,8 +833,8 @@ public class GraphicalFunctions
 
 
 	/**
-	 * This function shortens a String to 30 chars if the string is longer then 30 char. It adds 3
-	 * "." at the end of the shortend string.
+	 * This function shortens a String to 30 chars if the string is longer then
+	 * 30 char. It adds 3 "." at the end of the shortend string.
 	 */
 	public static String verifyDescriptionLength(String Desc)
 	{
