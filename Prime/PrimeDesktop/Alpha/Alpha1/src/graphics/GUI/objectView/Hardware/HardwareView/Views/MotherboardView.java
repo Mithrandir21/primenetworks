@@ -45,7 +45,7 @@ import objects.hardwareObjects.GraphicsCard;
 import objects.hardwareObjects.HDD;
 import objects.hardwareObjects.Motherboard;
 import objects.hardwareObjects.Ram;
-import widgetManipulation.Actions.WorkareaCanvasActions;
+import actions.canvasActions.ActionDeleteAllConnections;
 
 
 /**
@@ -1277,8 +1277,11 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 				{
 					// We have to remove all connection between this object and
 					// other objects on the canvas
-					WorkareaCanvasActions.removeAllConnectionsToFromObject(
-							PrimeMain1.currentCanvas, mainObj);
+					// WorkareaCanvasActions.removeAllConnectionsToFromObject(
+					// PrimeMain1.currentCanvas, mainObj);
+					ActionDeleteAllConnections action = new ActionDeleteAllConnections(
+							"Delete all connections");
+					action.performAction();
 
 
 					// Since the motherboard is where most of the connections

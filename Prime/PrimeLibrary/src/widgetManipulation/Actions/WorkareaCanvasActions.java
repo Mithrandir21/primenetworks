@@ -454,7 +454,7 @@ public class WorkareaCanvasActions
 
 	/**
 	 * This method calls the revalidateWidgetLocations function in all the given
-	 * {@link WorkareaCanvas WorkareaCanvases} , which will update the locations
+	 * {@link WorkareaCanvas WorkareaCanvases}, which will update the locations
 	 * on all the WidgetObjects on their respective scenes.
 	 * 
 	 * @param canvases

@@ -1,25 +1,29 @@
 /**
  * 
  */
-package actions;
+package actions.systemActions;
 
 
-import graphics.GraphicalFunctions;
+import graphics.PrimeMain1;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 
 import logistical.AbstractSystemAction;
-import managment.Settings;
+import widgets.WorkareaCanvas;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * An action class that will perform a Update action. This action is used when
+ * the system wished to update the processed information about the
+ * {@link WorkareaCanvas WorkareaCanvases}.
  * 
  * @author Bahram Malaekeh
+ * @version 1.0
  */
-public class ActionRoom extends AbstractSystemAction
+public class ActionUpdate extends AbstractSystemAction
 {
 	/**
 	 * A constructor for the class that takes a string, the action name, and a
@@ -30,10 +34,11 @@ public class ActionRoom extends AbstractSystemAction
 	 * @param icon
 	 *            The icon representing the action.
 	 */
-	public ActionRoom(String text, ImageIcon icon)
+	public ActionUpdate(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This action allows the creation of Rooms.");
+		putValue(SHORT_DESCRIPTION, "This is a Update action");
+		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_R));
 	}
 
 
@@ -44,10 +49,11 @@ public class ActionRoom extends AbstractSystemAction
 	 * @param text
 	 *            The name of the action.
 	 */
-	public ActionRoom(String text)
+	public ActionUpdate(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This action allows the creation of Rooms.");
+		putValue(SHORT_DESCRIPTION, "This is a Update action");
+		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_R));
 	}
 
 
@@ -60,8 +66,7 @@ public class ActionRoom extends AbstractSystemAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		Settings.roomsManipulation = !(Settings.roomsManipulation);
-		GraphicalFunctions.JPopupMenuesToggle();
+		PrimeMain1.updateCanvasAndObjectInfo();
 	}
 
 }

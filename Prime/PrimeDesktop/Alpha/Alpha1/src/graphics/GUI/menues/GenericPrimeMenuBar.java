@@ -16,11 +16,11 @@ import javax.swing.KeyStroke;
 
 import actions.ActionCopy;
 import actions.ActionCut;
-import actions.ActionNew;
-import actions.ActionOpenfile;
 import actions.ActionPaste;
-import actions.ActionSave;
-import actions.ActionSaveAll;
+import actions.systemActions.ActionNew;
+import actions.systemActions.ActionOpenfile;
+import actions.systemActions.ActionSave;
+import actions.systemActions.ActionSaveAll;
 import actions.toolbar.ActionAllMessageView;
 import actions.toolbar.ActionConnectionMessage;
 import actions.toolbar.ActionHardwareMessage;

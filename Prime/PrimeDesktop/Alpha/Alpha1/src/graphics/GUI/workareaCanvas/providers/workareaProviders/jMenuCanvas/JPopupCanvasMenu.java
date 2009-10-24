@@ -74,8 +74,7 @@ public class JPopupCanvasMenu
 		JMenuItem menuItem;
 
 		menuItem = new JMenuItem(new ActionPaste("Paste Object"));
-		menuItem.setActionCommand("PasteObject");
-		menuItem.addActionListener(canvasActListener);
+
 		// If neither the copy or cut pointers point to anything, the past
 		// button will be disabled
 		if ( PrimeMain1.copyWidget == null && PrimeMain1.cutWidget == null )

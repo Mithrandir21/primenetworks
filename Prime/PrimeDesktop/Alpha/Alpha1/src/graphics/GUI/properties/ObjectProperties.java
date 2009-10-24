@@ -33,7 +33,7 @@ import objects.Object;
 import objects.Servers;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
-import actions.ActionChangeWidgetObjectName;
+import actions.canvasActions.ActionChangeWidgetObjectName;
 
 
 /**

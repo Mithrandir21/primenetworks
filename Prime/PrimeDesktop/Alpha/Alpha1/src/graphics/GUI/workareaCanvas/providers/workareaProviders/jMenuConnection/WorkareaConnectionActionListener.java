@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 
-import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WorkareaCanvas;
 import connections.WidgetExtendedConnection;
 
@@ -18,7 +17,6 @@ import connections.WidgetExtendedConnection;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class WorkareaConnectionActionListener implements ActionListener
 {
@@ -50,7 +48,8 @@ public class WorkareaConnectionActionListener implements ActionListener
 	 * @param canvas2
 	 * @param widget
 	 */
-	public WorkareaConnectionActionListener(WorkareaCanvas canvas, WidgetExtendedConnection widget)
+	public WorkareaConnectionActionListener(WorkareaCanvas canvas,
+			WidgetExtendedConnection widget)
 	{
 		this.canvas = canvas;
 		widCon = widget;
@@ -60,8 +59,8 @@ public class WorkareaConnectionActionListener implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -79,7 +78,7 @@ public class WorkareaConnectionActionListener implements ActionListener
 		{
 			if ( actionName.equals("DeleteThisConnection") )
 			{
-				WorkareaCanvasActions.removeWidgetConnection(canvas, widCon);
+				// WorkareaCanvasActions.removeWidgetConnection(canvas, widCon);
 			}
 		}
 	}

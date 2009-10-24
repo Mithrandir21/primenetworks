@@ -1,4 +1,4 @@
-package actions;
+package actions.canvasActions;
 
 
 import graphics.GraphicalFunctions;

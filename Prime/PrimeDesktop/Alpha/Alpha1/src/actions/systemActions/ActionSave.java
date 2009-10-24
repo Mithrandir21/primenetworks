@@ -1,9 +1,10 @@
 /**
  * 
  */
-package actions;
+package actions.systemActions;
 
 
+import graphics.PrimeMain1;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -11,17 +12,16 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
 import logistical.AbstractSystemAction;
-import widgets.WorkareaCanvas;
+import managment.DesktopFileManagment;
 
 
 /**
- * An action class that will call function to create a new
- * {@link WorkareaCanvas}.
+ * An action class that will perform a Save action.
  * 
  * @author Bahram Malaekeh
  * @version 1.0
  */
-public class ActionNew extends AbstractSystemAction
+public class ActionSave extends AbstractSystemAction
 {
 	/**
 	 * A constructor for the class that takes a string, the action name, and a
@@ -32,11 +32,11 @@ public class ActionNew extends AbstractSystemAction
 	 * @param icon
 	 *            The icon representing the action.
 	 */
-	public ActionNew(String text, ImageIcon icon)
+	public ActionSave(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "Creates a new Network");
-		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_N));
+		putValue(SHORT_DESCRIPTION, "This is a Save action");
+		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_S));
 	}
 
 
@@ -47,11 +47,11 @@ public class ActionNew extends AbstractSystemAction
 	 * @param text
 	 *            The name of the action.
 	 */
-	public ActionNew(String text)
+	public ActionSave(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "Creates a new Network");
-		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_N));
+		putValue(SHORT_DESCRIPTION, "This is a Save action");
+		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_S));
 	}
 
 
@@ -62,7 +62,10 @@ public class ActionNew extends AbstractSystemAction
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		new graphics.GUI.workareaCanvas.CreateNewWorkareaCanvas();
+		if ( PrimeMain1.currentCanvas != null )
+		{
+			// Saves the current canvas
+			DesktopFileManagment.saveWorkareaCanvas(PrimeMain1.currentCanvas);
+		}
 	}
-
 }

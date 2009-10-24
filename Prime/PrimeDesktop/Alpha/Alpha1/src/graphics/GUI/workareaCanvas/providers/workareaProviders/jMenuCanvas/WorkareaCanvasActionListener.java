@@ -40,7 +40,7 @@ import objects.serverObjects.ProxyServer;
 import widgets.WidgetIcon;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
-import actions.ActionPaste;
+import actions.canvasActions.ActionAddWidgetToWorkareaCanvas;
 
 
 /**
@@ -275,8 +275,10 @@ public class WorkareaCanvasActionListener implements ActionListener
 				newWidgetObject = new WidgetObject(canvas.getScene(),
 						newObject, objectIcon.getImage());
 
-				// Adds the given object to the given location
-				canvas.addWidgetObject(newWidgetObject, location, true);
+				// // Adds the given object to the given location
+				ActionAddWidgetToWorkareaCanvas actionAdd = new ActionAddWidgetToWorkareaCanvas(
+						"Add Object", canvas, newWidgetObject, location);
+				actionAdd.performAction();
 
 				// Adds the actions that the new widget supports
 				ActionsAdder.makeWidgetObjectReady(canvas, newWidgetObject);
@@ -284,80 +286,6 @@ public class WorkareaCanvasActionListener implements ActionListener
 				// Updates the sidebar with the object properties
 				PrimeMain1.updatePropertiesObjectArea(newObject, false);
 			}
-
-
-			// Wants to paste a new WidgetObject on the canvas
-			if ( actionName.equals("PasteObject") )
-			{
-				JMenuItem pasteActionMenu = (JMenuItem) e.getSource();
-				ActionPaste pasteAction = (ActionPaste) pasteActionMenu
-						.getAction();
-				pasteAction.performAction();
-
-
-				// // The user wants to paste a new WidgetObject, but not
-				// replace
-				// // the current WidgetObject
-				// WidgetObject copyFrom = null;
-				//
-				//
-				// // Either the cut or copy pointers will be used
-				// if ( PrimeMain1.copyWidget != null )
-				// {
-				// copyFrom = PrimeMain1.copyWidget;
-				// }
-				// else
-				// {
-				// assert PrimeMain1.cutWidget != null;
-				//
-				// copyFrom = PrimeMain1.cutWidget;
-				// }
-				//
-				//
-				// // The location of the new Widget
-				// Point newLocation = new Point(location);
-				//
-				// // Creates a deep copy of the object within the classes
-				// Widget
-				// newObject = ComponentsManagment.deepObjectCopy(copyFrom
-				// .getObject());
-				//
-				// // Creates a new WidgetObject
-				// WidgetObject newWidget = new WidgetObject(canvas.getScene(),
-				// newObject, copyFrom.getImage());
-				//
-				// // Sets the location of the object
-				// newWidget.getObject().setLocation(newLocation);
-				//
-				// // Adds the newly created WidgetObject to the classes canvas
-				// canvas.addWidgetObject(newWidget, newLocation, true);
-				//
-				// // Adds the clicking actions to the Widget on the scene
-				// ActionsAdder.makeWidgetObjectReady(canvas, newWidget);
-				//
-				//
-				// // When the paste function is finished, the cut and copy
-				// should
-				// // be reset to null. If the Cut object is the one used, that
-				// // object will be removed from the canvas
-				// if ( PrimeMain1.copyWidget != null )
-				// {
-				// PrimeMain1.copyWidget = null;
-				// }
-				// else
-				// {
-				// // Assures that the pointer is not null
-				// assert PrimeMain1.cutWidget != null;
-				//
-				// // Removes the object from the canvas
-				// WorkareaCanvasActions.deleteObject(CanvasManagment
-				// .findCanvas(PrimeMain1.cutWidget.getScene(),
-				// PrimeMain1.canvases), PrimeMain1.cutWidget);
-				//
-				// PrimeMain1.cutWidget = null;
-				// }
-			}
-
 		}
 
 		canvas.cleanUp();

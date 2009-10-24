@@ -1,7 +1,7 @@
 /**
  * 
  */
-package actions;
+package actions.systemActions;
 
 
 import graphics.PrimeMain1;

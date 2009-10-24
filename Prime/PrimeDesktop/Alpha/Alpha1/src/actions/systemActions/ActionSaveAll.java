@@ -1,27 +1,27 @@
 /**
  * 
  */
-package actions;
+package actions.systemActions;
 
 
+import graphics.PrimeMain1;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 import logistical.AbstractSystemAction;
-import widgets.WorkareaCanvas;
+import managment.DesktopFileManagment;
 
 
 /**
- * An action class that will call function to open a {@link WorkareaCanvas}.
+ * An action class that will perform a Save All action.
  * 
  * @author Bahram Malaekeh
  * @version 1.0
  */
-public class ActionOpenfile extends AbstractSystemAction
+public class ActionSaveAll extends AbstractSystemAction
 {
 	/**
 	 * A constructor for the class that takes a string, the action name, and a
@@ -32,12 +32,13 @@ public class ActionOpenfile extends AbstractSystemAction
 	 * @param icon
 	 *            The icon representing the action.
 	 */
-	public ActionOpenfile(String text, ImageIcon icon)
+	public ActionSaveAll(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This is a Open File action");
-		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_O));
+		putValue(SHORT_DESCRIPTION, "This is a Save All action");
+		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_A));
 	}
+
 
 
 	/**
@@ -47,11 +48,11 @@ public class ActionOpenfile extends AbstractSystemAction
 	 * @param text
 	 *            The name of the action.
 	 */
-	public ActionOpenfile(String text)
+	public ActionSaveAll(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This is a Open File action");
-		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_O));
+		putValue(SHORT_DESCRIPTION, "This is a Save All action");
+		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_A));
 	}
 
 
@@ -62,8 +63,8 @@ public class ActionOpenfile extends AbstractSystemAction
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		JOptionPane.showMessageDialog(null,
-				"You want to perform a \"Open File\" action.");
+		// Saves all the open WorkareaCanvases
+		DesktopFileManagment.saveCanvases(PrimeMain1.canvases);
 	}
 
 }

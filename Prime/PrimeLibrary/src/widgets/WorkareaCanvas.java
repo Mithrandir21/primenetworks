@@ -4,7 +4,6 @@
 package widgets;
 
 
-import java.awt.Color;
 import java.awt.Point;
 import java.awt.dnd.DropTarget;
 import java.util.List;
@@ -22,7 +21,6 @@ import objects.Room;
 import objects.hardwareObjects.ExternalNetworksCard;
 import objects.hardwareObjects.InternalNetworksCard;
 
-import org.netbeans.api.visual.border.BorderFactory;
 import org.netbeans.api.visual.model.ObjectScene;
 import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Scene;
@@ -683,9 +681,9 @@ public class WorkareaCanvas extends JPanel
 			// If the current selected widgetObject is not null
 			if ( this.currentWidgetObject != null )
 			{
-				// Removes the borders around the current selected object
-				this.currentWidgetObject.setBorder(BorderFactory
-						.createEmptyBorder());
+				// // Removes the borders around the current selected object
+				// this.currentWidgetObject.setBorder(BorderFactory
+				// .createEmptyBorder());
 				this.currentWidgetObject = null;
 			}
 		}
@@ -694,16 +692,16 @@ public class WorkareaCanvas extends JPanel
 			// If the current selected widgetObject is not null
 			if ( this.currentWidgetObject != null )
 			{
-				// Removes the borders around the current selected object
-				this.currentWidgetObject.setBorder(BorderFactory
-						.createEmptyBorder());
+				// // Removes the borders around the current selected object
+				// this.currentWidgetObject.setBorder(BorderFactory
+				// .createEmptyBorder());
 				this.currentWidgetObject = null;
 			}
 
 			// The now currently selected widgetObject is given a border
 			this.currentWidgetObject = currentWidgetObject;
-			this.currentWidgetObject.setBorder(BorderFactory
-					.createRoundedBorder(7, 7, Color.white, Color.black));
+			// this.currentWidgetObject.setBorder(BorderFactory
+			// .createRoundedBorder(7, 7, Color.white, Color.black));
 		}
 	}
 

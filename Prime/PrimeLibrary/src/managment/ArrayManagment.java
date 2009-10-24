@@ -688,9 +688,6 @@ public class ArrayManagment
 
 	/**
 	 * This method removes any empty first level index from the given data.
-	 */
-	/**
-	 * This method removes any empty first level index from the given data.
 	 * 
 	 * @param data
 	 *            The array that will be checked for empty array indexes.
@@ -728,5 +725,27 @@ public class ArrayManagment
 
 
 		return data;
+	}
+
+
+
+
+	/**
+	 * Copies the pointers in the given array into a new array. (No search is
+	 * made for empty indexes.)
+	 * 
+	 * @return A new array with the same pointers as the given array.
+	 */
+	public static Object[] copyArray(Object[] original)
+	{
+		Object[] newArray = new Object[original.length];
+
+		// Addes the old items to the new array
+		for ( int i = 0; i < original.length; i++ )
+		{
+			newArray[i] = original[i];
+		}
+
+		return newArray;
 	}
 }

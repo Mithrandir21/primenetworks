@@ -1,7 +1,7 @@
 /**
  * 
  */
-package actions;
+package actions.systemActions;
 
 
 import graphics.PrimeMain1;
@@ -80,5 +80,4 @@ public class ActionRedo extends AbstractSystemAction
 			}
 		}
 	}
-
 }

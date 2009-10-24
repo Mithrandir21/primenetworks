@@ -192,9 +192,6 @@ public class ConnectionManagment
 			Connection[] existingConnections, Object objectA, Object objectB)
 			throws ConnectionDoesNotExist
 	{
-		System.out.println(objectA);
-		System.out.println(objectB);
-
 		// Checks to see if there really is a connection between A and B
 		if ( checkConnectionExistence(existingConnections, objectA, objectB) == false )
 		{
@@ -295,6 +292,46 @@ public class ConnectionManagment
 		return existingConnections;
 	}
 
+
+
+
+	/**
+	 * Finds and returns all connections, in the given connection array, where
+	 * the given Object is involved.
+	 */
+	public static Connection[] findConnections(
+			Connection[] existingConnections, Object object)
+	{
+		// If the existing connection array is not null or empty
+		if ( existingConnections != null && (existingConnections.length != 0) )
+		{
+			// Creates an array with the length of the existing connections
+			Connection[] foundConnections = new Connection[existingConnections.length];
+
+			for ( int i = 0; i < existingConnections.length; i++ )
+			{
+				if ( existingConnections[i] != null )
+				{
+					// If the object is found as any part of the connection
+					if ( (existingConnections[i].getObject1().getObjectSerial() == object
+							.getObjectSerial())
+							|| (existingConnections[i].getObject2()
+									.getObjectSerial() == object
+									.getObjectSerial()) )
+					{
+						foundConnections[i] = existingConnections[i];
+					}
+				}
+			}
+
+			// Removes any null-pointers in the array of connections
+			foundConnections = cleanup.cleanObjectArray(foundConnections);
+
+			return foundConnections;
+		}
+
+		return null;
+	}
 
 
 

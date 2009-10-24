@@ -37,7 +37,7 @@ import javax.swing.SpringLayout;
 import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.Motherboard;
-import widgetManipulation.Actions.WorkareaCanvasActions;
+import actions.canvasActions.ActionDeleteAllConnections;
 
 
 /**
@@ -803,9 +803,11 @@ public class MotherboardNewView extends JFrame implements
 
 					// We have to remove all connection between this object and
 					// other objects on the canvas
-					WorkareaCanvasActions.removeAllConnectionsToFromObject(
-							PrimeMain1.currentCanvas, mainObj);
-
+					// WorkareaCanvasActions.removeAllConnectionsToFromObject(
+					// PrimeMain1.currentCanvas, mainObj);
+					ActionDeleteAllConnections action = new ActionDeleteAllConnections(
+							"Delete all connections");
+					action.performAction();
 
 					// Since the motherboard is where most of the connections
 					// are

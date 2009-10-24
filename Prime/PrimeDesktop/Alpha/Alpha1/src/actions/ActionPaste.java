@@ -141,20 +141,38 @@ public class ActionPaste extends AbstractSystemAction implements
 	@Override
 	public void redo() throws CannotRedoException
 	{
-		if ( widgetObject != null )
+		if ( widgetObject != null
+				&& !(toCanvas.getMainLayer().getChildren()
+						.contains(newWidgetObject)) )
 		{
+			// Creates a deep copy of the object within the classes Widget
+			Object newObject = ComponentsManagment
+					.deepObjectCopy(newWidgetObject.getObject());
+
+			// Creates a new WidgetObject
+			WidgetObject newWidget = new WidgetObject(toCanvas.getScene(),
+					newObject, newWidgetObject.getImage());
+
+
+			// Sets the location of the object
+			newWidget.getObject().setLocation(newWidgetObject.getLocation());
+
+			// Adds the clicking actions to the Widget on the scene
+			ActionsAdder.makeWidgetObjectReady(toCanvas, newWidget);
+
 			// Adds the newly created WidgetObject to the classes canvas
-			toCanvas.addWidgetObject(newWidgetObject, newWidgetObject
-					.getLocation(), true);
+			toCanvas.addWidgetObject(newWidget, newWidgetObject.getLocation(),
+					false);
+
+			newWidgetObject = newWidget;
 
 			if ( isCut )
 			{
 				// Removes the original object from the original canvas
 				WorkareaCanvasActions.deleteObject(fromCanvas, widgetObject);
-
-				fromCanvas.cleanUp();
 			}
 
+			fromCanvas.cleanUp();
 		}
 	}
 
@@ -169,9 +187,27 @@ public class ActionPaste extends AbstractSystemAction implements
 			// If the original object was cut(removed)
 			if ( isCut )
 			{
+				// Creates a deep copy of the object within the classes
+				// Widget
+				Object newObject = ComponentsManagment
+						.deepObjectCopy(widgetObject.getObject());
+
+				// Creates a new WidgetObject
+				WidgetObject newWidget = new WidgetObject(
+						fromCanvas.getScene(), newObject, widgetObject
+								.getImage());
+
+				// Sets the location of the object
+				newWidget.getObject().setLocation(widgetObject.getLocation());
+
+				// Adds the clicking actions to the Widget on the scene
+				ActionsAdder.makeWidgetObjectReady(fromCanvas, newWidget);
+
 				// Adds the WidgetObject to the original canvas
-				fromCanvas.addWidgetObject(widgetObject, widgetObject
-						.getLocation(), true);
+				fromCanvas.addWidgetObject(newWidget, widgetObject
+						.getLocation(), false);
+
+				widgetObject = newWidget;
 			}
 
 			toCanvas.cleanUp();

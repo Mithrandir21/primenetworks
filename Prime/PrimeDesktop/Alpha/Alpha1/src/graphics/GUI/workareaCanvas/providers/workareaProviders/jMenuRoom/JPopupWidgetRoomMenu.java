@@ -13,13 +13,13 @@ import org.netbeans.api.visual.widget.Widget;
 import widgets.WidgetObject;
 import widgets.WidgetRoom;
 import widgets.WorkareaCanvas;
+import actions.canvasActions.ActionRemoveRoom;
 
 
 /**
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class JPopupWidgetRoomMenu
 {
@@ -30,7 +30,8 @@ public class JPopupWidgetRoomMenu
 
 
 	/**
-	 * The Listener that will listen to menus selected by the user in the JPopupMenu.
+	 * The Listener that will listen to menus selected by the user in the
+	 * JPopupMenu.
 	 */
 	private WorkareaWidgetRoomActionListener widgetActListener;
 
@@ -39,6 +40,12 @@ public class JPopupWidgetRoomMenu
 	 * The {@link WorkareaCanvas} the event will take place in.
 	 */
 	private WorkareaCanvas canvas;
+
+
+	/**
+	 * The widgetroom that this menu is for.
+	 */
+	private WidgetRoom widgetRoom;
 
 
 
@@ -57,7 +64,8 @@ public class JPopupWidgetRoomMenu
 
 
 	/**
-	 * Creates and sets up the the different fields of this class. It also returns the JpopupMenu shown to the user.
+	 * Creates and sets up the the different fields of this class. It also
+	 * returns the JpopupMenu shown to the user.
 	 * 
 	 * @param widget
 	 *            The {@link WidgetObject} a JPopupMenu will be shown for.
@@ -65,8 +73,10 @@ public class JPopupWidgetRoomMenu
 	 */
 	public JPopupMenu createPopupMenu(Widget widget)
 	{
-		widgetActListener = new WorkareaWidgetRoomActionListener(canvas, (WidgetRoom) widget);
+		widgetActListener = new WorkareaWidgetRoomActionListener(canvas,
+				(WidgetRoom) widget);
 
+		widgetRoom = (WidgetRoom) widget;
 
 		InitialMenues(canvas);
 
@@ -87,9 +97,10 @@ public class JPopupWidgetRoomMenu
 	{
 		JMenuItem menuItem;
 
-		menuItem = new JMenuItem("Delete Room");
-		menuItem.setActionCommand("DeleteRoom");
-		menuItem.addActionListener(widgetActListener);
+		menuItem = new JMenuItem(
+				new ActionRemoveRoom("Delete Room", widgetRoom));
+		// menuItem.setActionCommand("DeleteRoom");
+		// menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);
 
 		// menuItem = new JMenuItem("Rename this Room");

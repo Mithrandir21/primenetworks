@@ -11,6 +11,8 @@ import org.netbeans.api.visual.widget.Widget;
 
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
+import actions.ActionPaste;
+import actions.canvasActions.ActionDeleteWidget;
 
 
 /**
@@ -114,9 +116,8 @@ public class JPopupWidgetMenu
 		popup.add(menuItem);
 
 
-		menuItem = new JMenuItem("Paste Object");
-		menuItem.setActionCommand("PasteObject");
-		menuItem.addActionListener(widgetActListener);
+		menuItem = new JMenuItem(new ActionPaste("Paste Object"));
+
 		// If neither the copy or cut pointers point to anything, the past
 		// button will be disabled
 		if ( PrimeMain1.copyWidget == null && PrimeMain1.cutWidget == null )
@@ -128,9 +129,7 @@ public class JPopupWidgetMenu
 
 		popup.addSeparator();
 
-		menuItem = new JMenuItem("Delete this object");
-		menuItem.setActionCommand("DeleteThisObject");
-		menuItem.addActionListener(widgetActListener);
+		menuItem = new JMenuItem(new ActionDeleteWidget("Delete this object"));
 		popup.add(menuItem);
 
 		menuItem = new JMenuItem(

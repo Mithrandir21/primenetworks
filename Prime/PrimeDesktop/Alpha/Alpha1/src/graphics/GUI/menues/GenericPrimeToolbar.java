@@ -16,17 +16,17 @@ import javax.swing.JToolBar;
 
 import actions.ActionCopy;
 import actions.ActionCut;
-import actions.ActionExport;
-import actions.ActionNew;
-import actions.ActionObjectEditing;
-import actions.ActionOpenfile;
 import actions.ActionPaste;
-import actions.ActionRedo;
-import actions.ActionRoom;
-import actions.ActionSave;
-import actions.ActionSaveAll;
-import actions.ActionUndo;
-import actions.ActionUpdate;
+import actions.systemActions.ActionExport;
+import actions.systemActions.ActionNew;
+import actions.systemActions.ActionObjectEditing;
+import actions.systemActions.ActionOpenfile;
+import actions.systemActions.ActionRedo;
+import actions.systemActions.ActionRoom;
+import actions.systemActions.ActionSave;
+import actions.systemActions.ActionSaveAll;
+import actions.systemActions.ActionUndo;
+import actions.systemActions.ActionUpdate;
 
 
 /**

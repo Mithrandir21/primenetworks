@@ -10,6 +10,7 @@ import javax.swing.JPopupMenu;
 import org.netbeans.api.visual.widget.Widget;
 
 import widgets.WorkareaCanvas;
+import actions.canvasActions.ActionDeleteConnection;
 import connections.WidgetExtendedConnection;
 
 
@@ -17,7 +18,6 @@ import connections.WidgetExtendedConnection;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class JPopupConnectionMenu
 {
@@ -27,7 +27,8 @@ public class JPopupConnectionMenu
 	private JPopupMenu popup = new JPopupMenu();
 
 	/**
-	 * The Listener that will listen to menus selected by the user in the JPopupMenu.
+	 * The Listener that will listen to menus selected by the user in the
+	 * JPopupMenu.
 	 */
 	private WorkareaConnectionActionListener widgetActListener;
 
@@ -36,6 +37,11 @@ public class JPopupConnectionMenu
 	 * The {@link WorkareaCanvas} the event will take place in.
 	 */
 	private WorkareaCanvas canvas;
+
+	/**
+	 * The WidgetExtendedConnection that this menu is meant for.
+	 */
+	private WidgetExtendedConnection widConnection;
 
 
 	/**
@@ -52,15 +58,20 @@ public class JPopupConnectionMenu
 
 
 	/**
-	 * Creates and sets up the the different fields of this class. It also returns the JpopupMenu shown to the user.
+	 * Creates and sets up the the different fields of this class. It also
+	 * returns the JpopupMenu shown to the user.
 	 * 
 	 * @param widget
-	 *            The {@link WidgetExtendedConnection} a JPopupMenu will be shown for.
+	 *            The {@link WidgetExtendedConnection} a JPopupMenu will be
+	 *            shown for.
 	 * @return The JPopupMenu the JpopupMenu shown to the user.
 	 */
 	public JPopupMenu createPopupMenu(Widget widget)
 	{
-		widgetActListener = new WorkareaConnectionActionListener(canvas, (WidgetExtendedConnection) widget);
+		widgetActListener = new WorkareaConnectionActionListener(canvas,
+				(WidgetExtendedConnection) widget);
+
+		widConnection = (WidgetExtendedConnection) widget;
 
 		InitialMenues(canvas);
 
@@ -81,9 +92,8 @@ public class JPopupConnectionMenu
 	{
 		JMenuItem menuItem;
 
-		menuItem = new JMenuItem("Delete Connection");
-		menuItem.setActionCommand("DeleteThisConnection");
-		menuItem.addActionListener(widgetActListener);
+		menuItem = new JMenuItem(new ActionDeleteConnection(
+				"Delete Connection", widConnection));
 		popup.add(menuItem);
 
 		menuItem = new JMenuItem("Another Option");
@@ -91,6 +101,4 @@ public class JPopupConnectionMenu
 		// menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);
 	}
-
-
 }

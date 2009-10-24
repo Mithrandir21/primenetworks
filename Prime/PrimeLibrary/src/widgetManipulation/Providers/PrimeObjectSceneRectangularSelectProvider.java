@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 import org.netbeans.api.visual.action.RectangularSelectProvider;
-import org.netbeans.api.visual.model.ObjectScene;
 
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
@@ -20,9 +19,9 @@ import widgets.WorkareaCanvas;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
-public class PrimeObjectSceneRectangularSelectProvider implements RectangularSelectProvider
+public class PrimeObjectSceneRectangularSelectProvider implements
+		RectangularSelectProvider
 {
 	private WorkareaCanvas canvas;
 
@@ -33,8 +32,9 @@ public class PrimeObjectSceneRectangularSelectProvider implements RectangularSel
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.netbeans.api.visual.action.RectangularSelectProvider#performSelection(java.awt.Rectangle)
+	 * @see
+	 * org.netbeans.api.visual.action.RectangularSelectProvider#performSelection
+	 * (java.awt.Rectangle)
 	 */
 	@Override
 	public void performSelection(Rectangle sceneSelection)
@@ -42,12 +42,12 @@ public class PrimeObjectSceneRectangularSelectProvider implements RectangularSel
 		boolean entirely = sceneSelection.width > 0;
 		int w = sceneSelection.width;
 		int h = sceneSelection.height;
-		Rectangle rect = new Rectangle(w >= 0 ? 0 : w, h >= 0 ? 0 : h, w >= 0 ? w : -w, h >= 0 ? h : -h);
+		Rectangle rect = new Rectangle(w >= 0 ? 0 : w, h >= 0 ? 0 : h,
+				w >= 0 ? w : -w, h >= 0 ? h : -h);
 		rect.translate(sceneSelection.x, sceneSelection.y);
 
 
 		WidgetObject[] objArray = canvas.getWidgetObjectsOnTheScene();
-		ObjectScene scene = canvas.getObjectScene();
 		HashSet<WidgetObject> set = new HashSet<WidgetObject>();
 
 		for ( int i = 0; i < objArray.length; i++ )
@@ -63,7 +63,8 @@ public class PrimeObjectSceneRectangularSelectProvider implements RectangularSel
 				if ( entirely )
 				{
 					// System.out.println(object.getObject().getObjectName());
-					Rectangle widgetRect = object.convertLocalToScene(object.getBounds());
+					Rectangle widgetRect = object.convertLocalToScene(object
+							.getBounds());
 					if ( rect.contains(widgetRect) )
 					{
 						// System.out.println("is inside.");
@@ -88,7 +89,8 @@ public class PrimeObjectSceneRectangularSelectProvider implements RectangularSel
 					// else
 					// {
 					// System.out.println("testing....3");
-					// Rectangle widgetRect = widget.convertLocalToScene(widget.getBounds());
+					// Rectangle widgetRect =
+					// widget.convertLocalToScene(widget.getBounds());
 					// if ( rect.intersects(widgetRect) )
 					// set.add(object);
 					// }

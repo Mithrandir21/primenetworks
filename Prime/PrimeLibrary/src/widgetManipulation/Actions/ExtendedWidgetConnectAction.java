@@ -23,7 +23,6 @@ import org.netbeans.api.visual.widget.Widget;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 {
@@ -45,7 +44,8 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 	private Point startingPoint = null;
 
 
-	public ExtendedWidgetConnectAction(ConnectDecorator decorator, Widget interractionLayer, ConnectProvider provider)
+	public ExtendedWidgetConnectAction(ConnectDecorator decorator,
+			Widget interractionLayer, ConnectProvider provider)
 	{
 		this.decorator = decorator;
 		this.interractionLayer = interractionLayer;
@@ -57,7 +57,8 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 		return sourceWidget != null;
 	}
 
-	public WidgetAction.State mousePressed(Widget widget, WidgetAction.WidgetMouseEvent event)
+	public WidgetAction.State mousePressed(Widget widget,
+			WidgetAction.WidgetMouseEvent event)
 	{
 		if ( (event.getButton() == MouseEvent.BUTTON1 && event.getClickCount() == 1)
 				&& ((event.getModifiers() & MouseEvent.CTRL_MASK) != 0) )
@@ -68,9 +69,11 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 				sourceWidget = widget;
 				targetWidget = null;
 				startingPoint = new Point(event.getPoint());
-				connectionWidget = decorator.createConnectionWidget(interractionLayer.getScene());
+				connectionWidget = decorator
+						.createConnectionWidget(interractionLayer.getScene());
 				assert connectionWidget != null;
-				connectionWidget.setSourceAnchor(decorator.createSourceAnchor(widget));
+				connectionWidget.setSourceAnchor(decorator
+						.createSourceAnchor(widget));
 				interractionLayer.addChild(connectionWidget);
 				return WidgetAction.State.createLocked(widget, this);
 			}
@@ -78,7 +81,8 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 		return State.REJECTED;
 	}
 
-	public WidgetAction.State mouseReleased(Widget widget, WidgetAction.WidgetMouseEvent event)
+	public WidgetAction.State mouseReleased(Widget widget,
+			WidgetAction.WidgetMouseEvent event)
 	{
 		Point point = event.getPoint();
 		boolean state = move(widget, point);
@@ -103,9 +107,11 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 		return state ? State.CONSUMED : State.REJECTED;
 	}
 
-	public WidgetAction.State mouseDragged(Widget widget, WidgetAction.WidgetMouseEvent event)
+	public WidgetAction.State mouseDragged(Widget widget,
+			WidgetAction.WidgetMouseEvent event)
 	{
-		return move(widget, event.getPoint()) ? State.createLocked(widget, this) : State.REJECTED;
+		return move(widget, event.getPoint()) ? State
+				.createLocked(widget, this) : State.REJECTED;
 	}
 
 	private boolean move(Widget widget, Point point)
@@ -114,7 +120,8 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 			return false;
 
 		Point targetSceneLocation = widget.convertLocalToScene(point);
-		targetWidget = resolveTargetWidgetCore(interractionLayer.getScene(), targetSceneLocation);
+		targetWidget = resolveTargetWidgetCore(interractionLayer.getScene(),
+				targetSceneLocation);
 		Anchor targetAnchor = null;
 		if ( targetWidget != null )
 			targetAnchor = decorator.createTargetAnchor(targetWidget);
@@ -131,18 +138,21 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 			if ( provider.hasCustomTargetWidgetResolver(scene) )
 				return provider.resolveTargetWidget(scene, sceneLocation);
 		Point sceneOrigin = scene.getLocation();
-		sceneLocation = new Point(sceneLocation.x + sceneOrigin.x, sceneLocation.y + sceneOrigin.y);
+		sceneLocation = new Point(sceneLocation.x + sceneOrigin.x,
+				sceneLocation.y + sceneOrigin.y);
 		Widget[] result = new Widget[] { null };
 		resolveTargetWidgetCoreDive(result, scene, sceneLocation);
 		return result[0];
 	}
 
-	private boolean resolveTargetWidgetCoreDive(Widget[] result, Widget widget, Point parentLocation)
+	private boolean resolveTargetWidgetCoreDive(Widget[] result, Widget widget,
+			Point parentLocation)
 	{
 		if ( interractionLayer.equals(widget) )
 			return false;
 		Point widgetLocation = widget.getLocation();
-		Point location = new Point(parentLocation.x - widgetLocation.x, parentLocation.y - widgetLocation.y);
+		Point location = new Point(parentLocation.x - widgetLocation.x,
+				parentLocation.y - widgetLocation.y);
 
 		if ( !widget.getBounds().contains(location) )
 			return false;
@@ -167,7 +177,8 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 
 
 
-	// public ExtendedWidgetConnectAction(ConnectDecorator decorator, Widget interractionLayer, ConnectProvider
+	// public ExtendedWidgetConnectAction(ConnectDecorator decorator, Widget
+	// interractionLayer, ConnectProvider
 	// provider)
 	// {
 	// super(decorator, interractionLayer, provider);
@@ -176,11 +187,13 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 	//
 	//	
 	// /* (non-Javadoc)
-	// * @see org.netbeans.modules.visual.action.ConnectAction#mousePressed(org.netbeans.api.visual.widget.Widget,
+	// * @see
+	// org.netbeans.modules.visual.action.ConnectAction#mousePressed(org.netbeans.api.visual.widget.Widget,
 	// org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
 	// */
 	// @Override
-	// public WidgetAction.State mousePressed(Widget widget, WidgetAction.WidgetMouseEvent event)
+	// public WidgetAction.State mousePressed(Widget widget,
+	// WidgetAction.WidgetMouseEvent event)
 	// {
 	// System.out.println("ExtendedWidgetConnectAction - mouseClicked");
 	// PrimeMain1.connecting = true;
@@ -197,11 +210,13 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 	//
 	//
 	// /* (non-Javadoc)
-	// * @see org.netbeans.modules.visual.action.ConnectAction#mouseReleased(org.netbeans.api.visual.widget.Widget,
+	// * @see
+	// org.netbeans.modules.visual.action.ConnectAction#mouseReleased(org.netbeans.api.visual.widget.Widget,
 	// org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
 	// */
 	// @Override
-	// public WidgetAction.State mouseReleased(Widget widget, WidgetAction.WidgetMouseEvent event)
+	// public WidgetAction.State mouseReleased(Widget widget,
+	// WidgetAction.WidgetMouseEvent event)
 	// {
 	//		
 	// // macLocking = false;
