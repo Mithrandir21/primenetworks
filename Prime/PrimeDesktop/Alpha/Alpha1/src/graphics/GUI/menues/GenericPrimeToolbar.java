@@ -17,6 +17,7 @@ import javax.swing.JToolBar;
 import actions.ActionCopy;
 import actions.ActionCut;
 import actions.ActionPaste;
+import actions.systemActions.ActionConnection;
 import actions.systemActions.ActionExport;
 import actions.systemActions.ActionNew;
 import actions.systemActions.ActionObjectEditing;
@@ -61,6 +62,10 @@ public class GenericPrimeToolbar extends JMenuBar
 
 		this.add(new JToolBar.Separator());
 
+		initCanvasActions();
+
+		this.add(new JToolBar.Separator());
+
 		initNetworkAction();
 
 		this.add(new JToolBar.Separator());
@@ -70,8 +75,8 @@ public class GenericPrimeToolbar extends JMenuBar
 
 
 
-	private JToolBar fileToolBar, editToolBar, stepsToolBar, networkToolBar,
-			editingToolBar;
+	private JToolBar fileToolBar, editToolBar, stepsToolBar, canvasToolBar,
+			networkToolBar, editingToolBar;
 
 
 	// SETUP OF THE TOOLBAR
@@ -181,16 +186,11 @@ public class GenericPrimeToolbar extends JMenuBar
 		ActionUpdate update = new ActionUpdate("Update", tempIcon);
 		JButton updateButton = new JButton(update);
 
-		tempIcon = ImageLocator.getImageIconObject("Room");
-		ActionRoom room = new ActionRoom("Room", tempIcon);
-		JToggleButton roomButton = new JToggleButton(room);
-
 		tempIcon = ImageLocator.getImageIconObject("Export");
 		ActionExport export = new ActionExport("Export", tempIcon);
 		JButton exportButton = new JButton(export);
 
 		networkToolBar.add(updateButton);
-		networkToolBar.add(roomButton);
 		networkToolBar.add(exportButton);
 
 
@@ -198,6 +198,32 @@ public class GenericPrimeToolbar extends JMenuBar
 		tempIcon = null;
 	}
 
+
+	/**
+	 * This function creates the Canvas functions JToolbar.
+	 */
+	private void initCanvasActions()
+	{
+		canvasToolBar = new JToolBar("Canvas");
+		canvasToolBar.setFloatable(false);
+
+
+		tempIcon = ImageLocator.getImageIconObject("Connection");
+		ActionConnection con = new ActionConnection("Connect", tempIcon);
+		JToggleButton connectionButton = new JToggleButton(con);
+
+		tempIcon = ImageLocator.getImageIconObject("Room");
+		ActionRoom room = new ActionRoom("Room", tempIcon);
+		JToggleButton roomButton = new JToggleButton(room);
+
+
+		canvasToolBar.add(connectionButton);
+		canvasToolBar.add(roomButton);
+
+
+		this.add(canvasToolBar, BorderLayout.WEST);
+		tempIcon = null;
+	}
 
 
 	/**

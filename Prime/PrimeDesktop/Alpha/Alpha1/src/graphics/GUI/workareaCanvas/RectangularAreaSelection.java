@@ -94,7 +94,7 @@ public class RectangularAreaSelection extends LockedAdapter
 
 			ActionCreateRoom action = new ActionCreateRoom("Create a Room",
 					selectionWidget);
-			action.performAction();
+			action.performAction(true);
 
 			// Prevents double calling of the action
 			selectionSceneRectangle = null;

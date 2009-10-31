@@ -111,7 +111,7 @@ public class WorkareaTargetListener implements DropTargetListener
 			// Adds the action to the canvas
 			ActionAddWidgetToWorkareaCanvas actionAdd = new ActionAddWidgetToWorkareaCanvas(
 					"Add Object", canvas, newObject, objectPoint);
-			actionAdd.performAction();
+			actionAdd.performAction(true);
 
 		}
 		catch ( UnsupportedFlavorException e )

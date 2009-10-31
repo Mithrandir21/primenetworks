@@ -73,7 +73,7 @@ public class ActionCreateRoom extends AbstractSystemAction implements
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		performAction();
+		performAction(true);
 	}
 
 
@@ -204,7 +204,7 @@ public class ActionCreateRoom extends AbstractSystemAction implements
 	 * @see logistical.SystemActionInterface#performAction()
 	 */
 	@Override
-	public void performAction()
+	public void performAction(boolean undoable)
 	{
 		if ( room != null )
 		{
@@ -226,7 +226,10 @@ public class ActionCreateRoom extends AbstractSystemAction implements
 				// Repaints roomLayer
 				canvas.cleanUp();
 
-				canvas.addUndoableAction(this);
+				if ( undoable )
+				{
+					canvas.addUndoableAction(this);
+				}
 			}
 		}
 	}

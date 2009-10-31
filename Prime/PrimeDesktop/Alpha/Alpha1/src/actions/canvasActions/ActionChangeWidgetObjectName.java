@@ -2,6 +2,7 @@ package actions.canvasActions;
 
 
 import graphics.GraphicalFunctions;
+import graphics.PrimeMain1;
 
 import java.awt.event.ActionEvent;
 
@@ -83,7 +84,7 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		performAction();
+		performAction(true);
 	}
 
 
@@ -167,7 +168,7 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 	}
 
 	@Override
-	public void performAction()
+	public void performAction(boolean undoable)
 	{
 		if ( widObject != null )
 		{
@@ -186,6 +187,11 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 				JOptionPane.showMessageDialog(null, "The name provided, "
 						+ newName + ", was not a valid name.", "Error",
 						JOptionPane.ERROR_MESSAGE);
+			}
+
+			if ( undoable )
+			{
+				PrimeMain1.currentCanvas.addUndoableAction(this);
 			}
 		}
 	}

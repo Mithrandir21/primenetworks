@@ -38,9 +38,12 @@ public class GUIsceneConnectProvider extends SceneConnectProvider
 	@Override
 	public void createConnection(Widget sourceWidget, Widget targetWidget)
 	{
-		ActionCreateConnection action = new ActionCreateConnection(
-				"Create a Connection", this.getCanvas(),
-				(WidgetObject) sourceWidget, (WidgetObject) targetWidget);
-		action.performAction();
+		if ( sourceWidget != targetWidget )
+		{
+			ActionCreateConnection action = new ActionCreateConnection(
+					"Create a Connection", this.getCanvas(),
+					(WidgetObject) sourceWidget, (WidgetObject) targetWidget);
+			action.performAction(true);
+		}
 	}
 }

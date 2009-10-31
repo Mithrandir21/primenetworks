@@ -60,8 +60,11 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 	public WidgetAction.State mousePressed(Widget widget,
 			WidgetAction.WidgetMouseEvent event)
 	{
+		// If the event button has been clicked once and either the connection
+		// button is toggled or the CTRL button is held down.
 		if ( (event.getButton() == MouseEvent.BUTTON1 && event.getClickCount() == 1)
-				&& ((event.getModifiers() & MouseEvent.CTRL_MASK) != 0) )
+				&& ((Settings.connectionToggle == true) || (event
+						.getModifiers() & MouseEvent.CTRL_MASK) != 0) )
 		{
 			if ( provider.isSourceWidget(widget) )
 			{
@@ -92,6 +95,16 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 					|| Math.abs(startingPoint.y - point.y) >= MIN_DIFFERENCE )
 			{
 				provider.createConnection(sourceWidget, targetWidget);
+				sourceWidget = null;
+				targetWidget = null;
+				startingPoint = null;
+				connectionWidget.setSourceAnchor(null);
+				connectionWidget.setTargetAnchor(null);
+				interractionLayer.removeChild(connectionWidget);
+				connectionWidget = null;
+			}
+			else
+			{
 				sourceWidget = null;
 				targetWidget = null;
 				startingPoint = null;

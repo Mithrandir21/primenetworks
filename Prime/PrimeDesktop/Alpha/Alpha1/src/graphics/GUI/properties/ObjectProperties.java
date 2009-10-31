@@ -392,13 +392,8 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 								if ( tempCanvas != null )
 								{
-									// Adds the action to the canvases
-									// undomanager
-									tempCanvas
-											.addUndoableAction(changeNameAction);
-
 									// Performs the action
-									changeNameAction.performAction();
+									changeNameAction.performAction(true);
 								}
 
 

@@ -84,7 +84,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		performAction();
+		performAction(true);
 	}
 
 
@@ -209,7 +209,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 	 * @see logistical.SystemActionInterface#performAction()
 	 */
 	@Override
-	public void performAction()
+	public void performAction(boolean undoable)
 	{
 		// Gets the point the Widget has on the scene
 		Point sceneLocation = canvas.getScene().convertViewToScene(objectPoint);
@@ -246,6 +246,9 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 
 		canvas.cleanUp();
 
-		canvas.addUndoableAction(this);
+		if ( undoable )
+		{
+			canvas.addUndoableAction(this);
+		}
 	}
 }

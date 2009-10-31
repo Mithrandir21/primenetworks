@@ -76,7 +76,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		performAction();
+		performAction(true);
 	}
 
 
@@ -254,7 +254,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 	 * @see logistical.SystemActionInterface#performAction()
 	 */
 	@Override
-	public void performAction()
+	public void performAction(boolean undoable)
 	{
 		// Sets the current canvas as the canvas
 		canvas = PrimeMain1.currentCanvas;
@@ -263,8 +263,11 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 		WorkareaCanvasActions.removeWidgetConnection(canvas,
 				existingConnections);
 
-		canvas.addUndoableAction(this);
-
 		canvas.cleanUp();
+
+		if ( undoable )
+		{
+			canvas.addUndoableAction(this);
+		}
 	}
 }

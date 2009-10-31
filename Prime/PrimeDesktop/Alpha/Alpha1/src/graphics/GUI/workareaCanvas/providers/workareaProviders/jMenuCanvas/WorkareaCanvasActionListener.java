@@ -278,7 +278,7 @@ public class WorkareaCanvasActionListener implements ActionListener
 				// // Adds the given object to the given location
 				ActionAddWidgetToWorkareaCanvas actionAdd = new ActionAddWidgetToWorkareaCanvas(
 						"Add Object", canvas, newWidgetObject, location);
-				actionAdd.performAction();
+				actionAdd.performAction(true);
 
 				// Adds the actions that the new widget supports
 				ActionsAdder.makeWidgetObjectReady(canvas, newWidgetObject);

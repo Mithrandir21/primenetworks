@@ -90,7 +90,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		performAction();
+		performAction(true);
 	}
 
 
@@ -264,7 +264,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 	 * @see logistical.SystemActionInterface#performAction()
 	 */
 	@Override
-	public void performAction()
+	public void performAction(boolean undoable)
 	{
 		// Either the source or the target widget is not an object, which would
 		// result in a NullPOinterException.
@@ -363,7 +363,10 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 					// connection
 					widCon = connection;
 
-					canvas.addUndoableAction(this);
+					if ( undoable )
+					{
+						canvas.addUndoableAction(this);
+					}
 				}
 				// If there already exists a connection between the two given
 				// objects.

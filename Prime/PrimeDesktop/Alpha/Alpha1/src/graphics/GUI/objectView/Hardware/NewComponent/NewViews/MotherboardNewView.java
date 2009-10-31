@@ -807,7 +807,7 @@ public class MotherboardNewView extends JFrame implements
 					// PrimeMain1.currentCanvas, mainObj);
 					ActionDeleteAllConnections action = new ActionDeleteAllConnections(
 							"Delete all connections");
-					action.performAction();
+					action.performAction(false);
 
 					// Since the motherboard is where most of the connections
 					// are

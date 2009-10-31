@@ -176,7 +176,7 @@ public class WorkareaWidgetActionListener implements ActionListener
 				// widget.getObject());
 				ActionDeleteAllConnections actionDeleteConnections = new ActionDeleteAllConnections(
 						"Delete all connections");
-				actionDeleteConnections.performAction();
+				actionDeleteConnections.performAction(true);
 			}
 			// else if ( actionName.equals("DeleteThisObject") )
 			// {

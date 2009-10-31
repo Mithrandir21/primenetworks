@@ -89,7 +89,7 @@ public class ActionPaste extends AbstractSystemAction implements
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		performAction();
+		performAction(true);
 	}
 
 
@@ -217,7 +217,7 @@ public class ActionPaste extends AbstractSystemAction implements
 
 
 	@Override
-	public void performAction()
+	public void performAction(boolean undoable)
 	{
 		if ( PrimeMain1.currentCanvas != null )
 		{
@@ -258,16 +258,20 @@ public class ActionPaste extends AbstractSystemAction implements
 					// Sets the current canvas as the toCanvas
 					toCanvas = PrimeMain1.currentCanvas;
 
-					// Adds this action to the undomanager of both the canvases,
-					// if the canvases are not the same canvas
-					if ( fromCanvas.getSerial() != toCanvas.getSerial() )
+					if ( undoable )
 					{
-						fromCanvas.addUndoableAction(this);
-						toCanvas.addUndoableAction(this);
-					}
-					else
-					{
-						fromCanvas.addUndoableAction(this);
+						// Adds this action to the undomanager of both the
+						// canvases,
+						// if the canvases are not the same canvas
+						if ( fromCanvas.getSerial() != toCanvas.getSerial() )
+						{
+							fromCanvas.addUndoableAction(this);
+							toCanvas.addUndoableAction(this);
+						}
+						else
+						{
+							fromCanvas.addUndoableAction(this);
+						}
 					}
 
 					// The location of the new Widget

@@ -74,7 +74,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		performAction();
+		performAction(true);
 	}
 
 
@@ -268,7 +268,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements
 	 * @see logistical.SystemActionInterface#performAction()
 	 */
 	@Override
-	public void performAction()
+	public void performAction(boolean undoable)
 	{
 		// Sets the current canvas as the actions canvas
 		canvas = PrimeMain1.currentCanvas;
@@ -292,8 +292,11 @@ public class ActionDeleteWidget extends AbstractSystemAction implements
 
 		canvas.setCurrentWidgetObject(null);
 
-		canvas.addUndoableAction(this);
-
 		canvas.cleanUp();
+
+		if ( undoable )
+		{
+			canvas.addUndoableAction(this);
+		}
 	}
 }

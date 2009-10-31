@@ -9,7 +9,8 @@ package logistical;
 public interface SystemActionInterface
 {
 	/**
-	 * TODO - Description
+	 * Method that will perform the classes action, with a boolean saying
+	 * whether or not the action should be set as undoable.
 	 */
-	public void performAction();
+	public void performAction(boolean undoable);
 }

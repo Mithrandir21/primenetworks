@@ -69,7 +69,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		performAction();
+		performAction(true);
 	}
 
 
@@ -198,7 +198,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements
 	 * @see logistical.SystemActionInterface#performAction()
 	 */
 	@Override
-	public void performAction()
+	public void performAction(boolean undoable)
 	{
 		// Sets the current canvas
 		canvas = PrimeMain1.currentCanvas;
@@ -229,6 +229,11 @@ public class ActionRemoveRoom extends AbstractSystemAction implements
 			canvas.getRoomLayer().removeChild(temp);
 		}
 
-		canvas.addUndoableAction(this);
+		canvas.cleanUp();
+
+		if ( undoable )
+		{
+			canvas.addUndoableAction(this);
+		}
 	}
 }
