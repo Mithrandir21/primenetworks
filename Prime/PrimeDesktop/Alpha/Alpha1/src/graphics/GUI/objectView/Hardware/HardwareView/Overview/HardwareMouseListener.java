@@ -29,9 +29,9 @@ import widgets.WorkareaCanvas;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
-public class HardwareMouseListener extends MouseAdapter implements ActionListener
+public class HardwareMouseListener extends MouseAdapter implements
+		ActionListener
 {
 	// This is the main Object
 	private Object mainObject;
@@ -46,7 +46,8 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 */
-	public HardwareMouseListener(JPanel hardwarePanel, Object mainObj, Object hardObj)
+	public HardwareMouseListener(JPanel hardwarePanel, Object mainObj,
+			Object hardObj)
 	{
 		panel = hardwarePanel;
 		mainObject = mainObj;
@@ -57,8 +58,9 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 
 
 	/**
-	 * Creates and pops up the JMenu coordinates gotten from the MouseEvent. This menu is shown when right clicked on a
-	 * Hardware Object in the HardwareView of an Object on the {@link WorkareaCanvas}.
+	 * Creates and pops up the JMenu coordinates gotten from the MouseEvent.
+	 * This menu is shown when right clicked on a Hardware Object in the
+	 * HardwareView of an Object on the {@link WorkareaCanvas}.
 	 * 
 	 * @param e
 	 */
@@ -70,12 +72,14 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 		JPopupMenu itemPopup = new JPopupMenu();
 
 
-		JMenuItem deleteHardware = new JMenuItem("Delete Hardware");
+		JMenuItem deleteHardware = new JMenuItem(PrimeMain1.texts
+				.getString("hwTabDeleteHWactionLabel"));
 		deleteHardware.setActionCommand("Delete Hardware");
 		deleteHardware.addActionListener(this);
 
 
-		JMenuItem editHardware = new JMenuItem("Edit Hardware");
+		JMenuItem editHardware = new JMenuItem(PrimeMain1.texts
+				.getString("hwTabEditHWactionLabel"));
 		editHardware.setActionCommand("Edit Hardware");
 		editHardware.addActionListener(this);
 
@@ -89,14 +93,15 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 
 
 	/**
-	 * MUST HAVE BOTH THESE METHODES BECAUSE THE POPUPTRIGGERS ARE DIFFERENT IN DIFFERENT OPERATING SYSTEMS.
+	 * MUST HAVE BOTH THESE METHODES BECAUSE THE POPUPTRIGGERS ARE DIFFERENT IN
+	 * DIFFERENT OPERATING SYSTEMS.
 	 */
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.awt.event.MouseAdapter#mousePressed(java.awt.event.MouseEvent)
 	 */
+	@Override
 	public void mousePressed(MouseEvent e)
 	{
 		if ( e.isPopupTrigger() )
@@ -108,9 +113,9 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.awt.event.MouseAdapter#mouseReleased(java.awt.event.MouseEvent)
 	 */
+	@Override
 	public void mouseReleased(MouseEvent e)
 	{
 		if ( e.isPopupTrigger() )
@@ -124,8 +129,8 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -136,18 +141,24 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 			if ( !(hardwareObject instanceof Motherboard) )
 			{
 				// Asks the user to confirm the deletion
-				int answer = JOptionPane.showConfirmDialog(panel, "Are you sure you wish to remove this component?",
-						"Confirm", JOptionPane.YES_NO_OPTION);
+				int answer = JOptionPane.showConfirmDialog(panel,
+						PrimeMain1.texts.getString("hwTabDeleteHWquestionMsg"),
+						PrimeMain1.texts.getString("confirm"),
+						JOptionPane.YES_NO_OPTION);
 
 				// If the user confirms the deletion
 				if ( answer == 0 )
 				{
-					// Will remove the first variable from the list of components that will be returned and set as the
+					// Will remove the first variable from the list of
+					// components that will be returned and set as the
 					// components for the main object.
-					mainObject.setAllComponents(ComponentsManagment.removeComponent(hardwareObject, mainObject
-							.getComponents(), mainObject.getComponents().length));
+					mainObject.setAllComponents(ComponentsManagment
+							.removeComponent(hardwareObject, mainObject
+									.getComponents(), mainObject
+									.getComponents().length));
 
-					// Updates the views of the object to correctly show the current info.
+					// Updates the views of the object to correctly show the
+					// current info.
 					ObjectView view = PrimeMain1.getObjectView(mainObject);
 					if ( view != null )
 					{
@@ -158,29 +169,36 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 			else
 			{
 				// Asks the user to confirm the deletion
-				int answer = JOptionPane.showConfirmDialog(panel,
-						"A computer must have a Motherboard. Do you wish to delete this Motherboard "
-								+ "and install a standard Motherboard?", "Confirm", JOptionPane.YES_NO_OPTION);
+				int answer = JOptionPane
+						.showConfirmDialog(panel, PrimeMain1.texts
+								.getString("hwTabDeleteHWreplaceMBmsg"),
+								PrimeMain1.texts.getString("confirm"),
+								JOptionPane.YES_NO_OPTION);
 
 				if ( answer == 0 )
 				{
 					// Creates a new Motherboard object
-					Motherboard mbObj = PrimeMain1.standard_internal_components.getSt_MB();
+					Motherboard mbObj = PrimeMain1.standard_internal_components
+							.getSt_MB();
 
-					// Creates a new motherboard editor where the user can save a new Motherboard
+					// Creates a new motherboard editor where the user can save
+					// a new Motherboard
 					new MotherboardNewView(mainObject, mbObj);
 				}
 			}
 		}
 		else if ( e.getActionCommand().equals("Edit Hardware") )
 		{
-			// Gets the Object View which will contain the hardware editor view of each hardware object
+			// Gets the Object View which will contain the hardware editor view
+			// of each hardware object
 			ObjectView objView = PrimeMain1.objView.get(0);
 
-			// Call for a new Hardware editor to be create and then sets the tab focus to the hardware object the user
+			// Call for a new Hardware editor to be create and then sets the tab
+			// focus to the hardware object the user
 			// selected to be edited.
-			objView.getObjectView().getHardwareEditor().createNewHardwareEditor(mainObject).setTabFocus(
-					(Hardware) hardwareObject);
+			objView.getObjectView().getHardwareEditor()
+					.createNewHardwareEditor(mainObject).setTabFocus(
+							(Hardware) hardwareObject);
 		}
 	}
 

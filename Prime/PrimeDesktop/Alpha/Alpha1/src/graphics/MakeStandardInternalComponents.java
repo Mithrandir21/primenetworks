@@ -36,10 +36,11 @@ public class MakeStandardInternalComponents
 	 */
 	public Motherboard getSt_MB()
 	{
-		Motherboard mb = new Motherboard("Standard Motherboard",
-				"This is the system standard motherboard.", "Prime", "ATX",
-				"Intel 775", "DDR2", 1, 3, 2, 4, 4, "SATA", "AGP", true, true,
-				true, 1);
+		Motherboard mb = new Motherboard(PrimeMain1.texts
+				.getString("standardMBName"), PrimeMain1.texts
+				.getString("standardMBDescription"), PrimeMain1.texts
+				.getString("standardMBProducer"), "ATX", "Intel 775", "DDR2",
+				1, 3, 2, 4, 4, "SATA", "AGP", true, true, true, 1);
 
 		return mb;
 	}
@@ -57,8 +58,8 @@ public class MakeStandardInternalComponents
 	 */
 	public Motherboard getHw_MB()
 	{
-		return new Motherboard("Standard hardware Motherboard",
-				"This is the system standard hardware motherboard.");
+		return new Motherboard(PrimeMain1.texts.getString("standardHwMBName"),
+				PrimeMain1.texts.getString("standardHwMBDescription"));
 	}
 
 
@@ -72,7 +73,8 @@ public class MakeStandardInternalComponents
 	 */
 	public CPU getSt_CPU()
 	{
-		return new CPU("Standard CPU", "This is the system standard CPU.",
+		return new CPU(PrimeMain1.texts.getString("standardCPUName"),
+				PrimeMain1.texts.getString("standardCPUDescription"),
 				"Intel 775", 512);
 	}
 
@@ -87,8 +89,9 @@ public class MakeStandardInternalComponents
 	 */
 	public HDD getSt_HDD()
 	{
-		return new HDD("Standard HDD", "This is the system standard HDD.",
-				"SATA", 160);
+		return new HDD(PrimeMain1.texts.getString("standardHDDName"),
+				PrimeMain1.texts.getString("standardHDDDescription"), "SATA",
+				160);
 	}
 
 
@@ -102,8 +105,9 @@ public class MakeStandardInternalComponents
 	 */
 	public Ram getSt_RAM()
 	{
-		return new Ram("Standard Ram", "This is the system standard RAM.",
-				"DDR2", 1024);
+		return new Ram(PrimeMain1.texts.getString("standardRAMName"),
+				PrimeMain1.texts.getString("standardRAMDescription"), "DDR2",
+				1024);
 	}
 
 
@@ -117,8 +121,9 @@ public class MakeStandardInternalComponents
 	 */
 	public Discdrive getSt_DVDRW()
 	{
-		return new Discdrive("Standard discdrive",
-				"This is the system standard discdrive.", "DVDRW", "SATA");
+		return new Discdrive(PrimeMain1.texts.getString("standardDVDRWName"),
+				PrimeMain1.texts.getString("standardDVDRWUDescription"),
+				"DVDRW", "SATA");
 	}
 
 
@@ -160,9 +165,10 @@ public class MakeStandardInternalComponents
 			PrimeMain1.currentCanvas.addNIC();
 		}
 
-		return new ExternalNetworksCard("Standard external NIC",
-				"This is the system standard external NIC.", "Realtek", mac,
-				"Wireless", "USB");
+		return new ExternalNetworksCard(PrimeMain1.texts
+				.getString("standardExtNICName"), PrimeMain1.texts
+				.getString("standardExtNICDescription"), PrimeMain1.texts
+				.getString("standardExtNICProducer"), mac, "Wireless", "USB");
 	}
 
 
@@ -205,9 +211,10 @@ public class MakeStandardInternalComponents
 			PrimeMain1.currentCanvas.addNIC();
 		}
 
-		return new InternalNetworksCard("Standard internal NIC",
-				"This is the system standard internal NIC.", "Realtek", mac,
-				"Wired");
+		return new InternalNetworksCard(PrimeMain1.texts
+				.getString("standardIntNICName"), PrimeMain1.texts
+				.getString("standardIntNICDescription"), PrimeMain1.texts
+				.getString("standardIntNICProducer"), mac, "Wired");
 	}
 
 
@@ -219,7 +226,8 @@ public class MakeStandardInternalComponents
 	 */
 	public GraphicsCard getSt_GPU()
 	{
-		return new GraphicsCard("Standard GPU",
-				"This is the system standard GPU.", "AGP", 128, "VGA", false);
+		return new GraphicsCard(PrimeMain1.texts.getString("standardGPUName"),
+				PrimeMain1.texts.getString("standardGPUDescription"), "AGP",
+				128, "VGA", false);
 	}
 }

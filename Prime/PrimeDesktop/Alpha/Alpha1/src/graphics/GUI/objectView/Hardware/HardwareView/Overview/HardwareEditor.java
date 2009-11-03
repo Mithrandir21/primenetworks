@@ -4,6 +4,7 @@
 package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
 
+import graphics.PrimeMain1;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 
 import java.awt.Button;
@@ -50,7 +51,7 @@ public class HardwareEditor extends JFrame implements ActionListener
 	 */
 	public HardwareEditor(Object obj)
 	{
-		super("Edit hardware");
+		super(PrimeMain1.texts.getString("hwTabFrameLabel"));
 
 		createNewEditorTab(obj);
 	}
@@ -104,7 +105,8 @@ public class HardwareEditor extends JFrame implements ActionListener
 		d.gridheight = 1;
 		d.anchor = GridBagConstraints.CENTER;
 
-		JLabel nameLabel = new JLabel("Hardware name");
+		JLabel nameLabel = new JLabel(PrimeMain1.texts
+				.getString("hwTabHWnameLabel"));
 		genPanel.add(nameLabel, d);
 
 		d.gridx = 2;
@@ -132,7 +134,8 @@ public class HardwareEditor extends JFrame implements ActionListener
 		d.gridheight = 1;
 		d.anchor = GridBagConstraints.CENTER;
 
-		JLabel descLabel = new JLabel("Description");
+		JLabel descLabel = new JLabel(PrimeMain1.texts
+				.getString("hwTabHWdescriptionLabel"));
 		genPanel.add(descLabel, d);
 
 
@@ -192,15 +195,15 @@ public class HardwareEditor extends JFrame implements ActionListener
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		Button save = new Button("Save");
+		Button save = new Button(PrimeMain1.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button apply = new Button("Apply");
+		Button apply = new Button(PrimeMain1.texts.getString("apply"));
 		apply.addActionListener(this);
 		apply.setActionCommand("apply");
 
-		Button cancel = new Button("Cancel");
+		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 

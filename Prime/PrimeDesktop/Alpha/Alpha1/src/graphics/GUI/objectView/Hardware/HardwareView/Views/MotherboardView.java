@@ -152,10 +152,11 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(
-				"Remove all components attached to this Motherboard");
+		JLabel label = new JLabel(PrimeMain1.texts
+				.getString("hwTabRemoveThisComponentLabel"));
 
-		Button remove = new Button("Remove All Other Components");
+		Button remove = new Button(PrimeMain1.texts
+				.getString("hwTabRemoveComponentButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeComp");
 
@@ -191,73 +192,88 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 		JLabel[] labels = new JLabel[18];
 
 
-		labels[0] = new JLabel("Producer");
-		labels[0].setToolTipText("The producer of the motherboard.");
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("mbViewProducerLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("mbViewProducerTip"));
 
-		labels[1] = new JLabel("Form");
-		labels[1]
-				.setToolTipText("The form of the motherboard, ie. the dimensions.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("mbViewFormLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("mbViewFormTip"));
 
-		labels[2] = new JLabel("Socket");
-		labels[2]
-				.setToolTipText("The socket on the motherboard which holds the CPU.");
+		labels[2] = new JLabel(PrimeMain1.texts.getString("mbViewSocketLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts.getString("mbViewSocketTip"));
 
-		labels[3] = new JLabel("Bus Speed");
-		labels[3]
-				.setToolTipText("The bus speed, the speed of information transfer, on the motherboard.");
+		labels[3] = new JLabel(PrimeMain1.texts
+				.getString("mbViewBusSpeedLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts
+				.getString("mbViewBusSpeedTip"));
 
-		labels[4] = new JLabel("Chipset");
-		labels[4].setToolTipText("The chipset on the motherboard.");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("mbViewChipsetLabel"));
+		labels[4]
+				.setToolTipText(PrimeMain1.texts.getString("mbViewChipsetTip"));
 
-		labels[5] = new JLabel("GPU Port");
-		labels[5].setToolTipText("The graphics card port on the motherboard.");
+		labels[5] = new JLabel(PrimeMain1.texts.getString("mbViewGPUportLabel"));
+		labels[5]
+				.setToolTipText(PrimeMain1.texts.getString("mbViewGPUportTip"));
 
-		labels[6] = new JLabel("Connection Port");
-		labels[6]
-				.setToolTipText("The ports that are for connections to harddiscs and cdrom.");
+		labels[6] = new JLabel(PrimeMain1.texts
+				.getString("mbViewConnectionPortLabel"));
+		labels[6].setToolTipText(PrimeMain1.texts
+				.getString("mbViewConnectionPortTip"));
 
-		labels[7] = new JLabel("Ram Type");
-		labels[7].setToolTipText("The ram port on the motherboard.");
+		labels[7] = new JLabel(PrimeMain1.texts.getString("mbViewRamTypeLabel"));
+		labels[7]
+				.setToolTipText(PrimeMain1.texts.getString("mbViewRamTypeTip"));
 
-		labels[8] = new JLabel("Audiocard Integrated");
-		labels[8]
-				.setToolTipText("Whether or not a audio card i integrated in the motherboard.");
+		labels[8] = new JLabel(PrimeMain1.texts
+				.getString("mbViewAudioIntegratedLabel"));
+		labels[8].setToolTipText(PrimeMain1.texts
+				.getString("mbViewAudioIntegratedTip"));
 
-		labels[9] = new JLabel("GPU integrated");
-		labels[9]
-				.setToolTipText("Whether or not a graphics card i integrated in the motherboard.");
+		labels[9] = new JLabel(PrimeMain1.texts
+				.getString("mbViewGPUIntegratedLabel"));
+		labels[9].setToolTipText(PrimeMain1.texts
+				.getString("mbViewGPUIntegratedTip"));
 
-		labels[10] = new JLabel("NIC integrated");
-		labels[10]
-				.setToolTipText("Whether or not a LAN card i integrated in the motherboard.");
+		labels[10] = new JLabel(PrimeMain1.texts
+				.getString("mbViewNICIntegratedLabel"));
+		labels[10].setToolTipText(PrimeMain1.texts
+				.getString("mbViewNICIntegratedTip"));
 
-		labels[11] = new JLabel("GPU installed");
-		labels[11]
-				.setToolTipText("Whether or not a graphical card is installed on the motherboard. Regardless of the status of the integrated GPU.");
+		labels[11] = new JLabel(PrimeMain1.texts
+				.getString("mbViewGPUinstalledLabel"));
+		labels[11].setToolTipText(PrimeMain1.texts
+				.getString("mbViewGPUinstalledTip"));
 
-		labels[12] = new JLabel("CPU socket");
-		labels[12]
-				.setToolTipText("The number of CPU sockets on the motherboard.");
+		labels[12] = new JLabel(PrimeMain1.texts
+				.getString("mbViewCPUsocketLabel"));
+		labels[12].setToolTipText(PrimeMain1.texts
+				.getString("mbViewCPUsocketTip"));
 
-		labels[13] = new JLabel("PCI slots");
-		labels[13]
-				.setToolTipText("The number of PCI slots on the motherboard.");
+		labels[13] = new JLabel(PrimeMain1.texts
+				.getString("mbViewPCIslotsLabel"));
+		labels[13].setToolTipText(PrimeMain1.texts
+				.getString("mbViewPCIslotsTip"));
 
-		labels[14] = new JLabel("RAM slots");
-		labels[14]
-				.setToolTipText("The number of RAM slots on the motherboard.");
+		labels[14] = new JLabel(PrimeMain1.texts
+				.getString("mbViewRAMslotsLabel"));
+		labels[14].setToolTipText(PrimeMain1.texts
+				.getString("mbViewRAMslotsTip"));
 
-		labels[15] = new JLabel("USB ports");
-		labels[15]
-				.setToolTipText("The number of USB ports on the motherboard.");
+		labels[15] = new JLabel(PrimeMain1.texts
+				.getString("mbViewUSBportsLabel"));
+		labels[15].setToolTipText(PrimeMain1.texts
+				.getString("mbViewUSBportsTip"));
 
-		labels[16] = new JLabel("DUC slots");
-		labels[16]
-				.setToolTipText("The number of connection ports (SATA or IDE) on the motherboard.");
+		labels[16] = new JLabel(PrimeMain1.texts
+				.getString("mbViewDUCportLabel"));
+		labels[16].setToolTipText(PrimeMain1.texts
+				.getString("mbViewDUCportTip"));
 
-		labels[17] = new JLabel("LAN ports");
-		labels[17]
-				.setToolTipText("The number of LAN ports on the motherboard.");
+		labels[17] = new JLabel(PrimeMain1.texts
+				.getString("mbViewLANportsLabel"));
+		labels[17].setToolTipText(PrimeMain1.texts
+				.getString("mbViewLANportsTip"));
 
 
 
@@ -1145,13 +1161,6 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 			// The currently available ports, before Max change
 			int avail = mbObj.getIntegLANPortsAvailable();
 
-			// The newly set int in the JCheckBox
-			int newMax = Integer
-					.parseInt(LANports.getSelectedItem().toString());
-
-			// The old int from the Motherboard
-			int oldMax = mbObj.getMaxIntegLANs();
-
 			int newAvail = avail
 					+ (Integer.parseInt(LANports.getSelectedItem().toString()) - mbObj
 							.getMaxIntegLANs());
@@ -1187,14 +1196,19 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 			 */
 			else if ( command.equals("Socket") )
 			{
-				String msg = "The CPU will no longer be compatiable.\n\nDo you want to keep this change?";
-
 				String[] socketsStrings = { "", "Intel 775", "Intel 939",
 						"AMD AM2", "AMD AM2+" };
 
-				sockets = GraphicalFunctions.verifyChange(this, mainObj,
-						CPU.class, mbObj.getSocket(), sockets.getSelectedItem()
-								.toString(), msg, socketsStrings, sockets);
+				sockets = GraphicalFunctions
+						.verifyChange(
+								this,
+								mainObj,
+								CPU.class,
+								mbObj.getSocket(),
+								sockets.getSelectedItem().toString(),
+								PrimeMain1.texts
+										.getString("mbViewCPUnotCompatiableQuestionMsg"),
+								socketsStrings, sockets);
 
 			}
 			else if ( command.equals("Bus Speed") )
@@ -1206,26 +1220,34 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 			 */
 			else if ( command.equals("GPU Port") )
 			{
-				String msg = "The Graphical card will no longer be compatiable.\n\nDo you want to keep this change?";
-
 				String[] gpuPortStrings = { "", "AGP", "PCI", "PCI-E" };
 
-				gpuPorts = GraphicalFunctions.verifyChange(this, mainObj,
-						GraphicsCard.class, mbObj.getGraphicalPort(), gpuPorts
-								.getSelectedItem().toString(), msg,
-						gpuPortStrings, gpuPorts);
+				gpuPorts = GraphicalFunctions
+						.verifyChange(
+								this,
+								mainObj,
+								GraphicsCard.class,
+								mbObj.getGraphicalPort(),
+								gpuPorts.getSelectedItem().toString(),
+								PrimeMain1.texts
+										.getString("mbViewGPUnotCompatiableQuestionMsg"),
+								gpuPortStrings, gpuPorts);
 
 			}
 			else if ( command.equals("DUC Port") )
 			{
-				String msg = "Some connected devices will no longer be compatiable.\n\nDo you want to keep this change?";
-
 				String[] DUCStrings = { "", "IDE", "SATA", "eSATA" };
 
-				DUCPorts = GraphicalFunctions.verifyChange(this, mainObj,
-						HDD.class, mbObj.getDUCconnectionType(), DUCPorts
-								.getSelectedItem().toString(), msg, DUCStrings,
-						DUCPorts);
+				DUCPorts = GraphicalFunctions
+						.verifyChange(
+								this,
+								mainObj,
+								HDD.class,
+								mbObj.getDUCconnectionType(),
+								DUCPorts.getSelectedItem().toString(),
+								PrimeMain1.texts
+										.getString("mbViewDUCnotCompatiableQuestionMsg"),
+								DUCStrings, DUCPorts);
 
 			}
 			else if ( command.equals("RAM Port") )
@@ -1266,10 +1288,10 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 			if ( command.equals("removeComp") )
 			{
-				int n = JOptionPane.showConfirmDialog(this,
-						"Removing this component will remove all other components from the object."
-								+ "\nAre you sure you wish to do this?",
-						"Verify", JOptionPane.YES_NO_OPTION);
+				int n = JOptionPane.showConfirmDialog(this, PrimeMain1.texts
+						.getString("mbViewReplaceMBquestionMsg"),
+						PrimeMain1.texts.getString("verify"),
+						JOptionPane.YES_NO_OPTION);
 
 
 				// If the answer is "No"

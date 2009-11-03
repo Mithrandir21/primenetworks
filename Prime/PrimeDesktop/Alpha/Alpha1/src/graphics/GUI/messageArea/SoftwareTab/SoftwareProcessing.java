@@ -4,12 +4,13 @@
 package graphics.GUI.messageArea.SoftwareTab;
 
 
+import exceptions.ObjectNotFoundException;
+import graphics.PrimeMain1;
 import managment.ArrayManagment;
 import objects.Object;
 import objects.softwareObjects.Antivirus;
 import objects.softwareObjects.Firewall;
 import objects.softwareObjects.OperatingSystem;
-import exceptions.ObjectNotFoundException;
 
 
 /**
@@ -20,23 +21,28 @@ import exceptions.ObjectNotFoundException;
 public class SoftwareProcessing
 {
 	/**
-	 * This method processes an Object for critical errors, warnings and notices in regards to the software on it. It
-	 * then returns a multidimentional String array that contains the messages the user will be shown about the network.
+	 * This method processes an Object for critical errors, warnings and notices
+	 * in regards to the software on it. It then returns a multidimentional
+	 * String array that contains the messages the user will be shown about the
+	 * network.
 	 * 
 	 * @param curData
-	 *            The current multidimentional String array with possible previous data.
+	 *            The current multidimentional String array with possible
+	 *            previous data.
 	 * @param obj
 	 *            The Object that is to be examined.
 	 * @param CheckCritical
-	 *            A boolean saying if the Object should be checked for critical errors.
+	 *            A boolean saying if the Object should be checked for critical
+	 *            errors.
 	 * @param CheckWarnings
 	 *            A boolean saying if the Object should be checked for warnings.
 	 * @param CheckNotices
 	 *            A boolean saying if the Object should be checked for notices.
-	 * @return Returns a new multidimentional String array with possible messages for the user about the given Object.
+	 * @return Returns a new multidimentional String array with possible
+	 *         messages for the user about the given Object.
 	 */
-	public static String[][] processSoftware(String[][] curData, Object obj, boolean CheckCritical,
-			boolean CheckWarnings, boolean CheckNotices)
+	public static String[][] processSoftware(String[][] curData, Object obj,
+			boolean CheckCritical, boolean CheckWarnings, boolean CheckNotices)
 	{
 		String[][] data = curData;
 
@@ -70,22 +76,27 @@ public class SoftwareProcessing
 
 
 	/**
-	 * Examines the given object for possible critical errors and adds messages to the given multidimentional String
-	 * array which will then be used to populate a JTable.
+	 * Examines the given object for possible critical errors and adds messages
+	 * to the given multidimentional String array which will then be used to
+	 * populate a JTable.
 	 * 
 	 * @param data
-	 *            The data container with possible previous messages for the user.
+	 *            The data container with possible previous messages for the
+	 *            user.
 	 * @param obj
 	 *            The object that is to be examined.
-	 * @return The data container with possible new messages for the user in addition to the old messages.
+	 * @return The data container with possible new messages for the user in
+	 *         addition to the old messages.
 	 */
 	private static String[][] getCriticalErrors(String[][] data, Object obj)
 	{
 		// Operating System
 		if ( !(containsSoftwareOfClass(obj, OperatingSystem.class)) )
 		{
-			String[] info = { obj.getObjectName(), "Operaring System",
-					"This object does not have an Operating System.", "Software Error" };
+			String[] info = { obj.getObjectName(),
+					PrimeMain1.texts.getString("operatingSystem"),
+					PrimeMain1.texts.getString("noOScriticalMsg"),
+					PrimeMain1.texts.getString("softwareError") };
 			data = addError(data, info);
 		}
 
@@ -93,8 +104,10 @@ public class SoftwareProcessing
 		// More then one AV
 		if ( moreThenOneSoftware(obj, Antivirus.class) )
 		{
-			String[] info = { obj.getObjectName(), "Antivirus",
-					"This object contains more the one Antivirus software.", "Software Error" };
+			String[] info = { obj.getObjectName(),
+					PrimeMain1.texts.getString("antivirus"),
+					PrimeMain1.texts.getString("moreAVcriticalMsg"),
+					PrimeMain1.texts.getString("softwareError") };
 			data = addError(data, info);
 		}
 
@@ -102,8 +115,10 @@ public class SoftwareProcessing
 		// More then one FW
 		if ( moreThenOneSoftware(obj, Firewall.class) )
 		{
-			String[] info = { obj.getObjectName(), "Firewall", "This object contains more the one Firewall software.",
-					"Software Error" };
+			String[] info = { obj.getObjectName(),
+					PrimeMain1.texts.getString("firewall"),
+					PrimeMain1.texts.getString("moreFWcriticalMsg"),
+					PrimeMain1.texts.getString("softwareError") };
 			data = addError(data, info);
 		}
 
@@ -115,14 +130,17 @@ public class SoftwareProcessing
 
 
 	/**
-	 * Examines the given object for possible warnings and adds messages to the given multidimentional String array
-	 * which will then be used to populate a JTable.
+	 * Examines the given object for possible warnings and adds messages to the
+	 * given multidimentional String array which will then be used to populate a
+	 * JTable.
 	 * 
 	 * @param data
-	 *            The data container with possible previous messages for the user.
+	 *            The data container with possible previous messages for the
+	 *            user.
 	 * @param obj
 	 *            The object that is to be examined.
-	 * @return The data container with possible new messages for the user in addition to the old messages.
+	 * @return The data container with possible new messages for the user in
+	 *         addition to the old messages.
 	 */
 	private static String[][] getWarnings(String[][] data, Object obj)
 	{
@@ -130,8 +148,10 @@ public class SoftwareProcessing
 		// More then one Operating system
 		if ( moreThenOneSoftware(obj, OperatingSystem.class) )
 		{
-			String[] info = { obj.getObjectName(), "Operating System",
-					"This object contains more the one Operating System.", "Software Warning" };
+			String[] info = { obj.getObjectName(),
+					PrimeMain1.texts.getString("operatingSystem"),
+					PrimeMain1.texts.getString("moreOSwarningMsg"),
+					PrimeMain1.texts.getString("softwareWarning") };
 			data = addError(data, info);
 		}
 
@@ -142,14 +162,17 @@ public class SoftwareProcessing
 
 
 	/**
-	 * Examines the given object for possible notices and adds messages to the given multidimentional String array which
-	 * will then be used to populate a JTable.
+	 * Examines the given object for possible notices and adds messages to the
+	 * given multidimentional String array which will then be used to populate a
+	 * JTable.
 	 * 
 	 * @param data
-	 *            The data container with possible previous messages for the user.
+	 *            The data container with possible previous messages for the
+	 *            user.
 	 * @param obj
 	 *            The object that is to be examined.
-	 * @return The data container with possible new messages for the user in addition to the old messages.
+	 * @return The data container with possible new messages for the user in
+	 *         addition to the old messages.
 	 */
 	private static String[][] getNotices(String[][] data, Object obj)
 	{
@@ -160,14 +183,17 @@ public class SoftwareProcessing
 
 
 	/**
-	 * Adds the given String array to the given multidimentional String array that contains all the messages the user
-	 * will be shown.
+	 * Adds the given String array to the given multidimentional String array
+	 * that contains all the messages the user will be shown.
 	 * 
 	 * @param data
-	 *            The data container with possible previous messages for the user.
+	 *            The data container with possible previous messages for the
+	 *            user.
 	 * @param info
-	 *            The new information that will be added to the data array with messages.
-	 * @return The data container with the new message for the user in addition to the possible old messages.
+	 *            The new information that will be added to the data array with
+	 *            messages.
+	 * @return The data container with the new message for the user in addition
+	 *         to the possible old messages.
 	 */
 	private static String[][] addError(String[][] data, String[] info)
 	{
@@ -186,8 +212,9 @@ public class SoftwareProcessing
 
 
 		/**
-		 * If the method gets to this part, it means that there was not enough space in the array to add another data
-		 * field. So it will be expanded with 5 indexes and this function will be run again.
+		 * If the method gets to this part, it means that there was not enough
+		 * space in the array to add another data field. So it will be expanded
+		 * with 5 indexes and this function will be run again.
 		 */
 		data = ArrayManagment.add5ArraySpaces(data);
 
@@ -196,7 +223,8 @@ public class SoftwareProcessing
 
 
 	/**
-	 * Checks if the given object lacks a software object in its get software array of the given class.
+	 * Checks if the given object lacks a software object in its get software
+	 * array of the given class.
 	 */
 	public static boolean containsSoftwareOfClass(Object obj, Class<?> Class)
 	{
@@ -205,7 +233,8 @@ public class SoftwareProcessing
 		// no object found with the given class.
 		try
 		{
-			ArrayManagment.getSpesificComponents(Class, obj.getSoftware(), obj.getSoftware().length);
+			ArrayManagment.getSpesificComponents(Class, obj.getSoftware(), obj
+					.getSoftware().length);
 		}
 		catch ( ObjectNotFoundException e )
 		{
@@ -219,14 +248,16 @@ public class SoftwareProcessing
 
 
 	/**
-	 * This function checks whether the given object contains more then one software object with the same class. Like if
-	 * the object contains two Antivirus Objects or Firewall Objects.
+	 * This function checks whether the given object contains more then one
+	 * software object with the same class. Like if the object contains two
+	 * Antivirus Objects or Firewall Objects.
 	 * 
 	 * @param obj
 	 *            The object that is to be examined.
 	 * @param Class
 	 *            The class of the object that are to be searched for.
-	 * @return Returns true if there is more then one software object found with the given class. Else it returns false.
+	 * @return Returns true if there is more then one software object found with
+	 *         the given class. Else it returns false.
 	 */
 	public static boolean moreThenOneSoftware(Object obj, Class<?> Class)
 	{
@@ -235,7 +266,8 @@ public class SoftwareProcessing
 
 		try
 		{
-			array = ArrayManagment.getSpesificComponents(Class, obj.getSoftware(), obj.getSoftware().length);
+			array = ArrayManagment.getSpesificComponents(Class, obj
+					.getSoftware(), obj.getSoftware().length);
 		}
 		catch ( ObjectNotFoundException e )
 		{

@@ -99,6 +99,7 @@ public class HardwareMouseListener extends MouseAdapter implements
 	 * (non-Javadoc)
 	 * @see java.awt.event.MouseAdapter#mousePressed(java.awt.event.MouseEvent)
 	 */
+	@Override
 	public void mousePressed(MouseEvent e)
 	{
 		if ( e.isPopupTrigger() )
@@ -112,6 +113,7 @@ public class HardwareMouseListener extends MouseAdapter implements
 	 * (non-Javadoc)
 	 * @see java.awt.event.MouseAdapter#mouseReleased(java.awt.event.MouseEvent)
 	 */
+	@Override
 	public void mouseReleased(MouseEvent e)
 	{
 		if ( e.isPopupTrigger() )

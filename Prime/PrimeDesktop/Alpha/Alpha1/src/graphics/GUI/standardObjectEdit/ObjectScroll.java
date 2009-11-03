@@ -7,6 +7,7 @@ package graphics.GUI.standardObjectEdit;
 import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 import widgets.WidgetButton;
 
@@ -29,7 +30,7 @@ public class ObjectScroll extends JScrollPane
 	 */
 	public ObjectScroll()
 	{
-		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		// Increases how far the scroll bar scrolls on one step of a mouse wheel
 		getVerticalScrollBar().setUnitIncrement(10);

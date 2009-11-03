@@ -124,9 +124,11 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface,
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this device");
+		JLabel label = new JLabel(PrimeMain1.texts
+				.getString("hwTabRemoveThisComponentLabel"));
 
-		Button remove = new Button("Remove Component");
+		Button remove = new Button(PrimeMain1.texts
+				.getString("hwTabRemoveComponentButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeComp");
 
@@ -162,31 +164,39 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface,
 		JLabel[] labels = new JLabel[7];
 
 
-		labels[0] = new JLabel("Producer");
-		labels[0].setToolTipText("The producer of the NIC.");
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("extNICviewProducerLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("extNICviewProcucerTip"));
 
-		labels[1] = new JLabel("MAC");
-		labels[1].setToolTipText("The MAC address of the NIC.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("extNICviewMACLabel"));
+		labels[1]
+				.setToolTipText(PrimeMain1.texts.getString("extNICviewMACTip"));
 
-		labels[2] = new JLabel("Type");
-		labels[2]
-				.setToolTipText("The connection type supported by the NIC, ie. Wired or Wireless.");
+		labels[2] = new JLabel(PrimeMain1.texts
+				.getString("extNICviewTypeLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts
+				.getString("extNICviewTypeTip"));
 
-		labels[3] = new JLabel("Speed");
-		labels[3]
-				.setToolTipText("The speed of the NIC. 10 Mbps, 100 Mbps or 1000 Mbps.");
+		labels[3] = new JLabel(PrimeMain1.texts
+				.getString("extNICviewSpeedLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts
+				.getString("extNICviewSpeedTip"));
 
-		labels[4] = new JLabel("Protocol");
-		labels[4]
-				.setToolTipText("The NIC protocol. Ethernet, token and so on.");
+		labels[4] = new JLabel(PrimeMain1.texts
+				.getString("extNICviewProtocolLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts
+				.getString("extNICviewProtocolTip"));
 
-		labels[5] = new JLabel("Supported Standars");
-		labels[5]
-				.setToolTipText("The standards supported by the NIC. IEEE 802.3, IEEE 802.3u and so on.");
+		labels[5] = new JLabel(PrimeMain1.texts
+				.getString("extNICviewSupportedStandarsLabel"));
+		labels[5].setToolTipText(PrimeMain1.texts
+				.getString("extNICviewSupportedStandarsTip"));
 
-		labels[6] = new JLabel("Supports IPv6");
-		labels[6]
-				.setToolTipText("Whether or not the NIC has support for IP version 6, IPv6.");
+		labels[6] = new JLabel(PrimeMain1.texts
+				.getString("extNICviewSupportsIPv6Label"));
+		labels[6].setToolTipText(PrimeMain1.texts
+				.getString("extNICviewSupportsIPv6Tip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);

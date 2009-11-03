@@ -22,7 +22,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -115,9 +114,11 @@ public class HDDView extends JPanel implements HardwareViewInterface,
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this device");
+		JLabel label = new JLabel(PrimeMain1.texts
+				.getString("hwTabRemoveThisComponentLabel"));
 
-		Button remove = new Button("Remove Component");
+		Button remove = new Button(PrimeMain1.texts
+				.getString("hwTabRemoveComponentButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeComp");
 
@@ -152,25 +153,27 @@ public class HDDView extends JPanel implements HardwareViewInterface,
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[6];
 
-		labels[0] = new JLabel("Producer");
-		labels[0].setToolTipText("The producer of the hdd.");
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("hddViewProducerLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("hddViewProducerTip"));
 
-		labels[1] = new JLabel("Type");
-		labels[1].setToolTipText("The hdd type.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("hddViewTypeLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("hddViewTypeTip"));
 
-		labels[2] = new JLabel("Subtype");
-		labels[2]
-				.setToolTipText("The hdd subtype. (ATA-100, SATA-150 and so on.)");
+		labels[2] = new JLabel(PrimeMain1.texts
+				.getString("hddViewSubtypeLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts
+				.getString("hddViewSubtypeTip"));
 
-		labels[3] = new JLabel("Size");
-		labels[3].setToolTipText("The size of the HDD measured in GB.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("hddViewSizeLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("hddViewSizeTip"));
 
-		labels[4] = new JLabel("Speed");
-		labels[4]
-				.setToolTipText("The transfer speed of the HDD measured in MB.");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("hddViewSpeedLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts.getString("hddViewSpeedTip"));
 
-		labels[5] = new JLabel("RPM");
-		labels[5].setToolTipText("The number of disk rotations per minute.");
+		labels[5] = new JLabel(PrimeMain1.texts.getString("hddViewRPMLabel"));
+		labels[5].setToolTipText(PrimeMain1.texts.getString("hddViewRPMTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -374,42 +377,6 @@ public class HDDView extends JPanel implements HardwareViewInterface,
 	}
 
 
-	/**
-	 * Checks and validates the name and description for this hardware object.
-	 */
-	public boolean nameAndDescriptionCheck()
-	{
-		// Checks the name of the motherboard
-		if ( name.getText().length() < 1 || name.getText().length() > 255 )
-		{
-			JOptionPane
-					.showMessageDialog(
-							this,
-							"The motherboard name must be between 1 and 255 characters.",
-							"Error - Name", JOptionPane.INFORMATION_MESSAGE);
-
-			return false;
-		}
-
-		// Checks the description of the motherboard.
-		if ( desc.getText().length() < 1 )
-		{
-			JOptionPane
-					.showMessageDialog(
-							this,
-							"The motherboard description must be longer then 1 character.",
-							"Error - Description",
-							JOptionPane.INFORMATION_MESSAGE);
-
-			return false;
-		}
-
-		// Possibility for more checks on the CPU values.
-
-		return true;
-	}
-
-
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -421,13 +388,13 @@ public class HDDView extends JPanel implements HardwareViewInterface,
 
 			if ( command.equals("Type") )
 			{
-				String msg = "The HDD will no longer be compatiable with the motherboard.\n\nDo you want to keep this change?";
-
 				String[] typeString = { "", "IDE", "SATA", "USB" };
 
 				type = GraphicalFunctions.verifyChange(this, mainObj,
 						HDD.class, mainHDD.getPort(), type.getSelectedItem()
-								.toString(), msg, typeString, type);
+								.toString(), PrimeMain1.texts
+								.getString("hddViewNotCompatiableQuestionMsg"),
+						typeString, type);
 			}
 
 		}

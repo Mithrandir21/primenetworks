@@ -93,6 +93,7 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 	 * 
 	 * @see java.awt.event.MouseAdapter#mousePressed(java.awt.event.MouseEvent)
 	 */
+	@Override
 	public void mousePressed(MouseEvent e)
 	{
 		if ( e.isPopupTrigger() )
@@ -108,6 +109,7 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 	 * 
 	 * @see java.awt.event.MouseAdapter#mouseReleased(java.awt.event.MouseEvent)
 	 */
+	@Override
 	public void mouseReleased(MouseEvent e)
 	{
 		if ( e.isPopupTrigger() )
@@ -122,6 +124,7 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 	 * 
 	 * @see java.awt.event.MouseAdapter#mouseClicked(java.awt.event.MouseEvent)
 	 */
+	@Override
 	public void mouseClicked(MouseEvent e)
 	{
 		// If button1 is double clicked.

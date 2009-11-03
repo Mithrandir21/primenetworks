@@ -251,7 +251,7 @@ public class CreateObjects
 
 	private static Desktop createDefaultDesktop(String desc)
 	{
-		String objectName = "Desktop";
+		String objectName = PrimeMain1.texts.getString("desktop");
 		String objectDesc = desc;
 
 		if ( objectDesc == "" )
@@ -282,7 +282,7 @@ public class CreateObjects
 
 	private static Laptop createDefaultLaptop(String desc)
 	{
-		String objectName = "Laptop";
+		String objectName = PrimeMain1.texts.getString("laptop");
 		String objectDesc = desc;
 
 		if ( objectDesc == "" )
@@ -317,7 +317,7 @@ public class CreateObjects
 
 	public static ThinClient createDefaultThinClient(String desc)
 	{
-		String objectName = "Thin Client";
+		String objectName = PrimeMain1.texts.getString("thinClient");
 		String objectDesc = desc;
 
 		if ( objectDesc == "" )
@@ -364,7 +364,7 @@ public class CreateObjects
 
 	private static HTTPServer createDefaultHTTPServer(String desc)
 	{
-		String objectName = "HTTP Server";
+		String objectName = PrimeMain1.texts.getString("httpServer");
 		String objectDesc = desc;
 
 		String ObjectSWname = "Apache";
@@ -405,10 +405,10 @@ public class CreateObjects
 
 	private static BackupServer createDefaultBackupServer(String desc)
 	{
-		String objectName = "Backup Server";
+		String objectName = PrimeMain1.texts.getString("backupServer");
 		String objectDesc = desc;
 
-		String ObjectSWname = "Backup";
+		String ObjectSWname = PrimeMain1.texts.getString("backup");
 		String ObjectSWdesc = "Standard backup server";
 		String ObjectSWversion = "1";
 
@@ -483,10 +483,10 @@ public class CreateObjects
 
 	private static MailServer createDefaultMailServer(String desc)
 	{
-		String objectName = "Mail Server";
+		String objectName = PrimeMain1.texts.getString("mailServer");
 		String objectDesc = desc;
 
-		String ObjectSWname = "Mail";
+		String ObjectSWname = PrimeMain1.texts.getString("mail");
 		String ObjectSWdesc = "Standard mail server";
 		String ObjectSWversion = "1";
 
@@ -522,10 +522,10 @@ public class CreateObjects
 
 	private static FirewallServer createDefaultFirewallServer(String desc)
 	{
-		String objectName = "Firewall Server";
+		String objectName = PrimeMain1.texts.getString("firewallServer");
 		String objectDesc = desc;
 
-		String ObjectSWname = "Firewall";
+		String ObjectSWname = PrimeMain1.texts.getString("firewall");
 		String ObjectSWdesc = "Standard firewall server";
 		String ObjectSWversion = "1";
 
@@ -560,10 +560,10 @@ public class CreateObjects
 
 	private static ProxyServer createDefaultProxyServer(String desc)
 	{
-		String objectName = "Proxy Server";
+		String objectName = PrimeMain1.texts.getString("proxyServer");
 		String objectDesc = desc;
 
-		String ObjectSWname = "ProxyServer";
+		String ObjectSWname = PrimeMain1.texts.getString("proxy");
 		String ObjectSWdesc = "Standard proxy server";
 		String ObjectSWversion = "1";
 
@@ -597,7 +597,7 @@ public class CreateObjects
 
 	private static PrinterServer createDefaultPrinterServer(String desc)
 	{
-		String objectName = "Printer Server";
+		String objectName = PrimeMain1.texts.getString("printerServer");
 		String objectDesc = desc;
 
 		String ObjectSWname = "PrinterServer";
@@ -634,7 +634,7 @@ public class CreateObjects
 
 	private static Scanner createDefaultScanner(String desc)
 	{
-		String objectName = "Scanner";
+		String objectName = PrimeMain1.texts.getString("scanner");
 		String objectDesc = desc;
 
 		String Sresolution = "1280x1020";
@@ -665,7 +665,7 @@ public class CreateObjects
 
 	private static Printer createDefaultPrinter(String desc)
 	{
-		String objectName = "Printer";
+		String objectName = PrimeMain1.texts.getString("printer");
 		String objectDesc = desc;
 
 		String Sresolution = "1280x1020";
@@ -697,7 +697,7 @@ public class CreateObjects
 
 	private static Fax createDefaultFax(String desc)
 	{
-		String objectName = "Fax";
+		String objectName = PrimeMain1.texts.getString("fax");
 		String objectDesc = desc;
 
 		String Sresolution = "1280x1020";
@@ -730,7 +730,7 @@ public class CreateObjects
 
 	private static MultifunctionPrinter createDefaultMFP(String desc)
 	{
-		String objectName = "MFP";
+		String objectName = PrimeMain1.texts.getString("multifunctionPrinter");
 		String objectDesc = desc;
 
 		String Sresolution[] = { "1280x1020" };
@@ -762,7 +762,7 @@ public class CreateObjects
 
 	private static NetworkPrinter createDefaultNetworkPrinter(String desc)
 	{
-		String objectName = "Printer";
+		String objectName = PrimeMain1.texts.getString("printer");
 		String objectDesc = desc;
 
 		String Sresolution = "1280x1020";
@@ -808,7 +808,8 @@ public class CreateObjects
 	private static NetworkMultifunctionPrinter createDefaultNetworkMFP(
 			String desc)
 	{
-		String objectName = "MFP";
+		String objectName = PrimeMain1.texts
+				.getString("networkMultifunctionPrinter");
 		String objectDesc = desc;
 
 		String Sresolution[] = { "1280x1020" };
@@ -845,7 +846,7 @@ public class CreateObjects
 
 	private static Hub createDefaultHub(String desc)
 	{
-		String objectName = "Hub";
+		String objectName = PrimeMain1.texts.getString("hub");
 		String objectDesc = desc;
 
 		int outPorts = 16;
@@ -881,7 +882,7 @@ public class CreateObjects
 
 	private static Switch createDefaultSwitch(String desc)
 	{
-		String objectName = "Switch";
+		String objectName = PrimeMain1.texts.getString("switch");
 		String objectDesc = desc;
 
 		int outPorts = 16;
@@ -916,7 +917,7 @@ public class CreateObjects
 
 	private static Router createDefaultRouter(String desc)
 	{
-		String objectName = "Router";
+		String objectName = PrimeMain1.texts.getString("router");
 		String objectDesc = desc;
 
 		int outPorts = 4;
@@ -951,7 +952,7 @@ public class CreateObjects
 
 	private static Router createDefaultWirelessRouter(String desc)
 	{
-		String objectName = "Wireless Router";
+		String objectName = PrimeMain1.texts.getString("wirelessRouter");
 		String objectDesc = desc;
 
 		int outPorts = 4;
@@ -998,7 +999,7 @@ public class CreateObjects
 
 	private static Internet createDefaultInternet(String desc)
 	{
-		String objectName = "Internet";
+		String objectName = PrimeMain1.texts.getString("internet");
 		String objectDesc = desc;
 
 		String[] SupConInt = { "RJ-45" };

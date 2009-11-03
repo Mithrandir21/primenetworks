@@ -4,6 +4,7 @@
 package graphics.GUI.messageArea.HardwareTab;
 
 
+import graphics.PrimeMain1;
 import graphics.GUI.messageArea.MessageJTable;
 
 import javax.swing.JScrollPane;
@@ -24,17 +25,22 @@ public class HardwareMessages extends JScrollPane
 
 
 	/**
-	 * A constructor for the class that creates a JScrollPane that will contain a JTable with possible messages for the
-	 * user about the given Object.
+	 * A constructor for the class that creates a JScrollPane that will contain
+	 * a JTable with possible messages for the user about the given Object.
 	 * 
 	 * @param objects
 	 *            The objects that are to be examined.
 	 * @param data
-	 *            The multidimentional String array with possible previous messages for the user.
+	 *            The multidimentional String array with possible previous
+	 *            messages for the user.
 	 */
 	public HardwareMessages(Object[] objects, String[][] data)
 	{
-		String[] columnNames = { "Object Name", "Hardware Type", "Description", "Message Type" };
+		String[] columnNames = {
+				PrimeMain1.texts.getString("tableHWobjectName"),
+				PrimeMain1.texts.getString("tableHWhwType"),
+				PrimeMain1.texts.getString("tableHWdescription"),
+				PrimeMain1.texts.getString("tableHWmsgType") };
 
 		table = new MessageJTable(data, columnNames);
 
@@ -50,7 +56,8 @@ public class HardwareMessages extends JScrollPane
 
 
 	/**
-	 * Sets the width of the column that contains the actual message information.
+	 * Sets the width of the column that contains the actual message
+	 * information.
 	 */
 	private void setColumnWidths()
 	{

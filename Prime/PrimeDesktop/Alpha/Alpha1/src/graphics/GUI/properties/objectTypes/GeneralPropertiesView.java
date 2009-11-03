@@ -51,6 +51,7 @@ public class GeneralPropertiesView
 		nameField.setPreferredSize(tfSize);
 		nameField.addKeyListener(new KeyAdapter()
 		{
+			@Override
 			public void keyPressed(KeyEvent e)
 			{
 				int key = e.getKeyCode();
@@ -160,6 +161,7 @@ public class GeneralPropertiesView
 		nameField.setName("Name Object");
 		nameField.addKeyListener(new KeyAdapter()
 		{
+			@Override
 			public void keyPressed(KeyEvent e)
 			{
 				int key = e.getKeyCode();

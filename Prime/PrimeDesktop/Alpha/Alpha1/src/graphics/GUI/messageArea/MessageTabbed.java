@@ -42,12 +42,10 @@ import connections.Connection;
 
 
 /**
- * A class that will contain the different Message Panel that will show the user messages regarding the
- * {@link WorkareaCanvas} that is currently being displayed.
- * 
- * All tabs will be disabled in creation, and Tab titles will be shown in bold when content is added to the JTable
- * inside each tab.
- * 
+ * A class that will contain the different Message Panel that will show the user
+ * messages regarding the {@link WorkareaCanvas} that is currently being
+ * displayed. All tabs will be disabled in creation, and Tab titles will be
+ * shown in bold when content is added to the JTable inside each tab.
  * 
  * @author Bahram Malaekeh
  */
@@ -66,8 +64,8 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * A constructor for this class that initiates the the different JPanels in this class. It also sets the preferred
-	 * size of this JTabbedPane.
+	 * A constructor for this class that initiates the the different JPanels in
+	 * this class. It also sets the preferred size of this JTabbedPane.
 	 */
 	public MessageTabbed()
 	{
@@ -98,9 +96,10 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Processes all the objects given in the Objects array. The method separates the different object classes and then
-	 * passes the different arrays with object to methods that will create multidimensional String arrays with messages
-	 * to the user about the given objects.
+	 * Processes all the objects given in the Objects array. The method
+	 * separates the different object classes and then passes the different
+	 * arrays with object to methods that will create multidimensional String
+	 * arrays with messages to the user about the given objects.
 	 * 
 	 * @param objects
 	 */
@@ -185,9 +184,10 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * This method will examine a network. Creates and adds at tab to this JTabbedPane component. The tab will contain
-	 * possible JScrollPane with a JTable depending on whether or not the given objects creates any messages that they
-	 * user needs to know about the objects.
+	 * This method will examine a network. Creates and adds at tab to this
+	 * JTabbedPane component. The tab will contain possible JScrollPane with a
+	 * JTable depending on whether or not the given objects creates any messages
+	 * that they user needs to know about the objects.
 	 * 
 	 * @param objects
 	 */
@@ -195,8 +195,10 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	{
 		String[][] data = null;
 
-		data = NetworkProcessing.processNetwork(data, PrimeMain1.currentCanvas, Settings.showNetworkErrorMessages,
-				Settings.showNetworkWarningMessages, Settings.showNetworkNoticeMessages);
+		data = NetworkProcessing.processNetwork(data, PrimeMain1.currentCanvas,
+				Settings.showNetworkErrorMessages,
+				Settings.showNetworkWarningMessages,
+				Settings.showNetworkNoticeMessages);
 
 		if ( data != null )
 		{
@@ -208,27 +210,28 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 				netMsgPanel.add(new NetworkMessages(objects, data));
 
-				boldTab("Network");
+				boldTab(PrimeMain1.texts.getString("networkTabLabel"));
 			}
 			else
 			{
 				netMsgPanel.removeAll();
 
-				unboldTab("Network");
+				unboldTab(PrimeMain1.texts.getString("networkTabLabel"));
 			}
 		}
 		else
 		{
 			netMsgPanel.removeAll();
 
-			unboldTab("Network");
+			unboldTab(PrimeMain1.texts.getString("networkTabLabel"));
 		}
 	}
 
 
 	/**
-	 * This method will examine an array of connections. Creates and adds at tab to this JTabbedPane component. The tab
-	 * will contain possible JScrollPane with a JTable depending on whether or not the given objects creates any
+	 * This method will examine an array of connections. Creates and adds at tab
+	 * to this JTabbedPane component. The tab will contain possible JScrollPane
+	 * with a JTable depending on whether or not the given objects creates any
 	 * messages that they user needs to know about the objects.
 	 * 
 	 * @param objects
@@ -239,8 +242,10 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 		for ( int i = 0; i < objects.length; i++ )
 		{
-			data = ConnectionProcessing.processConnections(data, objects[i], PrimeMain1.currentCanvas,
-					Settings.showConnectionErrorMessages, Settings.showConnectionWarningMessages,
+			data = ConnectionProcessing.processConnections(data, objects[i],
+					PrimeMain1.currentCanvas,
+					Settings.showConnectionErrorMessages,
+					Settings.showConnectionWarningMessages,
 					Settings.showConnectionNoticeMessages);
 		}
 
@@ -254,28 +259,29 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 				conMsgPanel.add(new ConnectionMessages(objects, data));
 
-				boldTab("Connection");
+				boldTab(PrimeMain1.texts.getString("connectionTabLabel"));
 			}
 			else
 			{
 				conMsgPanel.removeAll();
 
-				unboldTab("Connection");
+				unboldTab(PrimeMain1.texts.getString("connectionTabLabel"));
 			}
 		}
 		else
 		{
 			conMsgPanel.removeAll();
 
-			unboldTab("Connection");
+			unboldTab(PrimeMain1.texts.getString("connectionTabLabel"));
 		}
 	}
 
 
 	/**
-	 * This method will examine software in objects. Creates and adds at tab to this JTabbedPane component. The tab will
-	 * contain possible JScrollPane with a JTable depending on whether or not the given objects creates any messages
-	 * that they user needs to know about the objects.
+	 * This method will examine software in objects. Creates and adds at tab to
+	 * this JTabbedPane component. The tab will contain possible JScrollPane
+	 * with a JTable depending on whether or not the given objects creates any
+	 * messages that they user needs to know about the objects.
 	 * 
 	 * @param objects
 	 */
@@ -285,8 +291,10 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 		for ( int i = 0; i < objects.length; i++ )
 		{
-			data = SoftwareProcessing.processSoftware(data, objects[i], Settings.showSoftwareErrorMessages,
-					Settings.showSoftwareWarningMessages, Settings.showSoftwareNoticeMessages);
+			data = SoftwareProcessing.processSoftware(data, objects[i],
+					Settings.showSoftwareErrorMessages,
+					Settings.showSoftwareWarningMessages,
+					Settings.showSoftwareNoticeMessages);
 		}
 
 		if ( data != null )
@@ -299,28 +307,29 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 				softMsgPanel.add(new SoftwareMessages(objects, data));
 
-				boldTab("Software");
+				boldTab(PrimeMain1.texts.getString("softwareTabLabel"));
 			}
 			else
 			{
 				softMsgPanel.removeAll();
 
-				unboldTab("Software");
+				unboldTab(PrimeMain1.texts.getString("softwareTabLabel"));
 			}
 		}
 		else
 		{
 			softMsgPanel.removeAll();
 
-			unboldTab("Software");
+			unboldTab(PrimeMain1.texts.getString("softwareTabLabel"));
 		}
 	}
 
 
 	/**
-	 * This method will examine an array of objects for hardware. Creates and adds at tab to this JTabbedPane component.
-	 * The tab will contain possible JScrollPane with a JTable depending on whether or not the given objects creates any
-	 * messages that they user needs to know about the objects.
+	 * This method will examine an array of objects for hardware. Creates and
+	 * adds at tab to this JTabbedPane component. The tab will contain possible
+	 * JScrollPane with a JTable depending on whether or not the given objects
+	 * creates any messages that they user needs to know about the objects.
 	 * 
 	 * @param objects
 	 */
@@ -330,8 +339,10 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 		for ( int i = 0; i < objects.length; i++ )
 		{
-			data = HardwareProcessing.processHardware(data, objects[i], Settings.showHardwareErrorMessages,
-					Settings.showHardwareWarningMessages, Settings.showHardwareNoticeMessages);
+			data = HardwareProcessing.processHardware(data, objects[i],
+					Settings.showHardwareErrorMessages,
+					Settings.showHardwareWarningMessages,
+					Settings.showHardwareNoticeMessages);
 		}
 
 		if ( data != null )
@@ -344,27 +355,28 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 				hardMsgPanel.add(new HardwareMessages(objects, data));
 
-				boldTab("Hardware");
+				boldTab(PrimeMain1.texts.getString("hardwareTabLabel"));
 			}
 			else
 			{
 				hardMsgPanel.removeAll();
 
-				unboldTab("Hardware");
+				unboldTab(PrimeMain1.texts.getString("hardwareTabLabel"));
 			}
 		}
 		else
 		{
 			hardMsgPanel.removeAll();
 
-			unboldTab("Hardware");
+			unboldTab(PrimeMain1.texts.getString("hardwareTabLabel"));
 		}
 	}
 
 
 
 	/**
-	 * This method removes the tab with the given name from this class, which is a JTabbedPane.
+	 * This method removes the tab with the given name from this class, which is
+	 * a JTabbedPane.
 	 * 
 	 * @param title
 	 *            The title of the Tab that is to be removed.
@@ -408,9 +420,11 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 		ImageIcon closeXIcon = ImageLocator.getImageIconObject("Close");
 
 		// The dimensions of the new button.
-		Dimension closeButtonSize = new Dimension(closeXIcon.getIconWidth() + 2, closeXIcon.getIconHeight() + 2);
+		Dimension closeButtonSize = new Dimension(
+				closeXIcon.getIconWidth() + 2, closeXIcon.getIconHeight() + 2);
 
-		// The actual panel that will be the component panel which the JLabel and the button
+		// The actual panel that will be the component panel which the JLabel
+		// and the button
 		// will be placed inside.
 		JPanel tab = new JPanel();
 
@@ -456,8 +470,8 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Initiates all the different tabs and panels. This function will just call all the other creation function for the
-	 * different panels.
+	 * Initiates all the different tabs and panels. This function will just call
+	 * all the other creation function for the different panels.
 	 */
 	public void createInitialTabs()
 	{
@@ -473,15 +487,17 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Creates, if not already existing, a message panel for message about the {@link WorkareaCanvas} network. If the
-	 * panel already exists, it will set the focus of the JTabbedPane to the tab containing that panel.
+	 * Creates, if not already existing, a message panel for message about the
+	 * {@link WorkareaCanvas} network. If the panel already exists, it will set
+	 * the focus of the JTabbedPane to the tab containing that panel.
 	 */
 	public void createNetworkMessagePanel()
 	{
 		// If the JPanel is not enabled
 		if ( !netMsgPanel.isEnabled() )
 		{
-			addNewMessageTab("Network", netMsgPanel);
+			addNewMessageTab(PrimeMain1.texts.getString("networkTabLabel"),
+					netMsgPanel);
 		}
 		else
 		{
@@ -491,16 +507,18 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Creates, if not already existing, a message panel for message about the connection between {@link WidgetObject
-	 * WidgetObjects} in {@link WorkareaCanvas}. If the panel already exists, it will set the focus of the JTabbedPane
-	 * to the tab containing that panel.
+	 * Creates, if not already existing, a message panel for message about the
+	 * connection between {@link WidgetObject WidgetObjects} in
+	 * {@link WorkareaCanvas}. If the panel already exists, it will set the
+	 * focus of the JTabbedPane to the tab containing that panel.
 	 */
 	public void createConnectionMessagePanel()
 	{
 		// If the JPanel is not enabled
 		if ( !conMsgPanel.isEnabled() )
 		{
-			addNewMessageTab("Connection", conMsgPanel);
+			addNewMessageTab(PrimeMain1.texts.getString("connectionTabLabel"),
+					conMsgPanel);
 		}
 		else
 		{
@@ -510,16 +528,18 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Creates, if not already existing, a message panel for message about the software on each {@link WidgetObject} in
-	 * the {@link WorkareaCanvas}. If the panel already exists, it will set the focus of the JTabbedPane to the tab
-	 * containing that panel.
+	 * Creates, if not already existing, a message panel for message about the
+	 * software on each {@link WidgetObject} in the {@link WorkareaCanvas}. If
+	 * the panel already exists, it will set the focus of the JTabbedPane to the
+	 * tab containing that panel.
 	 */
 	public void createSoftwareMessagePanel()
 	{
 		// If the JPanel is not enabled
 		if ( !softMsgPanel.isEnabled() )
 		{
-			addNewMessageTab("Software", softMsgPanel);
+			addNewMessageTab(PrimeMain1.texts.getString("softwareTabLabel"),
+					softMsgPanel);
 		}
 		else
 		{
@@ -529,16 +549,18 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Creates, if not already existing, a message panel for message about the hardware on each {@link WidgetObject} in
-	 * the {@link WorkareaCanvas}. If the panel already exists, it will set the focus of the JTabbedPane to the tab
-	 * containing that panel.
+	 * Creates, if not already existing, a message panel for message about the
+	 * hardware on each {@link WidgetObject} in the {@link WorkareaCanvas}. If
+	 * the panel already exists, it will set the focus of the JTabbedPane to the
+	 * tab containing that panel.
 	 */
 	public void createHardwareMessagePanel()
 	{
 		// If the JPanel is not enabled
 		if ( !hardMsgPanel.isEnabled() )
 		{
-			addNewMessageTab("Hardware", hardMsgPanel);
+			addNewMessageTab(PrimeMain1.texts.getString("hardwareTabLabel"),
+					hardMsgPanel);
 		}
 		else
 		{
@@ -553,7 +575,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	public void focusOnNetworkTab()
 	{
 		// Gets the index of the network tab
-		int index = getIndexOfTab("Network");
+		int index = getIndexOfTab(PrimeMain1.texts.getString("networkTabLabel"));
 
 		if ( index != -1 )
 		{
@@ -567,7 +589,8 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	public void focusOnConnectionTab()
 	{
 		// Gets the index of the connection tab
-		int index = getIndexOfTab("Connection");
+		int index = getIndexOfTab(PrimeMain1.texts
+				.getString("connectionTabLabel"));
 
 		if ( index != -1 )
 		{
@@ -581,7 +604,8 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	public void focusOnSoftwareTab()
 	{
 		// Gets the index of the software tab
-		int index = getIndexOfTab("Software");
+		int index = getIndexOfTab(PrimeMain1.texts
+				.getString("softwareTabLabel"));
 
 		if ( index != -1 )
 		{
@@ -595,7 +619,8 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	public void focusOnHardwareTab()
 	{
 		// Gets the index of the hardware tab
-		int index = getIndexOfTab("Hardware");
+		int index = getIndexOfTab(PrimeMain1.texts
+				.getString("hardwareTabLabel"));
 
 		if ( index != -1 )
 		{
@@ -607,8 +632,9 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * This function finds the tab, if it exists, where the given string is equal the tab title. If the tab is found,
-	 * the font of the title in the tab will be set to <b>bold</b>.
+	 * This function finds the tab, if it exists, where the given string is
+	 * equal the tab title. If the tab is found, the font of the title in the
+	 * tab will be set to <b>bold</b>.
 	 * 
 	 * @param name
 	 *            The title of the tab where the font is to be set to bold.
@@ -618,15 +644,18 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 		// This is the current number of tabs
 		int arraySize = this.getTabCount();
 
-		// Goes through the list of tab contents until it finds one that matches the given button name.
+		// Goes through the list of tab contents until it finds one that matches
+		// the given button name.
 		for ( int i = 0; i < arraySize; i++ )
 		{
 			JPanel test = (JPanel) this.getTabComponentAt(i);
 
 			String tabName = test.getName();
 
-			// If the name of the button and the name of the content match, the button to close that
-			// tab with the given content has been pressed and the tab is removed.
+			// If the name of the button and the name of the content match, the
+			// button to close that
+			// tab with the given content has been pressed and the tab is
+			// removed.
 			if ( tabName != null && tabName.equals(name) )
 			{
 				JLabel label = (JLabel) test.getComponent(0);
@@ -644,8 +673,9 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * This function finds the tab, if it exists, where the given string is equal the tab title. If the tab is found,
-	 * the font of the title in the tab will be set to not bold.
+	 * This function finds the tab, if it exists, where the given string is
+	 * equal the tab title. If the tab is found, the font of the title in the
+	 * tab will be set to not bold.
 	 * 
 	 * @param name
 	 *            The title of the tab where the font is to be set to unbold.
@@ -655,15 +685,18 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 		// This is the current number of tabs
 		int arraySize = this.getTabCount();
 
-		// Goes through the list of tab contents until it finds one that matches the given button name.
+		// Goes through the list of tab contents until it finds one that matches
+		// the given button name.
 		for ( int i = 0; i < arraySize; i++ )
 		{
 			JPanel test = (JPanel) this.getTabComponentAt(i);
 
 			String tabName = test.getName();
 
-			// If the name of the button and the name of the content match, the button to close that
-			// tab with the given content has been pressed and the tab is removed.
+			// If the name of the button and the name of the content match, the
+			// button to close that
+			// tab with the given content has been pressed and the tab is
+			// removed.
 			if ( tabName != null && tabName.equals(name) )
 			{
 				JLabel label = (JLabel) test.getComponent(0);
@@ -682,28 +715,34 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Searches for a Tab where the {@link JPanel} within has a name equal to the given string. If such a tab exists,
-	 * the index of that tab in the JTabbedPane is returned. If no tab is found -1 is returned.
+	 * Searches for a Tab where the {@link JPanel} within has a name equal to
+	 * the given string. If such a tab exists, the index of that tab in the
+	 * JTabbedPane is returned. If no tab is found -1 is returned.
 	 * 
 	 * @param name
-	 *            The name of the {@link JPanel} searched for inside this classes tabs.
-	 * @return The index where the tab with the {@link JPanel} that has the name equal to the given string is located.
-	 *         If it is not found, -1 will be returned.
+	 *            The name of the {@link JPanel} searched for inside this
+	 *            classes tabs.
+	 * @return The index where the tab with the {@link JPanel} that has the name
+	 *         equal to the given string is located. If it is not found, -1 will
+	 *         be returned.
 	 */
 	private int getIndexOfTab(String name)
 	{
 		// This is the current number of tabs
 		int arraySize = this.getTabCount();
 
-		// Goes through the list of tab contents until it finds one that matches the given button name.
+		// Goes through the list of tab contents until it finds one that matches
+		// the given button name.
 		for ( int i = 0; i < arraySize; i++ )
 		{
 			JPanel test = (JPanel) this.getTabComponentAt(i);
 
 			String tabName = test.getName();
 
-			// If the name of the button and the name of the content match, the button to close that
-			// tab with the given content has been pressed and the tab is removed.
+			// If the name of the button and the name of the content match, the
+			// button to close that
+			// tab with the given content has been pressed and the tab is
+			// removed.
 			if ( tabName != null && tabName.equals(name) )
 			{
 				return i;
@@ -718,8 +757,8 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -727,8 +766,10 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 		if ( e.getSource() instanceof JButton )
 		{
-			// Since there is no other components in this class that can call the ActionPerformed method
-			// then the created JButton, we cast the source of the event as a JButton.
+			// Since there is no other components in this class that can call
+			// the ActionPerformed method
+			// then the created JButton, we cast the source of the event as a
+			// JButton.
 			JButton button = (JButton) e.getSource();
 
 			String contentName = button.getName();
@@ -737,30 +778,37 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 			// This is the current number of tabs
 			int arraySize = this.getTabCount();
 
-			// Goes through the list of tab contents until it finds one that matches the given button name.
+			// Goes through the list of tab contents until it finds one that
+			// matches the given button name.
 			for ( int i = 0; i < arraySize; i++ )
 			{
 				test = (JPanel) this.getTabComponentAt(i);
 
 				String tabName = test.getName();
 
-				// If the name of the button and the name of the content match, the button to close that
-				// tab with the given content has been pressed and the tab is removed.
+				// If the name of the button and the name of the content match,
+				// the button to close that
+				// tab with the given content has been pressed and the tab is
+				// removed.
 				if ( tabName != null && tabName.equals(contentName) )
 				{
-					if ( tabName.equals("Network") )
+					if ( tabName.equals(PrimeMain1.texts
+							.getString("networkTabLabel")) )
 					{
 						netMsgPanel.setEnabled(false);
 					}
-					else if ( tabName.equals("Connection") )
+					else if ( tabName.equals(PrimeMain1.texts
+							.getString("connectionTabLabel")) )
 					{
 						conMsgPanel.setEnabled(false);
 					}
-					else if ( tabName.equals("Software") )
+					else if ( tabName.equals(PrimeMain1.texts
+							.getString("softwareTabLabel")) )
 					{
 						softMsgPanel.setEnabled(false);
 					}
-					else if ( tabName.equals("Hardware") )
+					else if ( tabName.equals(PrimeMain1.texts
+							.getString("hardwareTabLabel")) )
 					{
 						hardMsgPanel.setEnabled(false);
 					}

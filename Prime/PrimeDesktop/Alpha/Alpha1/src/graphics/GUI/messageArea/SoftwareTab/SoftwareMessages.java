@@ -4,6 +4,7 @@
 package graphics.GUI.messageArea.SoftwareTab;
 
 
+import graphics.PrimeMain1;
 import graphics.GUI.messageArea.MessageJTable;
 
 import javax.swing.JScrollPane;
@@ -22,17 +23,22 @@ public class SoftwareMessages extends JScrollPane
 
 
 	/**
-	 * A constructor for the class that creates a JScrollPane that will contains a JTable with possible messages for the
-	 * user about the given Object.
+	 * A constructor for the class that creates a JScrollPane that will contains
+	 * a JTable with possible messages for the user about the given Object.
 	 * 
 	 * @param objects
 	 *            The objects that are to be examined.
 	 * @param data
-	 *            The multidimentional String array with possible previous messages for the user.
+	 *            The multidimentional String array with possible previous
+	 *            messages for the user.
 	 */
 	public SoftwareMessages(Object[] objects, String[][] data)
 	{
-		String[] columnNames = { "Object Name", "Software Type", "Description", "Message Type" };
+		String[] columnNames = {
+				PrimeMain1.texts.getString("tableSWobjectName"),
+				PrimeMain1.texts.getString("tableSWswType"),
+				PrimeMain1.texts.getString("tableSWdescription"),
+				PrimeMain1.texts.getString("tableSWmsgType") };
 
 		table = new MessageJTable(data, columnNames);
 
@@ -48,7 +54,8 @@ public class SoftwareMessages extends JScrollPane
 
 
 	/**
-	 * Sets the width of the column that contains the actual message information.
+	 * Sets the width of the column that contains the actual message
+	 * information.
 	 */
 	private void setColumnWidths()
 	{

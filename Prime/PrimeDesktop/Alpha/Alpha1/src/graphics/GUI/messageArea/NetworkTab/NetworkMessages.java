@@ -4,6 +4,7 @@
 package graphics.GUI.messageArea.NetworkTab;
 
 
+import graphics.PrimeMain1;
 import graphics.GUI.messageArea.MessageJTable;
 
 import javax.swing.JScrollPane;
@@ -22,17 +23,21 @@ public class NetworkMessages extends JScrollPane
 
 
 	/**
-	 * A constructor for the class that creates a JScrollPane that will contains a JTable with possible messages for the
-	 * user about the given network.
+	 * A constructor for the class that creates a JScrollPane that will contains
+	 * a JTable with possible messages for the user about the given network.
 	 * 
 	 * @param objects
 	 *            The objects that are to be examined.
 	 * @param data
-	 *            The multidimentional String array with possible previous messages for the user.
+	 *            The multidimentional String array with possible previous
+	 *            messages for the user.
 	 */
 	public NetworkMessages(Object[] objects, String[][] data)
 	{
-		String[] columnNames = { "Name", "Type", "Description", "Message Type" };
+		String[] columnNames = { PrimeMain1.texts.getString("tableNETName"),
+				PrimeMain1.texts.getString("tableNETType"),
+				PrimeMain1.texts.getString("tableNETdescription"),
+				PrimeMain1.texts.getString("tableNETmsgType") };
 
 		table = new MessageJTable(data, columnNames);
 
@@ -49,7 +54,8 @@ public class NetworkMessages extends JScrollPane
 
 
 	/**
-	 * Sets the width of the column that contains the actual message information.
+	 * Sets the width of the column that contains the actual message
+	 * information.
 	 */
 	private void setColumnWidths()
 	{

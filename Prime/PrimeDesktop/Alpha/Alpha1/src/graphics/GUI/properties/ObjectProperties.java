@@ -225,9 +225,9 @@ public class ObjectProperties extends JPanel implements ActionListener
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		Button save = new Button("Save");
+		Button save = new Button(PrimeMain1.texts.getString("save"));
 		save.addActionListener(this);
-		save.setActionCommand("save");
+		save.setActionCommand(PrimeMain1.texts.getString("save"));
 
 
 		buttons.add(save);
@@ -570,7 +570,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( e.getActionCommand().equals("save") )
+		if ( e.getActionCommand().equals(PrimeMain1.texts.getString("save")) )
 		{
 			saveAction();
 		}

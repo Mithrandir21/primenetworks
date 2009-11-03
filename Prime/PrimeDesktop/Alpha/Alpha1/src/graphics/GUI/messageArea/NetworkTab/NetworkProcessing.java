@@ -4,6 +4,8 @@
 package graphics.GUI.messageArea.NetworkTab;
 
 
+import exceptions.ObjectNotFoundException;
+import graphics.PrimeMain1;
 import managment.ArrayManagment;
 import objects.Object;
 import objects.infrastructureObjects.Hub;
@@ -12,7 +14,6 @@ import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.infrastructureObjects.WirelessRouter;
 import widgets.WorkareaCanvas;
-import exceptions.ObjectNotFoundException;
 
 
 /**
@@ -23,22 +24,29 @@ import exceptions.ObjectNotFoundException;
 public class NetworkProcessing
 {
 	/**
-	 * This method processes an entire network, ie a WorkareaCanvas, for critical errors, warnings and notices. It then
-	 * returns a multidimentional String array that contains the messages the user will be shown about the network.
+	 * This method processes an entire network, ie a WorkareaCanvas, for
+	 * critical errors, warnings and notices. It then returns a multidimentional
+	 * String array that contains the messages the user will be shown about the
+	 * network.
 	 * 
 	 * @param curData
-	 *            The current multidimentional String array with possible previous data.
+	 *            The current multidimentional String array with possible
+	 *            previous data.
 	 * @param obj
 	 *            The network that is to be examined.
 	 * @param CheckCritical
-	 *            A boolean saying if the network should be checked for critical errors.
+	 *            A boolean saying if the network should be checked for critical
+	 *            errors.
 	 * @param CheckWarnings
-	 *            A boolean saying if the network should be checked for warnings.
+	 *            A boolean saying if the network should be checked for
+	 *            warnings.
 	 * @param CheckNotices
 	 *            A boolean saying if the network should be checked for notices.
-	 * @return Returns a new multidimentional String array with possible messages for the user about the given network.
+	 * @return Returns a new multidimentional String array with possible
+	 *         messages for the user about the given network.
 	 */
-	public static String[][] processNetwork(String[][] curData, WorkareaCanvas canvas, boolean CheckCritical,
+	public static String[][] processNetwork(String[][] curData,
+			WorkareaCanvas canvas, boolean CheckCritical,
 			boolean CheckWarnings, boolean CheckNotices)
 	{
 		String[][] data = curData;
@@ -73,22 +81,27 @@ public class NetworkProcessing
 
 
 	/**
-	 * Examines the given network for possible critical errors and adds messages to the given multidimentional String
-	 * array which will then be used to populate a JTable.
+	 * Examines the given network for possible critical errors and adds messages
+	 * to the given multidimentional String array which will then be used to
+	 * populate a JTable.
 	 * 
 	 * @param data
-	 *            The data container with possible previous messages for the user.
+	 *            The data container with possible previous messages for the
+	 *            user.
 	 * @param obj
 	 *            The network that is to be examined.
-	 * @return The data container with possible new messages for the user in addition to the old messages.
+	 * @return The data container with possible new messages for the user in
+	 *         addition to the old messages.
 	 */
-	private static String[][] getCriticalErrors(String[][] data, WorkareaCanvas canvas)
+	private static String[][] getCriticalErrors(String[][] data,
+			WorkareaCanvas canvas)
 	{
 		// Gets all the objects on the given canvas
 		Object[] objects = canvas.getObjectsOnTheScene();
 
 
-		// Checks whether or not the Internet object is directly connected to a another Internet object
+		// Checks whether or not the Internet object is directly connected to a
+		// another Internet object
 		for ( int i = 0; i < objects.length; i++ )
 		{
 			if ( objects[i] instanceof Internet )
@@ -104,11 +117,10 @@ public class NetworkProcessing
 						// If the connected object is a Internet object
 						if ( connectedObject[j] instanceof Internet )
 						{
-							String[] info = {
-									objects[i].getObjectName(),
-									"Internet Connected to Internet",
-									"This Internet access point is directly connected to another Internet access point.",
-									"Network Error" };
+							String[] info = { objects[i].getObjectName(),
+									PrimeMain1.texts.getString("netToNetName"),
+									PrimeMain1.texts.getString("netToNetMsg"),
+									PrimeMain1.texts.getString("networkError") };
 							data = addError(data, info);
 						}
 					}
@@ -122,14 +134,17 @@ public class NetworkProcessing
 
 
 	/**
-	 * Examines the given network for possible critical errors and adds messages to the given multidimentional String
-	 * array which will then be used to populate a JTable.
+	 * Examines the given network for possible critical errors and adds messages
+	 * to the given multidimentional String array which will then be used to
+	 * populate a JTable.
 	 * 
 	 * @param data
-	 *            The data container with possible previous messages for the user.
+	 *            The data container with possible previous messages for the
+	 *            user.
 	 * @param obj
 	 *            The network that is to be examined.
-	 * @return The data container with possible new messages for the user in addition to the old messages.
+	 * @return The data container with possible new messages for the user in
+	 *         addition to the old messages.
 	 */
 	private static String[][] getWarnings(String[][] data, WorkareaCanvas canvas)
 	{
@@ -140,15 +155,18 @@ public class NetworkProcessing
 		// Check to see if the network contains a Internet Object
 		if ( !(containsObjectOfClass(objects, Internet.class)) )
 		{
-			String[] info = { canvas.getCanvasName(), "Internet",
-					"This network does not contain a Internet access point .", "Network Warning" };
+			String[] info = { canvas.getCanvasName(),
+					PrimeMain1.texts.getString("internet"),
+					PrimeMain1.texts.getString("noNetMsg"),
+					PrimeMain1.texts.getString("networkWarning") };
 			data = addError(data, info);
 		}
 
 
 
 
-		// Check to see if the network contains a router/hub/switch/wireless Router Object
+		// Check to see if the network contains a router/hub/switch/wireless
+		// Router Object
 		if ( !(containsObjectOfClass(objects, Router.class)) )
 		{
 			// HUB
@@ -162,9 +180,10 @@ public class NetworkProcessing
 					{
 						String[] info = {
 								canvas.getCanvasName(),
-								"Router",
-								"This network does not contain any network infrastructure like a router, hub or a switch.",
-								"Network Warning" };
+								PrimeMain1.texts.getString("router"),
+								PrimeMain1.texts
+										.getString("noInfrastructureMsg"),
+								PrimeMain1.texts.getString("networkWarning") };
 						data = addError(data, info);
 					}
 				}
@@ -173,15 +192,19 @@ public class NetworkProcessing
 
 
 
-		// Goes through all objects and checks whether or not any object is not connected to anything
+		// Goes through all objects and checks whether or not any object is not
+		// connected to anything
 		for ( int i = 0; i < objects.length; i++ )
 		{
-			if ( (objects[i].getConnectedDevices() == null) || (objects[i].getConnectedDevices().length < 1) )
+			if ( (objects[i].getConnectedDevices() == null)
+					|| (objects[i].getConnectedDevices().length < 1) )
 			{
 				System.out.println(objects[i].getConnectedDevices() == null);
 
-				String[] info = { objects[i].getObjectName(), "Not Connected",
-						"This Object is not connected to anything else in the network.", "Network Warning" };
+				String[] info = { objects[i].getObjectName(),
+						PrimeMain1.texts.getString("notConnectedName"),
+						PrimeMain1.texts.getString("notConnectedMsg"),
+						PrimeMain1.texts.getString("networkWarning") };
 				data = addError(data, info);
 			}
 		}
@@ -197,14 +220,17 @@ public class NetworkProcessing
 
 
 	/**
-	 * Examines the given network for possible critical errors and adds messages to the given multidimentional String
-	 * array which will then be used to populate a JTable.
+	 * Examines the given network for possible critical errors and adds messages
+	 * to the given multidimentional String array which will then be used to
+	 * populate a JTable.
 	 * 
 	 * @param data
-	 *            The data container with possible previous messages for the user.
+	 *            The data container with possible previous messages for the
+	 *            user.
 	 * @param obj
 	 *            The network that is to be examined.
-	 * @return The data container with possible new messages for the user in addition to the old messages.
+	 * @return The data container with possible new messages for the user in
+	 *         addition to the old messages.
 	 */
 	private static String[][] getNotices(String[][] data, WorkareaCanvas canvas)
 	{
@@ -215,14 +241,17 @@ public class NetworkProcessing
 
 
 	/**
-	 * Adds the given String array to the given multidimentional String array that contains all the messages the user
-	 * will be shown.
+	 * Adds the given String array to the given multidimentional String array
+	 * that contains all the messages the user will be shown.
 	 * 
 	 * @param data
-	 *            The data container with possible previous messages for the user.
+	 *            The data container with possible previous messages for the
+	 *            user.
 	 * @param info
-	 *            The new information that will be added to the data array with messages.
-	 * @return The data container with the new message for the user in addition to the possible old messages.
+	 *            The new information that will be added to the data array with
+	 *            messages.
+	 * @return The data container with the new message for the user in addition
+	 *         to the possible old messages.
 	 */
 	private static String[][] addError(String[][] data, String[] info)
 	{
@@ -241,8 +270,9 @@ public class NetworkProcessing
 
 
 		/**
-		 * If the method gets to this part, it means that there was not enough space in the array to add another data
-		 * field. So it will be expanded with 5 indexes and this function will be run again.
+		 * If the method gets to this part, it means that there was not enough
+		 * space in the array to add another data field. So it will be expanded
+		 * with 5 indexes and this function will be run again.
 		 */
 		data = ArrayManagment.add5ArraySpaces(data);
 
@@ -254,7 +284,8 @@ public class NetworkProcessing
 	/**
 	 * Checks if the given objects contains an object with the given class.
 	 */
-	private static boolean containsObjectOfClass(Object[] objects, Class<?> Class)
+	private static boolean containsObjectOfClass(Object[] objects,
+			Class<?> Class)
 	{
 		// This test does nothing else then see if the function called throws an
 		// exception that means there was no object found with the given class.

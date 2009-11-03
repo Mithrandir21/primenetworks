@@ -56,6 +56,7 @@ public class RectangularAreaSelection extends LockedAdapter
 	}
 
 
+	@Override
 	public State mousePressed(Widget widget, WidgetMouseEvent event)
 	{
 		// If the event button was the left click and the it was clicked once.
@@ -86,6 +87,7 @@ public class RectangularAreaSelection extends LockedAdapter
 	}
 
 
+	@Override
 	public State mouseReleased(Widget widget, WidgetMouseEvent event)
 	{
 		if ( selectionSceneRectangle != null )
@@ -103,6 +105,7 @@ public class RectangularAreaSelection extends LockedAdapter
 	}
 
 
+	@Override
 	public State mouseDragged(Widget widget, WidgetMouseEvent event)
 	{
 		if ( selectionSceneRectangle != null )

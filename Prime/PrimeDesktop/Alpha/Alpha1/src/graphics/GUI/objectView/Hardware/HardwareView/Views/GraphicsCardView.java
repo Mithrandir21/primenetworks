@@ -26,7 +26,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -121,9 +120,11 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this device");
+		JLabel label = new JLabel(PrimeMain1.texts
+				.getString("hwTabRemoveThisComponentLabel"));
 
-		Button remove = new Button("Remove Component");
+		Button remove = new Button(PrimeMain1.texts
+				.getString("hwTabRemoveComponentButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeComp");
 
@@ -158,26 +159,36 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[7];
 
-		labels[0] = new JLabel("Producer");
-		labels[0].setToolTipText("The producer of the GPU.");
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("gpuViewProducerLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("gpuViewProducerTip"));
 
-		labels[1] = new JLabel("Interface");
-		labels[1].setToolTipText("The GPU interface. (PCI, AGP, PCI-E)");
+		labels[1] = new JLabel(PrimeMain1.texts
+				.getString("gpuViewInterfaceLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts
+				.getString("gpuViewInterfaceTip"));
 
-		labels[2] = new JLabel("Output Port");
-		labels[2].setToolTipText("The GPU output port. ");
+		labels[2] = new JLabel(PrimeMain1.texts
+				.getString("gpuViewOutputPortLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts
+				.getString("gpuViewOutputPortTip"));
 
-		labels[3] = new JLabel("Size");
-		labels[3].setToolTipText("The size of the RAM on the GPU.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("gpuViewSizeLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("gpuViewSizeTip"));
 
-		labels[4] = new JLabel("Speed");
-		labels[4].setToolTipText("The speed of the GPU in MHz.");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("gpuViewSpeedLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts.getString("gpuViewSpeedTip"));
 
-		labels[5] = new JLabel("Max Monitors");
-		labels[5].setToolTipText("The number of output ports.");
+		labels[5] = new JLabel(PrimeMain1.texts
+				.getString("gpuViewMaxMonitorsLabel"));
+		labels[5].setToolTipText(PrimeMain1.texts
+				.getString("gpuViewMaxMonitorsTip"));
 
-		labels[6] = new JLabel("Is Integrated");
-		labels[6].setToolTipText("If the GPU is integrated on the mainboard.");
+		labels[6] = new JLabel(PrimeMain1.texts
+				.getString("gpuViewIsIntegratedLabel"));
+		labels[6].setToolTipText(PrimeMain1.texts
+				.getString("gpuViewIsIntegratedTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -406,40 +417,6 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 
 
 
-	/**
-	 * Checks and validates the name and description for this hardware object.
-	 */
-	public boolean nameAndDescriptionCheck()
-	{
-		// Checks the name of the motherboard
-		if ( name.getText().length() < 1 || name.getText().length() > 255 )
-		{
-			JOptionPane.showMessageDialog(this,
-					"The component name must be between 1 and 255 characters.",
-					"Error - Name", JOptionPane.INFORMATION_MESSAGE);
-
-			return false;
-		}
-
-		// Checks the description of the motherboard.
-		if ( desc.getText().length() < 1 )
-		{
-			JOptionPane
-					.showMessageDialog(
-							this,
-							"The component description must be longer then 1 character.",
-							"Error - Description",
-							JOptionPane.INFORMATION_MESSAGE);
-
-			return false;
-		}
-
-		// Possibility for more checks on the CPU values.
-
-		return true;
-	}
-
-
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -451,14 +428,13 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 			String command = box.getActionCommand();
 			if ( command.equals("Interface") )
 			{
-				String msg = "The GPU will no longer be compatiable with the motherboard.\n\nDo you want to keep this change?";
-
 				String[] typeString = { "", "PCI", "AGP", "PCI-E" };
 
 				type = GraphicalFunctions.verifyChange(this, mainObj,
 						GraphicsCard.class, mainGC.getType(), type
-								.getSelectedItem().toString(), msg, typeString,
-						type);
+								.getSelectedItem().toString(), PrimeMain1.texts
+								.getString("gpuViewNotCompatiableQuestionMsg"),
+						typeString, type);
 			}
 		}
 		else if ( e.getSource() instanceof Button )

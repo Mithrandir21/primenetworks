@@ -85,6 +85,7 @@ public class FileTreeNode extends DefaultMutableTreeNode
 	 * 
 	 * @see javax.swing.tree.TreeNode#children()
 	 */
+	@Override
 	public Enumeration<?> children()
 	{
 		final int elementCount = this.children.length;
@@ -145,6 +146,7 @@ public class FileTreeNode extends DefaultMutableTreeNode
 	 * 
 	 * @see javax.swing.tree.TreeNode#getAllowsChildren()
 	 */
+	@Override
 	public boolean getAllowsChildren()
 	{
 		return true;
@@ -155,6 +157,7 @@ public class FileTreeNode extends DefaultMutableTreeNode
 	 * 
 	 * @see javax.swing.tree.TreeNode#getChildAt(int)
 	 */
+	@Override
 	public TreeNode getChildAt(int childIndex)
 	{
 		return new FileTreeNode(this.children[childIndex], this.parent == null, this);
@@ -165,6 +168,7 @@ public class FileTreeNode extends DefaultMutableTreeNode
 	 * 
 	 * @see javax.swing.tree.TreeNode#getChildCount()
 	 */
+	@Override
 	public int getChildCount()
 	{
 		return this.children.length;
@@ -175,6 +179,7 @@ public class FileTreeNode extends DefaultMutableTreeNode
 	 * 
 	 * @see javax.swing.tree.TreeNode#getIndex(javax.swing.tree.TreeNode)
 	 */
+	@Override
 	public int getIndex(TreeNode node)
 	{
 		FileTreeNode ftn = (FileTreeNode) node;
@@ -191,6 +196,7 @@ public class FileTreeNode extends DefaultMutableTreeNode
 	 * 
 	 * @see javax.swing.tree.TreeNode#getParent()
 	 */
+	@Override
 	public TreeNode getParent()
 	{
 		return this.parent;
@@ -201,6 +207,7 @@ public class FileTreeNode extends DefaultMutableTreeNode
 	 * 
 	 * @see javax.swing.tree.TreeNode#isLeaf()
 	 */
+	@Override
 	public boolean isLeaf()
 	{
 		return (this.getChildCount() == 0);

@@ -55,12 +55,13 @@ public class HardwareEditorTabbed extends JTabbedPane
 
 
 	/**
-	 * Creates and adds tabs to this JTabbedPane instance based on the class of the internal
-	 * components of the given object, such as Motherboard, CPU or RAM.
+	 * Creates and adds tabs to this JTabbedPane instance based on the class of
+	 * the internal components of the given object, such as Motherboard, CPU or
+	 * RAM.
 	 * 
 	 * @param obj
-	 *            The object that holds the internal components which in turn are the basis for the
-	 *            creation of the hardware views.
+	 *            The object that holds the internal components which in turn
+	 *            are the basis for the creation of the hardware views.
 	 */
 	public void populateTabs(Object obj)
 	{
@@ -71,51 +72,62 @@ public class HardwareEditorTabbed extends JTabbedPane
 		{
 			if ( components[i] instanceof Motherboard )
 			{
-				String MBDesc = "Motherboard options and values";
-				this.addTab("Motherboard", null, new MotherboardView(obj,
-						(Motherboard) components[i]), MBDesc);
+				this.addTab(PrimeMain1.texts.getString("motherboard"), null,
+						new MotherboardView(obj, (Motherboard) components[i]),
+						PrimeMain1.texts.getString("hwTabMBtabDescription"));
 			}
 			else if ( components[i] instanceof CPU )
 			{
-				String CPUDesc = "CPU options and values";
-				this.addTab("CPU", null, new CPUView(obj, (CPU) components[i]),
-						CPUDesc);
+				this.addTab(PrimeMain1.texts.getString("cpu"), null,
+						new CPUView(obj, (CPU) components[i]), PrimeMain1.texts
+								.getString("hwTabCPUtabDescription"));
 			}
 			else if ( components[i] instanceof HDD )
 			{
-				String HDDDesc = "Harddisk options and values";
-				this.addTab("Harddisc", null, new HDDView(obj,
-						(HDD) components[i]), HDDDesc);
+				this.addTab(PrimeMain1.texts.getString("hdd"), null,
+						new HDDView(obj, (HDD) components[i]), PrimeMain1.texts
+								.getString("hwTabHDDtabDescription"));
 			}
 			else if ( components[i] instanceof Ram )
 			{
-				String RAMDesc = "RAM options and values";
-				this.addTab("RAM", null, new RAMView(obj, (Ram) components[i]),
-						RAMDesc);
+				this.addTab(PrimeMain1.texts.getString("ram"), null,
+						new RAMView(obj, (Ram) components[i]), PrimeMain1.texts
+								.getString("hwTabRAMtabDescription"));
 			}
 			else if ( components[i] instanceof Discdrive )
 			{
-				String DDDesc = "Discdrive options and values";
-				this.addTab("Discdrive", null, new DiscDriveView(obj,
-						(Discdrive) components[i]), DDDesc);
+				this.addTab(PrimeMain1.texts.getString("discdrive"), null,
+						new DiscDriveView(obj, (Discdrive) components[i]),
+						PrimeMain1.texts.getString("hwTabDVDRWtabDescription"));
 			}
 			else if ( components[i] instanceof GraphicsCard )
 			{
-				String GPUDesc = "Graphics options and values";
-				this.addTab("Graphical Card", null, new GraphicsCardView(obj,
-						(GraphicsCard) components[i]), GPUDesc);
+				this
+						.addTab(PrimeMain1.texts.getString("graphicalCard"),
+								null, new GraphicsCardView(obj,
+										(GraphicsCard) components[i]),
+								PrimeMain1.texts
+										.getString("hwTabGPUtabDescription"));
 			}
 			else if ( components[i] instanceof InternalNetworksCard )
 			{
-				String IntNICDesc = "Networkcard options and values";
-				this.addTab("Internal NIC", null, new InternalNICView(obj,
-						(InternalNetworksCard) components[i]), IntNICDesc);
+				this
+						.addTab(PrimeMain1.texts
+								.getString("internalNetworkCard"), null,
+								new InternalNICView(obj,
+										(InternalNetworksCard) components[i]),
+								PrimeMain1.texts
+										.getString("hwTabIntNICtabDescription"));
 			}
 			else if ( components[i] instanceof ExternalNetworksCard )
 			{
-				String ExtNICDesc = "External Networkcard options and values";
-				this.addTab("External NIC", null, new ExternaNICView(obj,
-						(ExternalNetworksCard) components[i]), ExtNICDesc);
+				this
+						.addTab(PrimeMain1.texts
+								.getString("externalNetworkCard"), null,
+								new ExternaNICView(obj,
+										(ExternalNetworksCard) components[i]),
+								PrimeMain1.texts
+										.getString("hwTabExtNICtabDescription"));
 			}
 		}
 	}
@@ -123,14 +135,16 @@ public class HardwareEditorTabbed extends JTabbedPane
 
 
 	/**
-	 * This method calls the save methods on all the different HardwareViews and if the boolean
-	 * given is true, calls also the validation methods on all views. If any of the validations
-	 * fail, none off the save methods will be called.
+	 * This method calls the save methods on all the different HardwareViews and
+	 * if the boolean given is true, calls also the validation methods on all
+	 * views. If any of the validations fail, none off the save methods will be
+	 * called.
 	 * 
 	 * @param verify
 	 *            Boolean saying if validation should be run on the data.
-	 * @return If the save methods in each of the views does not return false, which would mean that
-	 *         it did not save, the method will return true. Else it will return false;
+	 * @return If the save methods in each of the views does not return false,
+	 *         which would mean that it did not save, the method will return
+	 *         true. Else it will return false;
 	 */
 	public boolean save(boolean verify)
 	{
@@ -145,8 +159,8 @@ public class HardwareEditorTabbed extends JTabbedPane
 
 			// FIXME
 			/**
-			 * Goes through all the views and gets the validation status of each one and places that
-			 * boolean in the validation array.
+			 * Goes through all the views and gets the validation status of each
+			 * one and places that boolean in the validation array.
 			 */
 			for ( int i = 0; i < this.getComponentCount(); i++ )
 			{
@@ -157,9 +171,10 @@ public class HardwareEditorTabbed extends JTabbedPane
 			}
 
 			/**
-			 * If any of the validation function in any of the views return false the loop will end
-			 * and none of the values for any of the views will be saved. The JFrame will also not
-			 * exit so the user has a chance to change the value.
+			 * If any of the validation function in any of the views return
+			 * false the loop will end and none of the values for any of the
+			 * views will be saved. The JFrame will also not exit so the user
+			 * has a chance to change the value.
 			 */
 			for ( int i = 0; i < verified.length; i++ )
 			{
@@ -174,8 +189,8 @@ public class HardwareEditorTabbed extends JTabbedPane
 		if ( validationFailed == false )
 		{
 			/**
-			 * Goes through all the views and saves the values since none of the views failed its
-			 * validation.
+			 * Goes through all the views and saves the values since none of the
+			 * views failed its validation.
 			 */
 			for ( int i = 0; i < this.getComponentCount(); i++ )
 			{
@@ -207,8 +222,8 @@ public class HardwareEditorTabbed extends JTabbedPane
 		else
 		{
 			/**
-			 * Shows that at least one of the validations have failed and that nothing has been
-			 * saved.
+			 * Shows that at least one of the validations have failed and that
+			 * nothing has been saved.
 			 */
 			return false;
 		}

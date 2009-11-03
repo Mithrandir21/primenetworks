@@ -38,6 +38,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -45,6 +47,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ToolTipManager;
+import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 
 import managment.CanvasManagment;
@@ -128,6 +131,10 @@ public class PrimeMain1 extends JFrame
 	// The "Cut widget" widget holder
 	public static WidgetObject cutWidget = null;
 
+	// The locale texts
+	public static ResourceBundle texts = ResourceBundle.getBundle(
+			"SystemTexts", new Locale("en"));
+
 
 
 	// FIXME - Change the way ObjectViews are handled
@@ -138,7 +145,7 @@ public class PrimeMain1 extends JFrame
 	{
 		super("Prime");
 
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -459,7 +466,7 @@ public class PrimeMain1 extends JFrame
 	 */
 	static void renderSplashFrame(Graphics2D g, int frame)
 	{
-		final String[] comps = { "Bam", "Pegah", "Lille-Bam", "Bitch" };
+		final String[] comps = { "Bam", "Lille-Bam", "Test" };
 		g.setComposite(AlphaComposite.Clear);
 		g.fillRect(120, 140, 200, 40);
 		g.setPaintMode();

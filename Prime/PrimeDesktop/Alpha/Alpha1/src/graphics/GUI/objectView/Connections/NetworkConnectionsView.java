@@ -3,6 +3,7 @@ package graphics.GUI.objectView.Connections;
 
 import exceptions.ObjectNotFoundException;
 import graphics.GraphicalFunctions;
+import graphics.PrimeMain1;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -45,8 +46,9 @@ public class NetworkConnectionsView extends JPanel
 
 
 	/**
-	 * This method sets the layout and adds two JPanel with information about objects connected the given object. One of
-	 * the panels are for objects connected by way of USB and the other one by way of RJ-45.
+	 * This method sets the layout and adds two JPanel with information about
+	 * objects connected the given object. One of the panels are for objects
+	 * connected by way of USB and the other one by way of RJ-45.
 	 * 
 	 * @param obj
 	 */
@@ -86,7 +88,8 @@ public class NetworkConnectionsView extends JPanel
 
 
 	/**
-	 * This method passes the object on the right function depending on the conType string.
+	 * This method passes the object on the right function depending on the
+	 * conType string.
 	 * 
 	 * @param obj
 	 *            The object that is to be passed on.
@@ -115,12 +118,13 @@ public class NetworkConnectionsView extends JPanel
 
 
 	/**
-	 * Creates and returns a JPanel that contains information about the objects that are connected to the given object
-	 * by way of USB.
+	 * Creates and returns a JPanel that contains information about the objects
+	 * that are connected to the given object by way of USB.
 	 * 
 	 * @param obj
 	 *            The Object that is to be examined for connections.
-	 * @return A JPanel with information about objects connections by way of USB.
+	 * @return A JPanel with information about objects connections by way of
+	 *         USB.
 	 */
 	private JPanel USBpanel(Object obj)
 	{
@@ -202,12 +206,13 @@ public class NetworkConnectionsView extends JPanel
 
 
 	/**
-	 * Creates and returns a JPanel that contains information about the objects that are connected to the given object
-	 * by way of RJ-45.
+	 * Creates and returns a JPanel that contains information about the objects
+	 * that are connected to the given object by way of RJ-45.
 	 * 
 	 * @param obj
 	 *            The Object that is to be examined for connections.
-	 * @return A JPanel with information about objects connections by way of RJ-45.
+	 * @return A JPanel with information about objects connections by way of
+	 *         RJ-45.
 	 */
 	private JPanel LANpanel(Object obj)
 	{
@@ -215,7 +220,8 @@ public class NetworkConnectionsView extends JPanel
 
 		Object[] matchedLAN = ComponentsManagment.connectedToBy(obj, "RJ-45");
 
-		Object[] matchedWLAN = ComponentsManagment.connectedToBy(obj, "Wireless");
+		Object[] matchedWLAN = ComponentsManagment.connectedToBy(obj,
+				"Wireless");
 
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -313,7 +319,8 @@ public class NetworkConnectionsView extends JPanel
 
 
 	/**
-	 * Creates a JPanel that will contains key information about the given object depending on the class of the Object.
+	 * Creates a JPanel that will contains key information about the given
+	 * object depending on the class of the Object.
 	 * 
 	 * @param obj
 	 *            The Object that is to be examined.
@@ -387,7 +394,8 @@ public class NetworkConnectionsView extends JPanel
 		// }
 		// else if ( obj instanceof NetworkMultifunctionPrinter )
 		// {
-		// icon = ImageLocator.getImageIconObject("NetworkMultifunctionPrinter");
+		// icon =
+		// ImageLocator.getImageIconObject("NetworkMultifunctionPrinter");
 		// }
 		// else if ( obj instanceof Hub )
 		// {
@@ -426,7 +434,8 @@ public class NetworkConnectionsView extends JPanel
 	 * 
 	 * @param obj
 	 *            The object that is to be examined.
-	 * @return An array with information about the given object, like name, description, number of cpus, etc.
+	 * @return An array with information about the given object, like name,
+	 *         description, number of cpus, etc.
 	 */
 	private String[] check(Object obj)
 	{
@@ -437,7 +446,8 @@ public class NetworkConnectionsView extends JPanel
 		text = obj.getObjectName();
 		if ( text != "" && text != null )
 		{
-			info[0] = "Name: " + text;
+			info[0] = PrimeMain1.texts.getString("conTabObjectNameLabel")
+					+ ": " + text;
 		}
 
 
@@ -450,13 +460,14 @@ public class NetworkConnectionsView extends JPanel
 
 		try
 		{
-			mbObj = (Motherboard) ArrayManagment.getSpesificComponents(Motherboard.class, obj.getComponents(), obj
-					.getComponents().length)[0];
+			mbObj = (Motherboard) ArrayManagment.getSpesificComponents(
+					Motherboard.class, obj.getComponents(),
+					obj.getComponents().length)[0];
 
 
 
-			Object[] cpusArray = ArrayManagment.getSpesificComponents(CPU.class, obj.getComponents(), obj
-					.getComponents().length);
+			Object[] cpusArray = ArrayManagment.getSpesificComponents(
+					CPU.class, obj.getComponents(), obj.getComponents().length);
 
 			cpus = new CPU[cpusArray.length];
 			for ( int i = 0; i < cpusArray.length; i++ )
@@ -466,8 +477,8 @@ public class NetworkConnectionsView extends JPanel
 
 
 
-			Object[] hddsArray = ArrayManagment.getSpesificComponents(HDD.class, obj.getComponents(), obj
-					.getComponents().length);
+			Object[] hddsArray = ArrayManagment.getSpesificComponents(
+					HDD.class, obj.getComponents(), obj.getComponents().length);
 
 
 			hdds = new HDD[hddsArray.length];
@@ -487,7 +498,8 @@ public class NetworkConnectionsView extends JPanel
 		{
 			if ( mbObj.getSocket() != null && mbObj.getSocket().length() != 0 )
 			{
-				info[1] = "Socket: " + mbObj.getSocket();
+				info[1] = PrimeMain1.texts.getString("conTabObjectSpeedLabel")
+						+ ": " + mbObj.getSocket();
 			}
 		}
 
@@ -499,7 +511,8 @@ public class NetworkConnectionsView extends JPanel
 
 			if ( cpus.length == 1 )
 			{
-				text = "Speed: " + cpus[0].getSpeed();
+				text = PrimeMain1.texts.getString("conTabObjectSpeedLabel")
+						+ ": " + cpus[0].getSpeed();
 			}
 			else if ( cpus.length > 1 )
 			{
@@ -512,7 +525,8 @@ public class NetworkConnectionsView extends JPanel
 
 				if ( speed != 0 )
 				{
-					text = "Speed: " + speed;
+					text = PrimeMain1.texts.getString("conTabObjectSpeedLabel")
+							+ ": " + speed;
 				}
 			}
 
@@ -531,7 +545,8 @@ public class NetworkConnectionsView extends JPanel
 			text = "";
 			if ( hdds.length == 1 )
 			{
-				text = "Size: " + hdds[0].getSize();
+				text = PrimeMain1.texts.getString("conTabObjectSizeLabel")
+						+ ": " + hdds[0].getSize();
 			}
 			else if ( hdds.length > 1 )
 			{
@@ -544,7 +559,8 @@ public class NetworkConnectionsView extends JPanel
 
 				if ( size != 0 )
 				{
-					text = "Size: " + size;
+					text = PrimeMain1.texts.getString("conTabObjectSizeLabel")
+							+ ": " + size;
 				}
 			}
 
@@ -559,13 +575,15 @@ public class NetworkConnectionsView extends JPanel
 
 
 	/**
-	 * Creates a JPanel and adds the given Icon and Strings. The strings are place vertical.
+	 * Creates a JPanel and adds the given Icon and Strings. The strings are
+	 * place vertical.
 	 * 
 	 * @param texts
 	 *            The strings with the information about the Hardware component.
 	 * @param icon
 	 *            The ImageIcon that will represent the Hardware component.
-	 * @return Returns a JPanel with both the ImageIcon and the hardware information.
+	 * @return Returns a JPanel with both the ImageIcon and the hardware
+	 *         information.
 	 */
 	private static JPanel createJPanel(String[] texts, ImageIcon icon)
 	{

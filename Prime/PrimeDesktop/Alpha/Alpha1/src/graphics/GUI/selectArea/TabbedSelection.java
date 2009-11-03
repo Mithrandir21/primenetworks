@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.ScrollPaneConstants;
 
 
 /**
@@ -43,7 +44,7 @@ public class TabbedSelection extends JTabbedPane
 		ImageIcon objects = ImageLocator.getImageIconObject("Objects");
 		JComponent panel4 = new ObjectSelection();
 		JScrollPane scrollArea = new JScrollPane(panel4);
-		scrollArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollArea.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 
 		// Increases how far the scroll bar scrolls on one step of a mouse wheel
 		scrollArea.getVerticalScrollBar().setUnitIncrement(10);

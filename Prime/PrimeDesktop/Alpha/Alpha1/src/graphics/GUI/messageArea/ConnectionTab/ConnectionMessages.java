@@ -4,6 +4,7 @@
 package graphics.GUI.messageArea.ConnectionTab;
 
 
+import graphics.PrimeMain1;
 import graphics.GUI.messageArea.MessageJTable;
 
 import javax.swing.JScrollPane;
@@ -22,17 +23,22 @@ public class ConnectionMessages extends JScrollPane
 
 
 	/**
-	 * A constructor for the class that creates a JScrollPane that will contains a JTable with possible messages for the
-	 * user about the given connection.
+	 * A constructor for the class that creates a JScrollPane that will contains
+	 * a JTable with possible messages for the user about the given connection.
 	 * 
 	 * @param objects
 	 *            The objects that are to be examined.
 	 * @param data
-	 *            The multidimentional String array with possible previous messages for the user.
+	 *            The multidimentional String array with possible previous
+	 *            messages for the user.
 	 */
 	public ConnectionMessages(Object[] objects, String[][] data)
 	{
-		String[] columnNames = { "Object Name", "Connection Type", "Description", "Message Type" };
+		String[] columnNames = {
+				PrimeMain1.texts.getString("tableCONobjectName"),
+				PrimeMain1.texts.getString("tableCONType"),
+				PrimeMain1.texts.getString("tableCONdescription"),
+				PrimeMain1.texts.getString("tableCONmsgType") };
 
 		table = new MessageJTable(data, columnNames);
 
@@ -49,7 +55,8 @@ public class ConnectionMessages extends JScrollPane
 
 
 	/**
-	 * Sets the width of the column that contains the actual message information.
+	 * Sets the width of the column that contains the actual message
+	 * information.
 	 */
 	private void setColumnWidths()
 	{

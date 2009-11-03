@@ -126,9 +126,11 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this device");
+		JLabel label = new JLabel(PrimeMain1.texts
+				.getString("hwTabRemoveThisComponentLabel"));
 
-		Button remove = new Button("Remove Component");
+		Button remove = new Button(PrimeMain1.texts
+				.getString("hwTabRemoveComponentButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeComp");
 
@@ -164,36 +166,48 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 		JLabel[] labels = new JLabel[10];
 
 
-		labels[0] = new JLabel("Producer");
-		labels[0].setToolTipText("The producer of the cpu.");
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("cpuViewProducerLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("cpuViewProducerTip"));
 
-		labels[1] = new JLabel("Socket");
-		labels[1].setToolTipText("The socket type.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("cpuViewSocketLabel"));
+		labels[1]
+				.setToolTipText(PrimeMain1.texts.getString("cpuViewSocketTip"));
 
-		labels[2] = new JLabel("Speed");
-		labels[2].setToolTipText("The speed of the CPU measured in Mhz.");
+		labels[2] = new JLabel(PrimeMain1.texts.getString("cpuViewSpeedLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts.getString("cpuViewSpeedTip"));
 
-		labels[3] = new JLabel("Level 1 Cache");
-		labels[3].setToolTipText("The size of the level 1 cache.");
+		labels[3] = new JLabel(PrimeMain1.texts
+				.getString("cpuViewLevel1CacheLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts
+				.getString("cpuViewLevel1CacheTip"));
 
-		labels[4] = new JLabel("Level 2 Cache");
-		labels[4].setToolTipText("The size of the level 2 cache.");
+		labels[4] = new JLabel(PrimeMain1.texts
+				.getString("cpuViewLevel2CacheLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts
+				.getString("cpuViewLevel2CacheTip"));
 
-		labels[5] = new JLabel("Nanometers");
-		labels[5]
-				.setToolTipText("The amount of space taken up by a block on the CPU.");
+		labels[5] = new JLabel(PrimeMain1.texts
+				.getString("cpuViewNanometersLabel"));
+		labels[5].setToolTipText(PrimeMain1.texts
+				.getString("cpuViewNanometersTip"));
 
-		labels[6] = new JLabel("FSB");
-		labels[6].setToolTipText("The fsb, Front Side Bus, of the CPU.");
+		labels[6] = new JLabel(PrimeMain1.texts.getString("cpuViewFSBLabel"));
+		labels[6].setToolTipText(PrimeMain1.texts.getString("cpuViewFSBTip"));
 
-		labels[7] = new JLabel("Dual Core");
-		labels[7].setToolTipText("Whether or not the CPU is dual core.");
+		labels[7] = new JLabel(PrimeMain1.texts
+				.getString("cpuViewDualCoreLabel"));
+		labels[7].setToolTipText(PrimeMain1.texts
+				.getString("cpuViewDualCoreTip"));
 
-		labels[8] = new JLabel("Quad Core");
-		labels[8].setToolTipText("Whether or not the CPU is quad core.");
+		labels[8] = new JLabel(PrimeMain1.texts
+				.getString("cpuViewQuadCoreLabel"));
+		labels[8].setToolTipText(PrimeMain1.texts
+				.getString("cpuViewQuadCoreTip"));
 
-		labels[9] = new JLabel("64 Bit");
-		labels[9].setToolTipText("Whether or not the CPU is a 64 Bit CPU.");
+		labels[9] = new JLabel(PrimeMain1.texts.getString("cpuView64BitLabel"));
+		labels[9].setToolTipText(PrimeMain1.texts.getString("cpuView64BitTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -484,41 +498,6 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 	}
 
 
-	/**
-	 * Checks and validates the name and description for this hardware object.
-	 */
-	public boolean nameAndDescriptionCheck()
-	{
-		// Checks the name of the motherboard
-		if ( name.getText().length() < 1 || name.getText().length() > 255 )
-		{
-			JOptionPane
-					.showMessageDialog(
-							this,
-							"The motherboard name must be between 1 and 255 characters.",
-							"Error - Name", JOptionPane.INFORMATION_MESSAGE);
-
-			return false;
-		}
-
-		// Checks the description of the motherboard.
-		if ( desc.getText().length() < 1 )
-		{
-			JOptionPane
-					.showMessageDialog(
-							this,
-							"The motherboard description must be longer then 1 character.",
-							"Error - Description",
-							JOptionPane.INFORMATION_MESSAGE);
-
-			return false;
-		}
-
-		// Possibility for more checks on the CPU values.
-
-		return true;
-	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -535,14 +514,14 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 			String command = box.getActionCommand();
 			if ( command.equals("Socket") )
 			{
-				String msg = "The CPU will no longer be compatiable with the motherboard.\n\nDo you want to keep this change?";
-
 				String[] socketsStrings = { "", "Intel 775", "Intel 939",
 						"AMD AM2", "AMD AM2+" };
 
 				socket = GraphicalFunctions.verifyChange(this, mainObj,
 						CPU.class, CPUobj.getSocket(), socket.getSelectedItem()
-								.toString(), msg, socketsStrings, socket);
+								.toString(), PrimeMain1.texts
+								.getString("cpuViewNotCompatiableMsg"),
+						socketsStrings, socket);
 
 			}
 		}
@@ -589,10 +568,10 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 			{
 				if ( quadCore.isSelected() )
 				{
-					String msg = "This CPU is setup as a Quad Core.\n\nDo you wish to change this to a Dual Core?";
-
-					int n = JOptionPane.showConfirmDialog(this, msg, "Verify",
-							JOptionPane.YES_NO_OPTION);
+					int n = JOptionPane.showConfirmDialog(this,
+							PrimeMain1.texts
+									.getString("cpuViewQuadCoreQuestionMsg"),
+							"Verify", JOptionPane.YES_NO_OPTION);
 
 					// If the answer is "No"
 					if ( n == 1 )
@@ -610,10 +589,10 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 			{
 				if ( dualCore.isSelected() )
 				{
-					String msg = "This CPU is setup as a Dual Core.\n\nDo you wish to change this to a Quad Core?";
-
-					int n = JOptionPane.showConfirmDialog(this, msg, "Verify",
-							JOptionPane.YES_NO_OPTION);
+					int n = JOptionPane.showConfirmDialog(this,
+							PrimeMain1.texts
+									.getString("cpuViewDualCoreQuestionMsg"),
+							"Verify", JOptionPane.YES_NO_OPTION);
 
 					// If the answer is "No"
 					if ( n == 1 )
@@ -631,10 +610,12 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 			{
 				if ( bit64.isSelected() )
 				{
-					String msg = "Changing this setting might cause software problems.\n\nDo you wish to keep this change?";
-
-					int n = JOptionPane.showConfirmDialog(this, msg, "Verify",
-							JOptionPane.YES_NO_OPTION);
+					int n = JOptionPane
+							.showConfirmDialog(
+									this,
+									PrimeMain1.texts
+											.getString("cpuViewCompatiableSoftwareQuestionMsg"),
+									"Verify", JOptionPane.YES_NO_OPTION);
 
 					if ( n == 1 )
 					{

@@ -25,7 +25,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -117,9 +116,11 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this device");
+		JLabel label = new JLabel(PrimeMain1.texts
+				.getString("hwTabRemoveThisComponentLabel"));
 
-		Button remove = new Button("Remove Component");
+		Button remove = new Button(PrimeMain1.texts
+				.getString("hwTabRemoveComponentButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeComp");
 
@@ -137,7 +138,6 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 		this.add(buttons, c);
 	}
 
-
 	/**
 	 * This method creates and returns a JPanel that contains all the different
 	 * settings of the given Hardware object. It uses the
@@ -154,22 +154,25 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[5];
 
-		labels[0] = new JLabel("Producer");
-		labels[0].setToolTipText("The producer of the discdrive.");
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("discViewProducerLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("discViewProducerTip"));
 
-		labels[1] = new JLabel("Type");
-		labels[1].setToolTipText("The discdrive type.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("discViewTypeLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("discViewTypeTip"));
 
-		labels[2] = new JLabel("Port");
-		labels[2].setToolTipText("The discdrive port to the motherboard.");
+		labels[2] = new JLabel(PrimeMain1.texts.getString("discViewPortLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts.getString("discViewPortTip"));
 
-		labels[3] = new JLabel("Subtype");
-		labels[3]
-				.setToolTipText("The discdrive subtype. (DualLayer and Doublesided.)");
+		labels[3] = new JLabel(PrimeMain1.texts
+				.getString("discViewSubtypeLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts
+				.getString("discViewSubtypeTip"));
 
-		labels[4] = new JLabel("Speed");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("discViewSpeedLabel"));
 		labels[4]
-				.setToolTipText("The speed of the discdrive.(2x, 4x, 6x and so on).");
+				.setToolTipText(PrimeMain1.texts.getString("discViewSpeedTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -316,40 +319,6 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 	}
 
 
-	/**
-	 * Checks and validates the name and description for this hardware object.
-	 */
-	public boolean nameAndDescriptionCheck()
-	{
-		// Checks the name of the motherboard
-		if ( name.getText().length() < 1 || name.getText().length() > 255 )
-		{
-			JOptionPane.showMessageDialog(this,
-					"The component name must be between 1 and 255 characters.",
-					"Error - Name", JOptionPane.INFORMATION_MESSAGE);
-
-			return false;
-		}
-
-		// Checks the description of the motherboard.
-		if ( desc.getText().length() < 1 )
-		{
-			JOptionPane
-					.showMessageDialog(
-							this,
-							"The component description must be longer then 1 character.",
-							"Error - Description",
-							JOptionPane.INFORMATION_MESSAGE);
-
-			return false;
-		}
-
-		// Possibility for more checks on the CPU values.
-
-		return true;
-	}
-
-
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -362,14 +331,13 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 			if ( command.equals("Port") )
 			{
 
-				String msg = "The Discdrive will no longer be compatiable with the motherboard.\n\nDo you want to keep this change?";
-
 				String[] portString = { "", "IDE", "SATA", "USB" };
 
 				port = GraphicalFunctions.verifyChange(this, mainObj,
 						Discdrive.class, DiscObj.getPort(), port
-								.getSelectedItem().toString(), msg, portString,
-						port);
+								.getSelectedItem().toString(), PrimeMain1.texts
+								.getString("discViewPortQuestionMsg"),
+						portString, port);
 			}
 		}
 		else if ( e.getSource() instanceof Button )

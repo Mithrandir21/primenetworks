@@ -604,9 +604,9 @@ public class GraphicalFunctions
 
 
 	/**
-	 * Changes the title of the {@link TitledBorder} surrounding the
-	 * {@link WidgetRoom} and the name of the {@link Room} inside the
-	 * {@link WidgetRoom} object.
+	 * FIXME - ChangeWidgetRoomName Changes the title of the
+	 * {@link TitledBorder} surrounding the {@link WidgetRoom} and the name of
+	 * the {@link Room} inside the {@link WidgetRoom} object.
 	 */
 	public static void changeWidgetRoomName(Widget widget)
 	{
@@ -712,6 +712,14 @@ public class GraphicalFunctions
 		else if ( obj.getClass().equals(NetworkPrinter.class) )
 		{
 			return NetworkPrinter.class;
+		}
+		else if ( obj.getClass().equals(MultifunctionPrinter.class) )
+		{
+			return MultifunctionPrinter.class;
+		}
+		else if ( obj.getClass().equals(NetworkMultifunctionPrinter.class) )
+		{
+			return NetworkMultifunctionPrinter.class;
 		}
 
 		return null;

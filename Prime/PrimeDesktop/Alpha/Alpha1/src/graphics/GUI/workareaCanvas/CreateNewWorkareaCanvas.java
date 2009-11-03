@@ -226,6 +226,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 		// Sets up the "Enter" button for the namefield
 		nameField.addKeyListener(new KeyAdapter()
 		{
+			@Override
 			public void keyPressed(KeyEvent e)
 			{
 				int key = e.getKeyCode();

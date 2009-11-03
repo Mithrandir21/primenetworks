@@ -5,7 +5,6 @@ package graphics.GUI.standardObjectEdit.StandardViews;
 
 
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
-import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditorTabbed;
 import graphics.GUI.standardObjectEdit.ObjectViewTabbed;
 
 import java.awt.Button;

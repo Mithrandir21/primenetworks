@@ -112,9 +112,11 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this device");
+		JLabel label = new JLabel(PrimeMain1.texts
+				.getString("hwTabRemoveThisComponentLabel"));
 
-		Button remove = new Button("Remove Component");
+		Button remove = new Button(PrimeMain1.texts
+				.getString("hwTabRemoveComponentButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeComp");
 
@@ -150,21 +152,24 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 		JLabel[] labels = new JLabel[5];
 
 
-		labels[0] = new JLabel("Producer");
-		labels[0].setToolTipText("The producer of the ram.");
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("ramViewProducerLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("ramViewProducerTip"));
 
-		labels[1] = new JLabel("Type");
-		labels[1].setToolTipText("The ram type.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("ramViewTypeLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("ramViewTypeTip"));
 
-		labels[2] = new JLabel("Subtype");
-		labels[2].setToolTipText("The ram subtype. (DIMM and so on.)");
+		labels[2] = new JLabel(PrimeMain1.texts
+				.getString("ramViewSubtypeLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts
+				.getString("ramViewSubtypeTip"));
 
-		labels[3] = new JLabel("Size");
-		labels[3].setToolTipText("The size of the RAM measured in MB.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("ramViewSizeLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("ramViewSizeTip"));
 
-		labels[4] = new JLabel("Speed");
-		labels[4].setToolTipText("The speed of the RAM measured in Mhz.");
-
+		labels[4] = new JLabel(PrimeMain1.texts.getString("ramViewSpeedLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts.getString("ramViewSpeedTip"));
 
 		Dimension tfSize = new Dimension(90, 20);
 
@@ -381,13 +386,13 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 
 			if ( command.equals("Type") )
 			{
-				String msg = "The RAM will no longer be compatiable with the motherboard.\n\nDo you want to keep this change?";
-
 				String[] typeString = { "", "SDRAM", "DDR", "DDR2", "DDR3" };
 
 				type = GraphicalFunctions.verifyChange(this, mainObj,
 						Ram.class, RAMobj.getPort(), type.getSelectedItem()
-								.toString(), msg, typeString, type);
+								.toString(), PrimeMain1.texts
+								.getString("ramViewNotCompatiableQuestionMsg"),
+						typeString, type);
 			}
 
 		}

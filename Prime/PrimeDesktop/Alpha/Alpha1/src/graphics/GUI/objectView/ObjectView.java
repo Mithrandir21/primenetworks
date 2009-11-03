@@ -45,7 +45,7 @@ public class ObjectView extends JFrame implements ActionListener
 	 */
 	public ObjectView(WidgetObject obj)
 	{
-		super("Object View");
+		super(PrimeMain1.texts.getString("objectViewLabel"));
 
 		widgetObj = obj;
 
@@ -81,15 +81,15 @@ public class ObjectView extends JFrame implements ActionListener
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		Button save = new Button("Save");
+		Button save = new Button(PrimeMain1.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button apply = new Button("Apply");
+		Button apply = new Button(PrimeMain1.texts.getString("apply"));
 		apply.addActionListener(this);
 		apply.setActionCommand("apply");
 
-		Button cancel = new Button("cancel");
+		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -126,7 +126,8 @@ public class ObjectView extends JFrame implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -183,8 +184,8 @@ public class ObjectView extends JFrame implements ActionListener
 
 
 	/**
-	 * Saves the information in the general view. Checks the fields and gives the user feedback if
-	 * the name field is
+	 * Saves the information in the general view. Checks the fields and gives
+	 * the user feedback if the name field is
 	 * 
 	 * @return
 	 */
@@ -222,9 +223,9 @@ public class ObjectView extends JFrame implements ActionListener
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null,
-					"You must specify a name for this Object.", "Error",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, PrimeMain1.texts
+					.getString("saveSpecifyNameErrorMsg"), PrimeMain1.texts
+					.getString("error"), JOptionPane.ERROR_MESSAGE);
 
 			// Focuses on the name JTextField
 			view.genObjView.nametext.requestFocusInWindow();
@@ -251,8 +252,9 @@ public class ObjectView extends JFrame implements ActionListener
 		{
 			if ( !(info.setIp(view.netObjView.widgetIPfield.getText())) )
 			{
-				JOptionPane.showMessageDialog(null,
-						"The IP is not a valid IP.", "Error",
+				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+						.getString("saveNetworkNotValidIPerrorMsg"),
+						PrimeMain1.texts.getString("error"),
 						JOptionPane.ERROR_MESSAGE);
 
 				errorFound = true;
@@ -267,8 +269,9 @@ public class ObjectView extends JFrame implements ActionListener
 				// If not other error has been given
 				if ( errorFound != true )
 				{
-					JOptionPane.showMessageDialog(null,
-							"The netmask is not a valid netmask.", "Error",
+					JOptionPane.showMessageDialog(null, PrimeMain1.texts
+							.getString("saveNetworkNotValidNetmaskErrorMsg"),
+							PrimeMain1.texts.getString("error"),
 							JOptionPane.ERROR_MESSAGE);
 
 					errorFound = true;
@@ -284,9 +287,10 @@ public class ObjectView extends JFrame implements ActionListener
 				// If not other error has been given
 				if ( errorFound != true )
 				{
-					JOptionPane.showMessageDialog(null,
-							"The MAC address is not a valid MAC address.",
-							"Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, PrimeMain1.texts
+							.getString("saveNetworkNotValidMacErrorMsg"),
+							PrimeMain1.texts.getString("error"),
+							JOptionPane.ERROR_MESSAGE);
 
 					errorFound = true;
 				}
@@ -303,9 +307,13 @@ public class ObjectView extends JFrame implements ActionListener
 				// If not other error has been given
 				if ( errorFound != true )
 				{
-					JOptionPane.showMessageDialog(null,
-							"The IP of the Default Gateway is not a valid IP.",
-							"Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane
+							.showMessageDialog(
+									null,
+									PrimeMain1.texts
+											.getString("saveNetworkNotValidDefaultGatewayErrorMsg"),
+									PrimeMain1.texts.getString("error"),
+									JOptionPane.ERROR_MESSAGE);
 
 					errorFound = true;
 				}
@@ -326,9 +334,13 @@ public class ObjectView extends JFrame implements ActionListener
 				// If not other error has been given
 				if ( errorFound != true )
 				{
-					JOptionPane.showMessageDialog(null,
-							"The Network Name is not a valid name.", "Error",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane
+							.showMessageDialog(
+									null,
+									PrimeMain1.texts
+											.getString("saveNetworkNotValidNetworkNameErrorMsg"),
+									PrimeMain1.texts.getString("error"),
+									JOptionPane.ERROR_MESSAGE);
 
 					errorFound = true;
 				}
@@ -346,8 +358,8 @@ public class ObjectView extends JFrame implements ActionListener
 
 
 	/**
-	 * This method calls the UpdateTabInfo method in the ObjectViewTabbed class to update the
-	 * information about the current object.
+	 * This method calls the UpdateTabInfo method in the ObjectViewTabbed class
+	 * to update the information about the current object.
 	 */
 	public void updateViewInfo()
 	{
