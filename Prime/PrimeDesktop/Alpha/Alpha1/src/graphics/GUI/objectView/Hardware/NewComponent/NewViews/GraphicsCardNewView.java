@@ -79,7 +79,7 @@ public class GraphicsCardNewView extends JFrame implements
 	 */
 	public GraphicsCardNewView(Object obj, GraphicsCard GPU)
 	{
-		super("New GPU");
+		super(PrimeMain1.texts.getString("newHWnewGPUlabel"));
 
 
 		// Get the default toolkit
@@ -173,26 +173,36 @@ public class GraphicsCardNewView extends JFrame implements
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[7];
 
-		labels[0] = new JLabel("Producer");
-		labels[0].setToolTipText("The producer of the GPU.");
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("gpuViewProducerLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("gpuViewProducerTip"));
 
-		labels[1] = new JLabel("Interface");
-		labels[1].setToolTipText("The GPU interface. (PCI, AGP, PCI-E)");
+		labels[1] = new JLabel(PrimeMain1.texts
+				.getString("gpuViewInterfaceLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts
+				.getString("gpuViewInterfaceTip"));
 
-		labels[2] = new JLabel("Output Port");
-		labels[2].setToolTipText("The GPU output port. ");
+		labels[2] = new JLabel(PrimeMain1.texts
+				.getString("gpuViewOutputPortLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts
+				.getString("gpuViewOutputPortTip"));
 
-		labels[3] = new JLabel("Size");
-		labels[3].setToolTipText("The size of the RAM on the GPU.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("gpuViewSizeLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("gpuViewSizeTip"));
 
-		labels[4] = new JLabel("Speed");
-		labels[4].setToolTipText("The speed of the GPU in MHz.");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("gpuViewSpeedLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts.getString("gpuViewSpeedTip"));
 
-		labels[5] = new JLabel("Max Monitors");
-		labels[5].setToolTipText("The number of output ports.");
+		labels[5] = new JLabel(PrimeMain1.texts
+				.getString("gpuViewMaxMonitorsLabel"));
+		labels[5].setToolTipText(PrimeMain1.texts
+				.getString("gpuViewMaxMonitorsTip"));
 
-		labels[6] = new JLabel("Is Integrated");
-		labels[6].setToolTipText("If the GPU is integrated on the mainboard.");
+		labels[6] = new JLabel(PrimeMain1.texts
+				.getString("gpuViewIsIntegratedLabel"));
+		labels[6].setToolTipText(PrimeMain1.texts
+				.getString("gpuViewIsIntegratedTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -343,11 +353,11 @@ public class GraphicsCardNewView extends JFrame implements
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button("Save");
+		Button save = new Button(PrimeMain1.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button("Cancel");
+		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 

@@ -102,7 +102,7 @@ public class MotherboardNewView extends JFrame implements
 	 */
 	public MotherboardNewView(Object obj, Motherboard mb)
 	{
-		super("New Motherboard");
+		super(PrimeMain1.texts.getString("newHWnewMBlabel"));
 
 
 		// Get the default toolkit
@@ -197,73 +197,88 @@ public class MotherboardNewView extends JFrame implements
 		JLabel[] labels = new JLabel[18];
 
 
-		labels[0] = new JLabel("Producer");
-		labels[0].setToolTipText("The producer of the motherboard.");
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("mbViewProducerLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("mbViewProducerTip"));
 
-		labels[1] = new JLabel("Form");
-		labels[1]
-				.setToolTipText("The form of the motherboard, ie. the dimensions.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("mbViewFormLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("mbViewFormTip"));
 
-		labels[2] = new JLabel("Socket");
-		labels[2]
-				.setToolTipText("The socket on the motherboard which holds the CPU.");
+		labels[2] = new JLabel(PrimeMain1.texts.getString("mbViewSocketLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts.getString("mbViewSocketTip"));
 
-		labels[3] = new JLabel("Bus Speed");
-		labels[3]
-				.setToolTipText("The bus speed, the speed of information transfer, on the motherboard.");
+		labels[3] = new JLabel(PrimeMain1.texts
+				.getString("mbViewBusSpeedLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts
+				.getString("mbViewBusSpeedTip"));
 
-		labels[4] = new JLabel("Chipset");
-		labels[4].setToolTipText("The chipset on the motherboard.");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("mbViewChipsetLabel"));
+		labels[4]
+				.setToolTipText(PrimeMain1.texts.getString("mbViewChipsetTip"));
 
-		labels[5] = new JLabel("GPU Port");
-		labels[5].setToolTipText("The graphics card port on the motherboard.");
+		labels[5] = new JLabel(PrimeMain1.texts.getString("mbViewGPUportLabel"));
+		labels[5]
+				.setToolTipText(PrimeMain1.texts.getString("mbViewGPUportTip"));
 
-		labels[6] = new JLabel("Connection Port");
-		labels[6]
-				.setToolTipText("The ports that are for connections to harddiscs and cdrom.");
+		labels[6] = new JLabel(PrimeMain1.texts
+				.getString("mbViewConnectionPortLabel"));
+		labels[6].setToolTipText(PrimeMain1.texts
+				.getString("mbViewConnectionPortTip"));
 
-		labels[7] = new JLabel("Ram Type");
-		labels[7].setToolTipText("The ram port on the motherboard.");
+		labels[7] = new JLabel(PrimeMain1.texts.getString("mbViewRamTypeLabel"));
+		labels[7]
+				.setToolTipText(PrimeMain1.texts.getString("mbViewRamTypeTip"));
 
-		labels[8] = new JLabel("Audiocard Integrated");
-		labels[8]
-				.setToolTipText("Whether or not a audio card i integrated in the motherboard.");
+		labels[8] = new JLabel(PrimeMain1.texts
+				.getString("mbViewAudioIntegratedLabel"));
+		labels[8].setToolTipText(PrimeMain1.texts
+				.getString("mbViewAudioIntegratedTip"));
 
-		labels[9] = new JLabel("GPU integrated");
-		labels[9]
-				.setToolTipText("Whether or not a graphics card i integrated in the motherboard.");
+		labels[9] = new JLabel(PrimeMain1.texts
+				.getString("mbViewGPUIntegratedLabel"));
+		labels[9].setToolTipText(PrimeMain1.texts
+				.getString("mbViewGPUIntegratedTip"));
 
-		labels[10] = new JLabel("NIC integrated");
-		labels[10]
-				.setToolTipText("Whether or not a LAN card i integrated in the motherboard.");
+		labels[10] = new JLabel(PrimeMain1.texts
+				.getString("mbViewNICIntegratedLabel"));
+		labels[10].setToolTipText(PrimeMain1.texts
+				.getString("mbViewNICIntegratedTip"));
 
-		labels[11] = new JLabel("GPU installed");
-		labels[11]
-				.setToolTipText("Whether or not a graphical card is installed on the motherboard. Regardless of the status of the integrated GPU.");
+		labels[11] = new JLabel(PrimeMain1.texts
+				.getString("mbViewGPUinstalledLabel"));
+		labels[11].setToolTipText(PrimeMain1.texts
+				.getString("mbViewGPUinstalledTip"));
 
-		labels[12] = new JLabel("CPU socket");
-		labels[12]
-				.setToolTipText("The number of CPU sockets on the motherboard.");
+		labels[12] = new JLabel(PrimeMain1.texts
+				.getString("mbViewCPUsocketLabel"));
+		labels[12].setToolTipText(PrimeMain1.texts
+				.getString("mbViewCPUsocketTip"));
 
-		labels[13] = new JLabel("PCI slots");
-		labels[13]
-				.setToolTipText("The number of PCI slots on the motherboard.");
+		labels[13] = new JLabel(PrimeMain1.texts
+				.getString("mbViewPCIslotsLabel"));
+		labels[13].setToolTipText(PrimeMain1.texts
+				.getString("mbViewPCIslotsTip"));
 
-		labels[14] = new JLabel("RAM slots");
-		labels[14]
-				.setToolTipText("The number of RAM slots on the motherboard.");
+		labels[14] = new JLabel(PrimeMain1.texts
+				.getString("mbViewRAMslotsLabel"));
+		labels[14].setToolTipText(PrimeMain1.texts
+				.getString("mbViewRAMslotsTip"));
 
-		labels[15] = new JLabel("USB ports");
-		labels[15]
-				.setToolTipText("The number of USB ports on the motherboard.");
+		labels[15] = new JLabel(PrimeMain1.texts
+				.getString("mbViewUSBportsLabel"));
+		labels[15].setToolTipText(PrimeMain1.texts
+				.getString("mbViewUSBportsTip"));
 
-		labels[16] = new JLabel("DUC slots");
-		labels[16]
-				.setToolTipText("The number of connection ports (SATA or IDE) on the motherboard.");
+		labels[16] = new JLabel(PrimeMain1.texts
+				.getString("mbViewDUCportLabel"));
+		labels[16].setToolTipText(PrimeMain1.texts
+				.getString("mbViewDUCportTip"));
 
-		labels[17] = new JLabel("LAN ports");
-		labels[17]
-				.setToolTipText("The number of LAN ports on the motherboard.");
+		labels[17] = new JLabel(PrimeMain1.texts
+				.getString("mbViewLANportsLabel"));
+		labels[17].setToolTipText(PrimeMain1.texts
+				.getString("mbViewLANportsTip"));
 
 
 
@@ -759,11 +774,11 @@ public class MotherboardNewView extends JFrame implements
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		JButton save = new JButton("Save");
+		JButton save = new JButton(PrimeMain1.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		JButton cancel = new JButton("Cancel");
+		JButton cancel = new JButton(PrimeMain1.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -787,11 +802,10 @@ public class MotherboardNewView extends JFrame implements
 		{
 			if ( e.getActionCommand().equals("save") )
 			{
-				int answer = JOptionPane
-						.showConfirmDialog(
-								this,
-								"By saving a new motherboard ALL the machines other components will be removed. Do you wish to do this?",
-								"Verify", JOptionPane.YES_NO_OPTION);
+				int answer = JOptionPane.showConfirmDialog(this,
+						PrimeMain1.texts.getString("newHWnewMBquestionMsg"),
+						PrimeMain1.texts.getString("verify"),
+						JOptionPane.YES_NO_OPTION);
 
 
 				// If the answer is not No.
@@ -806,7 +820,8 @@ public class MotherboardNewView extends JFrame implements
 					// WorkareaCanvasActions.removeAllConnectionsToFromObject(
 					// PrimeMain1.currentCanvas, mainObj);
 					ActionDeleteAllConnections action = new ActionDeleteAllConnections(
-							"Delete all connections");
+							PrimeMain1.texts
+									.getString("actionDeleteAllConnectionName"));
 					action.performAction(false);
 
 					// Since the motherboard is where most of the connections

@@ -74,7 +74,7 @@ public class RAMNewView extends JFrame implements HardwareViewInterface,
 	 */
 	public RAMNewView(Object obj, Ram RAM)
 	{
-		super("New RAM");
+		super(PrimeMain1.texts.getString("newHWnewRAMlabel"));
 
 
 		// Get the default toolkit
@@ -166,20 +166,24 @@ public class RAMNewView extends JFrame implements HardwareViewInterface,
 		JLabel[] labels = new JLabel[5];
 
 
-		labels[0] = new JLabel("Producer");
-		labels[0].setToolTipText("The producer of the ram.");
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("ramViewProducerLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("ramViewProducerTip"));
 
-		labels[1] = new JLabel("Type");
-		labels[1].setToolTipText("The ram type.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("ramViewTypeLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("ramViewTypeTip"));
 
-		labels[2] = new JLabel("Subtype");
-		labels[2].setToolTipText("The ram subtype. (DIMM and so on.)");
+		labels[2] = new JLabel(PrimeMain1.texts
+				.getString("ramViewSubtypeLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts
+				.getString("ramViewSubtypeTip"));
 
-		labels[3] = new JLabel("Size");
-		labels[3].setToolTipText("The size of the RAM measured in MB.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("ramViewSizeLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("ramViewSizeTip"));
 
-		labels[4] = new JLabel("Speed");
-		labels[4].setToolTipText("The speed of the RAM measured in Mhz.");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("ramViewSpeedLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts.getString("ramViewSpeedTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -300,11 +304,11 @@ public class RAMNewView extends JFrame implements HardwareViewInterface,
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button("Save");
+		Button save = new Button(PrimeMain1.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button("Cancel");
+		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 

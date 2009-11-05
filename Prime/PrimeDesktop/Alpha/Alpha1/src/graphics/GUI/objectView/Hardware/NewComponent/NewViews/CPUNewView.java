@@ -90,7 +90,7 @@ public class CPUNewView extends JFrame implements HardwareViewInterface,
 	 */
 	public CPUNewView(Object obj, CPU cpu)
 	{
-		super("New CPU");
+		super(PrimeMain1.texts.getString("newHWnewCPULabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -180,36 +180,48 @@ public class CPUNewView extends JFrame implements HardwareViewInterface,
 		JLabel[] labels = new JLabel[10];
 
 
-		labels[0] = new JLabel("Producer");
-		labels[0].setToolTipText("The producer of the cpu.");
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("cpuViewProducerLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("cpuViewProducerTip"));
 
-		labels[1] = new JLabel("Socket");
-		labels[1].setToolTipText("The socket type.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("cpuViewSocketLabel"));
+		labels[1]
+				.setToolTipText(PrimeMain1.texts.getString("cpuViewSocketTip"));
 
-		labels[2] = new JLabel("Speed");
-		labels[2].setToolTipText("The speed of the CPU measured in Mhz.");
+		labels[2] = new JLabel(PrimeMain1.texts.getString("cpuViewSpeedLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts.getString("cpuViewSpeedTip"));
 
-		labels[3] = new JLabel("Level 1 Cache");
-		labels[3].setToolTipText("The size of the level 1 cache.");
+		labels[3] = new JLabel(PrimeMain1.texts
+				.getString("cpuViewLevel1CacheLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts
+				.getString("cpuViewLevel1CacheTip"));
 
-		labels[4] = new JLabel("Level 2 Cache");
-		labels[4].setToolTipText("The size of the level 2 cache.");
+		labels[4] = new JLabel(PrimeMain1.texts
+				.getString("cpuViewLevel2CacheLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts
+				.getString("cpuViewLevel2CacheTip"));
 
-		labels[5] = new JLabel("Nanometers");
-		labels[5]
-				.setToolTipText("The amount of space taken up by a block on the CPU.");
+		labels[5] = new JLabel(PrimeMain1.texts
+				.getString("cpuViewNanometersLabel"));
+		labels[5].setToolTipText(PrimeMain1.texts
+				.getString("cpuViewNanometersTip"));
 
-		labels[6] = new JLabel("FSB");
-		labels[6].setToolTipText("The fsb, Front Side Bus, of the CPU.");
+		labels[6] = new JLabel(PrimeMain1.texts.getString("cpuViewFSBLabel"));
+		labels[6].setToolTipText(PrimeMain1.texts.getString("cpuViewFSBTip"));
 
-		labels[7] = new JLabel("Dual Core");
-		labels[7].setToolTipText("Whether or not the CPU is dual core.");
+		labels[7] = new JLabel(PrimeMain1.texts
+				.getString("cpuViewDualCoreLabel"));
+		labels[7].setToolTipText(PrimeMain1.texts
+				.getString("cpuViewDualCoreTip"));
 
-		labels[8] = new JLabel("Quad Core");
-		labels[8].setToolTipText("Whether or not the CPU is quad core.");
+		labels[8] = new JLabel(PrimeMain1.texts
+				.getString("cpuViewQuadCoreLabel"));
+		labels[8].setToolTipText(PrimeMain1.texts
+				.getString("cpuViewQuadCoreTip"));
 
-		labels[9] = new JLabel("64 Bit");
-		labels[9].setToolTipText("Whether or not the CPU is a 64 Bit CPU.");
+		labels[9] = new JLabel(PrimeMain1.texts.getString("cpuView64BitLabel"));
+		labels[9].setToolTipText(PrimeMain1.texts.getString("cpuView64BitTip"));
 
 		Dimension tfSize = new Dimension(90, 20);
 
@@ -420,11 +432,11 @@ public class CPUNewView extends JFrame implements HardwareViewInterface,
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button("Save");
+		Button save = new Button(PrimeMain1.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button("Cancel");
+		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 

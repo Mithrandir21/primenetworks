@@ -74,7 +74,7 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 	 */
 	public DiscDriveNewView(Object obj, Discdrive discdrive)
 	{
-		super("New Discdrive");
+		super(PrimeMain1.texts.getString("newHWnewDVDRWlabel"));
 
 
 		// Get the default toolkit
@@ -171,22 +171,25 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[5];
 
-		labels[0] = new JLabel("Producer");
-		labels[0].setToolTipText("The producer of the discdrive.");
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("discViewProducerLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("discViewProducerTip"));
 
-		labels[1] = new JLabel("Type");
-		labels[1].setToolTipText("The discdrive type.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("discViewTypeLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("discViewTypeTip"));
 
-		labels[2] = new JLabel("Port");
-		labels[2].setToolTipText("The discdrive port to the motherboard.");
+		labels[2] = new JLabel(PrimeMain1.texts.getString("discViewPortLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts.getString("discViewPortTip"));
 
-		labels[3] = new JLabel("Subtype");
-		labels[3]
-				.setToolTipText("The discdrive subtype. (DualLayer and Doublesided.)");
+		labels[3] = new JLabel(PrimeMain1.texts
+				.getString("discViewSubtypeLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts
+				.getString("discViewSubtypeTip"));
 
-		labels[4] = new JLabel("Speed");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("discViewSpeedLabel"));
 		labels[4]
-				.setToolTipText("The speed of the discdrive.(2x, 4x, 6x and so on).");
+				.setToolTipText(PrimeMain1.texts.getString("discViewSpeedTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -307,11 +310,11 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button("Save");
+		Button save = new Button(PrimeMain1.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button("Cancel");
+		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 

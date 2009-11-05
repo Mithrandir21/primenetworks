@@ -76,7 +76,7 @@ public class HDDNewView extends JFrame implements HardwareViewInterface,
 	 */
 	public HDDNewView(Object obj, HDD hdd)
 	{
-		super("New HDD");
+		super(PrimeMain1.texts.getString("newHWnewHDDlabel"));
 
 
 		// Get the default toolkit
@@ -172,25 +172,27 @@ public class HDDNewView extends JFrame implements HardwareViewInterface,
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[6];
 
-		labels[0] = new JLabel("Producer");
-		labels[0].setToolTipText("The producer of the hdd.");
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("hddViewProducerLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("hddViewProducerTip"));
 
-		labels[1] = new JLabel("Type");
-		labels[1].setToolTipText("The hdd type.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("hddViewTypeLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("hddViewTypeTip"));
 
-		labels[2] = new JLabel("Subtype");
-		labels[2]
-				.setToolTipText("The hdd subtype. (ATA-100, SATA-150 and so on.)");
+		labels[2] = new JLabel(PrimeMain1.texts
+				.getString("hddViewSubtypeLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts
+				.getString("hddViewSubtypeTip"));
 
-		labels[3] = new JLabel("Size");
-		labels[3].setToolTipText("The size of the HDD measured in GB.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("hddViewSizeLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("hddViewSizeTip"));
 
-		labels[4] = new JLabel("Speed");
-		labels[4]
-				.setToolTipText("The transfer speed of the HDD measured in MB.");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("hddViewSpeedLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts.getString("hddViewSpeedTip"));
 
-		labels[5] = new JLabel("RPM");
-		labels[5].setToolTipText("The number of disk rotations per minute.");
+		labels[5] = new JLabel(PrimeMain1.texts.getString("hddViewRPMLabel"));
+		labels[5].setToolTipText(PrimeMain1.texts.getString("hddViewRPMTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -347,11 +349,11 @@ public class HDDNewView extends JFrame implements HardwareViewInterface,
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button("Save");
+		Button save = new Button(PrimeMain1.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button("Cancel");
+		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 

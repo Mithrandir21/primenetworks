@@ -4,6 +4,8 @@
 package graphics.GUI.objectView.Hardware.NewComponent.NewOverview;
 
 
+import graphics.PrimeMain1;
+
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -32,7 +34,7 @@ public class NewComponentChoice extends JFrame
 	 */
 	public NewComponentChoice(Object obj)
 	{
-		super("New Component");
+		super(PrimeMain1.texts.getString("hwTabNewComponentButtonLabel"));
 
 
 		// Get the default toolkit
@@ -75,7 +77,8 @@ public class NewComponentChoice extends JFrame
 
 		c.add(panel, cons);
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
+				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
