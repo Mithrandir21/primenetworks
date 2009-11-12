@@ -18,6 +18,7 @@ import javax.swing.KeyStroke;
 import actions.ActionCopy;
 import actions.ActionCut;
 import actions.ActionPaste;
+import actions.systemActions.ActionExitSystem;
 import actions.systemActions.ActionNew;
 import actions.systemActions.ActionOpenfile;
 import actions.systemActions.ActionSave;
@@ -107,7 +108,8 @@ public class GenericPrimeMenuBar extends JMenuBar
 		// Adds a separator to the menu
 		file.addSeparator();
 
-		JMenuItem exit = new JMenuItem(PrimeMain1.texts.getString("exitLabel"));
+		JMenuItem exit = new JMenuItem(new ActionExitSystem(PrimeMain1.texts
+				.getString("exitLabel")));
 		file.add(exit);
 
 

@@ -188,7 +188,8 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 
 				// Creates a new connection between the two widget objects
 				Connection con = ConnectionManagment.makeConnection(canvas
-						.getConnections(), "Connection"
+						.getConnections(), PrimeMain1.texts
+						.getString("connection")
 						+ canvas.getNumberOfWidgetsOnTheScene(),
 						"Connection between "
 								+ sourceWidget.getObject().getObjectName()
@@ -230,20 +231,18 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 			// objects.
 			catch ( ConnectionDoesExist e )
 			{
-				JOptionPane
-						.showMessageDialog(
-								null,
-								"There already exists a connection between these two objects.",
-								"alert", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+						.getString("connectionAlreadyExistsMsg"),
+						PrimeMain1.texts.getString("alert"),
+						JOptionPane.ERROR_MESSAGE);
 			}
 			// If a connection between the two given objects is impossible.
 			catch ( ConnectionsIsNotPossible e )
 			{
-				JOptionPane
-						.showMessageDialog(
-								null,
-								"A connection between these two objects is not possible.",
-								"alert", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+						.getString("connectionNotPossibleMsg"),
+						PrimeMain1.texts.getString("alert"),
+						JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

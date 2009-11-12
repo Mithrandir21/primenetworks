@@ -35,7 +35,8 @@ public class ActionUndo extends AbstractSystemAction
 	public ActionUndo(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This is a Undo action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionUndoText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_Z));
 	}
 
@@ -50,7 +51,8 @@ public class ActionUndo extends AbstractSystemAction
 	public ActionUndo(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This is a Undo action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionUndoText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_Z));
 	}
 

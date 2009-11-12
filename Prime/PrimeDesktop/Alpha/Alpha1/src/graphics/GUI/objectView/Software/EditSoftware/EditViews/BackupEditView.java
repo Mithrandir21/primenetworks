@@ -3,6 +3,7 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -130,9 +131,9 @@ public class BackupEditView extends JPanel implements SoftwareView, ActionListen
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this software");
+		JLabel label = new JLabel(PrimeMain1.texts.getString("swTabRemoveSoftwaretText"));
 
-		Button remove = new Button("Remove Software");
+		Button remove = new Button(PrimeMain1.texts.getString("swTabRemoveSoftwareButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeSoft");
 
@@ -166,20 +167,20 @@ public class BackupEditView extends JPanel implements SoftwareView, ActionListen
 		JLabel[] labels = new JLabel[5];
 
 
-		labels[0] = new JLabel("Supported OS");
-		labels[0].setToolTipText("The supported Operating Systems by the software.");
+		labels[0] = new JLabel(PrimeMain1.texts.getString("backupViewSupOSLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts.getString("backupViewSupOSTip"));
 
-		labels[1] = new JLabel("Backup Type");
-		labels[1].setToolTipText("The type of backup.(\"Complete\" or just \"Changes\")");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("backupViewTypeLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("backupViewTypeTip"));
 
-		labels[2] = new JLabel("Supports Compression");
-		labels[2].setToolTipText("Whether or not the software support compression.");
+		labels[2] = new JLabel(PrimeMain1.texts.getString("backupViewSupCompressionLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts.getString("backupViewSupCompressionTip"));
 
-		labels[3] = new JLabel("Supports Encryption");
-		labels[3].setToolTipText("Whether or not the software support encryption.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("backupViewSupEncryptionLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("backupViewSupEncryptionTip"));
 
-		labels[4] = new JLabel("Duplicates");
-		labels[4].setToolTipText("How many duplicates of the backup the software keeps track of.");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("backupViewDuplicatesLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts.getString("backupViewDuplicatesTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);

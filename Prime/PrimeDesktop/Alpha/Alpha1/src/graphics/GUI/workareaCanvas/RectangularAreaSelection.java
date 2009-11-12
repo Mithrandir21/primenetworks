@@ -94,7 +94,8 @@ public class RectangularAreaSelection extends LockedAdapter
 		{
 			move(widget, event.getPoint());
 
-			ActionCreateRoom action = new ActionCreateRoom("Create a Room",
+			ActionCreateRoom action = new ActionCreateRoom(PrimeMain1.texts
+					.getString("actionCreateRoomDescriptionText"),
 					selectionWidget);
 			action.performAction(true);
 

@@ -486,7 +486,7 @@ public class CreateObjects
 		String objectName = PrimeMain1.texts.getString("mailServer");
 		String objectDesc = desc;
 
-		String ObjectSWname = PrimeMain1.texts.getString("mail");
+		String ObjectSWname = PrimeMain1.texts.getString("email");
 		String ObjectSWdesc = "Standard mail server";
 		String ObjectSWversion = "1";
 

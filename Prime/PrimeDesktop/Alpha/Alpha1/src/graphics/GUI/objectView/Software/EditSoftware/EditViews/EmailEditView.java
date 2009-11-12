@@ -3,6 +3,7 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -138,9 +139,9 @@ public class EmailEditView extends JPanel implements SoftwareView, ActionListene
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this software");
+		JLabel label = new JLabel(PrimeMain1.texts.getString("swTabRemoveSoftwaretText"));
 
-		Button remove = new Button("Remove Software");
+		Button remove = new Button(PrimeMain1.texts.getString("swTabRemoveSoftwareButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeSoft");
 
@@ -174,26 +175,26 @@ public class EmailEditView extends JPanel implements SoftwareView, ActionListene
 		JLabel[] labels = new JLabel[7];
 
 
-		labels[0] = new JLabel("Supported OS");
-		labels[0].setToolTipText("The supported Operating Systems by the software.");
+		labels[0] = new JLabel(PrimeMain1.texts.getString("emailViewSupOSLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts.getString("emailViewSupOSTip"));
 
-		labels[1] = new JLabel("Supports POP3");
-		labels[1].setToolTipText("Whether or not the software supports POP3.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("emailViewSupPOP3Label"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("emailViewSupPOP3Tip"));
 
-		labels[2] = new JLabel("Supports SMTP");
-		labels[2].setToolTipText("Whether or not the software supports SMTP.");
+		labels[2] = new JLabel(PrimeMain1.texts.getString("emailViewSupSMTPLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts.getString("emailViewSupSMTPTip"));
 
-		labels[3] = new JLabel("Supports IMAP");
-		labels[3].setToolTipText("Whether or not the software supports IMAP.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("emailViewSupIMAPLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("emailViewSupIMAPTip"));
 
-		labels[4] = new JLabel("Supports NNTP");
-		labels[4].setToolTipText("Whether or not the software supports NNTP.");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("emailViewSupNNTPLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts.getString("emailViewSupNNTPTip"));
 
-		labels[5] = new JLabel("Supports SSL");
-		labels[5].setToolTipText("Whether or not the software supports SSL.");
+		labels[5] = new JLabel(PrimeMain1.texts.getString("emailViewSupSSLLabel"));
+		labels[5].setToolTipText(PrimeMain1.texts.getString("emailViewSupSSLTip"));
 
-		labels[6] = new JLabel("Supports Webmail");
-		labels[6].setToolTipText("Whether or not the software supports webmail.");
+		labels[6] = new JLabel(PrimeMain1.texts.getString("emailViewSupWebmailLabel"));
+		labels[6].setToolTipText(PrimeMain1.texts.getString("emailViewSupWebmailTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);

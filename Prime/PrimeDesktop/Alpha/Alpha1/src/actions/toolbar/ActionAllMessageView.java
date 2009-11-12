@@ -31,7 +31,8 @@ public class ActionAllMessageView extends AbstractSystemAction
 	public ActionAllMessageView(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This action opens all the message views.");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionActionAllMessageViewDescriptionText"));
 	}
 
 
@@ -45,7 +46,8 @@ public class ActionAllMessageView extends AbstractSystemAction
 	public ActionAllMessageView(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This action opens all the message views.");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionActionOpenAllMessageViewDescriptionText"));
 	}
 
 

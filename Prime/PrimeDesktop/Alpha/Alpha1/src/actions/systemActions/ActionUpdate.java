@@ -37,7 +37,8 @@ public class ActionUpdate extends AbstractSystemAction
 	public ActionUpdate(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This is a Update action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionUpdateNetworkMessagesText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_R));
 	}
 
@@ -52,7 +53,8 @@ public class ActionUpdate extends AbstractSystemAction
 	public ActionUpdate(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This is a Update action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionUpdateNetworkMessagesText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_R));
 	}
 

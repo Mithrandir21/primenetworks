@@ -128,9 +128,9 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this software");
+		JLabel label = new JLabel(PrimeMain1.texts.getString("swTabRemoveSoftwaretText"));
 
-		Button remove = new Button("Remove Software");
+		Button remove = new Button(PrimeMain1.texts.getString("swTabRemoveSoftwareButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeSoft");
 
@@ -164,17 +164,17 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		JLabel[] labels = new JLabel[4];
 
 
-		labels[0] = new JLabel("Supported FS");
-		labels[0].setToolTipText("The supported file systems by the OS.");
+		labels[0] = new JLabel(PrimeMain1.texts.getString("osViewSupFSLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts.getString("osViewSupFSTip"));
 
-		labels[1] = new JLabel("Supports Encrypted FS");
-		labels[1].setToolTipText("Whether or not the OS supports an encrypted file system.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("osViewSupEnctyptedFSLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("osViewSupEnctyptedFSTip"));
 
-		labels[2] = new JLabel("Has GUI");
-		labels[2].setToolTipText("Whether or not the OS has a GUI.");
+		labels[2] = new JLabel(PrimeMain1.texts.getString("osViewHasGUILabel"));
+		labels[2].setToolTipText(PrimeMain1.texts.getString("osViewHasGUITip"));
 
-		labels[3] = new JLabel("64-bit");
-		labels[3].setToolTipText("Whether or not the OS is 64-Bit.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("osView64BitLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("osView64BitTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -305,11 +305,10 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 			String command = check.getActionCommand();
 
 			if ( command.equals("removeSoft") )
-			{
-				int answer = JOptionPane.showConfirmDialog(this, "By removing this Operating "
-						+ "System from the machine there might be other software that will no "
-						+ "longer be compatible with the system and hence will be removed as well."
-						+ "\nDo you still wish to perform this action?", "Verify", JOptionPane.YES_NO_OPTION);
+			{ 
+				int answer = JOptionPane.showConfirmDialog(
+						this, PrimeMain1.texts.getObject("osViewRemovalQuestionText"), 
+						PrimeMain1.texts.getString("verify"), JOptionPane.YES_NO_OPTION);
 
 				// If the user verifies the choice
 				if ( answer == JOptionPane.YES_OPTION )

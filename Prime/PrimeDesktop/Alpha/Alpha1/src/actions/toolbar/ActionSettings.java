@@ -4,6 +4,7 @@
 package actions.toolbar;
 
 
+import graphics.PrimeMain1;
 import graphics.GUI.settings.SettingsOverview;
 
 import java.awt.event.ActionEvent;
@@ -34,7 +35,8 @@ public class ActionSettings extends AbstractSystemAction
 	public ActionSettings(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This is a Open Settings action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionActionOpenSettingsDescriptionText"));
 	}
 
 
@@ -48,7 +50,8 @@ public class ActionSettings extends AbstractSystemAction
 	public ActionSettings(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This is a Open Settings action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionActionOpenSettingsDescriptionText"));
 	}
 
 
@@ -61,10 +64,7 @@ public class ActionSettings extends AbstractSystemAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// JOptionPane.showMessageDialog(null,
-		// "You want to perform a \"Open Settings\" action.");
 		new SettingsOverview();
-
 	}
 
 }

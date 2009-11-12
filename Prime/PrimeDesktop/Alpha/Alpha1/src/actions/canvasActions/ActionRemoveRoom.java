@@ -110,7 +110,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements
 	@Override
 	public String getPresentationName()
 	{
-		return "Delete a Room";
+		return PrimeMain1.texts.getString("actionDeleteRoomActionPresNameText");
 	}
 
 	/*
@@ -120,7 +120,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements
 	@Override
 	public String getRedoPresentationName()
 	{
-		return "Re-delete a Room";
+		return PrimeMain1.texts.getString("actionDeleteRoomRedoPresNameText");
 	}
 
 	/*
@@ -130,7 +130,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements
 	@Override
 	public String getUndoPresentationName()
 	{
-		return "Un-delete a Room";
+		return PrimeMain1.texts.getString("actionDeleteRoomUndoPresNameText");
 	}
 
 	/*

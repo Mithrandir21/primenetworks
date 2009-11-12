@@ -35,7 +35,8 @@ public class ActionRedo extends AbstractSystemAction
 	public ActionRedo(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This is a Redo action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionRedoText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_Y));
 	}
 
@@ -50,7 +51,8 @@ public class ActionRedo extends AbstractSystemAction
 	public ActionRedo(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This is a Redo action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionRedoText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_Y));
 	}
 

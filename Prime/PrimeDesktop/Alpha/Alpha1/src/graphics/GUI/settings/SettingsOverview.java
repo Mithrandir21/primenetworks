@@ -5,6 +5,7 @@ package graphics.GUI.settings;
 
 
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -26,7 +27,6 @@ import managment.Settings;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class SettingsOverview extends JFrame
 {
@@ -34,15 +34,15 @@ public class SettingsOverview extends JFrame
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 * 
 	 */
 	public SettingsOverview()
 	{
-		super("Settings");
+		super(PrimeMain1.texts.getString("settingsFrameLabel"));
 
 		setUpMessageCheckBoxes();
 
-		SettingsListener setListener = new SettingsListener(this, messagesCheckBox);
+		SettingsListener setListener = new SettingsListener(this,
+				messagesCheckBox);
 
 		// Get the content pane for this object
 		Container c = this.getContentPane();
@@ -77,15 +77,15 @@ public class SettingsOverview extends JFrame
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		JButton save = new JButton("Save");
+		JButton save = new JButton(PrimeMain1.texts.getString("save"));
 		save.addActionListener(setListener);
 		save.setActionCommand("save");
 
-		JButton apply = new JButton("Apply");
+		JButton apply = new JButton(PrimeMain1.texts.getString("apply"));
 		apply.addActionListener(setListener);
 		apply.setActionCommand("apply");
 
-		JButton cancel = new JButton("cancel");
+		JButton cancel = new JButton(PrimeMain1.texts.getString("cancel"));
 		cancel.addActionListener(setListener);
 		cancel.setActionCommand("cancel");
 
@@ -122,9 +122,11 @@ public class SettingsOverview extends JFrame
 	{
 		JTabbedPane tabs = new JTabbedPane();
 
-		ImageIcon frameIcon = ImageLocator.getImageIconObject("ProcessingSettings");
-		tabs.addTab("Network Processing", frameIcon, new NetworkMessagesSettings(messagesCheckBox),
-				"Settings for processing of a network");
+		ImageIcon frameIcon = ImageLocator
+				.getImageIconObject("ProcessingSettings");
+		tabs.addTab(PrimeMain1.texts.getString("settingsShowMsgPanelLabel"),
+				frameIcon, new NetworkMessagesSettings(messagesCheckBox),
+				PrimeMain1.texts.getString("settingsShowMsgPanelTip"));
 
 		return tabs;
 	}
@@ -133,7 +135,6 @@ public class SettingsOverview extends JFrame
 
 	/**
 	 * Javadoc-TODO - Description
-	 * 
 	 */
 	private void setUpMessageCheckBoxes()
 	{

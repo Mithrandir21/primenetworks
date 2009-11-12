@@ -101,25 +101,28 @@ public class JPopupCanvasMenu
 	private void ObjectCreationMenues()
 	{
 
-		JMenuItem submenuAdd = new JMenu("Add new devices");
+		JMenuItem submenuAdd = new JMenu(PrimeMain1.texts
+				.getString("canvasMenuAddNewDevices"));
 
 
 
-		JMenuItem submenuDesktop = createAddDesktop(new JMenu("Add Clients"));
+		JMenuItem submenuDesktop = createAddDesktop(new JMenu(PrimeMain1.texts
+				.getString("canvasMenuAddClients")));
 		submenuAdd.add(submenuDesktop);
 
 
-		JMenuItem submenuServer = createAddServer(new JMenu("Add Server"));
+		JMenuItem submenuServer = createAddServer(new JMenu(PrimeMain1.texts
+				.getString("canvasMenuAddServers")));
 		submenuAdd.add(submenuServer);
 
 
 		JMenuItem submenuInfrastructur = createAddInfrastructur(new JMenu(
-				"Add Infrastructur"));
+				PrimeMain1.texts.getString("canvasMenuAddInfrasctructur")));
 		submenuAdd.add(submenuInfrastructur);
 
 
 		JMenuItem submenuPeripheral = createAddPeripheral(new JMenu(
-				"Add Peripheral"));
+				PrimeMain1.texts.getString("canvasMenuAddPeripheral")));
 		submenuAdd.add(submenuPeripheral);
 
 
@@ -136,17 +139,17 @@ public class JPopupCanvasMenu
 
 		JMenuItem menuItem = new JMenuItem();
 
-		menuItem = new JMenuItem("Desktop");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("desktop"));
 		menuItem.setActionCommand("CreateNewST_Desktop_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuDesktop.add(menuItem);
 
-		menuItem = new JMenuItem("Laptop");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("laptop"));
 		menuItem.setActionCommand("CreateNewST_Laptop_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuDesktop.add(menuItem);
 
-		menuItem = new JMenuItem("Thin Client");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("thinClient"));
 		menuItem.setActionCommand("CreateNewST_ThinClient_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuDesktop.add(menuItem);
@@ -165,37 +168,37 @@ public class JPopupCanvasMenu
 
 		JMenuItem menuItem = new JMenuItem();
 
-		menuItem = new JMenuItem("Web Server");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("httpServer"));
 		menuItem.setActionCommand("CreateNewST_HTTPServer_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuServer.add(menuItem);
 
-		menuItem = new JMenuItem("Backup Server");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("backupServer"));
 		menuItem.setActionCommand("CreateNewST_BackupServer_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuServer.add(menuItem);
 
-		menuItem = new JMenuItem("Database Server");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("databaseServer"));
 		menuItem.setActionCommand("CreateNewST_DatabaseServer_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuServer.add(menuItem);
 
-		menuItem = new JMenuItem("Mail Server");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("mailServer"));
 		menuItem.setActionCommand("CreateNewST_MailServer_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuServer.add(menuItem);
 
-		menuItem = new JMenuItem("Firewall Server");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("firewallServer"));
 		menuItem.setActionCommand("CreateNewST_FirewallServer_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuServer.add(menuItem);
 
-		menuItem = new JMenuItem("Proxy Server");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("proxyServer"));
 		menuItem.setActionCommand("CreateNewST_ProxyServer_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuServer.add(menuItem);
 
-		menuItem = new JMenuItem("Printer Server");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("printerServer"));
 		menuItem.setActionCommand("CreateNewST_PrinterServer_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuServer.add(menuItem);
@@ -214,27 +217,27 @@ public class JPopupCanvasMenu
 
 		JMenuItem menuItem = new JMenuItem();
 
-		menuItem = new JMenuItem("Hub");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("hub"));
 		menuItem.setActionCommand("CreateNewST_Hub_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuInfrastructur.add(menuItem);
 
-		menuItem = new JMenuItem("Switch");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("switch"));
 		menuItem.setActionCommand("CreateNewST_Switch_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuInfrastructur.add(menuItem);
 
-		menuItem = new JMenuItem("Router");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("router"));
 		menuItem.setActionCommand("CreateNewST_Router_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuInfrastructur.add(menuItem);
 
-		menuItem = new JMenuItem("Wireless Router");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("wirelessRouter"));
 		menuItem.setActionCommand("CreateNewST_WirelessRouter_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuInfrastructur.add(menuItem);
 
-		menuItem = new JMenuItem("Internet");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("internet"));
 		menuItem.setActionCommand("CreateNewST_Internet_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuInfrastructur.add(menuItem);
@@ -253,32 +256,34 @@ public class JPopupCanvasMenu
 
 		JMenuItem menuItem = new JMenuItem();
 
-		menuItem = new JMenuItem("Scanner");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("scanner"));
 		menuItem.setActionCommand("CreateNewST_Scanner_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuPeripheral.add(menuItem);
 
-		menuItem = new JMenuItem("Printer");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("printer"));
 		menuItem.setActionCommand("CreateNewST_Printer_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuPeripheral.add(menuItem);
 
-		menuItem = new JMenuItem("Fax");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("fax"));
 		menuItem.setActionCommand("CreateNewST_Fax_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuPeripheral.add(menuItem);
 
-		menuItem = new JMenuItem("MultiFunctionalPrinter");
+		menuItem = new JMenuItem(PrimeMain1.texts
+				.getString("multifunctionPrinter"));
 		menuItem.setActionCommand("CreateNewST_MFP_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuPeripheral.add(menuItem);
 
-		menuItem = new JMenuItem("Network Printer");
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("networkPrinter"));
 		menuItem.setActionCommand("CreateNewST_NetworkPrinter_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuPeripheral.add(menuItem);
 
-		menuItem = new JMenuItem("Network MultiFunctionalPrinter");
+		menuItem = new JMenuItem(PrimeMain1.texts
+				.getString("networkMultifunctionPrinter"));
 		menuItem.setActionCommand("CreateNewST_NetworkMFP_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuPeripheral.add(menuItem);

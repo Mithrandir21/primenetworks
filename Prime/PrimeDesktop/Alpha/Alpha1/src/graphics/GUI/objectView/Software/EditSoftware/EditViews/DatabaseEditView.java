@@ -137,7 +137,7 @@ public class DatabaseEditView extends JPanel implements SoftwareView, ActionList
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[4];
 
-
+		// FIXME - Fix Database/database view
 		labels[0] = new JLabel("Activated Date");
 		labels[0].setToolTipText("The date that the AV was activated.");
 

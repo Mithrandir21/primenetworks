@@ -4,6 +4,8 @@
 package graphics.GUI.objectView.Software.NewSoftware.NewOverview;
 
 
+import graphics.PrimeMain1;
+
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -32,7 +34,7 @@ public class NewSoftwareChoice extends JFrame
 	 */
 	public NewSoftwareChoice(Object obj)
 	{
-		super("New Software");
+		super(PrimeMain1.texts.getString("swTabSWnewSoftware"));
 
 
 		// Get the default toolkit

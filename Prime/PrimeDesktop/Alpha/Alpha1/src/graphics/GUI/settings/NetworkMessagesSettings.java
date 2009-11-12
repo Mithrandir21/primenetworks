@@ -4,6 +4,8 @@
 package graphics.GUI.settings;
 
 
+import graphics.PrimeMain1;
+
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
@@ -18,13 +20,11 @@ import javax.swing.JPanel;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class NetworkMessagesSettings extends JPanel
 {
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 * 
 	 */
 	public NetworkMessagesSettings(JCheckBox[] checkBox)
 	{
@@ -39,7 +39,8 @@ public class NetworkMessagesSettings extends JPanel
 
 
 		JPanel hardPanel = getPanel(checkBox[0], checkBox[1], checkBox[2]);
-		hardPanel.setBorder(BorderFactory.createTitledBorder("Hardware"));
+		hardPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain1.texts
+				.getString("settingsShowMsgHardwareLabel")));
 
 
 
@@ -48,7 +49,8 @@ public class NetworkMessagesSettings extends JPanel
 		checkBox[5].setName("showSoftwareNotices");
 
 		JPanel softPanel = getPanel(checkBox[3], checkBox[4], checkBox[5]);
-		softPanel.setBorder(BorderFactory.createTitledBorder("Software"));
+		softPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain1.texts
+				.getString("settingsShowMsgSoftwareLabel")));
 
 
 
@@ -57,7 +59,8 @@ public class NetworkMessagesSettings extends JPanel
 		checkBox[8].setName("showConnectionNotices");
 
 		JPanel conPanel = getPanel(checkBox[6], checkBox[7], checkBox[8]);
-		conPanel.setBorder(BorderFactory.createTitledBorder("Connections"));
+		conPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain1.texts
+				.getString("settingsShowMsgConnectionsLabel")));
 
 
 		checkBox[9].setName("showNetworkErrors");
@@ -65,7 +68,8 @@ public class NetworkMessagesSettings extends JPanel
 		checkBox[11].setName("showNetworkNotices");
 
 		JPanel netPanel = getPanel(checkBox[9], checkBox[10], checkBox[11]);
-		netPanel.setBorder(BorderFactory.createTitledBorder("Network"));
+		netPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain1.texts
+				.getString("settingsShowMsgNetworkLabel")));
 
 
 
@@ -75,27 +79,45 @@ public class NetworkMessagesSettings extends JPanel
 
 		GroupLayout layout = new GroupLayout(this);
 		this.setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(
+		layout.setHorizontalGroup(layout.createParallelGroup(
+				GroupLayout.Alignment.LEADING).addGroup(
 				layout.createSequentialGroup().addContainerGap().addGroup(
-						layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(hardPanel,
-								GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(softPanel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(conPanel,
-										GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(netPanel,
-										GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addContainerGap()));
-		layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup().addContainerGap().addComponent(hardPanel,
-						javax.swing.GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-						javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 18, 18).addComponent(softPanel,
-						javax.swing.GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-						javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 18, 18).addComponent(conPanel,
-						javax.swing.GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-						javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 18, 18).addComponent(netPanel,
-						javax.swing.GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-						javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap(GroupLayout.DEFAULT_SIZE,
-						Short.MAX_VALUE)));
+						layout.createParallelGroup(
+								GroupLayout.Alignment.LEADING).addComponent(
+								hardPanel, GroupLayout.DEFAULT_SIZE,
+								javax.swing.GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE).addComponent(softPanel,
+								GroupLayout.Alignment.TRAILING,
+								GroupLayout.DEFAULT_SIZE,
+								GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(conPanel,
+										GroupLayout.Alignment.TRAILING,
+										GroupLayout.DEFAULT_SIZE,
+										GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE).addComponent(netPanel,
+										GroupLayout.DEFAULT_SIZE,
+										GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)).addContainerGap()));
+		layout.setVerticalGroup(layout.createParallelGroup(
+				GroupLayout.Alignment.LEADING).addGroup(
+				layout.createSequentialGroup().addContainerGap().addComponent(
+						hardPanel, javax.swing.GroupLayout.PREFERRED_SIZE,
+						GroupLayout.DEFAULT_SIZE,
+						javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 18,
+						18).addComponent(softPanel,
+						javax.swing.GroupLayout.PREFERRED_SIZE,
+						GroupLayout.DEFAULT_SIZE,
+						javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 18,
+						18).addComponent(conPanel,
+						javax.swing.GroupLayout.PREFERRED_SIZE,
+						GroupLayout.DEFAULT_SIZE,
+						javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 18,
+						18).addComponent(netPanel,
+						javax.swing.GroupLayout.PREFERRED_SIZE,
+						GroupLayout.DEFAULT_SIZE,
+						javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE)));
 	}
 
 
@@ -114,24 +136,40 @@ public class NetworkMessagesSettings extends JPanel
 	{
 		JPanel panel = new JPanel();
 
-		JLabel showErroes = new JLabel("Show Errors");
+		JLabel showErroes = new JLabel(PrimeMain1.texts
+				.getString("settingsShowMsgShowErrorsLabel"));
 
-		JLabel showWarnings = new JLabel("Show Warnings");
+		JLabel showWarnings = new JLabel(PrimeMain1.texts
+				.getString("settingsShowMsgShowWarningsLabel"));
 
-		JLabel showNotices = new JLabel("Show Notices");
+		JLabel showNotices = new JLabel(PrimeMain1.texts
+				.getString("settingsShowMsgShowNoticesLabel"));
 
 		GroupLayout jPanel3Layout = new GroupLayout(panel);
 		panel.setLayout(jPanel3Layout);
-		jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(
-				jPanel3Layout.createSequentialGroup().addGap(15, 15, 15).addComponent(showErroes).addGap(18, 18, 18)
-						.addComponent(box1).addGap(74, 74, 74).addComponent(showWarnings).addGap(5, 5, 5).addComponent(
-								box2).addGap(74, 74, 74).addComponent(showNotices).addGap(5, 5, 5).addComponent(box3)
+		jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup(
+				GroupLayout.Alignment.LEADING).addGroup(
+				jPanel3Layout.createSequentialGroup().addGap(15, 15, 15)
+						.addComponent(showErroes).addGap(18, 18, 18)
+						.addComponent(box1).addGap(74, 74, 74).addComponent(
+								showWarnings).addGap(5, 5, 5)
+						.addComponent(box2).addGap(74, 74, 74).addComponent(
+								showNotices).addGap(5, 5, 5).addComponent(box3)
 						.addContainerGap(79, Short.MAX_VALUE)));
-		jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(
-				jPanel3Layout.createSequentialGroup().addContainerGap().addGroup(
-						jPanel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(showErroes)
-								.addComponent(box1).addComponent(showWarnings).addComponent(box2).addComponent(
-										showNotices).addComponent(box3)).addContainerGap(22, Short.MAX_VALUE)));
+		jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(
+				GroupLayout.Alignment.LEADING)
+				.addGroup(
+						jPanel3Layout.createSequentialGroup().addContainerGap()
+								.addGroup(
+										jPanel3Layout.createParallelGroup(
+												GroupLayout.Alignment.BASELINE)
+												.addComponent(showErroes)
+												.addComponent(box1)
+												.addComponent(showWarnings)
+												.addComponent(box2)
+												.addComponent(showNotices)
+												.addComponent(box3))
+								.addContainerGap(22, Short.MAX_VALUE)));
 
 
 		return panel;

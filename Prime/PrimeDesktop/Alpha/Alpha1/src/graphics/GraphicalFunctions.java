@@ -180,7 +180,8 @@ public class GraphicalFunctions
 
 				if ( !mbVariable.equals(newVariable) )
 				{
-					int n = JOptionPane.showConfirmDialog(comp, msg, "Verify",
+					int n = JOptionPane.showConfirmDialog(comp, msg,
+							PrimeMain1.texts.getString("verify"),
 							JOptionPane.YES_NO_OPTION);
 
 

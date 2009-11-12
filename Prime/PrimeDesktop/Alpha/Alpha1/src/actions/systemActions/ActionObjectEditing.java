@@ -33,7 +33,8 @@ public class ActionObjectEditing extends AbstractSystemAction
 	public ActionObjectEditing(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "Edit Standard Objects");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionOpenStandardObjectsViewText"));
 	}
 
 

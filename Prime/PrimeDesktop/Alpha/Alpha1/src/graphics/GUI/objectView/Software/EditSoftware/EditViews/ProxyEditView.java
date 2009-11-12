@@ -3,6 +3,7 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -143,9 +144,9 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this software");
+		JLabel label = new JLabel(PrimeMain1.texts.getString("swTabRemoveSoftwaretText"));
 
-		Button remove = new Button("Remove Software");
+		Button remove = new Button(PrimeMain1.texts.getString("swTabRemoveSoftwareButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeSoft");
 
@@ -179,35 +180,35 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 		JLabel[] labels = new JLabel[10];
 
 
-		labels[0] = new JLabel("Supported OS");
-		labels[0].setToolTipText("The supported Operating Systems by the software.");
+		labels[0] = new JLabel(PrimeMain1.texts.getString("proxyViewSupOSLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts.getString("proxyViewSupOSTip"));
 
-		labels[1] = new JLabel("Chaching");
-		labels[1].setToolTipText("Whether or not the software has caching feature.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("proxyViewCachingLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("proxyViewCachingTip"));
 
-		labels[2] = new JLabel("Proxy");
-		labels[2].setToolTipText("Whether or not the software has Web proxy feature.");
+		labels[2] = new JLabel(PrimeMain1.texts.getString("proxyViewProxyLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts.getString("proxyViewProxyTip"));
 
-		labels[3] = new JLabel("Anonymizing");
-		labels[3].setToolTipText("Whether or not the software has Anonymizing proxy feature.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("proxyViewAnonymizingLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("proxyViewAnonymizingTip"));
 
-		labels[4] = new JLabel("Transparent Proxy");
-		labels[4].setToolTipText("Whether or not the software has transparent proxy feature.");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("proxyViewTransProxyLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts.getString("proxyViewTransProxyTip"));
 
-		labels[5] = new JLabel("Reverse Proxy");
-		labels[5].setToolTipText("Whether or not the software has reverse proxy feature.");
+		labels[5] = new JLabel(PrimeMain1.texts.getString("proxyViewReverseProxyLabel"));
+		labels[5].setToolTipText(PrimeMain1.texts.getString("proxyViewReverseProxyTip"));
 
-		labels[6] = new JLabel("Supports IPv6");
-		labels[6].setToolTipText("Whether or not the software supports IP version 6.");
+		labels[6] = new JLabel(PrimeMain1.texts.getString("proxyViewIPv6Label"));
+		labels[6].setToolTipText(PrimeMain1.texts.getString("proxyViewIPv6Tip"));
 
-		labels[7] = new JLabel("Supports SSL");
-		labels[7].setToolTipText("Whether or not the software supports SSL.");
+		labels[7] = new JLabel(PrimeMain1.texts.getString("proxyViewSupSSLLabel"));
+		labels[7].setToolTipText(PrimeMain1.texts.getString("proxyViewSupSSLTip"));
 
-		labels[8] = new JLabel("Supports TSL");
-		labels[8].setToolTipText("Whether or not the software supports TSL.");
+		labels[8] = new JLabel(PrimeMain1.texts.getString("proxyViewSupTSLLabel"));
+		labels[8].setToolTipText(PrimeMain1.texts.getString("proxyViewSupTSLTip"));
 
-		labels[9] = new JLabel("Supports HTTPS");
-		labels[9].setToolTipText("Whether or not the software supports HTTPS.");
+		labels[9] = new JLabel(PrimeMain1.texts.getString("proxyViewSupHTTPSLabel"));
+		labels[9].setToolTipText(PrimeMain1.texts.getString("proxyViewSupHTTPSTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);

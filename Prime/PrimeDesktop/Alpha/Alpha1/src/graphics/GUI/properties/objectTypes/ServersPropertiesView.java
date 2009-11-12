@@ -4,6 +4,8 @@
 package graphics.GUI.properties.objectTypes;
 
 
+import graphics.PrimeMain1;
+
 import java.awt.Dimension;
 
 import javax.swing.JCheckBox;
@@ -38,9 +40,11 @@ public class ServersPropertiesView
 
 
 		// Supports on-site-access
-		JLabel supOnSiteAccessLabel = new JLabel("Supports On-Site-Access", SwingConstants.TRAILING);
-		supOnSiteAccessLabel.setToolTipText("Whether or not this device supports "
-				+ "on-site-access, i.e. it has a keyboard, mouse and screen.");
+		JLabel supOnSiteAccessLabel = new JLabel(PrimeMain1.texts
+				.getString("propServerViewSupOnSiteAccessLabel"),
+				SwingConstants.TRAILING);
+		supOnSiteAccessLabel.setToolTipText(PrimeMain1.texts
+				.getString("propServerViewSupOnSiteAccessTip"));
 		panel.add(supOnSiteAccessLabel);
 
 		JCheckBox supOnSiteAccessField = new JCheckBox();
@@ -53,8 +57,11 @@ public class ServersPropertiesView
 
 
 		// Supports Remote Access
-		JLabel supRemoteAccessLabel = new JLabel("Supports Remote Access", SwingConstants.TRAILING);
-		supRemoteAccessLabel.setToolTipText("Whether or not this device supports remote access.");
+		JLabel supRemoteAccessLabel = new JLabel(PrimeMain1.texts
+				.getString("propServerViewSupRemoteAccessLabel"),
+				SwingConstants.TRAILING);
+		supRemoteAccessLabel.setToolTipText(PrimeMain1.texts
+				.getString("propServerViewSupRemoteAccessTip"));
 		panel.add(supRemoteAccessLabel);
 
 		JCheckBox supRemoteAccessField = new JCheckBox();
@@ -67,8 +74,11 @@ public class ServersPropertiesView
 
 
 		// Index 2 - Supported Remote Access Protocols
-		JLabel supRemoteAccProtoLabel = new JLabel("Supported Remote Protocols", SwingConstants.TRAILING);
-		supRemoteAccProtoLabel.setToolTipText("The supported remote access protocols.");
+		JLabel supRemoteAccProtoLabel = new JLabel(PrimeMain1.texts
+				.getString("propServerViewSupRemoteProtocolsLabel"),
+				SwingConstants.TRAILING);
+		supRemoteAccProtoLabel.setToolTipText(PrimeMain1.texts
+				.getString("propServerViewSupRemoteProtocolsTip"));
 		panel.add(supRemoteAccProtoLabel);
 
 		JTextField supRemoteAccProtoField = new JTextField(10);
@@ -80,8 +90,11 @@ public class ServersPropertiesView
 
 
 		// Index 3 - Software name
-		JLabel mainSWnameLabel = new JLabel("Software Name", SwingConstants.TRAILING);
-		mainSWnameLabel.setToolTipText("The name of the main software running on this device.");
+		JLabel mainSWnameLabel = new JLabel(PrimeMain1.texts
+				.getString("propServerViewSoftwareNameLabel"),
+				SwingConstants.TRAILING);
+		mainSWnameLabel.setToolTipText(PrimeMain1.texts
+				.getString("propServerViewSoftwareNameTip"));
 		panel.add(mainSWnameLabel);
 
 		JTextField mainSWnameField = new JTextField(10);

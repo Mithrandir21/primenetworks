@@ -5,6 +5,8 @@ package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuRoom;
 
 
 
+import graphics.PrimeMain1;
+
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -97,8 +99,8 @@ public class JPopupWidgetRoomMenu
 	{
 		JMenuItem menuItem;
 
-		menuItem = new JMenuItem(
-				new ActionRemoveRoom("Delete Room", widgetRoom));
+		menuItem = new JMenuItem(new ActionRemoveRoom(PrimeMain1.texts
+				.getString("roomMenuDeleteRoomAction"), widgetRoom));
 		// menuItem.setActionCommand("DeleteRoom");
 		// menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);

@@ -3,6 +3,7 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -142,9 +143,9 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this software");
+		JLabel label = new JLabel(PrimeMain1.texts.getString("swTabRemoveSoftwaretText"));
 
-		Button remove = new Button("Remove Software");
+		Button remove = new Button(PrimeMain1.texts.getString("swTabRemoveSoftwareButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeSoft");
 
@@ -178,33 +179,33 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 		JLabel[] labels = new JLabel[8];
 
 
-		labels[0] = new JLabel("Supported OS");
-		labels[0].setToolTipText("The supported Operating Systems by the software.");
+		labels[0] = new JLabel(PrimeMain1.texts.getString("secSuiteViewSupOSLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts.getString("secSuiteViewSupOSTip"));
 
-		labels[1] = new JLabel("Activated");
-		labels[1].setToolTipText("Whether or not the AV is activated.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("secSuiteViewActivatedLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("secSuiteViewActivatedTip"));
 
-		labels[2] = new JLabel("License");
-		labels[2].setToolTipText("The actual license of the program.");
+		labels[2] = new JLabel(PrimeMain1.texts.getString("secSuiteViewLicenseLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts.getString("secSuiteViewLicenseTip"));
 
-		labels[3] = new JLabel("Has Antivirus");
-		labels[3].setToolTipText("Whether or not the security suite contains an antivirus.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("secSuiteViewHasAntivirusLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("secSuiteViewHasAntivirusTip"));
 
-		labels[4] = new JLabel("Has Firewall");
-		labels[4].setToolTipText("Whether or not the security suite contains an firewall.");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("secSuiteViewHasFirewallLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts.getString("secSuiteViewHasFirewallTip"));
 
-		labels[5] = new JLabel("Has Proxy");
-		labels[5].setToolTipText("Whether or not the security suite contains an proxy.");
+		labels[5] = new JLabel(PrimeMain1.texts.getString("secSuiteViewHasProxyLabel"));
+		labels[5].setToolTipText(PrimeMain1.texts.getString("secSuiteViewHasProxyTip"));
 
-		labels[6] = new JLabel("Activated");
-		labels[6].setToolTipText("The date the license for the software was activated.");
+		labels[6] = new JLabel(PrimeMain1.texts.getString("secSuiteViewActDateLabel"));
+		labels[6].setToolTipText(PrimeMain1.texts.getString("secSuiteViewActDateTip"));
 
-		labels[7] = new JLabel("Expires");
-		labels[7].setToolTipText("The date the license for the software expires.");
+		labels[7] = new JLabel(PrimeMain1.texts.getString("secSuiteViewExpDateLabel"));
+		labels[7].setToolTipText(PrimeMain1.texts.getString("secSuiteViewExpDateTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
-		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
+		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts.getString("secSuiteViewSimpleDateFormat"));
 
 		// --------------------------------------------------------------
 
@@ -398,7 +399,7 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 	@Override
 	public void save()
 	{
-		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
+		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts.getString("secSuiteViewSimpleDateFormat"));
 
 		if ( name.getText() != "" )
 		{

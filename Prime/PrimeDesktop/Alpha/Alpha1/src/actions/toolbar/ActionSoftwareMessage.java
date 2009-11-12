@@ -34,7 +34,8 @@ public class ActionSoftwareMessage extends AbstractSystemAction
 	public ActionSoftwareMessage(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This action opens the Software messages.");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionActionOpenSoftwareMessageDescriptionText"));
 	}
 
 
@@ -48,7 +49,8 @@ public class ActionSoftwareMessage extends AbstractSystemAction
 	public ActionSoftwareMessage(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This action opens the Software messages.");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionActionOpenSoftwareMessageDescriptionText"));
 	}
 
 

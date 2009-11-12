@@ -34,7 +34,8 @@ public class ActionCut extends AbstractSystemAction
 	public ActionCut(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This is a Cut action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionCutDescriptionText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_X));
 	}
 
@@ -49,7 +50,8 @@ public class ActionCut extends AbstractSystemAction
 	public ActionCut(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This is a Cut action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionCutDescriptionText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_X));
 	}
 

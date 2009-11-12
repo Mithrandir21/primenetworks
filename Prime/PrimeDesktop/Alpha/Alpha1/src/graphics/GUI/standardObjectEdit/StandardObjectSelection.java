@@ -251,8 +251,9 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 		}
 		catch ( ObjectNotFoundException e )
 		{
-			System.out.println("Selected object, " + button.getName()
-					+ ", was not found in the array of standard objects.");
+			System.out.println(PrimeMain1.texts
+					.getString("standardObjectsNotFoundInArrayMsg")
+					+ " - " + button.getName());
 			e.printStackTrace();
 		}
 

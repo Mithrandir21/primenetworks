@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package actions.systemActions;
 
 
@@ -8,10 +11,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
 import logistical.AbstractSystemAction;
-import managment.Settings;
 
 
-public class ActionConnection extends AbstractSystemAction
+/**
+ * TODO - Description NEEDED!
+ * 
+ * @author Bahram Malaekeh
+ */
+public class ActionExitSystem extends AbstractSystemAction
 {
 	/**
 	 * A constructor for the class that takes a string, the action name, and a
@@ -22,11 +29,11 @@ public class ActionConnection extends AbstractSystemAction
 	 * @param icon
 	 *            The icon representing the action.
 	 */
-	public ActionConnection(String text, ImageIcon icon)
+	public ActionExitSystem(String text, ImageIcon icon)
 	{
 		super(text, icon);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
-				.getString("actionToggleCreateConnectionButtonDescriptionText"));
+				.getString("actionExitSystemDescriptionText"));
 	}
 
 
@@ -37,11 +44,11 @@ public class ActionConnection extends AbstractSystemAction
 	 * @param text
 	 *            The name of the action.
 	 */
-	public ActionConnection(String text)
+	public ActionExitSystem(String text)
 	{
 		super(text);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
-				.getString("actionToggleCreateConnectionButtonDescriptionText"));
+				.getString("actionExitSystemDescriptionText"));
 	}
 
 
@@ -54,6 +61,6 @@ public class ActionConnection extends AbstractSystemAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		Settings.connectionToggle = !(Settings.connectionToggle);
+		PrimeMain1.exitProcess();
 	}
 }

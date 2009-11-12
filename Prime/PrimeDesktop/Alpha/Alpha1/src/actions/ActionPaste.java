@@ -62,7 +62,8 @@ public class ActionPaste extends AbstractSystemAction implements
 	public ActionPaste(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This is a Paste action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionPasteDescriptionText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_V));
 	}
 
@@ -77,7 +78,8 @@ public class ActionPaste extends AbstractSystemAction implements
 	public ActionPaste(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This is a Paste action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionPasteDescriptionText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_V));
 	}
 
@@ -117,19 +119,19 @@ public class ActionPaste extends AbstractSystemAction implements
 	@Override
 	public String getPresentationName()
 	{
-		return "Paste an Object";
+		return PrimeMain1.texts.getString("actionPasteActionPresNameText");
 	}
 
 	@Override
 	public String getRedoPresentationName()
 	{
-		return "Repaste an Object";
+		return PrimeMain1.texts.getString("actionPasteRedoPresNameText");
 	}
 
 	@Override
 	public String getUndoPresentationName()
 	{
-		return "Remove a pasted Object";
+		return PrimeMain1.texts.getString("actionPasteUndoPresNameText");
 	}
 
 	@Override

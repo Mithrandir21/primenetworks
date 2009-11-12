@@ -38,7 +38,6 @@ import managment.NetworkManagment;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 {
@@ -72,6 +71,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 
 	public CreateNewWorkareaCanvas()
 	{
+		super(PrimeMain1.texts.getString("newWorkareaCanvasFrameLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -92,43 +92,50 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 
 
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		this.setTitle("Create New Network");
 		this.setResizable(false);
 
 
 		// The name Label
-		nameLabel.setText("Network Name");
+		nameLabel.setText(PrimeMain1.texts
+				.getString("newWorkareaCanvasNetworkNameLabel"));
 
 
 
 		// The activate settings check box
 		settingsCheck.addActionListener(this);
 		settingsCheck.setActionCommand("settings");
-		settingsCheck.setText("IP Network Settings");
+		settingsCheck.setText(PrimeMain1.texts
+				.getString("newWorkareaCanvasIPsettingsLabel"));
 
 
 		// The netmask label and combo box
-		netmaskLabel.setText("IP Netmask");
-		netmaskCombo.setModel(new DefaultComboBoxModel(new String[] { "255.255.255.0", "255.255.0.0", "255.0.0.0" }));
+		netmaskLabel.setText(PrimeMain1.texts
+				.getString("newWorkareaCanvasIPnetmaskLabel"));
+		netmaskCombo.setModel(new DefaultComboBoxModel(new String[] {
+				"255.255.255.0", "255.255.0.0", "255.0.0.0" }));
 		netmaskLabel.setEnabled(false);
 		netmaskCombo.setEnabled(false);
 
 
 		// The range from label and textfield
-		rangeFrom.setText("IP Range From");
+		rangeFrom.setText(PrimeMain1.texts
+				.getString("newWorkareaCanvasIPfromLabel"));
 		rangeFrom.setEnabled(false);
 		rangeFromField.setEnabled(false);
 
 
 
 		// The range to label and textfield
-		rangeTo.setText("IP Range To");
+		rangeTo.setText(PrimeMain1.texts
+				.getString("newWorkareaCanvasIPtoLabel"));
 		rangeTo.setEnabled(false);
 		rangeToField.setEnabled(false);
 
 
 		// The textfield for the network comment
-		jScrollPane1.setBorder(BorderFactory.createTitledBorder("Network Description"));
+		jScrollPane1
+				.setBorder(BorderFactory.createTitledBorder(PrimeMain1.texts
+						.getString("newWorkareaCanvasNetworkDescriptionLabel")));
 		descTextarea.setColumns(20);
 		descTextarea.setRows(5);
 		jScrollPane1.setViewportView(descTextarea);
@@ -144,57 +151,130 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 
 		GroupLayout layout = new GroupLayout(settings);
 		settings.setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(
+		layout.setHorizontalGroup(layout.createParallelGroup(
+				GroupLayout.Alignment.LEADING).addGroup(
 				layout.createSequentialGroup().addGap(66, 66, 66).addGroup(
-						layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(netmaskLabel)
-								.addComponent(rangeTo, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-								.addComponent(rangeFrom, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
-						.addGap(18, 18, 18).addGroup(
-								layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(rangeToField,
-										GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE).addComponent(netmaskCombo, 0,
-										126, Short.MAX_VALUE).addComponent(rangeFromField, GroupLayout.DEFAULT_SIZE,
-										126, Short.MAX_VALUE)).addGap(173, 173, 173)).addGroup(
+						layout.createParallelGroup(
+								GroupLayout.Alignment.LEADING).addComponent(
+								netmaskLabel).addComponent(rangeTo,
+								GroupLayout.PREFERRED_SIZE, 75,
+								GroupLayout.PREFERRED_SIZE).addComponent(
+								rangeFrom, GroupLayout.PREFERRED_SIZE, 91,
+								GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18)
+						.addGroup(
+								layout.createParallelGroup(
+										GroupLayout.Alignment.LEADING)
+										.addComponent(rangeToField,
+												GroupLayout.DEFAULT_SIZE, 126,
+												Short.MAX_VALUE).addComponent(
+												netmaskCombo, 0, 126,
+												Short.MAX_VALUE).addComponent(
+												rangeFromField,
+												GroupLayout.DEFAULT_SIZE, 126,
+												Short.MAX_VALUE)).addGap(173,
+								173, 173)).addGroup(
 				GroupLayout.Alignment.TRAILING,
-				layout.createSequentialGroup().addContainerGap(32, Short.MAX_VALUE).addGroup(
-						layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(jScrollPane1,
-								GroupLayout.PREFERRED_SIZE, 412, GroupLayout.PREFERRED_SIZE)
-								.addComponent(settingsCheck).addGroup(
-										layout.createSequentialGroup().addComponent(nameLabel,
-												GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE).addGap(18,
-												18, 18).addComponent(nameField, GroupLayout.PREFERRED_SIZE, 115,
-												GroupLayout.PREFERRED_SIZE))).addGap(30, 30, 30)));
+				layout.createSequentialGroup().addContainerGap(32,
+						Short.MAX_VALUE).addGroup(
+						layout.createParallelGroup(
+								GroupLayout.Alignment.LEADING).addComponent(
+								jScrollPane1, GroupLayout.PREFERRED_SIZE, 412,
+								GroupLayout.PREFERRED_SIZE).addComponent(
+								settingsCheck).addGroup(
+								layout.createSequentialGroup().addComponent(
+										nameLabel, GroupLayout.PREFERRED_SIZE,
+										88, GroupLayout.PREFERRED_SIZE).addGap(
+										18, 18, 18).addComponent(nameField,
+										GroupLayout.PREFERRED_SIZE, 115,
+										GroupLayout.PREFERRED_SIZE))).addGap(
+						30, 30, 30)));
 		layout
-				.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(
-						layout.createSequentialGroup().addGap(22, 22, 22).addGroup(
-								layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(nameLabel,
-										GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 23,
-										GroupLayout.PREFERRED_SIZE).addComponent(nameField,
-										GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addGap(31, 31, 31)
-								.addComponent(settingsCheck).addGap(10, 10, 10).addGroup(
-										layout.createParallelGroup(GroupLayout.Alignment.TRAILING).addGroup(
-												GroupLayout.Alignment.LEADING,
-												layout.createSequentialGroup().addComponent(netmaskLabel,
-														GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-														.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-														.addComponent(rangeFrom, GroupLayout.PREFERRED_SIZE, 23,
-																GroupLayout.PREFERRED_SIZE).addPreferredGap(
-																LayoutStyle.ComponentPlacement.RELATED).addComponent(
-																rangeTo, GroupLayout.PREFERRED_SIZE, 23,
-																GroupLayout.PREFERRED_SIZE)).addGroup(
-												GroupLayout.Alignment.LEADING,
-												layout.createSequentialGroup().addGap(28, 28, 28).addComponent(
-														rangeFromField, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-														.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-														.addComponent(rangeToField, GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-												.addComponent(netmaskCombo, GroupLayout.Alignment.LEADING,
-														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE)).addGap(49, 49, 49).addComponent(
-										jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE).addContainerGap(GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)));
+				.setVerticalGroup(layout
+						.createParallelGroup(GroupLayout.Alignment.LEADING)
+						.addGroup(
+								layout
+										.createSequentialGroup()
+										.addGap(22, 22, 22)
+										.addGroup(
+												layout
+														.createParallelGroup(
+																GroupLayout.Alignment.LEADING)
+														.addComponent(
+																nameLabel,
+																GroupLayout.Alignment.TRAILING,
+																GroupLayout.PREFERRED_SIZE,
+																23,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																nameField,
+																GroupLayout.Alignment.TRAILING,
+																GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE,
+																GroupLayout.PREFERRED_SIZE))
+										.addGap(31, 31, 31)
+										.addComponent(settingsCheck)
+										.addGap(10, 10, 10)
+										.addGroup(
+												layout
+														.createParallelGroup(
+																GroupLayout.Alignment.TRAILING)
+														.addGroup(
+																GroupLayout.Alignment.LEADING,
+																layout
+																		.createSequentialGroup()
+																		.addComponent(
+																				netmaskLabel,
+																				GroupLayout.PREFERRED_SIZE,
+																				14,
+																				GroupLayout.PREFERRED_SIZE)
+																		.addPreferredGap(
+																				LayoutStyle.ComponentPlacement.UNRELATED)
+																		.addComponent(
+																				rangeFrom,
+																				GroupLayout.PREFERRED_SIZE,
+																				23,
+																				GroupLayout.PREFERRED_SIZE)
+																		.addPreferredGap(
+																				LayoutStyle.ComponentPlacement.RELATED)
+																		.addComponent(
+																				rangeTo,
+																				GroupLayout.PREFERRED_SIZE,
+																				23,
+																				GroupLayout.PREFERRED_SIZE))
+														.addGroup(
+																GroupLayout.Alignment.LEADING,
+																layout
+																		.createSequentialGroup()
+																		.addGap(
+																				28,
+																				28,
+																				28)
+																		.addComponent(
+																				rangeFromField,
+																				GroupLayout.PREFERRED_SIZE,
+																				GroupLayout.DEFAULT_SIZE,
+																				GroupLayout.PREFERRED_SIZE)
+																		.addPreferredGap(
+																				LayoutStyle.ComponentPlacement.RELATED)
+																		.addComponent(
+																				rangeToField,
+																				GroupLayout.PREFERRED_SIZE,
+																				GroupLayout.DEFAULT_SIZE,
+																				GroupLayout.PREFERRED_SIZE))
+														.addComponent(
+																netmaskCombo,
+																GroupLayout.Alignment.LEADING,
+																GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE,
+																GroupLayout.PREFERRED_SIZE))
+										.addGap(49, 49, 49).addComponent(
+												jScrollPane1,
+												GroupLayout.PREFERRED_SIZE,
+												GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addContainerGap(
+												GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)));
 
 
 		panel.add(settings);
@@ -205,11 +285,12 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		final JButton save = new JButton("Create Network");
+		final JButton save = new JButton(PrimeMain1.texts
+				.getString("newWorkareaCanvasButtonCreateNetwork"));
 		save.addActionListener(this);
 		save.setActionCommand("create_network");
 
-		JButton cancel = new JButton("cancel");
+		JButton cancel = new JButton(PrimeMain1.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -253,8 +334,8 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -294,26 +375,40 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 						{
 							try
 							{
-								// Checks whether or not the range between the two is valid
-								if ( NetworkManagment.processRange(rangeFromField.getText(), rangeToField.getText()) )
+								// Checks whether or not the range between the
+								// two is valid
+								if ( NetworkManagment.processRange(
+										rangeFromField.getText(), rangeToField
+												.getText()) )
 								{
-									boolean created = DesktopFileManagment.newWorkareaCanvas(nameField.getText(), netmaskCombo
-											.getSelectedItem().toString(), rangeFromField.getText(), rangeToField
-											.getText(), descTextarea.getText());
+									boolean created = DesktopFileManagment
+											.newWorkareaCanvas(nameField
+													.getText(), netmaskCombo
+													.getSelectedItem()
+													.toString(), rangeFromField
+													.getText(), rangeToField
+													.getText(), descTextarea
+													.getText());
 
 									if ( created )
 									{
 										this.dispose();
 									}
 
-									// Gets the index of the Tab where the newly created WorkareaCanvas is placed
-									int index = PrimeMain1.workTab.indexOfTabWithCanvas(nameField.getText());
+									// Gets the index of the Tab where the newly
+									// created WorkareaCanvas is placed
+									int index = PrimeMain1.workTab
+											.indexOfTabWithCanvas(nameField
+													.getText());
 
-									// If the index is not -1, which means that the tab was found
+									// If the index is not -1, which means that
+									// the tab was found
 									if ( index != -1 )
 									{
-										// Sets the focused on tab that contains the new WorkareaCanvas
-										PrimeMain1.workTab.setSelectedIndex(index);
+										// Sets the focused on tab that contains
+										// the new WorkareaCanvas
+										PrimeMain1.workTab
+												.setSelectedIndex(index);
 									}
 								}
 							}
@@ -321,45 +416,61 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 							{
 								String output = exp.getMessage();
 
-								JOptionPane.showMessageDialog(null, output, "Error", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, output,
+										PrimeMain1.texts.getString("error"),
+										JOptionPane.ERROR_MESSAGE);
 							}
 						}
 						else
 						{
-							JOptionPane.showMessageDialog(null, "You must set the end of the IP range.", "Error",
-									JOptionPane.ERROR_MESSAGE);
+							JOptionPane
+									.showMessageDialog(
+											null,
+											PrimeMain1.texts
+													.getString("newWorkareaCanvasIPendErrorMsg"),
+											PrimeMain1.texts.getString("error"),
+											JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(null, "You must set the start of the IP range.", "Error",
+						JOptionPane.showMessageDialog(null, PrimeMain1.texts
+								.getString("newWorkareaCanvasIPstartErrorMsg"),
+								PrimeMain1.texts.getString("error"),
 								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				else
 				{
-					boolean created = DesktopFileManagment.newWorkareaCanvas(nameField.getText());
+					boolean created = DesktopFileManagment
+							.newWorkareaCanvas(nameField.getText());
 
 					if ( created )
 					{
 						this.dispose();
 					}
 
-					// Gets the index of the Tab where the newly created WorkareaCanvas is placed
-					int index = PrimeMain1.workTab.indexOfTabWithCanvas(nameField.getText());
+					// Gets the index of the Tab where the newly created
+					// WorkareaCanvas is placed
+					int index = PrimeMain1.workTab
+							.indexOfTabWithCanvas(nameField.getText());
 
-					// If the index is not -1, which means that the tab was found
+					// If the index is not -1, which means that the tab was
+					// found
 					if ( index != -1 )
 					{
-						// Sets the focused on tab that contains the new WorkareaCanvas
+						// Sets the focused on tab that contains the new
+						// WorkareaCanvas
 						PrimeMain1.workTab.setSelectedIndex(index);
 					}
 				}
 			}
 			else
 			{
-				JOptionPane
-						.showMessageDialog(null, "The network most have a name.", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+						.getString("newWorkareaCanvasNoNameErrorMsg"),
+						PrimeMain1.texts.getString("error"),
+						JOptionPane.ERROR_MESSAGE);
 			}
 
 		}

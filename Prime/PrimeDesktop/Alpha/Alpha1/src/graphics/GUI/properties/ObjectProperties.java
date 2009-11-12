@@ -382,8 +382,9 @@ public class ObjectProperties extends JPanel implements ActionListener
 
 								// Creates an action
 								ActionChangeWidgetObjectName changeNameAction = new ActionChangeWidgetObjectName(
-										"Change WidgetObject Name", widgetObj,
-										objName);
+										PrimeMain1.texts
+												.getString("actionChangeWidgetNameDescriptionText"),
+										widgetObj, objName);
 
 								// Finds the workareacanvas
 								WorkareaCanvas tempCanvas = CanvasManagment

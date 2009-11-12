@@ -132,9 +132,9 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel("Remove this component from this software");
+		JLabel label = new JLabel(PrimeMain1.texts.getString("swTabRemoveSoftwaretText"));
 
-		Button remove = new Button("Remove Software");
+		Button remove = new Button(PrimeMain1.texts.getString("swTabRemoveSoftwareButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeSoft");
 
@@ -168,24 +168,24 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 		JLabel[] labels = new JLabel[5];
 
 
-		labels[0] = new JLabel("Supported OS");
-		labels[0].setToolTipText("The supported Operating Systems by the software.");
+		labels[0] = new JLabel(PrimeMain1.texts.getString("avViewSupOSLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts.getString("avViewSupOSTip"));
 
-		labels[1] = new JLabel("Activated Date");
-		labels[1].setToolTipText("The date that the AV was activated.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("avViewActDateLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("avViewActDateTip"));
 
-		labels[2] = new JLabel("Expiration Date");
-		labels[2].setToolTipText("The date that the AV will expire.");
+		labels[2] = new JLabel(PrimeMain1.texts.getString("avViewExpDateLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts.getString("avViewExpDateTip"));
 
-		labels[3] = new JLabel("License");
-		labels[3].setToolTipText("The license key for the AV.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("avViewLicenseLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("avViewLicenseTip"));
 
-		labels[4] = new JLabel("Activated");
-		labels[4].setToolTipText("Whether or not the AV is activated.");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("avViewActivatedLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts.getString("avViewActivatedTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
-		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
+		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts.getString("avViewSimpleDateFormat"));
 
 
 		// The supported operating systems by the Antivirus software.
@@ -322,7 +322,7 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 	@Override
 	public void save()
 	{
-		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
+		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts.getString("avViewSimpleDateFormat"));
 
 		if ( name.getText() != "" )
 		{

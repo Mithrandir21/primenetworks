@@ -86,7 +86,7 @@ public class AntivirusNewView extends JFrame implements SoftwareView, ActionList
 	 */
 	public AntivirusNewView(Object obj, Antivirus av)
 	{
-		super("New Antivirus");
+		super(PrimeMain1.texts.getString("swNewAntivirusLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -173,24 +173,24 @@ public class AntivirusNewView extends JFrame implements SoftwareView, ActionList
 		JLabel[] labels = new JLabel[5];
 
 
-		labels[0] = new JLabel("Supported OS");
-		labels[0].setToolTipText("The supported Operating Systems by the software.");
+		labels[0] = new JLabel(PrimeMain1.texts.getString("avViewSupOSLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts.getString("avViewSupOSTip"));
 
-		labels[1] = new JLabel("Activated Date");
-		labels[1].setToolTipText("The date that the AV was activated.");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("avViewActDateLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("avViewActDateTip"));
 
-		labels[2] = new JLabel("Expiration Date");
-		labels[2].setToolTipText("The date that the AV will expire.");
+		labels[2] = new JLabel(PrimeMain1.texts.getString("avViewExpDateLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts.getString("avViewExpDateTip"));
 
-		labels[3] = new JLabel("License");
-		labels[3].setToolTipText("The license key for the AV.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("avViewLicenseLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("avViewLicenseTip"));
 
-		labels[4] = new JLabel("Activated");
-		labels[4].setToolTipText("Whether or not the AV is activated.");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("avViewActivatedLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts.getString("avViewActivatedTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
-		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
+		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts.getString("avViewSimpleDateFormat"));
 
 
 		// The supported operating systems by the Antivirus software.
@@ -331,11 +331,11 @@ public class AntivirusNewView extends JFrame implements SoftwareView, ActionList
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button("Save");
+		Button save = new Button(PrimeMain1.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button("Cancel");
+		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -349,7 +349,7 @@ public class AntivirusNewView extends JFrame implements SoftwareView, ActionList
 	@Override
 	public void save()
 	{
-		SimpleDateFormat format = new SimpleDateFormat("dd/M/yyyy");
+		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts.getString("avViewSimpleDateFormat"));
 
 		if ( name.getText() != "" )
 		{
@@ -368,7 +368,6 @@ public class AntivirusNewView extends JFrame implements SoftwareView, ActionList
 
 		if ( !actDate.getText().equalsIgnoreCase("") )
 		{
-			System.out.println("Dette er helt teit." + "\"" + actDate.getText() + "\"");
 			Date tempDate = null;
 
 			try
@@ -439,8 +438,7 @@ public class AntivirusNewView extends JFrame implements SoftwareView, ActionList
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(this, "The supported Operating System chosen is not "
-						+ "compatible with the objects Operating System");
+				JOptionPane.showMessageDialog(this, PrimeMain1.texts.getString("swNewCompatibilityQuestion"));
 			}
 
 

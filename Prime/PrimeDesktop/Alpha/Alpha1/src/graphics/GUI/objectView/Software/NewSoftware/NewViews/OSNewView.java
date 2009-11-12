@@ -85,7 +85,7 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 	 */
 	public OSNewView(Object obj, OperatingSystem OS)
 	{
-		super("New Backup");
+		super(PrimeMain1.texts.getString("swNewOSLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -114,7 +114,8 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = ImageLocator.getImageIconObject("OperatingSystem-Software");
+		ImageIcon icon = ImageLocator
+				.getImageIconObject("OperatingSystem-Software");
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainOS, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -151,19 +152,22 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
+				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
 
 
 	/**
-	 * This method creates and returns a JPanel that contains all the different settings of the given Software object.
-	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
-	 * the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
 	 * @param OS
-	 *            The Software that will be examined and will fill inn the fields.
+	 *            The Software that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
 	 */
 	private JPanel createSpesificInfo(OperatingSystem OS)
@@ -172,17 +176,19 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 		JLabel[] labels = new JLabel[4];
 
 
-		labels[0] = new JLabel("Supported FS");
-		labels[0].setToolTipText("The supported file systems by the OS.");
+		labels[0] = new JLabel(PrimeMain1.texts.getString("osViewSupFSLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts.getString("osViewSupFSTip"));
 
-		labels[1] = new JLabel("Supports Encrypted FS");
-		labels[1].setToolTipText("Whether or not the OS supports an encrypted file system.");
+		labels[1] = new JLabel(PrimeMain1.texts
+				.getString("osViewSupEnctyptedFSLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts
+				.getString("osViewSupEnctyptedFSTip"));
 
-		labels[2] = new JLabel("Has GUI");
-		labels[2].setToolTipText("Whether or not the OS has a GUI.");
+		labels[2] = new JLabel(PrimeMain1.texts.getString("osViewHasGUILabel"));
+		labels[2].setToolTipText(PrimeMain1.texts.getString("osViewHasGUITip"));
 
-		labels[3] = new JLabel("64-bit");
-		labels[3].setToolTipText("Whether or not the OS is 64-Bit.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("osView64BitLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("osView64BitTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -191,22 +197,24 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 
 		// The supported file system.
 		labels[0].setLabelFor(supportedFS);
-		String[] listData = { "FAT16", "FAT32", "NTFS", "EXT", "EXT2", "EXT3", "EXT4", "ReiserFS", "Reiser4", "ZFS",
-				"XFS" };
+		String[] listData = { "FAT16", "FAT32", "NTFS", "EXT", "EXT2", "EXT3",
+				"EXT4", "ReiserFS", "Reiser4", "ZFS", "XFS" };
 		supportedFS = new JList(listData);
 		ListSelectionModel listSelectionModel = supportedFS.getSelectionModel();
-		listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
+		listSelectionModel
+				.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supportedFS);
 		listPane.setMaximumSize(new Dimension(160, 60));
 		listPane.setPreferredSize(new Dimension(160, 60));
-		listSelectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		listSelectionModel
+				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		if ( mainOS.getSupportedFS() != null )
 		{
 			if ( mainOS.getSupportedFS().length > 0 )
 			{
-				listPane.setViewportView(GraphicalFunctions.getIndexInJList(supportedFS, listData, mainOS
-						.getSupportedFS()));
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
+						supportedFS, listData, mainOS.getSupportedFS()));
 			}
 		}
 
@@ -279,7 +287,8 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 
 
 	/**
-	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
+	 * Creates a JPanel with two buttons that are listened for by
+	 * actionlisteners.
 	 */
 	private JPanel createButtons()
 	{
@@ -287,11 +296,11 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button("Save");
+		Button save = new Button(PrimeMain1.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button("Cancel");
+		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -362,14 +371,16 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 
 
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems" JList.
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
 	 */
 	class SharedListSelectionHandler implements ListSelectionListener
 	{
 		/*
 		 * (non-Javadoc)
-		 * 
-		 * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing. event.ListSelectionEvent)
+		 * @see
+		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
+		 * event.ListSelectionEvent)
 		 */
 		public void valueChanged(ListSelectionEvent e)
 		{

@@ -5,6 +5,8 @@ package actions.systemActions;
 
 
 
+import graphics.PrimeMain1;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -35,7 +37,8 @@ public class ActionNew extends AbstractSystemAction
 	public ActionNew(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "Creates a new Network");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionCreateNewNetworkText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_N));
 	}
 
@@ -50,7 +53,8 @@ public class ActionNew extends AbstractSystemAction
 	public ActionNew(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "Creates a new Network");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionCreateNewNetworkText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_N));
 	}
 

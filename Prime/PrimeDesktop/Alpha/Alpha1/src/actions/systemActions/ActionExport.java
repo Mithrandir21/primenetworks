@@ -33,7 +33,8 @@ public class ActionExport extends AbstractSystemAction
 	public ActionExport(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This is a Export action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionExportNetworkToImageText"));
 	}
 
 
@@ -47,7 +48,8 @@ public class ActionExport extends AbstractSystemAction
 	public ActionExport(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This is a Export action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionExportNetworkToImageText"));
 	}
 
 

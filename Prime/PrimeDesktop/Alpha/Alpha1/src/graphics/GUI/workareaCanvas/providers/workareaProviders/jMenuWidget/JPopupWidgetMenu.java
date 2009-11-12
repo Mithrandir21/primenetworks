@@ -95,7 +95,8 @@ public class JPopupWidgetMenu
 	{
 		JMenuItem menuItem;
 
-		menuItem = new JMenuItem("Open Device");
+		menuItem = new JMenuItem(PrimeMain1.texts
+				.getString("widgetMenuOpenWidgetAction"));
 		menuItem.setActionCommand("OpenDevice");
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);
@@ -104,19 +105,22 @@ public class JPopupWidgetMenu
 		popup.addSeparator();
 
 
-		menuItem = new JMenuItem("Copy Object");
+		menuItem = new JMenuItem(PrimeMain1.texts
+				.getString("widgetMenuCopyWidgetAction"));
 		menuItem.setActionCommand("CopyObject");
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);
 
 
-		menuItem = new JMenuItem("Cut Object");
+		menuItem = new JMenuItem(PrimeMain1.texts
+				.getString("widgetMenuCutWidgetAction"));
 		menuItem.setActionCommand("CutObject");
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);
 
 
-		menuItem = new JMenuItem(new ActionPaste("Paste Object"));
+		menuItem = new JMenuItem(new ActionPaste(PrimeMain1.texts
+				.getString("widgetMenuPasteWidgetAction")));
 
 		// If neither the copy or cut pointers point to anything, the past
 		// button will be disabled
@@ -129,11 +133,12 @@ public class JPopupWidgetMenu
 
 		popup.addSeparator();
 
-		menuItem = new JMenuItem(new ActionDeleteWidget("Delete this object"));
+		menuItem = new JMenuItem(new ActionDeleteWidget(PrimeMain1.texts
+				.getString("widgetMenuDeleteWidgetAction")));
 		popup.add(menuItem);
 
-		menuItem = new JMenuItem(
-				"Delete all connection to and from this object");
+		menuItem = new JMenuItem(PrimeMain1.texts
+				.getString("widgetMenuDeleteConnectionToFromWidgetAction"));
 		menuItem.setActionCommand("DeleteConnectionsObject");
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);

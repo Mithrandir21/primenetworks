@@ -34,7 +34,8 @@ public class ActionCopy extends AbstractSystemAction
 	public ActionCopy(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This is a Copy action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionCopyDescriptionText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_C));
 	}
 
@@ -48,7 +49,8 @@ public class ActionCopy extends AbstractSystemAction
 	public ActionCopy(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This is a Copy action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionCopyDescriptionText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_C));
 	}
 

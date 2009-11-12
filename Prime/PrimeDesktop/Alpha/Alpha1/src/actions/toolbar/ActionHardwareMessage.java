@@ -34,7 +34,8 @@ public class ActionHardwareMessage extends AbstractSystemAction
 	public ActionHardwareMessage(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This action opens the Hardware messages.");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionActionOpenHardwareMessageDescriptionText"));
 	}
 
 
@@ -48,7 +49,8 @@ public class ActionHardwareMessage extends AbstractSystemAction
 	public ActionHardwareMessage(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This action opens the Hardware messages.");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionActionOpenHardwareMessageDescriptionText"));
 	}
 
 

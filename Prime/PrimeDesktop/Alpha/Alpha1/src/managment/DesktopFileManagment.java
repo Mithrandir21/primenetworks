@@ -40,9 +40,9 @@ import connections.WidgetExtendedConnection;
 
 
 /**
- * This class provides static functions that deal with the actual saving to file, reading from file
- * and so on. {@link WorkareaCanvas WorkareaCanvases} are saved and loaded here. There are also
- * testing and control functions.
+ * This class provides static functions that deal with the actual saving to
+ * file, reading from file and so on. {@link WorkareaCanvas WorkareaCanvases}
+ * are saved and loaded here. There are also testing and control functions.
  * 
  * @author Bahram Malaekeh
  */
@@ -50,8 +50,9 @@ public class DesktopFileManagment
 {
 
 	/**
-	 * Saves the given WorkareaCanvas. This function creates a file object from the name of the
-	 * WorkareaCanvas and passes that on the function that actually saves the WorkareaCanvas.
+	 * Saves the given WorkareaCanvas. This function creates a file object from
+	 * the name of the WorkareaCanvas and passes that on the function that
+	 * actually saves the WorkareaCanvas.
 	 * 
 	 * @param canvas
 	 *            The WorkareaCanvas to be written out.
@@ -82,9 +83,9 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Saves the given WorkareaCanvas in the given File. The name of the WorkareaCanvas is written
-	 * out to the file as an object, so is an ArrayList of the WidgetObjects and Connections on the
-	 * WorkareaCanvas.
+	 * Saves the given WorkareaCanvas in the given File. The name of the
+	 * WorkareaCanvas is written out to the file as an object, so is an
+	 * ArrayList of the WidgetObjects and Connections on the WorkareaCanvas.
 	 * 
 	 * @param canvas
 	 *            The WorkareaCanvas to be written out.
@@ -232,10 +233,11 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This function checks whether or not there exist a file containing a WorkareaCanvas with the
-	 * same and serial as the given WorkareaCanvas. If not true is returned. If there exists a
-	 * WorkareaCanvas with the same name, but not serial number the user is asked to verify
-	 * overwriting that file.
+	 * This function checks whether or not there exist a file containing a
+	 * WorkareaCanvas with the same and serial as the given WorkareaCanvas. If
+	 * not true is returned. If there exists a WorkareaCanvas with the same
+	 * name, but not serial number the user is asked to verify overwriting that
+	 * file.
 	 * 
 	 * @param canvas
 	 * @return
@@ -278,8 +280,10 @@ public class DesktopFileManagment
 						int answer = JOptionPane
 								.showConfirmDialog(
 										null,
-										"There exists a network with given name. Do you wish to overwrite that file?",
-										"Overwrite", JOptionPane.YES_NO_OPTION);
+										PrimeMain1.texts
+												.getString("overwriteNetworkWithTheSameNameMsg"),
+										PrimeMain1.texts.getString("overwrite"),
+										JOptionPane.YES_NO_OPTION);
 
 						// The user answers "yes"
 						if ( answer == 0 )
@@ -324,8 +328,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * The method check whether or not a file exist with the given newName String. If it does, the
-	 * file is checked for a WorkareaCanvas
+	 * The method check whether or not a file exist with the given newName
+	 * String. If it does, the file is checked for a WorkareaCanvas
 	 * 
 	 * @param canvas
 	 * @return
@@ -386,12 +390,13 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This function renames the file a given {@link WorkareaCanvas} is located in(if is has ever
-	 * been saved), to a file with the given string. The function checks if the
-	 * {@link WorkareaCanvas} exists.
+	 * This function renames the file a given {@link WorkareaCanvas} is located
+	 * in(if is has ever been saved), to a file with the given string. The
+	 * function checks if the {@link WorkareaCanvas} exists.
 	 * 
 	 * @param canvas
-	 *            The {@link WorkareaCanvas} thats inside the file to be renamed.
+	 *            The {@link WorkareaCanvas} thats inside the file to be
+	 *            renamed.
 	 * @param newName
 	 *            The name of the new file.
 	 * @return True, if the file rename was successful, and false, if not.
@@ -414,8 +419,9 @@ public class DesktopFileManagment
 			// If the rename was not possible
 			if ( !result )
 			{
-				JOptionPane.showMessageDialog(null, "Rename was not possible.",
-						"Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+						.getString("renameWasNotPossibleMsg"), PrimeMain1.texts
+						.getString("error"), JOptionPane.ERROR_MESSAGE);
 			}
 			else
 			{
@@ -440,8 +446,9 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This function removes WorkareaCanvas with the given name from the system. It also deletes the
-	 * file that contains the workareaCanvas from the file system, so this is permanent.
+	 * This function removes WorkareaCanvas with the given name from the system.
+	 * It also deletes the file that contains the workareaCanvas from the file
+	 * system, so this is permanent.
 	 * 
 	 * @param fileNode
 	 *            The file that contains the WorkareaCanvas.
@@ -457,8 +464,9 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This function removes WorkareaCanvas with the given name from the system. It also deletes the
-	 * file that contains the workareaCanvas from the file system, so this is permanent.
+	 * This function removes WorkareaCanvas with the given name from the system.
+	 * It also deletes the file that contains the workareaCanvas from the file
+	 * system, so this is permanent.
 	 * 
 	 * @param fileNode
 	 *            The file that contains the WorkareaCanvas.
@@ -476,8 +484,9 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This function removes WorkareaCanvas with the given name from the system. It also deletes the
-	 * file that contains the workareaCanvas from the file system, so this is permanent.
+	 * This function removes WorkareaCanvas with the given name from the system.
+	 * It also deletes the file that contains the workareaCanvas from the file
+	 * system, so this is permanent.
 	 * 
 	 * @param fileNode
 	 *            The file that contains the WorkareaCanvas.
@@ -599,8 +608,9 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Creates a new WorkareaCanvas. The user is asked what the name of the new workareaCanvas will
-	 * be. The new WorkareaCanvas is then opened in the workarea.
+	 * Creates a new WorkareaCanvas. The user is asked what the name of the new
+	 * workareaCanvas will be. The new WorkareaCanvas is then opened in the
+	 * workarea.
 	 */
 	public static void newWorkareaCanvas()
 	{
@@ -610,8 +620,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Creates a new WorkareaCanvas. The new WorkareaCanvas is opened in the workarea. The name of
-	 * the new WorkareaCanvas will be the given String.
+	 * Creates a new WorkareaCanvas. The new WorkareaCanvas is opened in the
+	 * workarea. The name of the new WorkareaCanvas will be the given String.
 	 * 
 	 * @param nameOfCanvas
 	 */
@@ -623,8 +633,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Creates a new WorkareaCanvas. The new WorkareaCanvas is opened in the workarea. The name of
-	 * the new WorkareaCanvas will be the given String.
+	 * Creates a new WorkareaCanvas. The new WorkareaCanvas is opened in the
+	 * workarea. The name of the new WorkareaCanvas will be the given String.
 	 * 
 	 * @param nameOfCanvas
 	 */
@@ -637,12 +647,14 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Creates a new WorkareaCanvas with the given name. The name is checked to see if it matched
-	 * with the allowed symbols, which are letters, numbers and underscore. After the WorkareaCanvas
-	 * is created it is added to the programs workarea.
+	 * Creates a new WorkareaCanvas with the given name. The name is checked to
+	 * see if it matched with the allowed symbols, which are letters, numbers
+	 * and underscore. After the WorkareaCanvas is created it is added to the
+	 * programs workarea.
 	 * 
 	 * @param nameOfCanvas
-	 *            The name that the WorkareaCanvas will have, after being checked.
+	 *            The name that the WorkareaCanvas will have, after being
+	 *            checked.
 	 */
 	private static boolean newCanvas(String nameOfCanvas, String netmask,
 			String IPfrom, String IPto, String networkDesc)
@@ -704,24 +716,19 @@ public class DesktopFileManagment
 				}
 				else
 				{
-					JOptionPane
-							.showMessageDialog(
-									null,
-									"There exist a Canvas with the same name as this Canvas.",
-									"Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, PrimeMain1.texts
+							.getString("canvasExistWithNameMsg"),
+							PrimeMain1.texts.getString("error"),
+							JOptionPane.ERROR_MESSAGE);
 
 					return false;
 				}
 			}
 			else
 			{
-				JOptionPane
-						.showMessageDialog(
-								null,
-								"This name, ("
-										+ nameOfCanvas
-										+ "), is not an accepted name.\n"
-										+ "The name can only contains letters, numbers and an underscore.");
+				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+						.getString("canvasNameNotValidMsg"), PrimeMain1.texts
+						.getString("error"), JOptionPane.ERROR_MESSAGE);
 
 				return false;
 			}
@@ -737,9 +744,9 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This method opens a WorkareaCanvas from the given file. It adds the opened canvas the systems
-	 * Workarea where the WorkareaCanvas can be edited. It also adds all the objects and connections
-	 * to the canvas.
+	 * This method opens a WorkareaCanvas from the given file. It adds the
+	 * opened canvas the systems Workarea where the WorkareaCanvas can be
+	 * edited. It also adds all the objects and connections to the canvas.
 	 * 
 	 * @param file
 	 */
@@ -751,9 +758,10 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This method opens a WorkareaCanvas from the given file. It adds the opened canvas the systems
-	 * Workarea where the WorkareaCanvas can be edited. It also adds all the objects and connections
-	 * to the canvas. This method creates a File from the given string.
+	 * This method opens a WorkareaCanvas from the given file. It adds the
+	 * opened canvas the systems Workarea where the WorkareaCanvas can be
+	 * edited. It also adds all the objects and connections to the canvas. This
+	 * method creates a File from the given string.
 	 * 
 	 * @param canvasName
 	 */
@@ -768,9 +776,9 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This method opens a WorkareaCanvas from the given file. It adds the opened canvas the systems
-	 * Workarea where the WorkareaCanvas can be edited. It also adds all the objects and connections
-	 * to the canvas.
+	 * This method opens a WorkareaCanvas from the given file. It adds the
+	 * opened canvas the systems Workarea where the WorkareaCanvas can be
+	 * edited. It also adds all the objects and connections to the canvas.
 	 * 
 	 * @param file
 	 */
@@ -833,7 +841,8 @@ public class DesktopFileManagment
 					objectIndex++;
 				}
 
-				// Goes through the array of objects and adds them to the newly made canvas
+				// Goes through the array of objects and adds them to the newly
+				// made canvas
 				for ( int i = 0; i < objects.length; i++ )
 				{
 					if ( objects[i] != null )
@@ -1072,8 +1081,9 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This function goes through all the given WorkareaCanvases and checks if the canvas has been
-	 * changed since last save. If it has been changed, it saves that canvas.
+	 * This function goes through all the given WorkareaCanvases and checks if
+	 * the canvas has been changed since last save. If it has been changed, it
+	 * saves that canvas.
 	 * 
 	 * @param canvases
 	 *            The workareaCanvases that are to be checked and saved

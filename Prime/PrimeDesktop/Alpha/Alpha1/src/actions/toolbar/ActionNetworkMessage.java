@@ -34,7 +34,8 @@ public class ActionNetworkMessage extends AbstractSystemAction
 	public ActionNetworkMessage(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This action opens the Network messages.");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionActionOpenNetworkMessageDescriptionText"));
 	}
 
 
@@ -48,7 +49,8 @@ public class ActionNetworkMessage extends AbstractSystemAction
 	public ActionNetworkMessage(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This action opens the Network messages.");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionActionOpenNetworkMessageDescriptionText"));
 	}
 
 

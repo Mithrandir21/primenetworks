@@ -367,14 +367,19 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 					if ( verify )
 					{
 						// The options the user will be presented with.
-						Object[] options = { "Save", "Dont save", "Cancel" };
+						Object[] options = {
+								PrimeMain1.texts.getString("save"),
+								PrimeMain1.texts.getString("dontSave"),
+								PrimeMain1.texts.getString("cancel") };
 
 						// Asks the user whether or not to save
 						int answer = JOptionPane
 								.showOptionDialog(
 										null,
-										"This canvas has not been saved, do you want to save this canvas?",
-										"Save", JOptionPane.WARNING_MESSAGE,
+										PrimeMain1.texts
+												.getString("removeTabRemoveWithoutSavingQuestion"),
+										PrimeMain1.texts.getString("save"),
+										JOptionPane.WARNING_MESSAGE,
 										JOptionPane.WARNING_MESSAGE, null,
 										options, null);
 

@@ -3,6 +3,7 @@ package actions.canvasActions;
 
 import exceptions.ConnectionDoesExist;
 import exceptions.ConnectionsIsNotPossible;
+import graphics.PrimeMain1;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
 import java.awt.event.ActionEvent;
@@ -135,7 +136,8 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 	@Override
 	public String getPresentationName()
 	{
-		return "Create a connection between two objects";
+		return PrimeMain1.texts
+				.getString("actionCreateConnectionActionPresNameText");
 	}
 
 	/*
@@ -145,7 +147,8 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 	@Override
 	public String getRedoPresentationName()
 	{
-		return "Re-Create a connection between two objects";
+		return PrimeMain1.texts
+				.getString("actionCreateConnectionRedoPresNameText");
 	}
 
 	/*
@@ -155,7 +158,8 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 	@Override
 	public String getUndoPresentationName()
 	{
-		return "Remove a newly created connection between two objects";
+		return PrimeMain1.texts
+				.getString("actionCreateConnectionUndoPresNameText");
 	}
 
 	/*
@@ -184,7 +188,8 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 				// Creates a new connection between the two widget objects
 				Connection con = ConnectionManagment.makeConnection(canvas
-						.getConnections(), "Connection"
+						.getConnections(), PrimeMain1.texts
+						.getString("connection")
 						+ canvas.getNumberOfWidgetsOnTheScene(),
 						"Connection between "
 								+ SourceWidObj.getObject().getObjectName()
@@ -226,20 +231,18 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 			// objects.
 			catch ( ConnectionDoesExist e )
 			{
-				JOptionPane
-						.showMessageDialog(
-								null,
-								"There already exists a connection between these two objects.",
-								"alert", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+						.getString("connectionAlreadyExistsMsg"),
+						PrimeMain1.texts.getString("alert"),
+						JOptionPane.ERROR_MESSAGE);
 			}
 			// If a connection between the two given objects is impossible.
 			catch ( ConnectionsIsNotPossible e )
 			{
-				JOptionPane
-						.showMessageDialog(
-								null,
-								"A connection between these two objects is not possible.",
-								"alert", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+						.getString("connectionNotPossibleMsg"),
+						PrimeMain1.texts.getString("alert"),
+						JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
@@ -286,18 +289,19 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 			// Creates a dialog that shows the different available connection
 			// types.
-			String conType = ListDialog.showDialog(null, null,
-					"Connection type", "Connection", compInter, null, null);
+			String conType = ListDialog.showDialog(null, null, PrimeMain1.texts
+					.getString("actionCreateConnectionTypeLabel"),
+					PrimeMain1.texts.getString("connection"), compInter, null,
+					null);
 
 
 			// If a connection type is not selected.
 			if ( conType == null && compInter.length > 1 )
 			{
-				JOptionPane
-						.showMessageDialog(
-								null,
-								"You must choose a connection type for a connection to be made.",
-								"alert", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+						.getString("actionCreateConnectionChooseTypeText"),
+						PrimeMain1.texts.getString("alert"),
+						JOptionPane.ERROR_MESSAGE);
 			}
 			// If the cancel butten is pressed.
 			else if ( conType == "Cancelled" )
@@ -326,7 +330,8 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 					// Creates the connection between the two devices(Not on the
 					// scene).
 					con = ConnectionManagment.makeConnection(canvas
-							.getConnections(), "Connection"
+							.getConnections(), PrimeMain1.texts
+							.getString("connection")
 							+ canvas.getNumberOfWidgetsOnTheScene(),
 							"Connection between "
 									+ SourceWidObj.getObject().getObjectName()
@@ -372,28 +377,26 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 				// objects.
 				catch ( ConnectionDoesExist e )
 				{
-					JOptionPane
-							.showMessageDialog(
-									null,
-									"There already exists a connection between these two objects.",
-									"alert", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, PrimeMain1.texts
+							.getString("connectionAlreadyExistsMsg"),
+							PrimeMain1.texts.getString("alert"),
+							JOptionPane.ERROR_MESSAGE);
 				}
 				// If a connection between the two given objects is impossible.
 				catch ( ConnectionsIsNotPossible e )
 				{
-					JOptionPane
-							.showMessageDialog(
-									null,
-									"A connection between these two objects is not possible.",
-									"alert", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, PrimeMain1.texts
+							.getString("connectionNotPossibleMsg"),
+							PrimeMain1.texts.getString("alert"),
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null,
-					"These two objects cannot connect to eachother because they dont"
-							+ " support the same ports.", "alert",
+			JOptionPane.showMessageDialog(null, PrimeMain1.texts
+					.getString("connectionNotPossibleBecauseNoPortsMatchMsg"),
+					PrimeMain1.texts.getString("alert"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}

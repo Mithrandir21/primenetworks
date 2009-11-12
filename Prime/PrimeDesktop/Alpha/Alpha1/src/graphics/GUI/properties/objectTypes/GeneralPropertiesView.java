@@ -34,16 +34,21 @@ public class GeneralPropertiesView
 {
 
 	/**
-	 * Examines the given WorkareaCanvas and adds the canvas name and the number of objects on the given JPanel.
+	 * Examines the given WorkareaCanvas and adds the canvas name and the number
+	 * of objects on the given JPanel.
 	 */
-	public static void getGeneralCanvasProperties(JPanel panel, WorkareaCanvas canvas)
+	public static void getGeneralCanvasProperties(JPanel panel,
+			WorkareaCanvas canvas)
 	{
 		Dimension tfSize = new Dimension(5, 20);
 
 
 		// Name
-		JLabel nameLabel = new JLabel("Name", SwingConstants.TRAILING);
-		nameLabel.setToolTipText("The name of the network map.");
+		JLabel nameLabel = new JLabel(PrimeMain1.texts
+				.getString("propGeneralViewCanvasNameLabel"),
+				SwingConstants.TRAILING);
+		nameLabel.setToolTipText(PrimeMain1.texts
+				.getString("propGeneralViewCanvasNameTip"));
 		panel.add(nameLabel);
 
 		JTextField nameField = new JTextField(canvas.getCanvasName());
@@ -57,7 +62,8 @@ public class GeneralPropertiesView
 				int key = e.getKeyCode();
 				if ( key == KeyEvent.VK_ENTER )
 				{
-					PropertiesArea objPro = (PropertiesArea) PrimeMain1.propertiesPanel.getComponent(0);
+					PropertiesArea objPro = (PropertiesArea) PrimeMain1.propertiesPanel
+							.getComponent(0);
 					objPro.getObjectPropertiePanel().saveAction();
 				}
 			}
@@ -69,11 +75,15 @@ public class GeneralPropertiesView
 
 
 		// The number of objects on the network map.
-		JLabel objectCountLabel = new JLabel("Objects count", SwingConstants.TRAILING);
-		objectCountLabel.setToolTipText("The number of objects in the network.");
+		JLabel objectCountLabel = new JLabel(PrimeMain1.texts
+				.getString("propGeneralViewObjectsCountLabel"),
+				SwingConstants.TRAILING);
+		objectCountLabel.setToolTipText(PrimeMain1.texts
+				.getString("propGeneralViewObjectsCountTip"));
 		panel.add(objectCountLabel);
 
-		JTextField objectCountField = new JTextField("" + canvas.getNumberOfWidgetsOnTheScene());
+		JTextField objectCountField = new JTextField(""
+				+ canvas.getNumberOfWidgetsOnTheScene());
 		objectCountField.setMaximumSize(tfSize);
 		objectCountField.setPreferredSize(tfSize);
 		objectCountField.setEditable(false);
@@ -82,8 +92,11 @@ public class GeneralPropertiesView
 
 
 		// The IP Mask of the Network
-		JLabel netmaskLabel = new JLabel("Netmask", SwingConstants.TRAILING);
-		netmaskLabel.setToolTipText("The network netmask.");
+		JLabel netmaskLabel = new JLabel(PrimeMain1.texts
+				.getString("propGeneralViewNetmaskLabel"),
+				SwingConstants.TRAILING);
+		netmaskLabel.setToolTipText(PrimeMain1.texts
+				.getString("propGeneralViewNetmaskTip"));
 		panel.add(netmaskLabel);
 
 		JComboBox netmaskCombo = new JComboBox();
@@ -91,16 +104,20 @@ public class GeneralPropertiesView
 		netmaskCombo.setMaximumSize(tfSize);
 		netmaskCombo.setPreferredSize(tfSize);
 		netmaskLabel.setLabelFor(netmaskCombo);
-		String[] netmasks = new String[] { "", "255.255.255.0", "255.255.0.0", "255.0.0.0" };
+		String[] netmasks = new String[] { "", "255.255.255.0", "255.255.0.0",
+				"255.0.0.0" };
 		netmaskCombo.setModel(new DefaultComboBoxModel(netmasks));
-		netmaskCombo.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(netmasks, canvas.getNetworkInfo()
-				.getNetmask()));
+		netmaskCombo.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				netmasks, canvas.getNetworkInfo().getNetmask()));
 		panel.add(netmaskCombo);
 
 
 		// The start of the IP range
-		JLabel IPrangeStartLabel = new JLabel("IP Range Start", SwingConstants.TRAILING);
-		IPrangeStartLabel.setToolTipText("The start of the IP range.");
+		JLabel IPrangeStartLabel = new JLabel(PrimeMain1.texts
+				.getString("propGeneralViewIPStartsLabel"),
+				SwingConstants.TRAILING);
+		IPrangeStartLabel.setToolTipText(PrimeMain1.texts
+				.getString("propGeneralViewIPStartsTip"));
 		panel.add(IPrangeStartLabel);
 
 		JTextField IPrangeStartField = new JTextField();
@@ -118,8 +135,11 @@ public class GeneralPropertiesView
 
 
 		// The start of the IP range
-		JLabel IPrangeEndLabel = new JLabel("IP Range End", SwingConstants.TRAILING);
-		IPrangeEndLabel.setToolTipText("The end of the IP range.");
+		JLabel IPrangeEndLabel = new JLabel(PrimeMain1.texts
+				.getString("propGeneralViewIPendsLabel"),
+				SwingConstants.TRAILING);
+		IPrangeEndLabel.setToolTipText(PrimeMain1.texts
+				.getString("propGeneralViewIPendsTip"));
 		panel.add(IPrangeEndLabel);
 
 		JTextField IPrangeEndField = new JTextField();
@@ -138,21 +158,25 @@ public class GeneralPropertiesView
 
 
 	/**
-	 * Examines the given object. Adds the information about the object name and different information about the object
-	 * to the given JPanel.
+	 * Examines the given object. Adds the information about the object name and
+	 * different information about the object to the given JPanel.
 	 */
 	public static void getGeneralObjectProperties(JPanel panel, Object obj)
 	{
 		Dimension tfSize = new Dimension(5, 20);
 
 		// Gets the WidgetObject so that the IP address can be added
-		WidgetObject widObj = CanvasManagment.findWidgetObject(obj, PrimeMain1.currentCanvas);
+		WidgetObject widObj = CanvasManagment.findWidgetObject(obj,
+				PrimeMain1.currentCanvas);
 
 
 
 		// Name
-		JLabel nameLabel = new JLabel("Name", SwingConstants.TRAILING);
-		nameLabel.setToolTipText("The name of the device.");
+		JLabel nameLabel = new JLabel(PrimeMain1.texts
+				.getString("propGeneralViewObjectNameLabel"),
+				SwingConstants.TRAILING);
+		nameLabel.setToolTipText(PrimeMain1.texts
+				.getString("propGeneralViewObjectNameTip"));
 		panel.add(nameLabel);
 
 		JTextField nameField = new JTextField(obj.getObjectName());
@@ -167,7 +191,8 @@ public class GeneralPropertiesView
 				int key = e.getKeyCode();
 				if ( key == KeyEvent.VK_ENTER )
 				{
-					PropertiesArea objPro = (PropertiesArea) PrimeMain1.propertiesPanel.getComponent(0);
+					PropertiesArea objPro = (PropertiesArea) PrimeMain1.propertiesPanel
+							.getComponent(0);
 					objPro.getObjectPropertiePanel().saveAction();
 				}
 			}
@@ -177,13 +202,16 @@ public class GeneralPropertiesView
 
 
 		// Supported connection interfaces
-		JLabel supConIntLabel = new JLabel("Supported Connection Interfaces", SwingConstants.TRAILING);
-		supConIntLabel.setToolTipText("The types of connections the device is capable"
-				+ " of connecting to, like USB og RJ-45.");
+		JLabel supConIntLabel = new JLabel(PrimeMain1.texts
+				.getString("propGeneralViewSupConIntLabel"),
+				SwingConstants.TRAILING);
+		supConIntLabel.setToolTipText(PrimeMain1.texts
+				.getString("propGeneralViewSupConIntTip"));
 		panel.add(supConIntLabel);
 
 		JComboBox subConCombo = new JComboBox();
-		subConCombo.setModel(new DefaultComboBoxModel(obj.getSupportedConnectionInterfaces()));
+		subConCombo.setModel(new DefaultComboBoxModel(obj
+				.getSupportedConnectionInterfaces()));
 		subConCombo.setMaximumSize(tfSize);
 		subConCombo.setPreferredSize(tfSize);
 		subConCombo.setEditable(false);
@@ -194,11 +222,15 @@ public class GeneralPropertiesView
 
 
 		// Number of components
-		JLabel numConLabel = new JLabel("Number of devices connected", SwingConstants.TRAILING);
-		numConLabel.setToolTipText("The number of devices connected to this devices.");
+		JLabel numConLabel = new JLabel(PrimeMain1.texts
+				.getString("propGeneralViewNumConDevicesLabel"),
+				SwingConstants.TRAILING);
+		numConLabel.setToolTipText(PrimeMain1.texts
+				.getString("propGeneralViewNumConDevicesTip"));
 		panel.add(numConLabel);
 
-		JTextField numConField = new JTextField(Integer.toString((obj.getNumberOfConnectedDevices())));
+		JTextField numConField = new JTextField(Integer.toString((obj
+				.getNumberOfConnectedDevices())));
 		numConField.setEditable(false);
 		numConField.setMaximumSize(tfSize);
 		numConField.setPreferredSize(tfSize);
@@ -208,9 +240,11 @@ public class GeneralPropertiesView
 
 
 		// Number of nodes
-		JLabel numbJumpsLabel = new JLabel("Number of jumps", SwingConstants.TRAILING);
-		numbJumpsLabel.setToolTipText("The numbers of devices between this device and a router outside"
-				+ " of this system.");
+		JLabel numbJumpsLabel = new JLabel(PrimeMain1.texts
+				.getString("propGeneralViewNumJumpsLabel"),
+				SwingConstants.TRAILING);
+		numbJumpsLabel.setToolTipText(PrimeMain1.texts
+				.getString("propGeneralViewNumJumpsTip"));
 		panel.add(numbJumpsLabel);
 
 		JTextField numbJumpsField = new JTextField("0");
@@ -225,8 +259,11 @@ public class GeneralPropertiesView
 		if ( widObj != null )
 		{
 			// The IP of the object
-			JLabel IPLabel = new JLabel("Device IP", SwingConstants.TRAILING);
-			IPLabel.setToolTipText("The IP of the Object in the network.");
+			JLabel IPLabel = new JLabel(PrimeMain1.texts
+					.getString("propGeneralViewDeviceIPLabel"),
+					SwingConstants.TRAILING);
+			IPLabel.setToolTipText(PrimeMain1.texts
+					.getString("propGeneralViewDeviceIPTip"));
 			panel.add(IPLabel);
 
 			JTextField IPfield = new JTextField();

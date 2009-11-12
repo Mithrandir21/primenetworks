@@ -5,11 +5,12 @@ package actions.systemActions;
 
 
 
+import graphics.PrimeMain1;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 import logistical.AbstractSystemAction;
 import widgets.WorkareaCanvas;
@@ -50,7 +51,8 @@ public class ActionOpenfile extends AbstractSystemAction
 	public ActionOpenfile(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This is a Open File action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionOpenFileText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_O));
 	}
 
@@ -62,8 +64,8 @@ public class ActionOpenfile extends AbstractSystemAction
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		JOptionPane.showMessageDialog(null,
-				"You want to perform a \"Open File\" action.");
+		// JOptionPane.showMessageDialog(null,
+		// "You want to perform a \"Open File\" action.");
 	}
 
 }

@@ -116,7 +116,7 @@ public class ActionCreateRoom extends AbstractSystemAction implements
 	@Override
 	public String getPresentationName()
 	{
-		return "Create a Room";
+		return PrimeMain1.texts.getString("actionCreateRoomActionPresNameText");
 	}
 
 	/*
@@ -126,7 +126,7 @@ public class ActionCreateRoom extends AbstractSystemAction implements
 	@Override
 	public String getRedoPresentationName()
 	{
-		return "Re-Create a Room";
+		return PrimeMain1.texts.getString("actionCreateRoomRedoPresNameText");
 	}
 
 	/*
@@ -136,7 +136,7 @@ public class ActionCreateRoom extends AbstractSystemAction implements
 	@Override
 	public String getUndoPresentationName()
 	{
-		return "Remove a newly created Room";
+		return PrimeMain1.texts.getString("actionCreateRoomUndoPresNameText");
 	}
 
 	/*

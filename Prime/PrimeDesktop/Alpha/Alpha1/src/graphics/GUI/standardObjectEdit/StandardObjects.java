@@ -43,7 +43,7 @@ public class StandardObjects extends JFrame
 	 */
 	public StandardObjects()
 	{
-		super("Standard Objects");
+		super(PrimeMain1.texts.getString("standardObjectsFrameLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();

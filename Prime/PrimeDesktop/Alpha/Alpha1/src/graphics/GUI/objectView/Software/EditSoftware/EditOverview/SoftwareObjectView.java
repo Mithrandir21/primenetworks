@@ -3,6 +3,7 @@ package graphics.GUI.objectView.Software.EditSoftware.EditOverview;
 
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.objectView.Software.NewSoftware.NewOverview.NewSoftwareChoice;
 
 import java.awt.Button;
@@ -118,7 +119,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = antiVirusObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = "Version: " + text;
+						info[1] = PrimeMain1.texts.getString("swTabVersionLabel") + ": " + text;
 					}
 
 					Date d = antiVirusObj.getExpirationDate();
@@ -126,14 +127,14 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					{
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(d);
-						info[2] = "Expires: " + Calendar.DAY_OF_MONTH + "/"
+						info[2] = PrimeMain1.texts.getString("swTabExpiresLabel") + ": " + Calendar.DAY_OF_MONTH + "/"
 								+ Calendar.MONTH + "/" + Calendar.YEAR;
 					}
 
 					text = antiVirusObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[3] = "Description: " + text;
+						info[3] = PrimeMain1.texts.getString("swTabDescriptionLabel") + ": " + text;
 					}
 
 				}
@@ -156,13 +157,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = backupObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = "Version: " + text;
+						info[1] = PrimeMain1.texts.getString("swTabVersionLabel") + ": " + text;
 					}
 
 					text = backupObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = "Description: " + text;
+						info[2] = PrimeMain1.texts.getString("swTabDescriptionLabel") + ": " + text;
 					}
 
 				}
@@ -185,13 +186,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = hddObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = "Producer: " + text;
+						info[1] = PrimeMain1.texts.getString("swTabProducerLabel") + ": " + text;
 					}
 
 					text = hddObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = "Description: " + text;
+						info[2] = PrimeMain1.texts.getString("swTabDescriptionLabel") + ": " + text;
 					}
 
 				}
@@ -214,13 +215,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = emailObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = "Version: " + text;
+						info[1] = PrimeMain1.texts.getString("swTabVersionLabel") + ": " + text;
 					}
 
 					text = emailObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = "Description: " + text;
+						info[2] = PrimeMain1.texts.getString("swTabDescriptionLabel") + ": " + text;
 					}
 
 				}
@@ -243,13 +244,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = firewallObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = "Version: " + text;
+						info[1] = PrimeMain1.texts.getString("swTabVersionLabel") + ": " + text;
 					}
 
 					text = firewallObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = "Description: " + text;
+						info[2] = PrimeMain1.texts.getString("swTabDescriptionLabel") + ": " + text;
 					}
 				}
 				else if ( swObj[i] instanceof OfficeSuite )
@@ -272,13 +273,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = OffSuitObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = "Version: " + text;
+						info[1] = PrimeMain1.texts.getString("swTabVersionLabel") + ": " + text;
 					}
 
 					text = OffSuitObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = "Description: " + text;
+						info[2] = PrimeMain1.texts.getString("swTabDescriptionLabel") + ": " + text;
 					}
 				}
 				else if ( swObj[i] instanceof OperatingSystem )
@@ -301,13 +302,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = OSObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = "Version: " + text;
+						info[1] = PrimeMain1.texts.getString("swTabVersionLabel") + ": " + text;
 					}
 
 					text = OSObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = "Description: " + text;
+						info[2] = PrimeMain1.texts.getString("swTabDescriptionLabel") + ": " + text;
 					}
 
 				}
@@ -330,13 +331,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = proxyObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = "Producer: " + text;
+						info[1] = PrimeMain1.texts.getString("swTabProducerLabel") + ": " + text;
 					}
 
 					text = proxyObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = "Description: " + text;
+						info[2] = PrimeMain1.texts.getString("swTabDescriptionLabel") + ": " + text;
 					}
 
 				}
@@ -360,13 +361,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = secSuiteObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = "Producer: " + text;
+						info[1] = PrimeMain1.texts.getString("swTabProducerLabel") + ": " + text;
 					}
 
 					text = secSuiteObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = "Description: " + text;
+						info[2] = PrimeMain1.texts.getString("swTabDescriptionLabel") + ": " + text;
 					}
 
 				}
@@ -390,13 +391,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = webServObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = "Producer: " + text;
+						info[1] = PrimeMain1.texts.getString("swTabProducerLabel") + ": " + text;
 					}
 
 					text = webServObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = "Description: " + text;
+						info[2] = PrimeMain1.texts.getString("swTabDescriptionLabel") + ": " + text;
 					}
 
 				}
@@ -481,11 +482,11 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 			JPanel buttons = new JPanel();
 			buttons.setLayout(new FlowLayout(FlowLayout.LEADING));
 
-			Button edit = new Button("Edit Software");
+			Button edit = new Button(PrimeMain1.texts.getString("swTabEditSoftwareButtonLabel"));
 			edit.addActionListener(this);
 			edit.setActionCommand("edit");
 
-			Button addNew = new Button("Install Software");
+			Button addNew = new Button(PrimeMain1.texts.getString("swTabNewSoftwareButtonLabel"));
 			addNew.addActionListener(this);
 			addNew.setActionCommand("newSoft");
 
@@ -499,8 +500,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 			JPanel note = new JPanel();
 			note.setLayout(new FlowLayout(FlowLayout.LEADING));
 
-			JLabel text = new JLabel(
-					"You can currently not add software to infrastructure or peripherals.");
+			JLabel text = new JLabel(PrimeMain1.texts.getString("swTabResctrictionText"));
 			note.add(text);
 
 			this.add(note, d);

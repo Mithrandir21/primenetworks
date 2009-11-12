@@ -154,7 +154,7 @@ public class SoftwareEditor extends JFrame implements ActionListener
 		d.anchor = GridBagConstraints.CENTER;
 
 		JLabel nameLabel = new JLabel(PrimeMain1.texts
-				.getString("swTabHWnameLabel"));
+				.getString("swTabSWnameLabel"));
 		genPanel.add(nameLabel, d);
 
 		d.gridx = 2;
@@ -183,7 +183,7 @@ public class SoftwareEditor extends JFrame implements ActionListener
 		d.anchor = GridBagConstraints.CENTER;
 
 		JLabel descLabel = new JLabel(PrimeMain1.texts
-				.getString("swTabHWdescriptionLabel"));
+				.getString("swTabSWdescriptionLabel"));
 		genPanel.add(descLabel, d);
 
 

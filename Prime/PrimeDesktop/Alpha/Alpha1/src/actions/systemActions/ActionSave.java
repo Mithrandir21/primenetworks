@@ -35,7 +35,8 @@ public class ActionSave extends AbstractSystemAction
 	public ActionSave(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This is a Save action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionSaveCurrentNetworkText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_S));
 	}
 
@@ -50,7 +51,8 @@ public class ActionSave extends AbstractSystemAction
 	public ActionSave(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This is a Save action");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionSaveCurrentNetworkText"));
 		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_S));
 	}
 

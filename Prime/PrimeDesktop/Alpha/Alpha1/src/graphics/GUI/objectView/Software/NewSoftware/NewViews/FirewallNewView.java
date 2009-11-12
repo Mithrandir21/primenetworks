@@ -40,7 +40,8 @@ import objects.Object;
 import objects.softwareObjects.Firewall;
 
 
-public class FirewallNewView extends JFrame implements SoftwareView, ActionListener
+public class FirewallNewView extends JFrame implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -133,7 +134,7 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 	 */
 	public FirewallNewView(Object obj, Firewall fw)
 	{
-		super("New Backup");
+		super(PrimeMain1.texts.getString("swNewFirewallLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -199,19 +200,22 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
+				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
 
 
 	/**
-	 * This method creates and returns a JPanel that contains all the different settings of the given Software object.
-	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
-	 * the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
 	 * @param fw
-	 *            The Software that will be examined and will fill inn the fields.
+	 *            The Software that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
 	 */
 	private JPanel createSpesificInfo(Firewall fw)
@@ -220,66 +224,86 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 		JLabel[] labels = new JLabel[20];
 
 
-		labels[0] = new JLabel("Supported OS");
-		labels[0].setToolTipText("The supported Operating Systems by the software.");
+		labels[0] = new JLabel(PrimeMain1.texts.getString("fwViewSupOSLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts.getString("fwViewSupOSTip"));
 
-		labels[1] = new JLabel("Network Firewall");
-		labels[1].setToolTipText("Whether or not the software supports network firewall.");
+		labels[1] = new JLabel(PrimeMain1.texts
+				.getString("fwViewNetworkFirewallLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts
+				.getString("fwViewNetworkFirewallTip"));
 
-		labels[2] = new JLabel("Stateful Firewall");
-		labels[2].setToolTipText("Whether or not the software supports stateful firewall.");
+		labels[2] = new JLabel(PrimeMain1.texts
+				.getString("fwViewStatefulFirewallLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts
+				.getString("fwViewStatefulFirewallTip"));
 
-		labels[3] = new JLabel("Application Firewall");
-		labels[3].setToolTipText("Whether or not the software supports application firewall.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("fwViewSupDPILabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("fwViewSupDPITip"));
 
-		labels[4] = new JLabel("DPI");
-		labels[4].setToolTipText("Whether or not the software supports DPI, Deep package inspection.");
+		labels[4] = new JLabel(PrimeMain1.texts
+				.getString("fwViewHasProxyLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts
+				.getString("fwViewHasProxyTip"));
 
-		labels[5] = new JLabel("Proxy");
-		labels[5].setToolTipText("Whether or not the software has proxy feature.");
+		labels[5] = new JLabel(PrimeMain1.texts.getString("fwViewHasNATLabel"));
+		labels[5].setToolTipText(PrimeMain1.texts.getString("fwViewHasNATTip"));
 
-		labels[6] = new JLabel("NAT");
-		labels[6].setToolTipText("Whether or not the software has NAT feature");
+		labels[6] = new JLabel(PrimeMain1.texts.getString("fwViewHasVPNLabel"));
+		labels[6].setToolTipText(PrimeMain1.texts.getString("fwViewHasVPNTip"));
 
-		labels[7] = new JLabel("VPN");
-		labels[7].setToolTipText("Whether or not the software has VPN feature");
+		labels[7] = new JLabel(PrimeMain1.texts
+				.getString("fwViewHasAntivirusLabel"));
+		labels[7].setToolTipText(PrimeMain1.texts
+				.getString("fwViewHasAntivirusTip"));
 
-		labels[8] = new JLabel("Antivirus");
-		labels[8].setToolTipText("Whether or not the software has antivirus feature");
+		labels[8] = new JLabel(PrimeMain1.texts.getString("fwViewHasIDSLabel"));
+		labels[8].setToolTipText(PrimeMain1.texts.getString("fwViewHasIDSTip"));
 
-		labels[9] = new JLabel("IDS");
-		labels[9].setToolTipText("Whether or not the software has IDS, Intrusion Detection System, feature.");
+		labels[9] = new JLabel(PrimeMain1.texts
+				.getString("fwViewSupModularityLabel"));
+		labels[9].setToolTipText(PrimeMain1.texts
+				.getString("fwViewSupModularityTip"));
 
-		labels[10] = new JLabel("Modularity");
-		labels[10]
-				.setToolTipText("Whether or not the software supports Modularity, third-party modules to extend functionality.");
+		labels[10] = new JLabel(PrimeMain1.texts
+				.getString("fwViewSupIPv6Label"));
+		labels[10].setToolTipText(PrimeMain1.texts
+				.getString("fwViewSupIPv6Tip"));
 
-		labels[11] = new JLabel("IPv6");
-		labels[11].setToolTipText("Whether or not the software supports IP version 6.");
+		labels[11] = new JLabel(PrimeMain1.texts.getString("fwViewSupTTLLabel"));
+		labels[11]
+				.setToolTipText(PrimeMain1.texts.getString("fwViewSupTTLTip"));
 
-		labels[12] = new JLabel("TTL");
-		labels[12].setToolTipText("Whether or not the software supports TTL, Transparent to traceroute.");
+		labels[12] = new JLabel(PrimeMain1.texts.getString("fwViewSupRWALabel"));
+		labels[12]
+				.setToolTipText(PrimeMain1.texts.getString("fwViewSupRWATip"));
 
-		labels[13] = new JLabel("RWA");
-		labels[13].setToolTipText("Whether or not the software supports RWA, Reject-with-answer.");
+		labels[13] = new JLabel(PrimeMain1.texts.getString("fwViewSupDMZLabel"));
+		labels[13]
+				.setToolTipText(PrimeMain1.texts.getString("fwViewSupDMZTip"));
 
-		labels[14] = new JLabel("DMZ");
-		labels[14].setToolTipText("Whether or not the software supports a DMZ, de-militarized zone.");
+		labels[14] = new JLabel(PrimeMain1.texts
+				.getString("fwViewSupToDFilterLabel"));
+		labels[14].setToolTipText(PrimeMain1.texts
+				.getString("fwViewSupToDFilterTip"));
 
-		labels[15] = new JLabel("ToD Filter");
-		labels[15].setToolTipText("Whether or not the software supports ToDFilter, Time of day filter.");
+		labels[15] = new JLabel(PrimeMain1.texts
+				.getString("fwViewSupForwardingLabel"));
+		labels[15].setToolTipText(PrimeMain1.texts
+				.getString("fwViewSupForwardingTip"));
 
-		labels[16] = new JLabel("Forwarding");
-		labels[16].setToolTipText("Whether or not the software supports forwarding.");
+		labels[16] = new JLabel(PrimeMain1.texts
+				.getString("fwViewSupPortForwardingLabel"));
+		labels[16].setToolTipText(PrimeMain1.texts
+				.getString("fwViewSupPortForwardingTip"));
 
-		labels[17] = new JLabel("Port Forwarding");
-		labels[17].setToolTipText("Whether or not the software supports port forwarding.");
+		labels[17] = new JLabel(PrimeMain1.texts.getString("fwViewSupQoSLabel"));
+		labels[17]
+				.setToolTipText(PrimeMain1.texts.getString("fwViewSupQoSTip"));
 
-		labels[18] = new JLabel("QoS");
-		labels[18].setToolTipText("Whether or not the software supports QoS, quality of service.");
-
-		labels[19] = new JLabel("Tarpit");
-		labels[19].setToolTipText("Whether or not the software supports TP, tarpit.");
+		labels[18] = new JLabel(PrimeMain1.texts
+				.getString("fwViewSupTarpitLabel"));
+		labels[18].setToolTipText(PrimeMain1.texts
+				.getString("fwViewSupTarpitTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -287,21 +311,25 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 
 		// The supported operating systems by the Email software.
 		labels[0].setLabelFor(supportedOS);
-		String[] listData = { "Windows 98", "Windows 2000", "Windows XP", "Windows Vista", "Linux", "Novell" };
+		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
+				"Windows Vista", "Linux", "Novell" };
 		supportedOS = new JList(listData);
 		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
-		listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
+		listSelectionModel
+				.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supportedOS);
 		listPane.setMaximumSize(new Dimension(160, 60));
 		listPane.setPreferredSize(new Dimension(160, 60));
-		listSelectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		listSelectionModel
+				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		if ( mainFW.getSupportedOperatingSystems() != null )
 		{
 			if ( mainFW.getSupportedOperatingSystems().length > 0 )
 			{
-				listPane.setViewportView(GraphicalFunctions.getIndexInJList(supportedOS, listData, mainFW
-						.getSupportedOperatingSystems()));
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
+						supportedOS, listData, mainFW
+								.getSupportedOperatingSystems()));
 			}
 		}
 
@@ -603,7 +631,8 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
@@ -614,8 +643,8 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 
 
 	/**
-	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
-	 * 
+	 * Creates a JPanel with two buttons that are listened for by
+	 * actionlisteners.
 	 */
 	private JPanel createButtons()
 	{
@@ -623,11 +652,11 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button("Save");
+		Button save = new Button(PrimeMain1.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button("Cancel");
+		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -713,7 +742,8 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 			if ( SoftwareManagment.validateSoftware(mainFW, mainObj) )
 			{
 				// Sets an array with the newly added software object
-				mainObj.setSoftware(SoftwareManagment.addSoftware(mainFW, mainObj));
+				mainObj.setSoftware(SoftwareManagment.addSoftware(mainFW,
+						mainObj));
 
 
 				// Updates the views of the object to correctly show the
@@ -730,8 +760,8 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(this, "The supported Operating System chosen is not "
-						+ "compatible with the objects Operating System");
+				JOptionPane.showMessageDialog(this, PrimeMain1.texts
+						.getString("swNewCompatibilityQuestion"));
 			}
 
 		}
@@ -744,15 +774,16 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 
 
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems" JList.
-	 * 
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
 	 */
 	private class SharedListSelectionHandler implements ListSelectionListener
 	{
 		/*
 		 * (non-Javadoc)
-		 * 
-		 * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing. event.ListSelectionEvent)
+		 * @see
+		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
+		 * event.ListSelectionEvent)
 		 */
 		public void valueChanged(ListSelectionEvent e)
 		{

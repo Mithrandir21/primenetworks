@@ -1302,7 +1302,8 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 					// WorkareaCanvasActions.removeAllConnectionsToFromObject(
 					// PrimeMain1.currentCanvas, mainObj);
 					ActionDeleteAllConnections action = new ActionDeleteAllConnections(
-							"Delete all connections");
+							PrimeMain1.texts
+									.getString("actionDeleteAllConnectionName"));
 					action.performAction(false);
 
 

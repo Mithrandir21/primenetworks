@@ -5,6 +5,7 @@ package actions.systemActions;
 
 
 import graphics.GraphicalFunctions;
+import graphics.PrimeMain1;
 
 import java.awt.event.ActionEvent;
 
@@ -33,7 +34,8 @@ public class ActionRoom extends AbstractSystemAction
 	public ActionRoom(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, "This action allows the creation of Rooms.");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionToggleCreateRoomButtonText"));
 	}
 
 
@@ -47,7 +49,8 @@ public class ActionRoom extends AbstractSystemAction
 	public ActionRoom(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, "This action allows the creation of Rooms.");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionToggleCreateRoomButtonText"));
 	}
 
 

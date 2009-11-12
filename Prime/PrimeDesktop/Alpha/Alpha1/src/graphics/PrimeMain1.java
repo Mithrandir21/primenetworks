@@ -676,7 +676,7 @@ public class PrimeMain1 extends JFrame
 	 * user if they wish to save those altered {@link WorkareaCanvas
 	 * WorkareaCanvases}.
 	 */
-	private static void exitProcess()
+	public static void exitProcess()
 	{
 		// services.stopAll();
 
@@ -690,15 +690,16 @@ public class PrimeMain1 extends JFrame
 		if ( changes != null )
 		{
 			// The options the user will be presented with.
-			String[] options = { "Save", "Dont save", "Cancel" };
+			String[] options = { texts.getString("save"),
+					texts.getString("dontSave"), texts.getString("cancel") };
+
 
 			// Asks the user whether or not to save
-			int answer = JOptionPane
-					.showOptionDialog(
-							null,
-							"There are Networks that have not been saved, do you want to save the Networks?",
-							"Save", JOptionPane.WARNING_MESSAGE,
-							JOptionPane.WARNING_MESSAGE, null, options, null);
+			int answer = JOptionPane.showOptionDialog(null, PrimeMain1.texts
+					.getString("removeTabRemoveWithoutSavingQuestion"),
+					PrimeMain1.texts.getString("save"),
+					JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE,
+					null, options, null);
 
 			// Save
 			if ( answer == 0 )

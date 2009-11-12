@@ -85,7 +85,7 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 	 */
 	public BackupNewView(Object obj, Backup back)
 	{
-		super("New Backup");
+		super(PrimeMain1.texts.getString("swNewBackupLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -173,20 +173,20 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 		JLabel[] labels = new JLabel[5];
 
 
-		labels[0] = new JLabel("Supported OS");
-		labels[0].setToolTipText("The supported Operating Systems by the software.");
+		labels[0] = new JLabel(PrimeMain1.texts.getString("backupViewSupOSLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts.getString("backupViewSupOSTip"));
 
-		labels[1] = new JLabel("Backup Type");
-		labels[1].setToolTipText("The type of backup.(\"Complete\" or just \"Changes\")");
+		labels[1] = new JLabel(PrimeMain1.texts.getString("backupViewTypeLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts.getString("backupViewTypeTip"));
 
-		labels[2] = new JLabel("Supports Compression");
-		labels[2].setToolTipText("Whether or not the software support compression.");
+		labels[2] = new JLabel(PrimeMain1.texts.getString("backupViewSupCompressionLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts.getString("backupViewSupCompressionTip"));
 
-		labels[3] = new JLabel("Supports Encryption");
-		labels[3].setToolTipText("Whether or not the software support encryption.");
+		labels[3] = new JLabel(PrimeMain1.texts.getString("backupViewSupEncryptionLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts.getString("backupViewSupEncryptionTip"));
 
-		labels[4] = new JLabel("Duplicates");
-		labels[4].setToolTipText("How many duplicates of the backup the software keeps track of.");
+		labels[4] = new JLabel(PrimeMain1.texts.getString("backupViewDuplicatesLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts.getString("backupViewDuplicatesTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -298,11 +298,11 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button("Save");
+		Button save = new Button(PrimeMain1.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button("Cancel");
+		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -394,8 +394,7 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(this, "The supported Operating System chosen is not "
-						+ "compatible with the objects Operating System");
+				JOptionPane.showMessageDialog(this, PrimeMain1.texts.getString("swNewCompatibilityQuestion"));
 			}
 
 

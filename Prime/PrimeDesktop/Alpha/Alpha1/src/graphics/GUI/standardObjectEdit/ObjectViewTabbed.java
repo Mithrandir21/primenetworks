@@ -74,51 +74,62 @@ public class ObjectViewTabbed extends JTabbedPane
 		{
 			if ( components[i] instanceof Motherboard )
 			{
-				String MBDesc = "Motherboard options and values";
-				this.addTab("Motherboard", null, new MotherboardView(obj,
-						(Motherboard) components[i]), MBDesc);
+				this.addTab(PrimeMain1.texts.getString("motherboard"), null,
+						new MotherboardView(obj, (Motherboard) components[i]),
+						PrimeMain1.texts.getString("hwTabMBtabDescription"));
 			}
 			else if ( components[i] instanceof CPU )
 			{
-				String CPUDesc = "CPU options and values";
-				this.addTab("CPU", null, new CPUView(obj, (CPU) components[i]),
-						CPUDesc);
+				this.addTab(PrimeMain1.texts.getString("cpu"), null,
+						new CPUView(obj, (CPU) components[i]), PrimeMain1.texts
+								.getString("hwTabCPUtabDescription"));
 			}
 			else if ( components[i] instanceof HDD )
 			{
-				String HDDDesc = "Harddisk options and values";
-				this.addTab("Harddisc", null, new HDDView(obj,
-						(HDD) components[i]), HDDDesc);
+				this.addTab(PrimeMain1.texts.getString("hdd"), null,
+						new HDDView(obj, (HDD) components[i]), PrimeMain1.texts
+								.getString("hwTabHDDtabDescription"));
 			}
 			else if ( components[i] instanceof Ram )
 			{
-				String RAMDesc = "RAM options and values";
-				this.addTab("RAM", null, new RAMView(obj, (Ram) components[i]),
-						RAMDesc);
+				this.addTab(PrimeMain1.texts.getString("ram"), null,
+						new RAMView(obj, (Ram) components[i]), PrimeMain1.texts
+								.getString("hwTabRAMtabDescription"));
 			}
 			else if ( components[i] instanceof Discdrive )
 			{
-				String DDDesc = "Discdrive options and values";
-				this.addTab("Discdrive", null, new DiscDriveView(obj,
-						(Discdrive) components[i]), DDDesc);
+				this.addTab(PrimeMain1.texts.getString("discdrive"), null,
+						new DiscDriveView(obj, (Discdrive) components[i]),
+						PrimeMain1.texts.getString("hwTabDVDRWtabDescription"));
 			}
 			else if ( components[i] instanceof GraphicsCard )
 			{
-				String GPUDesc = "Graphics options and values";
-				this.addTab("Graphical Card", null, new GraphicsCardView(obj,
-						(GraphicsCard) components[i]), GPUDesc);
+				this
+						.addTab(PrimeMain1.texts.getString("graphicalCard"),
+								null, new GraphicsCardView(obj,
+										(GraphicsCard) components[i]),
+								PrimeMain1.texts
+										.getString("hwTabGPUtabDescription"));
 			}
 			else if ( components[i] instanceof InternalNetworksCard )
 			{
-				String IntNICDesc = "Networkcard options and values";
-				this.addTab("Internal NIC", null, new InternalNICView(obj,
-						(InternalNetworksCard) components[i]), IntNICDesc);
+				this
+						.addTab(PrimeMain1.texts
+								.getString("internalNetworkCard"), null,
+								new InternalNICView(obj,
+										(InternalNetworksCard) components[i]),
+								PrimeMain1.texts
+										.getString("hwTabIntNICtabDescription"));
 			}
 			else if ( components[i] instanceof ExternalNetworksCard )
 			{
-				String ExtNICDesc = "External Networkcard options and values";
-				this.addTab("External NIC", null, new ExternaNICView(obj,
-						(ExternalNetworksCard) components[i]), ExtNICDesc);
+				this
+						.addTab(PrimeMain1.texts
+								.getString("externalNetworkCard"), null,
+								new ExternaNICView(obj,
+										(ExternalNetworksCard) components[i]),
+								PrimeMain1.texts
+										.getString("hwTabExtNICtabDescription"));
 			}
 		}
 	}

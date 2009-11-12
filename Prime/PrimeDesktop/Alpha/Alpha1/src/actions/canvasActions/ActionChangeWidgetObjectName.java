@@ -118,19 +118,22 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 	@Override
 	public String getPresentationName()
 	{
-		return "Object Name Change";
+		return PrimeMain1.texts
+				.getString("actionChangeWidgetNameActionPresNameText");
 	}
 
 	@Override
 	public String getRedoPresentationName()
 	{
-		return "Change Object Name to New Name";
+		return PrimeMain1.texts
+				.getString("actionChangeWidgetNameRedoPresNameText");
 	}
 
 	@Override
 	public String getUndoPresentationName()
 	{
-		return "Change Object Name back to Old Name";
+		return PrimeMain1.texts
+				.getString("actionChangeWidgetNameUndoPresNameText");
 	}
 
 	@Override
@@ -184,8 +187,9 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(null, "The name provided, "
-						+ newName + ", was not a valid name.", "Error",
+				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+						.getString("actionChangeWidgetNameInvalidNameText"),
+						PrimeMain1.texts.getString("error"),
 						JOptionPane.ERROR_MESSAGE);
 			}
 

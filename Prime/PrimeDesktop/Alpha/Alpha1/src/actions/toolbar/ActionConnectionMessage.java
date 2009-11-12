@@ -34,8 +34,8 @@ public class ActionConnectionMessage extends AbstractSystemAction
 	public ActionConnectionMessage(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION,
-				"This action opens the Connection messages.");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionActionOpenConnectionMessageDescriptionText"));
 	}
 
 
@@ -49,8 +49,8 @@ public class ActionConnectionMessage extends AbstractSystemAction
 	public ActionConnectionMessage(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION,
-				"This action opens the Connection messages.");
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionActionOpenConnectionMessageDescriptionText"));
 	}
 
 

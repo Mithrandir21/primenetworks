@@ -137,7 +137,8 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareView, ActionL
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[4];
 
-
+		
+		// FIXME - Fix OfficeSuite/OfficeSute view
 		labels[0] = new JLabel("Activated Date");
 		labels[0].setToolTipText("The date that the AV was activated.");
 
