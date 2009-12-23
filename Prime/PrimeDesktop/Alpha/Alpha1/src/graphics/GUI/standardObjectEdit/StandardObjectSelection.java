@@ -18,14 +18,32 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JToolBar;
 import javax.swing.border.Border;
 
 import managment.ArrayManagment;
-import objects.Clients;
-import objects.ExternalHardware;
-import objects.Infrastructure;
 import objects.Object;
-import objects.Servers;
+import objects.clientObjects.Desktop;
+import objects.clientObjects.Laptop;
+import objects.clientObjects.ThinClient;
+import objects.infrastructureObjects.Hub;
+import objects.infrastructureObjects.Internet;
+import objects.infrastructureObjects.Router;
+import objects.infrastructureObjects.Switch;
+import objects.infrastructureObjects.WirelessRouter;
+import objects.peripheralObjects.Fax;
+import objects.peripheralObjects.MultifunctionPrinter;
+import objects.peripheralObjects.NetworkMultifunctionPrinter;
+import objects.peripheralObjects.NetworkPrinter;
+import objects.peripheralObjects.Printer;
+import objects.peripheralObjects.Scanner;
+import objects.serverObjects.BackupServer;
+import objects.serverObjects.DatabaseServer;
+import objects.serverObjects.FirewallServer;
+import objects.serverObjects.HTTPServer;
+import objects.serverObjects.MailServer;
+import objects.serverObjects.PrinterServer;
+import objects.serverObjects.ProxyServer;
 import widgets.WidgetButton;
 
 
@@ -43,119 +61,260 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 
 
 	/**
-	 * A constructor that calls all the initiation function this class holds to
-	 * set up the different standard object buttons.
+	 * TODO - Description NEEDED!
 	 */
 	public StandardObjectSelection()
 	{
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBorder(grayline);
 
-		// this.setSize(new Dimension(290, 450));
-		// this.setPreferredSize(new Dimension(290, 450));
-		// this.setMinimumSize(new Dimension(290, 450));
+		initClientButtonIcons();
 
-		intiClients();
+		initServerButtonIcons();
+
+		initExternalHardwareButtonIcons();
+
+		initInfrastructureButtonIcons();
+
+		// this.setPreferredSize(new Dimension(290, getCompSize()));
+	}
+
+	private void initClientButtonIcons()
+	{
+		this.add(makeImageIcon("Desktop", Desktop.class, "desktop"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Laptop", Laptop.class, "laptop"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Thin Client", ThinClient.class, "thinClient"));
+
+		this.add(new JToolBar.Separator());
+
 
 		this.add(new JSeparator());
+	}
 
-		initServers();
+
+	private void initServerButtonIcons()
+	{
+		this.add(makeImageIcon("HTTP Server", HTTPServer.class, "httpServer"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Backup Server", BackupServer.class,
+				"backupServer"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Database Server", DatabaseServer.class,
+				"databaseServer"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Mail Server", MailServer.class, "mailServer"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Firewall Server", FirewallServer.class,
+				"firewallServer"));
+
+		this.add(new JToolBar.Separator());
+
+		this
+				.add(makeImageIcon("Proxy Server", ProxyServer.class,
+						"proxyServer"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Printer Server", PrinterServer.class,
+				"printerServer"));
+
+		this.add(new JToolBar.Separator());
+
+
 
 		this.add(new JSeparator());
+	}
 
-		initExternalHardware();
+	private void initExternalHardwareButtonIcons()
+	{
+		this.add(makeImageIcon("Scanner", Scanner.class, "scanner"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Printer", Printer.class, "printer"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Fax", Fax.class, "fax"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("MFP", MultifunctionPrinter.class,
+				"multifunctionPrinter"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Network Printer", NetworkPrinter.class,
+				"networkPrinter"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Network MFP",
+				NetworkMultifunctionPrinter.class,
+				"networkMultifunctionPrinter"));
+
+		this.add(new JToolBar.Separator());
+
 
 		this.add(new JSeparator());
-
-		initInfrastructure();
 	}
 
 
-	/**
-	 * Sets up {@link WidgetButton WidgetButtons} for sub classes of
-	 * {@link Clients}.
-	 */
-	private void intiClients()
+	private void initInfrastructureButtonIcons()
 	{
-		for ( int i = 0; i < PrimeMain1.objectlist.size(); i++ )
-		{
-			if ( superClassCheck(Clients.class, PrimeMain1.objectlist.get(i)
-					.getClass()) )
-			{
-				this.add(makeImageIcon(PrimeMain1.objectlist.get(i)
-						.getObjectName(), PrimeMain1.objectlist.get(i)
-						.getClass(), PrimeMain1.objectlist.get(i)
-						.getObjectName()));
-			}
-		}
+		this.add(makeImageIcon("Hub", Hub.class, "hub"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Switch", Switch.class, "switch"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Router", Router.class, "router"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Wireless Router", WirelessRouter.class,
+				"wirelessRouter"));
+
+		this.add(new JToolBar.Separator());
+
+		this.add(makeImageIcon("Internet", Internet.class, "internet"));
+
+		this.add(new JToolBar.Separator());
+
+
+		this.add(new JSeparator());
 	}
 
-
-
-	/**
-	 * Sets up {@link WidgetButton WidgetButtons} for sub classes of
-	 * {@link Servers}.
-	 */
-	private void initServers()
-	{
-		for ( int i = 0; i < PrimeMain1.objectlist.size(); i++ )
-		{
-			if ( superClassCheck(Servers.class, PrimeMain1.objectlist.get(i)
-					.getClass()) )
-			{
-				this.add(makeImageIcon(PrimeMain1.objectlist.get(i)
-						.getObjectName(), PrimeMain1.objectlist.get(i)
-						.getClass(), PrimeMain1.objectlist.get(i)
-						.getObjectName()));
-			}
-		}
-	}
-
-
-
-	/**
-	 * Sets up {@link WidgetButton WidgetButtons} for sub classes of
-	 * {@link ExternalHardware}.
-	 */
-	private void initExternalHardware()
-	{
-		for ( int i = 0; i < PrimeMain1.objectlist.size(); i++ )
-		{
-			if ( superClassCheck(ExternalHardware.class, PrimeMain1.objectlist
-					.get(i).getClass()) )
-			{
-				// System.out
-				// .println(PrimeMain1.objectlist.get(i).getObjectName());
-				this.add(makeImageIcon(PrimeMain1.objectlist.get(i)
-						.getObjectName(), PrimeMain1.objectlist.get(i)
-						.getClass(), PrimeMain1.objectlist.get(i)
-						.getObjectName()));
-			}
-		}
-	}
-
-
-	/**
-	 * Sets up {@link WidgetButton WidgetButtons} for sub classes of
-	 * {@link Infrastructure}.
-	 */
-	private void initInfrastructure()
-	{
-		for ( int i = 0; i < PrimeMain1.objectlist.size(); i++ )
-		{
-			if ( superClassCheck(Infrastructure.class, PrimeMain1.objectlist
-					.get(i).getClass()) )
-			{
-				this.add(makeImageIcon(PrimeMain1.objectlist.get(i)
-						.getObjectName(), PrimeMain1.objectlist.get(i)
-						.getClass(), PrimeMain1.objectlist.get(i)
-						.getObjectName()));
-			}
-		}
-	}
-
-
-
+	// /**
+	// * A constructor that calls all the initiation function this class holds
+	// to
+	// * set up the different standard object buttons.
+	// */
+	// public StandardObjectSelection()
+	// {
+	//
+	//
+	// // this.setSize(new Dimension(290, 450));
+	// // this.setPreferredSize(new Dimension(290, 450));
+	// // this.setMinimumSize(new Dimension(290, 450));
+	//
+	// intiClients();
+	//
+	// this.add(new JSeparator());
+	//
+	// initServers();
+	//
+	// this.add(new JSeparator());
+	//
+	// initExternalHardware();
+	//
+	// this.add(new JSeparator());
+	//
+	// initInfrastructure();
+	// }
+	//
+	//
+	// /**
+	// * Sets up {@link WidgetButton WidgetButtons} for sub classes of
+	// * {@link Clients}.
+	// */
+	// private void intiClients()
+	// {
+	// for ( int i = 0; i < PrimeMain1.objectlist.size(); i++ )
+	// {
+	// if ( superClassCheck(Clients.class, PrimeMain1.objectlist.get(i)
+	// .getClass()) )
+	// {
+	// this.add(makeImageIcon(PrimeMain1.objectlist.get(i)
+	// .getObjectName(), PrimeMain1.objectlist.get(i)
+	// .getClass(), PrimeMain1.objectlist.get(i)
+	// .getObjectName()));
+	// }
+	// }
+	// }
+	//
+	//
+	//
+	// /**
+	// * Sets up {@link WidgetButton WidgetButtons} for sub classes of
+	// * {@link Servers}.
+	// */
+	// private void initServers()
+	// {
+	// for ( int i = 0; i < PrimeMain1.objectlist.size(); i++ )
+	// {
+	// if ( superClassCheck(Servers.class, PrimeMain1.objectlist.get(i)
+	// .getClass()) )
+	// {
+	// this.add(makeImageIcon(PrimeMain1.objectlist.get(i)
+	// .getObjectName(), PrimeMain1.objectlist.get(i)
+	// .getClass(), PrimeMain1.objectlist.get(i)
+	// .getObjectName()));
+	// }
+	// }
+	// }
+	//
+	//
+	//
+	// /**
+	// * Sets up {@link WidgetButton WidgetButtons} for sub classes of
+	// * {@link ExternalHardware}.
+	// */
+	// private void initExternalHardware()
+	// {
+	// for ( int i = 0; i < PrimeMain1.objectlist.size(); i++ )
+	// {
+	// if ( superClassCheck(ExternalHardware.class, PrimeMain1.objectlist
+	// .get(i).getClass()) )
+	// {
+	// // System.out
+	// // .println(PrimeMain1.objectlist.get(i).getObjectName());
+	// this.add(makeImageIcon(PrimeMain1.objectlist.get(i)
+	// .getObjectName(), PrimeMain1.objectlist.get(i)
+	// .getClass(), PrimeMain1.objectlist.get(i)
+	// .getObjectName()));
+	// }
+	// }
+	// }
+	//
+	//
+	// /**
+	// * Sets up {@link WidgetButton WidgetButtons} for sub classes of
+	// * {@link Infrastructure}.
+	// */
+	// private void initInfrastructure()
+	// {
+	// for ( int i = 0; i < PrimeMain1.objectlist.size(); i++ )
+	// {
+	// if ( superClassCheck(Infrastructure.class, PrimeMain1.objectlist
+	// .get(i).getClass()) )
+	// {
+	// this.add(makeImageIcon(PrimeMain1.objectlist.get(i)
+	// .getObjectName(), PrimeMain1.objectlist.get(i)
+	// .getClass(), PrimeMain1.objectlist.get(i)
+	// .getObjectName()));
+	// }
+	// }
+	// }
+	//
+	//
+	//
 
 
 
@@ -197,6 +356,26 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 		iconButton.addActionListener(this);
 
 		return iconButton;
+	}
+
+
+
+	/**
+	 * Javadoc-TODO - Description
+	 * 
+	 * @return
+	 */
+	private int getCompSize()
+	{
+		int size = 0;
+
+		for ( int i = 0; i < this.getComponentCount(); i++ )
+		{
+			size += this.getComponent(i).getHeight();
+		}
+
+
+		return size + (this.getComponentCount() * 5);
 	}
 
 

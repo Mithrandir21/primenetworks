@@ -222,7 +222,8 @@ public class ObjectSelection extends JPanel
 		}
 		catch ( Exception e )
 		{
-			System.out.println("NullPointerException" + " - " + name + "\n\n");
+			System.out.println("NullPointerException" + " - ObjectSelection "
+					+ " - " + name + "\n\n");
 			System.exit(0);
 		}
 
