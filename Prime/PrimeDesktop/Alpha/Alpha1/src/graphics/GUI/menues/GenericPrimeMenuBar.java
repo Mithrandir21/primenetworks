@@ -18,6 +18,7 @@ import javax.swing.KeyStroke;
 import actions.ActionCopy;
 import actions.ActionCut;
 import actions.ActionPaste;
+import actions.systemActions.ActionAbout;
 import actions.systemActions.ActionExitSystem;
 import actions.systemActions.ActionNew;
 import actions.systemActions.ActionOpenfile;
@@ -249,6 +250,10 @@ public class GenericPrimeMenuBar extends JMenuBar
 		help = new JMenu(PrimeMain1.texts.getString("helpLabel"));
 		help.setMnemonic('H');
 
+		JMenuItem about = new JMenuItem(new ActionAbout(PrimeMain1.texts
+				.getString("aboutMenuLabel")));
+		about.setIcon(null);
+		help.add(about);
 
 		this.add(help);
 	}

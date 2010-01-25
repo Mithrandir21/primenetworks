@@ -59,4 +59,8 @@ public class Settings implements Serializable
 
 	// CREATING CONNECTION BUTTON
 	public static boolean connectionToggle = false;
+
+
+	// SHOW TIP OF THE DAY ON STARTUP
+	public static boolean showTOFD = true;
 }

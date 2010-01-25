@@ -9,6 +9,7 @@ import graphics.GUI.menues.GenericPrimeMenuBar;
 import graphics.GUI.menues.GenericPrimeToolbar;
 import graphics.GUI.messageArea.MessageTabbed;
 import graphics.GUI.objectView.ObjectView;
+import graphics.GUI.programGUI.TipOfDay;
 import graphics.GUI.properties.PropertiesArea;
 import graphics.GUI.selectArea.TabbedSelection;
 import graphics.GUI.standardObjectEdit.StandardObjects;
@@ -369,6 +370,7 @@ public class PrimeMain1 extends JFrame
 		this.setExtendedState(Frame.MAXIMIZED_BOTH);
 		this.setVisible(true);
 
+		TipOfDay totd = new TipOfDay();
 
 		// FileManagment.newWorkareaCanvas("New Network");
 	}
