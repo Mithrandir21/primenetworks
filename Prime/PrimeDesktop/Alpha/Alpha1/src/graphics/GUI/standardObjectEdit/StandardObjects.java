@@ -15,7 +15,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
@@ -27,7 +27,7 @@ import javax.swing.border.Border;
  * 
  * @author Bahram Malaekeh
  */
-public class StandardObjects extends JFrame
+public class StandardObjects extends JDialog
 {
 	// A simple border that is gray
 	Border grayline = BorderFactory.createLineBorder(Color.GRAY);
@@ -43,7 +43,7 @@ public class StandardObjects extends JFrame
 	 */
 	public StandardObjects()
 	{
-		super(PrimeMain1.texts.getString("standardObjectsFrameLabel"));
+		this.setTitle(PrimeMain1.texts.getString("standardObjectsFrameLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();

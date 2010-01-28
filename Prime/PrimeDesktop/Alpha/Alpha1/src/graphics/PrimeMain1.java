@@ -14,6 +14,7 @@ import graphics.GUI.properties.PropertiesArea;
 import graphics.GUI.selectArea.TabbedSelection;
 import graphics.GUI.standardObjectEdit.StandardObjects;
 import graphics.GUI.statusArea.PrimeStatusBar;
+import graphics.GUI.visualObjectCustomization.VisualCustomFrame;
 import graphics.GUI.workareaCanvas.WorkareaTabbed;
 import graphics.services.PrimeService;
 
@@ -371,6 +372,8 @@ public class PrimeMain1 extends JFrame
 		this.setVisible(true);
 
 		TipOfDay totd = new TipOfDay();
+
+		VisualCustomFrame vcf = new VisualCustomFrame();
 
 		// FileManagment.newWorkareaCanvas("New Network");
 	}
