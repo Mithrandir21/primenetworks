@@ -1,7 +1,7 @@
 package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 
-import graphics.ImageLocator;
+import graphics.PrimeMain1;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -30,7 +30,8 @@ import objects.Software;
 import objects.softwareObjects.Database;
 
 
-public class DatabaseNewView extends JFrame implements SoftwareView, ActionListener
+public class DatabaseNewView extends JFrame implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -85,7 +86,7 @@ public class DatabaseNewView extends JFrame implements SoftwareView, ActionListe
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = ImageLocator.getImageIconObject("Database-Software");
+		ImageIcon icon = PrimeMain1.objectImageIcons.get(Database.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainDB, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -114,15 +115,17 @@ public class DatabaseNewView extends JFrame implements SoftwareView, ActionListe
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
+				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
 
 
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software} specific options. The layout of the returned
-	 * panel will be {@link SpringLayout}.
+	 * Creates the JPanel that will contain the {@link Software Software}
+	 * specific options. The layout of the returned panel will be
+	 * {@link SpringLayout}.
 	 */
 	private JPanel createSpesificInfo(Database db)
 	{
@@ -153,8 +156,8 @@ public class DatabaseNewView extends JFrame implements SoftwareView, ActionListe
 
 
 	/**
-	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
-	 * 
+	 * Creates a JPanel with two buttons that are listened for by
+	 * actionlisteners.
 	 */
 	private JPanel createButtons()
 	{

@@ -5,7 +5,6 @@ package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
 import graphics.GraphicalFunctions;
-import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
@@ -87,7 +86,7 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = ImageLocator.getImageIconObject("Optical-Drive");
+		ImageIcon icon = PrimeMain1.objectImageIcons.get(Discdrive.class);
 		JPanel p1 = HardwareEditor.GeneralInfo(discdrive, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 

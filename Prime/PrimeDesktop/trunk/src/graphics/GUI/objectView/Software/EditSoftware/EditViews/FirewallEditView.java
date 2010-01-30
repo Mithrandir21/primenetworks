@@ -2,7 +2,6 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
@@ -155,7 +154,7 @@ public class FirewallEditView extends JPanel implements SoftwareView,
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = ImageLocator.getImageIconObject("Firewall-Software");
+		ImageIcon icon = PrimeMain1.objectImageIcons.get(Firewall.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainFW, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 

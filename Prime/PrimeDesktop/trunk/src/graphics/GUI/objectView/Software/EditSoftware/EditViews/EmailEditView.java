@@ -2,7 +2,6 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
@@ -36,14 +35,17 @@ import objects.softwareObjects.Email;
 
 
 /**
- * A JPanel that will contain fields and options for a presentation and modification of an {@link Email Email} Software.
- * The panel is made up of 3 JPanel ordered in a column. The first one contains the name and description of the object.
- * The second panel contains the specific software options. The third panel contains the button that can remove the
- * software from the computer.
+ * A JPanel that will contain fields and options for a presentation and
+ * modification of an {@link Email Email} Software. The panel is made up of 3
+ * JPanel ordered in a column. The first one contains the name and description
+ * of the object. The second panel contains the specific software options. The
+ * third panel contains the button that can remove the software from the
+ * computer.
  * 
  * @author Bahram Malaekeh
  */
-public class EmailEditView extends JPanel implements SoftwareView, ActionListener
+public class EmailEditView extends JPanel implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -113,7 +115,7 @@ public class EmailEditView extends JPanel implements SoftwareView, ActionListene
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = ImageLocator.getImageIconObject("Email-Software");
+		ImageIcon icon = PrimeMain1.objectImageIcons.get(Email.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainEmail, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -139,9 +141,11 @@ public class EmailEditView extends JPanel implements SoftwareView, ActionListene
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain1.texts.getString("swTabRemoveSoftwaretText"));
+		JLabel label = new JLabel(PrimeMain1.texts
+				.getString("swTabRemoveSoftwaretText"));
 
-		Button remove = new Button(PrimeMain1.texts.getString("swTabRemoveSoftwareButtonLabel"));
+		Button remove = new Button(PrimeMain1.texts
+				.getString("swTabRemoveSoftwareButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeSoft");
 
@@ -161,12 +165,14 @@ public class EmailEditView extends JPanel implements SoftwareView, ActionListene
 
 
 	/**
-	 * This method creates and returns a JPanel that contains all the different settings of the given Software object.
-	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
-	 * the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
 	 * @param email
-	 *            The Software that will be examined and will fill inn the fields.
+	 *            The Software that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
 	 */
 	private JPanel createSpesificInfo(Email email)
@@ -175,26 +181,40 @@ public class EmailEditView extends JPanel implements SoftwareView, ActionListene
 		JLabel[] labels = new JLabel[7];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts.getString("emailViewSupOSLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts.getString("emailViewSupOSTip"));
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("emailViewSupOSLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("emailViewSupOSTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts.getString("emailViewSupPOP3Label"));
-		labels[1].setToolTipText(PrimeMain1.texts.getString("emailViewSupPOP3Tip"));
+		labels[1] = new JLabel(PrimeMain1.texts
+				.getString("emailViewSupPOP3Label"));
+		labels[1].setToolTipText(PrimeMain1.texts
+				.getString("emailViewSupPOP3Tip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts.getString("emailViewSupSMTPLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts.getString("emailViewSupSMTPTip"));
+		labels[2] = new JLabel(PrimeMain1.texts
+				.getString("emailViewSupSMTPLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts
+				.getString("emailViewSupSMTPTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts.getString("emailViewSupIMAPLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts.getString("emailViewSupIMAPTip"));
+		labels[3] = new JLabel(PrimeMain1.texts
+				.getString("emailViewSupIMAPLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts
+				.getString("emailViewSupIMAPTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts.getString("emailViewSupNNTPLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts.getString("emailViewSupNNTPTip"));
+		labels[4] = new JLabel(PrimeMain1.texts
+				.getString("emailViewSupNNTPLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts
+				.getString("emailViewSupNNTPTip"));
 
-		labels[5] = new JLabel(PrimeMain1.texts.getString("emailViewSupSSLLabel"));
-		labels[5].setToolTipText(PrimeMain1.texts.getString("emailViewSupSSLTip"));
+		labels[5] = new JLabel(PrimeMain1.texts
+				.getString("emailViewSupSSLLabel"));
+		labels[5].setToolTipText(PrimeMain1.texts
+				.getString("emailViewSupSSLTip"));
 
-		labels[6] = new JLabel(PrimeMain1.texts.getString("emailViewSupWebmailLabel"));
-		labels[6].setToolTipText(PrimeMain1.texts.getString("emailViewSupWebmailTip"));
+		labels[6] = new JLabel(PrimeMain1.texts
+				.getString("emailViewSupWebmailLabel"));
+		labels[6].setToolTipText(PrimeMain1.texts
+				.getString("emailViewSupWebmailTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -203,21 +223,25 @@ public class EmailEditView extends JPanel implements SoftwareView, ActionListene
 
 		// The supported operating systems by the Email software.
 		labels[0].setLabelFor(supportedOS);
-		String[] listData = { "Windows 98", "Windows 2000", "Windows XP", "Windows Vista", "Linux", "Novell" };
+		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
+				"Windows Vista", "Linux", "Novell" };
 		supportedOS = new JList(listData);
 		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
-		listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
+		listSelectionModel
+				.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supportedOS);
 		listPane.setMaximumSize(new Dimension(160, 60));
 		listPane.setPreferredSize(new Dimension(160, 60));
-		listSelectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		listSelectionModel
+				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		if ( mainEmail.getSupportedOperatingSystems() != null )
 		{
 			if ( mainEmail.getSupportedOperatingSystems().length > 0 )
 			{
-				listPane.setViewportView(GraphicalFunctions.getIndexInJList(supportedOS, listData, mainEmail
-						.getSupportedOperatingSystems()));
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
+						supportedOS, listData, mainEmail
+								.getSupportedOperatingSystems()));
 			}
 		}
 
@@ -319,7 +343,8 @@ public class EmailEditView extends JPanel implements SoftwareView, ActionListene
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
@@ -400,14 +425,16 @@ public class EmailEditView extends JPanel implements SoftwareView, ActionListene
 
 
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems" JList.
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
 	 */
 	class SharedListSelectionHandler implements ListSelectionListener
 	{
 		/*
 		 * (non-Javadoc)
-		 * 
-		 * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing. event.ListSelectionEvent)
+		 * @see
+		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
+		 * event.ListSelectionEvent)
 		 */
 		public void valueChanged(ListSelectionEvent e)
 		{

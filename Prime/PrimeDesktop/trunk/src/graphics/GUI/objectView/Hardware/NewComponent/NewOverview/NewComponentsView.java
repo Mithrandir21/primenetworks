@@ -4,7 +4,6 @@
 package graphics.GUI.objectView.Hardware.NewComponent.NewOverview;
 
 
-import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareObjectView;
 import graphics.GUI.objectView.Hardware.NewComponent.NewViews.CPUNewView;
@@ -91,7 +90,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		this.setLayout(new GridLayout(0, 2, 3, 5));
 
 
-		ImageIcon mbtemp = ImageLocator.getImageIconObject("Motherboard");
+		ImageIcon mbtemp = PrimeMain1.objectImageIcons.get(Motherboard.class);
 
 		String[] mbinfo = new String[5];
 
@@ -143,7 +142,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 
 
 		// CPU
-		ImageIcon cputemp = ImageLocator.getImageIconObject("CPU");
+		ImageIcon cputemp = PrimeMain1.objectImageIcons.get(CPU.class);
 
 		cpuObj = PrimeMain1.standard_internal_components.getSt_CPU();
 
@@ -186,7 +185,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 
 
 		// HDD
-		ImageIcon hddtemp = ImageLocator.getImageIconObject("Harddisc");
+		ImageIcon hddtemp = PrimeMain1.objectImageIcons.get(HDD.class);
 
 		hddObj = PrimeMain1.standard_internal_components.getSt_HDD();
 
@@ -234,7 +233,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 
 
 		// RAM
-		ImageIcon ramtemp = ImageLocator.getImageIconObject("RAM");
+		ImageIcon ramtemp = PrimeMain1.objectImageIcons.get(Ram.class);
 
 		ramObj = PrimeMain1.standard_internal_components.getSt_RAM();
 
@@ -282,7 +281,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 
 
 		// Discdrive
-		ImageIcon disctemp = ImageLocator.getImageIconObject("Optical-Drive");
+		ImageIcon disctemp = PrimeMain1.objectImageIcons.get(Discdrive.class);
 
 		discObj = PrimeMain1.standard_internal_components.getSt_DVDRW();
 
@@ -330,7 +329,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 
 
 		// GPU
-		ImageIcon gputemp = ImageLocator.getImageIconObject("GPU");
+		ImageIcon gputemp = PrimeMain1.objectImageIcons.get(GraphicsCard.class);
 
 		gpuObj = PrimeMain1.standard_internal_components.getSt_GPU();
 
@@ -379,7 +378,8 @@ public class NewComponentsView extends JPanel implements MouseListener
 
 
 		// intNIC
-		ImageIcon intNICtemp = ImageLocator.getImageIconObject("NIC");
+		ImageIcon intNICtemp = PrimeMain1.objectImageIcons
+				.get(InternalNetworksCard.class);
 
 		intNICObj = PrimeMain1.standard_internal_components.getSt_IntNIC();
 
@@ -429,7 +429,8 @@ public class NewComponentsView extends JPanel implements MouseListener
 
 
 		// extNIC
-		ImageIcon extNICtemp = ImageLocator.getImageIconObject("ExternalNIC");
+		ImageIcon extNICtemp = PrimeMain1.objectImageIcons
+				.get(ExternalNetworksCard.class);
 
 		extNICObj = PrimeMain1.standard_internal_components.getSt_ExtNIC();
 

@@ -5,7 +5,6 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
@@ -160,7 +159,7 @@ public class WebserverNewView extends JFrame implements SoftwareView,
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = ImageLocator.getImageIconObject("Webserver-Software");
+		ImageIcon icon = PrimeMain1.objectImageIcons.get(Webserver.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainWebSer, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 

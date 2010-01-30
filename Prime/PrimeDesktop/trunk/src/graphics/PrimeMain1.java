@@ -39,6 +39,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -127,6 +128,9 @@ public class PrimeMain1 extends JFrame
 	// The arraylist of the systems standard Objects
 	public static ArrayList<Object> objectlist = new ArrayList<Object>();
 
+	// The HashMap that contains object ImageIcons
+	public static HashMap<Class, ImageIcon> objectImageIcons = new HashMap<Class, ImageIcon>();
+
 	// The "Copy widget" widget holder
 	public static WidgetObject copyWidget = null;
 
@@ -196,11 +200,6 @@ public class PrimeMain1 extends JFrame
 		ToolTipManager.sharedInstance().setDismissDelay(10000);
 
 
-		// Creates the system icons and places them in the ImageIcon array.
-		MakeSystemImageIcons standard_Image_Icons = new MakeSystemImageIcons();
-		standard_Image_Icons.getImageIcons();
-
-
 		// OBJECTS LIST
 		// If a file exist with the System Objects
 		if ( DesktopFileManagment.objectsFileExists() )
@@ -216,6 +215,12 @@ public class PrimeMain1 extends JFrame
 			// Creates a new Objects list file
 			DesktopFileManagment.saveObjectsFile();
 		}
+
+
+		// Creates the system icons and places them in the ImageIcon array.
+		MakeSystemImageIcons standard_Image_Icons = new MakeSystemImageIcons();
+		standard_Image_Icons.getImageIcons();
+
 
 
 		// SETUP FOR THE OEVERALL GUI

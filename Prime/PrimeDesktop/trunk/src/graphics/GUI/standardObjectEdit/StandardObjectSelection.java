@@ -5,7 +5,6 @@ package graphics.GUI.standardObjectEdit;
 
 
 import exceptions.ObjectNotFoundException;
-import graphics.ImageLocator;
 import graphics.PrimeMain1;
 
 import java.awt.Color;
@@ -14,11 +13,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.JToolBar;
 import javax.swing.border.Border;
 
 import managment.ArrayManagment;
@@ -81,59 +80,55 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 
 	private void initClientButtonIcons()
 	{
-		this.add(makeImageIcon("Desktop", Desktop.class, "desktop"));
+		this.add(Box.createVerticalStrut(10));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(Desktop.class));
 
-		this.add(makeImageIcon("Laptop", Laptop.class, "laptop"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(Laptop.class));
 
-		this.add(makeImageIcon("Thin Client", ThinClient.class, "thinClient"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(ThinClient.class));
+
+		this.add(Box.createVerticalStrut(15));
 
 
 		this.add(new JSeparator());
 	}
 
-
 	private void initServerButtonIcons()
 	{
-		this.add(makeImageIcon("HTTP Server", HTTPServer.class, "httpServer"));
+		this.add(Box.createVerticalStrut(10));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(HTTPServer.class));
 
-		this.add(makeImageIcon("Backup Server", BackupServer.class,
-				"backupServer"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(BackupServer.class));
 
-		this.add(makeImageIcon("Database Server", DatabaseServer.class,
-				"databaseServer"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(DatabaseServer.class));
 
-		this.add(makeImageIcon("Mail Server", MailServer.class, "mailServer"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(MailServer.class));
 
-		this.add(makeImageIcon("Firewall Server", FirewallServer.class,
-				"firewallServer"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(FirewallServer.class));
 
-		this
-				.add(makeImageIcon("Proxy Server", ProxyServer.class,
-						"proxyServer"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(ProxyServer.class));
 
-		this.add(makeImageIcon("Printer Server", PrinterServer.class,
-				"printerServer"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(PrinterServer.class));
 
+		this.add(Box.createVerticalStrut(15));
 
 
 		this.add(new JSeparator());
@@ -141,33 +136,31 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 
 	private void initExternalHardwareButtonIcons()
 	{
-		this.add(makeImageIcon("Scanner", Scanner.class, "scanner"));
+		this.add(Box.createVerticalStrut(10));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(Scanner.class));
 
-		this.add(makeImageIcon("Printer", Printer.class, "printer"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(Printer.class));
 
-		this.add(makeImageIcon("Fax", Fax.class, "fax"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(Fax.class));
 
-		this.add(makeImageIcon("MFP", MultifunctionPrinter.class,
-				"multifunctionPrinter"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(MultifunctionPrinter.class));
 
-		this.add(makeImageIcon("Network Printer", NetworkPrinter.class,
-				"networkPrinter"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(NetworkPrinter.class));
 
-		this.add(makeImageIcon("Network MFP",
-				NetworkMultifunctionPrinter.class,
-				"networkMultifunctionPrinter"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(NetworkMultifunctionPrinter.class));
+
+		this.add(Box.createVerticalStrut(15));
 
 
 		this.add(new JSeparator());
@@ -176,145 +169,29 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 
 	private void initInfrastructureButtonIcons()
 	{
-		this.add(makeImageIcon("Hub", Hub.class, "hub"));
+		this.add(Box.createVerticalStrut(10));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(Hub.class));
 
-		this.add(makeImageIcon("Switch", Switch.class, "switch"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(Switch.class));
 
-		this.add(makeImageIcon("Router", Router.class, "router"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(Router.class));
 
-		this.add(makeImageIcon("Wireless Router", WirelessRouter.class,
-				"wirelessRouter"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(WirelessRouter.class));
 
-		this.add(makeImageIcon("Internet", Internet.class, "internet"));
+		this.add(Box.createVerticalStrut(5));
 
-		this.add(new JToolBar.Separator());
+		this.add(makeImageIcon(Internet.class));
 
-
-		this.add(new JSeparator());
+		this.add(Box.createVerticalStrut(15));
 	}
 
-	// /**
-	// * A constructor that calls all the initiation function this class holds
-	// to
-	// * set up the different standard object buttons.
-	// */
-	// public StandardObjectSelection()
-	// {
-	//
-	//
-	// // this.setSize(new Dimension(290, 450));
-	// // this.setPreferredSize(new Dimension(290, 450));
-	// // this.setMinimumSize(new Dimension(290, 450));
-	//
-	// intiClients();
-	//
-	// this.add(new JSeparator());
-	//
-	// initServers();
-	//
-	// this.add(new JSeparator());
-	//
-	// initExternalHardware();
-	//
-	// this.add(new JSeparator());
-	//
-	// initInfrastructure();
-	// }
-	//
-	//
-	// /**
-	// * Sets up {@link WidgetButton WidgetButtons} for sub classes of
-	// * {@link Clients}.
-	// */
-	// private void intiClients()
-	// {
-	// for ( int i = 0; i < PrimeMain1.objectlist.size(); i++ )
-	// {
-	// if ( superClassCheck(Clients.class, PrimeMain1.objectlist.get(i)
-	// .getClass()) )
-	// {
-	// this.add(makeImageIcon(PrimeMain1.objectlist.get(i)
-	// .getObjectName(), PrimeMain1.objectlist.get(i)
-	// .getClass(), PrimeMain1.objectlist.get(i)
-	// .getObjectName()));
-	// }
-	// }
-	// }
-	//
-	//
-	//
-	// /**
-	// * Sets up {@link WidgetButton WidgetButtons} for sub classes of
-	// * {@link Servers}.
-	// */
-	// private void initServers()
-	// {
-	// for ( int i = 0; i < PrimeMain1.objectlist.size(); i++ )
-	// {
-	// if ( superClassCheck(Servers.class, PrimeMain1.objectlist.get(i)
-	// .getClass()) )
-	// {
-	// this.add(makeImageIcon(PrimeMain1.objectlist.get(i)
-	// .getObjectName(), PrimeMain1.objectlist.get(i)
-	// .getClass(), PrimeMain1.objectlist.get(i)
-	// .getObjectName()));
-	// }
-	// }
-	// }
-	//
-	//
-	//
-	// /**
-	// * Sets up {@link WidgetButton WidgetButtons} for sub classes of
-	// * {@link ExternalHardware}.
-	// */
-	// private void initExternalHardware()
-	// {
-	// for ( int i = 0; i < PrimeMain1.objectlist.size(); i++ )
-	// {
-	// if ( superClassCheck(ExternalHardware.class, PrimeMain1.objectlist
-	// .get(i).getClass()) )
-	// {
-	// // System.out
-	// // .println(PrimeMain1.objectlist.get(i).getObjectName());
-	// this.add(makeImageIcon(PrimeMain1.objectlist.get(i)
-	// .getObjectName(), PrimeMain1.objectlist.get(i)
-	// .getClass(), PrimeMain1.objectlist.get(i)
-	// .getObjectName()));
-	// }
-	// }
-	// }
-	//
-	//
-	// /**
-	// * Sets up {@link WidgetButton WidgetButtons} for sub classes of
-	// * {@link Infrastructure}.
-	// */
-	// private void initInfrastructure()
-	// {
-	// for ( int i = 0; i < PrimeMain1.objectlist.size(); i++ )
-	// {
-	// if ( superClassCheck(Infrastructure.class, PrimeMain1.objectlist
-	// .get(i).getClass()) )
-	// {
-	// this.add(makeImageIcon(PrimeMain1.objectlist.get(i)
-	// .getObjectName(), PrimeMain1.objectlist.get(i)
-	// .getClass(), PrimeMain1.objectlist.get(i)
-	// .getObjectName()));
-	// }
-	// }
-	// }
-	//
-	//
-	//
 
 
 
@@ -324,34 +201,29 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 	 * standard {@link Object}.
 	 */
 	@SuppressWarnings("unchecked")
-	private WidgetButton makeImageIcon(String name, Class objectType,
-			String text)
+	private WidgetButton makeImageIcon(Class objectType)
 	{
-		ImageIcon Icon = ImageLocator.getImageIconObject(name);
+		ImageIcon Icon = PrimeMain1.objectImageIcons.get(objectType);
 
 		WidgetButton iconButton = null;
 
+
 		try
 		{
-			iconButton = new WidgetButton(Icon, objectType, text);
+			iconButton = new WidgetButton(Icon, objectType, objectType
+					.getSimpleName());
 		}
 		catch ( Exception e )
 		{
 			System.out.println("NullPointerException - StandardObjectSelection"
-					+ " - " + name + "\n\n");
+					+ " - " + objectType + "\n\n");
 			System.exit(0);
 		}
-		//
-		// Dimension dim = new Dimension(super.getWidth(),
-		// Icon.getIconHeight());
-		//
-		// iconButton.setSize(dim);
-		// iconButton.setPreferredSize(dim);
-		// iconButton.setMinimumSize(dim);
-		//
+
+		// iconButton.setVerticalTextPosition(AbstractButton.BOTTOM);
+		// iconButton.setHorizontalTextPosition(AbstractButton.CENTER);
 		iconButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		iconButton.setAlignmentY(Component.TOP_ALIGNMENT);
-		// iconButton.setBorder(grayline);
 
 		iconButton.addActionListener(this);
 

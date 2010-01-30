@@ -64,7 +64,7 @@ public class CreateObjects
 			int numberOfWidgetsOnTheScene)
 	{
 		Object newObject = null;
-		String objectType = iconObject.getClassType().getName();
+		String objectType = iconObject.getClassType().getSimpleName();
 		String desc = iconObject.getDescription();
 
 		try
@@ -75,92 +75,87 @@ public class CreateObjects
 		}
 		catch ( ObjectNotFoundException e )
 		{
-			if ( objectType.equals("objects.clientObjects.Desktop") )
+			if ( objectType.equals("Desktop") )
 			{
 				newObject = createDefaultDesktop(desc);
 			}
-			else if ( objectType.equals("objects.clientObjects.Laptop") )
+			else if ( objectType.equals("Laptop") )
 			{
 				newObject = createDefaultLaptop(desc);
 			}
-			else if ( objectType.equals("objects.clientObjects.ThinClient") )
+			else if ( objectType.equals("ThinClient") )
 			{
 				newObject = createDefaultThinClient(desc);
 			}
-			else if ( objectType.equals("objects.serverObjects.HTTPServer") )
+			else if ( objectType.equals("HTTPServer") )
 			{
 				newObject = createDefaultHTTPServer(desc);
 			}
-			else if ( objectType.equals("objects.serverObjects.BackupServer") )
+			else if ( objectType.equals("BackupServer") )
 			{
 				newObject = createDefaultBackupServer(desc);
 			}
-			else if ( objectType.equals("objects.serverObjects.MailServer") )
+			else if ( objectType.equals("MailServer") )
 			{
 				newObject = createDefaultMailServer(desc);
 			}
-			else if ( objectType.equals("objects.serverObjects.FirewallServer") )
+			else if ( objectType.equals("FirewallServer") )
 			{
 				newObject = createDefaultFirewallServer(desc);
 			}
-			else if ( objectType.equals("objects.serverObjects.ProxyServer") )
+			else if ( objectType.equals("ProxyServer") )
 			{
 				newObject = createDefaultProxyServer(desc);
 			}
-			else if ( objectType.equals("objects.serverObjects.PrinterServer") )
+			else if ( objectType.equals("PrinterServer") )
 			{
 				newObject = createDefaultPrinterServer(desc);
 			}
-			else if ( objectType.equals("objects.serverObjects.DatabaseServer") )
+			else if ( objectType.equals("DatabaseServer") )
 			{
 				newObject = createDefaultDatabaseServer(desc);
 			}
-			else if ( objectType.equals("objects.peripheralObjects.Scanner") )
+			else if ( objectType.equals("Scanner") )
 			{
 				newObject = createDefaultScanner(desc);
 			}
-			else if ( objectType.equals("objects.peripheralObjects.Printer") )
+			else if ( objectType.equals("Printer") )
 			{
 				newObject = createDefaultPrinter(desc);
 			}
-			else if ( objectType.equals("objects.peripheralObjects.Fax") )
+			else if ( objectType.equals("Fax") )
 			{
 				newObject = createDefaultFax(desc);
 			}
-			else if ( objectType
-					.equals("objects.peripheralObjects.MultifunctionPrinter") )
+			else if ( objectType.equals("MultifunctionPrinter") )
 			{
 				newObject = createDefaultMFP(desc);
 			}
-			else if ( objectType
-					.equals("objects.peripheralObjects.NetworkPrinter") )
+			else if ( objectType.equals("NetworkPrinter") )
 			{
 				newObject = createDefaultNetworkPrinter(desc);
 			}
-			else if ( objectType
-					.equals("objects.peripheralObjects.NetworkMultifunctionPrinter") )
+			else if ( objectType.equals("NetworkMultifunctionPrinter") )
 			{
 				newObject = createDefaultNetworkMFP(desc);
 			}
-			else if ( objectType.equals("objects.infrastructureObjects.Hub") )
+			else if ( objectType.equals("Hub") )
 			{
 				newObject = createDefaultHub(desc);
 			}
-			else if ( objectType.equals("objects.infrastructureObjects.Switch") )
+			else if ( objectType.equals("Switch") )
 			{
 				newObject = createDefaultSwitch(desc);
 			}
-			else if ( objectType.equals("objects.infrastructureObjects.Router") )
+			else if ( objectType.equals("Router") )
 			{
 				newObject = createDefaultRouter(desc);
 			}
-			else if ( objectType
-					.equals("objects.infrastructureObjects.WirelessRouter") )
+			else if ( objectType.equals("WirelessRouter") )
 			{
 				newObject = createDefaultWirelessRouter(desc);
 			}
-			else if ( objectType
-					.equals("objects.infrastructureObjects.Internet") )
+			else if ( objectType.equals("Internet") )
 			{
 				newObject = createDefaultInternet(desc);
 			}

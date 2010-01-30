@@ -2,7 +2,6 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
@@ -36,14 +35,17 @@ import objects.softwareObjects.Webserver;
 
 
 /**
- * A JPanel that will contain fields and options for a presentation and modification of an {@link Webserver Webserver}
- * Software. The panel is made up of 3 JPanel ordered in a column. The first one contains the name and description of
- * the object. The second panel contains the specific software options. The third panel contains the button that can
- * remove the software from the computer.
+ * A JPanel that will contain fields and options for a presentation and
+ * modification of an {@link Webserver Webserver} Software. The panel is made up
+ * of 3 JPanel ordered in a column. The first one contains the name and
+ * description of the object. The second panel contains the specific software
+ * options. The third panel contains the button that can remove the software
+ * from the computer.
  * 
  * @author Bahram Malaekeh
  */
-public class WebserverEditView extends JPanel implements SoftwareView, ActionListener
+public class WebserverEditView extends JPanel implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -141,7 +143,7 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = ImageLocator.getImageIconObject("Webserver-Software");
+		ImageIcon icon = PrimeMain1.objectImageIcons.get(Webserver.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainWebSer, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -167,9 +169,11 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain1.texts.getString("swTabRemoveSoftwaretText"));
+		JLabel label = new JLabel(PrimeMain1.texts
+				.getString("swTabRemoveSoftwaretText"));
 
-		Button remove = new Button(PrimeMain1.texts.getString("swTabRemoveSoftwareButtonLabel"));
+		Button remove = new Button(PrimeMain1.texts
+				.getString("swTabRemoveSoftwareButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeSoft");
 
@@ -189,12 +193,14 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 
 
 	/**
-	 * This method creates and returns a JPanel that contains all the different settings of the given Software object.
-	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
-	 * the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
 	 * @param webserver
-	 *            The Software that will be examined and will fill inn the fields.
+	 *            The Software that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
 	 */
 	private JPanel createSpesificInfo(Webserver webserver)
@@ -203,53 +209,85 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		JLabel[] labels = new JLabel[16];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts.getString("webserverViewSupOSLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts.getString("webserverViewSupOSTip"));
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupOSLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupOSTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts.getString("webserverViewSupVirtualHostingLabel"));
-		labels[1].setToolTipText(PrimeMain1.texts.getString("webserverViewSupVirtualHostingTip"));
+		labels[1] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupVirtualHostingLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupVirtualHostingTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts.getString("webserverViewSupHTTPcompLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts.getString("webserverViewSupHTTPcompTip"));
+		labels[2] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupHTTPcompLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupHTTPcompTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts.getString("webserverViewSupBasicAccessLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts.getString("webserverViewSupBasicAccessTip"));
+		labels[3] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupBasicAccessLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupBasicAccessTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts.getString("webserverViewSupDigestAccessLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts.getString("webserverViewSupDigestAccessTip"));
+		labels[4] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupDigestAccessLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupDigestAccessTip"));
 
-		labels[5] = new JLabel(PrimeMain1.texts.getString("webserverViewSupSSLLabel"));
-		labels[5].setToolTipText(PrimeMain1.texts.getString("webserverViewSupSSLTip"));
+		labels[5] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupSSLLabel"));
+		labels[5].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupSSLTip"));
 
-		labels[6] = new JLabel(PrimeMain1.texts.getString("webserverViewSupTSLLabel"));
-		labels[6].setToolTipText(PrimeMain1.texts.getString("webserverViewSupTSLTip"));
+		labels[6] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupTSLLabel"));
+		labels[6].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupTSLTip"));
 
-		labels[7] = new JLabel(PrimeMain1.texts.getString("webserverViewSupIPv6Label"));
-		labels[7].setToolTipText(PrimeMain1.texts.getString("webserverViewSupIPv6Tip"));
+		labels[7] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupIPv6Label"));
+		labels[7].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupIPv6Tip"));
 
-		labels[8] = new JLabel(PrimeMain1.texts.getString("webserverViewSupSSILabel"));
-		labels[8].setToolTipText(PrimeMain1.texts.getString("webserverViewSupSSITip"));
+		labels[8] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupSSILabel"));
+		labels[8].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupSSITip"));
 
-		labels[9] = new JLabel(PrimeMain1.texts.getString("webserverViewSupCGILabel"));
-		labels[9].setToolTipText(PrimeMain1.texts.getString("webserverViewSupCGITip"));
+		labels[9] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupCGILabel"));
+		labels[9].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupCGITip"));
 
-		labels[10] = new JLabel(PrimeMain1.texts.getString("webserverViewSupSCGILabel"));
-		labels[10].setToolTipText(PrimeMain1.texts.getString("webserverViewSupSCGITip"));
+		labels[10] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupSCGILabel"));
+		labels[10].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupSCGITip"));
 
-		labels[11] = new JLabel(PrimeMain1.texts.getString("webserverViewSupFastCGILabel"));
-		labels[11].setToolTipText(PrimeMain1.texts.getString("webserverViewSupFastCGITip"));
+		labels[11] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupFastCGILabel"));
+		labels[11].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupFastCGITip"));
 
-		labels[12] = new JLabel(PrimeMain1.texts.getString("webserverViewSupJSPLabel"));
-		labels[12].setToolTipText(PrimeMain1.texts.getString("webserverViewSupJSPTip"));
+		labels[12] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupJSPLabel"));
+		labels[12].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupJSPTip"));
 
-		labels[13] = new JLabel(PrimeMain1.texts.getString("webserverViewSupPHPLabel"));
-		labels[13].setToolTipText(PrimeMain1.texts.getString("webserverViewSupPHPTip"));
+		labels[13] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupPHPLabel"));
+		labels[13].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupPHPTip"));
 
-		labels[14] = new JLabel(PrimeMain1.texts.getString("webserverViewSupASPLabel"));
-		labels[14].setToolTipText(PrimeMain1.texts.getString("webserverViewSupASPTip"));
+		labels[14] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupASPLabel"));
+		labels[14].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupASPTip"));
 
-		labels[15] = new JLabel(PrimeMain1.texts.getString("webserverViewSupASPNetLabel"));
-		labels[15].setToolTipText(PrimeMain1.texts.getString("webserverViewSupASPNetTip"));
+		labels[15] = new JLabel(PrimeMain1.texts
+				.getString("webserverViewSupASPNetLabel"));
+		labels[15].setToolTipText(PrimeMain1.texts
+				.getString("webserverViewSupASPNetTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -258,21 +296,25 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 
 		// The supported operating systems by the Webserver software.
 		labels[0].setLabelFor(supportedOS);
-		String[] listData = { "Windows 98", "Windows 2000", "Windows XP", "Windows Vista", "Linux", "Novell" };
+		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
+				"Windows Vista", "Linux", "Novell" };
 		supportedOS = new JList(listData);
 		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
-		listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
+		listSelectionModel
+				.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supportedOS);
 		listPane.setMaximumSize(new Dimension(130, 60));
 		listPane.setPreferredSize(new Dimension(130, 60));
-		listSelectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		listSelectionModel
+				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		if ( mainWebSer.getSupportedOperatingSystems() != null )
 		{
 			if ( mainWebSer.getSupportedOperatingSystems().length > 0 )
 			{
-				listPane.setViewportView(GraphicalFunctions.getIndexInJList(supportedOS, listData, mainWebSer
-						.getSupportedOperatingSystems()));
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
+						supportedOS, listData, mainWebSer
+								.getSupportedOperatingSystems()));
 			}
 		}
 
@@ -524,7 +566,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
@@ -536,7 +579,6 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see graphics.GUI.objectView.Software.SoftwareEditView#save()
 	 */
 	@Override
@@ -592,8 +634,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -669,14 +711,16 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 
 
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems" JList.
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
 	 */
 	private class SharedListSelectionHandler implements ListSelectionListener
 	{
 		/*
 		 * (non-Javadoc)
-		 * 
-		 * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing. event.ListSelectionEvent)
+		 * @see
+		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
+		 * event.ListSelectionEvent)
 		 */
 		public void valueChanged(ListSelectionEvent e)
 		{

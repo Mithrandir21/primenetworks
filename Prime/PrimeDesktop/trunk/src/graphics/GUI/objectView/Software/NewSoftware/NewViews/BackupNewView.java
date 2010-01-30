@@ -2,7 +2,6 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
@@ -41,7 +40,8 @@ import objects.Object;
 import objects.softwareObjects.Backup;
 
 
-public class BackupNewView extends JFrame implements SoftwareView, ActionListener
+public class BackupNewView extends JFrame implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	private JTextField name = new JTextField(25);
@@ -75,8 +75,9 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 
 
 	/**
-	 * A constructor for this class that will create a new JFrame which will contain fields for the adjustment of the
-	 * newly created Backup software that will, if saved, be added to the software list of the given Object.
+	 * A constructor for this class that will create a new JFrame which will
+	 * contain fields for the adjustment of the newly created Backup software
+	 * that will, if saved, be added to the software list of the given Object.
 	 * 
 	 * @param obj
 	 *            The Object that the given software will be added to, if saved.
@@ -114,7 +115,7 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = ImageLocator.getImageIconObject("Backup-Software");
+		ImageIcon icon = PrimeMain1.objectImageIcons.get(Backup.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainBack, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -151,7 +152,8 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
+				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}
@@ -159,12 +161,14 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 
 
 	/**
-	 * This method creates and returns a JPanel that contains all the different settings of the given Software object.
-	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
-	 * the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
 	 * @param back
-	 *            The software that will be examined and will fill inn the fields.
+	 *            The software that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
 	 */
 	private JPanel createSpesificInfo(Backup back)
@@ -173,20 +177,30 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 		JLabel[] labels = new JLabel[5];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts.getString("backupViewSupOSLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts.getString("backupViewSupOSTip"));
+		labels[0] = new JLabel(PrimeMain1.texts
+				.getString("backupViewSupOSLabel"));
+		labels[0].setToolTipText(PrimeMain1.texts
+				.getString("backupViewSupOSTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts.getString("backupViewTypeLabel"));
-		labels[1].setToolTipText(PrimeMain1.texts.getString("backupViewTypeTip"));
+		labels[1] = new JLabel(PrimeMain1.texts
+				.getString("backupViewTypeLabel"));
+		labels[1].setToolTipText(PrimeMain1.texts
+				.getString("backupViewTypeTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts.getString("backupViewSupCompressionLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts.getString("backupViewSupCompressionTip"));
+		labels[2] = new JLabel(PrimeMain1.texts
+				.getString("backupViewSupCompressionLabel"));
+		labels[2].setToolTipText(PrimeMain1.texts
+				.getString("backupViewSupCompressionTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts.getString("backupViewSupEncryptionLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts.getString("backupViewSupEncryptionTip"));
+		labels[3] = new JLabel(PrimeMain1.texts
+				.getString("backupViewSupEncryptionLabel"));
+		labels[3].setToolTipText(PrimeMain1.texts
+				.getString("backupViewSupEncryptionTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts.getString("backupViewDuplicatesLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts.getString("backupViewDuplicatesTip"));
+		labels[4] = new JLabel(PrimeMain1.texts
+				.getString("backupViewDuplicatesLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts
+				.getString("backupViewDuplicatesTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -194,21 +208,25 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 
 		// The supported operating systems by the Email software.
 		labels[0].setLabelFor(supportedOS);
-		String[] listData = { "Windows 98", "Windows 2000", "Windows XP", "Windows Vista", "Linux", "Novell" };
+		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
+				"Windows Vista", "Linux", "Novell" };
 		supportedOS = new JList(listData);
 		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
-		listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
+		listSelectionModel
+				.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supportedOS);
 		listPane.setMaximumSize(new Dimension(160, 60));
 		listPane.setPreferredSize(new Dimension(160, 60));
-		listSelectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		listSelectionModel
+				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		if ( mainBack.getSupportedOperatingSystems() != null )
 		{
 			if ( mainBack.getSupportedOperatingSystems().length > 0 )
 			{
-				listPane.setViewportView(GraphicalFunctions.getIndexInJList(supportedOS, listData, mainBack
-						.getSupportedOperatingSystems()));
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
+						supportedOS, listData, mainBack
+								.getSupportedOperatingSystems()));
 			}
 		}
 
@@ -270,7 +288,8 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 		duplicate.setActionCommand("Duplicates");
 		duplicate.addActionListener(this);
 
-		duplicate.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(dupStrings, back.getDuplicate()));
+		duplicate.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				dupStrings, back.getDuplicate()));
 
 
 		panel.add(labels[4]);
@@ -278,7 +297,8 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows,
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows,
 				// cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
@@ -289,8 +309,8 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 
 
 	/**
-	 * Creates a JPanel with two buttons that are listened for by actionlisteners.
-	 * 
+	 * Creates a JPanel with two buttons that are listened for by
+	 * actionlisteners.
 	 */
 	private JPanel createButtons()
 	{
@@ -318,7 +338,6 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see graphics.GUI.objectView.Software.SoftwareView#save()
 	 */
 	@Override
@@ -355,14 +374,15 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 		if ( duplicate.getSelectedItem().toString() != "" )
 		{
 			// The number of copies keeps
-			mainBack.setDuplicate(Integer.parseInt(duplicate.getSelectedItem().toString()));
+			mainBack.setDuplicate(Integer.parseInt(duplicate.getSelectedItem()
+					.toString()));
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -377,7 +397,8 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 			if ( SoftwareManagment.validateSoftware(mainBack, mainObj) )
 			{
 				// Sets an array with the newly added software object
-				mainObj.setSoftware(SoftwareManagment.addSoftware(mainBack, mainObj));
+				mainObj.setSoftware(SoftwareManagment.addSoftware(mainBack,
+						mainObj));
 
 
 				// Updates the views of the object to correctly show the
@@ -394,7 +415,8 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(this, PrimeMain1.texts.getString("swNewCompatibilityQuestion"));
+				JOptionPane.showMessageDialog(this, PrimeMain1.texts
+						.getString("swNewCompatibilityQuestion"));
 			}
 
 
@@ -410,15 +432,16 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 
 
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems" JList.
-	 * 
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
 	 */
 	private class SharedListSelectionHandler implements ListSelectionListener
 	{
 		/*
 		 * (non-Javadoc)
-		 * 
-		 * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing. event.ListSelectionEvent)
+		 * @see
+		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
+		 * event.ListSelectionEvent)
 		 */
 		public void valueChanged(ListSelectionEvent e)
 		{

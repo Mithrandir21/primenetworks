@@ -5,7 +5,6 @@ package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas;
 
 
 import graphics.GraphicalFunctions;
-import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.CreateObjects;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
@@ -108,149 +107,147 @@ public class WorkareaCanvasActionListener implements ActionListener
 			if ( actionName.equals("CreateNewST_Desktop_Item") )
 			{
 				objectType = Desktop.class;
-				objectIcon = ImageLocator.getImageIconObject("Desktop");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Laptop_Item") )
 			{
 				objectType = Laptop.class;
-				objectIcon = ImageLocator.getImageIconObject("Laptop");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_ThinClient_Item") )
 			{
 				objectType = ThinClient.class;
-				objectIcon = ImageLocator.getImageIconObject("Screen");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_HTTPServer_Item") )
 			{
 				objectType = HTTPServer.class;
-				objectIcon = ImageLocator.getImageIconObject("Web-server");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_BackupServer_Item") )
 			{
 				objectType = BackupServer.class;
-				objectIcon = ImageLocator.getImageIconObject("Data-server");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_DatabaseServer_Item") )
 			{
 				objectType = DatabaseServer.class;
-				objectIcon = ImageLocator.getImageIconObject("Database-server");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_MailServer_Item") )
 			{
 				objectType = MailServer.class;
-				objectIcon = ImageLocator.getImageIconObject("Email-server");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_FirewallServer_Item") )
 			{
 				objectType = FirewallServer.class;
-				objectIcon = ImageLocator.getImageIconObject("Firewall-server");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_ProxyServer_Item") )
 			{
 				objectType = ProxyServer.class;
-				objectIcon = ImageLocator.getImageIconObject("Proxy-server");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_PrinterServer_Item") )
 			{
 				objectType = PrinterServer.class;
-				objectIcon = ImageLocator.getImageIconObject("Printer-server");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Hub_Item") )
 			{
 				objectType = Hub.class;
-				objectIcon = ImageLocator.getImageIconObject("Hub");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Switch_Item") )
 			{
 				objectType = Switch.class;
-				objectIcon = ImageLocator.getImageIconObject("Switch");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Router_Item") )
 			{
 				objectType = Router.class;
-				objectIcon = ImageLocator.getImageIconObject("Router");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_WirelessRouter_Item") )
 			{
 				objectType = Router.class;
-				objectIcon = ImageLocator.getImageIconObject("WirelessRouter");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Internet_Item") )
 			{
 				objectType = Internet.class;
-				objectIcon = ImageLocator.getImageIconObject("Internet");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Scanner_Item") )
 			{
 				objectType = Scanner.class;
-				objectIcon = ImageLocator.getImageIconObject("Scanner");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Printer_Item") )
 			{
 				objectType = Printer.class;
-				objectIcon = ImageLocator.getImageIconObject("Printer");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Fax_Item") )
 			{
 				objectType = Fax.class;
-				objectIcon = ImageLocator.getImageIconObject("Fax");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_MFP_Item") )
 			{
 				objectType = MultifunctionPrinter.class;
-				objectIcon = ImageLocator
-						.getImageIconObject("MultifunctionPrinter");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_NetworkPrinter_Item") )
 			{
 				objectType = NetworkPrinter.class;
-				objectIcon = ImageLocator.getImageIconObject("NetworkPrinter");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_NetworkMFP_Item") )
 			{
 				objectType = NetworkMultifunctionPrinter.class;
-				objectIcon = ImageLocator
-						.getImageIconObject("NetworkMultifunctionPrinter");
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;
 			}

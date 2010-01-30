@@ -4,7 +4,6 @@
 package graphics.GUI.visualObjectCustomization;
 
 
-import graphics.ImageLocator;
 import graphics.PrimeMain1;
 
 import java.awt.Button;
@@ -18,15 +17,17 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Iterator;
 
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
+
+import objects.Object;
 
 
 /**
@@ -78,7 +79,10 @@ public class VisualCustomFrame extends JDialog implements MouseListener
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		JScrollPane scrollPane = new JScrollPane(createVisualPanel("1"));
+		JPanel iconPanel = createVisualPanel();
+		JScrollPane scrollPane = new JScrollPane();
+		iconPanel.setPreferredSize(new Dimension(scrollPane.getWidth(), 1000));
+		scrollPane.setViewportView(iconPanel);
 		// scrollPane
 		// .setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		// scrollPane.setBorder(null);
@@ -109,72 +113,40 @@ public class VisualCustomFrame extends JDialog implements MouseListener
 	}
 
 
-
 	/**
 	 * TODO - Description
 	 */
-	private JPanel createVisualPanel(String a)
+	private JPanel createVisualPanel()
 	{
 		JPanel visPanel = new JPanel(new GridLayout(0, 3, 25, 25));
 
 
-		JLabel b2 = new JLabel(ImageLocator.getImageIconObject("CPU"));
-		b2.setText("CPU");
-		// b2.setSize(buttonDim);
-		b2.setVerticalTextPosition(AbstractButton.BOTTOM);
-		b2.setHorizontalTextPosition(AbstractButton.CENTER);
-		b2.setBorder(grayline);
+		Iterator iterator = PrimeMain1.objectlist.iterator();
 
-		JLabel b3 = new JLabel(ImageLocator.getImageIconObject("CPU"));
-		b3.setText("CPU");
-		// b2.setSize(buttonDim);
-		b3.setVerticalTextPosition(AbstractButton.BOTTOM);
-		b3.setHorizontalTextPosition(AbstractButton.CENTER);
-		b3.setBorder(grayline);
-
-		JLabel b4 = new JLabel(ImageLocator.getImageIconObject("CPU"));
-		b4.setText("CPU");
-		// b2.setSize(buttonDim);
-		b4.setVerticalTextPosition(AbstractButton.BOTTOM);
-		b4.setHorizontalTextPosition(AbstractButton.CENTER);
-		b4.setBorder(grayline);
-
-		JLabel b5 = new JLabel(ImageLocator.getImageIconObject("CPU"));
-		b5.setText("CPU");
-		// b2.setSize(buttonDim);
-		b5.setVerticalTextPosition(AbstractButton.BOTTOM);
-		b5.setHorizontalTextPosition(AbstractButton.CENTER);
-		b5.setBorder(grayline);
-
-		visPanel.add(b2);
-
-
-		visPanel.add(b3);
-
-
-		visPanel.add(b4);
-
-
-		visPanel.add(b5);
-		visPanel.add(new JButton("rr"));
-		visPanel.add(new JButton("rr"));
-		visPanel.add(new JButton("rr"));
-		visPanel.add(new JButton("rr"));
-		visPanel.add(new JButton("rr"));
-		visPanel.add(new JButton("rr"));
-		visPanel.add(new JButton("rr"));
-		visPanel.add(new JButton("rr"));
-		visPanel.add(new JButton("rr"));
-
+		while ( iterator.hasNext() )
+		{
+			visPanel.add(createImageButton((Object) iterator.next()));
+		}
 
 		visPanel.setBackground(Color.WHITE);
+
 
 		return visPanel;
 	}
 
 
 
+	private JButton createImageButton(Object obj)
+	{
+		JButton button = new JButton(obj.getClass().getSimpleName(), obj
+				.getVisualImage());
 
+		button.setVerticalTextPosition(AbstractButton.BOTTOM);
+		button.setHorizontalTextPosition(AbstractButton.CENTER);
+		button.setPreferredSize(new Dimension(50, 70));
+
+		return button;
+	}
 
 
 	/**

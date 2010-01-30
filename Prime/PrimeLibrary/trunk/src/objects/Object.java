@@ -6,6 +6,8 @@ import java.awt.Point;
 import java.io.Serializable;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
+
 import logistical.cleanup;
 import managment.ArrayManagment;
 import managment.ComponentsManagment;
@@ -113,10 +115,18 @@ public abstract class Object implements Serializable, Cloneable
 	private Software[] software;
 
 
+
+	// VISUAL PROPERTIES
 	/**
 	 * The location of the object on a scene.
 	 */
 	private Point location;
+
+
+	/**
+	 * The ImageIcon that will represent the Object visually
+	 */
+	private ImageIcon visualImage;
 
 
 
@@ -416,6 +426,15 @@ public abstract class Object implements Serializable, Cloneable
 
 
 
+	/**
+	 * Gets the ImageIcon that represents the Object visually.
+	 */
+	public ImageIcon getVisualImage()
+	{
+		return visualImage;
+	}
+
+
 	// SET METHODES
 
 	/**
@@ -528,6 +547,15 @@ public abstract class Object implements Serializable, Cloneable
 		this.networkConnections = connections;
 	}
 
+
+	/**
+	 * Sets the ImageIcon that will represent the Object visually. (Allows
+	 * NULL).
+	 */
+	public void setVisualImage(ImageIcon visImage)
+	{
+		visualImage = visImage;
+	}
 
 
 	// CLASS METHODES

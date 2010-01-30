@@ -2,7 +2,6 @@ package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
 
 import graphics.GraphicalFunctions;
-import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.Hardware.NewComponent.NewOverview.NewComponentChoice;
 
@@ -97,7 +96,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		{
 			if ( hwObj[i] instanceof Motherboard )
 			{
-				temp = ImageLocator.getImageIconObject("Motherboard");
+				temp = PrimeMain1.objectImageIcons.get(Motherboard.class);
 
 				Motherboard mbObj = (Motherboard) hwObj[i];
 
@@ -142,7 +141,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 			else if ( hwObj[i] instanceof CPU )
 			{
-				temp = ImageLocator.getImageIconObject("CPU");
+				temp = PrimeMain1.objectImageIcons.get(CPU.class);
 
 				CPU cpuObj = (CPU) hwObj[i];
 
@@ -180,7 +179,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 			else if ( hwObj[i] instanceof HDD )
 			{
-				temp = ImageLocator.getImageIconObject("Harddisc");
+				temp = PrimeMain1.objectImageIcons.get(HDD.class);
 
 				HDD hddObj = (HDD) hwObj[i];
 
@@ -223,7 +222,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 			else if ( hwObj[i] instanceof Ram )
 			{
-				temp = ImageLocator.getImageIconObject("RAM");
+				temp = PrimeMain1.objectImageIcons.get(Ram.class);
 
 				Ram ramObj = (Ram) hwObj[i];
 
@@ -266,7 +265,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 			else if ( hwObj[i] instanceof Discdrive )
 			{
-				temp = ImageLocator.getImageIconObject("Optical-Drive");
+				temp = PrimeMain1.objectImageIcons.get(Discdrive.class);
 
 				Discdrive discObj = (Discdrive) hwObj[i];
 
@@ -309,7 +308,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 			else if ( hwObj[i] instanceof GraphicsCard )
 			{
-				temp = ImageLocator.getImageIconObject("GPU");
+				temp = PrimeMain1.objectImageIcons.get(GraphicsCard.class);
 
 				GraphicsCard gpuObj = (GraphicsCard) hwObj[i];
 
@@ -353,7 +352,8 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 			else if ( hwObj[i] instanceof InternalNetworksCard )
 			{
-				temp = ImageLocator.getImageIconObject("NIC");
+				temp = PrimeMain1.objectImageIcons
+						.get(InternalNetworksCard.class);
 
 				InternalNetworksCard nicObj = (InternalNetworksCard) hwObj[i];
 
@@ -396,7 +396,8 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 			else if ( hwObj[i] instanceof ExternalNetworksCard )
 			{
-				temp = ImageLocator.getImageIconObject("ExternalNIC");
+				temp = PrimeMain1.objectImageIcons
+						.get(ExternalNetworksCard.class);
 
 				ExternalNetworksCard nicObj = (ExternalNetworksCard) hwObj[i];
 

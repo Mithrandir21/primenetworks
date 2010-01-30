@@ -17,7 +17,6 @@ import java.awt.Dimension;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -39,18 +38,15 @@ import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.infrastructureObjects.WirelessRouter;
-import objects.peripheralObjects.Fax;
 import objects.peripheralObjects.MultifunctionPrinter;
 import objects.peripheralObjects.NetworkMultifunctionPrinter;
 import objects.peripheralObjects.NetworkPrinter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
 import objects.serverObjects.BackupServer;
-import objects.serverObjects.DatabaseServer;
 import objects.serverObjects.FirewallServer;
 import objects.serverObjects.HTTPServer;
 import objects.serverObjects.MailServer;
-import objects.serverObjects.PrinterServer;
 import objects.serverObjects.ProxyServer;
 
 import org.netbeans.api.visual.action.ActionFactory;
@@ -728,102 +724,102 @@ public class GraphicalFunctions
 
 
 
-	/**
-	 * Returns a ImageIcon that represents the Object given.
-	 * 
-	 * @param obj
-	 * @return
-	 */
-	public static ImageIcon getImageIconForObject(Object obj)
-	{
-		if ( obj instanceof Desktop )
-		{
-			return ImageLocator.getImageIconObject("Desktop");
-		}
-		else if ( obj instanceof Laptop )
-		{
-			return ImageLocator.getImageIconObject("Laptop");
-		}
-		else if ( obj instanceof ThinClient )
-		{
-			return ImageLocator.getImageIconObject("Screen");
-		}
-		else if ( obj instanceof HTTPServer )
-		{
-			return ImageLocator.getImageIconObject("HTTP Server");
-		}
-		else if ( obj instanceof BackupServer )
-		{
-			return ImageLocator.getImageIconObject("Backup Server");
-		}
-		else if ( obj instanceof DatabaseServer )
-		{
-			return ImageLocator.getImageIconObject("Database Server");
-		}
-		else if ( obj instanceof MailServer )
-		{
-			return ImageLocator.getImageIconObject("Mail Server");
-		}
-		else if ( obj instanceof FirewallServer )
-		{
-			return ImageLocator.getImageIconObject("Firewall Server");
-		}
-		else if ( obj instanceof ProxyServer )
-		{
-			return ImageLocator.getImageIconObject("Proxy Server");
-		}
-		else if ( obj instanceof PrinterServer )
-		{
-			return ImageLocator.getImageIconObject("Printer Server");
-		}
-		else if ( obj instanceof Scanner )
-		{
-			return ImageLocator.getImageIconObject("Scanner");
-		}
-		else if ( obj instanceof Printer )
-		{
-			return ImageLocator.getImageIconObject("Printer");
-		}
-		else if ( obj instanceof Fax )
-		{
-			return ImageLocator.getImageIconObject("Fax");
-		}
-		else if ( obj instanceof MultifunctionPrinter )
-		{
-			return ImageLocator.getImageIconObject("MultifunctionPrinter");
-		}
-		else if ( obj instanceof NetworkPrinter )
-		{
-			return ImageLocator.getImageIconObject("PrinterNetwork");
-		}
-		else if ( obj instanceof NetworkMultifunctionPrinter )
-		{
-			return ImageLocator
-					.getImageIconObject("NetworkMultifunctionPrinter");
-		}
-		else if ( obj instanceof Hub )
-		{
-			return ImageLocator.getImageIconObject("Hub");
-		}
-		else if ( obj instanceof Switch )
-		{
-			return ImageLocator.getImageIconObject("Switch");
-		}
-		else if ( obj instanceof Router )
-		{
-			return ImageLocator.getImageIconObject("Router");
-		}
-		else if ( obj instanceof WirelessRouter )
-		{
-			return ImageLocator.getImageIconObject("WirelessRouter");
-		}
-		else if ( obj instanceof Internet )
-		{
-			return ImageLocator.getImageIconObject("Internet");
-		}
-
-		return null;
-	}
+	// /**
+	// * Returns a ImageIcon that represents the Object given.
+	// *
+	// * @param obj
+	// * @return
+	// */
+	// public static ImageIcon getImageIconForObject(Object obj)
+	// {
+	// if ( obj instanceof Desktop )
+	// {
+	// return ImageLocator.getImageIconObject("Desktop");
+	// }
+	// else if ( obj instanceof Laptop )
+	// {
+	// return ImageLocator.getImageIconObject("Laptop");
+	// }
+	// else if ( obj instanceof ThinClient )
+	// {
+	// return ImageLocator.getImageIconObject("Screen");
+	// }
+	// else if ( obj instanceof HTTPServer )
+	// {
+	// return ImageLocator.getImageIconObject("HTTP Server");
+	// }
+	// else if ( obj instanceof BackupServer )
+	// {
+	// return ImageLocator.getImageIconObject("Backup Server");
+	// }
+	// else if ( obj instanceof DatabaseServer )
+	// {
+	// return ImageLocator.getImageIconObject("Database Server");
+	// }
+	// else if ( obj instanceof MailServer )
+	// {
+	// return ImageLocator.getImageIconObject("Mail Server");
+	// }
+	// else if ( obj instanceof FirewallServer )
+	// {
+	// return ImageLocator.getImageIconObject("Firewall Server");
+	// }
+	// else if ( obj instanceof ProxyServer )
+	// {
+	// return ImageLocator.getImageIconObject("Proxy Server");
+	// }
+	// else if ( obj instanceof PrinterServer )
+	// {
+	// return ImageLocator.getImageIconObject("Printer Server");
+	// }
+	// else if ( obj instanceof Scanner )
+	// {
+	// return ImageLocator.getImageIconObject("Scanner");
+	// }
+	// else if ( obj instanceof Printer )
+	// {
+	// return ImageLocator.getImageIconObject("Printer");
+	// }
+	// else if ( obj instanceof Fax )
+	// {
+	// return ImageLocator.getImageIconObject("Fax");
+	// }
+	// else if ( obj instanceof MultifunctionPrinter )
+	// {
+	// return ImageLocator.getImageIconObject("MultifunctionPrinter");
+	// }
+	// else if ( obj instanceof NetworkPrinter )
+	// {
+	// return ImageLocator.getImageIconObject("PrinterNetwork");
+	// }
+	// else if ( obj instanceof NetworkMultifunctionPrinter )
+	// {
+	// return ImageLocator
+	// .getImageIconObject("NetworkMultifunctionPrinter");
+	// }
+	// else if ( obj instanceof Hub )
+	// {
+	// return ImageLocator.getImageIconObject("Hub");
+	// }
+	// else if ( obj instanceof Switch )
+	// {
+	// return ImageLocator.getImageIconObject("Switch");
+	// }
+	// else if ( obj instanceof Router )
+	// {
+	// return ImageLocator.getImageIconObject("Router");
+	// }
+	// else if ( obj instanceof WirelessRouter )
+	// {
+	// return ImageLocator.getImageIconObject("WirelessRouter");
+	// }
+	// else if ( obj instanceof Internet )
+	// {
+	// return ImageLocator.getImageIconObject("Internet");
+	// }
+	//
+	// return null;
+	// }
 
 
 

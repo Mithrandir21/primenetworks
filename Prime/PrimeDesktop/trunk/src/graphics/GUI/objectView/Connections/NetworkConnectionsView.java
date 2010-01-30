@@ -2,7 +2,6 @@ package graphics.GUI.objectView.Connections;
 
 
 import exceptions.ObjectNotFoundException;
-import graphics.GraphicalFunctions;
 import graphics.PrimeMain1;
 
 import java.awt.Color;
@@ -330,93 +329,7 @@ public class NetworkConnectionsView extends JPanel
 	{
 		JPanel panel = null;
 
-		ImageIcon icon = GraphicalFunctions.getImageIconForObject(obj);
-
-		// if ( obj instanceof Desktop )
-		// {
-		// icon = ImageLocator.getImageIconObject("Desktop");
-		// }
-		// else if ( obj instanceof Laptop )
-		// {
-		// icon = ImageLocator.getImageIconObject("Laptop");
-		// }
-		// else if ( obj instanceof ThinClient )
-		// {
-		// icon = ImageLocator.getImageIconObject("Screen");
-		// }
-		// else if ( obj instanceof HTTPServer )
-		// {
-		// icon = ImageLocator.getImageIconObject("Web-server");
-		// }
-		// else if ( obj instanceof BackupServer )
-		// {
-		// icon = ImageLocator.getImageIconObject("Data-server");
-		// }
-		// else if ( obj instanceof DatabaseServer )
-		// {
-		// icon = ImageLocator.getImageIconObject("Database-server");
-		// }
-		// else if ( obj instanceof MailServer )
-		// {
-		// icon = ImageLocator.getImageIconObject("Email-server");
-		// }
-		// else if ( obj instanceof FirewallServer )
-		// {
-		// icon = ImageLocator.getImageIconObject("Firewall-server");
-		// }
-		// else if ( obj instanceof ProxyServer )
-		// {
-		// icon = ImageLocator.getImageIconObject("Proxy-server");
-		// }
-		// else if ( obj instanceof PrinterServer )
-		// {
-		// icon = ImageLocator.getImageIconObject("Printer-server");
-		// }
-		// else if ( obj instanceof Scanner )
-		// {
-		// icon = ImageLocator.getImageIconObject("Scanner");
-		// }
-		// else if ( obj instanceof Printer )
-		// {
-		// icon = ImageLocator.getImageIconObject("Printer");
-		// }
-		// else if ( obj instanceof Fax )
-		// {
-		// icon = ImageLocator.getImageIconObject("Fax");
-		// }
-		// else if ( obj instanceof MultifunctionPrinter )
-		// {
-		// icon = ImageLocator.getImageIconObject("MultifunctionPrinter");
-		// }
-		// else if ( obj instanceof NetworkPrinter )
-		// {
-		// icon = ImageLocator.getImageIconObject("PrinterNetwork");
-		// }
-		// else if ( obj instanceof NetworkMultifunctionPrinter )
-		// {
-		// icon =
-		// ImageLocator.getImageIconObject("NetworkMultifunctionPrinter");
-		// }
-		// else if ( obj instanceof Hub )
-		// {
-		// icon = ImageLocator.getImageIconObject("Hub");
-		// }
-		// else if ( obj instanceof Switch )
-		// {
-		// icon = ImageLocator.getImageIconObject("Switch");
-		// }
-		// else if ( obj instanceof Router )
-		// {
-		// icon = ImageLocator.getImageIconObject("Router");
-		// }
-		// else if ( obj instanceof WirelessRouter )
-		// {
-		// icon = ImageLocator.getImageIconObject("WirelessRouter");
-		// }
-		// else if ( obj instanceof Internet )
-		// {
-		// icon = ImageLocator.getImageIconObject("Internet");
-		// }
+		ImageIcon icon = PrimeMain1.objectImageIcons.get(obj.getClass());
 
 		String[] texts = check(obj);
 

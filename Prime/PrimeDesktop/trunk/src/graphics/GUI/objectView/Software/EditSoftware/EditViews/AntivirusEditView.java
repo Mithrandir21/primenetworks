@@ -2,7 +2,6 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
@@ -41,14 +40,17 @@ import objects.softwareObjects.Antivirus;
 
 
 /**
- * A JPanel that will contain fields and options for a presentation and modification of an {@link Antivirus Antivirus}
- * Software. The panel is made up of 3 JPanel ordered in a column. The first one contains the name and description of
- * the object. The second panel contains the specific software options. The third panel contains the button that can
- * remove the software from the computer.
+ * A JPanel that will contain fields and options for a presentation and
+ * modification of an {@link Antivirus Antivirus} Software. The panel is made up
+ * of 3 JPanel ordered in a column. The first one contains the name and
+ * description of the object. The second panel contains the specific software
+ * options. The third panel contains the button that can remove the software
+ * from the computer.
  * 
  * @author Bahram Malaekeh
  */
-public class AntivirusEditView extends JPanel implements SoftwareView, ActionListener
+public class AntivirusEditView extends JPanel implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -106,7 +108,7 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = ImageLocator.getImageIconObject("Antivirus-Software");
+		ImageIcon icon = PrimeMain1.objectImageIcons.get(Antivirus.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainAV, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -132,9 +134,11 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain1.texts.getString("swTabRemoveSoftwaretText"));
+		JLabel label = new JLabel(PrimeMain1.texts
+				.getString("swTabRemoveSoftwaretText"));
 
-		Button remove = new Button(PrimeMain1.texts.getString("swTabRemoveSoftwareButtonLabel"));
+		Button remove = new Button(PrimeMain1.texts
+				.getString("swTabRemoveSoftwareButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeSoft");
 
@@ -154,12 +158,14 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 
 
 	/**
-	 * This method creates and returns a JPanel that contains all the different settings of the given Software object.
-	 * It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all the different components in
-	 * the JPanel in grids.
+	 * This method creates and returns a JPanel that contains all the different
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * the different components in the JPanel in grids.
 	 * 
 	 * @param av
-	 *            The Software that will be examined and will fill inn the fields.
+	 *            The Software that will be examined and will fill inn the
+	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
 	 */
 	private JPanel createSpecificInfo(Antivirus av)
@@ -172,39 +178,49 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 		labels[0].setToolTipText(PrimeMain1.texts.getString("avViewSupOSTip"));
 
 		labels[1] = new JLabel(PrimeMain1.texts.getString("avViewActDateLabel"));
-		labels[1].setToolTipText(PrimeMain1.texts.getString("avViewActDateTip"));
+		labels[1]
+				.setToolTipText(PrimeMain1.texts.getString("avViewActDateTip"));
 
 		labels[2] = new JLabel(PrimeMain1.texts.getString("avViewExpDateLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts.getString("avViewExpDateTip"));
+		labels[2]
+				.setToolTipText(PrimeMain1.texts.getString("avViewExpDateTip"));
 
 		labels[3] = new JLabel(PrimeMain1.texts.getString("avViewLicenseLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts.getString("avViewLicenseTip"));
+		labels[3]
+				.setToolTipText(PrimeMain1.texts.getString("avViewLicenseTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts.getString("avViewActivatedLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts.getString("avViewActivatedTip"));
+		labels[4] = new JLabel(PrimeMain1.texts
+				.getString("avViewActivatedLabel"));
+		labels[4].setToolTipText(PrimeMain1.texts
+				.getString("avViewActivatedTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
-		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts.getString("avViewSimpleDateFormat"));
+		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts
+				.getString("avViewSimpleDateFormat"));
 
 
 		// The supported operating systems by the Antivirus software.
 		labels[0].setLabelFor(supportedOS);
-		String[] listData = { "Windows 98", "Windows 2000", "Windows XP", "Windows Vista", "Linux", "Novell" };
+		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
+				"Windows Vista", "Linux", "Novell" };
 		supportedOS = new JList(listData);
 		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
-		listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
+		listSelectionModel
+				.addListSelectionListener(new SharedListSelectionHandler());
 		JScrollPane listPane = new JScrollPane(supportedOS);
 		listPane.setMaximumSize(new Dimension(160, 60));
 		listPane.setPreferredSize(new Dimension(160, 60));
-		listSelectionModel.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		listSelectionModel
+				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		if ( mainAV.getSupportedOperatingSystems() != null )
 		{
 			if ( mainAV.getSupportedOperatingSystems().length > 0 )
 			{
-				listPane.setViewportView(GraphicalFunctions.getIndexInJList(supportedOS, listData, mainAV
-						.getSupportedOperatingSystems()));
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
+						supportedOS, listData, mainAV
+								.getSupportedOperatingSystems()));
 			}
 		}
 
@@ -308,7 +324,8 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 
 
 		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel, panel.getComponentCount(), // rows, cols
+		graphics.GraphicalFunctions.make6xGrid(panel,
+				panel.getComponentCount(), // rows, cols
 				10, 10, // initX, initY
 				20, 20); // xPad, yPad
 
@@ -322,7 +339,8 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 	@Override
 	public void save()
 	{
-		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts.getString("avViewSimpleDateFormat"));
+		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts
+				.getString("avViewSimpleDateFormat"));
 
 		if ( name.getText() != "" )
 		{
@@ -398,7 +416,8 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 				// mainObj.setAllComponents(ComponentsManagment.removeComponent(
 				// CPUobj, mainObj.getComponents(), mainObj
 				// .getComponents().length));
-				mainObj.setSoftware(SoftwareManagment.removeSoftware(mainAV, mainObj));
+				mainObj.setSoftware(SoftwareManagment.removeSoftware(mainAV,
+						mainObj));
 
 				// Updates the views of the object to correctly show the
 				// current info.
@@ -413,14 +432,16 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 
 
 	/**
-	 * Handles the selections that are made in the "Supported Operating Systems" JList.
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
 	 */
 	private class SharedListSelectionHandler implements ListSelectionListener
 	{
 		/*
 		 * (non-Javadoc)
-		 * 
-		 * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing. event.ListSelectionEvent)
+		 * @see
+		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
+		 * event.ListSelectionEvent)
 		 */
 		public void valueChanged(ListSelectionEvent e)
 		{

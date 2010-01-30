@@ -5,7 +5,6 @@ package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
@@ -105,7 +104,7 @@ public class RAMNewView extends JFrame implements HardwareViewInterface,
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = ImageLocator.getImageIconObject("RAM");
+		ImageIcon icon = PrimeMain1.objectImageIcons.get(Ram.class);
 		JPanel p1 = HardwareEditor.GeneralInfo(RAM, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 

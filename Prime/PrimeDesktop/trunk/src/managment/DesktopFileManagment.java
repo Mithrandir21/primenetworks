@@ -849,8 +849,8 @@ public class DesktopFileManagment
 					{
 						Class<?> objClass = GraphicalFunctions
 								.getObjectClass(objects[i]);
-						ImageIcon icon = GraphicalFunctions
-								.getImageIconForObject(objects[i]);
+						ImageIcon icon = PrimeMain1.objectImageIcons
+								.get(objects[i].getClass());
 
 						WidgetObject added = WorkareaCanvasActions
 								.addObjectToCanvas(objects[i], canvas,

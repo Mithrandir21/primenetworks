@@ -5,7 +5,6 @@ package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
 import graphics.GraphicalFunctions;
-import graphics.ImageLocator;
 import graphics.PrimeMain1;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
@@ -101,7 +100,8 @@ public class InternalNICView extends JPanel implements HardwareViewInterface,
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = ImageLocator.getImageIconObject("NIC");
+		ImageIcon icon = PrimeMain1.objectImageIcons
+				.get(InternalNetworksCard.class);
 		JPanel p1 = HardwareEditor.GeneralInfo(intNIC, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
