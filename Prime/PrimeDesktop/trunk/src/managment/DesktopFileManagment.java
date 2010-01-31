@@ -231,6 +231,45 @@ public class DesktopFileManagment
 
 
 
+	/**
+	 * Saves the {@link Settings} instance to a file to preserve the users
+	 * settings.
+	 */
+	public static void saveSettings()
+	{
+		File file = new File("./resource/settings.dat");
+
+		try
+		{
+			FileOutputStream fout = new FileOutputStream(file);
+
+			// The object stream file
+			ObjectOutputStream oos = new ObjectOutputStream(fout);
+
+			oos.writeBoolean(managment.Settings.showConnectionErrorMessages);
+			oos.writeBoolean(managment.Settings.showConnectionNoticeMessages);
+			oos.writeBoolean(managment.Settings.showConnectionWarningMessages);
+			oos.writeBoolean(managment.Settings.showHardwareErrorMessages);
+			oos.writeBoolean(managment.Settings.showHardwareNoticeMessages);
+			oos.writeBoolean(managment.Settings.showHardwareWarningMessages);
+			oos.writeBoolean(managment.Settings.showNetworkErrorMessages);
+			oos.writeBoolean(managment.Settings.showNetworkNoticeMessages);
+			oos.writeBoolean(managment.Settings.showNetworkWarningMessages);
+			oos.writeBoolean(managment.Settings.showSoftwareErrorMessages);
+			oos.writeBoolean(managment.Settings.showSoftwareNoticeMessages);
+			oos.writeBoolean(managment.Settings.showSoftwareWarningMessages);
+			oos.writeBoolean(managment.Settings.showTOFD);
+
+			oos.flush();
+			oos.close();
+		}
+		catch ( Exception e )
+		{
+			e.printStackTrace();
+		}
+	}
+
+
 
 	/**
 	 * This function checks whether or not there exist a file containing a
@@ -1023,6 +1062,69 @@ public class DesktopFileManagment
 	}
 
 
+
+
+	/**
+	 * Opens the {@link Settings} instance from a file to preserve the users
+	 * settings from previous sessions.
+	 */
+	public static void openSettings()
+	{
+		File file = new File("./resource/settings.dat");
+
+		// If the Objects file exists
+		if ( file.exists() )
+		{
+			// If the pointer is to a file and not anything else
+			if ( file.isFile() )
+			{
+				// If the file can be written to
+				if ( file.canRead() )
+				{
+					try
+					{
+						FileInputStream fin = new FileInputStream(file);
+
+						ObjectInputStream ois = new ObjectInputStream(fin);
+
+
+						managment.Settings.showConnectionErrorMessages = ois
+								.readBoolean();
+						managment.Settings.showConnectionNoticeMessages = ois
+								.readBoolean();
+						managment.Settings.showConnectionWarningMessages = ois
+								.readBoolean();
+						managment.Settings.showHardwareErrorMessages = ois
+								.readBoolean();
+						managment.Settings.showHardwareNoticeMessages = ois
+								.readBoolean();
+						managment.Settings.showHardwareWarningMessages = ois
+								.readBoolean();
+						managment.Settings.showNetworkErrorMessages = ois
+								.readBoolean();
+						managment.Settings.showNetworkNoticeMessages = ois
+								.readBoolean();
+						managment.Settings.showNetworkWarningMessages = ois
+								.readBoolean();
+						managment.Settings.showSoftwareErrorMessages = ois
+								.readBoolean();
+						managment.Settings.showSoftwareNoticeMessages = ois
+								.readBoolean();
+						managment.Settings.showSoftwareWarningMessages = ois
+								.readBoolean();
+						managment.Settings.showTOFD = ois.readBoolean();
+
+
+						ois.close();
+					}
+					catch ( Exception e )
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+	}
 
 
 

@@ -48,8 +48,7 @@ public class Settings implements Serializable
 
 	// CREATING NETWORK CONNECTION
 	// A status saying whether or not the system is currently trying to create a
-	// connection between two object on
-	// the workareaCanvas.
+	// connection between two object on the workareaCanvas.
 	public static boolean connecting = false;
 
 

@@ -55,6 +55,7 @@ import javax.swing.border.Border;
 
 import managment.CanvasManagment;
 import managment.DesktopFileManagment;
+import managment.Settings;
 import objects.Object;
 
 import org.jdesktop.swingx.JXMultiSplitPane;
@@ -152,6 +153,10 @@ public class PrimeMain1 extends JFrame
 		super("Prime");
 
 		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
+		// Tries to retrieve the users previous settings
+		DesktopFileManagment.openSettings();
+
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -376,7 +381,10 @@ public class PrimeMain1 extends JFrame
 		this.setExtendedState(Frame.MAXIMIZED_BOTH);
 		this.setVisible(true);
 
-		TipOfDay totd = new TipOfDay();
+		if ( Settings.showTOFD )
+		{
+			TipOfDay totd = new TipOfDay();
+		}
 
 		VisualCustomFrame vcf = new VisualCustomFrame();
 
@@ -689,6 +697,9 @@ public class PrimeMain1 extends JFrame
 	public static void exitProcess()
 	{
 		// services.stopAll();
+
+		// Saves the settings the user has in his current session
+		DesktopFileManagment.saveSettings();
 
 		// Saves the systems Objects list
 		DesktopFileManagment.saveObjectsFile();

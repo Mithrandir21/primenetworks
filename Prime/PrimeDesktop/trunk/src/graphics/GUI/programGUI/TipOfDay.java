@@ -116,7 +116,7 @@ public class TipOfDay extends JFrame implements ActionListener
 		this.setSize(new Dimension(450, 350));
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		this.setVisible(Settings.showTOFD);
+		this.setVisible(true);
 	}
 
 
@@ -131,7 +131,7 @@ public class TipOfDay extends JFrame implements ActionListener
 	{
 		if ( e.getActionCommand().equals("showTips") )
 		{
-
+			Settings.showTOFD = !((JCheckBox) e.getSource()).isSelected();
 		}
 		else if ( e.getActionCommand().equals("nextTip") )
 		{
