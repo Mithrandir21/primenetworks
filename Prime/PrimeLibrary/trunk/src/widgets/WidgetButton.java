@@ -9,6 +9,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import objects.Object;
+
 
 /**
  * This class represents a JButton which contains a pointer to an {@link Object}
@@ -34,6 +36,30 @@ public class WidgetButton extends JButton
 	 */
 	private Image img = null;
 
+
+	/**
+	 * The Object the Button represents.
+	 */
+	private Object object = null;
+
+
+
+
+	/**
+	 * A constructor that creates a JButton icon with the given ImageIcon and
+	 * sets the classType of the represented {@link objects.Object Object}.
+	 * 
+	 * @param obj
+	 *            The object represented {@link objects.Object Object}.
+	 */
+	public WidgetButton(Object obj)
+	{
+		super(obj.getVisualImage());
+		object = obj;
+		img = obj.getVisualImage().getImage();
+		classType = obj.getClass();
+		setText(obj.getObjectName());
+	}
 
 
 	/**
@@ -108,6 +134,9 @@ public class WidgetButton extends JButton
 
 	// GETTERS
 
+
+
+
 	/**
 	 * @return The class of the {@link objects.Object Object} that the JButton
 	 *         icon represents.
@@ -135,5 +164,14 @@ public class WidgetButton extends JButton
 	public Image getIconImage()
 	{
 		return img;
+	}
+
+
+	/**
+	 * @return Returns the Object represented by the button.
+	 */
+	public Object getObject()
+	{
+		return object;
 	}
 }

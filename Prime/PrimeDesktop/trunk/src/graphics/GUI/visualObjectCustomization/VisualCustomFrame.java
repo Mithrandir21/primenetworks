@@ -15,12 +15,14 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -28,6 +30,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 
 import objects.Object;
+import widgets.WidgetButton;
 
 
 /**
@@ -35,13 +38,20 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class VisualCustomFrame extends JDialog implements MouseListener
+public class VisualCustomFrame extends JDialog implements ActionListener
 {
 	// A simple border that is gray
-	Border grayline = BorderFactory.createLineBorder(Color.GRAY);
+	private Border grayline = BorderFactory.createLineBorder(Color.GRAY);
 
-	// ActionListener for the class
-	VisualCustomListener listener = new VisualCustomListener();
+	// The listener that listens for ImageIcon buttons pressed.
+	private VisualCustomListener listener = new VisualCustomListener(this);
+
+	// The HashMap that contains object ImageIcons temporary
+	public HashMap<Class, ImageIcon> tempImageIcons = new HashMap<Class, ImageIcon>();
+
+	// The JPanel all WidgetButtons will palce in.
+	JPanel iconPanel;
+
 
 	/**
 	 * TODO - Description NEEDED!
@@ -49,6 +59,8 @@ public class VisualCustomFrame extends JDialog implements MouseListener
 	public VisualCustomFrame()
 	{
 		this.setTitle(PrimeMain1.texts.getString("visObjCustomFrameTitle"));
+
+		tempImageIcons.putAll(PrimeMain1.objectImageIcons);
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -79,10 +91,15 @@ public class VisualCustomFrame extends JDialog implements MouseListener
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		JPanel iconPanel = createVisualPanel();
+		iconPanel = createVisualPanel();
 		JScrollPane scrollPane = new JScrollPane();
 		iconPanel.setPreferredSize(new Dimension(scrollPane.getWidth(), 1000));
 		scrollPane.setViewportView(iconPanel);
+
+		// Increases how far the scroll bar scrolls on one step of a mouse wheel
+		scrollPane.getVerticalScrollBar().setUnitIncrement(10);
+
+
 		// scrollPane
 		// .setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		// scrollPane.setBorder(null);
@@ -108,7 +125,7 @@ public class VisualCustomFrame extends JDialog implements MouseListener
 
 		this.setSize(size);
 		this.setLocation(initXLocation, initYLocation);
-		this.setResizable(false);
+		this.setMinimumSize(size);
 		this.setVisible(true);
 	}
 
@@ -121,26 +138,27 @@ public class VisualCustomFrame extends JDialog implements MouseListener
 		JPanel visPanel = new JPanel(new GridLayout(0, 3, 25, 25));
 
 
-		Iterator iterator = PrimeMain1.objectlist.iterator();
+		Iterator<Object> iterator = PrimeMain1.objectlist.iterator();
 
 		while ( iterator.hasNext() )
 		{
-			visPanel.add(createImageButton((Object) iterator.next()));
+			visPanel.add(createImageButton(iterator.next()));
 		}
 
 		visPanel.setBackground(Color.WHITE);
-
 
 		return visPanel;
 	}
 
 
-
+	/**
+	 * TODO - Description
+	 */
 	private JButton createImageButton(Object obj)
 	{
-		JButton button = new JButton(obj.getClass().getSimpleName(), obj
-				.getVisualImage());
+		WidgetButton button = new WidgetButton(obj);
 
+		button.addActionListener(listener);
 		button.setVerticalTextPosition(AbstractButton.BOTTOM);
 		button.setHorizontalTextPosition(AbstractButton.CENTER);
 		button.setPreferredSize(new Dimension(50, 70));
@@ -160,15 +178,15 @@ public class VisualCustomFrame extends JDialog implements MouseListener
 
 
 		Button save = new Button(PrimeMain1.texts.getString("save"));
-		save.addActionListener(listener);
+		save.addActionListener(this);
 		save.setActionCommand("save");
 
 		Button reset = new Button(PrimeMain1.texts.getString("reset"));
-		reset.addActionListener(listener);
-		reset.setActionCommand("save");
+		reset.addActionListener(this);
+		reset.setActionCommand("reset");
 
 		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
-		cancel.addActionListener(listener);
+		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
 
@@ -182,49 +200,58 @@ public class VisualCustomFrame extends JDialog implements MouseListener
 
 
 
-
-
-
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
-	public void mouseClicked(MouseEvent e)
+	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
+		if ( e.getActionCommand().equals("save") )
+		{
+			for ( int i = 0; i < iconPanel.getComponentCount(); i++ )
+			{
+				WidgetButton button = (WidgetButton) iconPanel.getComponent(i);
 
+				Object obj = button.getObject();
+
+				button.getObject().setVisualImage(
+						tempImageIcons.get(obj.getClass()));
+			}
+
+			PrimeMain1.objectImageIcons.putAll(tempImageIcons);
+
+			PrimeMain1.updateSelectionArea();
+
+			this.dispose();
+		}
+		else if ( e.getActionCommand().equals("reset") )
+		{
+
+		}
+		else
+		{
+			assert (e.getActionCommand().equals("cancel"));
+
+			this.dispose();
+		}
 	}
 
 
 
-	@Override
-	public void mouseEntered(MouseEvent e)
+	/**
+	 * Updates the icons on the buttons.
+	 */
+	public void updateButtonImages()
 	{
-		// TODO Auto-generated method stub
+		for ( int i = 0; i < iconPanel.getComponentCount(); i++ )
+		{
+			WidgetButton button = (WidgetButton) iconPanel.getComponent(i);
 
-	}
+			button.setIcon(tempImageIcons.get(button.getObject().getClass()));
 
-
-
-	@Override
-	public void mouseExited(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-
-
-	@Override
-	public void mousePressed(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-
-
-	@Override
-	public void mouseReleased(MouseEvent e)
-	{
-		// TODO Auto-generated method stub
-
+			button.repaint();
+		}
 	}
 }

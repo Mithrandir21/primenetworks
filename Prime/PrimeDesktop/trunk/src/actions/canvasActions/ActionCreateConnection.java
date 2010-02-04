@@ -304,7 +304,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 						JOptionPane.ERROR_MESSAGE);
 			}
 			// If the cancel butten is pressed.
-			else if ( conType == "Cancelled" )
+			else if ( conType == null || conType == "Cancelled" )
 			{
 
 			}

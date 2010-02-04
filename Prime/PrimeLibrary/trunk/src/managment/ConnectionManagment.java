@@ -180,13 +180,13 @@ public class ConnectionManagment
 
 	/**
 	 * Breaks connections between two components in the system. It removes the
-	 * connection from the array of existing connections. This methode throws
+	 * connection from the array of existing connections. This method throws
 	 * {@link exceptions.ConnectionDoesNotExist ConnectionDoesNotExist}
 	 * exception, if there is no connection between the two given objects.
 	 * 
 	 * @return Returns the given connections array without the connection
 	 *         between the two given object. The array is cleaned for any empty
-	 *         indexs.
+	 *         indexes.
 	 */
 	public static Connection[] breakConnection(
 			Connection[] existingConnections, Object objectA, Object objectB)
@@ -224,10 +224,15 @@ public class ConnectionManagment
 						// connected device array.
 						objectA.removeConnection(existingConnections[i]);
 						objectB.removeConnection(existingConnections[i]);
-						existingConnections[i] = null;
 
 						try
 						{
+							// If the connections is a wireless connection
+							if ( existingConnections[i].getConnectionType()
+									.equals("Wireless") )
+							{
+								removeWirelessNICconnection(objectA, objectB);
+							}
 							objectA.removeConnectedDevices(objectB);
 							objectB.removeConnectedDevices(objectA);
 						}
@@ -235,6 +240,13 @@ public class ConnectionManagment
 						{
 							System.out.println(e.getMessage());
 						}
+						catch ( ObjectNotFoundException e )
+						{
+							System.out.println(e.getMessage());
+						}
+
+						existingConnections[i] = null;
+
 						// Indicates that the connection has been found and
 						// removed.
 						foundCon = true;
@@ -265,14 +277,19 @@ public class ConnectionManagment
 								.getObjectSerial() == objectA.getObjectSerial() )
 						{
 							// Removes the both objects from each others
-							// internal
-							// connected device array.
+							// internal connected device array.
 							objectA.removeConnection(existingConnections[i]);
 							objectB.removeConnection(existingConnections[i]);
-							existingConnections[i] = null;
 
 							try
 							{
+								// If the connections is a wireless connection
+								if ( existingConnections[i].getConnectionType()
+										.equals("Wireless") )
+								{
+									removeWirelessNICconnection(objectA,
+											objectB);
+								}
 								objectA.removeConnectedDevices(objectB);
 								objectB.removeConnectedDevices(objectA);
 							}
@@ -280,6 +297,12 @@ public class ConnectionManagment
 							{
 								System.out.println(e.getMessage());
 							}
+							catch ( ObjectNotFoundException e )
+							{
+								System.out.println(e.getMessage());
+							}
+
+							existingConnections[i] = null;
 						}
 					}
 				}
@@ -1531,4 +1554,176 @@ public class ConnectionManagment
 
 		return temp;
 	}
+
+
+
+	/**
+	 * Removes the connected Object from the first NIC(internal and external)
+	 * found on both the given Objects.
+	 */
+	private static void removeWirelessNICconnection(Object objectA,
+			Object objectB) throws ObjectNotFoundException
+	{
+		// If objectA is not a infrastructure object
+		if ( !(objectA instanceof Infrastructure) )
+		{
+			try
+			{
+				// Gets all the InternalNICs
+				Object[] intNICs = objectA
+						.getSpesificComponents(InternalNetworksCard.class);
+
+				// Goes through all the gotten InternalNICs
+				for ( int i = 0; i < intNICs.length; i++ )
+				{
+					InternalNetworksCard temp = (InternalNetworksCard) intNICs[i];
+
+					// If there is no Object connected to this InternalNIC
+					if ( temp.getConnectedObject() != null )
+					{
+						// If the connection type of the network card is
+						// Wireless
+						if ( temp.getConnectionType().equals("Wireless") )
+						{
+							temp.setConnectedObject(null);
+
+							// Ends loop
+							i = intNICs.length;
+						}
+					}
+				}
+
+			}
+			// No InternalNetworksCard was found, search for
+			// ExternalNetworksCard
+			catch ( ObjectNotFoundException internalException )
+			{
+				try
+				{
+					// Gets all the ExternalNICs
+					Object[] extNICs = objectA
+							.getSpesificComponents(ExternalNetworksCard.class);
+
+					// Goes through all the gotten ExternalNICs
+					for ( int i = 0; i < extNICs.length; i++ )
+					{
+						ExternalNetworksCard temp = (ExternalNetworksCard) extNICs[i];
+
+						// If there is no Object connected to this
+						// ExternalNICs
+						if ( temp.getConnectedObject() != null )
+						{
+							// If the connection type of the network card is
+							// Wireless
+							if ( temp.getConnectionType().equals("Wireless") )
+							{
+								temp.setConnectedObject(null);
+
+								// Ends loop
+								i = extNICs.length;
+							}
+						}
+					}
+
+				}
+				// No InternalNetworksCard or ExternalNetworksCard was found
+				// which was available
+				catch ( ObjectNotFoundException externalException )
+				{
+					JOptionPane.showMessageDialog(null,
+							"No available network card was found on "
+									+ objectA.getObjectName() + ".", "alert",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		}
+
+
+
+		if ( !(objectB instanceof Infrastructure) )
+		{
+			try
+			{
+				// Gets all the InternalNICs
+				Object[] intNICs = objectB
+						.getSpesificComponents(InternalNetworksCard.class);
+
+				// Goes through all the gotten InternalNICs
+				for ( int i = 0; i < intNICs.length; i++ )
+				{
+					InternalNetworksCard temp = (InternalNetworksCard) intNICs[i];
+
+					// If there is no Object connected to this InternalNIC
+					if ( temp.getConnectedObject() != null )
+					{
+						// If the connection type of the network card is
+						// Wireless
+						if ( temp.getConnectionType().equals("Wireless") )
+						{
+							temp.setConnectedObject(null);
+
+							// Ends loop
+							i = intNICs.length;
+						}
+					}
+				}
+
+			}
+			// No InternalNetworksCard was found, search for
+			// ExternalNetworksCard
+			catch ( ObjectNotFoundException internalException )
+			{
+				try
+				{
+					// Gets all the ExternalNICs
+					Object[] extNICs = objectB
+							.getSpesificComponents(ExternalNetworksCard.class);
+
+					// Goes through all the gotten ExternalNICs
+					for ( int i = 0; i < extNICs.length; i++ )
+					{
+						ExternalNetworksCard temp = (ExternalNetworksCard) extNICs[i];
+
+						// If there is no Object connected to this
+						// ExternalNICs
+						if ( temp.getConnectedObject() != null )
+						{
+							// If the connection type of the network card is
+							// Wireless
+							if ( temp.getConnectionType().equals("Wireless") )
+							{
+								temp.setConnectedObject(null);
+
+								// Ends loop
+								i = extNICs.length;
+							}
+						}
+					}
+
+				}
+				// No InternalNetworksCard or ExternalNetworksCard was found
+				// which was available
+				catch ( ObjectNotFoundException externalException )
+				{
+					JOptionPane.showMessageDialog(null,
+							"No available network card was found on "
+									+ objectB.getObjectName() + ".", "alert",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

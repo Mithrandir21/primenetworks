@@ -14,7 +14,6 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JToolBar;
@@ -231,21 +230,6 @@ public class ObjectSelection extends JPanel
 	}
 
 
-	/**
-	 * @param text
-	 * @return
-	 */
-	private JLabel makeCenteredJLabel(String text)
-	{
-		JLabel label = new JLabel(text);
-		label.setAlignmentX(Component.CENTER_ALIGNMENT);
-		label.setAlignmentY(Component.TOP_ALIGNMENT);
-
-
-		return label;
-	}
-
-
 
 	/**
 	 * Javadoc-TODO - Description
@@ -264,6 +248,7 @@ public class ObjectSelection extends JPanel
 
 		return size + (this.getComponentCount() * 5);
 	}
+
 
 
 }

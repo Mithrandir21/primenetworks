@@ -21,6 +21,7 @@ import actions.ActionPaste;
 import actions.systemActions.ActionAbout;
 import actions.systemActions.ActionExitSystem;
 import actions.systemActions.ActionNew;
+import actions.systemActions.ActionOpenVisualEdit;
 import actions.systemActions.ActionOpenfile;
 import actions.systemActions.ActionSave;
 import actions.systemActions.ActionSaveAll;
@@ -229,10 +230,19 @@ public class GenericPrimeMenuBar extends JMenuBar
 		tools.setMnemonic('T');
 
 
+		JMenuItem openVisualEdit = new JMenuItem(new ActionOpenVisualEdit(
+				PrimeMain1.texts.getString("visualEditMenuLabel")));
+		openVisualEdit.setIcon(null);
+		tools.add(openVisualEdit);
+
+
 		JMenuItem openSettings = new JMenuItem(new ActionSettings(
 				PrimeMain1.texts.getString("settingsMenuLabel")));
 		openSettings.setIcon(null);
 		tools.add(openSettings);
+
+
+
 
 
 

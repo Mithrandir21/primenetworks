@@ -14,7 +14,6 @@ import graphics.GUI.properties.PropertiesArea;
 import graphics.GUI.selectArea.TabbedSelection;
 import graphics.GUI.standardObjectEdit.StandardObjects;
 import graphics.GUI.statusArea.PrimeStatusBar;
-import graphics.GUI.visualObjectCustomization.VisualCustomFrame;
 import graphics.GUI.workareaCanvas.WorkareaTabbed;
 import graphics.services.PrimeService;
 
@@ -386,8 +385,6 @@ public class PrimeMain1 extends JFrame
 			TipOfDay totd = new TipOfDay();
 		}
 
-		VisualCustomFrame vcf = new VisualCustomFrame();
-
 		// FileManagment.newWorkareaCanvas("New Network");
 	}
 
@@ -493,13 +490,17 @@ public class PrimeMain1 extends JFrame
 	}
 
 
+	// updateObjectArea
+
+
 	/**
 	 * This method calls on functions that update the programs JTree, which
 	 * shows available {@link WorkareaCanvas WorkareaCanvases}.
 	 */
-	public static void updatePrimeTree()
+	public static void updateSelectionArea()
 	{
 		tabSelection.getPrimeTree().createTree();
+		tabSelection.updateObjectArea();
 		tabSelection.validate();
 		tabSelection.repaint();
 	}

@@ -222,7 +222,7 @@ public class DesktopFileManagment
 			canvas.setChanged(false);
 
 			// Reloads the JTree
-			PrimeMain1.updatePrimeTree();
+			PrimeMain1.updateSelectionArea();
 
 			PrimeMain1.workTab.revalidate();
 			PrimeMain1.workTab.repaint();
@@ -472,7 +472,7 @@ public class DesktopFileManagment
 				saveWorkareaCanvas(canvas, fileNew);
 
 				// Updates the JTree
-				PrimeMain1.updatePrimeTree();
+				PrimeMain1.updateSelectionArea();
 
 				return true;
 			}
@@ -596,7 +596,7 @@ public class DesktopFileManagment
 			else
 			{
 				// Reloads
-				PrimeMain1.updatePrimeTree();
+				PrimeMain1.updateSelectionArea();
 
 				JOptionPane.showMessageDialog(null, "The file\n"
 						+ file.getName() + "\n" + "was successfully deleted.",
@@ -626,7 +626,7 @@ public class DesktopFileManagment
 			else
 			{
 				// Reloads
-				PrimeMain1.updatePrimeTree();
+				PrimeMain1.updateSelectionArea();
 
 				// Removes the WorkareScroll with the canvas
 				PrimeMain1.workTab.removeTabWithCanvas(canvasName, false);
@@ -747,7 +747,7 @@ public class DesktopFileManagment
 					PrimeMain1.workTab.createNewCanvasTab(newScroll, -1);
 
 					// Reloads the JTree
-					PrimeMain1.updatePrimeTree();
+					PrimeMain1.updateSelectionArea();
 
 					PrimeMain1.workTab.revalidate();
 					PrimeMain1.workTab.repaint();
