@@ -17,6 +17,8 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -127,6 +129,20 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 		this.setLocation(initXLocation, initYLocation);
 		this.setMinimumSize(size);
 		this.setVisible(true);
+
+
+		/**
+		 * When the windows is closed by pressing the exit button, the pointer
+		 * to this JFrame is set to null.
+		 */
+		this.addWindowListener(new WindowAdapter()
+		{
+			@Override
+			public void windowClosing(WindowEvent ev)
+			{
+				PrimeMain1.vcf = null;
+			}
+		});
 	}
 
 
@@ -236,6 +252,9 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 
 			this.dispose();
 		}
+
+		// Sets the pointer to this JFrame to null.
+		PrimeMain1.vcf = null;
 	}
 
 

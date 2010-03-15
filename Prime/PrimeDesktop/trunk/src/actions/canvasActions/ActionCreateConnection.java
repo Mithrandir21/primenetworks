@@ -26,12 +26,15 @@ import connections.WidgetExtendedConnection;
 
 
 /**
- * TODO - Description NEEDED!
+ * This action creates a connection between two given {@link WidgetObject
+ * WidgetObjects}. The connection is created is both added to each of the given
+ * {@link WidgetObject WidgetObjects} and placed on the given
+ * {@link WorkareaCanvas}.
+ * This action contains a undo/redo function.
  * 
  * @author Bahram Malaekeh
  */
-public class ActionCreateConnection extends AbstractSystemAction implements
-		SystemActionInterface
+public class ActionCreateConnection extends AbstractSystemAction implements SystemActionInterface
 {
 	// The canvas where the deletion is taking place
 	private WorkareaCanvas canvas = null;
@@ -42,17 +45,26 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 	// The widget target object
 	private WidgetObject TargetWidObj = null;
 
-	// The Wiget connection between the two Widgets
+	// The Widget connection between the two Widgets
 	private WidgetExtendedConnection widCon = null;
 
 	/**
-	 * A constructor for the class that takes a string, the action name, and a
-	 * Icon.
+	 * A constructor for the class that takes a string, the action name, an
+	 * Icon, a {@link WorkareaCanvas}, a {@link WidgetObject} that is the source
+	 * of the connection and a {@link WidgetObject} that is the target of the
+	 * connection.
 	 * 
 	 * @param text
 	 *            The name of the action.
 	 * @param icon
 	 *            The icon representing the action.
+	 * @param canvas
+	 *            The {@link WorkareaCanvas} that the visual connection is to be
+	 *            placed on.
+	 * @param source
+	 *            The {@link WidgetObject} where the connection emanates.
+	 * @param target
+	 *            The {@link WidgetObject} that is the target of the connection.
 	 */
 	public ActionCreateConnection(String text, ImageIcon icon,
 			WorkareaCanvas canvas, WidgetObject source, WidgetObject target)
@@ -65,11 +77,20 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 
 	/**
-	 * A constructor for the class that takes a string which will be the name of
-	 * the action.
+	 * A constructor for the class that takes a string, the action name, a
+	 * {@link WorkareaCanvas}, a {@link WidgetObject} that is the source
+	 * of the connection and a {@link WidgetObject} that is the target of the
+	 * connection.
 	 * 
 	 * @param text
 	 *            The name of the action.
+	 * @param canvas
+	 *            The {@link WorkareaCanvas} that the visual connection is to be
+	 *            placed on.
+	 * @param source
+	 *            The {@link WidgetObject} where the connection emanates.
+	 * @param target
+	 *            The {@link WidgetObject} that is the target of the connection.
 	 */
 	public ActionCreateConnection(String text, WorkareaCanvas canvas,
 			WidgetObject source, WidgetObject target)

@@ -92,6 +92,26 @@ public class CanvasManagment
 
 
 	/**
+	 * Searches and, find found, returns a canvas from the systems canvases with
+	 * the given {@link Object}.
+	 * 
+	 * @param obj
+	 *            The {@link Object} that is searched for.
+	 * @param canvases
+	 *            The {@link WorkareaCanvas WorkareaCanvases} that are to be
+	 *            searched.
+	 * @return Returns null if no {@link WorkareaCanvas} with the given {@link Object} is
+	 *         found.
+	 */
+	public static WorkareaCanvas findCanvas(Object obj,
+			WorkareaCanvas[] canvases)
+	{
+		return findCanvas(findWidgetObject(obj, canvases).getScene(), canvases);
+	}
+
+
+
+	/**
 	 * Finds and returns the WidgetObject that contains an Object that is equal
 	 * to the given object.
 	 * 

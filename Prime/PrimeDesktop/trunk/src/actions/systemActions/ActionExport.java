@@ -12,10 +12,14 @@ import javax.swing.ImageIcon;
 
 import logistical.AbstractSystemAction;
 import managment.DesktopFileManagment;
+import widgets.WorkareaCanvas;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This action is used when the currently open {@link WorkareaCanvas} is to be
+ * exported as a file. It will call the exportWorkareaCanvas function in the
+ * {@link DesktopFileManagment} class and given the
+ * current {@link WorkareaCanvas} in the {@link PrimeMain1} class as a variable.
  * 
  * @author Bahram Malaekeh
  */

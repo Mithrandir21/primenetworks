@@ -2,6 +2,8 @@ package managment;
 
 
 import java.awt.BasicStroke;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -14,10 +16,12 @@ import objects.hardwareObjects.Motherboard;
 
 import org.netbeans.api.visual.anchor.AnchorFactory;
 import org.netbeans.api.visual.anchor.AnchorShape;
+import org.netbeans.api.visual.widget.Widget;
 
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
 import connections.Connection;
+import connections.ConnectionUtils;
 import connections.DeviceConnection;
 import connections.InternalConnection;
 import connections.NetworkConnection;
@@ -132,8 +136,7 @@ public class ConnectionManagment
 	 *            The {@link WidgetObject} the connection originates at.
 	 * @param TargetWidObj
 	 *            The {@link WidgetObject} the connection is destined for.
-	 * @return A {@link WidgetExtendedConnection} with a specific
-	 *         {@link BasicStroke}.
+	 * @return A {@link WidgetExtendedConnection} with a specific {@link BasicStroke}.
 	 */
 	public static WidgetExtendedConnection createWidgetExtendedConnection(
 			WorkareaCanvas canvas, Connection con,
@@ -145,7 +148,7 @@ public class ConnectionManagment
 
 		BasicStroke stroke = null;
 
-		if ( con.getConnectionType().equals("Wireless") )
+		if ( con.getConnectionType().equals(ConnectionUtils.Wireless) )
 		{
 			stroke = new BasicStroke(1.0f, // Width
 					BasicStroke.JOIN_BEVEL, // End cap
@@ -180,9 +183,8 @@ public class ConnectionManagment
 
 	/**
 	 * Breaks connections between two components in the system. It removes the
-	 * connection from the array of existing connections. This method throws
-	 * {@link exceptions.ConnectionDoesNotExist ConnectionDoesNotExist}
-	 * exception, if there is no connection between the two given objects.
+	 * connection from the array of existing connections. This method throws {@link exceptions.ConnectionDoesNotExist
+	 * ConnectionDoesNotExist} exception, if there is no connection between the two given objects.
 	 * 
 	 * @return Returns the given connections array without the connection
 	 *         between the two given object. The array is cleaned for any empty
@@ -229,7 +231,7 @@ public class ConnectionManagment
 						{
 							// If the connections is a wireless connection
 							if ( existingConnections[i].getConnectionType()
-									.equals("Wireless") )
+									.equals(ConnectionUtils.Wireless) )
 							{
 								removeWirelessNICconnection(objectA, objectB);
 							}
@@ -285,7 +287,7 @@ public class ConnectionManagment
 							{
 								// If the connections is a wireless connection
 								if ( existingConnections[i].getConnectionType()
-										.equals("Wireless") )
+										.equals(ConnectionUtils.Wireless) )
 								{
 									removeWirelessNICconnection(objectA,
 											objectB);
@@ -753,7 +755,7 @@ public class ConnectionManagment
 		}
 
 
-		if ( conType.equals("RJ-45") )
+		if ( conType.equals(ConnectionUtils.RJ45) )
 		{
 			// Pointers to network objects in cases where the motherboard has no
 			// port available or has not lan ports integrated.
@@ -793,7 +795,8 @@ public class ConnectionManagment
 						{
 							// If the connection type of the network card is
 							// wired
-							if ( temp.getConnectionType().equals("Wired") )
+							if ( temp.getConnectionType().equals(
+									ConnectionUtils.Wired) )
 							{
 								// Sets the found InternalNetworksCard with no
 								// objects connected to it
@@ -827,7 +830,8 @@ public class ConnectionManagment
 							{
 								// If the connection type of the network card is
 								// wired
-								if ( temp.getConnectionType().equals("Wired") )
+								if ( temp.getConnectionType().equals(
+										ConnectionUtils.Wired) )
 								{
 									// Sets the found ExternalNetworksCard with
 									// no objects connected to it
@@ -888,7 +892,8 @@ public class ConnectionManagment
 						{
 							// If the connection type of the network card is
 							// wired
-							if ( temp.getConnectionType().equals("Wired") )
+							if ( temp.getConnectionType().equals(
+									ConnectionUtils.Wired) )
 							{
 								// Sets the found InternalNetworksCard with no
 								// objects connected to it
@@ -924,7 +929,8 @@ public class ConnectionManagment
 							{
 								// If the connection type of the network card is
 								// wired
-								if ( temp.getConnectionType().equals("Wired") )
+								if ( temp.getConnectionType().equals(
+										ConnectionUtils.Wired) )
 								{
 									// Sets the found ExternalNetworksCard with
 									// no objects connected to it
@@ -1092,7 +1098,7 @@ public class ConnectionManagment
 			objectA.addConnectedDevices(objectB);
 			objectB.addConnectedDevices(objectA);
 		}
-		else if ( conType.equals("Wireless") )
+		else if ( conType.equals(ConnectionUtils.Wireless) )
 		{
 			Object ObjectAnic = null;
 			Object ObjectBnic = null;
@@ -1117,7 +1123,8 @@ public class ConnectionManagment
 						{
 							// If the connection type of the network card is
 							// Wireless
-							if ( temp.getConnectionType().equals("Wireless") )
+							if ( temp.getConnectionType().equals(
+									ConnectionUtils.Wireless) )
 							{
 								// Sets the found InternalNetworksCard with no
 								// objects connected to it
@@ -1151,8 +1158,8 @@ public class ConnectionManagment
 							{
 								// If the connection type of the network card is
 								// Wireless
-								if ( temp.getConnectionType()
-										.equals("Wireless") )
+								if ( temp.getConnectionType().equals(
+										ConnectionUtils.Wireless) )
 								{
 									// Sets the found ExternalNetworksCard with
 									// no objects connected to it
@@ -1199,7 +1206,8 @@ public class ConnectionManagment
 						{
 							// If the connection type of the network card is
 							// Wireless
-							if ( temp.getConnectionType().equals("Wireless") )
+							if ( temp.getConnectionType().equals(
+									ConnectionUtils.Wireless) )
 							{
 								// Sets the found InternalNetworksCard with no
 								// objects connected to it
@@ -1235,8 +1243,8 @@ public class ConnectionManagment
 							{
 								// If the connection type of the network card is
 								// Wireless
-								if ( temp.getConnectionType()
-										.equals("Wireless") )
+								if ( temp.getConnectionType().equals(
+										ConnectionUtils.Wireless) )
 								{
 									// Sets the found ExternalNetworksCard with
 									// no objects connected to it
@@ -1339,7 +1347,7 @@ public class ConnectionManagment
 			objectA.addConnectedDevices(objectB);
 			objectB.addConnectedDevices(objectA);
 		}
-		else if ( conType.equals("USB") )
+		else if ( conType.equals(ConnectionUtils.USB) )
 		{
 			/**
 			 * These two values will be changed or the function will get some
@@ -1583,7 +1591,8 @@ public class ConnectionManagment
 					{
 						// If the connection type of the network card is
 						// Wireless
-						if ( temp.getConnectionType().equals("Wireless") )
+						if ( temp.getConnectionType().equals(
+								ConnectionUtils.Wireless) )
 						{
 							temp.setConnectedObject(null);
 
@@ -1615,7 +1624,8 @@ public class ConnectionManagment
 						{
 							// If the connection type of the network card is
 							// Wireless
-							if ( temp.getConnectionType().equals("Wireless") )
+							if ( temp.getConnectionType().equals(
+									ConnectionUtils.Wireless) )
 							{
 								temp.setConnectedObject(null);
 
@@ -1658,7 +1668,8 @@ public class ConnectionManagment
 					{
 						// If the connection type of the network card is
 						// Wireless
-						if ( temp.getConnectionType().equals("Wireless") )
+						if ( temp.getConnectionType().equals(
+								ConnectionUtils.Wireless) )
 						{
 							temp.setConnectedObject(null);
 
@@ -1690,7 +1701,8 @@ public class ConnectionManagment
 						{
 							// If the connection type of the network card is
 							// Wireless
-							if ( temp.getConnectionType().equals("Wireless") )
+							if ( temp.getConnectionType().equals(
+									ConnectionUtils.Wireless) )
 							{
 								temp.setConnectedObject(null);
 
@@ -1717,9 +1729,180 @@ public class ConnectionManagment
 
 
 
+	/**
+	 * Finds and returns all the {@link Object Objects} connected to the given {@link Object};
+	 */
+	public static Object[] getConnectedObjects(Object obj)
+	{
+		// Gets all the connections to and from the given object
+		Connection[] existingConnections = obj.getAllConnections();
+
+		// An array with all the Objects that are connected to the given Object
+		Object[] foundObjects = new Object[existingConnections.length];
+
+
+		if ( existingConnections[0] != null )
+		{
+			/*
+			 * Checks to see if object A is the first object in any connection.
+			 * Then if it find object A as the first object, it looks for object
+			 * B at the same index as object A.
+			 */
+			for ( int i = 0; i < existingConnections.length; i++ )
+			{
+				if ( existingConnections[i] != null )
+				{
+					// If the first object is found
+					if ( existingConnections[i].getObject1().getObjectSerial() == obj
+							.getObjectSerial() )
+					{
+						foundObjects[i] = existingConnections[i].getObject2();
+					}
+					else
+					{
+						foundObjects[i] = existingConnections[i].getObject1();
+					}
+				}
+			}
+		}
+		else
+		{
+			// The object is not connected to anything
+			return null;
+		}
+
+
+		return foundObjects;
+	}
 
 
 
+
+	/**
+	 * Finds and returns the {@link WidgetExtendedConnection} that represents the connection between the two given {@link Object
+	 * Objects}.
+	 */
+	public static WidgetExtendedConnection findWidgetConnection(
+			WorkareaCanvas canvas, Object A, Object B)
+			throws ConnectionDoesNotExist
+	{
+		// Gets the connection between the two objects if there exists any such connection
+		Connection con = getConnection(canvas.getConnections(), A, B);
+
+		// The widgetCon variable
+		WidgetExtendedConnection widgetCon = null;
+
+
+		List<Widget> list = canvas.getConnectionLayer().getChildren();
+
+
+		WidgetExtendedConnection testingWidget = null;
+
+		for ( Iterator<?> iter = list.iterator(); iter.hasNext(); )
+		{
+			testingWidget = (WidgetExtendedConnection) iter.next();
+
+			if ( testingWidget.getConnection().equals(con) )
+			{
+				widgetCon = testingWidget;
+			}
+		}
+
+
+		return widgetCon;
+	}
+
+
+
+
+	/**
+	 * Finds and returns all the connection from the given object
+	 * with the given connection type. Returns an array of connections , if any are found.
+	 * 
+	 * @param connectedTo
+	 *            The object that will be examined for connections to other
+	 *            objects.
+	 * @param conType
+	 *            The type of connection between the two objects.
+	 * @return Returns all the connections with given connection type
+	 */
+	public static Connection[] connectedToBy(Object connectedTo, String conType)
+	{
+		// The array that will hold all the matching objects.
+		Connection[] foundCons = null;
+
+		Connection[] cons = null;
+
+		int index = 0;
+
+
+		Connection[] netCons = connectedTo.getNetworkConnections();
+
+		Connection[] devCons = connectedTo.getDeviceConnections();
+
+
+		// Finds the number of overall connections.
+		if ( netCons != null )
+		{
+			index = index + netCons.length;
+		}
+
+		if ( devCons != null )
+		{
+			index = index + devCons.length;
+		}
+
+
+		// The array that will hold all of the objects connections.
+		cons = new Connection[index];
+
+
+		if ( netCons != null )
+		{
+			// Adding the networkconnections to the array.
+			System.arraycopy(netCons, 0, cons, 0, netCons.length);
+		}
+
+
+
+		if ( devCons != null )
+		{
+			if ( netCons != null )
+			{
+				// Adding the deviceconnections to the array.
+				System.arraycopy(devCons, 0, cons, netCons.length,
+						devCons.length);
+			}
+			else
+			{
+				// Adding the deviceconnections to the array.
+				System.arraycopy(devCons, 0, cons, 0, devCons.length);
+			}
+		}
+
+
+		// Matching the connection types to the given conType.
+		for ( int i = 0; i < cons.length; i++ )
+		{
+			if ( cons[i] != null )
+			{
+				if ( cons[i].getConnectionType().equals(conType) )
+				{
+					foundCons[i] = cons[i];
+				}
+			}
+		}
+
+
+		// Removes all the empty indexes from the array.
+		if ( foundCons != null )
+		{
+			foundCons = cleanup.cleanObjectArray(foundCons);
+		}
+
+
+		return foundCons;
+	}
 
 
 

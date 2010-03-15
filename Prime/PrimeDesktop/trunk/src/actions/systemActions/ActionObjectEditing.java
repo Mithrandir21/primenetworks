@@ -15,7 +15,9 @@ import logistical.AbstractSystemAction;
 
 
 /**
- * TODO - Description NEEDED!
+ * Thei action opens, or brings to the front if open already, a
+ * {@link StandardObjects} JFrame that contains information about all the
+ * systems standard units.
  * 
  * @author Bahram Malaekeh
  */
@@ -33,6 +35,20 @@ public class ActionObjectEditing extends AbstractSystemAction
 	public ActionObjectEditing(String text, ImageIcon icon)
 	{
 		super(text, icon);
+		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+				.getString("actionOpenStandardObjectsViewText"));
+	}
+
+
+	/**
+	 * A constructor for the class that takes a string, the action name.
+	 * 
+	 * @param text
+	 *            The name of the action.
+	 */
+	public ActionObjectEditing(String text)
+	{
+		super(text);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
 				.getString("actionOpenStandardObjectsViewText"));
 	}

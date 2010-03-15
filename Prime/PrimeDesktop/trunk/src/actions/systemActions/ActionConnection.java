@@ -11,6 +11,11 @@ import logistical.AbstractSystemAction;
 import managment.Settings;
 
 
+/**
+ * Toggles the "create connections" button.
+ * 
+ * @author Bahram Malaekeh
+ */
 public class ActionConnection extends AbstractSystemAction
 {
 	/**

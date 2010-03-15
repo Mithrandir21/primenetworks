@@ -36,6 +36,7 @@ import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.HDD;
 import objects.hardwareObjects.Motherboard;
+import connections.ConnectionUtils;
 
 
 /**
@@ -43,8 +44,7 @@ import objects.hardwareObjects.Motherboard;
  * 
  * @author Bahram Malaekeh
  */
-public class HDDNewView extends JFrame implements HardwareViewInterface,
-		ActionListener
+public class HDDNewView extends JFrame implements HardwareViewInterface, ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -157,8 +157,7 @@ public class HDDNewView extends JFrame implements HardwareViewInterface,
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param hdd
@@ -211,7 +210,7 @@ public class HDDNewView extends JFrame implements HardwareViewInterface,
 
 		// The type of the hdd
 		labels[1].setLabelFor(type);
-		String[] typeString = { "", "IDE", "SATA", "USB" };
+		String[] typeString = { "", "IDE", "SATA", ConnectionUtils.USB };
 		type = new JComboBox(typeString);
 		type.setMaximumSize(tfSize);
 		type.setPreferredSize(tfSize);

@@ -23,12 +23,13 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * TODO - Description NEEDED!
+ * This action adds a given {@link WidgetObject} to a given
+ * {@link WorkareaCanvas} at a given {@link Point}.
+ * This action contains a undo/redo function.
  * 
  * @author Bahram Malaekeh
  */
-public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
-		implements SystemActionInterface
+public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implements SystemActionInterface
 {
 	// The canvas where the deletion is taking place
 	private WorkareaCanvas canvas = null;
@@ -40,13 +41,23 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 	private Point objectPoint;
 
 	/**
-	 * A constructor for the class that takes a string, the action name, and a
-	 * Icon.
+	 * A constructor for the class that takes a string, the action name, an
+	 * Icon, a {@link WorkareaCanvas}, a {@link WidgetObject} and a
+	 * {@link Point}.
 	 * 
 	 * @param text
 	 *            The name of the action.
 	 * @param icon
 	 *            The icon representing the action.
+	 * @param canvas
+	 *            The {@link WorkareaCanvas} that the given {@link WidgetObject}
+	 *            is to be added to.
+	 * @param widObject
+	 *            The {@link WidgetObject} that is to be added to the given
+	 *            {@link WorkareaCanvas}.
+	 * @param objectPoint
+	 *            The {@link Point} where the {@link WidgetObject} is to be
+	 *            placed on the {@link WorkareaCanvas}.
 	 */
 	public ActionAddWidgetToWorkareaCanvas(String text, ImageIcon icon,
 			WorkareaCanvas canvas, WidgetObject widObject, Point objectPoint)
@@ -59,11 +70,20 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 
 
 	/**
-	 * A constructor for the class that takes a string which will be the name of
-	 * the action.
+	 * A constructor for the class that takes a string, the action name, a
+	 * {@link WorkareaCanvas}, a {@link WidgetObject} and a {@link Point}.
 	 * 
 	 * @param text
 	 *            The name of the action.
+	 * @param canvas
+	 *            The {@link WorkareaCanvas} that the given {@link WidgetObject}
+	 *            is to be added to.
+	 * @param widObject
+	 *            The {@link WidgetObject} that is to be added to the given
+	 *            {@link WorkareaCanvas}.
+	 * @param objectPoint
+	 *            The {@link Point} where the {@link WidgetObject} is to be
+	 *            placed on the {@link WorkareaCanvas}.
 	 */
 	public ActionAddWidgetToWorkareaCanvas(String text, WorkareaCanvas canvas,
 			WidgetObject widObject, Point objectPoint)

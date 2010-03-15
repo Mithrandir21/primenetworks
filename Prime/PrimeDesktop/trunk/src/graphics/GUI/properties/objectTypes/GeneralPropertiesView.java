@@ -26,7 +26,8 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class creates a properties JPanel containing general information about a
+ * given {@link WorkareaCanvas} or given {@link Object}.
  * 
  * @author Bahram Malaekeh
  */

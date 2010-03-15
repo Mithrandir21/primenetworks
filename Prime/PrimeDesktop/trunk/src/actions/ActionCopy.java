@@ -12,10 +12,13 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
 import logistical.AbstractSystemAction;
+import widgets.WorkareaCanvas;
 
 
 /**
- * An action class that will perform a copy action.
+ * An action class that will perform a copy action that will place the currently
+ * selected Widget, if any, from the current {@link WorkareaCanvas} into the
+ * {@link PrimeMain1 PrimeMain1s} 'copyWidget' variable.
  * 
  * @author Bahram Malaekeh
  * @version 1.0

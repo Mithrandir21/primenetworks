@@ -34,7 +34,9 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import managment.ArrayManagment;
+import managment.CanvasManagment;
 import managment.ComponentsManagment;
+import managment.ConnectionManagment;
 import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.CPU;
@@ -42,9 +44,13 @@ import objects.hardwareObjects.Discdrive;
 import objects.hardwareObjects.ExternalNetworksCard;
 import objects.hardwareObjects.GraphicsCard;
 import objects.hardwareObjects.HDD;
+import objects.hardwareObjects.InternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
 import objects.hardwareObjects.Ram;
+import widgetManipulation.Actions.WorkareaCanvasActions;
 import actions.canvasActions.ActionDeleteAllConnections;
+import connections.Connection;
+import connections.ConnectionUtils;
 
 
 /**
@@ -52,8 +58,7 @@ import actions.canvasActions.ActionDeleteAllConnections;
  * 
  * @author Bahram Malaekeh
  */
-public class MotherboardView extends JPanel implements HardwareViewInterface,
-		ActionListener
+public class MotherboardView extends JPanel implements HardwareViewInterface, ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -176,8 +181,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param mb
@@ -871,307 +875,38 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 		if ( CPUsockets.getSelectedItem().toString() != "" )
 		{
-			if ( mbObj.getMaxCPUs() != Integer.parseInt(CPUsockets
-					.getSelectedItem().toString()) )
-			{
-				Object[] comp = null;
-				try
-				{
-					// Gets all the CPUs from the objects components array.
-					comp = ArrayManagment.getSpesificComponents(CPU.class,
-							mainObj.getComponents(),
-							mainObj.getComponents().length);
-
-					// Removes all the CPUs from the objects components array.
-					mainObj.setAllComponents(ComponentsManagment
-							.removeComponents(comp, mainObj.getComponents(),
-									mainObj.getComponents().length));
-
-				}
-				catch ( ObjectNotFoundException e )
-				{
-
-				}
-				catch ( ObjectNotFoundInArrayException e )
-				{
-
-				}
-
-
-				mbObj.setMaxCPUs(Integer.parseInt(CPUsockets.getSelectedItem()
-						.toString()));
-				mbObj.setCPUPortsAvailable(mbObj.getMaxCPUs());
-
-				if ( comp != null )
-				{
-					// The number of components there are room for.
-					int counter = mbObj.getMaxCPUs();
-
-					// All the components of the main object(without the CPUs).
-					Object[] mainComp = mainObj.getComponents();
-
-					for ( int i = 0; i < counter; i++ )
-					{
-						// If i is smaller then the length of the comp array.
-						if ( i < comp.length )
-						{
-							mainComp = ComponentsManagment.addComponent(
-									comp[i], mainComp);
-							mbObj.makeOneCPUportTaken();
-						}
-					}
-					mainObj.setAllComponents(mainComp);
-				}
-			}
+			CPUsetup();
 		}
 
 		if ( PCIslots.getSelectedItem().toString() != "" )
 		{
-			if ( mbObj.getMaxPCIs() != Integer.parseInt(PCIslots
-					.getSelectedItem().toString()) )
-			{
-				Object[] comp = null;
-				try
-				{
-					// Gets all the CPUs from the objects components array.
-					comp = ArrayManagment.getSpesificComponents(
-							ExternalNetworksCard.class,
-							mainObj.getComponents(),
-							mainObj.getComponents().length);
-
-					// Removes all the CPUs from the objects components array.
-					mainObj.setAllComponents(ComponentsManagment
-							.removeComponents(comp, mainObj.getComponents(),
-									mainObj.getComponents().length));
-
-				}
-				catch ( ObjectNotFoundException e )
-				{
-
-				}
-				catch ( ObjectNotFoundInArrayException e )
-				{
-
-				}
-
-
-				mbObj.setMaxPCIs(Integer.parseInt(PCIslots.getSelectedItem()
-						.toString()));
-				mbObj.setPCIPortsAvailable(mbObj.getMaxPCIs());
-
-				// If there are any components found
-				if ( comp != null )
-				{
-					// The number of components there are room for.
-					int counter = mbObj.getMaxPCIs();
-
-					// All the components of the main object(without the CPUs).
-					Object[] mainComp = mainObj.getComponents();
-
-					for ( int i = 0; i < counter; i++ )
-					{
-						// If i is smaller then the length of the comp array.
-						if ( i < comp.length )
-						{
-							mainComp = ComponentsManagment.addComponent(
-									comp[i], mainComp);
-							mbObj.makeOnePCIportTaken();
-						}
-					}
-					mainObj.setAllComponents(mainComp);
-				}
-			}
+			PCIsetup();
 		}
 
 		if ( RAMslots.getSelectedItem().toString() != "" )
 		{
-			if ( mbObj.getMaxRAMs() != Integer.parseInt(RAMslots
-					.getSelectedItem().toString()) )
-			{
-				Object[] comp = null;
-				try
-				{
-					// Gets all the CPUs from the objects components array.
-					comp = ArrayManagment.getSpesificComponents(Ram.class,
-							mainObj.getComponents(),
-							mainObj.getComponents().length);
-
-					// Removes all the CPUs from the objects components array.
-					mainObj.setAllComponents(ComponentsManagment
-							.removeComponents(comp, mainObj.getComponents(),
-									mainObj.getComponents().length));
-
-				}
-				catch ( ObjectNotFoundException e )
-				{
-
-				}
-				catch ( ObjectNotFoundInArrayException e )
-				{
-
-				}
-
-
-				mbObj.setMaxRAMs(Integer.parseInt(RAMslots.getSelectedItem()
-						.toString()));
-				mbObj.setRAMPortsAvailable(mbObj.getMaxRAMs());
-
-				if ( comp != null )
-				{
-					// The number of components there are room for.
-					int counter = mbObj.getMaxRAMs();
-					// All the components of the main object(without the CPUs).
-					Object[] mainComp = mainObj.getComponents();
-					for ( int i = 0; i < counter; i++ )
-					{
-						// If i is smaller then the length of the comp array.
-						if ( i < comp.length )
-						{
-							mainComp = ComponentsManagment.addComponent(
-									comp[i], mainComp);
-							mbObj.makeOneRAMportTaken();
-						}
-					}
-					mainObj.setAllComponents(mainComp);
-				}
-			}
+			RAMsetup();
 		}
 
 		if ( USBports.getSelectedItem().toString() != "" )
 		{
-			mbObj.setMaxUSBs(Integer.parseInt(USBports.getSelectedItem()
-					.toString()));
-			// FIXME - MotherboardView MaxUSB
+			USBsetup();
+
+			// mbObj.setMaxUSBs(Integer.parseInt(USBports.getSelectedItem()
+			// .toString()));
+			// // FIXME - MotherboardView MaxUSB
 		}
 
 		if ( DUCports.getSelectedItem().toString() != "" )
 		{
-			if ( mbObj.getMaxDUCs() != Integer.parseInt(DUCports
-					.getSelectedItem().toString()) )
-			{
-				Object[] comp = null;
-
-				try
-				{
-					// Gets all the CPUs from the objects components array.
-					Object[] compHDD = ArrayManagment.getSpesificComponents(
-							HDD.class, mainObj.getComponents(), mainObj
-									.getComponents().length);
-
-					Object[] compDisc = ArrayManagment.getSpesificComponents(
-							Discdrive.class, mainObj.getComponents(), mainObj
-									.getComponents().length);
-
-					comp = new Object[compDisc.length + compHDD.length];
-
-					// The different counters for the different arrays of
-					// components.
-					int hddCount = 0;
-					int discCount = 0;
-
-					// The tick/tack boolean.
-					boolean tick = true;
-
-
-					for ( int i = 0; i < comp.length; i++ )
-					{
-						// Tries to add the hdd first.
-						if ( tick )
-						{
-							if ( hddCount < compHDD.length
-									&& compHDD[hddCount] != null )
-							{
-								comp[i] = compHDD[hddCount];
-								hddCount++;
-								tick = false;
-							}
-							else
-							{
-								comp[i] = compDisc[discCount];
-								discCount++;
-								tick = false;
-							}
-						}
-						// Tack
-						else
-						{
-							if ( discCount < compDisc.length
-									&& compDisc[discCount] != null )
-							{
-								comp[i] = compDisc[discCount];
-								discCount++;
-								tick = true;
-							}
-							else
-							{
-								comp[i] = compHDD[hddCount];
-								hddCount++;
-								tick = true;
-							}
-						}
-					}
-
-					// Removes all the CPUs from the objects components array.
-					mainObj.setAllComponents(ComponentsManagment
-							.removeComponents(comp, mainObj.getComponents(),
-									mainObj.getComponents().length));
-
-				}
-				catch ( ObjectNotFoundException e )
-				{
-
-				}
-				catch ( ObjectNotFoundInArrayException e )
-				{
-
-				}
-
-
-				mbObj.setMaxDUCs(Integer.parseInt(DUCports.getSelectedItem()
-						.toString()));
-				mbObj.setDUCPortsAvailable(mbObj.getMaxDUCs());
-
-				if ( comp != null )
-				{
-					// The number of components there are room for.
-					int counter = mbObj.getMaxDUCs();
-
-					// All the components of the main object(without the CPUs).
-					Object[] mainComp = mainObj.getComponents();
-
-					for ( int i = 0; i < counter; i++ )
-					{
-						// If i is smaller then the length of the comp array.
-						if ( i < comp.length )
-						{
-							mainComp = ComponentsManagment.addComponent(
-									comp[i], mainComp);
-							mbObj.makeOneDUCportTaken();
-						}
-					}
-					mainObj.setAllComponents(mainComp);
-				}
-			}
+			DUCsetup();
 		}
 
 		if ( LANports.getSelectedItem().toString() != "" )
 		{
-
-			// The currently available ports, before Max change
-			int avail = mbObj.getIntegLANPortsAvailable();
-
-			int newAvail = avail
-					+ (Integer.parseInt(LANports.getSelectedItem().toString()) - mbObj
-							.getMaxIntegLANs());
-
-
-			mbObj.setMaxIntegratedLANs(Integer.parseInt(LANports
-					.getSelectedItem().toString()));
-
-			mbObj.setIntegLANPortsAvailable(newAvail);
+			LANsetup();
 		}
 	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -1370,5 +1105,537 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 			}
 		}
+	}
+
+
+
+	/**
+	 * Processes the CPU settings with the CPU objects.
+	 */
+	private void CPUsetup()
+	{
+		if ( mbObj.getMaxCPUs() > Integer.parseInt(CPUsockets.getSelectedItem()
+				.toString()) )
+		{
+			Object[] comp = null;
+			try
+			{
+				// Gets all the CPUs from the objects components array.
+				comp = ArrayManagment.getSpesificComponents(CPU.class, mainObj
+						.getComponents(), mainObj.getComponents().length);
+
+				// Removes all the CPUs from the objects components array.
+				mainObj.setAllComponents(ComponentsManagment.removeComponents(
+						comp, mainObj.getComponents(),
+						mainObj.getComponents().length));
+
+			}
+			catch ( ObjectNotFoundException e )
+			{
+
+			}
+			catch ( ObjectNotFoundInArrayException e )
+			{
+				e.printStackTrace();
+			}
+
+
+			mbObj.setMaxCPUs(Integer.parseInt(CPUsockets.getSelectedItem()
+					.toString()));
+			mbObj.setCPUPortsAvailable(mbObj.getMaxCPUs());
+
+			if ( comp != null )
+			{
+				// The number of components there are room for.
+				int counter = mbObj.getMaxCPUs();
+
+				// All the components of the main object(without the CPUs).
+				Object[] mainComp = mainObj.getComponents();
+
+				for ( int i = 0; i < counter; i++ )
+				{
+					// If i is smaller then the length of the comp array.
+					if ( i < comp.length )
+					{
+						mainComp = ComponentsManagment.addComponent(comp[i],
+								mainComp);
+						mbObj.makeOneCPUportTaken();
+					}
+				}
+				mainObj.setAllComponents(mainComp);
+			}
+		}
+		else
+		{
+			// The number of taken CPU ports(The number of ports - the number of ports available)
+			int takenPorts = mbObj.getMaxCPUs() - mbObj.getCPUPortsAvailable();
+
+			// Sets the max CPU ports
+			mbObj.setMaxCPUs(Integer.parseInt(CPUsockets.getSelectedItem()
+					.toString()));
+			mbObj.setCPUPortsAvailable(mbObj.getMaxCPUs() - takenPorts);
+		}
+	}
+
+
+	/**
+	 * Processes the PCI settings with the InternalNetworksCards objects.
+	 */
+	private void PCIsetup()
+	{
+		if ( mbObj.getMaxPCIs() > Integer.parseInt(PCIslots.getSelectedItem()
+				.toString()) )
+		{
+			Object[] comp = null;
+			try
+			{
+				// Gets all the InternalNetworksCards from the objects components array.
+				comp = ArrayManagment.getSpesificComponents(
+						InternalNetworksCard.class, mainObj.getComponents(),
+						mainObj.getComponents().length);
+
+				// Removes all the InternalNetworksCards from the objects components array.
+				mainObj.setAllComponents(ComponentsManagment.removeComponents(
+						comp, mainObj.getComponents(),
+						mainObj.getComponents().length));
+
+			}
+			catch ( ObjectNotFoundException e )
+			{
+
+			}
+			catch ( ObjectNotFoundInArrayException e )
+			{
+				e.printStackTrace();
+			}
+
+
+			mbObj.setMaxPCIs(Integer.parseInt(PCIslots.getSelectedItem()
+					.toString()));
+			mbObj.setPCIPortsAvailable(mbObj.getMaxPCIs());
+
+			// If there are any components found
+			if ( comp != null )
+			{
+				// The number of components there are room for.
+				int counter = mbObj.getMaxPCIs();
+
+				// All the components of the main object(without the ExternalNetworksCards).
+				Object[] mainComp = mainObj.getComponents();
+
+				for ( int i = 0; i < counter; i++ )
+				{
+					// If i is smaller then the length of the comp array.
+					if ( i < comp.length )
+					{
+						mainComp = ComponentsManagment.addComponent(comp[i],
+								mainComp);
+						mbObj.makeOnePCIportTaken();
+					}
+				}
+				mainObj.setAllComponents(mainComp);
+			}
+		}
+		else
+		{
+			// The number of taken PCI ports(The number of ports - the number of ports available)
+			int takenPorts = mbObj.getMaxPCIs() - mbObj.getPCIPortsAvailable();
+
+			// Sets the max PCI ports
+			mbObj.setMaxPCIs(Integer.parseInt(PCIslots.getSelectedItem()
+					.toString()));
+			mbObj.setPCIPortsAvailable(mbObj.getMaxPCIs() - takenPorts);
+		}
+	}
+
+
+
+	/**
+	 * Processes the RAM settings with the RAM objects.
+	 */
+	private void RAMsetup()
+	{
+
+		if ( mbObj.getMaxRAMs() > Integer.parseInt(RAMslots.getSelectedItem()
+				.toString()) )
+		{
+			Object[] comp = null;
+			try
+			{
+				// Gets all the RAM from the objects components array.
+				comp = ArrayManagment.getSpesificComponents(Ram.class, mainObj
+						.getComponents(), mainObj.getComponents().length);
+
+				// Removes all the RAM from the objects components array.
+				mainObj.setAllComponents(ComponentsManagment.removeComponents(
+						comp, mainObj.getComponents(),
+						mainObj.getComponents().length));
+
+			}
+			catch ( ObjectNotFoundException e )
+			{
+
+			}
+			catch ( ObjectNotFoundInArrayException e )
+			{
+				e.printStackTrace();
+			}
+
+
+			mbObj.setMaxRAMs(Integer.parseInt(RAMslots.getSelectedItem()
+					.toString()));
+			mbObj.setRAMPortsAvailable(mbObj.getMaxRAMs());
+
+			if ( comp != null )
+			{
+				// The number of components there are room for.
+				int counter = mbObj.getMaxRAMs();
+				// All the components of the main object(without the RAM).
+				Object[] mainComp = mainObj.getComponents();
+				for ( int i = 0; i < counter; i++ )
+				{
+					// If i is smaller then the length of the comp array.
+					if ( i < comp.length )
+					{
+						mainComp = ComponentsManagment.addComponent(comp[i],
+								mainComp);
+						mbObj.makeOneRAMportTaken();
+					}
+				}
+				mainObj.setAllComponents(mainComp);
+			}
+		}
+		else
+		{
+			// The number of taken RAM ports(The number of ports - the number of ports available)
+			int takenPorts = mbObj.getMaxRAMs() - mbObj.getDUCPortsAvailable();
+
+			// Sets the max RAM ports
+			mbObj.setMaxRAMs(Integer.parseInt(RAMslots.getSelectedItem()
+					.toString()));
+			mbObj.setRAMPortsAvailable(mbObj.getMaxRAMs() - takenPorts);
+		}
+	}
+
+
+
+	/**
+	 * Processes the DUC settings with the {@link HDD} and {@link Discdrive} objects.
+	 */
+	private void DUCsetup()
+	{
+		if ( mbObj.getMaxDUCs() > Integer.parseInt(DUCports.getSelectedItem()
+				.toString()) )
+		{
+			Object[] comp = null;
+
+			Object[] compHDD = null;
+
+			Object[] compDisc = null;
+
+			try
+			{
+				// Gets all the HDDs from the objects components array.
+				compHDD = ArrayManagment
+						.getSpesificComponents(HDD.class, mainObj
+								.getComponents(),
+								mainObj.getComponents().length);
+
+
+				// Gets all the Discdrives from the objects components array.
+				compDisc = ArrayManagment.getSpesificComponents(
+						Discdrive.class, mainObj.getComponents(), mainObj
+								.getComponents().length);
+			}
+			catch ( ObjectNotFoundException e )
+			{
+
+			}
+
+
+			int compLenght = 0;
+
+			if ( compHDD != null )
+			{
+				compLenght = compLenght + compHDD.length;
+			}
+
+			if ( compDisc != null )
+			{
+				compLenght = compLenght + compDisc.length;
+			}
+
+			comp = new Object[compLenght];
+
+
+			// The different counters for the different arrays of
+			// components.
+			int hddCount = 0;
+			int discCount = 0;
+
+			// The tick/tack boolean.
+			boolean tick = true;
+
+
+			for ( int i = 0; i < comp.length; i++ )
+			{
+				// Tries to add the hdd first.
+				if ( tick )
+				{
+
+					if ( compHDD != null && hddCount < compHDD.length
+							&& compHDD[hddCount] != null )
+					{
+						comp[i] = compHDD[hddCount];
+						hddCount++;
+						tick = false;
+					}
+					else
+					{
+						comp[i] = compDisc[discCount];
+						discCount++;
+						tick = false;
+					}
+				}
+				// Tack
+				else
+				{
+					if ( compDisc != null && discCount < compDisc.length
+							&& compDisc[discCount] != null )
+					{
+						comp[i] = compDisc[discCount];
+						discCount++;
+						tick = true;
+					}
+					else
+					{
+						comp[i] = compHDD[hddCount];
+						hddCount++;
+						tick = true;
+					}
+				}
+			}
+
+			// Removes all the components from the objects components array.
+			try
+			{
+				mainObj.setAllComponents(ComponentsManagment.removeComponents(
+						comp, mainObj.getComponents(),
+						mainObj.getComponents().length));
+			}
+			catch ( ObjectNotFoundInArrayException e )
+			{
+				e.printStackTrace();
+			}
+
+
+
+			mbObj.setMaxDUCs(Integer.parseInt(DUCports.getSelectedItem()
+					.toString()));
+			mbObj.setDUCPortsAvailable(mbObj.getMaxDUCs());
+
+			if ( comp != null )
+			{
+				// The number of components there are room for.
+				int counter = mbObj.getMaxDUCs();
+
+				// All the components of the main object(without the CPUs).
+				Object[] mainComp = mainObj.getComponents();
+
+				for ( int i = 0; i < counter; i++ )
+				{
+					// If i is smaller then the length of the comp array.
+					if ( i < comp.length )
+					{
+						mainComp = ComponentsManagment.addComponent(comp[i],
+								mainComp);
+						mbObj.makeOneDUCportTaken();
+					}
+				}
+				mainObj.setAllComponents(mainComp);
+			}
+		}
+		else
+		{
+			// The number of taken DUC ports(The number of ports - the number of ports available)
+			int takenPorts = mbObj.getMaxDUCs() - mbObj.getDUCPortsAvailable();
+
+			// Sets the max DUC ports
+			mbObj.setMaxDUCs(Integer.parseInt(DUCports.getSelectedItem()
+					.toString()));
+			mbObj.setDUCPortsAvailable(mbObj.getMaxDUCs() - takenPorts);
+		}
+	}
+
+
+
+	/**
+	 * Processes the USB settings with the ExternalNetworksCard objects.
+	 */
+	private void USBsetup()
+	{
+		if ( mbObj.getMaxUSBs() > Integer.parseInt(USBports.getSelectedItem()
+				.toString()) )
+		{
+			int newMaxUSBports = Integer.parseInt(USBports.getSelectedItem()
+					.toString());
+
+			Object[] externalNICs = new Object[0];
+
+			try
+			{
+				// Gets all the ExternalNetworksCard from the objects components array.
+				externalNICs = ArrayManagment.getSpesificComponents(
+						ExternalNetworksCard.class, mainObj.getComponents(),
+						mainObj.getComponents().length);
+			}
+			catch ( ObjectNotFoundException e )
+			{
+
+			}
+
+
+			// Gets all the connections, networked and devices
+			Connection[] allConnections = mainObj.getAllConnections();
+
+			// ------------------------------------------------------------------------------
+			// If the number of USB ports is bigger then the number of externalNICS, which would mean that there is room
+			// for connected USB devices.
+			if ( newMaxUSBports > externalNICs.length )
+			{
+				// The connections array that will hold all the connections that are with USB
+				Connection[] USBconnections = ConnectionManagment
+						.connectedToBy(mainObj, ConnectionUtils.USB);
+
+
+				// The number of USB ports left after External NICs are added.
+				int leftUSBportsAfterExternalNICs = newMaxUSBports
+						- (externalNICs.length - 1);
+
+				if ( USBconnections != null )
+				{
+					// If the number of available USB ports is less then the number of USB devices
+					if ( leftUSBportsAfterExternalNICs < USBconnections.length )
+					{
+						for ( int i = leftUSBportsAfterExternalNICs; i < USBconnections.length; i++ )
+						{
+							// Removes the connection
+							WorkareaCanvasActions.removeWidgetConnection(
+									CanvasManagment.findCanvas(mainObj,
+											PrimeMain1.canvases),
+									USBconnections[i]);
+						}
+					}
+				}
+
+				// ------------------------------------------------------------------------------
+				// The number of taken USB ports(The number of ports - the number of ports available)
+				int takenPorts = mbObj.getMaxUSBs()
+						- mbObj.getUSBPortsAvailable();
+
+				// Sets the max USB ports
+				mbObj.setMaxUSBs(Integer.parseInt(USBports.getSelectedItem()
+						.toString()));
+				mbObj.setUSBPortsAvailable(mbObj.getMaxUSBs() - takenPorts);
+
+			}
+			// There aren't enough USB port for all the externalNICs so every USB connection will be removed and only
+			// externalNICs will be added until the USB ports run out.
+			else
+			{
+
+				try
+				{
+					// Removes all the ExternalNetworksCard from the objects components array.
+					mainObj.setAllComponents(ComponentsManagment
+							.removeComponents(externalNICs, mainObj
+									.getComponents(),
+									mainObj.getComponents().length));
+
+
+					// Disconnect all the existing USB connections
+					for ( int i = 0; i < allConnections.length; i++ )
+					{
+						if ( allConnections[i] != null )
+						{
+							// If the connection type is USB
+							if ( allConnections[i].getConnectionType().equals(
+									ConnectionUtils.USB) )
+							{
+								// Removes the connection
+								WorkareaCanvasActions.removeWidgetConnection(
+										CanvasManagment.findCanvas(mainObj,
+												PrimeMain1.canvases),
+										allConnections[i]);
+							}
+						}
+					}
+
+
+					// Sets the max USB ports
+
+					mbObj.setMaxUSBs(Integer.parseInt(USBports
+							.getSelectedItem().toString()));
+					mbObj.setUSBPortsAvailable(mbObj.getMaxUSBs());
+
+					// Adds the previously removed ExternalNICs in order until there are no more USB ports available.
+					if ( externalNICs != null )
+					{
+						// The number of components there are room for.
+						int counter = mbObj.getMaxUSBs();
+						// All the components of the main object(without the ExternalNICs).
+						Object[] mainComp = mainObj.getComponents();
+						for ( int i = 0; i < counter; i++ )
+						{
+							// If i is smaller then the length of the externalNICs array.
+							if ( i < externalNICs.length )
+							{
+								mainComp = ComponentsManagment.addComponent(
+										externalNICs[i], mainComp);
+								mbObj.makeOneUSBportTaken();
+							}
+						}
+						mainObj.setAllComponents(mainComp);
+					}
+
+				}
+				catch ( ObjectNotFoundInArrayException e )
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+		else
+		{
+			// The number of taken USB ports(The number of ports - the number of ports available)
+			int takenPorts = mbObj.getMaxUSBs() - mbObj.getUSBPortsAvailable();
+
+			// Sets the max USB ports
+			mbObj.setMaxUSBs(Integer.parseInt(USBports.getSelectedItem()
+					.toString()));
+			mbObj.setUSBPortsAvailable(mbObj.getMaxUSBs() - takenPorts);
+		}
+	}
+
+
+
+	/**
+	 * Processes the LAN settings with the connected objects.
+	 */
+	private void LANsetup()
+	{
+
+		// The currently available ports, before Max change
+		int avail = mbObj.getIntegLANPortsAvailable();
+
+		int newAvail = avail
+				+ (Integer.parseInt(LANports.getSelectedItem().toString()) - mbObj
+						.getMaxIntegLANs());
+
+
+		mbObj.setMaxIntegratedLANs(Integer.parseInt(LANports.getSelectedItem()
+				.toString()));
+
+		mbObj.setIntegLANPortsAvailable(newAvail);
 	}
 }

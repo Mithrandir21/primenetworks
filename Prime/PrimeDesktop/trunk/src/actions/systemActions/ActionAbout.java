@@ -15,7 +15,7 @@ import logistical.AbstractSystemAction;
 
 
 /**
- * TODO - Description NEEDED!
+ * This action opens an "About" window.
  * 
  * @author Bahram Malaekeh
  */

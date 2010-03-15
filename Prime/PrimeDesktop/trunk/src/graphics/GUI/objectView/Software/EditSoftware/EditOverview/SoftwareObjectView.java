@@ -542,7 +542,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 			note.setLayout(new FlowLayout(FlowLayout.LEADING));
 
 			JLabel text = new JLabel(PrimeMain1.texts
-					.getString("swTabResctrictionText"));
+					.getString("swTabRestrictionText"));
 			note.add(text);
 
 			this.add(note, d);

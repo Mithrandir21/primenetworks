@@ -28,14 +28,13 @@ import managment.Settings;
 
 
 /**
- * TODO - Description NEEDED! (Example provided by 'www.java2s.com') Extended by
- * Bahram Malaekeh
+ * This extension of the {@link JFrame} class will display a 'tip of the day' to
+ * the user of the program on startup.
+ * (Example provided by 'www.java2s.com') Extended by Bahram Malaekeh.
  */
 public class TipOfDay extends JFrame implements ActionListener
 {
-	/**
-	 * TODO - Description NEEDED!
-	 */
+
 	public TipOfDay()
 	{
 		super(PrimeMain1.texts.getString("totdTitle"));

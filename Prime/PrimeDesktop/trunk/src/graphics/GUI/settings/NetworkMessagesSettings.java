@@ -6,6 +6,7 @@ package graphics.GUI.settings;
 
 import graphics.PrimeMain1;
 
+import java.awt.Checkbox;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
@@ -17,18 +18,20 @@ import javax.swing.JPanel;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * The JPanel extension that contains all the different check boxes for the
+ * various program variables.
  * 
  * @author Bahram Malaekeh
  */
 public class NetworkMessagesSettings extends JPanel
 {
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor that takes a {@link Checkbox} array, holding all program
+	 * variables.
 	 */
 	public NetworkMessagesSettings(JCheckBox[] checkBox)
 	{
-		setPreferredSize(new Dimension(700, 525));
+		this.setPreferredSize(new Dimension(700, 525));
 
 
 
@@ -125,12 +128,7 @@ public class NetworkMessagesSettings extends JPanel
 
 
 	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @param box1
-	 * @param box2
-	 * @param box3
-	 * @return
+	 * Creates a JPanel where the checkboxes given are placed vertical in a row.
 	 */
 	private JPanel getPanel(JCheckBox box1, JCheckBox box2, JCheckBox box3)
 	{

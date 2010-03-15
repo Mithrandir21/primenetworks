@@ -9,14 +9,17 @@ import javax.swing.JTable;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class simply overrides some of the standard methods in the
+ * {@link JTable} class, like getScrollableTracksViewportHeight(which is set to
+ * return false).
  * 
  * @author Bahram Malaekeh
  */
 public class MessageJTable extends JTable
 {
 	/**
-	 * TODO - Description NEEDED!
+	 * This constructor takes the given data and passes to the super class,
+	 * JTable, a new {@link PrimeJTableModel} created with the given parameters.
 	 * 
 	 * @param rowData
 	 * @param columnNames

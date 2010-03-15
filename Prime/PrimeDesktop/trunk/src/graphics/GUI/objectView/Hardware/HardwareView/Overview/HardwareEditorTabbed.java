@@ -218,7 +218,7 @@ public class HardwareEditorTabbed extends JTabbedPane
 			// Returns a boolean showing that everything i saved.
 			return true;
 		}
-		// Atleast one of the validations have failed.
+		// At least one of the validations have failed.
 		else
 		{
 			/**

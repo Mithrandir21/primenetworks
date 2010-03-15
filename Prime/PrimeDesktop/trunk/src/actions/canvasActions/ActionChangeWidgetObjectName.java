@@ -16,15 +16,18 @@ import logistical.AbstractSystemAction;
 import logistical.SystemActionInterface;
 import logistical.checkLogic;
 import widgets.WidgetObject;
+import widgets.WorkareaCanvas;
 
 
 /**
- * TODO - Description NEEDED!
+ * This action changes the name of a given {@link WidgetObject}. The action
+ * automatically changed the name displayed on the {@link WorkareaCanvas} where
+ * the {@link WidgetObject} is placed.
+ * This action contains a undo/redo function.
  * 
  * @author Bahram Malaekeh
  */
-public class ActionChangeWidgetObjectName extends AbstractSystemAction
-		implements SystemActionInterface
+public class ActionChangeWidgetObjectName extends AbstractSystemAction implements SystemActionInterface
 {
 
 	// The widget object where the name is to be changed
@@ -37,15 +40,18 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 	String oldName = null;
 
 	/**
-	 * A constructor for the class that takes a string, the action name, and a
-	 * Icon.
+	 * A constructor for the class that takes a string, the action name, an
+	 * Icon, a {@link WidgetObject} and a String that is to be the new name of
+	 * the given {@link WidgetObject}.
 	 * 
 	 * @param text
 	 *            The name of the action.
 	 * @param icon
 	 *            The icon representing the action.
 	 * @param widgetObject
+	 *            The {@link WidgetObject} whose name is to be changed.
 	 * @param givenName
+	 *            The new name of the {@link WidgetObject}.
 	 */
 	public ActionChangeWidgetObjectName(String text, ImageIcon icon,
 			WidgetObject widgetObject, String givenName)
@@ -57,13 +63,16 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 	}
 
 	/**
-	 * /** A constructor for the class that takes a string which will be the
-	 * name of the action.
+	 * A constructor for the class that takes a string, the action name, a
+	 * {@link WidgetObject} and a String that is to be the new name of
+	 * the given {@link WidgetObject}.
 	 * 
 	 * @param text
 	 *            The name of the action.
 	 * @param widgetObject
+	 *            The {@link WidgetObject} whose name is to be changed.
 	 * @param givenName
+	 *            The new name of the {@link WidgetObject}.
 	 */
 	public ActionChangeWidgetObjectName(String text, WidgetObject widgetObject,
 			String givenName)
@@ -89,24 +98,41 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 
 
 
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * logistical.AbstractSystemAction#addEdit(javax.swing.undo.UndoableEdit)
+	 */
 	@Override
 	public boolean addEdit(UndoableEdit anEdit)
 	{
 		return false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see logistical.AbstractSystemAction#canRedo()
+	 */
 	@Override
 	public boolean canRedo()
 	{
 		return true;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see logistical.AbstractSystemAction#canUndo()
+	 */
 	@Override
 	public boolean canUndo()
 	{
 		return true;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see logistical.AbstractSystemAction#die()
+	 */
 	@Override
 	public void die()
 	{
@@ -115,6 +141,10 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 		oldName = null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see logistical.AbstractSystemAction#getPresentationName()
+	 */
 	@Override
 	public String getPresentationName()
 	{
@@ -122,6 +152,10 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 				.getString("actionChangeWidgetNameActionPresNameText");
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see logistical.AbstractSystemAction#getRedoPresentationName()
+	 */
 	@Override
 	public String getRedoPresentationName()
 	{
@@ -129,6 +163,10 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 				.getString("actionChangeWidgetNameRedoPresNameText");
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see logistical.AbstractSystemAction#getUndoPresentationName()
+	 */
 	@Override
 	public String getUndoPresentationName()
 	{
@@ -136,12 +174,20 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 				.getString("actionChangeWidgetNameUndoPresNameText");
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see logistical.AbstractSystemAction#isSignificant()
+	 */
 	@Override
 	public boolean isSignificant()
 	{
 		return true;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see logistical.AbstractSystemAction#redo()
+	 */
 	@Override
 	public void redo() throws CannotRedoException
 	{
@@ -155,6 +201,10 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see logistical.AbstractSystemAction#undo()
+	 */
 	@Override
 	public void undo() throws CannotUndoException
 	{
@@ -170,6 +220,11 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 		}
 	}
 
+
+	/*
+	 * (non-Javadoc)
+	 * @see logistical.SystemActionInterface#performAction(boolean)
+	 */
 	@Override
 	public void performAction(boolean undoable)
 	{

@@ -16,7 +16,8 @@ import objects.hardwareObjects.Ram;
 
 
 /**
- * TODO - Description NEEDED!
+ * This is the class where the hardware aspects of a given {@link Object} is
+ * processed and messages are created for the user.
  * 
  * @author Bahram Malaekeh
  */

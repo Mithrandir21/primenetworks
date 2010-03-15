@@ -16,9 +16,18 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
+import objects.Object;
+import widgets.WidgetObject;
+import widgets.WorkareaCanvas;
+
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This JTabbedPane extension is where the selection area and Networkmodels area
+ * is located.
+ * The selection area is where the user can click'n'drag new
+ * {@link WidgetObject WidgetObjects} into an open {@link WorkareaCanvas}.
+ * The Networkmodels area is where the user can see all the network models he
+ * can open and edit.
  * 
  * @author Bahram Malaekeh
  */
@@ -31,9 +40,6 @@ public class TabbedSelection extends JTabbedPane
 	JPanel objectPanel = new ObjectSelection();
 
 
-	/**
-	 * 
-	 */
 	PrimeTree primeTree = new PrimeTree();
 
 
@@ -44,7 +50,9 @@ public class TabbedSelection extends JTabbedPane
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for the class that adds both the selection area tab for the
+	 * {@link Object Objects} and the network models tabs for the
+	 * {@link WorkareaCanvas}.
 	 */
 	public TabbedSelection()
 	{
@@ -90,7 +98,8 @@ public class TabbedSelection extends JTabbedPane
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Returns the {@link PrimeTree} that shows all the {@link WorkareaCanvas
+	 * WorkareaCanvases} available.
 	 */
 	public PrimeTree getPrimeTree()
 	{

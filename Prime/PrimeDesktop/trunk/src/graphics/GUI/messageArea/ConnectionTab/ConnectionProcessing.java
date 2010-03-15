@@ -11,31 +11,40 @@ import exceptions.ObjectNotFoundException;
 
 
 /**
- * TODO - Description NEEDED!
+ * This is the class where the connection aspects of a given {@link Object} and
+ * {@link WorkareaCanvas} is processed and messages are created for the user.
  * 
  * @author Bahram Malaekeh
  */
 public class ConnectionProcessing
 {
 	/**
-	 * This method processes a connection for information critical errors, warnings and notices. It then returns a
-	 * multidimentional String array that contains the messages the user will be shown about the connection.
+	 * This method processes a connection for information critical errors,
+	 * warnings and notices. It then returns a
+	 * multidimentional String array that contains the messages the user will be
+	 * shown about the connection.
 	 * 
 	 * @param curData
-	 *            The current multidimentional String array with possible previous data.
+	 *            The current multidimentional String array with possible
+	 *            previous data.
 	 * @param obj
 	 *            The connection that is to be examined.
 	 * @param CheckCritical
-	 *            A boolean saying if the connection should be checked for critical errors.
+	 *            A boolean saying if the connection should be checked for
+	 *            critical errors.
 	 * @param CheckWarnings
-	 *            A boolean saying if the connection should be checked for warnings.
+	 *            A boolean saying if the connection should be checked for
+	 *            warnings.
 	 * @param CheckNotices
-	 *            A boolean saying if the connection should be checked for notices.
-	 * @return Returns a new multidimentional String array with possible messages for the user about the given
+	 *            A boolean saying if the connection should be checked for
+	 *            notices.
+	 * @return Returns a new multidimentional String array with possible
+	 *         messages for the user about the given
 	 *         connection.
 	 */
-	public static String[][] processConnections(String[][] curData, Object obj, WorkareaCanvas canvas,
-			boolean CheckCritical, boolean CheckWarnings, boolean CheckNotices)
+	public static String[][] processConnections(String[][] curData, Object obj,
+			WorkareaCanvas canvas, boolean CheckCritical,
+			boolean CheckWarnings, boolean CheckNotices)
 	{
 		String[][] data = curData;
 
@@ -69,14 +78,17 @@ public class ConnectionProcessing
 
 
 	/**
-	 * Examines the given object for possible critical errors and adds messages to the given multidimentional String
+	 * Examines the given object for possible critical errors and adds messages
+	 * to the given multidimentional String
 	 * array which will then be used to populate a JTable.
 	 * 
 	 * @param data
-	 *            The data container with possible previous messages for the user.
+	 *            The data container with possible previous messages for the
+	 *            user.
 	 * @param obj
 	 *            The object that is to be examined.
-	 * @return The data container with possible new messages for the user in addition to the old messages.
+	 * @return The data container with possible new messages for the user in
+	 *         addition to the old messages.
 	 */
 	private static String[][] getCriticalErrors(String[][] data, Object obj)
 	{
@@ -88,14 +100,17 @@ public class ConnectionProcessing
 
 
 	/**
-	 * Examines the given object for possible warnings and adds messages to the given multidimentional String array
+	 * Examines the given object for possible warnings and adds messages to the
+	 * given multidimentional String array
 	 * which will then be used to populate a JTable.
 	 * 
 	 * @param data
-	 *            The data container with possible previous messages for the user.
+	 *            The data container with possible previous messages for the
+	 *            user.
 	 * @param obj
 	 *            The object that is to be examined.
-	 * @return The data container with possible new messages for the user in addition to the old messages.
+	 * @return The data container with possible new messages for the user in
+	 *         addition to the old messages.
 	 */
 	private static String[][] getWarnings(String[][] data, Object obj)
 	{
@@ -106,14 +121,17 @@ public class ConnectionProcessing
 
 
 	/**
-	 * Examines the given object for possible notices and adds messages to the given multidimentional String array which
+	 * Examines the given object for possible notices and adds messages to the
+	 * given multidimentional String array which
 	 * will then be used to populate a JTable.
 	 * 
 	 * @param data
-	 *            The data container with possible previous messages for the user.
+	 *            The data container with possible previous messages for the
+	 *            user.
 	 * @param obj
 	 *            The object that is to be examined.
-	 * @return The data container with possible new messages for the user in addition to the old messages.
+	 * @return The data container with possible new messages for the user in
+	 *         addition to the old messages.
 	 */
 	private static String[][] getNotices(String[][] data, Object obj)
 	{
@@ -124,14 +142,18 @@ public class ConnectionProcessing
 
 
 	/**
-	 * Adds the given String array to the given multidimentional String array that contains all the messages the user
+	 * Adds the given String array to the given multidimentional String array
+	 * that contains all the messages the user
 	 * will be shown.
 	 * 
 	 * @param data
-	 *            The data container with possible previous messages for the user.
+	 *            The data container with possible previous messages for the
+	 *            user.
 	 * @param info
-	 *            The new information that will be added to the data array with messages.
-	 * @return The data container with the new message for the user in addition to the possible old messages.
+	 *            The new information that will be added to the data array with
+	 *            messages.
+	 * @return The data container with the new message for the user in addition
+	 *         to the possible old messages.
 	 */
 	private static String[][] addError(String[][] data, String[] info)
 	{
@@ -150,8 +172,10 @@ public class ConnectionProcessing
 
 
 		/**
-		 * If the method gets to this part, it means that there was not enough space in the array to add another data
-		 * field. So it will be expanded with 5 indexes and this function will be run again.
+		 * If the method gets to this part, it means that there was not enough
+		 * space in the array to add another data
+		 * field. So it will be expanded with 5 indexes and this function will
+		 * be run again.
 		 */
 		data = ArrayManagment.add5ArraySpaces(data);
 
@@ -161,7 +185,8 @@ public class ConnectionProcessing
 
 
 	/**
-	 * Checks if the given object lacks a hardware object in its get components array of the given class.
+	 * Checks if the given object lacks a hardware object in its get components
+	 * array of the given class.
 	 */
 	private static boolean containsComponentOfClass(Object obj, Class<?> Class)
 	{
@@ -170,7 +195,8 @@ public class ConnectionProcessing
 		// no object found with the given class.
 		try
 		{
-			ArrayManagment.getSpesificComponents(Class, obj.getComponents(), obj.getComponents().length);
+			ArrayManagment.getSpesificComponents(Class, obj.getComponents(),
+					obj.getComponents().length);
 		}
 		catch ( ObjectNotFoundException e )
 		{

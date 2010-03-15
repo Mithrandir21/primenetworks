@@ -18,7 +18,7 @@ import exceptions.StringNotFoundInArrayException;
  * able to direct network traffic with the least amount of collisions at the highest speed possible.
  * 
  * @author Bahram Malaekeh
- * @version 0.1
+ * @version 1.0
  */
 public class Router extends Infrastructure implements Serializable
 {
@@ -55,6 +55,9 @@ public class Router extends Infrastructure implements Serializable
 	// The different connection interfaces supported by the device
 	private String[] conncetionInterfaces;
 
+	// A pointer to the modem function inside the router, if there exists any.
+	private Modem modem;
+
 
 	/**
 	 * Constructor for the router class.
@@ -70,7 +73,8 @@ public class Router extends Infrastructure implements Serializable
 	 * @param DuplexSupport
 	 *            The supported duplex type on the device.
 	 */
-	public Router(String Name, String Desc, String[] SupConInt, Motherboard objectMB, int outPorts, int inPorts,
+	public Router(String Name, String Desc, String[] SupConInt,
+			Motherboard objectMB, int outPorts, int inPorts,
 			String[] DuplexSupport)
 	{
 		super(Name, Desc, SupConInt, objectMB);
@@ -218,6 +222,19 @@ public class Router extends Infrastructure implements Serializable
 
 
 
+	/**
+	 * Gets the modem object that might exist inside the router.
+	 * 
+	 * @return The modem that might exist inside the router.
+	 */
+	public Modem getModem()
+	{
+		return modem;
+	}
+
+
+
+
 	// SET METHODES
 	/**
 	 * Sets the different connection interfaces supported by the device.
@@ -267,7 +284,8 @@ public class Router extends Infrastructure implements Serializable
 	 * @param supportedRemoteManageProtocols
 	 *            the supportedRemoteManageProtocols to set
 	 */
-	public void setSupportedRemoteManageProtocols(String[] supportedRemoteManageProtocols)
+	public void setSupportedRemoteManageProtocols(
+			String[] supportedRemoteManageProtocols)
 	{
 
 		this.supportedRemoteManageProtocols = supportedRemoteManageProtocols;
@@ -281,7 +299,8 @@ public class Router extends Infrastructure implements Serializable
 	 * @param supportedTransportProtocols
 	 *            the supportedTransportProtocols to set
 	 */
-	public void setSupportedTransportProtocols(String[] supportedTransportProtocols)
+	public void setSupportedTransportProtocols(
+			String[] supportedTransportProtocols)
 	{
 
 		this.supportedTransportProtocols = supportedTransportProtocols;
@@ -359,6 +378,15 @@ public class Router extends Infrastructure implements Serializable
 
 
 
+	/**
+	 * Sets the modem that might exist inside the router.
+	 */
+	public void setModem(Modem modem)
+	{
+		this.modem = modem;
+	}
+
+
 	// CLASS METHODES
 	// Connection interfaces methodes.
 
@@ -372,7 +400,8 @@ public class Router extends Infrastructure implements Serializable
 	 */
 	public void changeConncetionInterfacesItem(String NewItem, String OldItem)
 	{
-		conncetionInterfaces = ArrayManagment.changeArrayItem(NewItem, OldItem, conncetionInterfaces);
+		conncetionInterfaces = ArrayManagment.changeArrayItem(NewItem, OldItem,
+				conncetionInterfaces);
 	}
 
 
@@ -382,9 +411,11 @@ public class Router extends Infrastructure implements Serializable
 	 * @param ToBeRemoved
 	 *            Connection interfaces to be removed.
 	 */
-	public void removeConncetionInterfacesItem(String[] ToBeRemoved) throws StringNotFoundInArrayException
+	public void removeConncetionInterfacesItem(String[] ToBeRemoved)
+			throws StringNotFoundInArrayException
 	{
-		conncetionInterfaces = ArrayManagment.removeItems(ToBeRemoved, conncetionInterfaces);
+		conncetionInterfaces = ArrayManagment.removeItems(ToBeRemoved,
+				conncetionInterfaces);
 	}
 
 
@@ -396,7 +427,8 @@ public class Router extends Infrastructure implements Serializable
 	 */
 	public void addConncetionInterfacesItem(String[] NewItems) throws Exception
 	{
-		conncetionInterfaces = ArrayManagment.addItems(NewItems, conncetionInterfaces);
+		conncetionInterfaces = ArrayManagment.addItems(NewItems,
+				conncetionInterfaces);
 
 	}
 
@@ -414,7 +446,8 @@ public class Router extends Infrastructure implements Serializable
 	 */
 	public void changeLinkProtocolItem(String NewItem, String OldItem)
 	{
-		supportedLinkProtocols = ArrayManagment.changeArrayItem(NewItem, OldItem, supportedLinkProtocols);
+		supportedLinkProtocols = ArrayManagment.changeArrayItem(NewItem,
+				OldItem, supportedLinkProtocols);
 	}
 
 
@@ -424,9 +457,11 @@ public class Router extends Infrastructure implements Serializable
 	 * @param ToBeRemoved
 	 *            Link protocol to be removed.
 	 */
-	public void removeLinkProtocolItem(String[] ToBeRemoved) throws StringNotFoundInArrayException
+	public void removeLinkProtocolItem(String[] ToBeRemoved)
+			throws StringNotFoundInArrayException
 	{
-		supportedLinkProtocols = ArrayManagment.removeItems(ToBeRemoved, supportedLinkProtocols);
+		supportedLinkProtocols = ArrayManagment.removeItems(ToBeRemoved,
+				supportedLinkProtocols);
 	}
 
 
@@ -438,7 +473,8 @@ public class Router extends Infrastructure implements Serializable
 	 */
 	public void addLinkProtocolItem(String[] NewItems) throws Exception
 	{
-		supportedLinkProtocols = ArrayManagment.addItems(NewItems, supportedLinkProtocols);
+		supportedLinkProtocols = ArrayManagment.addItems(NewItems,
+				supportedLinkProtocols);
 
 	}
 
@@ -453,10 +489,11 @@ public class Router extends Infrastructure implements Serializable
 	 * @param OldItem
 	 *            The protocol to be replaced.
 	 */
-	public void changeRemoteManagementProtocolItem(String NewItem, String OldItem)
+	public void changeRemoteManagementProtocolItem(String NewItem,
+			String OldItem)
 	{
-		supportedRemoteManageProtocols = ArrayManagment.changeArrayItem(NewItem, OldItem,
-				supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.changeArrayItem(
+				NewItem, OldItem, supportedRemoteManageProtocols);
 	}
 
 
@@ -466,9 +503,11 @@ public class Router extends Infrastructure implements Serializable
 	 * @param ToBeRemoved
 	 *            Link protocol to be removed.
 	 */
-	public void removeRemoteManagementProtocolsItem(String[] ToBeRemoved) throws StringNotFoundInArrayException
+	public void removeRemoteManagementProtocolsItem(String[] ToBeRemoved)
+			throws StringNotFoundInArrayException
 	{
-		supportedRemoteManageProtocols = ArrayManagment.removeItems(ToBeRemoved, supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.removeItems(
+				ToBeRemoved, supportedRemoteManageProtocols);
 	}
 
 
@@ -478,9 +517,11 @@ public class Router extends Infrastructure implements Serializable
 	 * @param NewItems
 	 *            An array of new remote management protocols.
 	 */
-	public void addRemoteManagementProtocolsItem(String[] NewItems) throws Exception
+	public void addRemoteManagementProtocolsItem(String[] NewItems)
+			throws Exception
 	{
-		supportedRemoteManageProtocols = ArrayManagment.addItems(NewItems, supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.addItems(NewItems,
+				supportedRemoteManageProtocols);
 
 	}
 
@@ -498,8 +539,8 @@ public class Router extends Infrastructure implements Serializable
 	 */
 	public void changeTransportProtocolItems(String NewItem, String OldItem)
 	{
-		supportedRemoteManageProtocols = ArrayManagment.changeArrayItem(NewItem, OldItem,
-				supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.changeArrayItem(
+				NewItem, OldItem, supportedRemoteManageProtocols);
 	}
 
 
@@ -509,9 +550,11 @@ public class Router extends Infrastructure implements Serializable
 	 * @param ToBeRemoved
 	 *            Link protocol to be removed.
 	 */
-	public void removeTransportProtocolItems(String[] ToBeRemoved) throws StringNotFoundInArrayException
+	public void removeTransportProtocolItems(String[] ToBeRemoved)
+			throws StringNotFoundInArrayException
 	{
-		supportedRemoteManageProtocols = ArrayManagment.removeItems(ToBeRemoved, supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.removeItems(
+				ToBeRemoved, supportedRemoteManageProtocols);
 	}
 
 
@@ -523,7 +566,8 @@ public class Router extends Infrastructure implements Serializable
 	 */
 	public void addTransportProtocolItems(String[] NewItems) throws Exception
 	{
-		supportedRemoteManageProtocols = ArrayManagment.addItems(NewItems, supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.addItems(NewItems,
+				supportedRemoteManageProtocols);
 
 	}
 

@@ -16,10 +16,10 @@ import managment.Settings;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This class listens for the changes the user make in the system settings,
+ * specifically in the {@link SettingsOverview} JFrame.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class SettingsListener implements ActionListener
 {
@@ -28,9 +28,13 @@ public class SettingsListener implements ActionListener
 	SettingsOverview settingsFrame;
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for the class.
 	 * 
+	 * @param panel
+	 *            The panel where the checkboxes are located and where the user
+	 *            will make desired changes.
 	 * @param checkBox
+	 *            The actual checkboxes set and unset by the user.
 	 */
 	public SettingsListener(SettingsOverview panel, JCheckBox[] checkBox)
 	{
@@ -41,8 +45,8 @@ public class SettingsListener implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -72,8 +76,7 @@ public class SettingsListener implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
-	 * 
+	 * Sets the program settings reflecting what the classes checkboxes show.
 	 */
 	private void setMessagesSettings()
 	{
@@ -86,7 +89,8 @@ public class SettingsListener implements ActionListener
 		Settings.showSoftwareNoticeMessages = messageCheckBox[5].isSelected();
 
 		Settings.showConnectionErrorMessages = messageCheckBox[6].isSelected();
-		Settings.showConnectionWarningMessages = messageCheckBox[7].isSelected();
+		Settings.showConnectionWarningMessages = messageCheckBox[7]
+				.isSelected();
 		Settings.showConnectionNoticeMessages = messageCheckBox[8].isSelected();
 
 		Settings.showNetworkErrorMessages = messageCheckBox[9].isSelected();

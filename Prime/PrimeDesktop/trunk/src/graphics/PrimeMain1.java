@@ -14,6 +14,7 @@ import graphics.GUI.properties.PropertiesArea;
 import graphics.GUI.selectArea.TabbedSelection;
 import graphics.GUI.standardObjectEdit.StandardObjects;
 import graphics.GUI.statusArea.PrimeStatusBar;
+import graphics.GUI.visualObjectCustomization.VisualCustomFrame;
 import graphics.GUI.workareaCanvas.WorkareaTabbed;
 import graphics.services.PrimeService;
 
@@ -111,7 +112,7 @@ public class PrimeMain1 extends JFrame
 	public static WorkareaCanvas currentCanvas = null;
 
 	// An ImageIcon array that contains all the icons used in the system.
-	public static ArrayList<ImageIcon> images = new ArrayList<ImageIcon>(50);
+	public static ArrayList<ImageIcon> images = new ArrayList<ImageIcon>(60);
 
 	// A pointer to where all standard internal components are kept.
 	public static MakeStandardInternalComponents standard_internal_components = new MakeStandardInternalComponents();
@@ -124,6 +125,9 @@ public class PrimeMain1 extends JFrame
 
 	// The variable for the view of the standard object view.
 	public static StandardObjects stdObjView;
+
+	// The variable for the view of the visual editing JDialog.
+	public static VisualCustomFrame vcf;
 
 	// The arraylist of the systems standard Objects
 	public static ArrayList<Object> objectlist = new ArrayList<Object>();
@@ -675,8 +679,7 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * Gets the WorkareaTabbed which contains the tabs with
-	 * {@link WorkareaCanvas} inside.
+	 * Gets the WorkareaTabbed which contains the tabs with {@link WorkareaCanvas} inside.
 	 * 
 	 * @return the workareaPanel
 	 */

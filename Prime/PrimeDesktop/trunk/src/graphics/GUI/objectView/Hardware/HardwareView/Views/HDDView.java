@@ -30,6 +30,7 @@ import managment.ComponentsManagment;
 import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.HDD;
+import connections.ConnectionUtils;
 
 
 /**
@@ -37,8 +38,7 @@ import objects.hardwareObjects.HDD;
  * 
  * @author Bahram Malaekeh
  */
-public class HDDView extends JPanel implements HardwareViewInterface,
-		ActionListener
+public class HDDView extends JPanel implements HardwareViewInterface, ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -138,8 +138,7 @@ public class HDDView extends JPanel implements HardwareViewInterface,
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param hdd
@@ -192,7 +191,7 @@ public class HDDView extends JPanel implements HardwareViewInterface,
 
 		// The type of the hdd
 		labels[1].setLabelFor(type);
-		String[] typeString = { "", "IDE", "SATA", "USB" };
+		String[] typeString = { "", "IDE", "SATA", ConnectionUtils.USB };
 		type = new JComboBox(typeString);
 		type.setMaximumSize(tfSize);
 		type.setPreferredSize(tfSize);
@@ -387,7 +386,7 @@ public class HDDView extends JPanel implements HardwareViewInterface,
 
 			if ( command.equals("Type") )
 			{
-				String[] typeString = { "", "IDE", "SATA", "USB" };
+				String[] typeString = { "", "IDE", "SATA", ConnectionUtils.USB };
 
 				type = GraphicalFunctions.verifyChange(this, mainObj,
 						HDD.class, mainHDD.getPort(), type.getSelectedItem()

@@ -7,8 +7,8 @@ import objects.Hardware;
 
 
 /**
- * This class represents a external networks interface card connected to {@link objects.Servers server} or
- * {@link objects.Clients client} machine. It can be a server, a desktop or a laptop. It contains information on what
+ * This class represents a external networks interface card connected to {@link objects.Servers server} or {@link objects.Clients
+ * client} machine. It can be a server, a desktop or a laptop. It contains information on what
  * kind of capability the networks interface card has. It also contains information on transfere speeds, MACs,
  * connection types and so on. <br>
  * <br>
@@ -22,6 +22,9 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	// The company that produces the NIC. D-Link, Linksys, Cisco and so on.
 	private String producer;
+
+	// The port that connects with the computer
+	private String port;
 
 	// The MAC address of the NIC
 	private String MAC;
@@ -41,10 +44,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 
 	// Whether or not the NIC has support for IP version 6, IPv6
 	private boolean supportsIPv6;
-
-	// The connection type between the device and the computer it is connected
-	// to. FIXME - ConnectedBy externalNIC
-	private String connectedBy;
 
 	// The Object this NIC is connected to
 	private Object connectedObject;
@@ -66,15 +65,15 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 * @param NICconnectionType
 	 *            The connection type of NIC. Wired or wireless.
 	 */
-	public ExternalNetworksCard(String Name, String Desc, String NICproducer, String NIC_MAC, String NICconnectionType,
-			String NICconncectedBy)
+	public ExternalNetworksCard(String Name, String Desc, String NICproducer,
+			String NIC_MAC, String NICconnectionType, String NICconncectedBy)
 	{
 		super(Name, Desc);
 
 		producer = NICproducer;
 		MAC = NIC_MAC;
 		connectionType = NICconnectionType;
-		connectedBy = NICconncectedBy;
+		port = NICconncectedBy;
 	}
 
 
@@ -149,9 +148,9 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	/**
 	 * Get the connection type between the device and the computer.
 	 */
-	public String getConnectedBy()
+	public String getPort()
 	{
-		return connectedBy;
+		return port;
 	}
 
 
@@ -234,9 +233,9 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	/**
 	 * Set the connection type between the device and the computer.
 	 */
-	public void setConnectedBy(String NICconnectedBy)
+	public void setPortBy(String NICport)
 	{
-		connectedBy = NICconnectedBy;
+		port = NICport;
 	}
 
 

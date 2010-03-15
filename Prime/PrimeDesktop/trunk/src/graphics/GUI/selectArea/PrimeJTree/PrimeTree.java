@@ -13,12 +13,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 
+import widgets.WorkareaCanvas;
+
 
 /**
- * Description NEEDED!
+ * This JPanel extension is where the network models, {@link WorkareaCanvas},
+ * are placed and can be opened or deleted.
  * 
  * @author Bahram Malaekeh
- * @version 0.1
+ * @version 1.0
  */
 public class PrimeTree extends JPanel
 {
@@ -42,7 +45,8 @@ public class PrimeTree extends JPanel
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * A constructor that sets up the {@link JTree} that contains the nodes
+	 * pointing to the {@link WorkareaCanvas} files.
 	 */
 	public void createTree()
 	{
@@ -73,8 +77,7 @@ public class PrimeTree extends JPanel
 
 
 	/**
-	 * Javadoc-TODO - Description
-	 * 
+	 * Returns the {@link JTree} with all the {@link WorkareaCanvas} files.
 	 */
 	public JTree getJTree()
 	{
@@ -84,7 +87,8 @@ public class PrimeTree extends JPanel
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This method returns an array of files, starting from given root file,
+	 * that contain {@link WorkareaCanvas WorkareaCanvases}.
 	 * 
 	 * @param root
 	 */
@@ -128,7 +132,8 @@ public class PrimeTree extends JPanel
 
 
 	/**
-	 * Goes through all files and directories under a given folder. It finds and sets all files within this given folder
+	 * Goes through all files and directories under a given folder. It finds and
+	 * sets all files within this given folder
 	 * with the file extensions *.dat.
 	 */
 	public static ArrayList<File> visitAllFiles(File dir, ArrayList<File> files)

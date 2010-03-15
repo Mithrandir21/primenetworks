@@ -19,7 +19,7 @@ import objects.Servers;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class creates a properties JPanel for {@link Servers}.
  * 
  * @author Bahram Malaekeh
  */
@@ -27,7 +27,8 @@ public class ServersPropertiesView
 {
 
 	/**
-	 * TODO - Description NEEDED!
+	 * This function populates the given JPanel with server information about
+	 * the the given Object.
 	 * 
 	 * @param obj
 	 */

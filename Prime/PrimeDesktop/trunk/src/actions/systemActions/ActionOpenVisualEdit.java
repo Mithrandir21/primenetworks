@@ -15,7 +15,7 @@ import logistical.AbstractSystemAction;
 
 
 /**
- * TODO - Description NEEDED!
+ * This action opens, or brings to the front, the visual icon editing JDialog.
  * 
  * @author Bahram Malaekeh
  */
@@ -62,8 +62,14 @@ public class ActionOpenVisualEdit extends AbstractSystemAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-		VisualCustomFrame vcf = new VisualCustomFrame();
+		if ( PrimeMain1.vcf == null )
+		{
+			PrimeMain1.vcf = new VisualCustomFrame();
+		}
+		else
+		{
+			PrimeMain1.vcf.toFront();
+		}
 	}
 
 }

@@ -26,12 +26,12 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * A listener class that
+ * A listener class that listens for user created mouse events for
+ * {@link Hardware} objects.
  * 
  * @author Bahram Malaekeh
  */
-public class HardwareMouseListener extends MouseAdapter implements
-		ActionListener
+public class HardwareMouseListener extends MouseAdapter implements ActionListener
 {
 	// This is the main Object
 	private Object mainObject;
@@ -44,7 +44,8 @@ public class HardwareMouseListener extends MouseAdapter implements
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor that takes a JPanel for the properties display, a main
+	 * {@link Object} and the {@link Hardware} object clicked on.
 	 */
 	public HardwareMouseListener(JPanel hardwarePanel, Object mainObj,
 			Object hardObj)

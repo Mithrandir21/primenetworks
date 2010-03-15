@@ -13,10 +13,12 @@ import javax.swing.ImageIcon;
 
 import logistical.AbstractSystemAction;
 import managment.DesktopFileManagment;
+import widgets.WorkareaCanvas;
 
 
 /**
- * An action class that will perform a Save action.
+ * An action class that will perform a Save action that will save the current
+ * {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
  * @version 1.0

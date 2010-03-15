@@ -541,12 +541,12 @@ public class MakeSystemImageIcons
 		}
 
 
-		// Wireless Router
+		// Modem
 		if ( PrimeMain1.objectlist.get(19).getVisualImage() == null )
 		{
+			// FIXME - MODEM ICON
 			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Wireless Router");
+			ImageIcon objectIcon = ImageLocator.getImageIconObject("Router");
 
 			// Sets the Objects Visual Image
 			PrimeMain1.objectlist.get(19).setVisualImage(objectIcon);
@@ -564,11 +564,12 @@ public class MakeSystemImageIcons
 		}
 
 
-		// Internet
+		// Wireless Router
 		if ( PrimeMain1.objectlist.get(20).getVisualImage() == null )
 		{
 			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("Internet");
+			ImageIcon objectIcon = ImageLocator
+					.getImageIconObject("Wireless Router");
 
 			// Sets the Objects Visual Image
 			PrimeMain1.objectlist.get(20).setVisualImage(objectIcon);
@@ -583,6 +584,28 @@ public class MakeSystemImageIcons
 			PrimeMain1.objectImageIcons
 					.put(PrimeMain1.objectlist.get(20).getClass(),
 							PrimeMain1.objectlist.get(20).getVisualImage());
+		}
+
+
+		// Internet
+		if ( PrimeMain1.objectlist.get(21).getVisualImage() == null )
+		{
+			// Gets the objects ImageIcon
+			ImageIcon objectIcon = ImageLocator.getImageIconObject("Internet");
+
+			// Sets the Objects Visual Image
+			PrimeMain1.objectlist.get(21).setVisualImage(objectIcon);
+
+			// Places the ImageIcon into the systems hashmap of ImageIcons
+			PrimeMain1.objectImageIcons.put(PrimeMain1.objectlist.get(21)
+					.getClass(), objectIcon);
+		}
+		else
+		{
+			// Places the ImageIcon into the systems hashmap of ImageIcons
+			PrimeMain1.objectImageIcons
+					.put(PrimeMain1.objectlist.get(21).getClass(),
+							PrimeMain1.objectlist.get(21).getVisualImage());
 		}
 	}
 

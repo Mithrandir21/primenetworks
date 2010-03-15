@@ -24,8 +24,14 @@ import widgets.WidgetRoom;
 import widgets.WorkareaCanvas;
 
 
-public class ActionCreateRoom extends AbstractSystemAction implements
-		SystemActionInterface
+/**
+ * This action creates a {@link WidgetRoom} on the currently open
+ * {@link WorkareaCanvas}.
+ * This action contains a undo/redo function.
+ * 
+ * @author Bahram Malaekeh
+ */
+public class ActionCreateRoom extends AbstractSystemAction implements SystemActionInterface
 {
 	// The canvas where the deletion is taking place
 	private WorkareaCanvas canvas = null;
@@ -34,13 +40,16 @@ public class ActionCreateRoom extends AbstractSystemAction implements
 	private WidgetRoom room = null;
 
 	/**
-	 * A constructor for the class that takes a string, the action name, and a
-	 * Icon.
+	 * A constructor for the class that takes a string, the action name, an
+	 * Icon and a {@link WidgetRoom}.
 	 * 
 	 * @param text
 	 *            The name of the action.
 	 * @param icon
 	 *            The icon representing the action.
+	 * @param widRoom
+	 *            The {@link WidgetRoom} that is to be added to the currently
+	 *            open {@link WorkareaCanvas}.
 	 */
 	public ActionCreateRoom(String text, ImageIcon icon, WidgetRoom widRoom)
 	{
@@ -50,11 +59,14 @@ public class ActionCreateRoom extends AbstractSystemAction implements
 
 
 	/**
-	 * A constructor for the class that takes a string which will be the name of
-	 * the action.
+	 * A constructor for the class that takes a string, the action name, an
+	 * Icon and a {@link WidgetRoom}.
 	 * 
 	 * @param text
 	 *            The name of the action.
+	 * @param widRoom
+	 *            The {@link WidgetRoom} that is to be added to the currently
+	 *            open {@link WorkareaCanvas}.
 	 */
 	public ActionCreateRoom(String text, WidgetRoom widRoom)
 	{

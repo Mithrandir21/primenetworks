@@ -14,7 +14,8 @@ import logistical.AbstractSystemAction;
 
 
 /**
- * TODO - Description NEEDED!
+ * This action calls the process that will exit and close the entire program.
+ * The process called is the exitProcess in {@link PrimeMain1}.
  * 
  * @author Bahram Malaekeh
  */

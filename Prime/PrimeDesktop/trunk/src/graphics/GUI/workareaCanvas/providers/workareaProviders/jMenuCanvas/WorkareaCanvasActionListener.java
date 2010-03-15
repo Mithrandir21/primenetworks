@@ -21,6 +21,7 @@ import objects.clientObjects.Laptop;
 import objects.clientObjects.ThinClient;
 import objects.infrastructureObjects.Hub;
 import objects.infrastructureObjects.Internet;
+import objects.infrastructureObjects.Modem;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.peripheralObjects.Fax;
@@ -191,6 +192,13 @@ public class WorkareaCanvasActionListener implements ActionListener
 			else if ( actionName.equals("CreateNewST_Router_Item") )
 			{
 				objectType = Router.class;
+				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+
+				set = true;
+			}
+			else if ( actionName.equals("CreateNewST_Modem_Item") )
+			{
+				objectType = Modem.class;
 				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
 
 				set = true;

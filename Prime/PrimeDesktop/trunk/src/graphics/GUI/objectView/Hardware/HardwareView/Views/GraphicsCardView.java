@@ -41,8 +41,7 @@ import objects.hardwareObjects.GraphicsCard;
  * 
  * @author Bahram Malaekeh
  */
-public class GraphicsCardView extends JPanel implements HardwareViewInterface,
-		ActionListener
+public class GraphicsCardView extends JPanel implements HardwareViewInterface, ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -144,8 +143,7 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param GPU
@@ -374,8 +372,7 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 
 		mainGC.setType(type.getSelectedItem().toString());
 
-		mainGC.setSupportedConnectionInterfaces(outputInterface
-				.getSelectedItem().toString());
+		mainGC.setSubtype(outputInterface.getSelectedItem().toString());
 
 
 		if ( size.getSelectedItem().toString() != "" )
@@ -399,7 +396,10 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 		}
 
 
-		if ( outputInterface.getSelectedItem().toString() != "" )
+
+
+
+		if ( maxMonitors.getSelectedItem().toString() != "" )
 		{
 			mainGC.setMaxMonitors(Integer.parseInt(maxMonitors
 					.getSelectedItem().toString()));

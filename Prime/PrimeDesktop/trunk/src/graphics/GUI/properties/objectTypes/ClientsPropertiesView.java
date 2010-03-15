@@ -23,7 +23,7 @@ import objects.clientObjects.ThinClient;
 
 
 /**
- * CLASSDesc - Description NEEDED!
+ * This class creates a properties JPanel for {@link Clients}.
  * 
  * @author Bahram Malaekeh
  */

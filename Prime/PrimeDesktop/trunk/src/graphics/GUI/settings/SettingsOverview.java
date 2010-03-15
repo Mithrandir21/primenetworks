@@ -24,7 +24,7 @@ import managment.Settings;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This JFrame extension will contain the framework for the settings JFrame.
  * 
  * @author Bahram Malaekeh
  */
@@ -33,7 +33,8 @@ public class SettingsOverview extends JFrame
 	JCheckBox[] messagesCheckBox = new JCheckBox[12];
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for the class that sets up the settings variables and
+	 * JPanels of the display.
 	 */
 	public SettingsOverview()
 	{
@@ -114,9 +115,11 @@ public class SettingsOverview extends JFrame
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Creates a JTabbedPane where a {@link NetworkMessagesSettings} panel is
+	 * placed.
 	 * 
-	 * @return
+	 * @return A JTabbedPane with a {@link NetworkMessagesSettings} panel
+	 *         inside.
 	 */
 	private JTabbedPane getSettingsTabs()
 	{
@@ -134,7 +137,7 @@ public class SettingsOverview extends JFrame
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Sets up the check boxes with the correct variables, the program settings.
 	 */
 	private void setUpMessageCheckBoxes()
 	{

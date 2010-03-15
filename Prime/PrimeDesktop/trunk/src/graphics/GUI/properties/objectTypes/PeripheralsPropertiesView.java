@@ -10,10 +10,9 @@ import objects.Object;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class creates a properties JPanel for Peripheral.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class PeripheralsPropertiesView
 {

@@ -15,8 +15,6 @@ import objects.Object;
 
 
 /**
- * TODO - Description NEEDED!
- * 
  * @author Bahram Malaekeh
  */
 public class HardwareMessages extends JScrollPane

@@ -23,10 +23,12 @@ import objects.Object;
 import objects.hardwareObjects.CPU;
 import objects.hardwareObjects.HDD;
 import objects.hardwareObjects.Motherboard;
+import connections.ConnectionUtils;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class sets up the information displayed to the user about the connection
+ * status of a given {@link Object}.
  * 
  * @author Bahram Malaekeh
  */
@@ -80,7 +82,7 @@ public class NetworkConnectionsView extends JPanel
 		c.gridheight = 1;
 
 
-		this.add(determine(obj, "LAN & WLAN"), c);
+		this.add(determine(obj, "LAN"), c);
 
 	}
 
@@ -105,7 +107,7 @@ public class NetworkConnectionsView extends JPanel
 		{
 			panel = USBpanel(obj);
 		}
-		else if ( conType.equals("LAN & WLAN") )
+		else if ( conType.equals("LAN") )
 		{
 			panel = LANpanel(obj);
 		}
@@ -129,7 +131,8 @@ public class NetworkConnectionsView extends JPanel
 	{
 		JPanel panel = null;
 
-		Object[] matched = ComponentsManagment.connectedToBy(obj, "USB");
+		Object[] matched = ComponentsManagment.connectedToBy(obj,
+				ConnectionUtils.USB);
 
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -217,10 +220,17 @@ public class NetworkConnectionsView extends JPanel
 	{
 		JPanel panel = null;
 
-		Object[] matchedLAN = ComponentsManagment.connectedToBy(obj, "RJ-45");
+		Object[] matchedLAN = ComponentsManagment.connectedToBy(obj,
+				ConnectionUtils.RJ45);
 
 		Object[] matchedWLAN = ComponentsManagment.connectedToBy(obj,
-				"Wireless");
+				ConnectionUtils.Wireless);
+
+		Object[] matchedCOAX = ComponentsManagment.connectedToBy(obj,
+				ConnectionUtils.Coax);
+
+		Object[] matchedFIBER = ComponentsManagment.connectedToBy(obj,
+				ConnectionUtils.Fiber);
 
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -285,6 +295,50 @@ public class NetworkConnectionsView extends JPanel
 		}
 
 
+		for ( int i = 0; i < matchedCOAX.length; i++ )
+		{
+			JPanel objPanel = createPanel(matchedCOAX[i]);
+			objPanel.setMaximumSize(new Dimension(90, 20));
+			objPanel.setPreferredSize(new Dimension(90, 20));
+
+			panel.add(createPanel(matchedCOAX[i]), c);
+
+			if ( i % 2 == 0 )
+			{
+				c.gridx++;
+			}
+			else
+			{
+				c.gridx = 0;
+				c.gridy++;
+			}
+
+			hwCount++;
+		}
+
+
+		for ( int i = 0; i < matchedFIBER.length; i++ )
+		{
+			JPanel objPanel = createPanel(matchedFIBER[i]);
+			objPanel.setMaximumSize(new Dimension(90, 20));
+			objPanel.setPreferredSize(new Dimension(90, 20));
+
+			panel.add(createPanel(matchedFIBER[i]), c);
+
+			if ( i % 2 == 0 )
+			{
+				c.gridx++;
+			}
+			else
+			{
+				c.gridx = 0;
+				c.gridy++;
+			}
+
+			hwCount++;
+		}
+
+
 
 		while ( hwCount < 10 )
 		{
@@ -308,7 +362,7 @@ public class NetworkConnectionsView extends JPanel
 
 
 		TitledBorder title;
-		title = BorderFactory.createTitledBorder("LAN & WLAN");
+		title = BorderFactory.createTitledBorder("LAN");
 		panel.setBorder(title);
 
 

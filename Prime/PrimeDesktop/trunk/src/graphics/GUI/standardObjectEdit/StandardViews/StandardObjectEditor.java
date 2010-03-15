@@ -34,7 +34,8 @@ import objects.Object;
 
 
 /**
- * CLASSDesc - Description NEEDED!
+ * A JFrame, implementing the {@link ActionListener} interface, that will
+ * display standard {@link Object Objects} that can be clicked and manipulated.
  * 
  * @author Bahram Malaekeh
  */
@@ -45,9 +46,11 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 	private ObjectViewTabbed view;
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * A constructor for the class that passes the given {@link Object} over to
+	 * the private methods which set up the JFrame.
 	 * 
 	 * @param obj
+	 *            The standard {@link Object} that can be edited.
 	 */
 	public StandardObjectEditor(Object obj)
 	{
@@ -58,7 +61,8 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 
 
 	/**
-	 * Creates a JPanel that shows an Icon representing the standard object and two fields with the
+	 * Creates a JPanel that shows an Icon representing the standard object and
+	 * two fields with the
 	 * name and description of the object.
 	 * 
 	 * @param hw
@@ -69,7 +73,8 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 	 *            A JTextField that will contain the name of the object.
 	 * @param desc
 	 *            A JTextArea that holds the description of the object.
-	 * @return Returns the created JPanel with all the information about the hardware object.
+	 * @return Returns the created JPanel with all the information about the
+	 *         hardware object.
 	 */
 	public static JPanel GeneralInfo(Hardware hw, ImageIcon icon,
 			JTextField name, JTextArea desc)
@@ -226,7 +231,8 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -303,8 +309,10 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 
 
 	/**
-	 * This function is used for when hardware information is changed or when a component is added
-	 * or removed from an object. It redraws the views that show all current hardware information.
+	 * This function is used for when hardware information is changed or when a
+	 * component is added
+	 * or removed from an object. It redraws the views that show all current
+	 * hardware information.
 	 */
 	public void HardwarePanelRevalidate()
 	{

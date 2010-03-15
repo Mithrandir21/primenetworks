@@ -31,6 +31,7 @@ import objects.ExternalHardware;
 import objects.Hardware;
 import objects.Infrastructure;
 import objects.Object;
+import objects.infrastructureObjects.Internet;
 
 
 /**
@@ -239,15 +240,15 @@ public class HardwareEditor extends JFrame implements ActionListener
 		{
 			boolean verify = true;
 
-			// If the object is an instance of infrastructure.
+			// If the object is an instance of infrastructure, external hardware or internet class.
 			if ( givenObject instanceof Infrastructure
-					|| givenObject instanceof ExternalHardware )
+					|| givenObject instanceof ExternalHardware
+					|| givenObject instanceof Internet )
 			{
 				verify = false;
 			}
 
-			// If the information is saved a true is returned and the
-			// JFrame is closed.
+			// If the information is saved a true is returned and the JFrame is closed.
 			if ( view.save(verify) )
 			{
 				this.dispose();
@@ -259,7 +260,8 @@ public class HardwareEditor extends JFrame implements ActionListener
 
 			// If the object is an instance of infrastructure.
 			if ( givenObject instanceof Infrastructure
-					|| givenObject instanceof ExternalHardware )
+					|| givenObject instanceof ExternalHardware
+					|| givenObject instanceof Internet )
 			{
 				verify = false;
 			}

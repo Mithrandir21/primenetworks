@@ -186,8 +186,7 @@ public abstract class Object implements Serializable, Cloneable
 	/**
 	 * The constructor of the object superclass. All objects must have both a
 	 * name and description. This constructor also sets the initial components
-	 * that an object starts of with. Like
-	 * {@link objects.hardwareObjects.Motherboard motherboards}.
+	 * that an object starts of with. Like {@link objects.hardwareObjects.Motherboard motherboards}.
 	 * 
 	 * @param Name
 	 *            The name of an object
@@ -248,8 +247,7 @@ public abstract class Object implements Serializable, Cloneable
 	/**
 	 * The constructor of the object superclass. All objects must have both a
 	 * name and description. This constructor also sets the supported user
-	 * interfaces the object supports and set the objects
-	 * {@link objects.hardwareObjects.Motherboard motherboards}. This
+	 * interfaces the object supports and set the objects {@link objects.hardwareObjects.Motherboard motherboards}. This
 	 * constructor is good for the creation of infrastructure which may only
 	 * have a motherboard.
 	 * 
@@ -1348,6 +1346,63 @@ public abstract class Object implements Serializable, Cloneable
 	}
 
 
+
+	/**
+	 * This function concats both the network connections and the device connection into one single connection array and returns
+	 * the new combined connection array.
+	 * 
+	 * @return An {@link Connection} array containing all the connections to and from this object.
+	 */
+	public Connection[] getAllConnections()
+	{
+		int connectionsLenght = 0;
+
+		if ( networkConnections != null )
+		{
+			connectionsLenght = connectionsLenght + networkConnections.length;
+		}
+
+		if ( deviceConnections != null )
+		{
+			connectionsLenght = connectionsLenght + deviceConnections.length;
+		}
+
+
+
+
+		// Creates a connection array the size of both the connection arrays.
+		Connection[] connections = new Connection[connectionsLenght];
+
+
+
+		if ( connectionsLenght > 0 )
+		{
+			if ( networkConnections != null )
+			{
+				System.arraycopy(networkConnections, 0, connections, 0,
+						networkConnections.length);
+			}
+
+			if ( deviceConnections != null )
+			{
+				if ( networkConnections != null )
+				{
+					System
+							.arraycopy(deviceConnections, 0, connections,
+									networkConnections.length,
+									deviceConnections.length);
+				}
+				else
+				{
+					System.arraycopy(deviceConnections, 0, connections, 0,
+							deviceConnections.length);
+				}
+			}
+		}
+
+
+		return connections;
+	}
 
 	/**
 	 * Resets the connected devices counter to 0.

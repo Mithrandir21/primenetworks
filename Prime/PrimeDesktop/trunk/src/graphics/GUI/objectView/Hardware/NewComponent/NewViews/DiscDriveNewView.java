@@ -36,6 +36,7 @@ import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.Discdrive;
 import objects.hardwareObjects.Motherboard;
+import connections.ConnectionUtils;
 
 
 /**
@@ -43,8 +44,7 @@ import objects.hardwareObjects.Motherboard;
  * 
  * @author Bahram Malaekeh
  */
-public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
-		ActionListener
+public class DiscDriveNewView extends JFrame implements HardwareViewInterface, ActionListener
 {
 	private JTextField name = new JTextField(25);
 
@@ -156,8 +156,7 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param disc
@@ -228,7 +227,7 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface,
 
 		// The port of the discdrive
 		labels[2].setLabelFor(port);
-		String[] portString = { "", "IDE", "SATA", "USB" };
+		String[] portString = { "", "IDE", "SATA", ConnectionUtils.USB };
 		port = new JComboBox(portString);
 		port.setMaximumSize(tfSize);
 		port.setPreferredSize(tfSize);

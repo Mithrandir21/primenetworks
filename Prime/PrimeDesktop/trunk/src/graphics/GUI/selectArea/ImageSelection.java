@@ -18,7 +18,8 @@ import widgets.WidgetObject;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This class is where the {@link WidgetObject} is created when an image is
+ * clicked and dragged out of the selection area.
  * 
  * @author Bahram Malaekeh
  */

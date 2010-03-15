@@ -6,14 +6,14 @@ package graphics.GUI.properties.objectTypes;
 
 import javax.swing.JPanel;
 
+import objects.Infrastructure;
 import objects.Object;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class creates a properties JPanel for {@link Infrastructure}.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class InfrastructuresPropertiesView
 {

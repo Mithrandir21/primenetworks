@@ -13,10 +13,12 @@ import javax.swing.ImageIcon;
 
 import logistical.AbstractSystemAction;
 import managment.Settings;
+import widgets.WorkareaCanvas;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This action toggles the 'room manipulation' setting in regards to JPopup
+ * menues for {@link WorkareaCanvas} and click'n'drags on the canvas.
  * 
  * @author Bahram Malaekeh
  */

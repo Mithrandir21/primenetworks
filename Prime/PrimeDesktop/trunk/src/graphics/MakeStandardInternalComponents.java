@@ -12,6 +12,7 @@ import objects.hardwareObjects.HDD;
 import objects.hardwareObjects.InternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
 import objects.hardwareObjects.Ram;
+import connections.ConnectionUtils;
 
 
 /**
@@ -168,7 +169,8 @@ public class MakeStandardInternalComponents
 		return new ExternalNetworksCard(PrimeMain1.texts
 				.getString("standardExtNICName"), PrimeMain1.texts
 				.getString("standardExtNICDescription"), PrimeMain1.texts
-				.getString("standardExtNICProducer"), mac, "Wireless", "USB");
+				.getString("standardExtNICProducer"), mac,
+				ConnectionUtils.Wireless, ConnectionUtils.USB);
 	}
 
 
@@ -214,7 +216,8 @@ public class MakeStandardInternalComponents
 		return new InternalNetworksCard(PrimeMain1.texts
 				.getString("standardIntNICName"), PrimeMain1.texts
 				.getString("standardIntNICDescription"), PrimeMain1.texts
-				.getString("standardIntNICProducer"), mac, "Wired");
+				.getString("standardIntNICProducer"), ConnectionUtils.PCI, mac,
+				ConnectionUtils.Wired);
 	}
 
 

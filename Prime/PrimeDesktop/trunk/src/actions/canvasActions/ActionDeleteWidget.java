@@ -25,8 +25,14 @@ import connections.Connection;
 import connections.WidgetExtendedConnection;
 
 
-public class ActionDeleteWidget extends AbstractSystemAction implements
-		SystemActionInterface
+/**
+ * This action deletes the currently selected {@link WidgetObject} on the
+ * currently open {@link WorkareaCanvas}, including all the connection to and
+ * from the {@link WidgetObject}.
+ * 
+ * @author Bahram Malaekeh
+ */
+public class ActionDeleteWidget extends AbstractSystemAction implements SystemActionInterface
 {
 	// The canvas where the deletion is taking place
 	private WorkareaCanvas canvas = null;
@@ -39,7 +45,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements
 
 
 	/**
-	 * A constructor for the class that takes a string, the action name, and a
+	 * A constructor for the class that takes a string, the action name, and an
 	 * Icon.
 	 * 
 	 * @param text

@@ -17,7 +17,8 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * TODO - Description NEEDED!
+ * This is the class where the network aspects of a given {@link WorkareaCanvas}
+ * is processed and messages are created for the user.
  * 
  * @author Bahram Malaekeh
  */

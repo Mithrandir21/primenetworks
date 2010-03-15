@@ -10,10 +10,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 import objects.Object;
+import connections.Connection;
 
 
 /**
- * CLASSDesc - Description NEEDED!
+ * This class creates a properties JPanel for {@link Connection}.
  * 
  * @author Bahram Malaekeh
  */

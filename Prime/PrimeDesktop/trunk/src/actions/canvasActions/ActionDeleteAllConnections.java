@@ -25,8 +25,14 @@ import connections.Connection;
 import connections.WidgetExtendedConnection;
 
 
-public class ActionDeleteAllConnections extends AbstractSystemAction implements
-		SystemActionInterface
+/**
+ * This action deletes connections to and from the currently selected
+ * {@link WidgetObject} on the currently open {@link WorkareaCanvas}.
+ * This action contains a undo/redo function.
+ * 
+ * @author Bahram Malaekeh
+ */
+public class ActionDeleteAllConnections extends AbstractSystemAction implements SystemActionInterface
 {
 	// The canvas where the deletion is taking place
 	WorkareaCanvas canvas = null;
@@ -38,7 +44,7 @@ public class ActionDeleteAllConnections extends AbstractSystemAction implements
 	Connection[] existingConnections = null;
 
 	/**
-	 * A constructor for the class that takes a string, the action name, and a
+	 * A constructor for the class that takes a string, the action name, and an
 	 * Icon.
 	 * 
 	 * @param text

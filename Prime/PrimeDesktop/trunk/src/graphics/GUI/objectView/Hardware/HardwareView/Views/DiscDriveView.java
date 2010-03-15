@@ -33,6 +33,7 @@ import managment.ComponentsManagment;
 import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.Discdrive;
+import connections.ConnectionUtils;
 
 
 /**
@@ -40,8 +41,7 @@ import objects.hardwareObjects.Discdrive;
  * 
  * @author Bahram Malaekeh
  */
-public class DiscDriveView extends JPanel implements HardwareViewInterface,
-		ActionListener
+public class DiscDriveView extends JPanel implements HardwareViewInterface, ActionListener
 {
 	private JTextField name = new JTextField(25);
 
@@ -139,8 +139,7 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param disc
@@ -211,7 +210,7 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 
 		// The port of the discdrive
 		labels[2].setLabelFor(port);
-		String[] portString = { "", "IDE", "SATA", "USB" };
+		String[] portString = { "", "IDE", "SATA", ConnectionUtils.USB };
 		port = new JComboBox(portString);
 		port.setMaximumSize(tfSize);
 		port.setPreferredSize(tfSize);
@@ -330,7 +329,7 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface,
 			if ( command.equals("Port") )
 			{
 
-				String[] portString = { "", "IDE", "SATA", "USB" };
+				String[] portString = { "", "IDE", "SATA", ConnectionUtils.USB };
 
 				port = GraphicalFunctions.verifyChange(this, mainObj,
 						Discdrive.class, DiscObj.getPort(), port

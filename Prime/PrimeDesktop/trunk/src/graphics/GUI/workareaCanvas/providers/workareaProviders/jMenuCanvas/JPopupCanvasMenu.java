@@ -232,6 +232,11 @@ public class JPopupCanvasMenu
 		menuItem.addActionListener(canvasActListener);
 		submenuInfrastructur.add(menuItem);
 
+		menuItem = new JMenuItem(PrimeMain1.texts.getString("modem"));
+		menuItem.setActionCommand("CreateNewST_Modem_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuInfrastructur.add(menuItem);
+
 		menuItem = new JMenuItem(PrimeMain1.texts.getString("wirelessRouter"));
 		menuItem.setActionCommand("CreateNewST_WirelessRouter_Item");
 		menuItem.addActionListener(canvasActListener);

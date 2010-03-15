@@ -9,7 +9,7 @@ import objects.Hardware;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * An interface class implemented by all the hardware view panels.
  * 
  * @author Bahram Malaekeh
  */

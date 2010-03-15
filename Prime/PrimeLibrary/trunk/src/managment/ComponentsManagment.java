@@ -19,6 +19,7 @@ import objects.hardwareObjects.InternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
 import objects.hardwareObjects.Ram;
 import connections.Connection;
+import connections.ConnectionUtils;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
 
@@ -26,9 +27,8 @@ import exceptions.ObjectNotFoundInArrayException;
 /**
  * Class that contains different functions that add, remove and replace
  * components from a given array. It is used in the different parts of the
- * program, specially {@link objects.clientObjects.Desktop Desktops},
- * {@link objects.clientObjects.Laptop Laptops}, {@link objects.Servers Servers}
- * and {@link objects.infrastructureObjects.Rack Racks}.
+ * program, specially {@link objects.clientObjects.Desktop Desktops}, {@link objects.clientObjects.Laptop Laptops},
+ * {@link objects.Servers Servers} and {@link objects.infrastructureObjects.Rack Racks}.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -427,9 +427,9 @@ public class ComponentsManagment
 
 			processDiscDriveChanges(mb, obj);
 
-			processExternalNICchanges(mb, obj);
-
-			processInternalNICchanges(mb, obj);
+			// processExternalNICchanges(mb, obj);
+			//
+			// processInternalNICchanges(mb, obj);
 
 			processGPUchanges(mb, obj);
 
@@ -437,6 +437,13 @@ public class ComponentsManagment
 
 			processRAMchanges(mb, obj);
 		}
+
+		// Gets the supported connection interfaces after processing
+		String[] supportedConnectionInterfaces = ComponentsManagment
+				.getSupportedInterfaces(obj);
+
+		// Sets the new interface array
+		obj.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 	}
 
 
@@ -583,8 +590,8 @@ public class ComponentsManagment
 						&& mb.getDUCconnectionType() != null )
 				{
 					InternalNetworksCard intNIC = (InternalNetworksCard) intNICs[i];
-					if ( intNIC.getConnectionType() != mb
-							.getDUCconnectionType() )
+
+					if ( intNIC.getPort() != mb.getDUCconnectionType() )
 					{
 						// Removes the actual components.
 						obj.setAllComponents(ComponentsManagment
@@ -601,7 +608,6 @@ public class ComponentsManagment
 			// Does nothing if no objects are found.
 		}
 	}
-
 
 
 	/**
@@ -626,8 +632,8 @@ public class ComponentsManagment
 				if ( mb.getGraphicalPort() != ""
 						&& mb.getGraphicalPort() != null )
 				{
-					InternalNetworksCard gpu = (InternalNetworksCard) GPUs[i];
-					if ( gpu.getConnectionType() != mb.getGraphicalPort() )
+					GraphicsCard gpu = (GraphicsCard) GPUs[i];
+					if ( gpu.getType() != mb.getGraphicalPort() )
 					{
 						// Removes the actual components.
 						obj.setAllComponents(ComponentsManagment
@@ -1379,7 +1385,7 @@ public class ComponentsManagment
 	 */
 	public static String[] getSupportedInterfaces(Object obj)
 	{
-		String[] interfaces = new String[3];
+		String[] interfaces = new String[5];
 
 		// The components of the give object
 		Object[] components = obj.getComponents();
@@ -1387,6 +1393,8 @@ public class ComponentsManagment
 		boolean lan = false;
 		boolean usb = false;
 		boolean wlan = false;
+		boolean coax = false;
+		boolean fiber = false;
 
 
 		// Goes through all the components
@@ -1413,43 +1421,77 @@ public class ComponentsManagment
 			{
 				ExternalNetworksCard extNICtemp = (ExternalNetworksCard) components[i];
 
-				if ( extNICtemp.getConnectionType().equals("Wired") )
+				if ( extNICtemp.getConnectionType().equals(
+						ConnectionUtils.Wired) )
 				{
 					lan = true;
 				}
-				else if ( extNICtemp.getConnectionType().equals("Wireless") )
+				else if ( extNICtemp.getConnectionType().equals(
+						ConnectionUtils.Wireless) )
 				{
 					wlan = true;
+				}
+				else if ( extNICtemp.getConnectionType().equals(
+						ConnectionUtils.Coax) )
+				{
+					coax = true;
+				}
+				else if ( extNICtemp.getConnectionType().equals(
+						ConnectionUtils.Fiber) )
+				{
+					fiber = true;
 				}
 			}
 			else if ( components[i] instanceof InternalNetworksCard )
 			{
 				InternalNetworksCard intNICtemp = (InternalNetworksCard) components[i];
 
-				if ( intNICtemp.getConnectionType().equals("Wired") )
+				if ( intNICtemp.getConnectionType().equals(
+						ConnectionUtils.Wired) )
 				{
 					lan = true;
 				}
-				else if ( intNICtemp.getConnectionType().equals("Wireless") )
+				else if ( intNICtemp.getConnectionType().equals(
+						ConnectionUtils.Wireless) )
 				{
 					wlan = true;
+				}
+				else if ( intNICtemp.getConnectionType().equals(
+						ConnectionUtils.Coax) )
+				{
+					coax = true;
+				}
+				else if ( intNICtemp.getConnectionType().equals(
+						ConnectionUtils.Fiber) )
+				{
+					fiber = true;
 				}
 			}
 		}
 
 		if ( lan )
 		{
-			interfaces[0] = "RJ-45";
+			interfaces[0] = ConnectionUtils.RJ45;
 		}
 
 		if ( usb )
 		{
-			interfaces[1] = "USB";
+			interfaces[1] = ConnectionUtils.USB;
 		}
 
 		if ( wlan )
 		{
-			interfaces[2] = "Wireless";
+			interfaces[2] = ConnectionUtils.Wireless;
+		}
+
+		if ( coax )
+		{
+			interfaces[3] = ConnectionUtils.Coax;
+		}
+
+		if ( fiber )
+		{
+			interfaces[4] = ConnectionUtils.Fiber;
 		}
 
 
@@ -1460,12 +1502,10 @@ public class ComponentsManagment
 
 
 
-
 	/**
 	 * This method does a deep copy of the given {@link Object}. It clones the
-	 * given object, doing a "shallow" clone first. It then goes through the
-	 * {@link Hardware} and {@link Software} arrays inside the given
-	 * {@link Object} and clones each array index individually. It then places
+	 * given object, doing a "shallow" clone first. It then goes through the {@link Hardware} and {@link Software} arrays inside
+	 * the given {@link Object} and clones each array index individually. It then places
 	 * the newly cloned hardware/software objects into a new array and places
 	 * those arrays into the the clone of the given object. The x and y
 	 * locations of the object is also added to by 30 each.

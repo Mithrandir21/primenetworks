@@ -22,10 +22,13 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	// The company that produces the NIC. D-Link, Linksys, Cisco and so on.
 	private String producer;
 
+	// The port that connects with the motherboard
+	private String port;
+
 	// The MAC address of the NIC
 	private String MAC;
 
-	// The connection type of NIC. Wired or wireless
+	// The connection type of NIC. Wired, wireless or Coax.
 	private String connectionType;
 
 	// The speed of the NIC. 10 Mbps, 100 Mbps or 1000 Mbps
@@ -59,13 +62,15 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 * @param NIC_MAC
 	 *            The MAC address of the NIC.
 	 * @param NICconnectionType
-	 *            The connection type of NIC. Wired or wireless.
+	 *            The connection type of NIC. Wired, wireless or Coax.
 	 */
-	public InternalNetworksCard(String Name, String Desc, String NICproducer, String NIC_MAC, String NICconnectionType)
+	public InternalNetworksCard(String Name, String Desc, String NICproducer,
+			String NICport, String NIC_MAC, String NICconnectionType)
 	{
 		super(Name, Desc);
 
 		producer = NICproducer;
+		port = NICport;
 		MAC = NIC_MAC;
 		connectionType = NICconnectionType;
 	}
@@ -82,6 +87,15 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	public String getProducer()
 	{
 		return producer;
+	}
+
+
+	/**
+	 * Get the port that connects the device to a motherboard.
+	 */
+	public String getPort()
+	{
+		return port;
 	}
 
 
@@ -155,6 +169,15 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	public void setProducer(String NICProducer)
 	{
 		producer = NICProducer;
+	}
+
+
+	/**
+	 * Set the port that connects the device to a motherboard.
+	 */
+	public void setPort(String NICport)
+	{
+		port = NICport;
 	}
 
 

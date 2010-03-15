@@ -16,15 +16,14 @@ import javax.swing.JLabel;
 
 
 /**
- * TODO - Description NEEDED!
+ * This extension of the JFrame class will display an 'about' text about the
+ * program.
  * 
  * @author Bahram Malaekeh
  */
 public class AboutFrame extends JFrame
 {
-	/**
-	 * TODO - Description NEEDED!
-	 */
+
 	public AboutFrame()
 	{
 		super(PrimeMain1.texts.getString("aboutTitle"));

@@ -26,13 +26,21 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * An action class that will perform a paste action.
+ * An action class that will perform a paste action that will first check to see
+ * if the copyWidget or the cutWidget in the {@link PrimeMain1} is null. If the
+ * copyWidget variable is not null, it will perform a copy action. If the
+ * copyWidget variable is null and the cutWidget is not null, it will perform a
+ * cut action.
+ * After the action has been performed, where the selected widget has been
+ * either cut or copied to the currently open {@link WorkareaCanvas}, the
+ * copyWidget or cutWidget variable will be set to null, depending on what
+ * action has been performed.
+ * This action has an undo/redo function.
  * 
  * @author Bahram Malaekeh
  * @version 1.0
  */
-public class ActionPaste extends AbstractSystemAction implements
-		SystemActionInterface
+public class ActionPaste extends AbstractSystemAction implements SystemActionInterface
 {
 	// The widgetObject that is to be copied
 	private WidgetObject widgetObject = null;

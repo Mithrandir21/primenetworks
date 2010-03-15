@@ -19,11 +19,13 @@ import javax.swing.JSeparator;
 import javax.swing.JToolBar;
 import javax.swing.border.Border;
 
+import objects.Object;
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
 import objects.clientObjects.ThinClient;
 import objects.infrastructureObjects.Hub;
 import objects.infrastructureObjects.Internet;
+import objects.infrastructureObjects.Modem;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.infrastructureObjects.WirelessRouter;
@@ -41,6 +43,7 @@ import objects.serverObjects.MailServer;
 import objects.serverObjects.PrinterServer;
 import objects.serverObjects.ProxyServer;
 import widgets.WidgetIcon;
+import widgets.WorkareaCanvas;
 
 
 
@@ -49,10 +52,11 @@ import widgets.WidgetIcon;
  */
 
 /**
- * Description NEEDED!
+ * This JPanel extension is where the images of the different {@link Object
+ * Objects} are placed. They can be clicked and dragged into an open {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
- * @version 0.1
+ * @version 1.0
  */
 public class ObjectSelection extends JPanel
 {
@@ -62,9 +66,6 @@ public class ObjectSelection extends JPanel
 
 
 
-	/**
-	 * TODO - Description NEEDED!
-	 */
 	public ObjectSelection()
 	{
 
@@ -182,6 +183,10 @@ public class ObjectSelection extends JPanel
 
 		this.add(new JToolBar.Separator());
 
+		this.add(makeImageIcon(Modem.class));
+
+		this.add(new JToolBar.Separator());
+
 		this.add(makeImageIcon(WirelessRouter.class));
 
 		this.add(new JToolBar.Separator());
@@ -232,7 +237,7 @@ public class ObjectSelection extends JPanel
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * Gets the vertical size of all the components in this JPanel.
 	 * 
 	 * @return
 	 */

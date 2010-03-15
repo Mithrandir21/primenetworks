@@ -96,8 +96,7 @@ public class WorkareaCanvasActions
 	/**
 	 * This function determines what kind of {@link Object} the given object is
 	 * and adds that Object to the given {@link WorkareaCanvas}. There is also
-	 * an ImageIcon created that will serve as the ImageIcon for the
-	 * {@link WidgetObject} that will be created and added to the
+	 * an ImageIcon created that will serve as the ImageIcon for the {@link WidgetObject} that will be created and added to the
 	 * {@link WorkareaCanvas}.
 	 * 
 	 * @param obj
@@ -328,16 +327,14 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * Removes the {@link WidgetExtendedConnection} from the given
-	 * {@link WorkareaCanvas}. It also removes the {@link Connection} within the
-	 * {@link WidgetExtendedConnection} from the {@link Object Objects} that are
+	 * Removes the {@link WidgetExtendedConnection} from the given {@link WorkareaCanvas}. It also removes the {@link Connection}
+	 * within the {@link WidgetExtendedConnection} from the {@link Object Objects} that are
 	 * connected.
 	 * 
 	 * @param canvas
-	 *            The {@link WorkareaCanvas} where the
-	 *            {@link WidgetExtendedConnection} exists.
+	 *            The {@link WorkareaCanvas} where the {@link WidgetExtendedConnection} exists.
 	 * @param widCon
-	 *            The {@link WidgetExtendedConnection} that is to b removed.
+	 *            The {@link WidgetExtendedConnection} that is to be removed.
 	 */
 	public static void removeWidgetConnection(WorkareaCanvas canvas,
 			WidgetExtendedConnection widCon)
@@ -369,6 +366,55 @@ public class WorkareaCanvasActions
 			System.out.println("removeWidgetConnection - breakConnection");
 		}
 	}
+
+
+
+	/**
+	 * Removes the {@link Connection} from the given {@link WorkareaCanvas}. It also removes the {@link Connection} within the
+	 * {@link WidgetExtendedConnection} from the {@link Object Objects} that are
+	 * connected.
+	 * 
+	 * @param canvas
+	 *            The {@link WorkareaCanvas} where the {@link WidgetExtendedConnection} exists.
+	 * @param Con
+	 *            The {@link Connection} that is to be removed.
+	 */
+	public static void removeWidgetConnection(WorkareaCanvas canvas,
+			Connection Con)
+	{
+		// Gets all the connections on a WorkareaCanvas
+		Connection[] canvasCons = canvas.getConnections();
+
+		WidgetExtendedConnection widCon = null;
+
+		try
+		{
+			widCon = ConnectionManagment.findWidgetConnection(canvas, Con
+					.getObject1(), Con.getObject2());
+
+			// Removes the WidgetExtendedConnection from the WorkareaCanvas
+			// scene
+			removeConnectionFromConnectionLayer(canvas, ConnectionManagment
+					.getConnection(canvasCons, widCon.getConnection()
+							.getObject1(), widCon.getConnection().getObject2()));
+
+			// Removes the connection from the array of Connections for each
+			// connected object
+			Connection[] remainingConnection = ConnectionManagment
+					.breakConnection(canvasCons, widCon.getConnection()
+							.getObject1(), widCon.getConnection().getObject2());
+
+			// Sets the connections of the WorkareaCanvas, without the removed
+			// connection
+			canvas.setConnections(remainingConnection);
+		}
+		catch ( ConnectionDoesNotExist e )
+		{
+			System.out.println(e.getMessage());
+			System.out.println("removeWidgetConnection - breakConnection");
+		}
+	}
+
 
 
 
@@ -413,13 +459,12 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * The function removes the given {@link WidgetRoom} from the given
-	 * {@link WorkareaCanvas}, if the WidgetRoom is found to be contained within
+	 * The function removes the given {@link WidgetRoom} from the given {@link WorkareaCanvas}, if the WidgetRoom is found to be
+	 * contained within
 	 * the WorkareaCanvas.
 	 * 
 	 * @param widRoom
-	 *            The {@link WidgetRoom} to be removed from the given
-	 *            {@link WorkareaCanvas}.
+	 *            The {@link WidgetRoom} to be removed from the given {@link WorkareaCanvas}.
 	 */
 	public static void removeRoom(WorkareaCanvas canvas, WidgetRoom widRoom)
 	{
@@ -453,8 +498,8 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * This method calls the revalidateWidgetLocations function in all the given
-	 * {@link WorkareaCanvas WorkareaCanvases}, which will update the locations
+	 * This method calls the revalidateWidgetLocations function in all the given {@link WorkareaCanvas WorkareaCanvases}, which
+	 * will update the locations
 	 * on all the WidgetObjects on their respective scenes.
 	 * 
 	 * @param canvases
@@ -470,8 +515,8 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * This method calls the revalidateWidgetLocations function in the given
-	 * {@link WorkareaCanvas}, which will update the locations on all the
+	 * This method calls the revalidateWidgetLocations function in the given {@link WorkareaCanvas}, which will update the
+	 * locations on all the
 	 * WidgetObjects on the scenes.
 	 * 
 	 * @param canvas

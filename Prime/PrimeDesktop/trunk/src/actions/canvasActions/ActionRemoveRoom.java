@@ -18,12 +18,20 @@ import managment.RoomManagment;
 
 import org.netbeans.api.visual.widget.Widget;
 
+import widgets.WidgetObject;
 import widgets.WidgetRoom;
 import widgets.WorkareaCanvas;
+import connections.Connection;
 
 
-public class ActionRemoveRoom extends AbstractSystemAction implements
-		SystemActionInterface
+/**
+ * This action deletes the given {@link WidgetRoom} on the
+ * currently open {@link WorkareaCanvas}. (It does not delete any
+ * {@link WidgetObject} or {@link Connection} inside the room.
+ * 
+ * @author Bahram Malaekeh
+ */
+public class ActionRemoveRoom extends AbstractSystemAction implements SystemActionInterface
 {
 	// The canvas where the deletion is taking place
 	private WorkareaCanvas canvas = null;
@@ -39,6 +47,8 @@ public class ActionRemoveRoom extends AbstractSystemAction implements
 	 *            The name of the action.
 	 * @param icon
 	 *            The icon representing the action.
+	 * @param widRoom
+	 *            The {@link WidgetRoom} that is to be deleted.
 	 */
 	public ActionRemoveRoom(String text, ImageIcon icon, WidgetRoom widRoom)
 	{
@@ -53,6 +63,8 @@ public class ActionRemoveRoom extends AbstractSystemAction implements
 	 * 
 	 * @param text
 	 *            The name of the action.
+	 * @param widRoom
+	 *            The {@link WidgetRoom} that is to be deleted.
 	 */
 	public ActionRemoveRoom(String text, WidgetRoom widRoom)
 	{

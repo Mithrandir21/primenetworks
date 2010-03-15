@@ -18,6 +18,7 @@ import objects.hardwareObjects.InternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
 import objects.infrastructureObjects.Hub;
 import objects.infrastructureObjects.Internet;
+import objects.infrastructureObjects.Modem;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.infrastructureObjects.WirelessRouter;
@@ -35,6 +36,7 @@ import objects.serverObjects.MailServer;
 import objects.serverObjects.PrinterServer;
 import objects.serverObjects.ProxyServer;
 import widgets.WidgetIcon;
+import connections.ConnectionUtils;
 
 
 /**
@@ -151,6 +153,10 @@ public class CreateObjects
 			{
 				newObject = createDefaultRouter(desc);
 			}
+			else if ( objectType.equals("Modem") )
+			{
+				newObject = createDefaultModem(desc);
+			}
 			else if ( objectType.equals("WirelessRouter") )
 			{
 				newObject = createDefaultWirelessRouter(desc);
@@ -197,6 +203,7 @@ public class CreateObjects
 		PrimeMain1.objectlist.add(createDefaultHub(""));
 		PrimeMain1.objectlist.add(createDefaultSwitch(""));
 		PrimeMain1.objectlist.add(createDefaultRouter(""));
+		PrimeMain1.objectlist.add(createDefaultModem(""));
 		PrimeMain1.objectlist.add(createDefaultWirelessRouter(""));
 		PrimeMain1.objectlist.add(createDefaultInternet(""));
 	}
@@ -285,17 +292,25 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
-		Laptop temp = new Laptop(objectName, objectDesc,
-				createComponentsArray());
+		// Gets the standard components that will be added to the laptop
+		Object[] st_components = createComponentsArray();
+
+		Motherboard mb = (Motherboard) st_components[0];
+		mb.makeOnePCIportTaken(); // For the NIC that will be added further down.
+
+
+		Laptop temp = new Laptop(objectName, objectDesc, st_components);
+
 
 		// Internal Wireless NIC
 		InternalNetworksCard intNIC = PrimeMain1.standard_internal_components
 				.getSt_IntNIC();
-		intNIC.setType("Wireless");
+		intNIC.setType(ConnectionUtils.Wireless);
 
 		// Add the internal NIC to the list of components on the Object(not the
 		// "st_components" array of this class)
 		temp.addComponent(intNIC);
+
 
 		String[] supportedConnectionInterfaces = ComponentsManagment
 				.getSupportedInterfaces(temp);
@@ -783,7 +798,7 @@ public class CreateObjects
 		// Internal NIC
 		// InternalNetworksCard intNIC =
 		// PrimeMain1.standard_internal_components.getSt_IntNIC();
-		// intNIC.setType("Wireless");
+		// intNIC.setType(ConnectionUtils.Wireless);
 
 		// Add the internal NIC to the list of components on the Object(not the
 		// "st_components" array of this class)
@@ -846,7 +861,7 @@ public class CreateObjects
 
 		int outPorts = 16;
 		int inPorts = 16;
-		String[] DuplexSupport = { "Full Duplex" };
+		String[] DuplexSupport = { ConnectionUtils.FullDuplex };
 
 		if ( objectDesc == "" )
 		{
@@ -882,7 +897,7 @@ public class CreateObjects
 
 		int outPorts = 16;
 		int inPorts = 16;
-		String[] DuplexSupport = { "Full Duplex" };
+		String[] DuplexSupport = { ConnectionUtils.FullDuplex };
 
 		if ( objectDesc == "" )
 		{
@@ -917,7 +932,7 @@ public class CreateObjects
 
 		int outPorts = 4;
 		int inPorts = 4;
-		String[] DuplexSupport = { "Full Duplex" };
+		String[] DuplexSupport = { ConnectionUtils.FullDuplex };
 
 		if ( objectDesc == "" )
 		{
@@ -945,6 +960,46 @@ public class CreateObjects
 
 
 
+	private static Modem createDefaultModem(String desc)
+	{
+		String objectName = PrimeMain1.texts.getString("modem");
+		String objectDesc = desc;
+
+
+		if ( objectDesc == "" )
+		{
+			objectDesc = objectName;
+		}
+
+		Motherboard objectMB = PrimeMain1.standard_internal_components
+				.getHw_MB();
+
+		objectMB.setIntegLANcard(true);
+		objectMB.setMaxIntegratedLANs(1);
+		objectMB.setIntegLANPortsAvailable(1);
+
+
+		Modem temp = new Modem(objectName, objectDesc, null, objectMB);
+
+		// Internal Wireless NIC
+		InternalNetworksCard intNIC = PrimeMain1.standard_internal_components
+				.getSt_IntNIC();
+		intNIC.setType(ConnectionUtils.Coax);
+
+		// Add the internal NIC to the list of components on the Object(not the
+		// "st_components" array of this class)
+		temp.addComponent(intNIC);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment
+				.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		return temp;
+	}
+
+
+
 	private static Router createDefaultWirelessRouter(String desc)
 	{
 		String objectName = PrimeMain1.texts.getString("wirelessRouter");
@@ -952,7 +1007,7 @@ public class CreateObjects
 
 		int outPorts = 4;
 		int inPorts = 4;
-		String[] DuplexSupport = { "Full Duplex" };
+		String[] DuplexSupport = { ConnectionUtils.FullDuplex };
 
 		if ( objectDesc == "" )
 		{
@@ -983,7 +1038,7 @@ public class CreateObjects
 		}
 
 		// Places the Wireless string at the end of the array
-		supConIntWithWLan[supConIntWithWLan.length - 1] = "Wireless";
+		supConIntWithWLan[supConIntWithWLan.length - 1] = ConnectionUtils.Wireless;
 
 
 		temp.setSupportedConnectionInterfaces(supConIntWithWLan);
@@ -997,7 +1052,7 @@ public class CreateObjects
 		String objectName = PrimeMain1.texts.getString("internet");
 		String objectDesc = desc;
 
-		String[] SupConInt = { "RJ-45" };
+		String[] SupConInt = { ConnectionUtils.RJ45 };
 
 		if ( objectDesc == "" )
 		{
@@ -1011,8 +1066,26 @@ public class CreateObjects
 		objectMB.setMaxIntegratedLANs(1);
 		objectMB.setIntegLANPortsAvailable(1);
 
-		return new Internet(objectName, objectDesc, objectName, SupConInt,
-				objectMB);
+
+		Internet temp = new Internet(objectName, objectDesc, objectName,
+				SupConInt, objectMB);
+
+		// Internal Wireless NIC
+		InternalNetworksCard intNIC = PrimeMain1.standard_internal_components
+				.getSt_IntNIC();
+		intNIC.setType(ConnectionUtils.Coax);
+
+		// Add the internal NIC to the list of components on the Object(not the
+		// "st_components" array of this class)
+		temp.addComponent(intNIC);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment
+				.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+
+		return temp;
 	}
 
 }

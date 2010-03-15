@@ -60,7 +60,8 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Constructor for the class that sets the layout of this JPanel and calls
+	 * all the private methods that populate this JPanel with buttons.
 	 */
 	public StandardObjectSelection()
 	{
@@ -228,26 +229,6 @@ public class StandardObjectSelection extends JPanel implements ActionListener
 		iconButton.addActionListener(this);
 
 		return iconButton;
-	}
-
-
-
-	/**
-	 * Javadoc-TODO - Description
-	 * 
-	 * @return
-	 */
-	private int getCompSize()
-	{
-		int size = 0;
-
-		for ( int i = 0; i < this.getComponentCount(); i++ )
-		{
-			size += this.getComponent(i).getHeight();
-		}
-
-
-		return size + (this.getComponentCount() * 5);
 	}
 
 

@@ -4,6 +4,7 @@ package logistical;
 import java.util.regex.Pattern;
 
 import managment.NetworkManagment;
+import connections.ConnectionUtils;
 import connections.DeviceConnection;
 import connections.NetworkConnection;
 
@@ -68,19 +69,27 @@ public class checkLogic
 	 */
 	public static Class<?> getConClass(String type)
 	{
-		if ( type.equals("RJ-45") )
+		if ( type.equals(ConnectionUtils.RJ45) )
 		{
 			return NetworkConnection.class;
 		}
-		else if ( type.equals("Wireless") )
+		else if ( type.equals(ConnectionUtils.Wireless) )
 		{
 			return NetworkConnection.class;
 		}
-		else if ( type.equals("USB") )
+		else if ( type.equals(ConnectionUtils.Coax) )
+		{
+			return NetworkConnection.class;
+		}
+		else if ( type.equals(ConnectionUtils.Fiber) )
+		{
+			return NetworkConnection.class;
+		}
+		else if ( type.equals(ConnectionUtils.USB) )
 		{
 			return DeviceConnection.class;
 		}
-		else if ( type.equals("FireWire") )
+		else if ( type.equals(ConnectionUtils.FireWire) )
 		{
 			return DeviceConnection.class;
 		}

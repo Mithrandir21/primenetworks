@@ -37,7 +37,8 @@ import actions.canvasActions.ActionChangeWidgetObjectName;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class will display the properties of any selected {@link WidgetObject}
+ * or {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
  */

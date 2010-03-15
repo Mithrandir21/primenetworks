@@ -13,10 +13,12 @@ import javax.swing.ImageIcon;
 
 import logistical.AbstractSystemAction;
 import managment.DesktopFileManagment;
+import widgets.WorkareaCanvas;
 
 
 /**
- * An action class that will perform a Save All action.
+ * An action class that will perform a Save All action that will save(write to
+ * file) all the currently open {@link WorkareaCanvas WorkareaCanvases}.
  * 
  * @author Bahram Malaekeh
  * @version 1.0

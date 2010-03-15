@@ -10,13 +10,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.undo.UndoManager;
 
 import logistical.AbstractSystemAction;
 import logistical.CanvasUndoManager;
+import widgets.WorkareaCanvas;
 
 
 /**
- * An action class that will perform a Undo action.
+ * An action class that will perform a Undo action, gotten from the
+ * {@link UndoManager} of the current {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
  * @version 1.0

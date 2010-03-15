@@ -39,6 +39,7 @@ import managment.ComponentsManagment;
 import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.ExternalNetworksCard;
+import connections.ConnectionUtils;
 
 
 /**
@@ -46,8 +47,7 @@ import objects.hardwareObjects.ExternalNetworksCard;
  * 
  * @author Bahram Malaekeh
  */
-public class ExternaNICView extends JPanel implements HardwareViewInterface,
-		ActionListener
+public class ExternaNICView extends JPanel implements HardwareViewInterface, ActionListener
 {
 	private JTextField name = new JTextField(25);
 
@@ -149,8 +149,7 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface,
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param NIC
@@ -228,7 +227,9 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface,
 
 		// The connection type supported by the NIC
 		labels[2].setLabelFor(conType);
-		String[] conTypeString = { "Wired", "Wireless" };
+		String[] conTypeString = { ConnectionUtils.Wired,
+				ConnectionUtils.Wireless, ConnectionUtils.Coax,
+				ConnectionUtils.Fiber };
 		conType = new JComboBox(conTypeString);
 		conType.setMaximumSize(tfSize);
 		conType.setPreferredSize(tfSize);
