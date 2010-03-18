@@ -7,7 +7,6 @@ package actions.systemActions;
 import graphics.PrimeMain1;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 
@@ -37,7 +36,6 @@ public class ActionRedo extends AbstractSystemAction
 		super(text, icon);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
 				.getString("actionRedoText"));
-		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_Y));
 	}
 
 
@@ -53,7 +51,6 @@ public class ActionRedo extends AbstractSystemAction
 		super(text);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
 				.getString("actionRedoText"));
-		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_Y));
 	}
 
 

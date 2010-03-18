@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTree;
@@ -23,7 +22,6 @@ import managment.DesktopFileManagment;
  * given JTree.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 {
@@ -90,7 +88,6 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.awt.event.MouseAdapter#mousePressed(java.awt.event.MouseEvent)
 	 */
 	@Override
@@ -106,7 +103,6 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.awt.event.MouseAdapter#mouseReleased(java.awt.event.MouseEvent)
 	 */
 	@Override
@@ -121,7 +117,6 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.awt.event.MouseAdapter#mouseClicked(java.awt.event.MouseEvent)
 	 */
 	@Override
@@ -197,18 +192,18 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 
 		menuPopup.add(newNetwork);
 
-
-		JMenu subMenu = new JMenu("A sub menu");
-
-		JMenuItem subItem1 = new JMenuItem("Action 1");
-
-		JMenuItem subItem2 = new JMenuItem("Action 2");
-
-		subMenu.add(subItem1);
-		subMenu.add(subItem2);
-
-
-		menuPopup.add(subMenu);
+		//
+		// JMenu subMenu = new JMenu("A sub menu");
+		//
+		// JMenuItem subItem1 = new JMenuItem("Action 1");
+		//
+		// JMenuItem subItem2 = new JMenuItem("Action 2");
+		//
+		// subMenu.add(subItem1);
+		// subMenu.add(subItem2);
+		//
+		//
+		// menuPopup.add(subMenu);
 
 
 		return menuPopup;
@@ -218,7 +213,6 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
@@ -236,7 +230,5 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 		{
 			DesktopFileManagment.newWorkareaCanvas();
 		}
-
-
 	}
 }

@@ -97,6 +97,7 @@ public class GenericPrimeToolbar extends JMenuBar
 		tempIcon = ImageLocator.getImageIconObject("Open");
 		ActionOpenfile openFile = new ActionOpenfile(PrimeMain1.texts
 				.getString("openFileLabel"), tempIcon);
+		openFile.setEnabled(false);
 
 		tempIcon = ImageLocator.getImageIconObject("Save");
 		ActionSave save = new ActionSave(PrimeMain1.texts
@@ -169,6 +170,7 @@ public class GenericPrimeToolbar extends JMenuBar
 		tempIcon = ImageLocator.getImageIconObject("Redo");
 		ActionRedo redo = new ActionRedo(PrimeMain1.texts
 				.getString("redoLabel"), tempIcon);
+
 
 
 		stepsToolBar.add(undo);

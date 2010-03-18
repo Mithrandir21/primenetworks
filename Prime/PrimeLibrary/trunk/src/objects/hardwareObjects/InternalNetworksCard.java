@@ -4,6 +4,7 @@ package objects.hardwareObjects;
 import java.io.Serializable;
 
 import objects.Hardware;
+import objects.Object;
 
 
 /**

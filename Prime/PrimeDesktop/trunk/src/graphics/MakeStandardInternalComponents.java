@@ -217,7 +217,7 @@ public class MakeStandardInternalComponents
 				.getString("standardIntNICName"), PrimeMain1.texts
 				.getString("standardIntNICDescription"), PrimeMain1.texts
 				.getString("standardIntNICProducer"), ConnectionUtils.PCI, mac,
-				ConnectionUtils.Wired);
+				ConnectionUtils.RJ45);
 	}
 
 

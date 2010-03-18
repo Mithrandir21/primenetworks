@@ -22,8 +22,8 @@ public class PrimeJTreeActions
 {
 
 	/**
-	 * This method attempts to open the file inside the given
-	 * {@link FileTreeNode}. This will should contain a {@link WorkareaCanvas}.
+	 * This method attempts to open the file inside the given {@link FileTreeNode}. This will should contain a
+	 * {@link WorkareaCanvas}.
 	 * If the {@link WorkareaCanvas} is already opened, the method will do
 	 * nothing.
 	 * 
@@ -48,13 +48,16 @@ public class PrimeJTreeActions
 			{
 				DesktopFileManagment.openWorkareaCanvas(file.getFile());
 			}
+			else
+			{
+				PrimeMain1.getWorkarea().bringCanvasToFront(canvasName);
+			}
 		}
 	}
 
 
 	/**
-	 * The method calls on the DeleteWorkareaCanvas function in
-	 * {@link DesktopFileManagment}.
+	 * The method calls on the DeleteWorkareaCanvas function in {@link DesktopFileManagment}.
 	 * 
 	 * @param file
 	 */

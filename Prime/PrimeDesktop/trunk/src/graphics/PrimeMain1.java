@@ -386,10 +386,8 @@ public class PrimeMain1 extends JFrame
 
 		if ( Settings.showTOFD )
 		{
-			TipOfDay totd = new TipOfDay();
+			new TipOfDay();
 		}
-
-		// FileManagment.newWorkareaCanvas("New Network");
 	}
 
 	/**
@@ -494,6 +492,7 @@ public class PrimeMain1 extends JFrame
 	}
 
 
+
 	// updateObjectArea
 
 
@@ -504,7 +503,6 @@ public class PrimeMain1 extends JFrame
 	public static void updateSelectionArea()
 	{
 		tabSelection.getPrimeTree().createTree();
-		tabSelection.updateObjectArea();
 		tabSelection.validate();
 		tabSelection.repaint();
 	}
@@ -524,16 +522,14 @@ public class PrimeMain1 extends JFrame
 		PropertiesArea temp = (PropertiesArea) propertiesPanel.getComponent(0);
 
 		// If the method is to update the properties area regardless of whether
-		// or not the currently showing object
-		// is the same WorkareaCanvas
+		// or not the currently showing object is the same WorkareaCanvas
 		if ( override )
 		{
 			temp.newObjectSelectedPropertiesTab(currentCanvas);
 		}
 		else
 		{
-			// If the WorkareaCanvas shown in the properties area is not the
-			// same as the current WorkareaCanvas
+			// If the WorkareaCanvas shown in the properties area is not the same as the current WorkareaCanvas
 			if ( !(temp.isGivenCanvasCurrent(currentCanvas)) )
 			{
 				temp.newObjectSelectedPropertiesTab(currentCanvas);
@@ -556,16 +552,14 @@ public class PrimeMain1 extends JFrame
 		PropertiesArea temp = (PropertiesArea) propertiesPanel.getComponent(0);
 
 		// If the method is to update the properties area regardless of whether
-		// or not the currently showing object
-		// is the same Object
+		// or not the currently showing object is the same Object
 		if ( override )
 		{
 			temp.newObjectSelectedPropertiesTab(obj);
 		}
 		else
 		{
-			// If the WorkareaCanvas shown in the properties area is not the
-			// same as the current WorkareaCanvas
+			// If the WorkareaCanvas shown in the properties area is not the same as the current WorkareaCanvas
 			if ( !(temp.isGivenObjectCurrent(obj)) )
 			{
 				temp.newObjectSelectedPropertiesTab(obj);
@@ -577,7 +571,7 @@ public class PrimeMain1 extends JFrame
 
 
 	/**
-	 * Thi method runs all update function. These include functions to update
+	 * This method runs all update function. These include functions to update
 	 * the canvas, properties panel and messages panel.
 	 */
 	public static void updateCanvasAndObjectInfo()

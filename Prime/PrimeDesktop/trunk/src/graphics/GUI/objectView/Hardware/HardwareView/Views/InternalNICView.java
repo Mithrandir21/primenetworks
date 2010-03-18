@@ -232,7 +232,7 @@ public class InternalNICView extends JPanel implements HardwareViewInterface, Ac
 
 		// The connection type supported by the NIC
 		labels[2].setLabelFor(conType);
-		String[] conTypeString = { ConnectionUtils.Wired,
+		String[] conTypeString = { ConnectionUtils.RJ45,
 				ConnectionUtils.Wireless, ConnectionUtils.Coax,
 				ConnectionUtils.Fiber };
 		conType = new JComboBox(conTypeString);

@@ -7,7 +7,6 @@ package actions.systemActions;
 import graphics.PrimeMain1;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 
@@ -39,7 +38,6 @@ public class ActionSaveAll extends AbstractSystemAction
 		super(text, icon);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
 				.getString("actionSaveAllOpenNetworksText"));
-		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_A));
 	}
 
 
@@ -56,7 +54,6 @@ public class ActionSaveAll extends AbstractSystemAction
 		super(text);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
 				.getString("actionSaveAllOpenNetworksText"));
-		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_A));
 	}
 
 

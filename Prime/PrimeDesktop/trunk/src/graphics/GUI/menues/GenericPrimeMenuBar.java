@@ -7,7 +7,7 @@ package graphics.GUI.menues;
 import graphics.ImageLocator;
 import graphics.PrimeMain1;
 
-import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
@@ -23,8 +23,11 @@ import actions.systemActions.ActionExitSystem;
 import actions.systemActions.ActionNew;
 import actions.systemActions.ActionOpenVisualEdit;
 import actions.systemActions.ActionOpenfile;
+import actions.systemActions.ActionRedo;
 import actions.systemActions.ActionSave;
 import actions.systemActions.ActionSaveAll;
+import actions.systemActions.ActionUndo;
+import actions.systemActions.ActionUpdate;
 import actions.toolbar.ActionAllMessageView;
 import actions.toolbar.ActionConnectionMessage;
 import actions.toolbar.ActionHardwareMessage;
@@ -89,21 +92,30 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 		JMenuItem newFile = new JMenuItem(new ActionNew(PrimeMain1.texts
 				.getString("newLabel")));
+		newFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
+				KeyEvent.CTRL_MASK));
 		newFile.setIcon(null);
 		file.add(newFile);
 
 		JMenuItem openFile = new JMenuItem(new ActionOpenfile(PrimeMain1.texts
 				.getString("openFileLabel")));
+		openFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
+				KeyEvent.CTRL_MASK));
 		openFile.setIcon(null);
+		openFile.setEnabled(false);
 		file.add(openFile);
 
 		JMenuItem saveFile = new JMenuItem(new ActionSave(PrimeMain1.texts
 				.getString("saveLabel")));
+		saveFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
+				KeyEvent.CTRL_MASK));
 		saveFile.setIcon(null);
 		file.add(saveFile);
 
 		JMenuItem saveAll = new JMenuItem(new ActionSaveAll(PrimeMain1.texts
 				.getString("saveAllLabel")));
+		saveAll.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,
+				KeyEvent.CTRL_MASK));
 		saveAll.setIcon(null);
 		file.add(saveAll);
 
@@ -112,6 +124,9 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 		JMenuItem exit = new JMenuItem(new ActionExitSystem(PrimeMain1.texts
 				.getString("exitLabel")));
+		exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,
+				KeyEvent.CTRL_MASK));
+		exit.setIcon(null);
 		file.add(exit);
 
 
@@ -129,26 +144,41 @@ public class GenericPrimeMenuBar extends JMenuBar
 		edit.setMnemonic('E');
 
 		// Adds different items to the "Edit" menu
-		JMenuItem undo = new JMenuItem(new ActionSaveAll(PrimeMain1.texts
-				.getString("saveAllLabel")));
+		JMenuItem undo = new JMenuItem(new ActionUndo(PrimeMain1.texts
+				.getString("undoLabel")));
+		undo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z,
+				KeyEvent.CTRL_MASK));
 		undo.setIcon(null);
 		edit.add(undo);
+
+		JMenuItem redo = new JMenuItem(new ActionRedo(PrimeMain1.texts
+				.getString("redoLabel")));
+		redo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y,
+				KeyEvent.CTRL_MASK));
+		redo.setIcon(null);
+		edit.add(redo);
 
 		// Adds a separator to the menu
 		edit.addSeparator();
 
 		JMenuItem cut = new JMenuItem(new ActionCut(PrimeMain1.texts
 				.getString("cutLabel")));
+		cut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,
+				KeyEvent.CTRL_MASK));
 		cut.setIcon(null);
 		edit.add(cut);
 
 		JMenuItem copy = new JMenuItem(new ActionCopy(PrimeMain1.texts
 				.getString("copyLabel")));
+		copy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,
+				KeyEvent.CTRL_MASK));
 		copy.setIcon(null);
 		edit.add(copy);
 
 		JMenuItem paste = new JMenuItem(new ActionPaste(PrimeMain1.texts
 				.getString("pasteLabel")));
+		paste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,
+				KeyEvent.CTRL_MASK));
 		paste.setIcon(null);
 		edit.add(paste);
 
@@ -181,8 +211,6 @@ public class GenericPrimeMenuBar extends JMenuBar
 		// Adds a separator to the menu
 		submenu.addSeparator();
 
-
-
 		JMenuItem netMsg = new JMenuItem(new ActionNetworkMessage(
 				PrimeMain1.texts.getString("messagesSupermenuNetworkMessages")));
 		netMsg.setIcon(null);
@@ -210,7 +238,22 @@ public class GenericPrimeMenuBar extends JMenuBar
 		submenu.add(hardMsg);
 
 
+
+		JMenuItem update = new JMenuItem(new ActionUpdate(PrimeMain1.texts
+				.getString("actionUpdateNetworkLabel")));
+		update.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U,
+				KeyEvent.CTRL_MASK));
+		update.setIcon(null);
+		submenu.add(update);
+
+
+
 		view.add(submenu);
+
+		// Adds a separator to the menu
+		view.addSeparator();
+
+		view.add(update);
 
 
 
@@ -268,19 +311,6 @@ public class GenericPrimeMenuBar extends JMenuBar
 		this.add(help);
 	}
 
-
-	/**
-	 * This function sets the keystroke association with the spesific action.
-	 * Eksampel: "Undo" with "Ctrl + Z" It sets the keystroke to the default
-	 * keystroke chosen, which normally is the "Alt" key.
-	 */
-	private JMenuItem setKeystroke(JMenuItem item, char key)
-	{
-		item.setAccelerator(KeyStroke.getKeyStroke(key, Toolkit
-				.getDefaultToolkit().getMenuShortcutKeyMask(), false));
-
-		return item;
-	}
 
 
 	/** Returns an ImageIcon, or null if the path was invalid. */

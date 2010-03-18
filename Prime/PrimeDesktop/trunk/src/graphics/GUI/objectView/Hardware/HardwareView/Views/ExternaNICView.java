@@ -227,7 +227,7 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 
 		// The connection type supported by the NIC
 		labels[2].setLabelFor(conType);
-		String[] conTypeString = { ConnectionUtils.Wired,
+		String[] conTypeString = { ConnectionUtils.RJ45,
 				ConnectionUtils.Wireless, ConnectionUtils.Coax,
 				ConnectionUtils.Fiber };
 		conType = new JComboBox(conTypeString);
@@ -366,7 +366,7 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 		// FIXME - MAC TEST
 		extNIC.setMAC(MAC.getText());
 
-		extNIC.setType(conType.getSelectedItem().toString());
+		extNIC.setConnectionType(conType.getSelectedItem().toString());
 
 
 		if ( transferSpeed.getSelectedItem().toString() != "" )

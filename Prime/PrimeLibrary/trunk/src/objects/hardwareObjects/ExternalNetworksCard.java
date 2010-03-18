@@ -4,6 +4,7 @@ package objects.hardwareObjects;
 import java.io.Serializable;
 
 import objects.Hardware;
+import objects.Object;
 
 
 /**
@@ -178,7 +179,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	/**
 	 * Set method for the type of the NIC.(Wired or Wireless)
 	 */
-	public void setType(String type)
+	public void setConnectionType(String type)
 	{
 		connectionType = type;
 	}
@@ -191,15 +192,6 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	public void setMAC(String NIC_MAC)
 	{
 		MAC = NIC_MAC;
-	}
-
-
-	/**
-	 * Set method for connection type of the NIC.
-	 */
-	public void setSubtype(String NICconnectionType)
-	{
-		connectionType = NICconnectionType;
 	}
 
 

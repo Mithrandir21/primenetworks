@@ -4,6 +4,7 @@
 package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
+import exceptions.ConnectionDoesNotExist;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
 import graphics.GraphicalFunctions;
@@ -33,6 +34,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import logistical.cleanup;
 import managment.ArrayManagment;
 import managment.CanvasManagment;
 import managment.ComponentsManagment;
@@ -48,9 +50,11 @@ import objects.hardwareObjects.InternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
 import objects.hardwareObjects.Ram;
 import widgetManipulation.Actions.WorkareaCanvasActions;
+import widgets.WorkareaCanvas;
 import actions.canvasActions.ActionDeleteAllConnections;
 import connections.Connection;
 import connections.ConnectionUtils;
+import connections.WidgetExtendedConnection;
 
 
 /**
@@ -891,10 +895,6 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 		if ( USBports.getSelectedItem().toString() != "" )
 		{
 			USBsetup();
-
-			// mbObj.setMaxUSBs(Integer.parseInt(USBports.getSelectedItem()
-			// .toString()));
-			// // FIXME - MotherboardView MaxUSB
 		}
 
 		if ( DUCports.getSelectedItem().toString() != "" )
@@ -1031,48 +1031,37 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 				// If the answer is "No"
 				if ( n == 0 )
 				{
-					// We have to remove all connection between this object and
-					// other objects on the canvas
-					// WorkareaCanvasActions.removeAllConnectionsToFromObject(
-					// PrimeMain1.currentCanvas, mainObj);
+					// We have to remove all connection between this object and other objects on the canvas
+					// WorkareaCanvasActions.removeAllConnectionsToFromObject( PrimeMain1.currentCanvas, mainObj);
 					ActionDeleteAllConnections action = new ActionDeleteAllConnections(
 							PrimeMain1.texts
 									.getString("actionDeleteAllConnectionName"));
 					action.performAction(false);
 
 
-					// Since the motherboard is where most of the connections
-					// are
-					// placed we first have to remove all connections to the
-					// devices.
+					// Since the motherboard is where most of the connections are placed we first have to remove all connections
+					// to the devices.
 					mainObj.removeAllConnections();
 
 
-					// Then we have to remove all the components that a object
-					// contains.
+					// Then we have to remove all the components that a object contains.
 					mainObj.removeAllComponents();
 
 
 					// Resets all the ports so that all ports are available.
 					mbObj.resetAllComponents();
 
-					// Now that the object has no connections to other
-					// components
-					// and device
-					// we can add the motherboard object.
+					// Now that the object has no connections to other components and device we can add the motherboard object.
 					mainObj.addComponent(mbObj);
 
 
-					// Updates the views of the object to correctly show the
-					// current info.
+					// Updates the views of the object to correctly show the current info.
 					ObjectView view = PrimeMain1.getObjectView(mainObj);
 					if ( view != null )
 					{
 						view.updateViewInfo();
 					}
-					// If no view is returned, then the standard object view is
-					// open
-					// and that should be updated.
+					// If no view is returned, then the standard object view is open and that should be updated.
 					else if ( PrimeMain1.stdObjView != null )
 					{
 						PrimeMain1.stdObjView.getSplitView()
@@ -1510,7 +1499,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 				// The number of USB ports left after External NICs are added.
 				int leftUSBportsAfterExternalNICs = newMaxUSBports
-						- (externalNICs.length - 1);
+						- externalNICs.length;
 
 				if ( USBconnections != null )
 				{
@@ -1537,7 +1526,6 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 				mbObj.setMaxUSBs(Integer.parseInt(USBports.getSelectedItem()
 						.toString()));
 				mbObj.setUSBPortsAvailable(mbObj.getMaxUSBs() - takenPorts);
-
 			}
 			// There aren't enough USB port for all the externalNICs so every USB connection will be removed and only
 			// externalNICs will be added until the USB ports run out.
@@ -1621,21 +1609,158 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 	/**
 	 * Processes the LAN settings with the connected objects.
+	 * <i>The process first finds all {@link Object Objects} connected to the main {@link Object}. Then it finds the network
+	 * cards, internal and external. It then removes the objects set as connected to the different network cards from the array of
+	 * removable Objects, because in this function only the {@link Motherboard Motherboards} lan ports are are being changed.
+	 * When only {@link Object Objects} connected to the {@link Motherboard} are left, they will be removed depending on the
+	 * difference between the number of lan and the number of connected Objects.
 	 */
 	private void LANsetup()
 	{
+		if ( mbObj.getMaxIntegLANs() > Integer.parseInt(LANports
+				.getSelectedItem().toString()) )
+		{
+			int newMaxLANports = Integer.parseInt(LANports.getSelectedItem()
+					.toString());
 
-		// The currently available ports, before Max change
-		int avail = mbObj.getIntegLANPortsAvailable();
+			// The connections array that will hold all the connections that are with RJ45
+			Object[] LANconnectedObjects = ConnectionManagment
+					.objectsConnectedToBy(mainObj, ConnectionUtils.RJ45);
 
-		int newAvail = avail
-				+ (Integer.parseInt(LANports.getSelectedItem().toString()) - mbObj
-						.getMaxIntegLANs());
+			try
+			{
+				// Gets all the InternalNetworksCard from the objects components array.
+				Object[] internalNICs = internalNICs = ArrayManagment
+						.getSpesificComponents(InternalNetworksCard.class,
+								mainObj.getComponents(), mainObj
+										.getComponents().length);
+
+				for ( int i = 0; i < internalNICs.length; i++ )
+				{
+					InternalNetworksCard nic = (InternalNetworksCard) internalNICs[i];
+
+					// If the NICs connection object is not null and connection type is RJ-45
+					if ( nic.getConnectedObject() != null
+							&& nic.getConnectionType().equals(
+									ConnectionUtils.RJ45) )
+					{
+						// Goes through all the RJ45 connected objects
+						for ( int j = 0; j < LANconnectedObjects.length; j++ )
+						{
+							// If the index is not null
+							if ( LANconnectedObjects[j] != null )
+							{
+								// If the connected object serial is the same as the one connected to the NIC
+								if ( LANconnectedObjects[j].getObjectSerial() == nic
+										.getConnectedObject().getObjectSerial() )
+								{
+									// The object connected to the NIC is removed from the removable RJ45 connected objcets
+									LANconnectedObjects[j] = null;
+								}
+							}
+						}
+					}
+				}
 
 
+			}
+			catch ( ObjectNotFoundException e )
+			{
+				// No InternalNetworksCard found
+			}
+
+			try
+			{
+				// Gets all the InternalNetworksCard from the objects components array.
+				Object[] externalNICs = externalNICs = ArrayManagment
+						.getSpesificComponents(ExternalNetworksCard.class,
+								mainObj.getComponents(), mainObj
+										.getComponents().length);
+
+
+				for ( int i = 0; i < externalNICs.length; i++ )
+				{
+					ExternalNetworksCard nic = (ExternalNetworksCard) externalNICs[i];
+
+					// If the NICs connection object is not null and connection type is RJ-45
+					if ( nic.getConnectedObject() != null
+							&& nic.getConnectionType().equals(
+									ConnectionUtils.RJ45) )
+					{
+						// Goes through all the RJ45 connected objects
+						for ( int j = 0; j < LANconnectedObjects.length; j++ )
+						{
+							// If the index is not null
+							if ( LANconnectedObjects[j] != null )
+							{
+								// If the connected object serial is the same as the one connected to the NIC
+								if ( LANconnectedObjects[j].getObjectSerial() == nic
+										.getConnectedObject().getObjectSerial() )
+								{
+									// The object connected to the NIC is removed from the removable RJ45 connected objcets
+									LANconnectedObjects[j] = null;
+								}
+							}
+						}
+					}
+				}
+			}
+			catch ( ObjectNotFoundException e )
+			{
+				// No ExternalNetworksCard found
+			}
+
+
+			// Removes the null pointers and shortens the array
+			LANconnectedObjects = cleanup.cleanObjectArray(LANconnectedObjects);
+
+
+			// Now LANconnectedObjects contains only objects connected to the motherboard
+
+			// The number of LAN ports left after connected objects are added.
+			int leftLANports = newMaxLANports - LANconnectedObjects.length;
+
+
+			if ( LANconnectedObjects != null )
+			{
+				// If the number of available RJ-45 ports is less then the number of RJ-45 devices
+				if ( leftLANports < 0 )
+				{
+					for ( int i = LANconnectedObjects.length + leftLANports; i < LANconnectedObjects.length; i++ )
+					{
+						// Gets the WorkareaCanvas the two objects are on
+						WorkareaCanvas canvas = CanvasManagment.findCanvas(
+								mainObj, PrimeMain1.canvases);
+
+						// Gets the WidgetExtendedConnection between the two objects
+						WidgetExtendedConnection widCon = null;
+						try
+						{
+							widCon = ConnectionManagment.findWidgetConnection(
+									canvas, mainObj, LANconnectedObjects[i]);
+						}
+						catch ( ConnectionDoesNotExist e )
+						{
+							e.printStackTrace();
+						}
+
+						if ( widCon != null )
+						{
+							// Removes the connection
+							WorkareaCanvasActions.removeWidgetConnection(
+									canvas, widCon);
+						}
+					}
+				}
+			}
+		}
+		int takenPorts = mbObj.getMaxIntegLANs()
+				- mbObj.getIntegLANPortsAvailable();
+
+		// Sets the max LAN ports
 		mbObj.setMaxIntegratedLANs(Integer.parseInt(LANports.getSelectedItem()
 				.toString()));
-
-		mbObj.setIntegLANPortsAvailable(newAvail);
+		mbObj.setIntegLANPortsAvailable(mbObj.getMaxIntegLANs() - takenPorts);
 	}
+
 }

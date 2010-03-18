@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.KeyStroke;
 
 import logistical.AbstractSystemAction;
 import managment.DesktopFileManagment;
@@ -17,8 +18,7 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * An action class that will perform a Save action that will save the current
- * {@link WorkareaCanvas}.
+ * An action class that will perform a Save action that will save the current {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
  * @version 1.0
@@ -39,7 +39,6 @@ public class ActionSave extends AbstractSystemAction
 		super(text, icon);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
 				.getString("actionSaveCurrentNetworkText"));
-		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_S));
 	}
 
 
@@ -55,7 +54,6 @@ public class ActionSave extends AbstractSystemAction
 		super(text);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
 				.getString("actionSaveCurrentNetworkText"));
-		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_S));
 	}
 
 

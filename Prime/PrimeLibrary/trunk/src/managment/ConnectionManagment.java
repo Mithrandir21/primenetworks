@@ -796,7 +796,7 @@ public class ConnectionManagment
 							// If the connection type of the network card is
 							// wired
 							if ( temp.getConnectionType().equals(
-									ConnectionUtils.Wired) )
+									ConnectionUtils.RJ45) )
 							{
 								// Sets the found InternalNetworksCard with no
 								// objects connected to it
@@ -812,6 +812,13 @@ public class ConnectionManagment
 				// No InternalNetworksCard was found, search for
 				// ExternalNetworksCard
 				catch ( ObjectNotFoundException internalException )
+				{
+					// WILL BE CHECKED FURTHER DOWN
+				}
+
+
+				// No InternalNIC was found, either with RJ-45 or at all
+				if ( ObjectAnic == null )
 				{
 					try
 					{
@@ -831,7 +838,7 @@ public class ConnectionManagment
 								// If the connection type of the network card is
 								// wired
 								if ( temp.getConnectionType().equals(
-										ConnectionUtils.Wired) )
+										ConnectionUtils.RJ45) )
 								{
 									// Sets the found ExternalNetworksCard with
 									// no objects connected to it
@@ -893,7 +900,7 @@ public class ConnectionManagment
 							// If the connection type of the network card is
 							// wired
 							if ( temp.getConnectionType().equals(
-									ConnectionUtils.Wired) )
+									ConnectionUtils.RJ45) )
 							{
 								// Sets the found InternalNetworksCard with no
 								// objects connected to it
@@ -910,6 +917,13 @@ public class ConnectionManagment
 				// ExternalNetworksCard
 				catch ( ObjectNotFoundException internalException )
 				{
+
+				}
+
+
+				// No InternalNIC was found, either with RJ-45 or at all
+				if ( ObjectBnic == null )
+				{
 					try
 					{
 						// Gets all the ExternalNICs
@@ -921,8 +935,6 @@ public class ConnectionManagment
 						{
 							ExternalNetworksCard temp = (ExternalNetworksCard) extNICs[i];
 
-
-
 							// If there is no Object connected to this
 							// ExternalNICs
 							if ( temp.getConnectedObject() == null )
@@ -930,7 +942,7 @@ public class ConnectionManagment
 								// If the connection type of the network card is
 								// wired
 								if ( temp.getConnectionType().equals(
-										ConnectionUtils.Wired) )
+										ConnectionUtils.RJ45) )
 								{
 									// Sets the found ExternalNetworksCard with
 									// no objects connected to it
@@ -1141,6 +1153,13 @@ public class ConnectionManagment
 				// ExternalNetworksCard
 				catch ( ObjectNotFoundException internalException )
 				{
+
+				}
+
+
+				// No InternalNIC was found, either with Wireless or at all
+				if ( ObjectAnic == null )
+				{
 					try
 					{
 						// Gets all the ExternalNICs
@@ -1223,6 +1242,13 @@ public class ConnectionManagment
 				// No InternalNetworksCard was found, search for
 				// ExternalNetworksCard
 				catch ( ObjectNotFoundException internalException )
+				{
+
+				}
+
+
+				// No InternalNIC was found, either with Wireless or at all
+				if ( ObjectBnic == null )
 				{
 					try
 					{
@@ -1880,6 +1906,9 @@ public class ConnectionManagment
 			}
 		}
 
+		// Creates an array with the length of the cons array
+		foundCons = new Connection[cons.length];
+
 
 		// Matching the connection types to the given conType.
 		for ( int i = 0; i < cons.length; i++ )
@@ -1894,9 +1923,9 @@ public class ConnectionManagment
 		}
 
 
-		// Removes all the empty indexes from the array.
 		if ( foundCons != null )
 		{
+			// Removes all the empty indexes from the array.
 			foundCons = cleanup.cleanObjectArray(foundCons);
 		}
 
@@ -1906,7 +1935,105 @@ public class ConnectionManagment
 
 
 
+	/**
+	 * Finds and returns all the connected objects from the given object
+	 * with the given connection type. Returns an array of objects, if any are found.
+	 * 
+	 * @param connectedTo
+	 *            The object that will be examined for connections to other
+	 *            objects.
+	 * @param conType
+	 *            The type of connection between the two objects.
+	 * @return Returns all the objects connected with the given connection type
+	 */
+	public static Object[] objectsConnectedToBy(Object connectedTo,
+			String conType)
+	{
+		// The array that will hold all the matching objects.
+		Object[] foundObjects = null;
+
+		Connection[] cons = null;
+
+		int index = 0;
+
+
+		Connection[] netCons = connectedTo.getNetworkConnections();
+
+		Connection[] devCons = connectedTo.getDeviceConnections();
+
+
+		// Finds the number of overall connections.
+		if ( netCons != null )
+		{
+			index = index + netCons.length;
+		}
+
+		if ( devCons != null )
+		{
+			index = index + devCons.length;
+		}
+
+
+		// The array that will hold all of the objects connections.
+		cons = new Connection[index];
+
+
+		if ( netCons != null )
+		{
+			// Adding the networkconnections to the array.
+			System.arraycopy(netCons, 0, cons, 0, netCons.length);
+		}
 
 
 
+		if ( devCons != null )
+		{
+			if ( netCons != null )
+			{
+				// Adding the deviceconnections to the array.
+				System.arraycopy(devCons, 0, cons, netCons.length,
+						devCons.length);
+			}
+			else
+			{
+				// Adding the deviceconnections to the array.
+				System.arraycopy(devCons, 0, cons, 0, devCons.length);
+			}
+		}
+
+		// Creates an array with the length of the cons array
+		foundObjects = new Object[cons.length];
+
+
+		// Matching the connection types to the given conType.
+		for ( int i = 0; i < cons.length; i++ )
+		{
+			if ( cons[i] != null )
+			{
+				if ( cons[i].getConnectionType().equals(conType) )
+				{
+					// If the first object is the given Object
+					if ( cons[i].getObject1().equals(connectedTo) )
+					{
+						foundObjects[i] = cons[i].getObject2();
+					}
+					// If the second object is the given Object
+					else
+					{
+						foundObjects[i] = cons[i].getObject1();
+					}
+				}
+			}
+		}
+
+
+		if ( foundObjects != null )
+		{
+			// Removes all the empty indexes from the array.
+			foundObjects = cleanup.cleanObjectArray(foundObjects);
+		}
+
+
+		return foundObjects;
+	}
 }

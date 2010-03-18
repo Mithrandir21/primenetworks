@@ -41,8 +41,8 @@ import connections.WidgetExtendedConnection;
 
 /**
  * This class provides static functions that deal with the actual saving to
- * file, reading from file and so on. {@link WorkareaCanvas WorkareaCanvases}
- * are saved and loaded here. There are also testing and control functions.
+ * file, reading from file and so on. {@link WorkareaCanvas WorkareaCanvases} are saved and loaded here. There are also testing
+ * and control functions.
  * 
  * @author Bahram Malaekeh
  */
@@ -581,69 +581,74 @@ public class DesktopFileManagment
 		// No open canvas was found
 		if ( canvas == null )
 		{
-			// Attempt to delete it
-			boolean success = file.delete();
+			int answer = JOptionPane.showConfirmDialog(null, PrimeMain1.texts
+					.getString("actionDeleteWorkareaCanvasMsg")
+					+ canvasName + "?", PrimeMain1.texts.getString("confirm"),
+					JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
-			if ( !success )
+			if ( answer == 0 )
 			{
-				JOptionPane.showMessageDialog(null, "The file\n"
-						+ file.getName() + "\n"
-						+ "was NOT successfully deleted.", "Error",
-						JOptionPane.ERROR_MESSAGE);
+				// Attempt to delete it
+				boolean success = file.delete();
 
-				return false;
+				if ( !success )
+				{
+					JOptionPane.showMessageDialog(null, "The file\n"
+							+ file.getName() + "\n"
+							+ "was NOT successfully deleted.", "Error",
+							JOptionPane.ERROR_MESSAGE);
+
+					return false;
+				}
+				else
+				{
+					// Reloads
+					PrimeMain1.updateSelectionArea();
+
+					return true;
+				}
 			}
-			else
-			{
-				// Reloads
-				PrimeMain1.updateSelectionArea();
-
-				JOptionPane.showMessageDialog(null, "The file\n"
-						+ file.getName() + "\n" + "was successfully deleted.",
-						"Success", JOptionPane.PLAIN_MESSAGE);
-
-				return true;
-			}
+			return false;
 		}
 		// There was an open canvas found
 		else
 		{
-			// TODO - Close canvas, remove it from the canvas array and then
-			// delete the canvas
+			int answer = JOptionPane.showConfirmDialog(null, PrimeMain1.texts
+					.getString("actionDeleteWorkareaCanvasMsg")
+					+ canvasName + "?", PrimeMain1.texts.getString("confirm"),
+					JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
-			// Attempt to delete it
-			boolean success = file.delete();
-
-			if ( !success )
+			if ( answer == 0 )
 			{
-				JOptionPane.showMessageDialog(null, "The file\n"
-						+ file.getName() + "\n"
-						+ "was NOT successfully deleted.", "Error",
-						JOptionPane.ERROR_MESSAGE);
+				// Attempt to delete it
+				boolean success = file.delete();
 
-				return false;
+				if ( !success )
+				{
+					JOptionPane.showMessageDialog(null, "The file\n"
+							+ file.getName() + "\n"
+							+ "was NOT successfully deleted.", "Error",
+							JOptionPane.ERROR_MESSAGE);
+
+					return false;
+				}
+				else
+				{
+					// Reloads
+					PrimeMain1.updateSelectionArea();
+
+					// Removes the WorkareScroll with the canvas
+					PrimeMain1.workTab.removeTabWithCanvas(canvasName, false);
+
+					// Removed the canvas from the systems canvas array
+					DesktopCanvasManagment.removeWorkareaCanvas(canvas);
+
+					return true;
+				}
 			}
-			else
-			{
-				// Reloads
-				PrimeMain1.updateSelectionArea();
-
-				// Removes the WorkareScroll with the canvas
-				PrimeMain1.workTab.removeTabWithCanvas(canvasName, false);
-
-				// Removed the canvas from the systems canvas array
-				DesktopCanvasManagment.removeWorkareaCanvas(canvas);
-
-				JOptionPane.showMessageDialog(null, "The file\n"
-						+ file.getName() + "\n" + "was successfully deleted.",
-						"Success", JOptionPane.PLAIN_MESSAGE);
-
-				return true;
-			}
+			return false;
 		}
 	}
-
-
 
 
 	/**
@@ -1059,6 +1064,8 @@ public class DesktopFileManagment
 
 
 		PrimeMain1.getWorkarea().createNewCanvasTab(canvas);
+
+		canvas.setSaved(true);
 	}
 
 

@@ -273,7 +273,7 @@ public class CanvasManagment
 	 * return a null pointer.
 	 * 
 	 * @param canvases
-	 *            There WorkareaCanvseses to be searched.
+	 *            The WorkareaCanvases to be searched.
 	 * @return The WorkareaCanvases that have changed, but not been saved. Or a
 	 *         null pointer if no WorkareaCanvases are found.
 	 */
@@ -305,5 +305,33 @@ public class CanvasManagment
 
 
 		return change;
+	}
+
+
+
+	/**
+	 * The method checks the given WorkareaCanvas and returns a boolean on whether or not the {@link WorkareaCanvas} has been
+	 * changed and not been saved. If the given workareaCanvas is null, false will be returned.
+	 * 
+	 * @param canvas
+	 *            The {@link WorkareaCanvas} to be examined.
+	 * @return A boolean on whether or not the {@link WorkareaCanvas} has been changed and not saved.
+	 */
+	public static boolean canvasHaveChanged(WorkareaCanvas canvas)
+	{
+		if ( canvas != null )
+		{
+			if ( canvas.isSaved() != true && canvas.isChanged() == true )
+			{
+				return true;
+			}
+
+			if ( canvas.isSaved() != true && canvas.isChanged() == false )
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

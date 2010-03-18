@@ -1117,8 +1117,6 @@ public class ComponentsManagment
 			// object.
 			mainObj.addComponent(nic);
 
-			// FIXME - MUST BE CHECKED
-
 			// Then we set the ports to the motherboard
 			mb.makeOneUSBportTaken();
 		}
@@ -1421,8 +1419,8 @@ public class ComponentsManagment
 			{
 				ExternalNetworksCard extNICtemp = (ExternalNetworksCard) components[i];
 
-				if ( extNICtemp.getConnectionType().equals(
-						ConnectionUtils.Wired) )
+				if ( extNICtemp.getConnectionType()
+						.equals(ConnectionUtils.RJ45) )
 				{
 					lan = true;
 				}
@@ -1446,8 +1444,8 @@ public class ComponentsManagment
 			{
 				InternalNetworksCard intNICtemp = (InternalNetworksCard) components[i];
 
-				if ( intNICtemp.getConnectionType().equals(
-						ConnectionUtils.Wired) )
+				if ( intNICtemp.getConnectionType()
+						.equals(ConnectionUtils.RJ45) )
 				{
 					lan = true;
 				}

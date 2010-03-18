@@ -41,13 +41,13 @@ public class PrimeFileTreeCellRenderer extends DefaultTreeCellRenderer
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see javax.swing.tree.DefaultTreeCellRenderer#getTreeCellRendererComponent (javax.swing.JTree, java.lang.Object,
 	 * boolean, boolean, boolean, int, boolean)
 	 */
 	@Override
-	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,
-			boolean leaf, int row, boolean hasFocus)
+	public Component getTreeCellRendererComponent(JTree tree, Object value,
+			boolean sel, boolean expanded, boolean leaf, int row,
+			boolean hasFocus)
 	{
 		FileTreeNode ftn = (FileTreeNode) value;
 		File file = ftn.getFile();
@@ -60,7 +60,19 @@ public class PrimeFileTreeCellRenderer extends DefaultTreeCellRenderer
 				filename = this.rootNameCache.get(file);
 				if ( filename == null )
 				{
+					// Gets the standard file name
 					filename = fsv.getSystemDisplayName(file);
+
+
+					// Tries to get the filename without the extension
+					int index = file.getName().lastIndexOf('.');
+
+					if ( index > 0 && index <= file.getName().length() - 2 )
+					{
+						filename = file.getName().substring(0, index);
+					}
+
+
 					this.rootNameCache.put(file, filename);
 				}
 			}
@@ -70,7 +82,8 @@ public class PrimeFileTreeCellRenderer extends DefaultTreeCellRenderer
 			}
 		}
 
-		JLabel result = (JLabel) super.getTreeCellRendererComponent(tree, filename, sel, expanded, leaf, row, hasFocus);
+		JLabel result = (JLabel) super.getTreeCellRendererComponent(tree,
+				filename, sel, expanded, leaf, row, hasFocus);
 
 		if ( file != null )
 		{

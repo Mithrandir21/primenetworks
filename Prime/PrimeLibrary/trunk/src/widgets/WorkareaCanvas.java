@@ -249,8 +249,7 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Returns the main layer of the scene. This is where the
-	 * {@link WidgetObject WidgetObjects} are placed.
+	 * Returns the main layer of the scene. This is where the {@link WidgetObject WidgetObjects} are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the mainLayer
@@ -278,8 +277,7 @@ public class WorkareaCanvas extends JPanel
 	 * Returns the {@link LayerWidget} that holds all the {@link WidgetRoom
 	 * WidgetRooms}.
 	 * 
-	 * @return Returns the {@link LayerWidget} that holds all the
-	 *         {@link WidgetRoom WidgetRooms}.
+	 * @return Returns the {@link LayerWidget} that holds all the {@link WidgetRoom WidgetRooms}.
 	 */
 	public LayerWidget getRoomLayer()
 	{
@@ -288,8 +286,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Gets the connection layer of the scene. This is where the
-	 * {@link connections.WidgetExtendedConnection connections} between objects
+	 * Gets the connection layer of the scene. This is where the {@link connections.WidgetExtendedConnection connections} between
+	 * objects
 	 * in the scene are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
@@ -346,8 +344,7 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Gets all the {@link WidgetObject WidgetObjectes} on the scene of this
-	 * {@link WorkareaCanvas}.
+	 * Gets all the {@link WidgetObject WidgetObjectes} on the scene of this {@link WorkareaCanvas}.
 	 * 
 	 * @return An {@link WidgetObject} array with all the {@link WidgetObject
 	 *         WidgetObjectes} on the scene.
@@ -415,8 +412,7 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * This method gets all {@link WidgetRoom WidgetRooms} in the
-	 * {@link WorkareaCanvas}.
+	 * This method gets all {@link WidgetRoom WidgetRooms} in the {@link WorkareaCanvas}.
 	 */
 	public WidgetRoom[] getNetworkWidgetRooms()
 	{
@@ -445,8 +441,7 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * This method gets all {@link Room Rooms} contained inside the
-	 * {@link WidgetRoom WidgetRooms} in the {@link WorkareaCanvas}.
+	 * This method gets all {@link Room Rooms} contained inside the {@link WidgetRoom WidgetRooms} in the {@link WorkareaCanvas}.
 	 */
 	public Room[] getNetworkRooms()
 	{
@@ -488,8 +483,8 @@ public class WorkareaCanvas extends JPanel
 	/**
 	 * Gets the number of Networks cards on the Scene.
 	 * 
-	 * @return Returns the number of network cards on the scene. Both
-	 *         {@link InternalNetworksCard}s and {@link ExternalNetworksCard}s.
+	 * @return Returns the number of network cards on the scene. Both {@link InternalNetworksCard}s and
+	 *         {@link ExternalNetworksCard}s.
 	 */
 	public int getNumberOfNICsOnTheScene()
 	{
@@ -642,8 +637,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Sets the connection layer of the scene. This is where the
-	 * {@link connections.WidgetExtendedConnection connections} between objects
+	 * Sets the connection layer of the scene. This is where the {@link connections.WidgetExtendedConnection connections} between
+	 * objects
 	 * in the scene are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
@@ -783,6 +778,7 @@ public class WorkareaCanvas extends JPanel
 	{
 		doRepaint();
 
+		saved = false;
 		changed = true;
 
 		scene.revalidate();
