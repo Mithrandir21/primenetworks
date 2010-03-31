@@ -11,7 +11,6 @@ import objects.Object;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class ThinClient extends Clients
 {
@@ -61,7 +60,7 @@ public class ThinClient extends Clients
 	 *            The name of the thin client.
 	 * @param Desc
 	 *            The description of the thin client.
-	 * @param thin
+	 * @param components
 	 *            components The initial components an instance of a thin client has.
 	 */
 	public ThinClient(String Name, String Desc, Object[] components)
@@ -81,10 +80,11 @@ public class ThinClient extends Clients
 	 *            The description of the thin client.
 	 * @param SupConInt
 	 *            An array of strings that describes the supported connection interfaces.
-	 * @param thin
+	 * @param components
 	 *            components The initial components an instance of a thin client has.
 	 */
-	public ThinClient(String Name, String Desc, String[] SupConInt, Object[] components)
+	public ThinClient(String Name, String Desc, String[] SupConInt,
+			Object[] components)
 	{
 		super(Name, Desc, SupConInt, components);
 	}

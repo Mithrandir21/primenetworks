@@ -568,8 +568,6 @@ public class WorkareaCanvas extends JPanel
 
 	/**
 	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @return the dt
 	 */
 	public void setDropTarget(DropTarget dt)
 	{
@@ -725,9 +723,6 @@ public class WorkareaCanvas extends JPanel
 	/**
 	 * Sets the {@link WorkareaCanvasNetworkInfo} that holds network information
 	 * like netmask and IP range.
-	 * 
-	 * @return A {@link WorkareaCanvasNetworkInfo} with the network information
-	 *         about the {@link WorkareaCanvas}.
 	 */
 	public void setNetworkInfo(WorkareaCanvasNetworkInfo networkInfo)
 	{

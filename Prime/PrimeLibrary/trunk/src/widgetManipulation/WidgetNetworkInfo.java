@@ -12,14 +12,11 @@ import managment.NetworkManagment;
 /**
  * This class contains the information about a widget in a network. Information like IP, netmask and default gateway
  * address.
- * 
  * There are also patterns for IP and MAC addresses that can be used to verify strings.
- * 
  * When setting the different fields, the string is checked against the patterns so the the information saved will be
  * valid.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class WidgetNetworkInfo implements Serializable
 {
@@ -179,7 +176,7 @@ public class WidgetNetworkInfo implements Serializable
 	 * Sets the Main MAC of the widget in the network. The given string is validated before it is set. True is returned
 	 * if it passes validation and is set, false if it does not pass.
 	 * 
-	 * @param mac
+	 * @param MAC
 	 *            The Main MAC addresses for the widget in the network.
 	 */
 	public boolean setMAC(String MAC)

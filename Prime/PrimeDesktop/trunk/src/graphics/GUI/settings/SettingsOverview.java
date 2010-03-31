@@ -131,6 +131,9 @@ public class SettingsOverview extends JFrame
 				frameIcon, new NetworkMessagesSettings(messagesCheckBox),
 				PrimeMain1.texts.getString("settingsShowMsgPanelTip"));
 
+		tabs.addTab(PrimeMain1.texts.getString("settingsAdvancedPanelLabel"),
+				new AdvancedSettings());
+
 		return tabs;
 	}
 

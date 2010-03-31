@@ -601,8 +601,8 @@ public class GraphicalFunctions
 
 
 	/**
-	 * FIXME - ChangeWidgetRoomName Changes the title of the
-	 * {@link TitledBorder} surrounding the {@link WidgetRoom} and the name of
+	 * FIXME - ChangeWidgetRoomName Changes the title of the {@link TitledBorder} surrounding the {@link WidgetRoom} and the name
+	 * of
 	 * the {@link Room} inside the {@link WidgetRoom} object.
 	 */
 	public static void changeWidgetRoomName(Widget widget)
@@ -642,7 +642,6 @@ public class GraphicalFunctions
 	 * Gets the class of the given Object.
 	 * 
 	 * @param obj
-	 * @return
 	 */
 	public static Class<?> getObjectClass(Object obj)
 	{

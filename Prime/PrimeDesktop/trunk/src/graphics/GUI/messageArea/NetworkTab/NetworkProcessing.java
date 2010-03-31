@@ -17,8 +17,8 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * This is the class where the network aspects of a given {@link WorkareaCanvas}
- * is processed and messages are created for the user.
+ * This is the class where the network aspects of a given {@link WorkareaCanvas} is processed and messages are created for the
+ * user.
  * 
  * @author Bahram Malaekeh
  */
@@ -33,7 +33,7 @@ public class NetworkProcessing
 	 * @param curData
 	 *            The current multidimentional String array with possible
 	 *            previous data.
-	 * @param obj
+	 * @param canvas
 	 *            The network that is to be examined.
 	 * @param CheckCritical
 	 *            A boolean saying if the network should be checked for critical

@@ -63,8 +63,8 @@ public class CanvasManagment
 	 * Searches and, find found, returns a canvas from the systems canvases with
 	 * the given name.
 	 * 
-	 * @param canvasName
-	 *            The name of the canvas that is searched for.
+	 * @param scene
+	 *            The {@link Scene} that is searched for.
 	 * @param canvases
 	 *            The {@link WorkareaCanvas WorkareaCanvases} that are to be
 	 *            searched.
@@ -144,7 +144,7 @@ public class CanvasManagment
 	 * Finds and returns the WidgetObject that contains an Object based on the
 	 * name of the object and the given object.
 	 * 
-	 * @param obj
+	 * @param name
 	 * @param canvas
 	 * @return The WidgetObject that contains the given object.
 	 */

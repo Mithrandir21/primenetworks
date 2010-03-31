@@ -79,7 +79,8 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 * @param DesktopComponents
 	 *            The initial components an instance of a desktop has.
 	 */
-	public ExternalHardware(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents)
+	public ExternalHardware(String Name, String Desc, String[] SupConInt,
+			Object[] DesktopComponents)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 	}
@@ -97,7 +98,8 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 * @param deviceMB
 	 *            The initial {@link objects.hardwareObjects.Motherboard motherboard} the hardware has.
 	 */
-	public ExternalHardware(String Name, String Desc, String[] SupConInt, Motherboard deviceMB)
+	public ExternalHardware(String Name, String Desc, String[] SupConInt,
+			Motherboard deviceMB)
 	{
 		super(Name, Desc, SupConInt, deviceMB);
 	}
@@ -110,8 +112,6 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 *            The name of the hardware device.
 	 * @param Desc
 	 *            The description of the hardware device.
-	 * @param SupConInt
-	 *            An array of strings that describes the supported connection interfaces.
 	 * @param deviceMB
 	 *            The initial {@link objects.hardwareObjects.Motherboard motherboard} the hardware has.
 	 */

@@ -371,7 +371,6 @@ public class DesktopFileManagment
 	 * String. If it does, the file is checked for a WorkareaCanvas
 	 * 
 	 * @param canvas
-	 * @return
 	 */
 	public static boolean fileWorkareaCanvasExist(WorkareaCanvas canvas,
 			String newName)
@@ -507,8 +506,8 @@ public class DesktopFileManagment
 	 * It also deletes the file that contains the workareaCanvas from the file
 	 * system, so this is permanent.
 	 * 
-	 * @param fileNode
-	 *            The file that contains the WorkareaCanvas.
+	 * @param canvas
+	 *            The WorkareaCanvas.
 	 */
 	public static boolean deleteWorkareaCanvas(WorkareaCanvas canvas)
 	{
@@ -527,10 +526,8 @@ public class DesktopFileManagment
 	 * It also deletes the file that contains the workareaCanvas from the file
 	 * system, so this is permanent.
 	 * 
-	 * @param fileNode
+	 * @param file
 	 *            The file that contains the WorkareaCanvas.
-	 * @param tree
-	 *            The JTree that the fileNode will be deleted from.
 	 */
 	public static boolean deleteWorkareaCanvas(File file)
 	{

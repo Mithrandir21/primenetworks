@@ -17,7 +17,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -28,16 +27,16 @@ import managment.Settings;
 
 
 /**
- * This extension of the {@link JFrame} class will display a 'tip of the day' to
+ * This extension of the {@link JDialog} class will display a 'tip of the day' to
  * the user of the program on startup.
  * (Example provided by 'www.java2s.com') Extended by Bahram Malaekeh.
  */
-public class TipOfDay extends JFrame implements ActionListener
+public class TipOfDay extends JDialog implements ActionListener
 {
 
 	public TipOfDay()
 	{
-		super(PrimeMain1.texts.getString("totdTitle"));
+		this.setTitle(PrimeMain1.texts.getString("totdTitle"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();

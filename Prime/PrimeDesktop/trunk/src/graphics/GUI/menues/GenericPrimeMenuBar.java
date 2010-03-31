@@ -18,6 +18,7 @@ import javax.swing.KeyStroke;
 import actions.ActionCopy;
 import actions.ActionCut;
 import actions.ActionPaste;
+import actions.canvasActions.ActionDeleteAllWidgets;
 import actions.systemActions.ActionAbout;
 import actions.systemActions.ActionExitSystem;
 import actions.systemActions.ActionNew;
@@ -183,6 +184,26 @@ public class GenericPrimeMenuBar extends JMenuBar
 		edit.add(paste);
 
 
+		JMenu submenu = new JMenu(PrimeMain1.texts
+				.getString("deleteSubMenuLabel"));
+
+		JMenuItem removeAllWidgets = new JMenuItem(new ActionDeleteAllWidgets(
+				PrimeMain1.texts.getString("deleteAllWidgetsLabel")));
+		removeAllWidgets.setIcon(null);
+		submenu.add(removeAllWidgets);
+
+
+		JMenuItem removeAllRooms = new JMenuItem(new ActionDeleteAllWidgets(
+				PrimeMain1.texts.getString("deleteAllRoomsLabel")));
+		removeAllRooms.setIcon(null);
+		submenu.add(removeAllRooms);
+
+		// Adds a separator to the menu
+		edit.addSeparator();
+
+		edit.add(submenu);
+
+
 		this.add(edit);
 	}
 
@@ -277,6 +298,10 @@ public class GenericPrimeMenuBar extends JMenuBar
 				PrimeMain1.texts.getString("visualEditMenuLabel")));
 		openVisualEdit.setIcon(null);
 		tools.add(openVisualEdit);
+
+
+		// Adds a separator to the menu
+		tools.addSeparator();
 
 
 		JMenuItem openSettings = new JMenuItem(new ActionSettings(

@@ -43,7 +43,9 @@ public class RoomManagment
 
 		RoomBorder border = new RoomBorder(Color.BLACK);
 
-		room.setBorder(BorderFactory.createSwingBorder(room.getScene(), border));
+		room
+				.setBorder(BorderFactory.createSwingBorder(room.getScene(),
+						border));
 		// room.setBorder(new RoomBorder(Color.BLACK));
 		// widget.setBorder (scene.getLookFeel().getMiniBorder(ObjectState.createNormal().deriveSelected (true)));
 
@@ -63,20 +65,20 @@ public class RoomManagment
 	 * @param canvas
 	 *            The {@link WorkareaCanvas} the {@link WidgetRoom} is added to.
 	 * @param room
-	 *            The {@link Room} from which a {@link WidgetRoom} will be created and added to the given
-	 *            {@link WorkareaCanvas}.
+	 *            The {@link Room} from which a {@link WidgetRoom} will be created and added to the given {@link WorkareaCanvas}.
 	 */
 	public static WidgetRoom addRoom(WorkareaCanvas canvas, Room room)
 	{
 
 		WidgetRoom widRoom = createWidgetRoom(canvas, room);
 
-		widRoom.setPreferredLocation(canvas.getScene().convertViewToScene(room.getLocation()));
+		widRoom.setPreferredLocation(canvas.getScene().convertViewToScene(
+				room.getLocation()));
 		widRoom.setPreferredBounds(room.getBounds());
 
 
 		canvas.getRoomLayer().addChild(widRoom);
-		
+
 		return widRoom;
 	}
 
@@ -87,7 +89,7 @@ public class RoomManagment
 	 * 
 	 * @param canvas
 	 *            The {@link WorkareaCanvas} the {@link WidgetRoom} is added to.
-	 * @param room
+	 * @param widRoom
 	 *            The {@link WidgetRoom} that is to be added to the given {@link WorkareaCanvas}.
 	 */
 	public static void addRoom(WorkareaCanvas canvas, WidgetRoom widRoom)
@@ -142,10 +144,12 @@ public class RoomManagment
 	 * The given {@link WidgetRoom} is, if found, removed from the RoomLayer of the given {@link WorkareaCanvas}.
 	 * 
 	 * @param canvas
+	 *            The {@link WorkareaCanvas} where the a {@link WidgetRoom} is searched for and removed if found.
 	 * @param widRoom
-	 * @return
+	 *            The {@link WidgetRoom} which will be removed if found.
 	 */
-	public static boolean deleteWidgetRoom(WorkareaCanvas canvas, WidgetRoom widRoom)
+	public static boolean deleteWidgetRoom(WorkareaCanvas canvas,
+			WidgetRoom widRoom)
 	{
 		// If the room layer of the given WorkareaCanvas contains the WidgetRoom
 		if ( canvas.getRoomLayer().getChildren().contains(widRoom) )
@@ -196,8 +200,8 @@ public class RoomManagment
 	}
 
 	/**
-	 * The RoomLayer in the given {@link WorkareaCanvas} is search for a {@link WidgetRoom} containing a {@link Room}
-	 * equal to the given {@link Room}. If a {@link WidgetRoom} with the given name is found, it is removed.
+	 * The RoomLayer in the given {@link WorkareaCanvas} is search for a {@link WidgetRoom} containing a {@link Room} equal to the
+	 * given {@link Room}. If a {@link WidgetRoom} with the given name is found, it is removed.
 	 * 
 	 * @param canvas
 	 *            The {@link WorkareaCanvas} where the a {@link WidgetRoom} is searched for and removed if found.
@@ -237,8 +241,8 @@ public class RoomManagment
 	/**
 	 * Validates the given string as a {@link WidgetRoom} name.
 	 * 
-	 * @param room
-	 * @return
+	 * @param newName
+	 *            The New name of the WidgetRoom
 	 */
 	public static boolean checkNewRoomName(String newName)
 	{

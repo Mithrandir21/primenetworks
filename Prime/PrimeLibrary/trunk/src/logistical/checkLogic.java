@@ -45,7 +45,7 @@ public class checkLogic
 
 	/**
 	 * Validates the given String, that should represent an IP address. Matches
-	 * the given IP against the {@link NetworkManagment.getIPpattern}.
+	 * the given IP against the NetworkManagment.getIPpattern().
 	 * 
 	 * @param IP
 	 *            The IP string to be validated.
@@ -65,7 +65,6 @@ public class checkLogic
 	 * ON.
 	 * 
 	 * @param type
-	 * @return
 	 */
 	public static Class<?> getConClass(String type)
 	{

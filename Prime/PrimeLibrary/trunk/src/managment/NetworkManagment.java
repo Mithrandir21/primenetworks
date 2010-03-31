@@ -66,9 +66,9 @@ public class NetworkManagment
 	 * Strings} that should be valid IP addresses. These are checked and
 	 * validated.
 	 * 
-	 * @param from
+	 * @param fromIP
 	 *            The start if the IP range.
-	 * @param to
+	 * @param toIP
 	 *            The end of the IP range.
 	 * @return A boolean saying if a valid range is possible.
 	 */

@@ -132,7 +132,7 @@ public class ConnectionManagment
 	 * @param connection
 	 *            The {@link WidgetExtendedConnection} widget representing the
 	 *            connection in the the network.
-	 * @param sourceWidget
+	 * @param SourceWidObj
 	 *            The {@link WidgetObject} the connection originates at.
 	 * @param TargetWidObj
 	 *            The {@link WidgetObject} the connection is destined for.

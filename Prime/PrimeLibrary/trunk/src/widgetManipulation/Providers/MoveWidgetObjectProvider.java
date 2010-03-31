@@ -25,7 +25,6 @@ import org.netbeans.modules.visual.action.AlignWithSupport;
  * Javadoc-TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class MoveWidgetObjectProvider extends AlignWithSupport implements MoveStrategy, MoveProvider
 {
@@ -35,15 +34,15 @@ public class MoveWidgetObjectProvider extends AlignWithSupport implements MoveSt
 	{
 		/*
 		 * (non-Javadoc)
-		 * 
 		 * @see
 		 * org.netbeans.api.visual.action.AlignWithMoveDecorator#createLineWidget(org.netbeans.api.visual.widget.Scene)
 		 */
 		public ConnectionWidget createLineWidget(Scene scene)
 		{
 			ConnectionWidget widget = new ConnectionWidget(scene);
-			widget.setStroke(new BasicStroke(1.0f, BasicStroke.JOIN_BEVEL, BasicStroke.CAP_BUTT, 5.0f, new float[] {
-					6.0f, 3.0f }, 0.0f));
+			widget.setStroke(new BasicStroke(1.0f, BasicStroke.JOIN_BEVEL,
+					BasicStroke.CAP_BUTT, 5.0f, new float[] { 6.0f, 3.0f },
+					0.0f));
 			widget.setForeground(Color.BLUE);
 			return widget;
 		}
@@ -54,9 +53,9 @@ public class MoveWidgetObjectProvider extends AlignWithSupport implements MoveSt
 	 * 
 	 * @param collector
 	 * @param interractionLayer
-	 * @param decorator
 	 */
-	public MoveWidgetObjectProvider(AlignWithWidgetCollector collector, LayerWidget interractionLayer)
+	public MoveWidgetObjectProvider(AlignWithWidgetCollector collector,
+			LayerWidget interractionLayer)
 	{
 		super(collector, interractionLayer, ALIGN_WITH_MOVE_DECORATOR_DEFAULT);
 	}
@@ -65,24 +64,25 @@ public class MoveWidgetObjectProvider extends AlignWithSupport implements MoveSt
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.netbeans.api.visual.action.MoveStrategy#locationSuggested(org.netbeans.api.visual.widget.Widget,
 	 * java.awt.Point, java.awt.Point)
 	 */
-	public Point locationSuggested(Widget widget, Point originalLocation, Point suggestedLocation)
+	public Point locationSuggested(Widget widget, Point originalLocation,
+			Point suggestedLocation)
 	{
 		Point widgetLocation = widget.getLocation();
 		Rectangle widgetBounds = widget.getBounds();
 		Rectangle bounds = widget.convertLocalToScene(widgetBounds);
-		bounds.translate(suggestedLocation.x - widgetLocation.x, suggestedLocation.y - widgetLocation.y);
-		Point point = super.locationSuggested(widget, bounds, suggestedLocation, true, true, true, true);
+		bounds.translate(suggestedLocation.x - widgetLocation.x,
+				suggestedLocation.y - widgetLocation.y);
+		Point point = super.locationSuggested(widget, bounds,
+				suggestedLocation, true, true, true, true);
 		return widget.getParentWidget().convertSceneToLocal(point);
 	}
 
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.netbeans.api.visual.action.MoveProvider#movementStarted(org.netbeans.api.visual.widget.Widget)
 	 */
 	public void movementStarted(Widget widget)
@@ -93,7 +93,6 @@ public class MoveWidgetObjectProvider extends AlignWithSupport implements MoveSt
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.netbeans.api.visual.action.MoveProvider#movementFinished(org.netbeans.api.visual.widget.Widget)
 	 */
 	public void movementFinished(Widget widget)
@@ -104,24 +103,24 @@ public class MoveWidgetObjectProvider extends AlignWithSupport implements MoveSt
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.netbeans.api.visual.action.MoveProvider#getOriginalLocation(org.netbeans.api.visual.widget.Widget)
 	 */
 	public Point getOriginalLocation(Widget widget)
 	{
-		return ActionFactory.createDefaultMoveProvider().getOriginalLocation(widget);
+		return ActionFactory.createDefaultMoveProvider().getOriginalLocation(
+				widget);
 	}
 
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.netbeans.api.visual.action.MoveProvider#setNewLocation(org.netbeans.api.visual.widget.Widget,
 	 * java.awt.Point)
 	 */
 	public void setNewLocation(Widget widget, Point location)
 	{
-		ActionFactory.createDefaultMoveProvider().setNewLocation(widget, location);
+		ActionFactory.createDefaultMoveProvider().setNewLocation(widget,
+				location);
 	}
 
 }

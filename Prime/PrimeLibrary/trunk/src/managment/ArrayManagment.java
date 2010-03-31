@@ -14,9 +14,8 @@ import exceptions.StringNotFoundInArrayException;
 /**
  * Class that contains different function that add, remove and replace
  * components from a given array. It is used in the different parts of the
- * program, specially {@link objects.clientObjects.Desktop Desktops},
- * {@link objects.clientObjects.Laptop Laptops}, {@link objects.Servers Servers}
- * and {@link objects.infrastructureObjects.Rack Racks}.
+ * program, specially {@link objects.clientObjects.Desktop Desktops}, {@link objects.clientObjects.Laptop Laptops},
+ * {@link objects.Servers Servers} and {@link objects.infrastructureObjects.Rack Racks}.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -343,9 +342,6 @@ public class ArrayManagment
 	 * type.
 	 * 
 	 * @return Returns an array of components that match with the given class.
-	 * @param componentCounter
-	 *            The counter that tells how many components are in the current
-	 *            components array.
 	 * @param list
 	 *            The current components list.
 	 * @throws ObjectNotFoundException

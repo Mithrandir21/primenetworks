@@ -45,7 +45,7 @@ public class WorkareaConnectionActionListener implements ActionListener
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 * 
-	 * @param canvas2
+	 * @param canvas
 	 * @param widget
 	 */
 	public WorkareaConnectionActionListener(WorkareaCanvas canvas,

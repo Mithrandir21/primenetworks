@@ -18,7 +18,8 @@ import objects.peripheralObjects.Mouse;
 public class ExternalConnectionCheck
 {
 
-	public static boolean checkMBexternalPorts(Motherboard MB, Object[] connectedDevices, Object a)
+	public static boolean checkMBexternalPorts(Motherboard MB,
+			Object[] connectedDevices, Object a)
 	{
 		// FIXME - Check if this is needed
 		return false;
@@ -96,9 +97,9 @@ public class ExternalConnectionCheck
 	 * 
 	 * @param MB
 	 * @param connectedDevices
-	 * @return
 	 */
-	public static boolean checkMB_USBportsAvailable(Motherboard MB, Object[] connectedDevices)
+	public static boolean checkMB_USBportsAvailable(Motherboard MB,
+			Object[] connectedDevices)
 	{
 		// TODO - Fix check number of free USB ports
 		return false;

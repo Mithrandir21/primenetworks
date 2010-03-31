@@ -15,7 +15,6 @@ import widgets.WorkareaCanvas;
  * This is a convenience class for exporting a Scene as an image file (PNG and JPG).
  * 
  * @author krichard (extended by Bahram Malaekeh)
- * 
  */
 public final class CanvasExporter
 {
@@ -33,17 +32,9 @@ public final class CanvasExporter
 	 * Takes the Scene and writes an image file according to the constraints defined by the caller. This returns a
 	 * BufferedImage of the Scene even if the file can not be written.
 	 * 
-	 * @param scene
-	 *            The Scene to be exported as an image.
 	 * @param file
 	 *            The file used to store the exported image. If null, then it is assumed that the raw image is to be
 	 *            returned only and not written to a file.
-	 * @param SceneExporter
-	 *            .ImageType The image type to be exported for the image map.
-	 * @param SceneExporter
-	 *            .ZoomType Defines the strategy by which to set the exporting scale factor. Note that certain
-	 *            parameters are nullified by the choice of ZoomType. For instance, if ZoomType.CUSTOM_SIZE is not
-	 *            chosen, then the width and height parameters are not used.
 	 * @param visibleAreaOnly
 	 *            Eliminates all zoom features. If true, the exported image will be a created from the visible area of
 	 *            the scene.
@@ -64,8 +55,10 @@ public final class CanvasExporter
 	 * @throws java.io.IOException
 	 *             If for some reason the file cannot be written, an IOExeption will be thrown.
 	 */
-	public static BufferedImage createImage(WorkareaCanvas canvas, File file, ImageType imageType, ZoomType zoomType,
-			boolean visibleAreaOnly, boolean selectedOnly, int quality, int width, int height) throws IOException
+	public static BufferedImage createImage(WorkareaCanvas canvas, File file,
+			ImageType imageType, ZoomType zoomType, boolean visibleAreaOnly,
+			boolean selectedOnly, int quality, int width, int height)
+			throws IOException
 	{
 
 		if ( canvas == null )
@@ -75,8 +68,8 @@ public final class CanvasExporter
 
 
 		Canvas2Image c2i = new Canvas2Image(canvas.getScene(), file);
-		BufferedImage image = c2i.createImage(imageType, zoomType, visibleAreaOnly, selectedOnly, quality, canvas,
-				false);
+		BufferedImage image = c2i.createImage(imageType, zoomType,
+				visibleAreaOnly, selectedOnly, quality, canvas, false);
 
 		return image;
 	}
