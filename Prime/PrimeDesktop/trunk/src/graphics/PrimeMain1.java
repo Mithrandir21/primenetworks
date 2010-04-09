@@ -147,7 +147,7 @@ public class PrimeMain1 extends JFrame
 
 
 
-	// FIXME - Change the way ObjectViews are handled
+	// FIXME - Change the way ObjectViews are handled 
 
 
 	// Constructor
@@ -583,7 +583,7 @@ public class PrimeMain1 extends JFrame
 
 	/**
 	 * Runs a check on all the objects on the current canvas and passed that
-	 * information over to the JTable that shows¨ different errors, warnings and
+	 * information over to the JTable that showsï¿½ different errors, warnings and
 	 * notices.
 	 */
 	public static void runCanvasObjectCheck()
