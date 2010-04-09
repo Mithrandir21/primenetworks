@@ -10,10 +10,18 @@ import javax.swing.JOptionPane;
 import widgets.WorkareaCanvas;
 
 import logistical.AbstractSystemAction;
+import logistical.SystemActionInterface;
 
-public class ActionDeleteAllConnections extends AbstractSystemAction 
+
+
+/**
+ * @author bam
+ *
+ */
+public class ActionDeleteAllRooms extends AbstractSystemAction
 {
-
+	
+	
 	/**
 	 * A constructor for the class that takes a string, the action name, and an
 	 * Icon.
@@ -23,7 +31,7 @@ public class ActionDeleteAllConnections extends AbstractSystemAction
 	 * @param icon
 	 *            The icon representing the action.
 	 */
-	public ActionDeleteAllConnections(String text, ImageIcon icon)
+	public ActionDeleteAllRooms(String text, ImageIcon icon)
 	{
 		super(text, icon);
 	}
@@ -36,14 +44,16 @@ public class ActionDeleteAllConnections extends AbstractSystemAction
 	 * @param text
 	 *            The name of the action.
 	 */
-	public ActionDeleteAllConnections(String text)
+	public ActionDeleteAllRooms(String text)
 	{
 		super(text);
 	}
-
 	
 	
 	
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) 
 	{
@@ -52,12 +62,12 @@ public class ActionDeleteAllConnections extends AbstractSystemAction
 		if ( canvas != null )
 		{
 			String question = PrimeMain1.texts
-					.getString("actionDeleteAllConnectionsQuestions")
+					.getString("actionDeleteAllRoomsQuestions")
 					+ "\n"
 					+ PrimeMain1.texts.getString("thisCannotBeUndoneMsg");
 
 			int i = JOptionPane.showConfirmDialog(null, question,
-					PrimeMain1.texts.getString("actionDeleteAllConnectionsName"),
+					PrimeMain1.texts.getString("actionDeleteAllRoomsName"),
 					JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
 			// If the answer is yes

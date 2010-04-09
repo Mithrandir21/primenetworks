@@ -18,6 +18,9 @@ import javax.swing.KeyStroke;
 import actions.ActionCopy;
 import actions.ActionCut;
 import actions.ActionPaste;
+import actions.canvasActions.ActionDeleteAllConnections;
+import actions.canvasActions.ActionDeleteAllConnectionsToAndFrom;
+import actions.canvasActions.ActionDeleteAllRooms;
 import actions.canvasActions.ActionDeleteAllWidgets;
 import actions.systemActions.ActionAbout;
 import actions.systemActions.ActionExitSystem;
@@ -193,7 +196,13 @@ public class GenericPrimeMenuBar extends JMenuBar
 		submenu.add(removeAllWidgets);
 
 
-		JMenuItem removeAllRooms = new JMenuItem(new ActionDeleteAllWidgets(
+		JMenuItem removeAllConnections = new JMenuItem(new ActionDeleteAllConnections(
+				PrimeMain1.texts.getString("deleteAllConnectionsLabel")));
+		removeAllConnections.setIcon(null);
+		submenu.add(removeAllConnections);
+		
+		
+		JMenuItem removeAllRooms = new JMenuItem(new ActionDeleteAllRooms(
 				PrimeMain1.texts.getString("deleteAllRoomsLabel")));
 		removeAllRooms.setIcon(null);
 		submenu.add(removeAllRooms);

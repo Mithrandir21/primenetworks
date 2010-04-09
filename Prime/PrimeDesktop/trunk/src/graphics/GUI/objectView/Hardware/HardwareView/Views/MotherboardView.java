@@ -51,7 +51,7 @@ import objects.hardwareObjects.Motherboard;
 import objects.hardwareObjects.Ram;
 import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WorkareaCanvas;
-import actions.canvasActions.ActionDeleteAllConnections;
+import actions.canvasActions.ActionDeleteAllConnectionsToAndFrom;
 import connections.Connection;
 import connections.ConnectionUtils;
 import connections.WidgetExtendedConnection;
@@ -1033,7 +1033,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 				{
 					// We have to remove all connection between this object and other objects on the canvas
 					// WorkareaCanvasActions.removeAllConnectionsToFromObject( PrimeMain1.currentCanvas, mainObj);
-					ActionDeleteAllConnections action = new ActionDeleteAllConnections(
+					ActionDeleteAllConnectionsToAndFrom action = new ActionDeleteAllConnectionsToAndFrom(
 							PrimeMain1.texts
 									.getString("actionDeleteAllConnectionName"));
 					action.performAction(false);

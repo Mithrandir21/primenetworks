@@ -16,7 +16,7 @@ import org.netbeans.api.visual.widget.Widget;
 
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
-import actions.canvasActions.ActionDeleteAllConnections;
+import actions.canvasActions.ActionDeleteAllConnectionsToAndFrom;
 
 
 
@@ -112,7 +112,7 @@ public class WorkareaWidgetActionListener implements ActionListener
 			{
 				// WorkareaCanvasActions.removeAllConnectionsToFromObject(canvas,
 				// widget.getObject());
-				ActionDeleteAllConnections actionDeleteConnections = new ActionDeleteAllConnections(
+				ActionDeleteAllConnectionsToAndFrom actionDeleteConnections = new ActionDeleteAllConnectionsToAndFrom(
 						PrimeMain1.texts
 								.getString("actionDeleteAllConnectionName"));
 				actionDeleteConnections.performAction(true);

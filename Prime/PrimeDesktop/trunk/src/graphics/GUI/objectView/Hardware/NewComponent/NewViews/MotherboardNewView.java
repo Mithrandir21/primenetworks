@@ -36,7 +36,7 @@ import javax.swing.SpringLayout;
 import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.Motherboard;
-import actions.canvasActions.ActionDeleteAllConnections;
+import actions.canvasActions.ActionDeleteAllConnectionsToAndFrom;
 
 
 /**
@@ -818,7 +818,7 @@ public class MotherboardNewView extends JFrame implements
 					// other objects on the canvas
 					// WorkareaCanvasActions.removeAllConnectionsToFromObject(
 					// PrimeMain1.currentCanvas, mainObj);
-					ActionDeleteAllConnections action = new ActionDeleteAllConnections(
+					ActionDeleteAllConnectionsToAndFrom action = new ActionDeleteAllConnectionsToAndFrom(
 							PrimeMain1.texts
 									.getString("actionDeleteAllConnectionName"));
 					action.performAction(false);
