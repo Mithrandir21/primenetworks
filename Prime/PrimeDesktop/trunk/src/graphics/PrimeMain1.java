@@ -147,7 +147,7 @@ public class PrimeMain1 extends JFrame
 
 
 
-	// FIXME - Change the way ObjectViews are handled 
+	// FIXME - Change the way ObjectViews are handled
 
 
 	// Constructor
