@@ -14,9 +14,12 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.io.File;
+import java.net.URI;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -765,4 +768,74 @@ public class GraphicalFunctions
 
 		return shortDesc;
 	}
+
+
+
+	/**
+	 * This function returns the File pointer for the given {@link ImageIcon}.
+	 * The search will take place inside the images folder for the program. The
+	 * function will return Null if no pointer is found.
+	 * 
+	 * @return A {@link File} pointer to the {@link ImageIcon} file.
+	 */
+	public static File getImageIconFile(ImageIcon image)
+	{
+		// The location of the images for the system
+		URI uri = new File("./resource/images").toURI();
+
+		File folder = new File(uri);
+
+
+		// This returned file should contain a pointer to the ImageIcon, or Null
+		return findImageFile(folder, image.getDescription());
+	}
+
+
+	/**
+	 * Goes through all files and directories under a given folder. It finds and
+	 * sets all files within this given folder with the file extensions *.png,
+	 * *.jpg and *.gif. When it finds a file with the given name it returns the
+	 * file.
+	 */
+	private static File findImageFile(File dir, String imageName)
+	{
+		if ( dir.isDirectory() )
+		{
+			String[] children = dir.list();
+			for ( int i = 0; i < children.length; i++ )
+			{
+				File found = null;
+
+				found = findImageFile(new File(dir, children[i]), imageName);
+
+				// If found is not null, there has been found a file with the
+				// given name, and found will be returned.
+				if ( found != null )
+				{
+					return found;
+				}
+			}
+		}
+		else
+		{
+			String name = dir.getName();
+
+			if ( name.endsWith(".png") || name.endsWith(".jpg")
+					|| name.endsWith(".gif") )
+			{
+				name = name.substring(0, (name.length() - 4));
+
+				// If the name of the file is the same as the given imageName
+				if ( name.equalsIgnoreCase(imageName) )
+				{
+					return dir;
+				}
+			}
+		}
+
+		return null;
+	}
+
+
+
 }

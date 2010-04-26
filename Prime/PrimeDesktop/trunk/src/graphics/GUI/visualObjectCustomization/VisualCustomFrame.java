@@ -4,7 +4,9 @@
 package graphics.GUI.visualObjectCustomization;
 
 
+import graphics.GraphicalFunctions;
 import graphics.PrimeMain1;
+import graphics.SystemFunctions;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -19,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -27,6 +30,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
@@ -51,8 +55,11 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 	// The HashMap that contains object ImageIcons temporary
 	public HashMap<Class, ImageIcon> tempImageIcons = new HashMap<Class, ImageIcon>();
 
-	// The JPanel all WidgetButtons will palce in.
+	// The JPanel all WidgetButtons will place in.
 	JPanel iconPanel;
+
+	// A boolean on whether or not anything has been changed
+	boolean changed = false;
 
 
 	/**
@@ -140,7 +147,31 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 			@Override
 			public void windowClosing(WindowEvent ev)
 			{
-				PrimeMain1.vcf = null;
+				if( changed )
+				{
+					String question = PrimeMain1.texts
+							.getString("imageIconsChangedQuestion");
+
+
+					// Custom button text
+					java.lang.Object[] options = {
+							PrimeMain1.texts.getString("yes"),
+							PrimeMain1.texts.getString("no") };
+
+
+					int answer = JOptionPane.showOptionDialog(null, question,
+							PrimeMain1.texts.getString("confirm"),
+							JOptionPane.YES_NO_CANCEL_OPTION,
+							JOptionPane.QUESTION_MESSAGE, null, options,
+							options[1]);
+					
+
+					if ( answer == 0 )
+					{
+						PrimeMain1.vcf = null;
+					}
+				}
+				
 			}
 		});
 	}
@@ -226,35 +257,107 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 	{
 		if ( e.getActionCommand().equals("save") )
 		{
-			for ( int i = 0; i < iconPanel.getComponentCount(); i++ )
-			{
-				WidgetButton button = (WidgetButton) iconPanel.getComponent(i);
-
-				Object obj = button.getObject();
-
-				button.getObject().setVisualImage(
-						tempImageIcons.get(obj.getClass()));
-			}
-
-			PrimeMain1.objectImageIcons.putAll(tempImageIcons);
-
-			PrimeMain1.updateSelectionArea();
+			saveImages();
 
 			this.dispose();
 		}
 		else if ( e.getActionCommand().equals("reset") )
 		{
-
+			// FIXME - Fix reset button on Custom Visual Icons
 		}
 		else
 		{
 			assert (e.getActionCommand().equals("cancel"));
 
-			this.dispose();
+			if ( changed )
+			{
+				String question = PrimeMain1.texts
+						.getString("imageIconsChangedQuestion");
+
+
+				// Custom button text
+				java.lang.Object[] options = {
+						PrimeMain1.texts.getString("yes"),
+						PrimeMain1.texts.getString("no") };
+
+
+				int answer = JOptionPane
+						.showOptionDialog(null, question, PrimeMain1.texts
+								.getString("confirm"),
+								JOptionPane.YES_NO_CANCEL_OPTION,
+								JOptionPane.QUESTION_MESSAGE, null, options,
+								options[1]);
+
+
+				if ( answer == 0 )
+				{
+					this.dispose();
+					// Sets the pointer to this JFrame to null.
+					PrimeMain1.vcf = null;
+				}
+			}
+			else
+			{
+				this.dispose();
+				// Sets the pointer to this JFrame to null.
+				PrimeMain1.vcf = null;
+			}
+		}
+	}
+
+
+	/**
+	 * Saving function for saving icon images.
+	 */
+	private void saveImages()
+	{
+		String question = PrimeMain1.texts
+				.getString("overwriteIconFileQuestions")
+				+ "\n" + PrimeMain1.texts.getString("thisCannotBeUndoneMsg");
+
+
+		// Custom button text
+		java.lang.Object[] options = { PrimeMain1.texts.getString("yes"),
+				PrimeMain1.texts.getString("no") };
+
+
+		int answer = JOptionPane.showOptionDialog(null, question,
+				PrimeMain1.texts.getString("overwrite"),
+				JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
+				null, options, options[1]);
+
+
+
+		for ( int i = 0; i < iconPanel.getComponentCount(); i++ )
+		{
+			WidgetButton button = (WidgetButton) iconPanel.getComponent(i);
+
+			Object obj = button.getObject();
+
+
+			ImageIcon icon = tempImageIcons.get(obj.getClass());
+
+
+			button.getObject().setVisualImage(icon);
+
+			if ( answer == 0 )
+			{
+				// The File pointer to the Image file
+				File imageFile = GraphicalFunctions.getImageIconFile(icon);
+
+				// If there was a File found
+				if ( imageFile != null )
+				{
+					// Attempts to write
+					SystemFunctions.copyIconIntoTheSystem(imageFile);
+				}
+			}
 		}
 
-		// Sets the pointer to this JFrame to null.
-		PrimeMain1.vcf = null;
+
+		PrimeMain1.objectImageIcons.putAll(tempImageIcons);
+
+		PrimeMain1.updateSelectionArea();
 	}
 
 
@@ -272,5 +375,7 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 
 			button.repaint();
 		}
+
+		changed = true;
 	}
 }

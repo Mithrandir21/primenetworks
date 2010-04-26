@@ -60,7 +60,21 @@ public class DesktopFileManagment
 	public static void saveWorkareaCanvas(WorkareaCanvas canvas)
 	{
 		File file = new File("./resource/Data/" + canvas.getCanvasName()
+				+ File.separator + canvas.getCanvasName()
 				+ ".dat");
+
+		// If the file does not exist
+		if ( !(file.exists()) )
+		{
+			File folder = new File("./resource/Data/" + canvas.getCanvasName());
+
+			// If the folder does not exist
+			if ( !(folder.exists()) )
+			{
+				folder.mkdir();
+			}
+		}
+
 
 		saveCanvas(canvas, file);
 	}
@@ -288,6 +302,7 @@ public class DesktopFileManagment
 
 		// Creates a file object(not the actual file)
 		File file = new File("./resource/Data/" + canvas.getCanvasName()
+				+ File.separator + canvas.getCanvasName()
 				+ ".dat");
 
 		// If the file(network) exists
@@ -378,7 +393,8 @@ public class DesktopFileManagment
 		String canvasName = canvas.getCanvasName();
 
 		// Creates a file object(not the actual file)
-		File file = new File("./resource/Data/" + newName + ".dat");
+		File file = new File("./resource/Data/" + newName + File.separator
+				+ newName + ".dat");
 
 		// If the file(network) exists
 		if ( file.exists() )
@@ -430,7 +446,9 @@ public class DesktopFileManagment
 	/**
 	 * This function renames the file a given {@link WorkareaCanvas} is located
 	 * in(if is has ever been saved), to a file with the given string. The
-	 * function checks if the {@link WorkareaCanvas} exists.
+	 * function checks if the {@link WorkareaCanvas} exists. The function also
+	 * changes the directory name of the network folder to match the network
+	 * name.
 	 * 
 	 * @param canvas
 	 *            The {@link WorkareaCanvas} thats inside the file to be
@@ -446,13 +464,26 @@ public class DesktopFileManagment
 		{
 			// Creates a file object(not the actual file)
 			File file = new File("./resource/Data/" + canvas.getCanvasName()
-					+ ".dat");
+					+ File.separator + canvas.getCanvasName() + ".dat");
 
-			// Creates a new file object with the new name
-			File fileNew = new File("./resource/Data/" + newName + ".dat");
+			// Creates a new file object with the new name(in the old folder)
+			File fileNew = new File("./resource/Data/" + canvas.getCanvasName()
+					+ File.separator + newName + ".dat");
 
 			// Renames the old file
 			boolean result = file.renameTo(fileNew);
+
+
+			// The old folder
+			File oldFolder = new File("./resource/Data/"
+					+ canvas.getCanvasName());
+
+			// The new folder
+			File newFolder = new File("./resource/Data/" + newName);
+
+			// Renaming the old folder to the new folder
+			boolean folderResult = oldFolder.renameTo(newFolder);
+
 
 			// If the rename was not possible
 			if ( !result )
@@ -460,9 +491,21 @@ public class DesktopFileManagment
 				JOptionPane.showMessageDialog(null, PrimeMain1.texts
 						.getString("renameWasNotPossibleMsg"), PrimeMain1.texts
 						.getString("error"), JOptionPane.ERROR_MESSAGE);
+
+				// If the file was not changed, but the folder was changed the
+				// folder has to be changed back.
+				if ( folderResult )
+				{
+					newFolder.renameTo(oldFolder);
+				}
 			}
 			else
 			{
+				// Creates a new file object with the new name(in the new
+				// folder)
+				fileNew = new File("./resource/Data/" + newName
+						+ File.separator + newName + ".dat");
+
 
 				// Sets the WorkareaCanvas name
 				canvas.setCanvasName(newName);
@@ -704,7 +747,7 @@ public class DesktopFileManagment
 		// IF the user has canceled
 		if ( nameOfCanvas != null )
 		{
-			if ( Pattern.matches("([a-zA-ZøæåØÆÅ_0-9 ])*", nameOfCanvas) )
+			if ( Pattern.matches("([a-zA-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½_0-9 ])*", nameOfCanvas) )
 			{
 				// Checks whether or not there exist a canvas with the same
 				if ( !DesktopCanvasManagment.canvasExists(nameOfCanvas) )
@@ -808,7 +851,8 @@ public class DesktopFileManagment
 	 */
 	public static void openWorkareaCanvas(String canvasName)
 	{
-		File file = new File("./Data/" + canvasName + ".dat");
+		File file = new File("./resource/Data/" + canvasName + File.separator
+				+ canvasName + ".dat");
 
 		openCanvas(file);
 	}

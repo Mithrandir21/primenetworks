@@ -22,6 +22,7 @@ import actions.canvasActions.ActionDeleteAllConnections;
 import actions.canvasActions.ActionDeleteAllConnectionsToAndFrom;
 import actions.canvasActions.ActionDeleteAllRooms;
 import actions.canvasActions.ActionDeleteAllWidgets;
+import actions.canvasActions.ActionDeleteEverything;
 import actions.systemActions.ActionAbout;
 import actions.systemActions.ActionExitSystem;
 import actions.systemActions.ActionNew;
@@ -206,6 +207,16 @@ public class GenericPrimeMenuBar extends JMenuBar
 				PrimeMain1.texts.getString("deleteAllRoomsLabel")));
 		removeAllRooms.setIcon(null);
 		submenu.add(removeAllRooms);
+		
+		
+		// Adds a separator to the submenu
+		submenu.addSeparator();
+		
+		
+		JMenuItem removeEverything = new JMenuItem(new ActionDeleteEverything(
+				PrimeMain1.texts.getString("deleteEverythingLabel")));
+		removeEverything.setIcon(null);
+		submenu.add(removeEverything);
 
 		// Adds a separator to the menu
 		edit.addSeparator();

@@ -12,6 +12,10 @@ import javax.swing.JPopupMenu;
 
 import widgets.WorkareaCanvas;
 import actions.ActionPaste;
+import actions.canvasActions.ActionDeleteAllConnections;
+import actions.canvasActions.ActionDeleteAllRooms;
+import actions.canvasActions.ActionDeleteAllWidgets;
+import actions.canvasActions.ActionDeleteEverything;
 
 
 /**
@@ -86,8 +90,13 @@ public class JPopupCanvasMenu
 
 		popup.addSeparator();
 
-
+		// Adds the "add objects" menu
 		ObjectCreationMenues();
+		
+		popup.addSeparator();
+		
+		// Adds the "remove" menu
+		createRemoveMenu();
 
 		return popup;
 	}
@@ -295,6 +304,45 @@ public class JPopupCanvasMenu
 
 		return submenuPeripheral;
 	}
+	
+
+	/**
+	 * Creates a menu that holds remove actions for the canvas.
+	 * 
+	 */
+	private void createRemoveMenu()
+	{
+		JMenu submenu = new JMenu(PrimeMain1.texts
+				.getString("deleteSubMenuLabel"));
+
+		JMenuItem removeAllWidgets = new JMenuItem(new ActionDeleteAllWidgets(
+				PrimeMain1.texts.getString("deleteAllWidgetsLabel")));
+		removeAllWidgets.setIcon(null);
+		submenu.add(removeAllWidgets);
 
 
+		JMenuItem removeAllConnections = new JMenuItem(new ActionDeleteAllConnections(
+				PrimeMain1.texts.getString("deleteAllConnectionsLabel")));
+		removeAllConnections.setIcon(null);
+		submenu.add(removeAllConnections);
+		
+		
+		JMenuItem removeAllRooms = new JMenuItem(new ActionDeleteAllRooms(
+				PrimeMain1.texts.getString("deleteAllRoomsLabel")));
+		removeAllRooms.setIcon(null);
+		submenu.add(removeAllRooms);
+		
+		
+		// Adds a separator to the submenu
+		submenu.addSeparator();
+		
+		
+		JMenuItem removeEverything = new JMenuItem(new ActionDeleteEverything(
+				PrimeMain1.texts.getString("deleteEverythingLabel")));
+		removeEverything.setIcon(null);
+		submenu.add(removeEverything);
+		
+		
+		popup.add(submenu);
+	}
 }
