@@ -19,7 +19,7 @@ import actions.ActionCopy;
 import actions.ActionCut;
 import actions.ActionPaste;
 import actions.systemActions.ActionConnection;
-import actions.systemActions.ActionExport;
+import actions.systemActions.ActionExportCanvasAsImage;
 import actions.systemActions.ActionNew;
 import actions.systemActions.ActionObjectEditing;
 import actions.systemActions.ActionOpenfile;
@@ -198,7 +198,7 @@ public class GenericPrimeToolbar extends JMenuBar
 		JButton updateButton = new JButton(update);
 
 		tempIcon = ImageLocator.getImageIconObject("Export");
-		ActionExport export = new ActionExport(PrimeMain1.texts
+		ActionExportCanvasAsImage export = new ActionExportCanvasAsImage(PrimeMain1.texts
 				.getString("exportButtonLabel"), tempIcon);
 		JButton exportButton = new JButton(export);
 

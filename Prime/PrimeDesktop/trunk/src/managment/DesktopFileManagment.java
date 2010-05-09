@@ -6,8 +6,10 @@ package managment;
 
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain1;
-import graphics.GUI.JPGFilter;
-import graphics.GUI.PNGFilter;
+import graphics.GUI.CustomFileFilters.DATFilter;
+import graphics.GUI.CustomFileFilters.JPGFilter;
+import graphics.GUI.CustomFileFilters.OBJFilter;
+import graphics.GUI.CustomFileFilters.PNGFilter;
 import graphics.GUI.selectArea.PrimeJTree.FileTreeNode;
 import graphics.GUI.workareaCanvas.WorkareaSceneScroll;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
@@ -76,8 +78,9 @@ public class DesktopFileManagment
 		}
 
 
-		saveCanvas(canvas, file);
+		saveCanvas(canvas, file, true);
 	}
+
 
 
 	/**
@@ -90,7 +93,7 @@ public class DesktopFileManagment
 	 */
 	public static void saveWorkareaCanvas(WorkareaCanvas canvas, File file)
 	{
-		saveCanvas(canvas, file);
+		saveCanvas(canvas, file, true);
 	}
 
 
@@ -105,13 +108,21 @@ public class DesktopFileManagment
 	 *            The WorkareaCanvas to be written out.
 	 * @param file
 	 *            The File which the WorkareaCanvas will be written to.
+	 * @param verify
+	 *            Verify if the file exists and if so can be overwritten
 	 */
-	private static void saveCanvas(WorkareaCanvas canvas, File file)
+	private static void saveCanvas(WorkareaCanvas canvas, File file,
+			boolean verify)
 	{
 		// Revalidates the locations of the objects on the scene
 		canvas.revalidateWidgetLocations();
 
-		boolean verified = checkAndVerify(canvas);
+		boolean verified = true;
+
+		if ( verify )
+		{
+			verified = checkAndVerify(canvas);
+		}
 
 		if ( verified )
 		{
@@ -236,7 +247,7 @@ public class DesktopFileManagment
 			canvas.setChanged(false);
 
 			// Reloads the JTree
-			PrimeMain1.updateSelectionArea();
+			PrimeMain1.updateNetworkSelectionArea();
 
 			PrimeMain1.workTab.revalidate();
 			PrimeMain1.workTab.repaint();
@@ -387,11 +398,8 @@ public class DesktopFileManagment
 	 * 
 	 * @param canvas
 	 */
-	public static boolean fileWorkareaCanvasExist(WorkareaCanvas canvas,
-			String newName)
+	public static boolean fileWorkareaCanvasExist(String newName)
 	{
-		String canvasName = canvas.getCanvasName();
-
 		// Creates a file object(not the actual file)
 		File file = new File("./resource/Data/" + newName + File.separator
 				+ newName + ".dat");
@@ -460,7 +468,7 @@ public class DesktopFileManagment
 	public static boolean changeFileName(WorkareaCanvas canvas, String newName)
 	{
 		// Checks to see whether a canvas file actually exists
-		if ( fileWorkareaCanvasExist(canvas, canvas.getCanvasName()) )
+		if ( fileWorkareaCanvasExist(canvas.getCanvasName()) )
 		{
 			// Creates a file object(not the actual file)
 			File file = new File("./resource/Data/" + canvas.getCanvasName()
@@ -514,7 +522,7 @@ public class DesktopFileManagment
 				saveWorkareaCanvas(canvas, fileNew);
 
 				// Updates the JTree
-				PrimeMain1.updateSelectionArea();
+				PrimeMain1.updateNetworkSelectionArea();
 
 				return true;
 			}
@@ -556,11 +564,10 @@ public class DesktopFileManagment
 	{
 		// Creates a file object(not the actual file)
 		File file = new File("./resource/Data/" + canvas.getCanvasName()
-				+ ".dat");
+				+ File.separator + canvas.getCanvasName() + ".dat");
 
 		return deleteWorkareaCanvas(file);
 	}
-
 
 
 
@@ -642,8 +649,13 @@ public class DesktopFileManagment
 				}
 				else
 				{
+					// If the canvas has been deleted, the canvas folder must be
+					// deleted.
+					deleteDir(file.getParentFile());
+
+
 					// Reloads
-					PrimeMain1.updateSelectionArea();
+					PrimeMain1.updateNetworkSelectionArea();
 
 					return true;
 				}
@@ -674,8 +686,13 @@ public class DesktopFileManagment
 				}
 				else
 				{
+					// If the canvas has been deleted, the canvas folder must be
+					// deleted.
+					deleteDir(file.getParentFile());
+
+
 					// Reloads
-					PrimeMain1.updateSelectionArea();
+					PrimeMain1.updateNetworkSelectionArea();
 
 					// Removes the WorkareScroll with the canvas
 					PrimeMain1.workTab.removeTabWithCanvas(canvasName, false);
@@ -689,6 +706,7 @@ public class DesktopFileManagment
 			return false;
 		}
 	}
+
 
 
 	/**
@@ -792,7 +810,7 @@ public class DesktopFileManagment
 					PrimeMain1.workTab.createNewCanvasTab(newScroll, -1);
 
 					// Reloads the JTree
-					PrimeMain1.updateSelectionArea();
+					PrimeMain1.updateNetworkSelectionArea();
 
 					PrimeMain1.workTab.revalidate();
 					PrimeMain1.workTab.repaint();
@@ -1111,6 +1129,255 @@ public class DesktopFileManagment
 
 
 
+	/**
+	 * This method opens a WorkareaCanvas from the given file, but does not add
+	 * it to the systems array of canvases. It just returns the
+	 * {@link WorkareaCanvas}.
+	 * 
+	 * @param file
+	 */
+	@SuppressWarnings("unchecked")
+	private static WorkareaCanvas openCanvasFile(File file)
+	{
+		WorkareaCanvas canvas = new WorkareaCanvas();
+
+		try
+		{
+			FileInputStream fin = new FileInputStream(file);
+
+			ObjectInputStream ois = new ObjectInputStream(fin);
+
+			// The name of the canvas
+			String name = (String) ois.readObject();
+			canvas.setCanvasName(name);
+
+			// The serial of the network
+			double serial = ois.readDouble();
+			canvas.setSerial(serial);
+
+			// Reads the WorkareaCanvasNetworkInfo
+			canvas.setNetworkInfo((WorkareaCanvasNetworkInfo) ois.readObject());
+
+
+			// READS THE OBJECTS THAT ARE TO BE PLACED ON THE CANVAS
+
+
+			// The ArrayList that will hold the Objects
+			ArrayList<Object> objectList = new ArrayList<Object>();
+
+			// Reads inn the ArrayList from the file stream
+			objectList = (ArrayList<Object>) ois.readObject();
+
+			// The size of the new Objects array
+			int objectArraySize = 0;
+
+			// Iterates through the Object list
+			for ( Iterator it = objectList.iterator(); it.hasNext(); )
+			{
+				objectArraySize++;
+				it.next();
+			}
+
+			// If there were any objects found
+			if ( objectArraySize > 0 )
+			{
+				// The objects array
+				Object[] objects = new Object[objectArraySize];
+
+				// The index of the objects array
+				int objectIndex = 0;
+
+				// Iterates through the list and adds the objects to the objects
+				// array
+				for ( Iterator it = objectList.iterator(); it.hasNext(); )
+				{
+					objects[objectIndex] = (Object) it.next();
+					objectIndex++;
+				}
+
+				// Goes through the array of objects and adds them to the newly
+				// made canvas
+				for ( int i = 0; i < objects.length; i++ )
+				{
+					if ( objects[i] != null )
+					{
+						Class<?> objClass = GraphicalFunctions
+								.getObjectClass(objects[i]);
+						ImageIcon icon = PrimeMain1.objectImageIcons
+								.get(objects[i].getClass());
+
+						WidgetObject added = WorkareaCanvasActions
+								.addObjectToCanvas(objects[i], canvas,
+										objClass, icon);
+
+						// Adds the actions that the new widget supports
+						ActionsAdder.makeWidgetObjectReady(canvas, added);
+					}
+				}
+			}
+
+			// END OF READ OBJECTS
+
+
+
+			// READ THE CONNECTIONS THAT TO BE PLACED ON THE CANVAS
+
+
+
+			// The ArrayList that will hold all the connections
+			ArrayList<Connection> connectionList = new ArrayList<Connection>();
+
+			// Reads inn the ArrayList from the file stream
+			connectionList = (ArrayList<Connection>) ois.readObject();
+
+			// The size of the new Connection array
+			int connectionArraySize = 0;
+
+			// Iterates through the connection list
+			for ( Iterator it = connectionList.iterator(); it.hasNext(); )
+			{
+				connectionArraySize++;
+				it.next();
+			}
+
+			// If there were any objects found
+			if ( connectionArraySize > 0 )
+			{
+				// The connection array
+				Connection[] connections = new Connection[connectionArraySize];
+
+				// The index of the connection array
+				int connectionIndex = 0;
+
+				// Iterates through the list and adds the connections to the
+				// connections array
+				for ( Iterator it = connectionList.iterator(); it.hasNext(); )
+				{
+					connections[connectionIndex] = (Connection) it.next();
+					connectionIndex++;
+				}
+
+
+				// Goes through the entire connections array and adds the
+				// connections to the WorkareaCanvas
+				for ( int i = 0; i < connections.length; i++ )
+				{
+					if ( connections[i] != null )
+					{
+						// Creates the connection between the two devices on the
+						// scene.
+						WidgetExtendedConnection connection = new WidgetExtendedConnection(
+								canvas.getScene(), connections[i]);
+
+
+						// Find the two object which are to be connected on the
+						// canvas
+						WidgetObject sourceWidget = CanvasManagment
+								.findWidgetObject(connections[i].getObject1(),
+										canvas);
+						WidgetObject targetWidget = CanvasManagment
+								.findWidgetObject(connections[i].getObject2(),
+										canvas);
+
+						// Creates the whole connection with all actions
+						connection = ConnectionManagment
+								.createWidgetExtendedConnection(canvas,
+										connections[i], connection,
+										sourceWidget, targetWidget);
+
+						// Adds the different actions
+						ActionsAdder.makeWidgetConnectionReady(canvas,
+								connection);
+
+						// Add the connection the connection layer
+						canvas.getConnectionLayer().addChild(connection);
+					}
+				}
+			}
+
+			// END OF CONNECTIONS
+
+
+
+			// READ THE NETWORK ROOMS
+
+
+			// The ArrayList that will hold all the rooms
+			ArrayList<Room> roomList = new ArrayList<Room>();
+
+			// Reads inn the ArrayList from the file stream
+			roomList = (ArrayList<Room>) ois.readObject();
+
+			// The size of the new Room array
+			int roomArraySize = 0;
+
+			// Iterates through the room list
+			for ( Iterator it = roomList.iterator(); it.hasNext(); )
+			{
+				roomArraySize++;
+				it.next();
+			}
+
+			// If there were any objects found
+			if ( roomArraySize > 0 )
+			{
+				// The room array
+				Room[] rooms = new Room[roomArraySize];
+
+				// The index of the room array
+				int roomIndex = 0;
+
+				// Iterates through the list and adds the room to the room array
+				for ( Iterator it = roomList.iterator(); it.hasNext(); )
+				{
+					rooms[roomIndex] = (Room) it.next();
+					roomIndex++;
+				}
+
+				// Goes through the entire connections array and adds the
+				// connections to the WorkareaCanvas
+				for ( int i = 0; i < rooms.length; i++ )
+				{
+					if ( rooms[i] != null )
+					{
+						WidgetRoom room = RoomManagment.addRoom(canvas,
+								rooms[i]);
+
+						// Adds the actions supported by the WidgetRoom
+						ActionsAdder.makeWidgetRoomReady(canvas, room);
+					}
+				}
+			}
+
+
+			// END OF READ NETWORK ROOMS
+
+
+
+			ois.close();
+		}
+		catch ( FileNotFoundException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch ( IOException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch ( ClassNotFoundException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return canvas;
+	}
+
+
+
 
 	/**
 	 * Opens the {@link Settings} instance from a file to preserve the users
@@ -1173,8 +1440,6 @@ public class DesktopFileManagment
 			}
 		}
 	}
-
-
 
 
 
@@ -1257,14 +1522,76 @@ public class DesktopFileManagment
 
 
 
-
-
 	/**
-	 * Javadoc-TODO - Description
+	 * This function exports the given {@link WorkareaCanvas} to a .dat file.
+	 * The user is presented with a choice on which folder to save the image in.
 	 * 
 	 * @param canvas
 	 */
-	public static void exportWorkareaCanvas(WorkareaCanvas canvas)
+	public static void exportNetwork(WorkareaCanvas canvas)
+	{
+		// The JFileChoose where the user will save the export
+		JFileChooser fc = new JFileChooser();
+		fc.setAcceptAllFileFilterUsed(false);
+
+		// Adds the filters
+		fc.addChoosableFileFilter(new DATFilter());
+
+		// Sets the selected file to the name of the
+		fc.setSelectedFile(new File(canvas.getCanvasName()));
+
+		// Shows the File chooser
+		int returnVal = fc.showSaveDialog(null);
+
+		// If the save button is pressed
+		if ( returnVal == JFileChooser.APPROVE_OPTION )
+		{
+			// Gets the file written/selected
+			File file = fc.getSelectedFile();
+
+			// Creates the file with the right extension
+			File output = new File(file.getAbsoluteFile() + ".dat");
+
+			// Whether or not to overwrite
+			boolean overwrite = false;
+
+			// IF there already exists a file
+			if ( output.exists() )
+			{
+				int answer = JOptionPane
+						.showConfirmDialog(null, PrimeMain1.texts
+								.getString("overwriteNetworkExportMsg"),
+						PrimeMain1.texts.getString("overwrite"),
+						JOptionPane.YES_NO_OPTION);
+
+				if ( answer == 0 )
+				{
+					overwrite = true;
+				}
+			}
+			else
+			{
+				overwrite = true;
+			}
+
+
+			// Will either overwrite or write a new file
+			if ( overwrite )
+			{
+				saveCanvas(canvas, output, false);
+			}
+		}
+	}
+
+
+	/**
+	 * This function exports the given {@link WorkareaCanvas} to an image. The
+	 * image types are JPG and PNG. The user is presented with a choice on which
+	 * folder to save the image in.
+	 * 
+	 * @param canvas
+	 */
+	public static void exportWorkareaCanvasAsImage(WorkareaCanvas canvas)
 	{
 		// The JFileChoose where the user will save the export
 		JFileChooser fc = new JFileChooser();
@@ -1286,59 +1613,88 @@ public class DesktopFileManagment
 			// Gets the file written/selected
 			File file = fc.getSelectedFile();
 
-			// Gets the absolute path of the file
-			String path = file.getAbsolutePath();
+			// Whether or not to overwrite
+			boolean overwrite = false;
 
-			// Gets the extension that is currently selected
-			String extension = fc.getFileFilter().getDescription();
-
-
-			if ( extension.equals(".jpg") )
+			// IF there already exists a file
+			if ( file.exists() )
 			{
-				// If the file does not ends with the extension
-				if ( !(path.endsWith(extension)) )
+				int answer = JOptionPane.showConfirmDialog(null,
+						PrimeMain1.texts.getString("overwriteNetworkImageMsg"),
+						PrimeMain1.texts.getString("overwrite"),
+						JOptionPane.YES_NO_OPTION);
+
+				if ( answer == 0 )
 				{
-					// Creates a new file with the path of the file and the
-					// extension
-					file = new File(path + extension);
+					overwrite = true;
 				}
+			}
+			else
+			{
+				overwrite = true;
+			}
 
 
-				try
+			// Will either overwrite or write a new file
+			if ( overwrite )
+			{
+
+				// Gets the absolute path of the file
+				String path = file.getAbsolutePath();
+
+				// Gets the extension that is currently selected
+				String extension = fc.getFileFilter().getDescription();
+
+
+				if ( extension.equals(".jpg") )
 				{
-					CanvasExporter.createImage(PrimeMain1.currentCanvas, file,
+					// If the file does not ends with the extension
+					if ( !(path.endsWith(extension)) )
+					{
+						// Creates a new file with the path of the file and the
+						// extension
+						file = new File(path + extension);
+					}
+
+
+					try
+					{
+						CanvasExporter.createImage(PrimeMain1.currentCanvas,
+								file,
 							CanvasExporter.ImageType.JPG,
 							CanvasExporter.ZoomType.ACTUAL_SIZE, false, false,
 							100, 1600, 1400);
+					}
+					catch ( IOException e )
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
-				catch ( IOException e )
+				else if ( extension.equals(".png") )
 				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			else if ( extension.equals(".png") )
-			{
-				// If the file does not ends with the extension
-				if ( !(path.endsWith(extension)) )
-				{
-					// Creates a new file with the path of the file and the
-					// extension
-					file = new File(path + extension);
-				}
+					// If the file does not ends with the extension
+					if ( !(path.endsWith(extension)) )
+					{
+						// Creates a new file with the path of the file and the
+						// extension
+						file = new File(path + extension);
+					}
 
 
-				try
-				{
-					CanvasExporter.createImage(PrimeMain1.currentCanvas, file,
+					try
+					{
+						CanvasExporter.createImage(PrimeMain1.currentCanvas,
+								file,
 							CanvasExporter.ImageType.PNG,
 							CanvasExporter.ZoomType.ACTUAL_SIZE, false, false,
 							100, 1000, 1000);
-				}
-				catch ( IOException e )
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					}
+					catch ( IOException e )
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -1347,13 +1703,307 @@ public class DesktopFileManagment
 
 
 	/**
-	 * TODO - Description
+	 * This function exports the Standard Objects list to a file. The file will
+	 * have a .obj filetype. The user is presented with a choice on which folder
+	 * to save the file in.
+	 */
+	public static void exportStandardObjects()
+	{
+		// If the object list not empty
+		if ( !PrimeMain1.objectlist.isEmpty() )
+		{
+			// The JFileChoose where the user will save the export
+			JFileChooser fc = new JFileChooser();
+
+			fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+			// Shows the File chooser
+			int returnVal = fc.showSaveDialog(null);
+
+
+			// If the users choices a folder
+			if ( returnVal == JFileChooser.APPROVE_OPTION )
+			{
+				File folder = fc.getSelectedFile();
+
+				// Just to make sure
+				if ( folder.isDirectory() )
+				{
+					// The file that will be written out
+					File objectFile = new File(folder.getAbsolutePath()
+							+ File.separator + "objects.obj");
+
+					// Whether or not to overwrite
+					boolean overwrite = false;
+
+					// IF there already exists a file
+					if ( objectFile.exists() )
+					{
+						int answer = JOptionPane
+								.showConfirmDialog(
+										null,
+										PrimeMain1.texts
+										.getString("overwriteObjectsFileMsg"),
+										PrimeMain1.texts.getString("overwrite"),
+										JOptionPane.YES_NO_OPTION);
+						
+						if( answer == 0 )
+						{
+							overwrite = true;
+						}
+					}
+					else
+					{
+						overwrite = true;
+					}
+					
+					
+					// The file either does not exist or the user wants to overwrite
+					if( overwrite )
+					{
+						saveObjectFile(objectFile);
+					}
+				}
+			}
+		}
+	}
+
+
+
+
+	/**
+	 * This function imports a Network from a file. The file will have a .dat
+	 * filetype. The user is presented with {@link JFileChooser}.
+	 */
+	public static void importNetwork()
+	{
+		// The JFileChoose where the user will save the export
+		JFileChooser fc = new JFileChooser();
+		fc.setAcceptAllFileFilterUsed(false);
+
+		// Adds the filter
+		fc.addChoosableFileFilter(new DATFilter());
+
+		// Shows the File chooser
+		int returnVal = fc.showSaveDialog(null);
+
+		// If the save button is pressed
+		if ( returnVal == JFileChooser.APPROVE_OPTION )
+		{
+			// Gets the file written/selected
+			File file = fc.getSelectedFile();
+
+			if ( file.exists() )
+			{
+				// Whether there exist network file with the same name
+				boolean networkFileExists = DesktopFileManagment
+						.fileWorkareaCanvasExist(getFileNameWithoutExtension(file
+								.getName()));
+				
+				// If there exists a an open network canvas with the same name
+				boolean networkCanvasExists = DesktopCanvasManagment
+						.canvasExists(getFileNameWithoutExtension(file
+								.getName()));
+
+				// Whether the name of the imported network has to be changed
+				boolean changeName = false;
+
+				if ( networkFileExists )
+				{
+					changeName = true;
+				}
+				else if ( networkCanvasExists )
+				{
+					changeName = true;
+				}
+
+				
+				if ( changeName )
+				{
+					/**
+					 * The WorkareaCanvas inside the file has the same name or
+					 * serial number as another network inside the system. It
+					 * must therefore have its name and serial number changed.
+					 */
+
+					int answer = JOptionPane
+							.showConfirmDialog(
+									null,
+									PrimeMain1.texts
+											.getString("verifyImportedNetworkNameChange"),
+									PrimeMain1.texts.getString("overwrite"),
+									JOptionPane.YES_NO_OPTION);
+					
+					// The user answers yes
+					if ( answer == 0 )
+					{
+						boolean tryAgain = true;
+						
+						while ( tryAgain )
+						{
+							String newName = JOptionPane
+									.showInputDialog(
+											null,
+								PrimeMain1.texts
+										.getString("writeNewNetworkNameMsg"));
+						
+							if ( Pattern.matches("([a-zA-Z_0-9 ])*", newName)
+									&& !(newName.equals("")) )
+							{
+								// If the file can be read
+								if ( file.canRead() )
+								{
+									try
+									{
+										// The workareacanvas in the file
+										WorkareaCanvas newCanvas = openCanvasFile(file);
+
+										// Sets the new name for the network
+										newCanvas.setCanvasName(newName);
+
+										// Sets the a new serial number for the
+										// network
+										newCanvas
+												.setSerial((Math.random()) * 500);
+
+										// Adds the canvas to the program
+										PrimeMain1.getWorkarea()
+												.createNewCanvasTab(newCanvas);
+
+										// Saves the canvas into the program
+										saveWorkareaCanvas(newCanvas);
+
+										newCanvas.setSaved(true);
+									}
+									catch ( Exception e )
+									{
+										e.printStackTrace();
+									}
+								}
+								
+								tryAgain = false;
+							}
+							else
+							{
+								// Whether or not the user wants to try again
+								int n = JOptionPane
+										.showConfirmDialog(
+												null,
+												PrimeMain1.texts
+														.getString("tryNewNetworkNameAgainMsg"),
+												PrimeMain1.texts
+														.getString("verify"),
+										JOptionPane.YES_NO_OPTION);
+
+								// The user answers something else then yes
+								if ( n != 0 )
+								{
+									tryAgain = false;
+								}
+							}
+						}
+					}
+				}
+				else
+				{
+					/**
+					 * The WorkareaCanvas inside the file does not have the name
+					 * or serial number. It is therefore just added to the
+					 * system.
+					 */
+					// The workareacanvas in the file
+					WorkareaCanvas newCanvas = openCanvasFile(file);
+
+					// Adds the canvas to the program
+					PrimeMain1.getWorkarea().createNewCanvasTab(newCanvas);
+
+					// Saves the canvas into the program
+					saveWorkareaCanvas(newCanvas);
+
+					newCanvas.setSaved(true);
+				}
+			}
+		}
+	}
+
+
+
+	/**
+	 * This function imports a Standard Objects list from a file. The file will
+	 * have a .obj filetype. The user is presented with {@link JFileChooser}.
+	 */
+	public static void importStandardObjects()
+	{
+		// The JFileChoose where the user will save the export
+		JFileChooser fc = new JFileChooser();
+		fc.setAcceptAllFileFilterUsed(false);
+
+		// Adds the filter
+		fc.addChoosableFileFilter(new OBJFilter());
+
+		// Shows the File chooser
+		int returnVal = fc.showSaveDialog(null);
+
+		// If the save button is pressed
+		if ( returnVal == JFileChooser.APPROVE_OPTION )
+		{
+			// Gets the file written/selected
+			File file = fc.getSelectedFile();
+
+			if ( file.exists() )
+			{
+				// The text shown to the user
+				String text = PrimeMain1.texts
+						.getString("verifyStandardObjectsListOverwrite")
+						+ "\n"
+						+ PrimeMain1.texts.getString("thisCannotBeUndoneMsg");
+
+				// Whether or not the user wants to overwrite the current
+				// standard object list
+				int answer = JOptionPane.showConfirmDialog(null, text,
+						PrimeMain1.texts.getString("overwrite"),
+						JOptionPane.YES_NO_OPTION);
+
+				// The user answers yes
+				if ( answer == 0 )
+				{
+					openObjectsFile(file);
+
+					// Tells the user that the change will take effect on
+					// restart
+					JOptionPane.showMessageDialog(null, PrimeMain1.texts
+							.getString("ChangeAfterRestart"));
+				}
+			}
+		}
+	}
+
+
+
+
+
+
+	/**
+	 * Saves the objectlist from the {@link PrimeMain1} to the resource
+	 * directory.
 	 */
 	public static void saveObjectsFile()
 	{
 		File file = new File("./resource/objects.obj");
 
+		saveObjectFile(file);
+	}
 
+
+
+
+
+
+	/**
+	 * Saves the objectlist from the {@link PrimeMain1} to the given file.
+	 */
+	public static void saveObjectFile(File file)
+	{
 		// If the Objects file exists
 		if ( file.exists() )
 		{
@@ -1424,13 +2074,23 @@ public class DesktopFileManagment
 
 
 	/**
-	 * TODO - Description
+	 * Opens the standard objects file that contains the systems standard
+	 * objects located in the resource directory with the name objects.obj.
 	 */
-	@SuppressWarnings("unchecked")
 	public static void openObjectsFile()
 	{
 		File file = new File("./resource/objects.obj");
 
+		openObjectsFile(file);
+	}
+
+
+	/**
+	 * Opens the standard objects file that contains the systems standard
+	 * objects from the given file(after verification).
+	 */
+	public static void openObjectsFile(File file)
+	{
 
 		// If the Objects file exists
 		if ( file.exists() )
@@ -1447,9 +2107,34 @@ public class DesktopFileManagment
 
 						ObjectInputStream ois = new ObjectInputStream(fin);
 
-						// Reads inn the ArrayList from the file stream
-						PrimeMain1.objectlist = (ArrayList<Object>) ois
-								.readObject();
+						boolean verified = false;
+
+
+						// The arraylist of the systems standard Objects
+						ArrayList<Object> testlist = new ArrayList<Object>();
+
+						testlist = (ArrayList<Object>) ois.readObject();
+
+						// If the list is not empty
+						if ( !testlist.isEmpty() )
+						{
+							// Gets the first object in the list
+							Object testObject = testlist.get(0);
+
+							// If the name of the gotten object is not ""
+							if ( testObject.getObjectName() != "" )
+							{
+								verified = true;
+							}
+						}
+
+
+						// The file has been verified
+						if ( verified )
+						{
+							// Reads inn the ArrayList from the file stream
+							PrimeMain1.objectlist = testlist;
+						}
 
 						ois.close();
 					}
@@ -1474,12 +2159,16 @@ public class DesktopFileManagment
 		{
 			System.out.println("openObjectsFile - file.exists()");
 		}
+
+
+
 	}
 
 
 
 	/**
-	 * TODO - Description
+	 * This function checks whether or not an standard objects file exists in
+	 * the resources folder with the objects.obj
 	 */
 	public static boolean objectsFileExists()
 	{
@@ -1494,5 +2183,51 @@ public class DesktopFileManagment
 		}
 
 		return false;
+	}
+
+
+
+
+	/**
+	 * Deletes all files and subdirectories under dir. Returns true if all
+	 * deletions were successful. If a deletion fails, the method stops
+	 * attempting to delete and returns false.
+	 */
+	public static boolean deleteDir(File dir)
+	{
+		if ( dir.isDirectory() )
+		{
+			String[] children = dir.list();
+			for ( int i = 0; i < children.length; i++ )
+			{
+				boolean success = deleteDir(new File(dir, children[i]));
+				if ( !success )
+				{
+					return false;
+				}
+			}
+		}
+
+		// The directory is now empty so delete it
+		return dir.delete();
+	}
+
+
+
+	/**
+	 * Returns the filename from the given string with the extension. Returns ""
+	 * if the extension is more or less then 3 letters.
+	 */
+	public static String getFileNameWithoutExtension(String fileName)
+	{
+		int whereDot = fileName.lastIndexOf('.');
+
+		if ( 0 < whereDot && whereDot <= fileName.length() - 2 )
+		{
+			return fileName.substring(0, whereDot);
+			// extension = filename.substring(whereDot+1);
+		}
+
+		return "";
 	}
 }

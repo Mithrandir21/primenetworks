@@ -496,11 +496,24 @@ public class PrimeMain1 extends JFrame
 	// updateObjectArea
 
 
+
+	/**
+	 * This method calls on functions that update the programs Object selection,
+	 * which shows available {@link WorkareaCanvas WorkareaCanvases}.
+	 */
+	public static void updateObjectSelectionArea()
+	{
+		tabSelection.updateObjectArea();
+		tabSelection.validate();
+		tabSelection.repaint();
+	}
+
+
 	/**
 	 * This method calls on functions that update the programs JTree, which
 	 * shows available {@link WorkareaCanvas WorkareaCanvases}.
 	 */
-	public static void updateSelectionArea()
+	public static void updateNetworkSelectionArea()
 	{
 		tabSelection.getPrimeTree().createTree();
 		tabSelection.validate();

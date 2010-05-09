@@ -19,12 +19,16 @@ import actions.ActionCopy;
 import actions.ActionCut;
 import actions.ActionPaste;
 import actions.canvasActions.ActionDeleteAllConnections;
-import actions.canvasActions.ActionDeleteAllConnectionsToAndFrom;
 import actions.canvasActions.ActionDeleteAllRooms;
 import actions.canvasActions.ActionDeleteAllWidgets;
 import actions.canvasActions.ActionDeleteEverything;
 import actions.systemActions.ActionAbout;
 import actions.systemActions.ActionExitSystem;
+import actions.systemActions.ActionExportCanvasAsImage;
+import actions.systemActions.ActionExportNetwork;
+import actions.systemActions.ActionExportStandardObjects;
+import actions.systemActions.ActionImportNetwork;
+import actions.systemActions.ActionImportStandardObjects;
 import actions.systemActions.ActionNew;
 import actions.systemActions.ActionOpenVisualEdit;
 import actions.systemActions.ActionOpenfile;
@@ -44,7 +48,7 @@ import actions.toolbar.ActionSoftwareMessage;
 /**
  * This class creates the a generic {@link JMenuBar JMenuBar} for the main
  * windows of the program. This JMenuBar will include the menues "File", "Edit",
- * "Tools" and "Help". (More menues should be added at a later point.)
+ * "View", "Tools" and "Help". (More menues should be added at a later point.)
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -123,6 +127,26 @@ public class GenericPrimeMenuBar extends JMenuBar
 				KeyEvent.CTRL_MASK));
 		saveAll.setIcon(null);
 		file.add(saveAll);
+
+		// Adds a separator to the menu
+		file.addSeparator();
+
+		JMenu importSubMenu = new JMenu(PrimeMain1.texts
+				.getString("importSubMenuLabel"));
+
+
+		JMenuItem importNetwork = new JMenuItem(new ActionImportNetwork(
+				PrimeMain1.texts.getString("importNetworkLabel")));
+		importSubMenu.add(importNetwork);
+
+		
+		JMenuItem importStandardObjectsList = new JMenuItem(
+				new ActionImportStandardObjects(PrimeMain1.texts
+						.getString("importStandardObjectsList")));
+		importSubMenu.add(importStandardObjectsList);
+
+
+		file.add(importSubMenu);
 
 		// Adds a separator to the menu
 		file.addSeparator();
@@ -320,6 +344,36 @@ public class GenericPrimeMenuBar extends JMenuBar
 		tools.add(openVisualEdit);
 
 
+		// Adds a separator to the menu
+		tools.addSeparator();
+
+		JMenu exportSubMenu = new JMenu(PrimeMain1.texts
+				.getString("exportSubMenuLabel"));
+		
+		
+		JMenuItem exportNetwork = new JMenuItem(new ActionExportNetwork(
+				PrimeMain1.texts.getString("exportCanvasMenuLabel")));
+		exportSubMenu.add(exportNetwork);
+		
+		
+
+		JMenuItem exportNetworkAsImage = new JMenuItem(
+				new ActionExportCanvasAsImage(PrimeMain1.texts
+						.getString("exportCanvasAsImageMenuLabel")));
+		exportSubMenu.add(exportNetworkAsImage);
+		
+
+
+		JMenuItem exportStandardObjectsList = new JMenuItem(
+				new ActionExportStandardObjects(PrimeMain1.texts
+						.getString("exportStandardObjectsListMenuLabel")));
+		exportSubMenu.add(exportStandardObjectsList);
+
+
+
+
+		tools.add(exportSubMenu);
+		
 		// Adds a separator to the menu
 		tools.addSeparator();
 

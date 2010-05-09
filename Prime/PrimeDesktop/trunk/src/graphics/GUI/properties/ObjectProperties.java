@@ -313,8 +313,7 @@ public class ObjectProperties extends JPanel implements ActionListener
 							{
 								// No canvas was found with the name
 								if ( !(DesktopFileManagment
-										.fileWorkareaCanvasExist(canvasViewed,
-												canvasName)) )
+										.fileWorkareaCanvasExist(canvasName)) )
 								{
 									PrimeMain1.workTab.updateCanvasName(
 											canvasViewed, canvasName);

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graphics.GUI;
+package graphics.GUI.CustomFileFilters;
 
 
 import java.io.File;
@@ -15,9 +15,8 @@ import javax.swing.filechooser.FileFilter;
  * @author Bahram Malaekeh
  * 
  */
-public class JPGFilter extends FileFilter
+public class PNGFilter extends FileFilter
 {
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -36,7 +35,7 @@ public class JPGFilter extends FileFilter
 		// Gets the absolute path of the file
 		String path = file.getAbsolutePath();
 
-		String ext = ".jpg";
+		String ext = ".png";
 
 		if ( path.endsWith(ext) )
 		{
@@ -54,7 +53,7 @@ public class JPGFilter extends FileFilter
 	@Override
 	public String getDescription()
 	{
-		return ".jpg";
+		return (".png");
 	}
 
 }

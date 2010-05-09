@@ -17,13 +17,13 @@ import widgets.WorkareaCanvas;
 
 /**
  * This action is used when the currently open {@link WorkareaCanvas} is to be
- * exported as a file. It will call the exportWorkareaCanvas function in the
- * {@link DesktopFileManagment} class and given the
- * current {@link WorkareaCanvas} in the {@link PrimeMain1} class as a variable.
+ * exported as a file. It will call the exportWorkareaCanvasAsImage function in
+ * the {@link DesktopFileManagment} class and given the current
+ * {@link WorkareaCanvas} in the {@link PrimeMain1} class as a variable.
  * 
  * @author Bahram Malaekeh
  */
-public class ActionExport extends AbstractSystemAction
+public class ActionExportCanvasAsImage extends AbstractSystemAction
 {
 	/**
 	 * A constructor for the class that takes a string, the action name, and a
@@ -34,7 +34,7 @@ public class ActionExport extends AbstractSystemAction
 	 * @param icon
 	 *            The icon representing the action.
 	 */
-	public ActionExport(String text, ImageIcon icon)
+	public ActionExportCanvasAsImage(String text, ImageIcon icon)
 	{
 		super(text, icon);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
@@ -49,7 +49,7 @@ public class ActionExport extends AbstractSystemAction
 	 * @param text
 	 *            The name of the action.
 	 */
-	public ActionExport(String text)
+	public ActionExportCanvasAsImage(String text)
 	{
 		super(text);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
@@ -67,7 +67,7 @@ public class ActionExport extends AbstractSystemAction
 		// If the current canvas is not null
 		if ( PrimeMain1.currentCanvas != null )
 		{
-			DesktopFileManagment.exportWorkareaCanvas(PrimeMain1.currentCanvas);
+			DesktopFileManagment.exportWorkareaCanvasAsImage(PrimeMain1.currentCanvas);
 		}
 	}
 
