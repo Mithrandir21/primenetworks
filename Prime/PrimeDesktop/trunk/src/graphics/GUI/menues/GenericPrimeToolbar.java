@@ -15,14 +15,15 @@ import javax.swing.JMenuBar;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 
-import actions.ActionCopy;
-import actions.ActionCut;
-import actions.ActionPaste;
 import actions.systemActions.ActionConnection;
+import actions.systemActions.ActionCopy;
+import actions.systemActions.ActionCut;
 import actions.systemActions.ActionExportCanvasAsImage;
+import actions.systemActions.ActionFullscreen;
 import actions.systemActions.ActionNew;
 import actions.systemActions.ActionObjectEditing;
 import actions.systemActions.ActionOpenfile;
+import actions.systemActions.ActionPaste;
 import actions.systemActions.ActionRedo;
 import actions.systemActions.ActionRoom;
 import actions.systemActions.ActionSave;
@@ -75,8 +76,9 @@ public class GenericPrimeToolbar extends JMenuBar
 
 
 
-	private JToolBar fileToolBar, editToolBar, stepsToolBar, canvasToolBar,
-			networkToolBar, editingToolBar;
+	private JToolBar fileToolBar, editToolBar, stepsToolBar, networkToolBar, editingToolBar;
+	
+	public static JToolBar canvasToolBar;
 
 
 	// SETUP OF THE TOOLBAR
@@ -253,10 +255,57 @@ public class GenericPrimeToolbar extends JMenuBar
 				.getString("standardObjectsLabel"), tempIcon);
 		JButton editingButton = new JButton(editing);
 
+		ActionFullscreen fullscreen = new ActionFullscreen(PrimeMain1.texts
+				.getString("actionFullscreenText"));
+		JButton fullscreenButton = new JButton(fullscreen);
+
 
 		editingToolBar.add(editingButton);
+		editingToolBar.add(fullscreenButton);
 
 		this.add(editingToolBar, BorderLayout.WEST);
 		tempIcon = null;
+	}
+
+
+	/**
+	 * TODO - Description
+	 */
+	public static void untoggleAllOthersButtons(Class<?> actionClass)
+	{
+		if ( actionClass.equals(ActionConnection.class) )
+		{
+			for ( int i = 0; i < canvasToolBar.getComponentCount(); i++ )
+			{
+				if ( canvasToolBar.getComponent(i) instanceof JToggleButton )
+				{
+					JToggleButton button = (JToggleButton) canvasToolBar
+							.getComponent(i);
+
+					if ( button.getAction().getClass().equals(ActionRoom.class) )
+					{
+						button.setSelected(false);
+					}
+				}
+			}
+		}
+		else if ( actionClass.equals(ActionRoom.class) )
+		{
+
+			for ( int i = 0; i < canvasToolBar.getComponentCount(); i++ )
+			{
+				if ( canvasToolBar.getComponent(i) instanceof JToggleButton )
+				{
+					JToggleButton button = (JToggleButton) canvasToolBar
+							.getComponent(i);
+
+					if ( button.getAction().getClass().equals(
+							ActionConnection.class) )
+					{
+						button.setSelected(false);
+					}
+				}
+			}
+		}
 	}
 }

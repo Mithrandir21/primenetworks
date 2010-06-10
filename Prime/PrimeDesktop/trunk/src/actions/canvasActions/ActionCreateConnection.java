@@ -327,7 +327,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 			// If the cancel butten is pressed.
 			else if ( conType == null || conType == "Cancelled" )
 			{
-
+				// FIXME - ActionCreateConnection - "Cancelled"
 			}
 			// Else a connection type is chosen and the "Create connection"
 			// button is pressed.

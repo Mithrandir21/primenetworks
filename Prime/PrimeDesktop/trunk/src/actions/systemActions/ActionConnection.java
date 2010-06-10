@@ -1,7 +1,9 @@
 package actions.systemActions;
 
 
+import graphics.GraphicalFunctions;
 import graphics.PrimeMain1;
+import graphics.GUI.menues.GenericPrimeToolbar;
 
 import java.awt.event.ActionEvent;
 
@@ -60,5 +62,14 @@ public class ActionConnection extends AbstractSystemAction
 	public void actionPerformed(ActionEvent e)
 	{
 		Settings.connectionToggle = !(Settings.connectionToggle);
+
+		// If the connection toggle button is now true
+		if ( Settings.connectionToggle )
+		{
+			Settings.roomsManipulation = false;
+			GenericPrimeToolbar.untoggleAllOthersButtons(this.getClass());
+		}
+
+		GraphicalFunctions.JPopupMenuesToggle();
 	}
 }

@@ -6,6 +6,7 @@ package actions.systemActions;
 
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain1;
+import graphics.GUI.menues.GenericPrimeToolbar;
 
 import java.awt.event.ActionEvent;
 
@@ -66,6 +67,15 @@ public class ActionRoom extends AbstractSystemAction
 	public void actionPerformed(ActionEvent e)
 	{
 		Settings.roomsManipulation = !(Settings.roomsManipulation);
+
+		// If the room toggle button is now true
+		if ( Settings.roomsManipulation )
+		{
+			Settings.connectionToggle = false;
+			GenericPrimeToolbar.untoggleAllOthersButtons(this.getClass());
+		}
+
+
 		GraphicalFunctions.JPopupMenuesToggle();
 	}
 

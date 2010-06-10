@@ -39,7 +39,7 @@ import connections.Connection;
  * object can be moved around, deleted or connected to other object. The canvas
  * has some special feature like zooming, scrolling and panning. The canvas has
  * D'n'D(Drag and Drop) features. Any Widget can be dragged and dropped onto the
- * the canvas. The widget will then be converted into a {@link WidgetObject
+ * the canvas. The widget will then be placed inside a {@link WidgetObject
  * WidgetObject} and a standard object will be created. The object class depends
  * on the class of the dragged widget. The object will be created and place
  * within the WidgetObject.
@@ -848,7 +848,7 @@ public class WorkareaCanvas extends JPanel
 		{
 			repaint();
 			scene.getScene().validate();
-			// required or repaint() doesn’t work
+			// required or repaint() doesnï¿½t work
 		}
 		else
 		{

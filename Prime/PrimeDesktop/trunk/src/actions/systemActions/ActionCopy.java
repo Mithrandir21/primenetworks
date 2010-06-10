@@ -1,13 +1,12 @@
 /**
  * 
  */
-package actions;
+package actions.systemActions;
 
 
 import graphics.PrimeMain1;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 
@@ -39,7 +38,6 @@ public class ActionCopy extends AbstractSystemAction
 		super(text, icon);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
 				.getString("actionCopyDescriptionText"));
-		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_C));
 	}
 
 	/**
@@ -54,7 +52,6 @@ public class ActionCopy extends AbstractSystemAction
 		super(text);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
 				.getString("actionCopyDescriptionText"));
-		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_C));
 	}
 
 

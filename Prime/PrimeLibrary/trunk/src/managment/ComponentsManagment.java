@@ -1403,8 +1403,7 @@ public class ComponentsManagment
 				Motherboard mbTemp = (Motherboard) components[i];
 
 				// LAN
-				if ( mbTemp.getMaxIntegLANs() > 0
-						&& mbTemp.getMaxIntegLANs() > 0 )
+				if ( mbTemp.getMaxIntegLANs() > 0 )
 				{
 					lan = true;
 				}
@@ -1413,6 +1412,12 @@ public class ComponentsManagment
 				if ( mbTemp.getMaxUSBs() > 0 )
 				{
 					usb = true;
+				}
+
+				// COAX
+				if ( mbTemp.getMaxCoaxs() > 0 )
+				{
+					coax = true;
 				}
 			}
 			else if ( components[i] instanceof ExternalNetworksCard )
@@ -1428,11 +1433,6 @@ public class ComponentsManagment
 						ConnectionUtils.Wireless) )
 				{
 					wlan = true;
-				}
-				else if ( extNICtemp.getConnectionType().equals(
-						ConnectionUtils.Coax) )
-				{
-					coax = true;
 				}
 				else if ( extNICtemp.getConnectionType().equals(
 						ConnectionUtils.Fiber) )
@@ -1453,11 +1453,6 @@ public class ComponentsManagment
 						ConnectionUtils.Wireless) )
 				{
 					wlan = true;
-				}
-				else if ( intNICtemp.getConnectionType().equals(
-						ConnectionUtils.Coax) )
-				{
-					coax = true;
 				}
 				else if ( intNICtemp.getConnectionType().equals(
 						ConnectionUtils.Fiber) )

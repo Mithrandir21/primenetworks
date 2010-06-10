@@ -82,7 +82,7 @@ public class PrimeMain1 extends JFrame
 	public static int width, height;
 
 	// Main window panel setup
-	private JPanel toolbarPanel, selectionPanel;
+	private static JPanel toolbarPanel, selectionPanel;
 
 	// The tab selection area where one can open projects and create new objects
 	private static TabbedSelection tabSelection;
@@ -374,7 +374,6 @@ public class PrimeMain1 extends JFrame
 		multiSplitPane.add(messagesPanel, "messagesLeaf");
 
 
-
 		// Adding everything to the contentpane of the JFrame
 		c.add(multiSplitPane, BorderLayout.CENTER);
 
@@ -435,10 +434,43 @@ public class PrimeMain1 extends JFrame
 	 */
 	private void makeLayoutModel()
 	{
-		String layoutDef = "(COLUMN (LEAF name=toolbarLeaf) (ROW (LEAF name=selectionLeaf) "
-				+ "(COLUMN (ROW (LEAF name=workareaLeaf weight=0.6) "
+		String layoutDef = "(COLUMN (LEAF name=toolbarLeaf) (ROW (LEAF name=selectionLeaf weight=0.2) "
+				+ "(COLUMN weight=0.8(ROW (LEAF name=workareaLeaf weight=0.6) "
 				+ "(LEAF name=propertiesLeaf weight=0.2) )"
 				+ "(LEAF name=messagesLeaf weight=1)  ) ) )";
+
+		// JOptionPane.showMessageDialog(null,"Error Loading layout Model.");
+		Node modelRoot = MultiSplitLayout.parseModel(layoutDef);
+		multiSplitPane.getMultiSplitLayout().setModel(modelRoot);
+		multiSplitPane.setPreferredSize(modelRoot.getBounds().getSize());
+	}
+
+
+
+	public static void fullscreen()
+	{
+		String layoutDef = "";
+
+		if ( selectionPanel.isVisible() )
+		{
+			selectionPanel.setVisible(false);
+			messagesPanel.setVisible(false);
+			propertiesPanel.setVisible(false);
+			layoutDef = "(COLUMN (LEAF name=toolbarLeaf) (ROW (LEAF name=selectionLeaf weight=0.0) "
+					+ "(COLUMN weight=1.0(ROW (LEAF name=workareaLeaf weight=1.0) "
+					+ "(LEAF name=propertiesLeaf weight=0.0) )"
+					+ "(LEAF name=messagesLeaf weight=0.0)  ) ) )";
+		}
+		else
+		{
+			selectionPanel.setVisible(true);
+			messagesPanel.setVisible(true);
+			propertiesPanel.setVisible(true);
+			layoutDef = "(COLUMN (LEAF name=toolbarLeaf) (ROW (LEAF name=selectionLeaf weight=0.2) "
+					+ "(COLUMN weight=0.8(ROW (LEAF name=workareaLeaf weight=0.6) "
+					+ "(LEAF name=propertiesLeaf weight=0.2) )"
+					+ "(LEAF name=messagesLeaf weight=1)  ) ) )";
+		}
 
 		// JOptionPane.showMessageDialog(null,"Error Loading layout Model.");
 		Node modelRoot = MultiSplitLayout.parseModel(layoutDef);

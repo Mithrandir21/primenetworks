@@ -599,6 +599,84 @@ public class GraphicalFunctions
 				}
 			}
 		}
+		//
+		// // If the setting for the Room manipulation is set to true
+		// if ( Settings.connectionToggle )
+		// {
+		// // Goes through
+		// for ( int i = 0; i < PrimeMain1.canvases.length; i++ )
+		// {
+		// if ( PrimeMain1.canvases[i] != null )
+		// {
+		// // List of all the Rooms on the Scene
+		// List<Widget> l = PrimeMain1.canvases[i]
+		// .getConnectionLayer().getChildren();
+		//
+		// // Converts that list to an array of Objects
+		// java.lang.Object[] conTemp = l.toArray();
+		//
+		// // Creates an array with the length of the all the children
+		// // on the canvas
+		// WidgetExtendedConnection[] conWidgets = new
+		// WidgetExtendedConnection[conTemp.length];
+		//
+		// // Casts all the objects in the converted list to
+		// // widgetobjects
+		// for ( int j = 0; j < conWidgets.length; j++ )
+		// {
+		// conWidgets[j] = (WidgetExtendedConnection) conTemp[j];
+		//
+		// // Add the JMenuPopup action the WidgetRoom
+		// conWidgets[j]
+		// .getActions()
+		// .addAction(
+		// ActionFactory
+		// .createPopupMenuAction(new JMenuConnection(
+		// PrimeMain1.canvases[i])));
+		// }
+		// }
+		// }
+		// }
+		// else
+		// {
+		// for ( int i = 0; i < PrimeMain1.canvases.length; i++ )
+		// {
+		// if ( PrimeMain1.canvases[i] != null )
+		// {
+		// // List of all the Rooms on the Scene
+		// List<Widget> l = PrimeMain1.canvases[i]
+		// .getConnectionLayer().getChildren();
+		//
+		// // Converts that list to an array of Objects
+		// java.lang.Object[] conTemp = l.toArray();
+		//
+		// // Creates an array with the length of the all the children
+		// // on the canvas
+		// WidgetExtendedConnection[] conWidgets = new
+		// WidgetExtendedConnection[conTemp.length];
+		//
+		// // Casts all the objects in the converted list to
+		// // widgetobjects
+		// for ( int j = 0; j < conWidgets.length; j++ )
+		// {
+		// conWidgets[j] = (WidgetExtendedConnection) conTemp[j];
+		//
+		// // Gets the size of the action chain
+		// int size = conWidgets[j].getActions().getActions()
+		// .size();
+		//
+		// System.out.println(size);
+		//
+		// // If the size is 4
+		// if ( size == 3 )
+		// {
+		// // Removes the last action in the chain
+		// conWidgets[j].getActions().removeAction(size - 1);
+		// }
+		// }
+		// }
+		// }
+		// }
 	}
 
 

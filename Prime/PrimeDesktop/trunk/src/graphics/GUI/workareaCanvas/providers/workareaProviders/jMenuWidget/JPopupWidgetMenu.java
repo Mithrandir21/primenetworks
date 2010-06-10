@@ -11,8 +11,8 @@ import org.netbeans.api.visual.widget.Widget;
 
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
-import actions.ActionPaste;
 import actions.canvasActions.ActionDeleteWidget;
+import actions.systemActions.ActionPaste;
 
 
 /**

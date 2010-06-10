@@ -977,18 +977,21 @@ public class CreateObjects
 		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(1);
 		objectMB.setIntegLANPortsAvailable(1);
+		objectMB.setMaxCoaxs(1);
+		objectMB.setCoaxPortsAvailable(1);
 
 
 		Modem temp = new Modem(objectName, objectDesc, null, objectMB);
 
-		// Internal Wireless NIC
-		InternalNetworksCard intNIC = PrimeMain1.standard_internal_components
-				.getSt_IntNIC();
-		intNIC.setType(ConnectionUtils.Coax);
-
-		// Add the internal NIC to the list of components on the Object(not the
-		// "st_components" array of this class)
-		temp.addComponent(intNIC);
+		// // Internal Wireless NIC
+		// InternalNetworksCard intNIC = PrimeMain1.standard_internal_components
+		// .getSt_IntNIC();
+		// intNIC.setType(ConnectionUtils.Coax);
+		//
+		// // Add the internal NIC to the list of components on the Object(not
+		// the
+		// // "st_components" array of this class)
+		// temp.addComponent(intNIC);
 
 		String[] supportedConnectionInterfaces = ComponentsManagment
 				.getSupportedInterfaces(temp);
@@ -1052,7 +1055,7 @@ public class CreateObjects
 		String objectName = PrimeMain1.texts.getString("internet");
 		String objectDesc = desc;
 
-		String[] SupConInt = { ConnectionUtils.RJ45 };
+		String[] SupConInt = { ConnectionUtils.RJ45, ConnectionUtils.Coax };
 
 		if ( objectDesc == "" )
 		{
@@ -1065,19 +1068,22 @@ public class CreateObjects
 		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(1);
 		objectMB.setIntegLANPortsAvailable(1);
+		objectMB.setCoaxPortsAvailable(1);
+		objectMB.setMaxCoaxs(1);
 
 
 		Internet temp = new Internet(objectName, objectDesc, objectName,
 				SupConInt, objectMB);
 
-		// Internal Wireless NIC
-		InternalNetworksCard intNIC = PrimeMain1.standard_internal_components
-				.getSt_IntNIC();
-		intNIC.setType(ConnectionUtils.Coax);
-
-		// Add the internal NIC to the list of components on the Object(not the
-		// "st_components" array of this class)
-		temp.addComponent(intNIC);
+		// // Internal Wireless NIC
+		// InternalNetworksCard intNIC = PrimeMain1.standard_internal_components
+		// .getSt_IntNIC();
+		// intNIC.setType(ConnectionUtils.Coax);
+		//
+		// // Add the internal NIC to the list of components on the Object(not
+		// the
+		// // "st_components" array of this class)
+		// temp.addComponent(intNIC);
 
 		String[] supportedConnectionInterfaces = ComponentsManagment
 				.getSupportedInterfaces(temp);

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package actions;
+package actions.systemActions;
 
 
 import graphics.PrimeMain1;
@@ -9,7 +9,6 @@ import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
 import java.awt.Point;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.undo.CannotRedoException;
@@ -72,7 +71,6 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 		super(text, icon);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
 				.getString("actionPasteDescriptionText"));
-		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_V));
 	}
 
 
@@ -88,7 +86,6 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 		super(text);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
 				.getString("actionPasteDescriptionText"));
-		putValue(MNEMONIC_KEY, new Integer(KeyEvent.VK_V));
 	}
 
 

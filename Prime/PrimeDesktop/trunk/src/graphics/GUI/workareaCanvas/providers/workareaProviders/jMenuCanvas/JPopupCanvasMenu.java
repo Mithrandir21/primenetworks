@@ -11,11 +11,11 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 import widgets.WorkareaCanvas;
-import actions.ActionPaste;
 import actions.canvasActions.ActionDeleteAllConnections;
 import actions.canvasActions.ActionDeleteAllRooms;
 import actions.canvasActions.ActionDeleteAllWidgets;
 import actions.canvasActions.ActionDeleteEverything;
+import actions.systemActions.ActionPaste;
 
 
 /**

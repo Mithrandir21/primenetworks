@@ -13,7 +13,7 @@ import objects.Hardware;
  * has, what kind of ports it has, how many slots it has for different cards,
  * how many CPUs can be installed and so on. <br>
  * <br>
- * <b>Notation</b>: The motherboard will be refered to as "MB" in the remainder
+ * <b>Notation</b>: The motherboard will be refereed to as "MB" in the remainder
  * of this document. <br>
  * <br>
  * <br>
@@ -23,9 +23,15 @@ import objects.Hardware;
  * the actual function of the port which is a port for both HDDs and CDROMs
  * among other things.
  * </p>
+ * <br>
+ * <br>
+ * Changelog 0.3
+ * <p>
+ * Added Coax port.
+ * </p>
  * 
  * @author Bahram Malaekeh
- * @version 0.2
+ * @version 0.3
  */
 public class Motherboard extends Hardware implements Serializable
 {
@@ -64,6 +70,9 @@ public class Motherboard extends Hardware implements Serializable
 	// The number of integrated LAN ports, if any, on the MB
 	private int maxIntegLANs = 0;
 
+	// The number of a coax ports.
+	private int maxCoaxs = 0;
+
 	// The type of graphical port on the MB
 	private String graphicalPortType;
 
@@ -101,6 +110,8 @@ public class Motherboard extends Hardware implements Serializable
 	private int DUCPortsAvailable;
 
 	private int IntegLANPortsAvailable;
+
+	private int COAXPortsAvailable;
 
 
 
@@ -144,7 +155,7 @@ public class Motherboard extends Hardware implements Serializable
 	public Motherboard(String Name, String Desc, String MBproducer,
 			String MBform, String MBsocket, String MBramType, int MBmaxCPUs,
 			int MBmaxPCIs, int MBmaxRAMs, int MBmaxUSBs, int MBmaxDUCs,
-			String MBDUCconnectionType, String MBgraphicalPort,
+			int MBmaxCOAXs, String MBDUCconnectionType, String MBgraphicalPort,
 			boolean MBintegLANcard, boolean MBintegGraphicalCard,
 			boolean MBintegAudioCard, int MBmaxIntegLanPorts)
 	{
@@ -160,6 +171,7 @@ public class Motherboard extends Hardware implements Serializable
 		maxUSBs = MBmaxUSBs;
 		maxDUCs = MBmaxDUCs;
 		maxIntegLANs = MBmaxIntegLanPorts;
+		maxCoaxs = MBmaxCOAXs;
 		graphicalPortType = MBgraphicalPort;
 		DUCconnectionType = MBDUCconnectionType;
 		LANcardIntegrated = MBintegLANcard;
@@ -172,6 +184,7 @@ public class Motherboard extends Hardware implements Serializable
 		USBPortsAvailable = MBmaxUSBs;
 		DUCPortsAvailable = MBmaxDUCs;
 		IntegLANPortsAvailable = MBmaxIntegLanPorts;
+		COAXPortsAvailable = MBmaxCOAXs;
 	}
 
 
@@ -293,6 +306,15 @@ public class Motherboard extends Hardware implements Serializable
 	public int getMaxIntegLANs()
 	{
 		return maxIntegLANs;
+	}
+
+
+	/**
+	 * Gets the number of COAX ports.
+	 */
+	public int getMaxCoaxs()
+	{
+		return maxCoaxs;
 	}
 
 
@@ -457,6 +479,15 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
+	 * Gets the number of Coax ports that are available.
+	 */
+	public int getCoaxPortsAvailable()
+	{
+		return COAXPortsAvailable;
+	}
+
+
+	/**
 	 * Get a boolean on whether or not there is a Graphical Card installed on
 	 * the motherboard.
 	 * 
@@ -571,6 +602,15 @@ public class Motherboard extends Hardware implements Serializable
 	public void setMaxIntegratedLANs(int MBmaxIntegLANs)
 	{
 		maxIntegLANs = MBmaxIntegLANs;
+	}
+
+
+	/**
+	 * Set method for number of Coax ports of the motherboard.
+	 */
+	public void setMaxCoaxs(int MBmaxCoaxs)
+	{
+		maxCoaxs = MBmaxCoaxs;
 	}
 
 
@@ -860,6 +900,41 @@ public class Motherboard extends Hardware implements Serializable
 	}
 
 
+	/**
+	 * Sets the number Coax ports available.
+	 * 
+	 * @param CoaxPortsAvailable
+	 *            the CoaxPortsAvailable to set
+	 */
+	public void setCoaxPortsAvailable(int CoaxPortsAvailable)
+	{
+		COAXPortsAvailable = CoaxPortsAvailable;
+	}
+
+
+
+	/**
+	 * Makes one Coax port available by add to the integer that keep track of
+	 * how make port are available.
+	 */
+	public void makeOneCoaxPortAvailable()
+	{
+		COAXPortsAvailable++;
+	}
+
+
+
+	/**
+	 * Makes one Coax port unavailable by removing from the integer that keep
+	 * track of how make port are available.
+	 */
+	public void makeOneCoaxPortTaken()
+	{
+		COAXPortsAvailable--;
+	}
+
+
+
 	// CLASS METHODES
 
 	/**
@@ -877,6 +952,7 @@ public class Motherboard extends Hardware implements Serializable
 		maxRAMs = 0;
 		maxUSBs = 0;
 		maxDUCs = 0;
+		maxCoaxs = 0;
 		graphicalPortType = "";
 		DUCconnectionType = "";
 		LANcardIntegrated = false;
@@ -889,6 +965,7 @@ public class Motherboard extends Hardware implements Serializable
 		USBPortsAvailable = 0;
 		DUCPortsAvailable = 0;
 		IntegLANPortsAvailable = 0;
+		COAXPortsAvailable = 0;
 	}
 
 
@@ -904,6 +981,7 @@ public class Motherboard extends Hardware implements Serializable
 		USBPortsAvailable = maxUSBs;
 		DUCPortsAvailable = maxDUCs;
 		IntegLANPortsAvailable = maxIntegLANs;
+		COAXPortsAvailable = maxCoaxs;
 	}
 
 

@@ -183,8 +183,9 @@ public class ConnectionManagment
 
 	/**
 	 * Breaks connections between two components in the system. It removes the
-	 * connection from the array of existing connections. This method throws {@link exceptions.ConnectionDoesNotExist
-	 * ConnectionDoesNotExist} exception, if there is no connection between the two given objects.
+	 * connection from the array of existing connections. This method throws
+	 * {@link exceptions.ConnectionDoesNotExist ConnectionDoesNotExist}
+	 * exception, if there is no connection between the two given objects.
 	 * 
 	 * @return Returns the given connections array without the connection
 	 *         between the two given object. The array is cleaned for any empty
@@ -1446,7 +1447,81 @@ public class ConnectionManagment
 			objectA.addConnectedDevices(objectB);
 			objectB.addConnectedDevices(objectA);
 		}
+		else if ( conType.equals(ConnectionUtils.Coax) )
+		{
+			/**
+			 * These two values will be changed or the function will get some
+			 * exceptions and will not move on.
+			 */
+			int indexA = 0;
+			int indexB = 0;
 
+
+			if ( objectAmotherboard.getMaxCoaxs() > 0 )
+			{
+				// Gets the first available Coax port index.
+				indexA = objectAmotherboard.getCoaxPortsAvailable();
+
+				if ( indexA < 0 )
+				{
+					JOptionPane.showMessageDialog(null,
+							"There are no available COAX ports on "
+									+ objectA.getObjectName(), "alert",
+							JOptionPane.ERROR_MESSAGE);
+
+					return false;
+				}
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, objectA.getObjectName()
+						+ " has no Coax ports available.", "alert",
+						JOptionPane.ERROR_MESSAGE);
+
+				return false;
+			}
+
+
+			if ( objectBmotherboard.getMaxCoaxs() > 0 )
+			{
+				// Gets the first available LAN port index.
+				indexB = objectBmotherboard.getCoaxPortsAvailable();
+
+				if ( indexB < 0 )
+				{
+					JOptionPane.showMessageDialog(null,
+							"There are no available Coax ports on "
+									+ objectB.getObjectName(), "alert",
+							JOptionPane.ERROR_MESSAGE);
+
+					return false;
+				}
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, objectB.getObjectName()
+						+ " has no Coax ports available.", "alert",
+						JOptionPane.ERROR_MESSAGE);
+
+				return false;
+			}
+
+
+
+
+			/**
+			 * The function gets to this point it means that both the
+			 * motherboards on the objects have available ports and the indexes
+			 * are retrieved.
+			 */
+
+			// Sets the arrays on the actual motherboard components.
+			objectAmotherboard.makeOneCoaxPortTaken();
+			objectBmotherboard.makeOneCoaxPortTaken();
+
+			objectA.addConnectedDevices(objectB);
+			objectB.addConnectedDevices(objectA);
+		}
 
 
 		return true;
@@ -1805,8 +1880,8 @@ public class ConnectionManagment
 
 
 	/**
-	 * Finds and returns the {@link WidgetExtendedConnection} that represents the connection between the two given {@link Object
-	 * Objects}.
+	 * Finds and returns the {@link WidgetExtendedConnection} that represents
+	 * the connection between the two given {@link Object Objects}.
 	 */
 	public static WidgetExtendedConnection findWidgetConnection(
 			WorkareaCanvas canvas, Object A, Object B)

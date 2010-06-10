@@ -1,8 +1,4 @@
-/**
- * 
- */
 package actions.systemActions;
-
 
 
 import graphics.PrimeMain1;
@@ -12,16 +8,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
 import logistical.AbstractSystemAction;
-import widgets.WorkareaCanvas;
 
 
-/**
- * An action class that will call function to open a {@link WorkareaCanvas}.
- * 
- * @author Bahram Malaekeh
- * @version 1.0
- */
-public class ActionOpenfile extends AbstractSystemAction
+public class ActionFullscreen extends AbstractSystemAction
 {
 	/**
 	 * A constructor for the class that takes a string, the action name, and a
@@ -32,11 +21,11 @@ public class ActionOpenfile extends AbstractSystemAction
 	 * @param icon
 	 *            The icon representing the action.
 	 */
-	public ActionOpenfile(String text, ImageIcon icon)
+	public ActionFullscreen(String text, ImageIcon icon)
 	{
 		super(text, icon);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
-				.getString("actionOpenFileText"));
+				.getString("actionFullscreenText"));
 	}
 
 
@@ -47,24 +36,18 @@ public class ActionOpenfile extends AbstractSystemAction
 	 * @param text
 	 *            The name of the action.
 	 */
-	public ActionOpenfile(String text)
+	public ActionFullscreen(String text)
 	{
 		super(text);
 		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
-				.getString("actionOpenFileText"));
+				.getString("actionFullscreenText"));
 	}
 
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	public void actionPerformed(ActionEvent e)
+	@Override
+	public void actionPerformed(ActionEvent arg0)
 	{
-		// TODO - FIX ActionOpenFile
-		// JOptionPane.showMessageDialog(null,
-		// "You want to perform a \"Open File\" action.");
+		// PrimeMain1.fullscreen();
 	}
 
 }
