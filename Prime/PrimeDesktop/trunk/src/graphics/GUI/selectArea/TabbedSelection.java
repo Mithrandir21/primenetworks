@@ -24,8 +24,8 @@ import widgets.WorkareaCanvas;
 /**
  * This JTabbedPane extension is where the selection area and Networkmodels area
  * is located.
- * The selection area is where the user can click'n'drag new
- * {@link WidgetObject WidgetObjects} into an open {@link WorkareaCanvas}.
+ * The selection area is where the user can click'n'drag new {@link WidgetObject WidgetObjects} into an open
+ * {@link WorkareaCanvas}.
  * The Networkmodels area is where the user can see all the network models he
  * can open and edit.
  * 
@@ -37,7 +37,7 @@ public class TabbedSelection extends JTabbedPane
 	 * Object selection area, where the ImageIcons of the objects can be clicked
 	 * and dragged.
 	 */
-	JPanel objectPanel = new ObjectSelection();
+	JPanel objectPanel = new ObjectSelection(true);
 
 
 	PrimeTree primeTree = new PrimeTree();
@@ -50,19 +50,15 @@ public class TabbedSelection extends JTabbedPane
 
 
 	/**
-	 * A constructor for the class that adds both the selection area tab for the
-	 * {@link Object Objects} and the network models tabs for the
-	 * {@link WorkareaCanvas}.
+	 * A constructor for the class that adds both the selection area tab for the {@link Object Objects} and the network models
+	 * tabs for the {@link WorkareaCanvas}.
 	 */
 	public TabbedSelection()
 	{
 		ImageIcon objects = ImageLocator.getImageIconObject("Objects");
-		scrollArea = new JScrollPane(objectPanel);
-		// Increases how far the scroll bar scrolls on one step of a mouse wheel
-		scrollArea.getVerticalScrollBar().setUnitIncrement(10);
 
 		this.addTab(PrimeMain1.texts.getString("selectAreaUnitAreaLabel"),
-				objects, scrollArea, PrimeMain1.texts
+				objects, objectPanel, PrimeMain1.texts
 						.getString("selectAreaUnitAreaTip"));
 
 
@@ -84,7 +80,7 @@ public class TabbedSelection extends JTabbedPane
 	 */
 	public void updateObjectArea()
 	{
-		objectPanel = new ObjectSelection();
+		objectPanel = new ObjectSelection(true);
 		scrollArea.setViewportView(objectPanel);
 
 

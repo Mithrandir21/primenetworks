@@ -7,7 +7,6 @@ import graphics.GUI.objectView.Software.NewSoftware.NewOverview.NewSoftwareChoic
 
 import java.awt.Button;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -21,6 +20,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import objects.Clients;
 import objects.Object;
@@ -72,26 +72,45 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 	{
 		givenObject = obj;
 
-		int swCount = 0;
-
 		this.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
+		GridBagConstraints d = new GridBagConstraints();
 
-		c.fill = GridBagConstraints.BOTH;
 
-		c.gridx = 0;
-		c.gridy = 0;
-		c.weightx = 1;
-		c.weighty = 1;
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		c.insets = new Insets(10, 10, 10, 10);
+		d.fill = GridBagConstraints.BOTH;
+		// d.ipady = 0; // reset to default
+		// d.ipadx = 0; // reset to default
+		d.weighty = 1.0; // request any extra vertical space
+		d.weightx = 1.0; // request any extra horizontal space
+		// d.anchor = GridBagConstraints.NORTH; // location
+		// d.insets = new Insets(10, 10, 10, 10); // padding
+		// d.gridwidth = 1; // 2 row wide
+		// d.gridheight = 1; // 2 columns wide
+		d.gridy = 0; // row
+		d.gridx = 0; // column
 
 		ImageIcon temp = null;
 
 		Object[] swObj = obj.getSoftware();
 
 		String[] info = null;
+
+
+		JPanel swPanel = new JPanel(new GridBagLayout());
+		GridBagConstraints d2 = new GridBagConstraints();
+
+
+		d2.fill = GridBagConstraints.BOTH;
+		// d2.ipady = 0; // reset to default
+		// d2.ipadx = 0; // reset to default
+		// d2.weighty = 1.0; // request any extra vertical space
+		d2.weightx = 0.1; // request any extra horizontal space
+		d2.anchor = GridBagConstraints.NORTHWEST; // location
+		d2.insets = new Insets(10, 10, 10, 10); // padding
+		// d2.gridwidth = 1; // 2 row wide
+		d2.gridheight = 1; // 2 columns wide
+		d2.gridy = 0; // row
+		d2.gridx = 0; // column
+
 
 		// If there are no software objects.
 		if ( swObj != null )
@@ -122,11 +141,11 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 								+ ": " + text;
 					}
 
-					Date d = antiVirusObj.getExpirationDate();
-					if ( d != null )
+					Date date = antiVirusObj.getExpirationDate();
+					if ( date != null )
 					{
 						Calendar cal = Calendar.getInstance();
-						cal.setTime(d);
+						cal.setTime(date);
 						info[2] = PrimeMain1.texts
 								.getString("swTabExpiresLabel")
 								+ ": "
@@ -443,84 +462,96 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 
 				assert temp != null;
 
-				swCount++;
 
-
-				this.add(createSoftwareJPanel(info, temp), c);
-
-				if ( swCount % 2 == 0 )
+				if ( i == 0 )
 				{
-					c.gridx = 0;
-					c.gridy++;
+					d2.gridx = 0;
+					d2.gridy = 0;
+				}
+				else if ( i % 2 == 0 )
+				{
+					d2.gridx = 0;
+					d2.gridy++;
 				}
 				else
 				{
-					c.gridx++;
+					d2.gridx = 1;
 				}
+
+
+
+				JPanel panel = createSoftwareJPanel(info, temp);
+				panel.addMouseListener(new SoftwareMouseListener(panel,
+						givenObject, swObj[i]));
+				swPanel.add(panel, d2);
 			}
 		}
-		/**
-		 * Creates empty JPanels and adds them to the main panel until there are
-		 * 8 panels in the main panel. This is done so that the panels that
-		 * actually have content will be placed correctly.
-		 */
-		while ( swCount < 8 )
+
+
+		if ( swObj.length < 2 )
 		{
-			JPanel panel = new JPanel();
-			this.add(panel, c);
-
-			swCount++;
-
-			if ( swCount % 2 == 0 )
+			if ( swPanel.getComponentCount() == 1 )
 			{
-				c.gridx = 0;
-				c.gridy++;
+				// Adds a big JPanel at the bottom right to take the remaining space
+				JPanel emptyPanel1 = new JPanel();
+				d2.weightx = 0.30; // request any extra horizontal space
+				d2.gridx = 1;
+				d2.gridy = 0;
+				d2.gridheight = 1;
+				d2.gridwidth = 1;
+				// d2.weighty = 1.0;
+				swPanel.add(emptyPanel1, d2);
 			}
-			else
-			{
-				c.gridx++;
-			}
 		}
 
+		JPanel emptyPanel = new JPanel();
+		d2.gridx = 0;
+		d2.gridy++;
+		d2.gridwidth = 2;
+		d2.weighty = 1.0;
+		swPanel.add(emptyPanel, d2);
 
 
-		JLabel temp1 = new JLabel("");
-		temp1.setMaximumSize(new Dimension(90, 20));
-		temp1.setPreferredSize(new Dimension(90, 20));
+		JScrollPane hwScroll = new JScrollPane(swPanel,
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		hwScroll.setBorder(BorderFactory.createEmptyBorder());
+
+		this.add(hwScroll, d);
 
 
-		GridBagConstraints d = new GridBagConstraints();
-
-		d.fill = GridBagConstraints.BOTH;
-
-		d.gridx = 0;
-
-		if ( swCount % 2 == 0 )
-		{
-			d.gridy = c.gridy++;
-		}
-		else
-		{
-			// Adds an empty components so that the spacing comes out correct.
-			// Because of the SpringUtilities.makeCompactGrid.
-			this.add(temp1);
-			d.gridy = c.gridy++;
-		}
 
 
-		d.gridy = c.gridy++;
-		d.weightx = 1;
-		d.weighty = 1;
-		d.gridwidth = 1;
-		d.gridheight = 1;
-		d.insets = new Insets(10, 10, 10, 10);
+		d.fill = GridBagConstraints.VERTICAL;
+		// d.ipady = 0; // reset to default
+		// d.ipadx = 0; // reset to default
+		d.weighty = 0.0; // request any extra vertical space
+		// d.weightx = 1.0; // request any extra horizontal space
+		d.anchor = GridBagConstraints.BASELINE_TRAILING; // location
+		d.insets = new Insets(10, 10, 10, 10); // padding
+		// d.gridwidth = 1; // 2 row wide
+		// d.gridheight = 1; // 2 columns wide
+		d.gridy = 1; // row
+		d.gridx = 0; // column
+
+
+		// Adds the panel with the buttons to the main panel
+		this.add(getButtonsPanel(obj), d);
+	}
+
+
+
+	/**
+	 * The buttons to the bottom of the Object view.
+	 */
+	private JPanel getButtonsPanel(Object obj)
+	{
+		JPanel buttons = new JPanel();
+		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
 		if ( obj instanceof Clients || obj instanceof Servers )
 		{
-			JPanel buttons = new JPanel();
-			buttons.setLayout(new FlowLayout(FlowLayout.LEADING));
-
 			Button edit = new Button(PrimeMain1.texts
 					.getString("swTabEditSoftwareButtonLabel"));
 			edit.addActionListener(this);
@@ -534,20 +565,17 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 			buttons.add(edit);
 			buttons.add(addNew);
 
-			this.add(buttons, d);
+			return buttons;
 		}
 		else
 		{
-			JPanel note = new JPanel();
-			note.setLayout(new FlowLayout(FlowLayout.LEADING));
-
 			JLabel text = new JLabel(PrimeMain1.texts
 					.getString("swTabRestrictionText"));
-			note.add(text);
-
-			this.add(note, d);
+			buttons.add(text);
 		}
 
+
+		return buttons;
 	}
 
 
@@ -621,6 +649,16 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 
 
 
+	/**
+	 * Gets the software editor that where software can be edited.
+	 */
+	public SoftwareEditor createNewSoftwareEditor(Object obj)
+	{
+		return new SoftwareEditor(obj);
+	}
+
+
+
 
 
 	@Override
@@ -628,7 +666,11 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 	{
 		if ( e.getActionCommand().equals("edit") )
 		{
-			SWeditor = new SoftwareEditor(givenObject);
+			if ( givenObject.getSoftware() != null
+					&& givenObject.getSoftware().length != 0 )
+			{
+				SWeditor = new SoftwareEditor(givenObject);
+			}
 		}
 		else if ( e.getActionCommand().equals("newSoft") )
 		{

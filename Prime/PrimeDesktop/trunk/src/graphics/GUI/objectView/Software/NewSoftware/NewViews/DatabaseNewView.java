@@ -30,8 +30,7 @@ import objects.Software;
 import objects.softwareObjects.Database;
 
 
-public class DatabaseNewView extends JFrame implements SoftwareView,
-		ActionListener
+public class DatabaseNewView extends JFrame implements SoftwareView, ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -123,9 +122,8 @@ public class DatabaseNewView extends JFrame implements SoftwareView,
 
 
 	/**
-	 * Creates the JPanel that will contain the {@link Software Software}
-	 * specific options. The layout of the returned panel will be
-	 * {@link SpringLayout}.
+	 * Creates the JPanel that will contain the {@link Software Software} specific options. The layout of the returned panel will
+	 * be {@link SpringLayout}.
 	 */
 	private JPanel createSpesificInfo(Database db)
 	{
@@ -196,6 +194,13 @@ public class DatabaseNewView extends JFrame implements SoftwareView,
 	{
 		// TODO Auto-generated method stub
 
+	}
+
+
+	@Override
+	public Software getViewSoftware()
+	{
+		return mainDB;
 	}
 
 }

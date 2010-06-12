@@ -30,8 +30,7 @@ import widgets.WorkareaCanvas;
  * 
  * @author Bahram Malaekeh
  */
-public class HardwareMouseListener extends MouseAdapter implements
-		ActionListener
+public class HardwareMouseListener extends MouseAdapter implements ActionListener
 {
 	// This is the main Object
 	private Object mainObject;
@@ -146,8 +145,8 @@ public class HardwareMouseListener extends MouseAdapter implements
 						PrimeMain1.texts.getString("confirm"),
 						JOptionPane.YES_NO_OPTION);
 
-				// If the user confirms the deletion
-				if ( answer == 0 )
+				// If the user verifies the choice
+				if ( answer == JOptionPane.YES_OPTION )
 				{
 					// Will remove the first variable from the list of
 					// components that will be returned and set as the

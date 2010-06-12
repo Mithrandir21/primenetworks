@@ -14,6 +14,9 @@ import graphics.GUI.properties.objectTypes.ServersPropertiesView;
 import java.awt.Button;
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,13 +25,14 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
 
 import logistical.checkLogic;
 import managment.CanvasManagment;
 import managment.DesktopFileManagment;
 import managment.NetworkManagment;
 import objects.Clients;
+import objects.ExternalHardware;
+import objects.Infrastructure;
 import objects.Object;
 import objects.Servers;
 import widgets.WidgetObject;
@@ -37,8 +41,7 @@ import actions.canvasActions.ActionChangeWidgetObjectName;
 
 
 /**
- * This class will display the properties of any selected {@link WidgetObject}
- * or {@link WorkareaCanvas}.
+ * This class will display the properties of any selected {@link WidgetObject} or {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
  */
@@ -60,29 +63,34 @@ public class ObjectProperties extends JPanel implements ActionListener
 		{
 			canvasViewed = canvas;
 
-			this.setLayout(new SpringLayout());
+			this.setLayout(new GridBagLayout());
+			GridBagConstraints d = new GridBagConstraints();
 
-			GeneralPropertiesView.getGeneralCanvasProperties(this, canvas);
+			d.fill = GridBagConstraints.BOTH;
+			// d.ipady = 0; // reset to default
+			// d.ipadx = 0; // reset to default
+			d.weighty = 1.0; // request any extra vertical space
+			d.weightx = 1.0; // request any extra horizontal space
+			// d.anchor = GridBagConstraints.CENTER; // location
+			d.insets = new Insets(10, 10, 10, 10); // padding
+			// d.gridwidth = 1; // 2 row wide
+			// d.gridheight = 1; // 2 columns wide
+			d.gridy = 0; // row
+			d.gridx = 0; // column
+
+			this.add(GeneralPropertiesView.getGeneralCanvasProperties(canvas),
+					d);
 
 			JPanel buttons = createButtons();
 
-			this.add(buttons);
-
-
-			// Lay out the panel.
-			graphics.GraphicalFunctions.make1xGrid(this, this
-					.getComponentCount(), // rows
-					// ,
-					// cols
-					6, 6, // initX, initY
-					6, 6); // xPad, yPad
+			d.gridy++; // row
+			this.add(buttons, d);
 		}
 		else
 		{
 			this.removeAll();
 		}
 	}
-
 
 
 	/**
@@ -98,51 +106,47 @@ public class ObjectProperties extends JPanel implements ActionListener
 		{
 			objectViewed = object;
 
-			this.setLayout(new SpringLayout());
+			this.setLayout(new GridBagLayout());
+			GridBagConstraints d = new GridBagConstraints();
 
-			showStandardProperties(object);
+			d.fill = GridBagConstraints.BOTH;
+			// d.ipady = 0; // reset to default
+			// d.ipadx = 0; // reset to default
+			// d.weighty = 1.0; // request any extra vertical space
+			d.weightx = 1.0; // request any extra horizontal space
+			// d.anchor = GridBagConstraints.CENTER; // location
+			d.insets = new Insets(10, 10, 10, 10); // padding
+			// d.gridwidth = 1; // 2 row wide
+			// d.gridheight = 1; // 2 columns wide
+			d.gridy = 0; // row
+			d.gridx = 0; // column
 
-			if ( object instanceof objects.clientObjects.Desktop
-					|| object instanceof objects.clientObjects.Laptop )
+			this.add(getStandardProperties(object), d);
+
+
+			if ( object instanceof Clients )
 			{
-				showDesktopProperties(object);
+				d.gridy++; // row
+				this.add(showDesktopProperties(object), d);
 			}
-			else if ( object instanceof objects.serverObjects.HTTPServer
-					|| object instanceof objects.serverObjects.BackupServer
-					|| object instanceof objects.serverObjects.MailServer
-					|| object instanceof objects.serverObjects.FirewallServer
-					|| object instanceof objects.serverObjects.ProxyServer )
+			else if ( object instanceof Servers )
 			{
-				showServerProperties(object);
+				this.add(showServerProperties(object), d);
 			}
-			else if ( object instanceof objects.hardwareObjects.HDD )
+			else if ( object instanceof ExternalHardware )
 			{
+				this.add(showPeripheralProperties(object), d);
 			}
-			else if ( object instanceof objects.peripheralObjects.Scanner )
+			else if ( object instanceof Infrastructure )
 			{
-				showPeripheralProperties(object);
-			}
-			else if ( object instanceof objects.infrastructureObjects.Hub
-					|| object instanceof objects.infrastructureObjects.Switch
-					|| object instanceof objects.infrastructureObjects.Router )
-			{
-				showInfrastructurProperties(object);
+				this.add(showInfrastructurProperties(object), d);
 			}
 
 
-			JPanel buttons = createButtons();
 
-			this.add(buttons);
-
-			// this.setComponentZOrder(buttons, 0);
-
-			// Lay out the panel.
-			graphics.GraphicalFunctions.make1xGrid(this, this
-					.getComponentCount(), // rows
-					// ,
-					// cols
-					6, 6, // initX, initY
-					6, 6); // xPad, yPad
+			d.weighty = 1.0; // request any extra vertical space
+			d.gridy++; // row
+			this.add(createButtons(), d);
 		}
 		else
 		{
@@ -155,9 +159,9 @@ public class ObjectProperties extends JPanel implements ActionListener
 	/**
 	 * Adds the standard properties which normally is name and description.
 	 */
-	private void showStandardProperties(Object object)
+	private JPanel getStandardProperties(Object object)
 	{
-		GeneralPropertiesView.getGeneralObjectProperties(this, object);
+		return GeneralPropertiesView.getGeneralObjectProperties(object);
 	}
 
 
@@ -165,34 +169,34 @@ public class ObjectProperties extends JPanel implements ActionListener
 	/**
 	 * Adds the desktop properties to this JPanel.
 	 */
-	private void showDesktopProperties(Object object)
+	private JPanel showDesktopProperties(Object object)
 	{
-		ClientsPropertiesView.getClientsPropertiesView(this, object);
+		return ClientsPropertiesView.getClientsPropertiesView(object);
 	}
 
 	/**
 	 * Adds the server properties to this JPanel.
 	 */
-	private void showServerProperties(Object object)
+	private JPanel showServerProperties(Object object)
 	{
-		ServersPropertiesView.getServersPropertiesView(this, object);
+		return ServersPropertiesView.getServersPropertiesView(object);
 	}
 
 	/**
 	 * Adds the peripheral properties to this JPanel.
 	 */
-	private void showPeripheralProperties(Object object)
+	private JPanel showPeripheralProperties(Object object)
 	{
-		PeripheralsPropertiesView.getPeripheralsPropertiesView(this, object);
+		return PeripheralsPropertiesView.getPeripheralsPropertiesView(object);
 	}
 
 	/**
 	 * Adds the infrastructure properties to this JPanel.
 	 */
-	private void showInfrastructurProperties(Object object)
+	private JPanel showInfrastructurProperties(Object object)
 	{
-		InfrastructuresPropertiesView.getInfrastructuresPropertiesView(this,
-				object);
+		return InfrastructuresPropertiesView
+				.getInfrastructuresPropertiesView(object);
 	}
 
 

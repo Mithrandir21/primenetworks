@@ -13,16 +13,14 @@ import javax.swing.JLabel;
 
 /**
  * The WidgetIcon class represents an JLabel based icon that represents an {@link objects.Object
- * Object} within the system. This is a dragable object that can be dropped within the
- * {@link widgets.WorkareaCanvas Canvas}.
+ * Object} within the system. This is a dragable object that can be dropped within the {@link widgets.WorkareaCanvas Canvas}.
  * 
  * @author Bahram Malaekeh
  */
 public class WidgetIcon extends JLabel
 {
 	/**
-	 * This represents the class type what the icon represents. Like
-	 * {@link objects.clientObjects.Desktop Desktop}.
+	 * This represents the class type what the icon represents. Like {@link objects.clientObjects.Desktop Desktop}.
 	 */
 	private Class<?> classType;
 
@@ -75,7 +73,7 @@ public class WidgetIcon extends JLabel
 		super(icon);
 		img = icon.getImage();
 		classType = objectType;
-		setText(name);
+		this.setText(name);
 	}
 
 
@@ -100,7 +98,7 @@ public class WidgetIcon extends JLabel
 		super(icon);
 		img = icon.getImage();
 		classType = objectType;
-		setText(name);
+		this.setText(name);
 		description = desc;
 	}
 

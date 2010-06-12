@@ -6,7 +6,9 @@ package graphics.GUI.properties.objectTypes;
 
 import graphics.PrimeMain1;
 
-import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -27,17 +29,30 @@ public class ServersPropertiesView
 {
 
 	/**
-	 * This function populates the given JPanel with server information about
+	 * This function populates a returned JPanel with server information about
 	 * the the given Object.
 	 * 
 	 * @param obj
 	 */
-	public static void getServersPropertiesView(JPanel panel, Object obj)
+	public static JPanel getServersPropertiesView(Object obj)
 	{
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints d = new GridBagConstraints();
+
+		d.fill = GridBagConstraints.HORIZONTAL;
+		// d.ipady = 0; // reset to default
+		// d.ipadx = 0; // reset to default
+		// d.weighty = 1.0; // request any extra vertical space
+		d.weightx = 0.8; // request any extra horizontal space
+		d.anchor = GridBagConstraints.NORTH; // location
+		d.insets = new Insets(0, 0, 5, 0); // padding
+		// d.gridwidth = 1; // 2 row wide
+		// d.gridheight = 1; // 2 columns wide
+		d.gridy = 0; // row
+		d.gridx = 0; // column
+
+
 		Servers server = (Servers) obj;
-
-
-		Dimension tfSize = new Dimension(5, 20);
 
 
 		// Supports on-site-access
@@ -46,15 +61,17 @@ public class ServersPropertiesView
 				SwingConstants.TRAILING);
 		supOnSiteAccessLabel.setToolTipText(PrimeMain1.texts
 				.getString("propServerViewSupOnSiteAccessTip"));
-		panel.add(supOnSiteAccessLabel);
+		d.insets = new Insets(0, 0, 5, 0); // padding
+		d.gridy++; // row
+		panel.add(supOnSiteAccessLabel, d);
 
 		JCheckBox supOnSiteAccessField = new JCheckBox();
 		supOnSiteAccessField.setSelected(server.supportsOnSiteAccess());
-		supOnSiteAccessField.setMaximumSize(tfSize);
-		supOnSiteAccessField.setPreferredSize(tfSize);
 		supOnSiteAccessField.setName("supOnSiteAccess");
 		supOnSiteAccessLabel.setLabelFor(supOnSiteAccessField);
-		panel.add(supOnSiteAccessField);
+		d.insets = new Insets(0, 0, 10, 0); // padding
+		d.gridy++; // row
+		panel.add(supOnSiteAccessField, d);
 
 
 		// Supports Remote Access
@@ -63,15 +80,17 @@ public class ServersPropertiesView
 				SwingConstants.TRAILING);
 		supRemoteAccessLabel.setToolTipText(PrimeMain1.texts
 				.getString("propServerViewSupRemoteAccessTip"));
-		panel.add(supRemoteAccessLabel);
+		d.insets = new Insets(0, 0, 5, 0); // padding
+		d.gridy++; // row
+		panel.add(supRemoteAccessLabel, d);
 
 		JCheckBox supRemoteAccessField = new JCheckBox();
 		supRemoteAccessField.setSelected(server.supportsRemoteAccess());
-		supRemoteAccessField.setMaximumSize(tfSize);
-		supRemoteAccessField.setPreferredSize(tfSize);
 		supRemoteAccessField.setName("supRemoteAccess");
 		supRemoteAccessLabel.setLabelFor(supRemoteAccessField);
-		panel.add(supRemoteAccessField);
+		d.insets = new Insets(0, 0, 10, 0); // padding
+		d.gridy++; // row
+		panel.add(supRemoteAccessField, d);
 
 
 		// Index 2 - Supported Remote Access Protocols
@@ -80,14 +99,16 @@ public class ServersPropertiesView
 				SwingConstants.TRAILING);
 		supRemoteAccProtoLabel.setToolTipText(PrimeMain1.texts
 				.getString("propServerViewSupRemoteProtocolsTip"));
-		panel.add(supRemoteAccProtoLabel);
+		d.insets = new Insets(0, 0, 5, 0); // padding
+		d.gridy++; // row
+		panel.add(supRemoteAccProtoLabel, d);
 
 		JTextField supRemoteAccProtoField = new JTextField(10);
-		supRemoteAccProtoField.setMaximumSize(tfSize);
-		supRemoteAccProtoField.setPreferredSize(tfSize);
 		supRemoteAccProtoField.setName("supRemoteAccProto");
 		supRemoteAccProtoLabel.setLabelFor(supRemoteAccProtoField);
-		panel.add(supRemoteAccProtoField);
+		d.insets = new Insets(0, 0, 10, 0); // padding
+		d.gridy++; // row
+		panel.add(supRemoteAccProtoField, d);
 
 
 		// Index 3 - Software name
@@ -96,14 +117,18 @@ public class ServersPropertiesView
 				SwingConstants.TRAILING);
 		mainSWnameLabel.setToolTipText(PrimeMain1.texts
 				.getString("propServerViewSoftwareNameTip"));
-		panel.add(mainSWnameLabel);
+		d.insets = new Insets(0, 0, 5, 0); // padding
+		d.gridy++; // row
+		panel.add(mainSWnameLabel, d);
 
 		JTextField mainSWnameField = new JTextField(10);
-		mainSWnameField.setMaximumSize(tfSize);
-		mainSWnameField.setPreferredSize(tfSize);
 		mainSWnameField.setName("Main SW Name");
 		mainSWnameLabel.setLabelFor(mainSWnameField);
-		panel.add(mainSWnameField);
+		d.insets = new Insets(0, 0, 10, 0); // padding
+		d.gridy++; // row
+		panel.add(mainSWnameField, d);
 
+
+		return panel;
 	}
 }

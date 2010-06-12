@@ -38,6 +38,7 @@ import javax.swing.event.ListSelectionListener;
 
 import managment.SoftwareManagment;
 import objects.Object;
+import objects.Software;
 import objects.softwareObjects.OperatingSystem;
 
 
@@ -159,8 +160,7 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Software object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param OS
@@ -401,5 +401,12 @@ public class OSNewView extends JFrame implements SoftwareView, ActionListener
 				}
 			}
 		}
+	}
+
+
+	@Override
+	public Software getViewSoftware()
+	{
+		return mainOS;
 	}
 }

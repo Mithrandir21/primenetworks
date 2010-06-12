@@ -2,8 +2,10 @@ package graphics.GUI.objectView.Software.EditSoftware.EditOverview;
 
 
 import graphics.PrimeMain1;
+import graphics.GUI.objectView.Software.SoftwareView;
 
 import java.awt.Button;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -231,6 +233,35 @@ public class SoftwareEditor extends JFrame implements ActionListener
 
 			this.dispose();
 		}
+	}
+
+
+
+	/**
+	 * Tries to set the tab which contains the given object as the focused tab.
+	 * 
+	 * @param obj
+	 *            The hardware object which the search for tab should contain.
+	 */
+	public void setTabFocus(Software obj)
+	{
+		int tabCount = view.getTabCount();
+
+		for ( int i = 0; i < tabCount; i++ )
+		{
+			// Gets the component at the given index tab
+			Component comp = view.getComponent(i);
+
+			// If the hardware object returned by the component, which
+			// implements HardwareViewInterface, equals the
+			// given object.
+			if ( ((SoftwareView) comp).getViewSoftware().equals(obj) )
+			{
+				view.setSelectedIndex(i);
+				return;
+			}
+		}
+
 	}
 
 

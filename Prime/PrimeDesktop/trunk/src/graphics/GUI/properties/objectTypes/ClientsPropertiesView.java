@@ -8,7 +8,9 @@ import graphics.GraphicalFunctions;
 import graphics.PrimeMain1;
 
 import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -44,40 +46,59 @@ public class ClientsPropertiesView
 	 * @param obj
 	 *            The Object that is to populate the given JPanel.
 	 */
-	public static void getClientsPropertiesView(JPanel panel, Object obj)
+	public static JPanel getClientsPropertiesView(Object obj)
 	{
-		Dimension tfSize = new Dimension(5, 20);
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints d = new GridBagConstraints();
+
+		d.fill = GridBagConstraints.HORIZONTAL;
+		// d.ipady = 0; // reset to default
+		// d.ipadx = 0; // reset to default
+		// d.weighty = 1.0; // request any extra vertical space
+		d.weightx = 0.8; // request any extra horizontal space
+		d.anchor = GridBagConstraints.NORTH; // location
+		d.insets = new Insets(0, 0, 5, 0); // padding
+		// d.gridwidth = 1; // 2 row wide
+		// d.gridheight = 1; // 2 columns wide
+		d.gridy = 0; // row
+		d.gridx = 0; // column
+
+
+		JLabel label = null;
 
 		if ( obj instanceof Desktop )
 		{
 			// Desktop Rate
-			JLabel desktopRate = new JLabel(PrimeMain1.texts
+			label = new JLabel(PrimeMain1.texts
 					.getString("propClientViewDesktopRateLabel"),
 					SwingConstants.TRAILING);
-			desktopRate.setToolTipText(PrimeMain1.texts
+			label.setToolTipText(PrimeMain1.texts
 					.getString("propClientViewDesktopRateTip"));
-			panel.add(desktopRate);
 		}
 		else if ( obj instanceof Laptop )
 		{
 			// Laptop Rate
-			JLabel laptopRate = new JLabel(PrimeMain1.texts
+			label = new JLabel(PrimeMain1.texts
 					.getString("propClientViewLaptopRateLabel"),
 					SwingConstants.TRAILING);
-			laptopRate.setToolTipText(PrimeMain1.texts
+			label.setToolTipText(PrimeMain1.texts
 					.getString("propClientViewLaptopRateTip"));
-			panel.add(laptopRate);
 		}
 		else if ( obj instanceof ThinClient )
 		{
 			// ThinClient Rate
-			JLabel thinClientRate = new JLabel(PrimeMain1.texts
+			label = new JLabel(PrimeMain1.texts
 					.getString("propClientViewThinClientRateLabel"),
 					SwingConstants.TRAILING);
-			thinClientRate.setToolTipText(PrimeMain1.texts
+			label.setToolTipText(PrimeMain1.texts
 					.getString("propClientViewThinClientRateTip"));
-			panel.add(thinClientRate);
 		}
+
+		d.insets = new Insets(0, 0, 10, 0); // padding
+		d.gridy++; // row
+		panel.add(label, d);
+
+
 
 		String[] rates = new String[20];
 		int temp = 5;
@@ -92,8 +113,6 @@ public class ClientsPropertiesView
 		JComboBox comboBox = new JComboBox(rates);
 		comboBox.setBackground(Color.white);
 		comboBox.setEditable(false);
-		comboBox.setMaximumSize(tfSize);
-		comboBox.setPreferredSize(tfSize);
 		comboBox.setName("Client Rates");
 
 		Clients client = (Clients) obj;
@@ -101,6 +120,13 @@ public class ClientsPropertiesView
 		comboBox.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(rates,
 				client.getClientRate()));
 
-		panel.add(comboBox);
+		d.insets = new Insets(0, 0, 10, 0); // padding
+		d.weighty = 1.0; // request any extra vertical space
+		d.gridy++; // row
+		panel.add(comboBox, d);
+
+
+
+		return panel;
 	}
 }

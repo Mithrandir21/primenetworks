@@ -5,13 +5,14 @@ package graphics.GUI.standardObjectEdit;
 
 
 import graphics.PrimeMain1;
+import graphics.GUI.selectArea.ObjectSelection;
 import graphics.GUI.standardObjectEdit.StandardViews.HardwareObjectView;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import widgets.WidgetButton;
 
@@ -26,8 +27,6 @@ import widgets.WidgetButton;
  */
 public class StandardViewSpilt extends JPanel
 {
-	private ObjectScroll objScroll;
-
 	private HardwareObjectView hardStdObjView;
 
 
@@ -37,62 +36,46 @@ public class StandardViewSpilt extends JPanel
 	public StandardViewSpilt()
 	{
 		this.setLayout(new GridBagLayout());
-
 		GridBagConstraints c = new GridBagConstraints();
 
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.ipady = 0; // reset to default
-		c.weighty = 0.1; // request any extra vertical space
-		c.weighty = 1.0; // request any extra vertical space
-		// c.anchor = GridBagConstraints.PAGE_END; //bottom of space
-		// c.insets = new Insets(10,0,0,0); //top padding
-		c.gridx = 1; // aligned with button 2
-		c.gridwidth = 1; // 2 columns wide
-		c.gridheight = 3;
-		c.gridy = 1; // third row
-
-
-		JPanel objectPanel = new JPanel();
-
-		objScroll = new ObjectScroll();
-
-		objectPanel.add(objScroll);
-
-		this.add(objectPanel, c);
-
-
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.ipady = 0; // reset to default
-		c.weighty = 1.0; // request any extra vertical space
+		c.fill = GridBagConstraints.BOTH;
+		// c.ipady = 0; // reset to default
+		// c.weighty = 0.1; // request any extra vertical space
 		c.weightx = 1.0; // request any extra vertical space
 		// c.anchor = GridBagConstraints.PAGE_END; //bottom of space
 		// c.insets = new Insets(10,0,0,0); //top padding
-		c.gridx = 2; // aligned with button 2
-		// c.gridwidth = 1; //2 columns wide
-		// c.gridheight = 1;
-		c.gridy = 1; // third row
+		// c.gridwidth = 1; // 2 columns wide
+		// c.gridheight = 3;
+		c.gridx = 0; // aligned with button 2
+		c.gridy = 0; // third row
 
 
-		JPanel viewPanel = new JPanel();
-		// viewPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+
+		this
+				.add(
+						new ObjectSelection(new StandardViewMouseListener(),
+								false), c);
+
+
+		// c.fill = GridBagConstraints.BOTH;
+		// c.ipady = 0; // reset to default
+		c.weighty = 1.0; // request any extra vertical space
+		c.weightx = 0.6; // request any extra vertical space
+		// c.anchor = GridBagConstraints.PAGE_END; //bottom of space
+		// c.insets = new Insets(10,0,0,0); //top padding
+		// c.gridwidth = 1; // 2 columns wide
+		// c.gridheight = 3;
+		c.gridx = 1; // aligned with button 2
+		c.gridy = 0; // third row
+
 
 		hardStdObjView = new HardwareObjectView(PrimeMain1.objectlist.get(0));
 
-		viewPanel.add(hardStdObjView);
+		Dimension dim = new Dimension(450, 1);
+		hardStdObjView.setMinimumSize(dim);
 
 
-
-		this.add(viewPanel, c);
-	}
-
-
-	/**
-	 * Gets the {@link JScrollPane} that holds the JButton array with the
-	 * selectable standard objects.
-	 */
-	public ObjectScroll getObjScroll()
-	{
-		return objScroll;
+		this.add(hardStdObjView, c);
 	}
 
 

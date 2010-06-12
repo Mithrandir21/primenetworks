@@ -7,16 +7,13 @@ package graphics.GUI.standardObjectEdit;
 import graphics.PrimeMain1;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 
@@ -38,8 +35,7 @@ public class StandardObjects extends JDialog
 
 	/**
 	 * A constructor for this class that sets the JFrame name, size and the
-	 * location of the top left corner of the frame. It also adds a new
-	 * {@link StandardViewSpilt} to the JFrame.
+	 * location of the top left corner of the frame. It also adds a new {@link StandardViewSpilt} to the JFrame.
 	 */
 	public StandardObjects()
 	{
@@ -59,26 +55,19 @@ public class StandardObjects extends JDialog
 
 
 
-		// Get the content pane for this object
-		Container c = this.getContentPane();
-
-		JPanel panel = new JPanel();
-
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
 		splitView = new StandardViewSpilt();
 		splitView.setBorder(grayline);
 
-		panel.add(splitView);
-
-		c.add(panel);
+		this.add(splitView);
 
 
-		this.setSize(size);
+
+
+		this.setPreferredSize(size);
 		this.setLocation(initXLocation, initYLocation);
 		this.setResizable(false);
-
 		this.setVisible(true);
+		this.pack();
 
 
 		// Resets the objectView object when closed.

@@ -8,7 +8,9 @@ import graphics.GraphicalFunctions;
 import graphics.PrimeMain1;
 import graphics.GUI.properties.PropertiesArea;
 
-import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -38,10 +40,22 @@ public class GeneralPropertiesView
 	 * Examines the given WorkareaCanvas and adds the canvas name and the number
 	 * of objects on the given JPanel.
 	 */
-	public static void getGeneralCanvasProperties(JPanel panel,
-			WorkareaCanvas canvas)
+	public static JPanel getGeneralCanvasProperties(WorkareaCanvas canvas)
 	{
-		Dimension tfSize = new Dimension(5, 20);
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints d = new GridBagConstraints();
+
+		d.fill = GridBagConstraints.HORIZONTAL;
+		// d.ipady = 0; // reset to default
+		// d.ipadx = 0; // reset to default
+		// d.weighty = 1.0; // request any extra vertical space
+		d.weightx = 0.8; // request any extra horizontal space
+		d.anchor = GridBagConstraints.NORTH; // location
+		d.insets = new Insets(0, 0, 5, 0); // padding
+		// d.gridwidth = 1; // 2 row wide
+		// d.gridheight = 1; // 2 columns wide
+		d.gridy = 0; // row
+		d.gridx = 0; // column
 
 
 		// Name
@@ -50,11 +64,10 @@ public class GeneralPropertiesView
 				SwingConstants.TRAILING);
 		nameLabel.setToolTipText(PrimeMain1.texts
 				.getString("propGeneralViewCanvasNameTip"));
-		panel.add(nameLabel);
+		panel.add(nameLabel, d);
+
 
 		JTextField nameField = new JTextField(canvas.getCanvasName());
-		nameField.setMaximumSize(tfSize);
-		nameField.setPreferredSize(tfSize);
 		nameField.addKeyListener(new KeyAdapter()
 		{
 			@Override
@@ -69,9 +82,11 @@ public class GeneralPropertiesView
 				}
 			}
 		});
-		nameLabel.setLabelFor(nameField);
+		// nameLabel.setLabelFor(nameField);
 		nameField.setName("Name_Canvas");
-		panel.add(nameField);
+		d.insets = new Insets(0, 0, 10, 0); // padding
+		d.gridy++; // row
+		panel.add(nameField, d);
 
 
 
@@ -81,15 +96,16 @@ public class GeneralPropertiesView
 				SwingConstants.TRAILING);
 		objectCountLabel.setToolTipText(PrimeMain1.texts
 				.getString("propGeneralViewObjectsCountTip"));
-		panel.add(objectCountLabel);
+		d.insets = new Insets(0, 0, 5, 0); // padding
+		d.gridy++; // row
+		panel.add(objectCountLabel, d);
 
 		JTextField objectCountField = new JTextField(""
 				+ canvas.getNumberOfWidgetsOnTheScene());
-		objectCountField.setMaximumSize(tfSize);
-		objectCountField.setPreferredSize(tfSize);
 		objectCountField.setEditable(false);
-		objectCountLabel.setLabelFor(objectCountField);
-		panel.add(objectCountField);
+		d.insets = new Insets(0, 0, 10, 0); // padding
+		d.gridy++; // row
+		panel.add(objectCountField, d);
 
 
 		// The IP Mask of the Network
@@ -98,19 +114,20 @@ public class GeneralPropertiesView
 				SwingConstants.TRAILING);
 		netmaskLabel.setToolTipText(PrimeMain1.texts
 				.getString("propGeneralViewNetmaskTip"));
-		panel.add(netmaskLabel);
+		d.insets = new Insets(0, 0, 5, 0); // padding
+		d.gridy++; // row
+		panel.add(netmaskLabel, d);
 
 		JComboBox netmaskCombo = new JComboBox();
 		netmaskCombo.setName("Netmask");
-		netmaskCombo.setMaximumSize(tfSize);
-		netmaskCombo.setPreferredSize(tfSize);
-		netmaskLabel.setLabelFor(netmaskCombo);
 		String[] netmasks = new String[] { "", "255.255.255.0", "255.255.0.0",
 				"255.0.0.0" };
 		netmaskCombo.setModel(new DefaultComboBoxModel(netmasks));
 		netmaskCombo.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
 				netmasks, canvas.getNetworkInfo().getNetmask()));
-		panel.add(netmaskCombo);
+		d.insets = new Insets(0, 0, 10, 0); // padding
+		d.gridy++; // row
+		panel.add(netmaskCombo, d);
 
 
 		// The start of the IP range
@@ -119,7 +136,9 @@ public class GeneralPropertiesView
 				SwingConstants.TRAILING);
 		IPrangeStartLabel.setToolTipText(PrimeMain1.texts
 				.getString("propGeneralViewIPStartsTip"));
-		panel.add(IPrangeStartLabel);
+		d.insets = new Insets(0, 0, 5, 0); // padding
+		d.gridy++; // row
+		panel.add(IPrangeStartLabel, d);
 
 		JTextField IPrangeStartField = new JTextField();
 		IPrangeStartField.setName("IP range start");
@@ -129,10 +148,9 @@ public class GeneralPropertiesView
 			IPrangeStartField.setText(ipFrom);
 		}
 
-		IPrangeStartField.setMaximumSize(tfSize);
-		IPrangeStartField.setPreferredSize(tfSize);
-		IPrangeStartLabel.setLabelFor(IPrangeStartField);
-		panel.add(IPrangeStartField);
+		d.insets = new Insets(0, 0, 10, 0); // padding
+		d.gridy++; // row
+		panel.add(IPrangeStartField, d);
 
 
 		// The start of the IP range
@@ -141,7 +159,9 @@ public class GeneralPropertiesView
 				SwingConstants.TRAILING);
 		IPrangeEndLabel.setToolTipText(PrimeMain1.texts
 				.getString("propGeneralViewIPendsTip"));
-		panel.add(IPrangeEndLabel);
+		d.insets = new Insets(0, 0, 5, 0); // padding
+		d.gridy++; // row
+		panel.add(IPrangeEndLabel, d);
 
 		JTextField IPrangeEndField = new JTextField();
 		IPrangeEndField.setName("IP range end");
@@ -151,10 +171,13 @@ public class GeneralPropertiesView
 			IPrangeEndField.setText(ipTo);
 		}
 
-		IPrangeEndField.setMaximumSize(tfSize);
-		IPrangeEndField.setPreferredSize(tfSize);
-		IPrangeEndLabel.setLabelFor(IPrangeEndField);
-		panel.add(IPrangeEndField);
+		d.insets = new Insets(0, 0, 10, 0); // padding
+		d.weighty = 1.0; // request any extra vertical space
+		d.gridy++; // row
+		panel.add(IPrangeEndField, d);
+
+
+		return panel;
 	}
 
 
@@ -162,9 +185,24 @@ public class GeneralPropertiesView
 	 * Examines the given object. Adds the information about the object name and
 	 * different information about the object to the given JPanel.
 	 */
-	public static void getGeneralObjectProperties(JPanel panel, Object obj)
+	public static JPanel getGeneralObjectProperties(Object obj)
 	{
-		Dimension tfSize = new Dimension(5, 20);
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints d = new GridBagConstraints();
+
+		d.fill = GridBagConstraints.HORIZONTAL;
+		// d.ipady = 0; // reset to default
+		// d.ipadx = 0; // reset to default
+		// d.weighty = 1.0; // request any extra vertical space
+		d.weightx = 0.8; // request any extra horizontal space
+		d.anchor = GridBagConstraints.NORTH; // location
+		d.insets = new Insets(0, 0, 5, 0); // padding
+		// d.gridwidth = 1; // 2 row wide
+		// d.gridheight = 1; // 2 columns wide
+		d.gridy = 0; // row
+		d.gridx = 0; // column
+
+
 
 		// Gets the WidgetObject so that the IP address can be added
 		WidgetObject widObj = CanvasManagment.findWidgetObject(obj,
@@ -178,11 +216,9 @@ public class GeneralPropertiesView
 				SwingConstants.TRAILING);
 		nameLabel.setToolTipText(PrimeMain1.texts
 				.getString("propGeneralViewObjectNameTip"));
-		panel.add(nameLabel);
+		panel.add(nameLabel, d);
 
 		JTextField nameField = new JTextField(obj.getObjectName());
-		nameField.setMaximumSize(tfSize);
-		nameField.setPreferredSize(tfSize);
 		nameField.setName("Name Object");
 		nameField.addKeyListener(new KeyAdapter()
 		{
@@ -198,8 +234,9 @@ public class GeneralPropertiesView
 				}
 			}
 		});
-		nameLabel.setLabelFor(nameField);
-		panel.add(nameField);
+		d.insets = new Insets(0, 0, 10, 0); // padding
+		d.gridy++; // row
+		panel.add(nameField, d);
 
 
 		// Supported connection interfaces
@@ -208,17 +245,18 @@ public class GeneralPropertiesView
 				SwingConstants.TRAILING);
 		supConIntLabel.setToolTipText(PrimeMain1.texts
 				.getString("propGeneralViewSupConIntTip"));
-		panel.add(supConIntLabel);
+		d.insets = new Insets(0, 0, 5, 0); // padding
+		d.gridy++; // row
+		panel.add(supConIntLabel, d);
 
 		JComboBox subConCombo = new JComboBox();
 		subConCombo.setModel(new DefaultComboBoxModel(obj
 				.getSupportedConnectionInterfaces()));
-		subConCombo.setMaximumSize(tfSize);
-		subConCombo.setPreferredSize(tfSize);
 		subConCombo.setEditable(false);
 		subConCombo.setName("supConInt");
-		supConIntLabel.setLabelFor(subConCombo);
-		panel.add(subConCombo);
+		d.insets = new Insets(0, 0, 10, 0); // padding
+		d.gridy++; // row
+		panel.add(subConCombo, d);
 
 
 
@@ -228,16 +266,17 @@ public class GeneralPropertiesView
 				SwingConstants.TRAILING);
 		numConLabel.setToolTipText(PrimeMain1.texts
 				.getString("propGeneralViewNumConDevicesTip"));
-		panel.add(numConLabel);
+		d.insets = new Insets(0, 0, 5, 0); // padding
+		d.gridy++; // row
+		panel.add(numConLabel, d);
 
 		JTextField numConField = new JTextField(Integer.toString((obj
 				.getNumberOfConnectedDevices())));
 		numConField.setEditable(false);
-		numConField.setMaximumSize(tfSize);
-		numConField.setPreferredSize(tfSize);
 		numConField.setName("numCon");
-		numConLabel.setLabelFor(numConField);
-		panel.add(numConField);
+		d.insets = new Insets(0, 0, 10, 0); // padding
+		d.gridy++; // row
+		panel.add(numConField, d);
 
 
 		// Number of nodes
@@ -246,15 +285,16 @@ public class GeneralPropertiesView
 				SwingConstants.TRAILING);
 		numbJumpsLabel.setToolTipText(PrimeMain1.texts
 				.getString("propGeneralViewNumJumpsTip"));
-		panel.add(numbJumpsLabel);
+		d.insets = new Insets(0, 0, 5, 0); // padding
+		d.gridy++; // row
+		panel.add(numbJumpsLabel, d);
 
 		JTextField numbJumpsField = new JTextField("0");
 		numbJumpsField.setEditable(false);
-		numbJumpsField.setMaximumSize(tfSize);
-		numbJumpsField.setPreferredSize(tfSize);
 		numbJumpsField.setName("numbJumps");
-		numbJumpsLabel.setLabelFor(numbJumpsField);
-		panel.add(numbJumpsField);
+		d.insets = new Insets(0, 0, 10, 0); // padding
+		d.gridy++; // row
+		panel.add(numbJumpsField, d);
 
 		// If not WidgetObject is found
 		if ( widObj != null )
@@ -265,7 +305,9 @@ public class GeneralPropertiesView
 					SwingConstants.TRAILING);
 			IPLabel.setToolTipText(PrimeMain1.texts
 					.getString("propGeneralViewDeviceIPTip"));
-			panel.add(IPLabel);
+			d.insets = new Insets(0, 0, 5, 0); // padding
+			d.gridy++; // row
+			panel.add(IPLabel, d);
 
 			JTextField IPfield = new JTextField();
 			IPfield.setName("Object IP");
@@ -275,11 +317,14 @@ public class GeneralPropertiesView
 				IPfield.setText(ipFrom);
 			}
 
-			IPfield.setMaximumSize(tfSize);
-			IPfield.setPreferredSize(tfSize);
-			IPLabel.setLabelFor(IPfield);
-			panel.add(IPfield);
+			d.insets = new Insets(0, 0, 10, 0); // padding
+			d.gridy++; // row
+			panel.add(IPfield, d);
 		}
+
+
+
+		return panel;
 	}
 
 }

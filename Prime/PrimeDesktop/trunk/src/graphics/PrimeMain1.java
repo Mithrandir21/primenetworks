@@ -337,8 +337,8 @@ public class PrimeMain1 extends JFrame
 		// Creates a new panel with a GridBagLayout.
 		workareaPanel = new JPanel(new BorderLayout());
 
-		// Constraints for the window
-		GridBagConstraints conWorkareaPanel = new GridBagConstraints();
+		// // Constraints for the window
+		// GridBagConstraints conWorkareaPanel = new GridBagConstraints();
 
 		// Sets the constraints to fill both vertical and horizontal
 		// conWorkareaPanel.fill = GridBagConstraints.BOTH;

@@ -7,17 +7,16 @@ package graphics.GUI.selectArea;
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain1;
 
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.JToolBar;
-import javax.swing.border.Border;
+import javax.swing.JScrollPane;
 
 import objects.Object;
 import objects.clientObjects.Desktop;
@@ -42,6 +41,10 @@ import objects.serverObjects.HTTPServer;
 import objects.serverObjects.MailServer;
 import objects.serverObjects.PrinterServer;
 import objects.serverObjects.ProxyServer;
+
+import org.jdesktop.swingx.JXTaskPane;
+import org.jdesktop.swingx.JXTaskPaneContainer;
+
 import widgets.WidgetIcon;
 import widgets.WorkareaCanvas;
 
@@ -60,148 +63,249 @@ import widgets.WorkareaCanvas;
  */
 public class ObjectSelection extends JPanel
 {
-
-	// A simple border that is gray
-	Border grayline = BorderFactory.createLineBorder(Color.GRAY);
-
-
-
+	/**
+	 * TODO - Description NEEDED!
+	 */
 	public ObjectSelection()
 	{
-
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setBorder(grayline);
-
-		initClientButtonIcons();
-
-		initServerButtonIcons();
-
-		initExternalHardwareButtonIcons();
-
-		initInfrastructureButtonIcons();
-
-		this.setPreferredSize(new Dimension(290, getCompSize()));
+		setupObjectsGroups(null, false);
 	}
 
 
-	private void initClientButtonIcons()
+	/**
+	 * TODO - Description NEEDED!
+	 */
+	public ObjectSelection(boolean transferable)
 	{
-		this.add(makeImageIcon(Desktop.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(Laptop.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(ThinClient.class));
-
-		this.add(new JToolBar.Separator());
-
-
-		this.add(new JSeparator());
+		setupObjectsGroups(null, transferable);
 	}
 
 
-	private void initServerButtonIcons()
+	/**
+	 * TODO - Description NEEDED!
+	 * 
+	 * @param mouseLis
+	 */
+	public ObjectSelection(MouseListener mouseLis)
 	{
-		this.add(makeImageIcon(HTTPServer.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(BackupServer.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(DatabaseServer.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(MailServer.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(FirewallServer.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(ProxyServer.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(PrinterServer.class));
-
-		this.add(new JToolBar.Separator());
-
-
-
-		this.add(new JSeparator());
+		setupObjectsGroups(mouseLis, false);
 	}
 
-	private void initExternalHardwareButtonIcons()
+
+	/**
+	 * TODO - Description NEEDED!
+	 * 
+	 * @param mouseLis
+	 */
+	public ObjectSelection(MouseListener mouseLis, boolean transferable)
 	{
-		this.add(makeImageIcon(Scanner.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(Printer.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(Fax.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(MultifunctionPrinter.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(NetworkPrinter.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(NetworkMultifunctionPrinter.class));
-
-		this.add(new JToolBar.Separator());
-
-
-		this.add(new JSeparator());
+		setupObjectsGroups(mouseLis, transferable);
 	}
 
 
-	private void initInfrastructureButtonIcons()
+	/**
+	 * TODO - Description
+	 */
+	private void setupObjectsGroups(MouseListener mouseLis, boolean transferable)
 	{
-		this.add(makeImageIcon(Hub.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(Switch.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(Router.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(Modem.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(WirelessRouter.class));
-
-		this.add(new JToolBar.Separator());
-
-		this.add(makeImageIcon(Internet.class));
-
-		this.add(new JToolBar.Separator());
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints d = new GridBagConstraints();
 
 
-		this.add(new JSeparator());
+		d.fill = GridBagConstraints.BOTH;
+		// d.ipady = 0; // reset to default
+		// d.ipadx = 0; // reset to default
+		d.weighty = 1.0; // request any extra vertical space
+		d.weightx = 1.0; // request any extra vertical space
+		// d.anchor = GridBagConstraints.CENTER; // bottom of space
+		// d.insets = new Insets(10, 10, 10, 10); // top padding
+		// d.gridwidth = 1; // 2 columns wide
+		// d.gridheight = 1; // 2 columns wide
+		d.gridx = 0;
+
+
+		JXTaskPaneContainer tpc = new JXTaskPaneContainer();
+
+
+		d.gridy = 0;
+		// Adds the group panel to the collapsible container
+		tpc.add(initClientButtonIcons(mouseLis, transferable));
+
+
+		d.gridy = 1;
+		// Adds the group panel to the collapsible container
+		tpc.add(initServerButtonIcons(mouseLis, transferable));
+
+
+		d.gridy = 2;
+		// Adds the group panel to the collapsible container
+		tpc.add(initExternalHardwareButtonIcons(mouseLis, transferable));
+
+
+		d.gridy = 3;
+		// Adds the group panel to the collapsible container
+		tpc.add(initInfrastructureButtonIcons(mouseLis, transferable));
+
+
+
+		JScrollPane scrollArea = new JScrollPane(tpc);
+		// Increases how far the scroll bar scrolls on one step of a mouse wheel
+		scrollArea.getVerticalScrollBar().setUnitIncrement(30);
+
+
+		// Adds the container to this panel
+		this.add(scrollArea, d);
+
+		// this.setPreferredSize(new Dimension(240, getCompSize()));
 	}
 
 
+	/**
+	 * TODO - Description
+	 */
+	private JXTaskPane initClientButtonIcons(MouseListener mouseLis,
+			boolean transferable)
+	{
+		ArrayList<WidgetIcon> iconsList = new ArrayList<WidgetIcon>();
+
+		iconsList.add(makeImageIcon(Desktop.class, mouseLis, transferable));
+		iconsList.add(makeImageIcon(Laptop.class, mouseLis, transferable));
+		iconsList.add(makeImageIcon(ThinClient.class, mouseLis, transferable));
+
+		WidgetIcon[] widIcons = new WidgetIcon[iconsList.size()];
+		iconsList.toArray(widIcons);
+
+
+		return getWidgetGroup("Desktop Devices", widIcons, true);
+	}
+
+	/**
+	 * TODO - Description
+	 */
+	private JXTaskPane initServerButtonIcons(MouseListener mouseLis,
+			boolean transferable)
+	{
+		ArrayList<WidgetIcon> iconsList = new ArrayList<WidgetIcon>();
+
+		iconsList.add(makeImageIcon(HTTPServer.class, mouseLis, transferable));
+		iconsList
+				.add(makeImageIcon(BackupServer.class, mouseLis, transferable));
+		iconsList.add(makeImageIcon(DatabaseServer.class, mouseLis,
+				transferable));
+		iconsList.add(makeImageIcon(MailServer.class, mouseLis, transferable));
+		iconsList.add(makeImageIcon(FirewallServer.class, mouseLis,
+				transferable));
+		iconsList.add(makeImageIcon(ProxyServer.class, mouseLis, transferable));
+		iconsList
+				.add(makeImageIcon(PrinterServer.class, mouseLis, transferable));
+
+		WidgetIcon[] widIcons = new WidgetIcon[iconsList.size()];
+		iconsList.toArray(widIcons);
+
+
+		return getWidgetGroup("Server Devices", widIcons, true);
+	}
+
+	/**
+	 * TODO - Description
+	 */
+	private JXTaskPane initExternalHardwareButtonIcons(MouseListener mouseLis,
+			boolean transferable)
+	{
+		ArrayList<WidgetIcon> iconsList = new ArrayList<WidgetIcon>();
+
+		iconsList.add(makeImageIcon(Scanner.class, mouseLis, transferable));
+		iconsList.add(makeImageIcon(Printer.class, mouseLis, transferable));
+		iconsList.add(makeImageIcon(Fax.class, mouseLis, transferable));
+		iconsList.add(makeImageIcon(MultifunctionPrinter.class, mouseLis,
+				transferable));
+		iconsList.add(makeImageIcon(NetworkPrinter.class, mouseLis,
+				transferable));
+		iconsList.add(makeImageIcon(NetworkMultifunctionPrinter.class,
+				mouseLis, transferable));
+
+		WidgetIcon[] widIcons = new WidgetIcon[iconsList.size()];
+		iconsList.toArray(widIcons);
+
+
+		return getWidgetGroup("External Devices", widIcons, false);
+	}
+
+	/**
+	 * TODO - Description
+	 */
+	private JXTaskPane initInfrastructureButtonIcons(MouseListener mouseLis,
+			boolean transferable)
+	{
+		ArrayList<WidgetIcon> iconsList = new ArrayList<WidgetIcon>();
+
+		iconsList.add(makeImageIcon(Hub.class, mouseLis, transferable));
+		iconsList.add(makeImageIcon(Switch.class, mouseLis, transferable));
+		iconsList.add(makeImageIcon(Router.class, mouseLis, transferable));
+		iconsList.add(makeImageIcon(Modem.class, mouseLis, transferable));
+		iconsList.add(makeImageIcon(WirelessRouter.class, mouseLis,
+				transferable));
+		iconsList.add(makeImageIcon(Internet.class, mouseLis, transferable));
+
+		WidgetIcon[] widIcons = new WidgetIcon[iconsList.size()];
+		iconsList.toArray(widIcons);
+
+
+		return getWidgetGroup("Network Devices", widIcons, false);
+	}
+
+
+	/**
+	 * TODO - Description
+	 */
+	private JXTaskPane getWidgetGroup(String groupName, WidgetIcon[] widIcons,
+			boolean expanded)
+	{
+		// "System" GROUP
+		JXTaskPane group = new JXTaskPane();
+		group.setTitle(groupName);
+		group.setSpecial(true);
+		group.setExpanded(expanded);
+
+
+
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints d = new GridBagConstraints();
+
+		d.fill = GridBagConstraints.BOTH;
+		// d.ipady = 0; // reset to default
+		// d.ipadx = 0; // reset to default
+		// d.weighty = 1.0; // request any extra vertical space
+		d.weightx = 1.0; // request any extra vertical space
+		// d.anchor = GridBagConstraints.CENTER; // bottom of space
+		d.insets = new Insets(0, 0, 5, 0); // top padding
+		// d.gridwidth = 1; // 2 columns wide
+		// d.gridheight = 1; // 2 columns wide
+		d.gridy = 0;
+
+
+		for ( int i = 0; i < widIcons.length; i++ )
+		{
+			d.gridy = i;
+			panel.add(widIcons[i], d);
+		}
+
+
+		// Adds the panel with the objects to the group panel
+		group.add(panel);
+
+		return group;
+	}
+
+
+
+
+	/**
+	 * TODO - Description
+	 */
 	@SuppressWarnings("unchecked")
-	private WidgetIcon makeImageIcon(Class objectType)
+	private WidgetIcon makeImageIcon(Class objectType, MouseListener mouseLis,
+			boolean transferable)
 	{
 		ImageIcon Icon = PrimeMain1.objectImageIcons.get(objectType);
 
@@ -211,6 +315,12 @@ public class ObjectSelection extends JPanel
 		{
 			iconButton = new WidgetIcon(Icon, objectType, objectType
 					.getSimpleName());
+
+			// Adds the given mouselistener if its not null
+			if ( mouseLis != null )
+			{
+				iconButton.addMouseListener(mouseLis);
+			}
 		}
 		catch ( Exception e )
 		{
@@ -220,8 +330,11 @@ public class ObjectSelection extends JPanel
 		}
 
 
-		// Sets up the WidgetIcon
-		GraphicalFunctions.widgetIconSetup(iconButton);
+		if ( transferable )
+		{
+			// Sets up the WidgetIcon
+			GraphicalFunctions.widgetIconSetup(iconButton);
+		}
 
 		iconButton.setSize(Icon.getIconWidth(), Icon.getIconHeight());
 
@@ -234,26 +347,26 @@ public class ObjectSelection extends JPanel
 		return iconButton;
 	}
 
-
-
-	/**
-	 * Gets the vertical size of all the components in this JPanel.
-	 * 
-	 * @return
-	 */
-	private int getCompSize()
-	{
-		int size = 0;
-
-		for ( int i = 0; i < this.getComponentCount(); i++ )
-		{
-			size += this.getComponent(i).getHeight();
-		}
-
-
-		return size + (this.getComponentCount() * 5);
-	}
-
+	//
+	//
+	// /**
+	// * Gets the vertical size of all the components in this JPanel.
+	// *
+	// * @return
+	// */
+	// private int getCompSize()
+	// {
+	// int size = 0;
+	//
+	// for ( int i = 0; i < this.getComponentCount(); i++ )
+	// {
+	// size += this.getComponent(i).getHeight();
+	// }
+	//
+	//
+	// return size + (this.getComponentCount() * 5);
+	// }
+	//
 
 
 }

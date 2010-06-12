@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import objects.Object;
+import objects.Software;
 import objects.softwareObjects.OfficeSuite;
 
 
@@ -37,8 +38,7 @@ import objects.softwareObjects.OfficeSuite;
  * 
  * @author Bahram Malaekeh
  */
-public class OfficeSuiteEditView extends JPanel implements SoftwareView,
-		ActionListener
+public class OfficeSuiteEditView extends JPanel implements SoftwareView, ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -128,8 +128,7 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareView,
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Software object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param offSuite
@@ -186,6 +185,13 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareView,
 	{
 		// TODO Auto-generated method stub
 
+	}
+
+
+	@Override
+	public Software getViewSoftware()
+	{
+		return mainOffSuite;
 	}
 
 }

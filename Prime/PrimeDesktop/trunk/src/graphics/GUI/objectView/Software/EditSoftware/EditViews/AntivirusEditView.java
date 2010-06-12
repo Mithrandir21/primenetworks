@@ -36,6 +36,7 @@ import javax.swing.event.ListSelectionListener;
 
 import managment.SoftwareManagment;
 import objects.Object;
+import objects.Software;
 import objects.softwareObjects.Antivirus;
 
 
@@ -49,8 +50,7 @@ import objects.softwareObjects.Antivirus;
  * 
  * @author Bahram Malaekeh
  */
-public class AntivirusEditView extends JPanel implements SoftwareView,
-		ActionListener
+public class AntivirusEditView extends JPanel implements SoftwareView, ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -159,8 +159,7 @@ public class AntivirusEditView extends JPanel implements SoftwareView,
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Software object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param av
@@ -464,6 +463,13 @@ public class AntivirusEditView extends JPanel implements SoftwareView,
 				}
 			}
 		}
+	}
+
+
+	@Override
+	public Software getViewSoftware()
+	{
+		return mainAV;
 	}
 
 }

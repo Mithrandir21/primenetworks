@@ -154,8 +154,7 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Software object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Software object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param OS
@@ -407,5 +406,12 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 				}
 			}
 		}
+	}
+
+
+	@Override
+	public Software getViewSoftware()
+	{
+		return mainOS;
 	}
 }

@@ -1,6 +1,9 @@
 package graphics.GUI.objectView.Software;
 
 
+import objects.Software;
+
+
 /**
  * An interface class implemented by all the software view panels.
  * 
@@ -15,4 +18,9 @@ public interface SoftwareView
 	 * be saved.
 	 */
 	public void save();
+
+	/**
+	 * Returns the software the views is displaying.
+	 */
+	public Software getViewSoftware();
 }

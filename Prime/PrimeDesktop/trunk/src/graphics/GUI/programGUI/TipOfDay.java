@@ -3,27 +3,28 @@ package graphics.GUI.programGUI;
 
 import graphics.PrimeMain1;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
-import javax.swing.JTextPane;
+import javax.swing.JTree;
 
 import managment.Settings;
+
+import org.jdesktop.swingx.JXTipOfTheDay;
+import org.jdesktop.swingx.tips.DefaultTip;
+import org.jdesktop.swingx.tips.DefaultTipOfTheDayModel;
+import org.jdesktop.swingx.tips.TipOfTheDayModel;
 
 
 /**
@@ -31,12 +32,19 @@ import managment.Settings;
  * the user of the program on startup.
  * (Example provided by 'www.java2s.com') Extended by Bahram Malaekeh.
  */
-public class TipOfDay extends JDialog implements ActionListener
+public class TipOfDay extends JFrame implements ActionListener
 {
+	private TipOfTheDayModel model;
+
+	private JXTipOfTheDay totd;
+
 
 	public TipOfDay()
 	{
-		this.setTitle(PrimeMain1.texts.getString("totdTitle"));
+		super(PrimeMain1.texts.getString("totdTitle"));
+
+		createTipOfTheDayDemo();
+
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -44,79 +52,123 @@ public class TipOfDay extends JDialog implements ActionListener
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-		// Set size for the settings JFrame
-		Dimension size = new Dimension(450, 350);
 
-		int initYLocation = (scrnsize.height - size.height) / 3;
-		int initXLocation = (scrnsize.width - size.width) / 2;
+		int width = ((int) scrnsize.getWidth()) / 3;
+
+		int height = ((int) scrnsize.getHeight()) / 3;
 
 
-		JPanel basic = new JPanel();
-		basic.setLayout(new BoxLayout(basic, BoxLayout.Y_AXIS));
-		this.add(basic);
+		Dimension size = new Dimension(width, height);
 
-		JPanel topPanel = new JPanel(new BorderLayout(0, 0));
-		topPanel.setMaximumSize(new Dimension(450, 0));
-		JLabel hint = new JLabel("Tip Headline");
-		hint.setBorder(BorderFactory.createEmptyBorder(10, 25, 10, 10));
-		topPanel.add(hint);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
+		this.setResizable(true);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		this.setVisible(true);
+	}
 
-		JSeparator separator = new JSeparator();
-		separator.setForeground(Color.gray);
+	private void createTipOfTheDayDemo()
+	{
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints d = new GridBagConstraints();
 
-		topPanel.add(separator, BorderLayout.SOUTH);
 
-		basic.add(topPanel);
+		d.fill = GridBagConstraints.BOTH;
+		// d.ipady = 0; // reset to default
+		// d.ipadx = 0; // reset to default
+		d.weighty = 1.0; // request any extra vertical space
+		d.weightx = 1.0; // request any extra vertical space
+		d.anchor = GridBagConstraints.CENTER; // bottom of space
+		// d.insets = new Insets(10, 10, 10, 10); // top padding
+		d.gridwidth = 2; // 2 columns wide
+		// d.gridheight = 1; // 2 columns wide
+		d.gridy = 0; // third row
+		d.gridx = 0; // third row
 
-		JPanel textPanel = new JPanel(new BorderLayout());
-		textPanel.setBorder(BorderFactory.createEmptyBorder(15, 25, 15, 25));
-		JTextPane pane = new JTextPane();
 
-		pane.setContentType("text/html");
-		String text = "<p><b>Working on the Tip of the day...</b></p>";
-		pane.setText(text);
-		pane.setEditable(false);
-		textPanel.add(new JScrollPane(pane));
 
-		basic.add(textPanel);
+		model = createTipOfTheDayModel();
 
-		JPanel boxPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 0));
+		totd = new JXTipOfTheDay(model);
+		totd.setName("totd");
+		totd.setBorder(BorderFactory.createEtchedBorder());
+		this.add(totd, d);
+
+
+
+		d.weighty = 0; // request any extra vertical space
+		d.weightx = 0; // request any extra vertical space
+		d.gridy = 1;
+		this.add(getButtons(), d);
+	}
+
+
+
+	public JPanel getButtons()
+	{
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		// buttonPanel.setLayout(new BoxLayout(buttonPanel,
+		// BoxLayout.PAGE_AXIS));
+		Dimension panelSize = new Dimension(115, 30);
+		buttonPanel.setPreferredSize(panelSize);
+		buttonPanel.setMinimumSize(panelSize);
+		buttonPanel.setMaximumSize(panelSize);
+
 
 		JCheckBox box = new JCheckBox(PrimeMain1.texts
 				.getString("totdShowTipOnStartup"));
 		box.addActionListener(this);
 		box.setActionCommand("showTips");
-		box.setMnemonic(KeyEvent.VK_S);
 
-		boxPanel.add(box);
-		basic.add(boxPanel);
 
-		JPanel bottom = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-
-		JButton ntip = new JButton(PrimeMain1.texts
+		JButton next = new JButton(PrimeMain1.texts
 				.getString("totdNextTipButton"));
-		ntip.addActionListener(this);
-		ntip.setActionCommand("nextTip");
-		ntip.setMnemonic(KeyEvent.VK_N);
+		next.setFocusable(false);
+		next.addActionListener(this);
+		next.setActionCommand("nextTip");
+		Dimension textSize = new Dimension(100, 20);
+		next.setPreferredSize(textSize);
+		next.setMinimumSize(textSize);
+		next.setMaximumSize(textSize);
+
 
 		JButton close = new JButton(PrimeMain1.texts.getString("closeButton"));
 		close.addActionListener(this);
 		close.setActionCommand("close");
-		close.setMnemonic(KeyEvent.VK_C);
+		close.setPreferredSize(textSize);
+		close.setMinimumSize(textSize);
+		close.setMaximumSize(textSize);
 
-		bottom.add(ntip);
-		bottom.add(close);
-		basic.add(bottom);
 
-		bottom.setMaximumSize(new Dimension(450, 0));
+		buttonPanel.add(box);
+		buttonPanel.add(next);
+		buttonPanel.add(close);
 
-		this.setLocation(initXLocation, initYLocation);
-		this.setSize(new Dimension(450, 350));
-		this.setResizable(false);
-		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		this.setVisible(true);
+		return buttonPanel;
 	}
 
+
+
+	protected TipOfTheDayModel createTipOfTheDayModel()
+	{
+		// Create a tip model with some tips
+		DefaultTipOfTheDayModel tips = new DefaultTipOfTheDayModel();
+
+		// plain text
+		tips.add(new DefaultTip("Plain Text Tip", "This is the first tip "
+				+ "This is the first tip " + "This is the first tip "
+				+ "This is the first tip " + "This is the first tip "
+				+ "This is the first tip" + "This is the first tip "
+				+ "This is the first tip"));
+
+		// a Component
+		tips.add(new DefaultTip("Component Tip", new JTree()));
+
+
+		return tips;
+	}
 
 
 	/*
@@ -133,7 +185,7 @@ public class TipOfDay extends JDialog implements ActionListener
 		}
 		else if ( e.getActionCommand().equals("nextTip") )
 		{
-
+			totd.nextTip();
 		}
 		else if ( e.getActionCommand().equals("close") )
 		{

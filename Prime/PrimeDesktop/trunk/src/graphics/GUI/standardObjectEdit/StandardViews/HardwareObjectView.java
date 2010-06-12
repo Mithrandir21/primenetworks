@@ -484,19 +484,28 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			d.gridy = c.gridy++;
 		}
 
+
 		d.gridy = c.gridy++;
 		d.weightx = 1;
 		d.weighty = 1;
-		d.gridwidth = 1;
+		d.gridwidth = 2;
 		d.gridheight = 1;
 		d.insets = new Insets(10, 10, 10, 10);
 
+		// Adds the panel with the buttons to the main panel
+		this.add(getButtonsPanel(obj), d);
+
+	}
 
 
-		// Adds the buttons to the bottom of the Object view
 
+	/**
+	 * The buttons to the bottom of the Object view.
+	 */
+	private JPanel getButtonsPanel(Object obj)
+	{
 		JPanel buttons = new JPanel();
-		buttons.setLayout(new FlowLayout(FlowLayout.LEADING));
+		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 		Button edit = new Button("Edit Components");
 		edit.addActionListener(this);
@@ -515,19 +524,11 @@ public class HardwareObjectView extends JPanel implements ActionListener
 
 			buttons.add(addNew);
 		}
-		// else
-		// {
-		// JLabel text = new JLabel(
-		// "You can currently not add hardware to infrastructure or peripherals.");
-		//
-		// buttons.add(text);
-		// }
 
 
-		// Adds the panel with the buttons to the main panel
-		this.add(buttons, d);
-
+		return buttons;
 	}
+
 
 
 	/**
@@ -590,7 +591,6 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				d.gridy++;
 			}
 		}
-
 
 		return panel;
 	}

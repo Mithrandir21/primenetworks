@@ -8,9 +8,7 @@ import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareObjectView
 import graphics.GUI.objectView.Network.NetworkView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareObjectView;
 
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.ScrollPaneConstants;
 
 import widgets.WidgetObject;
 
@@ -52,22 +50,14 @@ public class ObjectViewTabbed extends JTabbedPane
 
 
 		hardObjView = new HardwareObjectView(obj.getObject());
-		JScrollPane scrollPaneHW = new JScrollPane(hardObjView);
-		scrollPaneHW.setViewportView(hardObjView);
-		scrollPaneHW
-				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		this.addTab(PrimeMain1.texts.getString("hardwareTabLabel"), null,
-				scrollPaneHW, PrimeMain1.texts
+				hardObjView, PrimeMain1.texts
 						.getString("hardwareTabDescription"));
 
 
 		softObjView = new SoftwareObjectView(obj.getObject());
-		JScrollPane scrollPaneSW = new JScrollPane(softObjView);
-		scrollPaneSW.setViewportView(softObjView);
-		scrollPaneSW
-				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		this.addTab(PrimeMain1.texts.getString("softwareTabLabel"), null,
-				scrollPaneSW, PrimeMain1.texts
+				softObjView, PrimeMain1.texts
 						.getString("softwareTabDescription"));
 
 
@@ -92,6 +82,19 @@ public class ObjectViewTabbed extends JTabbedPane
 	{
 		return hardObjView;
 	}
+
+
+	/**
+	 * Gets the software editor that where software can be edited.
+	 */
+	public SoftwareObjectView getSoftwareEditor()
+	{
+		return softObjView;
+	}
+
+
+
+
 
 
 
