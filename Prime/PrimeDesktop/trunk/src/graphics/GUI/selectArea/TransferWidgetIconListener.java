@@ -16,13 +16,11 @@ import javax.swing.TransferHandler;
  * sets the action for the handler to exportAsDrag. Contains only a "mousePressed" method.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class TransferWidgetIconListener extends MouseAdapter
 {
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.awt.event.MouseAdapter#mousePressed(java.awt.event.MouseEvent)
 	 */
 	@Override

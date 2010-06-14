@@ -122,27 +122,23 @@ public class ObjectSelection extends JPanel
 		// d.gridwidth = 1; // 2 columns wide
 		// d.gridheight = 1; // 2 columns wide
 		d.gridx = 0;
-
+		d.gridy = 0;
 
 		JXTaskPaneContainer tpc = new JXTaskPaneContainer();
 
 
-		d.gridy = 0;
 		// Adds the group panel to the collapsible container
 		tpc.add(initClientButtonIcons(mouseLis, transferable));
 
 
-		d.gridy = 1;
 		// Adds the group panel to the collapsible container
 		tpc.add(initServerButtonIcons(mouseLis, transferable));
 
 
-		d.gridy = 2;
 		// Adds the group panel to the collapsible container
 		tpc.add(initExternalHardwareButtonIcons(mouseLis, transferable));
 
 
-		d.gridy = 3;
 		// Adds the group panel to the collapsible container
 		tpc.add(initInfrastructureButtonIcons(mouseLis, transferable));
 
@@ -176,7 +172,8 @@ public class ObjectSelection extends JPanel
 		iconsList.toArray(widIcons);
 
 
-		return getWidgetGroup("Desktop Devices", widIcons, true);
+		return getWidgetGroup(PrimeMain1.texts
+				.getString("selectAreaDesktopGroupName"), widIcons, true);
 	}
 
 	/**
@@ -203,7 +200,8 @@ public class ObjectSelection extends JPanel
 		iconsList.toArray(widIcons);
 
 
-		return getWidgetGroup("Server Devices", widIcons, true);
+		return getWidgetGroup(PrimeMain1.texts
+				.getString("selectAreaServerGroupName"), widIcons, true);
 	}
 
 	/**
@@ -228,7 +226,8 @@ public class ObjectSelection extends JPanel
 		iconsList.toArray(widIcons);
 
 
-		return getWidgetGroup("External Devices", widIcons, false);
+		return getWidgetGroup(PrimeMain1.texts
+				.getString("selectAreaExternalGroupName"), widIcons, false);
 	}
 
 	/**
@@ -251,7 +250,8 @@ public class ObjectSelection extends JPanel
 		iconsList.toArray(widIcons);
 
 
-		return getWidgetGroup("Network Devices", widIcons, false);
+		return getWidgetGroup(PrimeMain1.texts
+				.getString("selectAreaNetworkGroupName"), widIcons, false);
 	}
 
 
