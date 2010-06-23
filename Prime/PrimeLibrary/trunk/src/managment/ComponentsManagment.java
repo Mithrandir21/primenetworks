@@ -1017,7 +1017,7 @@ public class ComponentsManagment
 				mainObj.addComponent(GPU);
 
 				// Then we set the ports to the motherboard
-				mb.setGraphicsCard(true);
+				mb.setGraphicsCardInstalled(true);
 			}
 			// If the types don't match.
 			else

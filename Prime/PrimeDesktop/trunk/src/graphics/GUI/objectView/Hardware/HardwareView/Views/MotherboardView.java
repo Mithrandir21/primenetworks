@@ -864,7 +864,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 		mbObj.setChipset(chipsetField.getText());
 
-		mbObj.setGraphicalPort(gpuPorts.getSelectedItem().toString());
+		mbObj.setGraphicalPortType(gpuPorts.getSelectedItem().toString());
 
 		mbObj.setDUCconnectionType(DUCPorts.getSelectedItem().toString());
 
@@ -874,7 +874,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 		mbObj.setIntegAudioCard(intAudioCard.isSelected());
 		mbObj.setIntegGraphicalCard(intGPU.isSelected());
 		mbObj.setIntegLANcard(intNIC.isSelected());
-		mbObj.setGraphicsCard(GPUinstalled.isSelected());
+		mbObj.setGraphicsCardInstalled(GPUinstalled.isSelected());
 
 
 		if ( CPUsockets.getSelectedItem().toString() != "" )

@@ -44,8 +44,7 @@ import actions.canvasActions.ActionDeleteAllConnectionsToAndFrom;
  * 
  * @author Bahram Malaekeh
  */
-public class MotherboardNewView extends JFrame implements
-		HardwareViewInterface, ActionListener
+public class MotherboardNewView extends JFrame implements HardwareViewInterface, ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -181,8 +180,7 @@ public class MotherboardNewView extends JFrame implements
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param mb
@@ -924,7 +922,7 @@ public class MotherboardNewView extends JFrame implements
 
 		if ( gpuPorts.getSelectedItem().toString() != "" )
 		{
-			mbObj.setGraphicalPort(gpuPorts.getSelectedItem().toString());
+			mbObj.setGraphicalPortType(gpuPorts.getSelectedItem().toString());
 		}
 
 		if ( true )
@@ -941,7 +939,7 @@ public class MotherboardNewView extends JFrame implements
 		mbObj.setIntegAudioCard(intAudioCard.isSelected());
 		mbObj.setIntegGraphicalCard(intGPU.isSelected());
 		mbObj.setIntegLANcard(intNIC.isSelected());
-		mbObj.setGraphicsCard(GPUinstalled.isSelected());
+		mbObj.setGraphicsCardInstalled(GPUinstalled.isSelected());
 
 
 		if ( CPUsockets.getSelectedItem().toString() != "" )

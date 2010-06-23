@@ -7,8 +7,8 @@ import objects.Hardware;
 
 
 /**
- * This class represents a motherboard of a {@link objects.Servers server} or
- * {@link objects.Clients client} machine. It can be a server, a desktop or a
+ * This class represents a motherboard of a {@link objects.Servers server} or {@link objects.Clients client} machine. It can be a
+ * server, a desktop or a
  * laptop. It contains information on what kind of capability the motherboard
  * has, what kind of ports it has, how many slots it has for different cards,
  * how many CPUs can be installed and so on. <br>
@@ -19,9 +19,8 @@ import objects.Hardware;
  * <br>
  * Changelog 0.2
  * <p>
- * Changed HDD connections to DUC, Different Usage Connections, to better suit
- * the actual function of the port which is a port for both HDDs and CDROMs
- * among other things.
+ * Changed HDD connections to DUC, Different Usage Connections, to better suit the actual function of the port which is a port for
+ * both HDDs and CDROMs among other things.
  * </p>
  * <br>
  * <br>
@@ -615,15 +614,6 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Set method for type of graphical port on the motherboard.
-	 */
-	public void setGraphicalPort(String MBgraphicalPortType)
-	{
-		graphicalPortType = MBgraphicalPortType;
-	}
-
-
-	/**
 	 * Set method for type of DUC port on the motherboard.
 	 */
 	public void setDUCconnectionType(String MBDUCconnectionType)
@@ -679,7 +669,7 @@ public class Motherboard extends Hardware implements Serializable
 	 * @param graphicsCard
 	 *            the graphicsCard to set
 	 */
-	public void setGraphicsCard(boolean graphicsCard)
+	public void setGraphicsCardInstalled(boolean graphicsCard)
 	{
 
 		this.isGraphicsCardInstalled = graphicsCard;
@@ -939,8 +929,7 @@ public class Motherboard extends Hardware implements Serializable
 
 	/**
 	 * Resets all the fields for this Motherboard. All {@link String} fields
-	 * will be set to "", all {@link Integer} will be set to 0 and all
-	 * {@link Boolean Booleans} will be set to false.
+	 * will be set to "", all {@link Integer} will be set to 0 and all {@link Boolean Booleans} will be set to false.
 	 */
 	private void reset()
 	{
