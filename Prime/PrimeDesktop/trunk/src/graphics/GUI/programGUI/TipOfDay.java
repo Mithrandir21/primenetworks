@@ -1,7 +1,7 @@
 package graphics.GUI.programGUI;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -41,7 +41,7 @@ public class TipOfDay extends JFrame implements ActionListener
 
 	public TipOfDay()
 	{
-		super(PrimeMain1.texts.getString("totdTitle"));
+		super(PrimeMain.texts.getString("totdTitle"));
 
 		createTipOfTheDayDemo();
 
@@ -117,13 +117,13 @@ public class TipOfDay extends JFrame implements ActionListener
 		buttonPanel.setMaximumSize(panelSize);
 
 
-		JCheckBox box = new JCheckBox(PrimeMain1.texts
+		JCheckBox box = new JCheckBox(PrimeMain.texts
 				.getString("totdShowTipOnStartup"));
 		box.addActionListener(this);
 		box.setActionCommand("showTips");
 
 
-		JButton next = new JButton(PrimeMain1.texts
+		JButton next = new JButton(PrimeMain.texts
 				.getString("totdNextTipButton"));
 		next.setFocusable(false);
 		next.addActionListener(this);
@@ -134,7 +134,7 @@ public class TipOfDay extends JFrame implements ActionListener
 		next.setMaximumSize(textSize);
 
 
-		JButton close = new JButton(PrimeMain1.texts.getString("closeButton"));
+		JButton close = new JButton(PrimeMain.texts.getString("closeButton"));
 		close.addActionListener(this);
 		close.setActionCommand("close");
 		close.setPreferredSize(textSize);

@@ -4,7 +4,7 @@
 package graphics.GUI.objectView.Software.NewSoftware.NewOverview;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareObjectView;
 import graphics.GUI.objectView.Software.NewSoftware.NewViews.AntivirusNewView;
 import graphics.GUI.objectView.Software.NewSoftware.NewViews.BackupNewView;
@@ -99,11 +99,11 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Antivirus software
-		ImageIcon avtemp = PrimeMain1.objectImageIcons.get(Antivirus.class);
+		ImageIcon avtemp = PrimeMain.objectImageIcons.get(Antivirus.class);
 
 		String[] avInfo = new String[3];
 
-		avobj = PrimeMain1.standard_software.getSt_AV();
+		avobj = PrimeMain.standard_software.getSt_AV();
 
 		String text = null;
 
@@ -116,14 +116,14 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = avobj.getVersion();
 		if ( text != "" && text != null )
 		{
-			avInfo[1] = PrimeMain1.texts.getString("swTabVersionLabel") + ": "
+			avInfo[1] = PrimeMain.texts.getString("swTabVersionLabel") + ": "
 					+ text;
 		}
 
 		text = avobj.getDescription();
 		if ( text != "" && text != null )
 		{
-			avInfo[2] = PrimeMain1.texts.getString("swTabDescriptionLabel")
+			avInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
 		}
 
@@ -139,11 +139,11 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Backup software
-		ImageIcon backtemp = PrimeMain1.objectImageIcons.get(Backup.class);
+		ImageIcon backtemp = PrimeMain.objectImageIcons.get(Backup.class);
 
 		String[] backInfo = new String[3];
 
-		backupObj = PrimeMain1.standard_software.getSt_Backup();
+		backupObj = PrimeMain.standard_software.getSt_Backup();
 
 		text = null;
 
@@ -156,14 +156,14 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = backupObj.getVersion();
 		if ( text != "" && text != null )
 		{
-			backInfo[1] = PrimeMain1.texts.getString("swTabVersionLabel")
+			backInfo[1] = PrimeMain.texts.getString("swTabVersionLabel")
 					+ ": " + text;
 		}
 
 		text = backupObj.getDescription();
 		if ( text != "" && text != null )
 		{
-			backInfo[2] = PrimeMain1.texts.getString("swTabDescriptionLabel")
+			backInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
 		}
 
@@ -180,11 +180,11 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Database software
-		ImageIcon dbtemp = PrimeMain1.objectImageIcons.get(Database.class);
+		ImageIcon dbtemp = PrimeMain.objectImageIcons.get(Database.class);
 
 		String[] dbInfo = new String[3];
 
-		dbObj = PrimeMain1.standard_software.getSt_Database();
+		dbObj = PrimeMain.standard_software.getSt_Database();
 
 		text = null;
 
@@ -197,14 +197,14 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = dbObj.getVersion();
 		if ( text != "" && text != null )
 		{
-			dbInfo[1] = PrimeMain1.texts.getString("swTabVersionLabel") + ": "
+			dbInfo[1] = PrimeMain.texts.getString("swTabVersionLabel") + ": "
 					+ text;
 		}
 
 		text = dbObj.getDescription();
 		if ( text != "" && text != null )
 		{
-			dbInfo[2] = PrimeMain1.texts.getString("swTabDescriptionLabel")
+			dbInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
 		}
 
@@ -219,11 +219,11 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Email software
-		ImageIcon Emailtemp = PrimeMain1.objectImageIcons.get(Email.class);
+		ImageIcon Emailtemp = PrimeMain.objectImageIcons.get(Email.class);
 
 		String[] emailInfo = new String[3];
 
-		emailObj = PrimeMain1.standard_software.getSt_Email();
+		emailObj = PrimeMain.standard_software.getSt_Email();
 
 		text = null;
 
@@ -236,14 +236,14 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = emailObj.getVersion();
 		if ( text != "" && text != null )
 		{
-			emailInfo[1] = PrimeMain1.texts.getString("swTabVersionLabel")
+			emailInfo[1] = PrimeMain.texts.getString("swTabVersionLabel")
 					+ ": " + text;
 		}
 
 		text = emailObj.getDescription();
 		if ( text != "" && text != null )
 		{
-			emailInfo[2] = PrimeMain1.texts.getString("swTabDescriptionLabel")
+			emailInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
 		}
 
@@ -259,11 +259,11 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Firewall software
-		ImageIcon fwtemp = PrimeMain1.objectImageIcons.get(Firewall.class);
+		ImageIcon fwtemp = PrimeMain.objectImageIcons.get(Firewall.class);
 
 		String[] fwInfo = new String[3];
 
-		fwObj = PrimeMain1.standard_software.getSt_Firewall();
+		fwObj = PrimeMain.standard_software.getSt_Firewall();
 
 		text = null;
 
@@ -276,14 +276,14 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = fwObj.getVersion();
 		if ( text != "" && text != null )
 		{
-			fwInfo[1] = PrimeMain1.texts.getString("swTabVersionLabel") + ": "
+			fwInfo[1] = PrimeMain.texts.getString("swTabVersionLabel") + ": "
 					+ text;
 		}
 
 		text = fwObj.getDescription();
 		if ( text != "" && text != null )
 		{
-			fwInfo[2] = PrimeMain1.texts.getString("swTabDescriptionLabel")
+			fwInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
 		}
 
@@ -298,12 +298,12 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Office Suite software
-		ImageIcon offSuitetemp = PrimeMain1.objectImageIcons
+		ImageIcon offSuitetemp = PrimeMain.objectImageIcons
 				.get(OfficeSuite.class);
 
 		String[] offSuiteInfo = new String[3];
 
-		offSuiteObj = PrimeMain1.standard_software.getSt_OfficeSuite();
+		offSuiteObj = PrimeMain.standard_software.getSt_OfficeSuite();
 
 		text = null;
 
@@ -316,14 +316,14 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = offSuiteObj.getVersion();
 		if ( text != "" && text != null )
 		{
-			offSuiteInfo[1] = PrimeMain1.texts.getString("swTabVersionLabel")
+			offSuiteInfo[1] = PrimeMain.texts.getString("swTabVersionLabel")
 					+ ": " + text;
 		}
 
 		text = offSuiteObj.getDescription();
 		if ( text != "" && text != null )
 		{
-			offSuiteInfo[2] = PrimeMain1.texts
+			offSuiteInfo[2] = PrimeMain.texts
 					.getString("swTabDescriptionLabel")
 					+ ": " + text;
 		}
@@ -340,12 +340,12 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Operating System software
-		ImageIcon OStemp = PrimeMain1.objectImageIcons
+		ImageIcon OStemp = PrimeMain.objectImageIcons
 				.get(OperatingSystem.class);
 
 		String[] OSInfo = new String[3];
 
-		osObj = PrimeMain1.standard_software.getSt_OS();
+		osObj = PrimeMain.standard_software.getSt_OS();
 
 		text = null;
 
@@ -358,14 +358,14 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = osObj.getVersion();
 		if ( text != "" && text != null )
 		{
-			OSInfo[1] = PrimeMain1.texts.getString("swTabVersionLabel") + ": "
+			OSInfo[1] = PrimeMain.texts.getString("swTabVersionLabel") + ": "
 					+ text;
 		}
 
 		text = osObj.getDescription();
 		if ( text != "" && text != null )
 		{
-			OSInfo[2] = PrimeMain1.texts.getString("swTabDescriptionLabel")
+			OSInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
 		}
 
@@ -380,11 +380,11 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Proxy software
-		ImageIcon proxytemp = PrimeMain1.objectImageIcons.get(Proxy.class);
+		ImageIcon proxytemp = PrimeMain.objectImageIcons.get(Proxy.class);
 
 		String[] proxyInfo = new String[3];
 
-		proxyObj = PrimeMain1.standard_software.getSt_Proxy();
+		proxyObj = PrimeMain.standard_software.getSt_Proxy();
 
 		text = null;
 
@@ -397,14 +397,14 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = proxyObj.getVersion();
 		if ( text != "" && text != null )
 		{
-			proxyInfo[1] = PrimeMain1.texts.getString("swTabVersionLabel")
+			proxyInfo[1] = PrimeMain.texts.getString("swTabVersionLabel")
 					+ ": " + text;
 		}
 
 		text = proxyObj.getDescription();
 		if ( text != "" && text != null )
 		{
-			proxyInfo[2] = PrimeMain1.texts.getString("swTabDescriptionLabel")
+			proxyInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
 		}
 
@@ -420,12 +420,12 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Security Suite software
-		ImageIcon secSuitetemp = PrimeMain1.objectImageIcons
+		ImageIcon secSuitetemp = PrimeMain.objectImageIcons
 				.get(SecuritySuite.class);
 
 		String[] secSuiteInfo = new String[3];
 
-		secSuiteObj = PrimeMain1.standard_software.getSt_SecSuite();
+		secSuiteObj = PrimeMain.standard_software.getSt_SecSuite();
 
 		text = null;
 
@@ -438,14 +438,14 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = secSuiteObj.getVersion();
 		if ( text != "" && text != null )
 		{
-			secSuiteInfo[1] = PrimeMain1.texts.getString("swTabVersionLabel")
+			secSuiteInfo[1] = PrimeMain.texts.getString("swTabVersionLabel")
 					+ ": " + text;
 		}
 
 		text = secSuiteObj.getDescription();
 		if ( text != "" && text != null )
 		{
-			secSuiteInfo[2] = PrimeMain1.texts
+			secSuiteInfo[2] = PrimeMain.texts
 					.getString("swTabDescriptionLabel")
 					+ ": " + text;
 		}
@@ -462,11 +462,11 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 
 		// Websesrver software
-		ImageIcon webSertemp = PrimeMain1.objectImageIcons.get(Webserver.class);
+		ImageIcon webSertemp = PrimeMain.objectImageIcons.get(Webserver.class);
 
 		String[] webSerInfo = new String[3];
 
-		webServerObj = PrimeMain1.standard_software.getSt_Webserver();
+		webServerObj = PrimeMain.standard_software.getSt_Webserver();
 
 		text = null;
 
@@ -479,14 +479,14 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = webServerObj.getVersion();
 		if ( text != "" && text != null )
 		{
-			webSerInfo[1] = PrimeMain1.texts.getString("swTabVersionLabel")
+			webSerInfo[1] = PrimeMain.texts.getString("swTabVersionLabel")
 					+ ": " + text;
 		}
 
 		text = webServerObj.getDescription();
 		if ( text != "" && text != null )
 		{
-			webSerInfo[2] = PrimeMain1.texts.getString("swTabDescriptionLabel")
+			webSerInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
 		}
 
@@ -525,70 +525,70 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 			new AntivirusNewView(mainObj, avobj);
 			// Creates a new object after the first object is passed to the
 			// view.
-			avobj = PrimeMain1.standard_software.getSt_AV();
+			avobj = PrimeMain.standard_software.getSt_AV();
 		}
 		else if ( panel.getName().equals("Backup") )
 		{
 			new BackupNewView(mainObj, backupObj);
 			// Creates a new object after the first object is passed to the
 			// view.
-			backupObj = PrimeMain1.standard_software.getSt_Backup();
+			backupObj = PrimeMain.standard_software.getSt_Backup();
 		}
 		else if ( panel.getName().equals("Database") )
 		{
 			new DatabaseNewView(mainObj, dbObj);
 			// Creates a new object after the first object is passed to the
 			// view.
-			dbObj = PrimeMain1.standard_software.getSt_Database();
+			dbObj = PrimeMain.standard_software.getSt_Database();
 		}
 		else if ( panel.getName().equals("Email") )
 		{
 			new EmailNewView(mainObj, emailObj);
 			// Creates a new object after the first object is passed to the
 			// view.
-			emailObj = PrimeMain1.standard_software.getSt_Email();
+			emailObj = PrimeMain.standard_software.getSt_Email();
 		}
 		else if ( panel.getName().equals("Firewall") )
 		{
 			new FirewallNewView(mainObj, fwObj);
 			// Creates a new object after the first object is passed to the
 			// view.
-			fwObj = PrimeMain1.standard_software.getSt_Firewall();
+			fwObj = PrimeMain.standard_software.getSt_Firewall();
 		}
 		else if ( panel.getName().equals("Office Suite") )
 		{
 			new OfficeSuiteNewView(mainObj, offSuiteObj);
 			// Creates a new object after the first object is passed to the
 			// view.
-			offSuiteObj = PrimeMain1.standard_software.getSt_OfficeSuite();
+			offSuiteObj = PrimeMain.standard_software.getSt_OfficeSuite();
 		}
 		else if ( panel.getName().equals("Operating System") )
 		{
 			new OSNewView(mainObj, osObj);
 			// Creates a new object after the first object is passed to the
 			// view.
-			osObj = PrimeMain1.standard_software.getSt_OS();
+			osObj = PrimeMain.standard_software.getSt_OS();
 		}
 		else if ( panel.getName().equals("Proxy") )
 		{
 			new ProxyNewView(mainObj, proxyObj);
 			// Creates a new object after the first object is passed to the
 			// view.
-			proxyObj = PrimeMain1.standard_software.getSt_Proxy();
+			proxyObj = PrimeMain.standard_software.getSt_Proxy();
 		}
 		else if ( panel.getName().equals("Security Suite") )
 		{
 			new SecuritySuiteNewView(mainObj, secSuiteObj);
 			// Creates a new object after the first object is passed to the
 			// view.
-			secSuiteObj = PrimeMain1.standard_software.getSt_SecSuite();
+			secSuiteObj = PrimeMain.standard_software.getSt_SecSuite();
 		}
 		else if ( panel.getName().equals("Webserver") )
 		{
 			new WebserverNewView(mainObj, webServerObj);
 			// Creates a new object after the first object is passed to the
 			// view.
-			webServerObj = PrimeMain1.standard_software.getSt_Webserver();
+			webServerObj = PrimeMain.standard_software.getSt_Webserver();
 		}
 	}
 

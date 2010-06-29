@@ -2,7 +2,7 @@ package graphics.GUI.objectView;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.Button;
 import java.awt.Container;
@@ -45,7 +45,7 @@ public class ObjectView extends JFrame implements ActionListener
 	 */
 	public ObjectView(WidgetObject obj)
 	{
-		super(PrimeMain1.texts.getString("objectViewLabel"));
+		super(PrimeMain.texts.getString("objectViewLabel"));
 
 		widgetObj = obj;
 
@@ -81,15 +81,15 @@ public class ObjectView extends JFrame implements ActionListener
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		Button save = new Button(PrimeMain1.texts.getString("save"));
+		Button save = new Button(PrimeMain.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button apply = new Button(PrimeMain1.texts.getString("apply"));
+		Button apply = new Button(PrimeMain.texts.getString("apply"));
 		apply.addActionListener(this);
 		apply.setActionCommand("apply");
 
-		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
+		Button cancel = new Button(PrimeMain.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -118,7 +118,7 @@ public class ObjectView extends JFrame implements ActionListener
 			@Override
 			public void windowClosing(WindowEvent ev)
 			{
-				PrimeMain1.removeObjectView(currentObject);
+				PrimeMain.removeObjectView(currentObject);
 			}
 		});
 	}
@@ -144,7 +144,7 @@ public class ObjectView extends JFrame implements ActionListener
 		{
 			assert e.getActionCommand().equals("cancel");
 
-			PrimeMain1.removeObjectView(currentObject);
+			PrimeMain.removeObjectView(currentObject);
 
 			this.dispose();
 		}
@@ -214,17 +214,17 @@ public class ObjectView extends JFrame implements ActionListener
 			}
 
 
-			PrimeMain1.updateCanvasAndObjectInfo();
-			PrimeMain1.updatePropertiesObjectArea(widgetObj.getObject(), true);
+			PrimeMain.updateCanvasAndObjectInfo();
+			PrimeMain.updatePropertiesObjectArea(widgetObj.getObject(), true);
 
-			PrimeMain1.removeObjectView(currentObject);
+			PrimeMain.removeObjectView(currentObject);
 
 			return true;
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null, PrimeMain1.texts
-					.getString("saveSpecifyNameErrorMsg"), PrimeMain1.texts
+			JOptionPane.showMessageDialog(null, PrimeMain.texts
+					.getString("saveSpecifyNameErrorMsg"), PrimeMain.texts
 					.getString("error"), JOptionPane.ERROR_MESSAGE);
 
 			// Focuses on the name JTextField
@@ -252,9 +252,9 @@ public class ObjectView extends JFrame implements ActionListener
 		{
 			if ( !(info.setIp(view.netObjView.widgetIPfield.getText())) )
 			{
-				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+				JOptionPane.showMessageDialog(null, PrimeMain.texts
 						.getString("saveNetworkNotValidIPerrorMsg"),
-						PrimeMain1.texts.getString("error"),
+						PrimeMain.texts.getString("error"),
 						JOptionPane.ERROR_MESSAGE);
 
 				errorFound = true;
@@ -262,16 +262,17 @@ public class ObjectView extends JFrame implements ActionListener
 		}
 
 		// Validates and sets subnet
-		if ( !(view.netObjView.widgetSubnetField.getText().equals("")) )
+		if ( !(view.netObjView.widgetNetmaskField.getText().equals("")) )
 		{
-			if ( !(info.setNetmask(view.netObjView.widgetSubnetField.getText())) )
+			if ( !(info
+					.setNetmask(view.netObjView.widgetNetmaskField.getText())) )
 			{
 				// If not other error has been given
 				if ( errorFound != true )
 				{
-					JOptionPane.showMessageDialog(null, PrimeMain1.texts
+					JOptionPane.showMessageDialog(null, PrimeMain.texts
 							.getString("saveNetworkNotValidNetmaskErrorMsg"),
-							PrimeMain1.texts.getString("error"),
+							PrimeMain.texts.getString("error"),
 							JOptionPane.ERROR_MESSAGE);
 
 					errorFound = true;
@@ -287,9 +288,9 @@ public class ObjectView extends JFrame implements ActionListener
 				// If not other error has been given
 				if ( errorFound != true )
 				{
-					JOptionPane.showMessageDialog(null, PrimeMain1.texts
+					JOptionPane.showMessageDialog(null, PrimeMain.texts
 							.getString("saveNetworkNotValidMacErrorMsg"),
-							PrimeMain1.texts.getString("error"),
+							PrimeMain.texts.getString("error"),
 							JOptionPane.ERROR_MESSAGE);
 
 					errorFound = true;
@@ -310,9 +311,9 @@ public class ObjectView extends JFrame implements ActionListener
 					JOptionPane
 							.showMessageDialog(
 									null,
-									PrimeMain1.texts
+									PrimeMain.texts
 											.getString("saveNetworkNotValidDefaultGatewayErrorMsg"),
-									PrimeMain1.texts.getString("error"),
+									PrimeMain.texts.getString("error"),
 									JOptionPane.ERROR_MESSAGE);
 
 					errorFound = true;
@@ -337,9 +338,9 @@ public class ObjectView extends JFrame implements ActionListener
 					JOptionPane
 							.showMessageDialog(
 									null,
-									PrimeMain1.texts
+									PrimeMain.texts
 											.getString("saveNetworkNotValidNetworkNameErrorMsg"),
-									PrimeMain1.texts.getString("error"),
+									PrimeMain.texts.getString("error"),
 									JOptionPane.ERROR_MESSAGE);
 
 					errorFound = true;

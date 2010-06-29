@@ -8,7 +8,7 @@ import exceptions.ConnectionDoesNotExist;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
@@ -134,7 +134,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(Motherboard.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(Motherboard.class);
 		JPanel p1 = HardwareEditor.GeneralInfo(mb, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -160,10 +160,10 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain1.texts
+		JLabel label = new JLabel(PrimeMain.texts
 				.getString("hwTabRemoveThisComponentLabel"));
 
-		Button remove = new Button(PrimeMain1.texts
+		Button remove = new Button(PrimeMain.texts
 				.getString("hwTabRemoveComponentButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeComp");
@@ -199,87 +199,87 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 		JLabel[] labels = new JLabel[18];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts
+		labels[0] = new JLabel(PrimeMain.texts
 				.getString("mbViewProducerLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts
+		labels[0].setToolTipText(PrimeMain.texts
 				.getString("mbViewProducerTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts.getString("mbViewFormLabel"));
-		labels[1].setToolTipText(PrimeMain1.texts.getString("mbViewFormTip"));
+		labels[1] = new JLabel(PrimeMain.texts.getString("mbViewFormLabel"));
+		labels[1].setToolTipText(PrimeMain.texts.getString("mbViewFormTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts.getString("mbViewSocketLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts.getString("mbViewSocketTip"));
+		labels[2] = new JLabel(PrimeMain.texts.getString("mbViewSocketLabel"));
+		labels[2].setToolTipText(PrimeMain.texts.getString("mbViewSocketTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts
+		labels[3] = new JLabel(PrimeMain.texts
 				.getString("mbViewBusSpeedLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts
+		labels[3].setToolTipText(PrimeMain.texts
 				.getString("mbViewBusSpeedTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts.getString("mbViewChipsetLabel"));
+		labels[4] = new JLabel(PrimeMain.texts.getString("mbViewChipsetLabel"));
 		labels[4]
-				.setToolTipText(PrimeMain1.texts.getString("mbViewChipsetTip"));
+				.setToolTipText(PrimeMain.texts.getString("mbViewChipsetTip"));
 
-		labels[5] = new JLabel(PrimeMain1.texts.getString("mbViewGPUportLabel"));
+		labels[5] = new JLabel(PrimeMain.texts.getString("mbViewGPUportLabel"));
 		labels[5]
-				.setToolTipText(PrimeMain1.texts.getString("mbViewGPUportTip"));
+				.setToolTipText(PrimeMain.texts.getString("mbViewGPUportTip"));
 
-		labels[6] = new JLabel(PrimeMain1.texts
+		labels[6] = new JLabel(PrimeMain.texts
 				.getString("mbViewConnectionPortLabel"));
-		labels[6].setToolTipText(PrimeMain1.texts
+		labels[6].setToolTipText(PrimeMain.texts
 				.getString("mbViewConnectionPortTip"));
 
-		labels[7] = new JLabel(PrimeMain1.texts.getString("mbViewRamTypeLabel"));
+		labels[7] = new JLabel(PrimeMain.texts.getString("mbViewRamTypeLabel"));
 		labels[7]
-				.setToolTipText(PrimeMain1.texts.getString("mbViewRamTypeTip"));
+				.setToolTipText(PrimeMain.texts.getString("mbViewRamTypeTip"));
 
-		labels[8] = new JLabel(PrimeMain1.texts
+		labels[8] = new JLabel(PrimeMain.texts
 				.getString("mbViewAudioIntegratedLabel"));
-		labels[8].setToolTipText(PrimeMain1.texts
+		labels[8].setToolTipText(PrimeMain.texts
 				.getString("mbViewAudioIntegratedTip"));
 
-		labels[9] = new JLabel(PrimeMain1.texts
+		labels[9] = new JLabel(PrimeMain.texts
 				.getString("mbViewGPUIntegratedLabel"));
-		labels[9].setToolTipText(PrimeMain1.texts
+		labels[9].setToolTipText(PrimeMain.texts
 				.getString("mbViewGPUIntegratedTip"));
 
-		labels[10] = new JLabel(PrimeMain1.texts
+		labels[10] = new JLabel(PrimeMain.texts
 				.getString("mbViewNICIntegratedLabel"));
-		labels[10].setToolTipText(PrimeMain1.texts
+		labels[10].setToolTipText(PrimeMain.texts
 				.getString("mbViewNICIntegratedTip"));
 
-		labels[11] = new JLabel(PrimeMain1.texts
+		labels[11] = new JLabel(PrimeMain.texts
 				.getString("mbViewGPUinstalledLabel"));
-		labels[11].setToolTipText(PrimeMain1.texts
+		labels[11].setToolTipText(PrimeMain.texts
 				.getString("mbViewGPUinstalledTip"));
 
-		labels[12] = new JLabel(PrimeMain1.texts
+		labels[12] = new JLabel(PrimeMain.texts
 				.getString("mbViewCPUsocketLabel"));
-		labels[12].setToolTipText(PrimeMain1.texts
+		labels[12].setToolTipText(PrimeMain.texts
 				.getString("mbViewCPUsocketTip"));
 
-		labels[13] = new JLabel(PrimeMain1.texts
+		labels[13] = new JLabel(PrimeMain.texts
 				.getString("mbViewPCIslotsLabel"));
-		labels[13].setToolTipText(PrimeMain1.texts
+		labels[13].setToolTipText(PrimeMain.texts
 				.getString("mbViewPCIslotsTip"));
 
-		labels[14] = new JLabel(PrimeMain1.texts
+		labels[14] = new JLabel(PrimeMain.texts
 				.getString("mbViewRAMslotsLabel"));
-		labels[14].setToolTipText(PrimeMain1.texts
+		labels[14].setToolTipText(PrimeMain.texts
 				.getString("mbViewRAMslotsTip"));
 
-		labels[15] = new JLabel(PrimeMain1.texts
+		labels[15] = new JLabel(PrimeMain.texts
 				.getString("mbViewUSBportsLabel"));
-		labels[15].setToolTipText(PrimeMain1.texts
+		labels[15].setToolTipText(PrimeMain.texts
 				.getString("mbViewUSBportsTip"));
 
-		labels[16] = new JLabel(PrimeMain1.texts
+		labels[16] = new JLabel(PrimeMain.texts
 				.getString("mbViewDUCportLabel"));
-		labels[16].setToolTipText(PrimeMain1.texts
+		labels[16].setToolTipText(PrimeMain.texts
 				.getString("mbViewDUCportTip"));
 
-		labels[17] = new JLabel(PrimeMain1.texts
+		labels[17] = new JLabel(PrimeMain.texts
 				.getString("mbViewLANportsLabel"));
-		labels[17].setToolTipText(PrimeMain1.texts
+		labels[17].setToolTipText(PrimeMain.texts
 				.getString("mbViewLANportsTip"));
 
 
@@ -940,7 +940,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 								CPU.class,
 								mbObj.getSocket(),
 								sockets.getSelectedItem().toString(),
-								PrimeMain1.texts
+								PrimeMain.texts
 										.getString("mbViewCPUnotCompatiableQuestionMsg"),
 								socketsStrings, sockets);
 
@@ -963,7 +963,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 								GraphicsCard.class,
 								mbObj.getGraphicalPort(),
 								gpuPorts.getSelectedItem().toString(),
-								PrimeMain1.texts
+								PrimeMain.texts
 										.getString("mbViewGPUnotCompatiableQuestionMsg"),
 								gpuPortStrings, gpuPorts);
 
@@ -979,7 +979,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 								HDD.class,
 								mbObj.getDUCconnectionType(),
 								DUCPorts.getSelectedItem().toString(),
-								PrimeMain1.texts
+								PrimeMain.texts
 										.getString("mbViewDUCnotCompatiableQuestionMsg"),
 								DUCStrings, DUCPorts);
 
@@ -1022,9 +1022,9 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 			if ( command.equals("removeComp") )
 			{
-				int n = JOptionPane.showConfirmDialog(this, PrimeMain1.texts
+				int n = JOptionPane.showConfirmDialog(this, PrimeMain.texts
 						.getString("mbViewReplaceMBquestionMsg"),
-						PrimeMain1.texts.getString("verify"),
+						PrimeMain.texts.getString("verify"),
 						JOptionPane.YES_NO_OPTION);
 
 
@@ -1034,7 +1034,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 					// We have to remove all connection between this object and other objects on the canvas
 					// WorkareaCanvasActions.removeAllConnectionsToFromObject( PrimeMain1.currentCanvas, mainObj);
 					ActionDeleteAllConnectionsToAndFrom action = new ActionDeleteAllConnectionsToAndFrom(
-							PrimeMain1.texts
+							PrimeMain.texts
 									.getString("actionDeleteAllConnectionName"));
 					action.performAction(false);
 
@@ -1056,15 +1056,15 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 
 					// Updates the views of the object to correctly show the current info.
-					ObjectView view = PrimeMain1.getObjectView(mainObj);
+					ObjectView view = PrimeMain.getObjectView(mainObj);
 					if ( view != null )
 					{
 						view.updateViewInfo();
 					}
 					// If no view is returned, then the standard object view is open and that should be updated.
-					else if ( PrimeMain1.stdObjView != null )
+					else if ( PrimeMain.stdObjView != null )
 					{
-						PrimeMain1.stdObjView.getSplitView()
+						PrimeMain.stdObjView.getSplitView()
 								.getHardStdObjView().updateTabInfo();
 					}
 				}
@@ -1511,7 +1511,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 							// Removes the connection
 							WorkareaCanvasActions.removeWidgetConnection(
 									CanvasManagment.findCanvas(mainObj,
-											PrimeMain1.canvases),
+											PrimeMain.canvases),
 									USBconnections[i]);
 						}
 					}
@@ -1553,7 +1553,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 								// Removes the connection
 								WorkareaCanvasActions.removeWidgetConnection(
 										CanvasManagment.findCanvas(mainObj,
-												PrimeMain1.canvases),
+												PrimeMain.canvases),
 										allConnections[i]);
 							}
 						}
@@ -1730,7 +1730,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 					{
 						// Gets the WorkareaCanvas the two objects are on
 						WorkareaCanvas canvas = CanvasManagment.findCanvas(
-								mainObj, PrimeMain1.canvases);
+								mainObj, PrimeMain.canvases);
 
 						// Gets the WidgetExtendedConnection between the two objects
 						WidgetExtendedConnection widCon = null;

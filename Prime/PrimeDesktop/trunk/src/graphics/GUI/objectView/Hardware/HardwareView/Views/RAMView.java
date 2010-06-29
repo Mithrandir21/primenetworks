@@ -5,7 +5,7 @@ package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
@@ -87,7 +87,7 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(Ram.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(Ram.class);
 		JPanel p1 = HardwareEditor.GeneralInfo(RAM, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -111,10 +111,10 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain1.texts
+		JLabel label = new JLabel(PrimeMain.texts
 				.getString("hwTabRemoveThisComponentLabel"));
 
-		Button remove = new Button(PrimeMain1.texts
+		Button remove = new Button(PrimeMain.texts
 				.getString("hwTabRemoveComponentButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeComp");
@@ -151,24 +151,24 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 		JLabel[] labels = new JLabel[5];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts
+		labels[0] = new JLabel(PrimeMain.texts
 				.getString("ramViewProducerLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts
+		labels[0].setToolTipText(PrimeMain.texts
 				.getString("ramViewProducerTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts.getString("ramViewTypeLabel"));
-		labels[1].setToolTipText(PrimeMain1.texts.getString("ramViewTypeTip"));
+		labels[1] = new JLabel(PrimeMain.texts.getString("ramViewTypeLabel"));
+		labels[1].setToolTipText(PrimeMain.texts.getString("ramViewTypeTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts
+		labels[2] = new JLabel(PrimeMain.texts
 				.getString("ramViewSubtypeLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts
+		labels[2].setToolTipText(PrimeMain.texts
 				.getString("ramViewSubtypeTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts.getString("ramViewSizeLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts.getString("ramViewSizeTip"));
+		labels[3] = new JLabel(PrimeMain.texts.getString("ramViewSizeLabel"));
+		labels[3].setToolTipText(PrimeMain.texts.getString("ramViewSizeTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts.getString("ramViewSpeedLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts.getString("ramViewSpeedTip"));
+		labels[4] = new JLabel(PrimeMain.texts.getString("ramViewSpeedLabel"));
+		labels[4].setToolTipText(PrimeMain.texts.getString("ramViewSpeedTip"));
 
 		Dimension tfSize = new Dimension(90, 20);
 
@@ -389,7 +389,7 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 
 				type = GraphicalFunctions.verifyChange(this, mainObj,
 						Ram.class, RAMobj.getPort(), type.getSelectedItem()
-								.toString(), PrimeMain1.texts
+								.toString(), PrimeMain.texts
 								.getString("ramViewNotCompatiableQuestionMsg"),
 						typeString, type);
 			}
@@ -413,16 +413,16 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
 				}
 				// If no view is returned, then the standard object view is open
 				// and that should be updated.
-				else if ( PrimeMain1.stdObjView != null )
+				else if ( PrimeMain.stdObjView != null )
 				{
-					PrimeMain1.stdObjView.getSplitView().getHardStdObjView()
+					PrimeMain.stdObjView.getSplitView().getHardStdObjView()
 							.updateTabInfo();
 				}
 			}

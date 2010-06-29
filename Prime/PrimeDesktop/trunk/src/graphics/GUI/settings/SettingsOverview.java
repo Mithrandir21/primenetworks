@@ -5,7 +5,7 @@ package graphics.GUI.settings;
 
 
 import graphics.ImageLocator;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -38,7 +38,7 @@ public class SettingsOverview extends JFrame
 	 */
 	public SettingsOverview()
 	{
-		super(PrimeMain1.texts.getString("settingsFrameLabel"));
+		super(PrimeMain.texts.getString("settingsFrameLabel"));
 
 		setUpMessageCheckBoxes();
 
@@ -78,15 +78,15 @@ public class SettingsOverview extends JFrame
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		JButton save = new JButton(PrimeMain1.texts.getString("save"));
+		JButton save = new JButton(PrimeMain.texts.getString("save"));
 		save.addActionListener(setListener);
 		save.setActionCommand("save");
 
-		JButton apply = new JButton(PrimeMain1.texts.getString("apply"));
+		JButton apply = new JButton(PrimeMain.texts.getString("apply"));
 		apply.addActionListener(setListener);
 		apply.setActionCommand("apply");
 
-		JButton cancel = new JButton(PrimeMain1.texts.getString("cancel"));
+		JButton cancel = new JButton(PrimeMain.texts.getString("cancel"));
 		cancel.addActionListener(setListener);
 		cancel.setActionCommand("cancel");
 
@@ -127,11 +127,11 @@ public class SettingsOverview extends JFrame
 
 		ImageIcon frameIcon = ImageLocator
 				.getImageIconObject("ProcessingSettings");
-		tabs.addTab(PrimeMain1.texts.getString("settingsShowMsgPanelLabel"),
+		tabs.addTab(PrimeMain.texts.getString("settingsShowMsgPanelLabel"),
 				frameIcon, new NetworkMessagesSettings(messagesCheckBox),
-				PrimeMain1.texts.getString("settingsShowMsgPanelTip"));
+				PrimeMain.texts.getString("settingsShowMsgPanelTip"));
 
-		tabs.addTab(PrimeMain1.texts.getString("settingsAdvancedPanelLabel"),
+		tabs.addTab(PrimeMain.texts.getString("settingsAdvancedPanelLabel"),
 				new AdvancedSettings());
 
 		return tabs;

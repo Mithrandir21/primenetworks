@@ -2,7 +2,7 @@ package graphics.GUI.objectView.Software.EditSoftware.EditOverview;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.Software.NewSoftware.NewOverview.NewSoftwareChoice;
 
 import java.awt.Button;
@@ -119,7 +119,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 			{
 				if ( swObj[i] instanceof Antivirus )
 				{
-					temp = PrimeMain1.objectImageIcons.get(Antivirus.class);
+					temp = PrimeMain.objectImageIcons.get(Antivirus.class);
 
 					Antivirus antiVirusObj = (Antivirus) swObj[i];
 
@@ -136,7 +136,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = antiVirusObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = PrimeMain1.texts
+						info[1] = PrimeMain.texts
 								.getString("swTabVersionLabel")
 								+ ": " + text;
 					}
@@ -146,7 +146,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					{
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
-						info[2] = PrimeMain1.texts
+						info[2] = PrimeMain.texts
 								.getString("swTabExpiresLabel")
 								+ ": "
 								+ Calendar.DAY_OF_MONTH
@@ -157,7 +157,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = antiVirusObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[3] = PrimeMain1.texts
+						info[3] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
 								+ ": " + text;
 					}
@@ -165,7 +165,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof Backup )
 				{
-					temp = PrimeMain1.objectImageIcons.get(Backup.class);
+					temp = PrimeMain.objectImageIcons.get(Backup.class);
 
 					Backup backupObj = (Backup) swObj[i];
 
@@ -182,7 +182,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = backupObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = PrimeMain1.texts
+						info[1] = PrimeMain.texts
 								.getString("swTabVersionLabel")
 								+ ": " + text;
 					}
@@ -190,7 +190,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = backupObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = PrimeMain1.texts
+						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
 								+ ": " + text;
 					}
@@ -198,7 +198,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof Database )
 				{
-					temp = PrimeMain1.objectImageIcons.get(Database.class);
+					temp = PrimeMain.objectImageIcons.get(Database.class);
 
 					Database hddObj = (Database) swObj[i];
 
@@ -215,7 +215,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = hddObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = PrimeMain1.texts
+						info[1] = PrimeMain.texts
 								.getString("swTabProducerLabel")
 								+ ": " + text;
 					}
@@ -223,7 +223,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = hddObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = PrimeMain1.texts
+						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
 								+ ": " + text;
 					}
@@ -231,7 +231,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof Email )
 				{
-					temp = PrimeMain1.objectImageIcons.get(Email.class);
+					temp = PrimeMain.objectImageIcons.get(Email.class);
 
 					Email emailObj = (Email) swObj[i];
 
@@ -248,7 +248,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = emailObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = PrimeMain1.texts
+						info[1] = PrimeMain.texts
 								.getString("swTabVersionLabel")
 								+ ": " + text;
 					}
@@ -256,7 +256,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = emailObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = PrimeMain1.texts
+						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
 								+ ": " + text;
 					}
@@ -264,7 +264,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof Firewall )
 				{
-					temp = PrimeMain1.objectImageIcons.get(Firewall.class);
+					temp = PrimeMain.objectImageIcons.get(Firewall.class);
 
 					Firewall firewallObj = (Firewall) swObj[i];
 
@@ -281,7 +281,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = firewallObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = PrimeMain1.texts
+						info[1] = PrimeMain.texts
 								.getString("swTabVersionLabel")
 								+ ": " + text;
 					}
@@ -289,14 +289,14 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = firewallObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = PrimeMain1.texts
+						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
 								+ ": " + text;
 					}
 				}
 				else if ( swObj[i] instanceof OfficeSuite )
 				{
-					temp = PrimeMain1.objectImageIcons.get(OfficeSuite.class);
+					temp = PrimeMain.objectImageIcons.get(OfficeSuite.class);
 
 					OfficeSuite OffSuitObj = (OfficeSuite) swObj[i];
 
@@ -313,7 +313,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = OffSuitObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = PrimeMain1.texts
+						info[1] = PrimeMain.texts
 								.getString("swTabVersionLabel")
 								+ ": " + text;
 					}
@@ -321,14 +321,14 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = OffSuitObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = PrimeMain1.texts
+						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
 								+ ": " + text;
 					}
 				}
 				else if ( swObj[i] instanceof OperatingSystem )
 				{
-					temp = PrimeMain1.objectImageIcons
+					temp = PrimeMain.objectImageIcons
 							.get(OperatingSystem.class);
 
 					OperatingSystem OSObj = (OperatingSystem) swObj[i];
@@ -346,7 +346,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = OSObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = PrimeMain1.texts
+						info[1] = PrimeMain.texts
 								.getString("swTabVersionLabel")
 								+ ": " + text;
 					}
@@ -354,7 +354,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = OSObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = PrimeMain1.texts
+						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
 								+ ": " + text;
 					}
@@ -362,7 +362,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof Proxy )
 				{
-					temp = PrimeMain1.objectImageIcons.get(Proxy.class);
+					temp = PrimeMain.objectImageIcons.get(Proxy.class);
 
 					Proxy proxyObj = (Proxy) swObj[i];
 
@@ -379,7 +379,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = proxyObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = PrimeMain1.texts
+						info[1] = PrimeMain.texts
 								.getString("swTabProducerLabel")
 								+ ": " + text;
 					}
@@ -387,7 +387,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = proxyObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = PrimeMain1.texts
+						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
 								+ ": " + text;
 					}
@@ -395,7 +395,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof SecuritySuite )
 				{
-					temp = PrimeMain1.objectImageIcons.get(SecuritySuite.class);
+					temp = PrimeMain.objectImageIcons.get(SecuritySuite.class);
 
 					SecuritySuite secSuiteObj = (SecuritySuite) swObj[i];
 
@@ -412,7 +412,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = secSuiteObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = PrimeMain1.texts
+						info[1] = PrimeMain.texts
 								.getString("swTabProducerLabel")
 								+ ": " + text;
 					}
@@ -420,7 +420,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = secSuiteObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = PrimeMain1.texts
+						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
 								+ ": " + text;
 					}
@@ -428,7 +428,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 				}
 				else if ( swObj[i] instanceof Webserver )
 				{
-					temp = PrimeMain1.objectImageIcons.get(Webserver.class);
+					temp = PrimeMain.objectImageIcons.get(Webserver.class);
 
 					Webserver webServObj = (Webserver) swObj[i];
 
@@ -445,7 +445,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = webServObj.getVersion();
 					if ( text != "" && text != null )
 					{
-						info[1] = PrimeMain1.texts
+						info[1] = PrimeMain.texts
 								.getString("swTabProducerLabel")
 								+ ": " + text;
 					}
@@ -453,7 +453,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					text = webServObj.getDescription();
 					if ( text != "" && text != null )
 					{
-						info[2] = PrimeMain1.texts
+						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
 								+ ": " + text;
 					}
@@ -552,12 +552,12 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 
 		if ( obj instanceof Clients || obj instanceof Servers )
 		{
-			Button edit = new Button(PrimeMain1.texts
+			Button edit = new Button(PrimeMain.texts
 					.getString("swTabEditSoftwareButtonLabel"));
 			edit.addActionListener(this);
 			edit.setActionCommand("edit");
 
-			Button addNew = new Button(PrimeMain1.texts
+			Button addNew = new Button(PrimeMain.texts
 					.getString("swTabNewSoftwareButtonLabel"));
 			addNew.addActionListener(this);
 			addNew.setActionCommand("newSoft");
@@ -569,7 +569,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 		}
 		else
 		{
-			JLabel text = new JLabel(PrimeMain1.texts
+			JLabel text = new JLabel(PrimeMain.texts
 					.getString("swTabRestrictionText"));
 			buttons.add(text);
 		}

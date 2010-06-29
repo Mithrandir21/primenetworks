@@ -2,7 +2,7 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
@@ -133,7 +133,7 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 	 */
 	public FirewallNewView(Object obj, Firewall fw)
 	{
-		super(PrimeMain1.texts.getString("swNewFirewallLabel"));
+		super(PrimeMain.texts.getString("swNewFirewallLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -162,7 +162,7 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(Firewall.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(Firewall.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainFW, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -222,85 +222,85 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 		JLabel[] labels = new JLabel[20];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts.getString("fwViewSupOSLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts.getString("fwViewSupOSTip"));
+		labels[0] = new JLabel(PrimeMain.texts.getString("fwViewSupOSLabel"));
+		labels[0].setToolTipText(PrimeMain.texts.getString("fwViewSupOSTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts
+		labels[1] = new JLabel(PrimeMain.texts
 				.getString("fwViewNetworkFirewallLabel"));
-		labels[1].setToolTipText(PrimeMain1.texts
+		labels[1].setToolTipText(PrimeMain.texts
 				.getString("fwViewNetworkFirewallTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts
+		labels[2] = new JLabel(PrimeMain.texts
 				.getString("fwViewStatefulFirewallLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts
+		labels[2].setToolTipText(PrimeMain.texts
 				.getString("fwViewStatefulFirewallTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts.getString("fwViewSupDPILabel"));
-		labels[3].setToolTipText(PrimeMain1.texts.getString("fwViewSupDPITip"));
+		labels[3] = new JLabel(PrimeMain.texts.getString("fwViewSupDPILabel"));
+		labels[3].setToolTipText(PrimeMain.texts.getString("fwViewSupDPITip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts
+		labels[4] = new JLabel(PrimeMain.texts
 				.getString("fwViewHasProxyLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts
+		labels[4].setToolTipText(PrimeMain.texts
 				.getString("fwViewHasProxyTip"));
 
-		labels[5] = new JLabel(PrimeMain1.texts.getString("fwViewHasNATLabel"));
-		labels[5].setToolTipText(PrimeMain1.texts.getString("fwViewHasNATTip"));
+		labels[5] = new JLabel(PrimeMain.texts.getString("fwViewHasNATLabel"));
+		labels[5].setToolTipText(PrimeMain.texts.getString("fwViewHasNATTip"));
 
-		labels[6] = new JLabel(PrimeMain1.texts.getString("fwViewHasVPNLabel"));
-		labels[6].setToolTipText(PrimeMain1.texts.getString("fwViewHasVPNTip"));
+		labels[6] = new JLabel(PrimeMain.texts.getString("fwViewHasVPNLabel"));
+		labels[6].setToolTipText(PrimeMain.texts.getString("fwViewHasVPNTip"));
 
-		labels[7] = new JLabel(PrimeMain1.texts
+		labels[7] = new JLabel(PrimeMain.texts
 				.getString("fwViewHasAntivirusLabel"));
-		labels[7].setToolTipText(PrimeMain1.texts
+		labels[7].setToolTipText(PrimeMain.texts
 				.getString("fwViewHasAntivirusTip"));
 
-		labels[8] = new JLabel(PrimeMain1.texts.getString("fwViewHasIDSLabel"));
-		labels[8].setToolTipText(PrimeMain1.texts.getString("fwViewHasIDSTip"));
+		labels[8] = new JLabel(PrimeMain.texts.getString("fwViewHasIDSLabel"));
+		labels[8].setToolTipText(PrimeMain.texts.getString("fwViewHasIDSTip"));
 
-		labels[9] = new JLabel(PrimeMain1.texts
+		labels[9] = new JLabel(PrimeMain.texts
 				.getString("fwViewSupModularityLabel"));
-		labels[9].setToolTipText(PrimeMain1.texts
+		labels[9].setToolTipText(PrimeMain.texts
 				.getString("fwViewSupModularityTip"));
 
-		labels[10] = new JLabel(PrimeMain1.texts
+		labels[10] = new JLabel(PrimeMain.texts
 				.getString("fwViewSupIPv6Label"));
-		labels[10].setToolTipText(PrimeMain1.texts
+		labels[10].setToolTipText(PrimeMain.texts
 				.getString("fwViewSupIPv6Tip"));
 
-		labels[11] = new JLabel(PrimeMain1.texts.getString("fwViewSupTTLLabel"));
+		labels[11] = new JLabel(PrimeMain.texts.getString("fwViewSupTTLLabel"));
 		labels[11]
-				.setToolTipText(PrimeMain1.texts.getString("fwViewSupTTLTip"));
+				.setToolTipText(PrimeMain.texts.getString("fwViewSupTTLTip"));
 
-		labels[12] = new JLabel(PrimeMain1.texts.getString("fwViewSupRWALabel"));
+		labels[12] = new JLabel(PrimeMain.texts.getString("fwViewSupRWALabel"));
 		labels[12]
-				.setToolTipText(PrimeMain1.texts.getString("fwViewSupRWATip"));
+				.setToolTipText(PrimeMain.texts.getString("fwViewSupRWATip"));
 
-		labels[13] = new JLabel(PrimeMain1.texts.getString("fwViewSupDMZLabel"));
+		labels[13] = new JLabel(PrimeMain.texts.getString("fwViewSupDMZLabel"));
 		labels[13]
-				.setToolTipText(PrimeMain1.texts.getString("fwViewSupDMZTip"));
+				.setToolTipText(PrimeMain.texts.getString("fwViewSupDMZTip"));
 
-		labels[14] = new JLabel(PrimeMain1.texts
+		labels[14] = new JLabel(PrimeMain.texts
 				.getString("fwViewSupToDFilterLabel"));
-		labels[14].setToolTipText(PrimeMain1.texts
+		labels[14].setToolTipText(PrimeMain.texts
 				.getString("fwViewSupToDFilterTip"));
 
-		labels[15] = new JLabel(PrimeMain1.texts
+		labels[15] = new JLabel(PrimeMain.texts
 				.getString("fwViewSupForwardingLabel"));
-		labels[15].setToolTipText(PrimeMain1.texts
+		labels[15].setToolTipText(PrimeMain.texts
 				.getString("fwViewSupForwardingTip"));
 
-		labels[16] = new JLabel(PrimeMain1.texts
+		labels[16] = new JLabel(PrimeMain.texts
 				.getString("fwViewSupPortForwardingLabel"));
-		labels[16].setToolTipText(PrimeMain1.texts
+		labels[16].setToolTipText(PrimeMain.texts
 				.getString("fwViewSupPortForwardingTip"));
 
-		labels[17] = new JLabel(PrimeMain1.texts.getString("fwViewSupQoSLabel"));
+		labels[17] = new JLabel(PrimeMain.texts.getString("fwViewSupQoSLabel"));
 		labels[17]
-				.setToolTipText(PrimeMain1.texts.getString("fwViewSupQoSTip"));
+				.setToolTipText(PrimeMain.texts.getString("fwViewSupQoSTip"));
 
-		labels[18] = new JLabel(PrimeMain1.texts
+		labels[18] = new JLabel(PrimeMain.texts
 				.getString("fwViewSupTarpitLabel"));
-		labels[18].setToolTipText(PrimeMain1.texts
+		labels[18].setToolTipText(PrimeMain.texts
 				.getString("fwViewSupTarpitTip"));
 
 
@@ -650,11 +650,11 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button(PrimeMain1.texts.getString("save"));
+		Button save = new Button(PrimeMain.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
+		Button cancel = new Button(PrimeMain.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -746,7 +746,7 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
@@ -758,7 +758,7 @@ public class FirewallNewView extends JFrame implements SoftwareView, ActionListe
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(this, PrimeMain1.texts
+				JOptionPane.showMessageDialog(this, PrimeMain.texts
 						.getString("swNewCompatibilityQuestion"));
 			}
 

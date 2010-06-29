@@ -4,7 +4,7 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
 
@@ -34,7 +34,7 @@ public class ActionRedo extends AbstractSystemAction
 	public ActionRedo(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionRedoText"));
 	}
 
@@ -49,7 +49,7 @@ public class ActionRedo extends AbstractSystemAction
 	public ActionRedo(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionRedoText"));
 	}
 
@@ -62,10 +62,10 @@ public class ActionRedo extends AbstractSystemAction
 	public void actionPerformed(ActionEvent e)
 	{
 		// If the current canvas is not null
-		if ( PrimeMain1.currentCanvas != null )
+		if ( PrimeMain.currentCanvas != null )
 		{
 			// Gets the canvases undomanager
-			CanvasUndoManager manager = PrimeMain1.currentCanvas
+			CanvasUndoManager manager = PrimeMain.currentCanvas
 					.getUndoManager();
 
 			// If the manager has an redo to perform
@@ -75,7 +75,7 @@ public class ActionRedo extends AbstractSystemAction
 				manager.redo();
 
 				// Cleans up the canvas
-				PrimeMain1.currentCanvas.cleanUp();
+				PrimeMain.currentCanvas.cleanUp();
 			}
 		}
 	}

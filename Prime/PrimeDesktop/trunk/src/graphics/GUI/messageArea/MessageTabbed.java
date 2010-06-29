@@ -5,7 +5,7 @@ package graphics.GUI.messageArea;
 
 
 import graphics.ImageLocator;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.messageArea.ConnectionTab.ConnectionMessages;
 import graphics.GUI.messageArea.ConnectionTab.ConnectionProcessing;
 import graphics.GUI.messageArea.HardwareTab.HardwareMessages;
@@ -85,9 +85,9 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 		hardMsgPanel.setEnabled(false);
 
 
-		int width = (int) (PrimeMain1.width * 0.70);
+		int width = (int) (PrimeMain.width * 0.70);
 
-		int height = (int) (PrimeMain1.height * 0.11);
+		int height = (int) (PrimeMain.height * 0.11);
 
 
 		this.setMaximumSize(new Dimension(width, height));
@@ -195,7 +195,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	{
 		String[][] data = null;
 
-		data = NetworkProcessing.processNetwork(data, PrimeMain1.currentCanvas,
+		data = NetworkProcessing.processNetwork(data, PrimeMain.currentCanvas,
 				Settings.showNetworkErrorMessages,
 				Settings.showNetworkWarningMessages,
 				Settings.showNetworkNoticeMessages);
@@ -210,20 +210,20 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 				netMsgPanel.add(new NetworkMessages(objects, data));
 
-				boldTab(PrimeMain1.texts.getString("networkTabLabel"));
+				boldTab(PrimeMain.texts.getString("networkTabLabel"));
 			}
 			else
 			{
 				netMsgPanel.removeAll();
 
-				unboldTab(PrimeMain1.texts.getString("networkTabLabel"));
+				unboldTab(PrimeMain.texts.getString("networkTabLabel"));
 			}
 		}
 		else
 		{
 			netMsgPanel.removeAll();
 
-			unboldTab(PrimeMain1.texts.getString("networkTabLabel"));
+			unboldTab(PrimeMain.texts.getString("networkTabLabel"));
 		}
 	}
 
@@ -243,7 +243,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 		for ( int i = 0; i < objects.length; i++ )
 		{
 			data = ConnectionProcessing.processConnections(data, objects[i],
-					PrimeMain1.currentCanvas,
+					PrimeMain.currentCanvas,
 					Settings.showConnectionErrorMessages,
 					Settings.showConnectionWarningMessages,
 					Settings.showConnectionNoticeMessages);
@@ -259,20 +259,20 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 				conMsgPanel.add(new ConnectionMessages(objects, data));
 
-				boldTab(PrimeMain1.texts.getString("connectionTabLabel"));
+				boldTab(PrimeMain.texts.getString("connectionTabLabel"));
 			}
 			else
 			{
 				conMsgPanel.removeAll();
 
-				unboldTab(PrimeMain1.texts.getString("connectionTabLabel"));
+				unboldTab(PrimeMain.texts.getString("connectionTabLabel"));
 			}
 		}
 		else
 		{
 			conMsgPanel.removeAll();
 
-			unboldTab(PrimeMain1.texts.getString("connectionTabLabel"));
+			unboldTab(PrimeMain.texts.getString("connectionTabLabel"));
 		}
 	}
 
@@ -307,20 +307,20 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 				softMsgPanel.add(new SoftwareMessages(objects, data));
 
-				boldTab(PrimeMain1.texts.getString("softwareTabLabel"));
+				boldTab(PrimeMain.texts.getString("softwareTabLabel"));
 			}
 			else
 			{
 				softMsgPanel.removeAll();
 
-				unboldTab(PrimeMain1.texts.getString("softwareTabLabel"));
+				unboldTab(PrimeMain.texts.getString("softwareTabLabel"));
 			}
 		}
 		else
 		{
 			softMsgPanel.removeAll();
 
-			unboldTab(PrimeMain1.texts.getString("softwareTabLabel"));
+			unboldTab(PrimeMain.texts.getString("softwareTabLabel"));
 		}
 	}
 
@@ -355,20 +355,20 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 				hardMsgPanel.add(new HardwareMessages(objects, data));
 
-				boldTab(PrimeMain1.texts.getString("hardwareTabLabel"));
+				boldTab(PrimeMain.texts.getString("hardwareTabLabel"));
 			}
 			else
 			{
 				hardMsgPanel.removeAll();
 
-				unboldTab(PrimeMain1.texts.getString("hardwareTabLabel"));
+				unboldTab(PrimeMain.texts.getString("hardwareTabLabel"));
 			}
 		}
 		else
 		{
 			hardMsgPanel.removeAll();
 
-			unboldTab(PrimeMain1.texts.getString("hardwareTabLabel"));
+			unboldTab(PrimeMain.texts.getString("hardwareTabLabel"));
 		}
 	}
 
@@ -496,7 +496,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 		// If the JPanel is not enabled
 		if ( !netMsgPanel.isEnabled() )
 		{
-			addNewMessageTab(PrimeMain1.texts.getString("networkTabLabel"),
+			addNewMessageTab(PrimeMain.texts.getString("networkTabLabel"),
 					netMsgPanel);
 		}
 		else
@@ -517,7 +517,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 		// If the JPanel is not enabled
 		if ( !conMsgPanel.isEnabled() )
 		{
-			addNewMessageTab(PrimeMain1.texts.getString("connectionTabLabel"),
+			addNewMessageTab(PrimeMain.texts.getString("connectionTabLabel"),
 					conMsgPanel);
 		}
 		else
@@ -538,7 +538,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 		// If the JPanel is not enabled
 		if ( !softMsgPanel.isEnabled() )
 		{
-			addNewMessageTab(PrimeMain1.texts.getString("softwareTabLabel"),
+			addNewMessageTab(PrimeMain.texts.getString("softwareTabLabel"),
 					softMsgPanel);
 		}
 		else
@@ -559,7 +559,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 		// If the JPanel is not enabled
 		if ( !hardMsgPanel.isEnabled() )
 		{
-			addNewMessageTab(PrimeMain1.texts.getString("hardwareTabLabel"),
+			addNewMessageTab(PrimeMain.texts.getString("hardwareTabLabel"),
 					hardMsgPanel);
 		}
 		else
@@ -575,7 +575,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	public void focusOnNetworkTab()
 	{
 		// Gets the index of the network tab
-		int index = getIndexOfTab(PrimeMain1.texts.getString("networkTabLabel"));
+		int index = getIndexOfTab(PrimeMain.texts.getString("networkTabLabel"));
 
 		if ( index != -1 )
 		{
@@ -589,7 +589,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	public void focusOnConnectionTab()
 	{
 		// Gets the index of the connection tab
-		int index = getIndexOfTab(PrimeMain1.texts
+		int index = getIndexOfTab(PrimeMain.texts
 				.getString("connectionTabLabel"));
 
 		if ( index != -1 )
@@ -604,7 +604,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	public void focusOnSoftwareTab()
 	{
 		// Gets the index of the software tab
-		int index = getIndexOfTab(PrimeMain1.texts
+		int index = getIndexOfTab(PrimeMain.texts
 				.getString("softwareTabLabel"));
 
 		if ( index != -1 )
@@ -619,7 +619,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	public void focusOnHardwareTab()
 	{
 		// Gets the index of the hardware tab
-		int index = getIndexOfTab(PrimeMain1.texts
+		int index = getIndexOfTab(PrimeMain.texts
 				.getString("hardwareTabLabel"));
 
 		if ( index != -1 )
@@ -792,22 +792,22 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 				// removed.
 				if ( tabName != null && tabName.equals(contentName) )
 				{
-					if ( tabName.equals(PrimeMain1.texts
+					if ( tabName.equals(PrimeMain.texts
 							.getString("networkTabLabel")) )
 					{
 						netMsgPanel.setEnabled(false);
 					}
-					else if ( tabName.equals(PrimeMain1.texts
+					else if ( tabName.equals(PrimeMain.texts
 							.getString("connectionTabLabel")) )
 					{
 						conMsgPanel.setEnabled(false);
 					}
-					else if ( tabName.equals(PrimeMain1.texts
+					else if ( tabName.equals(PrimeMain.texts
 							.getString("softwareTabLabel")) )
 					{
 						softMsgPanel.setEnabled(false);
 					}
-					else if ( tabName.equals(PrimeMain1.texts
+					else if ( tabName.equals(PrimeMain.texts
 							.getString("hardwareTabLabel")) )
 					{
 						hardMsgPanel.setEnabled(false);

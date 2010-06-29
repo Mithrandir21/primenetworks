@@ -2,7 +2,7 @@ package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
@@ -85,7 +85,7 @@ public class HDDView extends JPanel implements HardwareViewInterface, ActionList
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(HDD.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(HDD.class);
 		JPanel p1 = HardwareEditor.GeneralInfo(hdd, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -113,10 +113,10 @@ public class HDDView extends JPanel implements HardwareViewInterface, ActionList
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain1.texts
+		JLabel label = new JLabel(PrimeMain.texts
 				.getString("hwTabRemoveThisComponentLabel"));
 
-		Button remove = new Button(PrimeMain1.texts
+		Button remove = new Button(PrimeMain.texts
 				.getString("hwTabRemoveComponentButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeComp");
@@ -151,27 +151,27 @@ public class HDDView extends JPanel implements HardwareViewInterface, ActionList
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[6];
 
-		labels[0] = new JLabel(PrimeMain1.texts
+		labels[0] = new JLabel(PrimeMain.texts
 				.getString("hddViewProducerLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts
+		labels[0].setToolTipText(PrimeMain.texts
 				.getString("hddViewProducerTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts.getString("hddViewTypeLabel"));
-		labels[1].setToolTipText(PrimeMain1.texts.getString("hddViewTypeTip"));
+		labels[1] = new JLabel(PrimeMain.texts.getString("hddViewTypeLabel"));
+		labels[1].setToolTipText(PrimeMain.texts.getString("hddViewTypeTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts
+		labels[2] = new JLabel(PrimeMain.texts
 				.getString("hddViewSubtypeLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts
+		labels[2].setToolTipText(PrimeMain.texts
 				.getString("hddViewSubtypeTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts.getString("hddViewSizeLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts.getString("hddViewSizeTip"));
+		labels[3] = new JLabel(PrimeMain.texts.getString("hddViewSizeLabel"));
+		labels[3].setToolTipText(PrimeMain.texts.getString("hddViewSizeTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts.getString("hddViewSpeedLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts.getString("hddViewSpeedTip"));
+		labels[4] = new JLabel(PrimeMain.texts.getString("hddViewSpeedLabel"));
+		labels[4].setToolTipText(PrimeMain.texts.getString("hddViewSpeedTip"));
 
-		labels[5] = new JLabel(PrimeMain1.texts.getString("hddViewRPMLabel"));
-		labels[5].setToolTipText(PrimeMain1.texts.getString("hddViewRPMTip"));
+		labels[5] = new JLabel(PrimeMain.texts.getString("hddViewRPMLabel"));
+		labels[5].setToolTipText(PrimeMain.texts.getString("hddViewRPMTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -390,7 +390,7 @@ public class HDDView extends JPanel implements HardwareViewInterface, ActionList
 
 				type = GraphicalFunctions.verifyChange(this, mainObj,
 						HDD.class, mainHDD.getPort(), type.getSelectedItem()
-								.toString(), PrimeMain1.texts
+								.toString(), PrimeMain.texts
 								.getString("hddViewNotCompatiableQuestionMsg"),
 						typeString, type);
 			}
@@ -413,16 +413,16 @@ public class HDDView extends JPanel implements HardwareViewInterface, ActionList
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
 				}
 				// If no view is returned, then the standard object view is open
 				// and that should be updated.
-				else if ( PrimeMain1.stdObjView != null )
+				else if ( PrimeMain.stdObjView != null )
 				{
-					PrimeMain1.stdObjView.getSplitView().getHardStdObjView()
+					PrimeMain.stdObjView.getSplitView().getHardStdObjView()
 							.updateTabInfo();
 				}
 			}

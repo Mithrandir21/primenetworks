@@ -4,7 +4,7 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
 
@@ -15,7 +15,7 @@ import logistical.AbstractSystemAction;
 
 /**
  * This action calls the process that will exit and close the entire program.
- * The process called is the exitProcess in {@link PrimeMain1}.
+ * The process called is the exitProcess in {@link PrimeMain}.
  * 
  * @author Bahram Malaekeh
  */
@@ -33,7 +33,7 @@ public class ActionExitSystem extends AbstractSystemAction
 	public ActionExitSystem(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionExitSystemDescriptionText"));
 	}
 
@@ -48,7 +48,7 @@ public class ActionExitSystem extends AbstractSystemAction
 	public ActionExitSystem(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionExitSystemDescriptionText"));
 	}
 
@@ -62,6 +62,6 @@ public class ActionExitSystem extends AbstractSystemAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		PrimeMain1.exitProcess();
+		PrimeMain.exitProcess();
 	}
 }

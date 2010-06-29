@@ -4,7 +4,7 @@
 package actions.toolbar;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.messageArea.MessageTabbed;
 
 import java.awt.event.ActionEvent;
@@ -34,7 +34,7 @@ public class ActionSoftwareMessage extends AbstractSystemAction
 	public ActionSoftwareMessage(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionActionOpenSoftwareMessageDescriptionText"));
 	}
 
@@ -49,7 +49,7 @@ public class ActionSoftwareMessage extends AbstractSystemAction
 	public ActionSoftwareMessage(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionActionOpenSoftwareMessageDescriptionText"));
 	}
 
@@ -64,7 +64,7 @@ public class ActionSoftwareMessage extends AbstractSystemAction
 	public void actionPerformed(ActionEvent e)
 	{
 		// Gets the MessageTabbed that contains the tabs
-		MessageTabbed msgTabs = (MessageTabbed) PrimeMain1.messagesPanel
+		MessageTabbed msgTabs = (MessageTabbed) PrimeMain.messagesPanel
 				.getComponent(0);
 
 		msgTabs.createSoftwareMessagePanel();

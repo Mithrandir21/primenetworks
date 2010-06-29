@@ -5,7 +5,7 @@ package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
@@ -89,7 +89,7 @@ public class CPUNewView extends JFrame implements HardwareViewInterface,
 	 */
 	public CPUNewView(Object obj, CPU cpu)
 	{
-		super(PrimeMain1.texts.getString("newHWnewCPULabel"));
+		super(PrimeMain.texts.getString("newHWnewCPULabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -118,7 +118,7 @@ public class CPUNewView extends JFrame implements HardwareViewInterface,
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(CPU.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(CPU.class);
 		JPanel p1 = HardwareEditor.GeneralInfo(CPUobj, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -179,48 +179,48 @@ public class CPUNewView extends JFrame implements HardwareViewInterface,
 		JLabel[] labels = new JLabel[10];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts
+		labels[0] = new JLabel(PrimeMain.texts
 				.getString("cpuViewProducerLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts
+		labels[0].setToolTipText(PrimeMain.texts
 				.getString("cpuViewProducerTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts.getString("cpuViewSocketLabel"));
+		labels[1] = new JLabel(PrimeMain.texts.getString("cpuViewSocketLabel"));
 		labels[1]
-				.setToolTipText(PrimeMain1.texts.getString("cpuViewSocketTip"));
+				.setToolTipText(PrimeMain.texts.getString("cpuViewSocketTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts.getString("cpuViewSpeedLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts.getString("cpuViewSpeedTip"));
+		labels[2] = new JLabel(PrimeMain.texts.getString("cpuViewSpeedLabel"));
+		labels[2].setToolTipText(PrimeMain.texts.getString("cpuViewSpeedTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts
+		labels[3] = new JLabel(PrimeMain.texts
 				.getString("cpuViewLevel1CacheLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts
+		labels[3].setToolTipText(PrimeMain.texts
 				.getString("cpuViewLevel1CacheTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts
+		labels[4] = new JLabel(PrimeMain.texts
 				.getString("cpuViewLevel2CacheLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts
+		labels[4].setToolTipText(PrimeMain.texts
 				.getString("cpuViewLevel2CacheTip"));
 
-		labels[5] = new JLabel(PrimeMain1.texts
+		labels[5] = new JLabel(PrimeMain.texts
 				.getString("cpuViewNanometersLabel"));
-		labels[5].setToolTipText(PrimeMain1.texts
+		labels[5].setToolTipText(PrimeMain.texts
 				.getString("cpuViewNanometersTip"));
 
-		labels[6] = new JLabel(PrimeMain1.texts.getString("cpuViewFSBLabel"));
-		labels[6].setToolTipText(PrimeMain1.texts.getString("cpuViewFSBTip"));
+		labels[6] = new JLabel(PrimeMain.texts.getString("cpuViewFSBLabel"));
+		labels[6].setToolTipText(PrimeMain.texts.getString("cpuViewFSBTip"));
 
-		labels[7] = new JLabel(PrimeMain1.texts
+		labels[7] = new JLabel(PrimeMain.texts
 				.getString("cpuViewDualCoreLabel"));
-		labels[7].setToolTipText(PrimeMain1.texts
+		labels[7].setToolTipText(PrimeMain.texts
 				.getString("cpuViewDualCoreTip"));
 
-		labels[8] = new JLabel(PrimeMain1.texts
+		labels[8] = new JLabel(PrimeMain.texts
 				.getString("cpuViewQuadCoreLabel"));
-		labels[8].setToolTipText(PrimeMain1.texts
+		labels[8].setToolTipText(PrimeMain.texts
 				.getString("cpuViewQuadCoreTip"));
 
-		labels[9] = new JLabel(PrimeMain1.texts.getString("cpuView64BitLabel"));
-		labels[9].setToolTipText(PrimeMain1.texts.getString("cpuView64BitTip"));
+		labels[9] = new JLabel(PrimeMain.texts.getString("cpuView64BitLabel"));
+		labels[9].setToolTipText(PrimeMain.texts.getString("cpuView64BitTip"));
 
 		Dimension tfSize = new Dimension(90, 20);
 
@@ -431,11 +431,11 @@ public class CPUNewView extends JFrame implements HardwareViewInterface,
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button(PrimeMain1.texts.getString("save"));
+		Button save = new Button(PrimeMain.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
+		Button cancel = new Button(PrimeMain.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -461,16 +461,16 @@ public class CPUNewView extends JFrame implements HardwareViewInterface,
 
 			// Updates the views of the object to correctly show the
 			// current info.
-			ObjectView view = PrimeMain1.getObjectView(mainObj);
+			ObjectView view = PrimeMain.getObjectView(mainObj);
 			if ( view != null )
 			{
 				view.updateViewInfo();
 			}
 			// If no view is returned, then the standard object view is open
 			// and that should be updated.
-			else if ( PrimeMain1.stdObjView != null )
+			else if ( PrimeMain.stdObjView != null )
 			{
-				PrimeMain1.stdObjView.getSplitView().getHardStdObjView()
+				PrimeMain.stdObjView.getSplitView().getHardStdObjView()
 						.updateTabInfo();
 			}
 

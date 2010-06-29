@@ -1,7 +1,7 @@
 package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -84,7 +84,7 @@ public class OfficeSuiteNewView extends JFrame implements SoftwareView, ActionLi
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(OfficeSuite.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(OfficeSuite.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainOffSuite, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 

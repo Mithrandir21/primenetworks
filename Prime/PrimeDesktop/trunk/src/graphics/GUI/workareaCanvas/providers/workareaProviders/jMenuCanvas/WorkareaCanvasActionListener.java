@@ -5,7 +5,7 @@ package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.CreateObjects;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
@@ -108,154 +108,154 @@ public class WorkareaCanvasActionListener implements ActionListener
 			if ( actionName.equals("CreateNewST_Desktop_Item") )
 			{
 				objectType = Desktop.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Laptop_Item") )
 			{
 				objectType = Laptop.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_ThinClient_Item") )
 			{
 				objectType = ThinClient.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_HTTPServer_Item") )
 			{
 				objectType = HTTPServer.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_BackupServer_Item") )
 			{
 				objectType = BackupServer.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_DatabaseServer_Item") )
 			{
 				objectType = DatabaseServer.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_MailServer_Item") )
 			{
 				objectType = MailServer.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_FirewallServer_Item") )
 			{
 				objectType = FirewallServer.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_ProxyServer_Item") )
 			{
 				objectType = ProxyServer.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_PrinterServer_Item") )
 			{
 				objectType = PrinterServer.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Hub_Item") )
 			{
 				objectType = Hub.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Switch_Item") )
 			{
 				objectType = Switch.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Router_Item") )
 			{
 				objectType = Router.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Modem_Item") )
 			{
 				objectType = Modem.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_WirelessRouter_Item") )
 			{
 				objectType = Router.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Internet_Item") )
 			{
 				objectType = Internet.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Scanner_Item") )
 			{
 				objectType = Scanner.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Printer_Item") )
 			{
 				objectType = Printer.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_Fax_Item") )
 			{
 				objectType = Fax.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_MFP_Item") )
 			{
 				objectType = MultifunctionPrinter.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_NetworkPrinter_Item") )
 			{
 				objectType = NetworkPrinter.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
 			else if ( actionName.equals("CreateNewST_NetworkMFP_Item") )
 			{
 				objectType = NetworkMultifunctionPrinter.class;
-				objectIcon = PrimeMain1.objectImageIcons.get(objectType);
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
 			}
@@ -282,7 +282,7 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 				// // Adds the given object to the given location
 				ActionAddWidgetToWorkareaCanvas actionAdd = new ActionAddWidgetToWorkareaCanvas(
-						PrimeMain1.texts
+						PrimeMain.texts
 								.getString("actionAddWidgetToCanvasDescriptionText"),
 						canvas, newWidgetObject, location);
 				actionAdd.performAction(true);
@@ -291,7 +291,7 @@ public class WorkareaCanvasActionListener implements ActionListener
 				ActionsAdder.makeWidgetObjectReady(canvas, newWidgetObject);
 
 				// Updates the sidebar with the object properties
-				PrimeMain1.updatePropertiesObjectArea(newObject, false);
+				PrimeMain.updatePropertiesObjectArea(newObject, false);
 			}
 		}
 

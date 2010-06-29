@@ -2,7 +2,7 @@ package graphics.GUI.objectView.Connections;
 
 
 import exceptions.ObjectNotFoundException;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -383,7 +383,7 @@ public class NetworkConnectionsView extends JPanel
 	{
 		JPanel panel = null;
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(obj.getClass());
+		ImageIcon icon = PrimeMain.objectImageIcons.get(obj.getClass());
 
 		String[] texts = check(obj);
 
@@ -413,7 +413,7 @@ public class NetworkConnectionsView extends JPanel
 		text = obj.getObjectName();
 		if ( text != "" && text != null )
 		{
-			info[0] = PrimeMain1.texts.getString("conTabObjectNameLabel")
+			info[0] = PrimeMain.texts.getString("conTabObjectNameLabel")
 					+ ": " + text;
 		}
 
@@ -465,7 +465,7 @@ public class NetworkConnectionsView extends JPanel
 		{
 			if ( mbObj.getSocket() != null && mbObj.getSocket().length() != 0 )
 			{
-				info[1] = PrimeMain1.texts.getString("conTabObjectSpeedLabel")
+				info[1] = PrimeMain.texts.getString("conTabObjectSpeedLabel")
 						+ ": " + mbObj.getSocket();
 			}
 		}
@@ -478,7 +478,7 @@ public class NetworkConnectionsView extends JPanel
 
 			if ( cpus.length == 1 )
 			{
-				text = PrimeMain1.texts.getString("conTabObjectSpeedLabel")
+				text = PrimeMain.texts.getString("conTabObjectSpeedLabel")
 						+ ": " + cpus[0].getSpeed();
 			}
 			else if ( cpus.length > 1 )
@@ -492,7 +492,7 @@ public class NetworkConnectionsView extends JPanel
 
 				if ( speed != 0 )
 				{
-					text = PrimeMain1.texts.getString("conTabObjectSpeedLabel")
+					text = PrimeMain.texts.getString("conTabObjectSpeedLabel")
 							+ ": " + speed;
 				}
 			}
@@ -512,7 +512,7 @@ public class NetworkConnectionsView extends JPanel
 			text = "";
 			if ( hdds.length == 1 )
 			{
-				text = PrimeMain1.texts.getString("conTabObjectSizeLabel")
+				text = PrimeMain.texts.getString("conTabObjectSizeLabel")
 						+ ": " + hdds[0].getSize();
 			}
 			else if ( hdds.length > 1 )
@@ -526,7 +526,7 @@ public class NetworkConnectionsView extends JPanel
 
 				if ( size != 0 )
 				{
-					text = PrimeMain1.texts.getString("conTabObjectSizeLabel")
+					text = PrimeMain.texts.getString("conTabObjectSizeLabel")
 							+ ": " + size;
 				}
 			}

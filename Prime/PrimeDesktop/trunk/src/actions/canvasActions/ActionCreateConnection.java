@@ -3,7 +3,7 @@ package actions.canvasActions;
 
 import exceptions.ConnectionDoesExist;
 import exceptions.ConnectionsIsNotPossible;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
 import java.awt.event.ActionEvent;
@@ -27,9 +27,8 @@ import connections.WidgetExtendedConnection;
 
 /**
  * This action creates a connection between two given {@link WidgetObject
- * WidgetObjects}. The connection is created is both added to each of the given
- * {@link WidgetObject WidgetObjects} and placed on the given
- * {@link WorkareaCanvas}.
+ * WidgetObjects}. The connection is created is both added to each of the given {@link WidgetObject WidgetObjects} and placed on
+ * the given {@link WorkareaCanvas}.
  * This action contains a undo/redo function.
  * 
  * @author Bahram Malaekeh
@@ -77,8 +76,8 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 
 
 	/**
-	 * A constructor for the class that takes a string, the action name, a
-	 * {@link WorkareaCanvas}, a {@link WidgetObject} that is the source
+	 * A constructor for the class that takes a string, the action name, a {@link WorkareaCanvas}, a {@link WidgetObject} that is
+	 * the source
 	 * of the connection and a {@link WidgetObject} that is the target of the
 	 * connection.
 	 * 
@@ -157,7 +156,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 	@Override
 	public String getPresentationName()
 	{
-		return PrimeMain1.texts
+		return PrimeMain.texts
 				.getString("actionCreateConnectionActionPresNameText");
 	}
 
@@ -168,7 +167,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 	@Override
 	public String getRedoPresentationName()
 	{
-		return PrimeMain1.texts
+		return PrimeMain.texts
 				.getString("actionCreateConnectionRedoPresNameText");
 	}
 
@@ -179,7 +178,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 	@Override
 	public String getUndoPresentationName()
 	{
-		return PrimeMain1.texts
+		return PrimeMain.texts
 				.getString("actionCreateConnectionUndoPresNameText");
 	}
 
@@ -209,7 +208,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 
 				// Creates a new connection between the two widget objects
 				Connection con = ConnectionManagment.makeConnection(canvas
-						.getConnections(), PrimeMain1.texts
+						.getConnections(), PrimeMain.texts
 						.getString("connection")
 						+ canvas.getNumberOfWidgetsOnTheScene(),
 						"Connection between "
@@ -252,17 +251,17 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 			// objects.
 			catch ( ConnectionDoesExist e )
 			{
-				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+				JOptionPane.showMessageDialog(null, PrimeMain.texts
 						.getString("connectionAlreadyExistsMsg"),
-						PrimeMain1.texts.getString("alert"),
+						PrimeMain.texts.getString("alert"),
 						JOptionPane.ERROR_MESSAGE);
 			}
 			// If a connection between the two given objects is impossible.
 			catch ( ConnectionsIsNotPossible e )
 			{
-				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+				JOptionPane.showMessageDialog(null, PrimeMain.texts
 						.getString("connectionNotPossibleMsg"),
-						PrimeMain1.texts.getString("alert"),
+						PrimeMain.texts.getString("alert"),
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}
@@ -307,27 +306,26 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 		// If the compatible interfaces between the two devices are not 0.
 		if ( compInter.length > 0 )
 		{
-
 			// Creates a dialog that shows the different available connection
 			// types.
-			String conType = ListDialog.showDialog(null, null, PrimeMain1.texts
+			String conType = ListDialog.showDialog(null, null, PrimeMain.texts
 					.getString("actionCreateConnectionTypeLabel"),
-					PrimeMain1.texts.getString("connection"), compInter, null,
+					PrimeMain.texts.getString("connection"), compInter, null,
 					null);
-
 
 			// If a connection type is not selected.
 			if ( conType == null && compInter.length > 1 )
 			{
-				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+				JOptionPane.showMessageDialog(null, PrimeMain.texts
 						.getString("actionCreateConnectionChooseTypeText"),
-						PrimeMain1.texts.getString("alert"),
+						PrimeMain.texts.getString("alert"),
 						JOptionPane.ERROR_MESSAGE);
 			}
-			// If the cancel butten is pressed.
-			else if ( conType == null || conType == "Cancelled" )
+			// If the close or cancel butten is pressed.
+			else if ( conType != null
+					&& (conType.equals("Closed") || conType.equals("Cancelled")) )
 			{
-				// FIXME - ActionCreateConnection - "Cancelled"
+				// Does nothing on close or cancel
 			}
 			// Else a connection type is chosen and the "Create connection"
 			// button is pressed.
@@ -351,7 +349,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 					// Creates the connection between the two devices(Not on the
 					// scene).
 					con = ConnectionManagment.makeConnection(canvas
-							.getConnections(), PrimeMain1.texts
+							.getConnections(), PrimeMain.texts
 							.getString("connection")
 							+ canvas.getNumberOfWidgetsOnTheScene(),
 							"Connection between "
@@ -398,26 +396,26 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 				// objects.
 				catch ( ConnectionDoesExist e )
 				{
-					JOptionPane.showMessageDialog(null, PrimeMain1.texts
+					JOptionPane.showMessageDialog(null, PrimeMain.texts
 							.getString("connectionAlreadyExistsMsg"),
-							PrimeMain1.texts.getString("alert"),
+							PrimeMain.texts.getString("alert"),
 							JOptionPane.ERROR_MESSAGE);
 				}
 				// If a connection between the two given objects is impossible.
 				catch ( ConnectionsIsNotPossible e )
 				{
-					JOptionPane.showMessageDialog(null, PrimeMain1.texts
+					JOptionPane.showMessageDialog(null, PrimeMain.texts
 							.getString("connectionNotPossibleMsg"),
-							PrimeMain1.texts.getString("alert"),
+							PrimeMain.texts.getString("alert"),
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null, PrimeMain1.texts
+			JOptionPane.showMessageDialog(null, PrimeMain.texts
 					.getString("connectionNotPossibleBecauseNoPortsMatchMsg"),
-					PrimeMain1.texts.getString("alert"),
+					PrimeMain.texts.getString("alert"),
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}

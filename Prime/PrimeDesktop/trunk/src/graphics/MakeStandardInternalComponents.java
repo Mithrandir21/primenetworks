@@ -37,9 +37,9 @@ public class MakeStandardInternalComponents
 	 */
 	public Motherboard getSt_MB()
 	{
-		Motherboard mb = new Motherboard(PrimeMain1.texts
-				.getString("standardMBName"), PrimeMain1.texts
-				.getString("standardMBDescription"), PrimeMain1.texts
+		Motherboard mb = new Motherboard(PrimeMain.texts
+				.getString("standardMBName"), PrimeMain.texts
+				.getString("standardMBDescription"), PrimeMain.texts
 				.getString("standardMBProducer"), "ATX", "Intel 775", "DDR2",
 				1, 3, 2, 4, 4, 0, "SATA", "AGP", true, true, true, 1);
 
@@ -59,8 +59,8 @@ public class MakeStandardInternalComponents
 	 */
 	public Motherboard getHw_MB()
 	{
-		return new Motherboard(PrimeMain1.texts.getString("standardHwMBName"),
-				PrimeMain1.texts.getString("standardHwMBDescription"));
+		return new Motherboard(PrimeMain.texts.getString("standardHwMBName"),
+				PrimeMain.texts.getString("standardHwMBDescription"));
 	}
 
 
@@ -74,8 +74,8 @@ public class MakeStandardInternalComponents
 	 */
 	public CPU getSt_CPU()
 	{
-		return new CPU(PrimeMain1.texts.getString("standardCPUName"),
-				PrimeMain1.texts.getString("standardCPUDescription"),
+		return new CPU(PrimeMain.texts.getString("standardCPUName"),
+				PrimeMain.texts.getString("standardCPUDescription"),
 				"Intel 775", 512);
 	}
 
@@ -90,8 +90,8 @@ public class MakeStandardInternalComponents
 	 */
 	public HDD getSt_HDD()
 	{
-		return new HDD(PrimeMain1.texts.getString("standardHDDName"),
-				PrimeMain1.texts.getString("standardHDDDescription"), "SATA",
+		return new HDD(PrimeMain.texts.getString("standardHDDName"),
+				PrimeMain.texts.getString("standardHDDDescription"), "SATA",
 				160);
 	}
 
@@ -106,8 +106,8 @@ public class MakeStandardInternalComponents
 	 */
 	public Ram getSt_RAM()
 	{
-		return new Ram(PrimeMain1.texts.getString("standardRAMName"),
-				PrimeMain1.texts.getString("standardRAMDescription"), "DDR2",
+		return new Ram(PrimeMain.texts.getString("standardRAMName"),
+				PrimeMain.texts.getString("standardRAMDescription"), "DDR2",
 				1024);
 	}
 
@@ -122,8 +122,8 @@ public class MakeStandardInternalComponents
 	 */
 	public Discdrive getSt_DVDRW()
 	{
-		return new Discdrive(PrimeMain1.texts.getString("standardDVDRWName"),
-				PrimeMain1.texts.getString("standardDVDRWUDescription"),
+		return new Discdrive(PrimeMain.texts.getString("standardDVDRWName"),
+				PrimeMain.texts.getString("standardDVDRWUDescription"),
 				"DVDRW", "SATA");
 	}
 
@@ -143,9 +143,9 @@ public class MakeStandardInternalComponents
 		String count = "";
 		int canvasCount = 0;
 
-		if ( PrimeMain1.currentCanvas != null )
+		if ( PrimeMain.currentCanvas != null )
 		{
-			canvasCount = PrimeMain1.currentCanvas
+			canvasCount = PrimeMain.currentCanvas
 					.getNumberOfWidgetsOnTheScene();
 		}
 
@@ -161,14 +161,14 @@ public class MakeStandardInternalComponents
 
 		String mac = "00:00:00:00:00:" + count;
 
-		if ( PrimeMain1.currentCanvas != null )
+		if ( PrimeMain.currentCanvas != null )
 		{
-			PrimeMain1.currentCanvas.addNIC();
+			PrimeMain.currentCanvas.addNIC();
 		}
 
-		return new ExternalNetworksCard(PrimeMain1.texts
-				.getString("standardExtNICName"), PrimeMain1.texts
-				.getString("standardExtNICDescription"), PrimeMain1.texts
+		return new ExternalNetworksCard(PrimeMain.texts
+				.getString("standardExtNICName"), PrimeMain.texts
+				.getString("standardExtNICDescription"), PrimeMain.texts
 				.getString("standardExtNICProducer"), mac,
 				ConnectionUtils.Wireless, ConnectionUtils.USB);
 	}
@@ -190,9 +190,9 @@ public class MakeStandardInternalComponents
 		String count = "";
 		int canvasCount = 0;
 
-		if ( PrimeMain1.currentCanvas != null )
+		if ( PrimeMain.currentCanvas != null )
 		{
-			canvasCount = PrimeMain1.currentCanvas
+			canvasCount = PrimeMain.currentCanvas
 					.getNumberOfWidgetsOnTheScene();
 		}
 
@@ -208,14 +208,14 @@ public class MakeStandardInternalComponents
 
 		String mac = "00:00:00:00:00:" + count;
 
-		if ( PrimeMain1.currentCanvas != null )
+		if ( PrimeMain.currentCanvas != null )
 		{
-			PrimeMain1.currentCanvas.addNIC();
+			PrimeMain.currentCanvas.addNIC();
 		}
 
-		return new InternalNetworksCard(PrimeMain1.texts
-				.getString("standardIntNICName"), PrimeMain1.texts
-				.getString("standardIntNICDescription"), PrimeMain1.texts
+		return new InternalNetworksCard(PrimeMain.texts
+				.getString("standardIntNICName"), PrimeMain.texts
+				.getString("standardIntNICDescription"), PrimeMain.texts
 				.getString("standardIntNICProducer"), ConnectionUtils.PCI, mac,
 				ConnectionUtils.RJ45);
 	}
@@ -229,8 +229,8 @@ public class MakeStandardInternalComponents
 	 */
 	public GraphicsCard getSt_GPU()
 	{
-		return new GraphicsCard(PrimeMain1.texts.getString("standardGPUName"),
-				PrimeMain1.texts.getString("standardGPUDescription"), "AGP",
+		return new GraphicsCard(PrimeMain.texts.getString("standardGPUName"),
+				PrimeMain.texts.getString("standardGPUDescription"), "AGP",
 				128, "VGA", false);
 	}
 }

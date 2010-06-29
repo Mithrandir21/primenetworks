@@ -1,7 +1,7 @@
 package graphics.GUI.objectView;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.Connections.NetworkConnectionsView;
 import graphics.GUI.objectView.General.GeneralObjectView;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareObjectView;
@@ -44,33 +44,33 @@ public class ObjectViewTabbed extends JTabbedPane
 	{
 		genObjView = new GeneralObjectView(obj.getObject());
 		this
-				.addTab(PrimeMain1.texts.getString("generalTabLabel"), null,
-						genObjView, PrimeMain1.texts
+				.addTab(PrimeMain.texts.getString("generalTabLabel"), null,
+						genObjView, PrimeMain.texts
 								.getString("generalTabDescription"));
 
 
 		hardObjView = new HardwareObjectView(obj.getObject());
-		this.addTab(PrimeMain1.texts.getString("hardwareTabLabel"), null,
-				hardObjView, PrimeMain1.texts
+		this.addTab(PrimeMain.texts.getString("hardwareTabLabel"), null,
+				hardObjView, PrimeMain.texts
 						.getString("hardwareTabDescription"));
 
 
 		softObjView = new SoftwareObjectView(obj.getObject());
-		this.addTab(PrimeMain1.texts.getString("softwareTabLabel"), null,
-				softObjView, PrimeMain1.texts
+		this.addTab(PrimeMain.texts.getString("softwareTabLabel"), null,
+				softObjView, PrimeMain.texts
 						.getString("softwareTabDescription"));
 
 
 		conObjView = new NetworkConnectionsView(obj.getObject());
-		this.addTab(PrimeMain1.texts.getString("connectionTabLabel"), null,
-				conObjView, PrimeMain1.texts
+		this.addTab(PrimeMain.texts.getString("connectionTabLabel"), null,
+				conObjView, PrimeMain.texts
 						.getString("connectionTabDescription"));
 
 
 		netObjView = new NetworkView(obj);
 		this
-				.addTab(PrimeMain1.texts.getString("networkTabLabel"), null,
-						netObjView, PrimeMain1.texts
+				.addTab(PrimeMain.texts.getString("networkTabLabel"), null,
+						netObjView, PrimeMain.texts
 								.getString("networkTabDescription"));
 	}
 

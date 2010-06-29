@@ -5,7 +5,7 @@ package actions.systemActions;
 
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
 
@@ -35,7 +35,7 @@ public class ActionOpenfile extends AbstractSystemAction
 	public ActionOpenfile(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionOpenFileText"));
 	}
 
@@ -50,7 +50,7 @@ public class ActionOpenfile extends AbstractSystemAction
 	public ActionOpenfile(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionOpenFileText"));
 	}
 

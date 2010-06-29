@@ -4,7 +4,7 @@
 package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 
 import java.awt.event.ActionEvent;
@@ -72,7 +72,7 @@ public class WorkareaWidgetActionListener implements ActionListener
 			if ( actionName.equals("OpenDevice") )
 			{
 				// Gets the view, if there exist any, with the given object
-				ObjectView view = PrimeMain1.getObjectView(widget.getObject());
+				ObjectView view = PrimeMain.getObjectView(widget.getObject());
 
 				// There exist no view with the given object.
 				// Which means that there exist no open view for the given
@@ -84,7 +84,7 @@ public class WorkareaWidgetActionListener implements ActionListener
 					ObjectView objView = new ObjectView(widget);
 
 					// Adds the view to the arraylist of object views.
-					PrimeMain1.addObjectView(objView);
+					PrimeMain.addObjectView(objView);
 				}
 				else
 				{
@@ -95,25 +95,25 @@ public class WorkareaWidgetActionListener implements ActionListener
 			else if ( actionName.equals("CopyObject") )
 			{
 				// Sets the cutWidget pointer to null
-				PrimeMain1.cutWidget = null;
+				PrimeMain.cutWidget = null;
 
 				// Sets the widget as the widget to be copied
-				PrimeMain1.copyWidget = widget;
+				PrimeMain.copyWidget = widget;
 			}
 			else if ( actionName.equals("CutObject") )
 			{
 				// Sets the copyWidget pointer to null
-				PrimeMain1.copyWidget = null;
+				PrimeMain.copyWidget = null;
 
 				// Sets the widget as the widget to be cut(copied and deleted)
-				PrimeMain1.cutWidget = widget;
+				PrimeMain.cutWidget = widget;
 			}
 			else if ( actionName.equals("DeleteConnectionsObject") )
 			{
 				// WorkareaCanvasActions.removeAllConnectionsToFromObject(canvas,
 				// widget.getObject());
 				ActionDeleteAllConnectionsToAndFrom actionDeleteConnections = new ActionDeleteAllConnectionsToAndFrom(
-						PrimeMain1.texts
+						PrimeMain.texts
 								.getString("actionDeleteAllConnectionName"));
 				actionDeleteConnections.performAction(true);
 			}
@@ -122,6 +122,6 @@ public class WorkareaWidgetActionListener implements ActionListener
 
 		canvas.cleanUp();
 
-		PrimeMain1.updatePropertiesCanvasArea(false);
+		PrimeMain.updatePropertiesCanvasArea(false);
 	}
 }

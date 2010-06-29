@@ -1,7 +1,7 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
 
@@ -31,7 +31,7 @@ public class ActionImportNetwork extends AbstractSystemAction
 	public ActionImportNetwork(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionImportNetworkText"));
 	}
 
@@ -46,7 +46,7 @@ public class ActionImportNetwork extends AbstractSystemAction
 	public ActionImportNetwork(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionImportNetworkText"));
 	}
 

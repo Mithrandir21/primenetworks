@@ -1,11 +1,12 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import logistical.AbstractSystemAction;
 import managment.DesktopFileManagment;
@@ -13,8 +14,8 @@ import managment.DesktopFileManagment;
 
 /**
  * This action is used when the user wants to export the standard objects list
- * to a file. It will call the exportStandardObjects function in the
- * {@link DesktopFileManagment} class. This function is not undoable.
+ * to a file. It will call the exportStandardObjects function in the {@link DesktopFileManagment} class. This function is not
+ * undoable.
  * 
  * @author Bahram Malaekeh
  */
@@ -32,7 +33,7 @@ public class ActionExportStandardObjects extends AbstractSystemAction
 	public ActionExportStandardObjects(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionExportStandardObjectsText"));
 	}
 
@@ -47,7 +48,7 @@ public class ActionExportStandardObjects extends AbstractSystemAction
 	public ActionExportStandardObjects(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionExportStandardObjectsText"));
 	}
 
@@ -61,7 +62,13 @@ public class ActionExportStandardObjects extends AbstractSystemAction
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
-		DesktopFileManagment.exportStandardObjects();
+		if ( DesktopFileManagment.exportStandardObjects() )
+		{
+			// Tells the user that the export was successful
+			JOptionPane.showMessageDialog(null, PrimeMain.texts
+					.getString("exportObjectsToFileSuccess"));
+		}
+
 	}
 
 }

@@ -2,7 +2,7 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
@@ -93,7 +93,7 @@ public class EmailNewView extends JFrame implements SoftwareView, ActionListener
 	 */
 	public EmailNewView(Object obj, Email email)
 	{
-		super(PrimeMain1.texts.getString("swNewEmailLabel"));
+		super(PrimeMain.texts.getString("swNewEmailLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -122,7 +122,7 @@ public class EmailNewView extends JFrame implements SoftwareView, ActionListener
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(Email.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(Email.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainEmail, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -182,39 +182,39 @@ public class EmailNewView extends JFrame implements SoftwareView, ActionListener
 		JLabel[] labels = new JLabel[7];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts
+		labels[0] = new JLabel(PrimeMain.texts
 				.getString("emailViewSupOSLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts
+		labels[0].setToolTipText(PrimeMain.texts
 				.getString("emailViewSupOSTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts
+		labels[1] = new JLabel(PrimeMain.texts
 				.getString("emailViewSupPOP3Label"));
-		labels[1].setToolTipText(PrimeMain1.texts
+		labels[1].setToolTipText(PrimeMain.texts
 				.getString("emailViewSupPOP3Tip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts
+		labels[2] = new JLabel(PrimeMain.texts
 				.getString("emailViewSupSMTPLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts
+		labels[2].setToolTipText(PrimeMain.texts
 				.getString("emailViewSupSMTPTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts
+		labels[3] = new JLabel(PrimeMain.texts
 				.getString("emailViewSupIMAPLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts
+		labels[3].setToolTipText(PrimeMain.texts
 				.getString("emailViewSupIMAPTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts
+		labels[4] = new JLabel(PrimeMain.texts
 				.getString("emailViewSupNNTPLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts
+		labels[4].setToolTipText(PrimeMain.texts
 				.getString("emailViewSupNNTPTip"));
 
-		labels[5] = new JLabel(PrimeMain1.texts
+		labels[5] = new JLabel(PrimeMain.texts
 				.getString("emailViewSupSSLLabel"));
-		labels[5].setToolTipText(PrimeMain1.texts
+		labels[5].setToolTipText(PrimeMain.texts
 				.getString("emailViewSupSSLTip"));
 
-		labels[6] = new JLabel(PrimeMain1.texts
+		labels[6] = new JLabel(PrimeMain.texts
 				.getString("emailViewSupWebmailLabel"));
-		labels[6].setToolTipText(PrimeMain1.texts
+		labels[6].setToolTipText(PrimeMain.texts
 				.getString("emailViewSupWebmailTip"));
 
 
@@ -364,11 +364,11 @@ public class EmailNewView extends JFrame implements SoftwareView, ActionListener
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button(PrimeMain1.texts.getString("save"));
+		Button save = new Button(PrimeMain.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
+		Button cancel = new Button(PrimeMain.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -429,7 +429,7 @@ public class EmailNewView extends JFrame implements SoftwareView, ActionListener
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
@@ -441,7 +441,7 @@ public class EmailNewView extends JFrame implements SoftwareView, ActionListener
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(this, PrimeMain1.texts
+				JOptionPane.showMessageDialog(this, PrimeMain.texts
 						.getString("swNewCompatibilityQuestion"));
 			}
 

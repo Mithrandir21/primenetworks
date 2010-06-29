@@ -1,7 +1,7 @@
 package graphics.GUI.programGUI;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -26,7 +26,7 @@ public class AboutFrame extends JFrame
 
 	public AboutFrame()
 	{
-		super(PrimeMain1.texts.getString("aboutTitle"));
+		super(PrimeMain.texts.getString("aboutTitle"));
 		this.setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
 
@@ -46,13 +46,13 @@ public class AboutFrame extends JFrame
 
 		this.add(Box.createRigidArea(new Dimension(0, 10)));
 
-		JLabel name = new JLabel(PrimeMain1.texts.getString("aboutText"));
+		JLabel name = new JLabel(PrimeMain.texts.getString("aboutText"));
 		name.setAlignmentX(0.5f);
 		this.add(name);
 
 		add(Box.createRigidArea(new Dimension(0, 100)));
 
-		JButton close = new JButton(PrimeMain1.texts.getString("closeButton"));
+		JButton close = new JButton(PrimeMain.texts.getString("closeButton"));
 		close.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent event)

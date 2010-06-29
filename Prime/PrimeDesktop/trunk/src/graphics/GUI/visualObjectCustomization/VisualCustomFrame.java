@@ -4,7 +4,7 @@
 package graphics.GUI.visualObjectCustomization;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -64,9 +64,9 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 	 */
 	public VisualCustomFrame()
 	{
-		this.setTitle(PrimeMain1.texts.getString("visObjCustomFrameTitle"));
+		this.setTitle(PrimeMain.texts.getString("visObjCustomFrameTitle"));
 
-		tempImageIcons.putAll(PrimeMain1.objectImageIcons);
+		tempImageIcons.putAll(PrimeMain.objectImageIcons);
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -146,18 +146,18 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 			{
 				if( changed )
 				{
-					String question = PrimeMain1.texts
+					String question = PrimeMain.texts
 							.getString("imageIconsChangedQuestion");
 
 
 					// Custom button text
 					java.lang.Object[] options = {
-							PrimeMain1.texts.getString("yes"),
-							PrimeMain1.texts.getString("no") };
+							PrimeMain.texts.getString("yes"),
+							PrimeMain.texts.getString("no") };
 
 
 					int answer = JOptionPane.showOptionDialog(null, question,
-							PrimeMain1.texts.getString("confirm"),
+							PrimeMain.texts.getString("confirm"),
 							JOptionPane.YES_NO_CANCEL_OPTION,
 							JOptionPane.QUESTION_MESSAGE, null, options,
 							options[1]);
@@ -165,7 +165,7 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 
 					if ( answer == 0 )
 					{
-						PrimeMain1.vcf = null;
+						PrimeMain.vcf = null;
 					}
 				}
 				
@@ -182,7 +182,7 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 		JPanel visPanel = new JPanel(new GridLayout(0, 3, 25, 25));
 
 
-		Iterator<Object> iterator = PrimeMain1.objectlist.iterator();
+		Iterator<Object> iterator = PrimeMain.objectlist.iterator();
 
 		while ( iterator.hasNext() )
 		{
@@ -221,15 +221,15 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button(PrimeMain1.texts.getString("save"));
+		Button save = new Button(PrimeMain.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button reset = new Button(PrimeMain1.texts.getString("reset"));
+		Button reset = new Button(PrimeMain.texts.getString("reset"));
 		reset.addActionListener(this);
 		reset.setActionCommand("reset");
 
-		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
+		Button cancel = new Button(PrimeMain.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -268,18 +268,18 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 
 			if ( changed )
 			{
-				String question = PrimeMain1.texts
+				String question = PrimeMain.texts
 						.getString("imageIconsChangedQuestion");
 
 
 				// Custom button text
 				java.lang.Object[] options = {
-						PrimeMain1.texts.getString("yes"),
-						PrimeMain1.texts.getString("no") };
+						PrimeMain.texts.getString("yes"),
+						PrimeMain.texts.getString("no") };
 
 
 				int answer = JOptionPane
-						.showOptionDialog(null, question, PrimeMain1.texts
+						.showOptionDialog(null, question, PrimeMain.texts
 								.getString("confirm"),
 								JOptionPane.YES_NO_CANCEL_OPTION,
 								JOptionPane.QUESTION_MESSAGE, null, options,
@@ -290,14 +290,14 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 				{
 					this.dispose();
 					// Sets the pointer to this JFrame to null.
-					PrimeMain1.vcf = null;
+					PrimeMain.vcf = null;
 				}
 			}
 			else
 			{
 				this.dispose();
 				// Sets the pointer to this JFrame to null.
-				PrimeMain1.vcf = null;
+				PrimeMain.vcf = null;
 			}
 		}
 	}
@@ -352,9 +352,9 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 		}
 
 
-		PrimeMain1.objectImageIcons.putAll(tempImageIcons);
+		PrimeMain.objectImageIcons.putAll(tempImageIcons);
 
-		PrimeMain1.updateObjectSelectionArea();
+		PrimeMain.updateObjectSelectionArea();
 	}
 
 

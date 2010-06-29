@@ -4,7 +4,7 @@
 package graphics.GUI.standardObjectEdit;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -39,7 +39,7 @@ public class StandardObjects extends JDialog
 	 */
 	public StandardObjects()
 	{
-		this.setTitle(PrimeMain1.texts.getString("standardObjectsFrameLabel"));
+		this.setTitle(PrimeMain.texts.getString("standardObjectsFrameLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -77,7 +77,7 @@ public class StandardObjects extends JDialog
 			public void windowClosing(WindowEvent ev)
 			{
 				// Removes the pointer to this Object in the system registry.
-				PrimeMain1.stdObjView = null;
+				PrimeMain.stdObjView = null;
 			}
 		});
 	}

@@ -2,7 +2,7 @@ package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.Hardware.NewComponent.NewOverview.NewComponentChoice;
 
 import java.awt.Button;
@@ -115,7 +115,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		{
 			if ( hwObj[i] instanceof Motherboard )
 			{
-				temp = PrimeMain1.objectImageIcons.get(Motherboard.class);
+				temp = PrimeMain.objectImageIcons.get(Motherboard.class);
 
 				Motherboard mbObj = (Motherboard) hwObj[i];
 
@@ -132,21 +132,21 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				text = mbObj.getForm();
 				if ( text != null && text.length() > 0 )
 				{
-					info[1] = PrimeMain1.texts.getString("hwTabFormLabel")
+					info[1] = PrimeMain.texts.getString("hwTabFormLabel")
 							+ ": " + text;
 				}
 
 				text = mbObj.getSocket();
 				if ( text != null && text.length() > 0 )
 				{
-					info[2] = PrimeMain1.texts.getString("hwTabSocketLabel")
+					info[2] = PrimeMain.texts.getString("hwTabSocketLabel")
 							+ ": " + text;
 				}
 
 				text = mbObj.getGraphicalPort();
 				if ( text != null && text.length() > 0 )
 				{
-					info[3] = PrimeMain1.texts.getString("hwTabGPUslotLabel")
+					info[3] = PrimeMain.texts.getString("hwTabGPUslotLabel")
 							+ ": " + text;
 				}
 
@@ -160,7 +160,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 			else if ( hwObj[i] instanceof CPU )
 			{
-				temp = PrimeMain1.objectImageIcons.get(CPU.class);
+				temp = PrimeMain.objectImageIcons.get(CPU.class);
 
 				CPU cpuObj = (CPU) hwObj[i];
 
@@ -177,14 +177,14 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				text = cpuObj.getProducer();
 				if ( text != null && text.length() > 0 )
 				{
-					info[1] = PrimeMain1.texts.getString("hwTabProducerLabel")
+					info[1] = PrimeMain.texts.getString("hwTabProducerLabel")
 							+ ": " + text;
 				}
 
 				text = cpuObj.getSocket();
 				if ( text != null && text.length() > 0 )
 				{
-					info[2] = PrimeMain1.texts.getString("hwTabSocketLabel")
+					info[2] = PrimeMain.texts.getString("hwTabSocketLabel")
 							+ ": " + text;
 				}
 
@@ -198,7 +198,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 			else if ( hwObj[i] instanceof HDD )
 			{
-				temp = PrimeMain1.objectImageIcons.get(HDD.class);
+				temp = PrimeMain.objectImageIcons.get(HDD.class);
 
 				HDD hddObj = (HDD) hwObj[i];
 
@@ -215,20 +215,20 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				text = hddObj.getProducer();
 				if ( text != null && text.length() > 0 )
 				{
-					info[1] = PrimeMain1.texts.getString("hwTabProducerLabel")
+					info[1] = PrimeMain.texts.getString("hwTabProducerLabel")
 							+ ": " + text;
 				}
 
 				text = hddObj.getSubtype();
 				if ( text != null && text.length() > 0 )
 				{
-					info[2] = PrimeMain1.texts.getString("hwTabTypeLabel")
+					info[2] = PrimeMain.texts.getString("hwTabTypeLabel")
 							+ ": " + text;
 				}
 
 				if ( hddObj.getSize() != 0 )
 				{
-					info[3] = PrimeMain1.texts.getString("hwTabSizeLabel")
+					info[3] = PrimeMain.texts.getString("hwTabSizeLabel")
 							+ ": " + Integer.toString(hddObj.getSize());
 				}
 
@@ -241,7 +241,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 			else if ( hwObj[i] instanceof Ram )
 			{
-				temp = PrimeMain1.objectImageIcons.get(Ram.class);
+				temp = PrimeMain.objectImageIcons.get(Ram.class);
 
 				Ram ramObj = (Ram) hwObj[i];
 
@@ -258,20 +258,20 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				text = ramObj.getProducer();
 				if ( text != null && text.length() > 0 )
 				{
-					info[1] = PrimeMain1.texts.getString("hwTabProducerLabel")
+					info[1] = PrimeMain.texts.getString("hwTabProducerLabel")
 							+ ": " + text;
 				}
 
 				text = ramObj.getSubtype();
 				if ( text != null && text.length() > 0 )
 				{
-					info[2] = PrimeMain1.texts.getString("hwTabTypeLabel")
+					info[2] = PrimeMain.texts.getString("hwTabTypeLabel")
 							+ ": " + text;
 				}
 
 				if ( ramObj.getSize() != 0 )
 				{
-					info[3] = PrimeMain1.texts.getString("hwTabSizeLabel")
+					info[3] = PrimeMain.texts.getString("hwTabSizeLabel")
 							+ ": " + Integer.toString(ramObj.getSize());
 				}
 
@@ -284,7 +284,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 			else if ( hwObj[i] instanceof Discdrive )
 			{
-				temp = PrimeMain1.objectImageIcons.get(Discdrive.class);
+				temp = PrimeMain.objectImageIcons.get(Discdrive.class);
 
 				Discdrive discObj = (Discdrive) hwObj[i];
 
@@ -301,20 +301,20 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				text = discObj.getProducer();
 				if ( text != null && text.length() > 0 )
 				{
-					info[1] = PrimeMain1.texts.getString("hwTabProducerLabel")
+					info[1] = PrimeMain.texts.getString("hwTabProducerLabel")
 							+ ": " + text;
 				}
 
 				text = discObj.getSubtype();
 				if ( text != null && text.length() > 0 )
 				{
-					info[2] = PrimeMain1.texts.getString("hwTabTypeLabel")
+					info[2] = PrimeMain.texts.getString("hwTabTypeLabel")
 							+ ": " + text;
 				}
 
 				if ( discObj.getSpeed() != 0 )
 				{
-					info[3] = PrimeMain1.texts.getString("hwTabSpeedLabel")
+					info[3] = PrimeMain.texts.getString("hwTabSpeedLabel")
 							+ ": " + Integer.toString(discObj.getSpeed());
 				}
 
@@ -327,7 +327,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 			else if ( hwObj[i] instanceof GraphicsCard )
 			{
-				temp = PrimeMain1.objectImageIcons.get(GraphicsCard.class);
+				temp = PrimeMain.objectImageIcons.get(GraphicsCard.class);
 
 				GraphicsCard gpuObj = (GraphicsCard) hwObj[i];
 
@@ -345,20 +345,20 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				text = gpuObj.getProducer();
 				if ( text != null && text.length() > 0 )
 				{
-					info[1] = PrimeMain1.texts.getString("hwTabProducerLabel")
+					info[1] = PrimeMain.texts.getString("hwTabProducerLabel")
 							+ ": " + text;
 				}
 
 				text = gpuObj.getOutputInterface();
 				if ( text != null && text.length() > 0 )
 				{
-					info[2] = PrimeMain1.texts.getString("hwTabOutputLabel")
+					info[2] = PrimeMain.texts.getString("hwTabOutputLabel")
 							+ ": " + text;
 				}
 
 				if ( gpuObj.getSpeed() != 0 )
 				{
-					info[3] = PrimeMain1.texts.getString("hwTabSpeedLabel")
+					info[3] = PrimeMain.texts.getString("hwTabSpeedLabel")
 							+ ": " + Integer.toString(gpuObj.getSpeed());
 				}
 
@@ -371,7 +371,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 			else if ( hwObj[i] instanceof InternalNetworksCard )
 			{
-				temp = PrimeMain1.objectImageIcons
+				temp = PrimeMain.objectImageIcons
 						.get(InternalNetworksCard.class);
 
 				InternalNetworksCard nicObj = (InternalNetworksCard) hwObj[i];
@@ -389,20 +389,20 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				text = nicObj.getProducer();
 				if ( text != null && text.length() > 0 )
 				{
-					info[1] = PrimeMain1.texts.getString("hwTabProducerLabel")
+					info[1] = PrimeMain.texts.getString("hwTabProducerLabel")
 							+ ": " + text;
 				}
 
 				text = nicObj.getProtocol();
 				if ( text != null && text.length() > 0 )
 				{
-					info[2] = PrimeMain1.texts.getString("hwTabProducerLabel")
+					info[2] = PrimeMain.texts.getString("hwTabProducerLabel")
 							+ ": " + text;
 				}
 
 				if ( nicObj.getSpeed() != 0 )
 				{
-					info[3] = PrimeMain1.texts.getString("hwTabProducerLabel")
+					info[3] = PrimeMain.texts.getString("hwTabProducerLabel")
 							+ ": " + Integer.toString(nicObj.getSpeed());
 				}
 
@@ -415,7 +415,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 			}
 			else if ( hwObj[i] instanceof ExternalNetworksCard )
 			{
-				temp = PrimeMain1.objectImageIcons
+				temp = PrimeMain.objectImageIcons
 						.get(ExternalNetworksCard.class);
 
 				ExternalNetworksCard nicObj = (ExternalNetworksCard) hwObj[i];
@@ -433,20 +433,20 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				text = nicObj.getProducer();
 				if ( text != null && text.length() > 0 )
 				{
-					info[1] = PrimeMain1.texts.getString("hwTabProducerLabel")
+					info[1] = PrimeMain.texts.getString("hwTabProducerLabel")
 							+ ": " + text;
 				}
 
 				text = nicObj.getProtocol();
 				if ( text != null && text.length() > 0 )
 				{
-					info[2] = PrimeMain1.texts.getString("hwTabProducerLabel")
+					info[2] = PrimeMain.texts.getString("hwTabProducerLabel")
 							+ ": " + text;
 				}
 
 				if ( nicObj.getSpeed() != 0 )
 				{
-					info[3] = PrimeMain1.texts.getString("hwTabProducerLabel")
+					info[3] = PrimeMain.texts.getString("hwTabProducerLabel")
 							+ ": " + Integer.toString(nicObj.getSpeed());
 				}
 

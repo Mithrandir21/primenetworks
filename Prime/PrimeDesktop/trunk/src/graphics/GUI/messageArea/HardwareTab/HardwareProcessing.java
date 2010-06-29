@@ -5,7 +5,7 @@ package graphics.GUI.messageArea.HardwareTab;
 
 
 import exceptions.ObjectNotFoundException;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import managment.ArrayManagment;
 import objects.Object;
 import objects.clientObjects.ThinClient;
@@ -96,9 +96,9 @@ public class HardwareProcessing
 		if ( !(containsComponentOfClass(obj, Motherboard.class)) )
 		{
 			String[] info = { obj.getObjectName(),
-					PrimeMain1.texts.getString("motherboard"),
-					PrimeMain1.texts.getString("noMBmsg"),
-					PrimeMain1.texts.getString("hardwareError") };
+					PrimeMain.texts.getString("motherboard"),
+					PrimeMain.texts.getString("noMBmsg"),
+					PrimeMain.texts.getString("hardwareError") };
 			data = addError(data, info);
 		}
 
@@ -107,9 +107,9 @@ public class HardwareProcessing
 		if ( !(containsComponentOfClass(obj, CPU.class)) )
 		{
 			String[] info = { obj.getObjectName(),
-					PrimeMain1.texts.getString("cpu"),
-					PrimeMain1.texts.getString("noCPUmsg"),
-					PrimeMain1.texts.getString("hardwareError") };
+					PrimeMain.texts.getString("cpu"),
+					PrimeMain.texts.getString("noCPUmsg"),
+					PrimeMain.texts.getString("hardwareError") };
 			data = addError(data, info);
 		}
 
@@ -118,9 +118,9 @@ public class HardwareProcessing
 		if ( !(containsComponentOfClass(obj, Ram.class)) )
 		{
 			String[] info = { obj.getObjectName(),
-					PrimeMain1.texts.getString("ram"),
-					PrimeMain1.texts.getString("noRAMmsg"),
-					PrimeMain1.texts.getString("hardwareError") };
+					PrimeMain.texts.getString("ram"),
+					PrimeMain.texts.getString("noRAMmsg"),
+					PrimeMain.texts.getString("hardwareError") };
 			data = addError(data, info);
 		}
 
@@ -131,9 +131,9 @@ public class HardwareProcessing
 			if ( !(containsComponentOfClass(obj, HDD.class)) )
 			{
 				String[] info = { obj.getObjectName(),
-						PrimeMain1.texts.getString("hdd"),
-						PrimeMain1.texts.getString("noHDDmsg"),
-						PrimeMain1.texts.getString("hardwareError") };
+						PrimeMain.texts.getString("hdd"),
+						PrimeMain.texts.getString("noHDDmsg"),
+						PrimeMain.texts.getString("hardwareError") };
 				data = addError(data, info);
 			}
 		}
@@ -199,9 +199,9 @@ public class HardwareProcessing
 					if ( temp.getSpeed() == 0 )
 					{
 						String[] info = { obj.getObjectName(),
-								PrimeMain1.texts.getString("cpu"),
-								PrimeMain1.texts.getString("noCPUspeedSetMsg"),
-								PrimeMain1.texts.getString("hardwareNotice") };
+								PrimeMain.texts.getString("cpu"),
+								PrimeMain.texts.getString("noCPUspeedSetMsg"),
+								PrimeMain.texts.getString("hardwareNotice") };
 						data = addError(data, info);
 					}
 

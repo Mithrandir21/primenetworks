@@ -2,7 +2,7 @@ package actions.systemActions;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.menues.GenericPrimeToolbar;
 
 import java.awt.event.ActionEvent;
@@ -32,7 +32,7 @@ public class ActionConnection extends AbstractSystemAction
 	public ActionConnection(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionToggleCreateConnectionButtonDescriptionText"));
 	}
 
@@ -47,7 +47,7 @@ public class ActionConnection extends AbstractSystemAction
 	public ActionConnection(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionToggleCreateConnectionButtonDescriptionText"));
 	}
 

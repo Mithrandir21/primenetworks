@@ -4,7 +4,7 @@
 package graphics.GUI.workareaCanvas;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.Dimension;
 import java.awt.Point;
@@ -112,7 +112,7 @@ public class WorkareaTargetListener implements DropTargetListener
 
 			// Adds the action to the canvas
 			ActionAddWidgetToWorkareaCanvas actionAdd = new ActionAddWidgetToWorkareaCanvas(
-					PrimeMain1.texts
+					PrimeMain.texts
 							.getString("actionAddWidgetToCanvasDescriptionText"),
 					canvas, newObject, objectPoint);
 			actionAdd.performAction(true);

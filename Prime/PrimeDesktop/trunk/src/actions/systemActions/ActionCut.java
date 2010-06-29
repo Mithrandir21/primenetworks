@@ -4,7 +4,7 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
 
@@ -17,7 +17,7 @@ import widgets.WorkareaCanvas;
 /**
  * An action class that will perform a cut action that will place the currently
  * selected Widget, if any, from the current {@link WorkareaCanvas} into the
- * {@link PrimeMain1 PrimeMain1s} 'cutWidget' variable.
+ * {@link PrimeMain PrimeMain1s} 'cutWidget' variable.
  * 
  * @author Bahram Malaekeh
  * @version 1.0
@@ -36,7 +36,7 @@ public class ActionCut extends AbstractSystemAction
 	public ActionCut(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionCutDescriptionText"));
 	}
 
@@ -51,7 +51,7 @@ public class ActionCut extends AbstractSystemAction
 	public ActionCut(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionCutDescriptionText"));
 	}
 
@@ -66,19 +66,19 @@ public class ActionCut extends AbstractSystemAction
 	{
 
 		// Sets the copyWidget pointer to null
-		PrimeMain1.copyWidget = null;
+		PrimeMain.copyWidget = null;
 
-		if ( PrimeMain1.currentCanvas != null )
+		if ( PrimeMain.currentCanvas != null )
 		{
-			if ( PrimeMain1.currentCanvas.getCurrentWidgetObject() != null )
+			if ( PrimeMain.currentCanvas.getCurrentWidgetObject() != null )
 			{
 				// Sets the widget as the widget to be cut(copied and deleted)
-				PrimeMain1.cutWidget = PrimeMain1.currentCanvas
+				PrimeMain.cutWidget = PrimeMain.currentCanvas
 						.getCurrentWidgetObject();
 			}
 			else
 			{
-				PrimeMain1.cutWidget = null;
+				PrimeMain.cutWidget = null;
 			}
 		}
 	}

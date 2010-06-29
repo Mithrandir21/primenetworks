@@ -4,7 +4,7 @@
 package graphics.GUI.messageArea.NetworkTab;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.messageArea.MessageJTable;
 
 import javax.swing.JScrollPane;
@@ -34,10 +34,10 @@ public class NetworkMessages extends JScrollPane
 	 */
 	public NetworkMessages(Object[] objects, String[][] data)
 	{
-		String[] columnNames = { PrimeMain1.texts.getString("tableNETName"),
-				PrimeMain1.texts.getString("tableNETType"),
-				PrimeMain1.texts.getString("tableNETdescription"),
-				PrimeMain1.texts.getString("tableNETmsgType") };
+		String[] columnNames = { PrimeMain.texts.getString("tableNETName"),
+				PrimeMain.texts.getString("tableNETType"),
+				PrimeMain.texts.getString("tableNETdescription"),
+				PrimeMain.texts.getString("tableNETmsgType") };
 
 		table = new MessageJTable(data, columnNames);
 

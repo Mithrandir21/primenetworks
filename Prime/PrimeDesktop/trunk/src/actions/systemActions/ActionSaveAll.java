@@ -4,7 +4,7 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
 
@@ -36,7 +36,7 @@ public class ActionSaveAll extends AbstractSystemAction
 	public ActionSaveAll(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionSaveAllOpenNetworksText"));
 	}
 
@@ -52,7 +52,7 @@ public class ActionSaveAll extends AbstractSystemAction
 	public ActionSaveAll(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionSaveAllOpenNetworksText"));
 	}
 
@@ -65,7 +65,7 @@ public class ActionSaveAll extends AbstractSystemAction
 	public void actionPerformed(ActionEvent e)
 	{
 		// Saves all the open WorkareaCanvases
-		DesktopFileManagment.saveCanvases(PrimeMain1.canvases);
+		DesktopFileManagment.saveCanvases(PrimeMain.canvases);
 	}
 
 }

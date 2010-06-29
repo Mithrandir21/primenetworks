@@ -2,7 +2,7 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
@@ -103,7 +103,7 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(OperatingSystem.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(OperatingSystem.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainOS, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -129,10 +129,10 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain1.texts
+		JLabel label = new JLabel(PrimeMain.texts
 				.getString("swTabRemoveSoftwaretText"));
 
-		Button remove = new Button(PrimeMain1.texts
+		Button remove = new Button(PrimeMain.texts
 				.getString("swTabRemoveSoftwareButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeSoft");
@@ -168,19 +168,19 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		JLabel[] labels = new JLabel[4];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts.getString("osViewSupFSLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts.getString("osViewSupFSTip"));
+		labels[0] = new JLabel(PrimeMain.texts.getString("osViewSupFSLabel"));
+		labels[0].setToolTipText(PrimeMain.texts.getString("osViewSupFSTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts
+		labels[1] = new JLabel(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSLabel"));
-		labels[1].setToolTipText(PrimeMain1.texts
+		labels[1].setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts.getString("osViewHasGUILabel"));
-		labels[2].setToolTipText(PrimeMain1.texts.getString("osViewHasGUITip"));
+		labels[2] = new JLabel(PrimeMain.texts.getString("osViewHasGUILabel"));
+		labels[2].setToolTipText(PrimeMain.texts.getString("osViewHasGUITip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts.getString("osView64BitLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts.getString("osView64BitTip"));
+		labels[3] = new JLabel(PrimeMain.texts.getString("osView64BitLabel"));
+		labels[3].setToolTipText(PrimeMain.texts.getString("osView64BitTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -316,9 +316,9 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 			if ( command.equals("removeSoft") )
 			{
 				int answer = JOptionPane
-						.showConfirmDialog(this, PrimeMain1.texts
+						.showConfirmDialog(this, PrimeMain.texts
 								.getObject("osViewRemovalQuestionText"),
-								PrimeMain1.texts.getString("verify"),
+								PrimeMain.texts.getString("verify"),
 								JOptionPane.YES_NO_OPTION);
 
 				// If the user verifies the choice
@@ -362,7 +362,7 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 
 					// Updates the views of the object to correctly show the
 					// current info.
-					ObjectView view = PrimeMain1.getObjectView(mainObj);
+					ObjectView view = PrimeMain.getObjectView(mainObj);
 					if ( view != null )
 					{
 						view.updateViewInfo();

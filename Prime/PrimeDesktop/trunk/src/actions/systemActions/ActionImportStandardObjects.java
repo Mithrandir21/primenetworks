@@ -1,7 +1,7 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
 
@@ -13,8 +13,8 @@ import managment.DesktopFileManagment;
 
 /**
  * This action is used when the user wants to import the standard objects list
- * from a file. It will call the importStandardObjects function in the
- * {@link DesktopFileManagment} class. This function is not undoable.
+ * from a file. It will call the importStandardObjects function in the {@link DesktopFileManagment} class. This function is not
+ * undoable.
  * 
  * @author Bahram Malaekeh
  */
@@ -32,7 +32,7 @@ public class ActionImportStandardObjects extends AbstractSystemAction
 	public ActionImportStandardObjects(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionImportStandardObjectsText"));
 	}
 
@@ -47,7 +47,7 @@ public class ActionImportStandardObjects extends AbstractSystemAction
 	public ActionImportStandardObjects(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionImportStandardObjectsText"));
 	}
 
@@ -64,7 +64,7 @@ public class ActionImportStandardObjects extends AbstractSystemAction
 	{
 		DesktopFileManagment.importStandardObjects();
 
-		PrimeMain1.updateObjectSelectionArea();
+		// PrimeMain1.updateObjectSelectionArea();
 	}
 
 }

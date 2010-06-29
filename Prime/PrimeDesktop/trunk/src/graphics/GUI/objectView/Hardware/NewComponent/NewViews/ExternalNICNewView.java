@@ -5,7 +5,7 @@ package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
@@ -87,7 +87,7 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 	 */
 	public ExternalNICNewView(Object obj, ExternalNetworksCard NIC)
 	{
-		super(PrimeMain1.texts.getString("newHWnewExtNIClabel"));
+		super(PrimeMain.texts.getString("newHWnewExtNIClabel"));
 
 
 		// Get the default toolkit
@@ -119,7 +119,7 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons
+		ImageIcon icon = PrimeMain.objectImageIcons
 				.get(ExternalNetworksCard.class);
 		JPanel p1 = HardwareEditor.GeneralInfo(NIC, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
@@ -181,38 +181,38 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 		JLabel[] labels = new JLabel[7];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts
+		labels[0] = new JLabel(PrimeMain.texts
 				.getString("extNICviewProducerLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts
+		labels[0].setToolTipText(PrimeMain.texts
 				.getString("extNICviewProcucerTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts.getString("extNICviewMACLabel"));
+		labels[1] = new JLabel(PrimeMain.texts.getString("extNICviewMACLabel"));
 		labels[1]
-				.setToolTipText(PrimeMain1.texts.getString("extNICviewMACTip"));
+				.setToolTipText(PrimeMain.texts.getString("extNICviewMACTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts
+		labels[2] = new JLabel(PrimeMain.texts
 				.getString("extNICviewTypeLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts
+		labels[2].setToolTipText(PrimeMain.texts
 				.getString("extNICviewTypeTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts
+		labels[3] = new JLabel(PrimeMain.texts
 				.getString("extNICviewSpeedLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts
+		labels[3].setToolTipText(PrimeMain.texts
 				.getString("extNICviewSpeedTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts
+		labels[4] = new JLabel(PrimeMain.texts
 				.getString("extNICviewProtocolLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts
+		labels[4].setToolTipText(PrimeMain.texts
 				.getString("extNICviewProtocolTip"));
 
-		labels[5] = new JLabel(PrimeMain1.texts
+		labels[5] = new JLabel(PrimeMain.texts
 				.getString("extNICviewSupportedStandarsLabel"));
-		labels[5].setToolTipText(PrimeMain1.texts
+		labels[5].setToolTipText(PrimeMain.texts
 				.getString("extNICviewSupportedStandarsTip"));
 
-		labels[6] = new JLabel(PrimeMain1.texts
+		labels[6] = new JLabel(PrimeMain.texts
 				.getString("extNICviewSupportsIPv6Label"));
-		labels[6].setToolTipText(PrimeMain1.texts
+		labels[6].setToolTipText(PrimeMain.texts
 				.getString("extNICviewSupportsIPv6Tip"));
 
 
@@ -372,11 +372,11 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button(PrimeMain1.texts.getString("save"));
+		Button save = new Button(PrimeMain.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
+		Button cancel = new Button(PrimeMain.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -445,16 +445,16 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 
 			// Updates the views of the object to correctly show the
 			// current info.
-			ObjectView view = PrimeMain1.getObjectView(mainObj);
+			ObjectView view = PrimeMain.getObjectView(mainObj);
 			if ( view != null )
 			{
 				view.updateViewInfo();
 			}
 			// If no view is returned, then the standard object view is open
 			// and that should be updated.
-			else if ( PrimeMain1.stdObjView != null )
+			else if ( PrimeMain.stdObjView != null )
 			{
-				PrimeMain1.stdObjView.getSplitView().getHardStdObjView()
+				PrimeMain.stdObjView.getSplitView().getHardStdObjView()
 						.updateTabInfo();
 			}
 

@@ -4,7 +4,7 @@
 package graphics.GUI.settings;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.Checkbox;
 import java.awt.Dimension;
@@ -42,7 +42,7 @@ public class NetworkMessagesSettings extends JPanel
 
 
 		JPanel hardPanel = getPanel(checkBox[0], checkBox[1], checkBox[2]);
-		hardPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain1.texts
+		hardPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain.texts
 				.getString("settingsShowMsgHardwareLabel")));
 
 
@@ -52,7 +52,7 @@ public class NetworkMessagesSettings extends JPanel
 		checkBox[5].setName("showSoftwareNotices");
 
 		JPanel softPanel = getPanel(checkBox[3], checkBox[4], checkBox[5]);
-		softPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain1.texts
+		softPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain.texts
 				.getString("settingsShowMsgSoftwareLabel")));
 
 
@@ -62,7 +62,7 @@ public class NetworkMessagesSettings extends JPanel
 		checkBox[8].setName("showConnectionNotices");
 
 		JPanel conPanel = getPanel(checkBox[6], checkBox[7], checkBox[8]);
-		conPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain1.texts
+		conPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain.texts
 				.getString("settingsShowMsgConnectionsLabel")));
 
 
@@ -71,7 +71,7 @@ public class NetworkMessagesSettings extends JPanel
 		checkBox[11].setName("showNetworkNotices");
 
 		JPanel netPanel = getPanel(checkBox[9], checkBox[10], checkBox[11]);
-		netPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain1.texts
+		netPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain.texts
 				.getString("settingsShowMsgNetworkLabel")));
 
 
@@ -134,13 +134,13 @@ public class NetworkMessagesSettings extends JPanel
 	{
 		JPanel panel = new JPanel();
 
-		JLabel showErroes = new JLabel(PrimeMain1.texts
+		JLabel showErroes = new JLabel(PrimeMain.texts
 				.getString("settingsShowMsgShowErrorsLabel"));
 
-		JLabel showWarnings = new JLabel(PrimeMain1.texts
+		JLabel showWarnings = new JLabel(PrimeMain.texts
 				.getString("settingsShowMsgShowWarningsLabel"));
 
-		JLabel showNotices = new JLabel(PrimeMain1.texts
+		JLabel showNotices = new JLabel(PrimeMain.texts
 				.getString("settingsShowMsgShowNoticesLabel"));
 
 		GroupLayout jPanel3Layout = new GroupLayout(panel);

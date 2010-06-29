@@ -5,7 +5,7 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
@@ -106,7 +106,7 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView, Action
 	 */
 	public SecuritySuiteNewView(Object obj, SecuritySuite secSuite)
 	{
-		super(PrimeMain1.texts.getString("swNewSecuritySuiteLabel"));
+		super(PrimeMain.texts.getString("swNewSecuritySuiteLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -135,7 +135,7 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView, Action
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(SecuritySuite.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(SecuritySuite.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainSecSuite, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -195,49 +195,49 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView, Action
 		JLabel[] labels = new JLabel[8];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts
+		labels[0] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewSupOSLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts
+		labels[0].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewSupOSTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts
+		labels[1] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewActivatedLabel"));
-		labels[1].setToolTipText(PrimeMain1.texts
+		labels[1].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewActivatedTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts
+		labels[2] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewLicenseLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts
+		labels[2].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewLicenseTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts
+		labels[3] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewHasAntivirusLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts
+		labels[3].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewHasAntivirusTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts
+		labels[4] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewHasFirewallLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts
+		labels[4].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewHasFirewallTip"));
 
-		labels[5] = new JLabel(PrimeMain1.texts
+		labels[5] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewHasProxyLabel"));
-		labels[5].setToolTipText(PrimeMain1.texts
+		labels[5].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewHasProxyTip"));
 
-		labels[6] = new JLabel(PrimeMain1.texts
+		labels[6] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewActDateLabel"));
-		labels[6].setToolTipText(PrimeMain1.texts
+		labels[6].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewActDateTip"));
 
-		labels[7] = new JLabel(PrimeMain1.texts
+		labels[7] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewExpDateLabel"));
-		labels[7].setToolTipText(PrimeMain1.texts
+		labels[7].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewExpDateTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
-		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts
+		SimpleDateFormat format = new SimpleDateFormat(PrimeMain.texts
 				.getString("secSuiteViewSimpleDateFormat"));
 
 		// --------------------------------------------------------------
@@ -443,11 +443,11 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView, Action
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button(PrimeMain1.texts.getString("save"));
+		Button save = new Button(PrimeMain.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
+		Button cancel = new Button(PrimeMain.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -462,7 +462,7 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView, Action
 	@Override
 	public void save()
 	{
-		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts
+		SimpleDateFormat format = new SimpleDateFormat(PrimeMain.texts
 				.getString("secSuiteViewSimpleDateFormat"));
 
 		if ( name.getText() != "" )
@@ -547,7 +547,7 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView, Action
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
@@ -559,7 +559,7 @@ public class SecuritySuiteNewView extends JFrame implements SoftwareView, Action
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(this, PrimeMain1.texts
+				JOptionPane.showMessageDialog(this, PrimeMain.texts
 						.getString("swNewCompatibilityQuestion"));
 			}
 

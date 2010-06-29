@@ -4,7 +4,7 @@
 package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Views.CPUView;
@@ -72,61 +72,61 @@ public class HardwareEditorTabbed extends JTabbedPane
 		{
 			if ( components[i] instanceof Motherboard )
 			{
-				this.addTab(PrimeMain1.texts.getString("motherboard"), null,
+				this.addTab(PrimeMain.texts.getString("motherboard"), null,
 						new MotherboardView(obj, (Motherboard) components[i]),
-						PrimeMain1.texts.getString("hwTabMBtabDescription"));
+						PrimeMain.texts.getString("hwTabMBtabDescription"));
 			}
 			else if ( components[i] instanceof CPU )
 			{
-				this.addTab(PrimeMain1.texts.getString("cpu"), null,
-						new CPUView(obj, (CPU) components[i]), PrimeMain1.texts
+				this.addTab(PrimeMain.texts.getString("cpu"), null,
+						new CPUView(obj, (CPU) components[i]), PrimeMain.texts
 								.getString("hwTabCPUtabDescription"));
 			}
 			else if ( components[i] instanceof HDD )
 			{
-				this.addTab(PrimeMain1.texts.getString("hdd"), null,
-						new HDDView(obj, (HDD) components[i]), PrimeMain1.texts
+				this.addTab(PrimeMain.texts.getString("hdd"), null,
+						new HDDView(obj, (HDD) components[i]), PrimeMain.texts
 								.getString("hwTabHDDtabDescription"));
 			}
 			else if ( components[i] instanceof Ram )
 			{
-				this.addTab(PrimeMain1.texts.getString("ram"), null,
-						new RAMView(obj, (Ram) components[i]), PrimeMain1.texts
+				this.addTab(PrimeMain.texts.getString("ram"), null,
+						new RAMView(obj, (Ram) components[i]), PrimeMain.texts
 								.getString("hwTabRAMtabDescription"));
 			}
 			else if ( components[i] instanceof Discdrive )
 			{
-				this.addTab(PrimeMain1.texts.getString("discdrive"), null,
+				this.addTab(PrimeMain.texts.getString("discdrive"), null,
 						new DiscDriveView(obj, (Discdrive) components[i]),
-						PrimeMain1.texts.getString("hwTabDVDRWtabDescription"));
+						PrimeMain.texts.getString("hwTabDVDRWtabDescription"));
 			}
 			else if ( components[i] instanceof GraphicsCard )
 			{
 				this
-						.addTab(PrimeMain1.texts.getString("graphicalCard"),
+						.addTab(PrimeMain.texts.getString("graphicalCard"),
 								null, new GraphicsCardView(obj,
 										(GraphicsCard) components[i]),
-								PrimeMain1.texts
+								PrimeMain.texts
 										.getString("hwTabGPUtabDescription"));
 			}
 			else if ( components[i] instanceof InternalNetworksCard )
 			{
 				this
-						.addTab(PrimeMain1.texts
+						.addTab(PrimeMain.texts
 								.getString("internalNetworkCard"), null,
 								new InternalNICView(obj,
 										(InternalNetworksCard) components[i]),
-								PrimeMain1.texts
+								PrimeMain.texts
 										.getString("hwTabIntNICtabDescription"));
 			}
 			else if ( components[i] instanceof ExternalNetworksCard )
 			{
 				this
-						.addTab(PrimeMain1.texts
+						.addTab(PrimeMain.texts
 								.getString("externalNetworkCard"), null,
 								new ExternaNICView(obj,
 										(ExternalNetworksCard) components[i]),
-								PrimeMain1.texts
+								PrimeMain.texts
 										.getString("hwTabExtNICtabDescription"));
 			}
 		}
@@ -209,7 +209,7 @@ public class HardwareEditorTabbed extends JTabbedPane
 
 			// Updates the views of the object to correctly show the
 			// current info.
-			ObjectView view = PrimeMain1.getObjectView(mainobj);
+			ObjectView view = PrimeMain.getObjectView(mainobj);
 			if ( view != null )
 			{
 				view.updateViewInfo();

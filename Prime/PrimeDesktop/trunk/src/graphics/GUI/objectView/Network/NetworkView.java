@@ -28,9 +28,9 @@ public class NetworkView extends JPanel
 	public JTextField widgetIPfield = new JTextField();
 
 
-	private JLabel widgetSubnetLabel = new JLabel();
+	private JLabel widgetNetmaskLabel = new JLabel();
 
-	public JTextField widgetSubnetField = new JTextField();
+	public JTextField widgetNetmaskField = new JTextField();
 
 
 	private JLabel widgetMacLabel = new JLabel();
@@ -102,7 +102,7 @@ public class NetworkView extends JPanel
 		fieldsPanel.add(widgetIPlabel, fieldD);
 
 		fieldD.gridx = 1; // column
-		widgetIPfield = new JTextField();
+		widgetIPfield = new JTextField(obj.getWidgetNetworkInfo().getIp());
 		fieldsPanel.add(widgetIPfield, fieldD);
 
 		fieldD.gridx = 2; // column
@@ -114,12 +114,13 @@ public class NetworkView extends JPanel
 
 		fieldD.gridy = 1; // row
 		fieldD.gridx = 0; // column
-		widgetSubnetLabel = new JLabel("Subnet");
-		fieldsPanel.add(widgetSubnetLabel, fieldD);
+		widgetNetmaskLabel = new JLabel("Netmask");
+		fieldsPanel.add(widgetNetmaskLabel, fieldD);
 
 		fieldD.gridx = 1; // column
-		widgetSubnetField = new JTextField();
-		fieldsPanel.add(widgetSubnetField, fieldD);
+		widgetNetmaskField = new JTextField(obj.getWidgetNetworkInfo()
+				.getNetmask());
+		fieldsPanel.add(widgetNetmaskField, fieldD);
 
 		fieldD.gridx = 2; // column
 		JLabel widgetSubnetExampleLabel = new JLabel("Example: 255.255.0.0");
@@ -134,7 +135,7 @@ public class NetworkView extends JPanel
 		fieldsPanel.add(widgetMacLabel, fieldD);
 
 		fieldD.gridx = 1; // column
-		widgetMacField = new JTextField();
+		widgetMacField = new JTextField(obj.getWidgetNetworkInfo().getMAC());
 		fieldsPanel.add(widgetMacField, fieldD);
 
 		fieldD.gridx = 2; // column
@@ -150,7 +151,8 @@ public class NetworkView extends JPanel
 		fieldsPanel.add(widgetDefaultGatewayLabel, fieldD);
 
 		fieldD.gridx = 1; // column
-		widgetDefaultGatewayField = new JTextField();
+		widgetDefaultGatewayField = new JTextField(obj.getWidgetNetworkInfo()
+				.getDefaultGateway());
 		fieldsPanel.add(widgetDefaultGatewayField, fieldD);
 
 		fieldD.gridx = 2; // column
@@ -168,7 +170,8 @@ public class NetworkView extends JPanel
 
 		fieldD.weightx = 1.0; // request any extra horizontal space
 		fieldD.gridx = 1; // column
-		widgetNetworkNameField = new JTextField();
+		widgetNetworkNameField = new JTextField(obj.getWidgetNetworkInfo()
+				.getNetworkName());
 		fieldsPanel.add(widgetNetworkNameField, fieldD);
 
 		// fieldD.weightx = 1.0; // request any extra horizontal space
@@ -213,7 +216,8 @@ public class NetworkView extends JPanel
 		noteD.weighty = 1.0; // request any extra vertical space
 		noteD.weightx = 1.0; // request any extra horizontal space
 		noteD.gridy = 1; // row
-		widgetNotesArea = new JTextArea();
+		widgetNotesArea = new JTextArea(obj.getWidgetNetworkInfo()
+				.getWidgetNotes());
 		JScrollPane notesScroll = new JScrollPane(widgetNotesArea);
 		notePanel.add(notesScroll, noteD);
 

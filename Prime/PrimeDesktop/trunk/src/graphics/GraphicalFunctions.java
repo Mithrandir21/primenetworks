@@ -180,7 +180,7 @@ public class GraphicalFunctions
 				if ( !mbVariable.equals(newVariable) )
 				{
 					int n = JOptionPane.showConfirmDialog(comp, msg,
-							PrimeMain1.texts.getString("verify"),
+							PrimeMain.texts.getString("verify"),
 							JOptionPane.YES_NO_OPTION);
 
 
@@ -427,7 +427,7 @@ public class GraphicalFunctions
 	public static Object updateWidgetObjectCanvasName(Object obj, String name)
 	{
 		WidgetObject widgetObj = CanvasManagment.findWidgetObject(obj,
-				PrimeMain1.canvases);
+				PrimeMain.canvases);
 
 
 		if ( !(obj.getObjectName().equals(name)) )
@@ -465,7 +465,7 @@ public class GraphicalFunctions
 	 */
 	public static void updateCanvasNames()
 	{
-		JPanel workpanel = PrimeMain1.getWorkareaPanel();
+		JPanel workpanel = PrimeMain.getWorkareaPanel();
 
 		WorkareaTabbed pane = (WorkareaTabbed) workpanel.getComponent(0);
 
@@ -496,7 +496,7 @@ public class GraphicalFunctions
 	 */
 	public static void updateWidgetObjectNamesOnAllCanvas()
 	{
-		WorkareaCanvas[] canvases = PrimeMain1.canvases;
+		WorkareaCanvas[] canvases = PrimeMain.canvases;
 
 
 		for ( int i = 0; i < canvases.length; i++ )
@@ -530,12 +530,12 @@ public class GraphicalFunctions
 		if ( Settings.roomsManipulation )
 		{
 			// Goes through
-			for ( int i = 0; i < PrimeMain1.canvases.length; i++ )
+			for ( int i = 0; i < PrimeMain.canvases.length; i++ )
 			{
-				if ( PrimeMain1.canvases[i] != null )
+				if ( PrimeMain.canvases[i] != null )
 				{
 					// List of all the Rooms on the Scene
-					List<Widget> l = PrimeMain1.canvases[i].getRoomLayer()
+					List<Widget> l = PrimeMain.canvases[i].getRoomLayer()
 							.getChildren();
 
 					// Converts that list to an array of Objects
@@ -557,19 +557,19 @@ public class GraphicalFunctions
 								.addAction(
 										ActionFactory
 												.createPopupMenuAction(new JMenuWidgetRoom(
-														PrimeMain1.canvases[i])));
+														PrimeMain.canvases[i])));
 					}
 				}
 			}
 		}
 		else
 		{
-			for ( int i = 0; i < PrimeMain1.canvases.length; i++ )
+			for ( int i = 0; i < PrimeMain.canvases.length; i++ )
 			{
-				if ( PrimeMain1.canvases[i] != null )
+				if ( PrimeMain.canvases[i] != null )
 				{
 					// List of all the Rooms on the Scene
-					List<Widget> l = PrimeMain1.canvases[i].getRoomLayer()
+					List<Widget> l = PrimeMain.canvases[i].getRoomLayer()
 							.getChildren();
 
 					// Converts that list to an array of Objects

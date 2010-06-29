@@ -4,7 +4,7 @@
 package graphics.GUI.workareaCanvas;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -71,7 +71,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 
 	public CreateNewWorkareaCanvas()
 	{
-		super(PrimeMain1.texts.getString("newWorkareaCanvasFrameLabel"));
+		super(PrimeMain.texts.getString("newWorkareaCanvasFrameLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -96,7 +96,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 
 
 		// The name Label
-		nameLabel.setText(PrimeMain1.texts
+		nameLabel.setText(PrimeMain.texts
 				.getString("newWorkareaCanvasNetworkNameLabel"));
 
 
@@ -104,12 +104,12 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 		// The activate settings check box
 		settingsCheck.addActionListener(this);
 		settingsCheck.setActionCommand("settings");
-		settingsCheck.setText(PrimeMain1.texts
+		settingsCheck.setText(PrimeMain.texts
 				.getString("newWorkareaCanvasIPsettingsLabel"));
 
 
 		// The netmask label and combo box
-		netmaskLabel.setText(PrimeMain1.texts
+		netmaskLabel.setText(PrimeMain.texts
 				.getString("newWorkareaCanvasIPnetmaskLabel"));
 		netmaskCombo.setModel(new DefaultComboBoxModel(new String[] {
 				"255.255.255.0", "255.255.0.0", "255.0.0.0" }));
@@ -118,7 +118,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 
 
 		// The range from label and textfield
-		rangeFrom.setText(PrimeMain1.texts
+		rangeFrom.setText(PrimeMain.texts
 				.getString("newWorkareaCanvasIPfromLabel"));
 		rangeFrom.setEnabled(false);
 		rangeFromField.setEnabled(false);
@@ -126,7 +126,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 
 
 		// The range to label and textfield
-		rangeTo.setText(PrimeMain1.texts
+		rangeTo.setText(PrimeMain.texts
 				.getString("newWorkareaCanvasIPtoLabel"));
 		rangeTo.setEnabled(false);
 		rangeToField.setEnabled(false);
@@ -134,7 +134,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 
 		// The textfield for the network comment
 		jScrollPane1
-				.setBorder(BorderFactory.createTitledBorder(PrimeMain1.texts
+				.setBorder(BorderFactory.createTitledBorder(PrimeMain.texts
 						.getString("newWorkareaCanvasNetworkDescriptionLabel")));
 		descTextarea.setColumns(20);
 		descTextarea.setRows(5);
@@ -285,12 +285,12 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		final JButton save = new JButton(PrimeMain1.texts
+		final JButton save = new JButton(PrimeMain.texts
 				.getString("newWorkareaCanvasButtonCreateNetwork"));
 		save.addActionListener(this);
 		save.setActionCommand("create_network");
 
-		JButton cancel = new JButton(PrimeMain1.texts.getString("cancel"));
+		JButton cancel = new JButton(PrimeMain.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -397,7 +397,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 
 									// Gets the index of the Tab where the newly
 									// created WorkareaCanvas is placed
-									int index = PrimeMain1.workTab
+									int index = PrimeMain.workTab
 											.indexOfTabWithCanvas(nameField
 													.getText());
 
@@ -407,7 +407,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 									{
 										// Sets the focused on tab that contains
 										// the new WorkareaCanvas
-										PrimeMain1.workTab
+										PrimeMain.workTab
 												.setSelectedIndex(index);
 									}
 								}
@@ -417,7 +417,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 								String output = exp.getMessage();
 
 								JOptionPane.showMessageDialog(null, output,
-										PrimeMain1.texts.getString("error"),
+										PrimeMain.texts.getString("error"),
 										JOptionPane.ERROR_MESSAGE);
 							}
 						}
@@ -426,17 +426,17 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 							JOptionPane
 									.showMessageDialog(
 											null,
-											PrimeMain1.texts
+											PrimeMain.texts
 													.getString("newWorkareaCanvasIPendErrorMsg"),
-											PrimeMain1.texts.getString("error"),
+											PrimeMain.texts.getString("error"),
 											JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(null, PrimeMain1.texts
+						JOptionPane.showMessageDialog(null, PrimeMain.texts
 								.getString("newWorkareaCanvasIPstartErrorMsg"),
-								PrimeMain1.texts.getString("error"),
+								PrimeMain.texts.getString("error"),
 								JOptionPane.ERROR_MESSAGE);
 					}
 				}
@@ -452,7 +452,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 
 					// Gets the index of the Tab where the newly created
 					// WorkareaCanvas is placed
-					int index = PrimeMain1.workTab
+					int index = PrimeMain.workTab
 							.indexOfTabWithCanvas(nameField.getText());
 
 					// If the index is not -1, which means that the tab was
@@ -461,15 +461,15 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 					{
 						// Sets the focused on tab that contains the new
 						// WorkareaCanvas
-						PrimeMain1.workTab.setSelectedIndex(index);
+						PrimeMain.workTab.setSelectedIndex(index);
 					}
 				}
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+				JOptionPane.showMessageDialog(null, PrimeMain.texts
 						.getString("newWorkareaCanvasNoNameErrorMsg"),
-						PrimeMain1.texts.getString("error"),
+						PrimeMain.texts.getString("error"),
 						JOptionPane.ERROR_MESSAGE);
 			}
 

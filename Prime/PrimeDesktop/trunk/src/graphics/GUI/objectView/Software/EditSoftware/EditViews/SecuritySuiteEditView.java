@@ -2,7 +2,7 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -119,7 +119,7 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(SecuritySuite.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(SecuritySuite.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainSecSuite, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -145,10 +145,10 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain1.texts
+		JLabel label = new JLabel(PrimeMain.texts
 				.getString("swTabRemoveSoftwaretText"));
 
-		Button remove = new Button(PrimeMain1.texts
+		Button remove = new Button(PrimeMain.texts
 				.getString("swTabRemoveSoftwareButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeSoft");
@@ -184,49 +184,49 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 		JLabel[] labels = new JLabel[8];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts
+		labels[0] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewSupOSLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts
+		labels[0].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewSupOSTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts
+		labels[1] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewActivatedLabel"));
-		labels[1].setToolTipText(PrimeMain1.texts
+		labels[1].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewActivatedTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts
+		labels[2] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewLicenseLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts
+		labels[2].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewLicenseTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts
+		labels[3] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewHasAntivirusLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts
+		labels[3].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewHasAntivirusTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts
+		labels[4] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewHasFirewallLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts
+		labels[4].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewHasFirewallTip"));
 
-		labels[5] = new JLabel(PrimeMain1.texts
+		labels[5] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewHasProxyLabel"));
-		labels[5].setToolTipText(PrimeMain1.texts
+		labels[5].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewHasProxyTip"));
 
-		labels[6] = new JLabel(PrimeMain1.texts
+		labels[6] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewActDateLabel"));
-		labels[6].setToolTipText(PrimeMain1.texts
+		labels[6].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewActDateTip"));
 
-		labels[7] = new JLabel(PrimeMain1.texts
+		labels[7] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewExpDateLabel"));
-		labels[7].setToolTipText(PrimeMain1.texts
+		labels[7].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewExpDateTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
-		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts
+		SimpleDateFormat format = new SimpleDateFormat(PrimeMain.texts
 				.getString("secSuiteViewSimpleDateFormat"));
 
 		// --------------------------------------------------------------
@@ -429,7 +429,7 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 	@Override
 	public void save()
 	{
-		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts
+		SimpleDateFormat format = new SimpleDateFormat(PrimeMain.texts
 				.getString("secSuiteViewSimpleDateFormat"));
 
 		if ( name.getText() != "" )

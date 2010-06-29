@@ -4,7 +4,7 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
 
@@ -17,7 +17,7 @@ import widgets.WorkareaCanvas;
 /**
  * An action class that will perform a copy action that will place the currently
  * selected Widget, if any, from the current {@link WorkareaCanvas} into the
- * {@link PrimeMain1 PrimeMain1s} 'copyWidget' variable.
+ * {@link PrimeMain PrimeMain1s} 'copyWidget' variable.
  * 
  * @author Bahram Malaekeh
  * @version 1.0
@@ -36,7 +36,7 @@ public class ActionCopy extends AbstractSystemAction
 	public ActionCopy(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionCopyDescriptionText"));
 	}
 
@@ -50,7 +50,7 @@ public class ActionCopy extends AbstractSystemAction
 	public ActionCopy(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionCopyDescriptionText"));
 	}
 
@@ -65,19 +65,19 @@ public class ActionCopy extends AbstractSystemAction
 	public void actionPerformed(ActionEvent e)
 	{
 		// Sets the copyWidget pointer to null
-		PrimeMain1.cutWidget = null;
+		PrimeMain.cutWidget = null;
 
-		if ( PrimeMain1.currentCanvas != null )
+		if ( PrimeMain.currentCanvas != null )
 		{
-			if ( PrimeMain1.currentCanvas.getCurrentWidgetObject() != null )
+			if ( PrimeMain.currentCanvas.getCurrentWidgetObject() != null )
 			{
 				// Sets the widget as the widget to be copied
-				PrimeMain1.copyWidget = PrimeMain1.currentCanvas
+				PrimeMain.copyWidget = PrimeMain.currentCanvas
 						.getCurrentWidgetObject();
 			}
 			else
 			{
-				PrimeMain1.copyWidget = null;
+				PrimeMain.copyWidget = null;
 			}
 		}
 	}

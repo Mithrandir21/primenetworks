@@ -5,7 +5,7 @@ package graphics.GUI.messageArea.SoftwareTab;
 
 
 import exceptions.ObjectNotFoundException;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import managment.ArrayManagment;
 import objects.Object;
 import objects.softwareObjects.Antivirus;
@@ -95,9 +95,9 @@ public class SoftwareProcessing
 		if ( !(containsSoftwareOfClass(obj, OperatingSystem.class)) )
 		{
 			String[] info = { obj.getObjectName(),
-					PrimeMain1.texts.getString("operatingSystem"),
-					PrimeMain1.texts.getString("noOScriticalMsg"),
-					PrimeMain1.texts.getString("softwareError") };
+					PrimeMain.texts.getString("operatingSystem"),
+					PrimeMain.texts.getString("noOScriticalMsg"),
+					PrimeMain.texts.getString("softwareError") };
 			data = addError(data, info);
 		}
 
@@ -106,9 +106,9 @@ public class SoftwareProcessing
 		if ( moreThenOneSoftware(obj, Antivirus.class) )
 		{
 			String[] info = { obj.getObjectName(),
-					PrimeMain1.texts.getString("antivirus"),
-					PrimeMain1.texts.getString("moreAVcriticalMsg"),
-					PrimeMain1.texts.getString("softwareError") };
+					PrimeMain.texts.getString("antivirus"),
+					PrimeMain.texts.getString("moreAVcriticalMsg"),
+					PrimeMain.texts.getString("softwareError") };
 			data = addError(data, info);
 		}
 
@@ -117,9 +117,9 @@ public class SoftwareProcessing
 		if ( moreThenOneSoftware(obj, Firewall.class) )
 		{
 			String[] info = { obj.getObjectName(),
-					PrimeMain1.texts.getString("firewall"),
-					PrimeMain1.texts.getString("moreFWcriticalMsg"),
-					PrimeMain1.texts.getString("softwareError") };
+					PrimeMain.texts.getString("firewall"),
+					PrimeMain.texts.getString("moreFWcriticalMsg"),
+					PrimeMain.texts.getString("softwareError") };
 			data = addError(data, info);
 		}
 
@@ -150,9 +150,9 @@ public class SoftwareProcessing
 		if ( moreThenOneSoftware(obj, OperatingSystem.class) )
 		{
 			String[] info = { obj.getObjectName(),
-					PrimeMain1.texts.getString("operatingSystem"),
-					PrimeMain1.texts.getString("moreOSwarningMsg"),
-					PrimeMain1.texts.getString("softwareWarning") };
+					PrimeMain.texts.getString("operatingSystem"),
+					PrimeMain.texts.getString("moreOSwarningMsg"),
+					PrimeMain.texts.getString("softwareWarning") };
 			data = addError(data, info);
 		}
 

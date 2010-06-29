@@ -21,8 +21,6 @@ import org.netbeans.api.visual.widget.Widget;
 
 /**
  * Javadoc-TODO - Description NEEDED!
- * 
- * @author Bahram Malaekeh
  */
 public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 {

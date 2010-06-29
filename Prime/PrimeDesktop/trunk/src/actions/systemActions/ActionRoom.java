@@ -5,7 +5,7 @@ package actions.systemActions;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.menues.GenericPrimeToolbar;
 
 import java.awt.event.ActionEvent;
@@ -37,7 +37,7 @@ public class ActionRoom extends AbstractSystemAction
 	public ActionRoom(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionToggleCreateRoomButtonText"));
 	}
 
@@ -52,7 +52,7 @@ public class ActionRoom extends AbstractSystemAction
 	public ActionRoom(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionToggleCreateRoomButtonText"));
 	}
 

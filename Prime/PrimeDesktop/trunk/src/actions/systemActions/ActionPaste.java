@@ -4,7 +4,7 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
 import java.awt.Point;
@@ -26,7 +26,7 @@ import widgets.WorkareaCanvas;
 
 /**
  * An action class that will perform a paste action that will first check to see
- * if the copyWidget or the cutWidget in the {@link PrimeMain1} is null. If the
+ * if the copyWidget or the cutWidget in the {@link PrimeMain} is null. If the
  * copyWidget variable is not null, it will perform a copy action. If the
  * copyWidget variable is null and the cutWidget is not null, it will perform a
  * cut action.
@@ -69,7 +69,7 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 	public ActionPaste(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionPasteDescriptionText"));
 	}
 
@@ -84,7 +84,7 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 	public ActionPaste(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionPasteDescriptionText"));
 	}
 
@@ -124,19 +124,19 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 	@Override
 	public String getPresentationName()
 	{
-		return PrimeMain1.texts.getString("actionPasteActionPresNameText");
+		return PrimeMain.texts.getString("actionPasteActionPresNameText");
 	}
 
 	@Override
 	public String getRedoPresentationName()
 	{
-		return PrimeMain1.texts.getString("actionPasteRedoPresNameText");
+		return PrimeMain.texts.getString("actionPasteRedoPresNameText");
 	}
 
 	@Override
 	public String getUndoPresentationName()
 	{
-		return PrimeMain1.texts.getString("actionPasteUndoPresNameText");
+		return PrimeMain.texts.getString("actionPasteUndoPresNameText");
 	}
 
 	@Override
@@ -226,7 +226,7 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 	@Override
 	public void performAction(boolean undoable)
 	{
-		if ( PrimeMain1.currentCanvas != null )
+		if ( PrimeMain.currentCanvas != null )
 		{
 			// The user wants to paste a new WidgetObject, but not replace
 			// the current WidgetObject
@@ -234,17 +234,17 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 
 
 			// Either the cut or copy pointers will be used
-			if ( PrimeMain1.copyWidget != null )
+			if ( PrimeMain.copyWidget != null )
 			{
-				copyFrom = PrimeMain1.copyWidget;
+				copyFrom = PrimeMain.copyWidget;
 			}
 			else
 			{
-				assert PrimeMain1.cutWidget != null;
+				assert PrimeMain.cutWidget != null;
 
 				isCut = true;
 
-				copyFrom = PrimeMain1.cutWidget;
+				copyFrom = PrimeMain.cutWidget;
 			}
 
 			if ( copyFrom != null )
@@ -255,7 +255,7 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 				// Finds the canvas where the WidgetObject to be copied is
 				// located
 				fromCanvas = CanvasManagment.findCanvas(
-						widgetObject.getScene(), PrimeMain1.canvases);
+						widgetObject.getScene(), PrimeMain.canvases);
 
 				// If the canvas that the WidgetObject to be copied from does
 				// not exist in the array of canvases(Which means that it is
@@ -263,7 +263,7 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 				if ( fromCanvas != null )
 				{
 					// Sets the current canvas as the toCanvas
-					toCanvas = PrimeMain1.currentCanvas;
+					toCanvas = PrimeMain.currentCanvas;
 
 					if ( undoable )
 					{
@@ -291,7 +291,7 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 
 					// Creates a new WidgetObject
 					WidgetObject newWidget = new WidgetObject(
-							PrimeMain1.currentCanvas.getScene(), newObject,
+							PrimeMain.currentCanvas.getScene(), newObject,
 							copyFrom.getImage());
 
 					// Sets the new WidgetObject
@@ -301,33 +301,33 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 					newWidget.getObject().setLocation(newLocation);
 
 					// Adds the newly created WidgetObject to the classes canvas
-					PrimeMain1.currentCanvas.addWidgetObject(newWidget,
+					PrimeMain.currentCanvas.addWidgetObject(newWidget,
 							newLocation, true);
 
 					// Adds the clicking actions to the Widget on the scene
 					ActionsAdder.makeWidgetObjectReady(
-							PrimeMain1.currentCanvas, newWidget);
+							PrimeMain.currentCanvas, newWidget);
 
 
 					// When the paste function is finished, the cut and copy
 					// should be reset to null. If the Cut object is the one
 					// used, that object will be removed from the canvas
-					if ( PrimeMain1.copyWidget != null )
+					if ( PrimeMain.copyWidget != null )
 					{
-						PrimeMain1.copyWidget = null;
+						PrimeMain.copyWidget = null;
 					}
 					else
 					{
 						// Assures that the pointer is not null
-						assert PrimeMain1.cutWidget != null;
+						assert PrimeMain.cutWidget != null;
 
 						// Removes the object from the canvas
 						WorkareaCanvasActions.deleteObject(CanvasManagment
-								.findCanvas(PrimeMain1.cutWidget.getScene(),
-										PrimeMain1.canvases),
-								PrimeMain1.cutWidget);
+								.findCanvas(PrimeMain.cutWidget.getScene(),
+										PrimeMain.canvases),
+								PrimeMain.cutWidget);
 
-						PrimeMain1.cutWidget = null;
+						PrimeMain.cutWidget = null;
 					}
 				}
 			}

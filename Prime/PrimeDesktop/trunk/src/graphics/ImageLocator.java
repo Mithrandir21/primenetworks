@@ -54,9 +54,9 @@ public class ImageLocator
 	{
 		ImageIcon temp = null;
 
-		for ( int i = 0; i < PrimeMain1.images.size(); i++ )
+		for ( int i = 0; i < PrimeMain.images.size(); i++ )
 		{
-			temp = PrimeMain1.images.get(i);
+			temp = PrimeMain.images.get(i);
 
 			if ( temp.getDescription().equals(name) )
 			{

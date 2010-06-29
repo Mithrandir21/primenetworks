@@ -5,13 +5,19 @@ package graphics.GUI.properties.objectTypes;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
+import graphics.GUI.properties.ObjectProperties;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -29,13 +35,45 @@ import objects.clientObjects.ThinClient;
  * 
  * @author Bahram Malaekeh
  */
-public class ClientsPropertiesView
+public class ClientsPropertiesView extends AbstractObjectPropertiesView implements ActionListener
 {
 
 	// The client properties labels
 	JLabel name;
 
 
+	/**
+	 * 
+	 */
+	private JComboBox comboBox = new JComboBox();
+
+
+	private Clients objectView;
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 * 
+	 * @param obj
+	 */
+	public ClientsPropertiesView(Object obj)
+	{
+		super(obj);
+		if ( obj instanceof Clients )
+		{
+			objectView = (Clients) obj;
+
+			nameField.addKeyListener(new SaveKey());
+
+			d.gridy = 1;
+			this.add(getClientsPropertiesView(obj), d);
+
+
+			d.weighty = 1.0; // request any extra vertical space
+			d.gridy = 2;
+			this.add(ObjectProperties.createButtons(this), d);
+		}
+	}
 
 	/**
 	 * This function populates the given JPanel with information about the the
@@ -46,22 +84,22 @@ public class ClientsPropertiesView
 	 * @param obj
 	 *            The Object that is to populate the given JPanel.
 	 */
-	public static JPanel getClientsPropertiesView(Object obj)
+	public JPanel getClientsPropertiesView(Object obj)
 	{
 		JPanel panel = new JPanel(new GridBagLayout());
-		GridBagConstraints d = new GridBagConstraints();
+		GridBagConstraints panelCons = new GridBagConstraints();
 
-		d.fill = GridBagConstraints.HORIZONTAL;
+		panelCons.fill = GridBagConstraints.HORIZONTAL;
 		// d.ipady = 0; // reset to default
 		// d.ipadx = 0; // reset to default
 		// d.weighty = 1.0; // request any extra vertical space
-		d.weightx = 0.8; // request any extra horizontal space
-		d.anchor = GridBagConstraints.NORTH; // location
-		d.insets = new Insets(0, 0, 5, 0); // padding
+		panelCons.weightx = 0.8; // request any extra horizontal space
+		panelCons.anchor = GridBagConstraints.NORTH; // location
+		panelCons.insets = new Insets(0, 0, 5, 0); // padding
 		// d.gridwidth = 1; // 2 row wide
 		// d.gridheight = 1; // 2 columns wide
-		d.gridy = 0; // row
-		d.gridx = 0; // column
+		panelCons.gridy = 0; // row
+		panelCons.gridx = 0; // column
 
 
 		JLabel label = null;
@@ -69,34 +107,34 @@ public class ClientsPropertiesView
 		if ( obj instanceof Desktop )
 		{
 			// Desktop Rate
-			label = new JLabel(PrimeMain1.texts
+			label = new JLabel(PrimeMain.texts
 					.getString("propClientViewDesktopRateLabel"),
 					SwingConstants.TRAILING);
-			label.setToolTipText(PrimeMain1.texts
+			label.setToolTipText(PrimeMain.texts
 					.getString("propClientViewDesktopRateTip"));
 		}
 		else if ( obj instanceof Laptop )
 		{
 			// Laptop Rate
-			label = new JLabel(PrimeMain1.texts
+			label = new JLabel(PrimeMain.texts
 					.getString("propClientViewLaptopRateLabel"),
 					SwingConstants.TRAILING);
-			label.setToolTipText(PrimeMain1.texts
+			label.setToolTipText(PrimeMain.texts
 					.getString("propClientViewLaptopRateTip"));
 		}
 		else if ( obj instanceof ThinClient )
 		{
 			// ThinClient Rate
-			label = new JLabel(PrimeMain1.texts
+			label = new JLabel(PrimeMain.texts
 					.getString("propClientViewThinClientRateLabel"),
 					SwingConstants.TRAILING);
-			label.setToolTipText(PrimeMain1.texts
+			label.setToolTipText(PrimeMain.texts
 					.getString("propClientViewThinClientRateTip"));
 		}
 
-		d.insets = new Insets(0, 0, 10, 0); // padding
-		d.gridy++; // row
-		panel.add(label, d);
+		panelCons.insets = new Insets(0, 0, 10, 0); // padding
+		panelCons.gridy++; // row
+		panel.add(label, panelCons);
 
 
 
@@ -110,7 +148,7 @@ public class ClientsPropertiesView
 		}
 
 
-		JComboBox comboBox = new JComboBox(rates);
+		comboBox.setModel(new DefaultComboBoxModel(rates));
 		comboBox.setBackground(Color.white);
 		comboBox.setEditable(false);
 		comboBox.setName("Client Rates");
@@ -120,13 +158,114 @@ public class ClientsPropertiesView
 		comboBox.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(rates,
 				client.getClientRate()));
 
-		d.insets = new Insets(0, 0, 10, 0); // padding
-		d.weighty = 1.0; // request any extra vertical space
-		d.gridy++; // row
-		panel.add(comboBox, d);
+		panelCons.insets = new Insets(0, 0, 10, 0); // padding
+		panelCons.weighty = 1.0; // request any extra vertical space
+		panelCons.gridy++; // row
+		panel.add(comboBox, panelCons);
 
 
 
 		return panel;
+	}
+
+
+	/**
+	 * Resets all specific fields to the info gotten from the {@link Object} viewed.
+	 */
+	private void resetFields()
+	{
+		resetGeneralFields();
+
+		String[] rates = new String[20];
+		int temp = 5;
+
+		for ( int i = 0; i < rates.length; i++ )
+		{
+			rates[i] = Integer.toString(temp);
+			temp = temp + 5;
+		}
+
+		comboBox.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(rates,
+				objectView.getClientRate()));
+	}
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 * 
+	 * @author Bahram Malaekeh
+	 * 
+	 */
+	public class SaveKey extends KeyAdapter
+	{
+		/*
+		 * (non-Javadoc)
+		 * @see java.awt.event.KeyAdapter#keyPressed(java.awt.event.KeyEvent)
+		 */
+		@Override
+		public void keyPressed(KeyEvent e)
+		{
+			int key = e.getKeyCode();
+			{
+				if ( key == KeyEvent.VK_ENTER )
+				{
+					saveAction();
+				}
+			}
+		}
+	}
+
+
+
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	private void saveAction()
+	{
+		generalSaveAction();
+
+
+		// The rate
+		try
+		{
+			int theRate = Integer.parseInt(comboBox.getSelectedItem()
+					.toString());
+			objectView.setClientRate(theRate);
+		}
+		catch ( NumberFormatException e )
+		{
+			System.out.println("Number error: Parse"
+					+ comboBox.getSelectedItem().toString()
+					+ " --ClientPropertiesView");
+
+			errorDuringSaving = true;
+		}
+
+		// If any errors occur during the saving process
+		if ( !errorDuringSaving )
+		{
+			PrimeMain.updatePropertiesObjectArea(objectViewed, true);
+		}
+	}
+
+
+
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		if ( e.getActionCommand().equals(PrimeMain.texts.getString("reset")) )
+		{
+			resetFields();
+		}
+		else if ( e.getActionCommand().equals(
+				PrimeMain.texts.getString("save")) )
+		{
+			saveAction();
+		}
 	}
 }

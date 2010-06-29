@@ -5,7 +5,7 @@ package graphics.GUI.selectArea;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.Component;
 import java.awt.GridBagConstraints;
@@ -172,7 +172,7 @@ public class ObjectSelection extends JPanel
 		iconsList.toArray(widIcons);
 
 
-		return getWidgetGroup(PrimeMain1.texts
+		return getWidgetGroup(PrimeMain.texts
 				.getString("selectAreaDesktopGroupName"), widIcons, true);
 	}
 
@@ -200,7 +200,7 @@ public class ObjectSelection extends JPanel
 		iconsList.toArray(widIcons);
 
 
-		return getWidgetGroup(PrimeMain1.texts
+		return getWidgetGroup(PrimeMain.texts
 				.getString("selectAreaServerGroupName"), widIcons, true);
 	}
 
@@ -226,7 +226,7 @@ public class ObjectSelection extends JPanel
 		iconsList.toArray(widIcons);
 
 
-		return getWidgetGroup(PrimeMain1.texts
+		return getWidgetGroup(PrimeMain.texts
 				.getString("selectAreaExternalGroupName"), widIcons, false);
 	}
 
@@ -250,7 +250,7 @@ public class ObjectSelection extends JPanel
 		iconsList.toArray(widIcons);
 
 
-		return getWidgetGroup(PrimeMain1.texts
+		return getWidgetGroup(PrimeMain.texts
 				.getString("selectAreaNetworkGroupName"), widIcons, false);
 	}
 
@@ -307,7 +307,7 @@ public class ObjectSelection extends JPanel
 	private WidgetIcon makeImageIcon(Class objectType, MouseListener mouseLis,
 			boolean transferable)
 	{
-		ImageIcon Icon = PrimeMain1.objectImageIcons.get(objectType);
+		ImageIcon Icon = PrimeMain.objectImageIcons.get(objectType);
 
 		WidgetIcon iconButton = null;
 

@@ -4,7 +4,7 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.visualObjectCustomization.VisualCustomFrame;
 
 import java.awt.event.ActionEvent;
@@ -33,7 +33,7 @@ public class ActionOpenVisualEdit extends AbstractSystemAction
 	public ActionOpenVisualEdit(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionAboutDescriptionText"));
 	}
 
@@ -48,7 +48,7 @@ public class ActionOpenVisualEdit extends AbstractSystemAction
 	public ActionOpenVisualEdit(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionAboutDescriptionText"));
 	}
 
@@ -62,13 +62,13 @@ public class ActionOpenVisualEdit extends AbstractSystemAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( PrimeMain1.vcf == null )
+		if ( PrimeMain.vcf == null )
 		{
-			PrimeMain1.vcf = new VisualCustomFrame();
+			PrimeMain.vcf = new VisualCustomFrame();
 		}
 		else
 		{
-			PrimeMain1.vcf.toFront();
+			PrimeMain.vcf.toFront();
 		}
 	}
 

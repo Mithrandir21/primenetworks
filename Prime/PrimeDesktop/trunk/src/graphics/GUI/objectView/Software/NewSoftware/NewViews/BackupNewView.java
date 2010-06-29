@@ -2,7 +2,7 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
@@ -86,7 +86,7 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 	 */
 	public BackupNewView(Object obj, Backup back)
 	{
-		super(PrimeMain1.texts.getString("swNewBackupLabel"));
+		super(PrimeMain.texts.getString("swNewBackupLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -115,7 +115,7 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(Backup.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(Backup.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainBack, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -176,29 +176,29 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 		JLabel[] labels = new JLabel[5];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts
+		labels[0] = new JLabel(PrimeMain.texts
 				.getString("backupViewSupOSLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts
+		labels[0].setToolTipText(PrimeMain.texts
 				.getString("backupViewSupOSTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts
+		labels[1] = new JLabel(PrimeMain.texts
 				.getString("backupViewTypeLabel"));
-		labels[1].setToolTipText(PrimeMain1.texts
+		labels[1].setToolTipText(PrimeMain.texts
 				.getString("backupViewTypeTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts
+		labels[2] = new JLabel(PrimeMain.texts
 				.getString("backupViewSupCompressionLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts
+		labels[2].setToolTipText(PrimeMain.texts
 				.getString("backupViewSupCompressionTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts
+		labels[3] = new JLabel(PrimeMain.texts
 				.getString("backupViewSupEncryptionLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts
+		labels[3].setToolTipText(PrimeMain.texts
 				.getString("backupViewSupEncryptionTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts
+		labels[4] = new JLabel(PrimeMain.texts
 				.getString("backupViewDuplicatesLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts
+		labels[4].setToolTipText(PrimeMain.texts
 				.getString("backupViewDuplicatesTip"));
 
 
@@ -317,11 +317,11 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button(PrimeMain1.texts.getString("save"));
+		Button save = new Button(PrimeMain.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
+		Button cancel = new Button(PrimeMain.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -402,7 +402,7 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
@@ -414,7 +414,7 @@ public class BackupNewView extends JFrame implements SoftwareView, ActionListene
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(this, PrimeMain1.texts
+				JOptionPane.showMessageDialog(this, PrimeMain.texts
 						.getString("swNewCompatibilityQuestion"));
 			}
 

@@ -4,7 +4,7 @@
 package graphics.GUI.messageArea.SoftwareTab;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.messageArea.MessageJTable;
 
 import javax.swing.JScrollPane;
@@ -35,10 +35,10 @@ public class SoftwareMessages extends JScrollPane
 	public SoftwareMessages(Object[] objects, String[][] data)
 	{
 		String[] columnNames = {
-				PrimeMain1.texts.getString("tableSWobjectName"),
-				PrimeMain1.texts.getString("tableSWswType"),
-				PrimeMain1.texts.getString("tableSWdescription"),
-				PrimeMain1.texts.getString("tableSWmsgType") };
+				PrimeMain.texts.getString("tableSWobjectName"),
+				PrimeMain.texts.getString("tableSWswType"),
+				PrimeMain.texts.getString("tableSWdescription"),
+				PrimeMain.texts.getString("tableSWmsgType") };
 
 		table = new MessageJTable(data, columnNames);
 

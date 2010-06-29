@@ -2,7 +2,7 @@ package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget;
 
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.Point;
 
@@ -50,7 +50,7 @@ public class JMenuWidget implements PopupMenuProvider
 	public JPopupMenu getPopupMenu(Widget widget, Point localLocation)
 	{
 		// Sets the current WidgetObject for the systems current canvas
-		PrimeMain1.currentCanvas.setCurrentWidgetObject((WidgetObject) widget);
+		PrimeMain.currentCanvas.setCurrentWidgetObject((WidgetObject) widget);
 
 		JPopupWidgetMenu provider = new JPopupWidgetMenu(canvas, widget);
 

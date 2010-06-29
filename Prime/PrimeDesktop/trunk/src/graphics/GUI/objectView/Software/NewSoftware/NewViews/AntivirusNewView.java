@@ -2,7 +2,7 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
@@ -87,7 +87,7 @@ public class AntivirusNewView extends JFrame implements SoftwareView, ActionList
 	 */
 	public AntivirusNewView(Object obj, Antivirus av)
 	{
-		super(PrimeMain1.texts.getString("swNewAntivirusLabel"));
+		super(PrimeMain.texts.getString("swNewAntivirusLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -116,7 +116,7 @@ public class AntivirusNewView extends JFrame implements SoftwareView, ActionList
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(Antivirus.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(Antivirus.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainAV, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -176,29 +176,29 @@ public class AntivirusNewView extends JFrame implements SoftwareView, ActionList
 		JLabel[] labels = new JLabel[5];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts.getString("avViewSupOSLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts.getString("avViewSupOSTip"));
+		labels[0] = new JLabel(PrimeMain.texts.getString("avViewSupOSLabel"));
+		labels[0].setToolTipText(PrimeMain.texts.getString("avViewSupOSTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts.getString("avViewActDateLabel"));
+		labels[1] = new JLabel(PrimeMain.texts.getString("avViewActDateLabel"));
 		labels[1]
-				.setToolTipText(PrimeMain1.texts.getString("avViewActDateTip"));
+				.setToolTipText(PrimeMain.texts.getString("avViewActDateTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts.getString("avViewExpDateLabel"));
+		labels[2] = new JLabel(PrimeMain.texts.getString("avViewExpDateLabel"));
 		labels[2]
-				.setToolTipText(PrimeMain1.texts.getString("avViewExpDateTip"));
+				.setToolTipText(PrimeMain.texts.getString("avViewExpDateTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts.getString("avViewLicenseLabel"));
+		labels[3] = new JLabel(PrimeMain.texts.getString("avViewLicenseLabel"));
 		labels[3]
-				.setToolTipText(PrimeMain1.texts.getString("avViewLicenseTip"));
+				.setToolTipText(PrimeMain.texts.getString("avViewLicenseTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts
+		labels[4] = new JLabel(PrimeMain.texts
 				.getString("avViewActivatedLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts
+		labels[4].setToolTipText(PrimeMain.texts
 				.getString("avViewActivatedTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
-		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts
+		SimpleDateFormat format = new SimpleDateFormat(PrimeMain.texts
 				.getString("avViewSimpleDateFormat"));
 
 
@@ -346,11 +346,11 @@ public class AntivirusNewView extends JFrame implements SoftwareView, ActionList
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button(PrimeMain1.texts.getString("save"));
+		Button save = new Button(PrimeMain.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
+		Button cancel = new Button(PrimeMain.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -364,7 +364,7 @@ public class AntivirusNewView extends JFrame implements SoftwareView, ActionList
 	@Override
 	public void save()
 	{
-		SimpleDateFormat format = new SimpleDateFormat(PrimeMain1.texts
+		SimpleDateFormat format = new SimpleDateFormat(PrimeMain.texts
 				.getString("avViewSimpleDateFormat"));
 
 		if ( name.getText() != "" )
@@ -443,7 +443,7 @@ public class AntivirusNewView extends JFrame implements SoftwareView, ActionList
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
@@ -455,7 +455,7 @@ public class AntivirusNewView extends JFrame implements SoftwareView, ActionList
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(this, PrimeMain1.texts
+				JOptionPane.showMessageDialog(this, PrimeMain.texts
 						.getString("swNewCompatibilityQuestion"));
 			}
 

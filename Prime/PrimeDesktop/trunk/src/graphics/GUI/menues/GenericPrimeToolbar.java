@@ -5,7 +5,7 @@ package graphics.GUI.menues;
 
 
 import graphics.ImageLocator;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.BorderLayout;
 
@@ -76,8 +76,9 @@ public class GenericPrimeToolbar extends JMenuBar
 
 
 
-	private JToolBar fileToolBar, editToolBar, stepsToolBar, networkToolBar, editingToolBar;
-	
+	private JToolBar fileToolBar, editToolBar, stepsToolBar, networkToolBar,
+			editingToolBar;
+
 	public static JToolBar canvasToolBar;
 
 
@@ -93,20 +94,20 @@ public class GenericPrimeToolbar extends JMenuBar
 
 
 		tempIcon = ImageLocator.getImageIconObject("New");
-		ActionNew newFile = new ActionNew(PrimeMain1.texts
+		ActionNew newFile = new ActionNew(PrimeMain.texts
 				.getString("newLabel"), tempIcon);
 
 		tempIcon = ImageLocator.getImageIconObject("Open");
-		ActionOpenfile openFile = new ActionOpenfile(PrimeMain1.texts
+		ActionOpenfile openFile = new ActionOpenfile(PrimeMain.texts
 				.getString("openFileLabel"), tempIcon);
 		openFile.setEnabled(false);
 
 		tempIcon = ImageLocator.getImageIconObject("Save");
-		ActionSave save = new ActionSave(PrimeMain1.texts
+		ActionSave save = new ActionSave(PrimeMain.texts
 				.getString("saveLabel"), tempIcon);
 
 		tempIcon = ImageLocator.getImageIconObject("Save_all");
-		ActionSaveAll saveAll = new ActionSaveAll(PrimeMain1.texts
+		ActionSaveAll saveAll = new ActionSaveAll(PrimeMain.texts
 				.getString("saveAllLabel"), tempIcon);
 
 
@@ -134,15 +135,15 @@ public class GenericPrimeToolbar extends JMenuBar
 
 
 		tempIcon = ImageLocator.getImageIconObject("Cut");
-		ActionCut cut = new ActionCut(PrimeMain1.texts.getString("cutLabel"),
+		ActionCut cut = new ActionCut(PrimeMain.texts.getString("cutLabel"),
 				tempIcon);
 
 		tempIcon = ImageLocator.getImageIconObject("Copy");
-		ActionCopy openFile = new ActionCopy(PrimeMain1.texts
+		ActionCopy openFile = new ActionCopy(PrimeMain.texts
 				.getString("copyLabel"), tempIcon);
 
 		tempIcon = ImageLocator.getImageIconObject("Paste");
-		ActionPaste save = new ActionPaste(PrimeMain1.texts
+		ActionPaste save = new ActionPaste(PrimeMain.texts
 				.getString("pasteLabel"), tempIcon);
 
 
@@ -165,12 +166,12 @@ public class GenericPrimeToolbar extends JMenuBar
 		stepsToolBar.setFloatable(false);
 
 		tempIcon = ImageLocator.getImageIconObject("Undo");
-		ActionUndo undo = new ActionUndo(PrimeMain1.texts
+		ActionUndo undo = new ActionUndo(PrimeMain.texts
 				.getString("undoLabel"), tempIcon);
 
 
 		tempIcon = ImageLocator.getImageIconObject("Redo");
-		ActionRedo redo = new ActionRedo(PrimeMain1.texts
+		ActionRedo redo = new ActionRedo(PrimeMain.texts
 				.getString("redoLabel"), tempIcon);
 
 
@@ -195,13 +196,13 @@ public class GenericPrimeToolbar extends JMenuBar
 		networkToolBar.setFloatable(false);
 
 		tempIcon = ImageLocator.getImageIconObject("Update");
-		ActionUpdate update = new ActionUpdate(PrimeMain1.texts
+		ActionUpdate update = new ActionUpdate(PrimeMain.texts
 				.getString("updateButtonLabel"), tempIcon);
 		JButton updateButton = new JButton(update);
 
 		tempIcon = ImageLocator.getImageIconObject("Export");
-		ActionExportCanvasAsImage export = new ActionExportCanvasAsImage(PrimeMain1.texts
-				.getString("exportButtonLabel"), tempIcon);
+		ActionExportCanvasAsImage export = new ActionExportCanvasAsImage(
+				PrimeMain.texts.getString("exportButtonLabel"), tempIcon);
 		JButton exportButton = new JButton(export);
 
 		networkToolBar.add(updateButton);
@@ -223,12 +224,12 @@ public class GenericPrimeToolbar extends JMenuBar
 
 
 		tempIcon = ImageLocator.getImageIconObject("Connection");
-		ActionConnection con = new ActionConnection(PrimeMain1.texts
+		ActionConnection con = new ActionConnection(PrimeMain.texts
 				.getString("connectToggleButtonLabel"), tempIcon);
 		JToggleButton connectionButton = new JToggleButton(con);
 
 		tempIcon = ImageLocator.getImageIconObject("Room");
-		ActionRoom room = new ActionRoom(PrimeMain1.texts
+		ActionRoom room = new ActionRoom(PrimeMain.texts
 				.getString("roomToggleButtonLabel"), tempIcon);
 		JToggleButton roomButton = new JToggleButton(room);
 
@@ -251,13 +252,14 @@ public class GenericPrimeToolbar extends JMenuBar
 		editingToolBar.setFloatable(false);
 
 		tempIcon = ImageLocator.getImageIconObject("Objects");
-		ActionObjectEditing editing = new ActionObjectEditing(PrimeMain1.texts
+		ActionObjectEditing editing = new ActionObjectEditing(PrimeMain.texts
 				.getString("standardObjectsLabel"), tempIcon);
 		JButton editingButton = new JButton(editing);
 
-		ActionFullscreen fullscreen = new ActionFullscreen(PrimeMain1.texts
+		ActionFullscreen fullscreen = new ActionFullscreen(PrimeMain.texts
 				.getString("actionFullscreenText"));
 		JButton fullscreenButton = new JButton(fullscreen);
+		fullscreenButton.setVisible(false);
 
 
 		editingToolBar.add(editingButton);

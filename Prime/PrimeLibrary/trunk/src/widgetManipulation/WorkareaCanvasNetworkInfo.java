@@ -46,8 +46,7 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 
 	/**
 	 * A constructor for the class that takes a {@link WorkareaCanvas} as the
-	 * only argument. This class will contain network information for that
-	 * {@link WorkareaCanvas}.
+	 * only argument. This class will contain network information for that {@link WorkareaCanvas}.
 	 * 
 	 * @param canvas
 	 *            The WorkareaCanvas this information class belongs to.
@@ -67,6 +66,11 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	 */
 	public String getNetmask()
 	{
+		// If the variable field is null
+		if ( netmask == null )
+		{
+			return "";
+		}
 		return netmask;
 	}
 
@@ -80,6 +84,11 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	 */
 	public String getIpRangeFrom()
 	{
+		// If the variable field is null
+		if ( ipRangeFrom == null )
+		{
+			return "";
+		}
 		return ipRangeFrom;
 	}
 
@@ -92,6 +101,11 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	 */
 	public String getIpRangeTo()
 	{
+		// If the variable field is null
+		if ( ipRangeTo == null )
+		{
+			return "";
+		}
 		return ipRangeTo;
 	}
 
@@ -102,6 +116,11 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	 */
 	public String getNetworkNotes()
 	{
+		// If the variable field is null
+		if ( networkNotes == null )
+		{
+			return "";
+		}
 		return networkNotes;
 	}
 
@@ -116,6 +135,13 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	 */
 	public boolean setNetmask(String netmask)
 	{
+		// If the string is empty
+		if ( netmask.equals("") )
+		{
+			this.netmask = netmask;
+			return true;
+		}
+
 		// If the string given matches the given pattern.
 		if ( NetworkManagment.getIPpattern().matcher(netmask).matches() )
 		{

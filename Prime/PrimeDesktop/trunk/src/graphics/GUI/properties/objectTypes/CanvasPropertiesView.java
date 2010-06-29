@@ -17,28 +17,32 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
 
-import objects.Object;
+import widgets.WorkareaCanvas;
 
 
 /**
- * This class creates a properties JPanel for Peripheral.
+ * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
+ * 
  */
-public class PeripheralsPropertiesView extends AbstractObjectPropertiesView implements ActionListener
+public class CanvasPropertiesView extends AbstractCanvasPropertiesView implements ActionListener
 {
-
 	/**
 	 * TODO - Description NEEDED!
 	 * 
-	 * @param obj
+	 * @param canvas
 	 */
-	public PeripheralsPropertiesView(Object obj)
+	public CanvasPropertiesView(WorkareaCanvas canvas)
 	{
-		super(obj);
+		super(canvas);
+
+		nameField.addKeyListener(new SaveKey());
+		IPrangeEndField.addKeyListener(new SaveKey());
+		IPrangeStartField.addKeyListener(new SaveKey());
 
 		d.gridy = 1;
-		this.add(getPeripheralsPropertiesView(obj), d);
+		this.add(getGeneralCanvasPropertiesView(canvas), d);
 
 
 		d.weighty = 1.0; // request any extra vertical space
@@ -46,12 +50,14 @@ public class PeripheralsPropertiesView extends AbstractObjectPropertiesView impl
 		this.add(ObjectProperties.createButtons(this), d);
 	}
 
+
+
 	/**
 	 * TODO - Description NEEDED!
 	 * 
 	 * @param obj
 	 */
-	public static JPanel getPeripheralsPropertiesView(Object obj)
+	public static JPanel getGeneralCanvasPropertiesView(WorkareaCanvas canvas)
 	{
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints panelCons = new GridBagConstraints();
@@ -75,7 +81,7 @@ public class PeripheralsPropertiesView extends AbstractObjectPropertiesView impl
 
 
 	/**
-	 * Resets all specific fields to the info gotten from the {@link Object} viewed.
+	 * Resets all specific fields to the info gotten from the {@link WorkareaCanvas} viewed.
 	 */
 	private void resetFields()
 	{
@@ -118,10 +124,11 @@ public class PeripheralsPropertiesView extends AbstractObjectPropertiesView impl
 	{
 		generalSaveAction();
 
+
 		// If any errors occur during the saving process
 		if ( !errorDuringSaving )
 		{
-			PrimeMain.updatePropertiesObjectArea(objectViewed, true);
+			PrimeMain.updatePropertiesCanvasArea(true);
 		}
 	}
 

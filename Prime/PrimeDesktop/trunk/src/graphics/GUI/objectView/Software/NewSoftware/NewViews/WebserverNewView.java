@@ -5,7 +5,7 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
@@ -130,7 +130,7 @@ public class WebserverNewView extends JFrame implements SoftwareView, ActionList
 	 */
 	public WebserverNewView(Object obj, Webserver webserver)
 	{
-		super(PrimeMain1.texts.getString("swNewWebserverLabel"));
+		super(PrimeMain.texts.getString("swNewWebserverLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -159,7 +159,7 @@ public class WebserverNewView extends JFrame implements SoftwareView, ActionList
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(Webserver.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(Webserver.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainWebSer, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -219,84 +219,84 @@ public class WebserverNewView extends JFrame implements SoftwareView, ActionList
 		JLabel[] labels = new JLabel[16];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts
+		labels[0] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupOSLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts
+		labels[0].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupOSTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts
+		labels[1] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupVirtualHostingLabel"));
-		labels[1].setToolTipText(PrimeMain1.texts
+		labels[1].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupVirtualHostingTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts
+		labels[2] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupHTTPcompLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts
+		labels[2].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupHTTPcompTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts
+		labels[3] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupBasicAccessLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts
+		labels[3].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupBasicAccessTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts
+		labels[4] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupDigestAccessLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts
+		labels[4].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupDigestAccessTip"));
 
-		labels[5] = new JLabel(PrimeMain1.texts
+		labels[5] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupSSLLabel"));
-		labels[5].setToolTipText(PrimeMain1.texts
+		labels[5].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupSSLTip"));
 
-		labels[6] = new JLabel(PrimeMain1.texts
+		labels[6] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupTSLLabel"));
-		labels[6].setToolTipText(PrimeMain1.texts
+		labels[6].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupTSLTip"));
 
-		labels[7] = new JLabel(PrimeMain1.texts
+		labels[7] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupIPv6Label"));
-		labels[7].setToolTipText(PrimeMain1.texts
+		labels[7].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupIPv6Tip"));
 
-		labels[8] = new JLabel(PrimeMain1.texts
+		labels[8] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupSSILabel"));
-		labels[8].setToolTipText(PrimeMain1.texts
+		labels[8].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupSSITip"));
 
-		labels[9] = new JLabel(PrimeMain1.texts
+		labels[9] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupCGILabel"));
-		labels[9].setToolTipText(PrimeMain1.texts
+		labels[9].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupCGITip"));
 
-		labels[10] = new JLabel(PrimeMain1.texts
+		labels[10] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupSCGILabel"));
-		labels[10].setToolTipText(PrimeMain1.texts
+		labels[10].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupSCGITip"));
 
-		labels[11] = new JLabel(PrimeMain1.texts
+		labels[11] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupFastCGILabel"));
-		labels[11].setToolTipText(PrimeMain1.texts
+		labels[11].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupFastCGITip"));
 
-		labels[12] = new JLabel(PrimeMain1.texts
+		labels[12] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupJSPLabel"));
-		labels[12].setToolTipText(PrimeMain1.texts
+		labels[12].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupJSPTip"));
 
-		labels[13] = new JLabel(PrimeMain1.texts
+		labels[13] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupPHPLabel"));
-		labels[13].setToolTipText(PrimeMain1.texts
+		labels[13].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupPHPTip"));
 
-		labels[14] = new JLabel(PrimeMain1.texts
+		labels[14] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupASPLabel"));
-		labels[14].setToolTipText(PrimeMain1.texts
+		labels[14].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupASPTip"));
 
-		labels[15] = new JLabel(PrimeMain1.texts
+		labels[15] = new JLabel(PrimeMain.texts
 				.getString("webserverViewSupASPNetLabel"));
-		labels[15].setToolTipText(PrimeMain1.texts
+		labels[15].setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupASPNetTip"));
 
 
@@ -597,11 +597,11 @@ public class WebserverNewView extends JFrame implements SoftwareView, ActionList
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button(PrimeMain1.texts.getString("save"));
+		Button save = new Button(PrimeMain.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
+		Button cancel = new Button(PrimeMain.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -680,7 +680,7 @@ public class WebserverNewView extends JFrame implements SoftwareView, ActionList
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
@@ -692,7 +692,7 @@ public class WebserverNewView extends JFrame implements SoftwareView, ActionList
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(this, PrimeMain1.texts
+				JOptionPane.showMessageDialog(this, PrimeMain.texts
 						.getString("swNewCompatibilityQuestion"));
 			}
 

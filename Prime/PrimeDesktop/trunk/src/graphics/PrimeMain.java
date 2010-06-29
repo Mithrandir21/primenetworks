@@ -70,10 +70,10 @@ import widgets.WorkareaCanvas;
  * Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * @version 0.1
+ * @version 0.6 29/06/2010
  */
 @SuppressWarnings("serial")
-public class PrimeMain1 extends JFrame
+public class PrimeMain extends JFrame
 {
 	// Daemon services running
 	private static PrimeService services;
@@ -151,7 +151,7 @@ public class PrimeMain1 extends JFrame
 
 
 	// Constructor
-	public PrimeMain1()
+	public PrimeMain()
 	{
 		super("Prime");
 
@@ -394,7 +394,7 @@ public class PrimeMain1 extends JFrame
 	 */
 	public static void main(String[] args)
 	{
-		PrimeMain1 temp = new PrimeMain1();
+		PrimeMain temp = new PrimeMain();
 
 		// services = new PrimeService();
 
@@ -700,7 +700,7 @@ public class PrimeMain1 extends JFrame
 	 */
 	public static void setWorkareaPanel(JPanel workareaPanel)
 	{
-		PrimeMain1.workareaPanel = workareaPanel;
+		PrimeMain.workareaPanel = workareaPanel;
 	}
 
 
@@ -759,9 +759,9 @@ public class PrimeMain1 extends JFrame
 
 
 			// Asks the user whether or not to save
-			int answer = JOptionPane.showOptionDialog(null, PrimeMain1.texts
+			int answer = JOptionPane.showOptionDialog(null, PrimeMain.texts
 					.getString("removeTabRemoveWithoutSavingQuestion"),
-					PrimeMain1.texts.getString("save"),
+					PrimeMain.texts.getString("save"),
 					JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE,
 					null, options, null);
 

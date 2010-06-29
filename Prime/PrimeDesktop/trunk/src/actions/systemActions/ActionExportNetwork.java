@@ -1,11 +1,12 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import logistical.AbstractSystemAction;
 import managment.DesktopFileManagment;
@@ -30,7 +31,7 @@ public class ActionExportNetwork extends AbstractSystemAction
 	public ActionExportNetwork(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionExportNetworkText"));
 	}
 
@@ -45,12 +46,12 @@ public class ActionExportNetwork extends AbstractSystemAction
 	public ActionExportNetwork(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionExportNetworkText"));
 	}
 
-	
-	
+
+
 	/*
 	 * (non-Javadoc)
 	 * @see
@@ -59,9 +60,14 @@ public class ActionExportNetwork extends AbstractSystemAction
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
-		if ( PrimeMain1.currentCanvas != null )
+		if ( PrimeMain.currentCanvas != null )
 		{
-			DesktopFileManagment.exportNetwork(PrimeMain1.currentCanvas);
+			if ( DesktopFileManagment.exportNetwork(PrimeMain.currentCanvas) )
+			{
+				// Tells the user that the export was successful
+				JOptionPane.showMessageDialog(null, PrimeMain.texts
+						.getString("exportNetworkToFileSuccess"));
+			}
 		}
 	}
 

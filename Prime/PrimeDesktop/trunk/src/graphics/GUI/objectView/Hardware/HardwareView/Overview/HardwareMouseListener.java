@@ -4,7 +4,7 @@
 package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.NewComponent.NewViews.MotherboardNewView;
 
@@ -71,13 +71,13 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 		JPopupMenu itemPopup = new JPopupMenu();
 
 
-		JMenuItem deleteHardware = new JMenuItem(PrimeMain1.texts
+		JMenuItem deleteHardware = new JMenuItem(PrimeMain.texts
 				.getString("hwTabDeleteHWactionLabel"));
 		deleteHardware.setActionCommand("Delete Hardware");
 		deleteHardware.addActionListener(this);
 
 
-		JMenuItem editHardware = new JMenuItem(PrimeMain1.texts
+		JMenuItem editHardware = new JMenuItem(PrimeMain.texts
 				.getString("hwTabEditHWactionLabel"));
 		editHardware.setActionCommand("Edit Hardware");
 		editHardware.addActionListener(this);
@@ -141,8 +141,8 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 			{
 				// Asks the user to confirm the deletion
 				int answer = JOptionPane.showConfirmDialog(panel,
-						PrimeMain1.texts.getString("hwTabDeleteHWquestionMsg"),
-						PrimeMain1.texts.getString("confirm"),
+						PrimeMain.texts.getString("hwTabDeleteHWquestionMsg"),
+						PrimeMain.texts.getString("confirm"),
 						JOptionPane.YES_NO_OPTION);
 
 				// If the user verifies the choice
@@ -158,7 +158,7 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 
 					// Updates the views of the object to correctly show the
 					// current info.
-					ObjectView view = PrimeMain1.getObjectView(mainObject);
+					ObjectView view = PrimeMain.getObjectView(mainObject);
 					if ( view != null )
 					{
 						view.updateViewInfo();
@@ -169,15 +169,15 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 			{
 				// Asks the user to confirm the deletion
 				int answer = JOptionPane
-						.showConfirmDialog(panel, PrimeMain1.texts
+						.showConfirmDialog(panel, PrimeMain.texts
 								.getString("hwTabDeleteHWreplaceMBmsg"),
-								PrimeMain1.texts.getString("confirm"),
+								PrimeMain.texts.getString("confirm"),
 								JOptionPane.YES_NO_OPTION);
 
 				if ( answer == 0 )
 				{
 					// Creates a new Motherboard object
-					Motherboard mbObj = PrimeMain1.standard_internal_components
+					Motherboard mbObj = PrimeMain.standard_internal_components
 							.getSt_MB();
 
 					// Creates a new motherboard editor where the user can save
@@ -190,7 +190,7 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 		{
 			// Gets the Object View which will contain the hardware editor view
 			// of each hardware object
-			ObjectView objView = PrimeMain1.objView.get(0);
+			ObjectView objView = PrimeMain.objView.get(0);
 
 			// Call for a new Hardware editor to be create and then sets the tab
 			// focus to the hardware object the user

@@ -41,6 +41,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -67,8 +68,9 @@ import javax.swing.ListSelectionModel;
  * <pre>
  * String[] choices = { &quot;A&quot;, &quot;long&quot;, &quot;array&quot;, &quot;of&quot;, &quot;strings&quot; };
  * 
- * String selectedName = ListDialog.showDialog(componentInControllingFrame, locatorComponent,
- * 		&quot;A description of the list:&quot;, &quot;Dialog Title&quot;, choices, choices[0]);
+ * String selectedName = ListDialog.showDialog(componentInControllingFrame,
+ * 		locatorComponent, &quot;A description of the list:&quot;, &quot;Dialog Title&quot;,
+ * 		choices, choices[0]);
  * </pre>
  */
 public class ListDialog extends JDialog implements ActionListener
@@ -85,15 +87,15 @@ public class ListDialog extends JDialog implements ActionListener
 	 * dialog to come up with its left corner in the center of the screen; otherwise, it should be the component on top
 	 * of which the dialog should appear.
 	 */
-	public static String showDialog(Component frameComp, Component locationComp, String labelText, String title,
+	public static String showDialog(Component frameComp,
+			Component locationComp, String labelText, String title,
 			String[] possibleValues, String initialValue, String longValue)
 	{
-
 		Frame frame = JOptionPane.getFrameForComponent(frameComp);
-		dialog = new ListDialog(frame, locationComp, labelText, title, possibleValues, initialValue, longValue);
+		dialog = new ListDialog(frame, locationComp, labelText, title,
+				possibleValues, initialValue, longValue);
 		dialog.setVisible(true);
 		return value;
-
 	}
 
 
@@ -120,8 +122,8 @@ public class ListDialog extends JDialog implements ActionListener
 	 * @param initialValue
 	 * @param longValue
 	 */
-	private ListDialog(Frame frame, Component locationComp, String labelText, String title, Object[] data,
-			String initialValue, String longValue)
+	private ListDialog(Frame frame, Component locationComp, String labelText,
+			String title, Object[] data, String initialValue, String longValue)
 	{
 		super(frame, title, true);
 
@@ -197,10 +199,43 @@ public class ListDialog extends JDialog implements ActionListener
 		setLocationRelativeTo(locationComp);
 	}
 
+
+
+	/*
+	 * (non-Javadoc)
+	 * @see javax.swing.JDialog#processWindowEvent(java.awt.event.WindowEvent)
+	 */
+	@Override
+	protected void processWindowEvent(WindowEvent e)
+	{
+		super.processWindowEvent(e);
+
+		if ( e.getID() == WindowEvent.WINDOW_CLOSING )
+		{
+			switch ( getDefaultCloseOperation() )
+			{
+			case HIDE_ON_CLOSE:
+			{
+				ListDialog.value = "Closed";
+				setVisible(false);
+				break;
+			}
+			case DISPOSE_ON_CLOSE:
+			{
+				dispose();
+				break;
+			}
+			case DO_NOTHING_ON_CLOSE:
+			default:
+				break;
+			}
+		}
+	}
+
+
 	// Handle clicks on the Set and Cancel buttons.
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e)

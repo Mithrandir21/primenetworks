@@ -2,7 +2,7 @@ package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget;
 
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -95,7 +95,7 @@ public class JPopupWidgetMenu
 	{
 		JMenuItem menuItem;
 
-		menuItem = new JMenuItem(PrimeMain1.texts
+		menuItem = new JMenuItem(PrimeMain.texts
 				.getString("widgetMenuOpenWidgetAction"));
 		menuItem.setActionCommand("OpenDevice");
 		menuItem.addActionListener(widgetActListener);
@@ -105,26 +105,26 @@ public class JPopupWidgetMenu
 		popup.addSeparator();
 
 
-		menuItem = new JMenuItem(PrimeMain1.texts
+		menuItem = new JMenuItem(PrimeMain.texts
 				.getString("widgetMenuCopyWidgetAction"));
 		menuItem.setActionCommand("CopyObject");
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);
 
 
-		menuItem = new JMenuItem(PrimeMain1.texts
+		menuItem = new JMenuItem(PrimeMain.texts
 				.getString("widgetMenuCutWidgetAction"));
 		menuItem.setActionCommand("CutObject");
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);
 
 
-		menuItem = new JMenuItem(new ActionPaste(PrimeMain1.texts
+		menuItem = new JMenuItem(new ActionPaste(PrimeMain.texts
 				.getString("widgetMenuPasteWidgetAction")));
 
 		// If neither the copy or cut pointers point to anything, the past
 		// button will be disabled
-		if ( PrimeMain1.copyWidget == null && PrimeMain1.cutWidget == null )
+		if ( PrimeMain.copyWidget == null && PrimeMain.cutWidget == null )
 		{
 			menuItem.setEnabled(false);
 		}
@@ -133,11 +133,11 @@ public class JPopupWidgetMenu
 
 		popup.addSeparator();
 
-		menuItem = new JMenuItem(new ActionDeleteWidget(PrimeMain1.texts
+		menuItem = new JMenuItem(new ActionDeleteWidget(PrimeMain.texts
 				.getString("widgetMenuDeleteWidgetAction")));
 		popup.add(menuItem);
 
-		menuItem = new JMenuItem(PrimeMain1.texts
+		menuItem = new JMenuItem(PrimeMain.texts
 				.getString("widgetMenuDeleteConnectionToFromWidgetAction"));
 		menuItem.setActionCommand("DeleteConnectionsObject");
 		menuItem.addActionListener(widgetActListener);

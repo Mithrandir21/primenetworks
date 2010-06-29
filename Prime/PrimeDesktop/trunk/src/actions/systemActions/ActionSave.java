@@ -4,7 +4,7 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -37,7 +37,7 @@ public class ActionSave extends AbstractSystemAction
 	public ActionSave(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionSaveCurrentNetworkText"));
 	}
 
@@ -52,7 +52,7 @@ public class ActionSave extends AbstractSystemAction
 	public ActionSave(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionSaveCurrentNetworkText"));
 	}
 
@@ -64,10 +64,10 @@ public class ActionSave extends AbstractSystemAction
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( PrimeMain1.currentCanvas != null )
+		if ( PrimeMain.currentCanvas != null )
 		{
 			// Saves the current canvas
-			DesktopFileManagment.saveWorkareaCanvas(PrimeMain1.currentCanvas);
+			DesktopFileManagment.saveWorkareaCanvas(PrimeMain.currentCanvas);
 		}
 	}
 }

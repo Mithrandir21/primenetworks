@@ -4,7 +4,7 @@
 package graphics.GUI.standardObjectEdit;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.selectArea.ObjectSelection;
 import graphics.GUI.standardObjectEdit.StandardViews.HardwareObjectView;
 
@@ -69,7 +69,7 @@ public class StandardViewSpilt extends JPanel
 		c.gridy = 0; // third row
 
 
-		hardStdObjView = new HardwareObjectView(PrimeMain1.objectlist.get(0));
+		hardStdObjView = new HardwareObjectView(PrimeMain.objectlist.get(0));
 
 		Dimension dim = new Dimension(450, 1);
 		hardStdObjView.setMinimumSize(dim);

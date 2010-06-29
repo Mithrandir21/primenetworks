@@ -5,7 +5,7 @@ package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
@@ -100,7 +100,7 @@ public class InternalNICView extends JPanel implements HardwareViewInterface, Ac
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons
+		ImageIcon icon = PrimeMain.objectImageIcons
 				.get(InternalNetworksCard.class);
 		JPanel p1 = HardwareEditor.GeneralInfo(intNIC, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
@@ -129,10 +129,10 @@ public class InternalNICView extends JPanel implements HardwareViewInterface, Ac
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain1.texts
+		JLabel label = new JLabel(PrimeMain.texts
 				.getString("hwTabRemoveThisComponentLabel"));
 
-		Button remove = new Button(PrimeMain1.texts
+		Button remove = new Button(PrimeMain.texts
 				.getString("hwTabRemoveComponentButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeComp");
@@ -168,38 +168,38 @@ public class InternalNICView extends JPanel implements HardwareViewInterface, Ac
 		JLabel[] labels = new JLabel[7];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts
+		labels[0] = new JLabel(PrimeMain.texts
 				.getString("intNICviewProducerLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts
+		labels[0].setToolTipText(PrimeMain.texts
 				.getString("intNICviewProcucerTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts.getString("intNICviewMACLabel"));
+		labels[1] = new JLabel(PrimeMain.texts.getString("intNICviewMACLabel"));
 		labels[1]
-				.setToolTipText(PrimeMain1.texts.getString("intNICviewMACTip"));
+				.setToolTipText(PrimeMain.texts.getString("intNICviewMACTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts
+		labels[2] = new JLabel(PrimeMain.texts
 				.getString("intNICviewTypeLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts
+		labels[2].setToolTipText(PrimeMain.texts
 				.getString("intNICviewTypeTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts
+		labels[3] = new JLabel(PrimeMain.texts
 				.getString("intNICviewSpeedLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts
+		labels[3].setToolTipText(PrimeMain.texts
 				.getString("intNICviewSpeedTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts
+		labels[4] = new JLabel(PrimeMain.texts
 				.getString("intNICviewProtocolLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts
+		labels[4].setToolTipText(PrimeMain.texts
 				.getString("intNICviewProtocolTip"));
 
-		labels[5] = new JLabel(PrimeMain1.texts
+		labels[5] = new JLabel(PrimeMain.texts
 				.getString("intNICviewSupportedStandarsLabel"));
-		labels[5].setToolTipText(PrimeMain1.texts
+		labels[5].setToolTipText(PrimeMain.texts
 				.getString("intNICviewSupportedStandarsTip"));
 
-		labels[6] = new JLabel(PrimeMain1.texts
+		labels[6] = new JLabel(PrimeMain.texts
 				.getString("intNICviewSupportsIPv6Label"));
-		labels[6].setToolTipText(PrimeMain1.texts
+		labels[6].setToolTipText(PrimeMain.texts
 				.getString("intNICviewSupportsIPv6Tip"));
 
 
@@ -417,16 +417,16 @@ public class InternalNICView extends JPanel implements HardwareViewInterface, Ac
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
 				}
 				// If no view is returned, then the standard object view is open
 				// and that should be updated.
-				else if ( PrimeMain1.stdObjView != null )
+				else if ( PrimeMain.stdObjView != null )
 				{
-					PrimeMain1.stdObjView.getSplitView().getHardStdObjView()
+					PrimeMain.stdObjView.getSplitView().getHardStdObjView()
 							.updateTabInfo();
 				}
 			}

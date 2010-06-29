@@ -4,7 +4,7 @@
 package graphics.GUI.messageArea.ConnectionTab;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.messageArea.MessageJTable;
 
 import javax.swing.JScrollPane;
@@ -35,10 +35,10 @@ public class ConnectionMessages extends JScrollPane
 	public ConnectionMessages(Object[] objects, String[][] data)
 	{
 		String[] columnNames = {
-				PrimeMain1.texts.getString("tableCONobjectName"),
-				PrimeMain1.texts.getString("tableCONType"),
-				PrimeMain1.texts.getString("tableCONdescription"),
-				PrimeMain1.texts.getString("tableCONmsgType") };
+				PrimeMain.texts.getString("tableCONobjectName"),
+				PrimeMain.texts.getString("tableCONType"),
+				PrimeMain.texts.getString("tableCONdescription"),
+				PrimeMain.texts.getString("tableCONmsgType") };
 
 		table = new MessageJTable(data, columnNames);
 

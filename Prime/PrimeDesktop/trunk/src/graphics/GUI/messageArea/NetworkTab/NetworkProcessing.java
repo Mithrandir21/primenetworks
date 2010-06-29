@@ -5,7 +5,7 @@ package graphics.GUI.messageArea.NetworkTab;
 
 
 import exceptions.ObjectNotFoundException;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import managment.ArrayManagment;
 import objects.Object;
 import objects.infrastructureObjects.Hub;
@@ -119,9 +119,9 @@ public class NetworkProcessing
 						if ( connectedObject[j] instanceof Internet )
 						{
 							String[] info = { objects[i].getObjectName(),
-									PrimeMain1.texts.getString("netToNetName"),
-									PrimeMain1.texts.getString("netToNetMsg"),
-									PrimeMain1.texts.getString("networkError") };
+									PrimeMain.texts.getString("netToNetName"),
+									PrimeMain.texts.getString("netToNetMsg"),
+									PrimeMain.texts.getString("networkError") };
 							data = addError(data, info);
 						}
 					}
@@ -157,9 +157,9 @@ public class NetworkProcessing
 		if ( !(containsObjectOfClass(objects, Internet.class)) )
 		{
 			String[] info = { canvas.getCanvasName(),
-					PrimeMain1.texts.getString("internet"),
-					PrimeMain1.texts.getString("noNetMsg"),
-					PrimeMain1.texts.getString("networkWarning") };
+					PrimeMain.texts.getString("internet"),
+					PrimeMain.texts.getString("noNetMsg"),
+					PrimeMain.texts.getString("networkWarning") };
 			data = addError(data, info);
 		}
 
@@ -181,10 +181,10 @@ public class NetworkProcessing
 					{
 						String[] info = {
 								canvas.getCanvasName(),
-								PrimeMain1.texts.getString("router"),
-								PrimeMain1.texts
+								PrimeMain.texts.getString("router"),
+								PrimeMain.texts
 										.getString("noInfrastructureMsg"),
-								PrimeMain1.texts.getString("networkWarning") };
+								PrimeMain.texts.getString("networkWarning") };
 						data = addError(data, info);
 					}
 				}
@@ -203,9 +203,9 @@ public class NetworkProcessing
 				System.out.println(objects[i].getConnectedDevices() == null);
 
 				String[] info = { objects[i].getObjectName(),
-						PrimeMain1.texts.getString("notConnectedName"),
-						PrimeMain1.texts.getString("notConnectedMsg"),
-						PrimeMain1.texts.getString("networkWarning") };
+						PrimeMain.texts.getString("notConnectedName"),
+						PrimeMain.texts.getString("notConnectedMsg"),
+						PrimeMain.texts.getString("networkWarning") };
 				data = addError(data, info);
 			}
 		}

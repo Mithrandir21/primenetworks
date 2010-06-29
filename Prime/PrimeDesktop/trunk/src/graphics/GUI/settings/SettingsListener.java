@@ -4,7 +4,7 @@
 package graphics.GUI.settings;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -97,6 +97,6 @@ public class SettingsListener implements ActionListener
 		Settings.showNetworkWarningMessages = messageCheckBox[10].isSelected();
 		Settings.showNetworkNoticeMessages = messageCheckBox[11].isSelected();
 
-		PrimeMain1.updateCanvasAndObjectInfo();
+		PrimeMain.updateCanvasAndObjectInfo();
 	}
 }

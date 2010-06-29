@@ -5,7 +5,7 @@ package graphics.GUI.workareaCanvas;
 
 
 import graphics.ImageLocator;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -41,7 +41,6 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 	 */
 	public WorkareaTabbed()
 	{
-
 		addChangeListener(new ChangeListener()
 		{
 			// This method is called whenever the selected tab changes
@@ -66,21 +65,21 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 				}
 
 				// Sets the current WidgetObject for the systems current canvas
-				PrimeMain1.currentCanvas.setCurrentWidgetObject(null);
+				PrimeMain.currentCanvas.setCurrentWidgetObject(null);
 
 				// Sets the current working canvas to the canvas that is
 				// actually shown in the JTabbedPane scrollPane.
-				PrimeMain1.currentCanvas = currentCanvas;
+				PrimeMain.currentCanvas = currentCanvas;
 
-				PrimeMain1.updatePropertiesCanvasArea(false);
+				PrimeMain.updatePropertiesCanvasArea(false);
 
-				PrimeMain1.runCanvasObjectCheck();
+				PrimeMain.runCanvasObjectCheck();
 			}
 		});
 
 
-		int width = (int) (PrimeMain1.width * 0.60);
-		int height = (int) (PrimeMain1.width * 0.60);
+		int width = (int) (PrimeMain.width * 0.60);
+		int height = (int) (PrimeMain.width * 0.60);
 		this.setPreferredSize(new Dimension(width, height));
 	}
 
@@ -101,8 +100,8 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 		// Creates the image for the tab
 		ImageIcon icon = ImageLocator.getImageIconObject("java");
 
-		int width = (int) (PrimeMain1.width * 0.60);
-		int height = (int) (PrimeMain1.width * 0.60);
+		int width = (int) (PrimeMain.width * 0.60);
+		int height = (int) (PrimeMain.width * 0.60);
 		this.setPreferredSize(new Dimension(width, height));
 
 		this.addTab(name, icon, canvasScroll);
@@ -145,7 +144,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 			int arraySize = this.getTabCount();
 
 			// Goes through the list of tab contents until it finds one that
-			// matches the given button name.
+			// matches the given JLabel name.
 			for ( int i = 0; i < arraySize; i++ )
 			{
 				// Gets the tab component for the current tab.
@@ -161,10 +160,14 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 					// Changes the label of the tab
 					if ( DesktopFileManagment.changeFileName(canvas, Name) )
 					{
+						// Gets the JButton that contains the name of the WorkareaCanvas
+						// in the tab
+						JButton button = (JButton) tabPanel.getComponent(1);
+						// Sets the name of the button(for the closing process)
+						button.setName(Name);
+
 						label.setText(Name);
 					}
-
-					PrimeMain1.updatePropertiesCanvasArea(true);
 
 					return;
 				}
@@ -243,8 +246,8 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 		}
 
 
-		int width = (int) (PrimeMain1.width * 0.60);
-		int height = (int) (PrimeMain1.width * 0.60);
+		int width = (int) (PrimeMain.width * 0.60);
+		int height = (int) (PrimeMain.width * 0.60);
 		this.setPreferredSize(new Dimension(width, height));
 	}
 
@@ -269,10 +272,9 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 			String contentName = button.getName();
 
 
-
 			removeTabWithCanvas(contentName, CanvasManagment
 					.canvasHaveChanged(CanvasManagment.findCanvas(contentName,
-							PrimeMain1.canvases)));
+							PrimeMain.canvases)));
 		}
 	}
 
@@ -355,17 +357,17 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 					{
 						// The options the user will be presented with.
 						Object[] options = {
-								PrimeMain1.texts.getString("save"),
-								PrimeMain1.texts.getString("dontSave"),
-								PrimeMain1.texts.getString("cancel") };
+								PrimeMain.texts.getString("save"),
+								PrimeMain.texts.getString("dontSave"),
+								PrimeMain.texts.getString("cancel") };
 
 						// Asks the user whether or not to save
 						int answer = JOptionPane
 								.showOptionDialog(
 										null,
-										PrimeMain1.texts
+										PrimeMain.texts
 												.getString("removeTabRemoveWithoutSavingQuestion"),
-										PrimeMain1.texts.getString("save"),
+										PrimeMain.texts.getString("save"),
 										JOptionPane.WARNING_MESSAGE,
 										JOptionPane.WARNING_MESSAGE, null,
 										options, null);

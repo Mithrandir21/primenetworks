@@ -1,7 +1,7 @@
 package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -79,7 +79,7 @@ public class DatabaseEditView extends JPanel implements SoftwareView, ActionList
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(Database.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(Database.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainDB, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 

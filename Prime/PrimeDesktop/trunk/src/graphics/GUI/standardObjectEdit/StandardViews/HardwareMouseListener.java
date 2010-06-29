@@ -4,7 +4,7 @@
 package graphics.GUI.standardObjectEdit.StandardViews;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.NewComponent.NewViews.MotherboardNewView;
 
@@ -157,7 +157,7 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 
 					// Updates the views of the object to correctly show the
 					// current info.
-					ObjectView view = PrimeMain1.getObjectView(mainObject);
+					ObjectView view = PrimeMain.getObjectView(mainObject);
 					if ( view != null )
 					{
 						view.updateViewInfo();
@@ -165,9 +165,9 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 					// If no view is returned, then the standard object view is
 					// open
 					// and that should be updated.
-					else if ( PrimeMain1.stdObjView != null )
+					else if ( PrimeMain.stdObjView != null )
 					{
-						PrimeMain1.stdObjView.getSplitView()
+						PrimeMain.stdObjView.getSplitView()
 								.getHardStdObjView().updateTabInfo();
 					}
 				}
@@ -183,7 +183,7 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 				if ( answer == 0 )
 				{
 					// Creates a new Motherboard object
-					Motherboard mbObj = PrimeMain1.standard_internal_components
+					Motherboard mbObj = PrimeMain.standard_internal_components
 							.getSt_MB();
 
 					// Creates a new motherboard editor where the user can save
@@ -196,7 +196,7 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 		{
 			// Call for a new Hardware editor to be create and then sets the tab
 			// focus to the hardware object the user selected to be edited.
-			PrimeMain1.stdObjView.getSplitView().getHardStdObjView()
+			PrimeMain.stdObjView.getSplitView().getHardStdObjView()
 					.createNewHardwareEditor(mainObject).setTabFocus(
 							(Hardware) hardwareObject);
 		}

@@ -5,7 +5,7 @@ package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
@@ -107,7 +107,7 @@ public class ProxyNewView extends JFrame implements SoftwareView, ActionListener
 	 */
 	public ProxyNewView(Object obj, Proxy proxy)
 	{
-		super(PrimeMain1.texts.getString("swNewProxyLabel"));
+		super(PrimeMain.texts.getString("swNewProxyLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -136,7 +136,7 @@ public class ProxyNewView extends JFrame implements SoftwareView, ActionListener
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(Proxy.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(Proxy.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainProxy, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -196,53 +196,53 @@ public class ProxyNewView extends JFrame implements SoftwareView, ActionListener
 		JLabel[] labels = new JLabel[10];
 
 
-		labels[0] = new JLabel(PrimeMain1.texts
+		labels[0] = new JLabel(PrimeMain.texts
 				.getString("proxyViewSupOSLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts
+		labels[0].setToolTipText(PrimeMain.texts
 				.getString("proxyViewSupOSTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts
+		labels[1] = new JLabel(PrimeMain.texts
 				.getString("proxyViewCachingLabel"));
-		labels[1].setToolTipText(PrimeMain1.texts
+		labels[1].setToolTipText(PrimeMain.texts
 				.getString("proxyViewCachingTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts
+		labels[2] = new JLabel(PrimeMain.texts
 				.getString("proxyViewProxyLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts
+		labels[2].setToolTipText(PrimeMain.texts
 				.getString("proxyViewProxyTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts
+		labels[3] = new JLabel(PrimeMain.texts
 				.getString("proxyViewAnonymizingLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts
+		labels[3].setToolTipText(PrimeMain.texts
 				.getString("proxyViewAnonymizingTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts
+		labels[4] = new JLabel(PrimeMain.texts
 				.getString("proxyViewTransProxyLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts
+		labels[4].setToolTipText(PrimeMain.texts
 				.getString("proxyViewTransProxyTip"));
 
-		labels[5] = new JLabel(PrimeMain1.texts
+		labels[5] = new JLabel(PrimeMain.texts
 				.getString("proxyViewReverseProxyLabel"));
-		labels[5].setToolTipText(PrimeMain1.texts
+		labels[5].setToolTipText(PrimeMain.texts
 				.getString("proxyViewReverseProxyTip"));
 
-		labels[6] = new JLabel(PrimeMain1.texts.getString("proxyViewIPv6Label"));
+		labels[6] = new JLabel(PrimeMain.texts.getString("proxyViewIPv6Label"));
 		labels[6]
-				.setToolTipText(PrimeMain1.texts.getString("proxyViewIPv6Tip"));
+				.setToolTipText(PrimeMain.texts.getString("proxyViewIPv6Tip"));
 
-		labels[7] = new JLabel(PrimeMain1.texts
+		labels[7] = new JLabel(PrimeMain.texts
 				.getString("proxyViewSupSSLLabel"));
-		labels[7].setToolTipText(PrimeMain1.texts
+		labels[7].setToolTipText(PrimeMain.texts
 				.getString("proxyViewSupSSLTip"));
 
-		labels[8] = new JLabel(PrimeMain1.texts
+		labels[8] = new JLabel(PrimeMain.texts
 				.getString("proxyViewSupTSLLabel"));
-		labels[8].setToolTipText(PrimeMain1.texts
+		labels[8].setToolTipText(PrimeMain.texts
 				.getString("proxyViewSupTSLTip"));
 
-		labels[9] = new JLabel(PrimeMain1.texts
+		labels[9] = new JLabel(PrimeMain.texts
 				.getString("proxyViewSupHTTPSLabel"));
-		labels[9].setToolTipText(PrimeMain1.texts
+		labels[9].setToolTipText(PrimeMain.texts
 				.getString("proxyViewSupHTTPSTip"));
 
 
@@ -437,11 +437,11 @@ public class ProxyNewView extends JFrame implements SoftwareView, ActionListener
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		Button save = new Button(PrimeMain1.texts.getString("save"));
+		Button save = new Button(PrimeMain.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
+		Button cancel = new Button(PrimeMain.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -510,7 +510,7 @@ public class ProxyNewView extends JFrame implements SoftwareView, ActionListener
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
@@ -522,7 +522,7 @@ public class ProxyNewView extends JFrame implements SoftwareView, ActionListener
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(this, PrimeMain1.texts
+				JOptionPane.showMessageDialog(this, PrimeMain.texts
 						.getString("swNewCompatibilityQuestion"));
 			}
 

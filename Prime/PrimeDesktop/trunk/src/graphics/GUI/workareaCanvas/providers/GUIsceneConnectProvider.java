@@ -4,7 +4,7 @@
 package graphics.GUI.workareaCanvas.providers;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import org.netbeans.api.visual.widget.Widget;
 
@@ -43,7 +43,7 @@ public class GUIsceneConnectProvider extends SceneConnectProvider
 		if ( sourceWidget != targetWidget )
 		{
 			ActionCreateConnection action = new ActionCreateConnection(
-					PrimeMain1.texts
+					PrimeMain.texts
 							.getString("actionCreateConnectionDescriptionText"),
 					this.getCanvas(), (WidgetObject) sourceWidget,
 					(WidgetObject) targetWidget);

@@ -4,7 +4,7 @@
 package graphics.GUI.selectArea;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.CreateObjects;
 
 import java.awt.datatransfer.Transferable;
@@ -50,13 +50,13 @@ public class ImageSelection extends TransferHandler
 		{
 			WidgetIcon icon = (WidgetIcon) comp;
 
-			if ( PrimeMain1.currentCanvas != null )
+			if ( PrimeMain.currentCanvas != null )
 			{
 				Object newObject = new CreateObjects()
-						.CreateObject(icon, PrimeMain1.currentCanvas
+						.CreateObject(icon, PrimeMain.currentCanvas
 								.getNumberOfWidgetsOnTheScene());
 
-				return new WidgetObject(PrimeMain1.currentCanvas.getScene(),
+				return new WidgetObject(PrimeMain.currentCanvas.getScene(),
 						newObject, icon.getIconImage());
 			}
 

@@ -4,7 +4,7 @@
 package graphics.GUI.objectView.Hardware.NewComponent.NewOverview;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -34,7 +34,7 @@ public class NewComponentChoice extends JFrame
 	 */
 	public NewComponentChoice(Object obj)
 	{
-		super(PrimeMain1.texts.getString("hwTabNewComponentButtonLabel"));
+		super(PrimeMain.texts.getString("hwTabNewComponentButtonLabel"));
 
 
 		// Get the default toolkit

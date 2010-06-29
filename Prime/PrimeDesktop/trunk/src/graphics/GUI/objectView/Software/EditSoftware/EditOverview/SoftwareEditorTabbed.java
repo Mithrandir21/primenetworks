@@ -1,7 +1,7 @@
 package graphics.GUI.objectView.Software.EditSoftware.EditOverview;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditViews.AntivirusEditView;
@@ -73,74 +73,74 @@ public class SoftwareEditorTabbed extends JTabbedPane
 		{
 			if ( software[i] instanceof Antivirus )
 			{
-				this.addTab(PrimeMain1.texts.getString("antivirus"), null,
+				this.addTab(PrimeMain.texts.getString("antivirus"), null,
 						new AntivirusEditView(obj, (Antivirus) software[i]),
-						PrimeMain1.texts.getString("swTabAVtabDescription"));
+						PrimeMain.texts.getString("swTabAVtabDescription"));
 			}
 			else if ( software[i] instanceof Backup )
 			{
 				this
-						.addTab(PrimeMain1.texts.getString("backup"), null,
+						.addTab(PrimeMain.texts.getString("backup"), null,
 								new BackupEditView(obj, (Backup) software[i]),
-								PrimeMain1.texts
+								PrimeMain.texts
 										.getString("swTabBackupTabDescription"));
 			}
 			else if ( software[i] instanceof Database )
 			{
-				this.addTab(PrimeMain1.texts.getString("database"), null,
+				this.addTab(PrimeMain.texts.getString("database"), null,
 						new DatabaseEditView(obj, (Database) software[i]),
-						PrimeMain1.texts
+						PrimeMain.texts
 								.getString("swTabDatabaseTabDescription"));
 			}
 			else if ( software[i] instanceof Email )
 			{
-				this.addTab(PrimeMain1.texts.getString("email"), null,
+				this.addTab(PrimeMain.texts.getString("email"), null,
 						new EmailEditView(obj, (Email) software[i]),
-						PrimeMain1.texts.getString("swTabEmailTabDescription"));
+						PrimeMain.texts.getString("swTabEmailTabDescription"));
 			}
 			else if ( software[i] instanceof Firewall )
 			{
-				this.addTab(PrimeMain1.texts.getString("firewall"), null,
+				this.addTab(PrimeMain.texts.getString("firewall"), null,
 						new FirewallEditView(obj, (Firewall) software[i]),
-						PrimeMain1.texts
+						PrimeMain.texts
 								.getString("swTabFirewallTabDescription"));
 			}
 			else if ( software[i] instanceof OfficeSuite )
 			{
 				this
 						.addTab(
-								PrimeMain1.texts.getString("officeSuite"),
+								PrimeMain.texts.getString("officeSuite"),
 								null,
 								new OfficeSuiteEditView(obj,
 										(OfficeSuite) software[i]),
-								PrimeMain1.texts
+								PrimeMain.texts
 										.getString("swTabOfficeSuiteTabDescription"));
 			}
 			else if ( software[i] instanceof OperatingSystem )
 			{
-				this.addTab(PrimeMain1.texts.getString("operatingSystem"),
+				this.addTab(PrimeMain.texts.getString("operatingSystem"),
 						null,
 						new OSEditView(obj, (OperatingSystem) software[i]),
-						PrimeMain1.texts.getString("swTabOStabDescription"));
+						PrimeMain.texts.getString("swTabOStabDescription"));
 			}
 			else if ( software[i] instanceof Proxy )
 			{
-				this.addTab(PrimeMain1.texts.getString("proxy"), null,
+				this.addTab(PrimeMain.texts.getString("proxy"), null,
 						new ProxyEditView(obj, (Proxy) software[i]),
-						PrimeMain1.texts.getString("swTabProxyTabDescription"));
+						PrimeMain.texts.getString("swTabProxyTabDescription"));
 			}
 			else if ( software[i] instanceof SecuritySuite )
 			{
-				this.addTab(PrimeMain1.texts.getString("securitySuite"), null,
+				this.addTab(PrimeMain.texts.getString("securitySuite"), null,
 						new SecuritySuiteEditView(obj,
-								(SecuritySuite) software[i]), PrimeMain1.texts
+								(SecuritySuite) software[i]), PrimeMain.texts
 								.getString("swTabSecSuiteTabDescription"));
 			}
 			else if ( software[i] instanceof Webserver )
 			{
-				this.addTab(PrimeMain1.texts.getString("webserver"), null,
+				this.addTab(PrimeMain.texts.getString("webserver"), null,
 						new WebserverEditView(obj, (Webserver) software[i]),
-						PrimeMain1.texts
+						PrimeMain.texts
 								.getString("swTabWebserverTabDescription"));
 			}
 		}
@@ -171,7 +171,7 @@ public class SoftwareEditorTabbed extends JTabbedPane
 		// Process all changes to the software of the object
 		SoftwareManagment.processAllChanges(mainobj);
 
-		ObjectView view = PrimeMain1.getObjectView(mainobj);
+		ObjectView view = PrimeMain.getObjectView(mainobj);
 		if ( view != null )
 		{
 			view.updateViewInfo();

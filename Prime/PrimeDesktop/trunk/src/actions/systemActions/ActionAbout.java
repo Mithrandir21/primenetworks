@@ -4,7 +4,7 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.programGUI.AboutFrame;
 
 import java.awt.event.ActionEvent;
@@ -33,7 +33,7 @@ public class ActionAbout extends AbstractSystemAction
 	public ActionAbout(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionAboutDescriptionText"));
 	}
 
@@ -48,7 +48,7 @@ public class ActionAbout extends AbstractSystemAction
 	public ActionAbout(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionAboutDescriptionText"));
 	}
 

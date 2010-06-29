@@ -1,7 +1,7 @@
 package actions.canvasActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
 import java.awt.event.ActionEvent;
@@ -122,7 +122,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 	@Override
 	public String getPresentationName()
 	{
-		return PrimeMain1.texts.getString("actionDeleteRoomActionPresNameText");
+		return PrimeMain.texts.getString("actionDeleteRoomActionPresNameText");
 	}
 
 	/*
@@ -132,7 +132,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 	@Override
 	public String getRedoPresentationName()
 	{
-		return PrimeMain1.texts.getString("actionDeleteRoomRedoPresNameText");
+		return PrimeMain.texts.getString("actionDeleteRoomRedoPresNameText");
 	}
 
 	/*
@@ -142,7 +142,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 	@Override
 	public String getUndoPresentationName()
 	{
-		return PrimeMain1.texts.getString("actionDeleteRoomUndoPresNameText");
+		return PrimeMain.texts.getString("actionDeleteRoomUndoPresNameText");
 	}
 
 	/*
@@ -213,7 +213,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 	public void performAction(boolean undoable)
 	{
 		// Sets the current canvas
-		canvas = PrimeMain1.currentCanvas;
+		canvas = PrimeMain.currentCanvas;
 
 		// Gets all the rooms on the current canvas
 		List<Widget> list = canvas.getRoomLayer().getChildren();

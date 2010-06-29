@@ -4,7 +4,7 @@
 package graphics.GUI.selectArea.PrimeJTree;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import javax.swing.JTree;
 
@@ -40,7 +40,7 @@ public class PrimeJTreeActions
 		if ( canvasName != null )
 		{
 			// Whether or not
-			boolean exists = PrimeMain1.getWorkarea().existsTabWithGivenName(
+			boolean exists = PrimeMain.getWorkarea().existsTabWithGivenName(
 					canvasName);
 
 			// There does not exist a tab with that name already
@@ -50,7 +50,7 @@ public class PrimeJTreeActions
 			}
 			else
 			{
-				PrimeMain1.getWorkarea().bringCanvasToFront(canvasName);
+				PrimeMain.getWorkarea().bringCanvasToFront(canvasName);
 			}
 		}
 	}

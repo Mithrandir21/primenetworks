@@ -1,7 +1,7 @@
 package actions.canvasActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuRoom.JMenuWidgetRoom;
 
@@ -128,7 +128,7 @@ public class ActionCreateRoom extends AbstractSystemAction implements SystemActi
 	@Override
 	public String getPresentationName()
 	{
-		return PrimeMain1.texts.getString("actionCreateRoomActionPresNameText");
+		return PrimeMain.texts.getString("actionCreateRoomActionPresNameText");
 	}
 
 	/*
@@ -138,7 +138,7 @@ public class ActionCreateRoom extends AbstractSystemAction implements SystemActi
 	@Override
 	public String getRedoPresentationName()
 	{
-		return PrimeMain1.texts.getString("actionCreateRoomRedoPresNameText");
+		return PrimeMain.texts.getString("actionCreateRoomRedoPresNameText");
 	}
 
 	/*
@@ -148,7 +148,7 @@ public class ActionCreateRoom extends AbstractSystemAction implements SystemActi
 	@Override
 	public String getUndoPresentationName()
 	{
-		return PrimeMain1.texts.getString("actionCreateRoomUndoPresNameText");
+		return PrimeMain.texts.getString("actionCreateRoomUndoPresNameText");
 	}
 
 	/*
@@ -220,7 +220,7 @@ public class ActionCreateRoom extends AbstractSystemAction implements SystemActi
 	{
 		if ( room != null )
 		{
-			canvas = PrimeMain1.currentCanvas;
+			canvas = PrimeMain.currentCanvas;
 
 			if ( room.getBounds().height < 50 && room.getBounds().width < 50 )
 			{
@@ -233,7 +233,7 @@ public class ActionCreateRoom extends AbstractSystemAction implements SystemActi
 				room.getActions().addAction(
 						ActionFactory
 								.createPopupMenuAction(new JMenuWidgetRoom(
-										PrimeMain1.currentCanvas)));
+										PrimeMain.currentCanvas)));
 
 				// Repaints roomLayer
 				canvas.cleanUp();

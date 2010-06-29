@@ -4,7 +4,7 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
 
@@ -35,7 +35,7 @@ public class ActionUpdate extends AbstractSystemAction
 	public ActionUpdate(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionUpdateNetworkMessagesText"));
 	}
 
@@ -50,7 +50,7 @@ public class ActionUpdate extends AbstractSystemAction
 	public ActionUpdate(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionUpdateNetworkMessagesText"));
 	}
 
@@ -64,7 +64,7 @@ public class ActionUpdate extends AbstractSystemAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		PrimeMain1.updateCanvasAndObjectInfo();
+		PrimeMain.updateCanvasAndObjectInfo();
 	}
 
 }

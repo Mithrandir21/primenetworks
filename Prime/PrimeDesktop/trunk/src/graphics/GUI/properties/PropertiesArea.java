@@ -4,7 +4,7 @@
 package graphics.GUI.properties;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.Dimension;
 
@@ -33,9 +33,9 @@ public class PropertiesArea extends JTabbedPane
 	public PropertiesArea()
 	{
 
-		int width = (int) (PrimeMain1.width * 0.11);
+		int width = (int) (PrimeMain.width * 0.11);
 
-		int height = (int) (PrimeMain1.height * 0.70);
+		int height = (int) (PrimeMain.height * 0.70);
 
 
 		this.setPreferredSize(new Dimension(width, height));
@@ -52,7 +52,7 @@ public class PropertiesArea extends JTabbedPane
 
 		if ( object != null )
 		{
-			addTab(object.getObjectName(), scrollArea);
+			this.addTab(object.getObjectName(), scrollArea);
 		}
 		else
 		{
@@ -73,7 +73,7 @@ public class PropertiesArea extends JTabbedPane
 
 		if ( canvas != null )
 		{
-			addTab(canvas.getCanvasName(), scrollArea);
+			this.addTab(canvas.getCanvasName(), scrollArea);
 		}
 		else
 		{
@@ -95,8 +95,8 @@ public class PropertiesArea extends JTabbedPane
 
 
 	/**
-	 * Determines whether the given {@link WorkareaCanvas} is the
-	 * {@link WorkareaCanvas} displayed in the Properties area, by way of the
+	 * Determines whether the given {@link WorkareaCanvas} is the {@link WorkareaCanvas} displayed in the Properties area, by way
+	 * of the
 	 * names of the {@link WorkareaCanvas WorkareaCanvases}.
 	 * 
 	 * @param canvas
@@ -133,9 +133,8 @@ public class PropertiesArea extends JTabbedPane
 
 
 	/**
-	 * Determines whether the given {@link Object} is the {@link Object}
-	 * displayed in the Properties area, by way of the names of the
-	 * {@link Object Objects}.
+	 * Determines whether the given {@link Object} is the {@link Object} displayed in the Properties area, by way of the names of
+	 * the {@link Object Objects}.
 	 * 
 	 * @param object
 	 *            The {@link Object} to be tested.

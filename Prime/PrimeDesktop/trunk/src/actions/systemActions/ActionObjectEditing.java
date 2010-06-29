@@ -4,7 +4,7 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.standardObjectEdit.StandardObjects;
 
 import java.awt.event.ActionEvent;
@@ -35,7 +35,7 @@ public class ActionObjectEditing extends AbstractSystemAction
 	public ActionObjectEditing(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionOpenStandardObjectsViewText"));
 	}
 
@@ -49,7 +49,7 @@ public class ActionObjectEditing extends AbstractSystemAction
 	public ActionObjectEditing(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionOpenStandardObjectsViewText"));
 	}
 
@@ -61,13 +61,13 @@ public class ActionObjectEditing extends AbstractSystemAction
 		// Creates and places a new StandardObjects JFrame into the system main
 		// registry.
 
-		if ( PrimeMain1.stdObjView == null )
+		if ( PrimeMain.stdObjView == null )
 		{
-			PrimeMain1.stdObjView = new StandardObjects();
+			PrimeMain.stdObjView = new StandardObjects();
 		}
 		else
 		{
-			PrimeMain1.stdObjView.toFront();
+			PrimeMain.stdObjView.toFront();
 		}
 	}
 

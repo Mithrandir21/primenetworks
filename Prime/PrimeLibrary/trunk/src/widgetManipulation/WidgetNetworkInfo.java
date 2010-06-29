@@ -62,6 +62,11 @@ public class WidgetNetworkInfo implements Serializable
 	 */
 	public String getIp()
 	{
+		// If the string variable is null
+		if ( ip == null )
+		{
+			return "";
+		}
 		return ip;
 	}
 
@@ -73,6 +78,11 @@ public class WidgetNetworkInfo implements Serializable
 	 */
 	public String getNetmask()
 	{
+		// If the string variable is null
+		if ( netmask == null )
+		{
+			return "";
+		}
 		return netmask;
 	}
 
@@ -84,6 +94,11 @@ public class WidgetNetworkInfo implements Serializable
 	 */
 	public String getMAC()
 	{
+		// If the string variable is null
+		if ( MAC == null )
+		{
+			return "";
+		}
 		return MAC;
 	}
 
@@ -95,6 +110,11 @@ public class WidgetNetworkInfo implements Serializable
 	 */
 	public String getDefaultGateway()
 	{
+		// If the string variable is null
+		if ( defaultGateway == null )
+		{
+			return "";
+		}
 		return defaultGateway;
 	}
 
@@ -106,6 +126,11 @@ public class WidgetNetworkInfo implements Serializable
 	 */
 	public String getNetworkName()
 	{
+		// If the string variable is null
+		if ( networkName == null )
+		{
+			return "";
+		}
 		return networkName;
 	}
 
@@ -119,6 +144,11 @@ public class WidgetNetworkInfo implements Serializable
 	 */
 	public String getWidgetNotes()
 	{
+		// If the string variable is null
+		if ( widgetNotes == null )
+		{
+			return "";
+		}
 		return widgetNotes;
 	}
 
@@ -137,6 +167,13 @@ public class WidgetNetworkInfo implements Serializable
 	 */
 	public boolean setIp(String ip)
 	{
+		// If the string is empty
+		if ( ip.equals("") )
+		{
+			this.ip = ip;
+			return true;
+		}
+
 		// If the string given matches the given pattern.
 		if ( NetworkManagment.getIPpattern().matcher(ip).matches() )
 		{
@@ -159,6 +196,13 @@ public class WidgetNetworkInfo implements Serializable
 	 */
 	public boolean setNetmask(String netmask)
 	{
+		// If the string is empty
+		if ( netmask.equals("") )
+		{
+			this.netmask = netmask;
+			return true;
+		}
+
 		// If the string given matches the given pattern.
 		if ( NetworkManagment.getIPpattern().matcher(netmask).matches() )
 		{
@@ -181,6 +225,13 @@ public class WidgetNetworkInfo implements Serializable
 	 */
 	public boolean setMAC(String MAC)
 	{
+		// If the string is empty
+		if ( MAC.equals("") )
+		{
+			this.MAC = MAC;
+			return true;
+		}
+
 		// If the string given matches the given pattern.
 		if ( NetworkManagment.getMACpattern().matcher(MAC).matches() )
 		{
@@ -204,6 +255,13 @@ public class WidgetNetworkInfo implements Serializable
 	 */
 	public boolean setDefaultGateway(String defaultGateway)
 	{
+		// If the string is empty
+		if ( defaultGateway.equals("") )
+		{
+			this.defaultGateway = defaultGateway;
+			return true;
+		}
+
 		// If the string given matches the given pattern.
 		if ( NetworkManagment.getIPpattern().matcher(defaultGateway).matches() )
 		{

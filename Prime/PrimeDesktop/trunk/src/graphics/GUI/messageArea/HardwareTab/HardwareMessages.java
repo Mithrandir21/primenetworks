@@ -4,7 +4,7 @@
 package graphics.GUI.messageArea.HardwareTab;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.messageArea.MessageJTable;
 
 import javax.swing.JScrollPane;
@@ -35,10 +35,10 @@ public class HardwareMessages extends JScrollPane
 	public HardwareMessages(Object[] objects, String[][] data)
 	{
 		String[] columnNames = {
-				PrimeMain1.texts.getString("tableHWobjectName"),
-				PrimeMain1.texts.getString("tableHWhwType"),
-				PrimeMain1.texts.getString("tableHWdescription"),
-				PrimeMain1.texts.getString("tableHWmsgType") };
+				PrimeMain.texts.getString("tableHWobjectName"),
+				PrimeMain.texts.getString("tableHWhwType"),
+				PrimeMain.texts.getString("tableHWdescription"),
+				PrimeMain.texts.getString("tableHWmsgType") };
 
 		table = new MessageJTable(data, columnNames);
 

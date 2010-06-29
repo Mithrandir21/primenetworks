@@ -1,7 +1,7 @@
 package actions.canvasActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
 import java.awt.Point;
@@ -149,7 +149,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 	@Override
 	public String getPresentationName()
 	{
-		return PrimeMain1.texts
+		return PrimeMain.texts
 				.getString("actionAddWidgetToCanvasActionPresNameText");
 	}
 
@@ -160,7 +160,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 	@Override
 	public String getRedoPresentationName()
 	{
-		return PrimeMain1.texts
+		return PrimeMain.texts
 				.getString("actionAddWidgetToCanvasRedoPresNameText");
 	}
 
@@ -171,7 +171,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 	@Override
 	public String getUndoPresentationName()
 	{
-		return PrimeMain1.texts
+		return PrimeMain.texts
 				.getString("actionAddWidgetToCanvasUndoPresNameText");
 	}
 

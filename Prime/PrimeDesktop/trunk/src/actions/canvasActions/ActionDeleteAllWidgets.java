@@ -4,7 +4,7 @@
 package actions.canvasActions;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
 
@@ -61,24 +61,24 @@ public class ActionDeleteAllWidgets extends AbstractSystemAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		WorkareaCanvas canvas = PrimeMain1.currentCanvas;
+		WorkareaCanvas canvas = PrimeMain.currentCanvas;
 
 		if ( canvas != null )
 		{
-			String question = PrimeMain1.texts
+			String question = PrimeMain.texts
 					.getString("actionDeleteAllWidgetsQuestions")
 					+ "\n"
-					+ PrimeMain1.texts.getString("thisCannotBeUndoneMsg");
+					+ PrimeMain.texts.getString("thisCannotBeUndoneMsg");
 
 
 
 			//Custom button text
-			Object[] options = { PrimeMain1.texts.getString("yes"),
-					PrimeMain1.texts.getString("no") };
+			Object[] options = { PrimeMain.texts.getString("yes"),
+					PrimeMain.texts.getString("no") };
 		
 
 			int i = JOptionPane.showOptionDialog(null, question,
-				PrimeMain1.texts.getString("actionDeleteAllWidgetsName"),
+				PrimeMain.texts.getString("actionDeleteAllWidgetsName"),
 			    JOptionPane.YES_NO_CANCEL_OPTION,
 			    JOptionPane.QUESTION_MESSAGE,
 			    null,

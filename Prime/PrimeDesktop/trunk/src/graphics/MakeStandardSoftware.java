@@ -32,8 +32,8 @@ public class MakeStandardSoftware
 	 */
 	public Antivirus getSt_AV()
 	{
-		Antivirus av = new Antivirus(PrimeMain1.texts
-				.getString("standardAntivirusName"), PrimeMain1.texts
+		Antivirus av = new Antivirus(PrimeMain.texts
+				.getString("standardAntivirusName"), PrimeMain.texts
 				.getString("standardAntivirusDescription"), "1");
 
 		return av;
@@ -49,8 +49,8 @@ public class MakeStandardSoftware
 	 */
 	public Backup getSt_Backup()
 	{
-		Backup back = new Backup(PrimeMain1.texts
-				.getString("standardBackupName"), PrimeMain1.texts
+		Backup back = new Backup(PrimeMain.texts
+				.getString("standardBackupName"), PrimeMain.texts
 				.getString("standardBackupDescription"), "1");
 
 		return back;
@@ -65,8 +65,8 @@ public class MakeStandardSoftware
 	 */
 	public Database getSt_Database()
 	{
-		Database db = new Database(PrimeMain1.texts
-				.getString("standardDatabaseName"), PrimeMain1.texts
+		Database db = new Database(PrimeMain.texts
+				.getString("standardDatabaseName"), PrimeMain.texts
 				.getString("standardDatabaseDescription"), "1");
 
 		return db;
@@ -82,8 +82,8 @@ public class MakeStandardSoftware
 	 */
 	public Email getSt_Email()
 	{
-		Email mail = new Email(PrimeMain1.texts.getString("standardEmailName"),
-				PrimeMain1.texts.getString("standardEmailDescription"), "1");
+		Email mail = new Email(PrimeMain.texts.getString("standardEmailName"),
+				PrimeMain.texts.getString("standardEmailDescription"), "1");
 
 		return mail;
 	}
@@ -97,8 +97,8 @@ public class MakeStandardSoftware
 	 */
 	public Firewall getSt_Firewall()
 	{
-		Firewall fw = new Firewall(PrimeMain1.texts
-				.getString("standardFirewallName"), PrimeMain1.texts
+		Firewall fw = new Firewall(PrimeMain.texts
+				.getString("standardFirewallName"), PrimeMain.texts
 				.getString("standardFirewallDescription"), "1");
 
 		return fw;
@@ -123,8 +123,8 @@ public class MakeStandardSoftware
 		formats[5] = ".rtf";
 
 
-		OfficeSuite offSuite = new OfficeSuite(PrimeMain1.texts
-				.getString("standardOfficeSuiteName"), PrimeMain1.texts
+		OfficeSuite offSuite = new OfficeSuite(PrimeMain.texts
+				.getString("standardOfficeSuiteName"), PrimeMain.texts
 				.getString("standardOfficeSuiteDescription"), "1", formats);
 
 		return offSuite;
@@ -144,7 +144,7 @@ public class MakeStandardSoftware
 	 */
 	public OperatingSystem getSt_OS()
 	{
-		OperatingSystem os = new OperatingSystem("Windows XP", PrimeMain1.texts
+		OperatingSystem os = new OperatingSystem("Windows XP", PrimeMain.texts
 				.getString("standardOSDescription"), "5.1");
 
 		return os;
@@ -160,8 +160,8 @@ public class MakeStandardSoftware
 	public Proxy getSt_Proxy()
 	{
 		Proxy proxy = new Proxy(
-				PrimeMain1.texts.getString("standardProxyName"),
-				PrimeMain1.texts.getString("standardProxyDescription"), "1");
+				PrimeMain.texts.getString("standardProxyName"),
+				PrimeMain.texts.getString("standardProxyDescription"), "1");
 
 		return proxy;
 	}
@@ -176,8 +176,8 @@ public class MakeStandardSoftware
 	 */
 	public SecuritySuite getSt_SecSuite()
 	{
-		SecuritySuite secSuite = new SecuritySuite(PrimeMain1.texts
-				.getString("standardSecuritySuiteName"), PrimeMain1.texts
+		SecuritySuite secSuite = new SecuritySuite(PrimeMain.texts
+				.getString("standardSecuritySuiteName"), PrimeMain.texts
 				.getString("standardSecuritySuiteDescription"), "1", false,
 				false, false);
 
@@ -195,8 +195,8 @@ public class MakeStandardSoftware
 	 */
 	public Webserver getSt_Webserver()
 	{
-		Webserver ws = new Webserver(PrimeMain1.texts
-				.getString("standardWebserverName"), PrimeMain1.texts
+		Webserver ws = new Webserver(PrimeMain.texts
+				.getString("standardWebserverName"), PrimeMain.texts
 				.getString("standardWebserverDescription"), "1");
 
 		return ws;

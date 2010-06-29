@@ -5,7 +5,7 @@ package graphics.GUI;
 
 
 import exceptions.ObjectNotFoundException;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import managment.ArrayManagment;
 import managment.ComponentsManagment;
 import objects.Object;
@@ -73,7 +73,7 @@ public class CreateObjects
 		{
 			// Gets the object in the given ArrayList with the given class
 			newObject = ArrayManagment.getSpesificComponent(iconObject
-					.getClassType(), PrimeMain1.objectlist);
+					.getClassType(), PrimeMain.objectlist);
 		}
 		catch ( ObjectNotFoundException e )
 		{
@@ -184,28 +184,28 @@ public class CreateObjects
 	 */
 	public static void createStandardObject()
 	{
-		PrimeMain1.objectlist.add(createDefaultDesktop(""));
-		PrimeMain1.objectlist.add(createDefaultLaptop(""));
-		PrimeMain1.objectlist.add(createDefaultThinClient(""));
-		PrimeMain1.objectlist.add(createDefaultHTTPServer(""));
-		PrimeMain1.objectlist.add(createDefaultBackupServer(""));
-		PrimeMain1.objectlist.add(createDefaultDatabaseServer(""));
-		PrimeMain1.objectlist.add(createDefaultMailServer(""));
-		PrimeMain1.objectlist.add(createDefaultFirewallServer(""));
-		PrimeMain1.objectlist.add(createDefaultProxyServer(""));
-		PrimeMain1.objectlist.add(createDefaultPrinterServer(""));
-		PrimeMain1.objectlist.add(createDefaultScanner(""));
-		PrimeMain1.objectlist.add(createDefaultPrinter(""));
-		PrimeMain1.objectlist.add(createDefaultFax(""));
-		PrimeMain1.objectlist.add(createDefaultMFP(""));
-		PrimeMain1.objectlist.add(createDefaultNetworkPrinter(""));
-		PrimeMain1.objectlist.add(createDefaultNetworkMFP(""));
-		PrimeMain1.objectlist.add(createDefaultHub(""));
-		PrimeMain1.objectlist.add(createDefaultSwitch(""));
-		PrimeMain1.objectlist.add(createDefaultRouter(""));
-		PrimeMain1.objectlist.add(createDefaultModem(""));
-		PrimeMain1.objectlist.add(createDefaultWirelessRouter(""));
-		PrimeMain1.objectlist.add(createDefaultInternet(""));
+		PrimeMain.objectlist.add(createDefaultDesktop(""));
+		PrimeMain.objectlist.add(createDefaultLaptop(""));
+		PrimeMain.objectlist.add(createDefaultThinClient(""));
+		PrimeMain.objectlist.add(createDefaultHTTPServer(""));
+		PrimeMain.objectlist.add(createDefaultBackupServer(""));
+		PrimeMain.objectlist.add(createDefaultDatabaseServer(""));
+		PrimeMain.objectlist.add(createDefaultMailServer(""));
+		PrimeMain.objectlist.add(createDefaultFirewallServer(""));
+		PrimeMain.objectlist.add(createDefaultProxyServer(""));
+		PrimeMain.objectlist.add(createDefaultPrinterServer(""));
+		PrimeMain.objectlist.add(createDefaultScanner(""));
+		PrimeMain.objectlist.add(createDefaultPrinter(""));
+		PrimeMain.objectlist.add(createDefaultFax(""));
+		PrimeMain.objectlist.add(createDefaultMFP(""));
+		PrimeMain.objectlist.add(createDefaultNetworkPrinter(""));
+		PrimeMain.objectlist.add(createDefaultNetworkMFP(""));
+		PrimeMain.objectlist.add(createDefaultHub(""));
+		PrimeMain.objectlist.add(createDefaultSwitch(""));
+		PrimeMain.objectlist.add(createDefaultRouter(""));
+		PrimeMain.objectlist.add(createDefaultModem(""));
+		PrimeMain.objectlist.add(createDefaultWirelessRouter(""));
+		PrimeMain.objectlist.add(createDefaultInternet(""));
 	}
 
 
@@ -217,7 +217,7 @@ public class CreateObjects
 	{
 		Object[] components = new Object[5];
 
-		components[0] = PrimeMain1.standard_internal_components.getSt_MB();
+		components[0] = PrimeMain.standard_internal_components.getSt_MB();
 
 		Motherboard mb = (Motherboard) components[0];
 
@@ -227,10 +227,10 @@ public class CreateObjects
 		mb.makeOneDUCportTaken();// For the HDD
 
 		components[0] = mb;
-		components[1] = PrimeMain1.standard_internal_components.getSt_CPU();
-		components[2] = PrimeMain1.standard_internal_components.getSt_RAM();
-		components[3] = PrimeMain1.standard_internal_components.getSt_HDD();
-		components[4] = PrimeMain1.standard_internal_components.getSt_DVDRW();
+		components[1] = PrimeMain.standard_internal_components.getSt_CPU();
+		components[2] = PrimeMain.standard_internal_components.getSt_RAM();
+		components[3] = PrimeMain.standard_internal_components.getSt_HDD();
+		components[4] = PrimeMain.standard_internal_components.getSt_DVDRW();
 
 
 		return components;
@@ -243,7 +243,7 @@ public class CreateObjects
 	private static Software[] createSoftwareArray()
 	{
 		Software[] st_software = new Software[1];
-		st_software[0] = PrimeMain1.standard_software.getSt_OS();
+		st_software[0] = PrimeMain.standard_software.getSt_OS();
 
 
 		return st_software;
@@ -253,7 +253,7 @@ public class CreateObjects
 
 	private static Desktop createDefaultDesktop(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("desktop");
+		String objectName = PrimeMain.texts.getString("desktop");
 		String objectDesc = desc;
 
 		if ( objectDesc == "" )
@@ -284,7 +284,7 @@ public class CreateObjects
 
 	private static Laptop createDefaultLaptop(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("laptop");
+		String objectName = PrimeMain.texts.getString("laptop");
 		String objectDesc = desc;
 
 		if ( objectDesc == "" )
@@ -303,7 +303,7 @@ public class CreateObjects
 
 
 		// Internal Wireless NIC
-		InternalNetworksCard intNIC = PrimeMain1.standard_internal_components
+		InternalNetworksCard intNIC = PrimeMain.standard_internal_components
 				.getSt_IntNIC();
 		intNIC.setType(ConnectionUtils.Wireless);
 
@@ -327,7 +327,7 @@ public class CreateObjects
 
 	public static ThinClient createDefaultThinClient(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("thinClient");
+		String objectName = PrimeMain.texts.getString("thinClient");
 		String objectDesc = desc;
 
 		if ( objectDesc == "" )
@@ -374,7 +374,7 @@ public class CreateObjects
 
 	private static HTTPServer createDefaultHTTPServer(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("httpServer");
+		String objectName = PrimeMain.texts.getString("httpServer");
 		String objectDesc = desc;
 
 		String ObjectSWname = "Apache";
@@ -415,10 +415,10 @@ public class CreateObjects
 
 	private static BackupServer createDefaultBackupServer(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("backupServer");
+		String objectName = PrimeMain.texts.getString("backupServer");
 		String objectDesc = desc;
 
-		String ObjectSWname = PrimeMain1.texts.getString("backup");
+		String ObjectSWname = PrimeMain.texts.getString("backup");
 		String ObjectSWdesc = "Standard backup server";
 		String ObjectSWversion = "1";
 
@@ -493,10 +493,10 @@ public class CreateObjects
 
 	private static MailServer createDefaultMailServer(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("mailServer");
+		String objectName = PrimeMain.texts.getString("mailServer");
 		String objectDesc = desc;
 
-		String ObjectSWname = PrimeMain1.texts.getString("email");
+		String ObjectSWname = PrimeMain.texts.getString("email");
 		String ObjectSWdesc = "Standard mail server";
 		String ObjectSWversion = "1";
 
@@ -532,10 +532,10 @@ public class CreateObjects
 
 	private static FirewallServer createDefaultFirewallServer(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("firewallServer");
+		String objectName = PrimeMain.texts.getString("firewallServer");
 		String objectDesc = desc;
 
-		String ObjectSWname = PrimeMain1.texts.getString("firewall");
+		String ObjectSWname = PrimeMain.texts.getString("firewall");
 		String ObjectSWdesc = "Standard firewall server";
 		String ObjectSWversion = "1";
 
@@ -570,10 +570,10 @@ public class CreateObjects
 
 	private static ProxyServer createDefaultProxyServer(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("proxyServer");
+		String objectName = PrimeMain.texts.getString("proxyServer");
 		String objectDesc = desc;
 
-		String ObjectSWname = PrimeMain1.texts.getString("proxy");
+		String ObjectSWname = PrimeMain.texts.getString("proxy");
 		String ObjectSWdesc = "Standard proxy server";
 		String ObjectSWversion = "1";
 
@@ -607,7 +607,7 @@ public class CreateObjects
 
 	private static PrinterServer createDefaultPrinterServer(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("printerServer");
+		String objectName = PrimeMain.texts.getString("printerServer");
 		String objectDesc = desc;
 
 		String ObjectSWname = "PrinterServer";
@@ -644,7 +644,7 @@ public class CreateObjects
 
 	private static Scanner createDefaultScanner(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("scanner");
+		String objectName = PrimeMain.texts.getString("scanner");
 		String objectDesc = desc;
 
 		String Sresolution = "1280x1020";
@@ -654,7 +654,7 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components
+		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
 		objectMB.setMaxUSBs(1);
@@ -675,7 +675,7 @@ public class CreateObjects
 
 	private static Printer createDefaultPrinter(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("printer");
+		String objectName = PrimeMain.texts.getString("printer");
 		String objectDesc = desc;
 
 		String Sresolution = "1280x1020";
@@ -685,7 +685,7 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components
+		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
 		objectMB.setMaxUSBs(1);
@@ -707,7 +707,7 @@ public class CreateObjects
 
 	private static Fax createDefaultFax(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("fax");
+		String objectName = PrimeMain.texts.getString("fax");
 		String objectDesc = desc;
 
 		String Sresolution = "1280x1020";
@@ -717,7 +717,7 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components
+		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
 		objectMB.setMaxUSBs(1);
@@ -740,7 +740,7 @@ public class CreateObjects
 
 	private static MultifunctionPrinter createDefaultMFP(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("multifunctionPrinter");
+		String objectName = PrimeMain.texts.getString("multifunctionPrinter");
 		String objectDesc = desc;
 
 		String Sresolution[] = { "1280x1020" };
@@ -750,7 +750,7 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components
+		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
 		objectMB.setMaxUSBs(1);
@@ -772,7 +772,7 @@ public class CreateObjects
 
 	private static NetworkPrinter createDefaultNetworkPrinter(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("printer");
+		String objectName = PrimeMain.texts.getString("printer");
 		String objectDesc = desc;
 
 		String Sresolution = "1280x1020";
@@ -782,7 +782,7 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components
+		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
 		objectMB.setMaxUSBs(1);
@@ -818,7 +818,7 @@ public class CreateObjects
 	private static NetworkMultifunctionPrinter createDefaultNetworkMFP(
 			String desc)
 	{
-		String objectName = PrimeMain1.texts
+		String objectName = PrimeMain.texts
 				.getString("networkMultifunctionPrinter");
 		String objectDesc = desc;
 
@@ -829,7 +829,7 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components
+		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
 		objectMB.setMaxUSBs(1);
@@ -856,7 +856,7 @@ public class CreateObjects
 
 	private static Hub createDefaultHub(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("hub");
+		String objectName = PrimeMain.texts.getString("hub");
 		String objectDesc = desc;
 
 		int outPorts = 16;
@@ -868,7 +868,7 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components
+		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
 		objectMB.setIntegLANcard(true);
@@ -892,7 +892,7 @@ public class CreateObjects
 
 	private static Switch createDefaultSwitch(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("switch");
+		String objectName = PrimeMain.texts.getString("switch");
 		String objectDesc = desc;
 
 		int outPorts = 16;
@@ -904,7 +904,7 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components
+		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
 		objectMB.setIntegLANcard(true);
@@ -927,7 +927,7 @@ public class CreateObjects
 
 	private static Router createDefaultRouter(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("router");
+		String objectName = PrimeMain.texts.getString("router");
 		String objectDesc = desc;
 
 		int outPorts = 4;
@@ -939,7 +939,7 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components
+		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
 		objectMB.setIntegLANcard(true);
@@ -962,7 +962,7 @@ public class CreateObjects
 
 	private static Modem createDefaultModem(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("modem");
+		String objectName = PrimeMain.texts.getString("modem");
 		String objectDesc = desc;
 
 
@@ -971,7 +971,7 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components
+		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
 		objectMB.setIntegLANcard(true);
@@ -1005,7 +1005,7 @@ public class CreateObjects
 
 	private static Router createDefaultWirelessRouter(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("wirelessRouter");
+		String objectName = PrimeMain.texts.getString("wirelessRouter");
 		String objectDesc = desc;
 
 		int outPorts = 4;
@@ -1017,7 +1017,7 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components
+		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
 		objectMB.setIntegLANcard(true);
@@ -1052,7 +1052,7 @@ public class CreateObjects
 
 	private static Internet createDefaultInternet(String desc)
 	{
-		String objectName = PrimeMain1.texts.getString("internet");
+		String objectName = PrimeMain.texts.getString("internet");
 		String objectDesc = desc;
 
 		String[] SupConInt = { ConnectionUtils.RJ45, ConnectionUtils.Coax };
@@ -1062,7 +1062,7 @@ public class CreateObjects
 			objectDesc = objectName;
 		}
 
-		Motherboard objectMB = PrimeMain1.standard_internal_components
+		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
 		objectMB.setIntegLANcard(true);

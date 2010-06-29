@@ -5,7 +5,7 @@ package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
@@ -90,7 +90,7 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface, A
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(GraphicsCard.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(GraphicsCard.class);
 		JPanel p1 = HardwareEditor.GeneralInfo(GPU, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -118,10 +118,10 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface, A
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain1.texts
+		JLabel label = new JLabel(PrimeMain.texts
 				.getString("hwTabRemoveThisComponentLabel"));
 
-		Button remove = new Button(PrimeMain1.texts
+		Button remove = new Button(PrimeMain.texts
 				.getString("hwTabRemoveComponentButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeComp");
@@ -156,35 +156,35 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface, A
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[7];
 
-		labels[0] = new JLabel(PrimeMain1.texts
+		labels[0] = new JLabel(PrimeMain.texts
 				.getString("gpuViewProducerLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts
+		labels[0].setToolTipText(PrimeMain.texts
 				.getString("gpuViewProducerTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts
+		labels[1] = new JLabel(PrimeMain.texts
 				.getString("gpuViewInterfaceLabel"));
-		labels[1].setToolTipText(PrimeMain1.texts
+		labels[1].setToolTipText(PrimeMain.texts
 				.getString("gpuViewInterfaceTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts
+		labels[2] = new JLabel(PrimeMain.texts
 				.getString("gpuViewOutputPortLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts
+		labels[2].setToolTipText(PrimeMain.texts
 				.getString("gpuViewOutputPortTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts.getString("gpuViewSizeLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts.getString("gpuViewSizeTip"));
+		labels[3] = new JLabel(PrimeMain.texts.getString("gpuViewSizeLabel"));
+		labels[3].setToolTipText(PrimeMain.texts.getString("gpuViewSizeTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts.getString("gpuViewSpeedLabel"));
-		labels[4].setToolTipText(PrimeMain1.texts.getString("gpuViewSpeedTip"));
+		labels[4] = new JLabel(PrimeMain.texts.getString("gpuViewSpeedLabel"));
+		labels[4].setToolTipText(PrimeMain.texts.getString("gpuViewSpeedTip"));
 
-		labels[5] = new JLabel(PrimeMain1.texts
+		labels[5] = new JLabel(PrimeMain.texts
 				.getString("gpuViewMaxMonitorsLabel"));
-		labels[5].setToolTipText(PrimeMain1.texts
+		labels[5].setToolTipText(PrimeMain.texts
 				.getString("gpuViewMaxMonitorsTip"));
 
-		labels[6] = new JLabel(PrimeMain1.texts
+		labels[6] = new JLabel(PrimeMain.texts
 				.getString("gpuViewIsIntegratedLabel"));
-		labels[6].setToolTipText(PrimeMain1.texts
+		labels[6].setToolTipText(PrimeMain.texts
 				.getString("gpuViewIsIntegratedTip"));
 
 
@@ -431,7 +431,7 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface, A
 
 				type = GraphicalFunctions.verifyChange(this, mainObj,
 						GraphicsCard.class, mainGC.getType(), type
-								.getSelectedItem().toString(), PrimeMain1.texts
+								.getSelectedItem().toString(), PrimeMain.texts
 								.getString("gpuViewNotCompatiableQuestionMsg"),
 						typeString, type);
 			}
@@ -453,16 +453,16 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface, A
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
 				}
 				// If no view is returned, then the standard object view is open
 				// and that should be updated.
-				else if ( PrimeMain1.stdObjView != null )
+				else if ( PrimeMain.stdObjView != null )
 				{
-					PrimeMain1.stdObjView.getSplitView().getHardStdObjView()
+					PrimeMain.stdObjView.getSplitView().getHardStdObjView()
 							.updateTabInfo();
 				}
 			}

@@ -5,7 +5,7 @@ package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.objectView.Hardware.HardwareView.Overview.HardwareEditor;
@@ -86,7 +86,7 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface, Acti
 		c.gridheight = 1;
 		c.insets = new Insets(10, 10, 5, 10);
 
-		ImageIcon icon = PrimeMain1.objectImageIcons.get(Discdrive.class);
+		ImageIcon icon = PrimeMain.objectImageIcons.get(Discdrive.class);
 		JPanel p1 = HardwareEditor.GeneralInfo(discdrive, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
@@ -115,10 +115,10 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface, Acti
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain1.texts
+		JLabel label = new JLabel(PrimeMain.texts
 				.getString("hwTabRemoveThisComponentLabel"));
 
-		Button remove = new Button(PrimeMain1.texts
+		Button remove = new Button(PrimeMain.texts
 				.getString("hwTabRemoveComponentButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeComp");
@@ -152,25 +152,25 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface, Acti
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[5];
 
-		labels[0] = new JLabel(PrimeMain1.texts
+		labels[0] = new JLabel(PrimeMain.texts
 				.getString("discViewProducerLabel"));
-		labels[0].setToolTipText(PrimeMain1.texts
+		labels[0].setToolTipText(PrimeMain.texts
 				.getString("discViewProducerTip"));
 
-		labels[1] = new JLabel(PrimeMain1.texts.getString("discViewTypeLabel"));
-		labels[1].setToolTipText(PrimeMain1.texts.getString("discViewTypeTip"));
+		labels[1] = new JLabel(PrimeMain.texts.getString("discViewTypeLabel"));
+		labels[1].setToolTipText(PrimeMain.texts.getString("discViewTypeTip"));
 
-		labels[2] = new JLabel(PrimeMain1.texts.getString("discViewPortLabel"));
-		labels[2].setToolTipText(PrimeMain1.texts.getString("discViewPortTip"));
+		labels[2] = new JLabel(PrimeMain.texts.getString("discViewPortLabel"));
+		labels[2].setToolTipText(PrimeMain.texts.getString("discViewPortTip"));
 
-		labels[3] = new JLabel(PrimeMain1.texts
+		labels[3] = new JLabel(PrimeMain.texts
 				.getString("discViewSubtypeLabel"));
-		labels[3].setToolTipText(PrimeMain1.texts
+		labels[3].setToolTipText(PrimeMain.texts
 				.getString("discViewSubtypeTip"));
 
-		labels[4] = new JLabel(PrimeMain1.texts.getString("discViewSpeedLabel"));
+		labels[4] = new JLabel(PrimeMain.texts.getString("discViewSpeedLabel"));
 		labels[4]
-				.setToolTipText(PrimeMain1.texts.getString("discViewSpeedTip"));
+				.setToolTipText(PrimeMain.texts.getString("discViewSpeedTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -333,7 +333,7 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface, Acti
 
 				port = GraphicalFunctions.verifyChange(this, mainObj,
 						Discdrive.class, DiscObj.getPort(), port
-								.getSelectedItem().toString(), PrimeMain1.texts
+								.getSelectedItem().toString(), PrimeMain.texts
 								.getString("discViewPortQuestionMsg"),
 						portString, port);
 			}
@@ -355,16 +355,16 @@ public class DiscDriveView extends JPanel implements HardwareViewInterface, Acti
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				ObjectView view = PrimeMain1.getObjectView(mainObj);
+				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
 				}
 				// If no view is returned, then the standard object view is open
 				// and that should be updated.
-				else if ( PrimeMain1.stdObjView != null )
+				else if ( PrimeMain.stdObjView != null )
 				{
-					PrimeMain1.stdObjView.getSplitView().getHardStdObjView()
+					PrimeMain.stdObjView.getSplitView().getHardStdObjView()
 							.updateTabInfo();
 				}
 			}

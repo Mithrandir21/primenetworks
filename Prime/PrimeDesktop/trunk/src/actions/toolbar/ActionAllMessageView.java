@@ -1,7 +1,7 @@
 package actions.toolbar;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.messageArea.MessageTabbed;
 
 import java.awt.event.ActionEvent;
@@ -31,7 +31,7 @@ public class ActionAllMessageView extends AbstractSystemAction
 	public ActionAllMessageView(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionActionAllMessageViewDescriptionText"));
 	}
 
@@ -46,7 +46,7 @@ public class ActionAllMessageView extends AbstractSystemAction
 	public ActionAllMessageView(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain1.texts
+		putValue(SHORT_DESCRIPTION, PrimeMain.texts
 				.getString("actionActionOpenAllMessageViewDescriptionText"));
 	}
 
@@ -62,7 +62,7 @@ public class ActionAllMessageView extends AbstractSystemAction
 	public void actionPerformed(ActionEvent e)
 	{
 		// Gets the MessageTabbed that contains the tabs
-		MessageTabbed msgTabs = (MessageTabbed) PrimeMain1.messagesPanel
+		MessageTabbed msgTabs = (MessageTabbed) PrimeMain.messagesPanel
 				.getComponent(0);
 
 		msgTabs.createNetworkMessagePanel();

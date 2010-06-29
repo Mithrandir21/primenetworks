@@ -4,7 +4,7 @@
 package graphics.GUI.objectView.Software.EditSoftware.EditOverview;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 
 import java.awt.event.ActionEvent;
@@ -71,13 +71,13 @@ public class SoftwareMouseListener extends MouseAdapter implements ActionListene
 		JPopupMenu itemPopup = new JPopupMenu();
 
 
-		JMenuItem deleteHardware = new JMenuItem(PrimeMain1.texts
+		JMenuItem deleteHardware = new JMenuItem(PrimeMain.texts
 				.getString("swTabRemoveSoftwareButtonLabel"));
 		deleteHardware.setActionCommand("Delete Software");
 		deleteHardware.addActionListener(this);
 
 
-		JMenuItem editHardware = new JMenuItem(PrimeMain1.texts
+		JMenuItem editHardware = new JMenuItem(PrimeMain.texts
 				.getString("swTabEditSoftwareButtonLabel"));
 		editHardware.setActionCommand("Edit Software");
 		editHardware.addActionListener(this);
@@ -141,17 +141,17 @@ public class SoftwareMouseListener extends MouseAdapter implements ActionListene
 			if ( !(softwareObject instanceof OperatingSystem) )
 			{
 				// Asks the user to confirm the deletion
-				answer = JOptionPane.showConfirmDialog(panel, PrimeMain1.texts
+				answer = JOptionPane.showConfirmDialog(panel, PrimeMain.texts
 						.getObject("swTabDeleteSWquestionMsg"),
-						PrimeMain1.texts.getString("verify"),
+						PrimeMain.texts.getString("verify"),
 						JOptionPane.YES_NO_OPTION);
 			}
 			else
 			{
 				// Asks the user to confirm the deletion
-				answer = JOptionPane.showConfirmDialog(panel, PrimeMain1.texts
+				answer = JOptionPane.showConfirmDialog(panel, PrimeMain.texts
 						.getString("osViewRemovalQuestionText"),
-						PrimeMain1.texts.getString("confirm"),
+						PrimeMain.texts.getString("confirm"),
 						JOptionPane.YES_NO_OPTION);
 			}
 
@@ -196,7 +196,7 @@ public class SoftwareMouseListener extends MouseAdapter implements ActionListene
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				ObjectView view = PrimeMain1.getObjectView(mainObject);
+				ObjectView view = PrimeMain.getObjectView(mainObject);
 				if ( view != null )
 				{
 					view.updateViewInfo();
@@ -207,7 +207,7 @@ public class SoftwareMouseListener extends MouseAdapter implements ActionListene
 		{
 			// Gets the Object View which will contain the software editor view
 			// of each software object
-			ObjectView objView = PrimeMain1.objView.get(0);
+			ObjectView objView = PrimeMain.objView.get(0);
 
 			// Call for a new Software editor to be create and then sets the tab
 			// focus to the software object the user

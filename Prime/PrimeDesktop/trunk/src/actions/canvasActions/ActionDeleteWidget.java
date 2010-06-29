@@ -3,7 +3,7 @@ package actions.canvasActions;
 
 import exceptions.ConnectionDoesExist;
 import exceptions.ConnectionsIsNotPossible;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
 import java.awt.event.ActionEvent;
@@ -124,7 +124,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 	@Override
 	public String getPresentationName()
 	{
-		return PrimeMain1.texts
+		return PrimeMain.texts
 				.getString("actionDeleteObjectActionPresNameText");
 	}
 
@@ -135,7 +135,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 	@Override
 	public String getRedoPresentationName()
 	{
-		return PrimeMain1.texts.getString("actionDeleteObjectRedoPresNameText");
+		return PrimeMain.texts.getString("actionDeleteObjectRedoPresNameText");
 	}
 
 	/*
@@ -145,7 +145,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 	@Override
 	public String getUndoPresentationName()
 	{
-		return PrimeMain1.texts.getString("actionDeleteObjectUndoPresNameText");
+		return PrimeMain.texts.getString("actionDeleteObjectUndoPresNameText");
 	}
 
 	/*
@@ -208,7 +208,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 
 					// Creates a new connection between the two widget objects
 					Connection con = ConnectionManagment.makeConnection(canvas
-							.getConnections(), PrimeMain1.texts
+							.getConnections(), PrimeMain.texts
 							.getString("connection")
 							+ canvas.getNumberOfWidgetsOnTheScene(),
 							"Connection between "
@@ -251,17 +251,17 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 				// objects.
 				catch ( ConnectionDoesExist e )
 				{
-					JOptionPane.showMessageDialog(null, PrimeMain1.texts
+					JOptionPane.showMessageDialog(null, PrimeMain.texts
 							.getString("connectionAlreadyExistsMsg"),
-							PrimeMain1.texts.getString("alert"),
+							PrimeMain.texts.getString("alert"),
 							JOptionPane.ERROR_MESSAGE);
 				}
 				// If a connection between the two given objects is impossible.
 				catch ( ConnectionsIsNotPossible e )
 				{
-					JOptionPane.showMessageDialog(null, PrimeMain1.texts
+					JOptionPane.showMessageDialog(null, PrimeMain.texts
 							.getString("connectionNotPossibleMsg"),
-							PrimeMain1.texts.getString("alert"),
+							PrimeMain.texts.getString("alert"),
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -277,7 +277,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 	public void performAction(boolean undoable)
 	{
 		// Sets the current canvas as the actions canvas
-		canvas = PrimeMain1.currentCanvas;
+		canvas = PrimeMain.currentCanvas;
 
 		// Sets the currently selected widget on the current canvas as the
 		// actions WidgetObject

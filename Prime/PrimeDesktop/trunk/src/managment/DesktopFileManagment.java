@@ -5,7 +5,7 @@ package managment;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.CustomFileFilters.DATFilter;
 import graphics.GUI.CustomFileFilters.JPGFilter;
 import graphics.GUI.CustomFileFilters.OBJFilter;
@@ -62,8 +62,7 @@ public class DesktopFileManagment
 	public static void saveWorkareaCanvas(WorkareaCanvas canvas)
 	{
 		File file = new File("./resource/Data/" + canvas.getCanvasName()
-				+ File.separator + canvas.getCanvasName()
-				+ ".dat");
+				+ File.separator + canvas.getCanvasName() + ".dat");
 
 		// If the file does not exist
 		if ( !(file.exists()) )
@@ -111,7 +110,7 @@ public class DesktopFileManagment
 	 * @param verify
 	 *            Verify if the file exists and if so can be overwritten
 	 */
-	private static void saveCanvas(WorkareaCanvas canvas, File file,
+	private static boolean saveCanvas(WorkareaCanvas canvas, File file,
 			boolean verify)
 	{
 		// Revalidates the locations of the objects on the scene
@@ -247,11 +246,15 @@ public class DesktopFileManagment
 			canvas.setChanged(false);
 
 			// Reloads the JTree
-			PrimeMain1.updateNetworkSelectionArea();
+			PrimeMain.updateNetworkSelectionArea();
 
-			PrimeMain1.workTab.revalidate();
-			PrimeMain1.workTab.repaint();
+			PrimeMain.workTab.revalidate();
+			PrimeMain.workTab.repaint();
+
+			return true;
 		}
+
+		return false;
 	}
 
 
@@ -313,8 +316,7 @@ public class DesktopFileManagment
 
 		// Creates a file object(not the actual file)
 		File file = new File("./resource/Data/" + canvas.getCanvasName()
-				+ File.separator + canvas.getCanvasName()
-				+ ".dat");
+				+ File.separator + canvas.getCanvasName() + ".dat");
 
 		// If the file(network) exists
 		if ( file.exists() )
@@ -345,9 +347,9 @@ public class DesktopFileManagment
 						int answer = JOptionPane
 								.showConfirmDialog(
 										null,
-										PrimeMain1.texts
+										PrimeMain.texts
 												.getString("overwriteNetworkWithTheSameNameMsg"),
-										PrimeMain1.texts.getString("overwrite"),
+										PrimeMain.texts.getString("overwrite"),
 										JOptionPane.YES_NO_OPTION);
 
 						// The user answers "yes"
@@ -496,8 +498,8 @@ public class DesktopFileManagment
 			// If the rename was not possible
 			if ( !result )
 			{
-				JOptionPane.showMessageDialog(null, PrimeMain1.texts
-						.getString("renameWasNotPossibleMsg"), PrimeMain1.texts
+				JOptionPane.showMessageDialog(null, PrimeMain.texts
+						.getString("renameWasNotPossibleMsg"), PrimeMain.texts
 						.getString("error"), JOptionPane.ERROR_MESSAGE);
 
 				// If the file was not changed, but the folder was changed the
@@ -522,7 +524,7 @@ public class DesktopFileManagment
 				saveWorkareaCanvas(canvas, fileNew);
 
 				// Updates the JTree
-				PrimeMain1.updateNetworkSelectionArea();
+				PrimeMain.updateNetworkSelectionArea();
 
 				return true;
 			}
@@ -628,9 +630,9 @@ public class DesktopFileManagment
 		// No open canvas was found
 		if ( canvas == null )
 		{
-			int answer = JOptionPane.showConfirmDialog(null, PrimeMain1.texts
+			int answer = JOptionPane.showConfirmDialog(null, PrimeMain.texts
 					.getString("actionDeleteWorkareaCanvasMsg")
-					+ canvasName + "?", PrimeMain1.texts.getString("confirm"),
+					+ canvasName + "?", PrimeMain.texts.getString("confirm"),
 					JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
 			if ( answer == 0 )
@@ -655,7 +657,7 @@ public class DesktopFileManagment
 
 
 					// Reloads
-					PrimeMain1.updateNetworkSelectionArea();
+					PrimeMain.updateNetworkSelectionArea();
 
 					return true;
 				}
@@ -665,9 +667,9 @@ public class DesktopFileManagment
 		// There was an open canvas found
 		else
 		{
-			int answer = JOptionPane.showConfirmDialog(null, PrimeMain1.texts
+			int answer = JOptionPane.showConfirmDialog(null, PrimeMain.texts
 					.getString("actionDeleteWorkareaCanvasMsg")
-					+ canvasName + "?", PrimeMain1.texts.getString("confirm"),
+					+ canvasName + "?", PrimeMain.texts.getString("confirm"),
 					JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
 			if ( answer == 0 )
@@ -692,10 +694,10 @@ public class DesktopFileManagment
 
 
 					// Reloads
-					PrimeMain1.updateNetworkSelectionArea();
+					PrimeMain.updateNetworkSelectionArea();
 
 					// Removes the WorkareScroll with the canvas
-					PrimeMain1.workTab.removeTabWithCanvas(canvasName, false);
+					PrimeMain.workTab.removeTabWithCanvas(canvasName, false);
 
 					// Removed the canvas from the systems canvas array
 					DesktopCanvasManagment.removeWorkareaCanvas(canvas);
@@ -765,7 +767,8 @@ public class DesktopFileManagment
 		// IF the user has canceled
 		if ( nameOfCanvas != null )
 		{
-			if ( Pattern.matches("([a-zA-Z������_0-9 ])*", nameOfCanvas) )
+			if ( Pattern.matches("([a-zA-Z������_0-9 ])*",
+					nameOfCanvas) )
 			{
 				// Checks whether or not there exist a canvas with the same
 				if ( !DesktopCanvasManagment.canvasExists(nameOfCanvas) )
@@ -807,20 +810,20 @@ public class DesktopFileManagment
 							canvas);
 
 					// Then we add the JScrollPane to the Screen
-					PrimeMain1.workTab.createNewCanvasTab(newScroll, -1);
+					PrimeMain.workTab.createNewCanvasTab(newScroll, -1);
 
 					// Reloads the JTree
-					PrimeMain1.updateNetworkSelectionArea();
+					PrimeMain.updateNetworkSelectionArea();
 
-					PrimeMain1.workTab.revalidate();
-					PrimeMain1.workTab.repaint();
+					PrimeMain.workTab.revalidate();
+					PrimeMain.workTab.repaint();
 
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null, PrimeMain1.texts
+					JOptionPane.showMessageDialog(null, PrimeMain.texts
 							.getString("canvasExistWithNameMsg"),
-							PrimeMain1.texts.getString("error"),
+							PrimeMain.texts.getString("error"),
 							JOptionPane.ERROR_MESSAGE);
 
 					return false;
@@ -828,8 +831,8 @@ public class DesktopFileManagment
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(null, PrimeMain1.texts
-						.getString("canvasNameNotValidMsg"), PrimeMain1.texts
+				JOptionPane.showMessageDialog(null, PrimeMain.texts
+						.getString("canvasNameNotValidMsg"), PrimeMain.texts
 						.getString("error"), JOptionPane.ERROR_MESSAGE);
 
 				return false;
@@ -952,7 +955,7 @@ public class DesktopFileManagment
 					{
 						Class<?> objClass = GraphicalFunctions
 								.getObjectClass(objects[i]);
-						ImageIcon icon = PrimeMain1.objectImageIcons
+						ImageIcon icon = PrimeMain.objectImageIcons
 								.get(objects[i].getClass());
 
 						WidgetObject added = WorkareaCanvasActions
@@ -1122,7 +1125,7 @@ public class DesktopFileManagment
 		}
 
 
-		PrimeMain1.getWorkarea().createNewCanvasTab(canvas);
+		PrimeMain.getWorkarea().createNewCanvasTab(canvas);
 
 		canvas.setSaved(true);
 	}
@@ -1131,8 +1134,7 @@ public class DesktopFileManagment
 
 	/**
 	 * This method opens a WorkareaCanvas from the given file, but does not add
-	 * it to the systems array of canvases. It just returns the
-	 * {@link WorkareaCanvas}.
+	 * it to the systems array of canvases. It just returns the {@link WorkareaCanvas}.
 	 * 
 	 * @param file
 	 */
@@ -1203,7 +1205,7 @@ public class DesktopFileManagment
 					{
 						Class<?> objClass = GraphicalFunctions
 								.getObjectClass(objects[i]);
-						ImageIcon icon = PrimeMain1.objectImageIcons
+						ImageIcon icon = PrimeMain.objectImageIcons
 								.get(objects[i].getClass());
 
 						WidgetObject added = WorkareaCanvasActions
@@ -1528,7 +1530,7 @@ public class DesktopFileManagment
 	 * 
 	 * @param canvas
 	 */
-	public static void exportNetwork(WorkareaCanvas canvas)
+	public static boolean exportNetwork(WorkareaCanvas canvas)
 	{
 		// The JFileChoose where the user will save the export
 		JFileChooser fc = new JFileChooser();
@@ -1559,10 +1561,10 @@ public class DesktopFileManagment
 			if ( output.exists() )
 			{
 				int answer = JOptionPane
-						.showConfirmDialog(null, PrimeMain1.texts
+						.showConfirmDialog(null, PrimeMain.texts
 								.getString("overwriteNetworkExportMsg"),
-						PrimeMain1.texts.getString("overwrite"),
-						JOptionPane.YES_NO_OPTION);
+								PrimeMain.texts.getString("overwrite"),
+								JOptionPane.YES_NO_OPTION);
 
 				if ( answer == 0 )
 				{
@@ -1578,9 +1580,11 @@ public class DesktopFileManagment
 			// Will either overwrite or write a new file
 			if ( overwrite )
 			{
-				saveCanvas(canvas, output, false);
+				return saveCanvas(canvas, output, false);
 			}
 		}
+
+		return false;
 	}
 
 
@@ -1591,7 +1595,7 @@ public class DesktopFileManagment
 	 * 
 	 * @param canvas
 	 */
-	public static void exportWorkareaCanvasAsImage(WorkareaCanvas canvas)
+	public static boolean exportWorkareaCanvasAsImage(WorkareaCanvas canvas)
 	{
 		// The JFileChoose where the user will save the export
 		JFileChooser fc = new JFileChooser();
@@ -1620,8 +1624,8 @@ public class DesktopFileManagment
 			if ( file.exists() )
 			{
 				int answer = JOptionPane.showConfirmDialog(null,
-						PrimeMain1.texts.getString("overwriteNetworkImageMsg"),
-						PrimeMain1.texts.getString("overwrite"),
+						PrimeMain.texts.getString("overwriteNetworkImageMsg"),
+						PrimeMain.texts.getString("overwrite"),
 						JOptionPane.YES_NO_OPTION);
 
 				if ( answer == 0 )
@@ -1659,11 +1663,12 @@ public class DesktopFileManagment
 
 					try
 					{
-						CanvasExporter.createImage(PrimeMain1.currentCanvas,
-								file,
-							CanvasExporter.ImageType.JPG,
-							CanvasExporter.ZoomType.ACTUAL_SIZE, false, false,
-							100, 1600, 1400);
+						CanvasExporter.createImage(PrimeMain.currentCanvas,
+								file, CanvasExporter.ImageType.JPG,
+								CanvasExporter.ZoomType.ACTUAL_SIZE, false,
+								false, 100, 1600, 1400);
+
+						return true;
 					}
 					catch ( IOException e )
 					{
@@ -1684,11 +1689,12 @@ public class DesktopFileManagment
 
 					try
 					{
-						CanvasExporter.createImage(PrimeMain1.currentCanvas,
-								file,
-							CanvasExporter.ImageType.PNG,
-							CanvasExporter.ZoomType.ACTUAL_SIZE, false, false,
-							100, 1000, 1000);
+						CanvasExporter.createImage(PrimeMain.currentCanvas,
+								file, CanvasExporter.ImageType.PNG,
+								CanvasExporter.ZoomType.ACTUAL_SIZE, false,
+								false, 100, 1000, 1000);
+
+						return true;
 					}
 					catch ( IOException e )
 					{
@@ -1698,6 +1704,9 @@ public class DesktopFileManagment
 				}
 			}
 		}
+
+
+		return false;
 	}
 
 
@@ -1707,15 +1716,20 @@ public class DesktopFileManagment
 	 * have a .obj filetype. The user is presented with a choice on which folder
 	 * to save the file in.
 	 */
-	public static void exportStandardObjects()
+	public static boolean exportStandardObjects()
 	{
 		// If the object list not empty
-		if ( !PrimeMain1.objectlist.isEmpty() )
+		if ( !PrimeMain.objectlist.isEmpty() )
 		{
 			// The JFileChoose where the user will save the export
 			JFileChooser fc = new JFileChooser();
+			fc.setAcceptAllFileFilterUsed(false);
 
-			fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			// Adds the filters
+			fc.addChoosableFileFilter(new OBJFilter());
+
+			// Sets the selected file to the name of the
+			fc.setSelectedFile(new File("Objects"));
 
 			// Shows the File chooser
 			int returnVal = fc.showSaveDialog(null);
@@ -1724,48 +1738,43 @@ public class DesktopFileManagment
 			// If the users choices a folder
 			if ( returnVal == JFileChooser.APPROVE_OPTION )
 			{
-				File folder = fc.getSelectedFile();
+				File file = fc.getSelectedFile();
+
+				// Creates the file with the right extension
+				File output = new File(file.getAbsoluteFile() + ".obj");
+
+				// Whether or not to overwrite
+				boolean overwrite = false;
 
 				// Just to make sure
-				if ( folder.isDirectory() )
+				if ( output.exists() )
 				{
-					// The file that will be written out
-					File objectFile = new File(folder.getAbsolutePath()
-							+ File.separator + "objects.obj");
+					int answer = JOptionPane.showConfirmDialog(null,
+							PrimeMain.texts
+									.getString("overwriteObjectsFileMsg"),
+							PrimeMain.texts.getString("overwrite"),
+							JOptionPane.YES_NO_OPTION);
 
-					// Whether or not to overwrite
-					boolean overwrite = false;
-
-					// IF there already exists a file
-					if ( objectFile.exists() )
-					{
-						int answer = JOptionPane
-								.showConfirmDialog(
-										null,
-										PrimeMain1.texts
-										.getString("overwriteObjectsFileMsg"),
-										PrimeMain1.texts.getString("overwrite"),
-										JOptionPane.YES_NO_OPTION);
-						
-						if( answer == 0 )
-						{
-							overwrite = true;
-						}
-					}
-					else
+					if ( answer == 0 )
 					{
 						overwrite = true;
 					}
-					
-					
-					// The file either does not exist or the user wants to overwrite
-					if( overwrite )
-					{
-						saveObjectFile(objectFile);
-					}
+				}
+				else
+				{
+					overwrite = true;
+				}
+
+
+				// The file either does not exist or the user wants to overwrite
+				if ( overwrite )
+				{
+					return saveObjectFile(output);
 				}
 			}
 		}
+
+		return false;
 	}
 
 
@@ -1799,7 +1808,7 @@ public class DesktopFileManagment
 				boolean networkFileExists = DesktopFileManagment
 						.fileWorkareaCanvasExist(getFileNameWithoutExtension(file
 								.getName()));
-				
+
 				// If there exists a an open network canvas with the same name
 				boolean networkCanvasExists = DesktopCanvasManagment
 						.canvasExists(getFileNameWithoutExtension(file
@@ -1817,7 +1826,7 @@ public class DesktopFileManagment
 					changeName = true;
 				}
 
-				
+
 				if ( changeName )
 				{
 					/**
@@ -1829,24 +1838,24 @@ public class DesktopFileManagment
 					int answer = JOptionPane
 							.showConfirmDialog(
 									null,
-									PrimeMain1.texts
+									PrimeMain.texts
 											.getString("verifyImportedNetworkNameChange"),
-									PrimeMain1.texts.getString("overwrite"),
+									PrimeMain.texts.getString("overwrite"),
 									JOptionPane.YES_NO_OPTION);
-					
+
 					// The user answers yes
 					if ( answer == 0 )
 					{
 						boolean tryAgain = true;
-						
+
 						while ( tryAgain )
 						{
 							String newName = JOptionPane
 									.showInputDialog(
 											null,
-								PrimeMain1.texts
-										.getString("writeNewNetworkNameMsg"));
-						
+											PrimeMain.texts
+													.getString("writeNewNetworkNameMsg"));
+
 							if ( Pattern.matches("([a-zA-Z_0-9 ])*", newName)
 									&& !(newName.equals("")) )
 							{
@@ -1867,7 +1876,7 @@ public class DesktopFileManagment
 												.setSerial((Math.random()) * 500);
 
 										// Adds the canvas to the program
-										PrimeMain1.getWorkarea()
+										PrimeMain.getWorkarea()
 												.createNewCanvasTab(newCanvas);
 
 										// Saves the canvas into the program
@@ -1880,7 +1889,7 @@ public class DesktopFileManagment
 										e.printStackTrace();
 									}
 								}
-								
+
 								tryAgain = false;
 							}
 							else
@@ -1889,11 +1898,11 @@ public class DesktopFileManagment
 								int n = JOptionPane
 										.showConfirmDialog(
 												null,
-												PrimeMain1.texts
+												PrimeMain.texts
 														.getString("tryNewNetworkNameAgainMsg"),
-												PrimeMain1.texts
+												PrimeMain.texts
 														.getString("verify"),
-										JOptionPane.YES_NO_OPTION);
+												JOptionPane.YES_NO_OPTION);
 
 								// The user answers something else then yes
 								if ( n != 0 )
@@ -1915,7 +1924,7 @@ public class DesktopFileManagment
 					WorkareaCanvas newCanvas = openCanvasFile(file);
 
 					// Adds the canvas to the program
-					PrimeMain1.getWorkarea().createNewCanvasTab(newCanvas);
+					PrimeMain.getWorkarea().createNewCanvasTab(newCanvas);
 
 					// Saves the canvas into the program
 					saveWorkareaCanvas(newCanvas);
@@ -1953,15 +1962,15 @@ public class DesktopFileManagment
 			if ( file.exists() )
 			{
 				// The text shown to the user
-				String text = PrimeMain1.texts
+				String text = PrimeMain.texts
 						.getString("verifyStandardObjectsListOverwrite")
 						+ "\n"
-						+ PrimeMain1.texts.getString("thisCannotBeUndoneMsg");
+						+ PrimeMain.texts.getString("thisCannotBeUndoneMsg");
 
 				// Whether or not the user wants to overwrite the current
 				// standard object list
 				int answer = JOptionPane.showConfirmDialog(null, text,
-						PrimeMain1.texts.getString("overwrite"),
+						PrimeMain.texts.getString("overwrite"),
 						JOptionPane.YES_NO_OPTION);
 
 				// The user answers yes
@@ -1971,7 +1980,7 @@ public class DesktopFileManagment
 
 					// Tells the user that the change will take effect on
 					// restart
-					JOptionPane.showMessageDialog(null, PrimeMain1.texts
+					JOptionPane.showMessageDialog(null, PrimeMain.texts
 							.getString("ChangeAfterRestart"));
 				}
 			}
@@ -1984,7 +1993,7 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Saves the objectlist from the {@link PrimeMain1} to the resource
+	 * Saves the objectlist from the {@link PrimeMain} to the resource
 	 * directory.
 	 */
 	public static void saveObjectsFile()
@@ -2000,9 +2009,9 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Saves the objectlist from the {@link PrimeMain1} to the given file.
+	 * Saves the objectlist from the {@link PrimeMain} to the given file.
 	 */
-	public static void saveObjectFile(File file)
+	public static boolean saveObjectFile(File file)
 	{
 		// If the Objects file exists
 		if ( file.exists() )
@@ -2022,13 +2031,15 @@ public class DesktopFileManagment
 
 						// Writes out the systems list of Objects even if it is
 						// empty
-						oos.writeObject(PrimeMain1.objectlist);
+						oos.writeObject(PrimeMain.objectlist);
 
 						// Flushes the stream
 						oos.flush();
 
 						// Closes the stream
 						oos.close();
+
+						return true;
 					}
 					catch ( Exception e )
 					{
@@ -2056,19 +2067,23 @@ public class DesktopFileManagment
 
 				// Writes out the systems list of Objects even if it is
 				// empty
-				oos.writeObject(PrimeMain1.objectlist);
+				oos.writeObject(PrimeMain.objectlist);
 
 				// Flushes the stream
 				oos.flush();
 
 				// Closes the stream
 				oos.close();
+
+				return true;
 			}
 			catch ( Exception e )
 			{
 				e.printStackTrace();
 			}
 		}
+
+		return false;
 	}
 
 
@@ -2133,7 +2148,7 @@ public class DesktopFileManagment
 						if ( verified )
 						{
 							// Reads inn the ArrayList from the file stream
-							PrimeMain1.objectlist = testlist;
+							PrimeMain.objectlist = testlist;
 						}
 
 						ois.close();

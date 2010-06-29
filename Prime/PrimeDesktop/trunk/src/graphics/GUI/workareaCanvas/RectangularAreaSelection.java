@@ -1,7 +1,7 @@
 package graphics.GUI.workareaCanvas;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
 import java.awt.Point;
@@ -69,11 +69,11 @@ public class RectangularAreaSelection extends LockedAdapter
 			assert selectionWidget != null;
 
 			// Adds the actions supported by the WidgetRoom
-			ActionsAdder.makeWidgetRoomReady(PrimeMain1.currentCanvas,
+			ActionsAdder.makeWidgetRoomReady(PrimeMain.currentCanvas,
 					selectionWidget);
 
 			// Add the widgetRoom to the canvas
-			RoomManagment.addRoom(PrimeMain1.currentCanvas, selectionWidget);
+			RoomManagment.addRoom(PrimeMain.currentCanvas, selectionWidget);
 
 			// Creates and sets the rectangle that is the bounds of the
 			// WidgetRoom
@@ -94,7 +94,7 @@ public class RectangularAreaSelection extends LockedAdapter
 		{
 			move(widget, event.getPoint());
 
-			ActionCreateRoom action = new ActionCreateRoom(PrimeMain1.texts
+			ActionCreateRoom action = new ActionCreateRoom(PrimeMain.texts
 					.getString("actionCreateRoomDescriptionText"),
 					selectionWidget);
 			action.performAction(true);

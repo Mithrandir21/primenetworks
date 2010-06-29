@@ -1,7 +1,7 @@
 package graphics.GUI.objectView.General;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -48,7 +48,7 @@ public class GeneralObjectView extends JPanel
 
 		// The Class of the object
 		JLabel classLabel = new JLabel();
-		classLabel.setText(PrimeMain1.texts.getString("genTabClassLabel"));
+		classLabel.setText(PrimeMain.texts.getString("genTabClassLabel"));
 		JTextField classField = new JTextField();
 		classField.setEditable(false);
 		classField.setText(obj.getClass().getSimpleName());
@@ -56,7 +56,7 @@ public class GeneralObjectView extends JPanel
 
 		// The name of the object
 		JLabel nameLabel = new JLabel();
-		nameLabel.setText(PrimeMain1.texts.getString("genTabClassLabel"));
+		nameLabel.setText(PrimeMain.texts.getString("genTabClassLabel"));
 		nametext = new JTextField();
 		nametext.setText(obj.getObjectName());
 		nametext.addKeyListener(new KeyAdapter()
@@ -68,7 +68,7 @@ public class GeneralObjectView extends JPanel
 				if ( key == KeyEvent.VK_ENTER )
 				{
 					// Saves the object info(when the user presses enter)
-					PrimeMain1.getObjectView(obj).save(true);
+					PrimeMain.getObjectView(obj).save(true);
 				}
 			}
 		});
@@ -76,7 +76,7 @@ public class GeneralObjectView extends JPanel
 
 		// The supported connections interfaces
 		JLabel supConLabel = new JLabel();
-		supConLabel.setText(PrimeMain1.texts
+		supConLabel.setText(PrimeMain.texts
 				.getString("genTabSupInterfacesLabel"));
 		JComboBox subConCombo = new JComboBox();
 		subConCombo.setModel(new DefaultComboBoxModel(obj
@@ -84,7 +84,7 @@ public class GeneralObjectView extends JPanel
 
 		// The number of jumps to the closest Internet object
 		JLabel jumpsLabel = new JLabel();
-		jumpsLabel.setText(PrimeMain1.texts.getString("genTabNrOfJumpsLabel"));
+		jumpsLabel.setText(PrimeMain.texts.getString("genTabNrOfJumpsLabel"));
 		JTextField jumpsField = new JTextField();
 		jumpsField.setEditable(false);
 		jumpsField.setText("0");
@@ -93,7 +93,7 @@ public class GeneralObjectView extends JPanel
 		// The description of the object
 		JScrollPane descScroll = new JScrollPane();
 		JLabel descLabel = new JLabel();
-		descLabel.setText(PrimeMain1.texts.getString("genTabDescriptionLabel"));
+		descLabel.setText(PrimeMain.texts.getString("genTabDescriptionLabel"));
 		textarea = new JTextArea();
 		textarea.setColumns(20);
 		textarea.setRows(5);

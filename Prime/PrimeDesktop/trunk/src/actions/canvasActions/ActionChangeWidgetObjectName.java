@@ -2,7 +2,7 @@ package actions.canvasActions;
 
 
 import graphics.GraphicalFunctions;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
 
@@ -148,7 +148,7 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 	@Override
 	public String getPresentationName()
 	{
-		return PrimeMain1.texts
+		return PrimeMain.texts
 				.getString("actionChangeWidgetNameActionPresNameText");
 	}
 
@@ -159,7 +159,7 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 	@Override
 	public String getRedoPresentationName()
 	{
-		return PrimeMain1.texts
+		return PrimeMain.texts
 				.getString("actionChangeWidgetNameRedoPresNameText");
 	}
 
@@ -170,7 +170,7 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 	@Override
 	public String getUndoPresentationName()
 	{
-		return PrimeMain1.texts
+		return PrimeMain.texts
 				.getString("actionChangeWidgetNameUndoPresNameText");
 	}
 
@@ -242,15 +242,15 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(null, PrimeMain1.texts
+				JOptionPane.showMessageDialog(null, PrimeMain.texts
 						.getString("actionChangeWidgetNameInvalidNameText"),
-						PrimeMain1.texts.getString("error"),
+						PrimeMain.texts.getString("error"),
 						JOptionPane.ERROR_MESSAGE);
 			}
 
 			if ( undoable )
 			{
-				PrimeMain1.currentCanvas.addUndoableAction(this);
+				PrimeMain.currentCanvas.addUndoableAction(this);
 			}
 		}
 	}

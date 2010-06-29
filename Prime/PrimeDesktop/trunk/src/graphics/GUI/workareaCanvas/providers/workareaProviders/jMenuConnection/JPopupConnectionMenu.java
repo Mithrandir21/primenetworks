@@ -4,7 +4,7 @@
 package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuConnection;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -94,7 +94,7 @@ public class JPopupConnectionMenu
 	{
 		JMenuItem menuItem;
 
-		menuItem = new JMenuItem(new ActionDeleteConnection(PrimeMain1.texts
+		menuItem = new JMenuItem(new ActionDeleteConnection(PrimeMain.texts
 				.getString("connectionMenuDeleteConnectionAction"),
 				widConnection));
 		popup.add(menuItem);

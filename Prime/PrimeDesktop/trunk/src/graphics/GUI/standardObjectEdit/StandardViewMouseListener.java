@@ -5,7 +5,7 @@ package graphics.GUI.standardObjectEdit;
 
 
 import exceptions.ObjectNotFoundException;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -37,18 +37,18 @@ public class StandardViewMouseListener extends MouseAdapter
 		{
 			// Gets the object in the given ArrayList with the given class
 			newObject = ArrayManagment.getSpesificComponent(button
-					.getClassType(), PrimeMain1.objectlist);
+					.getClassType(), PrimeMain.objectlist);
 		}
 		catch ( ObjectNotFoundException ex )
 		{
-			System.out.println(PrimeMain1.texts
+			System.out.println(PrimeMain.texts
 					.getString("standardObjectsNotFoundInArrayMsg")
 					+ " - " + button.getName());
 			ex.printStackTrace();
 		}
 
 		// Changes the object currently viewed
-		PrimeMain1.stdObjView.getSplitView().getHardStdObjView()
+		PrimeMain.stdObjView.getSplitView().getHardStdObjView()
 				.changeObjectView(newObject);
 	}
 }

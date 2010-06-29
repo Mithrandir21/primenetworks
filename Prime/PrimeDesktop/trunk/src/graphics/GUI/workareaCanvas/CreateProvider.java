@@ -1,7 +1,7 @@
 package graphics.GUI.workareaCanvas;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 
 import java.awt.Point;
 
@@ -56,11 +56,11 @@ public class CreateProvider implements SelectProvider
 			WidgetObject widgetobj = (WidgetObject) relatedWidget;
 
 			// Sets the current WidgetObject for the systems current canvas
-			PrimeMain1.currentCanvas.setCurrentWidgetObject(widgetobj);
+			PrimeMain.currentCanvas.setCurrentWidgetObject(widgetobj);
 
 			// Updates the information panel with information from the selected
 			// object.
-			PrimeMain1.updatePropertiesObjectArea(widgetobj.getObject(), false);
+			PrimeMain.updatePropertiesObjectArea(widgetobj.getObject(), false);
 		}
 	}
 }

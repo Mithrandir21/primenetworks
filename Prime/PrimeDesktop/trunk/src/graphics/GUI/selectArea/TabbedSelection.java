@@ -8,7 +8,7 @@ package graphics.GUI.selectArea;
 
 
 import graphics.ImageLocator;
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.selectArea.PrimeJTree.PrimeTree;
 
 import javax.swing.ImageIcon;
@@ -57,15 +57,15 @@ public class TabbedSelection extends JTabbedPane
 	{
 		ImageIcon objects = ImageLocator.getImageIconObject("Objects");
 
-		this.addTab(PrimeMain1.texts.getString("selectAreaUnitAreaLabel"),
-				objects, objectPanel, PrimeMain1.texts
+		this.addTab(PrimeMain.texts.getString("selectAreaUnitAreaLabel"),
+				objects, objectPanel, PrimeMain.texts
 						.getString("selectAreaUnitAreaTip"));
 
 
 
 		ImageIcon networks = ImageLocator.getImageIconObject("Networks");
-		this.addTab(PrimeMain1.texts.getString("selectAreaNetworkModelsLabel"),
-				networks, primeTree, PrimeMain1.texts
+		this.addTab(PrimeMain.texts.getString("selectAreaNetworkModelsLabel"),
+				networks, primeTree, PrimeMain.texts
 						.getString("selectAreaNetworkModelsTip"));
 
 
@@ -86,8 +86,8 @@ public class TabbedSelection extends JTabbedPane
 
 		ImageIcon objects = ImageLocator.getImageIconObject("Objects");
 
-		this.insertTab(PrimeMain1.texts.getString("selectAreaUnitAreaLabel"),
-				objects, scrollArea, PrimeMain1.texts
+		this.insertTab(PrimeMain.texts.getString("selectAreaUnitAreaLabel"),
+				objects, scrollArea, PrimeMain.texts
 						.getString("selectAreaUnitAreaTip"), 0);
 		this.setSelectedIndex(0);
 	}

@@ -1,7 +1,7 @@
 package graphics.GUI.objectView.Software.EditSoftware.EditOverview;
 
 
-import graphics.PrimeMain1;
+import graphics.PrimeMain;
 import graphics.GUI.objectView.Software.SoftwareView;
 
 import java.awt.Button;
@@ -41,7 +41,7 @@ public class SoftwareEditor extends JFrame implements ActionListener
 	 */
 	public SoftwareEditor(Object obj)
 	{
-		super(PrimeMain1.texts.getString("swTabFrameLabel"));
+		super(PrimeMain.texts.getString("swTabFrameLabel"));
 
 		givenObject = obj;
 
@@ -74,15 +74,15 @@ public class SoftwareEditor extends JFrame implements ActionListener
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		Button save = new Button(PrimeMain1.texts.getString("save"));
+		Button save = new Button(PrimeMain.texts.getString("save"));
 		save.addActionListener(this);
 		save.setActionCommand("save");
 
-		Button apply = new Button(PrimeMain1.texts.getString("apply"));
+		Button apply = new Button(PrimeMain.texts.getString("apply"));
 		apply.addActionListener(this);
 		apply.setActionCommand("apply");
 
-		Button cancel = new Button(PrimeMain1.texts.getString("cancel"));
+		Button cancel = new Button(PrimeMain.texts.getString("cancel"));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 
@@ -155,7 +155,7 @@ public class SoftwareEditor extends JFrame implements ActionListener
 		d.gridheight = 1;
 		d.anchor = GridBagConstraints.CENTER;
 
-		JLabel nameLabel = new JLabel(PrimeMain1.texts
+		JLabel nameLabel = new JLabel(PrimeMain.texts
 				.getString("swTabSWnameLabel"));
 		genPanel.add(nameLabel, d);
 
@@ -184,7 +184,7 @@ public class SoftwareEditor extends JFrame implements ActionListener
 		d.gridheight = 1;
 		d.anchor = GridBagConstraints.CENTER;
 
-		JLabel descLabel = new JLabel(PrimeMain1.texts
+		JLabel descLabel = new JLabel(PrimeMain.texts
 				.getString("swTabSWdescriptionLabel"));
 		genPanel.add(descLabel, d);
 
