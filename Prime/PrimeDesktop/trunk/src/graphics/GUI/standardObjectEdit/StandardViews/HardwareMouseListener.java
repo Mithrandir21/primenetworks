@@ -4,6 +4,7 @@
 package graphics.GUI.standardObjectEdit.StandardViews;
 
 
+import exceptions.MotherboardNotFound;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.NewComponent.NewViews.MotherboardNewView;
@@ -26,8 +27,7 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * A listener class that listens for user created mouse events for
- * {@link Hardware} objects.
+ * A listener class that listens for user created mouse events for {@link Hardware} objects.
  * 
  * @author Bahram Malaekeh
  */
@@ -44,8 +44,8 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 
 
 	/**
-	 * A constructor that takes a JPanel for the properties display, a main
-	 * {@link Object} and the {@link Hardware} object clicked on.
+	 * A constructor that takes a JPanel for the properties display, a main {@link Object} and the {@link Hardware} object clicked
+	 * on.
 	 */
 	public HardwareMouseListener(JPanel hardwarePanel, Object mainObj,
 			Object hardObj)
@@ -147,28 +147,32 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 				// If the user confirms the deletion
 				if ( answer == 0 )
 				{
-					// Will remove the first variable from the list of
-					// components that will be returned and set as the
-					// components for the main object.
-					mainObject.setAllComponents(ComponentsManagment
-							.removeComponent(hardwareObject, mainObject
-									.getComponents(), mainObject
-									.getComponents().length));
+					try
+					{
+						ComponentsManagment.removeComponent(
+								PrimeMain.currentCanvas, mainObject,
+								hardwareObject);
 
-					// Updates the views of the object to correctly show the
-					// current info.
-					ObjectView view = PrimeMain.getObjectView(mainObject);
-					if ( view != null )
-					{
-						view.updateViewInfo();
+						// Updates the views of the object to correctly show the
+						// current info.
+						ObjectView view = PrimeMain.getObjectView(mainObject);
+						if ( view != null )
+						{
+							view.updateViewInfo();
+						}
+						// If no view is returned, then the standard object view is
+						// open
+						// and that should be updated.
+						else if ( PrimeMain.stdObjView != null )
+						{
+							PrimeMain.stdObjView.getSplitView()
+									.getHardStdObjView().updateTabInfo();
+						}
 					}
-					// If no view is returned, then the standard object view is
-					// open
-					// and that should be updated.
-					else if ( PrimeMain.stdObjView != null )
+					catch ( MotherboardNotFound e1 )
 					{
-						PrimeMain.stdObjView.getSplitView()
-								.getHardStdObjView().updateTabInfo();
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 				}
 			}

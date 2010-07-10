@@ -67,13 +67,15 @@ public class ServersPropertiesView extends AbstractObjectPropertiesView implemen
 		{
 			objectViewed = (Servers) obj;
 
+			nameField.addKeyListener(new SaveKey());
+
 			d.gridy = 1;
 			this.add(getServersPropertiesView(obj), d);
 
 
 			d.weighty = 1.0; // request any extra vertical space
 			d.gridy = 2;
-			this.add(ObjectProperties.createButtons(this), d);
+			this.add(ObjectProperties.createButtons(this, false), d);
 		}
 	}
 
@@ -256,8 +258,8 @@ public class ServersPropertiesView extends AbstractObjectPropertiesView implemen
 		{
 			resetFields();
 		}
-		else if ( e.getActionCommand().equals(
-				PrimeMain.texts.getString("save")) )
+		else if ( e.getActionCommand()
+				.equals(PrimeMain.texts.getString("save")) )
 		{
 			saveAction();
 		}

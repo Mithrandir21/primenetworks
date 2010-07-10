@@ -19,8 +19,6 @@ import org.netbeans.api.visual.widget.Widget;
 /**
  * Javadoc-TODO - Description NEEDED!
  * 
- * @author Bahram Malaekeh
- * 
  */
 public class MoveRoomAction extends WidgetAction.LockedAdapter
 {
@@ -49,7 +47,8 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 	public State mousePressed(Widget widget, WidgetMouseEvent event)
 	{
 		if ( (event.getButton() == MouseEvent.BUTTON1 && event.getClickCount() == 1)
-				&& ((event.getModifiers() & MouseEvent.SHIFT_MASK) != 0) && Settings.roomsManipulation )
+				&& ((event.getModifiers() & MouseEvent.SHIFT_MASK) != 0)
+				&& Settings.roomsManipulation )
 		{
 			movingWidget = widget;
 			originalSceneLocation = provider.getOriginalLocation(widget);
@@ -75,7 +74,8 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 
 	public State mouseDragged(Widget widget, WidgetMouseEvent event)
 	{
-		return move(widget, event.getPoint()) ? State.createLocked(widget, this) : State.REJECTED;
+		return move(widget, event.getPoint()) ? State
+				.createLocked(widget, this) : State.REJECTED;
 	}
 
 	private boolean move(Widget widget, Point newLocation)
@@ -83,9 +83,11 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 		if ( movingWidget != widget )
 			return false;
 		newLocation = widget.convertLocalToScene(newLocation);
-		Point location = new Point(originalSceneLocation.x + newLocation.x - dragSceneLocation.x,
-				originalSceneLocation.y + newLocation.y - dragSceneLocation.y);
-		provider.setNewLocation(widget, strategy.locationSuggested(widget, originalSceneLocation, location));
+		Point location = new Point(originalSceneLocation.x + newLocation.x
+				- dragSceneLocation.x, originalSceneLocation.y + newLocation.y
+				- dragSceneLocation.y);
+		provider.setNewLocation(widget, strategy.locationSuggested(widget,
+				originalSceneLocation, location));
 		return true;
 	}
 

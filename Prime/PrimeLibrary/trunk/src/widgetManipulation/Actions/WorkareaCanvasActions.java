@@ -1,23 +1,15 @@
 package widgetManipulation.Actions;
 
 
-import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.dnd.DropTargetDropEvent;
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.ImageIcon;
-
+import managment.CanvasManagment;
 import managment.ConnectionManagment;
 import objects.Object;
 
 import org.netbeans.api.visual.border.BorderFactory;
-import org.netbeans.api.visual.layout.LayoutFactory;
 import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.Widget;
 
@@ -39,98 +31,6 @@ import exceptions.ConnectionDoesNotExist;
  */
 public class WorkareaCanvasActions
 {
-
-	/**
-	 * Creates a WidgetObject and adds that object to a given point gotten from
-	 * the dropTargetDropEvent.
-	 * 
-	 * @param dtde
-	 * @param canvas
-	 */
-	public static WidgetObject createWidgetOnCanvas(DropTargetDropEvent dtde,
-			WorkareaCanvas canvas)
-	{
-		Transferable tr = dtde.getTransferable();
-		WidgetObject newObject = null;
-
-		try
-		{
-			newObject = (WidgetObject) tr.getTransferData(new DataFlavor(
-					WidgetObject.class, "Widget Object"));
-
-			Dimension objectSize = newObject.getImageDimension();
-
-			Point objectPoint = dtde.getLocation();
-
-			dtde = null;
-
-
-			int height = objectPoint.x - (objectSize.height / 2);
-
-			int width = objectPoint.y - (objectSize.width / 2);
-
-			objectPoint.setLocation(height, width);
-
-			canvas.addWidgetObject(newObject, objectPoint, true);
-
-			// // Updates the sidebar with the object properties
-			// PrimeMain1.updatePropertiesObjectArea(newObject.getObject(),
-			// false);
-			//
-			// canvas.cleanUp();
-		}
-		catch ( UnsupportedFlavorException e )
-		{
-			System.out
-					.println("WorkareaCanvasActions - UnsupportedFlavorException");
-		}
-		catch ( IOException e )
-		{
-			System.out.println("WorkareaCanvasActions - IOException");
-		}
-
-		return newObject;
-	}
-
-
-	/**
-	 * This function determines what kind of {@link Object} the given object is
-	 * and adds that Object to the given {@link WorkareaCanvas}. There is also
-	 * an ImageIcon created that will serve as the ImageIcon for the {@link WidgetObject} that will be created and added to the
-	 * {@link WorkareaCanvas}.
-	 * 
-	 * @param obj
-	 *            The {@link Object} that will be examined and eventually added
-	 *            to the given {@link WorkareaCanvas}.
-	 * @param canvas
-	 *            The {@link WorkareaCanvas} that the given Object will be added
-	 *            to in the form of a {@link WidgetObject}.
-	 * @param objectType
-	 * @param objectIcon
-	 * @return Returns the newly created WidgetObject that is added to the
-	 *         WorkareaCanvas
-	 */
-	public static WidgetObject addObjectToCanvas(Object obj,
-			WorkareaCanvas canvas, Class<?> objectType, ImageIcon objectIcon)
-	{
-		boolean set = false;
-		objects.Object newObject = obj;
-		WidgetObject newWidgetObject = null;
-
-
-		// Creates a new WidgetObject that will be added to the scene
-		newWidgetObject = new WidgetObject(canvas.getScene(), newObject,
-				objectIcon.getImage());
-
-		// Adds the given object to the given location
-		canvas.addWidgetObject(newWidgetObject, obj.getLocation(), false);
-
-		// Returns the newly created WidgetObject
-		return newWidgetObject;
-	}
-
-
-
 	/**
 	 * Adds the given WidgetObject at the given point on the scene. This method
 	 * does not add all the functionality that a widgetObject will have like
@@ -152,15 +52,22 @@ public class WorkareaCanvasActions
 		// Sets the point on the scene as the widgets preferred location
 		newObject.setPreferredLocation(sceneLocation);
 
-		// Creates the LabelWidget that is placed on scene
-		LabelWidget objectLabel = new LabelWidget(canvas.getScene(), newObject
-				.getObject().getObjectName());
+		// Sets the location of the object
+		newObject.getObject().setLocation(sceneLocation);
 
-		newObject.addChild(objectLabel);
+		newObject.setLabel(newObject.getObject().getObjectName());
 
-
-		// newObject.setToolTipText(newObject.getObject().getDescription());
-		newObject.setLayout(LayoutFactory.createAbsoluteLayout());
+		// // Creates the LabelWidget that is placed on scene
+		// LabelWidget objectLabel = new LabelWidget(canvas.getScene(), newObject
+		// .getObject().getObjectName());
+		// objectLabel.setAlignment(Alignment.CENTER);
+		// objectLabel.setLayout(LayoutFactory.createAbsoluteLayout());
+		//
+		// newObject.addChild(objectLabel);
+		//
+		//
+		// // newObject.setToolTipText(newObject.getObject().getDescription());
+		// newObject.setLayout(LayoutFactory.createAbsoluteLayout());
 
 		// Adds hovering action to the widget.
 		// newObject.getActions().addAction(
@@ -193,6 +100,9 @@ public class WorkareaCanvasActions
 		newObject.bringToFront();
 		canvas.getMainLayer().addChild(newObject);
 		canvas.addToNumberOfWidgetsOnTheCanvas();
+
+		canvas.setSaved(false);
+		canvas.setChanged(true);
 		// PrimeMain1.updateCanvasAndObjectInfo();
 
 		if ( withCleanUp )
@@ -200,6 +110,133 @@ public class WorkareaCanvasActions
 			canvas.cleanUp();
 		}
 	}
+
+
+	/**
+	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on
+	 * the canvas. This method finds the WidgetObject that contains the given
+	 * object in all the different canvases.
+	 * 
+	 * @param widgetObj
+	 * @param name
+	 * @return The object with the updated name
+	 */
+	public static Object updateWidgetObjectCanvasName(
+			WorkareaCanvas[] canvases, WidgetObject widgetObj, String name)
+	{
+		if ( canvases != null && canvases.length > 0 )
+		{
+			WorkareaCanvas canvas = CanvasManagment.findCanvas(widgetObj
+					.getObject(), canvases);
+
+			if ( canvas != null )
+			{
+				return updateWidgetObjectCanvasName(canvas, widgetObj
+						.getObject(), name);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on
+	 * the canvas. This method finds the WidgetObject that contains the given
+	 * object in all the different canvases.
+	 * 
+	 * @param widgetObj
+	 * @param name
+	 * @return The object with the updated name
+	 */
+	public static Object updateWidgetObjectCanvasName(WorkareaCanvas canvas,
+			WidgetObject widgetObj, String name)
+	{
+		return updateWidgetObjectCanvasName(canvas, widgetObj.getObject(), name);
+	}
+
+
+
+
+	/**
+	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on
+	 * the canvas. This method finds the WidgetObject that contains the given
+	 * object in all the different canvases.
+	 * 
+	 * @param obj
+	 * @param name
+	 * @return The object with the updated name
+	 */
+	public static Object updateWidgetObjectCanvasName(WorkareaCanvas canvas,
+			Object obj, String name)
+	{
+		if ( obj != null )
+		{
+			WidgetObject widgetObj = CanvasManagment.findWidgetObject(obj,
+					canvas);
+
+
+			if ( !(obj.getObjectName().equals(name)) )
+			{
+
+				List<Widget> children = widgetObj.getChildren();
+
+				LabelWidget label = null;
+
+				for ( Iterator<Widget> iter = children.iterator(); iter
+						.hasNext(); )
+				{
+					Widget temp = iter.next();
+					if ( temp instanceof LabelWidget )
+					{
+						label = (LabelWidget) temp;
+					}
+				}
+
+				if ( label != null )
+				{
+					label.setLabel(name);
+
+					// Sets the name of the object
+					obj.setObjectName(name);
+
+					canvas.setSaved(false);
+					canvas.setChanged(true);
+
+					canvas.cleanUp();
+				}
+			}
+
+
+			return obj;
+		}
+
+
+		return null;
+	}
+
+
+
+	/**
+	 * Updates all the LabelWidgets on all the scenes of the given {@link WorkareaCanvas} with the name of the object
+	 * name that is within the WidgetObject.
+	 */
+	public static void updateWidgetObjectNamesOnAllCanvas(
+			WorkareaCanvas[] canvases)
+	{
+		for ( int i = 0; i < canvases.length; i++ )
+		{
+			List<Widget> children = canvases[i].getMainLayer().getChildren();
+
+			for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
+			{
+				WidgetObject temp = (WidgetObject) iter.next();
+
+				WorkareaCanvasActions.updateWidgetObjectCanvasName(canvases[i],
+						temp, temp.getObject().getObjectName());
+			}
+
+		}
+	}
+
 
 
 	/**
@@ -211,17 +248,28 @@ public class WorkareaCanvasActions
 	 * @param obj
 	 *            The WidgetObject that is to be removed.
 	 */
-	public static boolean deleteObject(WorkareaCanvas canvas, WidgetObject obj)
+	public static boolean removeObject(WorkareaCanvas canvas, WidgetObject obj,
+			boolean withCleanUp)
 	{
 		if ( canvas.getMainLayer().getChildren().contains(obj) )
 		{
+			// Removes all connection to the WidgetObject
 			removeAllConnectionsToFromObject(canvas, obj.getObject());
 
+			// Removes the WidgetObject from the canvas
 			canvas.getMainLayer().removeChild(obj);
 
 			canvas.subtractFromNumberOgWidgetsOnTheCanvas();
 
 			canvas.setCurrentWidgetObject(null);
+
+			canvas.setSaved(false);
+			canvas.setChanged(true);
+
+			if ( withCleanUp )
+			{
+				canvas.cleanUp();
+			}
 
 			return true;
 		}
@@ -237,29 +285,28 @@ public class WorkareaCanvasActions
 	 * @param canvas
 	 *            The canvas that object it to be removed from.
 	 */
-	public static void deleteCurrentObject(WorkareaCanvas canvas)
+	public static boolean removeCurrentObject(WorkareaCanvas canvas)
 	{
+		// Removes all connection to the WidgetObject
 		WidgetObject obj = canvas.getCurrentWidgetObject();
 
-		removeAllConnectionsToFromObject(canvas, obj.getObject());
+		if ( obj != null )
+		{
+			removeAllConnectionsToFromObject(canvas, obj.getObject());
 
-		canvas.getMainLayer().removeChild(obj);
+			canvas.getMainLayer().removeChild(obj);
 
-		canvas.subtractFromNumberOgWidgetsOnTheCanvas();
+			canvas.subtractFromNumberOgWidgetsOnTheCanvas();
 
-		canvas.setCurrentWidgetObject(null);
-	}
+			canvas.setCurrentWidgetObject(null);
 
+			canvas.setSaved(false);
+			canvas.setChanged(true);
 
-	/**
-	 * FIXME - Make RemoveConnectioToObject function.
-	 * 
-	 * @param obj
-	 * @param con
-	 */
-	public static void removeConnectionToObject(Object obj, Connection con)
-	{
+			return true;
+		}
 
+		return false;
 	}
 
 
@@ -278,8 +325,6 @@ public class WorkareaCanvasActions
 	{
 		Object[] connectedObjects = obj.getConnectedDevices();
 
-		Connection[] canvasCons = canvas.getConnections();
-
 		if ( connectedObjects != null )
 		{
 			for ( int i = 0; i < connectedObjects.length; i++ )
@@ -288,21 +333,7 @@ public class WorkareaCanvasActions
 				{
 					try
 					{
-						// Removes the WidgetExtendedConnection from the
-						// WorkareaCanvas scene
-						removeConnectionFromConnectionLayer(canvas,
-								ConnectionManagment.getConnection(canvasCons,
-										obj, connectedObjects[i]));
-
-						// Removes the connection from the array of Connections
-						// for each connected object
-						Connection[] remainingConnection = ConnectionManagment
-								.breakConnection(canvasCons, obj,
-										connectedObjects[i]);
-
-						// Sets the connections of the WorkareaCanvas, without
-						// the removed connection
-						canvas.setConnections(remainingConnection);
+						removeConnection(canvas, obj, connectedObjects[i]);
 					}
 					catch ( ConnectionDoesNotExist e )
 					{
@@ -313,16 +344,6 @@ public class WorkareaCanvasActions
 				}
 			}
 		}
-	}
-
-	/**
-	 * FIXME - Make ChechObjectForConnections work.
-	 * 
-	 * @param obj
-	 */
-	public static void checkObjectForConnetions(Object obj)
-	{
-
 	}
 
 
@@ -339,26 +360,10 @@ public class WorkareaCanvasActions
 	public static void removeWidgetConnection(WorkareaCanvas canvas,
 			WidgetExtendedConnection widCon)
 	{
-		// Gets all the connections on a WorkareaCanvas
-		Connection[] canvasCons = canvas.getConnections();
-
 		try
 		{
-			// Removes the WidgetExtendedConnection from the WorkareaCanvas
-			// scene
-			removeConnectionFromConnectionLayer(canvas, ConnectionManagment
-					.getConnection(canvasCons, widCon.getConnection()
-							.getObject1(), widCon.getConnection().getObject2()));
-
-			// Removes the connection from the array of Connections for each
-			// connected object
-			Connection[] remainingConnection = ConnectionManagment
-					.breakConnection(canvasCons, widCon.getConnection()
-							.getObject1(), widCon.getConnection().getObject2());
-
-			// Sets the connections of the WorkareaCanvas, without the removed
-			// connection
-			canvas.setConnections(remainingConnection);
+			removeConnection(canvas, widCon.getConnection().getObject1(),
+					widCon.getConnection().getObject2());
 		}
 		catch ( ConnectionDoesNotExist e )
 		{
@@ -382,31 +387,9 @@ public class WorkareaCanvasActions
 	public static void removeWidgetConnection(WorkareaCanvas canvas,
 			Connection Con)
 	{
-		// Gets all the connections on a WorkareaCanvas
-		Connection[] canvasCons = canvas.getConnections();
-
-		WidgetExtendedConnection widCon = null;
-
 		try
 		{
-			widCon = ConnectionManagment.findWidgetConnection(canvas, Con
-					.getObject1(), Con.getObject2());
-
-			// Removes the WidgetExtendedConnection from the WorkareaCanvas
-			// scene
-			removeConnectionFromConnectionLayer(canvas, ConnectionManagment
-					.getConnection(canvasCons, widCon.getConnection()
-							.getObject1(), widCon.getConnection().getObject2()));
-
-			// Removes the connection from the array of Connections for each
-			// connected object
-			Connection[] remainingConnection = ConnectionManagment
-					.breakConnection(canvasCons, widCon.getConnection()
-							.getObject1(), widCon.getConnection().getObject2());
-
-			// Sets the connections of the WorkareaCanvas, without the removed
-			// connection
-			canvas.setConnections(remainingConnection);
+			removeConnection(canvas, Con.getObject1(), Con.getObject2());
 		}
 		catch ( ConnectionDoesNotExist e )
 		{
@@ -415,6 +398,36 @@ public class WorkareaCanvasActions
 		}
 	}
 
+
+
+
+	/**
+	 * This function attempts to remove a connection between to {@link Object Objects} and at the same time remove the
+	 * {@link WidgetExtendedConnection} from the given {@link WorkareaCanvas}.
+	 */
+	public static void removeConnection(WorkareaCanvas canvas, Object objA,
+			Object objB) throws ConnectionDoesNotExist
+	{
+		// Removes the WidgetExtendedConnection from the
+		// WorkareaCanvas scene
+		WorkareaCanvasActions.removeConnectionFromConnectionLayer(canvas,
+				ConnectionManagment.getConnection(canvas.getConnections(),
+						objA, objB));
+
+		// Removes the connection from the array of Connections
+		// for each connected object
+		Connection[] remainingConnection = ConnectionManagment.breakConnection(
+				canvas.getConnections(), objA, objB);
+
+		// Sets the connections of the WorkareaCanvas, without
+		// the removed connection
+		canvas.setConnections(remainingConnection);
+
+		canvas.setSaved(false);
+		canvas.setChanged(true);
+
+		canvas.cleanUp();
+	}
 
 
 
@@ -453,6 +466,9 @@ public class WorkareaCanvasActions
 		if ( found == true )
 		{
 			canvas.getConnectionLayer().removeChild(temp);
+
+			canvas.setSaved(false);
+			canvas.setChanged(true);
 		}
 	}
 
@@ -466,31 +482,43 @@ public class WorkareaCanvasActions
 	 * @param widRoom
 	 *            The {@link WidgetRoom} to be removed from the given {@link WorkareaCanvas}.
 	 */
-	public static void removeRoom(WorkareaCanvas canvas, WidgetRoom widRoom)
+	public static void removeRoom(WorkareaCanvas canvas, WidgetRoom widRoom,
+			boolean withCleanUp)
 	{
-		List<Widget> list = canvas.getRoomLayer().getChildren();
-
-		WidgetRoom temp = null;
-
-		boolean found = false;
-
-
-		WidgetRoom testingWidget = null;
-
-		for ( Iterator<?> iter = list.iterator(); iter.hasNext(); )
+		if ( canvas != null && widRoom != null )
 		{
-			testingWidget = (WidgetRoom) iter.next();
+			List<Widget> list = canvas.getRoomLayer().getChildren();
 
-			if ( testingWidget.equals(widRoom) )
+			WidgetRoom temp = null;
+
+			boolean found = false;
+
+
+			WidgetRoom testingWidget = null;
+
+			for ( Iterator<?> iter = list.iterator(); iter.hasNext(); )
 			{
-				found = true;
-				temp = testingWidget;
-			}
-		}
+				testingWidget = (WidgetRoom) iter.next();
 
-		if ( found == true )
-		{
-			canvas.getRoomLayer().removeChild(temp);
+				if ( testingWidget.equals(widRoom) )
+				{
+					found = true;
+					temp = testingWidget;
+				}
+			}
+
+			if ( found == true )
+			{
+				canvas.getRoomLayer().removeChild(temp);
+
+				canvas.setSaved(false);
+				canvas.setChanged(true);
+			}
+
+			if ( withCleanUp )
+			{
+				canvas.cleanUp();
+			}
 		}
 	}
 
@@ -509,6 +537,9 @@ public class WorkareaCanvasActions
 		for ( int i = 0; i < canvases.length; i++ )
 		{
 			canvases[i].revalidateWidgetLocations();
+
+			canvases[i].setSaved(false);
+			canvases[i].setChanged(true);
 		}
 	}
 
@@ -524,5 +555,8 @@ public class WorkareaCanvasActions
 	public static void revalidateWidgetLocations(WorkareaCanvas canvas)
 	{
 		canvas.revalidateWidgetLocations();
+
+		canvas.setSaved(false);
+		canvas.setChanged(true);
 	}
 }

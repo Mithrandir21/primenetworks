@@ -37,13 +37,15 @@ public class PeripheralsPropertiesView extends AbstractObjectPropertiesView impl
 	{
 		super(obj);
 
+		nameField.addKeyListener(new SaveKey());
+
 		d.gridy = 1;
 		this.add(getPeripheralsPropertiesView(obj), d);
 
 
 		d.weighty = 1.0; // request any extra vertical space
 		d.gridy = 2;
-		this.add(ObjectProperties.createButtons(this), d);
+		this.add(ObjectProperties.createButtons(this, false), d);
 	}
 
 	/**
@@ -138,8 +140,8 @@ public class PeripheralsPropertiesView extends AbstractObjectPropertiesView impl
 		{
 			resetFields();
 		}
-		else if ( e.getActionCommand().equals(
-				PrimeMain.texts.getString("save")) )
+		else if ( e.getActionCommand()
+				.equals(PrimeMain.texts.getString("save")) )
 		{
 			saveAction();
 		}

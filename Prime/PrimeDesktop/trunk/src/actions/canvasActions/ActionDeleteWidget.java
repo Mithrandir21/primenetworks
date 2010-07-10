@@ -18,6 +18,7 @@ import logistical.SystemActionInterface;
 import logistical.checkLogic;
 import managment.CanvasManagment;
 import managment.ConnectionManagment;
+import managment.DesktopCanvasManagment;
 import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
@@ -166,18 +167,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 	@Override
 	public void redo() throws CannotRedoException
 	{
-		// Removes all connection to the WidgetObject
-		WorkareaCanvasActions.removeAllConnectionsToFromObject(canvas,
-				widObject.getObject());
-
-		// Removes the WidgetObject from the canvas
-		canvas.getMainLayer().removeChild(widObject);
-
-		canvas.subtractFromNumberOgWidgetsOnTheCanvas();
-
-		canvas.setCurrentWidgetObject(null);
-
-		canvas.cleanUp();
+		WorkareaCanvasActions.removeObject(canvas, widObject, true);
 	}
 
 
@@ -188,8 +178,10 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 	@Override
 	public void undo() throws CannotUndoException
 	{
-		// Adds the widgetObject to the canvas
-		canvas.addWidgetObject(widObject, widObject.getLocation(), true);
+		// Adds the created WidgetObject to the classes canvas
+		DesktopCanvasManagment.addWidgetToCanvas(widObject, widObject
+				.getLocation(), canvas, true, true);
+
 
 		if ( existingConnections != null )
 		{
@@ -283,22 +275,11 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 		// actions WidgetObject
 		widObject = canvas.getCurrentWidgetObject();
 
-		// Finds all the connections of the object
+		// Finds all the connections of the object(for the undo action)
 		existingConnections = ConnectionManagment.findConnections(canvas
 				.getConnections(), widObject.getObject());
 
-		// Removes all connection to the WidgetObject
-		WorkareaCanvasActions.removeAllConnectionsToFromObject(canvas,
-				widObject.getObject());
-
-		// Removes the WidgetObject from the canvas
-		canvas.getMainLayer().removeChild(widObject);
-
-		canvas.subtractFromNumberOgWidgetsOnTheCanvas();
-
-		canvas.setCurrentWidgetObject(null);
-
-		canvas.cleanUp();
+		WorkareaCanvasActions.removeObject(canvas, widObject, true);
 
 		if ( undoable )
 		{

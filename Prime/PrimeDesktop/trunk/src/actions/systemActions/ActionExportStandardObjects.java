@@ -68,7 +68,6 @@ public class ActionExportStandardObjects extends AbstractSystemAction
 			JOptionPane.showMessageDialog(null, PrimeMain.texts
 					.getString("exportObjectsToFileSuccess"));
 		}
-
 	}
 
 }

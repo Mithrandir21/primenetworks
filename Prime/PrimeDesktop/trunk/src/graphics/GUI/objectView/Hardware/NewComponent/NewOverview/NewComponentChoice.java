@@ -14,7 +14,7 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 import objects.Object;
@@ -25,7 +25,7 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class NewComponentChoice extends JFrame
+public class NewComponentChoice extends JDialog
 {
 	/**
 	 * Javadoc-TODO - Description NEEDED!
@@ -34,7 +34,9 @@ public class NewComponentChoice extends JFrame
 	 */
 	public NewComponentChoice(Object obj)
 	{
-		super(PrimeMain.texts.getString("hwTabNewComponentButtonLabel"));
+		this
+				.setTitle(PrimeMain.texts
+						.getString("hwTabNewComponentButtonLabel"));
 
 
 		// Get the default toolkit

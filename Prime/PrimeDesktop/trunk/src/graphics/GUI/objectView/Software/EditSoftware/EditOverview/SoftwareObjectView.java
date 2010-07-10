@@ -488,7 +488,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 		}
 
 
-		if ( swObj.length < 2 )
+		if ( swObj != null && swObj.length < 2 )
 		{
 			if ( swPanel.getComponentCount() == 1 )
 			{

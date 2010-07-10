@@ -1,7 +1,6 @@
 package graphics.GUI.objectView;
 
 
-import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 
 import java.awt.Button;
@@ -21,9 +20,12 @@ import javax.swing.JPanel;
 
 import logistical.checkLogic;
 import managment.ComponentsManagment;
+import managment.RulesManagment;
 import objects.Object;
 import widgetManipulation.WidgetNetworkInfo;
+import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetObject;
+import widgets.WorkareaCanvas;
 
 
 /**
@@ -39,6 +41,8 @@ public class ObjectView extends JFrame implements ActionListener
 
 	private Object currentObject;
 
+	private WorkareaCanvas canvas;
+
 
 	/**
 	 * TODO - Description NEEDED!
@@ -50,6 +54,8 @@ public class ObjectView extends JFrame implements ActionListener
 		widgetObj = obj;
 
 		currentObject = obj.getObject();
+
+		canvas = PrimeMain.currentCanvas;
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -106,7 +112,7 @@ public class ObjectView extends JFrame implements ActionListener
 
 		c.add(panel);
 
-		this.setSize(size);
+		this.setPreferredSize(size);
 		this.setLocation(initXLocation, initYLocation);
 		this.setMinimumSize(new Dimension(650, 525));
 		this.setVisible(true);
@@ -176,6 +182,9 @@ public class ObjectView extends JFrame implements ActionListener
 		// If closeObjectView is true, this JFrame is closed
 		if ( closeObjectView && (errorFound == false) )
 		{
+			// Updates the views of the object to correctly show the
+			// current info.
+			ObjectView view = PrimeMain.getObjectView(currentObject);
 			this.dispose();
 		}
 
@@ -198,28 +207,32 @@ public class ObjectView extends JFrame implements ActionListener
 		if ( checkLogic.validateName(viewNameText) )
 		{
 			// Updates the name of the WidgetObject on the Scene
-			currentObject = GraphicalFunctions.updateWidgetObjectCanvasName(
-					currentObject, widgetObj, viewNameText);
+			currentObject = WorkareaCanvasActions.updateWidgetObjectCanvasName(
+					PrimeMain.canvases, widgetObj, viewNameText);
 
-			// Sets the new name as the Widgets tooltip
-			widgetObj.setToolTipText(viewNameText);
-
-			// If the description in the JTextArea is different then the
-			// objects current description
-			if ( !currentObject.getDescription().equals(
-					view.genObjView.textarea.getText()) )
+			if ( currentObject != null )
 			{
-				currentObject
-						.setDescription(view.genObjView.textarea.getText());
+				// Sets the new name as the Widgets tooltip
+				widgetObj.setToolTipText(viewNameText);
+
+				// If the description in the JTextArea is different then the
+				// objects current description
+				if ( !currentObject.getDescription().equals(
+						view.genObjView.textarea.getText()) )
+				{
+					currentObject.setDescription(view.genObjView.textarea
+							.getText());
+				}
+
+
+				PrimeMain.updateCanvasAndObjectInfo();
+				PrimeMain.updatePropertiesObjectArea(widgetObj.getObject(),
+						true);
+
+				PrimeMain.removeObjectView(currentObject);
+
+				return true;
 			}
-
-
-			PrimeMain.updateCanvasAndObjectInfo();
-			PrimeMain.updatePropertiesObjectArea(widgetObj.getObject(), true);
-
-			PrimeMain.removeObjectView(currentObject);
-
-			return true;
 		}
 		else
 		{
@@ -232,6 +245,8 @@ public class ObjectView extends JFrame implements ActionListener
 
 			return false;
 		}
+
+		return false;
 	}
 
 
@@ -349,6 +364,50 @@ public class ObjectView extends JFrame implements ActionListener
 		}
 
 
+
+
+		boolean exempted = view.netObjView.exemptedNetworkRules.isSelected();
+
+		if ( exempted == false && currentObject.isExemptedNetworkRules() )
+		{
+			String question = PrimeMain.texts
+					.getString("rulesNoLongerExemptedMsg")
+					+ "\n"
+					+ PrimeMain.texts
+							.getString("rulesPortsConnectionsChangeMsg");
+
+
+
+			// Custom button text
+			String[] options = { PrimeMain.texts.getString("yes"),
+					PrimeMain.texts.getString("no") };
+
+
+			int i = JOptionPane.showOptionDialog(null, question,
+					PrimeMain.texts.getString("confirm"),
+					JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+
+			// If the answer is yes
+			if ( i == 0 )
+			{
+				currentObject.setExemptedNetworkRules(false);
+
+				RulesManagment.processRulesChange(PrimeMain.currentCanvas);
+			}
+			else
+			{
+				view.netObjView.exemptedNetworkRules.setSelected(true);
+			}
+		}
+		else
+		{
+			currentObject.setExemptedNetworkRules(exempted);
+		}
+
+
+
+
 		// Sets the widget notes (can be anything)
 		info.setWidgetNotes(view.netObjView.widgetNotesArea.getText());
 
@@ -385,5 +444,14 @@ public class ObjectView extends JFrame implements ActionListener
 	public Object getObject()
 	{
 		return currentObject;
+	}
+
+
+	/**
+	 * Returns the {@link WorkareaCanvas} that this class is working from.
+	 */
+	public WorkareaCanvas getCanvas()
+	{
+		return canvas;
 	}
 }

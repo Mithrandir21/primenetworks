@@ -4,6 +4,7 @@
 package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
+import exceptions.MotherboardNotFound;
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
@@ -356,7 +357,7 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface, A
 	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
 	 */
 	@Override
-	public void save()
+	public boolean save()
 	{
 		if ( name.getText() != "" )
 		{
@@ -412,6 +413,8 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface, A
 
 		mainGC.setIsIntegrated(isIntegrated.isSelected());
 
+		return true;
+
 	}
 
 
@@ -444,26 +447,30 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface, A
 
 			if ( command.equals("removeComp") )
 			{
-				// Will remove the first variable from the list of components
-				// that will be returned and set as the components for the main
-				// object.
-				mainObj.setAllComponents(ComponentsManagment.removeComponent(
-						mainGC, mainObj.getComponents(), mainObj
-								.getComponents().length));
+				try
+				{
+					ComponentsManagment.removeComponent(
+							PrimeMain.currentCanvas, mainObj, mainGC);
 
-				// Updates the views of the object to correctly show the
-				// current info.
-				ObjectView view = PrimeMain.getObjectView(mainObj);
-				if ( view != null )
-				{
-					view.updateViewInfo();
+					// Updates the views of the object to correctly show the
+					// current info.
+					ObjectView view = PrimeMain.getObjectView(mainObj);
+					if ( view != null )
+					{
+						view.updateViewInfo();
+					}
+					// If no view is returned, then the standard object view is open
+					// and that should be updated.
+					else if ( PrimeMain.stdObjView != null )
+					{
+						PrimeMain.stdObjView.getSplitView().getHardStdObjView()
+								.updateTabInfo();
+					}
 				}
-				// If no view is returned, then the standard object view is open
-				// and that should be updated.
-				else if ( PrimeMain.stdObjView != null )
+				catch ( MotherboardNotFound e1 )
 				{
-					PrimeMain.stdObjView.getSplitView().getHardStdObjView()
-							.updateTabInfo();
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		}

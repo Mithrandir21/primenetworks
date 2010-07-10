@@ -20,8 +20,7 @@ import widgets.WorkareaCanvas;
  * 
  * @author Bahram Malaekeh
  */
-public class PrimeObjectSceneRectangularSelectProvider implements
-		RectangularSelectProvider
+public class PrimeObjectSceneRectangularSelectProvider implements RectangularSelectProvider
 {
 	private WorkareaCanvas canvas;
 
@@ -39,6 +38,7 @@ public class PrimeObjectSceneRectangularSelectProvider implements
 	@Override
 	public void performSelection(Rectangle sceneSelection)
 	{
+		System.out.println("here");
 		boolean entirely = sceneSelection.width > 0;
 		int w = sceneSelection.width;
 		int h = sceneSelection.height;
@@ -67,7 +67,7 @@ public class PrimeObjectSceneRectangularSelectProvider implements
 							.getBounds());
 					if ( rect.contains(widgetRect) )
 					{
-						// System.out.println("is inside.");
+						System.out.println("is inside.");
 						set.add(object);
 					}
 				}

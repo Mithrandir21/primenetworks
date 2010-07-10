@@ -4,6 +4,8 @@
 package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 
+import exceptions.MotherboardNotFound;
+import exceptions.ObjectNotFoundException;
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
@@ -28,6 +30,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -37,11 +40,16 @@ import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.ArrayManagment;
+import managment.CanvasManagment;
 import managment.ComponentsManagment;
 import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.ExternalNetworksCard;
+import objects.hardwareObjects.InternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
+import widgetManipulation.NetworkRules;
+import widgets.WorkareaCanvas;
 import connections.ConnectionUtils;
 
 
@@ -187,13 +195,11 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 				.getString("extNICviewProcucerTip"));
 
 		labels[1] = new JLabel(PrimeMain.texts.getString("extNICviewMACLabel"));
-		labels[1]
-				.setToolTipText(PrimeMain.texts.getString("extNICviewMACTip"));
+		labels[1].setToolTipText(PrimeMain.texts.getString("extNICviewMACTip"));
 
-		labels[2] = new JLabel(PrimeMain.texts
-				.getString("extNICviewTypeLabel"));
-		labels[2].setToolTipText(PrimeMain.texts
-				.getString("extNICviewTypeTip"));
+		labels[2] = new JLabel(PrimeMain.texts.getString("extNICviewTypeLabel"));
+		labels[2]
+				.setToolTipText(PrimeMain.texts.getString("extNICviewTypeTip"));
 
 		labels[3] = new JLabel(PrimeMain.texts
 				.getString("extNICviewSpeedLabel"));
@@ -390,7 +396,7 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 
 
 	@Override
-	public void save()
+	public boolean save()
 	{
 		if ( name.getText() != "" )
 		{
@@ -428,6 +434,8 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 		}
 
 		extNIC.setSupportsIPv6(supIPv6.isSelected());
+
+		return true;
 	}
 
 
@@ -436,32 +444,165 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 	{
 		if ( e.getActionCommand().equals("save") )
 		{
-			// Saves the current values of the new motherboard.
-			save();
+			WorkareaCanvas canvas = CanvasManagment.findCanvas(mainObj,
+					PrimeMain.canvases);
 
-			ComponentsManagment.processExternalNICmatch(mainObj,
-					(Motherboard) mainObj.getComponents()[0], extNIC, this);
-
-
-			// Updates the views of the object to correctly show the
-			// current info.
-			ObjectView view = PrimeMain.getObjectView(mainObj);
-			if ( view != null )
+			if ( canvas != null )
 			{
-				view.updateViewInfo();
+				String errorMsg = "";
+
+				boolean valid = false;
+
+				try
+				{
+					Motherboard mbBoard = ComponentsManagment
+							.getObjectMotherboard(mainObj);
+
+					// Saves the current values of the new motherboard.
+					save();
+
+					if ( mainObj.isExemptedNetworkRules() )
+					{
+						valid = true;
+					}
+					else
+					{
+						// VALIDATES THE USB/LAN PORTS AGAINS THE NETWORK RULES
+
+						NetworkRules rules = canvas.getRules();
+
+						// USB
+						// If USB is allowed and the maximum number of allowed ports is unlimited.
+						if ( !rules.isUSBnotAllowed() )
+						{
+							valid = true;
+						}
+						else
+						{
+							errorMsg = PrimeMain.texts
+									.getString("rulesUSBviolationMsg");
+						}
+
+						// If the usb part is validated
+						if ( valid )
+						{
+							// Resets to test the LAN rule
+							valid = false;
+
+							if ( extNIC.getConnectionType().equals(
+									ConnectionUtils.RJ45) )
+							{
+								// If LAN is allowed
+								if ( !rules.isLANnotAllowed() )
+								{
+									int lanNICs = 0;
+
+									try
+									{
+										// Gets all the InternalNetworksCard from the objects components array.
+										Object[] internalNICs = ArrayManagment
+												.getSpesificComponents(
+														InternalNetworksCard.class,
+														mainObj.getComponents(),
+														mainObj.getComponents().length);
+
+										if ( internalNICs != null )
+										{
+											// Goes through all the gotten nics
+											for ( int i = 0; i < internalNICs.length; i++ )
+											{
+												if ( internalNICs[i] != null )
+												{
+													InternalNetworksCard nic = (InternalNetworksCard) internalNICs[i];
+													// If the connection type is LAN(rj45)
+													if ( nic
+															.getConnectionType()
+															.equals(
+																	ConnectionUtils.RJ45) )
+													{
+														lanNICs++;
+													}
+												}
+											}
+										}
+									}
+									catch ( ObjectNotFoundException ex )
+									{
+										// NO INTERNAL NICS FOUND
+									}
+
+									/**
+									 * If the number of integrated LAN ports, internal LAN(RJ45) NICs and the this 1(one) object
+									 * adds
+									 * up
+									 * to equal or less then the number of allowed LANs.
+									 */
+									if ( rules.getLANportsAllowed() == -1
+											|| (mbBoard.getMaxIntegLANs()
+													+ lanNICs + 1) <= rules
+													.getLANportsAllowed() )
+									{
+										valid = true;
+									}
+									else
+									{
+										errorMsg = PrimeMain.texts
+												.getString("rulesNoMoreLANportsAllowed");
+									}
+								}
+								else
+								{
+									errorMsg = PrimeMain.texts
+											.getString("rulesLANnotAllowedMsg");
+								}
+							}
+							else
+							{
+								valid = true;
+							}
+						}
+					}
+
+					if ( valid )
+					{
+						ComponentsManagment.processExternalNICmatch(mainObj,
+								extNIC, this);
+
+						// Updates the views of the object to correctly show the
+						// current info.
+						ObjectView view = PrimeMain.getObjectView(mainObj);
+						if ( view != null )
+						{
+							view.updateViewInfo();
+						}
+						// If no view is returned, then the standard object view is open
+						// and that should be updated.
+						else if ( PrimeMain.stdObjView != null )
+						{
+							PrimeMain.stdObjView.getSplitView()
+									.getHardStdObjView().updateTabInfo();
+						}
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(this, errorMsg,
+								PrimeMain.texts.getString("error"),
+								JOptionPane.ERROR_MESSAGE);
+					}
+
+					if ( valid )
+					{
+						// Closes the JFrame.
+						this.dispose();
+					}
+				}
+				catch ( MotherboardNotFound e2 )
+				{
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+
 			}
-			// If no view is returned, then the standard object view is open
-			// and that should be updated.
-			else if ( PrimeMain.stdObjView != null )
-			{
-				PrimeMain.stdObjView.getSplitView().getHardStdObjView()
-						.updateTabInfo();
-			}
-
-
-			// Closes the JFrame.
-			this.dispose();
-
 		}
 		else if ( e.getActionCommand().equals("cancel") )
 		{
@@ -504,7 +645,6 @@ public class ExternalNICNewView extends JFrame implements HardwareViewInterface,
 			}
 		}
 	}
-
 
 	@Override
 	public boolean validateNecessaryData()

@@ -1,7 +1,6 @@
 package actions.canvasActions;
 
 
-import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
@@ -15,6 +14,7 @@ import javax.swing.undo.UndoableEdit;
 import logistical.AbstractSystemAction;
 import logistical.SystemActionInterface;
 import logistical.checkLogic;
+import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
 
@@ -63,8 +63,8 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 	}
 
 	/**
-	 * A constructor for the class that takes a string, the action name, a
-	 * {@link WidgetObject} and a String that is to be the new name of
+	 * A constructor for the class that takes a string, the action name, a {@link WidgetObject} and a String that is to be the new
+	 * name of
 	 * the given {@link WidgetObject}.
 	 * 
 	 * @param text
@@ -194,10 +194,8 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 		if ( widObject != null )
 		{
 			// Updates the name of the LabelWidget on the scene
-			GraphicalFunctions.updateWidgetObjectCanvasName(widObject, newName);
-
-			// Sets the name of the object
-			widObject.getObject().setObjectName(newName);
+			WorkareaCanvasActions.updateWidgetObjectCanvasName(
+					PrimeMain.currentCanvas, widObject.getObject(), newName);
 		}
 	}
 
@@ -210,13 +208,9 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 	{
 		if ( widObject != null )
 		{
-			// Updates the name of the LabelWidget on the
-			// scene
-			GraphicalFunctions.updateWidgetObjectCanvasName(widObject
-					.getObject(), oldName);
-
-			// Sets the name of the object
-			widObject.getObject().setObjectName(oldName);
+			// Updates the name of the LabelWidget on the scene
+			WorkareaCanvasActions.updateWidgetObjectCanvasName(
+					PrimeMain.currentCanvas, widObject.getObject(), oldName);
 		}
 	}
 
@@ -234,11 +228,9 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 			if ( checkLogic.validateName(newName) )
 			{
 				// Updates the name of the LabelWidget on the scene
-				GraphicalFunctions.updateWidgetObjectCanvasName(widObject
-						.getObject(), newName);
-
-				// Sets the name of the object
-				widObject.getObject().setObjectName(newName);
+				WorkareaCanvasActions
+						.updateWidgetObjectCanvasName(PrimeMain.currentCanvas,
+								widObject.getObject(), newName);
 			}
 			else
 			{

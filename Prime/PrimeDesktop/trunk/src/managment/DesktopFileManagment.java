@@ -4,6 +4,7 @@
 package managment;
 
 
+import exceptions.CanvasNotFound;
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 import graphics.GUI.CustomFileFilters.DATFilter;
@@ -23,6 +24,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
@@ -31,8 +33,8 @@ import javax.swing.JOptionPane;
 
 import objects.Object;
 import objects.Room;
+import widgetManipulation.NetworkRules;
 import widgetManipulation.WorkareaCanvasNetworkInfo;
-import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetObject;
 import widgets.WidgetRoom;
 import widgets.WorkareaCanvas;
@@ -50,6 +52,9 @@ import connections.WidgetExtendedConnection;
  */
 public class DesktopFileManagment
 {
+	// The log for this class
+	public static Logger log = Logger.getLogger(DesktopCanvasManagment.class
+			.getName());
 
 	/**
 	 * Saves the given WorkareaCanvas. This function creates a file object from
@@ -94,7 +99,6 @@ public class DesktopFileManagment
 	{
 		saveCanvas(canvas, file, true);
 	}
-
 
 
 
@@ -143,6 +147,9 @@ public class DesktopFileManagment
 
 				// Writes out the WorkareaCanvasNetworkInfo
 				oos.writeObject(canvas.getNetworkInfo());
+
+				// Writes out the NetworkRules
+				oos.writeObject(canvas.getRules());
 
 
 
@@ -252,6 +259,50 @@ public class DesktopFileManagment
 			PrimeMain.workTab.repaint();
 
 			return true;
+		}
+
+		return false;
+	}
+
+
+
+	/**
+	 * Saves the given {@link NetworkRules} instance to a file to preserve the standard rules.
+	 */
+	public static void saveStandardRules()
+	{
+		File file = new File("./resource/rules.dat");
+
+		saveStandardRules(file);
+	}
+
+
+
+	/**
+	 * Saves the given {@link NetworkRules} instance to the given file to preserve the standard rules.
+	 */
+	public static boolean saveStandardRules(File file)
+	{
+		if ( PrimeMain.standardRules != null && file != null )
+		{
+			try
+			{
+				FileOutputStream fout = new FileOutputStream(file);
+
+				// The object stream file
+				ObjectOutputStream oos = new ObjectOutputStream(fout);
+
+				oos.writeObject(PrimeMain.standardRules);
+
+				oos.flush();
+				oos.close();
+
+				return true;
+			}
+			catch ( Exception e )
+			{
+				e.printStackTrace();
+			}
 		}
 
 		return false;
@@ -393,7 +444,6 @@ public class DesktopFileManagment
 
 
 
-
 	/**
 	 * The method check whether or not a file exist with the given newName
 	 * String. If it does, the file is checked for a WorkareaCanvas
@@ -449,7 +499,6 @@ public class DesktopFileManagment
 
 		return false;
 	}
-
 
 
 
@@ -526,13 +575,15 @@ public class DesktopFileManagment
 				// Updates the JTree
 				PrimeMain.updateNetworkSelectionArea();
 
+				canvas.setSaved(true);
+				canvas.setChanged(false);
+
 				return true;
 			}
 		}
 
 		return false;
 	}
-
 
 
 
@@ -697,10 +748,19 @@ public class DesktopFileManagment
 					PrimeMain.updateNetworkSelectionArea();
 
 					// Removes the WorkareScroll with the canvas
-					PrimeMain.workTab.removeTabWithCanvas(canvasName, false);
-
-					// Removed the canvas from the systems canvas array
-					DesktopCanvasManagment.removeWorkareaCanvas(canvas);
+					try
+					{
+						PrimeMain.workTab
+								.removeTabWithCanvas(canvasName, false);
+					}
+					catch ( CanvasNotFound e )
+					{
+						log
+								.warning("The WorkareaCanvas, "
+										+ canvasName
+										+ ", was not found in the WorkareaCanvas main register.");
+						e.printStackTrace();
+					}
 
 					return true;
 				}
@@ -804,6 +864,16 @@ public class DesktopFileManagment
 						}
 					}
 
+					// Copies the standard rules to the canvas
+					if ( PrimeMain.standardRules != null )
+					{
+						canvas.setRules(copyRules(PrimeMain.standardRules,
+								canvas.getRules()));
+					}
+
+					canvas.setSaved(false);
+					canvas.setChanged(true);
+
 					// First creates the WorkareaSceneScroll object that will
 					// hold
 					WorkareaSceneScroll newScroll = new WorkareaSceneScroll(
@@ -846,8 +916,6 @@ public class DesktopFileManagment
 
 
 
-
-
 	/**
 	 * This method opens a WorkareaCanvas from the given file. It adds the
 	 * opened canvas the systems Workarea where the WorkareaCanvas can be
@@ -857,7 +925,11 @@ public class DesktopFileManagment
 	 */
 	public static void openWorkareaCanvas(File file)
 	{
-		openCanvas(file);
+		WorkareaCanvas canvas = openCanvasFile(file);
+
+		PrimeMain.getWorkarea().createNewCanvasTab(canvas);
+
+		canvas.setSaved(true);
 	}
 
 
@@ -875,255 +947,7 @@ public class DesktopFileManagment
 		File file = new File("./resource/Data/" + canvasName + File.separator
 				+ canvasName + ".dat");
 
-		openCanvas(file);
-	}
-
-
-
-
-	/**
-	 * This method opens a WorkareaCanvas from the given file. It adds the
-	 * opened canvas the systems Workarea where the WorkareaCanvas can be
-	 * edited. It also adds all the objects and connections to the canvas.
-	 * 
-	 * @param file
-	 */
-	@SuppressWarnings("unchecked")
-	private static void openCanvas(File file)
-	{
-		WorkareaCanvas canvas = new WorkareaCanvas();
-
-		try
-		{
-			FileInputStream fin = new FileInputStream(file);
-
-			ObjectInputStream ois = new ObjectInputStream(fin);
-
-			// The name of the canvas
-			String name = (String) ois.readObject();
-			canvas.setCanvasName(name);
-
-			// The serial of the network
-			double serial = ois.readDouble();
-			canvas.setSerial(serial);
-
-			// Reads the WorkareaCanvasNetworkInfo
-			canvas.setNetworkInfo((WorkareaCanvasNetworkInfo) ois.readObject());
-
-
-			// READS THE OBJECTS THAT ARE TO BE PLACED ON THE CANVAS
-
-
-			// The ArrayList that will hold the Objects
-			ArrayList<Object> objectList = new ArrayList<Object>();
-
-			// Reads inn the ArrayList from the file stream
-			objectList = (ArrayList<Object>) ois.readObject();
-
-			// The size of the new Objects array
-			int objectArraySize = 0;
-
-			// Iterates through the Object list
-			for ( Iterator it = objectList.iterator(); it.hasNext(); )
-			{
-				objectArraySize++;
-				it.next();
-			}
-
-			// If there were any objects found
-			if ( objectArraySize > 0 )
-			{
-				// The objects array
-				Object[] objects = new Object[objectArraySize];
-
-				// The index of the objects array
-				int objectIndex = 0;
-
-				// Iterates through the list and adds the objects to the objects
-				// array
-				for ( Iterator it = objectList.iterator(); it.hasNext(); )
-				{
-					objects[objectIndex] = (Object) it.next();
-					objectIndex++;
-				}
-
-				// Goes through the array of objects and adds them to the newly
-				// made canvas
-				for ( int i = 0; i < objects.length; i++ )
-				{
-					if ( objects[i] != null )
-					{
-						Class<?> objClass = GraphicalFunctions
-								.getObjectClass(objects[i]);
-						ImageIcon icon = PrimeMain.objectImageIcons
-								.get(objects[i].getClass());
-
-						WidgetObject added = WorkareaCanvasActions
-								.addObjectToCanvas(objects[i], canvas,
-										objClass, icon);
-
-						// Adds the actions that the new widget supports
-						ActionsAdder.makeWidgetObjectReady(canvas, added);
-					}
-				}
-			}
-
-			// END OF READ OBJECTS
-
-
-
-			// READ THE CONNECTIONS THAT TO BE PLACED ON THE CANVAS
-
-
-
-			// The ArrayList that will hold all the connections
-			ArrayList<Connection> connectionList = new ArrayList<Connection>();
-
-			// Reads inn the ArrayList from the file stream
-			connectionList = (ArrayList<Connection>) ois.readObject();
-
-			// The size of the new Connection array
-			int connectionArraySize = 0;
-
-			// Iterates through the connection list
-			for ( Iterator it = connectionList.iterator(); it.hasNext(); )
-			{
-				connectionArraySize++;
-				it.next();
-			}
-
-			// If there were any objects found
-			if ( connectionArraySize > 0 )
-			{
-				// The connection array
-				Connection[] connections = new Connection[connectionArraySize];
-
-				// The index of the connection array
-				int connectionIndex = 0;
-
-				// Iterates through the list and adds the connections to the
-				// connections array
-				for ( Iterator it = connectionList.iterator(); it.hasNext(); )
-				{
-					connections[connectionIndex] = (Connection) it.next();
-					connectionIndex++;
-				}
-
-
-				// Goes through the entire connections array and adds the
-				// connections to the WorkareaCanvas
-				for ( int i = 0; i < connections.length; i++ )
-				{
-					if ( connections[i] != null )
-					{
-						// Creates the connection between the two devices on the
-						// scene.
-						WidgetExtendedConnection connection = new WidgetExtendedConnection(
-								canvas.getScene(), connections[i]);
-
-
-						// Find the two object which are to be connected on the
-						// canvas
-						WidgetObject sourceWidget = CanvasManagment
-								.findWidgetObject(connections[i].getObject1(),
-										canvas);
-						WidgetObject targetWidget = CanvasManagment
-								.findWidgetObject(connections[i].getObject2(),
-										canvas);
-
-						// Creates the whole connection with all actions
-						connection = ConnectionManagment
-								.createWidgetExtendedConnection(canvas,
-										connections[i], connection,
-										sourceWidget, targetWidget);
-
-						// Adds the different actions
-						ActionsAdder.makeWidgetConnectionReady(canvas,
-								connection);
-
-						// Add the connection the connection layer
-						canvas.getConnectionLayer().addChild(connection);
-					}
-				}
-			}
-
-			// END OF CONNECTIONS
-
-
-
-			// READ THE NETWORK ROOMS
-
-
-			// The ArrayList that will hold all the rooms
-			ArrayList<Room> roomList = new ArrayList<Room>();
-
-			// Reads inn the ArrayList from the file stream
-			roomList = (ArrayList<Room>) ois.readObject();
-
-			// The size of the new Room array
-			int roomArraySize = 0;
-
-			// Iterates through the room list
-			for ( Iterator it = roomList.iterator(); it.hasNext(); )
-			{
-				roomArraySize++;
-				it.next();
-			}
-
-			// If there were any objects found
-			if ( roomArraySize > 0 )
-			{
-				// The room array
-				Room[] rooms = new Room[roomArraySize];
-
-				// The index of the room array
-				int roomIndex = 0;
-
-				// Iterates through the list and adds the room to the room array
-				for ( Iterator it = roomList.iterator(); it.hasNext(); )
-				{
-					rooms[roomIndex] = (Room) it.next();
-					roomIndex++;
-				}
-
-				// Goes through the entire connections array and adds the
-				// connections to the WorkareaCanvas
-				for ( int i = 0; i < rooms.length; i++ )
-				{
-					if ( rooms[i] != null )
-					{
-						WidgetRoom room = RoomManagment.addRoom(canvas,
-								rooms[i]);
-
-						// Adds the actions supported by the WidgetRoom
-						ActionsAdder.makeWidgetRoomReady(canvas, room);
-					}
-				}
-			}
-
-
-			// END OF READ NETWORK ROOMS
-
-
-
-			ois.close();
-		}
-		catch ( FileNotFoundException e )
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch ( IOException e )
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch ( ClassNotFoundException e )
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		WorkareaCanvas canvas = openCanvasFile(file);
 
 		PrimeMain.getWorkarea().createNewCanvasTab(canvas);
 
@@ -1157,8 +981,27 @@ public class DesktopFileManagment
 			double serial = ois.readDouble();
 			canvas.setSerial(serial);
 
-			// Reads the WorkareaCanvasNetworkInfo
-			canvas.setNetworkInfo((WorkareaCanvasNetworkInfo) ois.readObject());
+			try
+			{
+				// Reads the WorkareaCanvasNetworkInfo
+				canvas.setNetworkInfo((WorkareaCanvasNetworkInfo) ois
+						.readObject());
+			}
+			catch ( Exception e )
+			{
+				// Creates a new network info object
+				canvas.setNetworkInfo(new WorkareaCanvasNetworkInfo(canvas));
+			}
+
+			try
+			{
+				// Reads the NetworkRules
+				canvas.setRules((NetworkRules) ois.readObject());
+			}
+			catch ( IOException e )
+			{
+				canvas.setRules(new NetworkRules(canvas));
+			}
 
 
 			// READS THE OBJECTS THAT ARE TO BE PLACED ON THE CANVAS
@@ -1208,12 +1051,18 @@ public class DesktopFileManagment
 						ImageIcon icon = PrimeMain.objectImageIcons
 								.get(objects[i].getClass());
 
-						WidgetObject added = WorkareaCanvasActions
-								.addObjectToCanvas(objects[i], canvas,
-										objClass, icon);
+						// Creates a new WidgetObject that will be added to the scene
+						WidgetObject newWidgetObject = new WidgetObject(canvas
+								.getScene(), objects[i], icon.getImage());
+
+						// Adds the given object to the given location
+						DesktopCanvasManagment.addWidgetToCanvas(
+								newWidgetObject, objects[i].getLocation(),
+								canvas, false, true);
 
 						// Adds the actions that the new widget supports
-						ActionsAdder.makeWidgetObjectReady(canvas, added);
+						ActionsAdder.makeWidgetObjectReady(canvas,
+								newWidgetObject);
 					}
 				}
 			}
@@ -1380,6 +1229,53 @@ public class DesktopFileManagment
 
 
 
+	/**
+	 * Opens the {@link NetworkRules} instance from a given file to preserve the system standard rules.
+	 */
+	public static void openStandardRules(File file)
+	{
+		// If the Objects file exists
+		if ( file.exists() )
+		{
+			// If the pointer is to a file and not anything else
+			if ( file.isFile() )
+			{
+				// If the file can be written to
+				if ( file.canRead() )
+				{
+					try
+					{
+						FileInputStream fin = new FileInputStream(file);
+
+						ObjectInputStream ois = new ObjectInputStream(fin);
+
+						PrimeMain.standardRules = (NetworkRules) ois
+								.readObject();
+
+						ois.close();
+					}
+					catch ( Exception e )
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+	}
+
+
+
+	/**
+	 * Opens the {@link NetworkRules} instance from a file to preserve the system standard rules.
+	 */
+	public static void openStandardRules()
+	{
+		File file = new File("./resource/rules.dat");
+
+		openStandardRules(file);
+	}
+
+
 
 	/**
 	 * Opens the {@link Settings} instance from a file to preserve the users
@@ -1445,7 +1341,6 @@ public class DesktopFileManagment
 
 
 
-
 	/**
 	 * Finds the first part of any given string divided by one "." symbol.
 	 * 
@@ -1468,7 +1363,6 @@ public class DesktopFileManagment
 
 		return null;
 	}
-
 
 
 
@@ -1511,13 +1405,7 @@ public class DesktopFileManagment
 		{
 			if ( canvases[i] != null )
 			{
-				// // If the canvas has not been saved(since the last change)
-				// and there has been some change
-				// if ( canvases[i].isSaved() != true && canvases[i].isChanged()
-				// == true )
-				// {
 				saveWorkareaCanvas(canvases[i]);
-				// }
 			}
 		}
 	}
@@ -1560,11 +1448,10 @@ public class DesktopFileManagment
 			// IF there already exists a file
 			if ( output.exists() )
 			{
-				int answer = JOptionPane
-						.showConfirmDialog(null, PrimeMain.texts
-								.getString("overwriteNetworkExportMsg"),
-								PrimeMain.texts.getString("overwrite"),
-								JOptionPane.YES_NO_OPTION);
+				int answer = JOptionPane.showConfirmDialog(null,
+						PrimeMain.texts.getString("overwriteNetworkExportMsg"),
+						PrimeMain.texts.getString("overwrite"),
+						JOptionPane.YES_NO_OPTION);
 
 				if ( answer == 0 )
 				{
@@ -1586,6 +1473,7 @@ public class DesktopFileManagment
 
 		return false;
 	}
+
 
 
 	/**
@@ -1712,6 +1600,72 @@ public class DesktopFileManagment
 
 
 	/**
+	 * This function exports the Standard rules to a file. The file will
+	 * have a .dat filetype. The user is presented with a choice on which folder
+	 * to save the file in.
+	 */
+	public static boolean exportStandardRules()
+	{
+		if ( PrimeMain.standardRules != null )
+		{
+			// The JFileChoose where the user will save the export
+			JFileChooser fc = new JFileChooser();
+			fc.setAcceptAllFileFilterUsed(false);
+
+			// Adds the filters
+			fc.addChoosableFileFilter(new DATFilter());
+
+			// Sets the selected file to the name of the
+			fc.setSelectedFile(new File("Rules"));
+
+			// Shows the File chooser
+			int returnVal = fc.showSaveDialog(null);
+
+			// If the users choices a folder
+			if ( returnVal == JFileChooser.APPROVE_OPTION )
+			{
+				File file = fc.getSelectedFile();
+
+				// Creates the file with the right extension
+				File output = new File(file.getAbsoluteFile() + ".dat");
+
+				// Whether or not to overwrite
+				boolean overwrite = false;
+
+				// Just to make sure
+				if ( output.exists() )
+				{
+					int answer = JOptionPane.showConfirmDialog(null,
+							PrimeMain.texts
+									.getString("overwriteStandardRuleFileMsg"),
+							PrimeMain.texts.getString("overwrite"),
+							JOptionPane.YES_NO_OPTION);
+
+					if ( answer == 0 )
+					{
+						overwrite = true;
+					}
+				}
+				else
+				{
+					overwrite = true;
+				}
+
+
+				// The file either does not exist or the user wants to overwrite
+				if ( overwrite )
+				{
+					return saveStandardRules(output);
+				}
+			}
+		}
+
+		return false;
+	}
+
+
+
+	/**
 	 * This function exports the Standard Objects list to a file. The file will
 	 * have a .obj filetype. The user is presented with a choice on which folder
 	 * to save the file in.
@@ -1776,7 +1730,6 @@ public class DesktopFileManagment
 
 		return false;
 	}
-
 
 
 
@@ -1938,6 +1891,54 @@ public class DesktopFileManagment
 
 
 	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static void importStandardRules()
+	{
+		// The JFileChoose where the user will save the export
+		JFileChooser fc = new JFileChooser();
+		fc.setAcceptAllFileFilterUsed(false);
+
+		// Adds the filter
+		fc.addChoosableFileFilter(new DATFilter());
+
+		// Shows the File chooser
+		int returnVal = fc.showSaveDialog(null);
+
+		// If the save button is pressed
+		if ( returnVal == JFileChooser.APPROVE_OPTION )
+		{
+			// Gets the file written/selected
+			File file = fc.getSelectedFile();
+
+			if ( file.exists() )
+			{
+				// The text shown to the user
+				String text = PrimeMain.texts
+						.getString("verifyStandardRulesListOverwrite")
+						+ "\n"
+						+ PrimeMain.texts.getString("thisCannotBeUndoneMsg");
+
+				// Whether or not the user wants to overwrite the current
+				// standard object list
+				int answer = JOptionPane.showConfirmDialog(null, text,
+						PrimeMain.texts.getString("overwrite"),
+						JOptionPane.YES_NO_OPTION);
+
+				// The user answers yes
+				if ( answer == 0 )
+				{
+					openStandardRules(file);
+				}
+			}
+		}
+
+	}
+
+
+
+	/**
 	 * This function imports a Standard Objects list from a file. The file will
 	 * have a .obj filetype. The user is presented with {@link JFileChooser}.
 	 */
@@ -1989,9 +1990,6 @@ public class DesktopFileManagment
 
 
 
-
-
-
 	/**
 	 * Saves the objectlist from the {@link PrimeMain} to the resource
 	 * directory.
@@ -2002,9 +2000,6 @@ public class DesktopFileManagment
 
 		saveObjectFile(file);
 	}
-
-
-
 
 
 
@@ -2100,6 +2095,7 @@ public class DesktopFileManagment
 	}
 
 
+
 	/**
 	 * Opens the standard objects file that contains the systems standard
 	 * objects from the given file(after verification).
@@ -2174,9 +2170,80 @@ public class DesktopFileManagment
 		{
 			System.out.println("openObjectsFile - file.exists()");
 		}
+	}
 
 
 
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static NetworkRules copyRules(NetworkRules standardRules,
+			NetworkRules newRules)
+	{
+		// HARDWARE
+		newRules.setUSBnotAllowed(standardRules.isUSBnotAllowed());
+		newRules.setUSBportsAllowed(standardRules.getUSBportsAllowed());
+
+		newRules.setLANnotAllowed(standardRules.isLANnotAllowed());
+		newRules.setLANportsAllowed(standardRules.getLANportsAllowed());
+
+		// SOFTWARE
+		newRules.setOSrestriction(standardRules.isOSrestriction());
+		newRules.setOSrestrictedName(standardRules.getOSrestrictedName());
+
+		newRules.setAVrestriction(standardRules.isAVrestriction());
+		newRules.setAVrestrictedName(standardRules.getAVrestrictedName());
+
+		newRules.setFWrestriction(standardRules.isFWrestriction());
+		newRules.setFWrestrictedName(standardRules.getFWrestrictedName());
+
+		newRules.setEMailRestriction(standardRules.isEMailRestriction());
+		newRules.setEMailRestrictedName(standardRules.getEMailRestrictedName());
+
+		newRules.setOfficeSuiteRestriction(standardRules
+				.isOfficeSuiteRestriction());
+		newRules.setOfficeSuiteRestrictedName(standardRules
+				.getOfficeSuiteRestrictedName());
+
+		// INFRASTRUCTURE
+		newRules
+				.setCanConnectToInternet(standardRules.isCanConnectToInternet());
+
+		newRules.setMustHaveFWbeforeInternet(standardRules
+				.isMustHaveFWbeforeInternet());
+
+		newRules.setMustHaveAVbeforeInternet(standardRules
+				.isMustHaveAVbeforeInternet());
+
+		newRules.setCanContainHub(standardRules.isCanContainHub());
+
+		newRules.setCanContainWirelessRouter(standardRules
+				.isCanContainWirelessRouter());
+
+
+		return newRules;
+	}
+
+
+
+	/**
+	 * This function checks whether or not an standard rules file exists in
+	 * the resources folder with the name rules.dat
+	 */
+	public static boolean ruleFileExists()
+	{
+		File file = new File("./resource/rules.dat");
+
+		if ( file.exists() )
+		{
+			if ( file.isFile() )
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 
@@ -2199,7 +2266,6 @@ public class DesktopFileManagment
 
 		return false;
 	}
-
 
 
 

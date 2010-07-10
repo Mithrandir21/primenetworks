@@ -7,12 +7,13 @@ package graphics.GUI.settings;
 import graphics.PrimeMain;
 
 import java.awt.Checkbox;
-import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
 import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -29,10 +30,34 @@ public class NetworkMessagesSettings extends JPanel
 	 * A constructor that takes a {@link Checkbox} array, holding all program
 	 * variables.
 	 */
-	public NetworkMessagesSettings(JCheckBox[] checkBox)
+	public NetworkMessagesSettings(JCheckBox[] checkBox, ActionListener lis)
 	{
-		this.setPreferredSize(new Dimension(700, 525));
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints d = new GridBagConstraints();
 
+
+		d.fill = GridBagConstraints.BOTH;
+		// d.ipady = 0; // reset to default
+		// d.ipadx = 0; // reset to default
+		// d.weighty = 1.0; // request any extra vertical space
+		// d.weightx = 1.0; // request any extra horizontal space
+		d.anchor = GridBagConstraints.NORTH; // location
+		d.insets = new Insets(10, 20, 5, 20); // padding
+		// d.gridwidth = 1; // 2 row wide
+		// d.gridheight = 1; // 2 columns wide
+		d.gridy = 0; // row
+		d.gridx = 0; // column
+
+
+
+		JCheckBox selectAll = new JCheckBox(PrimeMain.texts
+				.getString("settingsSelectAllLabel"));
+		selectAll.setToolTipText(PrimeMain.texts
+				.getString("settingsSelectAllTip"));
+		selectAll.setActionCommand(PrimeMain.texts
+				.getString("settingsSelectAllLabel"));
+		selectAll.addActionListener(lis);
+		this.add(selectAll, d);
 
 
 
@@ -40,10 +65,14 @@ public class NetworkMessagesSettings extends JPanel
 		checkBox[1].setName("showHardwareWarnings");
 		checkBox[2].setName("showHardwareNotices");
 
-
 		JPanel hardPanel = getPanel(checkBox[0], checkBox[1], checkBox[2]);
 		hardPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain.texts
 				.getString("settingsShowMsgHardwareLabel")));
+		d.weighty = 1.0; // request any extra vertical space
+		d.weightx = 1.0; // request any extra horizontal space
+		d.insets = new Insets(0, 10, 10, 10); // padding
+		d.gridy = 1; // row
+		this.add(hardPanel, d);
 
 
 
@@ -51,9 +80,13 @@ public class NetworkMessagesSettings extends JPanel
 		checkBox[4].setName("showSoftwareWarnings");
 		checkBox[5].setName("showSoftwareNotices");
 
+
 		JPanel softPanel = getPanel(checkBox[3], checkBox[4], checkBox[5]);
 		softPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain.texts
 				.getString("settingsShowMsgSoftwareLabel")));
+		d.insets = new Insets(10, 10, 10, 10); // padding
+		d.gridy = 2; // row
+		this.add(softPanel, d);
 
 
 
@@ -64,6 +97,8 @@ public class NetworkMessagesSettings extends JPanel
 		JPanel conPanel = getPanel(checkBox[6], checkBox[7], checkBox[8]);
 		conPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain.texts
 				.getString("settingsShowMsgConnectionsLabel")));
+		d.gridy = 3; // row
+		this.add(conPanel, d);
 
 
 		checkBox[9].setName("showNetworkErrors");
@@ -73,54 +108,8 @@ public class NetworkMessagesSettings extends JPanel
 		JPanel netPanel = getPanel(checkBox[9], checkBox[10], checkBox[11]);
 		netPanel.setBorder(BorderFactory.createTitledBorder(PrimeMain.texts
 				.getString("settingsShowMsgNetworkLabel")));
-
-
-
-
-
-
-
-		GroupLayout layout = new GroupLayout(this);
-		this.setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(
-				GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup().addContainerGap().addGroup(
-						layout.createParallelGroup(
-								GroupLayout.Alignment.LEADING).addComponent(
-								hardPanel, GroupLayout.DEFAULT_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE,
-								Short.MAX_VALUE).addComponent(softPanel,
-								GroupLayout.Alignment.TRAILING,
-								GroupLayout.DEFAULT_SIZE,
-								GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(conPanel,
-										GroupLayout.Alignment.TRAILING,
-										GroupLayout.DEFAULT_SIZE,
-										GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE).addComponent(netPanel,
-										GroupLayout.DEFAULT_SIZE,
-										GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)).addContainerGap()));
-		layout.setVerticalGroup(layout.createParallelGroup(
-				GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup().addContainerGap().addComponent(
-						hardPanel, javax.swing.GroupLayout.PREFERRED_SIZE,
-						GroupLayout.DEFAULT_SIZE,
-						javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 18,
-						18).addComponent(softPanel,
-						javax.swing.GroupLayout.PREFERRED_SIZE,
-						GroupLayout.DEFAULT_SIZE,
-						javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 18,
-						18).addComponent(conPanel,
-						javax.swing.GroupLayout.PREFERRED_SIZE,
-						GroupLayout.DEFAULT_SIZE,
-						javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 18,
-						18).addComponent(netPanel,
-						javax.swing.GroupLayout.PREFERRED_SIZE,
-						GroupLayout.DEFAULT_SIZE,
-						javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(GroupLayout.DEFAULT_SIZE,
-								Short.MAX_VALUE)));
+		d.gridy = 4; // row
+		this.add(netPanel, d);
 	}
 
 
@@ -133,41 +122,38 @@ public class NetworkMessagesSettings extends JPanel
 	private JPanel getPanel(JCheckBox box1, JCheckBox box2, JCheckBox box3)
 	{
 		JPanel panel = new JPanel();
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints d = new GridBagConstraints();
 
-		JLabel showErroes = new JLabel(PrimeMain.texts
+
+		d.fill = GridBagConstraints.HORIZONTAL;
+		// d.ipady = 0; // reset to default
+		// d.ipadx = 0; // reset to default
+		d.weighty = 1.0; // request any extra vertical space
+		d.weightx = 1.0; // request any extra horizontal space
+		d.anchor = GridBagConstraints.NORTH; // location
+		d.insets = new Insets(10, 10, 10, 10); // padding
+		// d.gridwidth = 1; // 2 row wide
+		// d.gridheight = 1; // 2 columns wide
+		d.gridy = 0; // row
+		d.gridx = 0; // column
+
+
+		box1.setText(PrimeMain.texts
 				.getString("settingsShowMsgShowErrorsLabel"));
+		panel.add(box1, d);
 
-		JLabel showWarnings = new JLabel(PrimeMain.texts
+
+		box2.setText(PrimeMain.texts
 				.getString("settingsShowMsgShowWarningsLabel"));
+		d.gridx = 1; // column
+		panel.add(box2, d);
 
-		JLabel showNotices = new JLabel(PrimeMain.texts
+		box3.setText(PrimeMain.texts
 				.getString("settingsShowMsgShowNoticesLabel"));
+		d.gridx = 2; // column
+		panel.add(box3, d);
 
-		GroupLayout jPanel3Layout = new GroupLayout(panel);
-		panel.setLayout(jPanel3Layout);
-		jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup(
-				GroupLayout.Alignment.LEADING).addGroup(
-				jPanel3Layout.createSequentialGroup().addGap(15, 15, 15)
-						.addComponent(showErroes).addGap(18, 18, 18)
-						.addComponent(box1).addGap(74, 74, 74).addComponent(
-								showWarnings).addGap(5, 5, 5)
-						.addComponent(box2).addGap(74, 74, 74).addComponent(
-								showNotices).addGap(5, 5, 5).addComponent(box3)
-						.addContainerGap(79, Short.MAX_VALUE)));
-		jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(
-				GroupLayout.Alignment.LEADING)
-				.addGroup(
-						jPanel3Layout.createSequentialGroup().addContainerGap()
-								.addGroup(
-										jPanel3Layout.createParallelGroup(
-												GroupLayout.Alignment.BASELINE)
-												.addComponent(showErroes)
-												.addComponent(box1)
-												.addComponent(showWarnings)
-												.addComponent(box2)
-												.addComponent(showNotices)
-												.addComponent(box3))
-								.addContainerGap(22, Short.MAX_VALUE)));
 
 
 		return panel;

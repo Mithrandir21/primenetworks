@@ -11,8 +11,8 @@ import exceptions.ObjectNotFoundException;
 
 
 /**
- * This is the class where the connection aspects of a given {@link Object} and
- * {@link WorkareaCanvas} is processed and messages are created for the user.
+ * This is the class where the connection aspects of a given {@link Object} and {@link WorkareaCanvas} is processed and messages
+ * are created for the user.
  * 
  * @author Bahram Malaekeh
  */
@@ -191,8 +191,7 @@ public class ConnectionProcessing
 	private static boolean containsComponentOfClass(Object obj, Class<?> Class)
 	{
 		// This test does nothing else then see if the function called throws an
-		// exception that means there was
-		// no object found with the given class.
+		// exception that means there was no object found with the given class.
 		try
 		{
 			ArrayManagment.getSpesificComponents(Class, obj.getComponents(),

@@ -12,6 +12,8 @@ import logistical.cleanup;
 import managment.ArrayManagment;
 import managment.ComponentsManagment;
 import objects.hardwareObjects.Motherboard;
+import widgetManipulation.NetworkRules;
+import widgets.WorkareaCanvas;
 import connections.Connection;
 import connections.DeviceConnection;
 import connections.InternalConnection;
@@ -128,6 +130,13 @@ public abstract class Object implements Serializable, Cloneable
 	 */
 	private ImageIcon visualImage;
 
+
+
+	/**
+	 * A boolean that says whether an object is exempted the {@link NetworkRules} that apply to the {@link WorkareaCanvas} it is
+	 * inside.
+	 */
+	private boolean exemptedNetworkRules = false;
 
 
 	/**
@@ -458,6 +467,21 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
+	 * TODO - Description NEEDED!
+	 * 
+	 * @return the exemptedNetworkRules
+	 */
+	public boolean isExemptedNetworkRules()
+	{
+		return exemptedNetworkRules;
+	}
+
+
+
+	// SETTERS
+
+
+	/**
 	 * Sets the name of the object.
 	 */
 	public void setObjectName(String ObjectName)
@@ -556,11 +580,6 @@ public abstract class Object implements Serializable, Cloneable
 	}
 
 
-	// CLASS METHODES
-
-	// COMPONENTS MANIPULATION
-
-
 	/**
 	 * TODO - Description NEEDED!
 	 * 
@@ -584,6 +603,23 @@ public abstract class Object implements Serializable, Cloneable
 		this.location = location;
 	}
 
+
+	/**
+	 * TODO - Description NEEDED!
+	 * 
+	 * @param exemptedNetworkRules
+	 *            the exemptedNetworkRules to set
+	 */
+	public void setExemptedNetworkRules(boolean exemptedNetworkRules)
+	{
+		this.exemptedNetworkRules = exemptedNetworkRules;
+	}
+
+
+
+	// CLASS METHODES
+
+	// COMPONENTS MANIPULATION
 
 	/**
 	 * Function for replacing a specific given component with a given new

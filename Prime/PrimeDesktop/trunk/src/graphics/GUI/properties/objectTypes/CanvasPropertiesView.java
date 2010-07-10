@@ -5,6 +5,7 @@ package graphics.GUI.properties.objectTypes;
 
 
 import graphics.PrimeMain;
+import graphics.GUI.customNetworks.NetworkRulesFrame;
 import graphics.GUI.properties.ObjectProperties;
 
 import java.awt.GridBagConstraints;
@@ -47,7 +48,7 @@ public class CanvasPropertiesView extends AbstractCanvasPropertiesView implement
 
 		d.weighty = 1.0; // request any extra vertical space
 		d.gridy = 2;
-		this.add(ObjectProperties.createButtons(this), d);
+		this.add(ObjectProperties.createButtons(this, true), d);
 	}
 
 
@@ -130,6 +131,8 @@ public class CanvasPropertiesView extends AbstractCanvasPropertiesView implement
 		{
 			PrimeMain.updatePropertiesCanvasArea(true);
 		}
+
+		canvasViewed.setChanged(true);
 	}
 
 
@@ -145,10 +148,29 @@ public class CanvasPropertiesView extends AbstractCanvasPropertiesView implement
 		{
 			resetFields();
 		}
-		else if ( e.getActionCommand().equals(
-				PrimeMain.texts.getString("save")) )
+		else if ( e.getActionCommand()
+				.equals(PrimeMain.texts.getString("save")) )
 		{
 			saveAction();
+		}
+		else if ( e.getActionCommand().equals(
+				PrimeMain.texts.getString("canvasMenuOpenNetworkRules")) )
+		{
+			if ( PrimeMain.currentCanvas != null )
+			{
+				// Creates and places a new StandardObjects JFrame into the system main
+				// registry.
+
+				if ( PrimeMain.rulesFrame == null )
+				{
+					PrimeMain.rulesFrame = new NetworkRulesFrame(
+							PrimeMain.currentCanvas);
+				}
+				else
+				{
+					PrimeMain.rulesFrame.toFront();
+				}
+			}
 		}
 	}
 }

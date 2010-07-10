@@ -6,8 +6,6 @@ import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuRoom.JMenuWidgetRoom;
 
 import java.awt.event.ActionEvent;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.undo.CannotRedoException;
@@ -18,15 +16,14 @@ import logistical.SystemActionInterface;
 import managment.RoomManagment;
 
 import org.netbeans.api.visual.action.ActionFactory;
-import org.netbeans.api.visual.widget.Widget;
 
+import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetRoom;
 import widgets.WorkareaCanvas;
 
 
 /**
- * This action creates a {@link WidgetRoom} on the currently open
- * {@link WorkareaCanvas}.
+ * This action creates a {@link WidgetRoom} on the currently open {@link WorkareaCanvas}.
  * This action contains a undo/redo function.
  * 
  * @author Bahram Malaekeh
@@ -183,31 +180,7 @@ public class ActionCreateRoom extends AbstractSystemAction implements SystemActi
 	@Override
 	public void undo() throws CannotUndoException
 	{
-		// Gets all the rooms on the current canvas
-		List<Widget> list = canvas.getRoomLayer().getChildren();
-
-		WidgetRoom temp = null;
-
-		boolean found = false;
-
-
-		WidgetRoom testingWidget = null;
-
-		for ( Iterator<?> iter = list.iterator(); iter.hasNext(); )
-		{
-			testingWidget = (WidgetRoom) iter.next();
-
-			if ( testingWidget.equals(room) )
-			{
-				found = true;
-				temp = testingWidget;
-			}
-		}
-
-		if ( found == true )
-		{
-			canvas.getRoomLayer().removeChild(temp);
-		}
+		WorkareaCanvasActions.removeRoom(canvas, room, true);
 	}
 
 

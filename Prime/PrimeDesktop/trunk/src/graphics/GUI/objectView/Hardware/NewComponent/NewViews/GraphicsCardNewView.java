@@ -4,6 +4,7 @@
 package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 
+import exceptions.MotherboardNotFound;
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
@@ -36,7 +37,6 @@ import managment.ComponentsManagment;
 import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.GraphicsCard;
-import objects.hardwareObjects.Motherboard;
 
 
 /**
@@ -44,8 +44,7 @@ import objects.hardwareObjects.Motherboard;
  * 
  * @author Bahram Malaekeh
  */
-public class GraphicsCardNewView extends JFrame implements
-		HardwareViewInterface, ActionListener
+public class GraphicsCardNewView extends JFrame implements HardwareViewInterface, ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -158,8 +157,7 @@ public class GraphicsCardNewView extends JFrame implements
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param GPU
@@ -369,7 +367,7 @@ public class GraphicsCardNewView extends JFrame implements
 
 
 	@Override
-	public void save()
+	public boolean save()
 	{
 		if ( name.getText() != "" )
 		{
@@ -422,6 +420,8 @@ public class GraphicsCardNewView extends JFrame implements
 
 
 		mainGC.setIsIntegrated(isIntegrated.isSelected());
+
+		return true;
 	}
 
 	@Override
@@ -432,29 +432,34 @@ public class GraphicsCardNewView extends JFrame implements
 			// Saves the current values of the new motherboard.
 			save();
 
-			ComponentsManagment.processGPUmatch(mainObj, (Motherboard) mainObj
-					.getComponents()[0], mainGC, this);
-
-
-			// Updates the views of the object to correctly show the
-			// current info.
-			ObjectView view = PrimeMain.getObjectView(mainObj);
-			if ( view != null )
+			try
 			{
-				view.updateViewInfo();
+				ComponentsManagment.processGPUmatch(mainObj, mainGC, this);
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				ObjectView view = PrimeMain.getObjectView(mainObj);
+				if ( view != null )
+				{
+					view.updateViewInfo();
+				}
+				// If no view is returned, then the standard object view is open
+				// and that should be updated.
+				else if ( PrimeMain.stdObjView != null )
+				{
+					PrimeMain.stdObjView.getSplitView().getHardStdObjView()
+							.updateTabInfo();
+				}
+
+
+				// Closes the JFrame.
+				this.dispose();
 			}
-			// If no view is returned, then the standard object view is open
-			// and that should be updated.
-			else if ( PrimeMain.stdObjView != null )
+			catch ( MotherboardNotFound e1 )
 			{
-				PrimeMain.stdObjView.getSplitView().getHardStdObjView()
-						.updateTabInfo();
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-
-
-			// Closes the JFrame.
-			this.dispose();
-
 		}
 		else if ( e.getActionCommand().equals("cancel") )
 		{

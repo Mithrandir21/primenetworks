@@ -56,7 +56,7 @@ public class GeneralObjectView extends JPanel
 
 		// The name of the object
 		JLabel nameLabel = new JLabel();
-		nameLabel.setText(PrimeMain.texts.getString("genTabClassLabel"));
+		nameLabel.setText(PrimeMain.texts.getString("genTabNameLabel"));
 		nametext = new JTextField();
 		nametext.setText(obj.getObjectName());
 		nametext.addKeyListener(new KeyAdapter()

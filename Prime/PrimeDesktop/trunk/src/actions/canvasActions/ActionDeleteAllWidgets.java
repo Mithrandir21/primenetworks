@@ -67,48 +67,36 @@ public class ActionDeleteAllWidgets extends AbstractSystemAction
 		{
 			String question = PrimeMain.texts
 					.getString("actionDeleteAllWidgetsQuestions")
-					+ "\n"
-					+ PrimeMain.texts.getString("thisCannotBeUndoneMsg");
+					+ "\n" + PrimeMain.texts.getString("thisCannotBeUndoneMsg");
 
 
 
-			//Custom button text
+			// Custom button text
 			Object[] options = { PrimeMain.texts.getString("yes"),
 					PrimeMain.texts.getString("no") };
-		
+
 
 			int i = JOptionPane.showOptionDialog(null, question,
-				PrimeMain.texts.getString("actionDeleteAllWidgetsName"),
-			    JOptionPane.YES_NO_CANCEL_OPTION,
-			    JOptionPane.QUESTION_MESSAGE,
-			    null,
-			    options,
-			    options[1]);
-		
-		
+					PrimeMain.texts.getString("actionDeleteAllWidgetsName"),
+					JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+
+
 			// If the answer is yes
 			if ( i == 0 )
 			{
 				// gets all the Widgets on the current scene
 				WidgetObject[] objects = canvas.getWidgetObjectsOnTheScene();
-				
-				for( int j = 0; j < objects.length; j++ )
-				{
-					// Removes all connection to the WidgetObject
-					WorkareaCanvasActions.removeAllConnectionsToFromObject(canvas,
-							objects[j].getObject());
 
-					// Removes the WidgetObject from the canvas
-					canvas.getMainLayer().removeChild(objects[j]);
-				
-					canvas.subtractFromNumberOgWidgetsOnTheCanvas();
+				for ( int j = 0; j < objects.length; j++ )
+				{
+					WorkareaCanvasActions.removeObject(canvas, objects[j],
+							false);
 				}
-				
-				canvas.setCurrentWidgetObject(null);
-				
+
 				canvas.cleanUp();
 
-				
+
 				// Deletes all the undoable actions of the canvas
 				canvas.getUndoManager().discardAllEdits();
 			}

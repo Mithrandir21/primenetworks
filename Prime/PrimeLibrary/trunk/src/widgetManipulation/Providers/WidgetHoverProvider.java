@@ -4,7 +4,10 @@
 package widgetManipulation.Providers;
 
 
+import java.awt.Color;
+
 import org.netbeans.api.visual.action.HoverProvider;
+import org.netbeans.api.visual.border.BorderFactory;
 import org.netbeans.api.visual.widget.Widget;
 
 import widgets.WidgetObject;
@@ -20,7 +23,6 @@ public class WidgetHoverProvider implements HoverProvider
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.netbeans.api.visual.action.HoverProvider#widgetHovered(org.netbeans.api.visual.widget.Widget)
 	 */
 	@Override
@@ -31,9 +33,9 @@ public class WidgetHoverProvider implements HoverProvider
 			// FIXME - make something out of this.
 			// System.out.println(widget.getToolTipText());
 			WidgetObject wid = (WidgetObject) widget;
-			// wid.setBorder(BorderFactory.createRoundedBorder(10, 10,
-			// Color.white, Color.black));
-			// System.out.println("Hovering over - " +
+			wid.setBorder(BorderFactory.createRoundedBorder(10, 10,
+					Color.white, Color.black));
+			System.out.println("Hovering over - ");
 			// wid.getObject().getDescription());
 		}
 	}

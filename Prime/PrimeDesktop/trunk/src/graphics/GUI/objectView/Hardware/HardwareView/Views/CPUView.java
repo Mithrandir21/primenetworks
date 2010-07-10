@@ -4,6 +4,7 @@
 package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
+import exceptions.MotherboardNotFound;
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
@@ -42,8 +43,7 @@ import objects.hardwareObjects.CPU;
  * 
  * @author Bahram Malaekeh
  */
-public class CPUView extends JPanel implements HardwareViewInterface,
-		ActionListener
+public class CPUView extends JPanel implements HardwareViewInterface, ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -150,8 +150,7 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param cpu
@@ -171,8 +170,7 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 				.getString("cpuViewProducerTip"));
 
 		labels[1] = new JLabel(PrimeMain.texts.getString("cpuViewSocketLabel"));
-		labels[1]
-				.setToolTipText(PrimeMain.texts.getString("cpuViewSocketTip"));
+		labels[1].setToolTipText(PrimeMain.texts.getString("cpuViewSocketTip"));
 
 		labels[2] = new JLabel(PrimeMain.texts.getString("cpuViewSpeedLabel"));
 		labels[2].setToolTipText(PrimeMain.texts.getString("cpuViewSpeedTip"));
@@ -410,7 +408,7 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
 	 */
 	@Override
-	public void save()
+	public boolean save()
 	{
 		if ( name.getText() != "" )
 		{
@@ -494,6 +492,9 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 		}
 
 		CPUobj.set64Bit(bit64.isSelected());
+
+
+		return true;
 	}
 
 
@@ -532,26 +533,30 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 
 			if ( command.equals("removeComp") )
 			{
-				// Will remove the first variable from the list of components
-				// that will be returned and set as the components for the main
-				// object.
-				mainObj.setAllComponents(ComponentsManagment.removeComponent(
-						CPUobj, mainObj.getComponents(), mainObj
-								.getComponents().length));
+				try
+				{
+					ComponentsManagment.removeComponent(
+							PrimeMain.currentCanvas, mainObj, CPUobj);
 
-				// Updates the views of the object to correctly show the
-				// current info.
-				ObjectView view = PrimeMain.getObjectView(mainObj);
-				if ( view != null )
-				{
-					view.updateViewInfo();
+					// Updates the views of the object to correctly show the
+					// current info.
+					ObjectView view = PrimeMain.getObjectView(mainObj);
+					if ( view != null )
+					{
+						view.updateViewInfo();
+					}
+					// If no view is returned, then the standard object view is open
+					// and that should be updated.
+					else if ( PrimeMain.stdObjView != null )
+					{
+						PrimeMain.stdObjView.getSplitView().getHardStdObjView()
+								.updateTabInfo();
+					}
 				}
-				// If no view is returned, then the standard object view is open
-				// and that should be updated.
-				else if ( PrimeMain.stdObjView != null )
+				catch ( MotherboardNotFound e1 )
 				{
-					PrimeMain.stdObjView.getSplitView().getHardStdObjView()
-							.updateTabInfo();
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		}
@@ -567,10 +572,9 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 			{
 				if ( quadCore.isSelected() )
 				{
-					int n = JOptionPane.showConfirmDialog(this,
-							PrimeMain.texts
-									.getString("cpuViewQuadCoreQuestionMsg"),
-							"Verify", JOptionPane.YES_NO_OPTION);
+					int n = JOptionPane.showConfirmDialog(this, PrimeMain.texts
+							.getString("cpuViewQuadCoreQuestionMsg"), "Verify",
+							JOptionPane.YES_NO_OPTION);
 
 					// If the answer is "No"
 					if ( n == 1 )
@@ -588,10 +592,9 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 			{
 				if ( dualCore.isSelected() )
 				{
-					int n = JOptionPane.showConfirmDialog(this,
-							PrimeMain.texts
-									.getString("cpuViewDualCoreQuestionMsg"),
-							"Verify", JOptionPane.YES_NO_OPTION);
+					int n = JOptionPane.showConfirmDialog(this, PrimeMain.texts
+							.getString("cpuViewDualCoreQuestionMsg"), "Verify",
+							JOptionPane.YES_NO_OPTION);
 
 					// If the answer is "No"
 					if ( n == 1 )

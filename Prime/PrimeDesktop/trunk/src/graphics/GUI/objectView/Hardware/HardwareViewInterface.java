@@ -19,8 +19,9 @@ public interface HardwareViewInterface
 
 	/**
 	 * Here the actual data is written to the object.
+	 * True is returned is no errors were found in the new data.
 	 */
-	public void save();
+	public boolean save();
 
 
 	/**

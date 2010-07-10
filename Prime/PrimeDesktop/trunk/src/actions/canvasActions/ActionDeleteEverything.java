@@ -1,5 +1,6 @@
 package actions.canvasActions;
 
+
 import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
@@ -12,6 +13,7 @@ import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetObject;
 import widgets.WidgetRoom;
 import widgets.WorkareaCanvas;
+
 
 public class ActionDeleteEverything extends AbstractSystemAction
 {
@@ -41,9 +43,9 @@ public class ActionDeleteEverything extends AbstractSystemAction
 	{
 		super(text, icon);
 	}
-	
-	
-	
+
+
+
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
@@ -53,8 +55,7 @@ public class ActionDeleteEverything extends AbstractSystemAction
 		{
 			String question = PrimeMain.texts
 					.getString("actionDeleteAllWidgetsQuestions")
-					+ "\n"
-					+ PrimeMain.texts.getString("thisCannotBeUndoneMsg");
+					+ "\n" + PrimeMain.texts.getString("thisCannotBeUndoneMsg");
 
 
 			// Custom button text
@@ -71,40 +72,32 @@ public class ActionDeleteEverything extends AbstractSystemAction
 			// If the answer is yes
 			if ( i == 0 )
 			{
-				//-----------------DELETING WIDGETS-----------------------
+				// -----------------DELETING WIDGETS-----------------------
 				// gets all the Widgets on the current scene
 				WidgetObject[] objects = canvas.getWidgetObjectsOnTheScene();
-				
-				for( int j = 0; j < objects.length; j++ )
-				{
-					// Removes all connection to the WidgetObject
-					WorkareaCanvasActions.removeAllConnectionsToFromObject(canvas,
-							objects[j].getObject());
 
-					// Removes the WidgetObject from the canvas
-					canvas.getMainLayer().removeChild(objects[j]);
-				
-					canvas.subtractFromNumberOgWidgetsOnTheCanvas();
+				for ( int j = 0; j < objects.length; j++ )
+				{
+					WorkareaCanvasActions.removeObject(canvas, objects[j],
+							false);
 				}
-				
-				canvas.setCurrentWidgetObject(null);
-				
+
 				canvas.cleanUp();
-				
-				
-				//-----------------DELETING ROOMS-----------------------
+
+
+				// -----------------DELETING ROOMS-----------------------
 				// Gets all the WidgetRooms on the WorkareaCanvas
 				WidgetRoom[] rooms = canvas.getNetworkWidgetRooms();
-				
-				
-				for( int j = 0; j < rooms.length; j++)
+
+
+				for ( int j = 0; j < rooms.length; j++ )
 				{
-					canvas.getRoomLayer().removeChild(rooms[j]);
+					WorkareaCanvasActions.removeRoom(canvas, rooms[j], false);
 				}
-				
+
 				canvas.cleanUp();
-				
-				
+
+
 				// Deletes all the undoable actions of the canvas
 				canvas.getUndoManager().discardAllEdits();
 			}

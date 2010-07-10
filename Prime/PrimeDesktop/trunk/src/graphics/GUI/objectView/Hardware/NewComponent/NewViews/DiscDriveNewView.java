@@ -4,6 +4,7 @@
 package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 
+import exceptions.MotherboardNotFound;
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
@@ -35,7 +36,6 @@ import managment.ComponentsManagment;
 import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.Discdrive;
-import objects.hardwareObjects.Motherboard;
 import connections.ConnectionUtils;
 
 
@@ -186,8 +186,7 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface, A
 				.getString("discViewSubtypeTip"));
 
 		labels[4] = new JLabel(PrimeMain.texts.getString("discViewSpeedLabel"));
-		labels[4]
-				.setToolTipText(PrimeMain.texts.getString("discViewSpeedTip"));
+		labels[4].setToolTipText(PrimeMain.texts.getString("discViewSpeedTip"));
 
 
 		Dimension tfSize = new Dimension(90, 20);
@@ -326,7 +325,7 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface, A
 
 
 	@Override
-	public void save()
+	public boolean save()
 	{
 		if ( name.getText() != "" )
 		{
@@ -356,6 +355,8 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface, A
 		{
 			DiscObj.setSpeed(0);
 		}
+
+		return true;
 	}
 
 
@@ -367,29 +368,34 @@ public class DiscDriveNewView extends JFrame implements HardwareViewInterface, A
 			// Saves the current values of the new motherboard.
 			save();
 
-			ComponentsManagment.processDiscDrivematch(mainObj,
-					(Motherboard) mainObj.getComponents()[0], DiscObj, this);
-
-
-			// Updates the views of the object to correctly show the
-			// current info.
-			ObjectView view = PrimeMain.getObjectView(mainObj);
-			if ( view != null )
+			try
 			{
-				view.updateViewInfo();
+				ComponentsManagment.processDiscDrivematch(mainObj, DiscObj,
+						this);
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				ObjectView view = PrimeMain.getObjectView(mainObj);
+				if ( view != null )
+				{
+					view.updateViewInfo();
+				}
+				// If no view is returned, then the standard object view is open
+				// and that should be updated.
+				else if ( PrimeMain.stdObjView != null )
+				{
+					PrimeMain.stdObjView.getSplitView().getHardStdObjView()
+							.updateTabInfo();
+				}
+
+				// Closes the JFrame.
+				this.dispose();
 			}
-			// If no view is returned, then the standard object view is open
-			// and that should be updated.
-			else if ( PrimeMain.stdObjView != null )
+			catch ( MotherboardNotFound e1 )
 			{
-				PrimeMain.stdObjView.getSplitView().getHardStdObjView()
-						.updateTabInfo();
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-
-
-			// Closes the JFrame.
-			this.dispose();
-
 		}
 		else if ( e.getActionCommand().equals("cancel") )
 		{

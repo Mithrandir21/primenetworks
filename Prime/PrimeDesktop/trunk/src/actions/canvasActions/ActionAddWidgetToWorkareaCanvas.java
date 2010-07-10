@@ -13,18 +13,14 @@ import javax.swing.undo.CannotUndoException;
 
 import logistical.AbstractSystemAction;
 import logistical.SystemActionInterface;
-
-import org.netbeans.api.visual.border.BorderFactory;
-import org.netbeans.api.visual.layout.LayoutFactory;
-import org.netbeans.api.visual.widget.LabelWidget;
-
+import managment.DesktopCanvasManagment;
+import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
 
 
 /**
- * This action adds a given {@link WidgetObject} to a given
- * {@link WorkareaCanvas} at a given {@link Point}.
+ * This action adds a given {@link WidgetObject} to a given {@link WorkareaCanvas} at a given {@link Point}.
  * This action contains a undo/redo function.
  * 
  * @author Bahram Malaekeh
@@ -42,19 +38,16 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 
 	/**
 	 * A constructor for the class that takes a string, the action name, an
-	 * Icon, a {@link WorkareaCanvas}, a {@link WidgetObject} and a
-	 * {@link Point}.
+	 * Icon, a {@link WorkareaCanvas}, a {@link WidgetObject} and a {@link Point}.
 	 * 
 	 * @param text
 	 *            The name of the action.
 	 * @param icon
 	 *            The icon representing the action.
 	 * @param canvas
-	 *            The {@link WorkareaCanvas} that the given {@link WidgetObject}
-	 *            is to be added to.
+	 *            The {@link WorkareaCanvas} that the given {@link WidgetObject} is to be added to.
 	 * @param widObject
-	 *            The {@link WidgetObject} that is to be added to the given
-	 *            {@link WorkareaCanvas}.
+	 *            The {@link WidgetObject} that is to be added to the given {@link WorkareaCanvas}.
 	 * @param objectPoint
 	 *            The {@link Point} where the {@link WidgetObject} is to be
 	 *            placed on the {@link WorkareaCanvas}.
@@ -70,17 +63,15 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 
 
 	/**
-	 * A constructor for the class that takes a string, the action name, a
-	 * {@link WorkareaCanvas}, a {@link WidgetObject} and a {@link Point}.
+	 * A constructor for the class that takes a string, the action name, a {@link WorkareaCanvas}, a {@link WidgetObject} and a
+	 * {@link Point}.
 	 * 
 	 * @param text
 	 *            The name of the action.
 	 * @param canvas
-	 *            The {@link WorkareaCanvas} that the given {@link WidgetObject}
-	 *            is to be added to.
+	 *            The {@link WorkareaCanvas} that the given {@link WidgetObject} is to be added to.
 	 * @param widObject
-	 *            The {@link WidgetObject} that is to be added to the given
-	 *            {@link WorkareaCanvas}.
+	 *            The {@link WidgetObject} that is to be added to the given {@link WorkareaCanvas}.
 	 * @param objectPoint
 	 *            The {@link Point} where the {@link WidgetObject} is to be
 	 *            placed on the {@link WorkareaCanvas}.
@@ -195,14 +186,16 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 	{
 		if ( widObject != null )
 		{
-			// Adds the widget to the canvas main layer
-			canvas.getMainLayer().addChild(widObject);
+			// Gets the point the Widget has on the scene
+			Point sceneLocation = canvas.getScene().convertViewToScene(
+					objectPoint);
 
-			widObject.bringToFront();
+			// Adds the newly created WidgetObject to the classes canvas
+			DesktopCanvasManagment.addWidgetToCanvas(widObject, sceneLocation,
+					canvas, true, true);
 
-			canvas.addToNumberOfWidgetsOnTheCanvas();
-
-			canvas.cleanUp();
+			// Adds the actions that the new widget supports
+			ActionsAdder.makeWidgetObjectReady(canvas, widObject);
 		}
 	}
 
@@ -216,14 +209,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 	{
 		if ( widObject != null )
 		{
-			// Removes the WidgetObject from the canvas
-			canvas.getMainLayer().removeChild(widObject);
-
-			canvas.subtractFromNumberOgWidgetsOnTheCanvas();
-
-			canvas.setCurrentWidgetObject(null);
-
-			canvas.cleanUp();
+			WorkareaCanvasActions.removeObject(canvas, widObject, true);
 		}
 	}
 
@@ -238,37 +224,12 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 		// Gets the point the Widget has on the scene
 		Point sceneLocation = canvas.getScene().convertViewToScene(objectPoint);
 
-		// Sets the point on the scene as the widgets preferred location
-		widObject.setPreferredLocation(sceneLocation);
-
-		// Creates the LabelWidget that is placed on scene
-		LabelWidget objectLabel = new LabelWidget(canvas.getScene(), widObject
-				.getObject().getObjectName());
-
-		widObject.addChild(objectLabel);
-
-
-		// newObject.setToolTipText(newObject.getObject().getDescription());
-		widObject.setLayout(LayoutFactory.createAbsoluteLayout());
-
-		// ----------DIFFERENT BORDERS------------
-
-		widObject.setBorder(BorderFactory.createEmptyBorder());
-
-		// ---------------------------------------
-
+		// Adds the newly created WidgetObject to the classes canvas
+		DesktopCanvasManagment.addWidgetToCanvas(widObject, sceneLocation,
+				canvas, true, true);
 
 		// Adds the actions that the new widget supports
 		ActionsAdder.makeWidgetObjectReady(canvas, widObject);
-
-		widObject.bringToFront();
-
-		// Adds the widget to the canvas main layer
-		canvas.getMainLayer().addChild(widObject);
-
-		canvas.addToNumberOfWidgetsOnTheCanvas();
-
-		canvas.cleanUp();
 
 		if ( undoable )
 		{

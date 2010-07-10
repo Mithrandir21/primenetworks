@@ -4,6 +4,7 @@ package actions.canvasActions;
 import exceptions.ConnectionDoesExist;
 import exceptions.ConnectionsIsNotPossible;
 import graphics.PrimeMain;
+import graphics.GUI.ListDialog;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
 import java.awt.event.ActionEvent;
@@ -18,7 +19,6 @@ import logistical.SystemActionInterface;
 import logistical.checkLogic;
 import managment.ConnectionManagment;
 import widgetManipulation.Actions.WorkareaCanvasActions;
-import widgetManipulation.Providers.ListDialog;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
 import connections.Connection;

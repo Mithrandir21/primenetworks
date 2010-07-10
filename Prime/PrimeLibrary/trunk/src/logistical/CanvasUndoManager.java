@@ -6,6 +6,12 @@ import javax.swing.undo.UndoManager;
 import widgets.WorkareaCanvas;
 
 
+/**
+ * TODO - Description NEEDED!
+ * 
+ * @author Bahram Malaekeh
+ * 
+ */
 public class CanvasUndoManager extends UndoManager
 {
 	// The canvas which this manager belongs to

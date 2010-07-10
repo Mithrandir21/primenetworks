@@ -325,22 +325,22 @@ public class AbstractCanvasPropertiesView extends JPanel
 			String IPrangeStart = null;
 			String IPrangeEnd = null;
 
-			// If the text in the JTextField is not ""
-			if ( !(IPrangeStartField.getText().equals("")) )
-			{
-				// Sets the local IPrangeStart string that might be
-				// used later
-				IPrangeStart = IPrangeStartField.getText();
-			}
+			// // If the text in the JTextField is not ""
+			// if ( !(IPrangeStartField.getText().equals("")) )
+			// {
+			// Sets the local IPrangeStart string that might be
+			// used later
+			IPrangeStart = IPrangeStartField.getText();
+			// }
 
 
-			// If the text in the JTextField is not ""
-			if ( !(IPrangeEndField.getText().equals("")) )
-			{
-				// Sets the local IPrangeEnd string that might be
-				// used later
-				IPrangeEnd = IPrangeEndField.getText();
-			}
+			// // If the text in the JTextField is not ""
+			// if ( !(IPrangeEndField.getText().equals("")) )
+			// {
+			// Sets the local IPrangeEnd string that might be
+			// used later
+			IPrangeEnd = IPrangeEndField.getText();
+			// }
 
 
 
@@ -353,8 +353,25 @@ public class AbstractCanvasPropertiesView extends JPanel
 					// Checks whether or not the range between the two is valid
 					try
 					{
-						if ( NetworkManagment.processRange(IPrangeStart,
-								IPrangeEnd) )
+						if ( !(IPrangeStart.equals(""))
+								&& !(IPrangeEnd.equals("")) )
+						{
+							if ( NetworkManagment.processRange(IPrangeStart,
+									IPrangeEnd) )
+							{
+								if ( !(canvasViewed.getNetworkInfo()
+										.setIpRangeFrom(IPrangeStart)) )
+								{
+									errorDuringSaving = true;
+								}
+								if ( !(canvasViewed.getNetworkInfo()
+										.setIpRangeTo(IPrangeEnd)) )
+								{
+									errorDuringSaving = true;
+								}
+							}
+						}
+						else
 						{
 							if ( !(canvasViewed.getNetworkInfo()
 									.setIpRangeFrom(IPrangeStart)) )
@@ -394,9 +411,8 @@ public class AbstractCanvasPropertiesView extends JPanel
 				if ( !(IPrangeEnd == null) )
 				{
 					JOptionPane.showMessageDialog(null, PrimeMain.texts
-							.getString("ipMustHaveStartRange"),
-							PrimeMain.texts.getString("error"),
-							JOptionPane.ERROR_MESSAGE);
+							.getString("ipMustHaveStartRange"), PrimeMain.texts
+							.getString("error"), JOptionPane.ERROR_MESSAGE);
 
 					errorDuringSaving = true;
 				}

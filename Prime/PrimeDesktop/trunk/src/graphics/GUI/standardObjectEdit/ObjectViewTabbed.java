@@ -4,6 +4,7 @@
 package graphics.GUI.standardObjectEdit;
 
 
+import exceptions.MotherboardNotFound;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
@@ -113,23 +114,17 @@ public class ObjectViewTabbed extends JTabbedPane
 			}
 			else if ( components[i] instanceof InternalNetworksCard )
 			{
-				this
-						.addTab(PrimeMain.texts
-								.getString("internalNetworkCard"), null,
-								new InternalNICView(obj,
-										(InternalNetworksCard) components[i]),
-								PrimeMain.texts
-										.getString("hwTabIntNICtabDescription"));
+				this.addTab(PrimeMain.texts.getString("internalNetworkCard"),
+						null, new InternalNICView(obj,
+								(InternalNetworksCard) components[i]),
+						PrimeMain.texts.getString("hwTabIntNICtabDescription"));
 			}
 			else if ( components[i] instanceof ExternalNetworksCard )
 			{
-				this
-						.addTab(PrimeMain.texts
-								.getString("externalNetworkCard"), null,
-								new ExternaNICView(obj,
-										(ExternalNetworksCard) components[i]),
-								PrimeMain.texts
-										.getString("hwTabExtNICtabDescription"));
+				this.addTab(PrimeMain.texts.getString("externalNetworkCard"),
+						null, new ExternaNICView(obj,
+								(ExternalNetworksCard) components[i]),
+						PrimeMain.texts.getString("hwTabExtNICtabDescription"));
 			}
 		}
 	}
@@ -189,6 +184,8 @@ public class ObjectViewTabbed extends JTabbedPane
 		// Checks if any of the views failed its validation.
 		if ( validationFailed == false )
 		{
+			boolean close = true;
+
 			/**
 			 * Goes through all the views and saves the values since none of the
 			 * views failed its validation.
@@ -197,7 +194,10 @@ public class ObjectViewTabbed extends JTabbedPane
 			{
 				Component comp = this.getComponent(i);
 
-				((HardwareViewInterface) comp).save();
+				if ( ((HardwareViewInterface) comp).save() == false )
+				{
+					close = false;
+				}
 			}
 
 			// // The motherboard save.
@@ -205,19 +205,26 @@ public class ObjectViewTabbed extends JTabbedPane
 			// ((HardwareView) comp).save();
 
 
-			ComponentsManagment.processAllChanges(mainobj);
-
-
-			// Updates the views of the object to correctly show the
-			// current info.
-			ObjectView view = PrimeMain.getObjectView(mainobj);
-			if ( view != null )
+			try
 			{
-				view.updateViewInfo();
+				ComponentsManagment.processAllChanges(mainobj);
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				ObjectView view = PrimeMain.getObjectView(mainobj);
+				if ( view != null )
+				{
+					view.updateViewInfo();
+				}
+			}
+			catch ( MotherboardNotFound e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 
 			// Returns a boolean showing that everything i saved.
-			return true;
+			return close;
 		}
 		// Atleast one of the validations have failed.
 		else

@@ -18,6 +18,7 @@ import logistical.AbstractSystemAction;
 import logistical.SystemActionInterface;
 import managment.CanvasManagment;
 import managment.ComponentsManagment;
+import managment.DesktopCanvasManagment;
 import objects.Object;
 import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetObject;
@@ -160,23 +161,21 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 			WidgetObject newWidget = new WidgetObject(toCanvas.getScene(),
 					newObject, newWidgetObject.getImage());
 
-
-			// Sets the location of the object
-			newWidget.getObject().setLocation(newWidgetObject.getLocation());
+			// Adds the newly created WidgetObject to the classes canvas
+			DesktopCanvasManagment.addWidgetToCanvas(newWidget, newWidgetObject
+					.getLocation(), toCanvas, true, true);
 
 			// Adds the clicking actions to the Widget on the scene
 			ActionsAdder.makeWidgetObjectReady(toCanvas, newWidget);
 
-			// Adds the newly created WidgetObject to the classes canvas
-			toCanvas.addWidgetObject(newWidget, newWidgetObject.getLocation(),
-					false);
 
 			newWidgetObject = newWidget;
 
 			if ( isCut )
 			{
 				// Removes the original object from the original canvas
-				WorkareaCanvasActions.deleteObject(fromCanvas, widgetObject);
+				WorkareaCanvasActions.removeObject(fromCanvas, widgetObject,
+						false);
 			}
 
 			fromCanvas.cleanUp();
@@ -189,7 +188,8 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 		if ( newWidgetObject != null && toCanvas != null )
 		{
 			// Removes the object from the canvas
-			WorkareaCanvasActions.deleteObject(toCanvas, newWidgetObject);
+			WorkareaCanvasActions
+					.removeObject(toCanvas, newWidgetObject, false);
 
 			// If the original object was cut(removed)
 			if ( isCut )
@@ -204,15 +204,13 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 						fromCanvas.getScene(), newObject, widgetObject
 								.getImage());
 
-				// Sets the location of the object
-				newWidget.getObject().setLocation(widgetObject.getLocation());
+				// Adds the newly created WidgetObject to the classes canvas
+				DesktopCanvasManagment.addWidgetToCanvas(newWidget,
+						newWidgetObject.getLocation(), fromCanvas, true, true);
 
 				// Adds the clicking actions to the Widget on the scene
 				ActionsAdder.makeWidgetObjectReady(fromCanvas, newWidget);
 
-				// Adds the WidgetObject to the original canvas
-				fromCanvas.addWidgetObject(newWidget, widgetObject
-						.getLocation(), false);
 
 				widgetObject = newWidget;
 			}
@@ -301,12 +299,12 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 					newWidget.getObject().setLocation(newLocation);
 
 					// Adds the newly created WidgetObject to the classes canvas
-					PrimeMain.currentCanvas.addWidgetObject(newWidget,
-							newLocation, true);
+					DesktopCanvasManagment.addWidgetToCanvas(newWidget,
+							newLocation, toCanvas, true, true);
 
 					// Adds the clicking actions to the Widget on the scene
-					ActionsAdder.makeWidgetObjectReady(
-							PrimeMain.currentCanvas, newWidget);
+					ActionsAdder.makeWidgetObjectReady(PrimeMain.currentCanvas,
+							newWidget);
 
 
 					// When the paste function is finished, the cut and copy
@@ -322,10 +320,10 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 						assert PrimeMain.cutWidget != null;
 
 						// Removes the object from the canvas
-						WorkareaCanvasActions.deleteObject(CanvasManagment
+						WorkareaCanvasActions.removeObject(CanvasManagment
 								.findCanvas(PrimeMain.cutWidget.getScene(),
 										PrimeMain.canvases),
-								PrimeMain.cutWidget);
+								PrimeMain.cutWidget, true);
 
 						PrimeMain.cutWidget = null;
 					}

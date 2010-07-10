@@ -33,9 +33,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import managment.ComponentsManagment;
 import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.Motherboard;
+import widgetManipulation.NetworkRules;
 import actions.canvasActions.ActionDeleteAllConnectionsToAndFrom;
 
 
@@ -194,10 +196,9 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 		JLabel[] labels = new JLabel[18];
 
 
-		labels[0] = new JLabel(PrimeMain.texts
-				.getString("mbViewProducerLabel"));
-		labels[0].setToolTipText(PrimeMain.texts
-				.getString("mbViewProducerTip"));
+		labels[0] = new JLabel(PrimeMain.texts.getString("mbViewProducerLabel"));
+		labels[0]
+				.setToolTipText(PrimeMain.texts.getString("mbViewProducerTip"));
 
 		labels[1] = new JLabel(PrimeMain.texts.getString("mbViewFormLabel"));
 		labels[1].setToolTipText(PrimeMain.texts.getString("mbViewFormTip"));
@@ -205,18 +206,15 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 		labels[2] = new JLabel(PrimeMain.texts.getString("mbViewSocketLabel"));
 		labels[2].setToolTipText(PrimeMain.texts.getString("mbViewSocketTip"));
 
-		labels[3] = new JLabel(PrimeMain.texts
-				.getString("mbViewBusSpeedLabel"));
-		labels[3].setToolTipText(PrimeMain.texts
-				.getString("mbViewBusSpeedTip"));
+		labels[3] = new JLabel(PrimeMain.texts.getString("mbViewBusSpeedLabel"));
+		labels[3]
+				.setToolTipText(PrimeMain.texts.getString("mbViewBusSpeedTip"));
 
 		labels[4] = new JLabel(PrimeMain.texts.getString("mbViewChipsetLabel"));
-		labels[4]
-				.setToolTipText(PrimeMain.texts.getString("mbViewChipsetTip"));
+		labels[4].setToolTipText(PrimeMain.texts.getString("mbViewChipsetTip"));
 
 		labels[5] = new JLabel(PrimeMain.texts.getString("mbViewGPUportLabel"));
-		labels[5]
-				.setToolTipText(PrimeMain.texts.getString("mbViewGPUportTip"));
+		labels[5].setToolTipText(PrimeMain.texts.getString("mbViewGPUportTip"));
 
 		labels[6] = new JLabel(PrimeMain.texts
 				.getString("mbViewConnectionPortLabel"));
@@ -224,8 +222,7 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 				.getString("mbViewConnectionPortTip"));
 
 		labels[7] = new JLabel(PrimeMain.texts.getString("mbViewRamTypeLabel"));
-		labels[7]
-				.setToolTipText(PrimeMain.texts.getString("mbViewRamTypeTip"));
+		labels[7].setToolTipText(PrimeMain.texts.getString("mbViewRamTypeTip"));
 
 		labels[8] = new JLabel(PrimeMain.texts
 				.getString("mbViewAudioIntegratedLabel"));
@@ -267,10 +264,9 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 		labels[15].setToolTipText(PrimeMain.texts
 				.getString("mbViewUSBportsTip"));
 
-		labels[16] = new JLabel(PrimeMain.texts
-				.getString("mbViewDUCportLabel"));
-		labels[16].setToolTipText(PrimeMain.texts
-				.getString("mbViewDUCportTip"));
+		labels[16] = new JLabel(PrimeMain.texts.getString("mbViewDUCportLabel"));
+		labels[16]
+				.setToolTipText(PrimeMain.texts.getString("mbViewDUCportTip"));
 
 		labels[17] = new JLabel(PrimeMain.texts
 				.getString("mbViewLANportsLabel"));
@@ -696,7 +692,7 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 		for ( int i = 1; i < DUCportsStrings.length; i++ )
 		{
 			if ( Integer.parseInt(DUCports.getItemAt(i).toString()) == (mb
-					.getMaxUSBs()) )
+					.getMaxDUCs()) )
 			{
 				DUCportsIndex = i;
 				i = DUCportsStrings.length;
@@ -809,56 +805,57 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 				if ( answer != 1 )
 				{
 					// Saves the current values of the new motherboard.
-					save();
+					boolean validated = save();
 
-
-					// We have to remove all connection between this object and
-					// other objects on the canvas
-					// WorkareaCanvasActions.removeAllConnectionsToFromObject(
-					// PrimeMain1.currentCanvas, mainObj);
-					ActionDeleteAllConnectionsToAndFrom action = new ActionDeleteAllConnectionsToAndFrom(
-							PrimeMain.texts
-									.getString("actionDeleteAllConnectionName"));
-					action.performAction(false);
-
-					// Since the motherboard is where most of the connections
-					// are
-					// placed we first have to remove all connections to the
-					// devices.
-					mainObj.removeAllConnections();
-
-
-					// Then we have to remove all the components that a object
-					// contains.
-					mainObj.removeAllComponents();
-
-
-					// Now that the object has no connections to other
-					// components
-					// and device
-					// we can add the motherboard object.
-					mainObj.addComponent(mbObj);
-
-
-					// Updates the views of the object to correctly show the
-					// current info.
-					ObjectView view = PrimeMain.getObjectView(mainObj);
-					if ( view != null )
+					if ( validated )
 					{
-						view.updateViewInfo();
-					}
-					// If no view is returned, then the standard object view is
-					// open
-					// and that should be updated.
-					else if ( PrimeMain.stdObjView != null )
-					{
-						PrimeMain.stdObjView.getSplitView()
-								.getHardStdObjView().updateTabInfo();
-					}
+						// We have to remove all connection between this object and
+						// other objects on the canvas
+						// WorkareaCanvasActions.removeAllConnectionsToFromObject(
+						// PrimeMain1.currentCanvas, mainObj);
+						ActionDeleteAllConnectionsToAndFrom action = new ActionDeleteAllConnectionsToAndFrom(
+								PrimeMain.texts
+										.getString("actionDeleteAllConnectionName"));
+						action.performAction(false);
+
+						// Since the motherboard is where most of the connections
+						// are
+						// placed we first have to remove all connections to the
+						// devices.
+						mainObj.removeAllConnections();
 
 
-					// Closes the JFrame.
-					this.dispose();
+						// Then we have to remove all the components that a object
+						// contains.
+						mainObj.removeAllComponents();
+
+
+						// Now that the object has no connections to other
+						// components
+						// and device
+						// we can add the motherboard object.
+						mainObj.addComponent(mbObj);
+
+
+						// Updates the views of the object to correctly show the
+						// current info.
+						ObjectView view = PrimeMain.getObjectView(mainObj);
+						if ( view != null )
+						{
+							view.updateViewInfo();
+						}
+						// If no view is returned, then the standard object view is
+						// open
+						// and that should be updated.
+						else if ( PrimeMain.stdObjView != null )
+						{
+							PrimeMain.stdObjView.getSplitView()
+									.getHardStdObjView().updateTabInfo();
+						}
+
+						// Closes the JFrame.
+						this.dispose();
+					}
 				}
 
 			}
@@ -882,8 +879,10 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 	 * #save()
 	 */
 	@Override
-	public void save()
+	public boolean save()
 	{
+		boolean validated = true;
+
 		if ( name.getText() != "" )
 		{
 			mbObj.setObjectName(name.getText());
@@ -962,9 +961,80 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 
 		if ( USBports.getSelectedItem().toString() != "" )
 		{
-			mbObj.setMaxUSBs(Integer.parseInt(USBports.getSelectedItem()
-					.toString()));
+			if ( mainObj.isExemptedNetworkRules() )
+			{
+				ComponentsManagment.USBportsValidation(mainObj, mbObj,
+						USBports, PrimeMain.currentCanvas);
+			}
+			else
+			{
+				NetworkRules rules = PrimeMain.currentCanvas.getRules();
+				// If USB is allowed
+				if ( !rules.isUSBnotAllowed() )
+				{
+					// USB ports are unlimited
+					if ( rules.getUSBportsAllowed() == -1 )
+					{
+						ComponentsManagment.USBportsValidation(mainObj, mbObj,
+								USBports, PrimeMain.currentCanvas);
+					}
+					// If there is a max number of USB ports allowed
+					else
+					{
+						// If the user has selected a valid option
+						if ( USBports.getSelectedIndex() != -1 )
+						{
+							// The new number of ports
+							int newPortsNumber = Integer.parseInt(USBports
+									.getSelectedItem().toString());
+
+							// If the new number of ports is equal to, or less then, the maximum number of allowed ports.
+							if ( newPortsNumber <= rules.getUSBportsAllowed() )
+							{
+								ComponentsManagment.USBportsValidation(mainObj,
+										mbObj, USBports,
+										PrimeMain.currentCanvas);
+							}
+							else
+							{
+								JOptionPane
+										.showMessageDialog(
+												this,
+												PrimeMain.texts
+														.getString("rulesUSBviolationMsg"),
+												PrimeMain.texts
+														.getString("error"),
+												JOptionPane.ERROR_MESSAGE);
+
+								validated = false;
+							}
+						}
+					}
+				}
+				else
+				{
+					// If the user has selected number of ports
+					if ( USBports.getSelectedIndex() != -1 )
+					{
+						// The new number of ports
+						int newPortsNumber = Integer.parseInt(USBports
+								.getSelectedItem().toString());
+
+						// If the new number of ports is 0
+						if ( newPortsNumber != 0 )
+						{
+							JOptionPane.showMessageDialog(this, PrimeMain.texts
+									.getString("rulesUSBnotAllowedMsg"),
+									PrimeMain.texts.getString("error"),
+									JOptionPane.ERROR_MESSAGE);
+
+							validated = false;
+						}
+					}
+				}
+			}
 		}
+
 
 		if ( DUCports.getSelectedItem().toString() != "" )
 		{
@@ -972,12 +1042,84 @@ public class MotherboardNewView extends JFrame implements HardwareViewInterface,
 					.toString()));
 		}
 
+
 		if ( LANports.getSelectedItem().toString() != "" )
 		{
-			mbObj.setMaxIntegratedLANs(Integer.parseInt(LANports
-					.getSelectedItem().toString()));
+			if ( mainObj.isExemptedNetworkRules() )
+			{
+				ComponentsManagment.LANportsValidation(mainObj, mbObj,
+						LANports, PrimeMain.currentCanvas);
+			}
+			else
+			{
+				NetworkRules rules = PrimeMain.currentCanvas.getRules();
+				// If LAN is allowed
+				if ( !rules.isLANnotAllowed() )
+				{
+					// LAN ports are unlimited
+					if ( rules.getLANportsAllowed() == -1 )
+					{
+						ComponentsManagment.LANportsValidation(mainObj, mbObj,
+								LANports, PrimeMain.currentCanvas);
+					}
+					// If there is a max number of LAN ports allowed
+					else
+					{
+						// If the user has selected a valid option
+						if ( LANports.getSelectedIndex() != -1 )
+						{
+							// The new number of ports
+							int newPortsNumber = Integer.parseInt(LANports
+									.getSelectedItem().toString());
+
+							// If the new number of ports is equal to, or less then, the maximum number of allowed ports.
+							if ( newPortsNumber <= rules.getLANportsAllowed() )
+							{
+								ComponentsManagment.LANportsValidation(mainObj,
+										mbObj, LANports,
+										PrimeMain.currentCanvas);
+							}
+							else
+							{
+								JOptionPane
+										.showMessageDialog(
+												this,
+												PrimeMain.texts
+														.getString("rulesLANviolationMsg"),
+												PrimeMain.texts
+														.getString("error"),
+												JOptionPane.ERROR_MESSAGE);
+
+								validated = false;
+							}
+						}
+					}
+				}
+				else
+				{
+					// If the user has selected number of ports
+					if ( LANports.getSelectedIndex() != -1 )
+					{
+						// The new number of ports
+						int newPortsNumber = Integer.parseInt(LANports
+								.getSelectedItem().toString());
+
+						// If the new number of ports is 0
+						if ( newPortsNumber != 0 )
+						{
+							JOptionPane.showMessageDialog(this, PrimeMain.texts
+									.getString("rulesLANnotAllowedMsg"),
+									PrimeMain.texts.getString("error"),
+									JOptionPane.ERROR_MESSAGE);
+
+							validated = false;
+						}
+					}
+				}
+			}
 		}
 
+		return validated;
 	}
 
 

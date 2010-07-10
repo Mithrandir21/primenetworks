@@ -63,8 +63,6 @@ public class ActionImportStandardObjects extends AbstractSystemAction
 	public void actionPerformed(ActionEvent arg0)
 	{
 		DesktopFileManagment.importStandardObjects();
-
-		// PrimeMain1.updateObjectSelectionArea();
 	}
 
 }

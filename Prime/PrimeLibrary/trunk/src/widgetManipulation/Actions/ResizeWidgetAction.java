@@ -19,8 +19,6 @@ import org.netbeans.api.visual.widget.Widget;
 /**
  * Javadoc-TODO - Description NEEDED!
  * 
- * @author Bahram Malaekeh
- * 
  */
 public class ResizeWidgetAction extends WidgetAction.LockedAdapter
 {
@@ -40,7 +38,8 @@ public class ResizeWidgetAction extends WidgetAction.LockedAdapter
 
 	private Point dragSceneLocation = null;
 
-	public ResizeWidgetAction(ResizeStrategy strategy, ResizeControlPointResolver resolver, ResizeProvider provider)
+	public ResizeWidgetAction(ResizeStrategy strategy,
+			ResizeControlPointResolver resolver, ResizeProvider provider)
 	{
 		this.strategy = strategy;
 		this.resolver = resolver;
@@ -54,10 +53,12 @@ public class ResizeWidgetAction extends WidgetAction.LockedAdapter
 
 	public State mousePressed(Widget widget, WidgetMouseEvent event)
 	{
-		if ( event.getButton() == MouseEvent.BUTTON1 && event.getClickCount() == 1 )
+		if ( event.getButton() == MouseEvent.BUTTON1
+				&& event.getClickCount() == 1 )
 		{
 			insets = widget.getBorder().getInsets();
-			controlPoint = resolver.resolveControlPoint(widget, event.getPoint());
+			controlPoint = resolver.resolveControlPoint(widget, event
+					.getPoint());
 			if ( controlPoint != null )
 			{
 				resizingWidget = widget;
@@ -68,7 +69,8 @@ public class ResizeWidgetAction extends WidgetAction.LockedAdapter
 					originalSceneRectangle = widget.getBounds();
 				if ( originalSceneRectangle == null )
 					originalSceneRectangle = widget.getPreferredBounds();
-				dragSceneLocation = widget.convertLocalToScene(event.getPoint());
+				dragSceneLocation = widget
+						.convertLocalToScene(event.getPoint());
 				provider.resizingStarted(widget);
 				return State.createLocked(widget, this);
 			}
@@ -89,7 +91,8 @@ public class ResizeWidgetAction extends WidgetAction.LockedAdapter
 
 	public State mouseDragged(Widget widget, WidgetMouseEvent event)
 	{
-		return resize(widget, event.getPoint()) ? State.createLocked(widget, this) : State.REJECTED;
+		return resize(widget, event.getPoint()) ? State.createLocked(widget,
+				this) : State.REJECTED;
 	}
 
 	private boolean resize(Widget widget, Point newLocation)
@@ -136,7 +139,8 @@ public class ResizeWidgetAction extends WidgetAction.LockedAdapter
 			break;
 		}
 
-		widget.setPreferredBounds(strategy.boundsSuggested(widget, originalSceneRectangle, rectangle, controlPoint));
+		widget.setPreferredBounds(strategy.boundsSuggested(widget,
+				originalSceneRectangle, rectangle, controlPoint));
 		return true;
 	}
 

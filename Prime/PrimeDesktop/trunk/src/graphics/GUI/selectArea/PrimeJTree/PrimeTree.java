@@ -25,7 +25,6 @@ import widgets.WorkareaCanvas;
  */
 public class PrimeTree extends JPanel
 {
-
 	/**
 	 * The file tree.
 	 */
@@ -63,8 +62,6 @@ public class PrimeTree extends JPanel
 		this.tree.setCellRenderer(new PrimeFileTreeCellRenderer());
 
 		this.tree.setRootVisible(false);
-
-		// this.tree.addTreeSelectionListener(this);
 
 		this.tree.addMouseListener(new JTreeMouseAdapter(tree));
 
@@ -162,8 +159,4 @@ public class PrimeTree extends JPanel
 
 		return files;
 	}
-
-
-
-
 }

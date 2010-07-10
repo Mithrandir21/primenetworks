@@ -1,6 +1,7 @@
 package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
+import exceptions.MotherboardNotFound;
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
@@ -159,10 +160,9 @@ public class HDDView extends JPanel implements HardwareViewInterface, ActionList
 		labels[1] = new JLabel(PrimeMain.texts.getString("hddViewTypeLabel"));
 		labels[1].setToolTipText(PrimeMain.texts.getString("hddViewTypeTip"));
 
-		labels[2] = new JLabel(PrimeMain.texts
-				.getString("hddViewSubtypeLabel"));
-		labels[2].setToolTipText(PrimeMain.texts
-				.getString("hddViewSubtypeTip"));
+		labels[2] = new JLabel(PrimeMain.texts.getString("hddViewSubtypeLabel"));
+		labels[2]
+				.setToolTipText(PrimeMain.texts.getString("hddViewSubtypeTip"));
 
 		labels[3] = new JLabel(PrimeMain.texts.getString("hddViewSizeLabel"));
 		labels[3].setToolTipText(PrimeMain.texts.getString("hddViewSizeTip"));
@@ -322,7 +322,7 @@ public class HDDView extends JPanel implements HardwareViewInterface, ActionList
 	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
 	 */
 	@Override
-	public void save()
+	public boolean save()
 	{
 		if ( name.getText() != "" )
 		{
@@ -372,6 +372,8 @@ public class HDDView extends JPanel implements HardwareViewInterface, ActionList
 		{
 			mainHDD.setRPM(0);
 		}
+
+		return true;
 	}
 
 
@@ -404,26 +406,30 @@ public class HDDView extends JPanel implements HardwareViewInterface, ActionList
 
 			if ( command.equals("removeComp") )
 			{
-				// Will remove the first variable from the list of components
-				// that will be returned and set as the components for the main
-				// object.
-				mainObj.setAllComponents(ComponentsManagment.removeComponent(
-						mainHDD, mainObj.getComponents(), mainObj
-								.getComponents().length));
+				try
+				{
+					ComponentsManagment.removeComponent(
+							PrimeMain.currentCanvas, mainObj, mainHDD);
 
-				// Updates the views of the object to correctly show the
-				// current info.
-				ObjectView view = PrimeMain.getObjectView(mainObj);
-				if ( view != null )
-				{
-					view.updateViewInfo();
+					// Updates the views of the object to correctly show the
+					// current info.
+					ObjectView view = PrimeMain.getObjectView(mainObj);
+					if ( view != null )
+					{
+						view.updateViewInfo();
+					}
+					// If no view is returned, then the standard object view is open
+					// and that should be updated.
+					else if ( PrimeMain.stdObjView != null )
+					{
+						PrimeMain.stdObjView.getSplitView().getHardStdObjView()
+								.updateTabInfo();
+					}
 				}
-				// If no view is returned, then the standard object view is open
-				// and that should be updated.
-				else if ( PrimeMain.stdObjView != null )
+				catch ( MotherboardNotFound e1 )
 				{
-					PrimeMain.stdObjView.getSplitView().getHardStdObjView()
-							.updateTabInfo();
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		}

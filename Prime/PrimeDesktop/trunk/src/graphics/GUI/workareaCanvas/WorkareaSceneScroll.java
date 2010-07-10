@@ -19,23 +19,6 @@ public class WorkareaSceneScroll extends JScrollPane
 	private WorkareaCanvas canvas;
 
 	/**
-	 * The constructor for the class that creates a new WorkareaCanvas with the given name.
-	 * 
-	 * @param name
-	 *            The name of the new WorkareaCanvas.
-	 */
-	public WorkareaSceneScroll(String name)
-	{
-		this.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
-		setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
-
-		canvas = new WorkareaCanvas();
-		ActionsAdder.makeWorkareaCanvasReady(canvas);
-		createNewCanvas(name);
-	}
-
-
-	/**
 	 * A constructor that takes a WorkareaCanvas and sets it to the classes private WorkareaCanvas.
 	 * 
 	 * @param canvas

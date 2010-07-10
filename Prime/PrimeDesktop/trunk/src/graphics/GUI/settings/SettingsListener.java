@@ -70,8 +70,27 @@ public class SettingsListener implements ActionListener
 				settingsFrame.dispose();
 			}
 		}
-	}
+		else if ( e.getActionCommand().equals(
+				PrimeMain.texts.getString("settingsSelectAllLabel")) )
+		{
+			JCheckBox box = (JCheckBox) e.getSource();
 
+			if ( box.isSelected() )
+			{
+				for ( int i = 0; i < SettingsOverview.messagesCheckBox.length; i++ )
+				{
+					SettingsOverview.messagesCheckBox[i].setSelected(true);
+				}
+			}
+			else
+			{
+				for ( int i = 0; i < SettingsOverview.messagesCheckBox.length; i++ )
+				{
+					SettingsOverview.messagesCheckBox[i].setSelected(false);
+				}
+			}
+		}
+	}
 
 
 

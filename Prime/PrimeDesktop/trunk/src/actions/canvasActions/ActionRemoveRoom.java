@@ -18,6 +18,7 @@ import managment.RoomManagment;
 
 import org.netbeans.api.visual.widget.Widget;
 
+import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetObject;
 import widgets.WidgetRoom;
 import widgets.WorkareaCanvas;
@@ -26,8 +27,7 @@ import connections.Connection;
 
 /**
  * This action deletes the given {@link WidgetRoom} on the
- * currently open {@link WorkareaCanvas}. (It does not delete any
- * {@link WidgetObject} or {@link Connection} inside the room.
+ * currently open {@link WorkareaCanvas}. (It does not delete any {@link WidgetObject} or {@link Connection} inside the room.
  * 
  * @author Bahram Malaekeh
  */
@@ -215,33 +215,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 		// Sets the current canvas
 		canvas = PrimeMain.currentCanvas;
 
-		// Gets all the rooms on the current canvas
-		List<Widget> list = canvas.getRoomLayer().getChildren();
-
-		WidgetRoom temp = null;
-
-		boolean found = false;
-
-
-		WidgetRoom testingWidget = null;
-
-		for ( Iterator<?> iter = list.iterator(); iter.hasNext(); )
-		{
-			testingWidget = (WidgetRoom) iter.next();
-
-			if ( testingWidget.equals(room) )
-			{
-				found = true;
-				temp = testingWidget;
-			}
-		}
-
-		if ( found == true )
-		{
-			canvas.getRoomLayer().removeChild(temp);
-		}
-
-		canvas.cleanUp();
+		WorkareaCanvasActions.removeRoom(canvas, room, true);
 
 		if ( undoable )
 		{

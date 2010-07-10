@@ -22,6 +22,7 @@ import actions.systemActions.ActionExportCanvasAsImage;
 import actions.systemActions.ActionFullscreen;
 import actions.systemActions.ActionNew;
 import actions.systemActions.ActionObjectEditing;
+import actions.systemActions.ActionOpenStandardRules;
 import actions.systemActions.ActionOpenfile;
 import actions.systemActions.ActionPaste;
 import actions.systemActions.ActionRedo;
@@ -94,8 +95,8 @@ public class GenericPrimeToolbar extends JMenuBar
 
 
 		tempIcon = ImageLocator.getImageIconObject("New");
-		ActionNew newFile = new ActionNew(PrimeMain.texts
-				.getString("newLabel"), tempIcon);
+		ActionNew newFile = new ActionNew(
+				PrimeMain.texts.getString("newLabel"), tempIcon);
 
 		tempIcon = ImageLocator.getImageIconObject("Open");
 		ActionOpenfile openFile = new ActionOpenfile(PrimeMain.texts
@@ -103,8 +104,8 @@ public class GenericPrimeToolbar extends JMenuBar
 		openFile.setEnabled(false);
 
 		tempIcon = ImageLocator.getImageIconObject("Save");
-		ActionSave save = new ActionSave(PrimeMain.texts
-				.getString("saveLabel"), tempIcon);
+		ActionSave save = new ActionSave(
+				PrimeMain.texts.getString("saveLabel"), tempIcon);
 
 		tempIcon = ImageLocator.getImageIconObject("Save_all");
 		ActionSaveAll saveAll = new ActionSaveAll(PrimeMain.texts
@@ -166,13 +167,13 @@ public class GenericPrimeToolbar extends JMenuBar
 		stepsToolBar.setFloatable(false);
 
 		tempIcon = ImageLocator.getImageIconObject("Undo");
-		ActionUndo undo = new ActionUndo(PrimeMain.texts
-				.getString("undoLabel"), tempIcon);
+		ActionUndo undo = new ActionUndo(
+				PrimeMain.texts.getString("undoLabel"), tempIcon);
 
 
 		tempIcon = ImageLocator.getImageIconObject("Redo");
-		ActionRedo redo = new ActionRedo(PrimeMain.texts
-				.getString("redoLabel"), tempIcon);
+		ActionRedo redo = new ActionRedo(
+				PrimeMain.texts.getString("redoLabel"), tempIcon);
 
 
 
@@ -256,12 +257,21 @@ public class GenericPrimeToolbar extends JMenuBar
 				.getString("standardObjectsLabel"), tempIcon);
 		JButton editingButton = new JButton(editing);
 
+
+		tempIcon = ImageLocator.getImageIconObject("Rules");
+		ActionOpenStandardRules rules = new ActionOpenStandardRules(
+				PrimeMain.texts
+						.getString("openStandardNetworkRulesToolbarLabel"),
+				tempIcon);
+		JButton rulesButton = new JButton(rules);
+
+
 		ActionFullscreen fullscreen = new ActionFullscreen(PrimeMain.texts
 				.getString("actionFullscreenText"));
 		JButton fullscreenButton = new JButton(fullscreen);
 		fullscreenButton.setVisible(false);
 
-
+		editingToolBar.add(rulesButton);
 		editingToolBar.add(editingButton);
 		editingToolBar.add(fullscreenButton);
 

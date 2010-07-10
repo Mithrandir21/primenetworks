@@ -18,6 +18,7 @@ import org.netbeans.api.visual.anchor.AnchorFactory;
 import org.netbeans.api.visual.anchor.AnchorShape;
 import org.netbeans.api.visual.widget.Widget;
 
+import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
 import connections.Connection;
@@ -183,9 +184,8 @@ public class ConnectionManagment
 
 	/**
 	 * Breaks connections between two components in the system. It removes the
-	 * connection from the array of existing connections. This method throws
-	 * {@link exceptions.ConnectionDoesNotExist ConnectionDoesNotExist}
-	 * exception, if there is no connection between the two given objects.
+	 * connection from the array of existing connections. This method throws {@link exceptions.ConnectionDoesNotExist
+	 * ConnectionDoesNotExist} exception, if there is no connection between the two given objects.
 	 * 
 	 * @return Returns the given connections array without the connection
 	 *         between the two given object. The array is cleaned for any empty
@@ -1827,6 +1827,51 @@ public class ConnectionManagment
 		}
 	}
 
+
+
+	/**
+	 * TODO - Description
+	 * 
+	 * @throws ConnectionDoesNotExist
+	 * 
+	 */
+	public static void removeConnectionFromInternalNIC(WorkareaCanvas canvas,
+			Object obj, InternalNetworksCard nic) throws ConnectionDoesNotExist
+	{
+		// If the given object is not empty
+		if ( nic != null )
+		{
+			// If the internal nic is actually connected to an object
+			if ( nic.getConnectedObject() != null )
+			{
+				WorkareaCanvasActions.removeConnection(canvas, obj, nic
+						.getConnectedObject());
+			}
+		}
+	}
+
+
+
+	/**
+	 * TODO - Description
+	 * 
+	 * @throws ConnectionDoesNotExist
+	 * 
+	 */
+	public static void removeConnectionFromExternalNIC(WorkareaCanvas canvas,
+			Object obj, ExternalNetworksCard nic) throws ConnectionDoesNotExist
+	{
+		// If the given object is not empty
+		if ( nic != null )
+		{
+			// If the internal nic is actually connected to an object
+			if ( nic.getConnectedObject() != null )
+			{
+				WorkareaCanvasActions.removeConnection(canvas, obj, nic
+						.getConnectedObject());
+			}
+		}
+	}
 
 
 

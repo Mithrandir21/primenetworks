@@ -7,7 +7,6 @@ package graphics;
 import graphics.GUI.SpringUtilities;
 import graphics.GUI.selectArea.ImageSelection;
 import graphics.GUI.selectArea.TransferWidgetIconListener;
-import graphics.GUI.workareaCanvas.WorkareaTabbed;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuRoom.JMenuWidgetRoom;
 
 import java.awt.Color;
@@ -16,7 +15,6 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.io.File;
 import java.net.URI;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -24,10 +22,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
-import managment.CanvasManagment;
 import managment.ComponentsManagment;
 import managment.RoomManagment;
 import managment.Settings;
@@ -53,14 +49,11 @@ import objects.serverObjects.MailServer;
 import objects.serverObjects.ProxyServer;
 
 import org.netbeans.api.visual.action.ActionFactory;
-import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.Widget;
 
 import widgetManipulation.RoomBorder;
 import widgets.WidgetIcon;
-import widgets.WidgetObject;
 import widgets.WidgetRoom;
-import widgets.WorkareaCanvas;
 
 
 /**
@@ -96,10 +89,16 @@ public class GraphicalFunctions
 		{
 			if ( strings[i] != "" )
 			{
-				if ( Integer.parseInt(strings[i]) == data )
+				try
 				{
-					Index = i;
-					i = strings.length;
+					if ( Integer.parseInt(strings[i]) == data )
+					{
+						Index = i;
+						i = strings.length;
+					}
+				}
+				catch ( NumberFormatException e )
+				{
 				}
 			}
 		}
@@ -128,10 +127,16 @@ public class GraphicalFunctions
 		{
 			if ( data != null && data != "" )
 			{
-				if ( strings[i].equals(data) )
+				try
 				{
-					Index = i;
-					i = strings.length;
+					if ( strings[i].equals(data) )
+					{
+						Index = i;
+						i = strings.length;
+					}
+				}
+				catch ( NumberFormatException e )
+				{
 				}
 			}
 		}
@@ -328,197 +333,6 @@ public class GraphicalFunctions
 				xPad, yPad);
 
 	}
-
-
-
-
-	/**
-	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on
-	 * the canvas.
-	 * 
-	 * @param obj
-	 * @param widgetObj
-	 * @param name
-	 * @return The object with the updated name
-	 */
-	public static Object updateWidgetObjectCanvasName(Object obj,
-			WidgetObject widgetObj, String name)
-	{
-		if ( !(obj.getObjectName().equals(name)) )
-		{
-			// Sets the actual objects new Name
-			obj.setObjectName(name);
-
-			List<Widget> children = widgetObj.getChildren();
-
-			LabelWidget label = null;
-
-
-			for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
-			{
-				Widget temp = iter.next();
-				if ( temp instanceof LabelWidget )
-				{
-					label = (LabelWidget) temp;
-				}
-			}
-
-			if ( label != null )
-			{
-				label.setLabel(name);
-			}
-		}
-
-
-		return obj;
-	}
-
-
-	/**
-	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on
-	 * the canvas. This method finds the WidgetObject that contains the given
-	 * object in all the different canvases.
-	 * 
-	 * @param obj
-	 * @param name
-	 * @return The object with the updated name
-	 */
-	public static Object updateWidgetObjectCanvasName(WidgetObject obj,
-			String name)
-	{
-		if ( !(obj.getObject().getObjectName().equals(name)) )
-		{
-			obj.getObject().setObjectName(name);
-
-			List<Widget> children = obj.getChildren();
-
-			LabelWidget label = null;
-
-			for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
-			{
-				Widget temp = iter.next();
-				if ( temp instanceof LabelWidget )
-				{
-					label = (LabelWidget) temp;
-				}
-			}
-
-			if ( label != null )
-			{
-				label.setLabel(name);
-			}
-		}
-
-
-		return obj.getObject();
-	}
-
-
-
-	/**
-	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on
-	 * the canvas. This method finds the WidgetObject that contains the given
-	 * object in all the different canvases.
-	 * 
-	 * @param obj
-	 * @param name
-	 * @return The object with the updated name
-	 */
-	public static Object updateWidgetObjectCanvasName(Object obj, String name)
-	{
-		WidgetObject widgetObj = CanvasManagment.findWidgetObject(obj,
-				PrimeMain.canvases);
-
-
-		if ( !(obj.getObjectName().equals(name)) )
-		{
-			obj.setObjectName(name);
-
-			List<Widget> children = widgetObj.getChildren();
-
-			LabelWidget label = null;
-
-			for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
-			{
-				Widget temp = iter.next();
-				if ( temp instanceof LabelWidget )
-				{
-					label = (LabelWidget) temp;
-				}
-			}
-
-			if ( label != null )
-			{
-				label.setLabel(name);
-			}
-		}
-
-
-		return obj;
-	}
-
-
-
-
-	/**
-	 * FIXME - FIX the update canvasName function.
-	 */
-	public static void updateCanvasNames()
-	{
-		JPanel workpanel = PrimeMain.getWorkareaPanel();
-
-		WorkareaTabbed pane = (WorkareaTabbed) workpanel.getComponent(0);
-
-		int tabCount = pane.getTabCount();
-
-		for ( int i = 0; i < tabCount; i++ )
-		{
-			// WorkareaSceneScroll canvasScroll = (WorkareaSceneScroll)
-			// pane.getTabComponentAt(i);
-
-			if ( pane.getTabComponentAt(i) == null )
-			{
-				System.out.println("feil");
-			}
-			else
-			// FIXME - UPDATING Canvas Tab Name
-			{
-				System.out.println("riktig");
-			}
-		}
-	}
-
-
-
-	/**
-	 * Updates all the LabelWidgets on the scene with the name of the object
-	 * name that is within the WidgetObject.
-	 */
-	public static void updateWidgetObjectNamesOnAllCanvas()
-	{
-		WorkareaCanvas[] canvases = PrimeMain.canvases;
-
-
-		for ( int i = 0; i < canvases.length; i++ )
-		{
-			List<Widget> children = canvases[i].getMainLayer().getChildren();
-
-			for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
-			{
-				WidgetObject temp = (WidgetObject) iter.next();
-
-
-				updateWidgetObjectCanvasName(temp.getObject(), temp, temp
-						.getObject().getObjectName());
-			}
-
-		}
-	}
-
-
-
-
-
 
 
 	/**

@@ -79,6 +79,9 @@ public class RoomManagment
 
 		canvas.getRoomLayer().addChild(widRoom);
 
+		canvas.setSaved(false);
+		canvas.setChanged(true);
+
 		return widRoom;
 	}
 
@@ -95,6 +98,9 @@ public class RoomManagment
 	public static void addRoom(WorkareaCanvas canvas, WidgetRoom widRoom)
 	{
 		canvas.getRoomLayer().addChild(widRoom);
+
+		canvas.setSaved(false);
+		canvas.setChanged(true);
 	}
 
 
@@ -155,6 +161,10 @@ public class RoomManagment
 		if ( canvas.getRoomLayer().getChildren().contains(widRoom) )
 		{
 			canvas.getRoomLayer().removeChild(widRoom);
+
+			canvas.setSaved(false);
+			canvas.setChanged(true);
+
 			return true;
 		}
 
@@ -192,6 +202,10 @@ public class RoomManagment
 			if ( testingWidget.getRoom().getRoomName().equals(name) )
 			{
 				canvas.getRoomLayer().removeChild(testingWidget);
+
+				canvas.setSaved(false);
+				canvas.setChanged(true);
+
 				return true;
 			}
 		}
@@ -228,6 +242,10 @@ public class RoomManagment
 			if ( testingWidget.getRoom().equals(room) )
 			{
 				canvas.getRoomLayer().removeChild(testingWidget);
+
+				canvas.setSaved(false);
+				canvas.setChanged(true);
+
 				return true;
 			}
 		}

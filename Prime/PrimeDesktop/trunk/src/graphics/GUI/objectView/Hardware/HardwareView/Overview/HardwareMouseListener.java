@@ -4,6 +4,7 @@
 package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
 
+import exceptions.MotherboardNotFound;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.NewComponent.NewViews.MotherboardNewView;
@@ -18,10 +19,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
+import managment.CanvasManagment;
 import managment.ComponentsManagment;
 import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.Motherboard;
+import widgetManipulation.NetworkRules;
 import widgets.WorkareaCanvas;
 
 
@@ -136,53 +139,162 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 	{
 		if ( e.getActionCommand().equals("Delete Hardware") )
 		{
-			// If the Hardware Object selected is not a Motherboard
-			if ( !(hardwareObject instanceof Motherboard) )
+			// Finds the canvas that contains the main object
+			WorkareaCanvas canvas = CanvasManagment.findCanvas(mainObject,
+					PrimeMain.canvases);
+
+			if ( canvas != null )
 			{
-				// Asks the user to confirm the deletion
-				int answer = JOptionPane.showConfirmDialog(panel,
-						PrimeMain.texts.getString("hwTabDeleteHWquestionMsg"),
-						PrimeMain.texts.getString("confirm"),
-						JOptionPane.YES_NO_OPTION);
-
-				// If the user verifies the choice
-				if ( answer == JOptionPane.YES_OPTION )
+				// If the Hardware Object selected is not a Motherboard
+				if ( !(hardwareObject instanceof Motherboard) )
 				{
-					// Will remove the first variable from the list of
-					// components that will be returned and set as the
-					// components for the main object.
-					mainObject.setAllComponents(ComponentsManagment
-							.removeComponent(hardwareObject, mainObject
-									.getComponents(), mainObject
-									.getComponents().length));
+					// Asks the user to confirm the deletion
+					int answer = JOptionPane.showConfirmDialog(panel,
+							PrimeMain.texts
+									.getString("hwTabDeleteHWquestionMsg"),
+							PrimeMain.texts.getString("confirm"),
+							JOptionPane.YES_NO_OPTION);
 
-					// Updates the views of the object to correctly show the
-					// current info.
-					ObjectView view = PrimeMain.getObjectView(mainObject);
-					if ( view != null )
+					// If the user verifies the choice
+					if ( answer == JOptionPane.YES_OPTION )
 					{
-						view.updateViewInfo();
+						if ( canvas != null )
+						{
+							// Attempts to remove the component
+							try
+							{
+								ComponentsManagment.removeComponent(canvas,
+										mainObject, hardwareObject);
+							}
+							catch ( MotherboardNotFound e1 )
+							{
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+
+							// Updates the views of the object to correctly show the
+							// current info.
+							ObjectView view = PrimeMain
+									.getObjectView(mainObject);
+							if ( view != null )
+							{
+								view.updateViewInfo();
+							}
+						}
 					}
 				}
-			}
-			else
-			{
-				// Asks the user to confirm the deletion
-				int answer = JOptionPane
-						.showConfirmDialog(panel, PrimeMain.texts
-								.getString("hwTabDeleteHWreplaceMBmsg"),
-								PrimeMain.texts.getString("confirm"),
-								JOptionPane.YES_NO_OPTION);
-
-				if ( answer == 0 )
+				else
 				{
-					// Creates a new Motherboard object
-					Motherboard mbObj = PrimeMain.standard_internal_components
-							.getSt_MB();
+					// Asks the user to confirm the deletion
+					int answer = JOptionPane.showConfirmDialog(panel,
+							PrimeMain.texts
+									.getString("hwTabDeleteHWreplaceMBmsg"),
+							PrimeMain.texts.getString("confirm"),
+							JOptionPane.YES_NO_OPTION);
 
-					// Creates a new motherboard editor where the user can save
-					// a new Motherboard
-					new MotherboardNewView(mainObject, mbObj);
+					if ( answer == 0 )
+					{
+						// Creates a new Motherboard object
+						Motherboard mbObj = PrimeMain.standard_internal_components
+								.getSt_MB();
+
+						// VALIDATES THE USB/LAN PORTS AGAINS THE NETWORK RULES
+
+						// If the object is not exempted the network rules
+						if ( !mainObject.isExemptedNetworkRules() )
+						{
+							NetworkRules rules = canvas.getRules();
+
+							// USB
+							// If USB is allowed
+							if ( !rules.isUSBnotAllowed() )
+							{
+								// If the new number of ports is greater then the maximum number of allowed ports.
+								if ( rules.getUSBportsAllowed() != -1
+										&& mbObj.getMaxUSBs() > rules
+												.getUSBportsAllowed() )
+								{
+									mbObj
+											.setMaxUSBs(rules
+													.getUSBportsAllowed());
+									mbObj.setUSBPortsAvailable(mbObj
+											.getMaxUSBs());
+
+									String msg = PrimeMain.texts
+											.getString("rulesNewMBwithUSBviolationMsg")
+											+ "\n"
+											+ PrimeMain.texts
+													.getString("rulesNewMBCorrectionMsg");
+
+									JOptionPane.showMessageDialog(null, msg,
+											PrimeMain.texts.getString("error"),
+											JOptionPane.ERROR_MESSAGE);
+								}
+							}
+							else
+							{
+								mbObj.setMaxUSBs(0);
+								mbObj.setUSBPortsAvailable(mbObj.getMaxUSBs());
+
+								String msg = PrimeMain.texts
+										.getString("rulesUSBnotAllowedMsg")
+										+ "\n"
+										+ PrimeMain.texts
+												.getString("rulesNewMBCorrectionMsg");
+
+								JOptionPane.showMessageDialog(null, msg,
+										PrimeMain.texts.getString("error"),
+										JOptionPane.ERROR_MESSAGE);
+							}
+
+
+							// LAN
+							// If LAN is allowed
+							if ( !rules.isLANnotAllowed() )
+							{
+								// If the new number of ports is greater then the maximum number of allowed ports.
+								if ( rules.getLANportsAllowed() != -1
+										&& mbObj.getMaxIntegLANs() > rules
+												.getLANportsAllowed() )
+								{
+									mbObj.setMaxIntegratedLANs(rules
+											.getLANportsAllowed());
+									mbObj.setIntegLANPortsAvailable(mbObj
+											.getMaxIntegLANs());
+
+									String msg = PrimeMain.texts
+											.getString("rulesNewMBwithLANviolationMsg")
+											+ "\n"
+											+ PrimeMain.texts
+													.getString("rulesNewMBCorrectionMsg");
+
+									JOptionPane.showMessageDialog(null, msg,
+											PrimeMain.texts.getString("error"),
+											JOptionPane.ERROR_MESSAGE);
+								}
+							}
+							else
+							{
+								mbObj.setMaxIntegratedLANs(0);
+								mbObj.setIntegLANPortsAvailable(mbObj
+										.getMaxIntegLANs());
+
+								String msg = PrimeMain.texts
+										.getString("rulesLANnotAllowedMsg")
+										+ "\n"
+										+ PrimeMain.texts
+												.getString("rulesNewMBCorrectionMsg");
+
+								JOptionPane.showMessageDialog(null, msg,
+										PrimeMain.texts.getString("error"),
+										JOptionPane.ERROR_MESSAGE);
+							}
+						}
+
+						// Creates a new motherboard editor where the user can save
+						// a new Motherboard
+						new MotherboardNewView(mainObject, mbObj);
+					}
 				}
 			}
 		}
@@ -200,5 +312,4 @@ public class HardwareMouseListener extends MouseAdapter implements ActionListene
 							(Hardware) hardwareObject);
 		}
 	}
-
 }

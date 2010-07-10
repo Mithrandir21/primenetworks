@@ -134,12 +134,10 @@ public class ArrayManagment
 		{
 			if ( objectFound[i] == false )
 			{
-				StringNotFoundInArrayException exception = new StringNotFoundInArrayException(
+				throw new StringNotFoundInArrayException(
 						"String was not found, hence cannot "
 								+ "be deleted. Contact systemadminstrator.",
 						ToBeRemoved[i]);
-
-				throw exception;
 			}
 		}
 
@@ -289,53 +287,57 @@ public class ArrayManagment
 			Object[] components, int componentCounter)
 			throws ObjectNotFoundException
 	{
-		// boolean to check whether the object is found or not
-		boolean objectNotFound = true;
-
-		// Counter for number of components found
-		int tempCounter = 0;
-
-		// Container that will hold all the found components
-		Object[] componentsFound = new Object[componentCounter];
-
-
-		// Searches for components of the given class
-		for ( int i = 0; i < componentCounter; i++ )
+		if ( ComponentClass != null && components != null )
 		{
-			/*
-			 * If the given components class matches the present components
-			 * class, it will be added to the container
-			 */
-			if ( components[i].getClass().equals(ComponentClass) )
+			// boolean to check whether the object is found or not
+			boolean objectNotFound = true;
+
+			// Counter for number of components found
+			int tempCounter = 0;
+
+			// Container that will hold all the found components
+			Object[] componentsFound = new Object[componentCounter];
+
+
+			// Searches for components of the given class
+			for ( int i = 0; i < componentCounter; i++ )
 			{
-				componentsFound[tempCounter] = components[i];
+				/*
+				 * If the given components class matches the present components
+				 * class, it will be added to the container
+				 */
+				if ( components[i] != null
+						&& components[i].getClass().equals(ComponentClass) )
+				{
+					componentsFound[tempCounter] = components[i];
 
-				tempCounter++;
+					tempCounter++;
 
-				objectNotFound = false;
+					objectNotFound = false;
+				}
 			}
+
+
+			// Checks whether all the objects were found and removed
+			if ( objectNotFound == true )
+			{
+				throw new ObjectNotFoundException(
+						"Object(s) with the given component, "
+								+ ComponentClass.getCanonicalName()
+								+ " were not found.", ComponentClass);
+			}
+
+
+
+			// Cleans the array of any null pointers at the end
+			componentsFound = cleanup.cleanObjectArray(componentsFound);
+
+			return componentsFound;
 		}
 
 
-		// Checks whether all the objects were found and removed
-		if ( objectNotFound == true )
-		{
-			ObjectNotFoundException exception = new ObjectNotFoundException(
-					"Object(s) with the given component, "
-							+ ComponentClass.getCanonicalName()
-							+ " were not found.", ComponentClass);
-
-			throw exception;
-		}
-
-
-
-		// Cleans the array of any null pointers at the end
-		componentsFound = cleanup.cleanObjectArray(componentsFound);
-
-		return componentsFound;
+		return null;
 	}
-
 
 	/**
 	 * Get specific component by searching for a component with the give class

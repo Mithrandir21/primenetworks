@@ -5,6 +5,7 @@ package graphics;
 
 
 import graphics.GUI.CreateObjects;
+import graphics.GUI.customNetworks.NetworkRulesFrame;
 import graphics.GUI.menues.GenericPrimeMenuBar;
 import graphics.GUI.menues.GenericPrimeToolbar;
 import graphics.GUI.messageArea.MessageTabbed;
@@ -43,6 +44,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -62,6 +64,7 @@ import org.jdesktop.swingx.JXMultiSplitPane;
 import org.jdesktop.swingx.MultiSplitLayout;
 import org.jdesktop.swingx.MultiSplitLayout.Node;
 
+import widgetManipulation.NetworkRules;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
 
@@ -70,11 +73,14 @@ import widgets.WorkareaCanvas;
  * Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * @version 0.6 29/06/2010
+ * @version 0.61 08/07/2010
  */
 @SuppressWarnings("serial")
 public class PrimeMain extends JFrame
 {
+	// The log for the the program
+	private static Logger log = Logger.getLogger("");
+
 	// Daemon services running
 	private static PrimeService services;
 
@@ -129,6 +135,9 @@ public class PrimeMain extends JFrame
 	// The variable for the view of the visual editing JDialog.
 	public static VisualCustomFrame vcf;
 
+	// The frame that shows the network rules
+	public static NetworkRulesFrame rulesFrame;
+
 	// The arraylist of the systems standard Objects
 	public static ArrayList<Object> objectlist = new ArrayList<Object>();
 
@@ -140,6 +149,10 @@ public class PrimeMain extends JFrame
 
 	// The "Cut widget" widget holder
 	public static WidgetObject cutWidget = null;
+
+	// The standard rules object
+	public static NetworkRules standardRules = null;
+
 
 	// The locale texts
 	public static ResourceBundle texts = ResourceBundle.getBundle(
@@ -206,6 +219,22 @@ public class PrimeMain extends JFrame
 
 		// Sets the programs tooltip delay
 		ToolTipManager.sharedInstance().setDismissDelay(10000);
+
+
+		// STANDARD RULES
+		if ( DesktopFileManagment.ruleFileExists() )
+		{
+			// Reads in the standard rules
+			DesktopFileManagment.openStandardRules();
+		}
+		else
+		{
+			// Sets a new standard rules object with the serial -1
+			standardRules = new NetworkRules();
+
+			// Saves the standard rules
+			DesktopFileManagment.saveStandardRules();
+		}
 
 
 		// OBJECTS LIST
@@ -746,6 +775,9 @@ public class PrimeMain extends JFrame
 
 		// Saves the systems Objects list
 		DesktopFileManagment.saveObjectsFile();
+
+		// Saves the standard rules
+		DesktopFileManagment.saveStandardRules();
 
 		WorkareaCanvas[] changes = CanvasManagment
 				.canvasesHaveChanged(canvases);

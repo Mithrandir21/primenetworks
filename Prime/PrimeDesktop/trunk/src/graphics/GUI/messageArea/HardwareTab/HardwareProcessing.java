@@ -269,8 +269,7 @@ public class HardwareProcessing
 	private static boolean containsComponentOfClass(Object obj, Class<?> Class)
 	{
 		// This test does nothing else then see if the function called throws an
-		// exception that means there was
-		// no object found with the given class.
+		// exception that means there was no object found with the given class.
 		try
 		{
 			ArrayManagment.getSpesificComponents(Class, obj.getComponents(),

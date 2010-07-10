@@ -265,7 +265,7 @@ public class ObjectSelection extends JPanel
 		JXTaskPane group = new JXTaskPane();
 		group.setTitle(groupName);
 		group.setSpecial(true);
-		group.setExpanded(expanded);
+		group.setCollapsed(!expanded);
 
 
 

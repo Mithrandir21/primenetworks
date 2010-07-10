@@ -19,22 +19,33 @@ import widgets.WorkareaCanvas;
  */
 public class WorkareaCanvasNetworkInfo implements Serializable
 {
+
+	/**
+	 * The serial number of the {@link WorkareaCanvas} this set of rules applies to.
+	 */
 	private double canvasSerial;
 
-	//
-	// The networks netmask
+	/**
+	 * The networks netmask
+	 */
 	private String netmask = null;
 
 
-	// The IP range start IP
+	/**
+	 * The IP range start IP
+	 */
 	private String ipRangeFrom = null;
 
 
-	// The IP range end IP
+	/**
+	 * The IP range end IP
+	 */
 	private String ipRangeTo = null;
 
 
-	// The widgets notes
+	/**
+	 * The widgets notes
+	 */
 	private String networkNotes = null;
 
 
@@ -59,6 +70,15 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 
 
 	// GETTERS
+
+
+	/**
+	 * Gets the serial number of the {@link WorkareaCanvas} this information applies to.
+	 */
+	public double getCanvasSerial()
+	{
+		return canvasSerial;
+	}
 
 
 	/**
@@ -169,6 +189,13 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	 */
 	public boolean setIpRangeFrom(String ipRangeFrom)
 	{
+		if ( ipRangeFrom != null && ipRangeFrom.equals("") )
+		{
+			this.ipRangeFrom = ipRangeFrom;
+			return true;
+		}
+
+
 		// If the string given matches the given pattern.
 		if ( NetworkManagment.getIPpattern().matcher(ipRangeFrom).matches() )
 		{
@@ -187,6 +214,11 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	 */
 	public boolean setIpRangeTo(String ipRangeTo)
 	{
+		if ( ipRangeTo != null && ipRangeTo.equals("") )
+		{
+			this.ipRangeTo = ipRangeTo;
+			return true;
+		}
 
 		// If the string given matches the given pattern.
 		if ( NetworkManagment.getIPpattern().matcher(ipRangeTo).matches() )

@@ -71,7 +71,7 @@ public class ClientsPropertiesView extends AbstractObjectPropertiesView implemen
 
 			d.weighty = 1.0; // request any extra vertical space
 			d.gridy = 2;
-			this.add(ObjectProperties.createButtons(this), d);
+			this.add(ObjectProperties.createButtons(this, false), d);
 		}
 	}
 
@@ -262,8 +262,8 @@ public class ClientsPropertiesView extends AbstractObjectPropertiesView implemen
 		{
 			resetFields();
 		}
-		else if ( e.getActionCommand().equals(
-				PrimeMain.texts.getString("save")) )
+		else if ( e.getActionCommand()
+				.equals(PrimeMain.texts.getString("save")) )
 		{
 			saveAction();
 		}

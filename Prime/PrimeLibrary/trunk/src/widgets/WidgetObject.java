@@ -14,9 +14,13 @@ import java.io.IOException;
 
 import objects.Object;
 
+import org.netbeans.api.visual.laf.LookFeel;
+import org.netbeans.api.visual.layout.LayoutFactory;
+import org.netbeans.api.visual.model.ObjectState;
 import org.netbeans.api.visual.widget.ImageWidget;
+import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.Scene;
-import org.netbeans.modules.visual.util.GeomUtil;
+import org.netbeans.api.visual.widget.Widget;
 
 import widgetManipulation.WidgetNetworkInfo;
 
@@ -26,7 +30,7 @@ import widgetManipulation.WidgetNetworkInfo;
  * 
  * @author Bahram Malaekeh
  */
-public class WidgetObject extends ImageWidget implements Transferable
+public class WidgetObject extends Widget implements Transferable
 {
 	// The object that the widget represents.
 	private Object object = null;
@@ -37,7 +41,9 @@ public class WidgetObject extends ImageWidget implements Transferable
 	private static final DataFlavor flavors[] = new DataFlavor[1];
 
 
-	private String label;
+	private ImageWidget imageWidget;
+
+	private LabelWidget labelWidget;
 
 
 	/**
@@ -49,10 +55,27 @@ public class WidgetObject extends ImageWidget implements Transferable
 	 */
 	public WidgetObject(Scene scene, Object obj, Image objImg)
 	{
-		super(scene, objImg);
+		super(scene);
 		object = obj;
 
-		setFlavor();
+		LookFeel lookFeel = getScene().getLookFeel();
+
+		this.setLayout(LayoutFactory
+				.createVerticalFlowLayout(LayoutFactory.SerialAlignment.CENTER,
+						-lookFeel.getMargin() + 1));
+
+		labelWidget = new LabelWidget(scene);
+		// labelWidget.setFont(scene.getDefaultFont().deriveFont(14.0f));
+		this.addChild(labelWidget);
+
+		imageWidget = new ImageWidget(scene);
+		imageWidget.setImage(objImg);
+		this.addChild(imageWidget);
+
+
+		this.setState(ObjectState.createNormal());
+
+		this.setFlavor();
 	}
 
 
@@ -79,12 +102,22 @@ public class WidgetObject extends ImageWidget implements Transferable
 
 
 	/**
+	 * @return The image representing the {@link Object}.
+	 */
+	public Image getImage()
+	{
+		return imageWidget.getImage();
+	}
+
+
+
+	/**
 	 * @return A new Dimension with the size of the image.
 	 */
 	public Dimension getImageDimension()
 	{
-		return new Dimension(getImage().getHeight(null), getImage().getWidth(
-				null));
+		return new Dimension(imageWidget.getImage().getHeight(null),
+				imageWidget.getImage().getWidth(null));
 	}
 
 
@@ -95,7 +128,31 @@ public class WidgetObject extends ImageWidget implements Transferable
 	 */
 	public String getLabel()
 	{
-		return label;
+		return labelWidget.getLabel();
+	}
+
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 * 
+	 * @return the imageWidget
+	 */
+	public ImageWidget getImageWidget()
+	{
+		return imageWidget;
+	}
+
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 * 
+	 * @return the labelWidget
+	 */
+	public LabelWidget getLabelWidget()
+	{
+		return labelWidget;
 	}
 
 
@@ -128,15 +185,9 @@ public class WidgetObject extends ImageWidget implements Transferable
 	 * @param label
 	 *            the label
 	 */
-	public void setLabel(String label)
+	public final void setLabel(String label)
 	{
-		if ( GeomUtil.equals(this.label, label) )
-		{
-			return;
-		}
-
-		this.label = label;
-		revalidate();
+		labelWidget.setLabel(label);
 	}
 
 

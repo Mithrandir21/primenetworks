@@ -157,10 +157,22 @@ public class ObjectProperties extends JPanel
 	/**
 	 * Creates a JPanel with two buttons that are listened for by the given actionlisteners.
 	 */
-	public static JPanel createButtons(ActionListener lis)
+	public static JPanel createButtons(ActionListener lis, boolean rules)
 	{
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
+
+
+		if ( rules )
+		{
+			Button rulesButton = new Button(PrimeMain.texts
+					.getString("canvasMenuOpenNetworkRules"));
+			rulesButton.addActionListener(lis);
+			rulesButton.setActionCommand(PrimeMain.texts
+					.getString("canvasMenuOpenNetworkRules"));
+			buttons.add(rulesButton);
+		}
+
 
 		Button reset = new Button(PrimeMain.texts.getString("reset"));
 		reset.addActionListener(lis);

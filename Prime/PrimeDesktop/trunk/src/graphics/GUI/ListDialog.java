@@ -1,4 +1,4 @@
-package widgetManipulation.Providers;
+package graphics.GUI;
 
 
 /*
@@ -31,6 +31,8 @@ package widgetManipulation.Providers;
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
+import graphics.PrimeMain;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -128,13 +130,15 @@ public class ListDialog extends JDialog implements ActionListener
 		super(frame, title, true);
 
 		// Create and initialize the buttons.
-		JButton cancelButton = new JButton("Cancel");
-		cancelButton.setActionCommand("Cancel");
+		JButton cancelButton = new JButton(PrimeMain.texts.getString("cancel"));
+		cancelButton.setActionCommand(PrimeMain.texts.getString("cancel"));
 		cancelButton.addActionListener(this);
 
 		//
-		final JButton setButton = new JButton("Create Connection");
-		setButton.setActionCommand("Set");
+		final JButton setButton = new JButton(PrimeMain.texts
+				.getString("actionCreateConnectionDescriptionText"));
+		setButton.setActionCommand(PrimeMain.texts
+				.getString("actionCreateConnectionDescriptionText"));
 		setButton.addActionListener(this);
 		getRootPane().setDefaultButton(setButton);
 
@@ -240,11 +244,14 @@ public class ListDialog extends JDialog implements ActionListener
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( "Set".equals(e.getActionCommand()) )
+		if ( e.getActionCommand().equals(
+				PrimeMain.texts
+						.getString("actionCreateConnectionDescriptionText")) )
 		{
 			ListDialog.value = (String) (list.getSelectedValue());
 		}
-		else if ( "Cancel".equals(e.getActionCommand()) )
+		else if ( e.getActionCommand().equals(
+				PrimeMain.texts.getString("cancel")) )
 		{
 			ListDialog.value = "Cancelled";
 		}

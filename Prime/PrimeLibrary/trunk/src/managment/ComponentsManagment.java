@@ -4,6 +4,7 @@ package managment;
 import java.awt.Component;
 import java.awt.Point;
 
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 import logistical.cleanup;
@@ -18,8 +19,13 @@ import objects.hardwareObjects.HDD;
 import objects.hardwareObjects.InternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
 import objects.hardwareObjects.Ram;
+import widgetManipulation.Actions.WorkareaCanvasActions;
+import widgets.WorkareaCanvas;
 import connections.Connection;
 import connections.ConnectionUtils;
+import connections.WidgetExtendedConnection;
+import exceptions.ConnectionDoesNotExist;
+import exceptions.MotherboardNotFound;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
 
@@ -31,10 +37,11 @@ import exceptions.ObjectNotFoundInArrayException;
  * {@link objects.Servers Servers} and {@link objects.infrastructureObjects.Rack Racks}.
  * 
  * @author Bahram Malaekeh
- * @version 0.1
+ * @version 0.2
  */
 public class ComponentsManagment
 {
+	// ADD COMPONENTS
 
 	/**
 	 * Function to add component(s) to the the components list.
@@ -171,6 +178,717 @@ public class ComponentsManagment
 
 
 	/**
+	 * Function for replacing a specific given component with a given new
+	 * component.
+	 * 
+	 * @param NewComponent
+	 *            The component to replace the previous one.
+	 * @param OldComponent
+	 *            The component to be replaced.
+	 * @param componentCounter
+	 *            The counter that tells how many components are in the current
+	 *            components array.
+	 * @param components
+	 *            The current components list.
+	 */
+	public static Object[] changeComponent(Object NewComponent,
+			Object OldComponent, Object[] components, int componentCounter)
+	{
+		// The boolean array that tells whether or not any of the object already
+		// are in the array
+		boolean isFound = arrayContains(components, NewComponent);
+
+		// Checks to see if any of the
+		if ( isFound == true )
+		{
+			// A try/catch incase the object is null.
+			try
+			{
+				throw new Exception("The component "
+						+ NewComponent.getObjectName() + " is already present.");
+			}
+			catch ( Exception e )
+			{
+				e.printStackTrace();
+			}
+
+		}
+
+
+
+		// Goes through all the components and replaces the old component with
+		// the new one
+		for ( int i = 0; i < componentCounter; i++ )
+		{
+			if ( components[i].equals(OldComponent) )
+			{
+				components[i] = NewComponent;
+
+				// Sets the index to the lenght of the component to get out of
+				// the loop
+				i = componentCounter;
+			}
+		}
+
+
+		components = cleanup.cleanObjectArray(components);
+
+
+		return components;
+	}
+
+
+
+	// COMPONENTS CHECKS
+	/**
+	 * This method process all the changes made to the software the object
+	 * contains. It first finds the motherboard of the given object and then
+	 * calls all the other methods in this class to validate the software for
+	 * compatibility.
+	 * 
+	 * @param obj
+	 *            The object that contains the software which will be validated.
+	 * @throws MotherboardNotFound
+	 */
+	public static void processAllChanges(Object obj) throws MotherboardNotFound
+	{
+		processCPUchanges(obj);
+
+		processDiscDriveChanges(obj);
+
+		// processExternalNICchanges(mb, obj);
+		// processInternalNICchanges(mb, obj);
+
+		processGPUchanges(obj);
+
+		processHDDchanges(obj);
+
+		processRAMchanges(obj);
+
+		// Gets the supported connection interfaces after processing
+		String[] supportedConnectionInterfaces = ComponentsManagment
+				.getSupportedInterfaces(obj);
+
+		// Sets the new interface array
+		obj.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+	}
+
+
+	/**
+	 * Checks compatibility of the any CPU component with the motherboard.
+	 * Removes the ones that are not compatible.
+	 */
+	public static void processCPUchanges(Object obj) throws MotherboardNotFound
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		Motherboard mb = ComponentsManagment.getObjectMotherboard(obj);
+
+		try
+		{
+			// FIXME - How to get an objects motherboard.
+			// Gets all the CPU components in the components array.
+			Object[] cpus = ArrayManagment.getSpesificComponents(CPU.class,
+					components, components.length);
+
+			for ( int i = 0; i < cpus.length; i++ )
+			{
+				// Gets all the Discdrive components in the components array.
+				if ( mb.getSocket() != "" && mb.getSocket() != null )
+				{
+					CPU cpu = (CPU) cpus[i];
+					// Checks the socket of the cpu versus the socket on the
+					// motherboard
+					if ( cpu.getSocket() != mb.getSocket() )
+					{
+						removeCPU(obj, cpu);
+					}
+				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+
+
+	/**
+	 * Checks compatibility of the any DicsDrive component with the motherboard.
+	 * Removes the ones that are not compatible.
+	 */
+	public static void processDiscDriveChanges(Object obj)
+			throws MotherboardNotFound
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		Motherboard mb = ComponentsManagment.getObjectMotherboard(obj);
+
+		try
+		{
+			// Gets all the Discdrive components in the components array.
+			Object[] drives = ArrayManagment.getSpesificComponents(
+					Discdrive.class, components, components.length);
+
+			// 
+			for ( int i = 0; i < drives.length; i++ )
+			{
+				// If the motherboard actual has a value that can be checked.
+				if ( mb.getDUCconnectionType() != ""
+						&& mb.getDUCconnectionType() != null )
+				{
+					Discdrive dicsdrive = (Discdrive) drives[i];
+					if ( dicsdrive.getPort() != mb.getDUCconnectionType() )
+					{
+						removeDiscdrive(obj, dicsdrive);
+					}
+				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+
+
+	/**
+	 * Checks compatibility of the any GPU component with the motherboard.
+	 * Removes the ones that are not compatible.
+	 */
+	public static void processGPUchanges(Object obj) throws MotherboardNotFound
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		Motherboard mb = ComponentsManagment.getObjectMotherboard(obj);
+
+		try
+		{
+			// Gets all the GraphicsCard components in the components array.
+			Object[] GPUs = ArrayManagment.getSpesificComponents(
+					GraphicsCard.class, components, components.length);
+
+			// 
+			for ( int i = 0; i < GPUs.length; i++ )
+			{
+				// If the motherboard actual has a value that can be checked.
+				if ( mb.getGraphicalPort() != ""
+						&& mb.getGraphicalPort() != null )
+				{
+					GraphicsCard gpu = (GraphicsCard) GPUs[i];
+					if ( gpu.getType() != mb.getGraphicalPort() )
+					{
+						removeGPU(obj, gpu);
+					}
+				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+
+
+	/**
+	 * Checks compatibility of the any HDD component with the motherboard.
+	 * Removes the ones that are not compatible.
+	 */
+	public static void processHDDchanges(Object obj) throws MotherboardNotFound
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		Motherboard mb = ComponentsManagment.getObjectMotherboard(obj);
+
+		try
+		{
+			// Gets all the HDD components in the components array.
+			Object[] HDDs = ArrayManagment.getSpesificComponents(HDD.class,
+					components, components.length);
+
+			// If the port to the motherboard is not the same
+			for ( int i = 0; i < HDDs.length; i++ )
+			{
+				// If the motherboard actual has a value that can be checked.
+				if ( mb.getDUCconnectionType() != ""
+						&& mb.getDUCconnectionType() != null )
+				{
+					HDD hdd = (HDD) HDDs[i];
+					if ( hdd.getPort() != mb.getDUCconnectionType() )
+					{
+						removeHDD(obj, hdd);
+					}
+				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+
+
+	/**
+	 * Checks compatibility of the any RAM component with the motherboard.
+	 * Removes the ones that are not compatible.
+	 */
+	public static void processRAMchanges(Object obj) throws MotherboardNotFound
+	{
+		// Gets all the components the object contains.
+		Object[] components = obj.getComponents();
+
+		Motherboard mb = ComponentsManagment.getObjectMotherboard(obj);
+
+		try
+		{
+			// Gets all the Ram components in the components array.
+			Object[] RAMs = ArrayManagment.getSpesificComponents(Ram.class,
+					components, components.length);
+
+			// 
+			for ( int i = 0; i < RAMs.length; i++ )
+			{
+				// If the motherboard actual has a value that can be checked.
+				if ( mb.getRAMtype() != "" && mb.getRAMtype() != null )
+				{
+					Ram RAM = (Ram) RAMs[i];
+					// If the port to the motherboard is not the same
+					if ( RAM.getPort() != mb.getRAMtype() )
+					{
+						removeRAM(obj, RAM);
+					}
+				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			// Does nothing if no objects are found.
+		}
+	}
+
+
+
+
+
+	/**
+	 * Checks, and if possible, adds the given cpu to the components array of
+	 * the given Object. The checks consists of tests on whether or not the
+	 * there are available sockets on the motherboard.
+	 * 
+	 * @param mainObj
+	 *            The main object. (Like a desktop or a server).
+	 * @param mb
+	 *            The objects motherboard.
+	 * @param cpu
+	 *            The CPU that will be tested and, if possible, added to the
+	 *            object.
+	 * @param comp
+	 *            This will be the component that message to the user will be
+	 *            shown over.
+	 * @return Returns true or false based on whether or not the given CPU
+	 *         object is added to the main object.
+	 * @throws MotherboardNotFound
+	 */
+	public static boolean processCPUmatch(Object mainObj, CPU cpu,
+			Component comp) throws MotherboardNotFound
+	{
+		Motherboard mb = ComponentsManagment.getObjectMotherboard(mainObj);
+
+		int availablePort = mb.getCPUPortsAvailable();
+
+		// Check the availability of sockets.
+		if ( availablePort > 0 )
+		{
+			// Checks the match between the sockets.
+			if ( cpu.getSocket().equals(mb.getSocket()) )
+			{
+				// First we add the component to the components list of the main
+				// object.
+				mainObj.addComponent(cpu);
+
+				// Then we set the ports to the motherboard
+				mb.makeOneCPUportTaken();
+			}
+			// If the sockets don't match.
+			else
+			{
+				JOptionPane.showMessageDialog(comp,
+						"The socket on the motherboard, " + mb.getSocket()
+								+ ", does not match the CPU socket, "
+								+ cpu.getSocket() + ".", "Info",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+		// If there are not available sockets.
+		else
+		{
+			JOptionPane.showMessageDialog(comp,
+					"There are no available CPU sockets left on the machine.",
+					"Info", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+
+
+		return false;
+	}
+
+
+
+	/**
+	 * Checks, and if possible, adds the given ram to the components array of
+	 * the given Object. The checks consists of tests on whether or not the
+	 * there are available ports on the motherboard.
+	 * 
+	 * @param mainObj
+	 *            The main object. (Like a desktop or a server).
+	 * @param mb
+	 *            The objects motherboard.
+	 * @param ram
+	 *            The RAM that will be tested and, if possible, added to the
+	 *            object.
+	 * @param comp
+	 *            This will be the component that message to the user will be
+	 *            shown over.
+	 * @return Returns true or false based on whether or not the given Ram
+	 *         object is added to the main object.
+	 */
+	public static boolean processRAMmatch(Object mainObj, Ram ram,
+			Component comp) throws MotherboardNotFound
+	{
+		Motherboard mb = ComponentsManagment.getObjectMotherboard(mainObj);
+
+		int availablePort = mb.getRAMPortsAvailable();
+
+		// Check the availability of ports.
+		if ( availablePort > 0 )
+		{
+			// Checks the match between the types of ram.
+			if ( ram.getPort().equals(mb.getRAMtype()) )
+			{
+				// First we add the component to the components list of the main
+				// object.
+				mainObj.addComponent(ram);
+
+				// Then we set the ports to the motherboard
+				mb.makeOneRAMportTaken();
+			}
+			// If the types don't match.
+			else
+			{
+				JOptionPane.showMessageDialog(comp,
+						"The port on the motherboard, " + mb.getRAMtype()
+								+ ", does not match the RAM ports, "
+								+ ram.getPort() + ".", "Info",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+		// If there are not available type.
+		else
+		{
+			JOptionPane.showMessageDialog(comp,
+					"There are no available RAM ports left on the machine.",
+					"Info", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+
+
+		return false;
+	}
+
+
+
+	/**
+	 * Checks, and if possible, adds the given harddisc to the components array
+	 * of the given Object. The checks consists of tests on whether or not the
+	 * there are available ports on the motherboard.
+	 * 
+	 * @param mainObj
+	 *            The main object. (Like a desktop or a server).
+	 * @param mb
+	 *            The objects motherboard.
+	 * @param hdd
+	 *            The HDD that will be tested and, if possible, added to the
+	 *            object.
+	 * @param comp
+	 *            This will be the component that message to the user will be
+	 *            shown over.
+	 * @return Returns true or false based on whether or not the given HDD
+	 *         object is added to the main object.
+	 */
+	public static boolean processHDDmatch(Object mainObj, HDD hdd,
+			Component comp) throws MotherboardNotFound
+	{
+		Motherboard mb = ComponentsManagment.getObjectMotherboard(mainObj);
+
+		int availablePort = mb.getDUCPortsAvailable();
+
+		// Check the availability of ports.
+		if ( availablePort > 0 )
+		{
+			// Checks the match between the types of hdd.
+			if ( hdd.getPort().equals(mb.getDUCconnectionType()) )
+			{
+				// First we add the component to the components list of the main
+				// object.
+				mainObj.addComponent(hdd);
+
+				// Then we set the ports to the motherboard
+				mb.makeOneDUCportTaken();
+			}
+			// If the types don't match.
+			else
+			{
+				JOptionPane.showMessageDialog(comp,
+						"The port on the motherboard, "
+								+ mb.getDUCconnectionType()
+								+ ", does not match the HDD ports, "
+								+ hdd.getPort() + ".", "Info",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+		// If there are not available type.
+		else
+		{
+			JOptionPane.showMessageDialog(comp,
+					"There are no available HDD ports left on the machine.",
+					"Info", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+
+
+		return false;
+	}
+
+
+
+	/**
+	 * Checks, and if possible, adds the given discdrive to the components array
+	 * of the given Object. The checks consists of tests on whether or not the
+	 * there are available ports on the motherboard.
+	 * 
+	 * @param mainObj
+	 *            The main object. (Like a desktop or a server).
+	 * @param mb
+	 *            The objects motherboard.
+	 * @param dics
+	 *            The Discdrive that will be tested and, if possible, added to
+	 *            the object.
+	 * @param comp
+	 *            This will be the component that message to the user will be
+	 *            shown over.
+	 * @return Returns true or false based on whether or not the given Discdrive
+	 *         object is added to the main object.
+	 */
+	public static boolean processDiscDrivematch(Object mainObj, Discdrive dics,
+			Component comp) throws MotherboardNotFound
+	{
+		Motherboard mb = ComponentsManagment.getObjectMotherboard(mainObj);
+
+		int availablePort = mb.getDUCPortsAvailable();
+
+		// Check the availability of ports.
+		if ( availablePort > 0 )
+		{
+			// Checks the match between the types of disc.
+			if ( dics.getPort().equals(mb.getDUCconnectionType()) )
+			{
+				// First we add the component to the components list of the main
+				// object.
+				mainObj.addComponent(dics);
+
+				// Then we set the ports to the motherboard
+				mb.makeOneDUCportTaken();
+			}
+			// If the types don't match.
+			else
+			{
+				JOptionPane.showMessageDialog(comp,
+						"The port on the motherboard, "
+								+ mb.getDUCconnectionType()
+								+ ", does not match the Disc ports, "
+								+ dics.getPort() + ".", "Info",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+		// If there are not available type.
+		else
+		{
+			JOptionPane.showMessageDialog(comp,
+					"There are no available Disc ports left on the machine.",
+					"Info", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return false;
+	}
+
+
+
+	/**
+	 * Checks, and if possible, adds the given graphicsCard to the components
+	 * array of the given Object. The checks consists of tests on whether or not
+	 * the there are available ports on the motherboard.
+	 * 
+	 * @param mainObj
+	 *            The main object. (Like a desktop or a server).
+	 * @param mb
+	 *            The objects motherboard.
+	 * @param GPU
+	 *            The GraphicsCard that will be tested and, if possible, added
+	 *            to the object.
+	 * @param comp
+	 *            This will be the component that message to the user will be
+	 *            shown over.
+	 * @return Returns true or false based on whether or not the given Ram
+	 *         object is added to the main object.
+	 */
+	public static boolean processGPUmatch(Object mainObj, GraphicsCard GPU,
+			Component comp) throws MotherboardNotFound
+	{
+		Motherboard mb = ComponentsManagment.getObjectMotherboard(mainObj);
+
+		boolean availablePort = mb.isGraphicsCardInstalled();
+
+		// Check the availability of ports.
+		if ( availablePort == false )
+		{
+			// Checks the match between the types of disc.
+			if ( GPU.getType().equals(mb.getGraphicalPort()) )
+			{
+				// First we add the component to the components list of the main
+				// object.
+				mainObj.addComponent(GPU);
+
+				// Then we set the ports to the motherboard
+				mb.setGraphicsCardInstalled(true);
+			}
+			// If the types don't match.
+			else
+			{
+				JOptionPane.showMessageDialog(comp,
+						"The port on the motherboard, " + mb.getGraphicalPort()
+								+ ", does not match the GPU ports, "
+								+ GPU.getType() + ".", "Info",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+		// If there are not available type.
+		else
+		{
+			JOptionPane.showMessageDialog(comp,
+					"There are no available GPU ports left on the machine.",
+					"Info", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return false;
+	}
+
+
+
+	/**
+	 * Checks, and if possible, adds the given Internal Networks Card to the
+	 * components array of the given Object. The checks consists of tests on
+	 * whether or not the there are available ports on the motherboard.
+	 * 
+	 * @param mainObj
+	 *            The main object. (Like a desktop or a server).
+	 * @param mb
+	 *            The objects motherboard.
+	 * @param nic
+	 *            The Internal Networks Card that will be tested and, if
+	 *            possible, added to the object.
+	 * @param comp
+	 *            This will be the component that message to the user will be
+	 *            shown over.
+	 * @return Returns true or false based on whether or not the given NIC
+	 *         object is added to the main object.
+	 */
+	public static boolean processInternalNICmatch(Object mainObj,
+			InternalNetworksCard nic, Component comp)
+			throws MotherboardNotFound
+	{
+		Motherboard mb = ComponentsManagment.getObjectMotherboard(mainObj);
+
+		int availablePort = mb.getPCIPortsAvailable();
+
+		// Check the availability of ports.
+		if ( availablePort > 0 )
+		{
+			// First we add the component to the components list of the main
+			// object.
+			mainObj.addComponent(nic);
+
+			// Then we set the ports to the motherboard
+			mb.makeOnePCIportTaken();
+		}
+		// If there are not available type.
+		else
+		{
+			JOptionPane.showMessageDialog(comp,
+					"There are no available PCI ports left on the machine.",
+					"Info", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return false;
+	}
+
+
+	/**
+	 * Checks, and if possible, adds the given External Networks Card to the
+	 * components array of the given Object. The checks consists of tests on
+	 * whether or not the there are available ports on the motherboard.
+	 * 
+	 * @param mainObj
+	 *            The main object. (Like a desktop or a server).
+	 * @param mb
+	 *            The objects motherboard.
+	 * @param nic
+	 *            The External Networks Card that will be tested and, if
+	 *            possible, added to the object.
+	 * @param comp
+	 *            This will be the component that message to the user will be
+	 *            shown over.
+	 * @return Returns true or false based on whether or not the given NIC
+	 *         object is added to the main object.
+	 */
+	public static boolean processExternalNICmatch(Object mainObj,
+			ExternalNetworksCard nic, Component comp)
+			throws MotherboardNotFound
+	{
+		Motherboard mb = ComponentsManagment.getObjectMotherboard(mainObj);
+
+		int availablePort = mb.getUSBPortsAvailable();
+
+		// Check the availability of ports.
+		if ( availablePort > 0 )
+		{
+			// First we add the component to the components list of the main
+			// object.
+			mainObj.addComponent(nic);
+
+			// Then we set the ports to the motherboard
+			mb.makeOneUSBportTaken();
+		}
+		// If there are not available type.
+		else
+		{
+			JOptionPane.showMessageDialog(comp,
+					"There are no available USB ports left on the machine.",
+					"Info", JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		return false;
+	}
+
+
+	// REMOVALE FUNCTIONS
+
+
+
+	/**
 	 * Function to remove an array of components from the array of components.
 	 * 
 	 * @param ToBeRemoved
@@ -265,65 +983,7 @@ public class ComponentsManagment
 		return components;
 	}
 
-	/**
-	 * Function for replacing a specific given component with a given new
-	 * component.
-	 * 
-	 * @param NewComponent
-	 *            The component to replace the previous one.
-	 * @param OldComponent
-	 *            The component to be replaced.
-	 * @param componentCounter
-	 *            The counter that tells how many components are in the current
-	 *            components array.
-	 * @param components
-	 *            The current components list.
-	 */
-	public static Object[] changeComponent(Object NewComponent,
-			Object OldComponent, Object[] components, int componentCounter)
-	{
-		// The boolean array that tells whether or not any of the object already
-		// are in the array
-		boolean isFound = arrayContains(components, NewComponent);
 
-		// Checks to see if any of the
-		if ( isFound == true )
-		{
-			// A try/catch incase the object is null.
-			try
-			{
-				throw new Exception("The component "
-						+ NewComponent.getObjectName() + " is already present.");
-			}
-			catch ( Exception e )
-			{
-				e.printStackTrace();
-			}
-
-		}
-
-
-
-		// Goes through all the components and replaces the old component with
-		// the new one
-		for ( int i = 0; i < componentCounter; i++ )
-		{
-			if ( components[i].equals(OldComponent) )
-			{
-				components[i] = NewComponent;
-
-				// Sets the index to the lenght of the component to get out of
-				// the loop
-				i = componentCounter;
-			}
-		}
-
-
-		components = cleanup.cleanObjectArray(components);
-
-
-		return components;
-	}
 
 
 	/**
@@ -387,750 +1047,1037 @@ public class ComponentsManagment
 
 
 
-
-	// COMPONENTS CHECKS
 	/**
-	 * This method process all the changes made to the software the object
-	 * contains. It first finds the motherboard of the given object and then
-	 * calls all the other methods in this class to validate the software for
-	 * compatibility.
+	 * TODO - Description
 	 * 
-	 * @param obj
-	 *            The object that contains the software which will be validated.
+	 * @throws MotherboardNotFound
+	 * 
 	 */
-	public static void processAllChanges(Object obj)
+	public static boolean removeComponent(WorkareaCanvas canvas, Object obj,
+			Object component) throws MotherboardNotFound
 	{
-		Object[] components = obj.getComponents();
+		if ( component instanceof GraphicsCard )
+		{
+			return removeGPU(obj, (GraphicsCard) component);
+		}
+		else if ( component instanceof CPU )
+		{
+			return removeCPU(obj, (CPU) component);
+		}
+		else if ( component instanceof HDD )
+		{
+			return removeHDD(obj, (HDD) component);
+		}
+		else if ( component instanceof Ram )
+		{
+			return removeRAM(obj, (Ram) component);
+		}
+		else if ( component instanceof Discdrive )
+		{
+			return removeDiscdrive(obj, (Discdrive) component);
+		}
+		else if ( component instanceof InternalNetworksCard )
+		{
+			return removeInternalNIC(canvas, obj,
+					(InternalNetworksCard) component);
+		}
+		else if ( component instanceof ExternalNetworksCard )
+		{
+			return removeExternalNIC(canvas, obj,
+					(ExternalNetworksCard) component);
+		}
 
-		Motherboard mb = null;
 
+		return false;
+	}
+
+
+
+	/**
+	 * This function attempts to remove the given {@link GraphicsCard} object from the components within the given {@link Object}.
+	 * 
+	 * @return True or false is returned depending on whether the given component is removed.
+	 * @throws MotherboardNotFound
+	 */
+	public static boolean removeGPU(Object obj, GraphicsCard gpu)
+			throws MotherboardNotFound
+	{
+		// Attempts to remove the given object from the components array
+		Object[] remainingComponents = ComponentsManagment.removeComponent(gpu,
+				obj.getComponents(), obj.getComponents().length);
+
+		// Since the components cannot be empty, because everything has a Motherboard, this if is always valid.
+		if ( remainingComponents != null && remainingComponents.length != 0 )
+		{
+			// Gets the object motherboard
+			Motherboard mb = getObjectMotherboard(obj);
+
+			if ( mb != null )
+			{
+				mb.setGraphicsCardInstalled(false);
+			}
+
+			// Sets the remaining components as the objects components
+			obj.setAllComponents(remainingComponents);
+
+			return true;
+		}
+
+		return false;
+	}
+
+
+	/**
+	 * This function attempts to remove the given {@link CPU} object from the components within the given {@link Object}.
+	 * 
+	 * @return True or false is returned depending on whether the given component is removed.
+	 * @throws MotherboardNotFound
+	 */
+	public static boolean removeCPU(Object obj, CPU cpu)
+			throws MotherboardNotFound
+	{
+		// Attempts to remove the given object from the components array
+		Object[] remainingComponents = ComponentsManagment.removeComponent(cpu,
+				obj.getComponents(), obj.getComponents().length);
+
+		// Since the components cannot be empty, because everything has a Motherboard, this if is always valid.
+		if ( remainingComponents != null && remainingComponents.length != 0 )
+		{
+			// Gets the object motherboard
+			Motherboard mb = getObjectMotherboard(obj);
+
+			if ( mb != null )
+			{
+				mb.makeOneCPUportAvailable();
+			}
+
+			// Sets the remaining components as the objects components
+			obj.setAllComponents(remainingComponents);
+
+			return true;
+		}
+
+		return false;
+	}
+
+
+	/**
+	 * This function attempts to remove the given {@link HDD} object from the components within the given {@link Object}.
+	 * 
+	 * @return True or false is returned depending on whether the given component is removed.
+	 * @throws MotherboardNotFound
+	 */
+	public static boolean removeHDD(Object obj, HDD hdd)
+			throws MotherboardNotFound
+	{
+		// Attempts to remove the given object from the components array
+		Object[] remainingComponents = ComponentsManagment.removeComponent(hdd,
+				obj.getComponents(), obj.getComponents().length);
+
+		// Since the components cannot be empty, because everything has a Motherboard, this if is always valid.
+		if ( remainingComponents != null && remainingComponents.length != 0 )
+		{
+			// Gets the object motherboard
+			Motherboard mb = getObjectMotherboard(obj);
+
+			if ( mb != null )
+			{
+				mb.makeOneDUCportAvailable();
+			}
+
+			// Sets the remaining components as the objects components
+			obj.setAllComponents(remainingComponents);
+
+			return true;
+		}
+
+		return false;
+	}
+
+
+	/**
+	 * This function attempts to remove the given {@link Discdrive} object from the components within the given {@link Object}.
+	 * 
+	 * @return True or false is returned depending on whether the given component is removed.
+	 * @throws MotherboardNotFound
+	 */
+	public static boolean removeDiscdrive(Object obj, Discdrive disc)
+			throws MotherboardNotFound
+	{
+		// Attempts to remove the given object from the components array
+		Object[] remainingComponents = ComponentsManagment.removeComponent(
+				disc, obj.getComponents(), obj.getComponents().length);
+
+		// Since the components cannot be empty, because everything has a Motherboard, this if is always valid.
+		if ( remainingComponents != null && remainingComponents.length != 0 )
+		{
+			// Gets the object motherboard
+			Motherboard mb = getObjectMotherboard(obj);
+
+			if ( mb != null )
+			{
+				mb.makeOneDUCportAvailable();
+			}
+
+			// Sets the remaining components as the objects components
+			obj.setAllComponents(remainingComponents);
+
+			return true;
+		}
+
+		return false;
+	}
+
+
+	/**
+	 * This function attempts to remove the given {@link Ram} object from the components within the given {@link Object}.
+	 * 
+	 * @return True or false is returned depending on whether the given component is removed.
+	 * @throws MotherboardNotFound
+	 */
+	public static boolean removeRAM(Object obj, Ram ram)
+			throws MotherboardNotFound
+	{
+		// Attempts to remove the given object from the components array
+		Object[] remainingComponents = ComponentsManagment.removeComponent(ram,
+				obj.getComponents(), obj.getComponents().length);
+
+		// Since the components cannot be empty, because everything has a Motherboard, this if is always valid.
+		if ( remainingComponents != null && remainingComponents.length != 0 )
+		{
+			// Gets the object motherboard
+			Motherboard mb = getObjectMotherboard(obj);
+
+			if ( mb != null )
+			{
+				mb.makeOneRAMportAvailable();
+			}
+
+			// Sets the remaining components as the objects components
+			obj.setAllComponents(remainingComponents);
+
+			return true;
+		}
+
+		return false;
+	}
+
+
+
+
+	/**
+	 * This function removes the given {@link InternalNetworksCard} from the array of hardware components in the given
+	 * {@link Object}.
+	 * It also removes the connection, both on the given {@link WorkareaCanvas} and in the {@link Object}, that the
+	 * {@link InternalNetworksCard} contains.
+	 * 
+	 * @return True or false is returned depending on whether the given component is removed.
+	 * @throws MotherboardNotFound
+	 */
+	public static boolean removeInternalNIC(WorkareaCanvas canvas, Object obj,
+			InternalNetworksCard nic) throws MotherboardNotFound
+	{
 		try
 		{
-			mb = (Motherboard) ArrayManagment.getSpesificComponents(
-					Motherboard.class, components, components.length)[0];
+			// Attempts to remove the connection from the NIC, if any.
+			ConnectionManagment.removeConnectionFromInternalNIC(canvas, obj,
+					nic);
 		}
-		catch ( ObjectNotFoundException e1 )
+		catch ( ConnectionDoesNotExist e1 )
 		{
-			// FIXME - ProcessAll motherboard get
-			e1.printStackTrace();
+			// DOES NOTHING
 		}
 
-		// FIXME - Fix the remove ports function where the mb has less ports
-		// then connected
-		// System.out.println(mb.getMaxLANs());
-		// System.out.println(mb.getMaxIntegLANs());
-		// System.out.println(mb.getIntegLANPortsAvailable());
+		// Attempts to remove the given object from the components array
+		Object[] remainingComponents = ComponentsManagment.removeComponent(nic,
+				obj.getComponents(), obj.getComponents().length);
 
-		if ( mb != null )
+		// Since the components cannot be empty, because everything has a Motherboard, this if is always valid.
+		if ( remainingComponents != null && remainingComponents.length != 0 )
 		{
-			processCPUchanges(mb, obj);
+			// Gets the object motherboard
+			Motherboard mb = getObjectMotherboard(obj);
 
-			processDiscDriveChanges(mb, obj);
+			if ( mb != null )
+			{
+				mb.makeOnePCIportAvailable();
+			}
 
-			// processExternalNICchanges(mb, obj);
-			//
-			// processInternalNICchanges(mb, obj);
+			// Sets the remaining components as the objects components
+			obj.setAllComponents(remainingComponents);
 
-			processGPUchanges(mb, obj);
+			canvas.setSaved(false);
+			canvas.setChanged(true);
 
-			processHDDchanges(mb, obj);
-
-			processRAMchanges(mb, obj);
+			return true;
 		}
 
-		// Gets the supported connection interfaces after processing
+		return false;
+	}
+
+
+
+	/**
+	 * This function removes the given {@link ExternalNetworksCard} from the array of hardware components in the given
+	 * {@link Object}.
+	 * It also removes the connection, both on the given {@link WorkareaCanvas} and in the {@link Object}, that the
+	 * {@link ExternalNetworksCard} contains.
+	 * 
+	 * @throws MotherboardNotFound
+	 */
+	public static boolean removeExternalNIC(WorkareaCanvas canvas, Object obj,
+			ExternalNetworksCard nic) throws MotherboardNotFound
+	{
+		try
+		{
+			// Attempts to remove the connection from the NIC, if any.
+			ConnectionManagment.removeConnectionFromExternalNIC(canvas, obj,
+					nic);
+		}
+		catch ( ConnectionDoesNotExist e1 )
+		{
+			// Does nothing
+		}
+
+		// Attempts to remove the given object from the components array
+		Object[] remainingComponents = ComponentsManagment.removeComponent(nic,
+				obj.getComponents(), obj.getComponents().length);
+
+		// Since the components cannot be empty, because everything has a Motherboard, this if is always valid.
+		if ( remainingComponents != null && remainingComponents.length != 0 )
+		{
+			// Gets the object motherboard
+			Motherboard mb = getObjectMotherboard(obj);
+
+			if ( mb != null )
+			{
+				mb.makeOneUSBportAvailable();
+			}
+
+			// Sets the remaining components as the objects components
+			obj.setAllComponents(remainingComponents);
+
+			canvas.setSaved(false);
+			canvas.setChanged(true);
+
+			return true;
+		}
+
+		return false;
+
+	}
+
+
+
+	// PORTS FUNCTION
+
+
+	/**
+	 * Processes the PCI settings with the InternalNetworksCards objects.
+	 */
+	public static void PCIportsValidation(Object mainObj, Motherboard mbObj,
+			JComboBox PCIslots)
+	{
+		if ( mbObj.getMaxPCIs() > Integer.parseInt(PCIslots.getSelectedItem()
+				.toString()) )
+		{
+			Object[] comp = null;
+			try
+			{
+				// Gets all the InternalNetworksCards from the objects components array.
+				comp = ArrayManagment.getSpesificComponents(
+						InternalNetworksCard.class, mainObj.getComponents(),
+						mainObj.getComponents().length);
+
+				// Removes all the InternalNetworksCards from the objects components array.
+				mainObj.setAllComponents(ComponentsManagment.removeComponents(
+						comp, mainObj.getComponents(),
+						mainObj.getComponents().length));
+
+			}
+			catch ( ObjectNotFoundException e )
+			{
+
+			}
+			catch ( ObjectNotFoundInArrayException e )
+			{
+				e.printStackTrace();
+			}
+
+
+			mbObj.setMaxPCIs(Integer.parseInt(PCIslots.getSelectedItem()
+					.toString()));
+			mbObj.setPCIPortsAvailable(mbObj.getMaxPCIs());
+
+			// If there are any components found
+			if ( comp != null )
+			{
+				// The number of components there are room for.
+				int counter = mbObj.getMaxPCIs();
+
+				// All the components of the main object(without the ExternalNetworksCards).
+				Object[] mainComp = mainObj.getComponents();
+
+				for ( int i = 0; i < counter; i++ )
+				{
+					// If i is smaller then the length of the comp array.
+					if ( i < comp.length )
+					{
+						mainComp = ComponentsManagment.addComponent(comp[i],
+								mainComp);
+						mbObj.makeOnePCIportTaken();
+					}
+				}
+				mainObj.setAllComponents(mainComp);
+			}
+		}
+		else
+		{
+			// The number of taken PCI ports(The number of ports - the number of ports available)
+			int takenPorts = mbObj.getMaxPCIs() - mbObj.getPCIPortsAvailable();
+
+			// Sets the max PCI ports
+			mbObj.setMaxPCIs(Integer.parseInt(PCIslots.getSelectedItem()
+					.toString()));
+			mbObj.setPCIPortsAvailable(mbObj.getMaxPCIs() - takenPorts);
+		}
+	}
+
+
+
+	/**
+	 * Processes the RAM settings with the RAM objects.
+	 */
+	public static void RAMportsValidation(Object mainObj, Motherboard mbObj,
+			JComboBox RAMslots)
+	{
+
+		if ( mbObj.getMaxRAMs() > Integer.parseInt(RAMslots.getSelectedItem()
+				.toString()) )
+		{
+			Object[] comp = null;
+			try
+			{
+				// Gets all the RAM from the objects components array.
+				comp = ArrayManagment.getSpesificComponents(Ram.class, mainObj
+						.getComponents(), mainObj.getComponents().length);
+
+				// Removes all the RAM from the objects components array.
+				mainObj.setAllComponents(ComponentsManagment.removeComponents(
+						comp, mainObj.getComponents(),
+						mainObj.getComponents().length));
+
+			}
+			catch ( ObjectNotFoundException e )
+			{
+
+			}
+			catch ( ObjectNotFoundInArrayException e )
+			{
+				e.printStackTrace();
+			}
+
+
+			mbObj.setMaxRAMs(Integer.parseInt(RAMslots.getSelectedItem()
+					.toString()));
+			mbObj.setRAMPortsAvailable(mbObj.getMaxRAMs());
+
+			if ( comp != null )
+			{
+				// The number of components there are room for.
+				int counter = mbObj.getMaxRAMs();
+				// All the components of the main object(without the RAM).
+				Object[] mainComp = mainObj.getComponents();
+				for ( int i = 0; i < counter; i++ )
+				{
+					// If i is smaller then the length of the comp array.
+					if ( i < comp.length )
+					{
+						mainComp = ComponentsManagment.addComponent(comp[i],
+								mainComp);
+						mbObj.makeOneRAMportTaken();
+					}
+				}
+				mainObj.setAllComponents(mainComp);
+			}
+		}
+		else
+		{
+			// The number of taken RAM ports(The number of ports - the number of ports available)
+			int takenPorts = mbObj.getMaxRAMs() - mbObj.getDUCPortsAvailable();
+
+			// Sets the max RAM ports
+			mbObj.setMaxRAMs(Integer.parseInt(RAMslots.getSelectedItem()
+					.toString()));
+			mbObj.setRAMPortsAvailable(mbObj.getMaxRAMs() - takenPorts);
+		}
+	}
+
+
+
+	/**
+	 * Processes the DUC settings with the {@link HDD} and {@link Discdrive} objects.
+	 */
+	public static void DUCportsValidation(Object mainObj, Motherboard mbObj,
+			JComboBox DUCports)
+	{
+		if ( mbObj.getMaxDUCs() > Integer.parseInt(DUCports.getSelectedItem()
+				.toString()) )
+		{
+			Object[] comp = null;
+
+			Object[] compHDD = null;
+
+			Object[] compDisc = null;
+
+			try
+			{
+				// Gets all the HDDs from the objects components array.
+				compHDD = ArrayManagment
+						.getSpesificComponents(HDD.class, mainObj
+								.getComponents(),
+								mainObj.getComponents().length);
+
+
+				// Gets all the Discdrives from the objects components array.
+				compDisc = ArrayManagment.getSpesificComponents(
+						Discdrive.class, mainObj.getComponents(), mainObj
+								.getComponents().length);
+			}
+			catch ( ObjectNotFoundException e )
+			{
+
+			}
+
+
+			int compLenght = 0;
+
+			if ( compHDD != null )
+			{
+				compLenght = compLenght + compHDD.length;
+			}
+
+			if ( compDisc != null )
+			{
+				compLenght = compLenght + compDisc.length;
+			}
+
+			comp = new Object[compLenght];
+
+
+			// The different counters for the different arrays of
+			// components.
+			int hddCount = 0;
+			int discCount = 0;
+
+			// The tick/tack boolean.
+			boolean tick = true;
+
+
+			for ( int i = 0; i < comp.length; i++ )
+			{
+				// Tries to add the hdd first.
+				if ( tick )
+				{
+
+					if ( compHDD != null && hddCount < compHDD.length
+							&& compHDD[hddCount] != null )
+					{
+						comp[i] = compHDD[hddCount];
+						hddCount++;
+						tick = false;
+					}
+					else
+					{
+						comp[i] = compDisc[discCount];
+						discCount++;
+						tick = false;
+					}
+				}
+				// Tack
+				else
+				{
+					if ( compDisc != null && discCount < compDisc.length
+							&& compDisc[discCount] != null )
+					{
+						comp[i] = compDisc[discCount];
+						discCount++;
+						tick = true;
+					}
+					else
+					{
+						comp[i] = compHDD[hddCount];
+						hddCount++;
+						tick = true;
+					}
+				}
+			}
+
+			// Removes all the components from the objects components array.
+			try
+			{
+				mainObj.setAllComponents(ComponentsManagment.removeComponents(
+						comp, mainObj.getComponents(),
+						mainObj.getComponents().length));
+			}
+			catch ( ObjectNotFoundInArrayException e )
+			{
+				e.printStackTrace();
+			}
+
+
+
+			mbObj.setMaxDUCs(Integer.parseInt(DUCports.getSelectedItem()
+					.toString()));
+			mbObj.setDUCPortsAvailable(mbObj.getMaxDUCs());
+
+			if ( comp != null )
+			{
+				// The number of components there are room for.
+				int counter = mbObj.getMaxDUCs();
+
+				// All the components of the main object(without the CPUs).
+				Object[] mainComp = mainObj.getComponents();
+
+				for ( int i = 0; i < counter; i++ )
+				{
+					// If i is smaller then the length of the comp array.
+					if ( i < comp.length )
+					{
+						mainComp = ComponentsManagment.addComponent(comp[i],
+								mainComp);
+						mbObj.makeOneDUCportTaken();
+					}
+				}
+				mainObj.setAllComponents(mainComp);
+			}
+		}
+		else
+		{
+			// The number of taken DUC ports(The number of ports - the number of ports available)
+			int takenPorts = mbObj.getMaxDUCs() - mbObj.getDUCPortsAvailable();
+
+			// Sets the max DUC ports
+			mbObj.setMaxDUCs(Integer.parseInt(DUCports.getSelectedItem()
+					.toString()));
+			mbObj.setDUCPortsAvailable(mbObj.getMaxDUCs() - takenPorts);
+		}
+	}
+
+
+	/**
+	 * Processes the USB settings with the ExternalNetworksCard objects.
+	 */
+	public static void USBportsValidation(Object mainObj, Motherboard mbObj,
+			JComboBox USBports, WorkareaCanvas canvas)
+	{
+		USBportsValidation(mainObj, mbObj, Integer.parseInt(USBports
+				.getSelectedItem().toString()), canvas);
+	}
+
+
+
+	/**
+	 * Processes the USB settings with the ExternalNetworksCard objects.
+	 */
+	public static void USBportsValidation(Object mainObj, Motherboard mbObj,
+			int USBports, WorkareaCanvas canvas)
+	{
+		if ( mainObj != null && mbObj != null && canvas != null )
+		{
+			if ( mbObj.getMaxUSBs() > USBports )
+			{
+				int newMaxUSBports = USBports;
+
+				Object[] externalNICs = new Object[0];
+
+				try
+				{
+					// Gets all the ExternalNetworksCard from the objects components array.
+					externalNICs = ArrayManagment.getSpesificComponents(
+							ExternalNetworksCard.class,
+							mainObj.getComponents(),
+							mainObj.getComponents().length);
+				}
+				catch ( ObjectNotFoundException e )
+				{
+
+				}
+
+
+				// Gets all the connections, networked and devices
+				Connection[] allConnections = mainObj.getAllConnections();
+
+				// ------------------------------------------------------------------------------
+				// If the number of USB ports is bigger then the number of externalNICS, which would mean that there is room
+				// for connected USB devices.
+				if ( newMaxUSBports > externalNICs.length )
+				{
+					// The connections array that will hold all the connections that are with USB
+					Connection[] USBconnections = ConnectionManagment
+							.connectedToBy(mainObj, ConnectionUtils.USB);
+
+
+					// The number of USB ports left after External NICs are added.
+					int leftUSBportsAfterExternalNICs = newMaxUSBports
+							- externalNICs.length;
+
+					if ( USBconnections != null )
+					{
+						// If the number of available USB ports is less then the number of USB devices
+						if ( leftUSBportsAfterExternalNICs < USBconnections.length )
+						{
+							for ( int i = leftUSBportsAfterExternalNICs; i < USBconnections.length; i++ )
+							{
+								// Removes the connection
+								WorkareaCanvasActions.removeWidgetConnection(
+										canvas, USBconnections[i]);
+							}
+						}
+					}
+
+					// ------------------------------------------------------------------------------
+					// The number of taken USB ports(The number of ports - the number of ports available)
+					int takenPorts = mbObj.getMaxUSBs()
+							- mbObj.getUSBPortsAvailable();
+
+					// Sets the max USB ports
+					mbObj.setMaxUSBs(USBports);
+					mbObj.setUSBPortsAvailable(mbObj.getMaxUSBs() - takenPorts);
+
+					canvas.setSaved(false);
+					canvas.setChanged(true);
+				}
+				// There aren't enough USB port for all the externalNICs so every USB connection will be removed and only
+				// externalNICs will be added until the USB ports run out.
+				else
+				{
+
+					try
+					{
+						// Removes all the ExternalNetworksCard from the objects components array.
+						mainObj.setAllComponents(ComponentsManagment
+								.removeComponents(externalNICs, mainObj
+										.getComponents(), mainObj
+										.getComponents().length));
+
+
+						// Disconnect all the existing USB connections
+						for ( int i = 0; i < allConnections.length; i++ )
+						{
+							if ( allConnections[i] != null )
+							{
+								// If the connection type is USB
+								if ( allConnections[i].getConnectionType()
+										.equals(ConnectionUtils.USB) )
+								{
+									// Removes the connection
+									WorkareaCanvasActions
+											.removeWidgetConnection(canvas,
+													allConnections[i]);
+								}
+							}
+						}
+
+
+						// Sets the max USB ports
+
+						mbObj.setMaxUSBs(USBports);
+						mbObj.setUSBPortsAvailable(mbObj.getMaxUSBs());
+
+						// Adds the previously removed ExternalNICs in order until there are no more USB ports available.
+						if ( externalNICs != null )
+						{
+							// The number of components there are room for.
+							int counter = mbObj.getMaxUSBs();
+							// All the components of the main object(without the ExternalNICs).
+							Object[] mainComp = mainObj.getComponents();
+							for ( int i = 0; i < counter; i++ )
+							{
+								// If i is smaller then the length of the externalNICs array.
+								if ( i < externalNICs.length )
+								{
+									mainComp = ComponentsManagment
+											.addComponent(externalNICs[i],
+													mainComp);
+									mbObj.makeOneUSBportTaken();
+								}
+							}
+							mainObj.setAllComponents(mainComp);
+						}
+
+
+						canvas.setSaved(false);
+						canvas.setChanged(true);
+					}
+					catch ( ObjectNotFoundInArrayException e )
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+			else
+			{
+				// The number of taken USB ports(The number of ports - the number of ports available)
+				int takenPorts = mbObj.getMaxUSBs()
+						- mbObj.getUSBPortsAvailable();
+
+				// Sets the max USB ports
+				mbObj.setMaxUSBs(USBports);
+				mbObj.setUSBPortsAvailable(mbObj.getMaxUSBs() - takenPorts);
+
+				canvas.setSaved(false);
+				canvas.setChanged(true);
+			}
+
+
+			// Sets the supported connection interfaces
+			String[] supportedConnectionInterfaces = ComponentsManagment
+					.getSupportedInterfaces(mainObj);
+			mainObj
+					.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		}
+	}
+
+	/**
+	 * Processes the CPU settings with the CPU objects.
+	 */
+	public static void CPUportsValidation(Object mainObj, Motherboard mbObj,
+			JComboBox CPUsockets)
+	{
+		if ( mbObj.getMaxCPUs() > Integer.parseInt(CPUsockets.getSelectedItem()
+				.toString()) )
+		{
+			Object[] comp = null;
+			try
+			{
+				// Gets all the CPUs from the objects components array.
+				comp = ArrayManagment.getSpesificComponents(CPU.class, mainObj
+						.getComponents(), mainObj.getComponents().length);
+
+				// Removes all the CPUs from the objects components array.
+				mainObj.setAllComponents(ComponentsManagment.removeComponents(
+						comp, mainObj.getComponents(),
+						mainObj.getComponents().length));
+
+			}
+			catch ( ObjectNotFoundException e )
+			{
+
+			}
+			catch ( ObjectNotFoundInArrayException e )
+			{
+				e.printStackTrace();
+			}
+
+
+			mbObj.setMaxCPUs(Integer.parseInt(CPUsockets.getSelectedItem()
+					.toString()));
+			mbObj.setCPUPortsAvailable(mbObj.getMaxCPUs());
+
+			if ( comp != null )
+			{
+				// The number of components there are room for.
+				int counter = mbObj.getMaxCPUs();
+
+				// All the components of the main object(without the CPUs).
+				Object[] mainComp = mainObj.getComponents();
+
+				for ( int i = 0; i < counter; i++ )
+				{
+					// If i is smaller then the length of the comp array.
+					if ( i < comp.length )
+					{
+						mainComp = ComponentsManagment.addComponent(comp[i],
+								mainComp);
+						mbObj.makeOneCPUportTaken();
+					}
+				}
+				mainObj.setAllComponents(mainComp);
+			}
+		}
+		else
+		{
+			// The number of taken CPU ports(The number of ports - the number of ports available)
+			int takenPorts = mbObj.getMaxCPUs() - mbObj.getCPUPortsAvailable();
+
+			// Sets the max CPU ports
+			mbObj.setMaxCPUs(Integer.parseInt(CPUsockets.getSelectedItem()
+					.toString()));
+			mbObj.setCPUPortsAvailable(mbObj.getMaxCPUs() - takenPorts);
+		}
+	}
+
+	/**
+	 * Processes the LAN settings with the connected objects.
+	 * <i>The process first finds all {@link Object Objects} connected to the main {@link Object}. Then it finds the network
+	 * cards, internal and external. It then removes the objects set as connected to the different network cards from the array of
+	 * removable Objects, because in this function only the {@link Motherboard Motherboards} lan ports are are being changed.
+	 * When only {@link Object Objects} connected to the {@link Motherboard} are left, they will be removed depending on the
+	 * difference between the number of lan and the number of connected Objects.
+	 */
+	public static void LANportsValidation(Object mainObj, Motherboard mbObj,
+			JComboBox LANports, WorkareaCanvas canvas)
+	{
+		LANportsValidation(mainObj, mbObj, Integer.parseInt(LANports
+				.getSelectedItem().toString()), canvas);
+	}
+
+	/**
+	 * Processes the LAN settings with the connected objects.
+	 * <i>The process first finds all {@link Object Objects} connected to the main {@link Object}. Then it finds the network
+	 * cards, internal and external. It then removes the objects set as connected to the different network cards from the array of
+	 * removable Objects, because in this function only the {@link Motherboard Motherboards} lan ports are are being changed.
+	 * When only {@link Object Objects} connected to the {@link Motherboard} are left, they will be removed depending on the
+	 * difference between the number of lan and the number of connected Objects.
+	 */
+	public static void LANportsValidation(Object mainObj, Motherboard mbObj,
+			int LANports, WorkareaCanvas canvas)
+	{
+		if ( mbObj.getMaxIntegLANs() > LANports )
+		{
+			int newMaxLANports = LANports;
+
+			// The connections array that will hold all the connections that are with RJ45
+			Object[] LANconnectedObjects = ConnectionManagment
+					.objectsConnectedToBy(mainObj, ConnectionUtils.RJ45);
+
+			try
+			{
+				// Gets all the InternalNetworksCard from the objects components array.
+				Object[] internalNICs = ArrayManagment.getSpesificComponents(
+						InternalNetworksCard.class, mainObj.getComponents(),
+						mainObj.getComponents().length);
+
+				for ( int i = 0; i < internalNICs.length; i++ )
+				{
+					InternalNetworksCard nic = (InternalNetworksCard) internalNICs[i];
+
+					// If the NICs connection object is not null and connection type is RJ-45
+					if ( nic.getConnectedObject() != null
+							&& nic.getConnectionType().equals(
+									ConnectionUtils.RJ45) )
+					{
+						// Goes through all the RJ45 connected objects
+						for ( int j = 0; j < LANconnectedObjects.length; j++ )
+						{
+							// If the index is not null
+							if ( LANconnectedObjects[j] != null )
+							{
+								// If the connected object serial is the same as the one connected to the NIC
+								if ( LANconnectedObjects[j].getObjectSerial() == nic
+										.getConnectedObject().getObjectSerial() )
+								{
+									// The object connected to the NIC is removed from the removable RJ45 connected objcets
+									LANconnectedObjects[j] = null;
+								}
+							}
+						}
+					}
+				}
+
+
+			}
+			catch ( ObjectNotFoundException e )
+			{
+				// No InternalNetworksCard found
+			}
+
+			try
+			{
+				// Gets all the InternalNetworksCard from the objects components array.
+				Object[] externalNICs = ArrayManagment.getSpesificComponents(
+						ExternalNetworksCard.class, mainObj.getComponents(),
+						mainObj.getComponents().length);
+
+
+				for ( int i = 0; i < externalNICs.length; i++ )
+				{
+					ExternalNetworksCard nic = (ExternalNetworksCard) externalNICs[i];
+
+					// If the NICs connection object is not null and connection type is RJ-45
+					if ( nic.getConnectedObject() != null
+							&& nic.getConnectionType().equals(
+									ConnectionUtils.RJ45) )
+					{
+						// Goes through all the RJ45 connected objects
+						for ( int j = 0; j < LANconnectedObjects.length; j++ )
+						{
+							// If the index is not null
+							if ( LANconnectedObjects[j] != null )
+							{
+								// If the connected object serial is the same as the one connected to the NIC
+								if ( LANconnectedObjects[j].getObjectSerial() == nic
+										.getConnectedObject().getObjectSerial() )
+								{
+									// The object connected to the NIC is removed from the removable RJ45 connected objcets
+									LANconnectedObjects[j] = null;
+								}
+							}
+						}
+					}
+				}
+			}
+			catch ( ObjectNotFoundException e )
+			{
+				// No ExternalNetworksCard found
+			}
+
+
+			// Removes the null pointers and shortens the array
+			LANconnectedObjects = cleanup.cleanObjectArray(LANconnectedObjects);
+
+
+			// Now LANconnectedObjects contains only objects connected to the motherboard
+
+			// The number of LAN ports left after connected objects are added.
+			int leftLANports = newMaxLANports - LANconnectedObjects.length;
+
+
+			if ( LANconnectedObjects != null )
+			{
+				// If the number of available RJ-45 ports is less then the number of RJ-45 devices
+				if ( leftLANports < 0 )
+				{
+					for ( int i = LANconnectedObjects.length + leftLANports; i < LANconnectedObjects.length; i++ )
+					{
+						// Gets the WidgetExtendedConnection between the two objects
+						WidgetExtendedConnection widCon = null;
+						try
+						{
+							widCon = ConnectionManagment.findWidgetConnection(
+									canvas, mainObj, LANconnectedObjects[i]);
+						}
+						catch ( ConnectionDoesNotExist e )
+						{
+							e.printStackTrace();
+						}
+
+						if ( widCon != null )
+						{
+							// Removes the connection
+							WorkareaCanvasActions.removeWidgetConnection(
+									canvas, widCon);
+						}
+					}
+				}
+			}
+		}
+		int takenPorts = mbObj.getMaxIntegLANs()
+				- mbObj.getIntegLANPortsAvailable();
+
+		// Sets the max LAN ports
+		mbObj.setMaxIntegratedLANs(LANports);
+		mbObj.setIntegLANPortsAvailable(mbObj.getMaxIntegLANs() - takenPorts);
+
+		// Sets the supported connection interfaces
 		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(obj);
+				.getSupportedInterfaces(mainObj);
+		mainObj.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
-		// Sets the new interface array
-		obj.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		canvas.setSaved(false);
+		canvas.setChanged(true);
 	}
-
-
-	/**
-	 * Checks compatibility of the any CPU component with the motherboard.
-	 * Removes the ones that are not compatible.
-	 */
-	public static void processCPUchanges(Motherboard mb, Object obj)
-	{
-		// Gets all the components the object contains.
-		Object[] components = obj.getComponents();
-
-		try
-		{
-			// FIXME - How to get an objects motherboard.
-			// Gets all the CPU components in the components array.
-			Object[] cpus = ArrayManagment.getSpesificComponents(CPU.class,
-					components, components.length);
-
-			for ( int i = 0; i < cpus.length; i++ )
-			{
-				// Gets all the Discdrive components in the components array.
-				if ( mb.getSocket() != "" && mb.getSocket() != null )
-				{
-					CPU cpu = (CPU) cpus[i];
-					// Checks the socket of the cpu versus the socket on the
-					// motherboard
-					if ( cpu.getSocket() != mb.getSocket() )
-					{
-						// Removes the actual components.
-						obj.setAllComponents(ComponentsManagment
-								.removeComponent(cpu, components,
-										components.length));
-
-						mb.makeOneCPUportAvailable();
-					}
-				}
-			}
-		}
-		catch ( ObjectNotFoundException e )
-		{
-			// Does nothing if no objects are found.
-		}
-	}
-
-
-
-	/**
-	 * Checks compatibility of the any DicsDrive component with the motherboard.
-	 * Removes the ones that are not compatible.
-	 */
-	public static void processDiscDriveChanges(Motherboard mb, Object obj)
-	{
-		// Gets all the components the object contains.
-		Object[] components = obj.getComponents();
-
-		try
-		{
-			// Gets all the Discdrive components in the components array.
-			Object[] drives = ArrayManagment.getSpesificComponents(
-					Discdrive.class, components, components.length);
-
-			// 
-			for ( int i = 0; i < drives.length; i++ )
-			{
-				// If the motherboard actual has a value that can be checked.
-				if ( mb.getDUCconnectionType() != ""
-						&& mb.getDUCconnectionType() != null )
-				{
-					Discdrive dicsdrive = (Discdrive) drives[i];
-					if ( dicsdrive.getPort() != mb.getDUCconnectionType() )
-					{
-						// Removes the actual components.
-						obj.setAllComponents(ComponentsManagment
-								.removeComponent(dicsdrive, components,
-										components.length));
-
-						mb.makeOneDUCportAvailable();
-					}
-				}
-			}
-		}
-		catch ( ObjectNotFoundException e )
-		{
-			// Does nothing if no objects are found.
-		}
-	}
-
-
-
-	/**
-	 * Checks compatibility of the any ExternalNIC component with the
-	 * motherboard. Removes the ones that are not compatible.
-	 */
-	public static void processExternalNICchanges(Motherboard mb, Object obj)
-	{
-		// Gets all the components the object contains.
-		Object[] components = obj.getComponents();
-
-		try
-		{
-			// Gets all the ExternalNetworksCard components in the components
-			// array.
-			Object[] extNICs = ArrayManagment.getSpesificComponents(
-					ExternalNetworksCard.class, components, components.length);
-
-			// 
-			for ( int i = 0; i < extNICs.length; i++ )
-			{
-				ExternalNetworksCard extNIC = (ExternalNetworksCard) extNICs[i];
-
-
-			}
-		}
-		catch ( ObjectNotFoundException e )
-		{
-			// Does nothing if no objects are found.
-		}
-	}
-
-
-
-	/**
-	 * Checks compatibility of the any InternalNIC component with the
-	 * motherboard. Removes the ones that are not compatible.
-	 */
-	public static void processInternalNICchanges(Motherboard mb, Object obj)
-	{
-		// Gets all the components the object contains.
-		Object[] components = obj.getComponents();
-
-		try
-		{
-			// Gets all the ExternalNetworksCard components in the components
-			// array.
-			Object[] intNICs = ArrayManagment.getSpesificComponents(
-					InternalNetworksCard.class, components, components.length);
-
-			// 
-			for ( int i = 0; i < intNICs.length; i++ )
-			{
-				// If the motherboard actual has a value that can be checked.
-				if ( mb.getDUCconnectionType() != ""
-						&& mb.getDUCconnectionType() != null )
-				{
-					InternalNetworksCard intNIC = (InternalNetworksCard) intNICs[i];
-
-					if ( intNIC.getPort() != mb.getDUCconnectionType() )
-					{
-						// Removes the actual components.
-						obj.setAllComponents(ComponentsManagment
-								.removeComponent(intNIC, components,
-										components.length));
-
-						mb.makeOnePCIportAvailable();
-					}
-				}
-			}
-		}
-		catch ( ObjectNotFoundException e )
-		{
-			// Does nothing if no objects are found.
-		}
-	}
-
-
-	/**
-	 * Checks compatibility of the any GPU component with the motherboard.
-	 * Removes the ones that are not compatible.
-	 */
-	public static void processGPUchanges(Motherboard mb, Object obj)
-	{
-		// Gets all the components the object contains.
-		Object[] components = obj.getComponents();
-
-		try
-		{
-			// Gets all the GraphicsCard components in the components array.
-			Object[] GPUs = ArrayManagment.getSpesificComponents(
-					GraphicsCard.class, components, components.length);
-
-			// 
-			for ( int i = 0; i < GPUs.length; i++ )
-			{
-				// If the motherboard actual has a value that can be checked.
-				if ( mb.getGraphicalPort() != ""
-						&& mb.getGraphicalPort() != null )
-				{
-					GraphicsCard gpu = (GraphicsCard) GPUs[i];
-					if ( gpu.getType() != mb.getGraphicalPort() )
-					{
-						// Removes the actual components.
-						obj.setAllComponents(ComponentsManagment
-								.removeComponent(gpu, components,
-										components.length));
-					}
-				}
-			}
-		}
-		catch ( ObjectNotFoundException e )
-		{
-			// Does nothing if no objects are found.
-		}
-	}
-
-
-
-	/**
-	 * Checks compatibility of the any HDD component with the motherboard.
-	 * Removes the ones that are not compatible.
-	 */
-	public static void processHDDchanges(Motherboard mb, Object obj)
-	{
-		// Gets all the components the object contains.
-		Object[] components = obj.getComponents();
-
-		try
-		{
-			// Gets all the HDD components in the components array.
-			Object[] HDDs = ArrayManagment.getSpesificComponents(HDD.class,
-					components, components.length);
-
-			// If the port to the motherboard is not the same
-			for ( int i = 0; i < HDDs.length; i++ )
-			{
-				// If the motherboard actual has a value that can be checked.
-				if ( mb.getDUCconnectionType() != ""
-						&& mb.getDUCconnectionType() != null )
-				{
-					HDD hdd = (HDD) HDDs[i];
-					if ( hdd.getPort() != mb.getDUCconnectionType() )
-					{
-						// Removes the actual components.
-						obj.setAllComponents(ComponentsManagment
-								.removeComponent(hdd, components,
-										components.length));
-
-						mb.makeOneDUCportAvailable();
-					}
-				}
-			}
-		}
-		catch ( ObjectNotFoundException e )
-		{
-			// Does nothing if no objects are found.
-		}
-	}
-
-
-
-	/**
-	 * Checks compatibility of the any RAM component with the motherboard.
-	 * Removes the ones that are not compatible.
-	 */
-	public static void processRAMchanges(Motherboard mb, Object obj)
-	{
-		// Gets all the components the object contains.
-		Object[] components = obj.getComponents();
-
-		try
-		{
-			// Gets all the Ram components in the components array.
-			Object[] RAMs = ArrayManagment.getSpesificComponents(Ram.class,
-					components, components.length);
-
-			// 
-			for ( int i = 0; i < RAMs.length; i++ )
-			{
-				// If the motherboard actual has a value that can be checked.
-				if ( mb.getRAMtype() != "" && mb.getRAMtype() != null )
-				{
-					Ram RAM = (Ram) RAMs[i];
-					// If the port to the motherboard is not the same
-					if ( RAM.getPort() != mb.getRAMtype() )
-					{
-						// Removes the actual components.
-						obj.setAllComponents(ComponentsManagment
-								.removeComponent(RAM, components,
-										components.length));
-
-						mb.makeOneRAMportAvailable();
-					}
-				}
-			}
-		}
-		catch ( ObjectNotFoundException e )
-		{
-			// Does nothing if no objects are found.
-		}
-	}
-
-
-
-
-
-	/**
-	 * Checks, and if possible, adds the given cpu to the components array of
-	 * the given Object. The checks consists of tests on whether or not the
-	 * there are available sockets on the motherboard.
-	 * 
-	 * @param mainObj
-	 *            The main object. (Like a desktop or a server).
-	 * @param mb
-	 *            The objects motherboard.
-	 * @param cpu
-	 *            The CPU that will be tested and, if possible, added to the
-	 *            object.
-	 * @param comp
-	 *            This will be the component that message to the user will be
-	 *            shown over.
-	 * @return Returns true or false based on whether or not the given CPU
-	 *         object is added to the main object.
-	 */
-	public static boolean processCPUmatch(Object mainObj, Motherboard mb,
-			CPU cpu, Component comp)
-	{
-		int availablePort = mb.getCPUPortsAvailable();
-
-		// Check the availability of sockets.
-		if ( availablePort > 0 )
-		{
-			// Checks the match between the sockets.
-			if ( cpu.getSocket().equals(mb.getSocket()) )
-			{
-				// First we add the component to the components list of the main
-				// object.
-				mainObj.addComponent(cpu);
-
-				// Then we set the ports to the motherboard
-				mb.makeOneCPUportTaken();
-			}
-			// If the sockets don't match.
-			else
-			{
-				JOptionPane.showMessageDialog(comp,
-						"The socket on the motherboard, " + mb.getSocket()
-								+ ", does not match the CPU socket, "
-								+ cpu.getSocket() + ".", "Info",
-						JOptionPane.INFORMATION_MESSAGE);
-			}
-		}
-		// If there are not available sockets.
-		else
-		{
-			JOptionPane.showMessageDialog(comp,
-					"There are no available CPU sockets left on the machine.",
-					"Info", JOptionPane.INFORMATION_MESSAGE);
-		}
-
-
-
-		return false;
-	}
-
-
-
-	/**
-	 * Checks, and if possible, adds the given ram to the components array of
-	 * the given Object. The checks consists of tests on whether or not the
-	 * there are available ports on the motherboard.
-	 * 
-	 * @param mainObj
-	 *            The main object. (Like a desktop or a server).
-	 * @param mb
-	 *            The objects motherboard.
-	 * @param ram
-	 *            The RAM that will be tested and, if possible, added to the
-	 *            object.
-	 * @param comp
-	 *            This will be the component that message to the user will be
-	 *            shown over.
-	 * @return Returns true or false based on whether or not the given Ram
-	 *         object is added to the main object.
-	 */
-	public static boolean processRAMmatch(Object mainObj, Motherboard mb,
-			Ram ram, Component comp)
-	{
-		int availablePort = mb.getRAMPortsAvailable();
-
-		// Check the availability of ports.
-		if ( availablePort > 0 )
-		{
-			// Checks the match between the types of ram.
-			if ( ram.getPort().equals(mb.getRAMtype()) )
-			{
-				// First we add the component to the components list of the main
-				// object.
-				mainObj.addComponent(ram);
-
-				// Then we set the ports to the motherboard
-				mb.makeOneRAMportTaken();
-			}
-			// If the types don't match.
-			else
-			{
-				JOptionPane.showMessageDialog(comp,
-						"The port on the motherboard, " + mb.getRAMtype()
-								+ ", does not match the RAM ports, "
-								+ ram.getPort() + ".", "Info",
-						JOptionPane.INFORMATION_MESSAGE);
-			}
-		}
-		// If there are not available type.
-		else
-		{
-			JOptionPane.showMessageDialog(comp,
-					"There are no available RAM ports left on the machine.",
-					"Info", JOptionPane.INFORMATION_MESSAGE);
-		}
-
-
-
-		return false;
-	}
-
-
-
-	/**
-	 * Checks, and if possible, adds the given harddisc to the components array
-	 * of the given Object. The checks consists of tests on whether or not the
-	 * there are available ports on the motherboard.
-	 * 
-	 * @param mainObj
-	 *            The main object. (Like a desktop or a server).
-	 * @param mb
-	 *            The objects motherboard.
-	 * @param hdd
-	 *            The HDD that will be tested and, if possible, added to the
-	 *            object.
-	 * @param comp
-	 *            This will be the component that message to the user will be
-	 *            shown over.
-	 * @return Returns true or false based on whether or not the given HDD
-	 *         object is added to the main object.
-	 */
-	public static boolean processHDDmatch(Object mainObj, Motherboard mb,
-			HDD hdd, Component comp)
-	{
-		int availablePort = mb.getDUCPortsAvailable();
-
-		// Check the availability of ports.
-		if ( availablePort > 0 )
-		{
-			// Checks the match between the types of hdd.
-			if ( hdd.getPort().equals(mb.getDUCconnectionType()) )
-			{
-				// First we add the component to the components list of the main
-				// object.
-				mainObj.addComponent(hdd);
-
-				// Then we set the ports to the motherboard
-				mb.makeOneDUCportTaken();
-			}
-			// If the types don't match.
-			else
-			{
-				JOptionPane.showMessageDialog(comp,
-						"The port on the motherboard, "
-								+ mb.getDUCconnectionType()
-								+ ", does not match the HDD ports, "
-								+ hdd.getPort() + ".", "Info",
-						JOptionPane.INFORMATION_MESSAGE);
-			}
-		}
-		// If there are not available type.
-		else
-		{
-			JOptionPane.showMessageDialog(comp,
-					"There are no available HDD ports left on the machine.",
-					"Info", JOptionPane.INFORMATION_MESSAGE);
-		}
-
-
-
-		return false;
-	}
-
-
-
-	/**
-	 * Checks, and if possible, adds the given discdrive to the components array
-	 * of the given Object. The checks consists of tests on whether or not the
-	 * there are available ports on the motherboard.
-	 * 
-	 * @param mainObj
-	 *            The main object. (Like a desktop or a server).
-	 * @param mb
-	 *            The objects motherboard.
-	 * @param dics
-	 *            The Discdrive that will be tested and, if possible, added to
-	 *            the object.
-	 * @param comp
-	 *            This will be the component that message to the user will be
-	 *            shown over.
-	 * @return Returns true or false based on whether or not the given Discdrive
-	 *         object is added to the main object.
-	 */
-	public static boolean processDiscDrivematch(Object mainObj, Motherboard mb,
-			Discdrive dics, Component comp)
-	{
-		int availablePort = mb.getDUCPortsAvailable();
-
-		// Check the availability of ports.
-		if ( availablePort > 0 )
-		{
-			// Checks the match between the types of disc.
-			if ( dics.getPort().equals(mb.getDUCconnectionType()) )
-			{
-				// First we add the component to the components list of the main
-				// object.
-				mainObj.addComponent(dics);
-
-				// Then we set the ports to the motherboard
-				mb.makeOneDUCportTaken();
-			}
-			// If the types don't match.
-			else
-			{
-				JOptionPane.showMessageDialog(comp,
-						"The port on the motherboard, "
-								+ mb.getDUCconnectionType()
-								+ ", does not match the Disc ports, "
-								+ dics.getPort() + ".", "Info",
-						JOptionPane.INFORMATION_MESSAGE);
-			}
-		}
-		// If there are not available type.
-		else
-		{
-			JOptionPane.showMessageDialog(comp,
-					"There are no available Disc ports left on the machine.",
-					"Info", JOptionPane.INFORMATION_MESSAGE);
-		}
-
-		return false;
-	}
-
-
-
-	/**
-	 * Checks, and if possible, adds the given graphicsCard to the components
-	 * array of the given Object. The checks consists of tests on whether or not
-	 * the there are available ports on the motherboard.
-	 * 
-	 * @param mainObj
-	 *            The main object. (Like a desktop or a server).
-	 * @param mb
-	 *            The objects motherboard.
-	 * @param GPU
-	 *            The GraphicsCard that will be tested and, if possible, added
-	 *            to the object.
-	 * @param comp
-	 *            This will be the component that message to the user will be
-	 *            shown over.
-	 * @return Returns true or false based on whether or not the given Ram
-	 *         object is added to the main object.
-	 */
-	public static boolean processGPUmatch(Object mainObj, Motherboard mb,
-			GraphicsCard GPU, Component comp)
-	{
-		boolean availablePort = mb.isGraphicsCardInstalled();
-
-		// Check the availability of ports.
-		if ( availablePort == false )
-		{
-			// Checks the match between the types of disc.
-			if ( GPU.getType().equals(mb.getGraphicalPort()) )
-			{
-				// First we add the component to the components list of the main
-				// object.
-				mainObj.addComponent(GPU);
-
-				// Then we set the ports to the motherboard
-				mb.setGraphicsCardInstalled(true);
-			}
-			// If the types don't match.
-			else
-			{
-				JOptionPane.showMessageDialog(comp,
-						"The port on the motherboard, " + mb.getGraphicalPort()
-								+ ", does not match the GPU ports, "
-								+ GPU.getType() + ".", "Info",
-						JOptionPane.INFORMATION_MESSAGE);
-			}
-		}
-		// If there are not available type.
-		else
-		{
-			JOptionPane.showMessageDialog(comp,
-					"There are no available GPU ports left on the machine.",
-					"Info", JOptionPane.INFORMATION_MESSAGE);
-		}
-
-		return false;
-	}
-
-
-
-	/**
-	 * Checks, and if possible, adds the given Internal Networks Card to the
-	 * components array of the given Object. The checks consists of tests on
-	 * whether or not the there are available ports on the motherboard.
-	 * 
-	 * @param mainObj
-	 *            The main object. (Like a desktop or a server).
-	 * @param mb
-	 *            The objects motherboard.
-	 * @param nic
-	 *            The Internal Networks Card that will be tested and, if
-	 *            possible, added to the object.
-	 * @param comp
-	 *            This will be the component that message to the user will be
-	 *            shown over.
-	 * @return Returns true or false based on whether or not the given NIC
-	 *         object is added to the main object.
-	 */
-	public static boolean processInternalNICmatch(Object mainObj,
-			Motherboard mb, InternalNetworksCard nic, Component comp)
-	{
-		int availablePort = mb.getPCIPortsAvailable();
-
-		// Check the availability of ports.
-		if ( availablePort > 0 )
-		{
-			// First we add the component to the components list of the main
-			// object.
-			mainObj.addComponent(nic);
-
-			// Then we set the ports to the motherboard
-			mb.makeOnePCIportTaken();
-		}
-		// If there are not available type.
-		else
-		{
-			JOptionPane.showMessageDialog(comp,
-					"There are no available PCI ports left on the machine.",
-					"Info", JOptionPane.INFORMATION_MESSAGE);
-		}
-
-		return false;
-	}
-
-
-	/**
-	 * Checks, and if possible, adds the given External Networks Card to the
-	 * components array of the given Object. The checks consists of tests on
-	 * whether or not the there are available ports on the motherboard.
-	 * 
-	 * @param mainObj
-	 *            The main object. (Like a desktop or a server).
-	 * @param mb
-	 *            The objects motherboard.
-	 * @param nic
-	 *            The External Networks Card that will be tested and, if
-	 *            possible, added to the object.
-	 * @param comp
-	 *            This will be the component that message to the user will be
-	 *            shown over.
-	 * @return Returns true or false based on whether or not the given NIC
-	 *         object is added to the main object.
-	 */
-	public static boolean processExternalNICmatch(Object mainObj,
-			Motherboard mb, ExternalNetworksCard nic, Component comp)
-	{
-		int availablePort = mb.getUSBPortsAvailable();
-
-		// Check the availability of ports.
-		if ( availablePort > 0 )
-		{
-			// First we add the component to the components list of the main
-			// object.
-			mainObj.addComponent(nic);
-
-			// Then we set the ports to the motherboard
-			mb.makeOneUSBportTaken();
-		}
-		// If there are not available type.
-		else
-		{
-			JOptionPane.showMessageDialog(comp,
-					"There are no available USB ports left on the machine.",
-					"Info", JOptionPane.INFORMATION_MESSAGE);
-		}
-
-		return false;
-	}
-
 
 
 	// SEARCH FUNCTIONS
@@ -1184,13 +2131,6 @@ public class ComponentsManagment
 		return objectFound;
 	}
 
-
-
-	// public static Object handleMBavailabilityChange(Class ComponentClass,
-	// Object obj)
-	// {
-	// return obj;
-	// }
 
 
 	// CHECK FUNCTIONS
@@ -1569,5 +2509,41 @@ public class ComponentsManagment
 
 
 		return copyTo;
+	}
+
+
+
+
+	/**
+	 * This function attempts to find the objects {@link Motherboard} in the objects components array.
+	 * Null is returned if nothing is found.
+	 */
+	public static Motherboard getObjectMotherboard(Object obj)
+			throws MotherboardNotFound
+	{
+		Motherboard mb = null;
+
+		// Gets the all objects motherboard components
+		Object[] components;
+
+		try
+		{
+			components = obj.getSpesificComponents(Motherboard.class);
+
+			if ( components != null && components.length != 0 )
+			{
+				// if the first object in the array is a motherboard object
+				if ( components[0] instanceof Motherboard )
+				{
+					mb = (Motherboard) components[0];
+				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			throw new MotherboardNotFound(obj);
+		}
+
+		return mb;
 	}
 }

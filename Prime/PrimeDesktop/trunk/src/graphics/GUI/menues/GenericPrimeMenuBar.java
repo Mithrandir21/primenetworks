@@ -26,9 +26,13 @@ import actions.systemActions.ActionExitSystem;
 import actions.systemActions.ActionExportCanvasAsImage;
 import actions.systemActions.ActionExportNetwork;
 import actions.systemActions.ActionExportStandardObjects;
+import actions.systemActions.ActionExportStandardRules;
 import actions.systemActions.ActionImportNetwork;
 import actions.systemActions.ActionImportStandardObjects;
+import actions.systemActions.ActionImportStandardRules;
 import actions.systemActions.ActionNew;
+import actions.systemActions.ActionObjectEditing;
+import actions.systemActions.ActionOpenStandardRules;
 import actions.systemActions.ActionOpenVisualEdit;
 import actions.systemActions.ActionOpenfile;
 import actions.systemActions.ActionPaste;
@@ -139,11 +143,17 @@ public class GenericPrimeMenuBar extends JMenuBar
 				PrimeMain.texts.getString("importNetworkLabel")));
 		importSubMenu.add(importNetwork);
 
-		
+
 		JMenuItem importStandardObjectsList = new JMenuItem(
 				new ActionImportStandardObjects(PrimeMain.texts
 						.getString("importStandardObjectsList")));
 		importSubMenu.add(importStandardObjectsList);
+
+
+		JMenuItem importStandardRulesList = new JMenuItem(
+				new ActionImportStandardRules(PrimeMain.texts
+						.getString("importStandardRulesList")));
+		importSubMenu.add(importStandardRulesList);
 
 
 		file.add(importSubMenu);
@@ -221,22 +231,23 @@ public class GenericPrimeMenuBar extends JMenuBar
 		submenu.add(removeAllWidgets);
 
 
-		JMenuItem removeAllConnections = new JMenuItem(new ActionDeleteAllConnections(
-				PrimeMain.texts.getString("deleteAllConnectionsLabel")));
+		JMenuItem removeAllConnections = new JMenuItem(
+				new ActionDeleteAllConnections(PrimeMain.texts
+						.getString("deleteAllConnectionsLabel")));
 		removeAllConnections.setIcon(null);
 		submenu.add(removeAllConnections);
-		
-		
+
+
 		JMenuItem removeAllRooms = new JMenuItem(new ActionDeleteAllRooms(
 				PrimeMain.texts.getString("deleteAllRoomsLabel")));
 		removeAllRooms.setIcon(null);
 		submenu.add(removeAllRooms);
-		
-		
+
+
 		// Adds a separator to the submenu
 		submenu.addSeparator();
-		
-		
+
+
 		JMenuItem removeEverything = new JMenuItem(new ActionDeleteEverything(
 				PrimeMain.texts.getString("deleteEverythingLabel")));
 		removeEverything.setIcon(null);
@@ -289,16 +300,14 @@ public class GenericPrimeMenuBar extends JMenuBar
 		submenu.add(conMsg);
 
 
-		JMenuItem softMsg = new JMenuItem(
-				new ActionSoftwareMessage(PrimeMain.texts
-						.getString("messagesSupermenuSoftwareMessages")));
+		JMenuItem softMsg = new JMenuItem(new ActionSoftwareMessage(
+				PrimeMain.texts.getString("messagesSupermenuSoftwareMessages")));
 		softMsg.setIcon(null);
 		submenu.add(softMsg);
 
 
-		JMenuItem hardMsg = new JMenuItem(
-				new ActionHardwareMessage(PrimeMain.texts
-						.getString("messagesSupermenuHardwareMessages")));
+		JMenuItem hardMsg = new JMenuItem(new ActionHardwareMessage(
+				PrimeMain.texts.getString("messagesSupermenuHardwareMessages")));
 		hardMsg.setIcon(null);
 		submenu.add(hardMsg);
 
@@ -338,6 +347,15 @@ public class GenericPrimeMenuBar extends JMenuBar
 		tools.setMnemonic('T');
 
 
+		JMenuItem standardObjects = new JMenuItem(new ActionObjectEditing(
+				PrimeMain.texts.getString("standardObjectsFrameLabel")));
+		tools.add(standardObjects);
+
+		JMenuItem standardRules = new JMenuItem(new ActionOpenStandardRules(
+				PrimeMain.texts.getString("openStandardNetworkRulesLabel")));
+		tools.add(standardRules);
+
+
 		JMenuItem openVisualEdit = new JMenuItem(new ActionOpenVisualEdit(
 				PrimeMain.texts.getString("visualEditMenuLabel")));
 		openVisualEdit.setIcon(null);
@@ -349,19 +367,19 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 		JMenu exportSubMenu = new JMenu(PrimeMain.texts
 				.getString("exportSubMenuLabel"));
-		
-		
+
+
 		JMenuItem exportNetwork = new JMenuItem(new ActionExportNetwork(
 				PrimeMain.texts.getString("exportCanvasMenuLabel")));
 		exportSubMenu.add(exportNetwork);
-		
-		
+
+
 
 		JMenuItem exportNetworkAsImage = new JMenuItem(
 				new ActionExportCanvasAsImage(PrimeMain.texts
 						.getString("exportCanvasAsImageMenuLabel")));
 		exportSubMenu.add(exportNetworkAsImage);
-		
+
 
 
 		JMenuItem exportStandardObjectsList = new JMenuItem(
@@ -371,9 +389,16 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 
 
+		JMenuItem exportStandardRulesList = new JMenuItem(
+				new ActionExportStandardRules(PrimeMain.texts
+						.getString("exportStandardRulesMenuLabel")));
+		exportSubMenu.add(exportStandardRulesList);
+
+
+
 
 		tools.add(exportSubMenu);
-		
+
 		// Adds a separator to the menu
 		tools.addSeparator();
 

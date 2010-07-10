@@ -20,7 +20,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -39,7 +39,7 @@ import objects.infrastructureObjects.Internet;
  * 
  * @author Bahram Malaekeh
  */
-public class HardwareEditor extends JFrame implements ActionListener
+public class HardwareEditor extends JDialog implements ActionListener
 {
 	private Object givenObject = null;
 
@@ -52,11 +52,10 @@ public class HardwareEditor extends JFrame implements ActionListener
 	 */
 	public HardwareEditor(Object obj)
 	{
-		super(PrimeMain.texts.getString("hwTabFrameLabel"));
+		this.setTitle(PrimeMain.texts.getString("hwTabFrameLabel"));
 
 		createNewEditorTab(obj);
 	}
-
 
 	/**
 	 * Creates a JPanel that shows an Icon representing the hardware object and

@@ -1,10 +1,13 @@
 package graphics.GUI.objectView.Network;
 
 
+import graphics.PrimeMain;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -23,34 +26,26 @@ import widgets.WidgetObject;
  */
 public class NetworkView extends JPanel
 {
-	private JLabel widgetIPlabel = new JLabel();
-
 	public JTextField widgetIPfield = new JTextField();
 
-
-	private JLabel widgetNetmaskLabel = new JLabel();
 
 	public JTextField widgetNetmaskField = new JTextField();
 
 
-	private JLabel widgetMacLabel = new JLabel();
-
 	public JTextField widgetMacField = new JTextField();
 
-
-	private JLabel widgetDefaultGatewayLabel = new JLabel();
 
 	public JTextField widgetDefaultGatewayField = new JTextField();
 
 
-	private JLabel widgetNetworkNameLabel = new JLabel();
-
 	public JTextField widgetNetworkNameField = new JTextField();
 
 
-	private JLabel widgetNotesLabel = new JLabel();
-
 	public JTextArea widgetNotesArea = new JTextArea();
+
+
+
+	public JCheckBox exemptedNetworkRules = new JCheckBox();
 
 
 
@@ -98,7 +93,8 @@ public class NetworkView extends JPanel
 
 		fieldD.gridy = 0; // row
 		fieldD.gridx = 0; // column
-		widgetIPlabel = new JLabel("IP");
+		JLabel widgetIPlabel = new JLabel(PrimeMain.texts
+				.getString("netIPLabel"));
 		fieldsPanel.add(widgetIPlabel, fieldD);
 
 		fieldD.gridx = 1; // column
@@ -114,7 +110,8 @@ public class NetworkView extends JPanel
 
 		fieldD.gridy = 1; // row
 		fieldD.gridx = 0; // column
-		widgetNetmaskLabel = new JLabel("Netmask");
+		JLabel widgetNetmaskLabel = new JLabel(PrimeMain.texts
+				.getString("netNetmaskLabel"));
 		fieldsPanel.add(widgetNetmaskLabel, fieldD);
 
 		fieldD.gridx = 1; // column
@@ -131,7 +128,8 @@ public class NetworkView extends JPanel
 
 		fieldD.gridy = 2; // row
 		fieldD.gridx = 0; // column
-		widgetMacLabel = new JLabel("MAC");
+		JLabel widgetMacLabel = new JLabel(PrimeMain.texts
+				.getString("netMacLabel"));
 		fieldsPanel.add(widgetMacLabel, fieldD);
 
 		fieldD.gridx = 1; // column
@@ -147,7 +145,8 @@ public class NetworkView extends JPanel
 
 		fieldD.gridy = 3; // row
 		fieldD.gridx = 0; // column
-		widgetDefaultGatewayLabel = new JLabel("Default Gateway");
+		JLabel widgetDefaultGatewayLabel = new JLabel(PrimeMain.texts
+				.getString("netDefaultGatewayLabel"));
 		fieldsPanel.add(widgetDefaultGatewayLabel, fieldD);
 
 		fieldD.gridx = 1; // column
@@ -165,10 +164,10 @@ public class NetworkView extends JPanel
 
 		fieldD.gridy = 4; // row
 		fieldD.gridx = 0; // column
-		widgetNetworkNameLabel = new JLabel("Network Name");
+		JLabel widgetNetworkNameLabel = new JLabel(PrimeMain.texts
+				.getString("netNetworkNameLabel"));
 		fieldsPanel.add(widgetNetworkNameLabel, fieldD);
 
-		fieldD.weightx = 1.0; // request any extra horizontal space
 		fieldD.gridx = 1; // column
 		widgetNetworkNameField = new JTextField(obj.getWidgetNetworkInfo()
 				.getNetworkName());
@@ -181,9 +180,31 @@ public class NetworkView extends JPanel
 
 
 
+
+
+
+		fieldD.gridy = 5; // row
+		fieldD.gridx = 0; // column
+		JLabel exemptedLabel = new JLabel(PrimeMain.texts
+				.getString("propGeneralViewExemptedRulesLabel"));
+		fieldsPanel.add(exemptedLabel, fieldD);
+
+		fieldD.weightx = 1.0; // request any extra horizontal space
+		fieldD.gridx = 1; // column
+		exemptedNetworkRules = new JCheckBox();
+		exemptedNetworkRules.setSelected(obj.getObject()
+				.isExemptedNetworkRules());
+		fieldsPanel.add(exemptedNetworkRules, fieldD);
+
+
+
+
 		d.gridy = 0; // row
 		d.gridx = 0; // column
 		this.add(fieldsPanel, d);
+
+
+
 
 
 
@@ -210,7 +231,8 @@ public class NetworkView extends JPanel
 
 		noteD.gridy = 0; // row
 		noteD.gridx = 0; // column
-		widgetNotesLabel = new JLabel("Network Notes");
+		JLabel widgetNotesLabel = new JLabel(PrimeMain.texts
+				.getString("netNetworkNotesLabel"));
 		notePanel.add(widgetNotesLabel, noteD);
 
 		noteD.weighty = 1.0; // request any extra vertical space

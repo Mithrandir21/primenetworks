@@ -4,6 +4,7 @@
 package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
 
+import exceptions.MotherboardNotFound;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
@@ -111,23 +112,17 @@ public class HardwareEditorTabbed extends JTabbedPane
 			}
 			else if ( components[i] instanceof InternalNetworksCard )
 			{
-				this
-						.addTab(PrimeMain.texts
-								.getString("internalNetworkCard"), null,
-								new InternalNICView(obj,
-										(InternalNetworksCard) components[i]),
-								PrimeMain.texts
-										.getString("hwTabIntNICtabDescription"));
+				this.addTab(PrimeMain.texts.getString("internalNetworkCard"),
+						null, new InternalNICView(obj,
+								(InternalNetworksCard) components[i]),
+						PrimeMain.texts.getString("hwTabIntNICtabDescription"));
 			}
 			else if ( components[i] instanceof ExternalNetworksCard )
 			{
-				this
-						.addTab(PrimeMain.texts
-								.getString("externalNetworkCard"), null,
-								new ExternaNICView(obj,
-										(ExternalNetworksCard) components[i]),
-								PrimeMain.texts
-										.getString("hwTabExtNICtabDescription"));
+				this.addTab(PrimeMain.texts.getString("externalNetworkCard"),
+						null, new ExternaNICView(obj,
+								(ExternalNetworksCard) components[i]),
+						PrimeMain.texts.getString("hwTabExtNICtabDescription"));
 			}
 		}
 	}
@@ -188,6 +183,8 @@ public class HardwareEditorTabbed extends JTabbedPane
 		// Checks if any of the views failed its validation.
 		if ( validationFailed == false )
 		{
+			boolean close = true;
+
 			/**
 			 * Goes through all the views and saves the values since none of the
 			 * views failed its validation.
@@ -196,15 +193,22 @@ public class HardwareEditorTabbed extends JTabbedPane
 			{
 				Component comp = this.getComponent(i);
 
-				((HardwareViewInterface) comp).save();
+				if ( ((HardwareViewInterface) comp).save() == false )
+				{
+					close = false;
+				}
 			}
 
-			// // The motherboard save.
-			// Component comp = this.getComponent(0);
-			// ((HardwareView) comp).save();
 
-
-			ComponentsManagment.processAllChanges(mainobj);
+			try
+			{
+				ComponentsManagment.processAllChanges(mainobj);
+			}
+			catch ( MotherboardNotFound e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 
 			// Updates the views of the object to correctly show the
@@ -216,7 +220,7 @@ public class HardwareEditorTabbed extends JTabbedPane
 			}
 
 			// Returns a boolean showing that everything i saved.
-			return true;
+			return close;
 		}
 		// At least one of the validations have failed.
 		else

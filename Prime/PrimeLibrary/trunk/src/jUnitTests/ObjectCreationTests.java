@@ -43,6 +43,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import connections.ConnectionUtils;
+import exceptions.MotherboardNotFound;
 import exceptions.ObjectNotFoundException;
 
 
@@ -359,26 +360,26 @@ public class ObjectCreationTests
 		Object[] st_components = components;
 
 
-		Object[] st_componentsWithOutHDD = null;
+		ThinClient temp = new ThinClient(objectName, objectDesc, st_components);
+
 		try
 		{ // Gets the HDD from the array of components
 			HDD removing = (HDD) ArrayManagment.getSpesificComponents(
 					HDD.class, st_components, st_components.length)[0];
 
-			// Removes the HDD from the array of components
-			st_componentsWithOutHDD = ComponentsManagment.removeComponent(
-					removing, st_components, st_components.length);
+			ComponentsManagment.removeHDD(temp, removing);
 		}
 		catch ( ObjectNotFoundException e )
 		{
-			// This is impossible since the HDD has just been added at the top
-			// of this class
+			// This is impossible since the HDD has just been added at the top of this class
+			e.printStackTrace();
+		}
+		catch ( MotherboardNotFound e )
+		{
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-
-		ThinClient temp = new ThinClient(objectName, objectDesc,
-				st_componentsWithOutHDD);
 
 		String[] supportedConnectionInterfaces = ComponentsManagment
 				.getSupportedInterfaces(temp);

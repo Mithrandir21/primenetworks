@@ -6,6 +6,7 @@ package graphics.GUI.workareaCanvas.providers;
 
 import graphics.PrimeMain;
 
+import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.Widget;
 
 import widgetManipulation.Providers.SceneConnectProvider;
@@ -25,6 +26,8 @@ public class GUIsceneConnectProvider extends SceneConnectProvider
 	/**
 	 * A constructor for the class that sets the {@link WorkareaCanvas} that an
 	 * instance of this class will be applied to.
+	 * 
+	 * @param newObject
 	 */
 	public GUIsceneConnectProvider(WorkareaCanvas canvas)
 	{
@@ -40,13 +43,15 @@ public class GUIsceneConnectProvider extends SceneConnectProvider
 	@Override
 	public void createConnection(Widget sourceWidget, Widget targetWidget)
 	{
-		if ( sourceWidget != targetWidget )
+		if ( sourceWidget != targetWidget
+				&& !(targetWidget instanceof LabelWidget)
+				&& (targetWidget instanceof WidgetObject || isChildOfThisWidget(targetWidget)) )
 		{
 			ActionCreateConnection action = new ActionCreateConnection(
 					PrimeMain.texts
 							.getString("actionCreateConnectionDescriptionText"),
 					this.getCanvas(), (WidgetObject) sourceWidget,
-					(WidgetObject) targetWidget);
+					(WidgetObject) targetWidget.getParentWidget());
 			action.performAction(true);
 		}
 	}

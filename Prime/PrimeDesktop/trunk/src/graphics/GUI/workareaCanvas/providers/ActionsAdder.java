@@ -23,7 +23,6 @@ import org.netbeans.modules.visual.action.AlignWithMoveStrategyProvider;
 import org.netbeans.modules.visual.action.SingleLayerAlignWithWidgetCollector;
 
 import widgetManipulation.PrimeRectangularSelectDecorator;
-import widgetManipulation.WorkareaCanvasNetworkInfo;
 import widgetManipulation.Actions.ExtendedWidgetConnectAction;
 import widgetManipulation.Actions.MoveRoomAction;
 import widgetManipulation.Actions.ResizeWidgetAction;
@@ -53,10 +52,12 @@ public class ActionsAdder
 				new WorkareaTargetListener(canvas)));
 
 		// Adds the zoom feature to the scene.
+		// canvas.getScene().getActions().addAction(
+		// ActionFactory.createZoomAction());
 		canvas.getScene().getActions().addAction(
-				ActionFactory.createZoomAction());
+				ActionFactory.createMouseCenteredZoomAction(1.1));
 		canvas.getScene().getActions().addAction(
-				ActionFactory.createPanAction());
+				ActionFactory.createWheelPanAction());
 		canvas.getScene().getActions().addAction(
 				ActionFactory.createPopupMenuAction(new JMenuWorkareaCanvas(
 						canvas)));
@@ -72,7 +73,7 @@ public class ActionsAdder
 						new PrimeObjectSceneRectangularSelectProvider(canvas)));
 
 
-		canvas.setNetworkInfo(new WorkareaCanvasNetworkInfo(canvas));
+		// canvas.setNetworkInfo(new WorkareaCanvasNetworkInfo(canvas));
 	}
 
 
@@ -95,11 +96,20 @@ public class ActionsAdder
 				ActionFactory.createSelectAction(new CreateProvider()));
 
 
-		// Creates and add the move with align action
-		newObject.getActions().addAction(
-				ActionFactory.createAlignWithMoveAction(canvas.getMainLayer(),
-						canvas.getInteractionLayer(), null));
+		// Creates and add the move without align action
+		newObject.getActions().addAction(ActionFactory.createMoveAction());
 
+		// Creates and add the move with align action
+		// newObject.getActions().addAction(
+		// ActionFactory.createAlignWithMoveAction(canvas.getMainLayer(),
+		// canvas.getInteractionLayer(), null));
+
+		// PrimeAlignWithMove pa = new PrimeAlignWithMove(
+		// new PrimeLayerAlignCollector(canvas.getMainLayer()), canvas
+		// .getInteractionLayer(), decorator);
+		//
+		// newObject.getActions()
+		// .addAction(ActionFactory.createMoveAction(pa, pa));
 
 		// Adds the double clicking feature for the WidgetObject
 		newObject.getActions().addAction(new WidgetAdapterExtended());
@@ -111,9 +121,6 @@ public class ActionsAdder
 		// Cleans up the canvas
 		canvas.cleanUp();
 	}
-
-
-
 
 	/**
 	 * Javadoc-TODO - Description

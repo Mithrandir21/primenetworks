@@ -4,7 +4,6 @@
 package widgets;
 
 
-import java.awt.Point;
 import java.awt.dnd.DropTarget;
 import java.util.List;
 
@@ -26,9 +25,9 @@ import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
 
+import widgetManipulation.NetworkRules;
 import widgetManipulation.WidgetTransferHandler;
 import widgetManipulation.WorkareaCanvasNetworkInfo;
-import widgetManipulation.Actions.WorkareaCanvasActions;
 import connections.Connection;
 
 
@@ -43,6 +42,8 @@ import connections.Connection;
  * WidgetObject} and a standard object will be created. The object class depends
  * on the class of the dragged widget. The object will be created and place
  * within the WidgetObject.
+ * 
+ * Date 09/07/2010S
  * 
  * @author Bahram Malaekeh
  * @version 1.0
@@ -104,6 +105,9 @@ public class WorkareaCanvas extends JPanel
 	// The WorkareaCanvas network info
 	private WorkareaCanvasNetworkInfo networkInfo;
 
+	// The rules that govern what is allowed and not allowed in the network
+	private NetworkRules rules;
+
 	// The undo manager for this canvas
 	private CanvasUndoManager undoManager;
 
@@ -143,6 +147,13 @@ public class WorkareaCanvas extends JPanel
 	{
 		// A random number that will be the serial number of the network
 		serial = (Math.random()) * 500;
+
+		// Creates the network info object and sets the serial of this class as the serial of the class
+		networkInfo = new WorkareaCanvasNetworkInfo(this);
+
+		// Creates the network rules object and sets the serial of this class as the serial of the class
+		rules = new NetworkRules(this);
+
 
 		// Creating the actual view
 		myView.setTransferHandler(TransHandler);
@@ -340,6 +351,15 @@ public class WorkareaCanvas extends JPanel
 	public WorkareaCanvasNetworkInfo getNetworkInfo()
 	{
 		return networkInfo;
+	}
+
+
+	/**
+	 * Gets the network rules object( {@link NetworkRules} ) that contains the rules that govern this network.
+	 */
+	public NetworkRules getRules()
+	{
+		return rules;
 	}
 
 
@@ -716,6 +736,7 @@ public class WorkareaCanvas extends JPanel
 	 */
 	public void setChanged(boolean changed)
 	{
+		this.setSaved(false);
 		this.changed = changed;
 	}
 
@@ -731,28 +752,20 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
+	 * Sets the network rules object( {@link NetworkRules} ) that contains the rules that govern this network.
+	 */
+	public void setRules(NetworkRules rules)
+	{
+		this.rules = rules;
+	}
+
+
+	/**
 	 * Adds 1 to the number of network cards on the scene.
 	 */
 	public void addNIC()
 	{
 		numberOfNICs++;
-	}
-
-
-	/**
-	 * Adds the given WidgetObject at the given point on the scene.
-	 * 
-	 * @param newObject
-	 * @param objectPoint
-	 */
-	public void addWidgetObject(WidgetObject newObject, Point objectPoint,
-			boolean withCleanUp)
-	{
-		// Sets the location of the object.
-		newObject.getObject().setLocation(objectPoint);
-
-		WorkareaCanvasActions.addWidgetToCanvas(newObject, objectPoint, this,
-				withCleanUp);
 	}
 
 

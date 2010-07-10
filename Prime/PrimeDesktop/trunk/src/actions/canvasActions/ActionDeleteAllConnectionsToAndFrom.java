@@ -26,8 +26,8 @@ import connections.WidgetExtendedConnection;
 
 
 /**
- * This action deletes connections to and from the currently selected
- * {@link WidgetObject} on the currently open {@link WorkareaCanvas}.
+ * This action deletes connections to and from the currently selected {@link WidgetObject} on the currently open
+ * {@link WorkareaCanvas}.
  * This action contains a undo/redo function.
  * 
  * @author Bahram Malaekeh
@@ -276,25 +276,28 @@ public class ActionDeleteAllConnectionsToAndFrom extends AbstractSystemAction im
 		// Sets the current canvas as the actions canvas
 		canvas = PrimeMain.currentCanvas;
 
-		// Sets the currently selected widget on the current canvas as the
-		// actions WidgetObject
-		widObject = canvas.getCurrentWidgetObject();
-
-		if ( canvas != null && widObject != null )
+		if ( canvas != null )
 		{
-			// Finds all the connections of the object
-			existingConnections = ConnectionManagment.findConnections(canvas
-					.getConnections(), widObject.getObject());
+			// Sets the currently selected widget on the current canvas as the
+			// actions WidgetObject
+			widObject = canvas.getCurrentWidgetObject();
 
-			// Removes all connection to the WidgetObject
-			WorkareaCanvasActions.removeAllConnectionsToFromObject(canvas,
-					widObject.getObject());
-
-			canvas.cleanUp();
-
-			if ( undoable )
+			if ( widObject != null )
 			{
-				canvas.addUndoableAction(this);
+				// Finds all the connections of the object
+				existingConnections = ConnectionManagment.findConnections(
+						canvas.getConnections(), widObject.getObject());
+
+				// Removes all connection to the WidgetObject
+				WorkareaCanvasActions.removeAllConnectionsToFromObject(canvas,
+						widObject.getObject());
+
+				canvas.cleanUp();
+
+				if ( undoable )
+				{
+					canvas.addUndoableAction(this);
+				}
 			}
 		}
 	}

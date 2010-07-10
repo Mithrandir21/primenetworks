@@ -4,6 +4,7 @@
 package objects.infrastructureObjects;
 
 
+import objects.Infrastructure;
 import objects.Object;
 import objects.hardwareObjects.Motherboard;
 
@@ -16,7 +17,7 @@ import objects.hardwareObjects.Motherboard;
  * @author Bahram Malaekeh
  * 
  */
-public class Internet extends Object
+public class Internet extends Infrastructure
 {
 	/**
 	 * The name of the network
@@ -93,7 +94,8 @@ public class Internet extends Object
 	 *            The {@link Motherboard} of the Internet object(which is only used so that the system can connect a
 	 *            RJ-45 cable to).
 	 */
-	public Internet(String name, String desc, String net, String[] supCon, Motherboard initObjects)
+	public Internet(String name, String desc, String net, String[] supCon,
+			Motherboard initObjects)
 	{
 		super(name, desc, supCon, initObjects);
 		netName = net;

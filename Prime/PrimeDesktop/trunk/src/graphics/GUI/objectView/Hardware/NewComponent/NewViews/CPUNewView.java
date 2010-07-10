@@ -4,6 +4,7 @@
 package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 
+import exceptions.MotherboardNotFound;
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
@@ -36,7 +37,6 @@ import managment.ComponentsManagment;
 import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.CPU;
-import objects.hardwareObjects.Motherboard;
 
 
 /**
@@ -44,8 +44,7 @@ import objects.hardwareObjects.Motherboard;
  * 
  * @author Bahram Malaekeh
  */
-public class CPUNewView extends JFrame implements HardwareViewInterface,
-		ActionListener
+public class CPUNewView extends JFrame implements HardwareViewInterface, ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -164,8 +163,7 @@ public class CPUNewView extends JFrame implements HardwareViewInterface,
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param cpu
@@ -185,8 +183,7 @@ public class CPUNewView extends JFrame implements HardwareViewInterface,
 				.getString("cpuViewProducerTip"));
 
 		labels[1] = new JLabel(PrimeMain.texts.getString("cpuViewSocketLabel"));
-		labels[1]
-				.setToolTipText(PrimeMain.texts.getString("cpuViewSocketTip"));
+		labels[1].setToolTipText(PrimeMain.texts.getString("cpuViewSocketTip"));
 
 		labels[2] = new JLabel(PrimeMain.texts.getString("cpuViewSpeedLabel"));
 		labels[2].setToolTipText(PrimeMain.texts.getString("cpuViewSpeedTip"));
@@ -455,29 +452,33 @@ public class CPUNewView extends JFrame implements HardwareViewInterface,
 			// Saves the current values of the new motherboard.
 			save();
 
-			ComponentsManagment.processCPUmatch(mainObj, (Motherboard) mainObj
-					.getComponents()[0], CPUobj, this);
-
-
-			// Updates the views of the object to correctly show the
-			// current info.
-			ObjectView view = PrimeMain.getObjectView(mainObj);
-			if ( view != null )
+			try
 			{
-				view.updateViewInfo();
+				ComponentsManagment.processCPUmatch(mainObj, CPUobj, this);
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				ObjectView view = PrimeMain.getObjectView(mainObj);
+				if ( view != null )
+				{
+					view.updateViewInfo();
+				}
+				// If no view is returned, then the standard object view is open
+				// and that should be updated.
+				else if ( PrimeMain.stdObjView != null )
+				{
+					PrimeMain.stdObjView.getSplitView().getHardStdObjView()
+							.updateTabInfo();
+				}
+
+				// Closes the JFrame.
+				this.dispose();
 			}
-			// If no view is returned, then the standard object view is open
-			// and that should be updated.
-			else if ( PrimeMain.stdObjView != null )
+			catch ( MotherboardNotFound e1 )
 			{
-				PrimeMain.stdObjView.getSplitView().getHardStdObjView()
-						.updateTabInfo();
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-
-
-			// Closes the JFrame.
-			this.dispose();
-
 		}
 		else if ( e.getActionCommand().equals("cancel") )
 		{
@@ -488,7 +489,7 @@ public class CPUNewView extends JFrame implements HardwareViewInterface,
 
 
 	@Override
-	public void save()
+	public boolean save()
 	{
 		if ( name.getText() != "" )
 		{
@@ -568,6 +569,8 @@ public class CPUNewView extends JFrame implements HardwareViewInterface,
 		}
 
 		CPUobj.set64Bit(bit64.isSelected());
+
+		return true;
 	}
 
 

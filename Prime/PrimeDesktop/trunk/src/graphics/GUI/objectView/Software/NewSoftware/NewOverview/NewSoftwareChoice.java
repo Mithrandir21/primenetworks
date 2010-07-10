@@ -14,7 +14,7 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 import objects.Object;
@@ -25,7 +25,7 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class NewSoftwareChoice extends JFrame
+public class NewSoftwareChoice extends JDialog
 {
 	/**
 	 * Javadoc-TODO - Description NEEDED!
@@ -34,8 +34,7 @@ public class NewSoftwareChoice extends JFrame
 	 */
 	public NewSoftwareChoice(Object obj)
 	{
-		super(PrimeMain.texts.getString("swTabSWnewSoftware"));
-
+		this.setTitle(PrimeMain.texts.getString("swTabSWnewSoftware"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -77,7 +76,8 @@ public class NewSoftwareChoice extends JFrame
 
 		c.add(panel, cons);
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3, (int) scrnsize.getHeight() / 3));
+		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
+				(int) scrnsize.getHeight() / 3));
 		this.setSize(width, height);
 		this.setVisible(true);
 	}

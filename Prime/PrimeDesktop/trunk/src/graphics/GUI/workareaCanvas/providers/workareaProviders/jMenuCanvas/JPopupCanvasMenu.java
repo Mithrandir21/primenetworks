@@ -15,6 +15,7 @@ import actions.canvasActions.ActionDeleteAllConnections;
 import actions.canvasActions.ActionDeleteAllRooms;
 import actions.canvasActions.ActionDeleteAllWidgets;
 import actions.canvasActions.ActionDeleteEverything;
+import actions.canvasActions.ActionOpenNetworkRules;
 import actions.systemActions.ActionPaste;
 
 
@@ -75,9 +76,8 @@ public class JPopupCanvasMenu
 				localLocation);
 
 		// -------------------------------
-		JMenuItem menuItem;
-
-		menuItem = new JMenuItem(new ActionPaste("Paste Object"));
+		JMenuItem menuItem = new JMenuItem(new ActionPaste(PrimeMain.texts
+				.getString("canvasMenuPasteWidgetAction")));
 
 		// If neither the copy or cut pointers point to anything, the past
 		// button will be disabled
@@ -92,11 +92,17 @@ public class JPopupCanvasMenu
 
 		// Adds the "add objects" menu
 		ObjectCreationMenues();
-		
+
 		popup.addSeparator();
-		
+
 		// Adds the "remove" menu
 		createRemoveMenu();
+
+
+		// -------------------------------
+		JMenuItem openNetworkRules = new JMenuItem(new ActionOpenNetworkRules(
+				PrimeMain.texts.getString("canvasMenuOpenNetworkRules")));
+		popup.add(openNetworkRules);
 
 		return popup;
 	}
@@ -304,7 +310,7 @@ public class JPopupCanvasMenu
 
 		return submenuPeripheral;
 	}
-	
+
 
 	/**
 	 * Creates a menu that holds remove actions for the canvas.
@@ -321,28 +327,29 @@ public class JPopupCanvasMenu
 		submenu.add(removeAllWidgets);
 
 
-		JMenuItem removeAllConnections = new JMenuItem(new ActionDeleteAllConnections(
-				PrimeMain.texts.getString("deleteAllConnectionsLabel")));
+		JMenuItem removeAllConnections = new JMenuItem(
+				new ActionDeleteAllConnections(PrimeMain.texts
+						.getString("deleteAllConnectionsLabel")));
 		removeAllConnections.setIcon(null);
 		submenu.add(removeAllConnections);
-		
-		
+
+
 		JMenuItem removeAllRooms = new JMenuItem(new ActionDeleteAllRooms(
 				PrimeMain.texts.getString("deleteAllRoomsLabel")));
 		removeAllRooms.setIcon(null);
 		submenu.add(removeAllRooms);
-		
-		
+
+
 		// Adds a separator to the submenu
 		submenu.addSeparator();
-		
-		
+
+
 		JMenuItem removeEverything = new JMenuItem(new ActionDeleteEverything(
 				PrimeMain.texts.getString("deleteEverythingLabel")));
 		removeEverything.setIcon(null);
 		submenu.add(removeEverything);
-		
-		
+
+
 		popup.add(submenu);
 	}
 }

@@ -4,6 +4,7 @@
 package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
 
+import exceptions.MotherboardNotFound;
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
@@ -35,7 +36,6 @@ import managment.ComponentsManagment;
 import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.HDD;
-import objects.hardwareObjects.Motherboard;
 import connections.ConnectionUtils;
 
 
@@ -178,10 +178,9 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 		labels[1] = new JLabel(PrimeMain.texts.getString("hddViewTypeLabel"));
 		labels[1].setToolTipText(PrimeMain.texts.getString("hddViewTypeTip"));
 
-		labels[2] = new JLabel(PrimeMain.texts
-				.getString("hddViewSubtypeLabel"));
-		labels[2].setToolTipText(PrimeMain.texts
-				.getString("hddViewSubtypeTip"));
+		labels[2] = new JLabel(PrimeMain.texts.getString("hddViewSubtypeLabel"));
+		labels[2]
+				.setToolTipText(PrimeMain.texts.getString("hddViewSubtypeTip"));
 
 		labels[3] = new JLabel(PrimeMain.texts.getString("hddViewSizeLabel"));
 		labels[3].setToolTipText(PrimeMain.texts.getString("hddViewSizeTip"));
@@ -364,7 +363,7 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 
 
 	@Override
-	public void save()
+	public boolean save()
 	{
 		if ( name.getText() != "" )
 		{
@@ -415,6 +414,7 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 			mainHDD.setRPM(0);
 		}
 
+		return true;
 	}
 
 	@Override
@@ -425,29 +425,33 @@ public class HDDNewView extends JFrame implements HardwareViewInterface, ActionL
 			// Saves the current values of the new motherboard.
 			save();
 
-			ComponentsManagment.processHDDmatch(mainObj, (Motherboard) mainObj
-					.getComponents()[0], mainHDD, this);
-
-
-			// Updates the views of the object to correctly show the
-			// current info.
-			ObjectView view = PrimeMain.getObjectView(mainObj);
-			if ( view != null )
+			try
 			{
-				view.updateViewInfo();
+				ComponentsManagment.processHDDmatch(mainObj, mainHDD, this);
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				ObjectView view = PrimeMain.getObjectView(mainObj);
+				if ( view != null )
+				{
+					view.updateViewInfo();
+				}
+				// If no view is returned, then the standard object view is open
+				// and that should be updated.
+				else if ( PrimeMain.stdObjView != null )
+				{
+					PrimeMain.stdObjView.getSplitView().getHardStdObjView()
+							.updateTabInfo();
+				}
+
+				// Closes the JFrame.
+				this.dispose();
 			}
-			// If no view is returned, then the standard object view is open
-			// and that should be updated.
-			else if ( PrimeMain.stdObjView != null )
+			catch ( MotherboardNotFound e1 )
 			{
-				PrimeMain.stdObjView.getSplitView().getHardStdObjView()
-						.updateTabInfo();
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-
-
-			// Closes the JFrame.
-			this.dispose();
-
 		}
 		else if ( e.getActionCommand().equals("cancel") )
 		{

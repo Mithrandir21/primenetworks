@@ -4,6 +4,7 @@
 package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
 
+import exceptions.MotherboardNotFound;
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
@@ -41,8 +42,7 @@ import objects.hardwareObjects.Ram;
  * 
  * @author Bahram Malaekeh
  */
-public class RAMView extends JPanel implements HardwareViewInterface,
-		ActionListener
+public class RAMView extends JPanel implements HardwareViewInterface, ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -136,8 +136,7 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the
-	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param ram
@@ -159,10 +158,9 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 		labels[1] = new JLabel(PrimeMain.texts.getString("ramViewTypeLabel"));
 		labels[1].setToolTipText(PrimeMain.texts.getString("ramViewTypeTip"));
 
-		labels[2] = new JLabel(PrimeMain.texts
-				.getString("ramViewSubtypeLabel"));
-		labels[2].setToolTipText(PrimeMain.texts
-				.getString("ramViewSubtypeTip"));
+		labels[2] = new JLabel(PrimeMain.texts.getString("ramViewSubtypeLabel"));
+		labels[2]
+				.setToolTipText(PrimeMain.texts.getString("ramViewSubtypeTip"));
 
 		labels[3] = new JLabel(PrimeMain.texts.getString("ramViewSizeLabel"));
 		labels[3].setToolTipText(PrimeMain.texts.getString("ramViewSizeTip"));
@@ -282,7 +280,7 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
 	 */
 	@Override
-	public void save()
+	public boolean save()
 	{
 		if ( name.getText() != "" )
 		{
@@ -322,6 +320,7 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 		}
 
 
+		return true;
 	}
 
 
@@ -403,27 +402,30 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 
 			if ( command.equals("removeComp") )
 			{
-				// Will remove the first variable from the list of components
-				// that will be returned and set as the components for the main
-				// object.
-				mainObj.setAllComponents(ComponentsManagment.removeComponent(
-						RAMobj, mainObj.getComponents(), mainObj
-								.getComponents().length));
-
-
-				// Updates the views of the object to correctly show the
-				// current info.
-				ObjectView view = PrimeMain.getObjectView(mainObj);
-				if ( view != null )
+				try
 				{
-					view.updateViewInfo();
+					ComponentsManagment.removeComponent(
+							PrimeMain.currentCanvas, mainObj, RAMobj);
+
+					// Updates the views of the object to correctly show the
+					// current info.
+					ObjectView view = PrimeMain.getObjectView(mainObj);
+					if ( view != null )
+					{
+						view.updateViewInfo();
+					}
+					// If no view is returned, then the standard object view is open
+					// and that should be updated.
+					else if ( PrimeMain.stdObjView != null )
+					{
+						PrimeMain.stdObjView.getSplitView().getHardStdObjView()
+								.updateTabInfo();
+					}
 				}
-				// If no view is returned, then the standard object view is open
-				// and that should be updated.
-				else if ( PrimeMain.stdObjView != null )
+				catch ( MotherboardNotFound e1 )
 				{
-					PrimeMain.stdObjView.getSplitView().getHardStdObjView()
-							.updateTabInfo();
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		}

@@ -11,6 +11,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,6 +21,7 @@ import javax.swing.SwingConstants;
 
 import logistical.checkLogic;
 import managment.CanvasManagment;
+import managment.RulesManagment;
 import objects.Object;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
@@ -43,6 +45,8 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 	public static JTextField numbJumpsField = new JTextField();
 
 	public static JTextField IPfield = new JTextField();
+
+	private static JCheckBox exemptedNetworkRules = new JCheckBox();
 
 	public static boolean errorDuringSaving = false;
 
@@ -98,7 +102,7 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 		// d.ipadx = 0; // reset to default
 		// d.weighty = 1.0; // request any extra vertical space
 		panelCons.weightx = 0.8; // request any extra horizontal space
-		panelCons.anchor = GridBagConstraints.NORTH; // location
+		panelCons.anchor = GridBagConstraints.LINE_END; // location
 		panelCons.insets = new Insets(0, 0, 5, 0); // padding
 		// d.gridwidth = 1; // 2 row wide
 		// d.gridheight = 1; // 2 columns wide
@@ -212,6 +216,25 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 		}
 
 
+		// Exempted network rules
+		JLabel exemptedRulesLabel = new JLabel(PrimeMain.texts
+				.getString("propGeneralViewExemptedRulesLabel"),
+				SwingConstants.TRAILING);
+		exemptedRulesLabel.setToolTipText(PrimeMain.texts
+				.getString("propGeneralViewExemptedRulesTip"));
+		panelCons.insets = new Insets(0, 0, 5, 0); // padding
+		panelCons.gridy++; // row
+		panel.add(exemptedRulesLabel, panelCons);
+
+
+		exemptedNetworkRules.setSelected(obj.isExemptedNetworkRules());
+		exemptedNetworkRules.setName("exemptedRules");
+		exemptedRulesLabel.setLabelFor(exemptedNetworkRules);
+		panelCons.insets = new Insets(0, 0, 10, 0); // padding
+		panelCons.gridy++; // row
+		panel.add(exemptedNetworkRules, panelCons);
+
+
 		return panel;
 	}
 
@@ -235,6 +258,8 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 		WidgetObject widObj = CanvasManagment.findWidgetObject(objectViewed,
 				PrimeMain.currentCanvas);
 		IPfield.setText(widObj.getWidgetNetworkInfo().getIp());
+
+		exemptedNetworkRules.setSelected(objectViewed.isExemptedNetworkRules());
 
 		errorDuringSaving = false;
 	}
@@ -346,6 +371,48 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 
 					errorDuringSaving = true;
 				}
+			}
+
+
+			boolean exempted = exemptedNetworkRules.isSelected();
+
+			if ( exempted == false && objectViewed.isExemptedNetworkRules() )
+			{
+				String question = PrimeMain.texts
+						.getString("rulesNoLongerExemptedMsg")
+						+ "\n"
+						+ PrimeMain.texts
+								.getString("rulesPortsConnectionsChangeMsg");
+
+
+
+				// Custom button text
+				String[] options = { PrimeMain.texts.getString("yes"),
+						PrimeMain.texts.getString("no") };
+
+
+				int i = JOptionPane
+						.showOptionDialog(null, question, PrimeMain.texts
+								.getString("confirm"),
+								JOptionPane.YES_NO_CANCEL_OPTION,
+								JOptionPane.QUESTION_MESSAGE, null, options,
+								options[1]);
+
+				// If the answer is yes
+				if ( i == 0 )
+				{
+					objectViewed.setExemptedNetworkRules(false);
+
+					RulesManagment.processRulesChange(PrimeMain.currentCanvas);
+				}
+				else
+				{
+					exemptedNetworkRules.setSelected(true);
+				}
+			}
+			else
+			{
+				objectViewed.setExemptedNetworkRules(exempted);
 			}
 		}
 	}

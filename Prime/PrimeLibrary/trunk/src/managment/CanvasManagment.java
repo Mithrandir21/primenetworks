@@ -317,16 +317,11 @@ public class CanvasManagment
 	 *            The {@link WorkareaCanvas} to be examined.
 	 * @return A boolean on whether or not the {@link WorkareaCanvas} has been changed and not saved.
 	 */
-	public static boolean canvasHaveChanged(WorkareaCanvas canvas)
+	public static boolean canvasHasChanged(WorkareaCanvas canvas)
 	{
 		if ( canvas != null )
 		{
 			if ( canvas.isSaved() != true && canvas.isChanged() == true )
-			{
-				return true;
-			}
-
-			if ( canvas.isSaved() != true && canvas.isChanged() == false )
 			{
 				return true;
 			}

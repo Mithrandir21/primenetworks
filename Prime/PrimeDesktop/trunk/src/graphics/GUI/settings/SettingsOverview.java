@@ -11,6 +11,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -30,7 +31,7 @@ import managment.Settings;
  */
 public class SettingsOverview extends JFrame
 {
-	JCheckBox[] messagesCheckBox = new JCheckBox[12];
+	public static JCheckBox[] messagesCheckBox = new JCheckBox[12];
 
 	/**
 	 * A constructor for the class that sets up the settings variables and
@@ -39,6 +40,7 @@ public class SettingsOverview extends JFrame
 	public SettingsOverview()
 	{
 		super(PrimeMain.texts.getString("settingsFrameLabel"));
+		Dimension size = new Dimension(600, 530);
 
 		setUpMessageCheckBoxes();
 
@@ -59,8 +61,6 @@ public class SettingsOverview extends JFrame
 		Dimension scrnsize = toolkit.getScreenSize();
 
 
-		// Set size for the settings JFrame
-		Dimension size = new Dimension(700, 525);
 
 		int initYLocation = (scrnsize.height - size.height) / 3;
 		int initXLocation = (scrnsize.width - size.width) / 2;
@@ -71,7 +71,7 @@ public class SettingsOverview extends JFrame
 
 
 
-		panel.add(getSettingsTabs());
+		panel.add(getSettingsTabs(setListener));
 
 
 
@@ -103,7 +103,9 @@ public class SettingsOverview extends JFrame
 		c.add(panel);
 
 
-		this.setSize(size);
+
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		// this.setResizable(false);
 		this.setLocation(initXLocation, initYLocation);
 		// this.setExtendedState(Frame.MAXIMIZED_BOTH);
@@ -121,18 +123,18 @@ public class SettingsOverview extends JFrame
 	 * @return A JTabbedPane with a {@link NetworkMessagesSettings} panel
 	 *         inside.
 	 */
-	private JTabbedPane getSettingsTabs()
+	private JTabbedPane getSettingsTabs(ActionListener lis)
 	{
 		JTabbedPane tabs = new JTabbedPane();
 
 		ImageIcon frameIcon = ImageLocator
 				.getImageIconObject("ProcessingSettings");
 		tabs.addTab(PrimeMain.texts.getString("settingsShowMsgPanelLabel"),
-				frameIcon, new NetworkMessagesSettings(messagesCheckBox),
+				frameIcon, new NetworkMessagesSettings(messagesCheckBox, lis),
 				PrimeMain.texts.getString("settingsShowMsgPanelTip"));
-
-		tabs.addTab(PrimeMain.texts.getString("settingsAdvancedPanelLabel"),
-				new AdvancedSettings());
+		//
+		// tabs.addTab(PrimeMain.texts.getString("settingsAdvancedPanelLabel"),
+		// new AdvancedSettings());
 
 		return tabs;
 	}

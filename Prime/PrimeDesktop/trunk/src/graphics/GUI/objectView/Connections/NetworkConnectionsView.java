@@ -1,6 +1,7 @@
 package graphics.GUI.objectView.Connections;
 
 
+import exceptions.MotherboardNotFound;
 import exceptions.ObjectNotFoundException;
 import graphics.PrimeMain;
 
@@ -413,8 +414,8 @@ public class NetworkConnectionsView extends JPanel
 		text = obj.getObjectName();
 		if ( text != "" && text != null )
 		{
-			info[0] = PrimeMain.texts.getString("conTabObjectNameLabel")
-					+ ": " + text;
+			info[0] = PrimeMain.texts.getString("conTabObjectNameLabel") + ": "
+					+ text;
 		}
 
 
@@ -427,11 +428,8 @@ public class NetworkConnectionsView extends JPanel
 
 		try
 		{
-			mbObj = (Motherboard) ArrayManagment.getSpesificComponents(
-					Motherboard.class, obj.getComponents(),
-					obj.getComponents().length)[0];
 
-
+			mbObj = ComponentsManagment.getObjectMotherboard(obj);
 
 			Object[] cpusArray = ArrayManagment.getSpesificComponents(
 					CPU.class, obj.getComponents(), obj.getComponents().length);
@@ -457,6 +455,11 @@ public class NetworkConnectionsView extends JPanel
 		catch ( ObjectNotFoundException e )
 		{
 			// Does nothing. Checked later.
+		}
+		catch ( MotherboardNotFound e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 
