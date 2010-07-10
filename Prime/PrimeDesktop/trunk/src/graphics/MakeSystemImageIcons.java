@@ -1,5 +1,19 @@
-/**
- * 
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * Copyright (C) 2010  Bahram Malaekeh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics;
 
@@ -357,9 +371,8 @@ public class MakeSystemImageIcons
 		else
 		{
 			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons
-					.put(PrimeMain.objectlist.get(10).getClass(),
-							PrimeMain.objectlist.get(10).getVisualImage());
+			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(10)
+					.getClass(), PrimeMain.objectlist.get(10).getVisualImage());
 		}
 
 
@@ -379,9 +392,8 @@ public class MakeSystemImageIcons
 		else
 		{
 			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons
-					.put(PrimeMain.objectlist.get(11).getClass(),
-							PrimeMain.objectlist.get(11).getVisualImage());
+			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(11)
+					.getClass(), PrimeMain.objectlist.get(11).getVisualImage());
 		}
 
 
@@ -401,9 +413,8 @@ public class MakeSystemImageIcons
 		else
 		{
 			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons
-					.put(PrimeMain.objectlist.get(12).getClass(),
-							PrimeMain.objectlist.get(12).getVisualImage());
+			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(12)
+					.getClass(), PrimeMain.objectlist.get(12).getVisualImage());
 		}
 
 
@@ -423,9 +434,8 @@ public class MakeSystemImageIcons
 		else
 		{
 			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons
-					.put(PrimeMain.objectlist.get(13).getClass(),
-							PrimeMain.objectlist.get(13).getVisualImage());
+			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(13)
+					.getClass(), PrimeMain.objectlist.get(13).getVisualImage());
 		}
 
 
@@ -446,9 +456,8 @@ public class MakeSystemImageIcons
 		else
 		{
 			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons
-					.put(PrimeMain.objectlist.get(14).getClass(),
-							PrimeMain.objectlist.get(14).getVisualImage());
+			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(14)
+					.getClass(), PrimeMain.objectlist.get(14).getVisualImage());
 		}
 
 
@@ -469,9 +478,8 @@ public class MakeSystemImageIcons
 		else
 		{
 			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons
-					.put(PrimeMain.objectlist.get(15).getClass(),
-							PrimeMain.objectlist.get(15).getVisualImage());
+			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(15)
+					.getClass(), PrimeMain.objectlist.get(15).getVisualImage());
 		}
 
 
@@ -491,9 +499,8 @@ public class MakeSystemImageIcons
 		else
 		{
 			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons
-					.put(PrimeMain.objectlist.get(16).getClass(),
-							PrimeMain.objectlist.get(16).getVisualImage());
+			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(16)
+					.getClass(), PrimeMain.objectlist.get(16).getVisualImage());
 		}
 
 
@@ -513,9 +520,8 @@ public class MakeSystemImageIcons
 		else
 		{
 			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons
-					.put(PrimeMain.objectlist.get(17).getClass(),
-							PrimeMain.objectlist.get(17).getVisualImage());
+			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(17)
+					.getClass(), PrimeMain.objectlist.get(17).getVisualImage());
 		}
 
 
@@ -535,9 +541,8 @@ public class MakeSystemImageIcons
 		else
 		{
 			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons
-					.put(PrimeMain.objectlist.get(18).getClass(),
-							PrimeMain.objectlist.get(18).getVisualImage());
+			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(18)
+					.getClass(), PrimeMain.objectlist.get(18).getVisualImage());
 		}
 
 
@@ -558,9 +563,8 @@ public class MakeSystemImageIcons
 		else
 		{
 			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons
-					.put(PrimeMain.objectlist.get(19).getClass(),
-							PrimeMain.objectlist.get(19).getVisualImage());
+			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(19)
+					.getClass(), PrimeMain.objectlist.get(19).getVisualImage());
 		}
 
 
@@ -581,9 +585,8 @@ public class MakeSystemImageIcons
 		else
 		{
 			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons
-					.put(PrimeMain.objectlist.get(20).getClass(),
-							PrimeMain.objectlist.get(20).getVisualImage());
+			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(20)
+					.getClass(), PrimeMain.objectlist.get(20).getVisualImage());
 		}
 
 
@@ -603,9 +606,8 @@ public class MakeSystemImageIcons
 		else
 		{
 			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons
-					.put(PrimeMain.objectlist.get(21).getClass(),
-							PrimeMain.objectlist.get(21).getVisualImage());
+			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(21)
+					.getClass(), PrimeMain.objectlist.get(21).getVisualImage());
 		}
 	}
 

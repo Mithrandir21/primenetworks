@@ -1,5 +1,19 @@
-/**
- * 
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * Copyright (C) 2010  Bahram Malaekeh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.messageArea;
 
@@ -487,8 +501,8 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 
 	/**
-	 * Creates, if not already existing, a message panel for message about the
-	 * {@link WorkareaCanvas} network. If the panel already exists, it will set
+	 * Creates, if not already existing, a message panel for message about the {@link WorkareaCanvas} network. If the panel
+	 * already exists, it will set
 	 * the focus of the JTabbedPane to the tab containing that panel.
 	 */
 	public void createNetworkMessagePanel()
@@ -508,8 +522,8 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 
 	/**
 	 * Creates, if not already existing, a message panel for message about the
-	 * connection between {@link WidgetObject WidgetObjects} in
-	 * {@link WorkareaCanvas}. If the panel already exists, it will set the
+	 * connection between {@link WidgetObject WidgetObjects} in {@link WorkareaCanvas}. If the panel already exists, it will set
+	 * the
 	 * focus of the JTabbedPane to the tab containing that panel.
 	 */
 	public void createConnectionMessagePanel()
@@ -604,8 +618,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	public void focusOnSoftwareTab()
 	{
 		// Gets the index of the software tab
-		int index = getIndexOfTab(PrimeMain.texts
-				.getString("softwareTabLabel"));
+		int index = getIndexOfTab(PrimeMain.texts.getString("softwareTabLabel"));
 
 		if ( index != -1 )
 		{
@@ -619,8 +632,7 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	public void focusOnHardwareTab()
 	{
 		// Gets the index of the hardware tab
-		int index = getIndexOfTab(PrimeMain.texts
-				.getString("hardwareTabLabel"));
+		int index = getIndexOfTab(PrimeMain.texts.getString("hardwareTabLabel"));
 
 		if ( index != -1 )
 		{

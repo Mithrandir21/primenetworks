@@ -1,5 +1,19 @@
-/**
- * 
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * Copyright (C) 2010  Bahram Malaekeh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.selectArea.PrimeJTree;
 
@@ -82,7 +96,6 @@ public class FileTreeNode extends DefaultMutableTreeNode
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see javax.swing.tree.TreeNode#children()
 	 */
 	@Override
@@ -95,7 +108,6 @@ public class FileTreeNode extends DefaultMutableTreeNode
 
 			/*
 			 * (non-Javadoc)
-			 * 
 			 * @see java.util.Enumeration#hasMoreElements()
 			 */
 			public boolean hasMoreElements()
@@ -105,7 +117,6 @@ public class FileTreeNode extends DefaultMutableTreeNode
 
 			/*
 			 * (non-Javadoc)
-			 * 
 			 * @see java.util.Enumeration#nextElement()
 			 */
 			public File nextElement()
@@ -143,7 +154,6 @@ public class FileTreeNode extends DefaultMutableTreeNode
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see javax.swing.tree.TreeNode#getAllowsChildren()
 	 */
 	@Override
@@ -154,18 +164,17 @@ public class FileTreeNode extends DefaultMutableTreeNode
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see javax.swing.tree.TreeNode#getChildAt(int)
 	 */
 	@Override
 	public TreeNode getChildAt(int childIndex)
 	{
-		return new FileTreeNode(this.children[childIndex], this.parent == null, this);
+		return new FileTreeNode(this.children[childIndex], this.parent == null,
+				this);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see javax.swing.tree.TreeNode#getChildCount()
 	 */
 	@Override
@@ -176,7 +185,6 @@ public class FileTreeNode extends DefaultMutableTreeNode
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see javax.swing.tree.TreeNode#getIndex(javax.swing.tree.TreeNode)
 	 */
 	@Override
@@ -193,7 +201,6 @@ public class FileTreeNode extends DefaultMutableTreeNode
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see javax.swing.tree.TreeNode#getParent()
 	 */
 	@Override
@@ -204,7 +211,6 @@ public class FileTreeNode extends DefaultMutableTreeNode
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see javax.swing.tree.TreeNode#isLeaf()
 	 */
 	@Override

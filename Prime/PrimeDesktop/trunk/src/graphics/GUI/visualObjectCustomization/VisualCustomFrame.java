@@ -1,5 +1,19 @@
-/**
- * 
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * Copyright (C) 2010  Bahram Malaekeh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.visualObjectCustomization;
 
@@ -144,7 +158,7 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 			@Override
 			public void windowClosing(WindowEvent ev)
 			{
-				if( changed )
+				if ( changed )
 				{
 					String question = PrimeMain.texts
 							.getString("imageIconsChangedQuestion");
@@ -161,14 +175,14 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 							JOptionPane.YES_NO_CANCEL_OPTION,
 							JOptionPane.QUESTION_MESSAGE, null, options,
 							options[1]);
-					
+
 
 					if ( answer == 0 )
 					{
 						PrimeMain.vcf = null;
 					}
 				}
-				
+
 			}
 		});
 	}
@@ -339,15 +353,15 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 			// FIXME - Image Override
 			// if ( answer == 0 )
 			// {
-				// // The File pointer to the Image file
-				// File imageFile = GraphicalFunctions.getImageIconFile(icon);
-				//
-				// // If there was a File found
-				// if ( imageFile != null )
-				// {
-				// // Attempts to write
-				// SystemFunctions.copyIconIntoTheSystem(imageFile);
-				// }
+			// // The File pointer to the Image file
+			// File imageFile = GraphicalFunctions.getImageIconFile(icon);
+			//
+			// // If there was a File found
+			// if ( imageFile != null )
+			// {
+			// // Attempts to write
+			// SystemFunctions.copyIconIntoTheSystem(imageFile);
+			// }
 			// }
 		}
 

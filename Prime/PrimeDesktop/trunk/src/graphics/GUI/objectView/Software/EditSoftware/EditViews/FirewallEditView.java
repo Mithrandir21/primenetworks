@@ -1,3 +1,20 @@
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * Copyright (C) 2010  Bahram Malaekeh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 
@@ -235,10 +252,9 @@ public class FirewallEditView extends JPanel implements SoftwareView, ActionList
 		labels[3] = new JLabel(PrimeMain.texts.getString("fwViewSupDPILabel"));
 		labels[3].setToolTipText(PrimeMain.texts.getString("fwViewSupDPITip"));
 
-		labels[4] = new JLabel(PrimeMain.texts
-				.getString("fwViewHasProxyLabel"));
-		labels[4].setToolTipText(PrimeMain.texts
-				.getString("fwViewHasProxyTip"));
+		labels[4] = new JLabel(PrimeMain.texts.getString("fwViewHasProxyLabel"));
+		labels[4]
+				.setToolTipText(PrimeMain.texts.getString("fwViewHasProxyTip"));
 
 		labels[5] = new JLabel(PrimeMain.texts.getString("fwViewHasNATLabel"));
 		labels[5].setToolTipText(PrimeMain.texts.getString("fwViewHasNATTip"));
@@ -259,22 +275,18 @@ public class FirewallEditView extends JPanel implements SoftwareView, ActionList
 		labels[9].setToolTipText(PrimeMain.texts
 				.getString("fwViewSupModularityTip"));
 
-		labels[10] = new JLabel(PrimeMain.texts
-				.getString("fwViewSupIPv6Label"));
-		labels[10].setToolTipText(PrimeMain.texts
-				.getString("fwViewSupIPv6Tip"));
+		labels[10] = new JLabel(PrimeMain.texts.getString("fwViewSupIPv6Label"));
+		labels[10]
+				.setToolTipText(PrimeMain.texts.getString("fwViewSupIPv6Tip"));
 
 		labels[11] = new JLabel(PrimeMain.texts.getString("fwViewSupTTLLabel"));
-		labels[11]
-				.setToolTipText(PrimeMain.texts.getString("fwViewSupTTLTip"));
+		labels[11].setToolTipText(PrimeMain.texts.getString("fwViewSupTTLTip"));
 
 		labels[12] = new JLabel(PrimeMain.texts.getString("fwViewSupRWALabel"));
-		labels[12]
-				.setToolTipText(PrimeMain.texts.getString("fwViewSupRWATip"));
+		labels[12].setToolTipText(PrimeMain.texts.getString("fwViewSupRWATip"));
 
 		labels[13] = new JLabel(PrimeMain.texts.getString("fwViewSupDMZLabel"));
-		labels[13]
-				.setToolTipText(PrimeMain.texts.getString("fwViewSupDMZTip"));
+		labels[13].setToolTipText(PrimeMain.texts.getString("fwViewSupDMZTip"));
 
 		labels[14] = new JLabel(PrimeMain.texts
 				.getString("fwViewSupToDFilterLabel"));
@@ -292,8 +304,7 @@ public class FirewallEditView extends JPanel implements SoftwareView, ActionList
 				.getString("fwViewSupPortForwardingTip"));
 
 		labels[17] = new JLabel(PrimeMain.texts.getString("fwViewSupQoSLabel"));
-		labels[17]
-				.setToolTipText(PrimeMain.texts.getString("fwViewSupQoSTip"));
+		labels[17].setToolTipText(PrimeMain.texts.getString("fwViewSupQoSTip"));
 
 		labels[18] = new JLabel(PrimeMain.texts
 				.getString("fwViewSupTarpitLabel"));

@@ -1,3 +1,20 @@
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * Copyright (C) 2010  Bahram Malaekeh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 
@@ -177,16 +194,13 @@ public class AntivirusEditView extends JPanel implements SoftwareView, ActionLis
 		labels[0].setToolTipText(PrimeMain.texts.getString("avViewSupOSTip"));
 
 		labels[1] = new JLabel(PrimeMain.texts.getString("avViewActDateLabel"));
-		labels[1]
-				.setToolTipText(PrimeMain.texts.getString("avViewActDateTip"));
+		labels[1].setToolTipText(PrimeMain.texts.getString("avViewActDateTip"));
 
 		labels[2] = new JLabel(PrimeMain.texts.getString("avViewExpDateLabel"));
-		labels[2]
-				.setToolTipText(PrimeMain.texts.getString("avViewExpDateTip"));
+		labels[2].setToolTipText(PrimeMain.texts.getString("avViewExpDateTip"));
 
 		labels[3] = new JLabel(PrimeMain.texts.getString("avViewLicenseLabel"));
-		labels[3]
-				.setToolTipText(PrimeMain.texts.getString("avViewLicenseTip"));
+		labels[3].setToolTipText(PrimeMain.texts.getString("avViewLicenseTip"));
 
 		labels[4] = new JLabel(PrimeMain.texts
 				.getString("avViewActivatedLabel"));
