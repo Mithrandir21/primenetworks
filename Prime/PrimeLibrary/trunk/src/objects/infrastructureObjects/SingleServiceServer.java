@@ -1,3 +1,20 @@
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * Copyright (C) 2010  Bahram Malaekeh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package objects.infrastructureObjects;
 
 
@@ -71,7 +88,8 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	 * @param ServerComponents
 	 *            The initial components an instance of a server has.
 	 */
-	public SingleServiceServer(String Name, String Desc, String[] SupConInt, Object[] ServerComponents, Servers app)
+	public SingleServiceServer(String Name, String Desc, String[] SupConInt,
+			Object[] ServerComponents, Servers app)
 	{
 		super(Name, Desc, SupConInt);
 
@@ -142,9 +160,11 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	 * @return Returns an array of components that match with the given class.
 	 */
 	@Override
-	public Object[] getSpesificComponents(Class<?> ComponentClass) throws ObjectNotFoundException
+	public Object[] getSpesificComponents(Class<?> ComponentClass)
+			throws ObjectNotFoundException
 	{
-		Object[] componentsFound = ArrayManagment.getSpesificComponents(ComponentClass, components, componentCounter);
+		Object[] componentsFound = ArrayManagment.getSpesificComponents(
+				ComponentClass, components, componentCounter);
 
 		return componentsFound;
 	}
@@ -157,10 +177,11 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	 * @return Returns an array of connected devices that match with the given class.
 	 */
 	@Override
-	public Object[] getSpesificConncetedDevices(Class<?> connectedDeviceClass) throws ObjectNotFoundException
+	public Object[] getSpesificConncetedDevices(Class<?> connectedDeviceClass)
+			throws ObjectNotFoundException
 	{
-		Object[] componentsFound = ArrayManagment.getSpesificComponents(connectedDeviceClass, components,
-				componentCounter);
+		Object[] componentsFound = ArrayManagment.getSpesificComponents(
+				connectedDeviceClass, components, componentCounter);
 
 		return componentsFound;
 	}
@@ -254,7 +275,8 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	@Override
 	public void changeComponent(Object NewComponent, Object OldComponent)
 	{
-		components = ComponentsManagment.changeComponent(NewComponent, OldComponent, components, componentCounter);
+		components = ComponentsManagment.changeComponent(NewComponent,
+				OldComponent, components, componentCounter);
 
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
@@ -269,9 +291,11 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	 *            Component to be removed.
 	 */
 	@Override
-	public void removeComponent(Object[] ToBeRemoved) throws ObjectNotFoundInArrayException
+	public void removeComponent(Object[] ToBeRemoved)
+			throws ObjectNotFoundInArrayException
 	{
-		components = ComponentsManagment.removeComponents(ToBeRemoved, components, componentCounter);
+		components = ComponentsManagment.removeComponents(ToBeRemoved,
+				components, componentCounter);
 
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
@@ -288,7 +312,8 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	@Override
 	public void addComponents(Object[] NewComponents) throws Exception
 	{
-		components = ComponentsManagment.addComponents(NewComponents, components, componentCounter);
+		components = ComponentsManagment.addComponents(NewComponents,
+				components, componentCounter);
 
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
@@ -307,10 +332,11 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	 *            The connected device to be replaced.
 	 */
 	@Override
-	public void changeConnectedDevice(Object NewconnectedDevice, Object OldconnectedDevice)
+	public void changeConnectedDevice(Object NewconnectedDevice,
+			Object OldconnectedDevice)
 	{
-		components = ComponentsManagment.changeComponent(NewconnectedDevice, OldconnectedDevice, connectedDevices,
-				connectedDevicesCounter);
+		components = ComponentsManagment.changeComponent(NewconnectedDevice,
+				OldconnectedDevice, connectedDevices, connectedDevicesCounter);
 
 		// Sets the new count for number of connected devices in the array
 		connectedDevicesCounter = connectedDevices.length;
@@ -325,9 +351,11 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	 *            Connected device to be removed.
 	 */
 	@Override
-	public void removeConnectedDevices(Object[] ToBeRemoved) throws ObjectNotFoundInArrayException
+	public void removeConnectedDevices(Object[] ToBeRemoved)
+			throws ObjectNotFoundInArrayException
 	{
-		connectedDevices = ComponentsManagment.removeComponents(ToBeRemoved, connectedDevices, connectedDevicesCounter);
+		connectedDevices = ComponentsManagment.removeComponents(ToBeRemoved,
+				connectedDevices, connectedDevicesCounter);
 
 		// Sets the new count for number of connected devices in the array
 		connectedDevicesCounter = connectedDevices.length;
@@ -343,8 +371,8 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	@Override
 	public void addConnectedDevices(Object[] NewConnectedDevices)
 	{
-		connectedDevices = ComponentsManagment.addComponents(NewConnectedDevices, connectedDevices,
-				connectedDevicesCounter);
+		connectedDevices = ComponentsManagment.addComponents(
+				NewConnectedDevices, connectedDevices, connectedDevicesCounter);
 
 		// Sets the new count for number of connected devices in the array
 		connectedDevicesCounter = connectedDevices.length;

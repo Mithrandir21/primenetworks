@@ -1,3 +1,20 @@
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * Copyright (C) 2010  Bahram Malaekeh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package objects.hardwareObjects;
 
 
@@ -113,7 +130,8 @@ public class CPU extends Hardware implements Serializable
 	 * @param level2CPUcache
 	 *            The cache size in KB. Normally 256 - 1024 KB.
 	 */
-	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache, int level2CPUcache)
+	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache,
+			int level2CPUcache)
 	{
 		super(Name, Desc);
 
@@ -144,7 +162,8 @@ public class CPU extends Hardware implements Serializable
 	 * @param fsb
 	 *            The front side bus of the CPU.
 	 */
-	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache, int level2CPUcache, int fsb)
+	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache,
+			int level2CPUcache, int fsb)
 	{
 		super(Name, Desc);
 
@@ -177,7 +196,8 @@ public class CPU extends Hardware implements Serializable
 	 * @param nm
 	 *            The nanometer of the CPU. Its the size that one block takes up.
 	 */
-	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache, int level2CPUcache, int fsb, int nm)
+	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache,
+			int level2CPUcache, int fsb, int nm)
 	{
 		super(Name, Desc);
 
@@ -212,8 +232,8 @@ public class CPU extends Hardware implements Serializable
 	 * @param bit
 	 *            The boolean variable that tells if the CPU is a 64 bit CPU.
 	 */
-	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache, int level2CPUcache, int fsb, int nm,
-			boolean bit)
+	public CPU(String Name, String Desc, String CPUsocket, int level1CPUcache,
+			int level2CPUcache, int fsb, int nm, boolean bit)
 	{
 		super(Name, Desc);
 

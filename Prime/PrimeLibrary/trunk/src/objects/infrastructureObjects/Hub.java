@@ -1,3 +1,20 @@
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * Copyright (C) 2010  Bahram Malaekeh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package objects.infrastructureObjects;
 
 
@@ -79,7 +96,8 @@ public class Hub extends Infrastructure implements Serializable
 	 * @param DuplexSupport
 	 *            The supported duplex type on the device.
 	 */
-	public Hub(String Name, String Desc, String[] SupConInt, Motherboard objectMB, int outPorts, int inPorts,
+	public Hub(String Name, String Desc, String[] SupConInt,
+			Motherboard objectMB, int outPorts, int inPorts,
 			String[] DuplexSupport)
 	{
 		super(Name, Desc, SupConInt, objectMB);
@@ -276,7 +294,8 @@ public class Hub extends Infrastructure implements Serializable
 	 * @param supportedRemoteManageProtocols
 	 *            the supportedRemoteManageProtocols to set
 	 */
-	public void setSupportedRemoteManageProtocols(String[] supportedRemoteManageProtocols)
+	public void setSupportedRemoteManageProtocols(
+			String[] supportedRemoteManageProtocols)
 	{
 
 		this.supportedRemoteManageProtocols = supportedRemoteManageProtocols;
@@ -290,7 +309,8 @@ public class Hub extends Infrastructure implements Serializable
 	 * @param supportedTransportProtocols
 	 *            the supportedTransportProtocols to set
 	 */
-	public void setSupportedTransportProtocols(String[] supportedTransportProtocols)
+	public void setSupportedTransportProtocols(
+			String[] supportedTransportProtocols)
 	{
 
 		this.supportedTransportProtocols = supportedTransportProtocols;
@@ -381,7 +401,8 @@ public class Hub extends Infrastructure implements Serializable
 	 */
 	public void changeConncetionInterfacesItem(String NewItem, String OldItem)
 	{
-		conncetionInterfaces = ArrayManagment.changeArrayItem(NewItem, OldItem, conncetionInterfaces);
+		conncetionInterfaces = ArrayManagment.changeArrayItem(NewItem, OldItem,
+				conncetionInterfaces);
 	}
 
 
@@ -391,9 +412,11 @@ public class Hub extends Infrastructure implements Serializable
 	 * @param ToBeRemoved
 	 *            Connection interfaces to be removed.
 	 */
-	public void removeConncetionInterfacesItem(String[] ToBeRemoved) throws StringNotFoundInArrayException
+	public void removeConncetionInterfacesItem(String[] ToBeRemoved)
+			throws StringNotFoundInArrayException
 	{
-		conncetionInterfaces = ArrayManagment.removeItems(ToBeRemoved, conncetionInterfaces);
+		conncetionInterfaces = ArrayManagment.removeItems(ToBeRemoved,
+				conncetionInterfaces);
 	}
 
 
@@ -405,7 +428,8 @@ public class Hub extends Infrastructure implements Serializable
 	 */
 	public void addConncetionInterfacesItem(String[] NewItems) throws Exception
 	{
-		conncetionInterfaces = ArrayManagment.addItems(NewItems, conncetionInterfaces);
+		conncetionInterfaces = ArrayManagment.addItems(NewItems,
+				conncetionInterfaces);
 
 	}
 
@@ -423,7 +447,8 @@ public class Hub extends Infrastructure implements Serializable
 	 */
 	public void changeLinkProtocolItem(String NewItem, String OldItem)
 	{
-		supportedLinkProtocols = ArrayManagment.changeArrayItem(NewItem, OldItem, supportedLinkProtocols);
+		supportedLinkProtocols = ArrayManagment.changeArrayItem(NewItem,
+				OldItem, supportedLinkProtocols);
 	}
 
 
@@ -433,9 +458,11 @@ public class Hub extends Infrastructure implements Serializable
 	 * @param ToBeRemoved
 	 *            Link protocol to be removed.
 	 */
-	public void removeLinkProtocolItem(String[] ToBeRemoved) throws StringNotFoundInArrayException
+	public void removeLinkProtocolItem(String[] ToBeRemoved)
+			throws StringNotFoundInArrayException
 	{
-		supportedLinkProtocols = ArrayManagment.removeItems(ToBeRemoved, supportedLinkProtocols);
+		supportedLinkProtocols = ArrayManagment.removeItems(ToBeRemoved,
+				supportedLinkProtocols);
 	}
 
 
@@ -447,7 +474,8 @@ public class Hub extends Infrastructure implements Serializable
 	 */
 	public void addLinkProtocolItem(String[] NewItems) throws Exception
 	{
-		supportedLinkProtocols = ArrayManagment.addItems(NewItems, supportedLinkProtocols);
+		supportedLinkProtocols = ArrayManagment.addItems(NewItems,
+				supportedLinkProtocols);
 
 	}
 
@@ -462,10 +490,11 @@ public class Hub extends Infrastructure implements Serializable
 	 * @param OldItem
 	 *            The protocol to be replaced.
 	 */
-	public void changeRemoteManagementProtocolItem(String NewItem, String OldItem)
+	public void changeRemoteManagementProtocolItem(String NewItem,
+			String OldItem)
 	{
-		supportedRemoteManageProtocols = ArrayManagment.changeArrayItem(NewItem, OldItem,
-				supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.changeArrayItem(
+				NewItem, OldItem, supportedRemoteManageProtocols);
 	}
 
 
@@ -475,9 +504,11 @@ public class Hub extends Infrastructure implements Serializable
 	 * @param ToBeRemoved
 	 *            Link protocol to be removed.
 	 */
-	public void removeRemoteManagementProtocolsItem(String[] ToBeRemoved) throws StringNotFoundInArrayException
+	public void removeRemoteManagementProtocolsItem(String[] ToBeRemoved)
+			throws StringNotFoundInArrayException
 	{
-		supportedRemoteManageProtocols = ArrayManagment.removeItems(ToBeRemoved, supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.removeItems(
+				ToBeRemoved, supportedRemoteManageProtocols);
 	}
 
 
@@ -487,9 +518,11 @@ public class Hub extends Infrastructure implements Serializable
 	 * @param NewItems
 	 *            An array of new remote management protocols.
 	 */
-	public void addRemoteManagementProtocolsItem(String[] NewItems) throws Exception
+	public void addRemoteManagementProtocolsItem(String[] NewItems)
+			throws Exception
 	{
-		supportedRemoteManageProtocols = ArrayManagment.addItems(NewItems, supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.addItems(NewItems,
+				supportedRemoteManageProtocols);
 
 	}
 
@@ -507,8 +540,8 @@ public class Hub extends Infrastructure implements Serializable
 	 */
 	public void changeTransportProtocolItems(String NewItem, String OldItem)
 	{
-		supportedRemoteManageProtocols = ArrayManagment.changeArrayItem(NewItem, OldItem,
-				supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.changeArrayItem(
+				NewItem, OldItem, supportedRemoteManageProtocols);
 	}
 
 
@@ -518,9 +551,11 @@ public class Hub extends Infrastructure implements Serializable
 	 * @param ToBeRemoved
 	 *            Link protocol to be removed.
 	 */
-	public void removeTransportProtocolItems(String[] ToBeRemoved) throws StringNotFoundInArrayException
+	public void removeTransportProtocolItems(String[] ToBeRemoved)
+			throws StringNotFoundInArrayException
 	{
-		supportedRemoteManageProtocols = ArrayManagment.removeItems(ToBeRemoved, supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.removeItems(
+				ToBeRemoved, supportedRemoteManageProtocols);
 	}
 
 
@@ -532,7 +567,8 @@ public class Hub extends Infrastructure implements Serializable
 	 */
 	public void addTransportProtocolItems(String[] NewItems) throws Exception
 	{
-		supportedRemoteManageProtocols = ArrayManagment.addItems(NewItems, supportedRemoteManageProtocols);
+		supportedRemoteManageProtocols = ArrayManagment.addItems(NewItems,
+				supportedRemoteManageProtocols);
 
 	}
 

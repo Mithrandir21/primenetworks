@@ -1,3 +1,20 @@
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * Copyright (C) 2010  Bahram Malaekeh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package managment;
 
 
@@ -61,11 +78,9 @@ public class InternalComponentsCheck
 	 *            The {@link Motherboard} that is to be tested for a available
 	 *            ports.
 	 * @param components
-	 *            The {@link Object Objects} connected to the
-	 *            {@link Motherboard} already.
+	 *            The {@link Object Objects} connected to the {@link Motherboard} already.
 	 * @param newComponent
-	 *            The new component that wants to connect to the given
-	 *            {@link Motherboard}.
+	 *            The new component that wants to connect to the given {@link Motherboard}.
 	 * @return True or false depending on whether the {@link Motherboard} has
 	 *         the necessary ports available.
 	 */
@@ -208,8 +223,7 @@ public class InternalComponentsCheck
 	 * @param maxPCIs
 	 *            The maximum number of ports on the {@link Motherboard}.
 	 * @param components
-	 *            The components that are already connected to the
-	 *            {@link Motherboard}, which will be checked for matching
+	 *            The components that are already connected to the {@link Motherboard}, which will be checked for matching
 	 *            devices that connect to a PCI port.
 	 * @return The number of available ports after all the matching components
 	 *         from the {@link Object Components} array.
@@ -262,8 +276,7 @@ public class InternalComponentsCheck
 	 * @param maxCPUs
 	 *            The maximum number of ports on the {@link Motherboard}.
 	 * @param components
-	 *            The components that are already connected to the
-	 *            {@link Motherboard}, which will be checked for matching
+	 *            The components that are already connected to the {@link Motherboard}, which will be checked for matching
 	 *            devices that connect to a CPU port.
 	 * @return The number of available ports after all the matching components
 	 *         from the {@link Object Components} array.
@@ -301,8 +314,7 @@ public class InternalComponentsCheck
 	 * @param maxDUCs
 	 *            The maximum number of ports on the {@link Motherboard}.
 	 * @param components
-	 *            The components that are already connected to the
-	 *            {@link Motherboard}, which will be checked for matching
+	 *            The components that are already connected to the {@link Motherboard}, which will be checked for matching
 	 *            devices that connect to a DUC port.
 	 * @return The number of available ports after all the matching components
 	 *         from the {@link Object Components} array.
@@ -342,8 +354,7 @@ public class InternalComponentsCheck
 	 * @param maxRAMs
 	 *            The maximum number of ports on the {@link Motherboard}.
 	 * @param components
-	 *            The components that are already connected to the
-	 *            {@link Motherboard}, which will be checked for matching
+	 *            The components that are already connected to the {@link Motherboard}, which will be checked for matching
 	 *            devices that connect to a RAM port.
 	 * @return The number of available ports after all the matching components
 	 *         from the {@link Object Components} array.

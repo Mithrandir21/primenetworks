@@ -1,3 +1,20 @@
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * Copyright (C) 2010  Bahram Malaekeh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package objects.serverObjects;
 
 
@@ -40,13 +57,14 @@ public class DatabaseServer extends Servers implements Serializable
 	 * @param DatabaseSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public DatabaseServer(String Name, String Desc, String DatabaseSWname, String DatabaseSWdesc,
-			String DatabaseSWversion)
+	public DatabaseServer(String Name, String Desc, String DatabaseSWname,
+			String DatabaseSWdesc, String DatabaseSWversion)
 	{
 		super(Name, Desc);
 
 		// Creates a database software object
-		Database = new Database(DatabaseSWname, DatabaseSWdesc, DatabaseSWversion);
+		Database = new Database(DatabaseSWname, DatabaseSWdesc,
+				DatabaseSWversion);
 		Software[] sw = { Database };
 		super.setSoftware(sw);
 	}
@@ -66,13 +84,15 @@ public class DatabaseServer extends Servers implements Serializable
 	 * @param DatabaseSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public DatabaseServer(String Name, String Desc, String[] SupConInt, String DatabaseSWname, String DatabaseSWdesc,
+	public DatabaseServer(String Name, String Desc, String[] SupConInt,
+			String DatabaseSWname, String DatabaseSWdesc,
 			String DatabaseSWversion)
 	{
 		super(Name, Desc, SupConInt);
 
 		// Creates a database software object
-		Database = new Database(DatabaseSWname, DatabaseSWdesc, DatabaseSWversion);
+		Database = new Database(DatabaseSWname, DatabaseSWdesc,
+				DatabaseSWversion);
 		Software[] sw = { Database };
 		super.setSoftware(sw);
 	}
@@ -93,13 +113,15 @@ public class DatabaseServer extends Servers implements Serializable
 	 * @param DatabaseSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public DatabaseServer(String Name, String Desc, Object[] DesktopComponents, String DatabaseSWname,
-			String DatabaseSWdesc, String DatabaseSWversion)
+	public DatabaseServer(String Name, String Desc, Object[] DesktopComponents,
+			String DatabaseSWname, String DatabaseSWdesc,
+			String DatabaseSWversion)
 	{
 		super(Name, Desc, DesktopComponents);
 
 		// Creates a database software object
-		Database = new Database(DatabaseSWname, DatabaseSWdesc, DatabaseSWversion);
+		Database = new Database(DatabaseSWname, DatabaseSWdesc,
+				DatabaseSWversion);
 		Software[] sw = { Database };
 		super.setSoftware(sw);
 	}
@@ -120,13 +142,15 @@ public class DatabaseServer extends Servers implements Serializable
 	 * @param DatabaseSWversion
 	 *            The version of the application that the server is set to run.
 	 */
-	public DatabaseServer(String Name, String Desc, String[] SupConInt, Object[] DesktopComponents,
-			String DatabaseSWname, String DatabaseSWdesc, String DatabaseSWversion)
+	public DatabaseServer(String Name, String Desc, String[] SupConInt,
+			Object[] DesktopComponents, String DatabaseSWname,
+			String DatabaseSWdesc, String DatabaseSWversion)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
 
 		// Creates a database software object
-		Database = new Database(DatabaseSWname, DatabaseSWdesc, DatabaseSWversion);
+		Database = new Database(DatabaseSWname, DatabaseSWdesc,
+				DatabaseSWversion);
 		Software[] sw = { Database };
 		super.setSoftware(sw);
 	}

@@ -1,5 +1,19 @@
-/**
- * 
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * Copyright (C) 2010  Bahram Malaekeh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package widgets;
 
@@ -34,12 +48,10 @@ public class WidgetRoom extends Widget
 
 
 	/**
-	 * A constructor for the class that take a {@link Scene} and the name of the
-	 * {@link Room} as an argument.
+	 * A constructor for the class that take a {@link Scene} and the name of the {@link Room} as an argument.
 	 * 
 	 * @param scene
-	 *            The {@link Scene} in a {@link WorkareaCanvas} that the
-	 *            {@link Widget} will be all to.
+	 *            The {@link Scene} in a {@link WorkareaCanvas} that the {@link Widget} will be all to.
 	 * @param name
 	 *            THe name of the {@link Room} inside this class. Also the name
 	 *            of the {@link Widget} on the scene.
@@ -55,12 +67,10 @@ public class WidgetRoom extends Widget
 
 
 	/**
-	 * A constructor for the class that take a {@link Scene} and the name of the
-	 * {@link Room} as an argument.
+	 * A constructor for the class that take a {@link Scene} and the name of the {@link Room} as an argument.
 	 * 
 	 * @param scene
-	 *            The {@link Scene} in a {@link WorkareaCanvas} that the
-	 *            {@link Widget} will be all to.
+	 *            The {@link Scene} in a {@link WorkareaCanvas} that the {@link Widget} will be all to.
 	 * @param room
 	 *            The {@link Room} inside this class.
 	 */
@@ -81,8 +91,7 @@ public class WidgetRoom extends Widget
 
 
 	/**
-	 * Gets the {@link Room} that this {@link Widget} represents on a
-	 * {@link WorkareaCanvas}.
+	 * Gets the {@link Room} that this {@link Widget} represents on a {@link WorkareaCanvas}.
 	 */
 	public Room getRoom()
 	{
@@ -94,8 +103,7 @@ public class WidgetRoom extends Widget
 
 
 	/**
-	 * Sets the {@link Room} that this {@link Widget} represents on a
-	 * {@link WorkareaCanvas}.
+	 * Sets the {@link Room} that this {@link Widget} represents on a {@link WorkareaCanvas}.
 	 */
 	public void setRoom(Room room)
 	{

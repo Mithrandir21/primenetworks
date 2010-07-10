@@ -1,5 +1,19 @@
-/**
- * 
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * Copyright (C) 2010  Bahram Malaekeh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package managment;
 
@@ -34,18 +48,16 @@ public class SoftwareManagment
 
 	/**
 	 * This function creates a new array of {@link Software} from the array of
-	 * software in the given {@link Object}. It then adds the given
-	 * {@link Software} to the newly created software array and returns that
+	 * software in the given {@link Object}. It then adds the given {@link Software} to the newly created software array and
+	 * returns that
 	 * array.
 	 * 
 	 * @param sw
 	 *            The {@link Software} to be added.
 	 * @param obj
-	 *            The {@link Object} that holds the current array of
-	 *            {@link Software}.
+	 *            The {@link Object} that holds the current array of {@link Software}.
 	 * @return A new array of {@link Software} that will contain all the
-	 *         software given by the given {@link Object} and the given
-	 *         {@link Software}.
+	 *         software given by the given {@link Object} and the given {@link Software}.
 	 */
 	public static Software[] addSoftware(Software sw, Object obj)
 	{
@@ -87,20 +99,17 @@ public class SoftwareManagment
 
 	/**
 	 * This function creates a new array of {@link Software} from the array of
-	 * software in the given {@link Object}. It then removes the given
-	 * {@link Software} from the newly created software array and returns that
+	 * software in the given {@link Object}. It then removes the given {@link Software} from the newly created software array and
+	 * returns that
 	 * array. If the given {@link Software} is not found in the array of the
-	 * given {@link Object}, no changes will be made to the {@link Software}
-	 * array.
+	 * given {@link Object}, no changes will be made to the {@link Software} array.
 	 * 
 	 * @param sw
 	 *            The {@link Software} to be removed.
 	 * @param obj
-	 *            The {@link Object} that holds the current array of
-	 *            {@link Software}.
+	 *            The {@link Object} that holds the current array of {@link Software}.
 	 * @return A new array of {@link Software} that will contain all the
-	 *         software given by the given {@link Object}, minus the
-	 *         {@link Software} object given.
+	 *         software given by the given {@link Object}, minus the {@link Software} object given.
 	 */
 	public static Software[] removeSoftware(Software sw, Object obj)
 	{
@@ -435,8 +444,7 @@ public class SoftwareManagment
 	 * System object.
 	 * 
 	 * @param os
-	 *            The {@link OperatingSystem} object that is to be the only
-	 *            {@link Software} object "installed" on the given
+	 *            The {@link OperatingSystem} object that is to be the only {@link Software} object "installed" on the given
 	 *            {@link Object}.
 	 * @param obj
 	 *            The {@link Object} where the new {@link OperatingSystem} is to
