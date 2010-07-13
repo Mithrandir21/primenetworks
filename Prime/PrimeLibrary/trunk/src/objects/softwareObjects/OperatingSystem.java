@@ -51,7 +51,6 @@ public class OperatingSystem extends Software implements Serializable
 	private boolean is64bit;
 
 
-
 	/**
 	 * A constructor for the class that takes the name, description and version of the OS.
 	 * 
@@ -114,6 +113,7 @@ public class OperatingSystem extends Software implements Serializable
 	// SETTERS
 
 
+
 	/**
 	 * Sets the File Systems supported by the Operating System.
 	 */
@@ -151,7 +151,4 @@ public class OperatingSystem extends Software implements Serializable
 	{
 		this.is64bit = is64bit;
 	}
-
-
-
 }

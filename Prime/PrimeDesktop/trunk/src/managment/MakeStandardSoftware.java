@@ -15,9 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package graphics;
+package managment;
 
 
+import graphics.PrimeMain;
+import objects.Software.base;
+import objects.Software.fileSystems;
 import objects.softwareObjects.Antivirus;
 import objects.softwareObjects.Backup;
 import objects.softwareObjects.Database;
@@ -216,5 +219,109 @@ public class MakeStandardSoftware
 				.getString("standardWebserverDescription"), "1");
 
 		return ws;
+	}
+
+
+
+
+	/**
+	 * This function creates and returns a standard set of {@link OperatingSystem} that will be the standard
+	 * {@link OperatingSystem} that this system will use.
+	 * 
+	 * These will not be able to be changed.
+	 */
+	public static OperatingSystem[] getSystemStandardOSs()
+	{
+		OperatingSystem[] OSs = new OperatingSystem[9];
+
+		OSs[0] = new OperatingSystem("Windows 2000", PrimeMain.texts
+				.getString("standardWin2000OSDescription"), "5");
+		OSs[0].setHasGUI(true);
+		OSs[0].setBase(base.WINDOWS);
+		fileSystems[] fsWin2000 = { fileSystems.FAT16, fileSystems.FAT32,
+				fileSystems.NTFS };
+		OSs[0].setFs(fsWin2000);
+
+
+		OSs[1] = new OperatingSystem("Windows XP", PrimeMain.texts
+				.getString("standardWinXPOSDescription"), "5.1");
+		OSs[1].setHasGUI(true);
+		OSs[1].setBase(base.WINDOWS);
+		fileSystems[] fsWinXP = { fileSystems.FAT16, fileSystems.FAT32,
+				fileSystems.NTFS, fileSystems.exFAT };
+		OSs[1].setFs(fsWinXP);
+
+
+		OSs[2] = new OperatingSystem("Windows Vista", PrimeMain.texts
+				.getString("standardWinVistaOSDescription"), "6");
+		OSs[2].setHasGUI(true);
+		OSs[2].setBase(base.WINDOWS);
+		fileSystems[] fsWinVista = { fileSystems.FAT16, fileSystems.FAT32,
+				fileSystems.NTFS, fileSystems.exFAT };
+		OSs[2].setFs(fsWinVista);
+
+
+		OSs[3] = new OperatingSystem("Windows 7", PrimeMain.texts
+				.getString("standardWinVistaOSDescription"), "7");
+		OSs[3].setHasGUI(true);
+		OSs[3].setBase(base.WINDOWS);
+		fileSystems[] fsWin7 = { fileSystems.FAT16, fileSystems.FAT32,
+				fileSystems.NTFS, fileSystems.exFAT };
+		OSs[3].setFs(fsWin7);
+
+
+		OSs[4] = new OperatingSystem("Ubuntu 9.10", PrimeMain.texts
+				.getString("standardLinuxUbuntu9.10OSDescription"), "9.10");
+		OSs[4].setHasGUI(true);
+		OSs[4].setBase(base.GNU_LINUX);
+		OSs[4].setBase(base.WINDOWS);
+		fileSystems[] fsUbuntu910 = { fileSystems.FAT16, fileSystems.FAT32,
+				fileSystems.NTFS, fileSystems.EXT2, fileSystems.EXT3,
+				fileSystems.EXT4, fileSystems.ReiserFS, fileSystems.JFS,
+				fileSystems.XFS };
+		OSs[4].setFs(fsUbuntu910);
+
+
+		OSs[5] = new OperatingSystem("Ubuntu 10.04", PrimeMain.texts
+				.getString("standardLinuxUbuntu10.04OSDescription"), "10.04");
+		OSs[5].setHasGUI(true);
+		OSs[5].setBase(base.GNU_LINUX);
+		fileSystems[] fsUbuntu1004 = { fileSystems.FAT16, fileSystems.FAT32,
+				fileSystems.NTFS, fileSystems.EXT2, fileSystems.EXT3,
+				fileSystems.EXT4, fileSystems.ReiserFS, fileSystems.JFS,
+				fileSystems.XFS };
+		OSs[5].setFs(fsUbuntu1004);
+
+
+		OSs[6] = new OperatingSystem("Debian 5", PrimeMain.texts
+				.getString("standardLinuxDebian5OSDescription"), "5");
+		OSs[6].setHasGUI(true);
+		OSs[6].setBase(base.GNU_LINUX);
+		fileSystems[] fsDebian5 = { fileSystems.FAT16, fileSystems.FAT32,
+				fileSystems.NTFS, fileSystems.EXT2, fileSystems.EXT3,
+				fileSystems.EXT4, fileSystems.ReiserFS, fileSystems.JFS,
+				fileSystems.XFS };
+		OSs[6].setFs(fsDebian5);
+
+
+		OSs[7] = new OperatingSystem("MacOS X 10.5", PrimeMain.texts
+				.getString("standardUnixMac10.5OSDescription"), "10.5");
+		OSs[7].setHasGUI(true);
+		OSs[7].setBase(base.UNIX);
+		fileSystems[] fsMac105 = { fileSystems.FAT16, fileSystems.FAT32,
+				fileSystems.NTFS, fileSystems.HFS, fileSystems.HFSplus };
+		OSs[7].setFs(fsMac105);
+
+
+		OSs[8] = new OperatingSystem("MacOS X 10.6", PrimeMain.texts
+				.getString("standardUnixMac10.6OSDescription"), "10.6");
+		OSs[8].setHasGUI(true);
+		OSs[8].setBase(base.UNIX);
+		fileSystems[] fsMac106 = { fileSystems.FAT16, fileSystems.FAT32,
+				fileSystems.NTFS, fileSystems.HFS, fileSystems.HFSplus };
+		OSs[8].setFs(fsMac106);
+
+
+		return OSs;
 	}
 }

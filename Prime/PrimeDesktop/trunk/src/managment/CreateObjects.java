@@ -15,14 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package graphics.GUI;
+package managment;
 
 
 import exceptions.MotherboardNotFound;
 import exceptions.ObjectNotFoundException;
 import graphics.PrimeMain;
-import managment.ArrayManagment;
-import managment.ComponentsManagment;
 import objects.Object;
 import objects.Software;
 import objects.clientObjects.Desktop;
@@ -194,6 +192,7 @@ public class CreateObjects
 		return copiedObject;
 	}
 
+
 	/**
 	 * Creates all the system default objects.
 	 */
@@ -290,10 +289,6 @@ public class CreateObjects
 
 		return temp;
 	}
-
-
-
-
 
 
 
@@ -424,7 +419,6 @@ public class CreateObjects
 
 		return temp;
 	}
-
 
 
 
@@ -688,6 +682,7 @@ public class CreateObjects
 	}
 
 
+
 	private static Printer createDefaultPrinter(String desc)
 	{
 		String objectName = PrimeMain.texts.getString("printer");
@@ -751,6 +746,7 @@ public class CreateObjects
 
 		return temp;
 	}
+
 
 
 	private static MultifunctionPrinter createDefaultMFP(String desc)
@@ -867,8 +863,6 @@ public class CreateObjects
 
 
 
-
-
 	private static Hub createDefaultHub(String desc)
 	{
 		String objectName = PrimeMain.texts.getString("hub");
@@ -901,7 +895,6 @@ public class CreateObjects
 
 		return temp;
 	}
-
 
 
 
@@ -1065,6 +1058,7 @@ public class CreateObjects
 	}
 
 
+
 	private static Internet createDefaultInternet(String desc)
 	{
 		String objectName = PrimeMain.texts.getString("internet");
@@ -1108,5 +1102,4 @@ public class CreateObjects
 
 		return temp;
 	}
-
 }

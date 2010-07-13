@@ -20,6 +20,8 @@ package objects;
 
 import java.io.Serializable;
 
+import objects.softwareObjects.OperatingSystem;
+
 
 /**
  * An abstract super class for all hardware objects in the system, including {@link objects.softwareObjects.Webserver
@@ -27,14 +29,22 @@ import java.io.Serializable;
  * Firewall}. MUST ADD INFO
  * 
  * @author Bahram Malaekeh
- * @version 0.0.1
+ * @version 0.2
  */
 public abstract class Software extends Object implements Serializable
 {
 
+	// The base of the OperatingSystem
+	private base base;
+
+	// The Softwares File System
+	private fileSystems[] fs;
 
 	// The software version
 	private String version;
+
+
+
 
 	/**
 	 * Constructor of an abstract hardware superclass.
@@ -60,6 +70,7 @@ public abstract class Software extends Object implements Serializable
 		}
 	}
 
+	// GETTERS
 
 	/**
 	 * Get the version of the software.
@@ -72,6 +83,26 @@ public abstract class Software extends Object implements Serializable
 
 
 	/**
+	 * Gets the {@link base} of the {@link Software}.
+	 */
+	public base getBase()
+	{
+		return base;
+	}
+
+
+	/**
+	 * Gets the {@link fileSystems} of the {@link Software}.
+	 */
+	public fileSystems[] getFs()
+	{
+		return fs;
+	}
+
+	// SETTERS
+
+
+	/**
 	 * Set the version of the software.
 	 */
 	public void setVersion(String SWversion)
@@ -81,4 +112,51 @@ public abstract class Software extends Object implements Serializable
 	}
 
 
+
+	/**
+	 * Sets the {@link base} of the {@link Software}.
+	 */
+	public void setBase(base osBase)
+	{
+		this.base = osBase;
+	}
+
+
+
+
+	/**
+	 * Sets the {@link fileSystems} of the {@link Software}.
+	 */
+	public void setFs(fileSystems[] fs)
+	{
+		this.fs = fs;
+	}
+
+
+
+
+	/**
+	 * The base of the {@link Software}.
+	 * 
+	 * @author Bahram Malaekeh
+	 */
+	public enum base
+	{
+		WINDOWS, GNU_LINUX, UNIX
+	}
+
+
+
+	/**
+	 * The file system of the {@link Software}.
+	 * On a {@link OperatingSystem} this will represent the supported File Systems(FS), but on other {@link Software} objects it
+	 * will represent the FS the software supports.
+	 * 
+	 * @author Bahram Malaekeh
+	 * 
+	 */
+	public enum fileSystems
+	{
+		FAT16, FAT32, exFAT, NTFS, HFS, HFSplus, HPFS, UFS, EXT2, EXT3, EXT4, XFS, BTRFS, ISO9660, ODS5, JFS, VxFS, ZFS, ReiserFS, SWAP, UDF
+	}
 }

@@ -459,8 +459,6 @@ public abstract class Object implements Serializable, Cloneable
 	}
 
 
-	// SET METHODES
-
 	/**
 	 * TODO - Description NEEDED!
 	 * 
@@ -1336,46 +1334,6 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	// MICS FUNCTIONS
-
-	/**
-	 * Gets the first index that has the value true and returns that index. This
-	 * method is mainly used internally for setting and releasing ports on a
-	 * motherboard.
-	 */
-	private int getFirstTakenIndex(boolean[] array)
-	{
-		for ( int i = 0; i < array.length; i++ )
-		{
-			if ( array[i] == true )
-			{
-				return i;
-			}
-		}
-
-		return -1;
-	}
-
-
-	/**
-	 * Checks whether or not an array of booleans contains the given boolean.
-	 */
-	private boolean checkArray(boolean[] array, boolean shouldContain)
-	{
-		boolean found = false;
-
-		for ( int i = 0; i < array.length; i++ )
-		{
-			if ( array[i] == shouldContain )
-			{
-				found = true;
-			}
-		}
-
-		return found;
-	}
-
-
-
 	/**
 	 * Gets the number of actual connected devices, be it with RJ-45 or USB and
 	 * so on.

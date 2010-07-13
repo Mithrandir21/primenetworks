@@ -19,12 +19,13 @@ package graphics.GUI.selectArea;
 
 
 import graphics.PrimeMain;
-import graphics.GUI.CreateObjects;
 
 import java.awt.datatransfer.Transferable;
 
 import javax.swing.JComponent;
 import javax.swing.TransferHandler;
+
+import managment.CreateObjects;
 
 import objects.Object;
 import widgets.WidgetIcon;

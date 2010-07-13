@@ -150,8 +150,6 @@ public class SoftwareManagment
 			{
 				boolean compatible = validateSoftware(software[i], obj);
 
-				System.out.println("Gets here");
-
 				// If not compatible with the OS
 				if ( !compatible )
 				{
@@ -265,7 +263,6 @@ public class SoftwareManagment
 						Webserver swObj = (Webserver) sw;
 
 						swOS = swObj.getSupportedOperatingSystems();
-
 					}
 
 

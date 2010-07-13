@@ -38,7 +38,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -57,7 +57,7 @@ import objects.Software;
 import objects.softwareObjects.Email;
 
 
-public class EmailNewView extends JFrame implements SoftwareView, ActionListener
+public class EmailNewView extends JDialog implements SoftwareView, ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -110,7 +110,7 @@ public class EmailNewView extends JFrame implements SoftwareView, ActionListener
 	 */
 	public EmailNewView(Object obj, Email email)
 	{
-		super(PrimeMain.texts.getString("swNewEmailLabel"));
+		this.setTitle(PrimeMain.texts.getString("swNewEmailLabel"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -130,48 +130,41 @@ public class EmailNewView extends JFrame implements SoftwareView, ActionListener
 		GridBagConstraints c = new GridBagConstraints();
 
 		c.fill = GridBagConstraints.BOTH;
-
-		c.gridx = 0;
-		c.gridy = 0;
-		c.weightx = 1;
-		c.weighty = 0.1;
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		c.insets = new Insets(10, 10, 5, 10);
+		// c.ipady = 0; // reset to default
+		// c.ipadx = 0; // reset to default
+		// c.weighty = 1.0; // request any extra vertical space
+		c.weightx = 1.0; // request any extra horizontal space
+		c.anchor = GridBagConstraints.WEST; // location
+		c.insets = new Insets(10, 10, 5, 10); // padding
+		// c.gridwidth = 1; // 1 row wide
+		// c.gridheight = 1; // 1 columns wide
+		c.gridy = 0; // row
+		c.gridx = 0; // column
 
 		ImageIcon icon = PrimeMain.objectImageIcons.get(Email.class);
 		JPanel p1 = SoftwareEditor.GeneralInfo(mainEmail, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
-
 		this.add(p1, c);
 
-
-		c.gridx = 0;
-		c.gridy = 1;
-		c.weightx = 1;
-		c.weighty = 1;
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		c.insets = new Insets(0, 10, 0, 10);
 
 		JPanel p2 = createSpesificInfo(mainEmail);
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
+		c.gridx = 0;
+		c.gridy = 1;
+		c.weighty = 1.0; // request any extra vertical space
+		c.insets = new Insets(0, 10, 0, 10);
 		this.add(p2, c);
 
-
-		c.gridx = 0;
-		c.gridy = 2;
-		c.weightx = 1;
-		c.weighty = 0.01;
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		c.insets = new Insets(0, 10, 10, 10);
 
 		JPanel buttons = createButtons();
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weighty = 0; // request any extra vertical space
+		c.insets = new Insets(2, 10, 10, 10);
 		this.add(buttons, c);
 
 

@@ -18,7 +18,6 @@
 package graphics;
 
 
-import graphics.GUI.CreateObjects;
 import graphics.GUI.customNetworks.NetworkRulesFrame;
 import graphics.GUI.menues.GenericPrimeMenuBar;
 import graphics.GUI.menues.GenericPrimeToolbar;
@@ -70,9 +69,13 @@ import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 
 import managment.CanvasManagment;
+import managment.CreateObjects;
 import managment.DesktopFileManagment;
+import managment.MakeStandardInternalComponents;
+import managment.MakeStandardSoftware;
 import managment.Settings;
 import objects.Object;
+import objects.softwareObjects.OperatingSystem;
 
 import org.jdesktop.swingx.JXMultiSplitPane;
 import org.jdesktop.swingx.MultiSplitLayout;
@@ -97,6 +100,10 @@ public class PrimeMain extends JFrame
 
 	// Daemon services running
 	private static PrimeService services;
+
+	// The locale texts
+	public static ResourceBundle texts = ResourceBundle.getBundle(
+			"SystemTexts", new Locale("en"));
 
 	// Variables to place the height and width of the main screen.
 	public static int width, height;
@@ -140,6 +147,13 @@ public class PrimeMain extends JFrame
 	// A pointer to where all standard softwares are kept.
 	public static MakeStandardSoftware standard_software = new MakeStandardSoftware();
 
+	// This array contains the systems standard, unchangeable OperatingSystem.
+	public static OperatingSystem[] system_standard_OS = MakeStandardSoftware
+			.getSystemStandardOSs();
+
+	// This array contains the systems custom OperatingSystems, the ones created by Users.
+	public static OperatingSystem[] system_custom_OS;
+
 	// The variable for the object that is in view.
 	public static ArrayList<ObjectView> objView = new ArrayList<ObjectView>(1);
 
@@ -168,14 +182,6 @@ public class PrimeMain extends JFrame
 	public static NetworkRules standardRules = null;
 
 
-	// The locale texts
-	public static ResourceBundle texts = ResourceBundle.getBundle(
-			"SystemTexts", new Locale("en"));
-
-
-
-	// FIXME - Change the way ObjectViews are handled
-
 
 	// Constructor
 	public PrimeMain()
@@ -186,6 +192,9 @@ public class PrimeMain extends JFrame
 
 		// Tries to retrieve the users previous settings
 		DesktopFileManagment.openSettings();
+
+		// Loads the custom OperatingSystems the user has added
+		DesktopFileManagment.loadCustomOS();
 
 
 		// Get the default toolkit
@@ -793,8 +802,13 @@ public class PrimeMain extends JFrame
 		// Saves the standard rules
 		DesktopFileManagment.saveStandardRules();
 
+		DesktopFileManagment.saveCustomOS();
+
+
 		WorkareaCanvas[] changes = CanvasManagment
 				.canvasesHaveChanged(canvases);
+
+
 
 		// There were some canvases that were changed
 		if ( changes != null )

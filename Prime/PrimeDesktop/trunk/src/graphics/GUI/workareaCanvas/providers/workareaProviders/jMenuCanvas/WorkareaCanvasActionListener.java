@@ -20,7 +20,6 @@ package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas;
 
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
-import graphics.GUI.CreateObjects;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
 import java.awt.Point;
@@ -29,6 +28,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
+
+import managment.CreateObjects;
 
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;

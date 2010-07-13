@@ -15,9 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package graphics;
+package managment;
 
 
+import graphics.PrimeMain;
 import objects.hardwareObjects.CPU;
 import objects.hardwareObjects.Discdrive;
 import objects.hardwareObjects.ExternalNetworksCard;

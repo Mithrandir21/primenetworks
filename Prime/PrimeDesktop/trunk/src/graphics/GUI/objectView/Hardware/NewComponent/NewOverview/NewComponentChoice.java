@@ -60,16 +60,16 @@ public class NewComponentChoice extends JDialog
 		Dimension scrnsize = toolkit.getScreenSize();
 
 
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
+		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 2)));
 
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 2)));
 
+		Dimension size = new Dimension(width, height);
 
 		// Get the content pane for this object
 		Container c = this.getContentPane();
 
 		JPanel panel = new JPanel();
-
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
 
@@ -93,9 +93,10 @@ public class NewComponentChoice extends JDialog
 
 		c.add(panel, cons);
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setSize(width, height);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 }

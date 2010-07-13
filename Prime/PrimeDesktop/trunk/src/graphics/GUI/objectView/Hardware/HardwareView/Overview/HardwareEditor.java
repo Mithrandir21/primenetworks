@@ -28,6 +28,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -94,73 +95,48 @@ public class HardwareEditor extends JDialog implements ActionListener
 		GridBagConstraints c = new GridBagConstraints();
 
 		c.fill = GridBagConstraints.NONE;
-
-
-		// Icon image.
-		c.gridx = 0;
-		c.gridy = 0;
-		c.weightx = 0.2;
-		c.weighty = 1;
-		c.gridwidth = 1;
-		c.gridheight = 2;
+		// c.ipady = 0; // reset to default
+		// c.ipadx = 0; // reset to default
+		// c.weighty = 1.0; // request any extra vertical space
+		// c.weightx = 1.0; // request any extra horizontal space
+		c.anchor = GridBagConstraints.WEST; // location
+		c.insets = new Insets(10, 10, 10, 10); // padding
+		// c.gridwidth = 1; // 2 row wide
+		c.gridheight = 2; // 2 columns wide
+		c.gridy = 0; // row
+		c.gridx = 0; // column
 
 		JLabel image = new JLabel(icon);
 		genPanel.add(image, c);
 
 
-		GridBagConstraints d = new GridBagConstraints();
-
-		d.fill = GridBagConstraints.NONE;
-		d.gridx = 1;
-		d.gridy = 0;
-		d.weightx = 1;
-		d.weighty = 0.5;
-		d.gridwidth = 1;
-		d.gridheight = 1;
-		d.anchor = GridBagConstraints.CENTER;
 
 		JLabel nameLabel = new JLabel(PrimeMain.texts
 				.getString("hwTabHWnameLabel"));
-		genPanel.add(nameLabel, d);
+		c.gridheight = 1; // 2 columns wide
+		c.gridx = 1;
+		c.gridy = 0;
+		genPanel.add(nameLabel, c);
 
-		d.gridx = 2;
-		d.gridy = 0;
-		d.weightx = 1;
-		d.weighty = 0.5;
-		d.gridwidth = 1;
-		d.gridheight = 1;
-		d.anchor = GridBagConstraints.LINE_START;
 
 		name.setName("Name");
 		name.setText(hw.getObjectName());
 		JLabel t = new JLabel();
 		name.setFont(t.getFont());
 		// name.setBorder(BorderFactory.createEmptyBorder());
-		genPanel.add(name, d);
+		c.gridx = 2;
+		c.gridy = 0;
+		genPanel.add(name, c);
 
 
-		d.fill = GridBagConstraints.NONE;
-		d.gridx = 1;
-		d.gridy = 1;
-		d.weightx = 1;
-		d.weighty = 0.1;
-		d.gridwidth = 1;
-		d.gridheight = 1;
-		d.anchor = GridBagConstraints.CENTER;
 
 		JLabel descLabel = new JLabel(PrimeMain.texts
 				.getString("hwTabHWdescriptionLabel"));
-		genPanel.add(descLabel, d);
+		c.gridx = 1;
+		c.gridy = 1;
+		genPanel.add(descLabel, c);
 
 
-		d.fill = GridBagConstraints.HORIZONTAL;
-		d.gridx = 2;
-		d.gridy = 1;
-		d.weightx = 1;
-		d.weighty = 0.1;
-		d.gridwidth = 1;
-		d.gridheight = 1;
-		d.anchor = GridBagConstraints.LINE_START;
 
 		// Description
 		JScrollPane descScroll = new JScrollPane();
@@ -169,8 +145,10 @@ public class HardwareEditor extends JDialog implements ActionListener
 		desc.setFont(t.getFont());
 		descScroll.setViewportView(desc);
 
-		genPanel.add(descScroll, d);
-
+		c.weightx = 1.0; // request any extra horizontal space
+		c.gridx = 2;
+		c.gridy = 1;
+		genPanel.add(descScroll, c);
 
 		return genPanel;
 	}
@@ -180,28 +158,26 @@ public class HardwareEditor extends JDialog implements ActionListener
 	{
 		givenObject = obj;
 
+		Dimension size = new Dimension(750, 600);
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		int initYLocation = (scrnsize.height - size.height) / 2;
+		int initXLocation = (scrnsize.width - size.width) / 2;
 
 
 		// Get the content pane for this object
 		Container c = this.getContentPane();
 
 		JPanel panel = new JPanel();
-
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
 
 		view = new HardwareEditorTabbed(obj);
-
 		panel.add(view);
 
 
@@ -226,7 +202,7 @@ public class HardwareEditor extends JDialog implements ActionListener
 		buttons.add(apply);
 		buttons.add(cancel);
 
-		buttons.setMaximumSize(new Dimension((int) scrnsize.getWidth(), 1));
+		buttons.setMaximumSize(new Dimension(size.width, 1));
 
 		panel.add(buttons);
 
@@ -234,11 +210,12 @@ public class HardwareEditor extends JDialog implements ActionListener
 
 		c.add(panel);
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
+		this.setLocation(initXLocation, initYLocation);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setVisible(true);
 	}
+
 
 
 	/*

@@ -47,6 +47,7 @@ import javax.swing.JOptionPane;
 
 import objects.Object;
 import objects.Room;
+import objects.softwareObjects.OperatingSystem;
 import widgetManipulation.NetworkRules;
 import widgetManipulation.WorkareaCanvasNetworkInfo;
 import widgets.WidgetObject;
@@ -283,11 +284,11 @@ public class DesktopFileManagment
 	/**
 	 * Saves the given {@link NetworkRules} instance to a file to preserve the standard rules.
 	 */
-	public static void saveStandardRules()
+	public static boolean saveStandardRules()
 	{
 		File file = new File("./resource/rules.dat");
 
-		saveStandardRules(file);
+		return saveStandardRules(file);
 	}
 
 
@@ -321,6 +322,68 @@ public class DesktopFileManagment
 
 		return false;
 	}
+
+
+
+	/**
+	 * Saves the given {@link NetworkRules} instance to a file to preserve the standard rules.
+	 */
+	public static boolean saveCustomOS()
+	{
+		File file = new File("./resource/customOS.dat");
+
+		return saveCustomOS(file);
+	}
+
+
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static boolean saveCustomOS(File file)
+	{
+		if ( PrimeMain.system_custom_OS != null && file != null )
+		{
+			try
+			{
+				FileOutputStream fout = new FileOutputStream(file);
+
+				// The object stream file
+				ObjectOutputStream oos = new ObjectOutputStream(fout);
+
+				// The must be at least on room on the canvas for there to be
+				// saved any rooms
+				if ( PrimeMain.system_custom_OS.length > 0
+						&& PrimeMain.system_custom_OS[0] != null )
+				{
+					// Goes through all the rooms on the canvas and adds them to
+					// the ArrayList
+					for ( int i = 0; i < PrimeMain.system_custom_OS.length; i++ )
+					{
+						if ( PrimeMain.system_custom_OS[i] != null )
+						{
+							oos.writeObject(PrimeMain.standardRules);
+						}
+					}
+
+					// Writes a null to indicate the end of the file for read in.
+					oos.writeObject(null);
+				}
+
+				oos.flush();
+				oos.close();
+
+				return true;
+			}
+			catch ( Exception e )
+			{
+				e.printStackTrace();
+			}
+		}
+
+		return false;
+	}
+
 
 
 
@@ -1241,6 +1304,75 @@ public class DesktopFileManagment
 		return canvas;
 	}
 
+
+
+	/**
+	 * This function call the openCustomOSs function to import the users Custom {@link OperatingSystem}.
+	 */
+	public static void loadCustomOS()
+	{
+		// Gets the file written/selected
+		File file = new File("./resource/customOS.dat");
+
+		loadCustomOS(file);
+	}
+
+
+
+	/**
+	 * Opens the {@link NetworkRules} instance from a given file and imports them to the system_custom_OS instance in PrimeMain.
+	 * 
+	 * @see PrimeMain
+	 */
+	public static void loadCustomOS(File file)
+	{
+		// If the Objects file exists
+		if ( file.exists() )
+		{
+			// If the pointer is to a file and not anything else
+			if ( file.isFile() )
+			{
+				// If the file can be written to
+				if ( file.canRead() )
+				{
+					try
+					{
+						FileInputStream fin = new FileInputStream(file);
+
+						ObjectInputStream ois = new ObjectInputStream(fin);
+
+						// Create an arraylist to hold the operating systems
+						ArrayList<OperatingSystem> osArray = new ArrayList<OperatingSystem>();
+
+						// A temporary OS pointer
+						OperatingSystem temp = null;
+
+						// While the temp is not null, hence not EOF
+						while ( (temp = (OperatingSystem) ois.readObject()) != null )
+						{
+							// Adds the os to the array list
+							osArray.add(temp);
+						}
+
+
+						// As long as the array list is not empty
+						if ( !osArray.isEmpty() )
+						{
+							// Converts the array list to an OperatingSystem array
+							PrimeMain.system_custom_OS = osArray
+									.toArray(new OperatingSystem[0]);
+						}
+
+						ois.close();
+					}
+					catch ( Exception e )
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+	}
 
 
 	/**

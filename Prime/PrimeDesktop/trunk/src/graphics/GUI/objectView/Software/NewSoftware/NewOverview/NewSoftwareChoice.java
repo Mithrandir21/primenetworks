@@ -50,6 +50,7 @@ public class NewSoftwareChoice extends JDialog
 	{
 		this.setTitle(PrimeMain.texts.getString("swTabSWnewSoftware"));
 
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -57,9 +58,11 @@ public class NewSoftwareChoice extends JDialog
 		Dimension scrnsize = toolkit.getScreenSize();
 
 
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
+		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 2)));
 
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 2)));
+
+		Dimension size = new Dimension(width, height);
 
 
 		// Get the content pane for this object
@@ -90,9 +93,10 @@ public class NewSoftwareChoice extends JDialog
 
 		c.add(panel, cons);
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setSize(width, height);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 }
