@@ -193,9 +193,6 @@ public class PrimeMain extends JFrame
 		// Tries to retrieve the users previous settings
 		DesktopFileManagment.openSettings();
 
-		// Loads the custom OperatingSystems the user has added
-		DesktopFileManagment.loadCustomOS();
-
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -260,6 +257,10 @@ public class PrimeMain extends JFrame
 		}
 
 
+		// Loads the custom OperatingSystems the user has added
+		DesktopFileManagment.loadCustomOS();
+
+		
 		// OBJECTS LIST
 		// If a file exist with the System Objects
 		if ( DesktopFileManagment.objectsFileExists() )
