@@ -6,13 +6,17 @@ package graphics.GUI.customOSviews;
 
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
+import graphics.GUI.objectView.ObjectView;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -21,6 +25,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import managment.SoftwareManagment;
+import objects.Object;
 import objects.softwareObjects.OperatingSystem;
 
 import org.jdesktop.swingx.JXTaskPane;
@@ -30,12 +36,20 @@ import org.jdesktop.swingx.JXTaskPaneContainer;
 /**
  * @author Berra
  */
-public class osSelectionOverView extends JDialog
+public class osSelectionOverView extends JDialog implements ActionListener
 {
-	public osSelectionOverView()
+	// The main object
+	private Object mainObj;
+
+	// The operating system to be added to the main object.
+	private OperatingSystem mainOs;
+
+
+	public osSelectionOverView(Object obj)
 	{
 		this.setTitle(PrimeMain.texts.getString("selectOSdialogTitle"));
 
+		mainObj = obj;
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -291,6 +305,55 @@ public class osSelectionOverView extends JDialog
 		pane.add(panel3, d);
 
 
+		JButton install = new JButton(PrimeMain.texts.getString("install")
+				+ " " + os.getObjectName());
+		install.setActionCommand(os.getObjectName());
+		install.addActionListener(this);
+
+		d.anchor = GridBagConstraints.SOUTHEAST; // location
+		d.insets = new Insets(10, 10, 10, 10); // padding
+		d.gridy = 3;
+		pane.add(install, d);
+
 		return pane;
+	}
+
+
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		if ( e.getSource() instanceof JButton )
+		{
+			for ( int i = 0; i < PrimeMain.system_standard_OS.length; i++ )
+			{
+				if ( e.getActionCommand().equals(
+						PrimeMain.system_standard_OS[i].getObjectName()) )
+				{
+					OperatingSystem os = PrimeMain.system_standard_OS[i];
+
+					// Sets an array with the newly added software object
+					mainObj.setSoftware(SoftwareManagment.addSoftware(os,
+							mainObj));
+
+
+					// Updates the views of the object to correctly show the
+					// current info.
+					ObjectView view = PrimeMain.getObjectView(mainObj);
+					if ( view != null )
+					{
+						view.updateViewInfo();
+					}
+
+
+					// Closes the JFrame.
+					this.dispose();
+				}
+			}
+		}
+		else if ( e.getActionCommand().equals("cancel") )
+		{
+			this.dispose();
+		}
 	}
 }

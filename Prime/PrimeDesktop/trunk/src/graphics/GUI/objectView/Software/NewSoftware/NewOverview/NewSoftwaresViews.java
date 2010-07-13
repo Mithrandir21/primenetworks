@@ -576,7 +576,7 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		}
 		else if ( panel.getName().equals("Operating System") )
 		{
-			new osSelectionOverView();
+			new osSelectionOverView(mainObj);
 			// new OSNewView(mainObj, osObj);
 			// // Creates a new object after the first object is passed to the
 			// // view.
