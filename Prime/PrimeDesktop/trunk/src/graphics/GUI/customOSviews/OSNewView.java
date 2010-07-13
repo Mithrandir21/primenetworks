@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package graphics.GUI.objectView.Software.NewSoftware.NewViews;
+package graphics.GUI.customOSviews;
 
 
 import graphics.GraphicalFunctions;
@@ -203,8 +203,7 @@ public class OSNewView extends JDialog implements SoftwareView, ActionListener
 
 		// The supported file system.
 		labels[0].setLabelFor(supportedFS);
-		String[] listData = { "FAT16", "FAT32", "NTFS", "EXT", "EXT2", "EXT3",
-				"EXT4", "ReiserFS", "Reiser4", "ZFS", "XFS" };
+		String[] listData = GraphicalFunctions.getAllFs();
 		supportedFS = new JList(listData);
 		ListSelectionModel listSelectionModel = supportedFS.getSelectionModel();
 		listSelectionModel

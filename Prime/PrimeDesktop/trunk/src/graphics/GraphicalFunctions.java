@@ -43,6 +43,7 @@ import managment.RoomManagment;
 import managment.Settings;
 import objects.Object;
 import objects.Room;
+import objects.Software.fileSystems;
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
 import objects.clientObjects.ThinClient;
@@ -192,8 +193,8 @@ public class GraphicalFunctions
 	{
 		if ( mbVariable != "" && mbVariable != null )
 		{
-			if ( ComponentsManagment.containsComponent(componentClass, mainObj
-					.getComponents(), mainObj.getComponents().length) )
+			if ( ComponentsManagment.containsComponent(componentClass,
+					mainObj.getComponents(), mainObj.getComponents().length) )
 			{
 
 				if ( !mbVariable.equals(newVariable) )
@@ -510,8 +511,8 @@ public class GraphicalFunctions
 
 
 	/**
-	 * FIXME - ChangeWidgetRoomName Changes the title of the {@link TitledBorder} surrounding the {@link WidgetRoom} and the name
-	 * of
+	 * FIXME - ChangeWidgetRoomName Changes the title of the
+	 * {@link TitledBorder} surrounding the {@link WidgetRoom} and the name of
 	 * the {@link Room} inside the {@link WidgetRoom} object.
 	 */
 	public static void changeWidgetRoomName(Widget widget)
@@ -743,5 +744,28 @@ public class GraphicalFunctions
 	}
 
 
+
+
+	/**
+	 * @return A String array that contains all the {@link fileSystems} enums
+	 *         converted to string.
+	 */
+	public static String[] getAllFs()
+	{
+		String[] listData = { fileSystems.FAT16.toString(),
+				fileSystems.FAT32.toString(), fileSystems.exFAT.toString(),
+				fileSystems.NTFS.toString(), fileSystems.HFS.toString(),
+				fileSystems.HFSplus.toString(), fileSystems.HPFS.toString(),
+				fileSystems.UFS.toString(), fileSystems.EXT2.toString(),
+				fileSystems.EXT3.toString(), fileSystems.EXT4.toString(),
+				fileSystems.XFS.toString(), fileSystems.BTRFS.toString(),
+				fileSystems.ISO9660.toString(), fileSystems.ODS5.toString(),
+				fileSystems.JFS.toString(), fileSystems.VxFS.toString(),
+				fileSystems.ZFS.toString(), fileSystems.ReiserFS.toString(),
+				fileSystems.SWAP.toString(), fileSystems.UDF.toString() };
+
+
+		return listData;
+	}
 
 }

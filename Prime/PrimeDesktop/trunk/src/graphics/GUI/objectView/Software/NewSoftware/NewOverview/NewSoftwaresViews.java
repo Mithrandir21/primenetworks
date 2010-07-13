@@ -19,13 +19,13 @@ package graphics.GUI.objectView.Software.NewSoftware.NewOverview;
 
 
 import graphics.PrimeMain;
+import graphics.GUI.customOSviews.osSelectionOverView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareObjectView;
 import graphics.GUI.objectView.Software.NewSoftware.NewViews.AntivirusNewView;
 import graphics.GUI.objectView.Software.NewSoftware.NewViews.BackupNewView;
 import graphics.GUI.objectView.Software.NewSoftware.NewViews.DatabaseNewView;
 import graphics.GUI.objectView.Software.NewSoftware.NewViews.EmailNewView;
 import graphics.GUI.objectView.Software.NewSoftware.NewViews.FirewallNewView;
-import graphics.GUI.objectView.Software.NewSoftware.NewViews.OSNewView;
 import graphics.GUI.objectView.Software.NewSoftware.NewViews.OfficeSuiteNewView;
 import graphics.GUI.objectView.Software.NewSoftware.NewViews.ProxyNewView;
 import graphics.GUI.objectView.Software.NewSoftware.NewViews.SecuritySuiteNewView;
@@ -338,8 +338,7 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		if ( text != "" && text != null )
 		{
 			offSuiteInfo[2] = PrimeMain.texts
-					.getString("swTabDescriptionLabel")
-					+ ": " + text;
+					.getString("swTabDescriptionLabel") + ": " + text;
 		}
 
 
@@ -460,8 +459,7 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		if ( text != "" && text != null )
 		{
 			secSuiteInfo[2] = PrimeMain.texts
-					.getString("swTabDescriptionLabel")
-					+ ": " + text;
+					.getString("swTabDescriptionLabel") + ": " + text;
 		}
 
 
@@ -578,10 +576,11 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		}
 		else if ( panel.getName().equals("Operating System") )
 		{
-			new OSNewView(mainObj, osObj);
-			// Creates a new object after the first object is passed to the
-			// view.
-			osObj = PrimeMain.standard_software.getSt_OS();
+			new osSelectionOverView();
+			// new OSNewView(mainObj, osObj);
+			// // Creates a new object after the first object is passed to the
+			// // view.
+			// osObj = PrimeMain.standard_software.getSt_OS();
 		}
 		else if ( panel.getName().equals("Proxy") )
 		{
