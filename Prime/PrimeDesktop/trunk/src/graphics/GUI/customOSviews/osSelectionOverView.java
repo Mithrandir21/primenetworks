@@ -34,7 +34,10 @@ import org.jdesktop.swingx.JXTaskPaneContainer;
 
 
 /**
- * @author Berra
+ * TODO - Description NEEDED!
+ * 
+ * @author Bahram Malaekeh
+ * 
  */
 public class osSelectionOverView extends JDialog implements ActionListener
 {
@@ -45,6 +48,11 @@ public class osSelectionOverView extends JDialog implements ActionListener
 	private OperatingSystem mainOs;
 
 
+	/**
+	 * TODO - Description NEEDED!
+	 * 
+	 * @param obj
+	 */
 	public osSelectionOverView(Object obj)
 	{
 		this.setTitle(PrimeMain.texts.getString("selectOSdialogTitle"));
@@ -81,6 +89,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 		JScrollPane scroll = new JScrollPane();
+		// Increases how far the scroll bar scrolls on one step of a mouse wheel
+		scroll.getVerticalScrollBar().setUnitIncrement(30);
 		scroll.setViewportView(getStandardOS());
 
 		this.add(scroll, d);
@@ -96,7 +106,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 	/**
-	 * @return
+	 * TODO - Description
+	 * 
 	 */
 	private JXTaskPaneContainer getStandardOS()
 	{
@@ -112,11 +123,12 @@ public class osSelectionOverView extends JDialog implements ActionListener
 					if ( i == 0 )
 					{
 						tpc.add(getOSpane(PrimeMain.system_standard_OS[i],
-								false));
+								false, true));
 					}
 					else
 					{
-						tpc.add(getOSpane(PrimeMain.system_standard_OS[i], true));
+						tpc.add(getOSpane(PrimeMain.system_standard_OS[i],
+								true, false));
 					}
 				}
 			}
@@ -127,7 +139,12 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 
-	private JXTaskPane getOSpane(OperatingSystem os, boolean collapsed)
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	private JXTaskPane getOSpane(OperatingSystem os, boolean collapsed,
+			boolean editable)
 	{
 		JXTaskPane pane = new JXTaskPane();
 
@@ -171,8 +188,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 		// The supported file system.
-		JLabel fsLabel = new JLabel(
-				PrimeMain.texts.getString("osViewSupFSLabel"));
+		JLabel fsLabel = new JLabel(PrimeMain.texts
+				.getString("osViewSupFSLabel"));
 		fsLabel.setToolTipText(PrimeMain.texts.getString("osViewSupFSTip"));
 
 		panel1.add(fsLabel, conPanel1);
@@ -201,8 +218,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 		// Whether or not the OS supports encrypted file system
-		JCheckBox encryptedFileSystem = new JCheckBox(
-				PrimeMain.texts.getString("osViewSupEnctyptedFSLabel"));
+		JCheckBox encryptedFileSystem = new JCheckBox(PrimeMain.texts
+				.getString("osViewSupEnctyptedFSLabel"));
 		encryptedFileSystem.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		encryptedFileSystem.setSelected(os.isEncryptedFileSystem());
@@ -213,8 +230,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 		// Whether or not the OS has a GUI
-		JCheckBox hasGUI = new JCheckBox(
-				PrimeMain.texts.getString("osViewSupEnctyptedFSLabel"));
+		JCheckBox hasGUI = new JCheckBox(PrimeMain.texts
+				.getString("osViewSupEnctyptedFSLabel"));
 		hasGUI.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		hasGUI.setSelected(os.isHasGUI());
@@ -245,8 +262,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 		conPanel2.gridx = 0; // column
 
 		// The 64 bit check box
-		JCheckBox is64bit = new JCheckBox(
-				PrimeMain.texts.getString("osViewSupEnctyptedFSLabel"));
+		JCheckBox is64bit = new JCheckBox(PrimeMain.texts
+				.getString("osViewSupEnctyptedFSLabel"));
 		is64bit.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		is64bit.setSelected(os.isIs64bit());
@@ -280,8 +297,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 		// Desc
-		JLabel descLabel = new JLabel(
-				PrimeMain.texts.getString("swTabSWdescriptionLabel"));
+		JLabel descLabel = new JLabel(PrimeMain.texts
+				.getString("swTabSWdescriptionLabel"));
 
 		conPanel3.gridx = 0; // column
 		panel3.add(descLabel, conPanel3);
@@ -310,6 +327,37 @@ public class osSelectionOverView extends JDialog implements ActionListener
 		pane.add(panel3, d);
 
 
+
+
+		JPanel panel4 = new JPanel();
+		panel4.setLayout(new GridBagLayout());
+		GridBagConstraints conPanel4 = new GridBagConstraints();
+
+		conPanel4.fill = GridBagConstraints.NONE;
+		// conPanel4.ipady = 0; // reset to default
+		// conPanel4.ipadx = 0; // reset to default
+		// conPanel4.weighty = 1.0; // request any extra vertical space
+		// conPanel4.weightx = 1.0; // request any extra horizontal space
+		conPanel4.anchor = GridBagConstraints.SOUTHEAST; // location
+		conPanel4.insets = new Insets(10, 10, 10, 10); // padding
+		// conPanel4.gridwidth = 1; // 2 row wide
+		// conPanel4.gridheight = 1; // 2 columns wide
+		conPanel4.gridy = 0; // row
+		conPanel4.gridx = 0; // column
+
+
+		if ( editable )
+		{
+			JButton edit = new JButton("Edit");
+			edit.setActionCommand("Edit" + os.getObjectName());
+			edit.addActionListener(this);
+
+			panel4.add(edit, d);
+			conPanel4.gridx = 1;
+		}
+
+
+
 		JButton install = new JButton(PrimeMain.texts.getString("install")
 				+ " " + os.getObjectName());
 		install.setActionCommand(os.getObjectName());
@@ -318,13 +366,17 @@ public class osSelectionOverView extends JDialog implements ActionListener
 		d.anchor = GridBagConstraints.SOUTHEAST; // location
 		d.insets = new Insets(10, 10, 10, 10); // padding
 		d.gridy = 3;
-		pane.add(install, d);
+		panel4.add(install, d);
 
 		return pane;
 	}
 
 
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
