@@ -6,7 +6,6 @@ package graphics.GUI.customOSviews;
 
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
-import graphics.GUI.objectView.ObjectView;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -25,8 +24,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import managment.SoftwareManagment;
-import objects.Object;
 import objects.softwareObjects.OperatingSystem;
 
 import org.jdesktop.swingx.JXTaskPane;
@@ -36,20 +33,11 @@ import org.jdesktop.swingx.JXTaskPaneContainer;
 /**
  * @author Berra
  */
-public class osSelectionOverView extends JDialog implements ActionListener
+public class SystemOSDialog extends JDialog implements ActionListener
 {
-	// The main object
-	private Object mainObj;
-
-	// The operating system to be added to the main object.
-	private OperatingSystem mainOs;
-
-
-	public osSelectionOverView(Object obj)
+	public SystemOSDialog()
 	{
-		this.setTitle(PrimeMain.texts.getString("selectOSdialogTitle"));
-
-		mainObj = obj;
+		this.setTitle(PrimeMain.texts.getString("systemOStitle"));
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -79,11 +67,7 @@ public class osSelectionOverView extends JDialog implements ActionListener
 		d.gridy = 0; // row
 		d.gridx = 0; // column
 
-
-		JScrollPane scroll = new JScrollPane();
-		scroll.setViewportView(getStandardOS());
-
-		this.add(scroll, d);
+		getStandardOS();
 
 
 		this.setPreferredSize(size);
@@ -94,10 +78,6 @@ public class osSelectionOverView extends JDialog implements ActionListener
 	}
 
 
-
-	/**
-	 * @return
-	 */
 	private JXTaskPaneContainer getStandardOS()
 	{
 		JXTaskPaneContainer tpc = new JXTaskPaneContainer();
@@ -124,6 +104,7 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 		return tpc;
 	}
+
 
 
 
@@ -303,15 +284,7 @@ public class osSelectionOverView extends JDialog implements ActionListener
 		panel3.add(descScroll, conPanel3);
 
 
-
-		d.weighty = 1.0; // request any extra vertical space
-		d.weightx = 1.0; // request any extra horizontal space
-		d.gridy = 2;
-		pane.add(panel3, d);
-
-
-		JButton install = new JButton(PrimeMain.texts.getString("install")
-				+ " " + os.getObjectName());
+		JButton install = new JButton(PrimeMain.texts.getString("edit"));
 		install.setActionCommand(os.getObjectName());
 		install.addActionListener(this);
 
@@ -320,45 +293,28 @@ public class osSelectionOverView extends JDialog implements ActionListener
 		d.gridy = 3;
 		pane.add(install, d);
 
+
+
+		d.weighty = 1.0; // request any extra vertical space
+		d.weightx = 1.0; // request any extra horizontal space
+		d.gridy = 2;
+		pane.add(panel3, d);
+
+
 		return pane;
 	}
 
 
 
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( e.getSource() instanceof JButton )
-		{
-			for ( int i = 0; i < PrimeMain.system_standard_OS.length; i++ )
-			{
-				if ( e.getActionCommand().equals(
-						PrimeMain.system_standard_OS[i].getObjectName()) )
-				{
-					OperatingSystem os = PrimeMain.system_standard_OS[i];
-
-					// Sets an array with the newly added software object
-					mainObj.setSoftware(SoftwareManagment.addSoftware(os,
-							mainObj));
-
-
-					// Updates the views of the object to correctly show the
-					// current info.
-					ObjectView view = PrimeMain.getObjectView(mainObj);
-					if ( view != null )
-					{
-						view.updateViewInfo();
-					}
-
-
-					// Closes the JFrame.
-					this.dispose();
-				}
-			}
-		}
-		else if ( e.getActionCommand().equals("cancel") )
-		{
-			this.dispose();
-		}
+		System.out.println(e.getActionCommand());
 	}
+
 }
