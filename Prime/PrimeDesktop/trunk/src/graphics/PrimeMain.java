@@ -19,6 +19,7 @@ package graphics;
 
 
 import graphics.GUI.customNetworks.NetworkRulesFrame;
+import graphics.GUI.customOSviews.osSelectionOverView;
 import graphics.GUI.menues.GenericPrimeMenuBar;
 import graphics.GUI.menues.GenericPrimeToolbar;
 import graphics.GUI.messageArea.MessageTabbed;
@@ -152,7 +153,7 @@ public class PrimeMain extends JFrame
 			.getSystemStandardOSs();
 
 	// This array contains the systems custom OperatingSystems, the ones created by Users.
-	public static OperatingSystem[] system_custom_OS;
+	public static ArrayList<OperatingSystem> system_custom_OS = new ArrayList<OperatingSystem>();
 
 	// The variable for the object that is in view.
 	public static ArrayList<ObjectView> objView = new ArrayList<ObjectView>(1);
@@ -165,6 +166,9 @@ public class PrimeMain extends JFrame
 
 	// The frame that shows the network rules
 	public static NetworkRulesFrame rulesFrame;
+
+	// The frame for the Operating System selection
+	public static osSelectionOverView osSelect;
 
 	// The arraylist of the systems standard Objects
 	public static ArrayList<Object> objectlist = new ArrayList<Object>();
@@ -260,7 +264,7 @@ public class PrimeMain extends JFrame
 		// Loads the custom OperatingSystems the user has added
 		DesktopFileManagment.loadCustomOS();
 
-		
+
 		// OBJECTS LIST
 		// If a file exist with the System Objects
 		if ( DesktopFileManagment.objectsFileExists() )

@@ -15,27 +15,29 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package graphics.GUI.objectView.Software.EditSoftware.EditViews;
+package graphics.GUI.customOSviews;
 
 
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 import graphics.SystemFunctions;
-import graphics.GUI.objectView.ObjectView;
-import graphics.GUI.objectView.Software.SoftwareView;
+import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -44,27 +46,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
-import logistical.cleanup;
-import managment.SoftwareManagment;
-import objects.Object;
-import objects.Software;
 import objects.softwareObjects.OperatingSystem;
 
 
 /**
- * A JPanel that will contain fields and options for a presentation and
- * modification of an {@link OperatingSystem OperatingSystem} Software. The
- * panel is made up of 3 JPanel ordered in a column. The first one contains the
- * name and description of the object. The second panel contains the specific
- * software options. The third panel contains the button that can remove the
- * software from the computer.
+ * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
+ * 
  */
-public class OSEditView extends JPanel implements SoftwareView, ActionListener
+public class OSedit extends JDialog implements ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -87,28 +79,28 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 	private JCheckBox is64bit;
 
 
-	private Object mainObj;
-
 	private OperatingSystem mainOS;
 
 
-	/**
-	 * Constructor for the software view.
-	 * 
-	 * @param obj
-	 *            The main {@link Object object}.
-	 * @param OS
-	 *            The {@link OperatingSystem OperatingSystem} software.
-	 */
-	public OSEditView(Object obj, OperatingSystem OS)
+
+	public OSedit(OperatingSystem OS)
 	{
-		mainObj = obj;
+		this.setTitle(PrimeMain.texts.getString("edit"));
+
 		mainOS = OS;
 
-		boolean nonEditable = SystemFunctions.foundInStandardOS(OS
-				.getObjectName());
+		// Get the default toolkit
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
+		// Get the current screen size
+		Dimension scrnsize = toolkit.getScreenSize();
 
+		Dimension size = new Dimension(760, 400);
+
+		int initYLocation = (scrnsize.height - size.height) / 3;
+		int initXLocation = (scrnsize.width - size.width) / 2;
+
+		// Creates a new Standard Operating System
 		this.setLayout(new GridBagLayout());
 		this.setBackground(Color.WHITE);
 		GridBagConstraints c = new GridBagConstraints();
@@ -126,13 +118,13 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		c.gridx = 0; // column
 
 		ImageIcon icon = PrimeMain.objectImageIcons.get(OperatingSystem.class);
-		JPanel p1 = GeneralInfo(mainOS, icon, name, desc, nonEditable);
+		JPanel p1 = SoftwareEditor.GeneralInfo(mainOS, icon, name, desc);
 		p1.setBorder(BorderFactory.createEtchedBorder());
 
 		this.add(p1, c);
 
 
-		JPanel p2 = createSpesificInfo(mainOS, nonEditable);
+		JPanel p2 = createSpesificInfo(mainOS);
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		c.gridx = 0;
@@ -140,6 +132,12 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		c.weighty = 1.0; // request any extra vertical space
 		c.insets = new Insets(0, 10, 10, 10);
 		this.add(p2, c);
+
+
+		this.setLocation(initXLocation, initYLocation);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
+		this.setVisible(true);
 	}
 
 
@@ -148,14 +146,12 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 	 * settings of the given Software object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
-	 * @param nonEditable
-	 * 
 	 * @param OS
 	 *            The Software that will be examined and will fill inn the
 	 *            fields.
 	 * @return A JPanel that contains fields to set the given objects settings.
 	 */
-	private JPanel createSpesificInfo(OperatingSystem os, boolean nonEditable)
+	private JPanel createSpesificInfo(OperatingSystem os)
 	{
 		JPanel pane = new JPanel(new GridBagLayout());
 		GridBagConstraints d = new GridBagConstraints();
@@ -206,10 +202,6 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		listPane.setPreferredSize(new Dimension(160, 60));
 		supportedFS
 				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		if ( nonEditable )
-		{
-			supportedFS.setEnabled(false);
-		}
 
 		if ( os.getFs() != null )
 		{
@@ -231,10 +223,6 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		encryptedFileSystem.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		encryptedFileSystem.setSelected(os.isEncryptedFileSystem());
-		if ( nonEditable )
-		{
-			encryptedFileSystem.setEnabled(false);
-		}
 
 		conPanel1.gridx = 2; // column
 		panel1.add(encryptedFileSystem, conPanel1);
@@ -247,10 +235,6 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		hasGUI.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		hasGUI.setSelected(os.isHasGUI());
-		if ( nonEditable )
-		{
-			hasGUI.setEnabled(false);
-		}
 
 		conPanel1.gridx = 3; // column
 		panel1.add(hasGUI, conPanel1);
@@ -283,10 +267,6 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		is64bit.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		is64bit.setSelected(os.isIs64bit());
-		if ( nonEditable )
-		{
-			is64bit.setEnabled(false);
-		}
 
 		conPanel2.gridx = 0; // column
 		panel2.add(is64bit, conPanel2);
@@ -297,12 +277,53 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		d.gridy = 1;
 		pane.add(panel2, d);
 
+
+
+		JPanel panel3 = new JPanel();
+		panel3.setLayout(new GridBagLayout());
+		GridBagConstraints conPanel3 = new GridBagConstraints();
+
+		conPanel3.fill = GridBagConstraints.NONE;
+		// conPanel4.ipady = 0; // reset to default
+		// conPanel4.ipadx = 0; // reset to default
+		// conPanel4.weighty = 1.0; // request any extra vertical space
+		// conPanel4.weightx = 1.0; // request any extra horizontal space
+		conPanel3.anchor = GridBagConstraints.SOUTHEAST; // location
+		conPanel3.insets = new Insets(5, 5, 5, 5); // padding
+		// conPanel4.gridwidth = 1; // 2 row wide
+		// conPanel4.gridheight = 1; // 2 columns wide
+
+
+		JButton save = new JButton(PrimeMain.texts.getString("saveOS"));
+		save.setActionCommand(PrimeMain.texts.getString("saveOS"));
+		save.addActionListener(this);
+
+		conPanel3.gridy = 0; // row
+		conPanel3.gridx = 0; // column
+		panel3.add(save, conPanel3);
+
+
+		JButton cancel = new JButton(PrimeMain.texts.getString("cancel"));
+		cancel.setActionCommand(PrimeMain.texts.getString("cancel"));
+		cancel.addActionListener(this);
+
+		conPanel3.gridy = 0; // row
+		conPanel3.gridx = 1; // column
+		conPanel3.insets = new Insets(5, 0, 5, 5); // padding
+		panel3.add(cancel, conPanel3);
+
+
+		d.anchor = GridBagConstraints.SOUTHEAST; // location
+		d.gridy = 2;
+		pane.add(panel3, d);
+
+
 		return pane;
 	}
 
 
 
-	@Override
+
 	public void save()
 	{
 		if ( name.getText() != "" )
@@ -327,203 +348,99 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		mainOS.setIs64bit(is64bit.isSelected());
 	}
 
+
+
+	/**
+	 * Returns a boolean on whether or not the information in the fields are valid.
+	 */
+	public boolean validateCustomOS()
+	{
+		// Checks whether any filesystems have been selected
+		if ( supportedFS.getSelectedIndex() == -1 )
+		{
+			JOptionPane.showMessageDialog(null, PrimeMain.texts
+					.getString("osNoFSselectedMsg"), PrimeMain.texts
+					.getString("error"), JOptionPane.ERROR_MESSAGE);
+
+			return false;
+		}
+
+
+		// Checks to see whether the description is empty
+		if ( desc.getText().equals("") || desc.getText() == "" )
+		{
+			JOptionPane.showMessageDialog(null, PrimeMain.texts
+					.getString("osNoDescriptionMsg"), PrimeMain.texts
+					.getString("error"), JOptionPane.ERROR_MESSAGE);
+
+			return false;
+		}
+
+
+		// Checks the standard OS names
+		if ( SystemFunctions.foundInStandardOS(name.getText()) )
+		{
+			JOptionPane.showMessageDialog(null, PrimeMain.texts
+					.getString("osSameNameAsAstandardOS"), PrimeMain.texts
+					.getString("error"), JOptionPane.ERROR_MESSAGE);
+
+			return false;
+		}
+
+
+		// Checks the custom OS names with a check for matching serial numbers
+		if ( !PrimeMain.system_custom_OS.isEmpty() )
+		{
+			// get an Iterator object for ArrayList using iterator() method.
+			Iterator<OperatingSystem> itr = PrimeMain.system_custom_OS
+					.iterator();
+
+			while ( itr.hasNext() )
+			{
+				OperatingSystem os = itr.next();
+
+				// If the name is the same and the Serial number is different, ie different Operating System
+				if ( name.getText().equalsIgnoreCase(os.getObjectName())
+						&& (os.getObjectSerial() != mainOS.getObjectSerial()) )
+				{
+					JOptionPane.showMessageDialog(null, PrimeMain.texts
+							.getString("osSameNameAsAcustomOS"),
+							PrimeMain.texts.getString("error"),
+							JOptionPane.ERROR_MESSAGE);
+
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+
+
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( e.getSource() instanceof Button )
+		if ( e.getActionCommand().equals(PrimeMain.texts.getString("saveOS")) )
 		{
-			Button check = (Button) e.getSource();
-
-			String command = check.getActionCommand();
-
-			if ( command.equals("removeSoft") )
+			// If the OS is valid(errors will be given in the validation)
+			if ( validateCustomOS() )
 			{
-				int answer = JOptionPane.showConfirmDialog(this,
-						PrimeMain.texts.getObject("osViewRemovalQuestionText"),
-						PrimeMain.texts.getString("verify"),
-						JOptionPane.YES_NO_OPTION);
+				save();
 
-				// If the user verifies the choice
-				if ( answer == JOptionPane.YES_OPTION )
-				{
-					// Removes the OS from the software array of the main object
-					mainObj.setSoftware(SoftwareManagment.removeSoftware(
-							mainOS, mainObj));
-
-					// All the software of the main obj(without the OS)
-					Software[] software = mainObj.getSoftware();
-
-					// Goes through all the software
-					for ( int i = 0; i < software.length; i++ )
-					{
-						// The test does not include instances of Operating
-						// system
-						if ( !(software[i] instanceof OperatingSystem) )
-						{
-							// Checks whether or not the given software is still
-							// compatible
-							if ( !(SoftwareManagment.validateSoftware(
-									software[i], mainObj)) )
-							{
-								// If the software is not compatible the index
-								// of
-								// that software will be set to null
-								software[i] = null;
-							}
-						}
-					}
-
-					// Removes all the null pointers in an array
-					software = cleanup.cleanObjectArray(software);
-
-					// Sets the remaining software as the software of the main
-					// object
-					mainObj.setSoftware(software);
-
-
-					// Updates the views of the object to correctly show the
-					// current info.
-					ObjectView view = PrimeMain.getObjectView(mainObj);
-					if ( view != null )
-					{
-						view.updateViewInfo();
-					}
-				}
+				// Closes the JDialog
+				this.dispose();
 			}
 		}
-	}
-
-
-	/**
-	 * Handles the selections that are made in the "Supported Operating Systems"
-	 * JList.
-	 */
-	class SharedListSelectionHandler implements ListSelectionListener
-	{
-		/*
-		 * (non-Javadoc)
-		 * @see
-		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
-		 * event.ListSelectionEvent)
-		 */
-		public void valueChanged(ListSelectionEvent e)
+		else if ( e.getActionCommand().equals(
+				PrimeMain.texts.getString("cancel")) )
 		{
-			int[] indeces = supportedFS.getSelectedIndices();
-
-			if ( indeces.length == 0 )
-			{
-				fsData = null;
-			}
-			else
-			{
-				// Creates an array of strings with the length of the array with
-				// the selected indices.
-				fsData = new String[indeces.length];
-
-				// Find out which indexes are selected.
-				for ( int i = 0; i < indeces.length; i++ )
-				{
-					fsData[i] = (String) supportedFS.getSelectedValues()[i];
-				}
-			}
+			// Closes the JDialog
+			this.dispose();
 		}
 	}
-
-
-	@Override
-	public Software getViewSoftware()
-	{
-		return mainOS;
-	}
-
-
-
-	/**
-	 * Creates a JPanel that shows an Icon representing the hardware object and
-	 * two fields with the name and description of the hardware object.
-	 * 
-	 * @param sw
-	 *            The actual hardware object.
-	 * @param icon
-	 *            The Icon representing the hardware component.
-	 * @param name
-	 *            A JTextField that will contain the name of the object.
-	 * @param desc
-	 *            A JTextArea that holds the description of the object.
-	 * @param nonEditable
-	 * @return Returns the created JPanel with all the information about the
-	 *         hardware object.
-	 */
-	public static JPanel GeneralInfo(Software sw, ImageIcon icon,
-			JTextField name, JTextArea desc, boolean nonEditable)
-	{
-		JPanel genPanel = new JPanel();
-		genPanel.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-
-		c.fill = GridBagConstraints.NONE;
-		// c.ipady = 0; // reset to default
-		// c.ipadx = 0; // reset to default
-		// c.weighty = 1.0; // request any extra vertical space
-		// c.weightx = 1.0; // request any extra horizontal space
-		c.anchor = GridBagConstraints.WEST; // location
-		c.insets = new Insets(10, 10, 10, 10); // padding
-		// c.gridwidth = 1; // 2 row wide
-		c.gridheight = 2; // 2 columns wide
-		c.gridy = 0; // row
-		c.gridx = 0; // column
-
-		JLabel image = new JLabel(icon);
-		genPanel.add(image, c);
-
-
-		JLabel nameLabel = new JLabel(PrimeMain.texts
-				.getString("swTabSWnameLabel"));
-		c.gridheight = 1; // 2 columns wide
-		c.gridx = 1;
-		c.gridy = 0;
-		genPanel.add(nameLabel, c);
-
-
-		name.setName("Name");
-		name.setText(sw.getObjectName());
-		JLabel t = new JLabel();
-		name.setFont(t.getFont());
-		if ( nonEditable )
-		{
-			name.setEditable(false);
-		}
-		// name.setBorder(BorderFactory.createEmptyBorder());
-		c.gridx = 2;
-		c.gridy = 0;
-		genPanel.add(name, c);
-
-
-
-		JLabel descLabel = new JLabel(PrimeMain.texts
-				.getString("swTabSWdescriptionLabel"));
-		c.gridx = 1;
-		c.gridy = 1;
-		genPanel.add(descLabel, c);
-
-
-		// Description
-		JScrollPane descScroll = new JScrollPane();
-		desc.setName("Description");
-		desc.setText(sw.getDescription());
-		desc.setFont(t.getFont());
-		descScroll.setViewportView(desc);
-		if ( nonEditable )
-		{
-			desc.setEditable(false);
-		}
-
-		c.weightx = 1.0; // request any extra horizontal space
-		c.gridx = 2;
-		c.gridy = 1;
-		genPanel.add(descScroll, c);
-
-		return genPanel;
-	}
-
 }

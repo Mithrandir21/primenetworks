@@ -36,6 +36,7 @@ import actions.systemActions.ActionExportCanvasAsImage;
 import actions.systemActions.ActionFullscreen;
 import actions.systemActions.ActionNew;
 import actions.systemActions.ActionObjectEditing;
+import actions.systemActions.ActionOpenCustomOS;
 import actions.systemActions.ActionOpenStandardRules;
 import actions.systemActions.ActionOpenfile;
 import actions.systemActions.ActionPaste;
@@ -266,10 +267,12 @@ public class GenericPrimeToolbar extends JMenuBar
 		editingToolBar = new JToolBar();
 		editingToolBar.setFloatable(false);
 
-		tempIcon = ImageLocator.getImageIconObject("Objects");
-		ActionObjectEditing editing = new ActionObjectEditing(PrimeMain.texts
-				.getString("standardObjectsLabel"), tempIcon);
-		JButton editingButton = new JButton(editing);
+
+
+		tempIcon = ImageLocator.getImageIconObject("OperatingSystem-Button");
+		ActionOpenCustomOS osList = new ActionOpenCustomOS(PrimeMain.texts
+				.getString("systemOSlist"), tempIcon);
+		JButton osListButton = new JButton(osList);
 
 
 		tempIcon = ImageLocator.getImageIconObject("Rules");
@@ -280,11 +283,18 @@ public class GenericPrimeToolbar extends JMenuBar
 		JButton rulesButton = new JButton(rules);
 
 
+		tempIcon = ImageLocator.getImageIconObject("Objects");
+		ActionObjectEditing editing = new ActionObjectEditing(PrimeMain.texts
+				.getString("standardObjectsLabel"), tempIcon);
+		JButton editingButton = new JButton(editing);
+
+
 		ActionFullscreen fullscreen = new ActionFullscreen(PrimeMain.texts
 				.getString("actionFullscreenText"));
 		JButton fullscreenButton = new JButton(fullscreen);
 		fullscreenButton.setVisible(false);
 
+		editingToolBar.add(osListButton);
 		editingToolBar.add(rulesButton);
 		editingToolBar.add(editingButton);
 		editingToolBar.add(fullscreenButton);

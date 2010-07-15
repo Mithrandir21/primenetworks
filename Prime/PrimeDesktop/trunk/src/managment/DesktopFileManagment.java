@@ -342,7 +342,8 @@ public class DesktopFileManagment
 	 */
 	public static boolean saveCustomOS(File file)
 	{
-		if ( PrimeMain.system_custom_OS != null && file != null )
+		if ( PrimeMain.system_custom_OS != null
+				&& (!PrimeMain.system_custom_OS.isEmpty()) && file != null )
 		{
 			try
 			{
@@ -353,17 +354,15 @@ public class DesktopFileManagment
 
 				// The must be at least on room on the canvas for there to be
 				// saved any rooms
-				if ( PrimeMain.system_custom_OS.length > 0
-						&& PrimeMain.system_custom_OS[0] != null )
+				if ( !PrimeMain.system_custom_OS.isEmpty() )
 				{
-					// Goes through all the rooms on the canvas and adds them to
-					// the ArrayList
-					for ( int i = 0; i < PrimeMain.system_custom_OS.length; i++ )
+					// get an Iterator object for ArrayList using iterator() method.
+					Iterator<OperatingSystem> itr = PrimeMain.system_custom_OS
+							.iterator();
+
+					while ( itr.hasNext() )
 					{
-						if ( PrimeMain.system_custom_OS[i] != null )
-						{
-							oos.writeObject(PrimeMain.standardRules);
-						}
+						oos.writeObject(itr.next());
 					}
 
 					// Writes a null to indicate the end of the file for read in.
@@ -1341,26 +1340,13 @@ public class DesktopFileManagment
 
 						ObjectInputStream ois = new ObjectInputStream(fin);
 
-						// Create an arraylist to hold the operating systems
-						ArrayList<OperatingSystem> osArray = new ArrayList<OperatingSystem>();
-
-						// A temporary OS pointer
-						OperatingSystem temp = null;
+						OperatingSystem temp;
 
 						// While the temp is not null, hence not EOF
 						while ( (temp = (OperatingSystem) ois.readObject()) != null )
 						{
 							// Adds the os to the array list
-							osArray.add(temp);
-						}
-
-
-						// As long as the array list is not empty
-						if ( !osArray.isEmpty() )
-						{
-							// Converts the array list to an OperatingSystem array
-							PrimeMain.system_custom_OS = osArray
-									.toArray(new OperatingSystem[0]);
+							PrimeMain.system_custom_OS.add(temp);
 						}
 
 						ois.close();

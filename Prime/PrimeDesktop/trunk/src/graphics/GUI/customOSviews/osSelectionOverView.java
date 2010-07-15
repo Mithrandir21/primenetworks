@@ -1,13 +1,29 @@
-/**
- * 
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * Copyright (C) 2010  Bahram Malaekeh
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.customOSviews;
 
 
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
+import graphics.SystemFunctions;
 import graphics.GUI.objectView.ObjectView;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -15,14 +31,19 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 
 import managment.SoftwareManagment;
@@ -44,8 +65,21 @@ public class osSelectionOverView extends JDialog implements ActionListener
 	// The main object
 	private Object mainObj;
 
-	// The operating system to be added to the main object.
-	private OperatingSystem mainOs;
+	private JPanel mainPanel;
+
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 * 
+	 * @param obj
+	 */
+	public osSelectionOverView()
+	{
+		this.setTitle(PrimeMain.texts.getString("selectOSdialogTitle"));
+
+		initDialog();
+	}
 
 
 	/**
@@ -59,6 +93,17 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 		mainObj = obj;
 
+		initDialog();
+	}
+
+
+
+
+	/**
+	 * Sets up the size, position and components of the JDialog.
+	 */
+	private void initDialog()
+	{
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -87,21 +132,153 @@ public class osSelectionOverView extends JDialog implements ActionListener
 		d.gridy = 0; // row
 		d.gridx = 0; // column
 
-
-		JScrollPane scroll = new JScrollPane();
-		// Increases how far the scroll bar scrolls on one step of a mouse wheel
-		scroll.getVerticalScrollBar().setUnitIncrement(30);
-		scroll.setViewportView(getStandardOS());
-
-		this.add(scroll, d);
+		mainPanel = populateDialog();
+		this.add(mainPanel, d);
 
 
-		this.setPreferredSize(size);
 		this.setLocation(initXLocation, initYLocation);
 		this.setPreferredSize(size);
 		this.setMinimumSize(size);
 		this.setVisible(true);
+
+		// Resets the osSelect when closed.
+		this.addWindowListener(new WindowAdapter()
+		{
+			@Override
+			public void windowClosing(WindowEvent ev)
+			{
+				PrimeMain.osSelect = null;
+			}
+		});
 	}
+
+
+
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	private JPanel populateDialog()
+	{
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints d = new GridBagConstraints();
+
+		d.fill = GridBagConstraints.BOTH;
+		// d.ipady = 0; // reset to default
+		// d.ipadx = 0; // reset to default
+		d.weighty = 1.0; // request any extra vertical space
+		d.weightx = 1.0; // request any extra horizontal space
+		d.anchor = GridBagConstraints.NORTH; // location
+		// d.insets = new Insets(0, 0, 5, 0); // padding
+		// d.gridwidth = 1; // 2 row wide
+		// d.gridheight = 1; // 2 columns wide
+		d.gridy = 0; // row
+		d.gridx = 0; // column
+
+
+
+
+		JPanel panel1 = new JPanel();
+		panel1.setBackground(Color.WHITE);
+		panel1.setLayout(new GridBagLayout());
+		GridBagConstraints conPanel1 = new GridBagConstraints();
+
+		conPanel1.fill = GridBagConstraints.BOTH;
+		// conPanel1.ipady = 0; // reset to default
+		// conPanel1.ipadx = 0; // reset to default
+		// conPanel1.weighty = 1.0; // request any extra vertical space
+		// conPanel1.weightx = 1.0; // request any extra horizontal space
+		conPanel1.anchor = GridBagConstraints.NORTH; // location
+		conPanel1.insets = new Insets(5, 5, 5, 5); // padding
+		// d.gridwidth = 1; // 2 row wide
+		// d.gridheight = 1; // 2 columns wide
+		conPanel1.gridy = 0; // row
+		conPanel1.gridx = 0; // column
+
+
+		panel1.add(getStandardOS(), conPanel1);
+
+
+		// conPanel1.weighty = 0; // request any extra vertical space
+		// conPanel1.weightx = 0; // request any extra horizontal space
+		conPanel1.gridy = 1; // row
+		panel1.add(new JSeparator(), conPanel1);
+
+		conPanel1.weighty = 1.0; // request any extra vertical space
+		conPanel1.weightx = 1.0; // request any extra horizontal space
+		conPanel1.insets = new Insets(5, 5, 5, 5); // padding
+		conPanel1.gridy = 2; // row
+		panel1.add(getCustomOS(), conPanel1);
+
+
+
+
+		JScrollPane scroll = new JScrollPane();
+		// Increases how far the scroll bar scrolls on one step of a mouse wheel
+		scroll.getVerticalScrollBar().setUnitIncrement(30);
+		scroll.setViewportView(panel1);
+
+		panel.add(scroll, d);
+
+
+
+		d.fill = GridBagConstraints.HORIZONTAL;
+		d.weighty = 0; // request any extra vertical space
+		// d.weightx = 0; // request any extra horizontal space
+		d.anchor = GridBagConstraints.SOUTHEAST; // location
+		d.gridy = 1; // row
+		d.gridx = 0; // column
+		panel.add(getButtons(), d);
+
+		return panel;
+	}
+
+
+
+
+	/**
+	 * Gets the buttons for the operating systems overview.
+	 */
+	private JPanel getButtons()
+	{
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints d = new GridBagConstraints();
+
+		d.fill = GridBagConstraints.NONE;
+		// d.ipady = 0; // reset to default
+		// d.ipadx = 0; // reset to default
+		d.weighty = 1.0; // request any extra vertical space
+		d.weightx = 1.0; // request any extra horizontal space
+		d.anchor = GridBagConstraints.SOUTHEAST; // location
+		d.insets = new Insets(10, 10, 10, 10); // padding
+		// d.gridwidth = 1; // 2 row wide
+		// d.gridheight = 1; // 2 columns wide
+		d.gridy = 0; // row
+		d.gridx = 0; // column
+
+
+		JButton newCustomOS = new JButton(PrimeMain.texts
+				.getString("newCustomOSlabel"));
+		newCustomOS.setActionCommand(PrimeMain.texts
+				.getString("newCustomOSlabel"));
+		newCustomOS.addActionListener(this);
+		panel.add(newCustomOS, d);
+
+
+
+		JButton cancel = new JButton(PrimeMain.texts.getString("cancel"));
+		cancel.setActionCommand(PrimeMain.texts.getString("cancel"));
+		cancel.addActionListener(this);
+		d.weighty = 0; // request any extra vertical space
+		d.weightx = 0; // request any extra horizontal space
+		d.gridx = 1; // column
+		panel.add(cancel, d);
+
+
+		return panel;
+	}
+
 
 
 
@@ -112,7 +289,9 @@ public class osSelectionOverView extends JDialog implements ActionListener
 	private JXTaskPaneContainer getStandardOS()
 	{
 		JXTaskPaneContainer tpc = new JXTaskPaneContainer();
-
+		tpc.setBorder(javax.swing.BorderFactory
+				.createTitledBorder(PrimeMain.texts
+						.getString("borderTitleStandard")));
 
 		if ( PrimeMain.system_standard_OS != null )
 		{
@@ -120,16 +299,40 @@ public class osSelectionOverView extends JDialog implements ActionListener
 			{
 				if ( PrimeMain.system_standard_OS[i] != null )
 				{
-					if ( i == 0 )
-					{
-						tpc.add(getOSpane(PrimeMain.system_standard_OS[i],
-								false, true));
-					}
-					else
-					{
-						tpc.add(getOSpane(PrimeMain.system_standard_OS[i],
-								true, false));
-					}
+					tpc.add(getOSpane(PrimeMain.system_standard_OS[i], true,
+							false));
+				}
+			}
+		}
+
+		return tpc;
+	}
+
+
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	private JXTaskPaneContainer getCustomOS()
+	{
+		JXTaskPaneContainer tpc = new JXTaskPaneContainer();
+		tpc.setBorder(javax.swing.BorderFactory
+				.createTitledBorder(PrimeMain.texts
+						.getString("borderTitleCustom")));
+
+
+		if ( PrimeMain.system_custom_OS != null )
+		{
+			if ( !PrimeMain.system_custom_OS.isEmpty() )
+			{
+				// get an Iterator object for ArrayList using iterator() method.
+				Iterator<OperatingSystem> itr = PrimeMain.system_custom_OS
+						.iterator();
+
+				while ( itr.hasNext() )
+				{
+					OperatingSystem os = itr.next();
+					tpc.add(getOSpane(os, true, true));
 				}
 			}
 		}
@@ -147,7 +350,6 @@ public class osSelectionOverView extends JDialog implements ActionListener
 			boolean editable)
 	{
 		JXTaskPane pane = new JXTaskPane();
-
 		pane.setTitle(os.getObjectName());
 		pane.setSpecial(true);
 		pane.setCollapsed(collapsed);
@@ -200,15 +402,14 @@ public class osSelectionOverView extends JDialog implements ActionListener
 		JScrollPane listPane = new JScrollPane(supportedFS);
 		listPane.setMaximumSize(new Dimension(160, 60));
 		listPane.setPreferredSize(new Dimension(160, 60));
-		listPane.setEnabled(false);
 		supportedFS.setEnabled(false);
 
-		if ( os.getSupportedFS() != null )
+		if ( os.getFs() != null )
 		{
-			if ( os.getSupportedFS().length > 0 )
+			if ( os.getFs().length > 0 )
 			{
 				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedFS, listData, os.getSupportedFS()));
+						supportedFS, listData, os.getFs()));
 			}
 		}
 
@@ -223,6 +424,7 @@ public class osSelectionOverView extends JDialog implements ActionListener
 		encryptedFileSystem.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		encryptedFileSystem.setSelected(os.isEncryptedFileSystem());
+		encryptedFileSystem.setEnabled(false);
 
 		conPanel1.gridx = 2; // column
 		panel1.add(encryptedFileSystem, conPanel1);
@@ -235,6 +437,7 @@ public class osSelectionOverView extends JDialog implements ActionListener
 		hasGUI.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		hasGUI.setSelected(os.isHasGUI());
+		hasGUI.setEnabled(false);
 
 		conPanel1.gridx = 3; // column
 		panel1.add(hasGUI, conPanel1);
@@ -267,6 +470,7 @@ public class osSelectionOverView extends JDialog implements ActionListener
 		is64bit.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		is64bit.setSelected(os.isIs64bit());
+		is64bit.setEnabled(false);
 
 		conPanel2.gridx = 0; // column
 		panel2.add(is64bit, conPanel2);
@@ -311,6 +515,7 @@ public class osSelectionOverView extends JDialog implements ActionListener
 		desc.setText(os.getDescription());
 		desc.setFont(descLabel.getFont());
 		descScroll.setViewportView(desc);
+		desc.setEditable(false);
 
 
 		conPanel3.weighty = 1.0; // request any extra vertical space
@@ -339,34 +544,51 @@ public class osSelectionOverView extends JDialog implements ActionListener
 		// conPanel4.weighty = 1.0; // request any extra vertical space
 		// conPanel4.weightx = 1.0; // request any extra horizontal space
 		conPanel4.anchor = GridBagConstraints.SOUTHEAST; // location
-		conPanel4.insets = new Insets(10, 10, 10, 10); // padding
+		conPanel4.insets = new Insets(5, 5, 5, 5); // padding
 		// conPanel4.gridwidth = 1; // 2 row wide
 		// conPanel4.gridheight = 1; // 2 columns wide
-		conPanel4.gridy = 0; // row
-		conPanel4.gridx = 0; // column
 
 
 		if ( editable )
 		{
-			JButton edit = new JButton("Edit");
+			JButton edit = new JButton(PrimeMain.texts.getString("edit"));
 			edit.setActionCommand("Edit" + os.getObjectName());
 			edit.addActionListener(this);
 
-			panel4.add(edit, d);
+			conPanel4.gridy = 0; // row
+			conPanel4.gridx = 0; // column
+			panel4.add(edit, conPanel4);
 			conPanel4.gridx = 1;
+
+
+			JButton remove = new JButton(PrimeMain.texts.getString("remove"));
+			remove.setActionCommand("Remove" + os.getObjectName());
+			remove.addActionListener(this);
+
+			panel4.add(remove, conPanel4);
+			conPanel4.gridx = 2;
+		}
+
+
+		if ( mainObj != null )
+		{
+			JButton install = new JButton(PrimeMain.texts.getString("install")
+					+ " " + os.getObjectName());
+			install.setActionCommand(os.getObjectName());
+			install.addActionListener(this);
+
+			conPanel4.insets = new Insets(5, 0, 5, 5); // padding
+			conPanel4.gridy = 0;
+			panel4.add(install, conPanel4);
 		}
 
 
 
-		JButton install = new JButton(PrimeMain.texts.getString("install")
-				+ " " + os.getObjectName());
-		install.setActionCommand(os.getObjectName());
-		install.addActionListener(this);
 
 		d.anchor = GridBagConstraints.SOUTHEAST; // location
-		d.insets = new Insets(10, 10, 10, 10); // padding
 		d.gridy = 3;
-		panel4.add(install, d);
+		pane.add(panel4, d);
+
 
 		return pane;
 	}
@@ -382,35 +604,184 @@ public class osSelectionOverView extends JDialog implements ActionListener
 	{
 		if ( e.getSource() instanceof JButton )
 		{
-			for ( int i = 0; i < PrimeMain.system_standard_OS.length; i++ )
+			if ( e.getActionCommand().equals(
+					PrimeMain.texts.getString("cancel")) )
 			{
-				if ( e.getActionCommand().equals(
-						PrimeMain.system_standard_OS[i].getObjectName()) )
+				PrimeMain.osSelect = null;
+				// Closes the JFrame.
+				this.dispose();
+			}
+			else if ( e.getActionCommand().equals(
+					PrimeMain.texts.getString("newCustomOSlabel")) )
+			{
+				new OSNewView();
+			}
+			else
+			{
+				// Determines whether the name is found as a standard OS
+				boolean found = false;
+
+				// If a the edit button has been pressed on one of the custom OS
+				if ( !found )
 				{
-					OperatingSystem os = PrimeMain.system_standard_OS[i];
-
-					// Sets an array with the newly added software object
-					mainObj.setSoftware(SoftwareManagment.addSoftware(os,
-							mainObj));
-
-
-					// Updates the views of the object to correctly show the
-					// current info.
-					ObjectView view = PrimeMain.getObjectView(mainObj);
-					if ( view != null )
+					if ( !PrimeMain.system_custom_OS.isEmpty() )
 					{
-						view.updateViewInfo();
+						// get an Iterator object for ArrayList using iterator() method.
+						Iterator<OperatingSystem> itr = PrimeMain.system_custom_OS
+								.iterator();
+
+						while ( itr.hasNext() && found == false )
+						{
+							OperatingSystem os = itr.next();
+
+							if ( e.getActionCommand().equalsIgnoreCase(
+									"Edit" + os.getObjectName()) )
+							{
+								new OSedit(os);
+
+								found = true;
+							}
+						}
+					}
+				}
+
+
+
+				// If a the remove button has been pressed on one of the custom OS
+				if ( !found )
+				{
+					if ( !PrimeMain.system_custom_OS.isEmpty() )
+					{
+						// get an Iterator object for ArrayList using iterator() method.
+						Iterator<OperatingSystem> itr = PrimeMain.system_custom_OS
+								.iterator();
+
+						while ( itr.hasNext() && found == false )
+						{
+							OperatingSystem os = itr.next();
+
+							if ( e.getActionCommand().equalsIgnoreCase(
+									"Remove" + os.getObjectName()) )
+							{
+								String question = PrimeMain.texts
+										.getString("osRemovalConfirmationMsg");
+
+
+								// Custom button text
+								String[] options = {
+										PrimeMain.texts.getString("yes"),
+										PrimeMain.texts.getString("no") };
+
+
+								int i = JOptionPane.showOptionDialog(null,
+										question, PrimeMain.texts
+												.getString("confirm"),
+										JOptionPane.YES_NO_CANCEL_OPTION,
+										JOptionPane.QUESTION_MESSAGE, null,
+										options, options[1]);
+
+								// If the answer is yes
+								if ( i == 0 )
+								{
+									PrimeMain.system_custom_OS.remove(os);
+
+									found = true;
+								}
+							}
+						}
+					}
+				}
+
+
+				// If the OS was not found
+				if ( !found )
+				{
+					// Determines whether the name name is found as a standard OS
+					found = SystemFunctions.foundInStandardOS(e
+							.getActionCommand());
+
+					// If the OS was not found
+					if ( found )
+					{
+						OperatingSystem newOS = (OperatingSystem) SystemFunctions
+								.getStandardOS(e.getActionCommand()).clone();
+						// Creates serial number
+						newOS.createRandomLongSerial();
+
+						// Sets an array with the newly added software object
+						mainObj.setSoftware(SoftwareManagment.addSoftware(
+								newOS, mainObj));
+					}
+				}
+
+
+				// If a Custom OS install button pressed
+				if ( !found )
+				{
+					found = SystemFunctions.foundInCustomOS(e
+							.getActionCommand());
+
+					// If the OS was not found
+					if ( found )
+					{
+						OperatingSystem newOS = (OperatingSystem) SystemFunctions
+								.getCustomOS(e.getActionCommand()).clone();
+						// Creates serial number
+						newOS.createRandomLongSerial();
+
+						// Sets an array with the newly added software object
+						mainObj.setSoftware(SoftwareManagment.addSoftware(
+								newOS, mainObj));
+					}
+				}
+
+
+				if ( found )
+				{
+					if ( mainObj != null )
+					{
+						// Updates the views of the object to correctly show the current info.
+						ObjectView view = PrimeMain.getObjectView(mainObj);
+						if ( view != null )
+						{
+							view.updateViewInfo();
+						}
 					}
 
-
-					// Closes the JFrame.
+					// Closes the JDialog
 					this.dispose();
+					PrimeMain.osSelect = null;
 				}
 			}
 		}
-		else if ( e.getActionCommand().equals("cancel") )
-		{
-			this.dispose();
-		}
+	}
+
+	/**
+	 * Updates the list of {@link OperatingSystem} shown in this class.
+	 */
+	public void updateOSlist()
+	{
+		this.remove(mainPanel);
+
+		GridBagConstraints d = new GridBagConstraints();
+
+		d.fill = GridBagConstraints.BOTH;
+		// d.ipady = 0; // reset to default
+		// d.ipadx = 0; // reset to default
+		d.weighty = 1.0; // request any extra vertical space
+		d.weightx = 1.0; // request any extra horizontal space
+		d.anchor = GridBagConstraints.NORTH; // location
+		// d.insets = new Insets(0, 0, 5, 0); // padding
+		// d.gridwidth = 1; // 2 row wide
+		// d.gridheight = 1; // 2 columns wide
+		d.gridy = 0; // row
+		d.gridx = 0; // column
+
+		mainPanel = populateDialog();
+		this.add(mainPanel, d);
+
+		mainPanel.revalidate();
+		mainPanel.repaint();
+		this.repaint();
 	}
 }

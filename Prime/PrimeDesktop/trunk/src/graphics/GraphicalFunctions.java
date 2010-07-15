@@ -29,6 +29,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.io.File;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -193,8 +194,8 @@ public class GraphicalFunctions
 	{
 		if ( mbVariable != "" && mbVariable != null )
 		{
-			if ( ComponentsManagment.containsComponent(componentClass,
-					mainObj.getComponents(), mainObj.getComponents().length) )
+			if ( ComponentsManagment.containsComponent(componentClass, mainObj
+					.getComponents(), mainObj.getComponents().length) )
 			{
 
 				if ( !mbVariable.equals(newVariable) )
@@ -234,8 +235,40 @@ public class GraphicalFunctions
 	 * @return Returns the indexes of the given data in the array of
 	 *         possibilities.
 	 */
+	public static fileSystems[] getFSInJList(JList list)
+	{
+		ArrayList<fileSystems> arrayList = new ArrayList<fileSystems>();
+
+		java.lang.Object[] objString = list.getSelectedValues();
+
+		for ( int i = 0; i < objString.length; i++ )
+		{
+			if ( objString[i] != null )
+			{
+				arrayList.add(fileSystems.valueOf(objString[i].toString()));
+			}
+		}
+
+		return arrayList.toArray(new fileSystems[0]);
+	}
+
+
+	/**
+	 * This method looks for the given possibilities in the given data. If any
+	 * are found the indexes of those are selected in the given list and that
+	 * list is returned.
+	 * 
+	 * @param list
+	 *            The list that will have selected indexes.
+	 * @param possibilities
+	 *            The information the method will look for in data.
+	 * @param data
+	 *            The data that will be searched.
+	 * @return Returns the indexes of the given data in the array of
+	 *         possibilities.
+	 */
 	public static JList getIndexInJList(JList list, String[] possibilities,
-			String[] data)
+			fileSystems[] data)
 	{
 		int[] indices = new int[data.length];
 
@@ -243,7 +276,7 @@ public class GraphicalFunctions
 		{
 			for ( int j = 0; j < possibilities.length; j++ )
 			{
-				if ( data[i].equals(possibilities[j]) )
+				if ( data[i].toString().equals(possibilities[j]) )
 				{
 					indices[i] = j;
 
@@ -253,6 +286,47 @@ public class GraphicalFunctions
 			}
 		}
 
+		list.setSelectedIndices(indices);
+
+		return list;
+	}
+
+
+
+
+
+	/**
+	 * This method looks for the given possibilities in the given data. If any
+	 * are found the indexes of those are selected in the given list and that
+	 * list is returned.
+	 * 
+	 * @param list
+	 *            The list that will have selected indexes.
+	 * @param possibilities
+	 *            The information the method will look for in data.
+	 * @param data
+	 *            The data that will be searched.
+	 * @return Returns the indexes of the given data in the array of
+	 *         possibilities.
+	 */
+	public static JList getIndexInJList(JList list, String[] possibilities,
+			String[] data)
+	{
+		int[] indices = new int[data.length];
+
+		for ( int i = 0; i < data.length; i++ )
+		{
+			for ( int j = 0; j < possibilities.length; j++ )
+			{
+				if ( data[i].toString().equals(possibilities[j]) )
+				{
+					indices[i] = j;
+
+					// Stops the loop.
+					j = possibilities.length;
+				}
+			}
+		}
 
 		list.setSelectedIndices(indices);
 
@@ -511,8 +585,8 @@ public class GraphicalFunctions
 
 
 	/**
-	 * FIXME - ChangeWidgetRoomName Changes the title of the
-	 * {@link TitledBorder} surrounding the {@link WidgetRoom} and the name of
+	 * FIXME - ChangeWidgetRoomName Changes the title of the {@link TitledBorder} surrounding the {@link WidgetRoom} and the name
+	 * of
 	 * the {@link Room} inside the {@link WidgetRoom} object.
 	 */
 	public static void changeWidgetRoomName(Widget widget)

@@ -338,7 +338,8 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		if ( text != "" && text != null )
 		{
 			offSuiteInfo[2] = PrimeMain.texts
-					.getString("swTabDescriptionLabel") + ": " + text;
+					.getString("swTabDescriptionLabel")
+					+ ": " + text;
 		}
 
 
@@ -459,7 +460,8 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		if ( text != "" && text != null )
 		{
 			secSuiteInfo[2] = PrimeMain.texts
-					.getString("swTabDescriptionLabel") + ": " + text;
+					.getString("swTabDescriptionLabel")
+					+ ": " + text;
 		}
 
 
@@ -576,11 +578,14 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		}
 		else if ( panel.getName().equals("Operating System") )
 		{
-			new osSelectionOverView(mainObj);
-			// new OSNewView(mainObj, osObj);
-			// // Creates a new object after the first object is passed to the
-			// // view.
-			// osObj = PrimeMain.standard_software.getSt_OS();
+			if ( PrimeMain.osSelect == null )
+			{
+				PrimeMain.osSelect = new osSelectionOverView(mainObj);
+			}
+			else
+			{
+				PrimeMain.osSelect.toFront();
+			}
 		}
 		else if ( panel.getName().equals("Proxy") )
 		{
@@ -604,7 +609,6 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 			webServerObj = PrimeMain.standard_software.getSt_Webserver();
 		}
 	}
-
 
 	@Override
 	public void mouseEntered(MouseEvent e)

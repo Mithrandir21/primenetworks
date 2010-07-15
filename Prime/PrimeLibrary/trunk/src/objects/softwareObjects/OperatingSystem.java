@@ -34,11 +34,6 @@ import objects.Software;
  */
 public class OperatingSystem extends Software implements Serializable
 {
-
-	// Supported File systems
-	private String[] supportedFS;
-
-
 	// Has encrypted file system
 	private boolean encryptedFileSystem;
 
@@ -68,17 +63,6 @@ public class OperatingSystem extends Software implements Serializable
 
 
 	// GETTERS
-
-
-	/**
-	 * Gets the File Systems supported by the Operating System.
-	 */
-	public String[] getSupportedFS()
-	{
-		return supportedFS;
-	}
-
-
 
 	/**
 	 * Gets a boolean on whether or not the system support encryption on the File System.
@@ -111,17 +95,6 @@ public class OperatingSystem extends Software implements Serializable
 
 
 	// SETTERS
-
-
-
-	/**
-	 * Sets the File Systems supported by the Operating System.
-	 */
-	public void setSupportedFS(String[] supportedFS)
-	{
-		this.supportedFS = supportedFS;
-	}
-
 
 
 	/**

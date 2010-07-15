@@ -46,6 +46,7 @@ import actions.systemActions.ActionImportStandardObjects;
 import actions.systemActions.ActionImportStandardRules;
 import actions.systemActions.ActionNew;
 import actions.systemActions.ActionObjectEditing;
+import actions.systemActions.ActionOpenCustomOS;
 import actions.systemActions.ActionOpenStandardRules;
 import actions.systemActions.ActionOpenVisualEdit;
 import actions.systemActions.ActionOpenfile;
@@ -117,30 +118,30 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 		// Adds different items to the "File" menu
 
-		JMenuItem newFile = new JMenuItem(new ActionNew(
-				PrimeMain.texts.getString("newLabel")));
+		JMenuItem newFile = new JMenuItem(new ActionNew(PrimeMain.texts
+				.getString("newLabel")));
 		newFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
 				KeyEvent.CTRL_MASK));
 		newFile.setIcon(null);
 		file.add(newFile);
 
-		JMenuItem openFile = new JMenuItem(new ActionOpenfile(
-				PrimeMain.texts.getString("openFileLabel")));
+		JMenuItem openFile = new JMenuItem(new ActionOpenfile(PrimeMain.texts
+				.getString("openFileLabel")));
 		openFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
 				KeyEvent.CTRL_MASK));
 		openFile.setIcon(null);
 		openFile.setEnabled(false);
 		file.add(openFile);
 
-		JMenuItem saveFile = new JMenuItem(new ActionSave(
-				PrimeMain.texts.getString("saveLabel")));
+		JMenuItem saveFile = new JMenuItem(new ActionSave(PrimeMain.texts
+				.getString("saveLabel")));
 		saveFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
 				KeyEvent.CTRL_MASK));
 		saveFile.setIcon(null);
 		file.add(saveFile);
 
-		JMenuItem saveAll = new JMenuItem(new ActionSaveAll(
-				PrimeMain.texts.getString("saveAllLabel")));
+		JMenuItem saveAll = new JMenuItem(new ActionSaveAll(PrimeMain.texts
+				.getString("saveAllLabel")));
 		saveAll.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,
 				KeyEvent.CTRL_MASK));
 		saveAll.setIcon(null);
@@ -149,8 +150,8 @@ public class GenericPrimeMenuBar extends JMenuBar
 		// Adds a separator to the menu
 		file.addSeparator();
 
-		JMenu importSubMenu = new JMenu(
-				PrimeMain.texts.getString("importSubMenuLabel"));
+		JMenu importSubMenu = new JMenu(PrimeMain.texts
+				.getString("importSubMenuLabel"));
 
 
 		JMenuItem importNetwork = new JMenuItem(new ActionImportNetwork(
@@ -159,14 +160,14 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 
 		JMenuItem importStandardObjectsList = new JMenuItem(
-				new ActionImportStandardObjects(
-						PrimeMain.texts.getString("importStandardObjectsList")));
+				new ActionImportStandardObjects(PrimeMain.texts
+						.getString("importStandardObjectsList")));
 		importSubMenu.add(importStandardObjectsList);
 
 
 		JMenuItem importStandardRulesList = new JMenuItem(
-				new ActionImportStandardRules(
-						PrimeMain.texts.getString("importStandardRulesList")));
+				new ActionImportStandardRules(PrimeMain.texts
+						.getString("importStandardRulesList")));
 		importSubMenu.add(importStandardRulesList);
 
 
@@ -175,8 +176,8 @@ public class GenericPrimeMenuBar extends JMenuBar
 		// Adds a separator to the menu
 		file.addSeparator();
 
-		JMenuItem exit = new JMenuItem(new ActionExitSystem(
-				PrimeMain.texts.getString("exitLabel")));
+		JMenuItem exit = new JMenuItem(new ActionExitSystem(PrimeMain.texts
+				.getString("exitLabel")));
 		exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,
 				KeyEvent.CTRL_MASK));
 		exit.setIcon(null);
@@ -197,15 +198,15 @@ public class GenericPrimeMenuBar extends JMenuBar
 		edit.setMnemonic('E');
 
 		// Adds different items to the "Edit" menu
-		JMenuItem undo = new JMenuItem(new ActionUndo(
-				PrimeMain.texts.getString("undoLabel")));
+		JMenuItem undo = new JMenuItem(new ActionUndo(PrimeMain.texts
+				.getString("undoLabel")));
 		undo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z,
 				KeyEvent.CTRL_MASK));
 		undo.setIcon(null);
 		edit.add(undo);
 
-		JMenuItem redo = new JMenuItem(new ActionRedo(
-				PrimeMain.texts.getString("redoLabel")));
+		JMenuItem redo = new JMenuItem(new ActionRedo(PrimeMain.texts
+				.getString("redoLabel")));
 		redo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y,
 				KeyEvent.CTRL_MASK));
 		redo.setIcon(null);
@@ -214,30 +215,30 @@ public class GenericPrimeMenuBar extends JMenuBar
 		// Adds a separator to the menu
 		edit.addSeparator();
 
-		JMenuItem cut = new JMenuItem(new ActionCut(
-				PrimeMain.texts.getString("cutLabel")));
+		JMenuItem cut = new JMenuItem(new ActionCut(PrimeMain.texts
+				.getString("cutLabel")));
 		cut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,
 				KeyEvent.CTRL_MASK));
 		cut.setIcon(null);
 		edit.add(cut);
 
-		JMenuItem copy = new JMenuItem(new ActionCopy(
-				PrimeMain.texts.getString("copyLabel")));
+		JMenuItem copy = new JMenuItem(new ActionCopy(PrimeMain.texts
+				.getString("copyLabel")));
 		copy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,
 				KeyEvent.CTRL_MASK));
 		copy.setIcon(null);
 		edit.add(copy);
 
-		JMenuItem paste = new JMenuItem(new ActionPaste(
-				PrimeMain.texts.getString("pasteLabel")));
+		JMenuItem paste = new JMenuItem(new ActionPaste(PrimeMain.texts
+				.getString("pasteLabel")));
 		paste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,
 				KeyEvent.CTRL_MASK));
 		paste.setIcon(null);
 		edit.add(paste);
 
 
-		JMenu submenu = new JMenu(
-				PrimeMain.texts.getString("deleteSubMenuLabel"));
+		JMenu submenu = new JMenu(PrimeMain.texts
+				.getString("deleteSubMenuLabel"));
 
 		JMenuItem removeAllWidgets = new JMenuItem(new ActionDeleteAllWidgets(
 				PrimeMain.texts.getString("deleteAllWidgetsLabel")));
@@ -246,8 +247,8 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 
 		JMenuItem removeAllConnections = new JMenuItem(
-				new ActionDeleteAllConnections(
-						PrimeMain.texts.getString("deleteAllConnectionsLabel")));
+				new ActionDeleteAllConnections(PrimeMain.texts
+						.getString("deleteAllConnectionsLabel")));
 		removeAllConnections.setIcon(null);
 		submenu.add(removeAllConnections);
 
@@ -288,8 +289,8 @@ public class GenericPrimeMenuBar extends JMenuBar
 		view.setMnemonic('V');
 
 
-		JMenu submenu = new JMenu(
-				PrimeMain.texts.getString("messagesSupermenuLabel"));
+		JMenu submenu = new JMenu(PrimeMain.texts
+				.getString("messagesSupermenuLabel"));
 
 
 		JMenuItem allViews = new JMenuItem(new ActionAllMessageView(
@@ -327,8 +328,8 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 
 
-		JMenuItem update = new JMenuItem(new ActionUpdate(
-				PrimeMain.texts.getString("actionUpdateNetworkLabel")));
+		JMenuItem update = new JMenuItem(new ActionUpdate(PrimeMain.texts
+				.getString("actionUpdateNetworkLabel")));
 		update.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U,
 				KeyEvent.CTRL_MASK));
 		update.setIcon(null);
@@ -370,8 +371,8 @@ public class GenericPrimeMenuBar extends JMenuBar
 		tools.add(standardRules);
 
 
-		JMenuItem systemOS = new JMenuItem(new ActionOpenfile(
-				PrimeMain.texts.getString("systemOSlabel")));
+		JMenuItem systemOS = new JMenuItem(new ActionOpenfile(PrimeMain.texts
+				.getString("systemOSlabel")));
 		tools.add(systemOS);
 
 		JMenuItem openVisualEdit = new JMenuItem(new ActionOpenVisualEdit(
@@ -383,8 +384,8 @@ public class GenericPrimeMenuBar extends JMenuBar
 		// Adds a separator to the menu
 		tools.addSeparator();
 
-		JMenu exportSubMenu = new JMenu(
-				PrimeMain.texts.getString("exportSubMenuLabel"));
+		JMenu exportSubMenu = new JMenu(PrimeMain.texts
+				.getString("exportSubMenuLabel"));
 
 
 		JMenuItem exportNetwork = new JMenuItem(new ActionExportNetwork(
@@ -394,11 +395,14 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 
 		JMenuItem exportNetworkAsImage = new JMenuItem(
-				new ActionExportCanvasAsImage(
-						PrimeMain.texts
-								.getString("exportCanvasAsImageMenuLabel")));
+				new ActionExportCanvasAsImage(PrimeMain.texts
+						.getString("exportCanvasAsImageMenuLabel")));
 		exportSubMenu.add(exportNetworkAsImage);
 
+
+		JMenuItem osList = new JMenuItem(new ActionOpenCustomOS(PrimeMain.texts
+				.getString("systemOSlist")));
+		exportSubMenu.add(osList);
 
 
 		JMenuItem exportStandardObjectsList = new JMenuItem(
@@ -409,9 +413,8 @@ public class GenericPrimeMenuBar extends JMenuBar
 
 
 		JMenuItem exportStandardRulesList = new JMenuItem(
-				new ActionExportStandardRules(
-						PrimeMain.texts
-								.getString("exportStandardRulesMenuLabel")));
+				new ActionExportStandardRules(PrimeMain.texts
+						.getString("exportStandardRulesMenuLabel")));
 		exportSubMenu.add(exportStandardRulesList);
 
 
@@ -446,8 +449,8 @@ public class GenericPrimeMenuBar extends JMenuBar
 		help = new JMenu(PrimeMain.texts.getString("helpLabel"));
 		help.setMnemonic('H');
 
-		JMenuItem about = new JMenuItem(new ActionAbout(
-				PrimeMain.texts.getString("aboutMenuLabel")));
+		JMenuItem about = new JMenuItem(new ActionAbout(PrimeMain.texts
+				.getString("aboutMenuLabel")));
 		about.setIcon(null);
 		help.add(about);
 

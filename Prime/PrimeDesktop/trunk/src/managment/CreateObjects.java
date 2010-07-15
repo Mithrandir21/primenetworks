@@ -257,7 +257,7 @@ public class CreateObjects
 	private static Software[] createSoftwareArray()
 	{
 		Software[] st_software = new Software[1];
-		st_software[0] = PrimeMain.standard_software.getSt_OS();
+		st_software[0] = PrimeMain.system_standard_OS[1];
 
 
 		return st_software;

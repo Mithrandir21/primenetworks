@@ -1,7 +1,8 @@
 package actions.systemActions;
 
 
-import graphics.GUI.customOSviews.SystemOSDialog;
+import graphics.PrimeMain;
+import graphics.GUI.customOSviews.osSelectionOverView;
 
 import java.awt.event.ActionEvent;
 
@@ -48,6 +49,13 @@ public class ActionOpenCustomOS extends AbstractSystemAction
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
-		new SystemOSDialog();
+		if ( PrimeMain.osSelect != null )
+		{
+			PrimeMain.osSelect.toFront();
+		}
+		else
+		{
+			PrimeMain.osSelect = new osSelectionOverView();
+		}
 	}
 }
