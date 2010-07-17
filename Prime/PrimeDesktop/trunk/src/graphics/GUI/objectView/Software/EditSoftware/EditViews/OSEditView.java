@@ -20,13 +20,13 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
-import graphics.SystemFunctions;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -47,7 +47,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import logistical.cleanup;
+import managment.DesktopSoftwareManagment;
 import managment.SoftwareManagment;
 import objects.Object;
 import objects.Software;
@@ -86,6 +86,9 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 	// The OS is 64 bit
 	private JCheckBox is64bit;
 
+	// The version of the OS
+	private JTextField osVersion = new JTextField();
+
 
 	private Object mainObj;
 
@@ -105,7 +108,7 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		mainObj = obj;
 		mainOS = OS;
 
-		boolean nonEditable = SystemFunctions.foundInStandardOS(OS
+		boolean nonEditable = DesktopSoftwareManagment.foundInStandardOS(OS
 				.getObjectName());
 
 
@@ -138,8 +141,30 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		c.gridx = 0;
 		c.gridy = 1;
 		c.weighty = 1.0; // request any extra vertical space
-		c.insets = new Insets(0, 10, 10, 10);
+		c.insets = new Insets(0, 10, 0, 10);
 		this.add(p2, c);
+
+
+
+		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
+		buttons.setBorder(BorderFactory.createEtchedBorder());
+
+		JLabel label = new JLabel(PrimeMain.texts
+				.getString("swTabRemoveSoftwaretText"));
+
+		Button remove = new Button(PrimeMain.texts
+				.getString("swTabRemoveSoftwareButtonLabel"));
+		remove.addActionListener(this);
+		remove.setActionCommand("removeSoft");
+
+		buttons.add(label);
+		buttons.add(remove);
+
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weighty = 0; // request any extra vertical space
+		c.insets = new Insets(2, 10, 10, 10);
+		this.add(buttons, c);
 	}
 
 
@@ -157,6 +182,8 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 	 */
 	private JPanel createSpesificInfo(OperatingSystem os, boolean nonEditable)
 	{
+		Dimension tfSize = new Dimension(100, 20);
+
 		JPanel pane = new JPanel(new GridBagLayout());
 		GridBagConstraints d = new GridBagConstraints();
 
@@ -292,6 +319,25 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		panel2.add(is64bit, conPanel2);
 
 
+		// The version of the OS
+		JLabel versionLabel = new JLabel(PrimeMain.texts
+				.getString("osViewVersionLabel"));
+		conPanel2.gridx = 1; // column
+		panel2.add(versionLabel, conPanel2);
+
+		osVersion.setMaximumSize(tfSize);
+		osVersion.setPreferredSize(tfSize);
+		osVersion.setText(mainOS.getVersion());
+		if ( nonEditable )
+		{
+			osVersion.setEditable(false);
+		}
+		osVersion.setToolTipText(PrimeMain.texts.getString("osViewVersionTip"));
+
+		conPanel2.gridx = 2; // column
+		panel2.add(osVersion, conPanel2);
+
+
 		d.weighty = 1.0; // request any extra vertical space
 		d.weightx = 1.0; // request any extra horizontal space
 		d.gridy = 1;
@@ -318,6 +364,11 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		if ( supportedFS.getSelectedIndex() != -1 )
 		{
 			mainOS.setFs(GraphicalFunctions.getFSInJList(supportedFS));
+		}
+
+		if ( osVersion.getText() != "" )
+		{
+			mainOS.setVersion(osVersion.getText());
 		}
 
 		mainOS.setEncryptedFileSystem(encryptedFileSystem.isSelected());
@@ -347,39 +398,10 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 				if ( answer == JOptionPane.YES_OPTION )
 				{
 					// Removes the OS from the software array of the main object
-					mainObj.setSoftware(SoftwareManagment.removeSoftware(
-							mainOS, mainObj));
+					DesktopSoftwareManagment.removeSoftware(mainObj, mainOS);
 
-					// All the software of the main obj(without the OS)
-					Software[] software = mainObj.getSoftware();
-
-					// Goes through all the software
-					for ( int i = 0; i < software.length; i++ )
-					{
-						// The test does not include instances of Operating
-						// system
-						if ( !(software[i] instanceof OperatingSystem) )
-						{
-							// Checks whether or not the given software is still
-							// compatible
-							if ( !(SoftwareManagment.validateSoftware(
-									software[i], mainObj)) )
-							{
-								// If the software is not compatible the index
-								// of
-								// that software will be set to null
-								software[i] = null;
-							}
-						}
-					}
-
-					// Removes all the null pointers in an array
-					software = cleanup.cleanObjectArray(software);
-
-					// Sets the remaining software as the software of the main
-					// object
-					mainObj.setSoftware(software);
-
+					// Process all changes to the software of the object
+					SoftwareManagment.processAllChanges(mainObj);
 
 					// Updates the views of the object to correctly show the
 					// current info.
@@ -461,12 +483,12 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		genPanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 
-		c.fill = GridBagConstraints.NONE;
+		c.fill = GridBagConstraints.BOTH;
 		// c.ipady = 0; // reset to default
 		// c.ipadx = 0; // reset to default
 		// c.weighty = 1.0; // request any extra vertical space
 		// c.weightx = 1.0; // request any extra horizontal space
-		c.anchor = GridBagConstraints.WEST; // location
+		c.anchor = GridBagConstraints.NORTHWEST; // location
 		c.insets = new Insets(10, 10, 10, 10); // padding
 		// c.gridwidth = 1; // 2 row wide
 		c.gridheight = 2; // 2 columns wide

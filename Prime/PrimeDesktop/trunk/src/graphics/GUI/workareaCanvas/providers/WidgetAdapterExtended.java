@@ -106,7 +106,6 @@ public class WidgetAdapterExtended extends Adapter
 	{
 		if ( event.getButton() == MouseEvent.BUTTON1 )
 		{
-			// System.out.println("Mouse Pressed");
 			widget.bringToFront();
 			return State.CONSUMED;
 		}

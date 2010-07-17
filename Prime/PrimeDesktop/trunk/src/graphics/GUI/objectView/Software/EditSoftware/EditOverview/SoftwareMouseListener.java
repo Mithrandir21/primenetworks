@@ -32,6 +32,7 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
 import logistical.cleanup;
+import managment.DesktopSoftwareManagment;
 import managment.SoftwareManagment;
 import objects.Object;
 import objects.Software;
@@ -172,8 +173,8 @@ public class SoftwareMouseListener extends MouseAdapter implements ActionListene
 			if ( answer == JOptionPane.YES_OPTION )
 			{
 				// Removes the OS from the software array of the main object
-				mainObject.setSoftware(SoftwareManagment.removeSoftware(
-						(Software) softwareObject, mainObject));
+				DesktopSoftwareManagment.removeSoftware(mainObject,
+						(Software) softwareObject);
 
 				// All the software of the main obj(without the OS)
 				Software[] software = mainObject.getSoftware();

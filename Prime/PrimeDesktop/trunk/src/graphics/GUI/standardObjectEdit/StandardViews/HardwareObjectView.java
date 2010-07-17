@@ -690,4 +690,13 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		this.repaint();
 		this.revalidate();
 	}
+
+
+	/**
+	 * Returns the {@link Object} being shown in this class.
+	 */
+	public Object getGivenObject()
+	{
+		return givenObject;
+	}
 }

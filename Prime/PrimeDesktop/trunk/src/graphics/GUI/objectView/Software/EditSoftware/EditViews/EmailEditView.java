@@ -20,6 +20,7 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -43,10 +44,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.DesktopSoftwareManagment;
 import objects.Object;
 import objects.Software;
 import objects.softwareObjects.Email;
@@ -188,54 +189,31 @@ public class EmailEditView extends JPanel implements SoftwareView, ActionListene
 	 */
 	private JPanel createSpesificInfo(Email email)
 	{
-		JPanel panel = new JPanel(new SpringLayout());
-		JLabel[] labels = new JLabel[7];
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+
+		c.fill = GridBagConstraints.NONE;
+		// c.ipady = 0; // reset to default
+		// c.ipadx = 0; // reset to default
+		// c.weighty = 1.0; // request any extra vertical space
+		// c.weightx = 1.0; // request any extra horizontal space
+		c.anchor = GridBagConstraints.NORTHWEST; // location
+		c.insets = new Insets(20, 20, 10, 10); // padding
+		// c.gridwidth = 1; // 1 row wide
+		// c.gridheight = 1; // 1 columns wide
+		c.gridy = 0; // row
+		c.gridx = 0; // column
 
 
-		labels[0] = new JLabel(PrimeMain.texts.getString("emailViewSupOSLabel"));
-		labels[0]
-				.setToolTipText(PrimeMain.texts.getString("emailViewSupOSTip"));
-
-		labels[1] = new JLabel(PrimeMain.texts
-				.getString("emailViewSupPOP3Label"));
-		labels[1].setToolTipText(PrimeMain.texts
-				.getString("emailViewSupPOP3Tip"));
-
-		labels[2] = new JLabel(PrimeMain.texts
-				.getString("emailViewSupSMTPLabel"));
-		labels[2].setToolTipText(PrimeMain.texts
-				.getString("emailViewSupSMTPTip"));
-
-		labels[3] = new JLabel(PrimeMain.texts
-				.getString("emailViewSupIMAPLabel"));
-		labels[3].setToolTipText(PrimeMain.texts
-				.getString("emailViewSupIMAPTip"));
-
-		labels[4] = new JLabel(PrimeMain.texts
-				.getString("emailViewSupNNTPLabel"));
-		labels[4].setToolTipText(PrimeMain.texts
-				.getString("emailViewSupNNTPTip"));
-
-		labels[5] = new JLabel(PrimeMain.texts
-				.getString("emailViewSupSSLLabel"));
-		labels[5].setToolTipText(PrimeMain.texts
-				.getString("emailViewSupSSLTip"));
-
-		labels[6] = new JLabel(PrimeMain.texts
-				.getString("emailViewSupWebmailLabel"));
-		labels[6].setToolTipText(PrimeMain.texts
-				.getString("emailViewSupWebmailTip"));
+		// The supported operating systems by the Antivirus software.
+		JLabel osLabel = new JLabel(PrimeMain.texts
+				.getString("emailViewSupOSLabel"));
+		osLabel.setToolTipText(PrimeMain.texts.getString("emailViewSupOSTip"));
+		panel.add(osLabel, c);
 
 
-		Dimension tfSize = new Dimension(90, 20);
-
-
-
-		// The supported operating systems by the Email software.
-		labels[0].setLabelFor(supportedOS);
-		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
-				"Windows Vista", "Linux", "Novell" };
-		supportedOS = new JList(listData);
+		String[] osNames = DesktopSoftwareManagment.getSystemOSname();
+		supportedOS = new JList(osNames);
 		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
 		listSelectionModel
 				.addListSelectionListener(new SharedListSelectionHandler());
@@ -250,113 +228,116 @@ public class EmailEditView extends JPanel implements SoftwareView, ActionListene
 			if ( mainEmail.getSupportedOperatingSystems().length > 0 )
 			{
 				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, listData, mainEmail
+						supportedOS, osNames, mainEmail
 								.getSupportedOperatingSystems()));
 			}
 		}
 
-		panel.add(labels[0]);
-		panel.add(listPane);
+
+		c.insets = new Insets(20, 10, 10, 10); // padding
+		c.gridx = 1; // column
+		panel.add(listPane, c);
 
 
 
 		// Whether or not the software supports pop3.
-		labels[1].setLabelFor(supportsPOP3);
-		supportsPOP3 = new JCheckBox();
-		supportsPOP3.setMaximumSize(tfSize);
-		supportsPOP3.setPreferredSize(tfSize);
-		supportsPOP3.setToolTipText(labels[1].getToolTipText());
+		supportsPOP3 = new JCheckBox(PrimeMain.texts
+				.getString("emailViewSupPOP3Label"));
+		supportsPOP3.setToolTipText(PrimeMain.texts
+				.getString("emailViewSupPOP3Tip"));
 		supportsPOP3.setActionCommand("POP3");
 		supportsPOP3.addActionListener(this);
 
 		supportsPOP3.setSelected(mainEmail.SupportsPOP3());
 
-		panel.add(labels[1]);
-		panel.add(supportsPOP3);
+		c.gridx = 2; // column
+		panel.add(supportsPOP3, c);
 
 
 		// Whether or not the software supports SMTP.
-		labels[2].setLabelFor(supportsSMTP);
-		supportsSMTP = new JCheckBox();
-		supportsSMTP.setMaximumSize(tfSize);
-		supportsSMTP.setPreferredSize(tfSize);
-		supportsSMTP.setToolTipText(labels[2].getToolTipText());
+		supportsSMTP = new JCheckBox(PrimeMain.texts
+				.getString("emailViewSupSMTPLabel"));
+		supportsSMTP.setToolTipText(PrimeMain.texts
+				.getString("emailViewSupSMTPTip"));
 		supportsSMTP.setActionCommand("SMTP");
 		supportsSMTP.addActionListener(this);
 
 		supportsSMTP.setSelected(mainEmail.SupportsSMTP());
 
-		panel.add(labels[2]);
-		panel.add(supportsSMTP);
+		c.weightx = 1.0; // request any extra horizontal space
+		c.gridx = 3; // column
+		panel.add(supportsSMTP, c);
+
+
 
 
 		// Whether or not the software supports IMAP.
-		labels[3].setLabelFor(supportsIMAP);
-		supportsIMAP = new JCheckBox();
-		supportsIMAP.setMaximumSize(tfSize);
-		supportsIMAP.setPreferredSize(tfSize);
-		supportsIMAP.setToolTipText(labels[3].getToolTipText());
+
+		supportsIMAP = new JCheckBox(PrimeMain.texts
+				.getString("emailViewSupIMAPLabel"));
+		supportsIMAP.setToolTipText(PrimeMain.texts
+				.getString("emailViewSupIMAPTip"));
 		supportsIMAP.setActionCommand("IMAP");
 		supportsIMAP.addActionListener(this);
 
 		supportsIMAP.setSelected(mainEmail.SupportsIMAP());
 
-		panel.add(labels[3]);
-		panel.add(supportsIMAP);
+		c.insets = new Insets(10, 20, 10, 10); // padding
+		c.gridwidth = 2; // 2 row wide
+		c.weightx = 0; // request any extra horizontal space
+		c.gridy = 1; // row
+		c.gridx = 0; // column
+		panel.add(supportsIMAP, c);
 
 
 		// Whether or not the software supports NNTP.
-		labels[4].setLabelFor(supportsNNTP);
-		supportsNNTP = new JCheckBox();
-		supportsNNTP.setMaximumSize(tfSize);
-		supportsNNTP.setPreferredSize(tfSize);
-		supportsNNTP.setToolTipText(labels[4].getToolTipText());
+		supportsNNTP = new JCheckBox(PrimeMain.texts
+				.getString("emailViewSupNNTPLabel"));
+		supportsNNTP.setToolTipText(PrimeMain.texts
+				.getString("emailViewSupNNTPTip"));
 		supportsNNTP.setActionCommand("NNTP");
 		supportsNNTP.addActionListener(this);
 
 		supportsNNTP.setSelected(mainEmail.SupportsNNTP());
 
-		panel.add(labels[4]);
-		panel.add(supportsNNTP);
+		c.insets = new Insets(10, 10, 10, 10); // padding
+		c.gridwidth = 1; // 1 row wide
+		c.gridx = 2; // column
+		panel.add(supportsNNTP, c);
 
 
 		// Whether or not the software supports SSL.
-		labels[5].setLabelFor(supportsSSL);
-		supportsSSL = new JCheckBox();
-		supportsSSL.setMaximumSize(tfSize);
-		supportsSSL.setPreferredSize(tfSize);
-		supportsSSL.setToolTipText(labels[5].getToolTipText());
+		supportsSSL = new JCheckBox(PrimeMain.texts
+				.getString("emailViewSupSSLLabel"));
+		supportsSSL.setToolTipText(PrimeMain.texts
+				.getString("emailViewSupSSLTip"));
 		supportsSSL.setActionCommand("SSL");
 		supportsSSL.addActionListener(this);
 
 		supportsSSL.setSelected(mainEmail.SupportsSSL());
 
-		panel.add(labels[5]);
-		panel.add(supportsSSL);
+		c.gridx = 3; // column
+		panel.add(supportsSSL, c);
 
 
 
 		// Whether or not the software supports Webmail.
-		labels[6].setLabelFor(supportsWebmail);
-		supportsWebmail = new JCheckBox();
-		supportsWebmail.setMaximumSize(tfSize);
-		supportsWebmail.setPreferredSize(tfSize);
-		supportsWebmail.setToolTipText(labels[6].getToolTipText());
+		supportsWebmail = new JCheckBox(PrimeMain.texts
+				.getString("emailViewSupWebmailLabel"));
+		supportsWebmail.setToolTipText(PrimeMain.texts
+				.getString("emailViewSupWebmailTip"));
 		supportsWebmail.setActionCommand("Webmail");
 		supportsWebmail.addActionListener(this);
 
 		supportsWebmail.setSelected(mainEmail.SupportsWebmail());
 
-		panel.add(labels[6]);
-		panel.add(supportsWebmail);
+		c.insets = new Insets(10, 20, 10, 10); // padding
+		c.gridwidth = 2; // 2 row wide
+		c.weighty = 1.0; // request any extra horizontal space
+		c.gridy = 2; // row
+		c.gridx = 0; // column
+		panel.add(supportsWebmail, c);
 
-
-
-		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel,
-				panel.getComponentCount(), // rows, cols
-				10, 10, // initX, initY
-				20, 20); // xPad, yPad
 
 
 		return panel;
@@ -399,7 +380,25 @@ public class EmailEditView extends JPanel implements SoftwareView, ActionListene
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( e.getSource() instanceof JCheckBox )
+		if ( e.getSource() instanceof Button )
+		{
+			Button check = (Button) e.getSource();
+
+			String command = check.getActionCommand();
+
+			if ( command.equals("removeSoft") )
+			{
+				DesktopSoftwareManagment.removeSoftware(mainObj, mainEmail);
+
+				// Updates the views of the object to correctly show the current info.
+				ObjectView view = PrimeMain.getObjectView(mainObj);
+				if ( view != null )
+				{
+					view.updateViewInfo();
+				}
+			}
+		}
+		else if ( e.getSource() instanceof JCheckBox )
 		{
 			JCheckBox box = (JCheckBox) e.getSource();
 

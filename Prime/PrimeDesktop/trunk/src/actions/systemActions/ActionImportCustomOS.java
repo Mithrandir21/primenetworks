@@ -18,12 +18,9 @@
 package actions.systemActions;
 
 
-import graphics.PrimeMain;
-
 import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 import logistical.AbstractSystemAction;
 import managment.DesktopFileManagment;
@@ -35,9 +32,8 @@ import managment.DesktopFileManagment;
  * @author Bahram Malaekeh
  * 
  */
-public class ActionExportStandardRules extends AbstractSystemAction
+public class ActionImportCustomOS extends AbstractSystemAction
 {
-
 	/**
 	 * A constructor for the class that takes a string, the action name, and an
 	 * Icon.
@@ -47,7 +43,7 @@ public class ActionExportStandardRules extends AbstractSystemAction
 	 * @param icon
 	 *            The icon representing the action.
 	 */
-	public ActionExportStandardRules(String text, ImageIcon icon)
+	public ActionImportCustomOS(String text, ImageIcon icon)
 	{
 		super(text, icon);
 	}
@@ -60,11 +56,10 @@ public class ActionExportStandardRules extends AbstractSystemAction
 	 * @param text
 	 *            The name of the action.
 	 */
-	public ActionExportStandardRules(String text)
+	public ActionImportCustomOS(String text)
 	{
 		super(text);
 	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -73,12 +68,7 @@ public class ActionExportStandardRules extends AbstractSystemAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( DesktopFileManagment.exportStandardRules() )
-		{
-			// Tells the user that the export was successful
-			JOptionPane.showMessageDialog(null, PrimeMain.texts
-					.getString("exportRulesToFileSuccess"));
-		}
+		DesktopFileManagment.importCustomOS();
 	}
 
 }

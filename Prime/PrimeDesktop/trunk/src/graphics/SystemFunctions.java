@@ -24,9 +24,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.channels.FileChannel;
-import java.util.Iterator;
-
-import objects.softwareObjects.OperatingSystem;
 
 
 
@@ -165,98 +162,5 @@ public class SystemFunctions
 		}
 
 		return false;
-	}
-
-
-
-
-	/**
-	 * Checks whether the name is found to be the name of a standard {@link OperatingSystem}.
-	 */
-	public static boolean foundInStandardOS(String name)
-	{
-		for ( int i = 0; i < PrimeMain.system_standard_OS.length; i++ )
-		{
-			if ( name.equalsIgnoreCase(PrimeMain.system_standard_OS[i]
-					.getObjectName()) )
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-
-
-	/**
-	 * Checks whether the name is found to be the name of a custom {@link OperatingSystem}.
-	 */
-	public static boolean foundInCustomOS(String name)
-	{
-		if ( !PrimeMain.system_custom_OS.isEmpty() )
-		{
-			// get an Iterator object for ArrayList using iterator() method.
-			Iterator<OperatingSystem> itr = PrimeMain.system_custom_OS
-					.iterator();
-
-			while ( itr.hasNext() )
-			{
-				if ( name.equalsIgnoreCase(itr.next().getObjectName()) )
-				{
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
-
-
-
-	/**
-	 * Returns {@link OperatingSystem} with the name found to be the name of a standard {@link OperatingSystem}.
-	 */
-	public static OperatingSystem getStandardOS(String name)
-	{
-		for ( int i = 0; i < PrimeMain.system_standard_OS.length; i++ )
-		{
-			if ( name.equalsIgnoreCase(PrimeMain.system_standard_OS[i]
-					.getObjectName()) )
-			{
-				return PrimeMain.system_standard_OS[i];
-			}
-		}
-
-		return null;
-	}
-
-
-
-	/**
-	 * Returns {@link OperatingSystem} with the name found to be the name of a custom {@link OperatingSystem}.
-	 */
-	public static OperatingSystem getCustomOS(String name)
-	{
-
-		if ( !PrimeMain.system_custom_OS.isEmpty() )
-		{
-			// get an Iterator object for ArrayList using iterator() method.
-			Iterator<OperatingSystem> itr = PrimeMain.system_custom_OS
-					.iterator();
-
-			while ( itr.hasNext() )
-			{
-				OperatingSystem os = itr.next();
-
-				if ( name.equalsIgnoreCase(os.getObjectName()) )
-				{
-					return os;
-				}
-			}
-		}
-
-		return null;
 	}
 }

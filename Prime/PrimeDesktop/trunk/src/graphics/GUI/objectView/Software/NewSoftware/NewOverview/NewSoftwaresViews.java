@@ -92,7 +92,7 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 
 	private OfficeSuite offSuiteObj = null;
 
-	private OperatingSystem osObj = null;
+	// private OperatingSystem osObj = null;
 
 	private Proxy proxyObj = null;
 
@@ -357,31 +357,8 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		ImageIcon OStemp = PrimeMain.objectImageIcons
 				.get(OperatingSystem.class);
 
-		String[] OSInfo = new String[3];
-
-		osObj = PrimeMain.standard_software.getSt_OS();
-
-		text = null;
-
-		text = osObj.getObjectName();
-		if ( text != "" && text != null )
-		{
-			OSInfo[0] = text;
-		}
-
-		text = osObj.getVersion();
-		if ( text != "" && text != null )
-		{
-			OSInfo[1] = PrimeMain.texts.getString("swTabVersionLabel") + ": "
-					+ text;
-		}
-
-		text = osObj.getDescription();
-		if ( text != "" && text != null )
-		{
-			OSInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
-					+ ": " + text;
-		}
+		String[] OSInfo = { PrimeMain.texts.getString("operatingSystem"),
+				PrimeMain.texts.getString("swTabOsNameText") };
 
 
 		assert OStemp != null;

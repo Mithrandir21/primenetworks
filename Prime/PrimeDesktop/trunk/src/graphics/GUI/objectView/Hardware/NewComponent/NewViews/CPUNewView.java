@@ -104,16 +104,16 @@ public class CPUNewView extends JDialog implements HardwareViewInterface, Action
 	{
 		this.setTitle(PrimeMain.texts.getString("newHWnewCPULabel"));
 
+		Dimension size = new Dimension(750, 600);
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		int initYLocation = (scrnsize.height - size.height) / 2;
+		int initXLocation = (scrnsize.width - size.width) / 2;
 
 		mainObj = obj;
 		CPUobj = cpu;
@@ -161,9 +161,10 @@ public class CPUNewView extends JDialog implements HardwareViewInterface, Action
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
+
+		this.setLocation(initXLocation, initYLocation);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setVisible(true);
 	}
 
@@ -485,6 +486,20 @@ public class CPUNewView extends JDialog implements HardwareViewInterface, Action
 			{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+			}
+		}
+		else if ( e.getActionCommand().equals("DualCore") )
+		{
+			if ( dualCore.isSelected() )
+			{
+				quadCore.setSelected(false);
+			}
+		}
+		else if ( e.getActionCommand().equals("QuadCore") )
+		{
+			if ( quadCore.isSelected() )
+			{
+				dualCore.setSelected(false);
 			}
 		}
 		else if ( e.getActionCommand().equals("cancel") )

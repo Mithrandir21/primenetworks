@@ -20,6 +20,7 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -43,10 +44,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.DesktopSoftwareManagment;
 import objects.Object;
 import objects.Software;
 import objects.softwareObjects.Proxy;
@@ -191,66 +192,30 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 	 */
 	private JPanel createSpesificInfo(Proxy proxy)
 	{
-		JPanel panel = new JPanel(new SpringLayout());
-		JLabel[] labels = new JLabel[10];
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
 
-
-		labels[0] = new JLabel(PrimeMain.texts.getString("proxyViewSupOSLabel"));
-		labels[0]
-				.setToolTipText(PrimeMain.texts.getString("proxyViewSupOSTip"));
-
-		labels[1] = new JLabel(PrimeMain.texts
-				.getString("proxyViewCachingLabel"));
-		labels[1].setToolTipText(PrimeMain.texts
-				.getString("proxyViewCachingTip"));
-
-		labels[2] = new JLabel(PrimeMain.texts.getString("proxyViewProxyLabel"));
-		labels[2]
-				.setToolTipText(PrimeMain.texts.getString("proxyViewProxyTip"));
-
-		labels[3] = new JLabel(PrimeMain.texts
-				.getString("proxyViewAnonymizingLabel"));
-		labels[3].setToolTipText(PrimeMain.texts
-				.getString("proxyViewAnonymizingTip"));
-
-		labels[4] = new JLabel(PrimeMain.texts
-				.getString("proxyViewTransProxyLabel"));
-		labels[4].setToolTipText(PrimeMain.texts
-				.getString("proxyViewTransProxyTip"));
-
-		labels[5] = new JLabel(PrimeMain.texts
-				.getString("proxyViewReverseProxyLabel"));
-		labels[5].setToolTipText(PrimeMain.texts
-				.getString("proxyViewReverseProxyTip"));
-
-		labels[6] = new JLabel(PrimeMain.texts.getString("proxyViewIPv6Label"));
-		labels[6].setToolTipText(PrimeMain.texts.getString("proxyViewIPv6Tip"));
-
-		labels[7] = new JLabel(PrimeMain.texts
-				.getString("proxyViewSupSSLLabel"));
-		labels[7].setToolTipText(PrimeMain.texts
-				.getString("proxyViewSupSSLTip"));
-
-		labels[8] = new JLabel(PrimeMain.texts
-				.getString("proxyViewSupTSLLabel"));
-		labels[8].setToolTipText(PrimeMain.texts
-				.getString("proxyViewSupTSLTip"));
-
-		labels[9] = new JLabel(PrimeMain.texts
-				.getString("proxyViewSupHTTPSLabel"));
-		labels[9].setToolTipText(PrimeMain.texts
-				.getString("proxyViewSupHTTPSTip"));
-
-
-		Dimension tfSize = new Dimension(90, 20);
-
-
+		c.fill = GridBagConstraints.HORIZONTAL;
+		// c.ipady = 0; // reset to default
+		// c.ipadx = 0; // reset to default
+		// c.weighty = 1.0; // request any extra vertical space
+		// c.weightx = 1.0; // request any extra horizontal space
+		c.anchor = GridBagConstraints.NORTHWEST; // location
+		c.insets = new Insets(20, 10, 10, 10); // padding
+		// c.gridwidth = 1; // 1 row wide
+		// c.gridheight = 1; // 1 columns wide
+		c.gridy = 0; // row
+		c.gridx = 0; // column
 
 		// The supported operating systems by the Proxy software.
-		labels[0].setLabelFor(supportedOS);
-		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
-				"Windows Vista", "Linux", "Novell" };
-		supportedOS = new JList(listData);
+		JLabel osLabel = new JLabel(PrimeMain.texts
+				.getString("proxyViewSupOSLabel"));
+		osLabel.setToolTipText(PrimeMain.texts.getString("proxyViewSupOSTip"));
+		panel.add(osLabel, c);
+
+
+		String[] osNames = DesktopSoftwareManagment.getSystemOSname();
+		supportedOS = new JList(osNames);
 		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
 		listSelectionModel
 				.addListSelectionListener(new SharedListSelectionHandler());
@@ -265,158 +230,153 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 			if ( mainProxy.getSupportedOperatingSystems().length > 0 )
 			{
 				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, listData, mainProxy
+						supportedOS, osNames, mainProxy
 								.getSupportedOperatingSystems()));
 			}
 		}
 
-		panel.add(labels[0]);
-		panel.add(listPane);
+		c.gridx = 1; // column
+		panel.add(listPane, c);
 
 
 
 		// Whether or not the software has caching feature
-		labels[1].setLabelFor(caching);
-		caching = new JCheckBox();
-		caching.setMaximumSize(tfSize);
-		caching.setPreferredSize(tfSize);
-		caching.setToolTipText(labels[1].getToolTipText());
+		caching = new JCheckBox(PrimeMain.texts
+				.getString("proxyViewCachingLabel"));
+		caching
+				.setToolTipText(PrimeMain.texts
+						.getString("proxyViewCachingTip"));
 		caching.setActionCommand("Caching");
 		caching.addActionListener(this);
 
 		caching.setSelected(mainProxy.hasCaching());
 
-		panel.add(labels[1]);
-		panel.add(caching);
+		c.gridx = 2; // column
+		panel.add(caching, c);
 
 
 		// Whether or not the software has Web proxy feature
-		labels[2].setLabelFor(webProxy);
-		webProxy = new JCheckBox();
-		webProxy.setMaximumSize(tfSize);
-		webProxy.setPreferredSize(tfSize);
-		webProxy.setToolTipText(labels[2].getToolTipText());
+		webProxy = new JCheckBox(PrimeMain.texts
+				.getString("proxyViewProxyLabel"));
+		webProxy.setToolTipText(PrimeMain.texts.getString("proxyViewProxyTip"));
 		webProxy.setActionCommand("WebProxy");
 		webProxy.addActionListener(this);
 
 		webProxy.setSelected(mainProxy.hasWebProxy());
 
-		panel.add(labels[2]);
-		panel.add(webProxy);
+		c.weightx = 1.0; // request any extra horizontal space
+		c.gridx = 3; // column
+		panel.add(webProxy, c);
 
 
 
 		// Whether or not the software has Anonymizing proxy feature
-		labels[3].setLabelFor(anonymizingProxy);
-		anonymizingProxy = new JCheckBox();
-		anonymizingProxy.setMaximumSize(tfSize);
-		anonymizingProxy.setPreferredSize(tfSize);
-		anonymizingProxy.setToolTipText(labels[3].getToolTipText());
+		anonymizingProxy = new JCheckBox(PrimeMain.texts
+				.getString("proxyViewAnonymizingLabel"));
+		anonymizingProxy.setToolTipText(PrimeMain.texts
+				.getString("proxyViewAnonymizingTip"));
 		anonymizingProxy.setActionCommand("Anonymizing");
 		anonymizingProxy.addActionListener(this);
 
 		anonymizingProxy.setSelected(mainProxy.hasAnonymizingProxy());
 
-		panel.add(labels[3]);
-		panel.add(anonymizingProxy);
+		c.insets = new Insets(10, 10, 10, 10); // padding
+		c.gridwidth = 1; // 2 row wide
+		c.weightx = 0; // request any extra horizontal space
+		c.gridy = 1; // row
+		c.gridx = 0; // column
+		panel.add(anonymizingProxy, c);
 
 
 
 		// Whether or not the software has transparent proxy feature
-		labels[4].setLabelFor(transparentProxy);
-		transparentProxy = new JCheckBox();
-		transparentProxy.setMaximumSize(tfSize);
-		transparentProxy.setPreferredSize(tfSize);
-		transparentProxy.setToolTipText(labels[4].getToolTipText());
+		transparentProxy = new JCheckBox(PrimeMain.texts
+				.getString("proxyViewTransProxyLabel"));
+		transparentProxy.setToolTipText(PrimeMain.texts
+				.getString("proxyViewTransProxyTip"));
 		transparentProxy.setActionCommand("Transparent");
 		transparentProxy.addActionListener(this);
 
 		transparentProxy.setSelected(mainProxy.hasTransparentProxy());
 
-		panel.add(labels[4]);
-		panel.add(transparentProxy);
+		c.gridwidth = 1; // 1 row wide
+		c.gridx = 1; // column
+		panel.add(transparentProxy, c);
 
 
 		// Whether or not the software has reverse proxy feature
-		labels[5].setLabelFor(reverseProxy);
-		reverseProxy = new JCheckBox();
-		reverseProxy.setMaximumSize(tfSize);
-		reverseProxy.setPreferredSize(tfSize);
-		reverseProxy.setToolTipText(labels[5].getToolTipText());
+		reverseProxy = new JCheckBox(PrimeMain.texts
+				.getString("proxyViewReverseProxyLabel"));
+		reverseProxy.setToolTipText(PrimeMain.texts
+				.getString("proxyViewReverseProxyTip"));
 		reverseProxy.setActionCommand("ReverseProxy");
 		reverseProxy.addActionListener(this);
 
 		reverseProxy.setSelected(mainProxy.hasReverseProxy());
 
-		panel.add(labels[5]);
-		panel.add(reverseProxy);
+		c.gridx = 2; // column
+		panel.add(reverseProxy, c);
 
 
 		// Whether or not the software supports IP version 6
-		labels[6].setLabelFor(supportsIPv6);
-		supportsIPv6 = new JCheckBox();
-		supportsIPv6.setMaximumSize(tfSize);
-		supportsIPv6.setPreferredSize(tfSize);
-		supportsIPv6.setToolTipText(labels[6].getToolTipText());
+		supportsIPv6 = new JCheckBox(PrimeMain.texts
+				.getString("proxyViewIPv6Label"));
+		supportsIPv6.setToolTipText(PrimeMain.texts
+				.getString("proxyViewIPv6Tip"));
 		supportsIPv6.setActionCommand("SupportsIPv6");
 		supportsIPv6.addActionListener(this);
 
 		supportsIPv6.setSelected(mainProxy.supportsIPv6());
 
-		panel.add(labels[6]);
-		panel.add(supportsIPv6);
+		c.gridx = 3; // column
+		panel.add(supportsIPv6, c);
 
 
 		// Whether or not the software supports SSL
-		labels[7].setLabelFor(supportsSSL);
-		supportsSSL = new JCheckBox();
-		supportsSSL.setMaximumSize(tfSize);
-		supportsSSL.setPreferredSize(tfSize);
-		supportsSSL.setToolTipText(labels[7].getToolTipText());
+		supportsSSL = new JCheckBox(PrimeMain.texts
+				.getString("proxyViewSupSSLLabel"));
+		supportsSSL.setToolTipText(PrimeMain.texts
+				.getString("proxyViewSupSSLTip"));
 		supportsSSL.setActionCommand("SupportsSSL");
 		supportsSSL.addActionListener(this);
 
 		supportsSSL.setSelected(mainProxy.supportsSSL());
 
-		panel.add(labels[7]);
-		panel.add(supportsSSL);
+		c.gridwidth = 1; // 2 row wide
+		c.gridy = 2; // row
+		c.gridx = 0; // column
+		panel.add(supportsSSL, c);
 
 
 		// Whether or not the software supports TSL
-		labels[8].setLabelFor(supportsTSL);
-		supportsTSL = new JCheckBox();
-		supportsTSL.setMaximumSize(tfSize);
-		supportsTSL.setPreferredSize(tfSize);
-		supportsTSL.setToolTipText(labels[8].getToolTipText());
+		supportsTSL = new JCheckBox(PrimeMain.texts
+				.getString("proxyViewSupTSLLabel"));
+		supportsTSL.setToolTipText(PrimeMain.texts
+				.getString("proxyViewSupTSLTip"));
 		supportsTSL.setActionCommand("SupportsTSL");
 		supportsTSL.addActionListener(this);
 
 		supportsTSL.setSelected(mainProxy.supportsTSL());
 
-		panel.add(labels[8]);
-		panel.add(supportsTSL);
+		c.gridwidth = 1; // 1 row wide
+		c.gridx = 1; // column
+		panel.add(supportsTSL, c);
 
 
 		// Whether or not the software supports HTTPS
-		labels[9].setLabelFor(supportsHTTPS);
-		supportsHTTPS = new JCheckBox();
-		supportsHTTPS.setMaximumSize(tfSize);
-		supportsHTTPS.setPreferredSize(tfSize);
-		supportsHTTPS.setToolTipText(labels[9].getToolTipText());
+		supportsHTTPS = new JCheckBox(PrimeMain.texts
+				.getString("proxyViewSupHTTPSLabel"));
+		supportsHTTPS.setToolTipText(PrimeMain.texts
+				.getString("proxyViewSupHTTPSTip"));
 		supportsHTTPS.setActionCommand("SupportsHTTPS");
 		supportsHTTPS.addActionListener(this);
 
 		supportsHTTPS.setSelected(mainProxy.supportsHTTPS());
 
-		panel.add(labels[9]);
-		panel.add(supportsHTTPS);
+		c.weighty = 1.0; // request any extra horizontal space
+		c.gridx = 2; // column
+		panel.add(supportsHTTPS, c);
 
-
-		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel,
-				panel.getComponentCount(), // rows, cols
-				10, 10, // initX, initY
-				20, 20); // xPad, yPad
 
 		return panel;
 	}
@@ -472,7 +432,25 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( e.getSource() instanceof JCheckBox )
+		if ( e.getSource() instanceof Button )
+		{
+			Button check = (Button) e.getSource();
+
+			String command = check.getActionCommand();
+
+			if ( command.equals("removeSoft") )
+			{
+				DesktopSoftwareManagment.removeSoftware(mainObj, mainProxy);
+
+				// Updates the views of the object to correctly show the current info.
+				ObjectView view = PrimeMain.getObjectView(mainObj);
+				if ( view != null )
+				{
+					view.updateViewInfo();
+				}
+			}
+		}
+		else if ( e.getSource() instanceof JCheckBox )
 		{
 			JCheckBox box = (JCheckBox) e.getSource();
 

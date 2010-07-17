@@ -18,7 +18,9 @@
 package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 
+import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -35,11 +37,16 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
+import managment.DesktopSoftwareManagment;
 import objects.Object;
 import objects.Software;
 import objects.softwareObjects.Database;
@@ -63,6 +70,11 @@ public class DatabaseEditView extends JPanel implements SoftwareView, ActionList
 	// The description of the software object.
 	JTextArea desc = new JTextArea(3, 40);
 
+	// Supported Operating systems
+	private JList supportedOS;
+
+	// List of operating systems
+	private String[] OSs;
 
 
 	private Object mainObj;
@@ -161,10 +173,11 @@ public class DatabaseEditView extends JPanel implements SoftwareView, ActionList
 	 */
 	private JPanel createSpesificInfo(Database db)
 	{
-		JPanel panel = new JPanel(new SpringLayout());
+		Dimension tfSize = new Dimension(100, 20);
+
+
 		JLabel[] labels = new JLabel[4];
 
-		// FIXME - Fix Database/database view
 		labels[0] = new JLabel("Activated Date");
 		labels[0].setToolTipText("The date that the AV was activated.");
 
@@ -177,8 +190,53 @@ public class DatabaseEditView extends JPanel implements SoftwareView, ActionList
 		labels[3] = new JLabel("License");
 		labels[3].setToolTipText("The license key for the AV.");
 
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
 
-		Dimension tfSize = new Dimension(90, 20);
+		c.fill = GridBagConstraints.HORIZONTAL;
+		// c.ipady = 0; // reset to default
+		// c.ipadx = 0; // reset to default
+		// c.weighty = 1.0; // request any extra vertical space
+		// c.weightx = 1.0; // request any extra horizontal space
+		c.anchor = GridBagConstraints.NORTH; // location
+		c.insets = new Insets(20, 20, 10, 10); // padding
+		// c.gridwidth = 1; // 1 row wide
+		// c.gridheight = 1; // 1 columns wide
+		c.gridy = 0; // row
+		c.gridx = 0; // column
+
+
+		// The supported operating systems by the Email software.
+		labels[0].setLabelFor(supportedOS);
+		panel.add(labels[0], c);
+
+
+		String[] osNames = DesktopSoftwareManagment.getSystemOSname();
+		supportedOS = new JList(osNames);
+		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
+		listSelectionModel
+				.addListSelectionListener(new SharedListSelectionHandler());
+		JScrollPane listPane = new JScrollPane(supportedOS);
+		listPane.setMaximumSize(new Dimension(160, 60));
+		listPane.setPreferredSize(new Dimension(160, 60));
+		listSelectionModel
+				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+		if ( mainDB.getSupportedOperatingSystems() != null )
+		{
+			if ( mainDB.getSupportedOperatingSystems().length > 0 )
+			{
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
+						supportedOS, osNames, mainDB
+								.getSupportedOperatingSystems()));
+			}
+		}
+
+		c.weighty = 1.0; // request any extra vertical space
+		c.weightx = 1.0; // request any extra horizontal space
+		c.insets = new Insets(20, 10, 10, 10); // padding
+		c.gridx = 1; // column
+		panel.add(listPane, c);
 
 
 		return panel;
@@ -203,10 +261,26 @@ public class DatabaseEditView extends JPanel implements SoftwareView, ActionList
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0)
+	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
+		if ( e.getSource() instanceof Button )
+		{
+			Button check = (Button) e.getSource();
 
+			String command = check.getActionCommand();
+
+			if ( command.equals("removeSoft") )
+			{
+				DesktopSoftwareManagment.removeSoftware(mainObj, mainDB);
+
+				// Updates the views of the object to correctly show the current info.
+				ObjectView view = PrimeMain.getObjectView(mainObj);
+				if ( view != null )
+				{
+					view.updateViewInfo();
+				}
+			}
+		}
 	}
 
 
@@ -215,5 +289,43 @@ public class DatabaseEditView extends JPanel implements SoftwareView, ActionList
 	{
 		return mainDB;
 	}
+
+
+
+	/**
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
+	 */
+	private class SharedListSelectionHandler implements ListSelectionListener
+	{
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
+		 * event.ListSelectionEvent)
+		 */
+		public void valueChanged(ListSelectionEvent e)
+		{
+			int[] indeces = supportedOS.getSelectedIndices();
+
+			if ( indeces.length == 0 )
+			{
+				OSs = null;
+			}
+			else
+			{
+				// Creates an array of strings with the length of the array with
+				// the selected indices.
+				OSs = new String[indeces.length];
+
+				// Find out which indexes are selected.
+				for ( int i = 0; i < indeces.length; i++ )
+				{
+					OSs[i] = (String) supportedOS.getSelectedValues()[i];
+				}
+			}
+		}
+	}
+
 
 }

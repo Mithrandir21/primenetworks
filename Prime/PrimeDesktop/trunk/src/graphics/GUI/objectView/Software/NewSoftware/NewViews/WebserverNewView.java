@@ -47,10 +47,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.DesktopSoftwareManagment;
 import managment.SoftwareManagment;
 import objects.Object;
 import objects.Software;
@@ -146,16 +146,16 @@ public class WebserverNewView extends JDialog implements SoftwareView, ActionLis
 	{
 		this.setTitle(PrimeMain.texts.getString("swNewWebserverLabel"));
 
+		Dimension size = new Dimension(760, 600);
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		int initYLocation = (scrnsize.height - size.height) / 2;
+		int initXLocation = (scrnsize.width - size.width) / 2;
 
 		mainObj = obj;
 		mainWebSer = webserver;
@@ -205,9 +205,9 @@ public class WebserverNewView extends JDialog implements SoftwareView, ActionLis
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
+		this.setLocation(initXLocation, initYLocation);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setVisible(true);
 	}
 
@@ -224,100 +224,32 @@ public class WebserverNewView extends JDialog implements SoftwareView, ActionLis
 	 */
 	private JPanel createSpesificInfo(Webserver webserver)
 	{
-		JPanel panel = new JPanel(new SpringLayout());
-		JLabel[] labels = new JLabel[16];
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
 
-
-		labels[0] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupOSLabel"));
-		labels[0].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupOSTip"));
-
-		labels[1] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupVirtualHostingLabel"));
-		labels[1].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupVirtualHostingTip"));
-
-		labels[2] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupHTTPcompLabel"));
-		labels[2].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupHTTPcompTip"));
-
-		labels[3] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupBasicAccessLabel"));
-		labels[3].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupBasicAccessTip"));
-
-		labels[4] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupDigestAccessLabel"));
-		labels[4].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupDigestAccessTip"));
-
-		labels[5] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupSSLLabel"));
-		labels[5].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupSSLTip"));
-
-		labels[6] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupTSLLabel"));
-		labels[6].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupTSLTip"));
-
-		labels[7] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupIPv6Label"));
-		labels[7].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupIPv6Tip"));
-
-		labels[8] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupSSILabel"));
-		labels[8].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupSSITip"));
-
-		labels[9] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupCGILabel"));
-		labels[9].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupCGITip"));
-
-		labels[10] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupSCGILabel"));
-		labels[10].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupSCGITip"));
-
-		labels[11] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupFastCGILabel"));
-		labels[11].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupFastCGITip"));
-
-		labels[12] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupJSPLabel"));
-		labels[12].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupJSPTip"));
-
-		labels[13] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupPHPLabel"));
-		labels[13].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupPHPTip"));
-
-		labels[14] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupASPLabel"));
-		labels[14].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupASPTip"));
-
-		labels[15] = new JLabel(PrimeMain.texts
-				.getString("webserverViewSupASPNetLabel"));
-		labels[15].setToolTipText(PrimeMain.texts
-				.getString("webserverViewSupASPNetTip"));
-
-
-		Dimension tfSize = new Dimension(90, 20);
+		c.fill = GridBagConstraints.HORIZONTAL;
+		// c.ipady = 0; // reset to default
+		// c.ipadx = 0; // reset to default
+		// c.weighty = 1.0; // request any extra vertical space
+		// c.weightx = 1.0; // request any extra horizontal space
+		c.anchor = GridBagConstraints.NORTHWEST; // location
+		c.insets = new Insets(20, 10, 10, 10); // padding
+		// c.gridwidth = 1; // 1 row wide
+		// c.gridheight = 1; // 1 columns wide
+		c.gridy = 0; // row
+		c.gridx = 0; // column
 
 		// --------------------------------------------------------------
 
 		// The supported operating systems by the Webserver software.
-		labels[0].setLabelFor(supportedOS);
-		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
-				"Windows Vista", "Linux", "Novell" };
-		supportedOS = new JList(listData);
+		JLabel osLabel = new JLabel(PrimeMain.texts
+				.getString("fwViewSupOSLabel"));
+		osLabel.setToolTipText(PrimeMain.texts.getString("fwViewSupOSTip"));
+		panel.add(osLabel, c);
+
+
+		String[] osNames = DesktopSoftwareManagment.getSystemOSname();
+		supportedOS = new JList(osNames);
 		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
 		listSelectionModel
 				.addListSelectionListener(new SharedListSelectionHandler());
@@ -332,263 +264,250 @@ public class WebserverNewView extends JDialog implements SoftwareView, ActionLis
 			if ( mainWebSer.getSupportedOperatingSystems().length > 0 )
 			{
 				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, listData, mainWebSer
+						supportedOS, osNames, mainWebSer
 								.getSupportedOperatingSystems()));
 			}
 		}
 
-		panel.add(labels[0]);
-		panel.add(listPane);
+		c.gridx = 1; // column
+		panel.add(listPane, c);
 
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports Virtual hosting feature
-		labels[1].setLabelFor(hasVirtualHosting);
-		hasVirtualHosting = new JCheckBox();
-		hasVirtualHosting.setMaximumSize(tfSize);
-		hasVirtualHosting.setPreferredSize(tfSize);
-		hasVirtualHosting.setToolTipText(labels[1].getToolTipText());
+		hasVirtualHosting = new JCheckBox(PrimeMain.texts
+				.getString("webserverViewSupVirtualHostingLabel"));
+		hasVirtualHosting.setToolTipText(PrimeMain.texts
+				.getString("webserverViewSupVirtualHostingTip"));
 		hasVirtualHosting.setActionCommand("HasVirtualHosting");
 		hasVirtualHosting.addActionListener(this);
 
 		hasVirtualHosting.setSelected(mainWebSer.HasVirtualHosting());
 
-		panel.add(labels[1]);
-		panel.add(hasVirtualHosting);
-
-		// --------------------------------------------------------------
-
-		// Whether or not the software supports HTTP compression
-		labels[2].setLabelFor(hasCompression);
-		hasCompression = new JCheckBox();
-		hasCompression.setMaximumSize(tfSize);
-		hasCompression.setPreferredSize(tfSize);
-		hasCompression.setToolTipText(labels[2].getToolTipText());
-		hasCompression.setActionCommand("HasCompression");
-		hasCompression.addActionListener(this);
-
-		hasCompression.setSelected(mainWebSer.HasCompression());
-
-		panel.add(labels[2]);
-		panel.add(hasCompression);
-
-		// --------------------------------------------------------------
-
-		// Whether or not the software supports basic access authentication
-		labels[3].setLabelFor(supportsBasic);
-		supportsBasic = new JCheckBox();
-		supportsBasic.setMaximumSize(tfSize);
-		supportsBasic.setPreferredSize(tfSize);
-		supportsBasic.setToolTipText(labels[3].getToolTipText());
-		supportsBasic.setActionCommand("SupportsBasic");
-		supportsBasic.addActionListener(this);
-
-		supportsBasic.setSelected(mainWebSer.supportsBasic());
-
-		panel.add(labels[3]);
-		panel.add(supportsBasic);
-
-		// --------------------------------------------------------------
-
-		// Whether or not the software supports basic access authentication
-		labels[4].setLabelFor(supportsDigest);
-		supportsDigest = new JCheckBox();
-		supportsDigest.setMaximumSize(tfSize);
-		supportsDigest.setPreferredSize(tfSize);
-		supportsDigest.setToolTipText(labels[4].getToolTipText());
-		supportsDigest.setActionCommand("SupportsDigest");
-		supportsDigest.addActionListener(this);
-
-		supportsDigest.setSelected(mainWebSer.supportsDigest());
-
-		panel.add(labels[4]);
-		panel.add(supportsDigest);
-
-		// --------------------------------------------------------------
-
-		// Whether or not the software supports SSL
-		labels[5].setLabelFor(supportsSSL);
-		supportsSSL = new JCheckBox();
-		supportsSSL.setMaximumSize(tfSize);
-		supportsSSL.setPreferredSize(tfSize);
-		supportsSSL.setToolTipText(labels[5].getToolTipText());
-		supportsSSL.setActionCommand("SupportsSSL");
-		supportsSSL.addActionListener(this);
-
-		supportsSSL.setSelected(mainWebSer.supportsSSL());
-
-		panel.add(labels[5]);
-		panel.add(supportsSSL);
-
-		// --------------------------------------------------------------
-
-		// Whether or not the software supports TSL
-		labels[6].setLabelFor(supportsTSL);
-		supportsTSL = new JCheckBox();
-		supportsTSL.setMaximumSize(tfSize);
-		supportsTSL.setPreferredSize(tfSize);
-		supportsTSL.setToolTipText(labels[6].getToolTipText());
-		supportsTSL.setActionCommand("SupportsTSL");
-		supportsTSL.addActionListener(this);
-
-		supportsTSL.setSelected(mainWebSer.supportsTSL());
-
-		panel.add(labels[6]);
-		panel.add(supportsTSL);
-
-		// --------------------------------------------------------------
-
-		// Whether or not the software supports IPv6
-		labels[7].setLabelFor(supportsIPv6);
-		supportsIPv6 = new JCheckBox();
-		supportsIPv6.setMaximumSize(tfSize);
-		supportsIPv6.setPreferredSize(tfSize);
-		supportsIPv6.setToolTipText(labels[7].getToolTipText());
-		supportsIPv6.setActionCommand("SupportsIPv6");
-		supportsIPv6.addActionListener(this);
-
-		supportsIPv6.setSelected(mainWebSer.supportsIPv6());
-
-		panel.add(labels[7]);
-		panel.add(supportsIPv6);
-
-		// --------------------------------------------------------------
-
-		// Whether or not the software supports SSI, Server Side Includes
-		labels[8].setLabelFor(supportsIPv6);
-		supportsSSI = new JCheckBox();
-		supportsSSI.setMaximumSize(tfSize);
-		supportsSSI.setPreferredSize(tfSize);
-		supportsSSI.setToolTipText(labels[8].getToolTipText());
-		supportsSSI.setActionCommand("SupportsSSI");
-		supportsSSI.addActionListener(this);
-
-		supportsSSI.setSelected(mainWebSer.supportsSSI());
-
-		panel.add(labels[8]);
-		panel.add(supportsSSI);
-
-		// --------------------------------------------------------------
-
-		// Whether or not the software supports SSI, Server Side Includes
-		labels[9].setLabelFor(supportsCGI);
-		supportsCGI = new JCheckBox();
-		supportsCGI.setMaximumSize(tfSize);
-		supportsCGI.setPreferredSize(tfSize);
-		supportsCGI.setToolTipText(labels[9].getToolTipText());
-		supportsCGI.setActionCommand("SupportsCGI");
-		supportsCGI.addActionListener(this);
-
-		supportsCGI.setSelected(mainWebSer.supportsCGI());
-
-		panel.add(labels[9]);
-		panel.add(supportsCGI);
-
-		// --------------------------------------------------------------
-
-		// Whether or not the software supports SCGI, Simple Common Gateway
-		// Interface
-		labels[10].setLabelFor(supportsSCGI);
-		supportsSCGI = new JCheckBox();
-		supportsSCGI.setMaximumSize(tfSize);
-		supportsSCGI.setPreferredSize(tfSize);
-		supportsSCGI.setToolTipText(labels[10].getToolTipText());
-		supportsSCGI.setActionCommand("SupportsSCGI");
-		supportsSCGI.addActionListener(this);
-
-		supportsSCGI.setSelected(mainWebSer.supportsSCGI());
-
-		panel.add(labels[10]);
-		panel.add(supportsSCGI);
-
-		// --------------------------------------------------------------
-
-		// Whether or not the software supports FastCGI
-		labels[11].setLabelFor(supportsFastCGI);
-		supportsFastCGI = new JCheckBox();
-		supportsFastCGI.setMaximumSize(tfSize);
-		supportsFastCGI.setPreferredSize(tfSize);
-		supportsFastCGI.setToolTipText(labels[11].getToolTipText());
-		supportsFastCGI.setActionCommand("SupportsFastCGI");
-		supportsFastCGI.addActionListener(this);
-
-		supportsFastCGI.setSelected(mainWebSer.supportsFastCGI());
-
-		panel.add(labels[11]);
-		panel.add(supportsFastCGI);
-
-		// --------------------------------------------------------------
-
-		// Whether or not the software supports JSP
-		labels[12].setLabelFor(supportsJSP);
-		supportsJSP = new JCheckBox();
-		supportsJSP.setMaximumSize(tfSize);
-		supportsJSP.setPreferredSize(tfSize);
-		supportsJSP.setToolTipText(labels[12].getToolTipText());
-		supportsJSP.setActionCommand("SupportsJSP");
-		supportsJSP.addActionListener(this);
-
-		supportsJSP.setSelected(mainWebSer.supportsJSP());
-
-		panel.add(labels[12]);
-		panel.add(supportsJSP);
-
-		// --------------------------------------------------------------
-
-		// Whether or not the software supports JSP
-		labels[13].setLabelFor(supportsPHP);
-		supportsPHP = new JCheckBox();
-		supportsPHP.setMaximumSize(tfSize);
-		supportsPHP.setPreferredSize(tfSize);
-		supportsPHP.setToolTipText(labels[13].getToolTipText());
-		supportsPHP.setActionCommand("SupportsPHP");
-		supportsPHP.addActionListener(this);
-
-		supportsPHP.setSelected(mainWebSer.supportsPHP());
-
-		panel.add(labels[13]);
-		panel.add(supportsPHP);
-
-		// --------------------------------------------------------------
-
-		// Whether or not the software supports ASP
-		labels[14].setLabelFor(supportsASP);
-		supportsASP = new JCheckBox();
-		supportsASP.setMaximumSize(tfSize);
-		supportsASP.setPreferredSize(tfSize);
-		supportsASP.setToolTipText(labels[14].getToolTipText());
-		supportsASP.setActionCommand("SupportsASP");
-		supportsASP.addActionListener(this);
-
-		supportsASP.setSelected(mainWebSer.supportsASP());
-
-		panel.add(labels[14]);
-		panel.add(supportsASP);
+		c.gridx = 2; // column
+		panel.add(hasVirtualHosting, c);
 
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports ASP .net
-		labels[14].setLabelFor(supportsASPnet);
-		supportsASPnet = new JCheckBox();
-		supportsASPnet.setMaximumSize(tfSize);
-		supportsASPnet.setPreferredSize(tfSize);
-		supportsASPnet.setToolTipText(labels[14].getToolTipText());
+		supportsASPnet = new JCheckBox(PrimeMain.texts
+				.getString("webserverViewSupASPNetLabel"));
+		supportsASPnet.setToolTipText(PrimeMain.texts
+				.getString("webserverViewSupASPNetTip"));
 		supportsASPnet.setActionCommand("SupportsASPnet");
 		supportsASPnet.addActionListener(this);
 
 		supportsASPnet.setSelected(mainWebSer.supportsASPnet());
 
-		panel.add(labels[15]);
-		panel.add(supportsASPnet);
+		c.weightx = 1.0; // request any extra horizontal space
+		c.gridx = 3; // column
+		panel.add(supportsASPnet, c);
 
 		// --------------------------------------------------------------
 
+		// Whether or not the software supports basic access authentication
+		supportsBasic = new JCheckBox(PrimeMain.texts
+				.getString("webserverViewSupBasicAccessLabel"));
+		supportsBasic.setToolTipText(PrimeMain.texts
+				.getString("webserverViewSupBasicAccessTip"));
+		supportsBasic.setActionCommand("SupportsBasic");
+		supportsBasic.addActionListener(this);
 
-		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel,
-				panel.getComponentCount(), // rows, cols
-				10, 10, // initX, initY
-				20, 20); // xPad, yPad
+		supportsBasic.setSelected(mainWebSer.supportsBasic());
+
+		c.insets = new Insets(10, 10, 10, 10); // padding
+		c.weightx = 0; // request any extra horizontal space
+		c.gridy = 1; // row
+		c.gridx = 0; // column
+		panel.add(supportsBasic, c);
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports basic access authentication
+		supportsDigest = new JCheckBox(PrimeMain.texts
+				.getString("webserverViewSupDigestAccessLabel"));
+		supportsDigest.setToolTipText(PrimeMain.texts
+				.getString("webserverViewSupDigestAccessTip"));
+		supportsDigest.setActionCommand("SupportsDigest");
+		supportsDigest.addActionListener(this);
+
+		supportsDigest.setSelected(mainWebSer.supportsDigest());
+
+		c.gridx = 1; // column
+		panel.add(supportsDigest, c);
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports SSL
+		supportsSSL = new JCheckBox(PrimeMain.texts
+				.getString("webserverViewSupSSLLabel"));
+		supportsSSL.setToolTipText(PrimeMain.texts
+				.getString("webserverViewSupSSLTip"));
+		supportsSSL.setActionCommand("SupportsSSL");
+		supportsSSL.addActionListener(this);
+
+		supportsSSL.setSelected(mainWebSer.supportsSSL());
+
+		c.gridx = 2; // column
+		panel.add(supportsSSL, c);
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports TSL
+		supportsTSL = new JCheckBox(PrimeMain.texts
+				.getString("webserverViewSupTSLLabel"));
+		supportsTSL.setToolTipText(PrimeMain.texts
+				.getString("webserverViewSupTSLTip"));
+		supportsTSL.setActionCommand("SupportsTSL");
+		supportsTSL.addActionListener(this);
+
+		supportsTSL.setSelected(mainWebSer.supportsTSL());
+
+		c.gridx = 3; // column
+		panel.add(supportsTSL, c);
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports IPv6
+		supportsIPv6 = new JCheckBox(PrimeMain.texts
+				.getString("webserverViewSupIPv6Label"));
+		supportsIPv6.setToolTipText(PrimeMain.texts
+				.getString("webserverViewSupIPv6Tip"));
+		supportsIPv6.setActionCommand("SupportsIPv6");
+		supportsIPv6.addActionListener(this);
+
+		supportsIPv6.setSelected(mainWebSer.supportsIPv6());
+
+		c.gridy = 2; // row
+		c.gridx = 0; // column
+		panel.add(supportsIPv6, c);
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports SSI, Server Side Includes
+		supportsSSI = new JCheckBox(PrimeMain.texts
+				.getString("webserverViewSupSSILabel"));
+		supportsSSI.setToolTipText(PrimeMain.texts
+				.getString("webserverViewSupSSITip"));
+		supportsSSI.setActionCommand("SupportsSSI");
+		supportsSSI.addActionListener(this);
+
+		supportsSSI.setSelected(mainWebSer.supportsSSI());
+
+		c.gridx = 1; // column
+		panel.add(supportsSSI, c);
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports SSI, Server Side Includes
+		supportsCGI = new JCheckBox(PrimeMain.texts
+				.getString("webserverViewSupCGILabel"));
+		supportsCGI.setToolTipText(PrimeMain.texts
+				.getString("webserverViewSupCGITip"));
+		supportsCGI.setActionCommand("SupportsCGI");
+		supportsCGI.addActionListener(this);
+
+		supportsCGI.setSelected(mainWebSer.supportsCGI());
+
+		c.gridx = 2; // column
+		panel.add(supportsCGI, c);
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports SCGI, Simple Common Gateway
+		// Interface
+		supportsSCGI = new JCheckBox(PrimeMain.texts
+				.getString("webserverViewSupSCGILabel"));
+		supportsSCGI.setToolTipText(PrimeMain.texts
+				.getString("webserverViewSupSCGITip"));
+		supportsSCGI.setActionCommand("SupportsSCGI");
+		supportsSCGI.addActionListener(this);
+
+		supportsSCGI.setSelected(mainWebSer.supportsSCGI());
+
+		c.gridx = 3; // column
+		panel.add(supportsSCGI, c);
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports FastCGI
+		supportsFastCGI = new JCheckBox(PrimeMain.texts
+				.getString("webserverViewSupFastCGILabel"));
+		supportsFastCGI.setToolTipText(PrimeMain.texts
+				.getString("webserverViewSupFastCGITip"));
+		supportsFastCGI.setActionCommand("SupportsFastCGI");
+		supportsFastCGI.addActionListener(this);
+
+		supportsFastCGI.setSelected(mainWebSer.supportsFastCGI());
+
+		c.gridy = 3; // row
+		c.gridx = 0; // column
+		panel.add(supportsFastCGI, c);
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports JSP
+		supportsJSP = new JCheckBox(PrimeMain.texts
+				.getString("webserverViewSupJSPLabel"));
+		supportsJSP.setToolTipText(PrimeMain.texts
+				.getString("webserverViewSupJSPTip"));
+		supportsJSP.setActionCommand("SupportsJSP");
+		supportsJSP.addActionListener(this);
+
+		supportsJSP.setSelected(mainWebSer.supportsJSP());
+
+		c.gridx = 1; // column
+		panel.add(supportsJSP, c);
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports JSP
+		supportsPHP = new JCheckBox(PrimeMain.texts
+				.getString("webserverViewSupPHPLabel"));
+		supportsPHP.setToolTipText(PrimeMain.texts
+				.getString("webserverViewSupPHPTip"));
+		supportsPHP.setActionCommand("SupportsPHP");
+		supportsPHP.addActionListener(this);
+
+		supportsPHP.setSelected(mainWebSer.supportsPHP());
+
+		c.gridx = 2; // column
+		panel.add(supportsPHP, c);
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports ASP
+		supportsASP = new JCheckBox(PrimeMain.texts
+				.getString("webserverViewSupASPLabel"));
+		supportsASP.setToolTipText(PrimeMain.texts
+				.getString("webserverViewSupASPTip"));
+		supportsASP.setActionCommand("SupportsASP");
+		supportsASP.addActionListener(this);
+
+		supportsASP.setSelected(mainWebSer.supportsASP());
+
+		c.gridx = 3; // column
+		panel.add(supportsASP, c);
+
+		// --------------------------------------------------------------
+
+		// Whether or not the software supports HTTP compression
+		hasCompression = new JCheckBox(PrimeMain.texts
+				.getString("webserverViewSupHTTPcompLabel"));
+		hasCompression.setToolTipText(PrimeMain.texts
+				.getString("webserverViewSupHTTPcompTip"));
+		hasCompression.setActionCommand("HasCompression");
+		hasCompression.addActionListener(this);
+
+		hasCompression.setSelected(mainWebSer.HasCompression());
+
+
+		c.weighty = 1.0; // request any extra horizontal space
+		c.gridy = 4; // row
+		c.gridx = 0; // column
+		panel.add(hasCompression, c);
+
+		// --------------------------------------------------------------
 
 
 		return panel;

@@ -89,6 +89,7 @@ public class DiscDriveNewView extends JDialog implements HardwareViewInterface, 
 	{
 		this.setTitle(PrimeMain.texts.getString("newHWnewDVDRWlabel"));
 
+		Dimension size = new Dimension(750, 600);
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -96,11 +97,8 @@ public class DiscDriveNewView extends JDialog implements HardwareViewInterface, 
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
-
+		int initYLocation = (scrnsize.height - size.height) / 2;
+		int initXLocation = (scrnsize.width - size.width) / 2;
 
 
 		mainObj = obj;
@@ -150,10 +148,9 @@ public class DiscDriveNewView extends JDialog implements HardwareViewInterface, 
 
 
 
-
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
+		this.setLocation(initXLocation, initYLocation);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setVisible(true);
 	}
 
@@ -352,8 +349,8 @@ public class DiscDriveNewView extends JDialog implements HardwareViewInterface, 
 
 		if ( speed.getSelectedItem().toString() != "" )
 		{
-			DiscObj.setSpeed(Integer
-					.parseInt(type.getSelectedItem().toString()));
+			DiscObj.setSpeed(Integer.parseInt(speed.getSelectedItem()
+					.toString()));
 		}
 		else
 		{

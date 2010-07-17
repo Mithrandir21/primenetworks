@@ -158,7 +158,7 @@ public class HardwareEditor extends JDialog implements ActionListener
 	{
 		givenObject = obj;
 
-		Dimension size = new Dimension(750, 600);
+		Dimension size = new Dimension(860, 600);
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();

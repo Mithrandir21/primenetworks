@@ -167,7 +167,6 @@ public class ObjectViewTabbed extends JTabbedPane
 			// Boolean array that contains the validation status of each view.
 			boolean[] verified = new boolean[this.getComponentCount()];
 
-			// FIXME
 			/**
 			 * Goes through all the views and gets the validation status of each
 			 * one and places that boolean in the validation array.

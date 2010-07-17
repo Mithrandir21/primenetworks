@@ -20,7 +20,6 @@ package graphics.GUI.customOSviews;
 
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
-import graphics.SystemFunctions;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -49,6 +48,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.DesktopSoftwareManagment;
 import objects.Object;
 import objects.Software;
 import objects.softwareObjects.OperatingSystem;
@@ -80,6 +80,9 @@ public class OSNewView extends JDialog implements SoftwareView, ActionListener
 
 	// The OS is 64 bit
 	private JCheckBox is64bit;
+
+	// The version of the OS
+	private JTextField osVersion = new JTextField();
 
 	private OperatingSystem mainOS;
 
@@ -161,6 +164,8 @@ public class OSNewView extends JDialog implements SoftwareView, ActionListener
 	 */
 	private JPanel createSpesificInfo(OperatingSystem os)
 	{
+		Dimension tfSize = new Dimension(100, 20);
+
 		JPanel pane = new JPanel(new GridBagLayout());
 		GridBagConstraints d = new GridBagConstraints();
 
@@ -280,6 +285,21 @@ public class OSNewView extends JDialog implements SoftwareView, ActionListener
 		panel2.add(is64bit, conPanel2);
 
 
+		// The version of the OS
+		JLabel versionLabel = new JLabel(PrimeMain.texts
+				.getString("osViewVersionLabel"));
+		conPanel2.gridx = 1; // column
+		panel2.add(versionLabel, conPanel2);
+
+		osVersion.setMaximumSize(tfSize);
+		osVersion.setPreferredSize(tfSize);
+		osVersion.setText(mainOS.getVersion());
+		osVersion.setToolTipText(PrimeMain.texts.getString("osViewVersionTip"));
+
+		conPanel2.gridx = 2; // column
+		panel2.add(osVersion, conPanel2);
+
+
 		d.weighty = 1.0; // request any extra vertical space
 		d.weightx = 1.0; // request any extra horizontal space
 		d.gridy = 1;
@@ -346,6 +366,11 @@ public class OSNewView extends JDialog implements SoftwareView, ActionListener
 		if ( supportedFS.getSelectedIndex() != -1 )
 		{
 			mainOS.setFs(GraphicalFunctions.getFSInJList(supportedFS));
+		}
+
+		if ( osVersion.getText() != "" )
+		{
+			mainOS.setVersion(osVersion.getText());
 		}
 
 		mainOS.setEncryptedFileSystem(encryptedFileSystem.isSelected());
@@ -451,7 +476,7 @@ public class OSNewView extends JDialog implements SoftwareView, ActionListener
 
 
 		// Checks the standard OS names
-		if ( SystemFunctions.foundInStandardOS(mainOS.getObjectName()) )
+		if ( DesktopSoftwareManagment.foundInStandardOS(mainOS.getObjectName()) )
 		{
 			JOptionPane.showMessageDialog(null, PrimeMain.texts
 					.getString("osSameNameAsAstandardOS"), PrimeMain.texts
@@ -462,7 +487,7 @@ public class OSNewView extends JDialog implements SoftwareView, ActionListener
 
 
 		// Checks the custom OS names
-		if ( SystemFunctions.foundInCustomOS(mainOS.getObjectName()) )
+		if ( DesktopSoftwareManagment.foundInCustomOS(mainOS.getObjectName()) )
 		{
 			JOptionPane.showMessageDialog(null, PrimeMain.texts
 					.getString("osSameNameAsAcustomOS"), PrimeMain.texts

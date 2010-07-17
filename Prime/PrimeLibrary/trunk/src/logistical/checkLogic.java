@@ -113,4 +113,41 @@ public class checkLogic
 
 		return null;
 	}
+
+
+
+	/**
+	 * TODO - Description
+	 */
+	public static boolean containsOnlyNumbers(String text)
+	{
+		String pat = "([\\d]+)";
+
+		Pattern test = Pattern.compile(pat);
+
+		return test.matcher(text).matches();
+	}
+
+
+
+	/**
+	 * TODO - Description
+	 */
+	public static boolean containsDouble(String text)
+	{
+		if ( text.equals("") && text == "" )
+		{
+			return false;
+		}
+
+		try
+		{
+			Double.parseDouble(text);
+			return true;
+		}
+		catch ( NumberFormatException e )
+		{
+			return false;
+		}
+	}
 }

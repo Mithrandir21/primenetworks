@@ -63,7 +63,7 @@ public class SoftwareEditor extends JDialog implements ActionListener
 
 		givenObject = obj;
 
-		Dimension size = new Dimension(750, 600);
+		Dimension size = new Dimension(770, 620);
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -145,12 +145,12 @@ public class SoftwareEditor extends JDialog implements ActionListener
 		genPanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 
-		c.fill = GridBagConstraints.NONE;
+		c.fill = GridBagConstraints.BOTH;
 		// c.ipady = 0; // reset to default
 		// c.ipadx = 0; // reset to default
 		// c.weighty = 1.0; // request any extra vertical space
 		// c.weightx = 1.0; // request any extra horizontal space
-		c.anchor = GridBagConstraints.WEST; // location
+		c.anchor = GridBagConstraints.NORTHWEST; // location
 		c.insets = new Insets(10, 10, 10, 10); // padding
 		// c.gridwidth = 1; // 2 row wide
 		c.gridheight = 2; // 2 columns wide
@@ -194,6 +194,7 @@ public class SoftwareEditor extends JDialog implements ActionListener
 		desc.setFont(t.getFont());
 		descScroll.setViewportView(desc);
 
+		c.weighty = 1.0; // request any extra vertical space
 		c.weightx = 1.0; // request any extra horizontal space
 		c.gridx = 2;
 		c.gridy = 1;

@@ -148,11 +148,11 @@ public class SoftwareManagment
 			// If the software is not an OperatingSystem object
 			if ( !(software[i] instanceof OperatingSystem) )
 			{
-				boolean compatible = validateSoftware(software[i], obj);
-
-				// If not compatible with the OS
-				if ( !compatible )
+				// Checks whether or not the given software is still compatible
+				if ( !(SoftwareManagment.validateSoftware(software[i], obj)) )
 				{
+					// If the software is not compatible the index of
+					// that software will be set to null
 					software[i] = null;
 				}
 			}

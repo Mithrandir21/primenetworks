@@ -93,6 +93,7 @@ public class GraphicsCardNewView extends JDialog implements HardwareViewInterfac
 	{
 		this.setTitle(PrimeMain.texts.getString("newHWnewGPUlabel"));
 
+		Dimension size = new Dimension(750, 600);
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -100,10 +101,8 @@ public class GraphicsCardNewView extends JDialog implements HardwareViewInterfac
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		int initYLocation = (scrnsize.height - size.height) / 2;
+		int initXLocation = (scrnsize.width - size.width) / 2;
 
 
 
@@ -154,10 +153,9 @@ public class GraphicsCardNewView extends JDialog implements HardwareViewInterfac
 
 
 
-
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
+		this.setLocation(initXLocation, initYLocation);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setVisible(true);
 	}
 

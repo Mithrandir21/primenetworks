@@ -20,6 +20,7 @@ package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
+import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
@@ -43,10 +44,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.DesktopSoftwareManagment;
 import objects.Object;
 import objects.Software;
 import objects.softwareObjects.Firewall;
@@ -225,94 +226,30 @@ public class FirewallEditView extends JPanel implements SoftwareView, ActionList
 	 */
 	private JPanel createSpesificInfo(Firewall fw)
 	{
-		JPanel panel = new JPanel(new SpringLayout());
-		JLabel[] labels = new JLabel[19];
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+
+		c.fill = GridBagConstraints.HORIZONTAL;
+		// c.ipady = 0; // reset to default
+		// c.ipadx = 0; // reset to default
+		// c.weighty = 1.0; // request any extra vertical space
+		// c.weightx = 1.0; // request any extra horizontal space
+		c.anchor = GridBagConstraints.NORTHWEST; // location
+		c.insets = new Insets(20, 10, 10, 10); // padding
+		// c.gridwidth = 1; // 1 row wide
+		// c.gridheight = 1; // 1 columns wide
+		c.gridy = 0; // row
+		c.gridx = 0; // column
+
+		// The supported operating systems by the Antivirus software.
+		JLabel osLabel = new JLabel(PrimeMain.texts
+				.getString("fwViewSupOSLabel"));
+		osLabel.setToolTipText(PrimeMain.texts.getString("fwViewSupOSTip"));
+		panel.add(osLabel, c);
 
 
-		labels[0] = new JLabel(PrimeMain.texts.getString("fwViewSupOSLabel"));
-		labels[0].setToolTipText(PrimeMain.texts.getString("fwViewSupOSTip"));
-
-		labels[1] = new JLabel(PrimeMain.texts
-				.getString("fwViewNetworkFirewallLabel"));
-		labels[1].setToolTipText(PrimeMain.texts
-				.getString("fwViewNetworkFirewallTip"));
-
-		labels[2] = new JLabel(PrimeMain.texts
-				.getString("fwViewStatefulFirewallLabel"));
-		labels[2].setToolTipText(PrimeMain.texts
-				.getString("fwViewStatefulFirewallTip"));
-
-		labels[3] = new JLabel(PrimeMain.texts.getString("fwViewSupDPILabel"));
-		labels[3].setToolTipText(PrimeMain.texts.getString("fwViewSupDPITip"));
-
-		labels[4] = new JLabel(PrimeMain.texts.getString("fwViewHasProxyLabel"));
-		labels[4]
-				.setToolTipText(PrimeMain.texts.getString("fwViewHasProxyTip"));
-
-		labels[5] = new JLabel(PrimeMain.texts.getString("fwViewHasNATLabel"));
-		labels[5].setToolTipText(PrimeMain.texts.getString("fwViewHasNATTip"));
-
-		labels[6] = new JLabel(PrimeMain.texts.getString("fwViewHasVPNLabel"));
-		labels[6].setToolTipText(PrimeMain.texts.getString("fwViewHasVPNTip"));
-
-		labels[7] = new JLabel(PrimeMain.texts
-				.getString("fwViewHasAntivirusLabel"));
-		labels[7].setToolTipText(PrimeMain.texts
-				.getString("fwViewHasAntivirusTip"));
-
-		labels[8] = new JLabel(PrimeMain.texts.getString("fwViewHasIDSLabel"));
-		labels[8].setToolTipText(PrimeMain.texts.getString("fwViewHasIDSTip"));
-
-		labels[9] = new JLabel(PrimeMain.texts
-				.getString("fwViewSupModularityLabel"));
-		labels[9].setToolTipText(PrimeMain.texts
-				.getString("fwViewSupModularityTip"));
-
-		labels[10] = new JLabel(PrimeMain.texts.getString("fwViewSupIPv6Label"));
-		labels[10]
-				.setToolTipText(PrimeMain.texts.getString("fwViewSupIPv6Tip"));
-
-		labels[11] = new JLabel(PrimeMain.texts.getString("fwViewSupTTLLabel"));
-		labels[11].setToolTipText(PrimeMain.texts.getString("fwViewSupTTLTip"));
-
-		labels[12] = new JLabel(PrimeMain.texts.getString("fwViewSupRWALabel"));
-		labels[12].setToolTipText(PrimeMain.texts.getString("fwViewSupRWATip"));
-
-		labels[13] = new JLabel(PrimeMain.texts.getString("fwViewSupDMZLabel"));
-		labels[13].setToolTipText(PrimeMain.texts.getString("fwViewSupDMZTip"));
-
-		labels[14] = new JLabel(PrimeMain.texts
-				.getString("fwViewSupToDFilterLabel"));
-		labels[14].setToolTipText(PrimeMain.texts
-				.getString("fwViewSupToDFilterTip"));
-
-		labels[15] = new JLabel(PrimeMain.texts
-				.getString("fwViewSupForwardingLabel"));
-		labels[15].setToolTipText(PrimeMain.texts
-				.getString("fwViewSupForwardingTip"));
-
-		labels[16] = new JLabel(PrimeMain.texts
-				.getString("fwViewSupPortForwardingLabel"));
-		labels[16].setToolTipText(PrimeMain.texts
-				.getString("fwViewSupPortForwardingTip"));
-
-		labels[17] = new JLabel(PrimeMain.texts.getString("fwViewSupQoSLabel"));
-		labels[17].setToolTipText(PrimeMain.texts.getString("fwViewSupQoSTip"));
-
-		labels[18] = new JLabel(PrimeMain.texts
-				.getString("fwViewSupTarpitLabel"));
-		labels[18].setToolTipText(PrimeMain.texts
-				.getString("fwViewSupTarpitTip"));
-
-
-		Dimension tfSize = new Dimension(90, 20);
-
-
-		// The supported operating systems by the Email software.
-		labels[0].setLabelFor(supportedOS);
-		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
-				"Windows Vista", "Linux", "Novell" };
-		supportedOS = new JList(listData);
+		String[] osNames = DesktopSoftwareManagment.getSystemOSname();
+		supportedOS = new JList(osNames);
 		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
 		listSelectionModel
 				.addListSelectionListener(new SharedListSelectionHandler());
@@ -327,136 +264,140 @@ public class FirewallEditView extends JPanel implements SoftwareView, ActionList
 			if ( mainFW.getSupportedOperatingSystems().length > 0 )
 			{
 				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, listData, mainFW
+						supportedOS, osNames, mainFW
 								.getSupportedOperatingSystems()));
 			}
 		}
 
-		panel.add(labels[0]);
-		panel.add(listPane);
+		c.gridx = 1; // column
+		panel.add(listPane, c);
 
-
-		// Whether or not the software supports network firewall
-		labels[1].setLabelFor(hasNetworkFirewall);
-		hasNetworkFirewall = new JCheckBox();
-		hasNetworkFirewall.setMaximumSize(tfSize);
-		hasNetworkFirewall.setPreferredSize(tfSize);
-		hasNetworkFirewall.setToolTipText(labels[1].getToolTipText());
+		hasNetworkFirewall = new JCheckBox(PrimeMain.texts
+				.getString("fwViewNetworkFirewallLabel"));
+		hasNetworkFirewall.setToolTipText(PrimeMain.texts
+				.getString("fwViewNetworkFirewallTip"));
 		hasNetworkFirewall.setActionCommand("NetworkFW");
 		hasNetworkFirewall.addActionListener(this);
 
 		hasNetworkFirewall.setSelected(mainFW.HasNetworkFirewall());
 
-		panel.add(labels[1]);
-		panel.add(hasNetworkFirewall);
+		c.gridx = 2; // column
+		panel.add(hasNetworkFirewall, c);
 
 
 		// Whether or not the software supports stateful firewall
-		labels[2].setLabelFor(hasStatefulFirewall);
-		hasStatefulFirewall = new JCheckBox();
-		hasStatefulFirewall.setMaximumSize(tfSize);
-		hasStatefulFirewall.setPreferredSize(tfSize);
-		hasStatefulFirewall.setToolTipText(labels[2].getToolTipText());
+		hasStatefulFirewall = new JCheckBox(PrimeMain.texts
+				.getString("fwViewStatefulFirewallLabel"));
+		hasStatefulFirewall.setToolTipText(PrimeMain.texts
+				.getString("fwViewStatefulFirewallTip"));
 		hasStatefulFirewall.setActionCommand("StatefulFW");
 		hasStatefulFirewall.addActionListener(this);
 
 		hasStatefulFirewall.setSelected(mainFW.HasStatefulFirewall());
 
-		panel.add(labels[2]);
-		panel.add(hasStatefulFirewall);
+		c.weightx = 1.0; // request any extra horizontal space
+		c.gridx = 3; // column
+		panel.add(hasStatefulFirewall, c);
+
+
+		// Whether or not the software supports stateful firewall
+		hasApplicationFirewall = new JCheckBox(PrimeMain.texts
+				.getString("fwViewApplicationFirewallLabel"));
+		hasApplicationFirewall.setToolTipText(PrimeMain.texts
+				.getString("fwViewApplicationFirewallTip"));
+		hasApplicationFirewall.setActionCommand("StatefulFW");
+		hasApplicationFirewall.addActionListener(this);
+
+		hasApplicationFirewall.setSelected(mainFW.HasApplicationFirewall());
+
+		c.insets = new Insets(10, 10, 10, 10); // padding
+		c.gridwidth = 1; // 2 row wide
+		c.weightx = 0; // request any extra horizontal space
+		c.gridy = 1; // row
+		c.gridx = 0; // column
+		panel.add(hasApplicationFirewall, c);
 
 
 
 		// Whether or not the software supports DPI, Deep package inspection.
-		labels[3].setLabelFor(hasDPI);
-		hasDPI = new JCheckBox();
-		hasDPI.setMaximumSize(tfSize);
-		hasDPI.setPreferredSize(tfSize);
-		hasDPI.setToolTipText(labels[3].getToolTipText());
+		hasDPI = new JCheckBox(PrimeMain.texts.getString("fwViewSupDPILabel"));
+		hasDPI.setToolTipText(PrimeMain.texts.getString("fwViewSupDPITip"));
 		hasDPI.setActionCommand("HasDPI");
 		hasDPI.addActionListener(this);
 
 		hasDPI.setSelected(mainFW.HasDPI());
 
-		panel.add(labels[3]);
-		panel.add(hasDPI);
+		c.gridwidth = 1; // 1 row wide
+		c.gridx = 1; // column
+		panel.add(hasDPI, c);
 
 
 
 		// Whether or not the software has proxy feature
-		labels[4].setLabelFor(hasProxy);
-		hasProxy = new JCheckBox();
-		hasProxy.setMaximumSize(tfSize);
-		hasProxy.setPreferredSize(tfSize);
-		hasProxy.setToolTipText(labels[4].getToolTipText());
+		hasProxy = new JCheckBox(PrimeMain.texts
+				.getString("fwViewHasProxyLabel"));
+		hasProxy.setToolTipText(PrimeMain.texts.getString("fwViewHasProxyTip"));
 		hasProxy.setActionCommand("HasProxy");
 		hasProxy.addActionListener(this);
 
 		hasProxy.setSelected(mainFW.HasProxy());
 
-		panel.add(labels[4]);
-		panel.add(hasProxy);
+		c.gridx = 2; // column
+		panel.add(hasProxy, c);
 
 
 		// Whether or not the software has NAT feature
-		labels[5].setLabelFor(hasNAT);
-		hasNAT = new JCheckBox();
-		hasNAT.setMaximumSize(tfSize);
-		hasNAT.setPreferredSize(tfSize);
-		hasNAT.setToolTipText(labels[5].getToolTipText());
+		hasNAT = new JCheckBox(PrimeMain.texts.getString("fwViewHasNATLabel"));
+		hasNAT.setToolTipText(PrimeMain.texts.getString("fwViewHasNATTip"));
 		hasNAT.setActionCommand("HasNAT");
 		hasNAT.addActionListener(this);
 
 		hasNAT.setSelected(mainFW.HasNAT());
 
-		panel.add(labels[5]);
-		panel.add(hasNAT);
+		c.gridx = 3; // column
+		panel.add(hasNAT, c);
 
 
 		// Whether or not the software has VPN feature
-		labels[6].setLabelFor(hasVPN);
-		hasVPN = new JCheckBox();
-		hasVPN.setMaximumSize(tfSize);
-		hasVPN.setPreferredSize(tfSize);
-		hasVPN.setToolTipText(labels[6].getToolTipText());
+		hasVPN = new JCheckBox(PrimeMain.texts.getString("fwViewHasVPNLabel"));
+		hasVPN.setToolTipText(PrimeMain.texts.getString("fwViewHasVPNTip"));
 		hasVPN.setActionCommand("HasVPN");
 		hasVPN.addActionListener(this);
 
 		hasVPN.setSelected(mainFW.HasVPN());
 
-		panel.add(labels[6]);
-		panel.add(hasVPN);
+		c.gridwidth = 1; // 2 row wide
+		c.gridy = 2; // row
+		c.gridx = 0; // column
+		panel.add(hasVPN, c);
 
 
 		// Whether or not the software has antivirus feature
-		labels[7].setLabelFor(hasAntivirus);
-		hasAntivirus = new JCheckBox();
-		hasAntivirus.setMaximumSize(tfSize);
-		hasAntivirus.setPreferredSize(tfSize);
-		hasAntivirus.setToolTipText(labels[7].getToolTipText());
+		hasAntivirus = new JCheckBox(PrimeMain.texts
+				.getString("fwViewHasAntivirusLabel"));
+		hasAntivirus.setToolTipText(PrimeMain.texts
+				.getString("fwViewHasAntivirusTip"));
 		hasAntivirus.setActionCommand("HasAV");
 		hasAntivirus.addActionListener(this);
 
 		hasAntivirus.setSelected(mainFW.HasAntivirus());
 
-		panel.add(labels[7]);
-		panel.add(hasAntivirus);
+		c.gridwidth = 1; // 1 row wide
+		c.gridx = 1; // column
+		panel.add(hasAntivirus, c);
 
 
 		// Whether or not the software has IDS, Intrusion Detection System,
 		// feature
-		labels[8].setLabelFor(hasIDS);
-		hasIDS = new JCheckBox();
-		hasIDS.setMaximumSize(tfSize);
-		hasIDS.setPreferredSize(tfSize);
-		hasIDS.setToolTipText(labels[8].getToolTipText());
+		hasIDS = new JCheckBox(PrimeMain.texts.getString("fwViewHasIDSLabel"));
+		hasIDS.setToolTipText(PrimeMain.texts.getString("fwViewHasIDSTip"));
 		hasIDS.setActionCommand("HasIDS");
 		hasIDS.addActionListener(this);
 
 		hasIDS.setSelected(mainFW.HasIDS());
 
-		panel.add(labels[8]);
-		panel.add(hasIDS);
+		c.gridx = 2; // column
+		panel.add(hasIDS, c);
 
 
 
@@ -464,162 +405,152 @@ public class FirewallEditView extends JPanel implements SoftwareView, ActionList
 
 		// Whether or not the software supports Modularity, third-party modules
 		// to extend functionality
-		labels[9].setLabelFor(supportsModularity);
-		supportsModularity = new JCheckBox();
-		supportsModularity.setMaximumSize(tfSize);
-		supportsModularity.setPreferredSize(tfSize);
-		supportsModularity.setToolTipText(labels[9].getToolTipText());
+		supportsModularity = new JCheckBox(PrimeMain.texts
+				.getString("fwViewSupModularityLabel"));
+		supportsModularity.setToolTipText(PrimeMain.texts
+				.getString("fwViewSupModularityTip"));
 		supportsModularity.setActionCommand("SupportsModularity");
 		supportsModularity.addActionListener(this);
 
 		supportsModularity.setSelected(mainFW.SupportsModularity());
 
-		panel.add(labels[9]);
-		panel.add(supportsModularity);
+		c.gridx = 3; // column
+		panel.add(supportsModularity, c);
 
 
 		// Whether or not the software supports IP version 6
-		labels[10].setLabelFor(supportsIPv6);
-		supportsIPv6 = new JCheckBox();
-		supportsIPv6.setMaximumSize(tfSize);
-		supportsIPv6.setPreferredSize(tfSize);
-		supportsIPv6.setToolTipText(labels[10].getToolTipText());
+		supportsIPv6 = new JCheckBox(PrimeMain.texts
+				.getString("fwViewSupIPv6Label"));
+		supportsIPv6.setToolTipText(PrimeMain.texts
+				.getString("fwViewSupIPv6Tip"));
 		supportsIPv6.setActionCommand("SupporsIPv6");
 		supportsIPv6.addActionListener(this);
 
 		supportsIPv6.setSelected(mainFW.SupportsIPv6());
 
-		panel.add(labels[10]);
-		panel.add(supportsIPv6);
+		c.gridwidth = 1; // 2 row wide
+		c.gridy = 3; // row
+		c.gridx = 0; // column
+		panel.add(supportsIPv6, c);
 
 
 		// Whether or not the software supports TTL, Transparent to traceroute
-		labels[11].setLabelFor(supportsTTL);
-		supportsTTL = new JCheckBox();
-		supportsTTL.setMaximumSize(tfSize);
-		supportsTTL.setPreferredSize(tfSize);
-		supportsTTL.setToolTipText(labels[11].getToolTipText());
+		supportsTTL = new JCheckBox(PrimeMain.texts
+				.getString("fwViewSupTTLLabel"));
+		supportsTTL
+				.setToolTipText(PrimeMain.texts.getString("fwViewSupTTLTip"));
 		supportsTTL.setActionCommand("SupportsTTL");
 		supportsTTL.addActionListener(this);
 
 		supportsTTL.setSelected(mainFW.SupportsTTL());
 
-		panel.add(labels[11]);
-		panel.add(supportsTTL);
+		c.gridwidth = 1; // 1 row wide
+		c.gridx = 1; // column
+		panel.add(supportsTTL, c);
 
 
 		// Whether or not the software supports RWA, Reject-with-answer
-		labels[12].setLabelFor(supportsRWA);
-		supportsRWA = new JCheckBox();
-		supportsRWA.setMaximumSize(tfSize);
-		supportsRWA.setPreferredSize(tfSize);
-		supportsRWA.setToolTipText(labels[12].getToolTipText());
+		supportsRWA = new JCheckBox(PrimeMain.texts
+				.getString("fwViewSupRWALabel"));
+		supportsRWA
+				.setToolTipText(PrimeMain.texts.getString("fwViewSupRWATip"));
 		supportsRWA.setActionCommand("SupportsRWA");
 		supportsRWA.addActionListener(this);
 
 		supportsRWA.setSelected(mainFW.SupportsRWA());
 
-		panel.add(labels[12]);
-		panel.add(supportsRWA);
+		c.gridx = 2; // column
+		panel.add(supportsRWA, c);
 
 
 		// Whether or not the software supports a DMZ, de-militarized zone
-		labels[13].setLabelFor(supportsDMZ);
-		supportsDMZ = new JCheckBox();
-		supportsDMZ.setMaximumSize(tfSize);
-		supportsDMZ.setPreferredSize(tfSize);
-		supportsDMZ.setToolTipText(labels[13].getToolTipText());
+		supportsDMZ = new JCheckBox(PrimeMain.texts
+				.getString("fwViewSupDMZLabel"));
+		supportsDMZ
+				.setToolTipText(PrimeMain.texts.getString("fwViewSupDMZTip"));
 		supportsDMZ.setActionCommand("SupportsDMZ");
 		supportsDMZ.addActionListener(this);
 
 		supportsDMZ.setSelected(mainFW.SupportsDMZ());
 
-		panel.add(labels[13]);
-		panel.add(supportsDMZ);
+		c.gridx = 3; // column
+		panel.add(supportsDMZ, c);
 
 
 		// Whether or not the software supports ToDFilter, Time of day filter
-		labels[14].setLabelFor(supportsToD);
-		supportsToD = new JCheckBox();
-		supportsToD.setMaximumSize(tfSize);
-		supportsToD.setPreferredSize(tfSize);
-		supportsToD.setToolTipText(labels[14].getToolTipText());
+		supportsToD = new JCheckBox(PrimeMain.texts
+				.getString("fwViewSupToDFilterLabel"));
+		supportsToD.setToolTipText(PrimeMain.texts
+				.getString("fwViewSupToDFilterTip"));
 		supportsToD.setActionCommand("SupportsToD");
 		supportsToD.addActionListener(this);
 
 		supportsToD.setSelected(mainFW.SupportsToD());
 
-		panel.add(labels[14]);
-		panel.add(supportsToD);
+		c.gridwidth = 1; // 2 row wide
+		c.gridy = 4; // row
+		c.gridx = 0; // column
+		panel.add(supportsToD, c);
 
 
 		// Whether or not the software supports forwarding
-		labels[15].setLabelFor(supportsForwarding);
-		supportsForwarding = new JCheckBox();
-		supportsForwarding.setMaximumSize(tfSize);
-		supportsForwarding.setPreferredSize(tfSize);
-		supportsForwarding.setToolTipText(labels[15].getToolTipText());
+		supportsForwarding = new JCheckBox(PrimeMain.texts
+				.getString("fwViewSupForwardingLabel"));
+		supportsForwarding.setToolTipText(PrimeMain.texts
+				.getString("fwViewSupForwardingTip"));
 		supportsForwarding.setActionCommand("SupportsForwarding");
 		supportsForwarding.addActionListener(this);
 
 		supportsForwarding.setSelected(mainFW.SupportsForwarding());
 
-		panel.add(labels[15]);
-		panel.add(supportsForwarding);
+		c.gridwidth = 1; // 1 row wide
+		c.gridx = 1; // column
+		panel.add(supportsForwarding, c);
 
 
 		// Whether or not the software supports port forwarding
-		labels[16].setLabelFor(supportsPortForwarding);
-		supportsPortForwarding = new JCheckBox();
-		supportsPortForwarding.setMaximumSize(tfSize);
-		supportsPortForwarding.setPreferredSize(tfSize);
-		supportsPortForwarding.setToolTipText(labels[16].getToolTipText());
+		supportsPortForwarding = new JCheckBox(PrimeMain.texts
+				.getString("fwViewSupPortForwardingLabel"));
+		supportsPortForwarding.setToolTipText(PrimeMain.texts
+				.getString("fwViewSupPortForwardingTip"));
 		supportsPortForwarding.setActionCommand("SupportsPortForwarding");
 		supportsPortForwarding.addActionListener(this);
 
 		supportsPortForwarding.setSelected(mainFW.SupportsPortForwarding());
 
-		panel.add(labels[16]);
-		panel.add(supportsPortForwarding);
+		c.gridx = 2; // column
+		panel.add(supportsPortForwarding, c);
 
 
 		// Whether or not the software supports QoS, quality of service
-		labels[17].setLabelFor(supportsQos);
-		supportsQos = new JCheckBox();
-		supportsQos.setMaximumSize(tfSize);
-		supportsQos.setPreferredSize(tfSize);
-		supportsQos.setToolTipText(labels[17].getToolTipText());
+		supportsQos = new JCheckBox(PrimeMain.texts
+				.getString("fwViewSupQoSLabel"));
+		supportsQos
+				.setToolTipText(PrimeMain.texts.getString("fwViewSupQoSTip"));
 		supportsQos.setActionCommand("SupportsQoS");
 		supportsQos.addActionListener(this);
 
 		supportsQos.setSelected(mainFW.SupportsQos());
 
-		panel.add(labels[17]);
-		panel.add(supportsQos);
+		c.gridx = 3; // column
+		panel.add(supportsQos, c);
 
 
 		// Whether or not the software supports TP, tarpit
-		labels[18].setLabelFor(supportsTarpit);
-		supportsTarpit = new JCheckBox();
-		supportsTarpit.setMaximumSize(tfSize);
-		supportsTarpit.setPreferredSize(tfSize);
-		supportsTarpit.setToolTipText(labels[18].getToolTipText());
+		supportsTarpit = new JCheckBox(PrimeMain.texts
+				.getString("fwViewSupTarpitLabel"));
+		supportsTarpit.setToolTipText(PrimeMain.texts
+				.getString("fwViewSupTarpitTip"));
 		supportsTarpit.setActionCommand("SupportsTP");
 		supportsTarpit.addActionListener(this);
 
 		supportsTarpit.setSelected(mainFW.SupportsTarpit());
 
-		panel.add(labels[18]);
-		panel.add(supportsTarpit);
-
-
-
-		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel,
-				panel.getComponentCount(), // rows, cols
-				10, 10, // initX, initY
-				20, 20); // xPad, yPad
-
+		c.weighty = 1.0; // request any extra horizontal space
+		c.gridwidth = 1; // 2 row wide
+		c.gridy = 5; // row
+		c.gridx = 0; // column
+		panel.add(supportsTarpit, c);
 
 
 		return panel;
@@ -689,7 +620,25 @@ public class FirewallEditView extends JPanel implements SoftwareView, ActionList
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( e.getSource() instanceof JCheckBox )
+		if ( e.getSource() instanceof Button )
+		{
+			Button check = (Button) e.getSource();
+
+			String command = check.getActionCommand();
+
+			if ( command.equals("removeSoft") )
+			{
+				DesktopSoftwareManagment.removeSoftware(mainObj, mainFW);
+
+				// Updates the views of the object to correctly show the current info.
+				ObjectView view = PrimeMain.getObjectView(mainObj);
+				if ( view != null )
+				{
+					view.updateViewInfo();
+				}
+			}
+		}
+		else if ( e.getSource() instanceof JCheckBox )
 		{
 			JCheckBox box = (JCheckBox) e.getSource();
 

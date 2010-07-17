@@ -71,7 +71,6 @@ public class WidgetRoomAdapterExtended extends Adapter
 	{
 		if ( event.getButton() == MouseEvent.BUTTON1 )
 		{
-			// System.out.println("Mouse Pressed");
 			widget.bringToBack();
 		}
 		return State.REJECTED;

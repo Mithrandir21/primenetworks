@@ -21,6 +21,7 @@ package graphics.GUI.workareaCanvas.providers;
 import graphics.PrimeMain;
 
 import org.netbeans.api.visual.widget.LabelWidget;
+import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Widget;
 
 import widgetManipulation.Providers.SceneConnectProvider;
@@ -59,6 +60,7 @@ public class GUIsceneConnectProvider extends SceneConnectProvider
 	{
 		if ( sourceWidget != targetWidget
 				&& !(targetWidget instanceof LabelWidget)
+				&& !(targetWidget instanceof LayerWidget)
 				&& (targetWidget instanceof WidgetObject || isChildOfThisWidget(targetWidget)) )
 		{
 			ActionCreateConnection action = new ActionCreateConnection(

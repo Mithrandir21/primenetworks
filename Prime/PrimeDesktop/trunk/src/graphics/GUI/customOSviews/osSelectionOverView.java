@@ -20,7 +20,6 @@ package graphics.GUI.customOSviews;
 
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
-import graphics.SystemFunctions;
 import graphics.GUI.objectView.ObjectView;
 
 import java.awt.Color;
@@ -45,7 +44,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
+import managment.DesktopSoftwareManagment;
 import managment.SoftwareManagment;
 import objects.Object;
 import objects.softwareObjects.OperatingSystem;
@@ -349,6 +350,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 	private JXTaskPane getOSpane(OperatingSystem os, boolean collapsed,
 			boolean editable)
 	{
+		Dimension tfSize = new Dimension(100, 20);
+
 		JXTaskPane pane = new JXTaskPane();
 		pane.setTitle(os.getObjectName());
 		pane.setSpecial(true);
@@ -474,6 +477,23 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 		conPanel2.gridx = 0; // column
 		panel2.add(is64bit, conPanel2);
+
+
+		// The version of the OS
+		JLabel versionLabel = new JLabel(PrimeMain.texts
+				.getString("osViewVersionLabel"));
+		conPanel2.gridx = 1; // column
+		panel2.add(versionLabel, conPanel2);
+
+		JTextField osVersion = new JTextField();
+		osVersion.setMaximumSize(tfSize);
+		osVersion.setPreferredSize(tfSize);
+		osVersion.setText(os.getVersion());
+		osVersion.setEditable(false);
+		osVersion.setToolTipText(PrimeMain.texts.getString("osViewVersionTip"));
+
+		conPanel2.gridx = 2; // column
+		panel2.add(osVersion, conPanel2);
 
 
 		d.gridy = 1;
@@ -640,6 +660,10 @@ public class osSelectionOverView extends JDialog implements ActionListener
 								new OSedit(os);
 
 								found = true;
+
+								// Closes the JDialog
+								this.dispose();
+								PrimeMain.osSelect = null;
 							}
 						}
 					}
@@ -686,6 +710,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 									PrimeMain.system_custom_OS.remove(os);
 
 									found = true;
+
+									updateOSlist();
 								}
 							}
 						}
@@ -697,13 +723,13 @@ public class osSelectionOverView extends JDialog implements ActionListener
 				if ( !found )
 				{
 					// Determines whether the name name is found as a standard OS
-					found = SystemFunctions.foundInStandardOS(e
+					found = DesktopSoftwareManagment.foundInStandardOS(e
 							.getActionCommand());
 
 					// If the OS was not found
 					if ( found )
 					{
-						OperatingSystem newOS = (OperatingSystem) SystemFunctions
+						OperatingSystem newOS = (OperatingSystem) DesktopSoftwareManagment
 								.getStandardOS(e.getActionCommand()).clone();
 						// Creates serial number
 						newOS.createRandomLongSerial();
@@ -711,6 +737,10 @@ public class osSelectionOverView extends JDialog implements ActionListener
 						// Sets an array with the newly added software object
 						mainObj.setSoftware(SoftwareManagment.addSoftware(
 								newOS, mainObj));
+
+						// Closes the JDialog
+						this.dispose();
+						PrimeMain.osSelect = null;
 					}
 				}
 
@@ -718,13 +748,13 @@ public class osSelectionOverView extends JDialog implements ActionListener
 				// If a Custom OS install button pressed
 				if ( !found )
 				{
-					found = SystemFunctions.foundInCustomOS(e
+					found = DesktopSoftwareManagment.foundInCustomOS(e
 							.getActionCommand());
 
 					// If the OS was not found
 					if ( found )
 					{
-						OperatingSystem newOS = (OperatingSystem) SystemFunctions
+						OperatingSystem newOS = (OperatingSystem) DesktopSoftwareManagment
 								.getCustomOS(e.getActionCommand()).clone();
 						// Creates serial number
 						newOS.createRandomLongSerial();
@@ -732,9 +762,12 @@ public class osSelectionOverView extends JDialog implements ActionListener
 						// Sets an array with the newly added software object
 						mainObj.setSoftware(SoftwareManagment.addSoftware(
 								newOS, mainObj));
+
+						// Closes the JDialog
+						this.dispose();
+						PrimeMain.osSelect = null;
 					}
 				}
-
 
 				if ( found )
 				{
@@ -747,10 +780,6 @@ public class osSelectionOverView extends JDialog implements ActionListener
 							view.updateViewInfo();
 						}
 					}
-
-					// Closes the JDialog
-					this.dispose();
-					PrimeMain.osSelect = null;
 				}
 			}
 		}

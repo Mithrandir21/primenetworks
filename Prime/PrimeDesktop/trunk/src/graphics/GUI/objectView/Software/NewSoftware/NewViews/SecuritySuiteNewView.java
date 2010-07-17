@@ -50,10 +50,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.DesktopSoftwareManagment;
 import managment.SoftwareManagment;
 import objects.Object;
 import objects.Software;
@@ -83,7 +83,7 @@ public class SecuritySuiteNewView extends JDialog implements SoftwareView, Actio
 	private JCheckBox activated;
 
 	// The actual license of the program
-	private JTextField license = new JTextField(25);
+	private JTextField license = new JTextField();
 
 	// Whether or not the security suite contains an antivirus
 	private JCheckBox hasAntivirus;
@@ -98,10 +98,10 @@ public class SecuritySuiteNewView extends JDialog implements SoftwareView, Actio
 	private JCheckBox hasProxy;
 
 	// The date of activation
-	private JTextField actDate = new JTextField(10);
+	private JTextField actDate = new JTextField();
 
 	// The date the license expires
-	private JTextField expDate = new JTextField(10);
+	private JTextField expDate = new JTextField();
 
 
 
@@ -122,16 +122,16 @@ public class SecuritySuiteNewView extends JDialog implements SoftwareView, Actio
 	{
 		this.setTitle(PrimeMain.texts.getString("swNewSecuritySuiteLabel"));
 
+		Dimension size = new Dimension(760, 600);
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		int initYLocation = (scrnsize.height - size.height) / 2;
+		int initXLocation = (scrnsize.width - size.width) / 2;
 
 		mainObj = obj;
 		mainSecSuite = secSuite;
@@ -180,9 +180,9 @@ public class SecuritySuiteNewView extends JDialog implements SoftwareView, Actio
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
+		this.setLocation(initXLocation, initYLocation);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setVisible(true);
 	}
 
@@ -199,62 +199,57 @@ public class SecuritySuiteNewView extends JDialog implements SoftwareView, Actio
 	 */
 	private JPanel createSpesificInfo(SecuritySuite secSuite)
 	{
-		JPanel panel = new JPanel(new SpringLayout());
-		JLabel[] labels = new JLabel[8];
+		Dimension tfSize = new Dimension(100, 20);
+
+		JLabel[] labels = new JLabel[3];
 
 
 		labels[0] = new JLabel(PrimeMain.texts
-				.getString("secSuiteViewSupOSLabel"));
-		labels[0].setToolTipText(PrimeMain.texts
-				.getString("secSuiteViewSupOSTip"));
-
-		labels[1] = new JLabel(PrimeMain.texts
-				.getString("secSuiteViewActivatedLabel"));
-		labels[1].setToolTipText(PrimeMain.texts
-				.getString("secSuiteViewActivatedTip"));
-
-		labels[2] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewLicenseLabel"));
-		labels[2].setToolTipText(PrimeMain.texts
+		labels[0].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewLicenseTip"));
 
-		labels[3] = new JLabel(PrimeMain.texts
-				.getString("secSuiteViewHasAntivirusLabel"));
-		labels[3].setToolTipText(PrimeMain.texts
-				.getString("secSuiteViewHasAntivirusTip"));
 
-		labels[4] = new JLabel(PrimeMain.texts
-				.getString("secSuiteViewHasFirewallLabel"));
-		labels[4].setToolTipText(PrimeMain.texts
-				.getString("secSuiteViewHasFirewallTip"));
-
-		labels[5] = new JLabel(PrimeMain.texts
-				.getString("secSuiteViewHasProxyLabel"));
-		labels[5].setToolTipText(PrimeMain.texts
-				.getString("secSuiteViewHasProxyTip"));
-
-		labels[6] = new JLabel(PrimeMain.texts
+		labels[1] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewActDateLabel"));
-		labels[6].setToolTipText(PrimeMain.texts
+		labels[1].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewActDateTip"));
 
-		labels[7] = new JLabel(PrimeMain.texts
+		labels[2] = new JLabel(PrimeMain.texts
 				.getString("secSuiteViewExpDateLabel"));
-		labels[7].setToolTipText(PrimeMain.texts
+		labels[2].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewExpDateTip"));
 
 
-		Dimension tfSize = new Dimension(90, 20);
 		SimpleDateFormat format = new SimpleDateFormat(PrimeMain.texts
 				.getString("secSuiteViewSimpleDateFormat"));
 
 		// --------------------------------------------------------------
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+
+		c.fill = GridBagConstraints.NONE;
+		// c.ipady = 0; // reset to default
+		// c.ipadx = 0; // reset to default
+		// c.weighty = 1.0; // request any extra vertical space
+		// c.weightx = 1.0; // request any extra horizontal space
+		c.anchor = GridBagConstraints.NORTHWEST; // location
+		c.insets = new Insets(20, 10, 10, 10); // padding
+		// c.gridwidth = 1; // 1 row wide
+		// c.gridheight = 1; // 1 columns wide
+		c.gridy = 0; // row
+		c.gridx = 0; // column
 
 		// The supported operating systems by the Email software.
-		labels[0].setLabelFor(supportedOS);
-		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
-				"Windows Vista", "Linux", "Novell" };
-		supportedOS = new JList(listData);
+		JLabel osLabel = new JLabel(PrimeMain.texts
+				.getString("secSuiteViewSupOSLabel"));
+		osLabel.setToolTipText(PrimeMain.texts
+				.getString("secSuiteViewSupOSTip"));
+		panel.add(osLabel, c);
+
+
+		String[] osNames = DesktopSoftwareManagment.getSystemOSname();
+		supportedOS = new JList(osNames);
 		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
 		listSelectionModel
 				.addListSelectionListener(new SharedListSelectionHandler());
@@ -269,103 +264,103 @@ public class SecuritySuiteNewView extends JDialog implements SoftwareView, Actio
 			if ( mainSecSuite.getSupportedOperatingSystems().length > 0 )
 			{
 				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, listData, mainSecSuite
+						supportedOS, osNames, mainSecSuite
 								.getSupportedOperatingSystems()));
 			}
 		}
 
-		panel.add(labels[0]);
-		panel.add(listPane);
+		c.gridx = 1; // column
+		panel.add(listPane, c);
 
 		// --------------------------------------------------------------
 
 		// Whether or not the security suite has been activated
-		labels[1].setLabelFor(activated);
-		activated = new JCheckBox();
-		activated.setMaximumSize(tfSize);
-		activated.setPreferredSize(tfSize);
-		activated.setToolTipText(labels[1].getToolTipText());
+		activated = new JCheckBox(PrimeMain.texts
+				.getString("secSuiteViewActivatedLabel"));
+		activated.setToolTipText(PrimeMain.texts
+				.getString("secSuiteViewActivatedTip"));
 		activated.setActionCommand("Activated");
 		activated.addActionListener(this);
 
 		activated.setSelected(mainSecSuite.isActivated());
 
-		panel.add(labels[1]);
-		panel.add(activated);
+		c.gridx = 2; // column
+		panel.add(activated, c);
 
 		// --------------------------------------------------------------
 
 		// The actual license of the program
-		labels[2].setLabelFor(license);
+		labels[0].setLabelFor(license);
 		license.setMaximumSize(tfSize);
 		license.setPreferredSize(tfSize);
 		license.setText(mainSecSuite.getLicense());
-		;
 		license.setToolTipText(labels[2].getToolTipText());
 
 
-		panel.add(labels[2]);
-		panel.add(license);
+		c.gridx = 3; // column
+		panel.add(labels[0], c);
+
+		c.weightx = 1.0; // request any extra horizontal space
+		c.gridx = 4; // column
+		panel.add(license, c);
 
 		// --------------------------------------------------------------
 
 		// Whether or not the security suite contains an antivirus
-		labels[3].setLabelFor(hasAntivirus);
-		hasAntivirus = new JCheckBox();
-		hasAntivirus.setMaximumSize(tfSize);
-		hasAntivirus.setPreferredSize(tfSize);
-		hasAntivirus.setToolTipText(labels[3].getToolTipText());
+		hasAntivirus = new JCheckBox(PrimeMain.texts
+				.getString("secSuiteViewHasAntivirusLabel"));
+		hasAntivirus.setToolTipText(PrimeMain.texts
+				.getString("secSuiteViewHasAntivirusTip"));
 		hasAntivirus.setActionCommand("HasAntivirus");
 		hasAntivirus.addActionListener(this);
 
 		hasAntivirus.setSelected(mainSecSuite.hasAntivirus());
 
-		panel.add(labels[3]);
-		panel.add(hasAntivirus);
+		c.insets = new Insets(10, 10, 10, 10); // padding
+		c.weightx = 0; // request any extra horizontal space
+		c.gridy = 1; // row
+		c.gridx = 0; // column
+		panel.add(hasAntivirus, c);
 
 		// --------------------------------------------------------------
 
-		// TO-DO: Set up connection between security suite and antivirus,
+		// TODO: Set up connection between security suite and antivirus,
 		// firewall
 		// and proxy
 
 
 		// Whether or not the security suite contains an firewall
-		labels[4].setLabelFor(hasFirewall);
-		hasFirewall = new JCheckBox();
-		hasFirewall.setMaximumSize(tfSize);
-		hasFirewall.setPreferredSize(tfSize);
-		hasFirewall.setToolTipText(labels[4].getToolTipText());
+		hasFirewall = new JCheckBox(PrimeMain.texts
+				.getString("secSuiteViewHasFirewallLabel"));
+		hasFirewall.setToolTipText(PrimeMain.texts
+				.getString("secSuiteViewHasFirewallTip"));
 		hasFirewall.setActionCommand("HasFirewall");
 		hasFirewall.addActionListener(this);
 
 		hasFirewall.setSelected(mainSecSuite.hasFirewall());
 
-		panel.add(labels[4]);
-		panel.add(hasFirewall);
+		c.gridx = 1; // column
+		panel.add(hasFirewall, c);
 
 		// --------------------------------------------------------------
 
 		// Whether or not the security suite contains an proxy
-		labels[5].setLabelFor(hasProxy);
-		hasProxy = new JCheckBox();
-		hasProxy.setMaximumSize(tfSize);
-		hasProxy.setPreferredSize(tfSize);
-		hasProxy.setToolTipText(labels[5].getToolTipText());
+		hasProxy = new JCheckBox(PrimeMain.texts
+				.getString("secSuiteViewHasProxyLabel"));
+		hasProxy.setToolTipText(PrimeMain.texts
+				.getString("secSuiteViewHasProxyTip"));
 		hasProxy.setActionCommand("HasProxy");
 		hasProxy.addActionListener(this);
 
 		hasProxy.setSelected(mainSecSuite.hasProxy());
 
-		panel.add(labels[5]);
-		panel.add(hasProxy);
+		c.gridx = 2; // column
+		panel.add(hasProxy, c);
 
 		// --------------------------------------------------------------
 
 		// The Activated date
-		labels[6].setLabelFor(actDate);
-		actDate.setMaximumSize(tfSize);
-		actDate.setPreferredSize(tfSize);
+		labels[1].setLabelFor(actDate);
 		Date parsedAct = null;
 
 		try
@@ -379,25 +374,25 @@ public class SecuritySuiteNewView extends JDialog implements SoftwareView, Actio
 		catch ( ParseException e )
 		{
 			// DO nothing.
-			System.out
-					.println("Error - SecuritySuiteEditView - Activated Date");
 		}
 
 		if ( parsedAct != null )
 		{
 			actDate.setText(parsedAct.toString());
 		}
-		actDate.setToolTipText(labels[6].getToolTipText());
+		actDate.setMaximumSize(tfSize);
+		actDate.setPreferredSize(tfSize);
+		actDate.setToolTipText(labels[1].getToolTipText());
 
-		panel.add(labels[6]);
-		panel.add(actDate);
+		c.gridx = 3; // column
+		panel.add(labels[1], c);
+		c.gridx = 4; // column
+		panel.add(actDate, c);
 
 		// --------------------------------------------------------------
 
 		// The Expiration date
-		labels[7].setLabelFor(expDate);
-		expDate.setMaximumSize(tfSize);
-		expDate.setPreferredSize(tfSize);
+		labels[2].setLabelFor(expDate);
 		Date parsedExp = null;
 
 		try
@@ -411,29 +406,24 @@ public class SecuritySuiteNewView extends JDialog implements SoftwareView, Actio
 		catch ( ParseException e )
 		{
 			// DO nothing.
-			System.out
-					.println("Error - SecuritySuiteEditView - Expiration Date");
 		}
 
 		if ( parsedExp != null )
 		{
 			expDate.setText(parsedExp.toString());
 		}
-		expDate.setToolTipText(labels[7].getToolTipText());
+		expDate.setMaximumSize(tfSize);
+		expDate.setPreferredSize(tfSize);
+		expDate.setToolTipText(labels[2].getToolTipText());
 
-		panel.add(labels[7]);
-		panel.add(expDate);
+		c.gridy = 2; // row
+		c.gridx = 0; // column
+		panel.add(labels[2], c);
+		c.weighty = 1.0; // request any extra horizontal space
+		c.gridx = 1; // column
+		panel.add(expDate, c);
 
 		// --------------------------------------------------------------
-
-
-
-		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel,
-				panel.getComponentCount(), // rows, cols
-				10, 10, // initX, initY
-				20, 20); // xPad, yPad
-
 
 
 		return panel;

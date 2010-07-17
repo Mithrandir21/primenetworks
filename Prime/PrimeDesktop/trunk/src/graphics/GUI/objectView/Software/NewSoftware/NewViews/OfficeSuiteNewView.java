@@ -18,6 +18,7 @@
 package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
 
+import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.Software.SoftwareView;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
@@ -37,11 +38,16 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
+import managment.DesktopSoftwareManagment;
 import objects.Object;
 import objects.Software;
 import objects.softwareObjects.OfficeSuite;
@@ -55,7 +61,11 @@ public class OfficeSuiteNewView extends JDialog implements SoftwareView, ActionL
 	// The description of the software object.
 	JTextArea desc = new JTextArea(3, 40);
 
-	// FIXME - has to be fixed officesuiteNewView
+	// Supported Operating systems
+	private JList supportedOS;
+
+	// List of operating systems
+	private String[] OSs;
 
 	private Object mainObj;
 
@@ -74,16 +84,16 @@ public class OfficeSuiteNewView extends JDialog implements SoftwareView, ActionL
 	{
 		this.setTitle("New Backup");
 
+		Dimension size = new Dimension(750, 600);
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		int initYLocation = (scrnsize.height - size.height) / 2;
+		int initXLocation = (scrnsize.width - size.width) / 2;
 
 		mainObj = obj;
 		mainOffSuite = offSuite;
@@ -131,9 +141,9 @@ public class OfficeSuiteNewView extends JDialog implements SoftwareView, ActionL
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
+		this.setLocation(initXLocation, initYLocation);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setVisible(true);
 	}
 
@@ -150,9 +160,10 @@ public class OfficeSuiteNewView extends JDialog implements SoftwareView, ActionL
 	 */
 	private JPanel createSpesificInfo(OfficeSuite offSuite)
 	{
-		JPanel panel = new JPanel(new SpringLayout());
-		JLabel[] labels = new JLabel[4];
+		Dimension tfSize = new Dimension(100, 20);
 
+
+		JLabel[] labels = new JLabel[4];
 
 		labels[0] = new JLabel("Activated Date");
 		labels[0].setToolTipText("The date that the AV was activated.");
@@ -166,9 +177,53 @@ public class OfficeSuiteNewView extends JDialog implements SoftwareView, ActionL
 		labels[3] = new JLabel("License");
 		labels[3].setToolTipText("The license key for the AV.");
 
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
 
-		Dimension tfSize = new Dimension(90, 20);
+		c.fill = GridBagConstraints.HORIZONTAL;
+		// c.ipady = 0; // reset to default
+		// c.ipadx = 0; // reset to default
+		// c.weighty = 1.0; // request any extra vertical space
+		// c.weightx = 1.0; // request any extra horizontal space
+		c.anchor = GridBagConstraints.NORTH; // location
+		c.insets = new Insets(20, 20, 10, 10); // padding
+		// c.gridwidth = 1; // 1 row wide
+		// c.gridheight = 1; // 1 columns wide
+		c.gridy = 0; // row
+		c.gridx = 0; // column
 
+
+		// The supported operating systems by the Email software.
+		labels[0].setLabelFor(supportedOS);
+		panel.add(labels[0], c);
+
+
+		String[] osNames = DesktopSoftwareManagment.getSystemOSname();
+		supportedOS = new JList(osNames);
+		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
+		listSelectionModel
+				.addListSelectionListener(new SharedListSelectionHandler());
+		JScrollPane listPane = new JScrollPane(supportedOS);
+		listPane.setMaximumSize(new Dimension(160, 60));
+		listPane.setPreferredSize(new Dimension(160, 60));
+		listSelectionModel
+				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+		if ( mainOffSuite.getSupportedOperatingSystems() != null )
+		{
+			if ( mainOffSuite.getSupportedOperatingSystems().length > 0 )
+			{
+				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
+						supportedOS, osNames, mainOffSuite
+								.getSupportedOperatingSystems()));
+			}
+		}
+
+		c.weighty = 1.0; // request any extra vertical space
+		c.weightx = 1.0; // request any extra horizontal space
+		c.insets = new Insets(20, 10, 10, 10); // padding
+		c.gridx = 1; // column
+		panel.add(listPane, c);
 
 
 		return panel;
@@ -223,4 +278,41 @@ public class OfficeSuiteNewView extends JDialog implements SoftwareView, ActionL
 	{
 		return mainOffSuite;
 	}
+
+
+	/**
+	 * Handles the selections that are made in the "Supported Operating Systems"
+	 * JList.
+	 */
+	private class SharedListSelectionHandler implements ListSelectionListener
+	{
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
+		 * event.ListSelectionEvent)
+		 */
+		public void valueChanged(ListSelectionEvent e)
+		{
+			int[] indeces = supportedOS.getSelectedIndices();
+
+			if ( indeces.length == 0 )
+			{
+				OSs = null;
+			}
+			else
+			{
+				// Creates an array of strings with the length of the array with
+				// the selected indices.
+				OSs = new String[indeces.length];
+
+				// Find out which indexes are selected.
+				for ( int i = 0; i < indeces.length; i++ )
+				{
+					OSs[i] = (String) supportedOS.getSelectedValues()[i];
+				}
+			}
+		}
+	}
+
 }

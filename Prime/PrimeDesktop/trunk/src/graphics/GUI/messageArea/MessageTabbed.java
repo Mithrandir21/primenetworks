@@ -209,10 +209,13 @@ public class MessageTabbed extends JTabbedPane implements ActionListener
 	{
 		String[][] data = null;
 
-		data = NetworkProcessing.processNetwork(data, PrimeMain.currentCanvas,
-				Settings.showNetworkErrorMessages,
-				Settings.showNetworkWarningMessages,
-				Settings.showNetworkNoticeMessages);
+		if ( objects != null && objects.length > 0 )
+		{
+			data = NetworkProcessing.processNetwork(data,
+					PrimeMain.currentCanvas, Settings.showNetworkErrorMessages,
+					Settings.showNetworkWarningMessages,
+					Settings.showNetworkNoticeMessages);
+		}
 
 		if ( data != null )
 		{

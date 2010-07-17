@@ -111,6 +111,7 @@ public class ExternalNICNewView extends JDialog implements HardwareViewInterface
 	{
 		this.setTitle(PrimeMain.texts.getString("newHWnewExtNIClabel"));
 
+		Dimension size = new Dimension(750, 600);
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -118,10 +119,8 @@ public class ExternalNICNewView extends JDialog implements HardwareViewInterface
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		int initYLocation = (scrnsize.height - size.height) / 2;
+		int initXLocation = (scrnsize.width - size.width) / 2;
 
 
 
@@ -173,10 +172,9 @@ public class ExternalNICNewView extends JDialog implements HardwareViewInterface
 
 
 
-
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
+		this.setLocation(initXLocation, initYLocation);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setVisible(true);
 	}
 
@@ -609,7 +607,38 @@ public class ExternalNICNewView extends JDialog implements HardwareViewInterface
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
+			}
+			// If there is no Canvas
+			else
+			{
+				try
+				{
+					ComponentsManagment.processExternalNICmatch(mainObj,
+							extNIC, this);
 
+					// Updates the views of the object to correctly show the
+					// current info.
+					ObjectView view = PrimeMain.getObjectView(mainObj);
+					if ( view != null )
+					{
+						view.updateViewInfo();
+					}
+					// If no view is returned, then the standard object view is open
+					// and that should be updated.
+					else if ( PrimeMain.stdObjView != null )
+					{
+						PrimeMain.stdObjView.getSplitView().getHardStdObjView()
+								.updateTabInfo();
+					}
+
+					// Closes the JFrame.
+					this.dispose();
+				}
+				catch ( MotherboardNotFound e1 )
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 		else if ( e.getActionCommand().equals("cancel") )

@@ -35,11 +35,10 @@ import managment.DesktopFileManagment;
  * @author Bahram Malaekeh
  * 
  */
-public class ActionExportStandardRules extends AbstractSystemAction
+public class ActionExportCustomOS extends AbstractSystemAction
 {
-
 	/**
-	 * A constructor for the class that takes a string, the action name, and an
+	 * A constructor for the class that takes a string, the action name, and a
 	 * Icon.
 	 * 
 	 * @param text
@@ -47,7 +46,7 @@ public class ActionExportStandardRules extends AbstractSystemAction
 	 * @param icon
 	 *            The icon representing the action.
 	 */
-	public ActionExportStandardRules(String text, ImageIcon icon)
+	public ActionExportCustomOS(String text, ImageIcon icon)
 	{
 		super(text, icon);
 	}
@@ -60,11 +59,10 @@ public class ActionExportStandardRules extends AbstractSystemAction
 	 * @param text
 	 *            The name of the action.
 	 */
-	public ActionExportStandardRules(String text)
+	public ActionExportCustomOS(String text)
 	{
 		super(text);
 	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -73,11 +71,17 @@ public class ActionExportStandardRules extends AbstractSystemAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( DesktopFileManagment.exportStandardRules() )
+		if ( PrimeMain.system_custom_OS.isEmpty() )
+		{
+			// Tells the user that there are no custom OSs
+			JOptionPane.showMessageDialog(null, PrimeMain.texts
+					.getString("noCustomOStoExportMsg"));
+		}
+		else if ( DesktopFileManagment.exportCustomOS() )
 		{
 			// Tells the user that the export was successful
 			JOptionPane.showMessageDialog(null, PrimeMain.texts
-					.getString("exportRulesToFileSuccess"));
+					.getString("exportCustomOSToFileSuccess"));
 		}
 	}
 

@@ -48,10 +48,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.DesktopSoftwareManagment;
 import managment.SoftwareManagment;
 import objects.Object;
 import objects.Software;
@@ -73,7 +73,7 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 	private String[] OSs;
 
 	// The type of backup
-	private JTextField backupType = new JTextField(7);
+	private JTextField backupType = new JTextField();
 
 	// Whether or not the software can use compression
 	private JCheckBox compression;
@@ -105,16 +105,16 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 	{
 		this.setTitle(PrimeMain.texts.getString("swNewBackupLabel"));
 
+		Dimension size = new Dimension(760, 600);
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		int initYLocation = (scrnsize.height - size.height) / 2;
+		int initXLocation = (scrnsize.width - size.width) / 2;
 
 		mainObj = obj;
 		mainBack = back;
@@ -163,9 +163,9 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
+		this.setLocation(initXLocation, initYLocation);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setVisible(true);
 	}
 
@@ -183,9 +183,10 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 	 */
 	private JPanel createSpesificInfo(Backup back)
 	{
-		JPanel panel = new JPanel(new SpringLayout());
-		JLabel[] labels = new JLabel[5];
+		Dimension tfSize = new Dimension(100, 20);
 
+
+		JLabel[] labels = new JLabel[5];
 
 		labels[0] = new JLabel(PrimeMain.texts
 				.getString("backupViewSupOSLabel"));
@@ -212,14 +213,30 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 				.getString("backupViewDuplicatesTip"));
 
 
-		Dimension tfSize = new Dimension(90, 20);
+
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+
+		c.fill = GridBagConstraints.HORIZONTAL;
+		// c.ipady = 0; // reset to default
+		// c.ipadx = 0; // reset to default
+		// c.weighty = 1.0; // request any extra vertical space
+		// c.weightx = 1.0; // request any extra horizontal space
+		c.anchor = GridBagConstraints.NORTH; // location
+		c.insets = new Insets(20, 20, 10, 10); // padding
+		// c.gridwidth = 1; // 1 row wide
+		// c.gridheight = 1; // 1 columns wide
+		c.gridy = 0; // row
+		c.gridx = 0; // column
 
 
 		// The supported operating systems by the Email software.
 		labels[0].setLabelFor(supportedOS);
-		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
-				"Windows Vista", "Linux", "Novell" };
-		supportedOS = new JList(listData);
+		panel.add(labels[0], c);
+
+
+		String[] osNames = DesktopSoftwareManagment.getSystemOSname();
+		supportedOS = new JList(osNames);
 		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
 		listSelectionModel
 				.addListSelectionListener(new SharedListSelectionHandler());
@@ -234,46 +251,58 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 			if ( mainBack.getSupportedOperatingSystems().length > 0 )
 			{
 				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, listData, mainBack
+						supportedOS, osNames, mainBack
 								.getSupportedOperatingSystems()));
 			}
 		}
 
-		panel.add(labels[0]);
-		panel.add(listPane);
+		c.insets = new Insets(20, 10, 10, 10); // padding
+		c.gridx = 1; // column
+		panel.add(listPane, c);
+
 
 
 		// Whether or not the software can use compression
+		c.gridx = 2; // column
+		panel.add(labels[2], c);
+
 		labels[2].setLabelFor(compression);
 		compression = new JCheckBox();
-		compression.setMaximumSize(tfSize);
-		compression.setPreferredSize(tfSize);
 		compression.setToolTipText(labels[2].getToolTipText());
 		compression.setActionCommand("SupportsCompression");
 		compression.addActionListener(this);
 
 		compression.setSelected(mainBack.supportsCompression());
 
-		panel.add(labels[2]);
-		panel.add(compression);
+		c.gridx = 3; // column
+		panel.add(compression, c);
+
 
 
 		// Whether or not the software can use encryption
+		c.gridx = 4; // column
+		panel.add(labels[3], c);
+
 		labels[3].setLabelFor(encryption);
 		encryption = new JCheckBox();
-		encryption.setMaximumSize(tfSize);
-		encryption.setPreferredSize(tfSize);
 		encryption.setToolTipText(labels[3].getToolTipText());
 		encryption.setActionCommand("SupportsEncryption");
 		encryption.addActionListener(this);
 
 		encryption.setSelected(mainBack.supportsEncryption());
 
-		panel.add(labels[3]);
-		panel.add(encryption);
+		c.weightx = 1.0; // request any extra horizontal space
+		c.gridx = 5; // column
+		panel.add(encryption, c);
 
 
-		// The type of backup
+		// The type of backuprow
+		c.insets = new Insets(10, 20, 10, 10); // padding
+		c.weightx = 0; // request any extra horizontal space
+		c.gridy = 1; // row
+		c.gridx = 0; // column
+		panel.add(labels[1], c);
+
 		labels[1].setLabelFor(backupType);
 		backupType = new JTextField();
 		backupType.setMaximumSize(tfSize);
@@ -282,16 +311,20 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 		backupType.setToolTipText(labels[1].getToolTipText());
 
 
-		panel.add(labels[1]);
-		panel.add(backupType);
+		c.insets = new Insets(10, 10, 10, 10); // padding
+		c.gridwidth = 1; // 1 row wide
+		c.gridx = 1; // column
+		panel.add(backupType, c);
+
 
 
 		// The number of copies keeps
+		c.gridx = 2; // column
+		panel.add(labels[4], c);
+
 		labels[4].setLabelFor(duplicate);
 		String[] dupStrings = { "0", "1", "2", "3", "4", "5", "6", "7", "8" };
 		duplicate = new JComboBox(dupStrings);
-		duplicate.setMaximumSize(tfSize);
-		duplicate.setPreferredSize(tfSize);
 		duplicate.setBackground(Color.WHITE);
 		duplicate.setToolTipText(labels[4].getToolTipText());
 		duplicate.setActionCommand("Duplicates");
@@ -301,16 +334,10 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 				dupStrings, back.getDuplicate()));
 
 
-		panel.add(labels[4]);
-		panel.add(duplicate);
+		c.weighty = 1.0; // request any extra horizontal space
+		c.gridx = 3; // column
+		panel.add(duplicate, c);
 
-
-		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel,
-				panel.getComponentCount(), // rows,
-				// cols
-				10, 10, // initX, initY
-				20, 20); // xPad, yPad
 
 
 		return panel;

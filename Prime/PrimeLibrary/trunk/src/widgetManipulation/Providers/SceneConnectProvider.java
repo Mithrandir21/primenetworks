@@ -23,6 +23,7 @@ import java.awt.Point;
 import org.netbeans.api.visual.action.ConnectProvider;
 import org.netbeans.api.visual.action.ConnectorState;
 import org.netbeans.api.visual.widget.LabelWidget;
+import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
 
@@ -103,6 +104,7 @@ public class SceneConnectProvider implements ConnectProvider
 	{
 		if ( sourceWidget != targetWidget
 				&& !(targetWidget instanceof LabelWidget)
+				&& !(targetWidget instanceof LayerWidget)
 				&& (targetWidget instanceof WidgetObject || isChildOfThisWidget(targetWidget)) )
 		{
 			return ConnectorState.ACCEPT;

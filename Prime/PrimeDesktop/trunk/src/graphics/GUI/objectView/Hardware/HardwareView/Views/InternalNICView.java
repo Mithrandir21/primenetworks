@@ -431,33 +431,30 @@ public class InternalNICView extends JPanel implements HardwareViewInterface, Ac
 				WorkareaCanvas canvas = CanvasManagment.findCanvas(mainObj,
 						PrimeMain.canvases);
 
-				if ( canvas != null )
+				try
 				{
-					try
-					{
-						ComponentsManagment.removeInternalNIC(canvas, mainObj,
-								IntNIC);
+					ComponentsManagment.removeInternalNIC(canvas, mainObj,
+							IntNIC);
 
-						// Updates the views of the object to correctly show the
-						// current info.
-						ObjectView view = PrimeMain.getObjectView(mainObj);
-						if ( view != null )
-						{
-							view.updateViewInfo();
-						}
-						// If no view is returned, then the standard object view is open
-						// and that should be updated.
-						else if ( PrimeMain.stdObjView != null )
-						{
-							PrimeMain.stdObjView.getSplitView()
-									.getHardStdObjView().updateTabInfo();
-						}
-					}
-					catch ( MotherboardNotFound e1 )
+					// Updates the views of the object to correctly show the
+					// current info.
+					ObjectView view = PrimeMain.getObjectView(mainObj);
+					if ( view != null )
 					{
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						view.updateViewInfo();
 					}
+					// If no view is returned, then the standard object view is open
+					// and that should be updated.
+					else if ( PrimeMain.stdObjView != null )
+					{
+						PrimeMain.stdObjView.getSplitView().getHardStdObjView()
+								.updateTabInfo();
+					}
+				}
+				catch ( MotherboardNotFound e1 )
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		}
@@ -631,6 +628,11 @@ public class InternalNICView extends JPanel implements HardwareViewInterface, Ac
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		// No canvas, no rules
+		else
+		{
+			valid = true;
 		}
 
 		return valid;

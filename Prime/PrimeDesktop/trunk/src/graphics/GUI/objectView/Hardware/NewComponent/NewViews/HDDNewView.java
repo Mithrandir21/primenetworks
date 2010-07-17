@@ -91,6 +91,7 @@ public class HDDNewView extends JDialog implements HardwareViewInterface, Action
 	{
 		this.setTitle(PrimeMain.texts.getString("newHWnewHDDlabel"));
 
+		Dimension size = new Dimension(750, 600);
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -98,10 +99,8 @@ public class HDDNewView extends JDialog implements HardwareViewInterface, Action
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		int initYLocation = (scrnsize.height - size.height) / 2;
+		int initXLocation = (scrnsize.width - size.width) / 2;
 
 
 
@@ -152,10 +151,9 @@ public class HDDNewView extends JDialog implements HardwareViewInterface, Action
 
 
 
-
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
+		this.setLocation(initXLocation, initYLocation);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setVisible(true);
 	}
 
@@ -294,7 +292,7 @@ public class HDDNewView extends JDialog implements HardwareViewInterface, Action
 		labels[4].setLabelFor(transferSpeed);
 		String[] transSpeedString = { "", "16", "33", "66", "80", "133", "150",
 				"300", "600" };
-		transferSpeed = new JComboBox(typeString);
+		transferSpeed = new JComboBox(transSpeedString);
 		transferSpeed.setMaximumSize(tfSize);
 		transferSpeed.setPreferredSize(tfSize);
 		transferSpeed.setBackground(Color.WHITE);

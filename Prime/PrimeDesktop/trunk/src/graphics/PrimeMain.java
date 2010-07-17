@@ -104,7 +104,7 @@ public class PrimeMain extends JFrame
 
 	// The locale texts
 	public static ResourceBundle texts = ResourceBundle.getBundle(
-			"SystemTexts", new Locale("en"));
+			"SystemTexts", new Locale("no_NO"));
 
 	// Variables to place the height and width of the main screen.
 	public static int width, height;
@@ -214,7 +214,7 @@ public class PrimeMain extends JFrame
 
 		if ( splash == null )
 		{
-			// System.out.println("SplashScreen.getSplashScreen() returned null");
+			System.out.println("SplashScreen.getSplashScreen() returned null");
 		}
 		else
 		{
@@ -229,13 +229,13 @@ public class PrimeMain extends JFrame
 				{
 					renderSplashFrame(g, i);
 					splash.update();
-					try
-					{
-						Thread.sleep(100);
-					}
-					catch ( InterruptedException e )
-					{
-					}
+					// try
+					// {
+					// Thread.sleep(200);
+					// }
+					// catch ( InterruptedException e )
+					// {
+					// }
 				}
 				splash.close();
 			}
@@ -690,16 +690,17 @@ public class PrimeMain extends JFrame
 	 */
 	public static void runCanvasObjectCheck()
 	{
+		Object[] children = new Object[0];
 		// If there is no canvas open
 		if ( currentCanvas != null )
 		{
-			Object[] children = currentCanvas.getObjectsOnTheScene();
+			children = currentCanvas.getObjectsOnTheScene();
 
-			MessageTabbed msgTab = (MessageTabbed) messagesPanel
-					.getComponent(0);
-
-			msgTab.processAllObjects(children);
 		}
+
+		MessageTabbed msgTab = (MessageTabbed) messagesPanel.getComponent(0);
+
+		msgTab.processAllObjects(children);
 	}
 
 

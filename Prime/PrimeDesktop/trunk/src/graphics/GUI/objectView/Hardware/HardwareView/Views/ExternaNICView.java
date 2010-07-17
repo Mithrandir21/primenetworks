@@ -363,6 +363,8 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 	@Override
 	public boolean save()
 	{
+		boolean valid = true;
+
 		if ( name.getText() != "" )
 		{
 			extNIC.setObjectName(name.getText());
@@ -378,7 +380,8 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 		// FIXME - MAC TEST
 		extNIC.setMAC(MAC.getText());
 
-		if ( compliesWithNetworkRules() )
+		valid = compliesWithNetworkRules();
+		if ( valid )
 		{
 			extNIC.setConnectionType(conType.getSelectedItem().toString());
 		}
@@ -405,7 +408,7 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 
 		extNIC.setSupportsIPv6(supIPv6.isSelected());
 
-		return true;
+		return valid;
 	}
 
 
@@ -424,33 +427,30 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 				WorkareaCanvas canvas = CanvasManagment.findCanvas(mainObj,
 						PrimeMain.canvases);
 
-				if ( canvas != null )
+				try
 				{
-					try
-					{
-						ComponentsManagment.removeExternalNIC(canvas, mainObj,
-								extNIC);
+					ComponentsManagment.removeExternalNIC(canvas, mainObj,
+							extNIC);
 
-						// Updates the views of the object to correctly show the
-						// current info.
-						ObjectView view = PrimeMain.getObjectView(mainObj);
-						if ( view != null )
-						{
-							view.updateViewInfo();
-						}
-						// If no view is returned, then the standard object view is open
-						// and that should be updated.
-						else if ( PrimeMain.stdObjView != null )
-						{
-							PrimeMain.stdObjView.getSplitView()
-									.getHardStdObjView().updateTabInfo();
-						}
-					}
-					catch ( MotherboardNotFound e1 )
+					// Updates the views of the object to correctly show the
+					// current info.
+					ObjectView view = PrimeMain.getObjectView(mainObj);
+					if ( view != null )
 					{
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						view.updateViewInfo();
 					}
+					// If no view is returned, then the standard object view is open
+					// and that should be updated.
+					else if ( PrimeMain.stdObjView != null )
+					{
+						PrimeMain.stdObjView.getSplitView().getHardStdObjView()
+								.updateTabInfo();
+					}
+				}
+				catch ( MotherboardNotFound e1 )
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		}
@@ -620,6 +620,11 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		// No canvas, no rules
+		else
+		{
+			valid = true;
 		}
 
 		return valid;

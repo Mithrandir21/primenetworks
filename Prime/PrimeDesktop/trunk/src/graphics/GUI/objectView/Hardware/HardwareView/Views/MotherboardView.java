@@ -46,7 +46,9 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import managment.ComponentsManagment;
+import objects.ExternalHardware;
 import objects.Hardware;
+import objects.Infrastructure;
 import objects.Object;
 import objects.hardwareObjects.CPU;
 import objects.hardwareObjects.GraphicsCard;
@@ -885,75 +887,97 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 		if ( USBports.getSelectedItem().toString() != "" )
 		{
+			boolean standardObject = false;
 
-			if ( mainObj.isExemptedNetworkRules() )
+			// Checks to see whether this is a object being shown as a standard object
+			if ( PrimeMain.stdObjView != null )
+			{
+				if ( mainObj.getObjectSerial() == PrimeMain.stdObjView
+						.getSplitView().getHardStdObjView().getGivenObject()
+						.getObjectSerial() )
+				{
+					standardObject = true;
+				}
+			}
+
+
+			if ( standardObject || mainObj.isExemptedNetworkRules()
+					|| mainObj instanceof Infrastructure )
 			{
 				ComponentsManagment.USBportsValidation(mainObj, mbObj,
 						USBports, PrimeMain.currentCanvas);
 			}
 			else
 			{
-				NetworkRules rules = PrimeMain.currentCanvas.getRules();
-				// If USB is allowed
-				if ( !rules.isUSBnotAllowed() )
+				if ( PrimeMain.currentCanvas != null )
 				{
-					// USB ports are unlimited
-					if ( rules.getUSBportsAllowed() == -1 )
+					NetworkRules rules = PrimeMain.currentCanvas.getRules();
+					// If USB is allowed
+					if ( !rules.isUSBnotAllowed() )
 					{
-						ComponentsManagment.USBportsValidation(mainObj, mbObj,
-								USBports, PrimeMain.currentCanvas);
+						// USB ports are unlimited
+						if ( rules.getUSBportsAllowed() == -1 )
+						{
+							ComponentsManagment.USBportsValidation(mainObj,
+									mbObj, USBports, PrimeMain.currentCanvas);
+						}
+						// If there is a max number of USB ports allowed
+						else
+						{
+							// If the user has selected a valid option
+							if ( USBports.getSelectedIndex() != -1 )
+							{
+								// The new number of ports
+								int newPortsNumber = Integer.parseInt(USBports
+										.getSelectedItem().toString());
+
+								// If the new number of ports is equal to, or less then, the maximum number of allowed ports.
+								if ( newPortsNumber <= rules
+										.getUSBportsAllowed() )
+								{
+									ComponentsManagment.USBportsValidation(
+											mainObj, mbObj, USBports,
+											PrimeMain.currentCanvas);
+								}
+								else
+								{
+									JOptionPane
+											.showMessageDialog(
+													this,
+													PrimeMain.texts
+															.getString("rulesUSBviolationMsg"),
+													PrimeMain.texts
+															.getString("error"),
+													JOptionPane.ERROR_MESSAGE);
+
+									validated = false;
+								}
+							}
+						}
 					}
-					// If there is a max number of USB ports allowed
 					else
 					{
-						// If the user has selected a valid option
+						// If the user has selected number of ports
 						if ( USBports.getSelectedIndex() != -1 )
 						{
 							// The new number of ports
 							int newPortsNumber = Integer.parseInt(USBports
 									.getSelectedItem().toString());
 
-							// If the new number of ports is equal to, or less then, the maximum number of allowed ports.
-							if ( newPortsNumber <= rules.getUSBportsAllowed() )
-							{
-								ComponentsManagment.USBportsValidation(mainObj,
-										mbObj, USBports,
-										PrimeMain.currentCanvas);
-							}
-							else
+							// If the new number of ports is 0
+							if ( newPortsNumber != 0 )
 							{
 								JOptionPane
 										.showMessageDialog(
 												this,
 												PrimeMain.texts
-														.getString("rulesUSBviolationMsg"),
+														.getString("rulesUSBnotAllowedMsg"),
 												PrimeMain.texts
 														.getString("error"),
 												JOptionPane.ERROR_MESSAGE);
 
 								validated = false;
 							}
-						}
-					}
-				}
-				else
-				{
-					// If the user has selected number of ports
-					if ( USBports.getSelectedIndex() != -1 )
-					{
-						// The new number of ports
-						int newPortsNumber = Integer.parseInt(USBports
-								.getSelectedItem().toString());
-
-						// If the new number of ports is 0
-						if ( newPortsNumber != 0 )
-						{
-							JOptionPane.showMessageDialog(this, PrimeMain.texts
-									.getString("rulesUSBnotAllowedMsg"),
-									PrimeMain.texts.getString("error"),
-									JOptionPane.ERROR_MESSAGE);
-
-							validated = false;
 						}
 					}
 				}
@@ -972,74 +996,98 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 		if ( LANports.getSelectedItem().toString() != "" )
 		{
-			if ( mainObj.isExemptedNetworkRules() )
+			boolean standardObject = false;
+
+			// Checks to see whether this is a object being shown as a standard object
+			if ( PrimeMain.stdObjView != null )
+			{
+				if ( mainObj.getObjectSerial() == PrimeMain.stdObjView
+						.getSplitView().getHardStdObjView().getGivenObject()
+						.getObjectSerial() )
+				{
+					standardObject = true;
+				}
+			}
+
+
+			if ( standardObject || mainObj.isExemptedNetworkRules()
+					|| mainObj instanceof Infrastructure
+					|| mainObj instanceof ExternalHardware )
 			{
 				ComponentsManagment.LANportsValidation(mainObj, mbObj,
 						LANports, PrimeMain.currentCanvas);
 			}
 			else
 			{
-				NetworkRules rules = PrimeMain.currentCanvas.getRules();
-				// If LAN is allowed
-				if ( !rules.isLANnotAllowed() )
+				if ( PrimeMain.currentCanvas != null )
 				{
-					// LAN ports are unlimited
-					if ( rules.getLANportsAllowed() == -1 )
+					NetworkRules rules = PrimeMain.currentCanvas.getRules();
+					// If LAN is allowed
+					if ( !rules.isLANnotAllowed() )
 					{
-						ComponentsManagment.LANportsValidation(mainObj, mbObj,
-								LANports, PrimeMain.currentCanvas);
+						// LAN ports are unlimited
+						if ( rules.getLANportsAllowed() == -1 )
+						{
+							ComponentsManagment.LANportsValidation(mainObj,
+									mbObj, LANports, PrimeMain.currentCanvas);
+						}
+						// If there is a max number of LAN ports allowed
+						else
+						{
+							// If the user has selected a valid option
+							if ( LANports.getSelectedIndex() != -1 )
+							{
+								// The new number of ports
+								int newPortsNumber = Integer.parseInt(LANports
+										.getSelectedItem().toString());
+
+								// If the new number of ports is equal to, or less then, the maximum number of allowed ports.
+								if ( newPortsNumber <= rules
+										.getLANportsAllowed() )
+								{
+									ComponentsManagment.LANportsValidation(
+											mainObj, mbObj, LANports,
+											PrimeMain.currentCanvas);
+								}
+								else
+								{
+									JOptionPane
+											.showMessageDialog(
+													this,
+													PrimeMain.texts
+															.getString("rulesLANviolationMsg"),
+													PrimeMain.texts
+															.getString("error"),
+													JOptionPane.ERROR_MESSAGE);
+
+									validated = false;
+								}
+							}
+						}
 					}
-					// If there is a max number of LAN ports allowed
 					else
 					{
-						// If the user has selected a valid option
+						// If the user has selected number of ports
 						if ( LANports.getSelectedIndex() != -1 )
 						{
 							// The new number of ports
 							int newPortsNumber = Integer.parseInt(LANports
 									.getSelectedItem().toString());
 
-							// If the new number of ports is equal to, or less then, the maximum number of allowed ports.
-							if ( newPortsNumber <= rules.getLANportsAllowed() )
-							{
-								ComponentsManagment.LANportsValidation(mainObj,
-										mbObj, LANports,
-										PrimeMain.currentCanvas);
-							}
-							else
+							// If the new number of ports is 0
+							if ( newPortsNumber != 0 )
 							{
 								JOptionPane
 										.showMessageDialog(
 												this,
 												PrimeMain.texts
-														.getString("rulesLANviolationMsg"),
+														.getString("rulesLANnotAllowedMsg"),
 												PrimeMain.texts
 														.getString("error"),
 												JOptionPane.ERROR_MESSAGE);
 
 								validated = false;
 							}
-						}
-					}
-				}
-				else
-				{
-					// If the user has selected number of ports
-					if ( LANports.getSelectedIndex() != -1 )
-					{
-						// The new number of ports
-						int newPortsNumber = Integer.parseInt(LANports
-								.getSelectedItem().toString());
-
-						// If the new number of ports is 0
-						if ( newPortsNumber != 0 )
-						{
-							JOptionPane.showMessageDialog(this, PrimeMain.texts
-									.getString("rulesLANnotAllowedMsg"),
-									PrimeMain.texts.getString("error"),
-									JOptionPane.ERROR_MESSAGE);
-
-							validated = false;
 						}
 					}
 				}

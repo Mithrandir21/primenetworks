@@ -18,6 +18,7 @@
 package graphics.GUI.standardObjectEdit.StandardViews;
 
 
+import graphics.PrimeMain;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
 import graphics.GUI.standardObjectEdit.ObjectViewTabbed;
 
@@ -182,16 +183,17 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 	{
 		givenObject = obj;
 
+
+		Dimension size = new Dimension(750, 600);
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		int initYLocation = (scrnsize.height - size.height) / 2;
+		int initXLocation = (scrnsize.width - size.width) / 2;
 
 
 		// Get the content pane for this object
@@ -236,9 +238,10 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 
 		c.add(panel);
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
+
+		this.setLocation(initXLocation, initYLocation);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setVisible(true);
 	}
 
@@ -268,6 +271,12 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 			{
 				this.dispose();
 			}
+
+			if ( PrimeMain.stdObjView != null )
+			{
+				PrimeMain.stdObjView.getSplitView().getHardStdObjView()
+						.updateTabInfo();
+			}
 		}
 		else if ( e.getActionCommand().equals("apply") )
 		{
@@ -282,6 +291,12 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 
 			// Saves the information with the option of verification.
 			view.save(verify);
+
+			if ( PrimeMain.stdObjView != null )
+			{
+				PrimeMain.stdObjView.getSplitView().getHardStdObjView()
+						.updateTabInfo();
+			}
 		}
 		else
 		{

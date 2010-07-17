@@ -52,7 +52,6 @@ public class PrimeObjectSceneRectangularSelectProvider implements RectangularSel
 	@Override
 	public void performSelection(Rectangle sceneSelection)
 	{
-		System.out.println("here");
 		boolean entirely = sceneSelection.width > 0;
 		int w = sceneSelection.width;
 		int h = sceneSelection.height;
@@ -76,12 +75,10 @@ public class PrimeObjectSceneRectangularSelectProvider implements RectangularSel
 				}
 				if ( entirely )
 				{
-					// System.out.println(object.getObject().getObjectName());
 					Rectangle widgetRect = object.convertLocalToScene(object
 							.getBounds());
 					if ( rect.contains(widgetRect) )
 					{
-						System.out.println("is inside.");
 						set.add(object);
 					}
 				}

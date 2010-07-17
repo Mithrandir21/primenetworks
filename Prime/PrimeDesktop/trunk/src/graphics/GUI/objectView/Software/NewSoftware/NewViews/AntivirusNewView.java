@@ -50,10 +50,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SpringLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import managment.DesktopSoftwareManagment;
 import managment.SoftwareManagment;
 import objects.Object;
 import objects.Software;
@@ -75,16 +75,16 @@ public class AntivirusNewView extends JDialog implements SoftwareView, ActionLis
 	private String[] OSs;
 
 	// The date of activation
-	private JTextField actDate = new JTextField(7);
+	private JTextField actDate = new JTextField();
 
 	// The date the license expires
-	private JTextField expDate = new JTextField(7);
+	private JTextField expDate = new JTextField();
 
 	// Whether or not the antivirus has been activated
 	private JCheckBox activated;
 
 	// The actual license of the program
-	private JTextField license = new JTextField(7);
+	private JTextField license = new JTextField();
 
 
 	private Object mainObj;
@@ -106,16 +106,16 @@ public class AntivirusNewView extends JDialog implements SoftwareView, ActionLis
 	{
 		this.setTitle(PrimeMain.texts.getString("swNewAntivirusLabel"));
 
+		Dimension size = new Dimension(760, 600);
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		int initYLocation = (scrnsize.height - size.height) / 2;
+		int initXLocation = (scrnsize.width - size.width) / 2;
 
 		mainObj = obj;
 		mainAV = av;
@@ -166,9 +166,9 @@ public class AntivirusNewView extends JDialog implements SoftwareView, ActionLis
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
+		this.setLocation(initXLocation, initYLocation);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setVisible(true);
 	}
 
@@ -185,9 +185,10 @@ public class AntivirusNewView extends JDialog implements SoftwareView, ActionLis
 	 */
 	private JPanel createSpesificInfo(Antivirus av)
 	{
-		JPanel panel = new JPanel(new SpringLayout());
-		JLabel[] labels = new JLabel[5];
+		Dimension tfSize = new Dimension(100, 20);
 
+
+		JLabel[] labels = new JLabel[5];
 
 		labels[0] = new JLabel(PrimeMain.texts.getString("avViewSupOSLabel"));
 		labels[0].setToolTipText(PrimeMain.texts.getString("avViewSupOSTip"));
@@ -207,16 +208,33 @@ public class AntivirusNewView extends JDialog implements SoftwareView, ActionLis
 				.getString("avViewActivatedTip"));
 
 
-		Dimension tfSize = new Dimension(90, 20);
 		SimpleDateFormat format = new SimpleDateFormat(PrimeMain.texts
 				.getString("avViewSimpleDateFormat"));
 
 
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+
+		c.fill = GridBagConstraints.NONE;
+		// c.ipady = 0; // reset to default
+		// c.ipadx = 0; // reset to default
+		// c.weighty = 1.0; // request any extra vertical space
+		// c.weightx = 1.0; // request any extra horizontal space
+		c.anchor = GridBagConstraints.NORTHWEST; // location
+		c.insets = new Insets(20, 10, 10, 10); // padding
+		// c.gridwidth = 1; // 1 row wide
+		// c.gridheight = 1; // 1 columns wide
+		c.gridy = 0; // row
+		c.gridx = 0; // column
+
+
 		// The supported operating systems by the Antivirus software.
 		labels[0].setLabelFor(supportedOS);
-		String[] listData = { "Windows 98", "Windows 2000", "Windows XP",
-				"Windows Vista", "Linux", "Novell" };
-		supportedOS = new JList(listData);
+		panel.add(labels[0], c);
+
+
+		String[] osNames = DesktopSoftwareManagment.getSystemOSname();
+		supportedOS = new JList(osNames);
 		ListSelectionModel listSelectionModel = supportedOS.getSelectionModel();
 		listSelectionModel
 				.addListSelectionListener(new SharedListSelectionHandler());
@@ -231,17 +249,22 @@ public class AntivirusNewView extends JDialog implements SoftwareView, ActionLis
 			if ( mainAV.getSupportedOperatingSystems().length > 0 )
 			{
 				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, listData, mainAV
+						supportedOS, osNames, mainAV
 								.getSupportedOperatingSystems()));
 			}
 		}
 
-		panel.add(labels[0]);
-		panel.add(listPane);
+		c.insets = new Insets(20, 10, 10, 10); // padding
+		c.gridx = 1; // column
+		panel.add(listPane, c);
 
 
 
 		// The Activated date
+		c.gridx = 2; // column
+		panel.add(labels[1], c);
+
+
 		labels[1].setLabelFor(actDate);
 		actDate.setMaximumSize(tfSize);
 		actDate.setPreferredSize(tfSize);
@@ -257,7 +280,6 @@ public class AntivirusNewView extends JDialog implements SoftwareView, ActionLis
 		catch ( ParseException e )
 		{
 			// DO nothing.
-			System.out.println("Error - AntivirusEditView - Activated Date");
 		}
 
 		if ( av.getActivationDate() != null )
@@ -270,11 +292,17 @@ public class AntivirusNewView extends JDialog implements SoftwareView, ActionLis
 		}
 		actDate.setToolTipText(labels[1].getToolTipText());
 
-		panel.add(labels[1]);
-		panel.add(actDate);
+		c.gridx = 3; // column
+		panel.add(actDate, c);
+
+
 
 
 		// The Expiration date
+		c.gridx = 4; // column
+		panel.add(labels[2], c);
+
+
 		labels[2].setLabelFor(expDate);
 		expDate.setMaximumSize(tfSize);
 		expDate.setPreferredSize(tfSize);
@@ -290,7 +318,6 @@ public class AntivirusNewView extends JDialog implements SoftwareView, ActionLis
 		catch ( ParseException e )
 		{
 			// DO nothing.
-			System.out.println("Error - AntivirusEditView - Expiration Date");
 		}
 
 		if ( av.getActivationDate() != null )
@@ -303,27 +330,33 @@ public class AntivirusNewView extends JDialog implements SoftwareView, ActionLis
 		}
 		expDate.setToolTipText(labels[2].getToolTipText());
 
-		panel.add(labels[2]);
-		panel.add(expDate);
-
+		c.weightx = 1.0; // request any extra horizontal space
+		c.gridx = 5; // column
+		panel.add(expDate, c);
 
 
 		// The license key
+		c.insets = new Insets(10, 10, 10, 10); // padding
+		c.weightx = 0; // request any extra horizontal space
+		c.gridy = 1; // row
+		c.gridx = 0; // column
+		panel.add(labels[3], c);
+
 		labels[3].setLabelFor(license);
 		license.setMaximumSize(tfSize);
 		license.setPreferredSize(tfSize);
 		license.setText(av.getLicense());
 		license.setToolTipText(labels[3].getToolTipText());
 
-
-		panel.add(labels[3]);
-		panel.add(license);
+		c.insets = new Insets(10, 10, 10, 10); // padding
+		c.gridwidth = 1; // 1 row wide
+		c.gridx = 1; // column
+		panel.add(license, c);
 
 
 
 		// Whether or not the AV has been avtivated.
-		labels[4].setLabelFor(activated);
-		activated = new JCheckBox();
+		activated = new JCheckBox(labels[4].getText());
 		activated.setToolTipText(labels[4].getToolTipText());
 		activated.setActionCommand("activated");
 		activated.addActionListener(this);
@@ -331,15 +364,10 @@ public class AntivirusNewView extends JDialog implements SoftwareView, ActionLis
 		activated.setSelected(av.getIsActivated());
 
 
-		panel.add(labels[4]);
-		panel.add(activated);
+		c.weighty = 1.0; // request any extra horizontal space
+		c.gridx = 2; // column
+		panel.add(activated, c);
 
-
-		// Lay out the panel.
-		graphics.GraphicalFunctions.make6xGrid(panel,
-				panel.getComponentCount(), // rows, cols
-				10, 10, // initX, initY
-				20, 20); // xPad, yPad
 
 
 		return panel;

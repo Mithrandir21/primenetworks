@@ -71,8 +71,6 @@ public class NetworkProcessing
 		{
 			data = new String[5][4];
 		}
-
-
 		if ( CheckCritical )
 		{
 			data = getCriticalErrors(data, canvas);
@@ -214,8 +212,6 @@ public class NetworkProcessing
 			if ( (objects[i].getConnectedDevices() == null)
 					|| (objects[i].getConnectedDevices().length < 1) )
 			{
-				System.out.println(objects[i].getConnectedDevices() == null);
-
 				String[] info = { objects[i].getObjectName(),
 						PrimeMain.texts.getString("notConnectedName"),
 						PrimeMain.texts.getString("notConnectedMsg"),

@@ -59,7 +59,7 @@ public class ServersPropertiesView extends AbstractObjectPropertiesView implemen
 	/**
 	 * 
 	 */
-	private static JTextField supRemoteAccProtoField = new JTextField(10);
+	private static JTextField supRemoteAccProtoField = new JTextField();
 
 	/**
 	 * 
@@ -208,6 +208,10 @@ public class ServersPropertiesView extends AbstractObjectPropertiesView implemen
 		supOnSiteAccessField.setSelected(objectViewed.supportsOnSiteAccess());
 
 		supRemoteAccessField.setSelected(objectViewed.supportsRemoteAccess());
+
+		supRemoteAccProtoField.setText("");
+
+		mainSWnameField.setText("");
 	}
 
 

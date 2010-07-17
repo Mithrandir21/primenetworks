@@ -38,9 +38,11 @@ import actions.systemActions.ActionCopy;
 import actions.systemActions.ActionCut;
 import actions.systemActions.ActionExitSystem;
 import actions.systemActions.ActionExportCanvasAsImage;
+import actions.systemActions.ActionExportCustomOS;
 import actions.systemActions.ActionExportNetwork;
 import actions.systemActions.ActionExportStandardObjects;
 import actions.systemActions.ActionExportStandardRules;
+import actions.systemActions.ActionImportCustomOS;
 import actions.systemActions.ActionImportNetwork;
 import actions.systemActions.ActionImportStandardObjects;
 import actions.systemActions.ActionImportStandardRules;
@@ -169,6 +171,10 @@ public class GenericPrimeMenuBar extends JMenuBar
 				new ActionImportStandardRules(PrimeMain.texts
 						.getString("importStandardRulesList")));
 		importSubMenu.add(importStandardRulesList);
+
+		JMenuItem importCustomOSlist = new JMenuItem(new ActionImportCustomOS(
+				PrimeMain.texts.getString("importCustomOSList")));
+		importSubMenu.add(importCustomOSlist);
 
 
 		file.add(importSubMenu);
@@ -371,14 +377,15 @@ public class GenericPrimeMenuBar extends JMenuBar
 		tools.add(standardRules);
 
 
-		JMenuItem systemOS = new JMenuItem(new ActionOpenfile(PrimeMain.texts
-				.getString("systemOSlabel")));
-		tools.add(systemOS);
-
 		JMenuItem openVisualEdit = new JMenuItem(new ActionOpenVisualEdit(
 				PrimeMain.texts.getString("visualEditMenuLabel")));
 		openVisualEdit.setIcon(null);
 		tools.add(openVisualEdit);
+
+
+		JMenuItem osList = new JMenuItem(new ActionOpenCustomOS(PrimeMain.texts
+				.getString("systemOSeditLabel")));
+		tools.add(osList);
 
 
 		// Adds a separator to the menu
@@ -400,11 +407,6 @@ public class GenericPrimeMenuBar extends JMenuBar
 		exportSubMenu.add(exportNetworkAsImage);
 
 
-		JMenuItem osList = new JMenuItem(new ActionOpenCustomOS(PrimeMain.texts
-				.getString("systemOSlist")));
-		exportSubMenu.add(osList);
-
-
 		JMenuItem exportStandardObjectsList = new JMenuItem(
 				new ActionExportStandardObjects(PrimeMain.texts
 						.getString("exportStandardObjectsListMenuLabel")));
@@ -416,6 +418,11 @@ public class GenericPrimeMenuBar extends JMenuBar
 				new ActionExportStandardRules(PrimeMain.texts
 						.getString("exportStandardRulesMenuLabel")));
 		exportSubMenu.add(exportStandardRulesList);
+
+
+		JMenuItem exportCustomOSList = new JMenuItem(new ActionExportCustomOS(
+				PrimeMain.texts.getString("exportCustomOSMenuLabel")));
+		exportSubMenu.add(exportCustomOSList);
 
 
 

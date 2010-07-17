@@ -20,7 +20,6 @@ package graphics.GUI.customOSviews;
 
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
-import graphics.SystemFunctions;
 import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareEditor;
 
 import java.awt.Color;
@@ -47,6 +46,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
+import managment.DesktopSoftwareManagment;
 import objects.softwareObjects.OperatingSystem;
 
 
@@ -78,6 +78,8 @@ public class OSedit extends JDialog implements ActionListener
 	// The OS is 64 bit
 	private JCheckBox is64bit;
 
+	// The version of the OS
+	private JTextField osVersion = new JTextField();
 
 	private OperatingSystem mainOS;
 
@@ -95,7 +97,7 @@ public class OSedit extends JDialog implements ActionListener
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-		Dimension size = new Dimension(760, 400);
+		Dimension size = new Dimension(760, 420);
 
 		int initYLocation = (scrnsize.height - size.height) / 3;
 		int initXLocation = (scrnsize.width - size.width) / 2;
@@ -108,7 +110,7 @@ public class OSedit extends JDialog implements ActionListener
 		c.fill = GridBagConstraints.BOTH;
 		// c.ipady = 0; // reset to default
 		// c.ipadx = 0; // reset to default
-		// c.weighty = 1.0; // request any extra vertical space
+		c.weighty = 1.0; // request any extra vertical space
 		c.weightx = 1.0; // request any extra horizontal space
 		c.anchor = GridBagConstraints.WEST; // location
 		c.insets = new Insets(10, 10, 5, 10); // padding
@@ -129,7 +131,7 @@ public class OSedit extends JDialog implements ActionListener
 
 		c.gridx = 0;
 		c.gridy = 1;
-		c.weighty = 1.0; // request any extra vertical space
+		c.weighty = 0; // request any extra vertical space
 		c.insets = new Insets(0, 10, 10, 10);
 		this.add(p2, c);
 
@@ -153,6 +155,8 @@ public class OSedit extends JDialog implements ActionListener
 	 */
 	private JPanel createSpesificInfo(OperatingSystem os)
 	{
+		Dimension tfSize = new Dimension(100, 20);
+
 		JPanel pane = new JPanel(new GridBagLayout());
 		GridBagConstraints d = new GridBagConstraints();
 
@@ -261,6 +265,7 @@ public class OSedit extends JDialog implements ActionListener
 		conPanel2.gridy = 0; // row
 		conPanel2.gridx = 0; // column
 
+
 		// The 64 bit check box
 		is64bit = new JCheckBox(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSLabel"));
@@ -271,6 +276,20 @@ public class OSedit extends JDialog implements ActionListener
 		conPanel2.gridx = 0; // column
 		panel2.add(is64bit, conPanel2);
 
+
+		// The version of the OS
+		JLabel versionLabel = new JLabel(PrimeMain.texts
+				.getString("osViewVersionLabel"));
+		conPanel2.gridx = 1; // column
+		panel2.add(versionLabel, conPanel2);
+
+		osVersion.setMaximumSize(tfSize);
+		osVersion.setPreferredSize(tfSize);
+		osVersion.setText(mainOS.getVersion());
+		osVersion.setToolTipText(PrimeMain.texts.getString("osViewVersionTip"));
+
+		conPanel2.gridx = 2; // column
+		panel2.add(osVersion, conPanel2);
 
 		d.weighty = 1.0; // request any extra vertical space
 		d.weightx = 1.0; // request any extra horizontal space
@@ -341,13 +360,17 @@ public class OSedit extends JDialog implements ActionListener
 			mainOS.setFs(GraphicalFunctions.getFSInJList(supportedFS));
 		}
 
+		if ( osVersion.getText() != "" )
+		{
+			mainOS.setVersion(osVersion.getText());
+		}
+
 		mainOS.setEncryptedFileSystem(encryptedFileSystem.isSelected());
 
 		mainOS.setHasGUI(hasGUI.isSelected());
 
 		mainOS.setIs64bit(is64bit.isSelected());
 	}
-
 
 
 	/**
@@ -378,7 +401,7 @@ public class OSedit extends JDialog implements ActionListener
 
 
 		// Checks the standard OS names
-		if ( SystemFunctions.foundInStandardOS(name.getText()) )
+		if ( DesktopSoftwareManagment.foundInStandardOS(name.getText()) )
 		{
 			JOptionPane.showMessageDialog(null, PrimeMain.texts
 					.getString("osSameNameAsAstandardOS"), PrimeMain.texts

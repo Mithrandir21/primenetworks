@@ -88,6 +88,7 @@ public class RAMNewView extends JDialog implements HardwareViewInterface, Action
 	{
 		this.setTitle(PrimeMain.texts.getString("newHWnewRAMlabel"));
 
+		Dimension size = new Dimension(750, 600);
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -95,10 +96,8 @@ public class RAMNewView extends JDialog implements HardwareViewInterface, Action
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-
-		int width = ((int) (scrnsize.getWidth() - (scrnsize.getWidth() / 3)));
-
-		int height = ((int) (scrnsize.getHeight() - (scrnsize.getHeight() / 3)));
+		int initYLocation = (scrnsize.height - size.height) / 2;
+		int initXLocation = (scrnsize.width - size.width) / 2;
 
 
 		mainObj = obj;
@@ -149,9 +148,9 @@ public class RAMNewView extends JDialog implements HardwareViewInterface, Action
 
 
 
-		this.setMinimumSize(new Dimension((int) scrnsize.getWidth() / 3,
-				(int) scrnsize.getHeight() / 3));
-		this.setSize(width, height);
+		this.setLocation(initXLocation, initYLocation);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setVisible(true);
 	}
 
@@ -357,9 +356,8 @@ public class RAMNewView extends JDialog implements HardwareViewInterface, Action
 
 		if ( speed.getSelectedItem().toString() != "" )
 		{
-			RAMobj
-					.setSpeed(Integer.parseInt(type.getSelectedItem()
-							.toString()));
+			RAMobj.setSpeed(Integer
+					.parseInt(speed.getSelectedItem().toString()));
 		}
 		else
 		{

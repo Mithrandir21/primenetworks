@@ -120,9 +120,15 @@ public class CanvasManagment
 	public static WorkareaCanvas findCanvas(Object obj,
 			WorkareaCanvas[] canvases)
 	{
-		return findCanvas(findWidgetObject(obj, canvases).getScene(), canvases);
-	}
+		WidgetObject widObj = findWidgetObject(obj, canvases);
 
+		if ( widObj != null )
+		{
+			return findCanvas(widObj.getScene(), canvases);
+		}
+
+		return null;
+	}
 
 
 	/**
@@ -198,17 +204,21 @@ public class CanvasManagment
 	{
 		for ( int i = 0; i < canvas.length; i++ )
 		{
-			List<Widget> children = canvas[i].getMainLayer().getChildren();
-
-
-			for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
+			if ( canvas[i] != null )
 			{
-				WidgetObject temp = (WidgetObject) iter.next();
+				List<Widget> children = canvas[i].getMainLayer().getChildren();
 
-				if ( temp.getObject().getObjectSerial() == obj
-						.getObjectSerial() )
+
+				for ( Iterator<Widget> iter = children.iterator(); iter
+						.hasNext(); )
 				{
-					return temp;
+					WidgetObject temp = (WidgetObject) iter.next();
+
+					if ( temp.getObject().getObjectSerial() == obj
+							.getObjectSerial() )
+					{
+						return temp;
+					}
 				}
 			}
 		}

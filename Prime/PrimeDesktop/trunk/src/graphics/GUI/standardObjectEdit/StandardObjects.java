@@ -78,8 +78,8 @@ public class StandardObjects extends JDialog
 
 
 		this.setPreferredSize(size);
+		this.setMinimumSize(size);
 		this.setLocation(initXLocation, initYLocation);
-		this.setResizable(false);
 		this.setVisible(true);
 		this.pack();
 

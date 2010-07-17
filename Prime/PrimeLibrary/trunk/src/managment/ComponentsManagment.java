@@ -1323,8 +1323,11 @@ public class ComponentsManagment
 			// Sets the remaining components as the objects components
 			obj.setAllComponents(remainingComponents);
 
-			canvas.setSaved(false);
-			canvas.setChanged(true);
+			if ( canvas != null )
+			{
+				canvas.setSaved(false);
+				canvas.setChanged(true);
+			}
 
 			return true;
 		}
@@ -1374,8 +1377,11 @@ public class ComponentsManagment
 			// Sets the remaining components as the objects components
 			obj.setAllComponents(remainingComponents);
 
-			canvas.setSaved(false);
-			canvas.setChanged(true);
+			if ( canvas != null )
+			{
+				canvas.setSaved(false);
+				canvas.setChanged(true);
+			}
 
 			return true;
 		}
@@ -1824,8 +1830,12 @@ public class ComponentsManagment
 						}
 
 
-						canvas.setSaved(false);
-						canvas.setChanged(true);
+
+						if ( canvas != null )
+						{
+							canvas.setSaved(false);
+							canvas.setChanged(true);
+						}
 					}
 					catch ( ObjectNotFoundInArrayException e )
 					{
@@ -1843,8 +1853,12 @@ public class ComponentsManagment
 				mbObj.setMaxUSBs(USBports);
 				mbObj.setUSBPortsAvailable(mbObj.getMaxUSBs() - takenPorts);
 
-				canvas.setSaved(false);
-				canvas.setChanged(true);
+
+				if ( canvas != null )
+				{
+					canvas.setSaved(false);
+					canvas.setChanged(true);
+				}
 			}
 
 
@@ -2092,8 +2106,11 @@ public class ComponentsManagment
 				.getSupportedInterfaces(mainObj);
 		mainObj.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
-		canvas.setSaved(false);
-		canvas.setChanged(true);
+		if ( canvas != null )
+		{
+			canvas.setSaved(false);
+			canvas.setChanged(true);
+		}
 	}
 
 

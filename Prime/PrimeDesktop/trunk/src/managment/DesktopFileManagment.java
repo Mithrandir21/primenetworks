@@ -332,6 +332,14 @@ public class DesktopFileManagment
 	{
 		File file = new File("./resource/customOS.dat");
 
+		// If there are no custom OSs, the custom file will be deleted.
+		if ( PrimeMain.system_custom_OS.isEmpty() && file != null )
+		{
+			file.delete();
+
+			return true;
+		}
+
 		return saveCustomOS(file);
 	}
 
@@ -1342,6 +1350,12 @@ public class DesktopFileManagment
 
 						OperatingSystem temp;
 
+						if ( !PrimeMain.system_custom_OS.isEmpty() )
+						{
+							// Clears the list
+							PrimeMain.system_custom_OS.clear();
+						}
+
 						// While the temp is not null, hence not EOF
 						while ( (temp = (OperatingSystem) ois.readObject()) != null )
 						{
@@ -1865,6 +1879,74 @@ public class DesktopFileManagment
 
 
 
+
+	/**
+	 * This function exports the Custom {@link OperatingSystem} within the system to a file.
+	 * The file will have a .dat filetype. The user is presented with a choice on which folder
+	 * to save the file in.
+	 */
+	public static boolean exportCustomOS()
+	{
+		if ( !PrimeMain.system_custom_OS.isEmpty() )
+		{
+			// The JFileChoose where the user will save the export
+			JFileChooser fc = new JFileChooser();
+			fc.setAcceptAllFileFilterUsed(false);
+
+			// Adds the filters
+			fc.addChoosableFileFilter(new DATFilter());
+
+			// Sets the selected file to the name of the
+			fc.setSelectedFile(new File("CustomOS"));
+
+			// Shows the File chooser
+			int returnVal = fc.showSaveDialog(null);
+
+			// If the users choices a folder
+			if ( returnVal == JFileChooser.APPROVE_OPTION )
+			{
+				File file = fc.getSelectedFile();
+
+				// Creates the file with the right extension
+				File output = new File(file.getAbsoluteFile() + ".dat");
+
+				// Whether or not to overwrite
+				boolean overwrite = false;
+
+				// Just to make sure
+				if ( output.exists() )
+				{
+					int answer = JOptionPane.showConfirmDialog(null,
+							PrimeMain.texts
+									.getString("overwriteCustomOSFileMsg"),
+							PrimeMain.texts.getString("overwrite"),
+							JOptionPane.YES_NO_OPTION);
+
+					if ( answer == 0 )
+					{
+						overwrite = true;
+					}
+				}
+				else
+				{
+					overwrite = true;
+				}
+
+
+				// The file either does not exist or the user wants to overwrite
+				if ( overwrite )
+				{
+					return saveCustomOS(output);
+				}
+			}
+		}
+
+		return false;
+	}
+
+
+
+
 	/**
 	 * This function imports a Network from a file. The file will have a .dat
 	 * filetype. The user is presented with {@link JFileChooser}.
@@ -1879,7 +1961,7 @@ public class DesktopFileManagment
 		fc.addChoosableFileFilter(new DATFilter());
 
 		// Shows the File chooser
-		int returnVal = fc.showSaveDialog(null);
+		int returnVal = fc.showOpenDialog(null);
 
 		// If the save button is pressed
 		if ( returnVal == JFileChooser.APPROVE_OPTION )
@@ -2036,7 +2118,7 @@ public class DesktopFileManagment
 		fc.addChoosableFileFilter(new DATFilter());
 
 		// Shows the File chooser
-		int returnVal = fc.showSaveDialog(null);
+		int returnVal = fc.showOpenDialog(null);
 
 		// If the save button is pressed
 		if ( returnVal == JFileChooser.APPROVE_OPTION )
@@ -2071,6 +2153,54 @@ public class DesktopFileManagment
 
 
 	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static void importCustomOS()
+	{
+		// The JFileChoose where the user will save the export
+		JFileChooser fc = new JFileChooser();
+		fc.setAcceptAllFileFilterUsed(false);
+
+		// Adds the filter
+		fc.addChoosableFileFilter(new DATFilter());
+
+		// Shows the File chooser
+		int returnVal = fc.showOpenDialog(null);
+
+		// If the save button is pressed
+		if ( returnVal == JFileChooser.APPROVE_OPTION )
+		{
+			// Gets the file written/selected
+			File file = fc.getSelectedFile();
+
+			if ( file.exists() )
+			{
+				// The text shown to the user
+				String text = PrimeMain.texts
+						.getString("verifyCsutomOSListOverwrite")
+						+ "\n"
+						+ PrimeMain.texts.getString("thisCannotBeUndoneMsg");
+
+				// Whether or not the user wants to overwrite the current
+				// standard object list
+				int answer = JOptionPane.showConfirmDialog(null, text,
+						PrimeMain.texts.getString("overwrite"),
+						JOptionPane.YES_NO_OPTION);
+
+				// The user answers yes
+				if ( answer == 0 )
+				{
+					loadCustomOS(file);
+				}
+			}
+		}
+
+	}
+
+
+
+	/**
 	 * This function imports a Standard Objects list from a file. The file will
 	 * have a .obj filetype. The user is presented with {@link JFileChooser}.
 	 */
@@ -2084,7 +2214,7 @@ public class DesktopFileManagment
 		fc.addChoosableFileFilter(new OBJFilter());
 
 		// Shows the File chooser
-		int returnVal = fc.showSaveDialog(null);
+		int returnVal = fc.showOpenDialog(null);
 
 		// If the save button is pressed
 		if ( returnVal == JFileChooser.APPROVE_OPTION )
@@ -2294,7 +2424,6 @@ public class DesktopFileManagment
 			}
 			else
 			{
-				// FIXME - FIX this
 				System.out.println("openObjectsFile - file.isFile()");
 			}
 		}
