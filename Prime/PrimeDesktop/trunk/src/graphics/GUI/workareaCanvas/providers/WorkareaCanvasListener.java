@@ -53,7 +53,6 @@ public class WorkareaCanvasListener extends Adapter
 	}
 
 
-
 	/*
 	 * (non-Javadoc)
 	 * @see

@@ -81,7 +81,7 @@ public class ServersPropertiesView extends AbstractObjectPropertiesView implemen
 		{
 			objectViewed = (Servers) obj;
 
-			nameField.addKeyListener(new SaveKey());
+			// nameField.addKeyListener(new SaveKey());
 
 			d.gridy = 1;
 			this.add(getServersPropertiesView(obj), d);

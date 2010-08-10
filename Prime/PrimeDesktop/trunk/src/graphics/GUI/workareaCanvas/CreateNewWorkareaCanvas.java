@@ -396,13 +396,15 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 												.getText()) )
 								{
 									boolean created = DesktopFileManagment
-											.newWorkareaCanvas(nameField
-													.getText(), netmaskCombo
-													.getSelectedItem()
-													.toString(), rangeFromField
-													.getText(), rangeToField
-													.getText(), descTextarea
-													.getText());
+											.newWorkareaCanvas(
+													PrimeMain.glassPane,
+													nameField.getText(),
+													netmaskCombo
+															.getSelectedItem()
+															.toString(),
+													rangeFromField.getText(),
+													rangeToField.getText(),
+													descTextarea.getText());
 
 									if ( created )
 									{
@@ -456,8 +458,8 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 				}
 				else
 				{
-					boolean created = DesktopFileManagment
-							.newWorkareaCanvas(nameField.getText());
+					boolean created = DesktopFileManagment.newWorkareaCanvas(
+							PrimeMain.glassPane, nameField.getText());
 
 					if ( created )
 					{

@@ -21,6 +21,7 @@ package graphics.GUI.workareaCanvas;
 import exceptions.CanvasNotFound;
 import graphics.ImageLocator;
 import graphics.PrimeMain;
+import graphics.GUI.ghostGlass.GhostGlassPane;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -114,9 +115,11 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 	 *            The canvas that will be placed inside the new
 	 *            WorkareaSceneScroll.
 	 */
-	public void createNewCanvasTab(WorkareaCanvas canvas)
+	public void createNewCanvasTab(GhostGlassPane ghostGlass,
+			WorkareaCanvas canvas)
 	{
-		WorkareaSceneScroll canvasScroll = new WorkareaSceneScroll(canvas);
+		WorkareaSceneScroll canvasScroll = new WorkareaSceneScroll(ghostGlass,
+				canvas);
 
 		this.createNewCanvasTab(canvasScroll, -1);
 

@@ -44,11 +44,10 @@ public class cleanup
 	 */
 	public static Object[] cleanObjectArray(Object[] array)
 	{
-
 		// Temporary counter for the function
 		int tempCounter = 0;
 
-		// Makes an array with given lenght
+		// Makes an array with given length
 		Object[] Tempresults = new Object[array.length];
 
 		// Goes through all of the found components array and moves those that
@@ -83,11 +82,10 @@ public class cleanup
 	 */
 	public static WorkareaCanvas[] cleanObjectArray(WorkareaCanvas[] array)
 	{
-
 		// Temporary counter for the function
 		int tempCounter = 0;
 
-		// Makes an array with given lenght
+		// Makes an array with given length
 		WorkareaCanvas[] Tempresults = new WorkareaCanvas[array.length];
 
 		// Goes through all of the found components array and moves those that
@@ -123,7 +121,6 @@ public class cleanup
 	 */
 	public static Software[] cleanObjectArray(Software[] array)
 	{
-
 		// Temporary counter for the function
 		int tempCounter = 0;
 
@@ -163,7 +160,6 @@ public class cleanup
 	 */
 	public static OperatingSystem[] cleanObjectArray(OperatingSystem[] array)
 	{
-
 		// Temporary counter for the function
 		int tempCounter = 0;
 
@@ -204,11 +200,10 @@ public class cleanup
 	 */
 	public static String[] cleanObjectArray(String[] array)
 	{
-
 		// Temporary counter for the function
 		int tempCounter = 0;
 
-		// Makes an array with given lenght
+		// Makes an array with given length
 		String[] Tempresults = new String[array.length];
 
 		// Goes through all of the found components array and moves those that
@@ -246,7 +241,6 @@ public class cleanup
 	 */
 	public static Connection[] cleanObjectArray(Connection[] array)
 	{
-
 		// Temporary counter for the function
 		int counter = 0;
 
@@ -283,7 +277,6 @@ public class cleanup
 	 */
 	public static NetworkConnection[] cleanObjectArray(NetworkConnection[] array)
 	{
-
 		// Temporary counter for the function
 		int counter = 0;
 
@@ -321,7 +314,6 @@ public class cleanup
 	 */
 	public static DeviceConnection[] cleanObjectArray(DeviceConnection[] array)
 	{
-
 		// Temporary counter for the function
 		int counter = 0;
 
@@ -360,7 +352,6 @@ public class cleanup
 	public static InternalConnection[] cleanObjectArray(
 			InternalConnection[] array)
 	{
-
 		// Temporary counter for the function
 		int counter = 0;
 
@@ -398,7 +389,6 @@ public class cleanup
 	 */
 	public static WidgetRoom[] cleanObjectArray(WidgetRoom[] array)
 	{
-
 		// Temporary counter for the function
 		int counter = 0;
 
@@ -435,7 +425,6 @@ public class cleanup
 	 */
 	public static Room[] cleanObjectArray(Room[] array)
 	{
-
 		// Temporary counter for the function
 		int counter = 0;
 
@@ -474,7 +463,6 @@ public class cleanup
 	 */
 	public static boolean[] cleanObjectArray(boolean[] array, boolean given)
 	{
-
 		// Temporary counter for the function
 		int counterGiven = 0;
 

@@ -347,7 +347,7 @@ public class ObjectSelection extends JPanel
 		if ( transferable )
 		{
 			// Sets up the WidgetIcon
-			GraphicalFunctions.widgetIconSetup(iconButton);
+			GraphicalFunctions.widgetIconSetup(iconButton, Icon);
 		}
 
 		iconButton.setSize(Icon.getIconWidth(), Icon.getIconHeight());

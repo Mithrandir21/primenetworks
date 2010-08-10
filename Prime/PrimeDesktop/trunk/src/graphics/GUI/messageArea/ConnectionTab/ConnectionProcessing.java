@@ -169,7 +169,7 @@ public class ConnectionProcessing
 	 * @return The data container with the new message for the user in addition
 	 *         to the possible old messages.
 	 */
-	private static String[][] addError(String[][] data, String[] info)
+	private static String[][] addMessage(String[][] data, String[] info)
 	{
 		for ( int i = 0; i < data.length; i++ )
 		{
@@ -193,7 +193,7 @@ public class ConnectionProcessing
 		 */
 		data = ArrayManagment.add5ArraySpaces(data);
 
-		return addError(data, info);
+		return addMessage(data, info);
 	}
 
 

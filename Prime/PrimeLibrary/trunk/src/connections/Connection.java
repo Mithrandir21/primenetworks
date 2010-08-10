@@ -84,7 +84,6 @@ public abstract class Connection extends Object implements Serializable
 	 */
 	public Object getObject1()
 	{
-
 		return object1;
 	}
 
@@ -94,7 +93,6 @@ public abstract class Connection extends Object implements Serializable
 	 */
 	public Object getObject2()
 	{
-
 		return object2;
 	}
 
@@ -104,7 +102,6 @@ public abstract class Connection extends Object implements Serializable
 	 */
 	public boolean getStatus()
 	{
-
 		return status;
 	}
 
@@ -126,7 +123,6 @@ public abstract class Connection extends Object implements Serializable
 	 */
 	public void setObject1(Object object1)
 	{
-
 		this.object1 = object1;
 	}
 
@@ -136,7 +132,6 @@ public abstract class Connection extends Object implements Serializable
 	 */
 	public void setObject2(Object object2)
 	{
-
 		this.object2 = object2;
 	}
 
@@ -157,7 +152,6 @@ public abstract class Connection extends Object implements Serializable
 	 */
 	public int getConnectionRate()
 	{
-
 		return connectionRate;
 	}
 
@@ -173,11 +167,10 @@ public abstract class Connection extends Object implements Serializable
 
 
 	/**
-	 * Sets the type of connection between the two objects
+	 * Sets the type of connection between the two objects.
 	 */
 	public void setConnection(String connection)
 	{
-
 		this.connection = connection;
 	}
 

@@ -25,6 +25,7 @@ import graphics.GUI.CustomFileFilters.DATFilter;
 import graphics.GUI.CustomFileFilters.JPGFilter;
 import graphics.GUI.CustomFileFilters.OBJFilter;
 import graphics.GUI.CustomFileFilters.PNGFilter;
+import graphics.GUI.ghostGlass.GhostGlassPane;
 import graphics.GUI.selectArea.PrimeJTree.FileTreeNode;
 import graphics.GUI.workareaCanvas.WorkareaSceneScroll;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
@@ -873,9 +874,10 @@ public class DesktopFileManagment
 	 * 
 	 * @param nameOfCanvas
 	 */
-	public static boolean newWorkareaCanvas(String nameOfCanvas)
+	public static boolean newWorkareaCanvas(GhostGlassPane ghostGlass,
+			String nameOfCanvas)
 	{
-		return newCanvas(nameOfCanvas, null, null, null, null);
+		return newCanvas(ghostGlass, nameOfCanvas, null, null, null, null);
 	}
 
 
@@ -886,10 +888,12 @@ public class DesktopFileManagment
 	 * 
 	 * @param nameOfCanvas
 	 */
-	public static boolean newWorkareaCanvas(String nameOfCanvas,
-			String netmask, String IPfrom, String IPto, String networkDesc)
+	public static boolean newWorkareaCanvas(GhostGlassPane ghostGlass,
+			String nameOfCanvas, String netmask, String IPfrom, String IPto,
+			String networkDesc)
 	{
-		return newCanvas(nameOfCanvas, netmask, IPfrom, IPto, networkDesc);
+		return newCanvas(ghostGlass, nameOfCanvas, netmask, IPfrom, IPto,
+				networkDesc);
 	}
 
 
@@ -904,8 +908,9 @@ public class DesktopFileManagment
 	 *            The name that the WorkareaCanvas will have, after being
 	 *            checked.
 	 */
-	private static boolean newCanvas(String nameOfCanvas, String netmask,
-			String IPfrom, String IPto, String networkDesc)
+	private static boolean newCanvas(GhostGlassPane ghostGlass,
+			String nameOfCanvas, String netmask, String IPfrom, String IPto,
+			String networkDesc)
 	{
 
 		// IF the user has canceled
@@ -918,7 +923,7 @@ public class DesktopFileManagment
 				if ( !DesktopCanvasManagment.canvasExists(nameOfCanvas) )
 				{
 					WorkareaCanvas canvas = new WorkareaCanvas(nameOfCanvas);
-					ActionsAdder.makeWorkareaCanvasReady(canvas);
+					// ActionsAdder.makeWorkareaCanvasReady(ghostGlass, canvas);
 
 					if ( netmask != null && IPfrom != null && IPto != null )
 					{
@@ -961,7 +966,7 @@ public class DesktopFileManagment
 					// First creates the WorkareaSceneScroll object that will
 					// hold
 					WorkareaSceneScroll newScroll = new WorkareaSceneScroll(
-							canvas);
+							ghostGlass, canvas);
 
 					// Then we add the JScrollPane to the Screen
 					PrimeMain.workTab.createNewCanvasTab(newScroll, -1);
@@ -1011,7 +1016,7 @@ public class DesktopFileManagment
 	{
 		WorkareaCanvas canvas = openCanvasFile(file);
 
-		PrimeMain.getWorkarea().createNewCanvasTab(canvas);
+		PrimeMain.getWorkarea().createNewCanvasTab(PrimeMain.glassPane, canvas);
 
 		canvas.setSaved(true);
 	}
@@ -1033,7 +1038,7 @@ public class DesktopFileManagment
 
 		WorkareaCanvas canvas = openCanvasFile(file);
 
-		PrimeMain.getWorkarea().createNewCanvasTab(canvas);
+		PrimeMain.getWorkarea().createNewCanvasTab(PrimeMain.glassPane, canvas);
 
 		canvas.setSaved(true);
 	}
@@ -2044,7 +2049,9 @@ public class DesktopFileManagment
 
 										// Adds the canvas to the program
 										PrimeMain.getWorkarea()
-												.createNewCanvasTab(newCanvas);
+												.createNewCanvasTab(
+														PrimeMain.glassPane,
+														newCanvas);
 
 										// Saves the canvas into the program
 										saveWorkareaCanvas(newCanvas);
@@ -2091,7 +2098,8 @@ public class DesktopFileManagment
 					WorkareaCanvas newCanvas = openCanvasFile(file);
 
 					// Adds the canvas to the program
-					PrimeMain.getWorkarea().createNewCanvasTab(newCanvas);
+					PrimeMain.getWorkarea().createNewCanvasTab(
+							PrimeMain.glassPane, newCanvas);
 
 					// Saves the canvas into the program
 					saveWorkareaCanvas(newCanvas);

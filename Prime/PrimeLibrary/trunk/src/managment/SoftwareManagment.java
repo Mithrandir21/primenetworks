@@ -431,6 +431,7 @@ public class SoftwareManagment
 				return OperatingSystems;
 			}
 		}
+
 		return null;
 	}
 

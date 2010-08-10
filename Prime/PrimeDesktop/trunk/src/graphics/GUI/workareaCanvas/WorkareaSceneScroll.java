@@ -18,6 +18,7 @@
 package graphics.GUI.workareaCanvas;
 
 
+import graphics.GUI.ghostGlass.GhostGlassPane;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
 import javax.swing.JScrollPane;
@@ -41,13 +42,13 @@ public class WorkareaSceneScroll extends JScrollPane
 	 * @param canvas
 	 *            The WorkareaCanvas that is to be placed inside the tab.
 	 */
-	public WorkareaSceneScroll(WorkareaCanvas canvas)
+	public WorkareaSceneScroll(GhostGlassPane ghostGlass, WorkareaCanvas canvas)
 	{
 		setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
 		setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
 
 		this.canvas = canvas;
-		ActionsAdder.makeWorkareaCanvasReady(canvas);
+		ActionsAdder.makeWorkareaCanvasReady(ghostGlass, canvas);
 		createNewCanvas(canvas.getCanvasName());
 	}
 
@@ -62,13 +63,14 @@ public class WorkareaSceneScroll extends JScrollPane
 	 * @param canvas
 	 *            The WorkareaCanvas that is to be placed inside the tab.
 	 */
-	public WorkareaSceneScroll(String name, WorkareaCanvas canvas)
+	public WorkareaSceneScroll(String name, GhostGlassPane ghostGlass,
+			WorkareaCanvas canvas)
 	{
 		setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_ALWAYS);
 		setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
 
 		this.canvas = canvas;
-		ActionsAdder.makeWorkareaCanvasReady(canvas);
+		ActionsAdder.makeWorkareaCanvasReady(ghostGlass, canvas);
 		createNewCanvas(name);
 	}
 

@@ -20,6 +20,7 @@ package graphics;
 
 import graphics.GUI.customNetworks.NetworkRulesFrame;
 import graphics.GUI.customOSviews.osSelectionOverView;
+import graphics.GUI.ghostGlass.GhostGlassPane;
 import graphics.GUI.menues.GenericPrimeMenuBar;
 import graphics.GUI.menues.GenericPrimeToolbar;
 import graphics.GUI.messageArea.MessageTabbed;
@@ -104,7 +105,7 @@ public class PrimeMain extends JFrame
 
 	// The locale texts
 	public static ResourceBundle texts = ResourceBundle.getBundle(
-			"SystemTexts", new Locale("no_NO"));
+			"SystemTexts", new Locale("en"));
 
 	// Variables to place the height and width of the main screen.
 	public static int width, height;
@@ -185,12 +186,48 @@ public class PrimeMain extends JFrame
 	// The standard rules object
 	public static NetworkRules standardRules = null;
 
+	// The GhostGlass that will show the moving device(for D'n'D).
+	public static GhostGlassPane glassPane = new GhostGlassPane();
+
 
 
 	// Constructor
 	public PrimeMain()
 	{
 		super("Prime");
+
+		// try
+		// {
+		// // UIManager
+		// // .setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+		// // UIManager.setLookAndFeel("javax.swing.plaf.multi.MultiLookAndFeel");
+		// // UIManager.setLookAndFeel("javax.swing.plaf.synth.SynthLookAndFeel");
+		// // UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+		// // UIManager
+		// // .setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		// // UIManager
+		// // .setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+		// }
+		// catch ( ClassNotFoundException e )
+		// {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// catch ( InstantiationException e )
+		// {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// catch ( IllegalAccessException e )
+		// {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// catch ( UnsupportedLookAndFeelException e )
+		// {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 
 		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -433,6 +470,10 @@ public class PrimeMain extends JFrame
 
 		// Adding everything to the contentpane of the JFrame
 		c.add(multiSplitPane, BorderLayout.CENTER);
+
+
+		// GhostGlass
+		this.setGlassPane(glassPane);
 
 
 

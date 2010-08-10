@@ -22,10 +22,10 @@ import graphics.ImageLocator;
 import graphics.PrimeMain;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JMenuBar;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 
@@ -56,7 +56,7 @@ import actions.systemActions.ActionUpdate;
  * @author Bahram Malaekeh
  */
 @SuppressWarnings("serial")
-public class GenericPrimeToolbar extends JMenuBar
+public class GenericPrimeToolbar extends JToolBar
 {
 	// Temp imageIcon that will hold the icon of the created button.
 	private ImageIcon tempIcon = null;
@@ -67,29 +67,32 @@ public class GenericPrimeToolbar extends JMenuBar
 	 */
 	public GenericPrimeToolbar()
 	{
+		this.setFloatable(false);
+
 		initFileToolBar();
 
-		this.add(new JToolBar.Separator());
+		Dimension size = new Dimension(5, 5);
+
+		this.add(new JToolBar.Separator(size), BorderLayout.WEST);
 
 		initEditToolBar();
 
-		this.add(new JToolBar.Separator());
+		this.add(new JToolBar.Separator(size), BorderLayout.WEST);
 
 		initStepsActions();
 
-		this.add(new JToolBar.Separator());
+		this.add(new JToolBar.Separator(size), BorderLayout.WEST);
 
 		initCanvasActions();
 
-		this.add(new JToolBar.Separator());
+		this.add(new JToolBar.Separator(size), BorderLayout.WEST);
 
 		initNetworkAction();
 
-		this.add(new JToolBar.Separator());
+		this.add(new JToolBar.Separator(size), BorderLayout.WEST);
 
 		initEditingAction();
 	}
-
 
 
 	private JToolBar fileToolBar, editToolBar, stepsToolBar, networkToolBar,

@@ -42,7 +42,6 @@ import exceptions.ObjectNotFoundException;
  * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class RulesManagment
 {

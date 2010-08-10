@@ -105,7 +105,8 @@ public class SceneConnectProvider implements ConnectProvider
 		if ( sourceWidget != targetWidget
 				&& !(targetWidget instanceof LabelWidget)
 				&& !(targetWidget instanceof LayerWidget)
-				&& (targetWidget instanceof WidgetObject || isChildOfThisWidget(targetWidget)) )
+				&& (targetWidget instanceof WidgetObject || isChildOfThisWidget(targetWidget))
+				&& !(targetWidget.getParentWidget() instanceof LayerWidget) )
 		{
 			return ConnectorState.ACCEPT;
 		}

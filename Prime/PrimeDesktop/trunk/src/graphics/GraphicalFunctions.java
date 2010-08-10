@@ -19,6 +19,7 @@ package graphics;
 
 
 import graphics.GUI.SpringUtilities;
+import graphics.GUI.ghostGlass.GhostMotionAdapter;
 import graphics.GUI.selectArea.ImageSelection;
 import graphics.GUI.selectArea.TransferWidgetIconListener;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuRoom.JMenuWidgetRoom;
@@ -677,9 +678,12 @@ public class GraphicalFunctions
 	 * takes care of the drag and drop functionality. It also adds an
 	 * mouseListener to the JLabel.
 	 */
-	public static void widgetIconSetup(WidgetIcon widget)
+	public static void widgetIconSetup(WidgetIcon widget, ImageIcon icon)
 	{
-		widget.addMouseListener(new TransferWidgetIconListener());
+		widget.addMouseListener(new TransferWidgetIconListener(
+				PrimeMain.glassPane, widget.getText(), icon));
+		widget.addMouseMotionListener(new GhostMotionAdapter(
+				PrimeMain.glassPane));
 		widget.setTransferHandler(new ImageSelection());
 	}
 

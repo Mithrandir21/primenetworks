@@ -18,6 +18,7 @@
 package graphics.GUI.workareaCanvas.providers;
 
 
+import graphics.GUI.ghostGlass.GhostGlassPane;
 import graphics.GUI.workareaCanvas.CreateProvider;
 import graphics.GUI.workareaCanvas.RectangularAreaSelection;
 import graphics.GUI.workareaCanvas.WorkareaTargetListener;
@@ -59,7 +60,8 @@ public class ActionsAdder
 	 * 
 	 * @param canvas
 	 */
-	public static void makeWorkareaCanvasReady(WorkareaCanvas canvas)
+	public static void makeWorkareaCanvasReady(GhostGlassPane ghostGlass,
+			WorkareaCanvas canvas)
 	{
 		// Adds the drag and drop action to the WorkareaCanvas
 		canvas.setDropTarget(new DropTarget(canvas.getMyView(),
@@ -91,7 +93,6 @@ public class ActionsAdder
 	}
 
 
-
 	/**
 	 * Javadoc-TODO - Description
 	 */
@@ -110,13 +111,13 @@ public class ActionsAdder
 				ActionFactory.createSelectAction(new CreateProvider()));
 
 
-		// Creates and add the move without align action
-		newObject.getActions().addAction(ActionFactory.createMoveAction());
+		// // Creates and add the move without align action
+		// newObject.getActions().addAction(ActionFactory.createMoveAction());
 
 		// Creates and add the move with align action
-		// newObject.getActions().addAction(
-		// ActionFactory.createAlignWithMoveAction(canvas.getMainLayer(),
-		// canvas.getInteractionLayer(), null));
+		newObject.getActions().addAction(
+				ActionFactory.createAlignWithMoveAction(canvas.getMainLayer(),
+						canvas.getInteractionLayer(), null));
 
 		// PrimeAlignWithMove pa = new PrimeAlignWithMove(
 		// new PrimeLayerAlignCollector(canvas.getMainLayer()), canvas

@@ -56,7 +56,6 @@ public class checkLogic
 		Pattern test = Pattern.compile(pat);
 
 		return test.matcher(text).matches();
-
 	}
 
 
@@ -117,25 +116,38 @@ public class checkLogic
 
 
 	/**
-	 * TODO - Description
+	 * This function determines whether the given string can be parsed into a {@link Integer}.
+	 * 
+	 * @return False is the text is either null or empty. True is the text can be parsed correctly.
 	 */
 	public static boolean containsOnlyNumbers(String text)
 	{
-		String pat = "([\\d]+)";
+		if ( text == null || text.equals("") || text == "" )
+		{
+			return false;
+		}
 
-		Pattern test = Pattern.compile(pat);
-
-		return test.matcher(text).matches();
+		try
+		{
+			Integer.parseInt(text);
+			return true;
+		}
+		catch ( NumberFormatException e )
+		{
+			return false;
+		}
 	}
 
 
 
 	/**
-	 * TODO - Description
+	 * This function determines whether the given string can be parsed into a {@link Double}.
+	 * 
+	 * @return False is the text is either null or empty. True is the text can be parsed correctly.
 	 */
 	public static boolean containsDouble(String text)
 	{
-		if ( text.equals("") && text == "" )
+		if ( text == null || text.equals("") || text == "" )
 		{
 			return false;
 		}

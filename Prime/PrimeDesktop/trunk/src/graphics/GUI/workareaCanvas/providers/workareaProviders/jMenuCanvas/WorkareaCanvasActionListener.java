@@ -30,7 +30,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 
 import managment.CreateObjects;
-
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
 import objects.clientObjects.ThinClient;
@@ -284,7 +283,7 @@ public class WorkareaCanvasActionListener implements ActionListener
 						objectType);
 
 				// Sets up the WidgetIcon
-				GraphicalFunctions.widgetIconSetup(newObjectIcon);
+				GraphicalFunctions.widgetIconSetup(newObjectIcon, objectIcon);
 
 
 				// Creates a new Object that will be added to the WidgetObject

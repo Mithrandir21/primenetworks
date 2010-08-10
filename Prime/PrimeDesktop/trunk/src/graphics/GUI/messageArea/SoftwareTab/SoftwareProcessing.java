@@ -112,7 +112,7 @@ public class SoftwareProcessing
 					PrimeMain.texts.getString("operatingSystem"),
 					PrimeMain.texts.getString("noOScriticalMsg"),
 					PrimeMain.texts.getString("softwareError") };
-			data = addError(data, info);
+			data = addMessage(data, info);
 		}
 
 
@@ -123,7 +123,7 @@ public class SoftwareProcessing
 					PrimeMain.texts.getString("antivirus"),
 					PrimeMain.texts.getString("moreAVcriticalMsg"),
 					PrimeMain.texts.getString("softwareError") };
-			data = addError(data, info);
+			data = addMessage(data, info);
 		}
 
 
@@ -134,7 +134,7 @@ public class SoftwareProcessing
 					PrimeMain.texts.getString("firewall"),
 					PrimeMain.texts.getString("moreFWcriticalMsg"),
 					PrimeMain.texts.getString("softwareError") };
-			data = addError(data, info);
+			data = addMessage(data, info);
 		}
 
 
@@ -167,7 +167,7 @@ public class SoftwareProcessing
 					PrimeMain.texts.getString("operatingSystem"),
 					PrimeMain.texts.getString("moreOSwarningMsg"),
 					PrimeMain.texts.getString("softwareWarning") };
-			data = addError(data, info);
+			data = addMessage(data, info);
 		}
 
 
@@ -210,7 +210,7 @@ public class SoftwareProcessing
 	 * @return The data container with the new message for the user in addition
 	 *         to the possible old messages.
 	 */
-	private static String[][] addError(String[][] data, String[] info)
+	private static String[][] addMessage(String[][] data, String[] info)
 	{
 		for ( int i = 0; i < data.length; i++ )
 		{
@@ -233,7 +233,7 @@ public class SoftwareProcessing
 		 */
 		data = ArrayManagment.add5ArraySpaces(data);
 
-		return addError(data, info);
+		return addMessage(data, info);
 	}
 
 

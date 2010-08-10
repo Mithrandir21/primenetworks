@@ -28,7 +28,8 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses( { ObjectCreationTests.class,
-		ObjectSManipulationsTests.class })
+		ObjectSManipulationsTests.class, ArrayManagmentTests.class,
+		CanvasManagementTests.class })
 public class AllTests
 {
 }

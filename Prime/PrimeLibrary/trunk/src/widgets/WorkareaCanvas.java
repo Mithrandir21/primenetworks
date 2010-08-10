@@ -71,8 +71,7 @@ public class WorkareaCanvas extends JPanel
 	// The individual serialnumber of the workareacanvas
 	private double serial = 0;
 
-	// The transferHandler that will take care of the drag and drop feature for
-	// the canvas
+	// The transferHandler that will take care of the drag and drop feature for the canvas
 	private TransferHandler TransHandler = new WidgetTransferHandler();
 
 	private DropTarget dt = null;
@@ -172,13 +171,8 @@ public class WorkareaCanvas extends JPanel
 		// Creating the actual view
 		myView.setTransferHandler(TransHandler);
 
-		// scene.getActions().addAction(ActionFactory.createSelectAction(new
-		// CreateProvider()));
-		// this.addMouseListener(new WorkareaCanvasListener(this));
 
-
-		// This is the main layer of the scene where the WidgetsObjects are
-		// placed.
+		// This is the main layer of the scene where the WidgetsObjects are placed.
 		mainLayer = new LayerWidget(scene);
 		scene.addChild(mainLayer);
 
@@ -190,8 +184,7 @@ public class WorkareaCanvas extends JPanel
 		interactionLayer = new LayerWidget(scene);
 		scene.addChild(interactionLayer);
 
-		// This is the connection layer where all the connections between the
-		// objects are shown.
+		// This is the connection layer where all the connections between the objects are shown.
 		connectionLayer = new LayerWidget(scene);
 		scene.addChild(connectionLayer);
 

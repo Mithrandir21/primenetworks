@@ -18,8 +18,12 @@
 package logistical;
 
 
+import java.awt.event.ActionEvent;
+
+
 /**
- * TODO - Description NEEDED!
+ * This interface is meant to be used together with a an {@link ActionEvent} to allow for a {@link Boolean} to be passed along
+ * with the performAction method. A boolean determining if the action should be undoable.
  * 
  * @author Bahram Malaekeh
  */

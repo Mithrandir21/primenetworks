@@ -1847,16 +1847,17 @@ public class ConnectionManagment
 
 
 	/**
-	 * TODO - Description
+	 * This function attempts to remove the connection between the given {@link Object} and
+	 * the given {@link InternalNetworksCard}. This connection must be inside the given {@link WorkareaCanvas} to be removed.
+	 * 
+	 * Does nothing is any of the given parameters are null.
 	 * 
 	 * @throws ConnectionDoesNotExist
-	 * 
 	 */
 	public static void removeConnectionFromInternalNIC(WorkareaCanvas canvas,
 			Object obj, InternalNetworksCard nic) throws ConnectionDoesNotExist
 	{
-		// If the given object is not empty
-		if ( nic != null )
+		if ( canvas != null && obj != null && nic != null )
 		{
 			// If the internal nic is actually connected to an object
 			if ( nic.getConnectedObject() != null )
@@ -1870,16 +1871,17 @@ public class ConnectionManagment
 
 
 	/**
-	 * TODO - Description
+	 * This function attempts to remove the connection between the given {@link Object} and
+	 * the given {@link ExternalNetworksCard}. This connection must be inside the given {@link WorkareaCanvas} to be removed.
+	 * 
+	 * Does nothing is any of the given parameters are null.
 	 * 
 	 * @throws ConnectionDoesNotExist
-	 * 
 	 */
 	public static void removeConnectionFromExternalNIC(WorkareaCanvas canvas,
 			Object obj, ExternalNetworksCard nic) throws ConnectionDoesNotExist
 	{
-		// If the given object is not empty
-		if ( nic != null )
+		if ( canvas != null && obj != null && nic != null )
 		{
 			// If the internal nic is actually connected to an object
 			if ( nic.getConnectedObject() != null )

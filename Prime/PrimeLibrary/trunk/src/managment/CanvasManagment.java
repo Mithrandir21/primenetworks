@@ -56,13 +56,16 @@ public class CanvasManagment
 	public static WorkareaCanvas findCanvas(String canvasName,
 			WorkareaCanvas[] canvases)
 	{
-		for ( int i = 0; i < canvases.length; i++ )
+		if ( canvases != null )
 		{
-			if ( canvases[i] != null )
+			for ( int i = 0; i < canvases.length; i++ )
 			{
-				if ( canvases[i].getCanvasName().equals(canvasName) )
+				if ( canvases[i] != null )
 				{
-					return canvases[i];
+					if ( canvases[i].getCanvasName().equals(canvasName) )
+					{
+						return canvases[i];
+					}
 				}
 			}
 		}
@@ -88,13 +91,16 @@ public class CanvasManagment
 	public static WorkareaCanvas findCanvas(Scene scene,
 			WorkareaCanvas[] canvases)
 	{
-		for ( int i = 0; i < canvases.length; i++ )
+		if ( canvases != null )
 		{
-			if ( canvases[i] != null )
+			for ( int i = 0; i < canvases.length; i++ )
 			{
-				if ( canvases[i].getScene().equals(scene) )
+				if ( canvases[i] != null )
 				{
-					return canvases[i];
+					if ( canvases[i].getScene().equals(scene) )
+					{
+						return canvases[i];
+					}
 				}
 			}
 		}
@@ -120,11 +126,14 @@ public class CanvasManagment
 	public static WorkareaCanvas findCanvas(Object obj,
 			WorkareaCanvas[] canvases)
 	{
-		WidgetObject widObj = findWidgetObject(obj, canvases);
-
-		if ( widObj != null )
+		if ( canvases != null && obj != null )
 		{
-			return findCanvas(widObj.getScene(), canvases);
+			WidgetObject widObj = findWidgetObject(obj, canvases);
+
+			if ( widObj != null )
+			{
+				return findCanvas(widObj.getScene(), canvases);
+			}
 		}
 
 		return null;
@@ -142,16 +151,20 @@ public class CanvasManagment
 	public static WidgetObject findWidgetObject(Object obj,
 			WorkareaCanvas canvas)
 	{
-		List<Widget> children = canvas.getMainLayer().getChildren();
-
-
-		for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
+		if ( obj != null && canvas != null )
 		{
-			WidgetObject temp = (WidgetObject) iter.next();
+			List<Widget> children = canvas.getMainLayer().getChildren();
 
-			if ( temp.getObject().getObjectSerial() == obj.getObjectSerial() )
+
+			for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
 			{
-				return temp;
+				WidgetObject temp = (WidgetObject) iter.next();
+
+				if ( temp.getObject().getObjectSerial() == obj
+						.getObjectSerial() )
+				{
+					return temp;
+				}
 			}
 		}
 
@@ -171,16 +184,19 @@ public class CanvasManagment
 	public static WidgetObject findWidgetObjectByObjectName(String name,
 			WorkareaCanvas canvas)
 	{
-		List<Widget> children = canvas.getMainLayer().getChildren();
-
-
-		for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
+		if ( name.length() > 0 && canvas != null )
 		{
-			WidgetObject temp = (WidgetObject) iter.next();
+			List<Widget> children = canvas.getMainLayer().getChildren();
 
-			if ( temp.getObject().getObjectName().equalsIgnoreCase(name) )
+
+			for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
 			{
-				return temp;
+				WidgetObject temp = (WidgetObject) iter.next();
+
+				if ( temp.getObject().getObjectName().equalsIgnoreCase(name) )
+				{
+					return temp;
+				}
 			}
 		}
 
@@ -194,30 +210,34 @@ public class CanvasManagment
 	 * to the given object. This method checks an array of canvases.
 	 * 
 	 * @param obj
-	 * @param canvas
+	 * @param canvaser
 	 *            The {@link WorkareaCanvas WorkareaCanvases} that are to be
 	 *            searched.
 	 * @return The WidgetObject that contains the given object.
 	 */
 	public static WidgetObject findWidgetObject(Object obj,
-			WorkareaCanvas[] canvas)
+			WorkareaCanvas[] canvaser)
 	{
-		for ( int i = 0; i < canvas.length; i++ )
+		if ( obj != null && canvaser != null )
 		{
-			if ( canvas[i] != null )
+			for ( int i = 0; i < canvaser.length; i++ )
 			{
-				List<Widget> children = canvas[i].getMainLayer().getChildren();
-
-
-				for ( Iterator<Widget> iter = children.iterator(); iter
-						.hasNext(); )
+				if ( canvaser[i] != null )
 				{
-					WidgetObject temp = (WidgetObject) iter.next();
+					List<Widget> children = canvaser[i].getMainLayer()
+							.getChildren();
 
-					if ( temp.getObject().getObjectSerial() == obj
-							.getObjectSerial() )
+
+					for ( Iterator<Widget> iter = children.iterator(); iter
+							.hasNext(); )
 					{
-						return temp;
+						WidgetObject temp = (WidgetObject) iter.next();
+
+						if ( temp.getObject().getObjectSerial() == obj
+								.getObjectSerial() )
+						{
+							return temp;
+						}
 					}
 				}
 			}
@@ -230,7 +250,7 @@ public class CanvasManagment
 
 
 	/**
-	 * Finds a WorkareaCanvas in the systems canvas array.
+	 * Finds a WorkareaCanvas in the systems canvas array. Compares {@link WorkareaCanvas} serial numbers.
 	 * 
 	 * @param canvas
 	 *            The searched for WorkareaCanvas.
@@ -242,14 +262,16 @@ public class CanvasManagment
 	public static boolean canvasExists(WorkareaCanvas canvas,
 			WorkareaCanvas[] canvases)
 	{
-		for ( int i = 0; i < canvases.length; i++ )
+		if ( canvas != null && canvases != null )
 		{
-			if ( canvases[i] != null )
+			for ( int i = 0; i < canvases.length; i++ )
 			{
-				if ( canvases[i].getCanvasName().equalsIgnoreCase(
-						canvas.getCanvasName()) )
+				if ( canvases[i] != null )
 				{
-					return true;
+					if ( canvases[i].getSerial() == canvas.getSerial() )
+					{
+						return true;
+					}
 				}
 			}
 		}
@@ -272,13 +294,17 @@ public class CanvasManagment
 	public static boolean canvasExists(String canvasName,
 			WorkareaCanvas[] canvases)
 	{
-		for ( int i = 0; i < canvases.length; i++ )
+		if ( canvasName.length() > 0 && canvases != null )
 		{
-			if ( canvases[i] != null )
+			for ( int i = 0; i < canvases.length; i++ )
 			{
-				if ( canvases[i].getCanvasName().equalsIgnoreCase(canvasName) )
+				if ( canvases[i] != null )
 				{
-					return true;
+					if ( canvases[i].getCanvasName().equalsIgnoreCase(
+							canvasName) )
+					{
+						return true;
+					}
 				}
 			}
 		}
@@ -300,35 +326,41 @@ public class CanvasManagment
 	 *            The WorkareaCanvases to be searched.
 	 * @return The WorkareaCanvases that have changed, but not been saved. Or a
 	 *         null pointer if no WorkareaCanvases are found.
+	 *         NULL if the given array is null.
 	 */
 	public static WorkareaCanvas[] canvasesHaveChanged(WorkareaCanvas[] canvases)
 	{
-		WorkareaCanvas[] change = new WorkareaCanvas[canvases.length];
-
-
-		for ( int i = 0; i < canvases.length; i++ )
+		if ( canvases != null )
 		{
-			if ( canvases[i] != null )
+			WorkareaCanvas[] change = new WorkareaCanvas[canvases.length];
+
+
+			for ( int i = 0; i < canvases.length; i++ )
 			{
-				if ( canvases[i].isSaved() != true
-						&& canvases[i].isChanged() == true )
+				if ( canvases[i] != null )
 				{
-					change[i] = canvases[i];
+					if ( canvases[i].isSaved() != true
+							&& canvases[i].isChanged() == true )
+					{
+						change[i] = canvases[i];
+					}
 				}
 			}
+
+			change = cleanup.cleanObjectArray(change);
+
+
+			// If no canvases were changed(and not saved)
+			if ( change.length < 1 )
+			{
+				return null;
+			}
+
+
+			return change;
 		}
 
-		change = cleanup.cleanObjectArray(change);
-
-
-		// If no canvases were changed(and not saved)
-		if ( change.length < 1 )
-		{
-			return null;
-		}
-
-
-		return change;
+		return null;
 	}
 
 

@@ -77,7 +77,7 @@ public class ClientsPropertiesView extends AbstractObjectPropertiesView implemen
 		{
 			objectView = (Clients) obj;
 
-			nameField.addKeyListener(new SaveKey());
+			// nameField.addKeyListener(new SaveKey());
 
 			d.gridy = 1;
 			this.add(getClientsPropertiesView(obj), d);

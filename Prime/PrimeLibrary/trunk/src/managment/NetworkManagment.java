@@ -18,6 +18,9 @@
 package managment;
 
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.regex.Pattern;
 
 import exceptions.NotValidIPAddress;
@@ -276,5 +279,15 @@ public class NetworkManagment
 		return false;
 	}
 
+
+
+
+	public static boolean hostIsUp(String host) throws UnknownHostException,
+			IOException
+	{
+		int timeOut = 5000; // No hurry
+
+		return InetAddress.getByName(host).isReachable(timeOut);
+	}
 
 }

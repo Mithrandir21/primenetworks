@@ -76,9 +76,6 @@ import actions.toolbar.ActionSoftwareMessage;
  */
 public class GenericPrimeMenuBar extends JMenuBar
 {
-
-
-
 	ImageIcon icon = ImageLocator.getImageIconObject("java");
 
 	// The menu buttons at the top of the screen

@@ -63,12 +63,18 @@ public class GUIsceneConnectProvider extends SceneConnectProvider
 				&& !(targetWidget instanceof LayerWidget)
 				&& (targetWidget instanceof WidgetObject || isChildOfThisWidget(targetWidget)) )
 		{
-			ActionCreateConnection action = new ActionCreateConnection(
-					PrimeMain.texts
-							.getString("actionCreateConnectionDescriptionText"),
-					this.getCanvas(), (WidgetObject) sourceWidget,
-					(WidgetObject) targetWidget.getParentWidget());
-			action.performAction(true);
+			Widget target = targetWidget.getParentWidget();
+
+			if ( target instanceof WidgetObject
+					&& sourceWidget instanceof WidgetObject )
+			{
+				ActionCreateConnection action = new ActionCreateConnection(
+						PrimeMain.texts
+								.getString("actionCreateConnectionDescriptionText"),
+						this.getCanvas(), (WidgetObject) sourceWidget,
+						(WidgetObject) target);
+				action.performAction(true);
+			}
 		}
 	}
 }

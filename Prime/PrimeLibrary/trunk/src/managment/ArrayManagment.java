@@ -180,10 +180,13 @@ public class ArrayManagment
 		// Goes through all the items and removes the one to be removed
 		for ( int i = 0; i < items.length; i++ )
 		{
-			if ( items[i].equals(ToBeRemoved) )
+			if ( items[i] != null )
 			{
-				items[i] = null;
-				return true;
+				if ( items[i].equals(ToBeRemoved) )
+				{
+					items[i] = null;
+					return true;
+				}
 			}
 		}
 
@@ -207,10 +210,13 @@ public class ArrayManagment
 		// Goes through all the items and removes the one to be removed
 		for ( int i = 0; i < items.length; i++ )
 		{
-			if ( items[i].equals(ToBeRemoved) )
+			if ( items[i] != null )
 			{
-				items[i] = null;
-				return i;
+				if ( items[i].equals(ToBeRemoved) )
+				{
+					items[i] = null;
+					return i;
+				}
 			}
 		}
 
@@ -236,10 +242,13 @@ public class ArrayManagment
 		{
 			Object element = itr.next();
 
-			// If the given class is the same as the element class
-			if ( element.equals(ToBeRemoved) )
+			if ( element != null )
 			{
-				return items.remove(element);
+				// If the given class is the same as the element class
+				if ( element.getObjectSerial() == ToBeRemoved.getObjectSerial() )
+				{
+					return items.remove(element);
+				}
 			}
 		}
 
@@ -262,11 +271,9 @@ public class ArrayManagment
 	public static String[] changeArrayItem(String NewItem, String OldItem,
 			String[] Items)
 	{
-		// Goes through all the strings and replaces the old string with the new
-		// one
+		// Goes through all the strings and replaces the old string with the new one
 		for ( int i = 0; i < Items.length; i++ )
 		{
-
 			if ( Items[i] != null )
 			{
 				if ( Items[i].equals(OldItem) )
@@ -410,53 +417,56 @@ public class ArrayManagment
 	 */
 	@SuppressWarnings("unchecked")
 	public static Object[] getSpesificObjects(Class objectClass,
-			Object[] objects, int objectCounter) throws ObjectNotFoundException
+			Object[] objects) throws ObjectNotFoundException
 	{
-		// boolean to check whether the object is found or not
-		boolean objectNotFound = true;
-
-		// Counter for number of components found
-		int tempCounter = 0;
-
-		// Container that will hold all the found object
-		Object[] objectsFound = new Object[objectCounter];
-
-
-		// Searches for object of the given class
-		for ( int i = 0; i < objectCounter; i++ )
+		if ( objects != null )
 		{
-			/*
-			 * If the given object class matches the present object class, it
-			 * will be added to the container
-			 */
-			if ( objects[i].getClass().equals(objectClass) )
+			// boolean to check whether the object is found or not
+			boolean objectNotFound = true;
+
+			// Counter for number of components found
+			int tempCounter = 0;
+
+			// Container that will hold all the found object
+			Object[] objectsFound = new Object[objects.length];
+
+
+			// Searches for object of the given class
+			for ( int i = 0; i < objects.length; i++ )
 			{
-				objectsFound[tempCounter] = objects[i];
+				/*
+				 * If the given object class matches the present object class, it
+				 * will be added to the container
+				 */
+				if ( objects[i].getClass().equals(objectClass) )
+				{
+					objectsFound[tempCounter] = objects[i];
 
-				tempCounter++;
+					tempCounter++;
 
-				objectNotFound = false;
+					objectNotFound = false;
+				}
 			}
+
+
+			// Checks whether all the objects were found and removed
+			if ( objectNotFound == true )
+			{
+				ObjectNotFoundException exception = new ObjectNotFoundException(
+						"Object(s) of the given type, "
+								+ objectClass.getCanonicalName()
+								+ " were not found.", objectClass);
+
+				throw exception;
+			}
+
+			// Cleans the array of any null pointers at the end
+			objectsFound = cleanup.cleanObjectArray(objectsFound);
+
+			return objectsFound;
 		}
 
-
-		// Checks whether all the objects were found and removed
-		if ( objectNotFound == true )
-		{
-			ObjectNotFoundException exception = new ObjectNotFoundException(
-					"Object(s) of the given type, "
-							+ objectClass.getCanonicalName()
-							+ " were not found.", objectClass);
-
-			throw exception;
-		}
-
-
-
-		// Cleans the array of any null pointers at the end
-		objectsFound = cleanup.cleanObjectArray(objectsFound);
-
-		return objectsFound;
+		return null;
 	}
 
 
@@ -465,7 +475,7 @@ public class ArrayManagment
 	// CHECK FUNCTIONS
 	/**
 	 * Check function to determine whether or not the the given array contains
-	 * the given object.
+	 * the given object. Compares {@link Object} serial numbers.
 	 * 
 	 * @param array
 	 *            The array that is to be checked.
@@ -474,32 +484,28 @@ public class ArrayManagment
 	 */
 	public static boolean arrayContains(Object[] array, Object searchObject)
 	{
-		// Boolean to tell whether or not the given object is found within the
-		// given array.
-		boolean foundObject = false;
-
-
 		for ( int i = 0; i < array.length; i++ )
 		{
 			if ( array[i] != null )
 			{
-				if ( array[i].equals(searchObject) )
+				if ( array[i].getObjectSerial() == searchObject
+						.getObjectSerial() )
 				{
-					foundObject = true;
-
-					// Sets i to array length to get out of the loop.
-					i = array.length;
+					return true;
 				}
 			}
 		}
 
-		return foundObject;
+		return false;
 	}
 
 
 	/**
 	 * Check function to determine whether or not the the given array contains
-	 * the given object.
+	 * the given object. Compares {@link Object} serial numbers.
+	 * 
+	 * @return -1 if the given searchObject is not found in the given {@link Object} array. Returns the index of the searchObject
+	 *         in the given {@link Object} array.
 	 * 
 	 * @param array
 	 *            The array that is to be checked.
@@ -509,26 +515,19 @@ public class ArrayManagment
 	public static int arrayContainsReturnsIndex(Object[] array,
 			Object searchObject)
 	{
-		// Boolean to tell whether or not the given object is found within the
-		// given array.
-		int foundObject = -1;
-
-
 		for ( int i = 0; i < array.length; i++ )
 		{
 			if ( array[i] != null )
 			{
-				if ( array[i].equals(searchObject) )
+				if ( array[i].getObjectSerial() == searchObject
+						.getObjectSerial() )
 				{
-					foundObject = i;
-
-					// Sets i to array length to get out of the loop.
-					i = array.length;
+					return i;
 				}
 			}
 		}
 
-		return foundObject;
+		return -1;
 	}
 
 
@@ -546,29 +545,34 @@ public class ArrayManagment
 	 */
 	public static boolean[] arrayContains(String[] array, String[] searchObjects)
 	{
-		// Boolean to tell whether or not the given object is found within the
-		// given array.
-		boolean[] foundObject = new boolean[searchObjects.length];
-
-
-		for ( int i = 0; i < array.length; i++ )
+		if ( array != null && searchObjects != null )
 		{
-			if ( array[i] != null )
+			// Boolean to tell whether or not the given object is found within the
+			// given array.
+			boolean[] foundObject = new boolean[searchObjects.length];
+
+
+			for ( int i = 0; i < array.length; i++ )
 			{
-				for ( int j = 0; j < searchObjects.length; j++ )
+				if ( array[i] != null )
 				{
-					if ( array[i] != null )
+					for ( int j = 0; j < searchObjects.length; j++ )
 					{
-						if ( array[i].equals(searchObjects[j]) )
+						if ( array[i] != null )
 						{
-							foundObject[j] = true;
+							if ( array[i].equals(searchObjects[j]) )
+							{
+								foundObject[j] = true;
+							}
 						}
 					}
 				}
 			}
+
+			return foundObject;
 		}
 
-		return foundObject;
+		return null;
 	}
 
 
@@ -586,23 +590,21 @@ public class ArrayManagment
 	 */
 	public static boolean arrayContains(String[] array, String searchObject)
 	{
-		// Boolean to tell whether or not the given object is found within the
-		// given array.
-		boolean foundObject = false;
-
-
-		for ( int i = 0; i < array.length; i++ )
+		if ( array != null && searchObject != null )
 		{
-			if ( array[i] != null )
+			for ( int i = 0; i < array.length; i++ )
 			{
-				if ( array[i].equals(searchObject) )
+				if ( array[i] != null )
 				{
-					foundObject = true;
+					if ( array[i].equals(searchObject) )
+					{
+						return true;
+					}
 				}
 			}
 		}
 
-		return foundObject;
+		return false;
 	}
 
 
@@ -635,7 +637,10 @@ public class ArrayManagment
 				{
 					for ( int j = 0; j < data[i].length; j++ )
 					{
-						temp[i][j] = data[i][j].toString();
+						if ( data[i][j] != null )
+						{
+							temp[i][j] = data[i][j].toString();
+						}
 					}
 				}
 			}
@@ -681,7 +686,10 @@ public class ArrayManagment
 				{
 					for ( int j = 0; j < data[i].length; j++ )
 					{
-						temp[i][j] = data[i][j].toString();
+						if ( data[i][j] != null )
+						{
+							temp[i][j] = data[i][j].toString();
+						}
 					}
 				}
 			}
@@ -731,7 +739,10 @@ public class ArrayManagment
 			{
 				for ( int j = 0; j < temp[i].length; j++ )
 				{
-					temp[i][j] = data[i][j];
+					if ( data[i][j] != null )
+					{
+						temp[i][j] = data[i][j];
+					}
 				}
 			}
 
@@ -751,14 +762,17 @@ public class ArrayManagment
 	 * 
 	 * @return A new array with the same pointers as the given array.
 	 */
-	public static Object[] copyArray(Object[] original)
+	public static Object[] shallowCopyArray(Object[] original)
 	{
 		Object[] newArray = new Object[original.length];
 
 		// Addes the old items to the new array
 		for ( int i = 0; i < original.length; i++ )
 		{
-			newArray[i] = original[i];
+			if ( original[i] != null )
+			{
+				newArray[i] = original[i];
+			}
 		}
 
 		return newArray;

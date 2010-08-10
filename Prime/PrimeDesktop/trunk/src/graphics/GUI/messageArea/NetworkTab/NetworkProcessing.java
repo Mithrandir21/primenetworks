@@ -134,7 +134,7 @@ public class NetworkProcessing
 									PrimeMain.texts.getString("netToNetName"),
 									PrimeMain.texts.getString("netToNetMsg"),
 									PrimeMain.texts.getString("networkError") };
-							data = addError(data, info);
+							data = addMessage(data, info);
 						}
 					}
 				}
@@ -172,7 +172,7 @@ public class NetworkProcessing
 					PrimeMain.texts.getString("internet"),
 					PrimeMain.texts.getString("noNetMsg"),
 					PrimeMain.texts.getString("networkWarning") };
-			data = addError(data, info);
+			data = addMessage(data, info);
 		}
 
 
@@ -197,7 +197,7 @@ public class NetworkProcessing
 								PrimeMain.texts
 										.getString("noInfrastructureMsg"),
 								PrimeMain.texts.getString("networkWarning") };
-						data = addError(data, info);
+						data = addMessage(data, info);
 					}
 				}
 			}
@@ -216,7 +216,7 @@ public class NetworkProcessing
 						PrimeMain.texts.getString("notConnectedName"),
 						PrimeMain.texts.getString("notConnectedMsg"),
 						PrimeMain.texts.getString("networkWarning") };
-				data = addError(data, info);
+				data = addMessage(data, info);
 			}
 		}
 
@@ -264,7 +264,7 @@ public class NetworkProcessing
 	 * @return The data container with the new message for the user in addition
 	 *         to the possible old messages.
 	 */
-	private static String[][] addError(String[][] data, String[] info)
+	private static String[][] addMessage(String[][] data, String[] info)
 	{
 		for ( int i = 0; i < data.length; i++ )
 		{
@@ -287,7 +287,7 @@ public class NetworkProcessing
 		 */
 		data = ArrayManagment.add5ArraySpaces(data);
 
-		return addError(data, info);
+		return addMessage(data, info);
 	}
 
 
@@ -302,7 +302,10 @@ public class NetworkProcessing
 		// exception that means there was no object found with the given class.
 		try
 		{
-			ArrayManagment.getSpesificObjects(Class, objects, objects.length);
+			if ( ArrayManagment.getSpesificObjects(Class, objects) == null )
+			{
+				return false;
+			}
 		}
 		catch ( ObjectNotFoundException e )
 		{

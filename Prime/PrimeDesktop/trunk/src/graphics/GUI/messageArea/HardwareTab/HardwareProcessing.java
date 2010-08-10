@@ -113,7 +113,7 @@ public class HardwareProcessing
 					PrimeMain.texts.getString("motherboard"),
 					PrimeMain.texts.getString("noMBmsg"),
 					PrimeMain.texts.getString("hardwareError") };
-			data = addError(data, info);
+			data = addMessage(data, info);
 		}
 
 
@@ -124,7 +124,7 @@ public class HardwareProcessing
 					PrimeMain.texts.getString("cpu"),
 					PrimeMain.texts.getString("noCPUmsg"),
 					PrimeMain.texts.getString("hardwareError") };
-			data = addError(data, info);
+			data = addMessage(data, info);
 		}
 
 
@@ -135,7 +135,7 @@ public class HardwareProcessing
 					PrimeMain.texts.getString("ram"),
 					PrimeMain.texts.getString("noRAMmsg"),
 					PrimeMain.texts.getString("hardwareError") };
-			data = addError(data, info);
+			data = addMessage(data, info);
 		}
 
 
@@ -148,7 +148,7 @@ public class HardwareProcessing
 						PrimeMain.texts.getString("hdd"),
 						PrimeMain.texts.getString("noHDDmsg"),
 						PrimeMain.texts.getString("hardwareError") };
-				data = addError(data, info);
+				data = addMessage(data, info);
 			}
 		}
 
@@ -216,9 +216,8 @@ public class HardwareProcessing
 								PrimeMain.texts.getString("cpu"),
 								PrimeMain.texts.getString("noCPUspeedSetMsg"),
 								PrimeMain.texts.getString("hardwareNotice") };
-						data = addError(data, info);
+						data = addMessage(data, info);
 					}
-
 				}
 			}
 		}
@@ -248,7 +247,7 @@ public class HardwareProcessing
 	 * @return The data container with the new message for the user in addition
 	 *         to the possible old messages.
 	 */
-	private static String[][] addError(String[][] data, String[] info)
+	private static String[][] addMessage(String[][] data, String[] info)
 	{
 		for ( int i = 0; i < data.length; i++ )
 		{
@@ -271,7 +270,7 @@ public class HardwareProcessing
 		 */
 		data = ArrayManagment.add5ArraySpaces(data);
 
-		return addError(data, info);
+		return addMessage(data, info);
 	}
 
 

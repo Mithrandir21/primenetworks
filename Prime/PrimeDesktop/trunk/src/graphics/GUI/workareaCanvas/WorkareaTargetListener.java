@@ -62,7 +62,6 @@ public class WorkareaTargetListener implements DropTargetListener
 	@Override
 	public void dragEnter(DropTargetDragEvent dtde)
 	{
-
 	}
 
 	/*
@@ -73,7 +72,6 @@ public class WorkareaTargetListener implements DropTargetListener
 	@Override
 	public void dragExit(DropTargetEvent dte)
 	{
-
 	}
 
 	/*
@@ -114,13 +112,14 @@ public class WorkareaTargetListener implements DropTargetListener
 			// The location where the new widget is to be created
 			Point objectPoint = dtde.getLocation();
 
+			dtde.dropComplete(true);
 			// Nullifies the transferable object
 			dtde = null;
 
 
 			int height = objectPoint.x - (objectSize.height / 2);
 
-			int width = objectPoint.y - (objectSize.width / 2);
+			int width = objectPoint.y - (objectSize.width / 2) - 12;
 
 			objectPoint.setLocation(height, width);
 
@@ -130,7 +129,6 @@ public class WorkareaTargetListener implements DropTargetListener
 							.getString("actionAddWidgetToCanvasDescriptionText"),
 					canvas, newObject, objectPoint);
 			actionAdd.performAction(true);
-
 		}
 		catch ( UnsupportedFlavorException e )
 		{
@@ -153,5 +151,4 @@ public class WorkareaTargetListener implements DropTargetListener
 	{
 
 	}
-
 }
