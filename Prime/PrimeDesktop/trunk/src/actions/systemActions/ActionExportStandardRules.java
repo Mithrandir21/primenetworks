@@ -30,10 +30,11 @@ import managment.DesktopFileManagment;
 
 
 /**
- * TODO - Description NEEDED!
+ * This action is used when the user wants to export the programs standard
+ * network rules to a file. It will call the exportStandardObjects function in
+ * the {@link DesktopFileManagment} class. This function is not undoable.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class ActionExportStandardRules extends AbstractSystemAction
 {

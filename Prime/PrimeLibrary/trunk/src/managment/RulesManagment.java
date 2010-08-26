@@ -407,11 +407,14 @@ public class RulesManagment
 						if ( maxIntegLan > allowedLANports )
 						{
 							/**
-							 * Sets the motherboard USB ports and removes appropriate connected devices after all the Internal and
+							 * Sets the motherboard LAN ports and removes
+							 * appropriate connected devices after all the
+							 * Internal and
 							 * External NICs have been removed.
 							 */
-							ComponentsManagment.LANportsValidation(object,
-									objectMotherboard, allowedLANports, canvas);
+							ComponentsManagment.portsValidation(object,
+									objectMotherboard, allowedLANports,
+									ConnectionUtils.RJ45, canvas);
 
 							ruleViolation = true;
 						}

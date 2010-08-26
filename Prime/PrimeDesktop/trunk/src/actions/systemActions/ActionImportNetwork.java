@@ -29,7 +29,8 @@ import managment.DesktopFileManagment;
 
 
 /**
- * This action imports a Network from a given .dat file. The action call
+ * This action imports a Network from a given .dat file. The function calls
+ * queries the user for file selection.
  * 
  * @author Bahram Malaekeh
  */

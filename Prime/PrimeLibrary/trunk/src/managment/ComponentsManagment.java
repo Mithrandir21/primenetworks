@@ -1065,10 +1065,11 @@ public class ComponentsManagment
 
 
 	/**
-	 * TODO - Description
+	 * This method will determine, by way of {@link Object} subclass, which
+	 * removal function to call for removal of the given component
+	 * {@link Object} from the given {@link Object}.
 	 * 
 	 * @throws MotherboardNotFound
-	 * 
 	 */
 	public static boolean removeComponent(WorkareaCanvas canvas, Object obj,
 			Object component) throws MotherboardNotFound
@@ -1950,28 +1951,229 @@ public class ComponentsManagment
 	public static void LANportsValidation(Object mainObj, Motherboard mbObj,
 			JComboBox LANports, WorkareaCanvas canvas)
 	{
-		LANportsValidation(mainObj, mbObj, Integer.parseInt(LANports
-				.getSelectedItem().toString()), canvas);
+		portsValidation(mainObj, mbObj,
+				Integer.parseInt(LANports.getSelectedItem().toString()),
+				ConnectionUtils.RJ45, canvas);
 	}
 
-	/**
-	 * Processes the LAN settings with the connected objects.
-	 * <i>The process first finds all {@link Object Objects} connected to the main {@link Object}. Then it finds the network
-	 * cards, internal and external. It then removes the objects set as connected to the different network cards from the array of
-	 * removable Objects, because in this function only the {@link Motherboard Motherboards} lan ports are are being changed.
-	 * When only {@link Object Objects} connected to the {@link Motherboard} are left, they will be removed depending on the
-	 * difference between the number of lan and the number of connected Objects.
-	 */
-	public static void LANportsValidation(Object mainObj, Motherboard mbObj,
-			int LANports, WorkareaCanvas canvas)
-	{
-		if ( mbObj.getMaxIntegLANs() > LANports )
-		{
-			int newMaxLANports = LANports;
+	// /**
+	// * Processes the LAN settings with the connected objects.
+	// * <i>The process first finds all {@link Object Objects} connected to the
+	// main {@link Object}. Then it finds the network
+	// * cards, internal and external. It then removes the objects set as
+	// connected to the different network cards from the array of
+	// * removable Objects, because in this function only the {@link Motherboard
+	// Motherboards} lan ports are are being changed.
+	// * When only {@link Object Objects} connected to the {@link Motherboard}
+	// are left, they will be removed depending on the
+	// * difference between the number of lan and the number of connected
+	// Objects.
+	// */
+	// public static void LANportsValidation(Object mainObj, Motherboard mbObj,
+	// int LANports, WorkareaCanvas canvas)
+	// {
+	// if ( mbObj.getMaxIntegLANs() > LANports )
+	// {
+	// int newMaxLANports = LANports;
+	//
+	// // The connections array that will hold all the connections that are with
+	// RJ45
+	// Object[] LANconnectedObjects = ConnectionManagment
+	// .objectsConnectedToBy(mainObj, ConnectionUtils.RJ45);
+	//
+	// try
+	// {
+	// // Gets all the InternalNetworksCard from the objects components array.
+	// Object[] internalNICs = ArrayManagment.getSpesificComponents(
+	// InternalNetworksCard.class, mainObj.getComponents(),
+	// mainObj.getComponents().length);
+	//
+	// for ( int i = 0; i < internalNICs.length; i++ )
+	// {
+	// InternalNetworksCard nic = (InternalNetworksCard) internalNICs[i];
+	//
+	// // If the NICs connection object is not null and connection type is RJ-45
+	// if ( nic.getConnectedObject() != null
+	// && nic.getConnectionType().equals(
+	// ConnectionUtils.RJ45) )
+	// {
+	// // Goes through all the RJ45 connected objects
+	// for ( int j = 0; j < LANconnectedObjects.length; j++ )
+	// {
+	// // If the index is not null
+	// if ( LANconnectedObjects[j] != null )
+	// {
+	// // If the connected object serial is the same as the one connected to the
+	// NIC
+	// if ( LANconnectedObjects[j].getObjectSerial() == nic
+	// .getConnectedObject().getObjectSerial() )
+	// {
+	// // The object connected to the NIC is removed from the removable RJ45
+	// connected objcets
+	// LANconnectedObjects[j] = null;
+	// }
+	// }
+	// }
+	// }
+	// }
+	//
+	//
+	// }
+	// catch ( ObjectNotFoundException e )
+	// {
+	// // No InternalNetworksCard found
+	// }
+	//
+	// try
+	// {
+	// // Gets all the InternalNetworksCard from the objects components array.
+	// Object[] externalNICs = ArrayManagment.getSpesificComponents(
+	// ExternalNetworksCard.class, mainObj.getComponents(),
+	// mainObj.getComponents().length);
+	//
+	//
+	// for ( int i = 0; i < externalNICs.length; i++ )
+	// {
+	// ExternalNetworksCard nic = (ExternalNetworksCard) externalNICs[i];
+	//
+	// // If the NICs connection object is not null and connection type is RJ-45
+	// if ( nic.getConnectedObject() != null
+	// && nic.getConnectionType().equals(
+	// ConnectionUtils.RJ45) )
+	// {
+	// // Goes through all the RJ45 connected objects
+	// for ( int j = 0; j < LANconnectedObjects.length; j++ )
+	// {
+	// // If the index is not null
+	// if ( LANconnectedObjects[j] != null )
+	// {
+	// // If the connected object serial is the same as the one connected to the
+	// NIC
+	// if ( LANconnectedObjects[j].getObjectSerial() == nic
+	// .getConnectedObject().getObjectSerial() )
+	// {
+	// // The object connected to the NIC is removed from the removable RJ45
+	// connected objcets
+	// LANconnectedObjects[j] = null;
+	// }
+	// }
+	// }
+	// }
+	// }
+	// }
+	// catch ( ObjectNotFoundException e )
+	// {
+	// // No ExternalNetworksCard found
+	// }
+	//
+	//
+	// // Removes the null pointers and shortens the array
+	// LANconnectedObjects = cleanup.cleanObjectArray(LANconnectedObjects);
+	//
+	//
+	// // Now LANconnectedObjects contains only objects connected to the
+	// motherboard
+	//
+	// // The number of LAN ports left after connected objects are added.
+	// int leftLANports = newMaxLANports - LANconnectedObjects.length;
+	//
+	//
+	// if ( LANconnectedObjects != null )
+	// {
+	// // If the number of available RJ-45 ports is less then the number of
+	// RJ-45 devices
+	// if ( leftLANports < 0 )
+	// {
+	// for ( int i = LANconnectedObjects.length + leftLANports; i <
+	// LANconnectedObjects.length; i++ )
+	// {
+	// // Gets the WidgetExtendedConnection between the two objects
+	// WidgetExtendedConnection widCon = null;
+	// try
+	// {
+	// widCon = ConnectionManagment.findWidgetConnection(
+	// canvas, mainObj, LANconnectedObjects[i]);
+	// }
+	// catch ( ConnectionDoesNotExist e )
+	// {
+	// e.printStackTrace();
+	// }
+	//
+	// if ( widCon != null )
+	// {
+	// // Removes the connection
+	// WorkareaCanvasActions.removeWidgetConnection(
+	// canvas, widCon);
+	// }
+	// }
+	// }
+	// }
+	// }
+	// int takenPorts = mbObj.getMaxIntegLANs()
+	// - mbObj.getIntegLANPortsAvailable();
+	//
+	// // Sets the max LAN ports
+	// mbObj.setMaxIntegratedLANs(LANports);
+	// mbObj.setIntegLANPortsAvailable(mbObj.getMaxIntegLANs() - takenPorts);
+	//
+	// // Sets the supported connection interfaces
+	// String[] supportedConnectionInterfaces = ComponentsManagment
+	// .getSupportedInterfaces(mainObj);
+	// mainObj.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+	//
+	// if ( canvas != null )
+	// {
+	// canvas.setSaved(false);
+	// canvas.setChanged(true);
+	// }
+	// }
 
-			// The connections array that will hold all the connections that are with RJ45
-			Object[] LANconnectedObjects = ConnectionManagment
-					.objectsConnectedToBy(mainObj, ConnectionUtils.RJ45);
+
+	/**
+	 * Processes the Ports settings with the connected objects.
+	 * <i>The process first finds all {@link Object Objects} connected to the
+	 * main {@link Object}. Then it finds the network
+	 * cards, internal and external. It then removes the objects set as
+	 * connected to the different network cards from the array of
+	 * removable Objects, because in this function only the {@link Motherboard
+	 * Motherboards} Ports ports are are being changed.
+	 * When only {@link Object Objects} connected to the {@link Motherboard} are
+	 * left, they will be removed depending on the
+	 * difference between the number of Ports and the number of connected
+	 * Objects.
+	 */
+	public static void portsValidation(Object mainObj, Motherboard mbObj,
+			int ports, String portType, WorkareaCanvas canvas)
+	{
+		boolean toManyIntegratedPorts = false;
+
+		/**
+		 * The new number of allowed ports is smaller then the current
+		 * number of integrated ports.
+		 */
+		if ( portType.equals(ConnectionUtils.RJ45) )
+		{
+			toManyIntegratedPorts = (ports < mbObj.getMaxIntegLANs());
+		}
+		else if ( portType.equals(ConnectionUtils.Coax) )
+		{
+			toManyIntegratedPorts = (ports < mbObj.getMaxCoaxs());
+		}
+		else if ( portType.equals(ConnectionUtils.Fiber) )
+		{
+			toManyIntegratedPorts = (ports < mbObj.getMaxFibers());
+		}
+
+
+
+		if ( toManyIntegratedPorts )
+		{
+			int newMaxPorts = ports;
+
+			// The connections array that will hold all the connections that are
+			// with portType
+			Object[] connectedObjects = ConnectionManagment
+					.objectsConnectedToBy(mainObj, portType);
 
 			try
 			{
@@ -1986,21 +2188,22 @@ public class ComponentsManagment
 
 					// If the NICs connection object is not null and connection type is RJ-45
 					if ( nic.getConnectedObject() != null
-							&& nic.getConnectionType().equals(
-									ConnectionUtils.RJ45) )
+							&& nic.getConnectionType().equals(portType) )
 					{
-						// Goes through all the RJ45 connected objects
-						for ( int j = 0; j < LANconnectedObjects.length; j++ )
+						// Goes through all the portType connected objects
+						for ( int j = 0; j < connectedObjects.length; j++ )
 						{
 							// If the index is not null
-							if ( LANconnectedObjects[j] != null )
+							if ( connectedObjects[j] != null )
 							{
 								// If the connected object serial is the same as the one connected to the NIC
-								if ( LANconnectedObjects[j].getObjectSerial() == nic
+								if ( connectedObjects[j].getObjectSerial() == nic
 										.getConnectedObject().getObjectSerial() )
 								{
-									// The object connected to the NIC is removed from the removable RJ45 connected objcets
-									LANconnectedObjects[j] = null;
+									// The object connected to the NIC is
+									// removed from the removable portType
+									// connected objects
+									connectedObjects[j] = null;
 								}
 							}
 						}
@@ -2026,23 +2229,25 @@ public class ComponentsManagment
 				{
 					ExternalNetworksCard nic = (ExternalNetworksCard) externalNICs[i];
 
-					// If the NICs connection object is not null and connection type is RJ-45
+					// If the NICs connection object is not null and connection
+					// type is portType
 					if ( nic.getConnectedObject() != null
-							&& nic.getConnectionType().equals(
-									ConnectionUtils.RJ45) )
+							&& nic.getConnectionType().equals(portType) )
 					{
 						// Goes through all the RJ45 connected objects
-						for ( int j = 0; j < LANconnectedObjects.length; j++ )
+						for ( int j = 0; j < connectedObjects.length; j++ )
 						{
 							// If the index is not null
-							if ( LANconnectedObjects[j] != null )
+							if ( connectedObjects[j] != null )
 							{
 								// If the connected object serial is the same as the one connected to the NIC
-								if ( LANconnectedObjects[j].getObjectSerial() == nic
+								if ( connectedObjects[j].getObjectSerial() == nic
 										.getConnectedObject().getObjectSerial() )
 								{
-									// The object connected to the NIC is removed from the removable RJ45 connected objcets
-									LANconnectedObjects[j] = null;
+									// The object connected to the NIC is
+									// removed from the removable portType
+									// connected objcets
+									connectedObjects[j] = null;
 								}
 							}
 						}
@@ -2056,28 +2261,31 @@ public class ComponentsManagment
 
 
 			// Removes the null pointers and shortens the array
-			LANconnectedObjects = cleanup.cleanObjectArray(LANconnectedObjects);
+			connectedObjects = cleanup.cleanObjectArray(connectedObjects);
 
 
-			// Now LANconnectedObjects contains only objects connected to the motherboard
+			// Now connectedObjects contains only objects connected to the
+			// motherboard
 
-			// The number of LAN ports left after connected objects are added.
-			int leftLANports = newMaxLANports - LANconnectedObjects.length;
+			// The number of portType ports left after connected objects are
+			// added.
+			int leftPorts = newMaxPorts - connectedObjects.length;
 
 
-			if ( LANconnectedObjects != null )
+			if ( connectedObjects != null )
 			{
-				// If the number of available RJ-45 ports is less then the number of RJ-45 devices
-				if ( leftLANports < 0 )
+				// If the number of available portType ports is less then the
+				// number of portType devices
+				if ( leftPorts < 0 )
 				{
-					for ( int i = LANconnectedObjects.length + leftLANports; i < LANconnectedObjects.length; i++ )
+					for ( int i = connectedObjects.length + leftPorts; i < connectedObjects.length; i++ )
 					{
 						// Gets the WidgetExtendedConnection between the two objects
 						WidgetExtendedConnection widCon = null;
 						try
 						{
 							widCon = ConnectionManagment.findWidgetConnection(
-									canvas, mainObj, LANconnectedObjects[i]);
+									canvas, mainObj, connectedObjects[i]);
 						}
 						catch ( ConnectionDoesNotExist e )
 						{
@@ -2094,12 +2302,44 @@ public class ComponentsManagment
 				}
 			}
 		}
-		int takenPorts = mbObj.getMaxIntegLANs()
-				- mbObj.getIntegLANPortsAvailable();
 
-		// Sets the max LAN ports
-		mbObj.setMaxIntegratedLANs(LANports);
-		mbObj.setIntegLANPortsAvailable(mbObj.getMaxIntegLANs() - takenPorts);
+
+
+		/**
+		 * Motherboard port setup after internal- and external-NIC connected
+		 * Object removal.
+		 * Excess motherboards ports(and connected Objects) have also been
+		 * removed.
+		 */
+		if ( portType.equals(ConnectionUtils.RJ45) )
+		{
+			int takenPorts = mbObj.getMaxIntegLANs()
+					- mbObj.getIntegLANPortsAvailable();
+
+			// Sets the max LAN ports
+			mbObj.setMaxIntegratedLANs(ports);
+			mbObj.setIntegLANPortsAvailable(mbObj.getMaxIntegLANs()
+					- takenPorts);
+		}
+		else if ( portType.equals(ConnectionUtils.Coax) )
+		{
+			int takenPorts = mbObj.getMaxCoaxs()
+					- mbObj.getCoaxPortsAvailable();
+
+			// Sets the max COAX ports
+			mbObj.setMaxCoaxs(ports);
+			mbObj.setCoaxPortsAvailable(mbObj.getMaxCoaxs() - takenPorts);
+		}
+		else if ( portType.equals(ConnectionUtils.Fiber) )
+		{
+			int takenPorts = mbObj.getMaxFibers()
+					- mbObj.getFiberPortsAvailable();
+
+			// Sets the max FIBER ports
+			mbObj.setMaxFibers(ports);
+			mbObj.setFiberPortsAvailable(mbObj.getMaxFibers() - takenPorts);
+		}
+
 
 		// Sets the supported connection interfaces
 		String[] supportedConnectionInterfaces = ComponentsManagment
@@ -2112,6 +2352,414 @@ public class ComponentsManagment
 			canvas.setChanged(true);
 		}
 	}
+	
+	
+	
+
+
+	/**
+	 * Processes the COAX settings with the connected objects.
+	 * <i>The process first finds all {@link Object Objects} connected to the
+	 * main {@link Object}. Then it finds the network
+	 * cards, internal and external. It then removes the objects set as
+	 * connected to the different network cards from the array of
+	 * removable Objects, because in this function only the {@link Motherboard
+	 * Motherboards} COAX ports are are being changed.
+	 * When only {@link Object Objects} connected to the {@link Motherboard} are
+	 * left, they will be removed depending on the
+	 * difference between the number of COAX and the number of connected
+	 * Objects.
+	 */
+	public static void COAXportsValidation(Object mainObj, Motherboard mbObj,
+			JComboBox COAXports, WorkareaCanvas canvas)
+	{
+		portsValidation(mainObj, mbObj,
+				Integer.parseInt(COAXports.getSelectedItem().toString()),
+				ConnectionUtils.Coax,
+				canvas);
+	}
+
+
+	// /**
+	// * Processes the COAX settings with the connected objects.
+	// * <i>The process first finds all {@link Object Objects} connected to the
+	// * main {@link Object}. Then it finds the network
+	// * cards, internal and external. It then removes the objects set as
+	// * connected to the different network cards from the array of
+	// * removable Objects, because in this function only the {@link Motherboard
+	// * Motherboards} COAX ports are are being changed.
+	// * When only {@link Object Objects} connected to the {@link Motherboard}
+	// are
+	// * left, they will be removed depending on the
+	// * difference between the number of COAX and the number of connected
+	// * Objects.
+	// */
+	// public static void COAXportsValidation(Object mainObj, Motherboard mbObj,
+	// int COAXports, WorkareaCanvas canvas)
+	// {
+	// if ( mbObj.getMaxCoaxs() > COAXports )
+	// {
+	// int newMaxCOAXports = COAXports;
+	//
+	// // The connections array that will hold all the connections that are with
+	// COAX
+	// Object[] COAXconnectedObjects = ConnectionManagment
+	// .objectsConnectedToBy(mainObj, ConnectionUtils.Coax);
+	//
+	// try
+	// {
+	// // Gets all the InternalNetworksCard from the objects components array.
+	// Object[] internalNICs = ArrayManagment.getSpesificComponents(
+	// InternalNetworksCard.class, mainObj.getComponents(),
+	// mainObj.getComponents().length);
+	//
+	// for ( int i = 0; i < internalNICs.length; i++ )
+	// {
+	// InternalNetworksCard nic = (InternalNetworksCard) internalNICs[i];
+	//
+	// // If the NICs connection object is not null and connection type is RJ-45
+	// if ( nic.getConnectedObject() != null
+	// && nic.getConnectionType().equals(
+	// ConnectionUtils.Coax) )
+	// {
+	// // Goes through all the COAX connected objects
+	// for ( int j = 0; j < COAXconnectedObjects.length; j++ )
+	// {
+	// // If the index is not null
+	// if ( COAXconnectedObjects[j] != null )
+	// {
+	// // If the connected object serial is the same as the one connected to the
+	// NIC
+	// if ( COAXconnectedObjects[j].getObjectSerial() == nic
+	// .getConnectedObject().getObjectSerial() )
+	// {
+	// // The object connected to the NIC is removed from the removable COAX
+	// connected objcets
+	// COAXconnectedObjects[j] = null;
+	// }
+	// }
+	// }
+	// }
+	// }
+	//
+	//
+	// }
+	// catch ( ObjectNotFoundException e )
+	// {
+	// // No InternalNetworksCard found
+	// }
+	//
+	// try
+	// {
+	// // Gets all the InternalNetworksCard from the objects components array.
+	// Object[] externalNICs = ArrayManagment.getSpesificComponents(
+	// ExternalNetworksCard.class, mainObj.getComponents(),
+	// mainObj.getComponents().length);
+	//
+	//
+	// for ( int i = 0; i < externalNICs.length; i++ )
+	// {
+	// ExternalNetworksCard nic = (ExternalNetworksCard) externalNICs[i];
+	//
+	// // If the NICs connection object is not null and connection type is COAX
+	// if ( nic.getConnectedObject() != null
+	// && nic.getConnectionType().equals(
+	// ConnectionUtils.Coax) )
+	// {
+	// // Goes through all the COAX connected objects
+	// for ( int j = 0; j < COAXconnectedObjects.length; j++ )
+	// {
+	// // If the index is not null
+	// if ( COAXconnectedObjects[j] != null )
+	// {
+	// // If the connected object serial is the same as the one connected to the
+	// NIC
+	// if ( COAXconnectedObjects[j].getObjectSerial() == nic
+	// .getConnectedObject().getObjectSerial() )
+	// {
+	// // The object connected to the NIC is removed from the removable COAX
+	// connected objcets
+	// COAXconnectedObjects[j] = null;
+	// }
+	// }
+	// }
+	// }
+	// }
+	// }
+	// catch ( ObjectNotFoundException e )
+	// {
+	// // No ExternalNetworksCard found
+	// }
+	//
+	//
+	// // Removes the null pointers and shortens the array
+	// COAXconnectedObjects = cleanup.cleanObjectArray(COAXconnectedObjects);
+	//
+	//
+	// // Now LANconnectedObjects contains only objects connected to the
+	// motherboard
+	//
+	// // The number of COAX ports left after connected objects are added.
+	// int leftCOAXports = newMaxCOAXports - COAXconnectedObjects.length;
+	//
+	//
+	// if ( COAXconnectedObjects != null )
+	// {
+	// // If the number of available RJ-45 ports is less then the number of COAX
+	// devices
+	// if ( leftCOAXports < 0 )
+	// {
+	// for ( int i = COAXconnectedObjects.length + leftCOAXports; i <
+	// COAXconnectedObjects.length; i++ )
+	// {
+	// // Gets the WidgetExtendedConnection between the two objects
+	// WidgetExtendedConnection widCon = null;
+	// try
+	// {
+	// widCon = ConnectionManagment.findWidgetConnection(
+	// canvas, mainObj, COAXconnectedObjects[i]);
+	// }
+	// catch ( ConnectionDoesNotExist e )
+	// {
+	// e.printStackTrace();
+	// }
+	//
+	// if ( widCon != null )
+	// {
+	// // Removes the connection
+	// WorkareaCanvasActions.removeWidgetConnection(
+	// canvas, widCon);
+	// }
+	// }
+	// }
+	// }
+	// }
+	// int takenPorts = mbObj.getMaxCoaxs() - mbObj.getCoaxPortsAvailable();
+	//
+	// // Sets the max COAX ports
+	// mbObj.setMaxCoaxs(COAXports);
+	// mbObj.setCoaxPortsAvailable(mbObj.getMaxCoaxs() - takenPorts);
+	//
+	// // Sets the supported connection interfaces
+	// String[] supportedConnectionInterfaces = ComponentsManagment
+	// .getSupportedInterfaces(mainObj);
+	// mainObj.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+	//
+	// if ( canvas != null )
+	// {
+	// canvas.setSaved(false);
+	// canvas.setChanged(true);
+	// }
+	// }
+
+
+
+
+
+	/**
+	 * Processes the FIBER settings with the connected objects.
+	 * <i>The process first finds all {@link Object Objects} connected to the
+	 * main {@link Object}. Then it finds the network
+	 * cards, internal and external. It then removes the objects set as
+	 * connected to the different network cards from the array of
+	 * removable Objects, because in this function only the {@link Motherboard
+	 * Motherboards} FIBER ports are are being changed.
+	 * When only {@link Object Objects} connected to the {@link Motherboard} are
+	 * left, they will be removed depending on the
+	 * difference between the number of FIBER and the number of connected
+	 * Objects.
+	 */
+	public static void FIBERportsValidation(Object mainObj, Motherboard mbObj,
+			JComboBox FIBERports, WorkareaCanvas canvas)
+	{
+		portsValidation(mainObj, mbObj,
+				Integer.parseInt(FIBERports.getSelectedItem().toString()),
+				ConnectionUtils.Fiber,
+				canvas);
+	}
+
+
+	// /**
+	// * Processes the FIBER settings with the connected objects.
+	// * <i>The process first finds all {@link Object Objects} connected to the
+	// * main {@link Object}. Then it finds the network
+	// * cards, internal and external. It then removes the objects set as
+	// * connected to the different network cards from the array of
+	// * removable Objects, because in this function only the {@link Motherboard
+	// * Motherboards} FIBER ports are are being changed.
+	// * When only {@link Object Objects} connected to the {@link Motherboard}
+	// are
+	// * left, they will be removed depending on the
+	// * difference between the number of FIBER and the number of connected
+	// * Objects.
+	// */
+	// public static void FIBERportsValidation(Object mainObj, Motherboard
+	// mbObj,
+	// int FIBERports, WorkareaCanvas canvas)
+	// {
+	// if ( mbObj.getMaxFibers() > FIBERports )
+	// {
+	// int newMaxFIBERports = FIBERports;
+	//
+	// // The connections array that will hold all the connections that are
+	// // with FIBER
+	// Object[] FIBERconnectedObjects = ConnectionManagment
+	// .objectsConnectedToBy(mainObj, ConnectionUtils.Fiber);
+	//
+	// try
+	// {
+	// // Gets all the InternalNetworksCard from the objects components
+	// // array.
+	// Object[] internalNICs = ArrayManagment.getSpesificComponents(
+	// InternalNetworksCard.class, mainObj.getComponents(),
+	// mainObj.getComponents().length);
+	//
+	// for ( int i = 0; i < internalNICs.length; i++ )
+	// {
+	// InternalNetworksCard nic = (InternalNetworksCard) internalNICs[i];
+	//
+	// // If the NICs connection object is not null and connection
+	// // type is FIBER
+	// if ( nic.getConnectedObject() != null
+	// && nic.getConnectionType().equals(
+	// ConnectionUtils.Fiber) )
+	// {
+	// // Goes through all the FIBER connected objects
+	// for ( int j = 0; j < FIBERconnectedObjects.length; j++ )
+	// {
+	// // If the index is not null
+	// if ( FIBERconnectedObjects[j] != null )
+	// {
+	// // If the connected object serial is the same as
+	// // the one connected to the NIC
+	// if ( FIBERconnectedObjects[j].getObjectSerial() == nic
+	// .getConnectedObject().getObjectSerial() )
+	// {
+	// // The object connected to the NIC is
+	// // removed from the removable FIBER
+	// // connected objcets
+	// FIBERconnectedObjects[j] = null;
+	// }
+	// }
+	// }
+	// }
+	// }
+	//
+	//
+	// }
+	// catch ( ObjectNotFoundException e )
+	// {
+	// // No InternalNetworksCard found
+	// }
+	//
+	// try
+	// {
+	// // Gets all the InternalNetworksCard from the objects components
+	// // array.
+	// Object[] externalNICs = ArrayManagment.getSpesificComponents(
+	// ExternalNetworksCard.class, mainObj.getComponents(),
+	// mainObj.getComponents().length);
+	//
+	//
+	// for ( int i = 0; i < externalNICs.length; i++ )
+	// {
+	// ExternalNetworksCard nic = (ExternalNetworksCard) externalNICs[i];
+	//
+	// // If the NICs connection object is not null and connection
+	// // type is FIBER
+	// if ( nic.getConnectedObject() != null
+	// && nic.getConnectionType().equals(
+	// ConnectionUtils.Fiber) )
+	// {
+	// // Goes through all the FIBER connected objects
+	// for ( int j = 0; j < FIBERconnectedObjects.length; j++ )
+	// {
+	// // If the index is not null
+	// if ( FIBERconnectedObjects[j] != null )
+	// {
+	// // If the connected object serial is the same as
+	// // the one connected to the NIC
+	// if ( FIBERconnectedObjects[j].getObjectSerial() == nic
+	// .getConnectedObject().getObjectSerial() )
+	// {
+	// // The object connected to the NIC is
+	// // removed from the removable FIBER
+	// // connected objcets
+	// FIBERconnectedObjects[j] = null;
+	// }
+	// }
+	// }
+	// }
+	// }
+	// }
+	// catch ( ObjectNotFoundException e )
+	// {
+	// // No ExternalNetworksCard found
+	// }
+	//
+	//
+	// // Removes the null pointers and shortens the array
+	// FIBERconnectedObjects = cleanup
+	// .cleanObjectArray(FIBERconnectedObjects);
+	//
+	//
+	// // Now LANconnectedObjects contains only objects connected to the
+	// // motherboard
+	//
+	// // The number of FIBER ports left after connected objects are added.
+	// int leftFIBERports = newMaxFIBERports
+	// - FIBERconnectedObjects.length;
+	//
+	//
+	// if ( FIBERconnectedObjects != null )
+	// {
+	// // If the number of available RJ-45 ports is less then the
+	// // number of FIBER devices
+	// if ( leftFIBERports < 0 )
+	// {
+	// for ( int i = FIBERconnectedObjects.length + leftFIBERports; i <
+	// FIBERconnectedObjects.length; i++ )
+	// {
+	// // Gets the WidgetExtendedConnection between the two
+	// // objects
+	// WidgetExtendedConnection widCon = null;
+	// try
+	// {
+	// widCon = ConnectionManagment.findWidgetConnection(
+	// canvas, mainObj, FIBERconnectedObjects[i]);
+	// }
+	// catch ( ConnectionDoesNotExist e )
+	// {
+	// e.printStackTrace();
+	// }
+	//
+	// if ( widCon != null )
+	// {
+	// // Removes the connection
+	// WorkareaCanvasActions.removeWidgetConnection(
+	// canvas, widCon);
+	// }
+	// }
+	// }
+	// }
+	// }
+	// int takenPorts = mbObj.getMaxFibers() - mbObj.getFiberPortsAvailable();
+	//
+	// // Sets the max FIBER ports
+	// mbObj.setMaxFibers(FIBERports);
+	// mbObj.setFiberPortsAvailable(mbObj.getMaxFibers() - takenPorts);
+	//
+	// // Sets the supported connection interfaces
+	// String[] supportedConnectionInterfaces = ComponentsManagment
+	// .getSupportedInterfaces(mainObj);
+	// mainObj.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+	//
+	// if ( canvas != null )
+	// {
+	// canvas.setSaved(false);
+	// canvas.setChanged(true);
+	// }
+	// }
 
 
 	// SEARCH FUNCTIONS
@@ -2393,6 +3041,12 @@ public class ComponentsManagment
 				{
 					coax = true;
 				}
+
+				// FIBER
+				if ( mbTemp.getMaxFibers() > 0 )
+				{
+					fiber = true;
+				}
 			}
 			else if ( components[i] instanceof ExternalNetworksCard )
 			{
@@ -2407,6 +3061,11 @@ public class ComponentsManagment
 						ConnectionUtils.Wireless) )
 				{
 					wlan = true;
+				}
+				else if ( extNICtemp.getConnectionType().equals(
+						ConnectionUtils.Coax) )
+				{
+					coax = true;
 				}
 				else if ( extNICtemp.getConnectionType().equals(
 						ConnectionUtils.Fiber) )
@@ -2427,6 +3086,11 @@ public class ComponentsManagment
 						ConnectionUtils.Wireless) )
 				{
 					wlan = true;
+				}
+				else if ( intNICtemp.getConnectionType().equals(
+						ConnectionUtils.Coax) )
+				{
+					coax = true;
 				}
 				else if ( intNICtemp.getConnectionType().equals(
 						ConnectionUtils.Fiber) )

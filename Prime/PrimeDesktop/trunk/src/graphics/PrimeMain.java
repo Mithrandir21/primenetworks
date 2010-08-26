@@ -251,7 +251,7 @@ public class PrimeMain extends JFrame
 
 		if ( splash == null )
 		{
-			System.out.println("SplashScreen.getSplashScreen() returned null");
+			// System.out.println("SplashScreen.getSplashScreen() returned null");
 		}
 		else
 		{

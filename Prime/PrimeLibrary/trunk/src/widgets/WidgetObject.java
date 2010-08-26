@@ -40,7 +40,16 @@ import widgetManipulation.WidgetNetworkInfo;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class represents an {@link Object} in the form of a {@link Widget}. The
+ * class is made {@link Transferable} to enable drag and drop feature for the
+ * {@link WorkareaCanvas}.
+ * It is this class, and not the {@link Object} class
+ * itself, that contains the information about the objects network
+ * configuration, ie. {@link WidgetNetworkInfo}.
+ * 
+ * The Widgets children are a {@link ImageWidget}, that will be present an image
+ * representing the {@link Object} type, and a {@link LabelWidget} that will
+ * display the name of the {@link Object}.
  * 
  * @author Bahram Malaekeh
  */
@@ -55,17 +64,29 @@ public class WidgetObject extends Widget implements Transferable
 	private static final DataFlavor flavors[] = new DataFlavor[1];
 
 
+	/**
+	 * Contains an image representing the {@link Object} type.
+	 */
 	private ImageWidget imageWidget;
 
+	/**
+	 * Contains the name of the {@link Object}.
+	 */
 	private LabelWidget labelWidget;
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * A constructor for this class.
+	 * The method sets the layout for the placement of children,
+	 * {@link ImageWidget} and {@link LabelWidget}.
 	 * 
 	 * @param scene
+	 *            The {@link Scene} where the {@link Object} is to be placed.
 	 * @param obj
+	 *            The {@link Object} this class represents.
 	 * @param objImg
+	 *            The {@link Image} that will represent the type of {@link
+	 *            Object.
 	 */
 	public WidgetObject(Scene scene, Object obj, Image objImg)
 	{
@@ -96,7 +117,7 @@ public class WidgetObject extends Widget implements Transferable
 
 	// GETTERS
 	/**
-	 * @return the object
+	 * @return The {@link Object} represented by this class.
 	 */
 	public Object getObject()
 	{
@@ -148,9 +169,8 @@ public class WidgetObject extends Widget implements Transferable
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @return the imageWidget
+	 * @return The {@link ImageWidget} that contains the {@link Image} that
+	 *         represents the type {@link Object} represented by this class.
 	 */
 	public ImageWidget getImageWidget()
 	{
@@ -160,9 +180,8 @@ public class WidgetObject extends Widget implements Transferable
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @return the labelWidget
+	 * @return The {@link LabelWidget} that contains the name that
+	 *         {@link Object} represented by this class.
 	 */
 	public LabelWidget getLabelWidget()
 	{
@@ -173,8 +192,7 @@ public class WidgetObject extends Widget implements Transferable
 
 	// SETTERS
 	/**
-	 * @param object
-	 *            the object to set
+	 * Sets the {@link Object} represented by this class.
 	 */
 	public void setObject(Object object)
 	{

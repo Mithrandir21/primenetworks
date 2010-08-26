@@ -29,8 +29,8 @@ import logistical.AbstractSystemAction;
 
 
 /**
- * Thei action opens, or brings to the front if open already, a {@link StandardObjects} JFrame that contains information about all
- * the
+ * This action opens, or brings to the front if open already, a
+ * {@link StandardObjects} JFrame that contains information about all the
  * systems standard units.
  * 
  * @author Bahram Malaekeh

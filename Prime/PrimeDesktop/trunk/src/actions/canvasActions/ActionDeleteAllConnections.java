@@ -29,8 +29,15 @@ import logistical.AbstractSystemAction;
 import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
+import connections.Connection;
 
 
+/**
+ * This action attempts to remove all {@link Connection Connections} on a
+ * currently open and showing {@link WorkareaCanvas}.
+ * 
+ * @author Bahram Malaekeh
+ */
 public class ActionDeleteAllConnections extends AbstractSystemAction
 {
 
@@ -64,6 +71,9 @@ public class ActionDeleteAllConnections extends AbstractSystemAction
 
 
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
@@ -88,20 +98,18 @@ public class ActionDeleteAllConnections extends AbstractSystemAction
 							options[1]);
 
 
-
-
 			// If the answer is yes
 			if ( i == 0 )
 			{
 				canvas.getUndoManager();
 
 
-				// gets all the Widgets on the current scene
+				// Gets all the Widgets on the current scene
 				WidgetObject[] objects = canvas.getWidgetObjectsOnTheScene();
 
 				for ( int j = 0; j < objects.length; j++ )
 				{
-					// Removes all connection to the WidgetObject
+					// Removes all connections
 					WorkareaCanvasActions.removeAllConnectionsToFromObject(
 							canvas, objects[j].getObject());
 				}

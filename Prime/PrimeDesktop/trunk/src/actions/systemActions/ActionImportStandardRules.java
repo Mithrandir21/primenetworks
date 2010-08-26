@@ -24,13 +24,16 @@ import javax.swing.ImageIcon;
 
 import logistical.AbstractSystemAction;
 import managment.DesktopFileManagment;
+import widgetManipulation.NetworkRules;
 
 
 /**
- * TODO - Description NEEDED!
+ * This action imports Standard Rules({@link NetworkRules}) from a given .dat
+ * file. The function calls queries the user for file selection. This function
+ * is not undoable and will, if the given file is correct, overwrite the current
+ * Standard Rules.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class ActionImportStandardRules extends AbstractSystemAction
 {

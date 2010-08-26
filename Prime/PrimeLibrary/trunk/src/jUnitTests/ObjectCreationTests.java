@@ -25,10 +25,12 @@ import objects.hardwareObjects.Motherboard;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runners.JUnit4;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class contains different {@link JUnit4} tests. The tests validate
+ * {@link Object} creation functions.
  * 
  * @author Bahram Malaekeh
  */
@@ -37,9 +39,6 @@ public class ObjectCreationTests
 	private static Object[] objects = null;
 
 
-	/**
-	 * TODO - Description
-	 */
 	@Before
 	public void setUp() throws Exception
 	{
@@ -47,6 +46,10 @@ public class ObjectCreationTests
 	}
 
 
+	/**
+	 * Reads different aspects of the created {@link Object Objects} inside the
+	 * {@link Object Objects} array in this class.
+	 */
 	@Test
 	public void objectDataReading()
 	{

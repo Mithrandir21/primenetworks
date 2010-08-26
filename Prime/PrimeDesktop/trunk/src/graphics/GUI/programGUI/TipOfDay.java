@@ -34,7 +34,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTree;
 
 import managment.Settings;
 
@@ -173,15 +172,14 @@ public class TipOfDay extends JFrame implements ActionListener
 		// Create a tip model with some tips
 		DefaultTipOfTheDayModel tips = new DefaultTipOfTheDayModel();
 
-		// plain text
-		tips.add(new DefaultTip("Plain Text Tip", "This is the first tip "
-				+ "This is the first tip " + "This is the first tip "
-				+ "This is the first tip " + "This is the first tip "
-				+ "This is the first tip" + "This is the first tip "
-				+ "This is the first tip"));
+		// "CTRL" Connections
+		tips.add(new DefaultTip(PrimeMain.texts
+				.getString("ctrlConnectionCreationLabel"), PrimeMain.texts
+				.getString("ctrlConnectionCreationMsg")));
 
-		// a Component
-		tips.add(new DefaultTip("Component Tip", new JTree()));
+		// "Alt" Room Move
+		tips.add(new DefaultTip(PrimeMain.texts.getString("altRoomMoveLabel"),
+				PrimeMain.texts.getString("altRoomMoveMsg")));
 
 
 		return tips;

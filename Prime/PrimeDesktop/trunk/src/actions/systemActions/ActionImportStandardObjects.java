@@ -30,8 +30,8 @@ import managment.DesktopFileManagment;
 
 /**
  * This action is used when the user wants to import the standard objects list
- * from a file. It will call the importStandardObjects function in the {@link DesktopFileManagment} class. This function is not
- * undoable.
+ * from a file. It will call the importStandardObjects function in the
+ * {@link DesktopFileManagment} class. This function is not undoable.
  * 
  * @author Bahram Malaekeh
  */

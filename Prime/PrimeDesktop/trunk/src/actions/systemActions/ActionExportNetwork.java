@@ -30,7 +30,9 @@ import managment.DesktopFileManagment;
 
 
 /**
- * This action exports a Network to a given .dat file. The action call
+ * This action exports a Network to a given .dat file. The function calls will
+ * ask the user for location and name for the output file. This function is not
+ * undoable.
  * 
  * @author Bahram Malaekeh
  */

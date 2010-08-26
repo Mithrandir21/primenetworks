@@ -9,8 +9,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
 import logistical.AbstractSystemAction;
+import objects.softwareObjects.OperatingSystem;
 
 
+/**
+ * This action opens, or brings to the front, the programs "Custom
+ * {@link OperatingSystem}" window.
+ * 
+ * @author Bahram Malaekeh
+ */
 public class ActionOpenCustomOS extends AbstractSystemAction
 {
 	/**

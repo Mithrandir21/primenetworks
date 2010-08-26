@@ -77,7 +77,6 @@ public class ActionCut extends AbstractSystemAction
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-
 		// Sets the copyWidget pointer to null
 		PrimeMain.copyWidget = null;
 

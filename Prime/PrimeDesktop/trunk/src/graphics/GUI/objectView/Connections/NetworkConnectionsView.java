@@ -113,7 +113,7 @@ public class NetworkConnectionsView extends JPanel
 	 * @param obj
 	 *            The object that is to be passed on.
 	 * @param conType
-	 *            The string that detemines the type of connecion.
+	 *            The string that determines the type of connection.
 	 * @return
 	 */
 	private JPanel determine(Object obj, String conType)

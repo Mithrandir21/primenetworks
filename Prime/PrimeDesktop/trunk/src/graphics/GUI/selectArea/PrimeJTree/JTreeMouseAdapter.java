@@ -206,19 +206,6 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 
 		menuPopup.add(newNetwork);
 
-		//
-		// JMenu subMenu = new JMenu("A sub menu");
-		//
-		// JMenuItem subItem1 = new JMenuItem("Action 1");
-		//
-		// JMenuItem subItem2 = new JMenuItem("Action 2");
-		//
-		// subMenu.add(subItem1);
-		// subMenu.add(subItem2);
-		//
-		//
-		// menuPopup.add(subMenu);
-
 
 		return menuPopup;
 	}
@@ -238,7 +225,7 @@ public class JTreeMouseAdapter extends MouseAdapter implements ActionListener
 		}
 		else if ( e.getActionCommand().equalsIgnoreCase("Delete Network") )
 		{
-			PrimeJTreeActions.deleteFile(file, tree);
+			PrimeJTreeActions.deleteFile(file);
 		}
 		else if ( e.getActionCommand().equalsIgnoreCase("New Network") )
 		{

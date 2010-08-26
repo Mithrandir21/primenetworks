@@ -75,7 +75,7 @@ public class PrimeJTreeActions
 	 * 
 	 * @param file
 	 */
-	public static void deleteFile(FileTreeNode file, JTree tree)
+	public static void deleteFile(FileTreeNode file)
 	{
 		DesktopFileManagment.deleteWorkareaCanvas(file);
 	}

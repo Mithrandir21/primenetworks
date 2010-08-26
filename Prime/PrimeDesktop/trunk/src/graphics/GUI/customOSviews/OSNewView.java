@@ -105,7 +105,7 @@ public class OSNewView extends JDialog implements SoftwareView, ActionListener
 		// Get the current screen size
 		Dimension scrnsize = toolkit.getScreenSize();
 
-		Dimension size = new Dimension(760, 400);
+		Dimension size = new Dimension(760, 420);
 
 		int initYLocation = (scrnsize.height - size.height) / 3;
 		int initXLocation = (scrnsize.width - size.width) / 2;

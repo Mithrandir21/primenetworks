@@ -30,8 +30,16 @@ import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetObject;
 import widgets.WidgetRoom;
 import widgets.WorkareaCanvas;
+import connections.Connection;
 
 
+/**
+ * This action attempts to remove all {@link WidgetRoom WidgetRooms},
+ * {@link WidgetObject WidgetObjects} and {@link Connection Connections} on a
+ * currently open and showing {@link WorkareaCanvas}.
+ * 
+ * @author Bahram Malaekeh
+ */
 public class ActionDeleteEverything extends AbstractSystemAction
 {
 	/**
@@ -63,6 +71,9 @@ public class ActionDeleteEverything extends AbstractSystemAction
 
 
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{

@@ -24,7 +24,8 @@ import objects.Hardware;
 
 
 /**
- * This class represents a motherboard of a {@link objects.Servers server} or {@link objects.Clients client} machine. It can be a
+ * This class represents a motherboard of a {@link objects.Servers server} or
+ * {@link objects.Clients client} machine. It can be a
  * server, a desktop or a
  * laptop. It contains information on what kind of capability the motherboard
  * has, what kind of ports it has, how many slots it has for different cards,
@@ -36,14 +37,21 @@ import objects.Hardware;
  * <br>
  * Changelog 0.2
  * <p>
- * Changed HDD connections to DUC, Different Usage Connections, to better suit the actual function of the port which is a port for
- * both HDDs and CDROMs among other things.
+ * Changed HDD connections to DUC, Different Usage Connections, to better suit
+ * the actual function of the port which is a port for both HDDs and CDROMs
+ * among other things.
  * </p>
  * <br>
  * <br>
  * Changelog 0.3
  * <p>
  * Added Coax port.
+ * </p>
+ * <br>
+ * <br>
+ * Changelog 0.4
+ * <p>
+ * Added Fiber port.
  * </p>
  * 
  * @author Bahram Malaekeh
@@ -89,6 +97,9 @@ public class Motherboard extends Hardware implements Serializable
 	// The number of a coax ports.
 	private int maxCoaxs = 0;
 
+	// The number of a fiber ports.
+	private int maxFiber = 0;
+
 	// The type of graphical port on the MB
 	private String graphicalPortType;
 
@@ -129,6 +140,8 @@ public class Motherboard extends Hardware implements Serializable
 
 	private int COAXPortsAvailable;
 
+	private int FiberPortsAvailable;
+
 
 
 	// FIXME : Set up a number of connection to a network card object
@@ -155,23 +168,34 @@ public class Motherboard extends Hardware implements Serializable
 	 *            The number of CPU slots on the MB.
 	 * @param MBmaxPCIs
 	 *            The number of PCI slots on the MB.
-	 * @param MBgraphicalPort
-	 *            The type of graphical port on the MB.
 	 * @param MBmaxRAMs
 	 *            The number of RAM slots on the MB.
+	 * @param MBmaxUSBs
+	 *            The number of USB slots on the MB.
+	 * @param MBmaxDUCs
+	 *            The number of DUC slots on the MB.
+	 * @param MBmaxCOAXs
+	 *            The number of COAX slots on the MB.
+	 * @param MBmaxFibers
+	 *            The number of Fiber slots on the MB.
 	 * @param MBDUCconnectionType
 	 *            The type of DUC connection ports on the MB.
+	 * @param MBgraphicalPort
+	 *            The type of graphical port on the MB.
 	 * @param MBintegLANcard
 	 *            Boolean on whether or not the MB has an integrated LAN card.
 	 * @param MBintegGraphicalCard
 	 *            Boolean on whether or not the MB has an integrated GPU card.
 	 * @param MBintegAudioCard
 	 *            Boolean on whether or not the MB has an integrated Audio card.
+	 * @param MBmaxIntegLanPorts
+	 *            The number of integrated LAN ports on the MB.
 	 */
 	public Motherboard(String Name, String Desc, String MBproducer,
 			String MBform, String MBsocket, String MBramType, int MBmaxCPUs,
 			int MBmaxPCIs, int MBmaxRAMs, int MBmaxUSBs, int MBmaxDUCs,
-			int MBmaxCOAXs, String MBDUCconnectionType, String MBgraphicalPort,
+			int MBmaxCOAXs, int MBmaxFibers, String MBDUCconnectionType,
+			String MBgraphicalPort,
 			boolean MBintegLANcard, boolean MBintegGraphicalCard,
 			boolean MBintegAudioCard, int MBmaxIntegLanPorts)
 	{
@@ -188,6 +212,7 @@ public class Motherboard extends Hardware implements Serializable
 		maxDUCs = MBmaxDUCs;
 		maxIntegLANs = MBmaxIntegLanPorts;
 		maxCoaxs = MBmaxCOAXs;
+		maxFiber = MBmaxFibers;
 		graphicalPortType = MBgraphicalPort;
 		DUCconnectionType = MBDUCconnectionType;
 		LANcardIntegrated = MBintegLANcard;
@@ -201,6 +226,7 @@ public class Motherboard extends Hardware implements Serializable
 		DUCPortsAvailable = MBmaxDUCs;
 		IntegLANPortsAvailable = MBmaxIntegLanPorts;
 		COAXPortsAvailable = MBmaxCOAXs;
+		FiberPortsAvailable = MBmaxFibers;
 	}
 
 
@@ -335,6 +361,15 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
+	 * Gets the number of Fiber ports.
+	 */
+	public int getMaxFibers()
+	{
+		return maxFiber;
+	}
+
+
+	/**
 	 * Get the type DUC connection on the motherboard. IDE, ATA, SATA and so on.
 	 */
 	public String getDUCconnectionType()
@@ -385,6 +420,7 @@ public class Motherboard extends Hardware implements Serializable
 	/**
 	 * Get a boolean on whether or not there is an integrated LAN card on the
 	 * motherboard.
+	 * FIXME - Consider removing this function
 	 */
 	public boolean LANcardIsIntegrated()
 	{
@@ -500,6 +536,15 @@ public class Motherboard extends Hardware implements Serializable
 	public int getCoaxPortsAvailable()
 	{
 		return COAXPortsAvailable;
+	}
+
+
+	/**
+	 * Gets the number of Fiber ports that are available.
+	 */
+	public int getFiberPortsAvailable()
+	{
+		return FiberPortsAvailable;
 	}
 
 
@@ -627,6 +672,15 @@ public class Motherboard extends Hardware implements Serializable
 	public void setMaxCoaxs(int MBmaxCoaxs)
 	{
 		maxCoaxs = MBmaxCoaxs;
+	}
+
+
+	/**
+	 * Set method for number of Fiber ports of the motherboard.
+	 */
+	public void setMaxFibers(int MBmaxFibers)
+	{
+		maxFiber = MBmaxFibers;
 	}
 
 
@@ -941,6 +995,40 @@ public class Motherboard extends Hardware implements Serializable
 	}
 
 
+	/**
+	 * Sets the number Fiber ports available.
+	 * 
+	 * @param FiberPortsAvailable
+	 *            the CoaxPortsAvailable to set
+	 */
+	public void setFiberPortsAvailable(int FiberPortsAvailable)
+	{
+		this.FiberPortsAvailable = FiberPortsAvailable;
+	}
+
+
+
+	/**
+	 * Makes one Fiber port available by add to the integer that keep track of
+	 * how make port are available.
+	 */
+	public void makeOneFiberPortAvailable()
+	{
+		FiberPortsAvailable++;
+	}
+
+
+
+	/**
+	 * Makes one Fiber port unavailable by removing from the integer that keep
+	 * track of how make port are available.
+	 */
+	public void makeOneFiberPortTaken()
+	{
+		FiberPortsAvailable--;
+	}
+
+
 
 	// CLASS METHODES
 
@@ -959,6 +1047,7 @@ public class Motherboard extends Hardware implements Serializable
 		maxUSBs = 0;
 		maxDUCs = 0;
 		maxCoaxs = 0;
+		maxFiber = 0;
 		graphicalPortType = "";
 		DUCconnectionType = "";
 		LANcardIntegrated = false;
@@ -972,6 +1061,7 @@ public class Motherboard extends Hardware implements Serializable
 		DUCPortsAvailable = 0;
 		IntegLANPortsAvailable = 0;
 		COAXPortsAvailable = 0;
+		FiberPortsAvailable = 0;
 	}
 
 
@@ -988,6 +1078,7 @@ public class Motherboard extends Hardware implements Serializable
 		DUCPortsAvailable = maxDUCs;
 		IntegLANPortsAvailable = maxIntegLANs;
 		COAXPortsAvailable = maxCoaxs;
+		FiberPortsAvailable = maxFiber;
 	}
 
 

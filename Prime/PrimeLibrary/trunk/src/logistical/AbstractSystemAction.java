@@ -34,10 +34,13 @@ public abstract class AbstractSystemAction extends AbstractAction implements Und
 {
 
 	/**
-	 * TODO - Description NEEDED!
+	 * This constructor takes a string as the name of the action and an
+	 * {@link ImageIcon} as the image to be displayed for user.
 	 * 
 	 * @param text
+	 *            The name of the action.
 	 * @param icon
+	 *            The image representing the action.
 	 */
 	public AbstractSystemAction(String text, ImageIcon icon)
 	{
@@ -46,9 +49,10 @@ public abstract class AbstractSystemAction extends AbstractAction implements Und
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * This constructor takes a string as the name of the action.
 	 * 
 	 * @param text
+	 *            The name of the action.
 	 */
 	public AbstractSystemAction(String text)
 	{
@@ -57,54 +61,99 @@ public abstract class AbstractSystemAction extends AbstractAction implements Und
 
 
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.swing.undo.UndoableEdit#addEdit(javax.swing.undo.UndoableEdit)
+	 */
 	@Override
 	public boolean addEdit(UndoableEdit anEdit)
 	{
 		return false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.swing.undo.UndoableEdit#canRedo()
+	 */
 	@Override
 	public boolean canRedo()
 	{
 		return false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.swing.undo.UndoableEdit#canUndo()
+	 */
 	@Override
 	public boolean canUndo()
 	{
 		return false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.swing.undo.UndoableEdit#die()
+	 */
 	@Override
 	public void die()
 	{
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.swing.undo.UndoableEdit#getPresentationName()
+	 */
 	@Override
 	public String getPresentationName()
 	{
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.swing.undo.UndoableEdit#getRedoPresentationName()
+	 */
 	@Override
 	public String getRedoPresentationName()
 	{
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.swing.undo.UndoableEdit#getUndoPresentationName()
+	 */
 	@Override
 	public String getUndoPresentationName()
 	{
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.swing.undo.UndoableEdit#isSignificant()
+	 */
 	@Override
 	public boolean isSignificant()
 	{
 		return false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.swing.undo.UndoableEdit#redo()
+	 */
 	@Override
 	public void redo() throws CannotRedoException
 	{

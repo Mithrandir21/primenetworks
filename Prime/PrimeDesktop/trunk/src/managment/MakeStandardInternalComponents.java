@@ -52,11 +52,12 @@ public class MakeStandardInternalComponents
 	 */
 	public Motherboard getSt_MB()
 	{
-		Motherboard mb = new Motherboard(PrimeMain.texts
-				.getString("standardMBName"), PrimeMain.texts
-				.getString("standardMBDescription"), PrimeMain.texts
-				.getString("standardMBProducer"), "ATX", "Intel 775", "DDR2",
-				1, 3, 2, 4, 4, 0, "SATA", "AGP", true, true, true, 1);
+		Motherboard mb = new Motherboard(
+				PrimeMain.texts.getString("standardMBName"),
+				PrimeMain.texts.getString("standardMBDescription"),
+				PrimeMain.texts.getString("standardMBProducer"), "ATX",
+				"Intel 775", "DDR2", 1, 3, 2, 4, 4, 0, 0, "SATA", "AGP", true,
+				true, true, 1);
 
 		return mb;
 	}

@@ -33,6 +33,9 @@ import actions.canvasActions.ActionDeleteAllConnections;
 import actions.canvasActions.ActionDeleteAllRooms;
 import actions.canvasActions.ActionDeleteAllWidgets;
 import actions.canvasActions.ActionDeleteEverything;
+import actions.canvasActions.ActionResetZoom;
+import actions.canvasActions.ActionZoomIn;
+import actions.canvasActions.ActionZoomOut;
 import actions.systemActions.ActionAbout;
 import actions.systemActions.ActionCopy;
 import actions.systemActions.ActionCut;
@@ -339,12 +342,32 @@ public class GenericPrimeMenuBar extends JMenuBar
 		submenu.add(update);
 
 
+		// Zoom Buttons
+
+		JMenu submenuZoom = new JMenu(PrimeMain.texts.getString("zoomLabel"));
+
+		JMenuItem resetZoom = new JMenuItem(new ActionResetZoom(
+				PrimeMain.texts.getString("resetZoomLabel")));
+		resetZoom.setIcon(null);
+		submenuZoom.add(resetZoom);
+
+		JMenuItem zoomIn = new JMenuItem(new ActionZoomIn(
+				PrimeMain.texts.getString("zoomInLabel")));
+		zoomIn.setIcon(null);
+		submenuZoom.add(zoomIn);
+
+		JMenuItem zoomOut = new JMenuItem(new ActionZoomOut(
+				PrimeMain.texts.getString("zoomOutLabel")));
+		zoomOut.setIcon(null);
+		submenuZoom.add(zoomOut);
+
 
 		view.add(submenu);
 
 		// Adds a separator to the menu
 		view.addSeparator();
 
+		view.add(submenuZoom);
 		view.add(update);
 
 

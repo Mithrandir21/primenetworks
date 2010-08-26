@@ -535,7 +535,7 @@ public class InternalNICView extends JPanel implements HardwareViewInterface, Ac
 			{
 				mbBoard = ComponentsManagment.getObjectMotherboard(mainObj);
 
-				// VALIDATES THE USB/LAN PORTS AGAINS THE NETWORK RULES
+				// VALIDATES THE LAN PORTS AGAINS THE NETWORK RULES
 
 				NetworkRules rules = canvas.getRules();
 
@@ -620,6 +620,13 @@ public class InternalNICView extends JPanel implements HardwareViewInterface, Ac
 									PrimeMain.texts.getString("error"),
 									JOptionPane.ERROR_MESSAGE);
 						}
+					}
+					else if ( conType.getSelectedItem().toString()
+							.equals(ConnectionUtils.Wireless)
+							|| IntNIC.getConnectionType().equals(
+									ConnectionUtils.Wireless) )
+					{
+						valid = true;
 					}
 				}
 			}

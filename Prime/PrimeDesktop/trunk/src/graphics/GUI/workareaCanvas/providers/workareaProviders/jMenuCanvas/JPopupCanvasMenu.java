@@ -33,6 +33,9 @@ import actions.canvasActions.ActionDeleteAllRooms;
 import actions.canvasActions.ActionDeleteAllWidgets;
 import actions.canvasActions.ActionDeleteEverything;
 import actions.canvasActions.ActionOpenNetworkRules;
+import actions.canvasActions.ActionResetZoom;
+import actions.canvasActions.ActionZoomIn;
+import actions.canvasActions.ActionZoomOut;
 import actions.systemActions.ActionPaste;
 
 
@@ -109,6 +112,8 @@ public class JPopupCanvasMenu
 
 		// Adds the "add objects" menu
 		ObjectCreationMenues();
+
+		createZoomMenu();
 
 		popup.addSeparator();
 
@@ -331,7 +336,6 @@ public class JPopupCanvasMenu
 
 	/**
 	 * Creates a menu that holds remove actions for the canvas.
-	 * 
 	 */
 	private void createRemoveMenu()
 	{
@@ -368,5 +372,35 @@ public class JPopupCanvasMenu
 
 
 		popup.add(submenu);
+	}
+
+
+	/**
+	 * Creates a menu that holds remove actions for the zoom function.
+	 */
+	private void createZoomMenu()
+	{
+		// Zoom Buttons
+
+		JMenu submenuZoom = new JMenu(PrimeMain.texts.getString("zoomLabel"));
+
+		JMenuItem resetZoom = new JMenuItem(new ActionResetZoom(
+				PrimeMain.texts.getString("resetZoomLabel")));
+		resetZoom.setIcon(null);
+		submenuZoom.add(resetZoom);
+
+		JMenuItem zoomIn = new JMenuItem(new ActionZoomIn(
+				PrimeMain.texts.getString("zoomInLabel")));
+		zoomIn.setIcon(null);
+		submenuZoom.add(zoomIn);
+
+		JMenuItem zoomOut = new JMenuItem(new ActionZoomOut(
+				PrimeMain.texts.getString("zoomOutLabel")));
+		zoomOut.setIcon(null);
+		submenuZoom.add(zoomOut);
+
+
+
+		popup.add(submenuZoom);
 	}
 }

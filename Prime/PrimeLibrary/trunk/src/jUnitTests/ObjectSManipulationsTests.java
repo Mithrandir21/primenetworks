@@ -84,7 +84,7 @@ public class ObjectSManipulationsTests
 	public void setUp() throws Exception
 	{
 		components[0] = new Motherboard("Standard MB", "Standard MB Desc",
-				"MB Producer", "ATX", "Intel 775", "DDR2", 1, 3, 2, 4, 4, 0,
+				"MB Producer", "ATX", "Intel 775", "DDR2", 1, 3, 2, 4, 4, 0, 0,
 				"SATA", "AGP", true, true, true, 1);
 
 		HW_MB = new Motherboard("Standard Hardware MB",
@@ -285,6 +285,14 @@ public class ObjectSManipulationsTests
 		Assert.assertEquals(2, mb.getCoaxPortsAvailable());
 		mb.makeOneCoaxPortAvailable();
 		Assert.assertEquals(3, mb.getCoaxPortsAvailable());
+
+
+		mb.setFiberPortsAvailable(3);
+		Assert.assertEquals(3, mb.getFiberPortsAvailable());
+		mb.makeOneFiberPortTaken();
+		Assert.assertEquals(2, mb.getFiberPortsAvailable());
+		mb.makeOneFiberPortAvailable();
+		Assert.assertEquals(3, mb.getFiberPortsAvailable());
 	}
 
 

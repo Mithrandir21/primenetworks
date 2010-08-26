@@ -30,22 +30,19 @@ import objects.hardwareObjects.Motherboard;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runners.JUnit4;
 
 import exceptions.ObjectNotFoundException;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class contains different {@link JUnit4} tests. The tests validate
+ * functions in the {@link ArrayManagment} class.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class ArrayManagmentTests
 {
-	/**
-	 * TODO - Description
-	 * 
-	 */
 	@Before
 	public void setUp() throws Exception
 	{

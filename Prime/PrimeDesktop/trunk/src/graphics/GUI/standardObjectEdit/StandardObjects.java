@@ -47,6 +47,7 @@ public class StandardObjects extends JDialog
 	// visual standard object view.
 	private StandardViewSpilt splitView;
 
+
 	/**
 	 * A constructor for this class that sets the JFrame name, size and the
 	 * location of the top left corner of the frame. It also adds a new {@link StandardViewSpilt} to the JFrame.

@@ -27,6 +27,11 @@ import javax.swing.ImageIcon;
 import logistical.AbstractSystemAction;
 
 
+/**
+ * TODO - Description NEEDED!
+ * 
+ * @author Bahram Malaekeh
+ */
 public class ActionFullscreen extends AbstractSystemAction
 {
 	/**

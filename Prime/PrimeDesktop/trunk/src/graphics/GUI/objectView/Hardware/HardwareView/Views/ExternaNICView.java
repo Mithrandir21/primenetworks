@@ -542,7 +542,9 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 				}
 				else
 				{
-					if ( extNIC.getConnectionType()
+					if ( conType.getSelectedItem().toString()
+							.equals(ConnectionUtils.RJ45)
+							|| extNIC.getConnectionType()
 							.equals(ConnectionUtils.RJ45) )
 					{
 						// If LAN is allowed
@@ -612,6 +614,13 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 									PrimeMain.texts.getString("error"),
 									JOptionPane.ERROR_MESSAGE);
 						}
+					}
+					else if ( conType.getSelectedItem().toString()
+							.equals(ConnectionUtils.Wireless)
+							|| extNIC.getConnectionType().equals(
+									ConnectionUtils.Wireless) )
+					{
+						valid = true;
 					}
 				}
 			}

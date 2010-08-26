@@ -1,21 +1,21 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package actions.systemActions;
+package actions.canvasActions;
 
 
 import graphics.PrimeMain;
@@ -23,22 +23,18 @@ import graphics.PrimeMain;
 import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 import logistical.AbstractSystemAction;
-import managment.DesktopFileManagment;
-import objects.softwareObjects.OperatingSystem;
+import widgets.WorkareaCanvas;
 
 
 /**
- * This action attempts to export the programs list of custom
- * {@link OperatingSystem OperatingSystems}. The function calls will ask the
- * user for location and name for the output file. This function is not
- * undoable.
+ * This action resets the zoom factor for the current {@link WorkareaCanvas}, if
+ * any.
  * 
  * @author Bahram Malaekeh
  */
-public class ActionExportCustomOS extends AbstractSystemAction
+public class ActionResetZoom extends AbstractSystemAction
 {
 	/**
 	 * A constructor for the class that takes a string, the action name, and a
@@ -49,9 +45,11 @@ public class ActionExportCustomOS extends AbstractSystemAction
 	 * @param icon
 	 *            The icon representing the action.
 	 */
-	public ActionExportCustomOS(String text, ImageIcon icon)
+	public ActionResetZoom(String text, ImageIcon icon)
 	{
 		super(text, icon);
+		putValue(SHORT_DESCRIPTION,
+				PrimeMain.texts.getString("actionAboutDescriptionText"));
 	}
 
 
@@ -62,29 +60,28 @@ public class ActionExportCustomOS extends AbstractSystemAction
 	 * @param text
 	 *            The name of the action.
 	 */
-	public ActionExportCustomOS(String text)
+	public ActionResetZoom(String text)
 	{
 		super(text);
+		putValue(SHORT_DESCRIPTION,
+				PrimeMain.texts.getString("actionAboutDescriptionText"));
 	}
+
+
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if ( PrimeMain.system_custom_OS.isEmpty() )
+		if ( PrimeMain.currentCanvas != null )
 		{
-			// Tells the user that there are no custom OSs
-			JOptionPane.showMessageDialog(null, PrimeMain.texts
-					.getString("noCustomOStoExportMsg"));
-		}
-		else if ( DesktopFileManagment.exportCustomOS() )
-		{
-			// Tells the user that the export was successful
-			JOptionPane.showMessageDialog(null, PrimeMain.texts
-					.getString("exportCustomOSToFileSuccess"));
+			PrimeMain.currentCanvas.getScene().setZoomFactor(1.0);
+			PrimeMain.currentCanvas.getScene().validate();
 		}
 	}
 

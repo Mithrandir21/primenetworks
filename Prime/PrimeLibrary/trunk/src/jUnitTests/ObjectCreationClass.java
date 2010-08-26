@@ -81,7 +81,7 @@ public class ObjectCreationClass
 	public static Object[] ObjectCreationClass()
 	{
 		components[0] = new Motherboard("Standard MB", "Standard MB Desc",
-				"MB Producer", "ATX", "Intel 775", "DDR2", 1, 3, 2, 4, 4, 0,
+				"MB Producer", "ATX", "Intel 775", "DDR2", 1, 3, 2, 4, 4, 0, 0,
 				"SATA", "AGP", true, true, true, 1);
 
 		HW_MB = new Motherboard("Standard Hardware MB",
@@ -125,7 +125,7 @@ public class ObjectCreationClass
 	public static ArrayList<Object> ObjectCreationClassArrayList()
 	{
 		components[0] = new Motherboard("Standard MB", "Standard MB Desc",
-				"MB Producer", "ATX", "Intel 775", "DDR2", 1, 3, 2, 4, 4, 0,
+				"MB Producer", "ATX", "Intel 775", "DDR2", 1, 3, 2, 4, 4, 0, 0,
 				"SATA", "AGP", true, true, true, 1);
 
 		HW_MB = new Motherboard("Standard Hardware MB",

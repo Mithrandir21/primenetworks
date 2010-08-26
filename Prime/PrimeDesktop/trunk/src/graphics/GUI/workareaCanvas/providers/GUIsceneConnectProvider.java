@@ -61,7 +61,8 @@ public class GUIsceneConnectProvider extends SceneConnectProvider
 		if ( sourceWidget != targetWidget
 				&& !(targetWidget instanceof LabelWidget)
 				&& !(targetWidget instanceof LayerWidget)
-				&& (targetWidget instanceof WidgetObject || isChildOfThisWidget(targetWidget)) )
+				&& (targetWidget instanceof WidgetObject || isChildOfThisWidget(targetWidget))
+				&& targetWidget.getParentWidget() != sourceWidget )
 		{
 			Widget target = targetWidget.getParentWidget();
 

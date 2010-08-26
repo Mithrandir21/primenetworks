@@ -29,10 +29,10 @@ import logistical.AbstractSystemAction;
 
 
 /**
- * TODO - Description NEEDED!
+ * This action opens, or brings to the front, the programs "Standard Rules"
+ * window.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class ActionOpenStandardRules extends AbstractSystemAction
 {

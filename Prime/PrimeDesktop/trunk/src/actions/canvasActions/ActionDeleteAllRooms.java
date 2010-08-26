@@ -33,13 +33,13 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * @author bam
+ * This action attempts to remove all {@link WidgetRoom WidgetRooms} on a
+ * currently open and showing {@link WorkareaCanvas}.
  * 
+ * @author Bahram Malaekeh
  */
 public class ActionDeleteAllRooms extends AbstractSystemAction
 {
-
-
 	/**
 	 * A constructor for the class that takes a string, the action name, and an
 	 * Icon.

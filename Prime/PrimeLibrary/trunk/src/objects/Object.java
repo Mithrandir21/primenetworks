@@ -32,6 +32,7 @@ import objects.hardwareObjects.Motherboard;
 import widgetManipulation.NetworkRules;
 import widgets.WorkareaCanvas;
 import connections.Connection;
+import connections.ConnectionUtils;
 import connections.DeviceConnection;
 import connections.InternalConnection;
 import connections.NetworkConnection;
@@ -460,7 +461,8 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Gets an array containing all the {@link Software} "installed" on the
+	 * object.
 	 * 
 	 * @return the software
 	 */
@@ -471,7 +473,8 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * Gets the {@link Point} location of the object. This point is used to
+	 * determine location on a {@link WorkareaCanvas}.
 	 * 
 	 * @return the location
 	 */
@@ -482,7 +485,8 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * A boolean on whether or not the object is exempted the Network rules, ie.
+	 * {@link NetworkRules}.
 	 * 
 	 * @return the exemptedNetworkRules
 	 */
@@ -574,7 +578,8 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * Description NEEDED!
+	 * Sets the {@link NetworkConnection NetworkConnections} array representing
+	 * only network connections.
 	 * 
 	 * @param connections
 	 *            the connections to set
@@ -596,7 +601,8 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets the given of {@link Software} as the software "installed" on this
+	 * object.
 	 * 
 	 * @param software
 	 *            the software to set
@@ -608,7 +614,8 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * Sets the {@link Point} location of this object. Used to determine
+	 * location on a {@link WorkareaCanvas}.
 	 * 
 	 * @param location
 	 *            the location to set
@@ -620,7 +627,8 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * Sets a boolean on whether or not the object is exempted the Network
+	 * rules, ie. {@link NetworkRules}.
 	 * 
 	 * @param exemptedNetworkRules
 	 *            the exemptedNetworkRules to set
@@ -800,10 +808,10 @@ public abstract class Object implements Serializable, Cloneable
 		{
 			removeNetworkConnection((NetworkConnection) con);
 		}
-
+ 
 		try
 		{
-			releaseSingelConnectionPort(con);
+			releaseSingelConnectionPort(con.getConnectionType());
 		}
 		catch ( PortIsNotRegisteredOnMotherboard e )
 		{
@@ -1020,7 +1028,7 @@ public abstract class Object implements Serializable, Cloneable
 	 *            released.
 	 * @throws PortIsNotRegisteredOnMotherboard
 	 */
-	public void releaseSingelConnectionPort(Connection con)
+	public void releaseSingelConnectionPort(String conType)
 			throws PortIsNotRegisteredOnMotherboard
 	{
 		Motherboard objectMotherboard = null;
@@ -1036,18 +1044,21 @@ public abstract class Object implements Serializable, Cloneable
 		}
 
 
-		if ( con instanceof InternalConnection )
-		{
-			// FIXME - Have to fix the removal function on ports.
-		}
-		else if ( con instanceof DeviceConnection )
+		if ( conType.equals(ConnectionUtils.USB) )
 		{
 			objectMotherboard.makeOneUSBportAvailable();
 		}
-		else
-		// This will then be a network connection.
+		else if ( conType.equals(ConnectionUtils.RJ45) )
 		{
 			objectMotherboard.makeOneIntLANportAvailable();
+		}
+		else if ( conType.equals(ConnectionUtils.Coax) )
+		{
+			objectMotherboard.makeOneCoaxPortAvailable();
+		}
+		else if ( conType.equals(ConnectionUtils.Fiber) )
+		{
+			objectMotherboard.makeOneFiberPortAvailable();
 		}
 	}
 

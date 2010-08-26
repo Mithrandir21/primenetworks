@@ -360,27 +360,4 @@ public class ObjectSelection extends JPanel
 
 		return iconButton;
 	}
-
-	//
-	//
-	// /**
-	// * Gets the vertical size of all the components in this JPanel.
-	// *
-	// * @return
-	// */
-	// private int getCompSize()
-	// {
-	// int size = 0;
-	//
-	// for ( int i = 0; i < this.getComponentCount(); i++ )
-	// {
-	// size += this.getComponent(i).getHeight();
-	// }
-	//
-	//
-	// return size + (this.getComponentCount() * 5);
-	// }
-	//
-
-
 }

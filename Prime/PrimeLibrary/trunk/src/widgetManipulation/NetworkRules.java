@@ -78,6 +78,32 @@ public class NetworkRules implements Serializable
 
 
 	/**
+	 * Whether or not the network allows COAX ports on its computers.
+	 */
+	private boolean COAXnotAllowed = false;
+
+
+	/**
+	 * A number representing the number of allowed COAX ports.
+	 * -1 means the numbers is not set.
+	 */
+	private int COAXportsAllowed = -1;
+
+
+	/**
+	 * Whether or not the network allows FIBER ports on its computers.
+	 */
+	private boolean FIBERnotAllowed = false;
+
+
+	/**
+	 * A number representing the number of allowed FIBER ports.
+	 * -1 means the numbers is not set.
+	 */
+	private int FIBERportsAllowed = -1;
+
+
+	/**
 	 * SOFTWARE RULES
 	 */
 
@@ -266,7 +292,54 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets whether or not the computers in a network are restricted to a specific {@link OperatingSystem}.
+	 * Gets whether or not the network allows COAX ports on its computers.
+	 */
+	public boolean isCOAXnotAllowed()
+	{
+		return COAXnotAllowed;
+	}
+
+
+
+
+	/**
+	 * Gets the number representing the number of allowed COAX ports.
+	 * -1 means the numbers is not set.
+	 */
+	public int getCOAXportsAllowed()
+	{
+		return COAXportsAllowed;
+	}
+
+
+
+
+	/**
+	 * Gets whether or not the network allows FIBER ports on its computers.
+	 */
+	public boolean isFIBERnotAllowed()
+	{
+		return FIBERnotAllowed;
+	}
+
+
+
+
+	/**
+	 * Gets the number representing the number of allowed FIBER ports.
+	 * -1 means the numbers is not set.
+	 */
+	public int getFIBERportsAllowed()
+	{
+		return FIBERportsAllowed;
+	}
+
+
+
+
+	/**
+	 * Gets whether or not the computers in a network are restricted to a
+	 * specific {@link OperatingSystem}.
 	 */
 	public boolean isOSrestriction()
 	{
@@ -465,9 +538,9 @@ public class NetworkRules implements Serializable
 	/**
 	 * Sets whether or not the network allows LAN ports on its computers.
 	 */
-	public void setLANnotAllowed(boolean lANallowed)
+	public void setLANnotAllowed(boolean LANnotAllowed)
 	{
-		LANnotAllowed = lANallowed;
+		this.LANnotAllowed = LANnotAllowed;
 	}
 
 
@@ -477,9 +550,55 @@ public class NetworkRules implements Serializable
 	 * A number representing the number of allowed LAN ports.
 	 * -1 means the numbers is not set.
 	 */
-	public void setLANportsAllowed(int lANportsAllowed)
+	public void setLANportsAllowed(int LANportsAllowed)
 	{
-		LANportsAllowed = lANportsAllowed;
+		this.LANportsAllowed = LANportsAllowed;
+	}
+
+
+
+
+	/**
+	 * Sets whether or not the network allows COAX ports on its computers.
+	 */
+	public void setCOAXnotAllowed(boolean COAXnotAllowed)
+	{
+		this.COAXnotAllowed = COAXnotAllowed;
+	}
+
+
+
+
+	/**
+	 * A number representing the number of allowed COAX ports.
+	 * -1 means the numbers is not set.
+	 */
+	public void setCOAXportsAllowed(int COAXportsAllowed)
+	{
+		this.COAXportsAllowed = COAXportsAllowed;
+	}
+
+
+
+
+	/**
+	 * Sets whether or not the network allows FIBER ports on its computers.
+	 */
+	public void setFIBERnotAllowed(boolean FIBERnotAllowed)
+	{
+		this.FIBERnotAllowed = FIBERnotAllowed;
+	}
+
+
+
+
+	/**
+	 * A number representing the number of allowed FIBER ports.
+	 * -1 means the numbers is not set.
+	 */
+	public void setFIBERportsAllowed(int FIBERportsAllowed)
+	{
+		this.FIBERportsAllowed = FIBERportsAllowed;
 	}
 
 

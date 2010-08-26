@@ -803,6 +803,18 @@ public class DesktopFileManagment
 		// There was an open canvas found
 		else
 		{
+			// Gets the serial of the canvas in the given file
+			double serial = getWorkareaCanvasSerialFromFile(file);
+			
+			// A boolean on whether the open canvas is the same as the file.
+			boolean sameCanvas = false;
+
+			// Checking to see whether the open canvas has the serial number as the canvas in the file.
+			if ( serial == canvas.getSerial() )
+			{
+				sameCanvas = true;
+			}
+			
 			int answer = JOptionPane.showConfirmDialog(null, PrimeMain.texts
 					.getString("actionDeleteWorkareaCanvasMsg")
 					+ canvasName + "?", PrimeMain.texts.getString("confirm"),
@@ -832,19 +844,21 @@ public class DesktopFileManagment
 					// Reloads
 					PrimeMain.updateNetworkSelectionArea();
 
-					// Removes the WorkareScroll with the canvas
-					try
+					if ( sameCanvas )
 					{
-						PrimeMain.workTab
+						// Removes the WorkareScroll with the canvas
+						try
+						{
+							PrimeMain.workTab
 								.removeTabWithCanvas(canvasName, false);
-					}
-					catch ( CanvasNotFound e )
-					{
-						log
-								.warning("The WorkareaCanvas, "
-										+ canvasName
-										+ ", was not found in the WorkareaCanvas main register.");
-						e.printStackTrace();
+						}
+						catch ( CanvasNotFound e )
+						{
+							log.warning("The WorkareaCanvas, "
+									+ canvasName
+									+ ", was not found in the WorkareaCanvas main register.");
+							e.printStackTrace();
+						}
 					}
 
 					return true;
@@ -2372,7 +2386,6 @@ public class DesktopFileManagment
 	 */
 	public static void openObjectsFile(File file)
 	{
-
 		// If the Objects file exists
 		if ( file.exists() )
 		{
@@ -2579,5 +2592,64 @@ public class DesktopFileManagment
 		}
 
 		return "";
+	}
+
+
+
+	/**
+	 * This function attempts to retrieve the serial number of the
+	 * {@link WorkareaCanvas} contained inside the give file.
+	 */
+	public static double getWorkareaCanvasSerialFromFile(File file)
+	{
+		double serial = 0;
+
+
+		// If the Objects file exists
+		if ( file.exists() )
+		{
+			// If the pointer is a file and nothing else
+			if ( file.isFile() )
+			{
+				// If the file can be read
+				if ( file.canRead() )
+				{
+					try
+					{
+						FileInputStream fin = new FileInputStream(file);
+
+						ObjectInputStream ois = new ObjectInputStream(fin);
+
+						// The name of the canvas(not used)
+						ois.readObject();
+
+						// The serial of the network
+						serial = ois.readDouble();
+
+						ois.close();
+					}
+					catch ( Exception e )
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else
+				{
+					System.out.println("File cannot be read.");
+				}
+			}
+			else
+			{
+				System.out.println("File pointer is to a folder, not a file.");
+			}
+		}
+		else
+		{
+			System.out.println("File does not exist.");
+		}
+
+
+		return serial;
 	}
 }

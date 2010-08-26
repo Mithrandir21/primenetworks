@@ -26,13 +26,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
 import logistical.AbstractSystemAction;
+import widgets.WorkareaCanvas;
 
 
 /**
- * TODO - Description NEEDED!
+ * This action opens the {@link NetworkRulesFrame} and shows the rules for the
+ * currently open and showing {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class ActionOpenNetworkRules extends AbstractSystemAction
 {

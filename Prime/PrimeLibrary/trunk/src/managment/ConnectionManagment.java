@@ -773,10 +773,13 @@ public class ConnectionManagment
 		}
 
 
-		if ( conType.equals(ConnectionUtils.RJ45) )
+		// If the connection is either LAN, COAX or FIBER
+		if ( conType.equals(ConnectionUtils.RJ45)
+				|| conType.equals(ConnectionUtils.Coax)
+				|| conType.equals(ConnectionUtils.Fiber) )
 		{
 			// Pointers to network objects in cases where the motherboard has no
-			// port available or has not lan ports integrated.
+			// port available or has not conType integrated.
 			Object ObjectAnic = null;
 			Object ObjectBnic = null;
 
@@ -787,12 +790,26 @@ public class ConnectionManagment
 			int indexA = 0;
 			int indexB = 0;
 
-			// Checks if the motherboard of the first object has an integrated
-			// LAN port.
-			if ( objectAmotherboard.LANcardIsIntegrated() )
+
+			if ( conType.equals(ConnectionUtils.RJ45) )
 			{
-				// Gets the first available LAN port index.
-				indexA = objectAmotherboard.getIntegLANPortsAvailable();
+				// Checks if the motherboard of the first object has an
+				// integrated LAN port.
+				if ( objectAmotherboard.LANcardIsIntegrated() )
+				{
+					// Gets the first available LAN port index.
+					indexA = objectAmotherboard.getIntegLANPortsAvailable();
+				}
+			}
+			else if ( conType.equals(ConnectionUtils.Coax) )
+			{
+				// Gets the first available Coax port index.
+				indexA = objectAmotherboard.getCoaxPortsAvailable();
+			}
+			else if ( conType.equals(ConnectionUtils.Fiber) )
+			{
+				// Gets the first available Fiber port index.
+				indexA = objectAmotherboard.getFiberPortsAvailable();
 			}
 
 			if ( indexA < 1 )
@@ -812,9 +829,8 @@ public class ConnectionManagment
 						if ( temp.getConnectedObject() == null )
 						{
 							// If the connection type of the network card is
-							// wired
-							if ( temp.getConnectionType().equals(
-									ConnectionUtils.RJ45) )
+							// conType
+							if ( temp.getConnectionType().equals(conType) )
 							{
 								// Sets the found InternalNetworksCard with no
 								// objects connected to it
@@ -835,7 +851,7 @@ public class ConnectionManagment
 				}
 
 
-				// No InternalNIC was found, either with RJ-45 or at all
+				// No InternalNIC was found, either with conType or at all
 				if ( ObjectAnic == null )
 				{
 					try
@@ -854,9 +870,8 @@ public class ConnectionManagment
 							if ( temp.getConnectedObject() == null )
 							{
 								// If the connection type of the network card is
-								// wired
-								if ( temp.getConnectionType().equals(
-										ConnectionUtils.RJ45) )
+								// conType
+								if ( temp.getConnectionType().equals(conType) )
 								{
 									// Sets the found ExternalNetworksCard with
 									// no objects connected to it
@@ -878,7 +893,7 @@ public class ConnectionManagment
 				}
 			}
 
-			// No integrated lan port was present and no NIC card was found.
+			// No conType was present and no NIC card was found.
 			if ( indexA < 1 && ObjectAnic == null )
 			{
 				JOptionPane.showMessageDialog(null,
@@ -891,13 +906,26 @@ public class ConnectionManagment
 
 
 
-			// Checks if the motherboard of the second object has an integrated
-			// LAN port.
-			if ( objectBmotherboard.LANcardIsIntegrated() )
+			if ( conType.equals(ConnectionUtils.RJ45) )
 			{
-				// Gets the first available LAN port index.
-				indexB = objectBmotherboard.getIntegLANPortsAvailable();
+				// Checks if the motherboard of the second object has an LAN.
+				if ( objectBmotherboard.LANcardIsIntegrated() )
+				{
+					// Gets the first available LAN port index.
+					indexB = objectBmotherboard.getIntegLANPortsAvailable();
+				}
 			}
+			else if ( conType.equals(ConnectionUtils.Coax) )
+			{
+				// Gets the first available Coax port index.
+				indexB = objectBmotherboard.getCoaxPortsAvailable();
+			}
+			else if ( conType.equals(ConnectionUtils.Fiber) )
+			{
+				// Gets the first available Fiber port index.
+				indexB = objectBmotherboard.getFiberPortsAvailable();
+			}
+
 
 			if ( indexB < 1 )
 			{
@@ -915,10 +943,8 @@ public class ConnectionManagment
 						// If there is no Object connected to this InternalNIC
 						if ( temp.getConnectedObject() == null )
 						{
-							// If the connection type of the network card is
-							// wired
-							if ( temp.getConnectionType().equals(
-									ConnectionUtils.RJ45) )
+							// If the connection type of the network card is conType
+							if ( temp.getConnectionType().equals(conType) )
 							{
 								// Sets the found InternalNetworksCard with no
 								// objects connected to it
@@ -939,7 +965,7 @@ public class ConnectionManagment
 				}
 
 
-				// No InternalNIC was found, either with RJ-45 or at all
+				// No InternalNIC was found, either with conType or at all
 				if ( ObjectBnic == null )
 				{
 					try
@@ -957,10 +983,8 @@ public class ConnectionManagment
 							// ExternalNICs
 							if ( temp.getConnectedObject() == null )
 							{
-								// If the connection type of the network card is
-								// wired
-								if ( temp.getConnectionType().equals(
-										ConnectionUtils.RJ45) )
+								// If the connection type of the network card is conType
+								if ( temp.getConnectionType().equals(conType) )
 								{
 									// Sets the found ExternalNetworksCard with
 									// no objects connected to it
@@ -1008,14 +1032,42 @@ public class ConnectionManagment
 			// ObjectA - Has available integrated Lan port
 			if ( indexA > 0 )
 			{
-				// Sets the arrays on the actual motherboard components.
-				objectAmotherboard.makeOneIntLANportTaken();
+				if ( conType.equals(ConnectionUtils.RJ45) )
+				{
+					// Sets the arrays on the actual motherboard components.
+					objectAmotherboard.makeOneIntLANportTaken();
+				}
+				else if ( conType.equals(ConnectionUtils.Coax) )
+				{
+					// Sets the arrays on the actual motherboard components.
+					objectAmotherboard.makeOneCoaxPortTaken();
+				}
+				else if ( conType.equals(ConnectionUtils.Fiber) )
+				{
+					// Sets the arrays on the actual motherboard components.
+					objectAmotherboard.makeOneFiberPortTaken();
+				}
+
+
 
 				// ObjectB - Has available integrated Lan port
 				if ( indexB > 0 )
 				{
-					// Both the motherboards have available lan ports
-					objectBmotherboard.makeOneIntLANportTaken();
+					if ( conType.equals(ConnectionUtils.RJ45) )
+					{
+						// Sets the arrays on the actual motherboard components.
+						objectBmotherboard.makeOneIntLANportTaken();
+					}
+					else if ( conType.equals(ConnectionUtils.Coax) )
+					{
+						// Sets the arrays on the actual motherboard components.
+						objectBmotherboard.makeOneCoaxPortTaken();
+					}
+					else if ( conType.equals(ConnectionUtils.Fiber) )
+					{
+						// Sets the arrays on the actual motherboard components.
+						objectBmotherboard.makeOneFiberPortTaken();
+					}
 				}
 				else
 				{
@@ -1052,8 +1104,21 @@ public class ConnectionManagment
 				// ObjectB - Has available integrated Lan port
 				if ( indexB > 0 )
 				{
-					// Both the motherboards have available lan ports
-					objectBmotherboard.makeOneIntLANportTaken();
+					if ( conType.equals(ConnectionUtils.RJ45) )
+					{
+						// Sets the arrays on the actual motherboard components.
+						objectBmotherboard.makeOneIntLANportTaken();
+					}
+					else if ( conType.equals(ConnectionUtils.Coax) )
+					{
+						// Sets the arrays on the actual motherboard components.
+						objectBmotherboard.makeOneCoaxPortTaken();
+					}
+					else if ( conType.equals(ConnectionUtils.Fiber) )
+					{
+						// Sets the arrays on the actual motherboard components.
+						objectBmotherboard.makeOneFiberPortTaken();
+					}
 
 
 					// Sets the objects as the connected objects on the network
