@@ -1,26 +1,26 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.standardObjectEdit;
 
 
 import graphics.PrimeMain;
 import graphics.GUI.selectArea.ObjectSelection;
-import graphics.GUI.standardObjectEdit.StandardViews.HardwareObjectView;
+import graphics.GUI.standardObjectEdit.StandardViews.ObjectViewPanel;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -41,7 +41,7 @@ import widgets.WidgetButton;
  */
 public class StandardViewSpilt extends JPanel
 {
-	private HardwareObjectView hardStdObjView;
+	private ObjectViewPanel objPanel;
 
 
 	/**
@@ -80,22 +80,23 @@ public class StandardViewSpilt extends JPanel
 		c.gridy = 0; // third row
 
 
-		hardStdObjView = new HardwareObjectView(PrimeMain.objectlist.get(0));
+		objPanel = new ObjectViewPanel(PrimeMain.objectlist.get(0));
+		// hardStdObjView = new HardwareObjectView(PrimeMain.objectlist.get(0));
 
 		Dimension dim = new Dimension(450, 1);
-		hardStdObjView.setMinimumSize(dim);
+		objPanel.setMinimumSize(dim);
 
 
-		this.add(hardStdObjView, c);
+		this.add(objPanel, c);
 	}
 
 
 	/**
-	 * Gets the view that holds the hardware info about the currently selected
-	 * object.
+	 * Gets the view that holds the hardware/software info about the currently
+	 * selected object.
 	 */
-	public HardwareObjectView getHardStdObjView()
+	public ObjectViewPanel getObjView()
 	{
-		return hardStdObjView;
+		return objPanel;
 	}
 }

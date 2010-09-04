@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas;
 
@@ -30,6 +30,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 
 import managment.CreateObjects;
+import managment.DesktopCanvasManagment;
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
 import objects.clientObjects.ThinClient;
@@ -38,19 +39,24 @@ import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.Modem;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
+import objects.peripheralObjects.ExternalHDD;
 import objects.peripheralObjects.Fax;
 import objects.peripheralObjects.MultifunctionPrinter;
 import objects.peripheralObjects.NetworkMultifunctionPrinter;
 import objects.peripheralObjects.NetworkPrinter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
+import objects.serverObjects.AntivirusServer;
 import objects.serverObjects.BackupServer;
 import objects.serverObjects.DatabaseServer;
 import objects.serverObjects.FirewallServer;
+import objects.serverObjects.GenericServer;
 import objects.serverObjects.HTTPServer;
 import objects.serverObjects.MailServer;
+import objects.serverObjects.NASServer;
 import objects.serverObjects.PrinterServer;
 import objects.serverObjects.ProxyServer;
+import objects.serverObjects.VirtualizationServer;
 import widgets.WidgetIcon;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
@@ -93,6 +99,7 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -140,6 +147,20 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 				set = true;
 			}
+			else if ( actionName.equals("CreateNewST_GeneralServer_Item") )
+			{
+				objectType = GenericServer.class;
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
+
+				set = true;
+			}
+			else if ( actionName.equals("CreateNewST_AntivirusServer_Item") )
+			{
+				objectType = AntivirusServer.class;
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
+
+				set = true;
+			}
 			else if ( actionName.equals("CreateNewST_HTTPServer_Item") )
 			{
 				objectType = HTTPServer.class;
@@ -154,9 +175,24 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 				set = true;
 			}
+			else if ( actionName.equals("CreateNewST_NASServer_Item") )
+			{
+				objectType = NASServer.class;
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
+
+				set = true;
+			}
 			else if ( actionName.equals("CreateNewST_DatabaseServer_Item") )
 			{
 				objectType = DatabaseServer.class;
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
+
+				set = true;
+			}
+			else if ( actionName
+					.equals("CreateNewST_VirtualizationServer_Item") )
+			{
+				objectType = VirtualizationServer.class;
 				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
@@ -227,6 +263,13 @@ public class WorkareaCanvasActionListener implements ActionListener
 			else if ( actionName.equals("CreateNewST_Internet_Item") )
 			{
 				objectType = Internet.class;
+				objectIcon = PrimeMain.objectImageIcons.get(objectType);
+
+				set = true;
+			}
+			else if ( actionName.equals("CreateNewST_NAS_Item") )
+			{
+				objectType = ExternalHDD.class;
 				objectIcon = PrimeMain.objectImageIcons.get(objectType);
 
 				set = true;
@@ -309,6 +352,6 @@ public class WorkareaCanvasActionListener implements ActionListener
 			}
 		}
 
-		canvas.cleanUp();
+		DesktopCanvasManagment.canvasCleanUp(canvas);
 	}
 }

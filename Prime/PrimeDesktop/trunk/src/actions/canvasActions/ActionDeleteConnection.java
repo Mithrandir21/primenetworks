@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package actions.canvasActions;
 
@@ -35,6 +35,7 @@ import logistical.SystemActionInterface;
 import logistical.checkLogic;
 import managment.CanvasManagment;
 import managment.ConnectionManagment;
+import managment.DesktopCanvasManagment;
 import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
@@ -43,12 +44,14 @@ import connections.WidgetExtendedConnection;
 
 
 /**
- * This action deletes the given connection from the currently open {@link WorkareaCanvas}.
+ * This action deletes the given connection from the currently open
+ * {@link WorkareaCanvas}.
  * This action contains a undo/redo function.
  * 
  * @author Bahram Malaekeh
  */
-public class ActionDeleteConnection extends AbstractSystemAction implements SystemActionInterface
+public class ActionDeleteConnection extends AbstractSystemAction implements
+		SystemActionInterface
 {
 
 	// The canvas where the deletion is taking place
@@ -92,6 +95,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -105,6 +109,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#canRedo()
 	 */
 	@Override
@@ -115,6 +120,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#canUndo()
 	 */
 	@Override
@@ -125,6 +131,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#die()
 	 */
 	@Override
@@ -136,6 +143,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getPresentationName()
 	 */
 	@Override
@@ -146,6 +154,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getRedoPresentationName()
 	 */
 	@Override
@@ -156,6 +165,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getUndoPresentationName()
 	 */
 	@Override
@@ -166,6 +176,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#isSignificant()
 	 */
 	@Override
@@ -177,6 +188,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#redo()
 	 */
 	@Override
@@ -186,11 +198,12 @@ public class ActionDeleteConnection extends AbstractSystemAction implements Syst
 		WorkareaCanvasActions.removeWidgetConnection(canvas,
 				existingConnections);
 
-		canvas.cleanUp();
+		DesktopCanvasManagment.canvasCleanUp(canvas);
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#undo()
 	 */
 	@Override
@@ -209,16 +222,16 @@ public class ActionDeleteConnection extends AbstractSystemAction implements Syst
 						priorCon.getObject2(), canvas);
 
 				// Creates a new connection between the two widget objects
-				Connection con = ConnectionManagment.makeConnection(canvas
-						.getConnections(), PrimeMain.texts
-						.getString("connection")
-						+ canvas.getNumberOfWidgetsOnTheScene(),
+				Connection con = ConnectionManagment.makeConnection(
+						canvas.getConnections(),
+						PrimeMain.texts.getString("connection")
+								+ canvas.getNumberOfWidgetsOnTheScene(),
 						"Connection between "
 								+ sourceWidget.getObject().getObjectName()
 								+ " and "
 								+ targetWidget.getObject().getObjectName()
-								+ ".", sourceWidget.getObject(), targetWidget
-								.getObject(), priorCon.getConnectionType(),
+								+ ".", sourceWidget.getObject(),
+						targetWidget.getObject(), priorCon.getConnectionType(),
 						checkLogic.getConClass(priorCon.getConnectionType()));
 
 				// Creates the connection between the two devices on the
@@ -244,7 +257,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements Syst
 				// Add the connection the connection layer
 				canvas.getConnectionLayer().addChild(connection);
 
-				canvas.cleanUp();
+				DesktopCanvasManagment.canvasCleanUp(canvas);
 
 				// Sets the newly created connection as the current connection
 				existingConnections = connection;
@@ -253,17 +266,19 @@ public class ActionDeleteConnection extends AbstractSystemAction implements Syst
 			// objects.
 			catch ( ConnectionDoesExist e )
 			{
-				JOptionPane.showMessageDialog(null, PrimeMain.texts
-						.getString("connectionAlreadyExistsMsg"),
-						PrimeMain.texts.getString("alert"),
-						JOptionPane.ERROR_MESSAGE);
+				JOptionPane
+						.showMessageDialog(null, PrimeMain.texts
+								.getString("connectionAlreadyExistsMsg"),
+								PrimeMain.texts.getString("alert"),
+								JOptionPane.ERROR_MESSAGE);
 			}
 			// If a connection between the two given objects is impossible.
 			catch ( ConnectionsIsNotPossible e )
 			{
-				JOptionPane.showMessageDialog(null, PrimeMain.texts
-						.getString("connectionNotPossibleMsg"), PrimeMain.texts
-						.getString("alert"), JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,
+						PrimeMain.texts.getString("connectionNotPossibleMsg"),
+						PrimeMain.texts.getString("alert"),
+						JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
@@ -271,6 +286,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.SystemActionInterface#performAction()
 	 */
 	@Override
@@ -283,7 +299,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements Syst
 		WorkareaCanvasActions.removeWidgetConnection(canvas,
 				existingConnections);
 
-		canvas.cleanUp();
+		DesktopCanvasManagment.canvasCleanUp(canvas);
 
 		if ( undoable )
 		{

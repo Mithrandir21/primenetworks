@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package managment;
 
@@ -29,10 +29,14 @@ import objects.softwareObjects.Backup;
 import objects.softwareObjects.Database;
 import objects.softwareObjects.Email;
 import objects.softwareObjects.Firewall;
+import objects.softwareObjects.GenericSoftware;
+import objects.softwareObjects.NASsoftware;
 import objects.softwareObjects.OfficeSuite;
 import objects.softwareObjects.OperatingSystem;
 import objects.softwareObjects.Proxy;
+import objects.softwareObjects.RemoteDesktop;
 import objects.softwareObjects.SecuritySuite;
+import objects.softwareObjects.VirtualizationSoftware;
 import objects.softwareObjects.Webserver;
 
 
@@ -48,16 +52,19 @@ public class SoftwareManagment
 
 	/**
 	 * This function creates a new array of {@link Software} from the array of
-	 * software in the given {@link Object}. It then adds the given {@link Software} to the newly created software array and
+	 * software in the given {@link Object}. It then adds the given
+	 * {@link Software} to the newly created software array and
 	 * returns that
 	 * array.
 	 * 
 	 * @param sw
 	 *            The {@link Software} to be added.
 	 * @param obj
-	 *            The {@link Object} that holds the current array of {@link Software}.
+	 *            The {@link Object} that holds the current array of
+	 *            {@link Software}.
 	 * @return A new array of {@link Software} that will contain all the
-	 *         software given by the given {@link Object} and the given {@link Software}.
+	 *         software given by the given {@link Object} and the given
+	 *         {@link Software}.
 	 */
 	public static Software[] addSoftware(Software sw, Object obj)
 	{
@@ -99,17 +106,21 @@ public class SoftwareManagment
 
 	/**
 	 * This function creates a new array of {@link Software} from the array of
-	 * software in the given {@link Object}. It then removes the given {@link Software} from the newly created software array and
+	 * software in the given {@link Object}. It then removes the given
+	 * {@link Software} from the newly created software array and
 	 * returns that
 	 * array. If the given {@link Software} is not found in the array of the
-	 * given {@link Object}, no changes will be made to the {@link Software} array.
+	 * given {@link Object}, no changes will be made to the {@link Software}
+	 * array.
 	 * 
 	 * @param sw
 	 *            The {@link Software} to be removed.
 	 * @param obj
-	 *            The {@link Object} that holds the current array of {@link Software}.
+	 *            The {@link Object} that holds the current array of
+	 *            {@link Software}.
 	 * @return A new array of {@link Software} that will contain all the
-	 *         software given by the given {@link Object}, minus the {@link Software} object given.
+	 *         software given by the given {@link Object}, minus the
+	 *         {@link Software} object given.
 	 */
 	public static Software[] removeSoftware(Software sw, Object obj)
 	{
@@ -203,7 +214,13 @@ public class SoftwareManagment
 					// Gets the name of the Operating system.
 					osName = os[i].getObjectName();
 
-					if ( sw instanceof Antivirus )
+					if ( sw instanceof GenericSoftware )
+					{
+						GenericSoftware swObj = (GenericSoftware) sw;
+
+						swOS = swObj.getSupportedOperatingSystems();
+					}
+					else if ( sw instanceof Antivirus )
 					{
 						Antivirus swObj = (Antivirus) sw;
 
@@ -214,7 +231,12 @@ public class SoftwareManagment
 						Backup swObj = (Backup) sw;
 
 						swOS = swObj.getSupportedOperatingSystems();
+					}
+					else if ( sw instanceof NASsoftware )
+					{
+						NASsoftware swObj = (NASsoftware) sw;
 
+						swOS = swObj.getSupportedOperatingSystems();
 					}
 					else if ( sw instanceof Database )
 					{
@@ -222,6 +244,12 @@ public class SoftwareManagment
 
 						swOS = swObj.getSupportedOperatingSystems();
 
+					}
+					else if ( sw instanceof VirtualizationSoftware )
+					{
+						VirtualizationSoftware swObj = (VirtualizationSoftware) sw;
+
+						swOS = swObj.getSupportedOperatingSystems();
 					}
 					else if ( sw instanceof Email )
 					{
@@ -264,6 +292,12 @@ public class SoftwareManagment
 
 						swOS = swObj.getSupportedOperatingSystems();
 					}
+					else if ( sw instanceof RemoteDesktop )
+					{
+						RemoteDesktop swObj = (RemoteDesktop) sw;
+
+						swOS = swObj.getSupportedOperatingSystems();
+					}
 
 
 					if ( swOS != null )
@@ -287,119 +321,9 @@ public class SoftwareManagment
 
 
 	/**
-	 * The function goes through all the Operating systems the given software
-	 * supports and checks whether or not any of them match up against the given
-	 * Operating system.
-	 * 
-	 * @param sw
-	 * @param os
-	 */
-	public static boolean validateSoftware(Software sw, OperatingSystem os)
-	{
-		String osName = null;
-
-		if ( os != null )
-		{
-			String[] swOS = null;
-
-			// Gets the name of the Operating system.
-			osName = os.getObjectName();
-
-			if ( sw instanceof Antivirus )
-			{
-				Antivirus swObj = (Antivirus) sw;
-
-				swOS = swObj.getSupportedOperatingSystems();
-			}
-			else if ( sw instanceof Backup )
-			{
-				Backup swObj = (Backup) sw;
-
-				swOS = swObj.getSupportedOperatingSystems();
-
-			}
-			else if ( sw instanceof Database )
-			{
-				Database swObj = (Database) sw;
-
-				swOS = swObj.getSupportedOperatingSystems();
-
-			}
-			else if ( sw instanceof Email )
-			{
-				Email swObj = (Email) sw;
-
-				swOS = swObj.getSupportedOperatingSystems();
-
-			}
-			else if ( sw instanceof Firewall )
-			{
-				Firewall swObj = (Firewall) sw;
-
-				swOS = swObj.getSupportedOperatingSystems();
-
-			}
-			else if ( sw instanceof OfficeSuite )
-			{
-				OfficeSuite swObj = (OfficeSuite) sw;
-
-				swOS = swObj.getSupportedOperatingSystems();
-
-			}
-			else if ( sw instanceof Proxy )
-			{
-				Proxy swObj = (Proxy) sw;
-
-				swOS = swObj.getSupportedOperatingSystems();
-
-			}
-			else if ( sw instanceof SecuritySuite )
-			{
-				SecuritySuite swObj = (SecuritySuite) sw;
-
-				swOS = swObj.getSupportedOperatingSystems();
-
-			}
-			else if ( sw instanceof Webserver )
-			{
-				Webserver swObj = (Webserver) sw;
-
-				swOS = swObj.getSupportedOperatingSystems();
-
-			}
-
-
-			if ( swOS != null )
-			{
-				// If the OS name is found to be an OS that the software
-				// supports
-				if ( ArrayManagment.arrayContains(swOS, osName) == true )
-				{
-					return true;
-				}
-			}
-
-
-			// If the methodes gets to this point it means that the software
-			// does
-			// not support the operating system.
-			return false;
-		}
-
-		// If the methodes gets to this point it means that the object does not
-		// contain any OS and there can be no validation of compatibility
-		return true;
-	}
-
-
-
-
-
-
-	/**
-	 * Finds the first OperatingSystem instance in the software array of the
-	 * given Object and returns that Software object. If it does not exist, it
-	 * will return a null pointer.
+	 * Find all the OperatingSystem instance in the software array of the
+	 * given Object and returns an array of {@link OperatingSystem}. If it does
+	 * not exist, it will return a null pointer.
 	 */
 	public static OperatingSystem[] getOperatingSystem(Object obj)
 	{
@@ -442,7 +366,8 @@ public class SoftwareManagment
 	 * System object.
 	 * 
 	 * @param os
-	 *            The {@link OperatingSystem} object that is to be the only {@link Software} object "installed" on the given
+	 *            The {@link OperatingSystem} object that is to be the only
+	 *            {@link Software} object "installed" on the given
 	 *            {@link Object}.
 	 * @param obj
 	 *            The {@link Object} where the new {@link OperatingSystem} is to

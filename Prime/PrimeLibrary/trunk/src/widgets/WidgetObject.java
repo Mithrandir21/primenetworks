@@ -1,32 +1,37 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package widgets;
 
 
 
 import java.awt.Dimension;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 
 import objects.Object;
+import objects.softwareObjects.OperatingSystem;
 
 import org.netbeans.api.visual.laf.LookFeel;
 import org.netbeans.api.visual.layout.LayoutFactory;
@@ -35,6 +40,7 @@ import org.netbeans.api.visual.widget.ImageWidget;
 import org.netbeans.api.visual.widget.LabelWidget;
 import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
+import org.netbeans.modules.visual.util.GeomUtil;
 
 import widgetManipulation.WidgetNetworkInfo;
 
@@ -67,12 +73,17 @@ public class WidgetObject extends Widget implements Transferable
 	/**
 	 * Contains an image representing the {@link Object} type.
 	 */
-	private ImageWidget imageWidget;
+	private ObjectImageWidget imageWidget;
 
 	/**
 	 * Contains the name of the {@link Object}.
 	 */
 	private LabelWidget labelWidget;
+
+	/**
+	 * Contains the IP of the {@link Object}.
+	 */
+	private LabelWidget ipLabelWidget;
 
 
 	/**
@@ -95,17 +106,19 @@ public class WidgetObject extends Widget implements Transferable
 
 		LookFeel lookFeel = getScene().getLookFeel();
 
-		this.setLayout(LayoutFactory
-				.createVerticalFlowLayout(LayoutFactory.SerialAlignment.CENTER,
-						-lookFeel.getMargin() + 1));
+		this.setLayout(LayoutFactory.createVerticalFlowLayout(
+				LayoutFactory.SerialAlignment.CENTER, -lookFeel.getMargin() + 1));
 
 		labelWidget = new LabelWidget(scene);
 		// labelWidget.setFont(scene.getDefaultFont().deriveFont(14.0f));
 		this.addChild(labelWidget);
 
-		imageWidget = new ImageWidget(scene);
-		imageWidget.setImage(objImg);
+		imageWidget = new ObjectImageWidget(scene, objImg);
 		this.addChild(imageWidget);
+
+		ipLabelWidget = new LabelWidget(scene);
+		ipLabelWidget.setLabel("");
+		this.addChild(ipLabelWidget);
 
 
 		this.setState(ObjectState.createNormal());
@@ -147,16 +160,6 @@ public class WidgetObject extends Widget implements Transferable
 
 
 	/**
-	 * @return A new Dimension with the size of the image.
-	 */
-	public Dimension getImageDimension()
-	{
-		return new Dimension(imageWidget.getImage().getHeight(null),
-				imageWidget.getImage().getWidth(null));
-	}
-
-
-	/**
 	 * Returns a label.
 	 * 
 	 * @return the label
@@ -186,6 +189,17 @@ public class WidgetObject extends Widget implements Transferable
 	public LabelWidget getLabelWidget()
 	{
 		return labelWidget;
+	}
+
+
+
+	/**
+	 * @return The {@link LabelWidget} that contains the IP of the
+	 *         {@link Object} represented by this class.
+	 */
+	public LabelWidget getIPlabelWidget()
+	{
+		return ipLabelWidget;
 	}
 
 
@@ -223,6 +237,30 @@ public class WidgetObject extends Widget implements Transferable
 	}
 
 
+
+	/**
+	 * Sets the {@link OperatingSystem} icon for the widget.
+	 */
+	public void setOSimage(Image osImage)
+	{
+		if ( osImage != null && imageWidget != null )
+		{
+			imageWidget.setOSImageWidget(osImage);
+		}
+	}
+
+
+
+	/**
+	 * Removes the {@link OperatingSystem} icon for the widget.
+	 */
+	public void removeOSimage()
+	{
+		if ( imageWidget != null )
+		{
+			imageWidget.setOSImageWidget(null);
+		}
+	}
 
 	// TRANSFERABLE IMPLEMENTATION
 	public WidgetObject getTransferData(DataFlavor flavor)
@@ -263,5 +301,36 @@ public class WidgetObject extends Widget implements Transferable
 		}
 		// System.out.println("WidgetCanvas - " + flavors[0]);
 		return flavors;
+	}
+
+
+
+
+	// DIMENSIONS METHODS
+	/**
+	 * @return A new Dimension with the size of the image.
+	 */
+	public Dimension getImageDimension()
+	{
+		return new Dimension(imageWidget.getImage().getHeight(null),
+				imageWidget.getImage().getWidth(null));
+	}
+
+
+
+	/**
+	 * @return A new Dimension with the size of widgets label,
+	 *         {@link LabelWidget}.
+	 */
+	public Dimension getLabelDimension()
+	{
+		Graphics2D gr = getScene().getGraphics();
+		FontMetrics fontMetrics = gr.getFontMetrics();
+		Rectangle2D stringBounds = fontMetrics.getStringBounds(
+				object.getObjectName(), gr);
+		Rectangle rectangle = GeomUtil.roundRectangle(stringBounds);
+
+
+		return new Dimension(rectangle.width, rectangle.height);
 	}
 }

@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package objects;
 
@@ -151,7 +151,8 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * A boolean that says whether an object is exempted the {@link NetworkRules} that apply to the {@link WorkareaCanvas} it is
+	 * A boolean that says whether an object is exempted the
+	 * {@link NetworkRules} that apply to the {@link WorkareaCanvas} it is
 	 * inside.
 	 */
 	private boolean exemptedNetworkRules = false;
@@ -213,7 +214,8 @@ public abstract class Object implements Serializable, Cloneable
 	/**
 	 * The constructor of the object superclass. All objects must have both a
 	 * name and description. This constructor also sets the initial components
-	 * that an object starts of with. Like {@link objects.hardwareObjects.Motherboard motherboards}.
+	 * that an object starts of with. Like
+	 * {@link objects.hardwareObjects.Motherboard motherboards}.
 	 * 
 	 * @param Name
 	 *            The name of an object
@@ -274,7 +276,8 @@ public abstract class Object implements Serializable, Cloneable
 	/**
 	 * The constructor of the object superclass. All objects must have both a
 	 * name and description. This constructor also sets the supported user
-	 * interfaces the object supports and set the objects {@link objects.hardwareObjects.Motherboard motherboards}. This
+	 * interfaces the object supports and set the objects
+	 * {@link objects.hardwareObjects.Motherboard motherboards}. This
 	 * constructor is good for the creation of infrastructure which may only
 	 * have a motherboard.
 	 * 
@@ -700,7 +703,7 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * Functino to add component to the components list.
+	 * Function to add component to the components list.
 	 * 
 	 * @param NewComponent
 	 */
@@ -808,7 +811,7 @@ public abstract class Object implements Serializable, Cloneable
 		{
 			removeNetworkConnection((NetworkConnection) con);
 		}
- 
+
 		try
 		{
 			releaseSingelConnectionPort(con.getConnectionType());
@@ -1370,10 +1373,12 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * This function concats both the network connections and the device connection into one single connection array and returns
+	 * This function concats both the network connections and the device
+	 * connection into one single connection array and returns
 	 * the new combined connection array.
 	 * 
-	 * @return An {@link Connection} array containing all the connections to and from this object.
+	 * @return An {@link Connection} array containing all the connections to and
+	 *         from this object.
 	 */
 	public Connection[] getAllConnections()
 	{
@@ -1409,10 +1414,8 @@ public abstract class Object implements Serializable, Cloneable
 			{
 				if ( networkConnections != null )
 				{
-					System
-							.arraycopy(deviceConnections, 0, connections,
-									networkConnections.length,
-									deviceConnections.length);
+					System.arraycopy(deviceConnections, 0, connections,
+							networkConnections.length, deviceConnections.length);
 				}
 				else
 				{

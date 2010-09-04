@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.properties.objectTypes;
 
@@ -37,6 +37,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import managment.DesktopCanvasManagment;
 import objects.Clients;
 import objects.Object;
 import objects.clientObjects.Desktop;
@@ -49,7 +50,8 @@ import objects.clientObjects.ThinClient;
  * 
  * @author Bahram Malaekeh
  */
-public class ClientsPropertiesView extends AbstractObjectPropertiesView implements ActionListener
+public class ClientsPropertiesView extends AbstractObjectPropertiesView
+		implements ActionListener
 {
 
 	// The client properties labels
@@ -121,8 +123,8 @@ public class ClientsPropertiesView extends AbstractObjectPropertiesView implemen
 		if ( obj instanceof Desktop )
 		{
 			// Desktop Rate
-			label = new JLabel(PrimeMain.texts
-					.getString("propClientViewDesktopRateLabel"),
+			label = new JLabel(
+					PrimeMain.texts.getString("propClientViewDesktopRateLabel"),
 					SwingConstants.TRAILING);
 			label.setToolTipText(PrimeMain.texts
 					.getString("propClientViewDesktopRateTip"));
@@ -130,8 +132,8 @@ public class ClientsPropertiesView extends AbstractObjectPropertiesView implemen
 		else if ( obj instanceof Laptop )
 		{
 			// Laptop Rate
-			label = new JLabel(PrimeMain.texts
-					.getString("propClientViewLaptopRateLabel"),
+			label = new JLabel(
+					PrimeMain.texts.getString("propClientViewLaptopRateLabel"),
 					SwingConstants.TRAILING);
 			label.setToolTipText(PrimeMain.texts
 					.getString("propClientViewLaptopRateTip"));
@@ -139,8 +141,9 @@ public class ClientsPropertiesView extends AbstractObjectPropertiesView implemen
 		else if ( obj instanceof ThinClient )
 		{
 			// ThinClient Rate
-			label = new JLabel(PrimeMain.texts
-					.getString("propClientViewThinClientRateLabel"),
+			label = new JLabel(
+					PrimeMain.texts
+							.getString("propClientViewThinClientRateLabel"),
 					SwingConstants.TRAILING);
 			label.setToolTipText(PrimeMain.texts
 					.getString("propClientViewThinClientRateTip"));
@@ -184,7 +187,8 @@ public class ClientsPropertiesView extends AbstractObjectPropertiesView implemen
 
 
 	/**
-	 * Resets all specific fields to the info gotten from the {@link Object} viewed.
+	 * Resets all specific fields to the info gotten from the {@link Object}
+	 * viewed.
 	 */
 	private void resetFields()
 	{
@@ -214,6 +218,7 @@ public class ClientsPropertiesView extends AbstractObjectPropertiesView implemen
 	{
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see java.awt.event.KeyAdapter#keyPressed(java.awt.event.KeyEvent)
 		 */
 		@Override
@@ -261,13 +266,18 @@ public class ClientsPropertiesView extends AbstractObjectPropertiesView implemen
 		{
 			PrimeMain.updatePropertiesObjectArea(objectViewed, true);
 		}
+
+
+		DesktopCanvasManagment.canvasCleanUp(PrimeMain.currentCanvas);
 	}
 
 
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)

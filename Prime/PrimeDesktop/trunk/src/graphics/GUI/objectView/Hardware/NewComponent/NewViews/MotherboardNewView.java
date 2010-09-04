@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
@@ -62,7 +62,8 @@ import actions.canvasActions.ActionDeleteAllConnectionsToAndFrom;
  * 
  * @author Bahram Malaekeh
  */
-public class MotherboardNewView extends JDialog implements HardwareViewInterface, ActionListener
+public class MotherboardNewView extends JDialog implements
+		HardwareViewInterface, ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -194,7 +195,8 @@ public class MotherboardNewView extends JDialog implements HardwareViewInterface
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param mb
@@ -228,51 +230,51 @@ public class MotherboardNewView extends JDialog implements HardwareViewInterface
 		labels[5] = new JLabel(PrimeMain.texts.getString("mbViewGPUportLabel"));
 		labels[5].setToolTipText(PrimeMain.texts.getString("mbViewGPUportTip"));
 
-		labels[6] = new JLabel(PrimeMain.texts
-				.getString("mbViewConnectionPortLabel"));
+		labels[6] = new JLabel(
+				PrimeMain.texts.getString("mbViewConnectionPortLabel"));
 		labels[6].setToolTipText(PrimeMain.texts
 				.getString("mbViewConnectionPortTip"));
 
 		labels[7] = new JLabel(PrimeMain.texts.getString("mbViewRamTypeLabel"));
 		labels[7].setToolTipText(PrimeMain.texts.getString("mbViewRamTypeTip"));
 
-		labels[8] = new JLabel(PrimeMain.texts
-				.getString("mbViewAudioIntegratedLabel"));
+		labels[8] = new JLabel(
+				PrimeMain.texts.getString("mbViewAudioIntegratedLabel"));
 		labels[8].setToolTipText(PrimeMain.texts
 				.getString("mbViewAudioIntegratedTip"));
 
-		labels[9] = new JLabel(PrimeMain.texts
-				.getString("mbViewGPUIntegratedLabel"));
+		labels[9] = new JLabel(
+				PrimeMain.texts.getString("mbViewGPUIntegratedLabel"));
 		labels[9].setToolTipText(PrimeMain.texts
 				.getString("mbViewGPUIntegratedTip"));
 
-		labels[10] = new JLabel(PrimeMain.texts
-				.getString("mbViewNICIntegratedLabel"));
+		labels[10] = new JLabel(
+				PrimeMain.texts.getString("mbViewNICIntegratedLabel"));
 		labels[10].setToolTipText(PrimeMain.texts
 				.getString("mbViewNICIntegratedTip"));
 
-		labels[11] = new JLabel(PrimeMain.texts
-				.getString("mbViewGPUinstalledLabel"));
+		labels[11] = new JLabel(
+				PrimeMain.texts.getString("mbViewGPUinstalledLabel"));
 		labels[11].setToolTipText(PrimeMain.texts
 				.getString("mbViewGPUinstalledTip"));
 
-		labels[12] = new JLabel(PrimeMain.texts
-				.getString("mbViewCPUsocketLabel"));
+		labels[12] = new JLabel(
+				PrimeMain.texts.getString("mbViewCPUsocketLabel"));
 		labels[12].setToolTipText(PrimeMain.texts
 				.getString("mbViewCPUsocketTip"));
 
-		labels[13] = new JLabel(PrimeMain.texts
-				.getString("mbViewPCIslotsLabel"));
+		labels[13] = new JLabel(
+				PrimeMain.texts.getString("mbViewPCIslotsLabel"));
 		labels[13].setToolTipText(PrimeMain.texts
 				.getString("mbViewPCIslotsTip"));
 
-		labels[14] = new JLabel(PrimeMain.texts
-				.getString("mbViewRAMslotsLabel"));
+		labels[14] = new JLabel(
+				PrimeMain.texts.getString("mbViewRAMslotsLabel"));
 		labels[14].setToolTipText(PrimeMain.texts
 				.getString("mbViewRAMslotsTip"));
 
-		labels[15] = new JLabel(PrimeMain.texts
-				.getString("mbViewUSBportsLabel"));
+		labels[15] = new JLabel(
+				PrimeMain.texts.getString("mbViewUSBportsLabel"));
 		labels[15].setToolTipText(PrimeMain.texts
 				.getString("mbViewUSBportsTip"));
 
@@ -280,8 +282,8 @@ public class MotherboardNewView extends JDialog implements HardwareViewInterface
 		labels[16]
 				.setToolTipText(PrimeMain.texts.getString("mbViewDUCportTip"));
 
-		labels[17] = new JLabel(PrimeMain.texts
-				.getString("mbViewLANportsLabel"));
+		labels[17] = new JLabel(
+				PrimeMain.texts.getString("mbViewLANportsLabel"));
 		labels[17].setToolTipText(PrimeMain.texts
 				.getString("mbViewLANportsTip"));
 
@@ -911,6 +913,7 @@ public class MotherboardNewView extends JDialog implements HardwareViewInterface
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -935,7 +938,8 @@ public class MotherboardNewView extends JDialog implements HardwareViewInterface
 
 					if ( validated )
 					{
-						// We have to remove all connection between this object and
+						// We have to remove all connection between this object
+						// and
 						// other objects on the canvas
 						// WorkareaCanvasActions.removeAllConnectionsToFromObject(
 						// PrimeMain1.currentCanvas, mainObj);
@@ -944,14 +948,16 @@ public class MotherboardNewView extends JDialog implements HardwareViewInterface
 										.getString("actionDeleteAllConnectionName"));
 						action.performAction(false);
 
-						// Since the motherboard is where most of the connections
+						// Since the motherboard is where most of the
+						// connections
 						// are
 						// placed we first have to remove all connections to the
 						// devices.
 						mainObj.removeAllConnections();
 
 
-						// Then we have to remove all the components that a object
+						// Then we have to remove all the components that a
+						// object
 						// contains.
 						mainObj.removeAllComponents();
 
@@ -970,12 +976,13 @@ public class MotherboardNewView extends JDialog implements HardwareViewInterface
 						{
 							view.updateViewInfo();
 						}
-						// If no view is returned, then the standard object view is
+						// If no view is returned, then the standard object view
+						// is
 						// open
 						// and that should be updated.
 						else if ( PrimeMain.stdObjView != null )
 						{
-							PrimeMain.stdObjView.getSplitView()
+							PrimeMain.stdObjView.getSplitView().getObjView()
 									.getHardStdObjView().updateTabInfo();
 						}
 
@@ -1000,6 +1007,7 @@ public class MotherboardNewView extends JDialog implements HardwareViewInterface
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * graphics.GUI.objectView.Hardware.NewComponent.NewViews.HardwareNewView
 	 * #save()
@@ -1116,7 +1124,9 @@ public class MotherboardNewView extends JDialog implements HardwareViewInterface
 								int newPortsNumber = Integer.parseInt(USBports
 										.getSelectedItem().toString());
 
-								// If the new number of ports is equal to, or less then, the maximum number of allowed ports.
+								// If the new number of ports is equal to, or
+								// less then, the maximum number of allowed
+								// ports.
 								if ( newPortsNumber <= rules
 										.getUSBportsAllowed() )
 								{
@@ -1187,8 +1197,8 @@ public class MotherboardNewView extends JDialog implements HardwareViewInterface
 			if ( PrimeMain.stdObjView != null )
 			{
 				if ( mainObj.getObjectSerial() == PrimeMain.stdObjView
-						.getSplitView().getHardStdObjView().getGivenObject()
-						.getObjectSerial() )
+						.getSplitView().getObjView().getHardStdObjView()
+						.getGivenObject().getObjectSerial() )
 				{
 					standardObject = true;
 				}
@@ -1226,7 +1236,9 @@ public class MotherboardNewView extends JDialog implements HardwareViewInterface
 								int newPortsNumber = Integer.parseInt(LANports
 										.getSelectedItem().toString());
 
-								// If the new number of ports is equal to, or less then, the maximum number of allowed ports.
+								// If the new number of ports is equal to, or
+								// less then, the maximum number of allowed
+								// ports.
 								if ( newPortsNumber <= rules
 										.getLANportsAllowed() )
 								{
@@ -1290,8 +1302,8 @@ public class MotherboardNewView extends JDialog implements HardwareViewInterface
 			if ( PrimeMain.stdObjView != null )
 			{
 				if ( mainObj.getObjectSerial() == PrimeMain.stdObjView
-						.getSplitView().getHardStdObjView().getGivenObject()
-						.getObjectSerial() )
+						.getSplitView().getObjView().getHardStdObjView()
+						.getGivenObject().getObjectSerial() )
 				{
 					standardObject = true;
 				}
@@ -1395,8 +1407,8 @@ public class MotherboardNewView extends JDialog implements HardwareViewInterface
 			if ( PrimeMain.stdObjView != null )
 			{
 				if ( mainObj.getObjectSerial() == PrimeMain.stdObjView
-						.getSplitView().getHardStdObjView().getGivenObject()
-						.getObjectSerial() )
+						.getSplitView().getObjView().getHardStdObjView()
+						.getGivenObject().getObjectSerial() )
 				{
 					standardObject = true;
 				}

@@ -1,26 +1,26 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.standardObjectEdit.StandardViews;
 
 
 import graphics.PrimeMain;
 import graphics.GUI.objectView.Hardware.HardwareViewInterface;
-import graphics.GUI.standardObjectEdit.ObjectViewTabbed;
+import graphics.GUI.standardObjectEdit.ObjectHardwareViewTabbed;
 
 import java.awt.Button;
 import java.awt.Component;
@@ -32,6 +32,8 @@ import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -46,6 +48,7 @@ import objects.ExternalHardware;
 import objects.Hardware;
 import objects.Infrastructure;
 import objects.Object;
+import objects.infrastructureObjects.Internet;
 
 
 /**
@@ -54,11 +57,12 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class StandardObjectEditor extends JFrame implements ActionListener
+public class StandardObjectHardwareEditor extends JFrame implements
+		ActionListener
 {
 	private Object givenObject = null;
 
-	private ObjectViewTabbed view;
+	private ObjectHardwareViewTabbed view;
 
 	/**
 	 * A constructor for the class that passes the given {@link Object} over to
@@ -67,11 +71,92 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 	 * @param obj
 	 *            The standard {@link Object} that can be edited.
 	 */
-	public StandardObjectEditor(Object obj)
+	public StandardObjectHardwareEditor(Object obj)
 	{
 		super("Edit Standard Object");
 
 		createNewEditorTab(obj);
+
+		this.addWindowListener(new WindowAdapter()
+		{
+			@Override
+			public void windowClosing(WindowEvent ev)
+			{
+				if ( PrimeMain.stdObjView != null )
+				{
+					PrimeMain.stdObjView.getSplitView().getObjView()
+							.getHardStdObjView().disposeHardwareView();
+				}
+			}
+		});
+	}
+
+
+
+	public void createNewEditorTab(Object obj)
+	{
+		givenObject = obj;
+
+
+		Dimension size = new Dimension(750, 600);
+
+		// Get the default toolkit
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+
+		// Get the current screen size
+		Dimension scrnsize = toolkit.getScreenSize();
+
+		int initYLocation = (scrnsize.height - size.height) / 2;
+		int initXLocation = (scrnsize.width - size.width) / 2;
+
+
+		// Get the content pane for this object
+		Container c = this.getContentPane();
+
+		JPanel panel = new JPanel();
+
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+
+		view = new ObjectHardwareViewTabbed(obj);
+
+		panel.add(view);
+
+
+
+		JPanel buttons = new JPanel();
+		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
+
+		Button save = new Button("Save");
+		save.addActionListener(this);
+		save.setActionCommand("save");
+
+		Button apply = new Button("Apply");
+		apply.addActionListener(this);
+		apply.setActionCommand("apply");
+
+		Button cancel = new Button("Cancel");
+		cancel.addActionListener(this);
+		cancel.setActionCommand("cancel");
+
+
+		buttons.add(save);
+		buttons.add(apply);
+		buttons.add(cancel);
+
+		buttons.setMaximumSize(new Dimension((int) scrnsize.getWidth(), 1));
+
+		panel.add(buttons);
+
+
+
+		c.add(panel);
+
+
+		this.setLocation(initXLocation, initYLocation);
+		this.setPreferredSize(size);
+		this.setMinimumSize(size);
+		this.setVisible(true);
 	}
 
 
@@ -179,75 +264,9 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 	}
 
 
-	public void createNewEditorTab(Object obj)
-	{
-		givenObject = obj;
-
-
-		Dimension size = new Dimension(750, 600);
-
-		// Get the default toolkit
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-
-		// Get the current screen size
-		Dimension scrnsize = toolkit.getScreenSize();
-
-		int initYLocation = (scrnsize.height - size.height) / 2;
-		int initXLocation = (scrnsize.width - size.width) / 2;
-
-
-		// Get the content pane for this object
-		Container c = this.getContentPane();
-
-		JPanel panel = new JPanel();
-
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-
-		view = new ObjectViewTabbed(obj);
-
-		panel.add(view);
-
-
-
-		JPanel buttons = new JPanel();
-		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
-
-		Button save = new Button("Save");
-		save.addActionListener(this);
-		save.setActionCommand("save");
-
-		Button apply = new Button("Apply");
-		apply.addActionListener(this);
-		apply.setActionCommand("apply");
-
-		Button cancel = new Button("Cancel");
-		cancel.addActionListener(this);
-		cancel.setActionCommand("cancel");
-
-
-		buttons.add(save);
-		buttons.add(apply);
-		buttons.add(cancel);
-
-		buttons.setMaximumSize(new Dimension((int) scrnsize.getWidth(), 1));
-
-		panel.add(buttons);
-
-
-
-		c.add(panel);
-
-
-		this.setLocation(initXLocation, initYLocation);
-		this.setPreferredSize(size);
-		this.setMinimumSize(size);
-		this.setVisible(true);
-	}
-
-
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -260,22 +279,27 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 
 			// If the object is an instance of infrastructure.
 			if ( givenObject instanceof Infrastructure
-					|| givenObject instanceof ExternalHardware )
+					|| givenObject instanceof ExternalHardware
+					|| givenObject instanceof Internet )
 			{
 				verify = false;
+			}
+
+			if ( PrimeMain.stdObjView != null )
+			{
+				PrimeMain.stdObjView.getSplitView().getObjView()
+						.getHardStdObjView().updateTabInfo();
 			}
 
 			// If the information is saved a true is returned and the
 			// JFrame is closed.
 			if ( view.save(verify) )
 			{
-				this.dispose();
-			}
-
-			if ( PrimeMain.stdObjView != null )
-			{
-				PrimeMain.stdObjView.getSplitView().getHardStdObjView()
-						.updateTabInfo();
+				if ( PrimeMain.stdObjView != null )
+				{
+					PrimeMain.stdObjView.getSplitView().getObjView()
+							.getHardStdObjView().disposeHardwareView();
+				}
 			}
 		}
 		else if ( e.getActionCommand().equals("apply") )
@@ -284,7 +308,8 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 
 			// If the object is an instance of infrastructure.
 			if ( givenObject instanceof Infrastructure
-					|| givenObject instanceof ExternalHardware )
+					|| givenObject instanceof ExternalHardware
+					|| givenObject instanceof Internet )
 			{
 				verify = false;
 			}
@@ -294,15 +319,19 @@ public class StandardObjectEditor extends JFrame implements ActionListener
 
 			if ( PrimeMain.stdObjView != null )
 			{
-				PrimeMain.stdObjView.getSplitView().getHardStdObjView()
-						.updateTabInfo();
+				PrimeMain.stdObjView.getSplitView().getObjView()
+						.getHardStdObjView().updateTabInfo();
 			}
 		}
 		else
 		{
 			assert (e.getActionCommand().equals("cancel"));
 
-			this.dispose();
+			if ( PrimeMain.stdObjView != null )
+			{
+				PrimeMain.stdObjView.getSplitView().getObjView()
+						.getHardStdObjView().disposeHardwareView();
+			}
 		}
 	}
 

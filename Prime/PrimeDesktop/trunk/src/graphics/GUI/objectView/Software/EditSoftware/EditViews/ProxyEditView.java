@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
@@ -63,7 +63,8 @@ import objects.softwareObjects.Proxy;
  * 
  * @author Bahram Malaekeh
  */
-public class ProxyEditView extends JPanel implements SoftwareView, ActionListener
+public class ProxyEditView extends JPanel implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -161,11 +162,11 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain.texts
-				.getString("swTabRemoveSoftwaretText"));
+		JLabel label = new JLabel(
+				PrimeMain.texts.getString("swTabRemoveSoftwaretText"));
 
-		Button remove = new Button(PrimeMain.texts
-				.getString("swTabRemoveSoftwareButtonLabel"));
+		Button remove = new Button(
+				PrimeMain.texts.getString("swTabRemoveSoftwareButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeSoft");
 
@@ -182,7 +183,8 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Software object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param proxy
@@ -208,8 +210,8 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 		c.gridx = 0; // column
 
 		// The supported operating systems by the Proxy software.
-		JLabel osLabel = new JLabel(PrimeMain.texts
-				.getString("proxyViewSupOSLabel"));
+		JLabel osLabel = new JLabel(
+				PrimeMain.texts.getString("proxyViewSupOSLabel"));
 		osLabel.setToolTipText(PrimeMain.texts.getString("proxyViewSupOSTip"));
 		panel.add(osLabel, c);
 
@@ -230,8 +232,8 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 			if ( mainProxy.getSupportedOperatingSystems().length > 0 )
 			{
 				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, osNames, mainProxy
-								.getSupportedOperatingSystems()));
+						supportedOS, osNames,
+						mainProxy.getSupportedOperatingSystems()));
 			}
 		}
 
@@ -241,11 +243,9 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 
 
 		// Whether or not the software has caching feature
-		caching = new JCheckBox(PrimeMain.texts
-				.getString("proxyViewCachingLabel"));
-		caching
-				.setToolTipText(PrimeMain.texts
-						.getString("proxyViewCachingTip"));
+		caching = new JCheckBox(
+				PrimeMain.texts.getString("proxyViewCachingLabel"));
+		caching.setToolTipText(PrimeMain.texts.getString("proxyViewCachingTip"));
 		caching.setActionCommand("Caching");
 		caching.addActionListener(this);
 
@@ -256,8 +256,8 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 
 
 		// Whether or not the software has Web proxy feature
-		webProxy = new JCheckBox(PrimeMain.texts
-				.getString("proxyViewProxyLabel"));
+		webProxy = new JCheckBox(
+				PrimeMain.texts.getString("proxyViewProxyLabel"));
 		webProxy.setToolTipText(PrimeMain.texts.getString("proxyViewProxyTip"));
 		webProxy.setActionCommand("WebProxy");
 		webProxy.addActionListener(this);
@@ -271,8 +271,8 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 
 
 		// Whether or not the software has Anonymizing proxy feature
-		anonymizingProxy = new JCheckBox(PrimeMain.texts
-				.getString("proxyViewAnonymizingLabel"));
+		anonymizingProxy = new JCheckBox(
+				PrimeMain.texts.getString("proxyViewAnonymizingLabel"));
 		anonymizingProxy.setToolTipText(PrimeMain.texts
 				.getString("proxyViewAnonymizingTip"));
 		anonymizingProxy.setActionCommand("Anonymizing");
@@ -290,8 +290,8 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 
 
 		// Whether or not the software has transparent proxy feature
-		transparentProxy = new JCheckBox(PrimeMain.texts
-				.getString("proxyViewTransProxyLabel"));
+		transparentProxy = new JCheckBox(
+				PrimeMain.texts.getString("proxyViewTransProxyLabel"));
 		transparentProxy.setToolTipText(PrimeMain.texts
 				.getString("proxyViewTransProxyTip"));
 		transparentProxy.setActionCommand("Transparent");
@@ -305,8 +305,8 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 
 
 		// Whether or not the software has reverse proxy feature
-		reverseProxy = new JCheckBox(PrimeMain.texts
-				.getString("proxyViewReverseProxyLabel"));
+		reverseProxy = new JCheckBox(
+				PrimeMain.texts.getString("proxyViewReverseProxyLabel"));
 		reverseProxy.setToolTipText(PrimeMain.texts
 				.getString("proxyViewReverseProxyTip"));
 		reverseProxy.setActionCommand("ReverseProxy");
@@ -319,8 +319,8 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 
 
 		// Whether or not the software supports IP version 6
-		supportsIPv6 = new JCheckBox(PrimeMain.texts
-				.getString("proxyViewIPv6Label"));
+		supportsIPv6 = new JCheckBox(
+				PrimeMain.texts.getString("proxyViewIPv6Label"));
 		supportsIPv6.setToolTipText(PrimeMain.texts
 				.getString("proxyViewIPv6Tip"));
 		supportsIPv6.setActionCommand("SupportsIPv6");
@@ -333,8 +333,8 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 
 
 		// Whether or not the software supports SSL
-		supportsSSL = new JCheckBox(PrimeMain.texts
-				.getString("proxyViewSupSSLLabel"));
+		supportsSSL = new JCheckBox(
+				PrimeMain.texts.getString("proxyViewSupSSLLabel"));
 		supportsSSL.setToolTipText(PrimeMain.texts
 				.getString("proxyViewSupSSLTip"));
 		supportsSSL.setActionCommand("SupportsSSL");
@@ -349,8 +349,8 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 
 
 		// Whether or not the software supports TSL
-		supportsTSL = new JCheckBox(PrimeMain.texts
-				.getString("proxyViewSupTSLLabel"));
+		supportsTSL = new JCheckBox(
+				PrimeMain.texts.getString("proxyViewSupTSLLabel"));
 		supportsTSL.setToolTipText(PrimeMain.texts
 				.getString("proxyViewSupTSLTip"));
 		supportsTSL.setActionCommand("SupportsTSL");
@@ -364,8 +364,8 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 
 
 		// Whether or not the software supports HTTPS
-		supportsHTTPS = new JCheckBox(PrimeMain.texts
-				.getString("proxyViewSupHTTPSLabel"));
+		supportsHTTPS = new JCheckBox(
+				PrimeMain.texts.getString("proxyViewSupHTTPSLabel"));
 		supportsHTTPS.setToolTipText(PrimeMain.texts
 				.getString("proxyViewSupHTTPSTip"));
 		supportsHTTPS.setActionCommand("SupportsHTTPS");
@@ -385,6 +385,7 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see graphics.GUI.objectView.Software.SoftwareEditView#save()
 	 */
 	@Override
@@ -426,6 +427,7 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -442,11 +444,19 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 			{
 				DesktopSoftwareManagment.removeSoftware(mainObj, mainProxy);
 
-				// Updates the views of the object to correctly show the current info.
+				// Updates the views of the object to correctly show the current
+				// info.
 				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
+				}
+				// If no view is returned, then the standard object view is
+				// open and that should be updated.
+				else if ( PrimeMain.stdObjView != null )
+				{
+					PrimeMain.stdObjView.getSplitView().getObjView()
+							.getSoftStdObjView().updateTabInfo();
 				}
 			}
 		}
@@ -505,6 +515,7 @@ public class ProxyEditView extends JPanel implements SoftwareView, ActionListene
 	{
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)

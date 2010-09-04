@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
@@ -149,11 +149,11 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain.texts
-				.getString("swTabRemoveSoftwaretText"));
+		JLabel label = new JLabel(
+				PrimeMain.texts.getString("swTabRemoveSoftwaretText"));
 
-		Button remove = new Button(PrimeMain.texts
-				.getString("swTabRemoveSoftwareButtonLabel"));
+		Button remove = new Button(
+				PrimeMain.texts.getString("swTabRemoveSoftwareButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeSoft");
 
@@ -170,7 +170,8 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Software object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param nonEditable
@@ -219,8 +220,8 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 
 
 		// The supported file system.
-		JLabel fsLabel = new JLabel(PrimeMain.texts
-				.getString("osViewSupFSLabel"));
+		JLabel fsLabel = new JLabel(
+				PrimeMain.texts.getString("osViewSupFSLabel"));
 		fsLabel.setToolTipText(PrimeMain.texts.getString("osViewSupFSTip"));
 
 		panel1.add(fsLabel, conPanel1);
@@ -253,8 +254,8 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 
 
 		// Whether or not the OS supports encrypted file system
-		encryptedFileSystem = new JCheckBox(PrimeMain.texts
-				.getString("osViewSupEnctyptedFSLabel"));
+		encryptedFileSystem = new JCheckBox(
+				PrimeMain.texts.getString("osViewSupEnctyptedFSLabel"));
 		encryptedFileSystem.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		encryptedFileSystem.setSelected(os.isEncryptedFileSystem());
@@ -269,8 +270,8 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 
 
 		// Whether or not the OS has a GUI
-		hasGUI = new JCheckBox(PrimeMain.texts
-				.getString("osViewSupEnctyptedFSLabel"));
+		hasGUI = new JCheckBox(
+				PrimeMain.texts.getString("osViewSupEnctyptedFSLabel"));
 		hasGUI.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		hasGUI.setSelected(os.isHasGUI());
@@ -305,8 +306,8 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		conPanel2.gridx = 0; // column
 
 		// The 64 bit check box
-		is64bit = new JCheckBox(PrimeMain.texts
-				.getString("osViewSupEnctyptedFSLabel"));
+		is64bit = new JCheckBox(
+				PrimeMain.texts.getString("osViewSupEnctyptedFSLabel"));
 		is64bit.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		is64bit.setSelected(os.isIs64bit());
@@ -320,8 +321,8 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 
 
 		// The version of the OS
-		JLabel versionLabel = new JLabel(PrimeMain.texts
-				.getString("osViewVersionLabel"));
+		JLabel versionLabel = new JLabel(
+				PrimeMain.texts.getString("osViewVersionLabel"));
 		conPanel2.gridx = 1; // column
 		panel2.add(versionLabel, conPanel2);
 
@@ -410,6 +411,13 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 					{
 						view.updateViewInfo();
 					}
+					// If no view is returned, then the standard object view is
+					// open and that should be updated.
+					else if ( PrimeMain.stdObjView != null )
+					{
+						PrimeMain.stdObjView.getSplitView().getObjView()
+								.getSoftStdObjView().updateTabInfo();
+					}
 				}
 			}
 		}
@@ -424,6 +432,7 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 	{
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)
@@ -499,8 +508,8 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		genPanel.add(image, c);
 
 
-		JLabel nameLabel = new JLabel(PrimeMain.texts
-				.getString("swTabSWnameLabel"));
+		JLabel nameLabel = new JLabel(
+				PrimeMain.texts.getString("swTabSWnameLabel"));
 		c.gridheight = 1; // 2 columns wide
 		c.gridx = 1;
 		c.gridy = 0;
@@ -522,8 +531,8 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 
 
 
-		JLabel descLabel = new JLabel(PrimeMain.texts
-				.getString("swTabSWdescriptionLabel"));
+		JLabel descLabel = new JLabel(
+				PrimeMain.texts.getString("swTabSWdescriptionLabel"));
 		c.gridx = 1;
 		c.gridy = 1;
 		genPanel.add(descLabel, c);

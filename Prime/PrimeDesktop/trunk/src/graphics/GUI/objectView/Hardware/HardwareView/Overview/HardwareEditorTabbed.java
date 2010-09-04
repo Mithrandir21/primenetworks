@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
@@ -94,20 +94,20 @@ public class HardwareEditorTabbed extends JTabbedPane
 			else if ( components[i] instanceof CPU )
 			{
 				this.addTab(PrimeMain.texts.getString("cpu"), null,
-						new CPUView(obj, (CPU) components[i]), PrimeMain.texts
-								.getString("hwTabCPUtabDescription"));
+						new CPUView(obj, (CPU) components[i]),
+						PrimeMain.texts.getString("hwTabCPUtabDescription"));
 			}
 			else if ( components[i] instanceof HDD )
 			{
 				this.addTab(PrimeMain.texts.getString("hdd"), null,
-						new HDDView(obj, (HDD) components[i]), PrimeMain.texts
-								.getString("hwTabHDDtabDescription"));
+						new HDDView(obj, (HDD) components[i]),
+						PrimeMain.texts.getString("hwTabHDDtabDescription"));
 			}
 			else if ( components[i] instanceof Ram )
 			{
 				this.addTab(PrimeMain.texts.getString("ram"), null,
-						new RAMView(obj, (Ram) components[i]), PrimeMain.texts
-								.getString("hwTabRAMtabDescription"));
+						new RAMView(obj, (Ram) components[i]),
+						PrimeMain.texts.getString("hwTabRAMtabDescription"));
 			}
 			else if ( components[i] instanceof Discdrive )
 			{
@@ -117,12 +117,11 @@ public class HardwareEditorTabbed extends JTabbedPane
 			}
 			else if ( components[i] instanceof GraphicsCard )
 			{
-				this
-						.addTab(PrimeMain.texts.getString("graphicalCard"),
-								null, new GraphicsCardView(obj,
-										(GraphicsCard) components[i]),
-								PrimeMain.texts
-										.getString("hwTabGPUtabDescription"));
+				this.addTab(
+						PrimeMain.texts.getString("graphicalCard"),
+						null,
+						new GraphicsCardView(obj, (GraphicsCard) components[i]),
+						PrimeMain.texts.getString("hwTabGPUtabDescription"));
 			}
 			else if ( components[i] instanceof InternalNetworksCard )
 			{
@@ -166,7 +165,6 @@ public class HardwareEditorTabbed extends JTabbedPane
 			// Boolean array that contains the validation status of each view.
 			boolean[] verified = new boolean[this.getComponentCount()];
 
-			// FIXME
 			/**
 			 * Goes through all the views and gets the validation status of each
 			 * one and places that boolean in the validation array.
@@ -217,20 +215,19 @@ public class HardwareEditorTabbed extends JTabbedPane
 			try
 			{
 				ComponentsManagment.processAllChanges(mainobj);
+
+				// Updates the views of the object to correctly show the
+				// current info.
+				ObjectView view = PrimeMain.getObjectView(mainobj);
+				if ( view != null )
+				{
+					view.updateViewInfo();
+				}
 			}
 			catch ( MotherboardNotFound e )
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-
-
-			// Updates the views of the object to correctly show the
-			// current info.
-			ObjectView view = PrimeMain.getObjectView(mainobj);
-			if ( view != null )
-			{
-				view.updateViewInfo();
 			}
 
 			// Returns a boolean showing that everything i saved.

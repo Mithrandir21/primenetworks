@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.properties.objectTypes;
 
@@ -35,6 +35,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import managment.DesktopCanvasManagment;
 import objects.Object;
 import objects.Servers;
 
@@ -44,7 +45,8 @@ import objects.Servers;
  * 
  * @author Bahram Malaekeh
  */
-public class ServersPropertiesView extends AbstractObjectPropertiesView implements ActionListener
+public class ServersPropertiesView extends AbstractObjectPropertiesView
+		implements ActionListener
 {
 	/**
 	 * 
@@ -121,8 +123,8 @@ public class ServersPropertiesView extends AbstractObjectPropertiesView implemen
 
 
 		// Supports on-site-access
-		JLabel supOnSiteAccessLabel = new JLabel(PrimeMain.texts
-				.getString("propServerViewSupOnSiteAccessLabel"),
+		JLabel supOnSiteAccessLabel = new JLabel(
+				PrimeMain.texts.getString("propServerViewSupOnSiteAccessLabel"),
 				SwingConstants.TRAILING);
 		supOnSiteAccessLabel.setToolTipText(PrimeMain.texts
 				.getString("propServerViewSupOnSiteAccessTip"));
@@ -140,8 +142,8 @@ public class ServersPropertiesView extends AbstractObjectPropertiesView implemen
 
 
 		// Supports Remote Access
-		JLabel supRemoteAccessLabel = new JLabel(PrimeMain.texts
-				.getString("propServerViewSupRemoteAccessLabel"),
+		JLabel supRemoteAccessLabel = new JLabel(
+				PrimeMain.texts.getString("propServerViewSupRemoteAccessLabel"),
 				SwingConstants.TRAILING);
 		supRemoteAccessLabel.setToolTipText(PrimeMain.texts
 				.getString("propServerViewSupRemoteAccessTip"));
@@ -159,8 +161,9 @@ public class ServersPropertiesView extends AbstractObjectPropertiesView implemen
 
 
 		// Index 2 - Supported Remote Access Protocols
-		JLabel supRemoteAccProtoLabel = new JLabel(PrimeMain.texts
-				.getString("propServerViewSupRemoteProtocolsLabel"),
+		JLabel supRemoteAccProtoLabel = new JLabel(
+				PrimeMain.texts
+						.getString("propServerViewSupRemoteProtocolsLabel"),
 				SwingConstants.TRAILING);
 		supRemoteAccProtoLabel.setToolTipText(PrimeMain.texts
 				.getString("propServerViewSupRemoteProtocolsTip"));
@@ -177,8 +180,8 @@ public class ServersPropertiesView extends AbstractObjectPropertiesView implemen
 
 
 		// Index 3 - Software name
-		JLabel mainSWnameLabel = new JLabel(PrimeMain.texts
-				.getString("propServerViewSoftwareNameLabel"),
+		JLabel mainSWnameLabel = new JLabel(
+				PrimeMain.texts.getString("propServerViewSoftwareNameLabel"),
 				SwingConstants.TRAILING);
 		mainSWnameLabel.setToolTipText(PrimeMain.texts
 				.getString("propServerViewSoftwareNameTip"));
@@ -199,7 +202,8 @@ public class ServersPropertiesView extends AbstractObjectPropertiesView implemen
 
 
 	/**
-	 * Resets all specific fields to the info gotten from the {@link Object} viewed.
+	 * Resets all specific fields to the info gotten from the {@link Object}
+	 * viewed.
 	 */
 	private void resetFields()
 	{
@@ -225,6 +229,7 @@ public class ServersPropertiesView extends AbstractObjectPropertiesView implemen
 	{
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see java.awt.event.KeyAdapter#keyPressed(java.awt.event.KeyEvent)
 		 */
 		@Override
@@ -261,13 +266,17 @@ public class ServersPropertiesView extends AbstractObjectPropertiesView implemen
 		{
 			PrimeMain.updatePropertiesObjectArea(objectViewed, true);
 		}
+
+		DesktopCanvasManagment.canvasCleanUp(PrimeMain.currentCanvas);
 	}
 
 
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)

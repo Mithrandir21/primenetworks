@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package managment;
 
@@ -50,8 +50,9 @@ import exceptions.ObjectNotFoundInArrayException;
 /**
  * Class that contains different functions that add, remove and replace
  * components from a given array. It is used in the different parts of the
- * program, specially {@link objects.clientObjects.Desktop Desktops}, {@link objects.clientObjects.Laptop Laptops},
- * {@link objects.Servers Servers} and {@link objects.infrastructureObjects.Rack Racks}.
+ * program, specially {@link objects.clientObjects.Desktop Desktops},
+ * {@link objects.clientObjects.Laptop Laptops}, {@link objects.Servers Servers}
+ * and {@link objects.infrastructureObjects.Rack Racks}.
  * 
  * @author Bahram Malaekeh
  * @version 0.2
@@ -349,7 +350,7 @@ public class ComponentsManagment
 			Object[] drives = ArrayManagment.getSpesificComponents(
 					Discdrive.class, components, components.length);
 
-			// 
+			//
 			for ( int i = 0; i < drives.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
@@ -388,7 +389,7 @@ public class ComponentsManagment
 			Object[] GPUs = ArrayManagment.getSpesificComponents(
 					GraphicsCard.class, components, components.length);
 
-			// 
+			//
 			for ( int i = 0; i < GPUs.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
@@ -466,7 +467,7 @@ public class ComponentsManagment
 			Object[] RAMs = ArrayManagment.getSpesificComponents(Ram.class,
 					components, components.length);
 
-			// 
+			//
 			for ( int i = 0; i < RAMs.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
@@ -533,7 +534,8 @@ public class ComponentsManagment
 			// If the sockets don't match.
 			else
 			{
-				JOptionPane.showMessageDialog(comp,
+				JOptionPane.showMessageDialog(
+						comp,
 						"The socket on the motherboard, " + mb.getSocket()
 								+ ", does not match the CPU socket, "
 								+ cpu.getSocket() + ".", "Info",
@@ -596,7 +598,8 @@ public class ComponentsManagment
 			// If the types don't match.
 			else
 			{
-				JOptionPane.showMessageDialog(comp,
+				JOptionPane.showMessageDialog(
+						comp,
 						"The port on the motherboard, " + mb.getRAMtype()
 								+ ", does not match the RAM ports, "
 								+ ram.getPort() + ".", "Info",
@@ -659,7 +662,8 @@ public class ComponentsManagment
 			// If the types don't match.
 			else
 			{
-				JOptionPane.showMessageDialog(comp,
+				JOptionPane.showMessageDialog(
+						comp,
 						"The port on the motherboard, "
 								+ mb.getDUCconnectionType()
 								+ ", does not match the HDD ports, "
@@ -723,7 +727,8 @@ public class ComponentsManagment
 			// If the types don't match.
 			else
 			{
-				JOptionPane.showMessageDialog(comp,
+				JOptionPane.showMessageDialog(
+						comp,
 						"The port on the motherboard, "
 								+ mb.getDUCconnectionType()
 								+ ", does not match the Disc ports, "
@@ -785,7 +790,8 @@ public class ComponentsManagment
 			// If the types don't match.
 			else
 			{
-				JOptionPane.showMessageDialog(comp,
+				JOptionPane.showMessageDialog(
+						comp,
 						"The port on the motherboard, " + mb.getGraphicalPort()
 								+ ", does not match the GPU ports, "
 								+ GPU.getType() + ".", "Info",
@@ -1023,8 +1029,8 @@ public class ComponentsManagment
 	{
 		if ( !variable.equals(newVariable) )
 		{
-			if ( ComponentsManagment.containsComponent(componentClass, mainObj
-					.getComponents(), mainObj.getComponents().length) )
+			if ( ComponentsManagment.containsComponent(componentClass,
+					mainObj.getComponents(), mainObj.getComponents().length) )
 			{
 
 				boolean objContains = true;
@@ -1035,8 +1041,8 @@ public class ComponentsManagment
 				{
 					// Find the components with the given class on a motherboard
 					returned = ArrayManagment.getSpesificComponents(
-							componentClass, mainObj.getComponents(), mainObj
-									.getComponents().length);
+							componentClass, mainObj.getComponents(),
+							mainObj.getComponents().length);
 				}
 				catch ( ObjectNotFoundException ex )
 				{
@@ -1049,9 +1055,9 @@ public class ComponentsManagment
 					try
 					{
 						mainObj.setAllComponents(ComponentsManagment
-								.removeComponents(returned, mainObj
-										.getComponents(), mainObj
-										.getComponents().length));
+								.removeComponents(returned,
+										mainObj.getComponents(),
+										mainObj.getComponents().length));
 					}
 					catch ( ObjectNotFoundInArrayException ex )
 					{
@@ -1112,9 +1118,11 @@ public class ComponentsManagment
 
 
 	/**
-	 * This function attempts to remove the given {@link GraphicsCard} object from the components within the given {@link Object}.
+	 * This function attempts to remove the given {@link GraphicsCard} object
+	 * from the components within the given {@link Object}.
 	 * 
-	 * @return True or false is returned depending on whether the given component is removed.
+	 * @return True or false is returned depending on whether the given
+	 *         component is removed.
 	 * @throws MotherboardNotFound
 	 */
 	public static boolean removeGPU(Object obj, GraphicsCard gpu)
@@ -1124,7 +1132,8 @@ public class ComponentsManagment
 		Object[] remainingComponents = ComponentsManagment.removeComponent(gpu,
 				obj.getComponents(), obj.getComponents().length);
 
-		// Since the components cannot be empty, because everything has a Motherboard, this if is always valid.
+		// Since the components cannot be empty, because everything has a
+		// Motherboard, this if is always valid.
 		if ( remainingComponents != null && remainingComponents.length != 0 )
 		{
 			// Gets the object motherboard
@@ -1146,9 +1155,11 @@ public class ComponentsManagment
 
 
 	/**
-	 * This function attempts to remove the given {@link CPU} object from the components within the given {@link Object}.
+	 * This function attempts to remove the given {@link CPU} object from the
+	 * components within the given {@link Object}.
 	 * 
-	 * @return True or false is returned depending on whether the given component is removed.
+	 * @return True or false is returned depending on whether the given
+	 *         component is removed.
 	 * @throws MotherboardNotFound
 	 */
 	public static boolean removeCPU(Object obj, CPU cpu)
@@ -1158,7 +1169,8 @@ public class ComponentsManagment
 		Object[] remainingComponents = ComponentsManagment.removeComponent(cpu,
 				obj.getComponents(), obj.getComponents().length);
 
-		// Since the components cannot be empty, because everything has a Motherboard, this if is always valid.
+		// Since the components cannot be empty, because everything has a
+		// Motherboard, this if is always valid.
 		if ( remainingComponents != null && remainingComponents.length != 0 )
 		{
 			// Gets the object motherboard
@@ -1180,9 +1192,11 @@ public class ComponentsManagment
 
 
 	/**
-	 * This function attempts to remove the given {@link HDD} object from the components within the given {@link Object}.
+	 * This function attempts to remove the given {@link HDD} object from the
+	 * components within the given {@link Object}.
 	 * 
-	 * @return True or false is returned depending on whether the given component is removed.
+	 * @return True or false is returned depending on whether the given
+	 *         component is removed.
 	 * @throws MotherboardNotFound
 	 */
 	public static boolean removeHDD(Object obj, HDD hdd)
@@ -1192,7 +1206,8 @@ public class ComponentsManagment
 		Object[] remainingComponents = ComponentsManagment.removeComponent(hdd,
 				obj.getComponents(), obj.getComponents().length);
 
-		// Since the components cannot be empty, because everything has a Motherboard, this if is always valid.
+		// Since the components cannot be empty, because everything has a
+		// Motherboard, this if is always valid.
 		if ( remainingComponents != null && remainingComponents.length != 0 )
 		{
 			// Gets the object motherboard
@@ -1214,9 +1229,11 @@ public class ComponentsManagment
 
 
 	/**
-	 * This function attempts to remove the given {@link Discdrive} object from the components within the given {@link Object}.
+	 * This function attempts to remove the given {@link Discdrive} object from
+	 * the components within the given {@link Object}.
 	 * 
-	 * @return True or false is returned depending on whether the given component is removed.
+	 * @return True or false is returned depending on whether the given
+	 *         component is removed.
 	 * @throws MotherboardNotFound
 	 */
 	public static boolean removeDiscdrive(Object obj, Discdrive disc)
@@ -1226,7 +1243,8 @@ public class ComponentsManagment
 		Object[] remainingComponents = ComponentsManagment.removeComponent(
 				disc, obj.getComponents(), obj.getComponents().length);
 
-		// Since the components cannot be empty, because everything has a Motherboard, this if is always valid.
+		// Since the components cannot be empty, because everything has a
+		// Motherboard, this if is always valid.
 		if ( remainingComponents != null && remainingComponents.length != 0 )
 		{
 			// Gets the object motherboard
@@ -1248,9 +1266,11 @@ public class ComponentsManagment
 
 
 	/**
-	 * This function attempts to remove the given {@link Ram} object from the components within the given {@link Object}.
+	 * This function attempts to remove the given {@link Ram} object from the
+	 * components within the given {@link Object}.
 	 * 
-	 * @return True or false is returned depending on whether the given component is removed.
+	 * @return True or false is returned depending on whether the given
+	 *         component is removed.
 	 * @throws MotherboardNotFound
 	 */
 	public static boolean removeRAM(Object obj, Ram ram)
@@ -1260,7 +1280,8 @@ public class ComponentsManagment
 		Object[] remainingComponents = ComponentsManagment.removeComponent(ram,
 				obj.getComponents(), obj.getComponents().length);
 
-		// Since the components cannot be empty, because everything has a Motherboard, this if is always valid.
+		// Since the components cannot be empty, because everything has a
+		// Motherboard, this if is always valid.
 		if ( remainingComponents != null && remainingComponents.length != 0 )
 		{
 			// Gets the object motherboard
@@ -1284,12 +1305,14 @@ public class ComponentsManagment
 
 
 	/**
-	 * This function removes the given {@link InternalNetworksCard} from the array of hardware components in the given
-	 * {@link Object}.
-	 * It also removes the connection, both on the given {@link WorkareaCanvas} and in the {@link Object}, that the
-	 * {@link InternalNetworksCard} contains.
+	 * This function removes the given {@link InternalNetworksCard} from the
+	 * array of hardware components in the given {@link Object}.
+	 * It also removes the connection, both on the given {@link WorkareaCanvas}
+	 * and in the {@link Object}, that the {@link InternalNetworksCard}
+	 * contains.
 	 * 
-	 * @return True or false is returned depending on whether the given component is removed.
+	 * @return True or false is returned depending on whether the given
+	 *         component is removed.
 	 * @throws MotherboardNotFound
 	 */
 	public static boolean removeInternalNIC(WorkareaCanvas canvas, Object obj,
@@ -1310,7 +1333,8 @@ public class ComponentsManagment
 		Object[] remainingComponents = ComponentsManagment.removeComponent(nic,
 				obj.getComponents(), obj.getComponents().length);
 
-		// Since the components cannot be empty, because everything has a Motherboard, this if is always valid.
+		// Since the components cannot be empty, because everything has a
+		// Motherboard, this if is always valid.
 		if ( remainingComponents != null && remainingComponents.length != 0 )
 		{
 			// Gets the object motherboard
@@ -1339,10 +1363,11 @@ public class ComponentsManagment
 
 
 	/**
-	 * This function removes the given {@link ExternalNetworksCard} from the array of hardware components in the given
-	 * {@link Object}.
-	 * It also removes the connection, both on the given {@link WorkareaCanvas} and in the {@link Object}, that the
-	 * {@link ExternalNetworksCard} contains.
+	 * This function removes the given {@link ExternalNetworksCard} from the
+	 * array of hardware components in the given {@link Object}.
+	 * It also removes the connection, both on the given {@link WorkareaCanvas}
+	 * and in the {@link Object}, that the {@link ExternalNetworksCard}
+	 * contains.
 	 * 
 	 * @throws MotherboardNotFound
 	 */
@@ -1364,7 +1389,8 @@ public class ComponentsManagment
 		Object[] remainingComponents = ComponentsManagment.removeComponent(nic,
 				obj.getComponents(), obj.getComponents().length);
 
-		// Since the components cannot be empty, because everything has a Motherboard, this if is always valid.
+		// Since the components cannot be empty, because everything has a
+		// Motherboard, this if is always valid.
 		if ( remainingComponents != null && remainingComponents.length != 0 )
 		{
 			// Gets the object motherboard
@@ -1408,12 +1434,14 @@ public class ComponentsManagment
 			Object[] comp = null;
 			try
 			{
-				// Gets all the InternalNetworksCards from the objects components array.
+				// Gets all the InternalNetworksCards from the objects
+				// components array.
 				comp = ArrayManagment.getSpesificComponents(
 						InternalNetworksCard.class, mainObj.getComponents(),
 						mainObj.getComponents().length);
 
-				// Removes all the InternalNetworksCards from the objects components array.
+				// Removes all the InternalNetworksCards from the objects
+				// components array.
 				mainObj.setAllComponents(ComponentsManagment.removeComponents(
 						comp, mainObj.getComponents(),
 						mainObj.getComponents().length));
@@ -1439,7 +1467,8 @@ public class ComponentsManagment
 				// The number of components there are room for.
 				int counter = mbObj.getMaxPCIs();
 
-				// All the components of the main object(without the ExternalNetworksCards).
+				// All the components of the main object(without the
+				// ExternalNetworksCards).
 				Object[] mainComp = mainObj.getComponents();
 
 				for ( int i = 0; i < counter; i++ )
@@ -1457,7 +1486,8 @@ public class ComponentsManagment
 		}
 		else
 		{
-			// The number of taken PCI ports(The number of ports - the number of ports available)
+			// The number of taken PCI ports(The number of ports - the number of
+			// ports available)
 			int takenPorts = mbObj.getMaxPCIs() - mbObj.getPCIPortsAvailable();
 
 			// Sets the max PCI ports
@@ -1483,8 +1513,10 @@ public class ComponentsManagment
 			try
 			{
 				// Gets all the RAM from the objects components array.
-				comp = ArrayManagment.getSpesificComponents(Ram.class, mainObj
-						.getComponents(), mainObj.getComponents().length);
+				comp = ArrayManagment
+						.getSpesificComponents(Ram.class,
+								mainObj.getComponents(),
+								mainObj.getComponents().length);
 
 				// Removes all the RAM from the objects components array.
 				mainObj.setAllComponents(ComponentsManagment.removeComponents(
@@ -1527,7 +1559,8 @@ public class ComponentsManagment
 		}
 		else
 		{
-			// The number of taken RAM ports(The number of ports - the number of ports available)
+			// The number of taken RAM ports(The number of ports - the number of
+			// ports available)
 			int takenPorts = mbObj.getMaxRAMs() - mbObj.getDUCPortsAvailable();
 
 			// Sets the max RAM ports
@@ -1540,7 +1573,8 @@ public class ComponentsManagment
 
 
 	/**
-	 * Processes the DUC settings with the {@link HDD} and {@link Discdrive} objects.
+	 * Processes the DUC settings with the {@link HDD} and {@link Discdrive}
+	 * objects.
 	 */
 	public static void DUCportsValidation(Object mainObj, Motherboard mbObj,
 			JComboBox DUCports)
@@ -1558,15 +1592,15 @@ public class ComponentsManagment
 			{
 				// Gets all the HDDs from the objects components array.
 				compHDD = ArrayManagment
-						.getSpesificComponents(HDD.class, mainObj
-								.getComponents(),
+						.getSpesificComponents(HDD.class,
+								mainObj.getComponents(),
 								mainObj.getComponents().length);
 
 
 				// Gets all the Discdrives from the objects components array.
 				compDisc = ArrayManagment.getSpesificComponents(
-						Discdrive.class, mainObj.getComponents(), mainObj
-								.getComponents().length);
+						Discdrive.class, mainObj.getComponents(),
+						mainObj.getComponents().length);
 			}
 			catch ( ObjectNotFoundException e )
 			{
@@ -1678,7 +1712,8 @@ public class ComponentsManagment
 		}
 		else
 		{
-			// The number of taken DUC ports(The number of ports - the number of ports available)
+			// The number of taken DUC ports(The number of ports - the number of
+			// ports available)
 			int takenPorts = mbObj.getMaxDUCs() - mbObj.getDUCPortsAvailable();
 
 			// Sets the max DUC ports
@@ -1695,8 +1730,8 @@ public class ComponentsManagment
 	public static void USBportsValidation(Object mainObj, Motherboard mbObj,
 			JComboBox USBports, WorkareaCanvas canvas)
 	{
-		USBportsValidation(mainObj, mbObj, Integer.parseInt(USBports
-				.getSelectedItem().toString()), canvas);
+		USBportsValidation(mainObj, mbObj,
+				Integer.parseInt(USBports.getSelectedItem().toString()), canvas);
 	}
 
 
@@ -1717,7 +1752,8 @@ public class ComponentsManagment
 
 				try
 				{
-					// Gets all the ExternalNetworksCard from the objects components array.
+					// Gets all the ExternalNetworksCard from the objects
+					// components array.
 					externalNICs = ArrayManagment.getSpesificComponents(
 							ExternalNetworksCard.class,
 							mainObj.getComponents(),
@@ -1733,22 +1769,26 @@ public class ComponentsManagment
 				Connection[] allConnections = mainObj.getAllConnections();
 
 				// ------------------------------------------------------------------------------
-				// If the number of USB ports is bigger then the number of externalNICS, which would mean that there is room
+				// If the number of USB ports is bigger then the number of
+				// externalNICS, which would mean that there is room
 				// for connected USB devices.
 				if ( newMaxUSBports > externalNICs.length )
 				{
-					// The connections array that will hold all the connections that are with USB
+					// The connections array that will hold all the connections
+					// that are with USB
 					Connection[] USBconnections = ConnectionManagment
 							.connectedToBy(mainObj, ConnectionUtils.USB);
 
 
-					// The number of USB ports left after External NICs are added.
+					// The number of USB ports left after External NICs are
+					// added.
 					int leftUSBportsAfterExternalNICs = newMaxUSBports
 							- externalNICs.length;
 
 					if ( USBconnections != null )
 					{
-						// If the number of available USB ports is less then the number of USB devices
+						// If the number of available USB ports is less then the
+						// number of USB devices
 						if ( leftUSBportsAfterExternalNICs < USBconnections.length )
 						{
 							for ( int i = leftUSBportsAfterExternalNICs; i < USBconnections.length; i++ )
@@ -1761,7 +1801,8 @@ public class ComponentsManagment
 					}
 
 					// ------------------------------------------------------------------------------
-					// The number of taken USB ports(The number of ports - the number of ports available)
+					// The number of taken USB ports(The number of ports - the
+					// number of ports available)
 					int takenPorts = mbObj.getMaxUSBs()
 							- mbObj.getUSBPortsAvailable();
 
@@ -1772,18 +1813,20 @@ public class ComponentsManagment
 					canvas.setSaved(false);
 					canvas.setChanged(true);
 				}
-				// There aren't enough USB port for all the externalNICs so every USB connection will be removed and only
+				// There aren't enough USB port for all the externalNICs so
+				// every USB connection will be removed and only
 				// externalNICs will be added until the USB ports run out.
 				else
 				{
 
 					try
 					{
-						// Removes all the ExternalNetworksCard from the objects components array.
+						// Removes all the ExternalNetworksCard from the objects
+						// components array.
 						mainObj.setAllComponents(ComponentsManagment
-								.removeComponents(externalNICs, mainObj
-										.getComponents(), mainObj
-										.getComponents().length));
+								.removeComponents(externalNICs,
+										mainObj.getComponents(),
+										mainObj.getComponents().length));
 
 
 						// Disconnect all the existing USB connections
@@ -1809,16 +1852,19 @@ public class ComponentsManagment
 						mbObj.setMaxUSBs(USBports);
 						mbObj.setUSBPortsAvailable(mbObj.getMaxUSBs());
 
-						// Adds the previously removed ExternalNICs in order until there are no more USB ports available.
+						// Adds the previously removed ExternalNICs in order
+						// until there are no more USB ports available.
 						if ( externalNICs != null )
 						{
 							// The number of components there are room for.
 							int counter = mbObj.getMaxUSBs();
-							// All the components of the main object(without the ExternalNICs).
+							// All the components of the main object(without the
+							// ExternalNICs).
 							Object[] mainComp = mainObj.getComponents();
 							for ( int i = 0; i < counter; i++ )
 							{
-								// If i is smaller then the length of the externalNICs array.
+								// If i is smaller then the length of the
+								// externalNICs array.
 								if ( i < externalNICs.length )
 								{
 									mainComp = ComponentsManagment
@@ -1846,7 +1892,8 @@ public class ComponentsManagment
 			}
 			else
 			{
-				// The number of taken USB ports(The number of ports - the number of ports available)
+				// The number of taken USB ports(The number of ports - the
+				// number of ports available)
 				int takenPorts = mbObj.getMaxUSBs()
 						- mbObj.getUSBPortsAvailable();
 
@@ -1866,8 +1913,7 @@ public class ComponentsManagment
 			// Sets the supported connection interfaces
 			String[] supportedConnectionInterfaces = ComponentsManagment
 					.getSupportedInterfaces(mainObj);
-			mainObj
-					.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+			mainObj.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 		}
 	}
 
@@ -1884,8 +1930,10 @@ public class ComponentsManagment
 			try
 			{
 				// Gets all the CPUs from the objects components array.
-				comp = ArrayManagment.getSpesificComponents(CPU.class, mainObj
-						.getComponents(), mainObj.getComponents().length);
+				comp = ArrayManagment
+						.getSpesificComponents(CPU.class,
+								mainObj.getComponents(),
+								mainObj.getComponents().length);
 
 				// Removes all the CPUs from the objects components array.
 				mainObj.setAllComponents(ComponentsManagment.removeComponents(
@@ -1930,7 +1978,8 @@ public class ComponentsManagment
 		}
 		else
 		{
-			// The number of taken CPU ports(The number of ports - the number of ports available)
+			// The number of taken CPU ports(The number of ports - the number of
+			// ports available)
 			int takenPorts = mbObj.getMaxCPUs() - mbObj.getCPUPortsAvailable();
 
 			// Sets the max CPU ports
@@ -1942,10 +1991,14 @@ public class ComponentsManagment
 
 	/**
 	 * Processes the LAN settings with the connected objects.
-	 * <i>The process first finds all {@link Object Objects} connected to the main {@link Object}. Then it finds the network
-	 * cards, internal and external. It then removes the objects set as connected to the different network cards from the array of
-	 * removable Objects, because in this function only the {@link Motherboard Motherboards} lan ports are are being changed.
-	 * When only {@link Object Objects} connected to the {@link Motherboard} are left, they will be removed depending on the
+	 * <i>The process first finds all {@link Object Objects} connected to the
+	 * main {@link Object}. Then it finds the network
+	 * cards, internal and external. It then removes the objects set as
+	 * connected to the different network cards from the array of
+	 * removable Objects, because in this function only the {@link Motherboard
+	 * Motherboards} lan ports are are being changed.
+	 * When only {@link Object Objects} connected to the {@link Motherboard} are
+	 * left, they will be removed depending on the
 	 * difference between the number of lan and the number of connected Objects.
 	 */
 	public static void LANportsValidation(Object mainObj, Motherboard mbObj,
@@ -2177,7 +2230,8 @@ public class ComponentsManagment
 
 			try
 			{
-				// Gets all the InternalNetworksCard from the objects components array.
+				// Gets all the InternalNetworksCard from the objects components
+				// array.
 				Object[] internalNICs = ArrayManagment.getSpesificComponents(
 						InternalNetworksCard.class, mainObj.getComponents(),
 						mainObj.getComponents().length);
@@ -2186,7 +2240,8 @@ public class ComponentsManagment
 				{
 					InternalNetworksCard nic = (InternalNetworksCard) internalNICs[i];
 
-					// If the NICs connection object is not null and connection type is RJ-45
+					// If the NICs connection object is not null and connection
+					// type is RJ-45
 					if ( nic.getConnectedObject() != null
 							&& nic.getConnectionType().equals(portType) )
 					{
@@ -2196,7 +2251,8 @@ public class ComponentsManagment
 							// If the index is not null
 							if ( connectedObjects[j] != null )
 							{
-								// If the connected object serial is the same as the one connected to the NIC
+								// If the connected object serial is the same as
+								// the one connected to the NIC
 								if ( connectedObjects[j].getObjectSerial() == nic
 										.getConnectedObject().getObjectSerial() )
 								{
@@ -2219,7 +2275,8 @@ public class ComponentsManagment
 
 			try
 			{
-				// Gets all the InternalNetworksCard from the objects components array.
+				// Gets all the InternalNetworksCard from the objects components
+				// array.
 				Object[] externalNICs = ArrayManagment.getSpesificComponents(
 						ExternalNetworksCard.class, mainObj.getComponents(),
 						mainObj.getComponents().length);
@@ -2240,7 +2297,8 @@ public class ComponentsManagment
 							// If the index is not null
 							if ( connectedObjects[j] != null )
 							{
-								// If the connected object serial is the same as the one connected to the NIC
+								// If the connected object serial is the same as
+								// the one connected to the NIC
 								if ( connectedObjects[j].getObjectSerial() == nic
 										.getConnectedObject().getObjectSerial() )
 								{
@@ -2280,7 +2338,8 @@ public class ComponentsManagment
 				{
 					for ( int i = connectedObjects.length + leftPorts; i < connectedObjects.length; i++ )
 					{
-						// Gets the WidgetExtendedConnection between the two objects
+						// Gets the WidgetExtendedConnection between the two
+						// objects
 						WidgetExtendedConnection widCon = null;
 						try
 						{
@@ -2352,9 +2411,9 @@ public class ComponentsManagment
 			canvas.setChanged(true);
 		}
 	}
-	
-	
-	
+
+
+
 
 
 	/**
@@ -2375,8 +2434,7 @@ public class ComponentsManagment
 	{
 		portsValidation(mainObj, mbObj,
 				Integer.parseInt(COAXports.getSelectedItem().toString()),
-				ConnectionUtils.Coax,
-				canvas);
+				ConnectionUtils.Coax, canvas);
 	}
 
 
@@ -2574,8 +2632,7 @@ public class ComponentsManagment
 	{
 		portsValidation(mainObj, mbObj,
 				Integer.parseInt(FIBERports.getSelectedItem().toString()),
-				ConnectionUtils.Fiber,
-				canvas);
+				ConnectionUtils.Fiber, canvas);
 	}
 
 
@@ -3135,8 +3192,10 @@ public class ComponentsManagment
 
 	/**
 	 * This method does a deep copy of the given {@link Object}. It clones the
-	 * given object, doing a "shallow" clone first. It then goes through the {@link Hardware} and {@link Software} arrays inside
-	 * the given {@link Object} and clones each array index individually. It then places
+	 * given object, doing a "shallow" clone first. It then goes through the
+	 * {@link Hardware} and {@link Software} arrays inside
+	 * the given {@link Object} and clones each array index individually. It
+	 * then places
 	 * the newly cloned hardware/software objects into a new array and places
 	 * those arrays into the the clone of the given object. The x and y
 	 * locations of the object is also added to by 30 each.
@@ -3178,7 +3237,7 @@ public class ComponentsManagment
 			Software[] oldSoftware = copyFrom.getSoftware();
 			Software[] newSoftware = new Software[oldSoftware.length];
 
-			if ( oldSoftware[0] != null )
+			if ( oldSoftware.length > 0 && oldSoftware[0] != null )
 			{
 				for ( int i = 0; i < oldSoftware.length; i++ )
 				{
@@ -3213,7 +3272,8 @@ public class ComponentsManagment
 
 
 	/**
-	 * This function attempts to find the objects {@link Motherboard} in the objects components array.
+	 * This function attempts to find the objects {@link Motherboard} in the
+	 * objects components array.
 	 * Null is returned if nothing is found.
 	 */
 	public static Motherboard getObjectMotherboard(Object obj)

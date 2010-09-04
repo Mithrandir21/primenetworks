@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package actions.systemActions;
 
@@ -54,7 +54,8 @@ import widgets.WorkareaCanvas;
  * @author Bahram Malaekeh
  * @version 1.0
  */
-public class ActionPaste extends AbstractSystemAction implements SystemActionInterface
+public class ActionPaste extends AbstractSystemAction implements
+		SystemActionInterface
 {
 	// The widgetObject that is to be copied
 	private WidgetObject widgetObject = null;
@@ -84,8 +85,8 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 	public ActionPaste(String text, ImageIcon icon)
 	{
 		super(text, icon);
-		putValue(SHORT_DESCRIPTION, PrimeMain.texts
-				.getString("actionPasteDescriptionText"));
+		putValue(SHORT_DESCRIPTION,
+				PrimeMain.texts.getString("actionPasteDescriptionText"));
 	}
 
 
@@ -99,13 +100,14 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 	public ActionPaste(String text)
 	{
 		super(text);
-		putValue(SHORT_DESCRIPTION, PrimeMain.texts
-				.getString("actionPasteDescriptionText"));
+		putValue(SHORT_DESCRIPTION,
+				PrimeMain.texts.getString("actionPasteDescriptionText"));
 	}
 
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -176,8 +178,8 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 					newObject, newWidgetObject.getImage());
 
 			// Adds the newly created WidgetObject to the classes canvas
-			DesktopCanvasManagment.addWidgetToCanvas(newWidget, newWidgetObject
-					.getLocation(), toCanvas, true, true);
+			DesktopCanvasManagment.addWidgetToCanvas(newWidget,
+					newWidgetObject.getLocation(), toCanvas, true, true);
 
 			// Adds the clicking actions to the Widget on the scene
 			ActionsAdder.makeWidgetObjectReady(toCanvas, newWidget);
@@ -192,7 +194,7 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 						false);
 			}
 
-			fromCanvas.cleanUp();
+			DesktopCanvasManagment.canvasCleanUp(fromCanvas);
 		}
 	}
 
@@ -215,8 +217,8 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 
 				// Creates a new WidgetObject
 				WidgetObject newWidget = new WidgetObject(
-						fromCanvas.getScene(), newObject, widgetObject
-								.getImage());
+						fromCanvas.getScene(), newObject,
+						widgetObject.getImage());
 
 				// Adds the newly created WidgetObject to the classes canvas
 				DesktopCanvasManagment.addWidgetToCanvas(newWidget,
@@ -229,7 +231,7 @@ public class ActionPaste extends AbstractSystemAction implements SystemActionInt
 				widgetObject = newWidget;
 			}
 
-			toCanvas.cleanUp();
+			DesktopCanvasManagment.canvasCleanUp(toCanvas);
 		}
 	}
 

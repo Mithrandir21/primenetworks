@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package managment;
 
@@ -71,7 +71,8 @@ public class DesktopSoftwareManagment
 				}
 			}
 
-			// If the process gets here, it means that all the software objects comply with the network rules.
+			// If the process gets here, it means that all the software objects
+			// comply with the network rules.
 			return true;
 		}
 
@@ -148,7 +149,7 @@ public class DesktopSoftwareManagment
 
 			if ( withCleanUp )
 			{
-				canvas.cleanUp();
+				DesktopCanvasManagment.canvasCleanUp(canvas);
 			}
 
 			return true;
@@ -173,7 +174,8 @@ public class DesktopSoftwareManagment
 	 */
 	public static boolean removeSoftware(Object obj, Software soft)
 	{
-		// If the object and soft is not NULL and object and soft(which are both Object) are the same.
+		// If the object and soft is not NULL and object and soft(which are both
+		// Object) are the same.
 		if ( obj != null && soft != null && obj != soft )
 		{
 			// Attempts to find the canvas the object belongs to
@@ -196,7 +198,8 @@ public class DesktopSoftwareManagment
 
 
 	/**
-	 * Checks whether the name is found to be the name of a standard {@link OperatingSystem}.
+	 * Checks whether the name is found to be the name of a standard
+	 * {@link OperatingSystem}.
 	 */
 	public static boolean foundInStandardOS(String name)
 	{
@@ -215,7 +218,8 @@ public class DesktopSoftwareManagment
 
 
 	/**
-	 * Checks whether the name is found to be the name of a custom {@link OperatingSystem}.
+	 * Checks whether the name is found to be the name of a custom
+	 * {@link OperatingSystem}.
 	 */
 	public static boolean foundInCustomOS(String name)
 	{
@@ -241,7 +245,8 @@ public class DesktopSoftwareManagment
 
 
 	/**
-	 * Returns {@link OperatingSystem} with the name found to be the name of a standard {@link OperatingSystem}.
+	 * Returns {@link OperatingSystem} with the name found to be the name of a
+	 * standard {@link OperatingSystem}.
 	 */
 	public static OperatingSystem getStandardOS(String name)
 	{
@@ -260,7 +265,8 @@ public class DesktopSoftwareManagment
 
 
 	/**
-	 * Returns {@link OperatingSystem} with the name found to be the name of a custom {@link OperatingSystem}.
+	 * Returns {@link OperatingSystem} with the name found to be the name of a
+	 * custom {@link OperatingSystem}.
 	 */
 	public static OperatingSystem getCustomOS(String name)
 	{
@@ -288,7 +294,8 @@ public class DesktopSoftwareManagment
 
 
 	/**
-	 * This function returns an array of strings representing the names of all the {@link OperatingSystem} within the system,
+	 * This function returns an array of strings representing the names of all
+	 * the {@link OperatingSystem} within the system,
 	 * standard and custom.
 	 */
 	public static String[] getSystemOSname()

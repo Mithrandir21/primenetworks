@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics;
 
@@ -72,6 +72,7 @@ import javax.swing.border.Border;
 
 import managment.CanvasManagment;
 import managment.CreateObjects;
+import managment.DesktopCanvasManagment;
 import managment.DesktopFileManagment;
 import managment.MakeStandardInternalComponents;
 import managment.MakeStandardSoftware;
@@ -153,7 +154,8 @@ public class PrimeMain extends JFrame
 	public static OperatingSystem[] system_standard_OS = MakeStandardSoftware
 			.getSystemStandardOSs();
 
-	// This array contains the systems custom OperatingSystems, the ones created by Users.
+	// This array contains the systems custom OperatingSystems, the ones created
+	// by Users.
 	public static ArrayList<OperatingSystem> system_custom_OS = new ArrayList<OperatingSystem>();
 
 	// The variable for the object that is in view.
@@ -199,12 +201,17 @@ public class PrimeMain extends JFrame
 		// try
 		// {
 		// // UIManager
-		// // .setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-		// // UIManager.setLookAndFeel("javax.swing.plaf.multi.MultiLookAndFeel");
-		// // UIManager.setLookAndFeel("javax.swing.plaf.synth.SynthLookAndFeel");
-		// // UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+		// //
+		// .setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+		// //
+		// UIManager.setLookAndFeel("javax.swing.plaf.multi.MultiLookAndFeel");
+		// //
+		// UIManager.setLookAndFeel("javax.swing.plaf.synth.SynthLookAndFeel");
+		// //
+		// UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 		// // UIManager
-		// // .setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		// //
+		// .setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 		// // UIManager
 		// // .setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
 		// }
@@ -672,7 +679,8 @@ public class PrimeMain extends JFrame
 		}
 		else
 		{
-			// If the WorkareaCanvas shown in the properties area is not the same as the current WorkareaCanvas
+			// If the WorkareaCanvas shown in the properties area is not the
+			// same as the current WorkareaCanvas
 			if ( !(temp.isGivenCanvasCurrent(currentCanvas)) )
 			{
 				temp.newObjectSelectedPropertiesTab(currentCanvas);
@@ -702,7 +710,8 @@ public class PrimeMain extends JFrame
 		}
 		else
 		{
-			// If the WorkareaCanvas shown in the properties area is not the same as the current WorkareaCanvas
+			// If the WorkareaCanvas shown in the properties area is not the
+			// same as the current WorkareaCanvas
 			if ( !(temp.isGivenObjectCurrent(obj)) )
 			{
 				temp.newObjectSelectedPropertiesTab(obj);
@@ -725,8 +734,20 @@ public class PrimeMain extends JFrame
 
 
 	/**
+	 * This method runs clean up function on all open {@link WorkareaCanvas}.
+	 */
+	public static void runAllCanvasUpdate()
+	{
+		for ( int i = 0; i < PrimeMain.canvases.length; i++ )
+		{
+			DesktopCanvasManagment.canvasCleanUp(PrimeMain.canvases[i]);
+		}
+	}
+
+
+	/**
 	 * Runs a check on all the objects on the current canvas and passed that
-	 * information over to the JTable that shows� different errors, warnings and
+	 * information over to the JTable that shows different errors, warnings and
 	 * notices.
 	 */
 	public static void runCanvasObjectCheck()
@@ -736,7 +757,6 @@ public class PrimeMain extends JFrame
 		if ( currentCanvas != null )
 		{
 			children = currentCanvas.getObjectsOnTheScene();
-
 		}
 
 		MessageTabbed msgTab = (MessageTabbed) messagesPanel.getComponent(0);
@@ -817,7 +837,8 @@ public class PrimeMain extends JFrame
 
 
 	/**
-	 * Gets the WorkareaTabbed which contains the tabs with {@link WorkareaCanvas} inside.
+	 * Gets the WorkareaTabbed which contains the tabs with
+	 * {@link WorkareaCanvas} inside.
 	 * 
 	 * @return the workareaPanel
 	 */

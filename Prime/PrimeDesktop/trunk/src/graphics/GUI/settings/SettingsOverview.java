@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.settings;
 
@@ -47,6 +47,9 @@ public class SettingsOverview extends JFrame
 {
 	public static JCheckBox[] messagesCheckBox = new JCheckBox[12];
 
+	public static JCheckBox[] displayCheckBox = new JCheckBox[2];
+
+
 	/**
 	 * A constructor for the class that sets up the settings variables and
 	 * JPanels of the display.
@@ -59,7 +62,7 @@ public class SettingsOverview extends JFrame
 		setUpMessageCheckBoxes();
 
 		SettingsListener setListener = new SettingsListener(this,
-				messagesCheckBox);
+				messagesCheckBox, displayCheckBox);
 
 		// Get the content pane for this object
 		Container c = this.getContentPane();
@@ -146,9 +149,10 @@ public class SettingsOverview extends JFrame
 		tabs.addTab(PrimeMain.texts.getString("settingsShowMsgPanelLabel"),
 				frameIcon, new NetworkMessagesSettings(messagesCheckBox, lis),
 				PrimeMain.texts.getString("settingsShowMsgPanelTip"));
-		//
-		// tabs.addTab(PrimeMain.texts.getString("settingsAdvancedPanelLabel"),
-		// new AdvancedSettings());
+
+		tabs.addTab(PrimeMain.texts.getString("settingsAdvancedPanelLabel"),
+				frameIcon, new DisplaySettings(displayCheckBox, lis),
+				PrimeMain.texts.getString("settingsShowMsgPanelTip"));
 
 		return tabs;
 	}
@@ -160,6 +164,7 @@ public class SettingsOverview extends JFrame
 	 */
 	private void setUpMessageCheckBoxes()
 	{
+		// MESSAGES
 		messagesCheckBox[0] = new JCheckBox();
 		messagesCheckBox[0].setSelected(Settings.showHardwareErrorMessages);
 
@@ -195,6 +200,14 @@ public class SettingsOverview extends JFrame
 
 		messagesCheckBox[11] = new JCheckBox();
 		messagesCheckBox[11].setSelected(Settings.showNetworkNoticeMessages);
+
+
+		// DISPLAY
+		displayCheckBox[0] = new JCheckBox();
+		displayCheckBox[0].setSelected(Settings.showIP);
+
+		displayCheckBox[1] = new JCheckBox();
+		displayCheckBox[1].setSelected(Settings.showOSicon);
 	}
 
 }

@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
@@ -57,7 +57,8 @@ import objects.Software;
 import objects.softwareObjects.Firewall;
 
 
-public class FirewallNewView extends JDialog implements SoftwareView, ActionListener
+public class FirewallNewView extends JDialog implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -217,7 +218,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Software object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param fw
@@ -243,8 +245,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 		c.gridx = 0; // column
 
 		// The supported operating systems by the Antivirus software.
-		JLabel osLabel = new JLabel(PrimeMain.texts
-				.getString("fwViewSupOSLabel"));
+		JLabel osLabel = new JLabel(
+				PrimeMain.texts.getString("fwViewSupOSLabel"));
 		osLabel.setToolTipText(PrimeMain.texts.getString("fwViewSupOSTip"));
 		panel.add(osLabel, c);
 
@@ -265,16 +267,16 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 			if ( mainFW.getSupportedOperatingSystems().length > 0 )
 			{
 				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, osNames, mainFW
-								.getSupportedOperatingSystems()));
+						supportedOS, osNames,
+						mainFW.getSupportedOperatingSystems()));
 			}
 		}
 
 		c.gridx = 1; // column
 		panel.add(listPane, c);
 
-		hasNetworkFirewall = new JCheckBox(PrimeMain.texts
-				.getString("fwViewNetworkFirewallLabel"));
+		hasNetworkFirewall = new JCheckBox(
+				PrimeMain.texts.getString("fwViewNetworkFirewallLabel"));
 		hasNetworkFirewall.setToolTipText(PrimeMain.texts
 				.getString("fwViewNetworkFirewallTip"));
 		hasNetworkFirewall.setActionCommand("NetworkFW");
@@ -287,8 +289,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 
 
 		// Whether or not the software supports stateful firewall
-		hasStatefulFirewall = new JCheckBox(PrimeMain.texts
-				.getString("fwViewStatefulFirewallLabel"));
+		hasStatefulFirewall = new JCheckBox(
+				PrimeMain.texts.getString("fwViewStatefulFirewallLabel"));
 		hasStatefulFirewall.setToolTipText(PrimeMain.texts
 				.getString("fwViewStatefulFirewallTip"));
 		hasStatefulFirewall.setActionCommand("StatefulFW");
@@ -302,8 +304,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 
 
 		// Whether or not the software supports stateful firewall
-		hasApplicationFirewall = new JCheckBox(PrimeMain.texts
-				.getString("fwViewApplicationFirewallLabel"));
+		hasApplicationFirewall = new JCheckBox(
+				PrimeMain.texts.getString("fwViewApplicationFirewallLabel"));
 		hasApplicationFirewall.setToolTipText(PrimeMain.texts
 				.getString("fwViewApplicationFirewallTip"));
 		hasApplicationFirewall.setActionCommand("StatefulFW");
@@ -333,8 +335,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 
 
 		// Whether or not the software has proxy feature
-		hasProxy = new JCheckBox(PrimeMain.texts
-				.getString("fwViewHasProxyLabel"));
+		hasProxy = new JCheckBox(
+				PrimeMain.texts.getString("fwViewHasProxyLabel"));
 		hasProxy.setToolTipText(PrimeMain.texts.getString("fwViewHasProxyTip"));
 		hasProxy.setActionCommand("HasProxy");
 		hasProxy.addActionListener(this);
@@ -371,8 +373,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 
 
 		// Whether or not the software has antivirus feature
-		hasAntivirus = new JCheckBox(PrimeMain.texts
-				.getString("fwViewHasAntivirusLabel"));
+		hasAntivirus = new JCheckBox(
+				PrimeMain.texts.getString("fwViewHasAntivirusLabel"));
 		hasAntivirus.setToolTipText(PrimeMain.texts
 				.getString("fwViewHasAntivirusTip"));
 		hasAntivirus.setActionCommand("HasAV");
@@ -402,8 +404,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 
 		// Whether or not the software supports Modularity, third-party modules
 		// to extend functionality
-		supportsModularity = new JCheckBox(PrimeMain.texts
-				.getString("fwViewSupModularityLabel"));
+		supportsModularity = new JCheckBox(
+				PrimeMain.texts.getString("fwViewSupModularityLabel"));
 		supportsModularity.setToolTipText(PrimeMain.texts
 				.getString("fwViewSupModularityTip"));
 		supportsModularity.setActionCommand("SupportsModularity");
@@ -416,8 +418,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 
 
 		// Whether or not the software supports IP version 6
-		supportsIPv6 = new JCheckBox(PrimeMain.texts
-				.getString("fwViewSupIPv6Label"));
+		supportsIPv6 = new JCheckBox(
+				PrimeMain.texts.getString("fwViewSupIPv6Label"));
 		supportsIPv6.setToolTipText(PrimeMain.texts
 				.getString("fwViewSupIPv6Tip"));
 		supportsIPv6.setActionCommand("SupporsIPv6");
@@ -431,8 +433,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 
 
 		// Whether or not the software supports TTL, Transparent to traceroute
-		supportsTTL = new JCheckBox(PrimeMain.texts
-				.getString("fwViewSupTTLLabel"));
+		supportsTTL = new JCheckBox(
+				PrimeMain.texts.getString("fwViewSupTTLLabel"));
 		supportsTTL
 				.setToolTipText(PrimeMain.texts.getString("fwViewSupTTLTip"));
 		supportsTTL.setActionCommand("SupportsTTL");
@@ -445,8 +447,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 
 
 		// Whether or not the software supports RWA, Reject-with-answer
-		supportsRWA = new JCheckBox(PrimeMain.texts
-				.getString("fwViewSupRWALabel"));
+		supportsRWA = new JCheckBox(
+				PrimeMain.texts.getString("fwViewSupRWALabel"));
 		supportsRWA
 				.setToolTipText(PrimeMain.texts.getString("fwViewSupRWATip"));
 		supportsRWA.setActionCommand("SupportsRWA");
@@ -459,8 +461,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 
 
 		// Whether or not the software supports a DMZ, de-militarized zone
-		supportsDMZ = new JCheckBox(PrimeMain.texts
-				.getString("fwViewSupDMZLabel"));
+		supportsDMZ = new JCheckBox(
+				PrimeMain.texts.getString("fwViewSupDMZLabel"));
 		supportsDMZ
 				.setToolTipText(PrimeMain.texts.getString("fwViewSupDMZTip"));
 		supportsDMZ.setActionCommand("SupportsDMZ");
@@ -473,8 +475,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 
 
 		// Whether or not the software supports ToDFilter, Time of day filter
-		supportsToD = new JCheckBox(PrimeMain.texts
-				.getString("fwViewSupToDFilterLabel"));
+		supportsToD = new JCheckBox(
+				PrimeMain.texts.getString("fwViewSupToDFilterLabel"));
 		supportsToD.setToolTipText(PrimeMain.texts
 				.getString("fwViewSupToDFilterTip"));
 		supportsToD.setActionCommand("SupportsToD");
@@ -488,8 +490,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 
 
 		// Whether or not the software supports forwarding
-		supportsForwarding = new JCheckBox(PrimeMain.texts
-				.getString("fwViewSupForwardingLabel"));
+		supportsForwarding = new JCheckBox(
+				PrimeMain.texts.getString("fwViewSupForwardingLabel"));
 		supportsForwarding.setToolTipText(PrimeMain.texts
 				.getString("fwViewSupForwardingTip"));
 		supportsForwarding.setActionCommand("SupportsForwarding");
@@ -502,8 +504,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 
 
 		// Whether or not the software supports port forwarding
-		supportsPortForwarding = new JCheckBox(PrimeMain.texts
-				.getString("fwViewSupPortForwardingLabel"));
+		supportsPortForwarding = new JCheckBox(
+				PrimeMain.texts.getString("fwViewSupPortForwardingLabel"));
 		supportsPortForwarding.setToolTipText(PrimeMain.texts
 				.getString("fwViewSupPortForwardingTip"));
 		supportsPortForwarding.setActionCommand("SupportsPortForwarding");
@@ -516,8 +518,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 
 
 		// Whether or not the software supports QoS, quality of service
-		supportsQos = new JCheckBox(PrimeMain.texts
-				.getString("fwViewSupQoSLabel"));
+		supportsQos = new JCheckBox(
+				PrimeMain.texts.getString("fwViewSupQoSLabel"));
 		supportsQos
 				.setToolTipText(PrimeMain.texts.getString("fwViewSupQoSTip"));
 		supportsQos.setActionCommand("SupportsQoS");
@@ -530,8 +532,8 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 
 
 		// Whether or not the software supports TP, tarpit
-		supportsTarpit = new JCheckBox(PrimeMain.texts
-				.getString("fwViewSupTarpitLabel"));
+		supportsTarpit = new JCheckBox(
+				PrimeMain.texts.getString("fwViewSupTarpitLabel"));
 		supportsTarpit.setToolTipText(PrimeMain.texts
 				.getString("fwViewSupTarpitTip"));
 		supportsTarpit.setActionCommand("SupportsTP");
@@ -660,6 +662,13 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 				{
 					view.updateViewInfo();
 				}
+				// If no view is returned, then the standard object view is
+				// open and that should be updated.
+				else if ( PrimeMain.stdObjView != null )
+				{
+					PrimeMain.stdObjView.getSplitView().getObjView()
+							.getSoftStdObjView().updateTabInfo();
+				}
 
 
 				// Closes the JFrame.
@@ -667,8 +676,9 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(this, PrimeMain.texts
-						.getString("swNewCompatibilityQuestion"));
+				JOptionPane
+						.showMessageDialog(this, PrimeMain.texts
+								.getString("swNewCompatibilityQuestion"));
 			}
 
 		}
@@ -688,6 +698,7 @@ public class FirewallNewView extends JDialog implements SoftwareView, ActionList
 	{
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)

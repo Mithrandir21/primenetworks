@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package widgetManipulation.Actions;
 
@@ -75,7 +75,8 @@ public class WorkareaCanvasActions
 		newObject.setLabel(newObject.getObject().getObjectName());
 
 		// // Creates the LabelWidget that is placed on scene
-		// LabelWidget objectLabel = new LabelWidget(canvas.getScene(), newObject
+		// LabelWidget objectLabel = new LabelWidget(canvas.getScene(),
+		// newObject
 		// .getObject().getObjectName());
 		// objectLabel.setAlignment(Alignment.CENTER);
 		// objectLabel.setLayout(LayoutFactory.createAbsoluteLayout());
@@ -101,8 +102,8 @@ public class WorkareaCanvasActions
 		// ----------DIFFERENT BORDERS------------
 		newObject.setBorder(BorderFactory.createEmptyBorder());
 
-		// newObject.setBorder(BorderFactory.createDashedBorder(Color.black,
-		// 5, 5));
+		// newObject
+		// .setBorder(BorderFactory.createDashedBorder(Color.black, 5, 5));
 
 		// newObject.setBorder(BorderFactory.createBevelBorder(true));
 
@@ -143,13 +144,13 @@ public class WorkareaCanvasActions
 	{
 		if ( canvases != null && canvases.length > 0 )
 		{
-			WorkareaCanvas canvas = CanvasManagment.findCanvas(widgetObj
-					.getObject(), canvases);
+			WorkareaCanvas canvas = CanvasManagment.findCanvas(
+					widgetObj.getObject(), canvases);
 
 			if ( canvas != null )
 			{
-				return updateWidgetObjectCanvasName(canvas, widgetObj
-						.getObject(), name);
+				return updateWidgetObjectCanvasName(canvas,
+						widgetObj.getObject(), name);
 			}
 		}
 		return null;
@@ -193,20 +194,7 @@ public class WorkareaCanvasActions
 
 			if ( !(obj.getObjectName().equals(name)) )
 			{
-
-				List<Widget> children = widgetObj.getChildren();
-
-				LabelWidget label = null;
-
-				for ( Iterator<Widget> iter = children.iterator(); iter
-						.hasNext(); )
-				{
-					Widget temp = iter.next();
-					if ( temp instanceof LabelWidget )
-					{
-						label = (LabelWidget) temp;
-					}
-				}
+				LabelWidget label = widgetObj.getLabelWidget();
 
 				if ( label != null )
 				{
@@ -233,7 +221,8 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * Updates all the LabelWidgets on all the scenes of the given {@link WorkareaCanvas} with the name of the object
+	 * Updates all the LabelWidgets on all the scenes of the given
+	 * {@link WorkareaCanvas} with the name of the object
 	 * name that is within the WidgetObject.
 	 */
 	public static void updateWidgetObjectNamesOnAllCanvas(
@@ -365,12 +354,14 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * Removes the {@link WidgetExtendedConnection} from the given {@link WorkareaCanvas}. It also removes the {@link Connection}
-	 * within the {@link WidgetExtendedConnection} from the {@link Object Objects} that are
+	 * Removes the {@link WidgetExtendedConnection} from the given
+	 * {@link WorkareaCanvas}. It also removes the {@link Connection} within the
+	 * {@link WidgetExtendedConnection} from the {@link Object Objects} that are
 	 * connected.
 	 * 
 	 * @param canvas
-	 *            The {@link WorkareaCanvas} where the {@link WidgetExtendedConnection} exists.
+	 *            The {@link WorkareaCanvas} where the
+	 *            {@link WidgetExtendedConnection} exists.
 	 * @param widCon
 	 *            The {@link WidgetExtendedConnection} that is to be removed.
 	 */
@@ -392,12 +383,14 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * Removes the {@link Connection} from the given {@link WorkareaCanvas}. It also removes the {@link Connection} within the
+	 * Removes the {@link Connection} from the given {@link WorkareaCanvas}. It
+	 * also removes the {@link Connection} within the
 	 * {@link WidgetExtendedConnection} from the {@link Object Objects} that are
 	 * connected.
 	 * 
 	 * @param canvas
-	 *            The {@link WorkareaCanvas} where the {@link WidgetExtendedConnection} exists.
+	 *            The {@link WorkareaCanvas} where the
+	 *            {@link WidgetExtendedConnection} exists.
 	 * @param Con
 	 *            The {@link Connection} that is to be removed.
 	 */
@@ -419,8 +412,9 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * This function attempts to remove a connection between to {@link Object Objects} and at the same time remove the
-	 * {@link WidgetExtendedConnection} from the given {@link WorkareaCanvas}.
+	 * This function attempts to remove a connection between to {@link Object
+	 * Objects} and at the same time remove the {@link WidgetExtendedConnection}
+	 * from the given {@link WorkareaCanvas}.
 	 */
 	public static void removeConnection(WorkareaCanvas canvas, Object objA,
 			Object objB) throws ConnectionDoesNotExist
@@ -492,12 +486,14 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * The function removes the given {@link WidgetRoom} from the given {@link WorkareaCanvas}, if the WidgetRoom is found to be
+	 * The function removes the given {@link WidgetRoom} from the given
+	 * {@link WorkareaCanvas}, if the WidgetRoom is found to be
 	 * contained within
 	 * the WorkareaCanvas.
 	 * 
 	 * @param widRoom
-	 *            The {@link WidgetRoom} to be removed from the given {@link WorkareaCanvas}.
+	 *            The {@link WidgetRoom} to be removed from the given
+	 *            {@link WorkareaCanvas}.
 	 */
 	public static void removeRoom(WorkareaCanvas canvas, WidgetRoom widRoom,
 			boolean withCleanUp)
@@ -543,7 +539,8 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * This method calls the revalidateWidgetLocations function in all the given {@link WorkareaCanvas WorkareaCanvases}, which
+	 * This method calls the revalidateWidgetLocations function in all the given
+	 * {@link WorkareaCanvas WorkareaCanvases}, which
 	 * will update the locations
 	 * on all the WidgetObjects on their respective scenes.
 	 * 
@@ -563,7 +560,8 @@ public class WorkareaCanvasActions
 
 
 	/**
-	 * This method calls the revalidateWidgetLocations function in the given {@link WorkareaCanvas}, which will update the
+	 * This method calls the revalidateWidgetLocations function in the given
+	 * {@link WorkareaCanvas}, which will update the
 	 * locations on all the
 	 * WidgetObjects on the scenes.
 	 * 

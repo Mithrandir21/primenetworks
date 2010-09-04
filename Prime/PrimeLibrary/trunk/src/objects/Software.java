@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package objects;
 
@@ -24,12 +24,14 @@ import objects.softwareObjects.OperatingSystem;
 
 
 /**
- * An abstract super class for all hardware objects in the system, including {@link objects.softwareObjects.Webserver
- * Webserver}, {@link objects.softwareObjects.OperatingSystem Operating System} and {@link objects.softwareObjects.Firewall
+ * An abstract super class for all hardware objects in the system, including
+ * {@link objects.softwareObjects.Webserver
+ * Webserver}, {@link objects.softwareObjects.OperatingSystem Operating System}
+ * and {@link objects.softwareObjects.Firewall
  * Firewall}. MUST ADD INFO
  * 
  * @author Bahram Malaekeh
- * @version 0.2
+ * @version 0.3
  */
 public abstract class Software extends Object implements Serializable
 {
@@ -54,7 +56,8 @@ public abstract class Software extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the software.
 	 * @param SWversion
-	 *            The version of the software. This can contain a NULL pointer, which will then result in the version
+	 *            The version of the software. This can contain a NULL pointer,
+	 *            which will then result in the version
 	 *            being set to "0.0.1".
 	 */
 	public Software(String Name, String Desc, String SWversion)
@@ -66,7 +69,7 @@ public abstract class Software extends Object implements Serializable
 		}
 		else
 		{
-			version = "0.0.1";
+			version = "0.1";
 		}
 	}
 
@@ -140,16 +143,17 @@ public abstract class Software extends Object implements Serializable
 	 * 
 	 * @author Bahram Malaekeh
 	 */
-	public enum base
+	public static enum base
 	{
-		WINDOWS, GNU_LINUX, UNIX
+		WINDOWS, GNU_LINUX, UNIX, MAC
 	}
 
 
 
 	/**
 	 * The file system of the {@link Software}.
-	 * On a {@link OperatingSystem} this will represent the supported File Systems(FS), but on other {@link Software} objects it
+	 * On a {@link OperatingSystem} this will represent the supported File
+	 * Systems(FS), but on other {@link Software} objects it
 	 * will represent the FS the software supports.
 	 * 
 	 * @author Bahram Malaekeh

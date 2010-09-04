@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.selectArea;
 
@@ -42,19 +42,24 @@ import objects.infrastructureObjects.Modem;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.infrastructureObjects.WirelessRouter;
+import objects.peripheralObjects.ExternalHDD;
 import objects.peripheralObjects.Fax;
 import objects.peripheralObjects.MultifunctionPrinter;
 import objects.peripheralObjects.NetworkMultifunctionPrinter;
 import objects.peripheralObjects.NetworkPrinter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
+import objects.serverObjects.AntivirusServer;
 import objects.serverObjects.BackupServer;
 import objects.serverObjects.DatabaseServer;
 import objects.serverObjects.FirewallServer;
+import objects.serverObjects.GenericServer;
 import objects.serverObjects.HTTPServer;
 import objects.serverObjects.MailServer;
+import objects.serverObjects.NASServer;
 import objects.serverObjects.PrinterServer;
 import objects.serverObjects.ProxyServer;
+import objects.serverObjects.VirtualizationServer;
 
 import org.jdesktop.swingx.JXTaskPane;
 import org.jdesktop.swingx.JXTaskPaneContainer;
@@ -70,7 +75,8 @@ import widgets.WorkareaCanvas;
 
 /**
  * This JPanel extension is where the images of the different {@link Object
- * Objects} are placed. They can be clicked and dragged into an open {@link WorkareaCanvas}.
+ * Objects} are placed. They can be clicked and dragged into an open
+ * {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
  * @version 1.0
@@ -186,8 +192,9 @@ public class ObjectSelection extends JPanel
 		iconsList.toArray(widIcons);
 
 
-		return getWidgetGroup(PrimeMain.texts
-				.getString("selectAreaDesktopGroupName"), widIcons, true);
+		return getWidgetGroup(
+				PrimeMain.texts.getString("selectAreaDesktopGroupName"),
+				widIcons, true);
 	}
 
 	/**
@@ -198,10 +205,15 @@ public class ObjectSelection extends JPanel
 	{
 		ArrayList<WidgetIcon> iconsList = new ArrayList<WidgetIcon>();
 
+		iconsList.add(makeImageIcon(AntivirusServer.class, mouseLis,
+				transferable));
 		iconsList.add(makeImageIcon(HTTPServer.class, mouseLis, transferable));
 		iconsList
 				.add(makeImageIcon(BackupServer.class, mouseLis, transferable));
+		iconsList.add(makeImageIcon(NASServer.class, mouseLis, transferable));
 		iconsList.add(makeImageIcon(DatabaseServer.class, mouseLis,
+				transferable));
+		iconsList.add(makeImageIcon(VirtualizationServer.class, mouseLis,
 				transferable));
 		iconsList.add(makeImageIcon(MailServer.class, mouseLis, transferable));
 		iconsList.add(makeImageIcon(FirewallServer.class, mouseLis,
@@ -209,13 +221,16 @@ public class ObjectSelection extends JPanel
 		iconsList.add(makeImageIcon(ProxyServer.class, mouseLis, transferable));
 		iconsList
 				.add(makeImageIcon(PrinterServer.class, mouseLis, transferable));
+		iconsList
+				.add(makeImageIcon(GenericServer.class, mouseLis, transferable));
 
 		WidgetIcon[] widIcons = new WidgetIcon[iconsList.size()];
 		iconsList.toArray(widIcons);
 
 
-		return getWidgetGroup(PrimeMain.texts
-				.getString("selectAreaServerGroupName"), widIcons, true);
+		return getWidgetGroup(
+				PrimeMain.texts.getString("selectAreaServerGroupName"),
+				widIcons, true);
 	}
 
 	/**
@@ -226,6 +241,7 @@ public class ObjectSelection extends JPanel
 	{
 		ArrayList<WidgetIcon> iconsList = new ArrayList<WidgetIcon>();
 
+		iconsList.add(makeImageIcon(ExternalHDD.class, mouseLis, transferable));
 		iconsList.add(makeImageIcon(Scanner.class, mouseLis, transferable));
 		iconsList.add(makeImageIcon(Printer.class, mouseLis, transferable));
 		iconsList.add(makeImageIcon(Fax.class, mouseLis, transferable));
@@ -240,8 +256,9 @@ public class ObjectSelection extends JPanel
 		iconsList.toArray(widIcons);
 
 
-		return getWidgetGroup(PrimeMain.texts
-				.getString("selectAreaExternalGroupName"), widIcons, false);
+		return getWidgetGroup(
+				PrimeMain.texts.getString("selectAreaExternalGroupName"),
+				widIcons, false);
 	}
 
 	/**
@@ -264,8 +281,9 @@ public class ObjectSelection extends JPanel
 		iconsList.toArray(widIcons);
 
 
-		return getWidgetGroup(PrimeMain.texts
-				.getString("selectAreaNetworkGroupName"), widIcons, false);
+		return getWidgetGroup(
+				PrimeMain.texts.getString("selectAreaNetworkGroupName"),
+				widIcons, false);
 	}
 
 
@@ -318,8 +336,8 @@ public class ObjectSelection extends JPanel
 	 * TODO - Description
 	 */
 	@SuppressWarnings("unchecked")
-	private WidgetIcon makeImageIcon(Class objectType, MouseListener mouseLis,
-			boolean transferable)
+	private WidgetIcon makeImageIcon(Class<?> objectType,
+			MouseListener mouseLis, boolean transferable)
 	{
 		ImageIcon Icon = PrimeMain.objectImageIcons.get(objectType);
 
@@ -327,8 +345,8 @@ public class ObjectSelection extends JPanel
 
 		try
 		{
-			iconButton = new WidgetIcon(Icon, objectType, objectType
-					.getSimpleName());
+			iconButton = new WidgetIcon(Icon, objectType,
+					objectType.getSimpleName());
 
 			// Adds the given mouselistener if its not null
 			if ( mouseLis != null )

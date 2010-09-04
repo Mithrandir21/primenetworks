@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Hardware.NewComponent.NewViews;
 
@@ -58,7 +58,8 @@ import objects.hardwareObjects.GraphicsCard;
  * 
  * @author Bahram Malaekeh
  */
-public class GraphicsCardNewView extends JDialog implements HardwareViewInterface, ActionListener
+public class GraphicsCardNewView extends JDialog implements
+		HardwareViewInterface, ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -162,7 +163,8 @@ public class GraphicsCardNewView extends JDialog implements HardwareViewInterfac
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param GPU
@@ -175,18 +177,18 @@ public class GraphicsCardNewView extends JDialog implements HardwareViewInterfac
 		JPanel panel = new JPanel(new SpringLayout());
 		JLabel[] labels = new JLabel[7];
 
-		labels[0] = new JLabel(PrimeMain.texts
-				.getString("gpuViewProducerLabel"));
+		labels[0] = new JLabel(
+				PrimeMain.texts.getString("gpuViewProducerLabel"));
 		labels[0].setToolTipText(PrimeMain.texts
 				.getString("gpuViewProducerTip"));
 
-		labels[1] = new JLabel(PrimeMain.texts
-				.getString("gpuViewInterfaceLabel"));
+		labels[1] = new JLabel(
+				PrimeMain.texts.getString("gpuViewInterfaceLabel"));
 		labels[1].setToolTipText(PrimeMain.texts
 				.getString("gpuViewInterfaceTip"));
 
-		labels[2] = new JLabel(PrimeMain.texts
-				.getString("gpuViewOutputPortLabel"));
+		labels[2] = new JLabel(
+				PrimeMain.texts.getString("gpuViewOutputPortLabel"));
 		labels[2].setToolTipText(PrimeMain.texts
 				.getString("gpuViewOutputPortTip"));
 
@@ -196,13 +198,13 @@ public class GraphicsCardNewView extends JDialog implements HardwareViewInterfac
 		labels[4] = new JLabel(PrimeMain.texts.getString("gpuViewSpeedLabel"));
 		labels[4].setToolTipText(PrimeMain.texts.getString("gpuViewSpeedTip"));
 
-		labels[5] = new JLabel(PrimeMain.texts
-				.getString("gpuViewMaxMonitorsLabel"));
+		labels[5] = new JLabel(
+				PrimeMain.texts.getString("gpuViewMaxMonitorsLabel"));
 		labels[5].setToolTipText(PrimeMain.texts
 				.getString("gpuViewMaxMonitorsTip"));
 
-		labels[6] = new JLabel(PrimeMain.texts
-				.getString("gpuViewIsIntegratedLabel"));
+		labels[6] = new JLabel(
+				PrimeMain.texts.getString("gpuViewIsIntegratedLabel"));
 		labels[6].setToolTipText(PrimeMain.texts
 				.getString("gpuViewIsIntegratedTip"));
 
@@ -452,8 +454,8 @@ public class GraphicsCardNewView extends JDialog implements HardwareViewInterfac
 				// and that should be updated.
 				else if ( PrimeMain.stdObjView != null )
 				{
-					PrimeMain.stdObjView.getSplitView().getHardStdObjView()
-							.updateTabInfo();
+					PrimeMain.stdObjView.getSplitView().getObjView()
+							.getHardStdObjView().updateTabInfo();
 				}
 
 

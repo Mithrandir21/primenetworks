@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
@@ -63,7 +63,8 @@ import actions.canvasActions.ActionDeleteAllConnectionsToAndFrom;
  * 
  * @author Bahram Malaekeh
  */
-public class MotherboardView extends JPanel implements HardwareViewInterface, ActionListener
+public class MotherboardView extends JPanel implements HardwareViewInterface,
+		ActionListener
 {
 	JTextField name = new JTextField(25);
 
@@ -165,11 +166,11 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain.texts
-				.getString("hwTabRemoveThisComponentLabel"));
+		JLabel label = new JLabel(
+				PrimeMain.texts.getString("hwTabRemoveThisComponentLabel"));
 
-		Button remove = new Button(PrimeMain.texts
-				.getString("hwTabRemoveComponentButtonLabel"));
+		Button remove = new Button(
+				PrimeMain.texts.getString("hwTabRemoveComponentButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeComp");
 
@@ -186,7 +187,8 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param mb
@@ -220,51 +222,51 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 		labels[5] = new JLabel(PrimeMain.texts.getString("mbViewGPUportLabel"));
 		labels[5].setToolTipText(PrimeMain.texts.getString("mbViewGPUportTip"));
 
-		labels[6] = new JLabel(PrimeMain.texts
-				.getString("mbViewConnectionPortLabel"));
+		labels[6] = new JLabel(
+				PrimeMain.texts.getString("mbViewConnectionPortLabel"));
 		labels[6].setToolTipText(PrimeMain.texts
 				.getString("mbViewConnectionPortTip"));
 
 		labels[7] = new JLabel(PrimeMain.texts.getString("mbViewRamTypeLabel"));
 		labels[7].setToolTipText(PrimeMain.texts.getString("mbViewRamTypeTip"));
 
-		labels[8] = new JLabel(PrimeMain.texts
-				.getString("mbViewAudioIntegratedLabel"));
+		labels[8] = new JLabel(
+				PrimeMain.texts.getString("mbViewAudioIntegratedLabel"));
 		labels[8].setToolTipText(PrimeMain.texts
 				.getString("mbViewAudioIntegratedTip"));
 
-		labels[9] = new JLabel(PrimeMain.texts
-				.getString("mbViewGPUIntegratedLabel"));
+		labels[9] = new JLabel(
+				PrimeMain.texts.getString("mbViewGPUIntegratedLabel"));
 		labels[9].setToolTipText(PrimeMain.texts
 				.getString("mbViewGPUIntegratedTip"));
 
-		labels[10] = new JLabel(PrimeMain.texts
-				.getString("mbViewNICIntegratedLabel"));
+		labels[10] = new JLabel(
+				PrimeMain.texts.getString("mbViewNICIntegratedLabel"));
 		labels[10].setToolTipText(PrimeMain.texts
 				.getString("mbViewNICIntegratedTip"));
 
-		labels[11] = new JLabel(PrimeMain.texts
-				.getString("mbViewGPUinstalledLabel"));
+		labels[11] = new JLabel(
+				PrimeMain.texts.getString("mbViewGPUinstalledLabel"));
 		labels[11].setToolTipText(PrimeMain.texts
 				.getString("mbViewGPUinstalledTip"));
 
-		labels[12] = new JLabel(PrimeMain.texts
-				.getString("mbViewCPUsocketLabel"));
+		labels[12] = new JLabel(
+				PrimeMain.texts.getString("mbViewCPUsocketLabel"));
 		labels[12].setToolTipText(PrimeMain.texts
 				.getString("mbViewCPUsocketTip"));
 
-		labels[13] = new JLabel(PrimeMain.texts
-				.getString("mbViewPCIslotsLabel"));
+		labels[13] = new JLabel(
+				PrimeMain.texts.getString("mbViewPCIslotsLabel"));
 		labels[13].setToolTipText(PrimeMain.texts
 				.getString("mbViewPCIslotsTip"));
 
-		labels[14] = new JLabel(PrimeMain.texts
-				.getString("mbViewRAMslotsLabel"));
+		labels[14] = new JLabel(
+				PrimeMain.texts.getString("mbViewRAMslotsLabel"));
 		labels[14].setToolTipText(PrimeMain.texts
 				.getString("mbViewRAMslotsTip"));
 
-		labels[15] = new JLabel(PrimeMain.texts
-				.getString("mbViewUSBportsLabel"));
+		labels[15] = new JLabel(
+				PrimeMain.texts.getString("mbViewUSBportsLabel"));
 		labels[15].setToolTipText(PrimeMain.texts
 				.getString("mbViewUSBportsTip"));
 
@@ -272,8 +274,8 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 		labels[16]
 				.setToolTipText(PrimeMain.texts.getString("mbViewDUCportTip"));
 
-		labels[17] = new JLabel(PrimeMain.texts
-				.getString("mbViewLANportsLabel"));
+		labels[17] = new JLabel(
+				PrimeMain.texts.getString("mbViewLANportsLabel"));
 		labels[17].setToolTipText(PrimeMain.texts
 				.getString("mbViewLANportsTip"));
 
@@ -892,6 +894,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * graphics.GUI.objectView.Hardware.HardwareView.HardwareView#validateData()
 	 */
@@ -956,6 +959,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
 	 */
 	public boolean save()
@@ -1024,12 +1028,13 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 		{
 			boolean standardObject = false;
 
-			// Checks to see whether this is a object being shown as a standard object
+			// Checks to see whether this is a object being shown as a standard
+			// object
 			if ( PrimeMain.stdObjView != null )
 			{
 				if ( mainObj.getObjectSerial() == PrimeMain.stdObjView
-						.getSplitView().getHardStdObjView().getGivenObject()
-						.getObjectSerial() )
+						.getSplitView().getObjView().getHardStdObjView()
+						.getGivenObject().getObjectSerial() )
 				{
 					standardObject = true;
 				}
@@ -1066,7 +1071,9 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 								int newPortsNumber = Integer.parseInt(USBports
 										.getSelectedItem().toString());
 
-								// If the new number of ports is equal to, or less then, the maximum number of allowed ports.
+								// If the new number of ports is equal to, or
+								// less then, the maximum number of allowed
+								// ports.
 								if ( newPortsNumber <= rules
 										.getUSBportsAllowed() )
 								{
@@ -1133,12 +1140,13 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 		{
 			boolean standardObject = false;
 
-			// Checks to see whether this is a object being shown as a standard object
+			// Checks to see whether this is a object being shown as a standard
+			// object
 			if ( PrimeMain.stdObjView != null )
 			{
 				if ( mainObj.getObjectSerial() == PrimeMain.stdObjView
-						.getSplitView().getHardStdObjView().getGivenObject()
-						.getObjectSerial() )
+						.getSplitView().getObjView().getHardStdObjView()
+						.getGivenObject().getObjectSerial() )
 				{
 					standardObject = true;
 				}
@@ -1176,7 +1184,9 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 								int newPortsNumber = Integer.parseInt(LANports
 										.getSelectedItem().toString());
 
-								// If the new number of ports is equal to, or less then, the maximum number of allowed ports.
+								// If the new number of ports is equal to, or
+								// less then, the maximum number of allowed
+								// ports.
 								if ( newPortsNumber <= rules
 										.getLANportsAllowed() )
 								{
@@ -1240,8 +1250,8 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 			if ( PrimeMain.stdObjView != null )
 			{
 				if ( mainObj.getObjectSerial() == PrimeMain.stdObjView
-						.getSplitView().getHardStdObjView().getGivenObject()
-						.getObjectSerial() )
+						.getSplitView().getObjView().getHardStdObjView()
+						.getGivenObject().getObjectSerial() )
 				{
 					standardObject = true;
 				}
@@ -1345,8 +1355,8 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 			if ( PrimeMain.stdObjView != null )
 			{
 				if ( mainObj.getObjectSerial() == PrimeMain.stdObjView
-						.getSplitView().getHardStdObjView().getGivenObject()
-						.getObjectSerial() )
+						.getSplitView().getObjView().getHardStdObjView()
+						.getGivenObject().getObjectSerial() )
 				{
 					standardObject = true;
 				}
@@ -1445,6 +1455,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -1562,50 +1573,58 @@ public class MotherboardView extends JPanel implements HardwareViewInterface, Ac
 
 			if ( command.equals("removeComp") )
 			{
-				int n = JOptionPane.showConfirmDialog(this, PrimeMain.texts
-						.getString("mbViewReplaceMBquestionMsg"),
-						PrimeMain.texts.getString("verify"),
-						JOptionPane.YES_NO_OPTION);
+				int n = JOptionPane
+						.showConfirmDialog(this, PrimeMain.texts
+								.getString("mbViewReplaceMBquestionMsg"),
+								PrimeMain.texts.getString("verify"),
+								JOptionPane.YES_NO_OPTION);
 
 
 				// If the answer is "No"
 				if ( n == 0 )
 				{
-					// We have to remove all connection between this object and other objects on the canvas
-					// WorkareaCanvasActions.removeAllConnectionsToFromObject( PrimeMain1.currentCanvas, mainObj);
+					// We have to remove all connection between this object and
+					// other objects on the canvas
+					// WorkareaCanvasActions.removeAllConnectionsToFromObject(
+					// PrimeMain1.currentCanvas, mainObj);
 					ActionDeleteAllConnectionsToAndFrom action = new ActionDeleteAllConnectionsToAndFrom(
 							PrimeMain.texts
 									.getString("actionDeleteAllConnectionName"));
 					action.performAction(false);
 
 
-					// Since the motherboard is where most of the connections are placed we first have to remove all connections
+					// Since the motherboard is where most of the connections
+					// are placed we first have to remove all connections
 					// to the devices.
 					mainObj.removeAllConnections();
 
 
-					// Then we have to remove all the components that a object contains.
+					// Then we have to remove all the components that a object
+					// contains.
 					mainObj.removeAllComponents();
 
 
 					// Resets all the ports so that all ports are available.
 					mbObj.resetAllComponents();
 
-					// Now that the object has no connections to other components and device we can add the motherboard object.
+					// Now that the object has no connections to other
+					// components and device we can add the motherboard object.
 					mainObj.addComponent(mbObj);
 
 
-					// Updates the views of the object to correctly show the current info.
+					// Updates the views of the object to correctly show the
+					// current info.
 					ObjectView view = PrimeMain.getObjectView(mainObj);
 					if ( view != null )
 					{
 						view.updateViewInfo();
 					}
-					// If no view is returned, then the standard object view is open and that should be updated.
+					// If no view is returned, then the standard object view is
+					// open and that should be updated.
 					else if ( PrimeMain.stdObjView != null )
 					{
-						PrimeMain.stdObjView.getSplitView().getHardStdObjView()
-								.updateTabInfo();
+						PrimeMain.stdObjView.getSplitView().getObjView()
+								.getHardStdObjView().updateTabInfo();
 					}
 				}
 			}

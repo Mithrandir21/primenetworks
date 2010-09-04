@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.properties.objectTypes;
 
@@ -31,6 +31,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
 
+import managment.DesktopCanvasManagment;
 import objects.Object;
 
 
@@ -39,7 +40,8 @@ import objects.Object;
  * 
  * @author Bahram Malaekeh
  */
-public class PeripheralsPropertiesView extends AbstractObjectPropertiesView implements ActionListener
+public class PeripheralsPropertiesView extends AbstractObjectPropertiesView
+		implements ActionListener
 {
 
 	/**
@@ -91,7 +93,8 @@ public class PeripheralsPropertiesView extends AbstractObjectPropertiesView impl
 
 
 	/**
-	 * Resets all specific fields to the info gotten from the {@link Object} viewed.
+	 * Resets all specific fields to the info gotten from the {@link Object}
+	 * viewed.
 	 */
 	private void resetFields()
 	{
@@ -109,6 +112,7 @@ public class PeripheralsPropertiesView extends AbstractObjectPropertiesView impl
 	{
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see java.awt.event.KeyAdapter#keyPressed(java.awt.event.KeyEvent)
 		 */
 		@Override
@@ -139,13 +143,17 @@ public class PeripheralsPropertiesView extends AbstractObjectPropertiesView impl
 		{
 			PrimeMain.updatePropertiesObjectArea(objectViewed, true);
 		}
+
+		DesktopCanvasManagment.canvasCleanUp(PrimeMain.currentCanvas);
 	}
 
 
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)

@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
@@ -62,7 +62,8 @@ import objects.softwareObjects.OfficeSuite;
  * 
  * @author Bahram Malaekeh
  */
-public class OfficeSuiteEditView extends JPanel implements SoftwareView, ActionListener
+public class OfficeSuiteEditView extends JPanel implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -151,7 +152,8 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareView, ActionL
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Software object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param offSuite
@@ -215,8 +217,8 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareView, ActionL
 			if ( mainOffSuite.getSupportedOperatingSystems().length > 0 )
 			{
 				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, osNames, mainOffSuite
-								.getSupportedOperatingSystems()));
+						supportedOS, osNames,
+						mainOffSuite.getSupportedOperatingSystems()));
 			}
 		}
 
@@ -259,11 +261,19 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareView, ActionL
 			{
 				DesktopSoftwareManagment.removeSoftware(mainObj, mainOffSuite);
 
-				// Updates the views of the object to correctly show the current info.
+				// Updates the views of the object to correctly show the current
+				// info.
 				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
+				}
+				// If no view is returned, then the standard object view is
+				// open and that should be updated.
+				else if ( PrimeMain.stdObjView != null )
+				{
+					PrimeMain.stdObjView.getSplitView().getObjView()
+							.getSoftStdObjView().updateTabInfo();
 				}
 			}
 		}
@@ -285,6 +295,7 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareView, ActionL
 	{
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)

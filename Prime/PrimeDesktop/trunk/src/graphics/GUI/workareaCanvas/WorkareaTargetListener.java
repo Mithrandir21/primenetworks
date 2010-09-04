@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.workareaCanvas;
 
@@ -55,6 +55,7 @@ public class WorkareaTargetListener implements DropTargetListener
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#dragEnter(java.awt.dnd.DropTargetDragEvent
 	 * )
@@ -66,6 +67,7 @@ public class WorkareaTargetListener implements DropTargetListener
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#dragExit(java.awt.dnd.DropTargetEvent)
 	 */
@@ -76,6 +78,7 @@ public class WorkareaTargetListener implements DropTargetListener
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#dragOver(java.awt.dnd.DropTargetDragEvent
 	 * )
@@ -88,6 +91,7 @@ public class WorkareaTargetListener implements DropTargetListener
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
 	 */
@@ -116,10 +120,22 @@ public class WorkareaTargetListener implements DropTargetListener
 			// Nullifies the transferable object
 			dtde = null;
 
+			// The width of the entire widget
+			int entireWidgetWidth = objectSize.width;
 
-			int height = objectPoint.x - (objectSize.height / 2);
+			// LabelWidget width
+			int labelWidgetWidth = newObject.getLabelDimension().width;
 
-			int width = objectPoint.y - (objectSize.width / 2) - 12;
+			// If the label width is larger then the image width
+			if ( labelWidgetWidth > entireWidgetWidth )
+			{
+				entireWidgetWidth = labelWidgetWidth;
+			}
+
+
+			int height = objectPoint.x - (entireWidgetWidth / 2) + 1;
+
+			int width = objectPoint.y - (objectSize.width / 2) - 14;
 
 			objectPoint.setLocation(height, width);
 
@@ -143,6 +159,7 @@ public class WorkareaTargetListener implements DropTargetListener
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @seejava.awt.dnd.DropTargetListener#dropActionChanged(java.awt.dnd.
 	 * DropTargetDragEvent)
 	 */

@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package actions.canvasActions;
 
@@ -35,6 +35,7 @@ import logistical.AbstractSystemAction;
 import logistical.SystemActionInterface;
 import logistical.checkLogic;
 import managment.ConnectionManagment;
+import managment.DesktopCanvasManagment;
 import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
@@ -44,13 +45,15 @@ import connections.WidgetExtendedConnection;
 
 /**
  * This action creates a connection between two given {@link WidgetObject
- * WidgetObjects}. The connection is created is both added to each of the given {@link WidgetObject WidgetObjects} and placed on
+ * WidgetObjects}. The connection is created is both added to each of the given
+ * {@link WidgetObject WidgetObjects} and placed on
  * the given {@link WorkareaCanvas}.
  * This action contains a undo/redo function.
  * 
  * @author Bahram Malaekeh
  */
-public class ActionCreateConnection extends AbstractSystemAction implements SystemActionInterface
+public class ActionCreateConnection extends AbstractSystemAction implements
+		SystemActionInterface
 {
 	// The canvas where the deletion is taking place
 	private WorkareaCanvas canvas = null;
@@ -93,7 +96,8 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 
 
 	/**
-	 * A constructor for the class that takes a string, the action name, a {@link WorkareaCanvas}, a {@link WidgetObject} that is
+	 * A constructor for the class that takes a string, the action name, a
+	 * {@link WorkareaCanvas}, a {@link WidgetObject} that is
 	 * the source
 	 * of the connection and a {@link WidgetObject} that is the target of the
 	 * connection.
@@ -122,6 +126,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -135,6 +140,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#canRedo()
 	 */
 	@Override
@@ -145,6 +151,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#canUndo()
 	 */
 	@Override
@@ -155,6 +162,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#die()
 	 */
 	@Override
@@ -168,6 +176,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getPresentationName()
 	 */
 	@Override
@@ -179,6 +188,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getRedoPresentationName()
 	 */
 	@Override
@@ -190,6 +200,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getUndoPresentationName()
 	 */
 	@Override
@@ -201,6 +212,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#isSignificant()
 	 */
 	@Override
@@ -212,6 +224,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#redo()
 	 */
 	@Override
@@ -224,16 +237,16 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 				Connection priorCon = widCon.getConnection();
 
 				// Creates a new connection between the two widget objects
-				Connection con = ConnectionManagment.makeConnection(canvas
-						.getConnections(), PrimeMain.texts
-						.getString("connection")
-						+ canvas.getNumberOfWidgetsOnTheScene(),
+				Connection con = ConnectionManagment.makeConnection(
+						canvas.getConnections(),
+						PrimeMain.texts.getString("connection")
+								+ canvas.getNumberOfWidgetsOnTheScene(),
 						"Connection between "
 								+ SourceWidObj.getObject().getObjectName()
 								+ " and "
 								+ TargetWidObj.getObject().getObjectName()
-								+ ".", SourceWidObj.getObject(), TargetWidObj
-								.getObject(), priorCon.getConnectionType(),
+								+ ".", SourceWidObj.getObject(),
+						TargetWidObj.getObject(), priorCon.getConnectionType(),
 						checkLogic.getConClass(priorCon.getConnectionType()));
 
 				// Creates the connection between the two devices on the
@@ -259,7 +272,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 				// Add the connection the connection layer
 				canvas.getConnectionLayer().addChild(connection);
 
-				canvas.cleanUp();
+				DesktopCanvasManagment.canvasCleanUp(canvas);
 
 				// Sets the newly created connection as the current connection
 				widCon = connection;
@@ -268,17 +281,19 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 			// objects.
 			catch ( ConnectionDoesExist e )
 			{
-				JOptionPane.showMessageDialog(null, PrimeMain.texts
-						.getString("connectionAlreadyExistsMsg"),
-						PrimeMain.texts.getString("alert"),
-						JOptionPane.ERROR_MESSAGE);
+				JOptionPane
+						.showMessageDialog(null, PrimeMain.texts
+								.getString("connectionAlreadyExistsMsg"),
+								PrimeMain.texts.getString("alert"),
+								JOptionPane.ERROR_MESSAGE);
 			}
 			// If a connection between the two given objects is impossible.
 			catch ( ConnectionsIsNotPossible e )
 			{
-				JOptionPane.showMessageDialog(null, PrimeMain.texts
-						.getString("connectionNotPossibleMsg"), PrimeMain.texts
-						.getString("alert"), JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,
+						PrimeMain.texts.getString("connectionNotPossibleMsg"),
+						PrimeMain.texts.getString("alert"),
+						JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
@@ -286,6 +301,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#undo()
 	 */
 	@Override
@@ -294,12 +310,13 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 		// Removes the connection
 		WorkareaCanvasActions.removeWidgetConnection(canvas, widCon);
 
-		canvas.cleanUp();
+		DesktopCanvasManagment.canvasCleanUp(canvas);
 	}
 
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.SystemActionInterface#performAction()
 	 */
 	@Override
@@ -364,10 +381,10 @@ public class ActionCreateConnection extends AbstractSystemAction implements Syst
 
 					// Creates the connection between the two devices(Not on the
 					// scene).
-					con = ConnectionManagment.makeConnection(canvas
-							.getConnections(), PrimeMain.texts
-							.getString("connection")
-							+ canvas.getNumberOfWidgetsOnTheScene(),
+					con = ConnectionManagment.makeConnection(
+							canvas.getConnections(),
+							PrimeMain.texts.getString("connection")
+									+ canvas.getNumberOfWidgetsOnTheScene(),
 							"Connection between "
 									+ SourceWidObj.getObject().getObjectName()
 									+ " and "

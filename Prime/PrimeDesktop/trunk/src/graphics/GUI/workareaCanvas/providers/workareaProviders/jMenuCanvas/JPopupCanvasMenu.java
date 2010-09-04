@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas;
 
@@ -96,8 +96,8 @@ public class JPopupCanvasMenu
 				localLocation);
 
 		// -------------------------------
-		JMenuItem menuItem = new JMenuItem(new ActionPaste(PrimeMain.texts
-				.getString("canvasMenuPasteWidgetAction")));
+		JMenuItem menuItem = new JMenuItem(new ActionPaste(
+				PrimeMain.texts.getString("canvasMenuPasteWidgetAction")));
 
 		// If neither the copy or cut pointers point to anything, the past
 		// button will be disabled
@@ -138,18 +138,18 @@ public class JPopupCanvasMenu
 	private void ObjectCreationMenues()
 	{
 
-		JMenuItem submenuAdd = new JMenu(PrimeMain.texts
-				.getString("canvasMenuAddNewDevices"));
+		JMenuItem submenuAdd = new JMenu(
+				PrimeMain.texts.getString("canvasMenuAddNewDevices"));
 
 
 
-		JMenuItem submenuDesktop = createAddDesktop(new JMenu(PrimeMain.texts
-				.getString("canvasMenuAddClients")));
+		JMenuItem submenuDesktop = createAddDesktop(new JMenu(
+				PrimeMain.texts.getString("canvasMenuAddClients")));
 		submenuAdd.add(submenuDesktop);
 
 
-		JMenuItem submenuServer = createAddServer(new JMenu(PrimeMain.texts
-				.getString("canvasMenuAddServers")));
+		JMenuItem submenuServer = createAddServer(new JMenu(
+				PrimeMain.texts.getString("canvasMenuAddServers")));
 		submenuAdd.add(submenuServer);
 
 
@@ -205,6 +205,16 @@ public class JPopupCanvasMenu
 
 		JMenuItem menuItem = new JMenuItem();
 
+		menuItem = new JMenuItem(PrimeMain.texts.getString("GeneralServer"));
+		menuItem.setActionCommand("CreateNewST_GeneralServer_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuServer.add(menuItem);
+
+		menuItem = new JMenuItem(PrimeMain.texts.getString("antivirusServer"));
+		menuItem.setActionCommand("CreateNewST_AntivirusServer_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuServer.add(menuItem);
+
 		menuItem = new JMenuItem(PrimeMain.texts.getString("httpServer"));
 		menuItem.setActionCommand("CreateNewST_HTTPServer_Item");
 		menuItem.addActionListener(canvasActListener);
@@ -215,8 +225,19 @@ public class JPopupCanvasMenu
 		menuItem.addActionListener(canvasActListener);
 		submenuServer.add(menuItem);
 
+		menuItem = new JMenuItem(PrimeMain.texts.getString("NASServer"));
+		menuItem.setActionCommand("CreateNewST_NASServer_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuServer.add(menuItem);
+
 		menuItem = new JMenuItem(PrimeMain.texts.getString("databaseServer"));
 		menuItem.setActionCommand("CreateNewST_DatabaseServer_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuServer.add(menuItem);
+
+		menuItem = new JMenuItem(
+				PrimeMain.texts.getString("virtualizationServer"));
+		menuItem.setActionCommand("CreateNewST_VirtualizationServer_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuServer.add(menuItem);
 
@@ -298,6 +319,11 @@ public class JPopupCanvasMenu
 
 		JMenuItem menuItem = new JMenuItem();
 
+		menuItem = new JMenuItem(PrimeMain.texts.getString("nas"));
+		menuItem.setActionCommand("CreateNewST_NAS_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuPeripheral.add(menuItem);
+
 		menuItem = new JMenuItem(PrimeMain.texts.getString("scanner"));
 		menuItem.setActionCommand("CreateNewST_Scanner_Item");
 		menuItem.addActionListener(canvasActListener);
@@ -313,8 +339,8 @@ public class JPopupCanvasMenu
 		menuItem.addActionListener(canvasActListener);
 		submenuPeripheral.add(menuItem);
 
-		menuItem = new JMenuItem(PrimeMain.texts
-				.getString("multifunctionPrinter"));
+		menuItem = new JMenuItem(
+				PrimeMain.texts.getString("multifunctionPrinter"));
 		menuItem.setActionCommand("CreateNewST_MFP_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuPeripheral.add(menuItem);
@@ -324,8 +350,8 @@ public class JPopupCanvasMenu
 		menuItem.addActionListener(canvasActListener);
 		submenuPeripheral.add(menuItem);
 
-		menuItem = new JMenuItem(PrimeMain.texts
-				.getString("networkMultifunctionPrinter"));
+		menuItem = new JMenuItem(
+				PrimeMain.texts.getString("networkMultifunctionPrinter"));
 		menuItem.setActionCommand("CreateNewST_NetworkMFP_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuPeripheral.add(menuItem);
@@ -339,8 +365,8 @@ public class JPopupCanvasMenu
 	 */
 	private void createRemoveMenu()
 	{
-		JMenu submenu = new JMenu(PrimeMain.texts
-				.getString("deleteSubMenuLabel"));
+		JMenu submenu = new JMenu(
+				PrimeMain.texts.getString("deleteSubMenuLabel"));
 
 		JMenuItem removeAllWidgets = new JMenuItem(new ActionDeleteAllWidgets(
 				PrimeMain.texts.getString("deleteAllWidgetsLabel")));
@@ -349,8 +375,8 @@ public class JPopupCanvasMenu
 
 
 		JMenuItem removeAllConnections = new JMenuItem(
-				new ActionDeleteAllConnections(PrimeMain.texts
-						.getString("deleteAllConnectionsLabel")));
+				new ActionDeleteAllConnections(
+						PrimeMain.texts.getString("deleteAllConnectionsLabel")));
 		removeAllConnections.setIcon(null);
 		submenu.add(removeAllConnections);
 

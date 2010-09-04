@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Software.NewSoftware.NewViews;
 
@@ -58,7 +58,8 @@ import objects.Software;
 import objects.softwareObjects.Backup;
 
 
-public class BackupNewView extends JDialog implements SoftwareView, ActionListener
+public class BackupNewView extends JDialog implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	private JTextField name = new JTextField(25);
@@ -173,7 +174,8 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Software object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param back
@@ -188,8 +190,8 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 
 		JLabel[] labels = new JLabel[5];
 
-		labels[0] = new JLabel(PrimeMain.texts
-				.getString("backupViewSupOSLabel"));
+		labels[0] = new JLabel(
+				PrimeMain.texts.getString("backupViewSupOSLabel"));
 		labels[0].setToolTipText(PrimeMain.texts
 				.getString("backupViewSupOSTip"));
 
@@ -197,18 +199,18 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 		labels[1]
 				.setToolTipText(PrimeMain.texts.getString("backupViewTypeTip"));
 
-		labels[2] = new JLabel(PrimeMain.texts
-				.getString("backupViewSupCompressionLabel"));
+		labels[2] = new JLabel(
+				PrimeMain.texts.getString("backupViewSupCompressionLabel"));
 		labels[2].setToolTipText(PrimeMain.texts
 				.getString("backupViewSupCompressionTip"));
 
-		labels[3] = new JLabel(PrimeMain.texts
-				.getString("backupViewSupEncryptionLabel"));
+		labels[3] = new JLabel(
+				PrimeMain.texts.getString("backupViewSupEncryptionLabel"));
 		labels[3].setToolTipText(PrimeMain.texts
 				.getString("backupViewSupEncryptionTip"));
 
-		labels[4] = new JLabel(PrimeMain.texts
-				.getString("backupViewDuplicatesLabel"));
+		labels[4] = new JLabel(
+				PrimeMain.texts.getString("backupViewDuplicatesLabel"));
 		labels[4].setToolTipText(PrimeMain.texts
 				.getString("backupViewDuplicatesTip"));
 
@@ -251,8 +253,8 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 			if ( mainBack.getSupportedOperatingSystems().length > 0 )
 			{
 				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, osNames, mainBack
-								.getSupportedOperatingSystems()));
+						supportedOS, osNames,
+						mainBack.getSupportedOperatingSystems()));
 			}
 		}
 
@@ -374,6 +376,7 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see graphics.GUI.objectView.Software.SoftwareView#save()
 	 */
 	@Override
@@ -417,6 +420,7 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -444,6 +448,13 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 				{
 					view.updateViewInfo();
 				}
+				// If no view is returned, then the standard object view is
+				// open and that should be updated.
+				else if ( PrimeMain.stdObjView != null )
+				{
+					PrimeMain.stdObjView.getSplitView().getObjView()
+							.getSoftStdObjView().updateTabInfo();
+				}
 
 
 				// Closes the JFrame.
@@ -451,8 +462,9 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(this, PrimeMain.texts
-						.getString("swNewCompatibilityQuestion"));
+				JOptionPane
+						.showMessageDialog(this, PrimeMain.texts
+								.getString("swNewCompatibilityQuestion"));
 			}
 
 
@@ -475,6 +487,7 @@ public class BackupNewView extends JDialog implements SoftwareView, ActionListen
 	{
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)

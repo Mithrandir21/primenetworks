@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package widgets;
 
@@ -71,7 +71,8 @@ public class WorkareaCanvas extends JPanel
 	// The individual serialnumber of the workareacanvas
 	private double serial = 0;
 
-	// The transferHandler that will take care of the drag and drop feature for the canvas
+	// The transferHandler that will take care of the drag and drop feature for
+	// the canvas
 	private TransferHandler TransHandler = new WidgetTransferHandler();
 
 	private DropTarget dt = null;
@@ -161,10 +162,12 @@ public class WorkareaCanvas extends JPanel
 		// A random number that will be the serial number of the network
 		serial = (Math.random()) * 500;
 
-		// Creates the network info object and sets the serial of this class as the serial of the class
+		// Creates the network info object and sets the serial of this class as
+		// the serial of the class
 		networkInfo = new WorkareaCanvasNetworkInfo(this);
 
-		// Creates the network rules object and sets the serial of this class as the serial of the class
+		// Creates the network rules object and sets the serial of this class as
+		// the serial of the class
 		rules = new NetworkRules(this);
 
 
@@ -172,7 +175,8 @@ public class WorkareaCanvas extends JPanel
 		myView.setTransferHandler(TransHandler);
 
 
-		// This is the main layer of the scene where the WidgetsObjects are placed.
+		// This is the main layer of the scene where the WidgetsObjects are
+		// placed.
 		mainLayer = new LayerWidget(scene);
 		scene.addChild(mainLayer);
 
@@ -184,7 +188,8 @@ public class WorkareaCanvas extends JPanel
 		interactionLayer = new LayerWidget(scene);
 		scene.addChild(interactionLayer);
 
-		// This is the connection layer where all the connections between the objects are shown.
+		// This is the connection layer where all the connections between the
+		// objects are shown.
 		connectionLayer = new LayerWidget(scene);
 		scene.addChild(connectionLayer);
 
@@ -267,7 +272,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Returns the main layer of the scene. This is where the {@link WidgetObject WidgetObjects} are placed.
+	 * Returns the main layer of the scene. This is where the
+	 * {@link WidgetObject WidgetObjects} are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 * @return the mainLayer
@@ -295,7 +301,8 @@ public class WorkareaCanvas extends JPanel
 	 * Returns the {@link LayerWidget} that holds all the {@link WidgetRoom
 	 * WidgetRooms}.
 	 * 
-	 * @return Returns the {@link LayerWidget} that holds all the {@link WidgetRoom WidgetRooms}.
+	 * @return Returns the {@link LayerWidget} that holds all the
+	 *         {@link WidgetRoom WidgetRooms}.
 	 */
 	public LayerWidget getRoomLayer()
 	{
@@ -304,7 +311,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Gets the connection layer of the scene. This is where the {@link connections.WidgetExtendedConnection connections} between
+	 * Gets the connection layer of the scene. This is where the
+	 * {@link connections.WidgetExtendedConnection connections} between
 	 * objects
 	 * in the scene are placed.
 	 * 
@@ -362,7 +370,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Gets the network rules object( {@link NetworkRules} ) that contains the rules that govern this network.
+	 * Gets the network rules object( {@link NetworkRules} ) that contains the
+	 * rules that govern this network.
 	 */
 	public NetworkRules getRules()
 	{
@@ -371,7 +380,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Gets all the {@link WidgetObject WidgetObjectes} on the scene of this {@link WorkareaCanvas}.
+	 * Gets all the {@link WidgetObject WidgetObjectes} on the scene of this
+	 * {@link WorkareaCanvas}.
 	 * 
 	 * @return An {@link WidgetObject} array with all the {@link WidgetObject
 	 *         WidgetObjectes} on the scene.
@@ -439,7 +449,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * This method gets all {@link WidgetRoom WidgetRooms} in the {@link WorkareaCanvas}.
+	 * This method gets all {@link WidgetRoom WidgetRooms} in the
+	 * {@link WorkareaCanvas}.
 	 */
 	public WidgetRoom[] getNetworkWidgetRooms()
 	{
@@ -468,7 +479,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * This method gets all {@link Room Rooms} contained inside the {@link WidgetRoom WidgetRooms} in the {@link WorkareaCanvas}.
+	 * This method gets all {@link Room Rooms} contained inside the
+	 * {@link WidgetRoom WidgetRooms} in the {@link WorkareaCanvas}.
 	 */
 	public Room[] getNetworkRooms()
 	{
@@ -510,8 +522,8 @@ public class WorkareaCanvas extends JPanel
 	/**
 	 * Gets the number of Networks cards on the Scene.
 	 * 
-	 * @return Returns the number of network cards on the scene. Both {@link InternalNetworksCard}s and
-	 *         {@link ExternalNetworksCard}s.
+	 * @return Returns the number of network cards on the scene. Both
+	 *         {@link InternalNetworksCard}s and {@link ExternalNetworksCard}s.
 	 */
 	public int getNumberOfNICsOnTheScene()
 	{
@@ -662,7 +674,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Sets the connection layer of the scene. This is where the {@link connections.WidgetExtendedConnection connections} between
+	 * Sets the connection layer of the scene. This is where the
+	 * {@link connections.WidgetExtendedConnection connections} between
 	 * objects
 	 * in the scene are placed.
 	 * 
@@ -759,7 +772,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Sets the network rules object( {@link NetworkRules} ) that contains the rules that govern this network.
+	 * Sets the network rules object( {@link NetworkRules} ) that contains the
+	 * rules that govern this network.
 	 */
 	public void setRules(NetworkRules rules)
 	{

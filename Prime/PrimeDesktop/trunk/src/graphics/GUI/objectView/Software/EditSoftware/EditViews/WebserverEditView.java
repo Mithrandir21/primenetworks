@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
@@ -63,7 +63,8 @@ import objects.softwareObjects.Webserver;
  * 
  * @author Bahram Malaekeh
  */
-public class WebserverEditView extends JPanel implements SoftwareView, ActionListener
+public class WebserverEditView extends JPanel implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -185,11 +186,11 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain.texts
-				.getString("swTabRemoveSoftwaretText"));
+		JLabel label = new JLabel(
+				PrimeMain.texts.getString("swTabRemoveSoftwaretText"));
 
-		Button remove = new Button(PrimeMain.texts
-				.getString("swTabRemoveSoftwareButtonLabel"));
+		Button remove = new Button(
+				PrimeMain.texts.getString("swTabRemoveSoftwareButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeSoft");
 
@@ -206,7 +207,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Software object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param webserver
@@ -234,8 +236,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		// --------------------------------------------------------------
 
 		// The supported operating systems by the Webserver software.
-		JLabel osLabel = new JLabel(PrimeMain.texts
-				.getString("fwViewSupOSLabel"));
+		JLabel osLabel = new JLabel(
+				PrimeMain.texts.getString("fwViewSupOSLabel"));
 		osLabel.setToolTipText(PrimeMain.texts.getString("fwViewSupOSTip"));
 		panel.add(osLabel, c);
 
@@ -256,8 +258,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 			if ( mainWebSer.getSupportedOperatingSystems().length > 0 )
 			{
 				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, osNames, mainWebSer
-								.getSupportedOperatingSystems()));
+						supportedOS, osNames,
+						mainWebSer.getSupportedOperatingSystems()));
 			}
 		}
 
@@ -267,8 +269,9 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports Virtual hosting feature
-		hasVirtualHosting = new JCheckBox(PrimeMain.texts
-				.getString("webserverViewSupVirtualHostingLabel"));
+		hasVirtualHosting = new JCheckBox(
+				PrimeMain.texts
+						.getString("webserverViewSupVirtualHostingLabel"));
 		hasVirtualHosting.setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupVirtualHostingTip"));
 		hasVirtualHosting.setActionCommand("HasVirtualHosting");
@@ -282,8 +285,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports ASP .net
-		supportsASPnet = new JCheckBox(PrimeMain.texts
-				.getString("webserverViewSupASPNetLabel"));
+		supportsASPnet = new JCheckBox(
+				PrimeMain.texts.getString("webserverViewSupASPNetLabel"));
 		supportsASPnet.setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupASPNetTip"));
 		supportsASPnet.setActionCommand("SupportsASPnet");
@@ -298,8 +301,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports basic access authentication
-		supportsBasic = new JCheckBox(PrimeMain.texts
-				.getString("webserverViewSupBasicAccessLabel"));
+		supportsBasic = new JCheckBox(
+				PrimeMain.texts.getString("webserverViewSupBasicAccessLabel"));
 		supportsBasic.setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupBasicAccessTip"));
 		supportsBasic.setActionCommand("SupportsBasic");
@@ -316,8 +319,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports basic access authentication
-		supportsDigest = new JCheckBox(PrimeMain.texts
-				.getString("webserverViewSupDigestAccessLabel"));
+		supportsDigest = new JCheckBox(
+				PrimeMain.texts.getString("webserverViewSupDigestAccessLabel"));
 		supportsDigest.setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupDigestAccessTip"));
 		supportsDigest.setActionCommand("SupportsDigest");
@@ -331,8 +334,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports SSL
-		supportsSSL = new JCheckBox(PrimeMain.texts
-				.getString("webserverViewSupSSLLabel"));
+		supportsSSL = new JCheckBox(
+				PrimeMain.texts.getString("webserverViewSupSSLLabel"));
 		supportsSSL.setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupSSLTip"));
 		supportsSSL.setActionCommand("SupportsSSL");
@@ -346,8 +349,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports TSL
-		supportsTSL = new JCheckBox(PrimeMain.texts
-				.getString("webserverViewSupTSLLabel"));
+		supportsTSL = new JCheckBox(
+				PrimeMain.texts.getString("webserverViewSupTSLLabel"));
 		supportsTSL.setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupTSLTip"));
 		supportsTSL.setActionCommand("SupportsTSL");
@@ -361,8 +364,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports IPv6
-		supportsIPv6 = new JCheckBox(PrimeMain.texts
-				.getString("webserverViewSupIPv6Label"));
+		supportsIPv6 = new JCheckBox(
+				PrimeMain.texts.getString("webserverViewSupIPv6Label"));
 		supportsIPv6.setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupIPv6Tip"));
 		supportsIPv6.setActionCommand("SupportsIPv6");
@@ -377,8 +380,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports SSI, Server Side Includes
-		supportsSSI = new JCheckBox(PrimeMain.texts
-				.getString("webserverViewSupSSILabel"));
+		supportsSSI = new JCheckBox(
+				PrimeMain.texts.getString("webserverViewSupSSILabel"));
 		supportsSSI.setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupSSITip"));
 		supportsSSI.setActionCommand("SupportsSSI");
@@ -392,8 +395,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports SSI, Server Side Includes
-		supportsCGI = new JCheckBox(PrimeMain.texts
-				.getString("webserverViewSupCGILabel"));
+		supportsCGI = new JCheckBox(
+				PrimeMain.texts.getString("webserverViewSupCGILabel"));
 		supportsCGI.setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupCGITip"));
 		supportsCGI.setActionCommand("SupportsCGI");
@@ -408,8 +411,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 
 		// Whether or not the software supports SCGI, Simple Common Gateway
 		// Interface
-		supportsSCGI = new JCheckBox(PrimeMain.texts
-				.getString("webserverViewSupSCGILabel"));
+		supportsSCGI = new JCheckBox(
+				PrimeMain.texts.getString("webserverViewSupSCGILabel"));
 		supportsSCGI.setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupSCGITip"));
 		supportsSCGI.setActionCommand("SupportsSCGI");
@@ -423,8 +426,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports FastCGI
-		supportsFastCGI = new JCheckBox(PrimeMain.texts
-				.getString("webserverViewSupFastCGILabel"));
+		supportsFastCGI = new JCheckBox(
+				PrimeMain.texts.getString("webserverViewSupFastCGILabel"));
 		supportsFastCGI.setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupFastCGITip"));
 		supportsFastCGI.setActionCommand("SupportsFastCGI");
@@ -439,8 +442,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports JSP
-		supportsJSP = new JCheckBox(PrimeMain.texts
-				.getString("webserverViewSupJSPLabel"));
+		supportsJSP = new JCheckBox(
+				PrimeMain.texts.getString("webserverViewSupJSPLabel"));
 		supportsJSP.setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupJSPTip"));
 		supportsJSP.setActionCommand("SupportsJSP");
@@ -454,8 +457,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports JSP
-		supportsPHP = new JCheckBox(PrimeMain.texts
-				.getString("webserverViewSupPHPLabel"));
+		supportsPHP = new JCheckBox(
+				PrimeMain.texts.getString("webserverViewSupPHPLabel"));
 		supportsPHP.setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupPHPTip"));
 		supportsPHP.setActionCommand("SupportsPHP");
@@ -469,8 +472,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports ASP
-		supportsASP = new JCheckBox(PrimeMain.texts
-				.getString("webserverViewSupASPLabel"));
+		supportsASP = new JCheckBox(
+				PrimeMain.texts.getString("webserverViewSupASPLabel"));
 		supportsASP.setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupASPTip"));
 		supportsASP.setActionCommand("SupportsASP");
@@ -484,8 +487,8 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 		// --------------------------------------------------------------
 
 		// Whether or not the software supports HTTP compression
-		hasCompression = new JCheckBox(PrimeMain.texts
-				.getString("webserverViewSupHTTPcompLabel"));
+		hasCompression = new JCheckBox(
+				PrimeMain.texts.getString("webserverViewSupHTTPcompLabel"));
 		hasCompression.setToolTipText(PrimeMain.texts
 				.getString("webserverViewSupHTTPcompTip"));
 		hasCompression.setActionCommand("HasCompression");
@@ -509,6 +512,7 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see graphics.GUI.objectView.Software.SoftwareEditView#save()
 	 */
 	@Override
@@ -564,6 +568,7 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -580,11 +585,19 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 			{
 				DesktopSoftwareManagment.removeSoftware(mainObj, mainWebSer);
 
-				// Updates the views of the object to correctly show the current info.
+				// Updates the views of the object to correctly show the current
+				// info.
 				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
+				}
+				// If no view is returned, then the standard object view is
+				// open and that should be updated.
+				else if ( PrimeMain.stdObjView != null )
+				{
+					PrimeMain.stdObjView.getSplitView().getObjView()
+							.getSoftStdObjView().updateTabInfo();
 				}
 			}
 		}
@@ -666,6 +679,7 @@ public class WebserverEditView extends JPanel implements SoftwareView, ActionLis
 	{
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)

@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Hardware.HardwareView.Views;
 
@@ -70,7 +70,8 @@ import connections.ConnectionUtils;
  * 
  * @author Bahram Malaekeh
  */
-public class ExternaNICView extends JPanel implements HardwareViewInterface, ActionListener
+public class ExternaNICView extends JPanel implements HardwareViewInterface,
+		ActionListener
 {
 	private JTextField name = new JTextField(25);
 
@@ -142,11 +143,11 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain.texts
-				.getString("hwTabRemoveThisComponentLabel"));
+		JLabel label = new JLabel(
+				PrimeMain.texts.getString("hwTabRemoveThisComponentLabel"));
 
-		Button remove = new Button(PrimeMain.texts
-				.getString("hwTabRemoveComponentButtonLabel"));
+		Button remove = new Button(
+				PrimeMain.texts.getString("hwTabRemoveComponentButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeComp");
 
@@ -163,7 +164,8 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Hardware object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Hardware object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param NIC
@@ -177,8 +179,8 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 		JLabel[] labels = new JLabel[7];
 
 
-		labels[0] = new JLabel(PrimeMain.texts
-				.getString("extNICviewProducerLabel"));
+		labels[0] = new JLabel(
+				PrimeMain.texts.getString("extNICviewProducerLabel"));
 		labels[0].setToolTipText(PrimeMain.texts
 				.getString("extNICviewProcucerTip"));
 
@@ -189,23 +191,23 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 		labels[2]
 				.setToolTipText(PrimeMain.texts.getString("extNICviewTypeTip"));
 
-		labels[3] = new JLabel(PrimeMain.texts
-				.getString("extNICviewSpeedLabel"));
+		labels[3] = new JLabel(
+				PrimeMain.texts.getString("extNICviewSpeedLabel"));
 		labels[3].setToolTipText(PrimeMain.texts
 				.getString("extNICviewSpeedTip"));
 
-		labels[4] = new JLabel(PrimeMain.texts
-				.getString("extNICviewProtocolLabel"));
+		labels[4] = new JLabel(
+				PrimeMain.texts.getString("extNICviewProtocolLabel"));
 		labels[4].setToolTipText(PrimeMain.texts
 				.getString("extNICviewProtocolTip"));
 
-		labels[5] = new JLabel(PrimeMain.texts
-				.getString("extNICviewSupportedStandarsLabel"));
+		labels[5] = new JLabel(
+				PrimeMain.texts.getString("extNICviewSupportedStandarsLabel"));
 		labels[5].setToolTipText(PrimeMain.texts
 				.getString("extNICviewSupportedStandarsTip"));
 
-		labels[6] = new JLabel(PrimeMain.texts
-				.getString("extNICviewSupportsIPv6Label"));
+		labels[6] = new JLabel(
+				PrimeMain.texts.getString("extNICviewSupportsIPv6Label"));
 		labels[6].setToolTipText(PrimeMain.texts
 				.getString("extNICviewSupportsIPv6Tip"));
 
@@ -358,6 +360,7 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
 	 */
 	@Override
@@ -439,12 +442,12 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 					{
 						view.updateViewInfo();
 					}
-					// If no view is returned, then the standard object view is open
-					// and that should be updated.
+					// If no view is returned, then the standard object view is
+					// open and that should be updated.
 					else if ( PrimeMain.stdObjView != null )
 					{
-						PrimeMain.stdObjView.getSplitView().getHardStdObjView()
-								.updateTabInfo();
+						PrimeMain.stdObjView.getSplitView().getObjView()
+								.getHardStdObjView().updateTabInfo();
 					}
 				}
 				catch ( MotherboardNotFound e1 )
@@ -466,6 +469,7 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 	{
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)
@@ -544,8 +548,8 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 				{
 					if ( conType.getSelectedItem().toString()
 							.equals(ConnectionUtils.RJ45)
-							|| extNIC.getConnectionType()
-							.equals(ConnectionUtils.RJ45) )
+							|| extNIC.getConnectionType().equals(
+									ConnectionUtils.RJ45) )
 					{
 						// If LAN is allowed
 						if ( !rules.isLANnotAllowed() )
@@ -554,7 +558,8 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 
 							try
 							{
-								// Gets all the InternalNetworksCard from the objects components array.
+								// Gets all the InternalNetworksCard from the
+								// objects components array.
 								Object[] internalNICs = ArrayManagment
 										.getSpesificComponents(
 												InternalNetworksCard.class,
@@ -569,11 +574,10 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 										if ( internalNICs[i] != null )
 										{
 											InternalNetworksCard nic = (InternalNetworksCard) internalNICs[i];
-											// If the connection type is LAN(rj45)
-											if ( nic
-													.getConnectionType()
-													.equals(
-															ConnectionUtils.RJ45) )
+											// If the connection type is
+											// LAN(rj45)
+											if ( nic.getConnectionType()
+													.equals(ConnectionUtils.RJ45) )
 											{
 												lanNICs++;
 											}
@@ -587,7 +591,8 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface, Act
 							}
 
 							/**
-							 * If the number of integrated LAN ports, internal LAN(RJ45) NICs and the this 1(one) object adds up
+							 * If the number of integrated LAN ports, internal
+							 * LAN(RJ45) NICs and the this 1(one) object adds up
 							 * to equal or less then the number of allowed LANs.
 							 */
 							if ( rules.getLANportsAllowed() == -1

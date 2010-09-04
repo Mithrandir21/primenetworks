@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package managment;
 
@@ -50,6 +50,7 @@ import objects.Object;
 import objects.Room;
 import objects.softwareObjects.OperatingSystem;
 import widgetManipulation.NetworkRules;
+import widgetManipulation.WidgetNetworkInfo;
 import widgetManipulation.WorkareaCanvasNetworkInfo;
 import widgets.WidgetObject;
 import widgets.WidgetRoom;
@@ -61,7 +62,8 @@ import connections.WidgetExtendedConnection;
 
 /**
  * This class provides static functions that deal with the actual saving to
- * file, reading from file and so on. {@link WorkareaCanvas WorkareaCanvases} are saved and loaded here. There are also testing
+ * file, reading from file and so on. {@link WorkareaCanvas WorkareaCanvases}
+ * are saved and loaded here. There are also testing
  * and control functions.
  * 
  * @author Bahram Malaekeh
@@ -202,6 +204,39 @@ public class DesktopFileManagment
 
 
 
+				// WRITE WIDGETNETWORKINFO INSIDE THE WIDGETS
+
+				// The widgets on the scene
+				WidgetObject[] widgets = canvas.getWidgetObjectsOnTheScene();
+
+				// The ArrayList of the WidgetNetworkInfo on the canvas
+				ArrayList<WidgetNetworkInfo> widgetList = new ArrayList<WidgetNetworkInfo>();
+
+
+				// There must be some widgets on the canvas for there to be
+				// saved any widgetObjects
+				if ( widgets.length > 0 )
+				{
+					// Goes through all the widgets on the canvas and adds the
+					// WidgetNetworkInfo inside the widget to the arraylist
+					for ( int i = 0; i < widgets.length; i++ )
+					{
+						widgetList.add(widgets[i].getWidgetNetworkInfo());
+					}
+
+				}
+
+				// Writes out the WidgetNetworkInfo in the form of an arraylist,
+				// even if
+				// it is empty
+				oos.writeObject(widgetList);
+
+				oos.flush();
+
+
+				// END OF WRITE WIDGETNETWORKINFO
+
+
 				// WRITE CONNECTIONS ON THE CANVAS
 
 				// The canvas connections
@@ -283,7 +318,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Saves the given {@link NetworkRules} instance to a file to preserve the standard rules.
+	 * Saves the given {@link NetworkRules} instance to a file to preserve the
+	 * standard rules.
 	 */
 	public static boolean saveStandardRules()
 	{
@@ -295,7 +331,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Saves the given {@link NetworkRules} instance to the given file to preserve the standard rules.
+	 * Saves the given {@link NetworkRules} instance to the given file to
+	 * preserve the standard rules.
 	 */
 	public static boolean saveStandardRules(File file)
 	{
@@ -327,7 +364,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Saves the given {@link NetworkRules} instance to a file to preserve the standard rules.
+	 * Saves the given {@link NetworkRules} instance to a file to preserve the
+	 * standard rules.
 	 */
 	public static boolean saveCustomOS()
 	{
@@ -365,7 +403,8 @@ public class DesktopFileManagment
 				// saved any rooms
 				if ( !PrimeMain.system_custom_OS.isEmpty() )
 				{
-					// get an Iterator object for ArrayList using iterator() method.
+					// get an Iterator object for ArrayList using iterator()
+					// method.
 					Iterator<OperatingSystem> itr = PrimeMain.system_custom_OS
 							.iterator();
 
@@ -374,7 +413,8 @@ public class DesktopFileManagment
 						oos.writeObject(itr.next());
 					}
 
-					// Writes a null to indicate the end of the file for read in.
+					// Writes a null to indicate the end of the file for read
+					// in.
 					oos.writeObject(null);
 				}
 
@@ -423,6 +463,8 @@ public class DesktopFileManagment
 			oos.writeBoolean(managment.Settings.showSoftwareNoticeMessages);
 			oos.writeBoolean(managment.Settings.showSoftwareWarningMessages);
 			oos.writeBoolean(managment.Settings.showTOFD);
+			oos.writeBoolean(managment.Settings.showOSicon);
+			oos.writeBoolean(managment.Settings.showIP);
 
 			oos.flush();
 			oos.close();
@@ -632,9 +674,10 @@ public class DesktopFileManagment
 			// If the rename was not possible
 			if ( !result )
 			{
-				JOptionPane.showMessageDialog(null, PrimeMain.texts
-						.getString("renameWasNotPossibleMsg"), PrimeMain.texts
-						.getString("error"), JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,
+						PrimeMain.texts.getString("renameWasNotPossibleMsg"),
+						PrimeMain.texts.getString("error"),
+						JOptionPane.ERROR_MESSAGE);
 
 				// If the file was not changed, but the folder was changed the
 				// folder has to be changed back.
@@ -723,9 +766,11 @@ public class DesktopFileManagment
 		// If the file does not exist
 		if ( !file.exists() )
 		{
-			JOptionPane.showMessageDialog(null, "This file\n" + file.getName()
-					+ "\n" + "does not exist in location\n"
-					+ file.getAbsolutePath(), "Error",
+			JOptionPane.showMessageDialog(
+					null,
+					"This file\n" + file.getName() + "\n"
+							+ "does not exist in location\n"
+							+ file.getAbsolutePath(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 
 			return false;
@@ -766,9 +811,10 @@ public class DesktopFileManagment
 		// No open canvas was found
 		if ( canvas == null )
 		{
-			int answer = JOptionPane.showConfirmDialog(null, PrimeMain.texts
-					.getString("actionDeleteWorkareaCanvasMsg")
-					+ canvasName + "?", PrimeMain.texts.getString("confirm"),
+			int answer = JOptionPane.showConfirmDialog(null,
+					PrimeMain.texts.getString("actionDeleteWorkareaCanvasMsg")
+							+ canvasName + "?",
+					PrimeMain.texts.getString("confirm"),
 					JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
 			if ( answer == 0 )
@@ -778,9 +824,9 @@ public class DesktopFileManagment
 
 				if ( !success )
 				{
-					JOptionPane.showMessageDialog(null, "The file\n"
-							+ file.getName() + "\n"
-							+ "was NOT successfully deleted.", "Error",
+					JOptionPane.showMessageDialog(null,
+							"The file\n" + file.getName() + "\n"
+									+ "was NOT successfully deleted.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 
 					return false;
@@ -805,19 +851,21 @@ public class DesktopFileManagment
 		{
 			// Gets the serial of the canvas in the given file
 			double serial = getWorkareaCanvasSerialFromFile(file);
-			
+
 			// A boolean on whether the open canvas is the same as the file.
 			boolean sameCanvas = false;
 
-			// Checking to see whether the open canvas has the serial number as the canvas in the file.
+			// Checking to see whether the open canvas has the serial number as
+			// the canvas in the file.
 			if ( serial == canvas.getSerial() )
 			{
 				sameCanvas = true;
 			}
-			
-			int answer = JOptionPane.showConfirmDialog(null, PrimeMain.texts
-					.getString("actionDeleteWorkareaCanvasMsg")
-					+ canvasName + "?", PrimeMain.texts.getString("confirm"),
+
+			int answer = JOptionPane.showConfirmDialog(null,
+					PrimeMain.texts.getString("actionDeleteWorkareaCanvasMsg")
+							+ canvasName + "?",
+					PrimeMain.texts.getString("confirm"),
 					JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
 			if ( answer == 0 )
@@ -827,9 +875,9 @@ public class DesktopFileManagment
 
 				if ( !success )
 				{
-					JOptionPane.showMessageDialog(null, "The file\n"
-							+ file.getName() + "\n"
-							+ "was NOT successfully deleted.", "Error",
+					JOptionPane.showMessageDialog(null,
+							"The file\n" + file.getName() + "\n"
+									+ "was NOT successfully deleted.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 
 					return false;
@@ -849,8 +897,8 @@ public class DesktopFileManagment
 						// Removes the WorkareScroll with the canvas
 						try
 						{
-							PrimeMain.workTab
-								.removeTabWithCanvas(canvasName, false);
+							PrimeMain.workTab.removeTabWithCanvas(canvasName,
+									false);
 						}
 						catch ( CanvasNotFound e )
 						{
@@ -994,19 +1042,21 @@ public class DesktopFileManagment
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null, PrimeMain.texts
-							.getString("canvasExistWithNameMsg"),
-							PrimeMain.texts.getString("error"),
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane
+							.showMessageDialog(null, PrimeMain.texts
+									.getString("canvasExistWithNameMsg"),
+									PrimeMain.texts.getString("error"),
+									JOptionPane.ERROR_MESSAGE);
 
 					return false;
 				}
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(null, PrimeMain.texts
-						.getString("canvasNameNotValidMsg"), PrimeMain.texts
-						.getString("error"), JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,
+						PrimeMain.texts.getString("canvasNameNotValidMsg"),
+						PrimeMain.texts.getString("error"),
+						JOptionPane.ERROR_MESSAGE);
 
 				return false;
 			}
@@ -1061,7 +1111,8 @@ public class DesktopFileManagment
 
 	/**
 	 * This method opens a WorkareaCanvas from the given file, but does not add
-	 * it to the systems array of canvases. It just returns the {@link WorkareaCanvas}.
+	 * it to the systems array of canvases. It just returns the
+	 * {@link WorkareaCanvas}.
 	 * 
 	 * @param file
 	 */
@@ -1126,9 +1177,36 @@ public class DesktopFileManagment
 				it.next();
 			}
 
-			// If there were any objects found
-			if ( objectArraySize > 0 )
+
+			// READS THE NETWORKINFO THAT ARE TO BE PLACED INSIDE THE WIDGET
+
+
+			// The ArrayList that will hold the Widget
+			ArrayList<WidgetNetworkInfo> widgetInfoList = new ArrayList<WidgetNetworkInfo>();
+
+			// Reads inn the ArrayList from the file stream
+			widgetInfoList = (ArrayList<WidgetNetworkInfo>) ois.readObject();
+
+			// The size of the new Objects array
+			int widgetInfoArraySize = 0;
+
+			// Iterates through the Object list
+			for ( Iterator it = widgetInfoList.iterator(); it.hasNext(); )
 			{
+				widgetInfoArraySize++;
+				it.next();
+			}
+
+
+
+			// PUTS THE OBJECTS AND NETWORKINFO TOGETHER AND PLACES A NEW
+			// WIDGETS ON THE CANVAS
+
+			// If there were any objects found
+			if ( objectArraySize == widgetInfoArraySize && objectArraySize > 0 )
+			{
+				// PLACES THE OBJECTS INSIDE THE ARRAYLIST INTO AN ARRAY
+
 				// The objects array
 				Object[] objects = new Object[objectArraySize];
 
@@ -1143,20 +1221,43 @@ public class DesktopFileManagment
 					objectIndex++;
 				}
 
+
+				// PLACES THE WIDGETNETWORKINFO INSIDE THE ARRAYLIST INTO AN
+				// ARRAY
+
+				// The WidgetNetworkInfo array
+				WidgetNetworkInfo[] widgetNetInfos = new WidgetNetworkInfo[widgetInfoArraySize];
+
+				// The index of the WidgetNetworkInfo array
+				int widgetNetInfosIndex = 0;
+
+				// Iterates through the list and adds the objects to the
+				// WidgetNetworkInfo array
+				for ( Iterator it = widgetInfoList.iterator(); it.hasNext(); )
+				{
+					widgetNetInfos[widgetNetInfosIndex] = (WidgetNetworkInfo) it
+							.next();
+					widgetNetInfosIndex++;
+				}
+
 				// Goes through the array of objects and adds them to the newly
 				// made canvas
 				for ( int i = 0; i < objects.length; i++ )
 				{
-					if ( objects[i] != null )
+					if ( objects[i] != null && widgetNetInfos[i] != null )
 					{
 						Class<?> objClass = GraphicalFunctions
 								.getObjectClass(objects[i]);
 						ImageIcon icon = PrimeMain.objectImageIcons
 								.get(objects[i].getClass());
 
-						// Creates a new WidgetObject that will be added to the scene
-						WidgetObject newWidgetObject = new WidgetObject(canvas
-								.getScene(), objects[i], icon.getImage());
+						// Creates a new WidgetObject that will be added to the
+						// scene
+						WidgetObject newWidgetObject = new WidgetObject(
+								canvas.getScene(), objects[i], icon.getImage());
+
+						// Adds the network information about the object
+						newWidgetObject.setWidgetNetworkInfo(widgetNetInfos[i]);
 
 						// Adds the given object to the given location
 						DesktopCanvasManagment.addWidgetToCanvas(
@@ -1330,10 +1431,9 @@ public class DesktopFileManagment
 		return canvas;
 	}
 
-
-
 	/**
-	 * This function call the openCustomOSs function to import the users Custom {@link OperatingSystem}.
+	 * This function call the openCustomOSs function to import the users Custom
+	 * {@link OperatingSystem}.
 	 */
 	public static void loadCustomOS()
 	{
@@ -1346,7 +1446,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Opens the {@link NetworkRules} instance from a given file and imports them to the system_custom_OS instance in PrimeMain.
+	 * Opens the {@link NetworkRules} instance from a given file and imports
+	 * them to the system_custom_OS instance in PrimeMain.
 	 * 
 	 * @see PrimeMain
 	 */
@@ -1395,7 +1496,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Opens the {@link NetworkRules} instance from a given file to preserve the system standard rules.
+	 * Opens the {@link NetworkRules} instance from a given file to preserve the
+	 * system standard rules.
 	 */
 	public static void openStandardRules(File file)
 	{
@@ -1431,7 +1533,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Opens the {@link NetworkRules} instance from a file to preserve the system standard rules.
+	 * Opens the {@link NetworkRules} instance from a file to preserve the
+	 * system standard rules.
 	 */
 	public static void openStandardRules()
 	{
@@ -1491,6 +1594,8 @@ public class DesktopFileManagment
 						managment.Settings.showSoftwareWarningMessages = ois
 								.readBoolean();
 						managment.Settings.showTOFD = ois.readBoolean();
+						managment.Settings.showOSicon = ois.readBoolean();
+						managment.Settings.showIP = ois.readBoolean();
 
 
 						ois.close();
@@ -1900,8 +2005,10 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This function exports the Custom {@link OperatingSystem} within the system to a file.
-	 * The file will have a .dat filetype. The user is presented with a choice on which folder
+	 * This function exports the Custom {@link OperatingSystem} within the
+	 * system to a file.
+	 * The file will have a .dat filetype. The user is presented with a choice
+	 * on which folder
 	 * to save the file in.
 	 */
 	public static boolean exportCustomOS()
@@ -2265,8 +2372,8 @@ public class DesktopFileManagment
 
 					// Tells the user that the change will take effect on
 					// restart
-					JOptionPane.showMessageDialog(null, PrimeMain.texts
-							.getString("ChangeAfterRestart"));
+					JOptionPane.showMessageDialog(null,
+							PrimeMain.texts.getString("ChangeAfterRestart"));
 				}
 			}
 		}
@@ -2489,8 +2596,7 @@ public class DesktopFileManagment
 				.getOfficeSuiteRestrictedName());
 
 		// INFRASTRUCTURE
-		newRules
-				.setCanConnectToInternet(standardRules.isCanConnectToInternet());
+		newRules.setCanConnectToInternet(standardRules.isCanConnectToInternet());
 
 		newRules.setMustHaveFWbeforeInternet(standardRules
 				.isMustHaveFWbeforeInternet());

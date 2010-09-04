@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Software.EditSoftware.EditOverview;
 
@@ -45,7 +45,8 @@ import widgets.WorkareaCanvas;
  * 
  * @author Bahram Malaekeh
  */
-public class SoftwareMouseListener extends MouseAdapter implements ActionListener
+public class SoftwareMouseListener extends MouseAdapter implements
+		ActionListener
 {
 	// This is the main Object
 	private Object mainObject;
@@ -86,14 +87,14 @@ public class SoftwareMouseListener extends MouseAdapter implements ActionListene
 		JPopupMenu itemPopup = new JPopupMenu();
 
 
-		JMenuItem deleteHardware = new JMenuItem(PrimeMain.texts
-				.getString("swTabRemoveSoftwareButtonLabel"));
+		JMenuItem deleteHardware = new JMenuItem(
+				PrimeMain.texts.getString("swTabRemoveSoftwareButtonLabel"));
 		deleteHardware.setActionCommand("Delete Software");
 		deleteHardware.addActionListener(this);
 
 
-		JMenuItem editHardware = new JMenuItem(PrimeMain.texts
-				.getString("swTabEditSoftwareButtonLabel"));
+		JMenuItem editHardware = new JMenuItem(
+				PrimeMain.texts.getString("swTabEditSoftwareButtonLabel"));
 		editHardware.setActionCommand("Edit Software");
 		editHardware.addActionListener(this);
 
@@ -113,6 +114,7 @@ public class SoftwareMouseListener extends MouseAdapter implements ActionListene
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.MouseAdapter#mousePressed(java.awt.event.MouseEvent)
 	 */
 	@Override
@@ -127,6 +129,7 @@ public class SoftwareMouseListener extends MouseAdapter implements ActionListene
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.event.MouseAdapter#mouseReleased(java.awt.event.MouseEvent)
 	 */
 	@Override
@@ -143,6 +146,7 @@ public class SoftwareMouseListener extends MouseAdapter implements ActionListene
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -156,15 +160,16 @@ public class SoftwareMouseListener extends MouseAdapter implements ActionListene
 			if ( !(softwareObject instanceof OperatingSystem) )
 			{
 				// Asks the user to confirm the deletion
-				answer = JOptionPane.showConfirmDialog(panel, PrimeMain.texts
-						.getObject("swTabDeleteSWquestionMsg"), PrimeMain.texts
-						.getString("verify"), JOptionPane.YES_NO_OPTION);
+				answer = JOptionPane.showConfirmDialog(panel,
+						PrimeMain.texts.getObject("swTabDeleteSWquestionMsg"),
+						PrimeMain.texts.getString("verify"),
+						JOptionPane.YES_NO_OPTION);
 			}
 			else
 			{
 				// Asks the user to confirm the deletion
-				answer = JOptionPane.showConfirmDialog(panel, PrimeMain.texts
-						.getString("osViewRemovalQuestionText"),
+				answer = JOptionPane.showConfirmDialog(panel,
+						PrimeMain.texts.getString("osViewRemovalQuestionText"),
 						PrimeMain.texts.getString("confirm"),
 						JOptionPane.YES_NO_OPTION);
 			}
@@ -215,6 +220,13 @@ public class SoftwareMouseListener extends MouseAdapter implements ActionListene
 				{
 					view.updateViewInfo();
 				}
+				// If no view is returned, then the standard object view is
+				// open and that should be updated.
+				else if ( PrimeMain.stdObjView != null )
+				{
+					PrimeMain.stdObjView.getSplitView().getObjView()
+							.getSoftStdObjView().updateTabInfo();
+				}
 			}
 		}
 		else if ( e.getActionCommand().equals("Edit Software") )
@@ -227,8 +239,8 @@ public class SoftwareMouseListener extends MouseAdapter implements ActionListene
 			// focus to the software object the user
 			// selected to be edited.
 			objView.getObjectView().getSoftwareEditor()
-					.createNewSoftwareEditor(mainObject).setTabFocus(
-							(Software) softwareObject);
+					.createNewSoftwareEditor(mainObject)
+					.setTabFocus((Software) softwareObject);
 		}
 	}
 

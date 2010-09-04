@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package actions.canvasActions;
 
@@ -37,12 +37,14 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * This action adds a given {@link WidgetObject} to a given {@link WorkareaCanvas} at a given {@link Point}.
+ * This action adds a given {@link WidgetObject} to a given
+ * {@link WorkareaCanvas} at a given {@link Point}.
  * This action contains a undo/redo function.
  * 
  * @author Bahram Malaekeh
  */
-public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implements SystemActionInterface
+public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
+		implements SystemActionInterface
 {
 	// The canvas where the deletion is taking place
 	private WorkareaCanvas canvas = null;
@@ -55,16 +57,19 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 
 	/**
 	 * A constructor for the class that takes a string, the action name, an
-	 * Icon, a {@link WorkareaCanvas}, a {@link WidgetObject} and a {@link Point}.
+	 * Icon, a {@link WorkareaCanvas}, a {@link WidgetObject} and a
+	 * {@link Point}.
 	 * 
 	 * @param text
 	 *            The name of the action.
 	 * @param icon
 	 *            The icon representing the action.
 	 * @param canvas
-	 *            The {@link WorkareaCanvas} that the given {@link WidgetObject} is to be added to.
+	 *            The {@link WorkareaCanvas} that the given {@link WidgetObject}
+	 *            is to be added to.
 	 * @param widObject
-	 *            The {@link WidgetObject} that is to be added to the given {@link WorkareaCanvas}.
+	 *            The {@link WidgetObject} that is to be added to the given
+	 *            {@link WorkareaCanvas}.
 	 * @param objectPoint
 	 *            The {@link Point} where the {@link WidgetObject} is to be
 	 *            placed on the {@link WorkareaCanvas}.
@@ -80,15 +85,17 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 
 
 	/**
-	 * A constructor for the class that takes a string, the action name, a {@link WorkareaCanvas}, a {@link WidgetObject} and a
-	 * {@link Point}.
+	 * A constructor for the class that takes a string, the action name, a
+	 * {@link WorkareaCanvas}, a {@link WidgetObject} and a {@link Point}.
 	 * 
 	 * @param text
 	 *            The name of the action.
 	 * @param canvas
-	 *            The {@link WorkareaCanvas} that the given {@link WidgetObject} is to be added to.
+	 *            The {@link WorkareaCanvas} that the given {@link WidgetObject}
+	 *            is to be added to.
 	 * @param widObject
-	 *            The {@link WidgetObject} that is to be added to the given {@link WorkareaCanvas}.
+	 *            The {@link WidgetObject} that is to be added to the given
+	 *            {@link WorkareaCanvas}.
 	 * @param objectPoint
 	 *            The {@link Point} where the {@link WidgetObject} is to be
 	 *            placed on the {@link WorkareaCanvas}.
@@ -107,6 +114,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -120,6 +128,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#canRedo()
 	 */
 	@Override
@@ -130,6 +139,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#canUndo()
 	 */
 	@Override
@@ -140,6 +150,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#die()
 	 */
 	@Override
@@ -152,6 +163,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getPresentationName()
 	 */
 	@Override
@@ -163,6 +175,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getRedoPresentationName()
 	 */
 	@Override
@@ -174,6 +187,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getUndoPresentationName()
 	 */
 	@Override
@@ -185,6 +199,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#isSignificant()
 	 */
 	@Override
@@ -196,6 +211,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#redo()
 	 */
 	@Override
@@ -219,6 +235,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#undo()
 	 */
 	@Override
@@ -233,6 +250,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction implem
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.SystemActionInterface#performAction()
 	 */
 	@Override

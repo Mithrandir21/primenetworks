@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package managment;
 
@@ -35,19 +35,24 @@ import objects.infrastructureObjects.Modem;
 import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.infrastructureObjects.WirelessRouter;
+import objects.peripheralObjects.ExternalHDD;
 import objects.peripheralObjects.Fax;
 import objects.peripheralObjects.MultifunctionPrinter;
 import objects.peripheralObjects.NetworkMultifunctionPrinter;
 import objects.peripheralObjects.NetworkPrinter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
+import objects.serverObjects.AntivirusServer;
 import objects.serverObjects.BackupServer;
 import objects.serverObjects.DatabaseServer;
 import objects.serverObjects.FirewallServer;
+import objects.serverObjects.GenericServer;
 import objects.serverObjects.HTTPServer;
 import objects.serverObjects.MailServer;
+import objects.serverObjects.NASServer;
 import objects.serverObjects.PrinterServer;
 import objects.serverObjects.ProxyServer;
+import objects.serverObjects.VirtualizationServer;
 import widgets.WidgetIcon;
 import connections.ConnectionUtils;
 
@@ -60,9 +65,6 @@ import connections.ConnectionUtils;
  */
 public class CreateObjects
 {
-
-	// private static Software[] st_software = new Software[1];
-
 
 	/**
 	 * Creates and returns an object based on the {@link widgets.WidgetIcon
@@ -85,8 +87,8 @@ public class CreateObjects
 		try
 		{
 			// Gets the object in the given ArrayList with the given class
-			newObject = ArrayManagment.getSpesificComponent(iconObject
-					.getClassType(), PrimeMain.objectlist);
+			newObject = ArrayManagment.getSpesificComponent(
+					iconObject.getClassType(), PrimeMain.objectlist);
 		}
 		catch ( ObjectNotFoundException e )
 		{
@@ -102,6 +104,10 @@ public class CreateObjects
 			{
 				newObject = createDefaultThinClient(desc);
 			}
+			else if ( objectType.equals("GenericServer") )
+			{
+				newObject = createGenericServer(desc);
+			}
 			else if ( objectType.equals("HTTPServer") )
 			{
 				newObject = createDefaultHTTPServer(desc);
@@ -109,6 +115,18 @@ public class CreateObjects
 			else if ( objectType.equals("BackupServer") )
 			{
 				newObject = createDefaultBackupServer(desc);
+			}
+			else if ( objectType.equals("NASServer") )
+			{
+				newObject = createDefaultBackupServer(desc);
+			}
+			else if ( objectType.equals("DatabaseServer") )
+			{
+				newObject = createDefaultDatabaseServer(desc);
+			}
+			else if ( objectType.equals("VirtualizationServer") )
+			{
+				newObject = createDefaultVirtualizationServer(desc);
 			}
 			else if ( objectType.equals("MailServer") )
 			{
@@ -126,9 +144,9 @@ public class CreateObjects
 			{
 				newObject = createDefaultPrinterServer(desc);
 			}
-			else if ( objectType.equals("DatabaseServer") )
+			else if ( objectType.equals("ExternalHDD") )
 			{
-				newObject = createDefaultDatabaseServer(desc);
+				newObject = createDefaultNAS(desc);
 			}
 			else if ( objectType.equals("Scanner") )
 			{
@@ -201,13 +219,18 @@ public class CreateObjects
 		PrimeMain.objectlist.add(createDefaultDesktop(""));
 		PrimeMain.objectlist.add(createDefaultLaptop(""));
 		PrimeMain.objectlist.add(createDefaultThinClient(""));
+		PrimeMain.objectlist.add(createGenericServer(""));
+		PrimeMain.objectlist.add(createDefaultAntivirusServer(""));
 		PrimeMain.objectlist.add(createDefaultHTTPServer(""));
 		PrimeMain.objectlist.add(createDefaultBackupServer(""));
+		PrimeMain.objectlist.add(createDefaultNASServer(""));
 		PrimeMain.objectlist.add(createDefaultDatabaseServer(""));
+		PrimeMain.objectlist.add(createDefaultVirtualizationServer(""));
 		PrimeMain.objectlist.add(createDefaultMailServer(""));
 		PrimeMain.objectlist.add(createDefaultFirewallServer(""));
 		PrimeMain.objectlist.add(createDefaultProxyServer(""));
 		PrimeMain.objectlist.add(createDefaultPrinterServer(""));
+		PrimeMain.objectlist.add(createDefaultNAS(""));
 		PrimeMain.objectlist.add(createDefaultScanner(""));
 		PrimeMain.objectlist.add(createDefaultPrinter(""));
 		PrimeMain.objectlist.add(createDefaultFax(""));
@@ -306,7 +329,8 @@ public class CreateObjects
 		Object[] st_components = createComponentsArray();
 
 		Motherboard mb = (Motherboard) st_components[0];
-		mb.makeOnePCIportTaken(); // For the NIC that will be added further down.
+		mb.makeOnePCIportTaken(); // For the NIC that will be added further
+									// down.
 
 
 		Laptop temp = new Laptop(objectName, objectDesc, st_components);
@@ -359,7 +383,8 @@ public class CreateObjects
 		}
 		catch ( ObjectNotFoundException e )
 		{
-			// This is impossible since the HDD has just been added at the top of this class
+			// This is impossible since the HDD has just been added at the top
+			// of this class
 			e.printStackTrace();
 		}
 		catch ( MotherboardNotFound e )
@@ -368,6 +393,81 @@ public class CreateObjects
 			e.printStackTrace();
 		}
 
+
+		String[] supportedConnectionInterfaces = ComponentsManagment
+				.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		// Adds OS
+		temp.setSoftware(createSoftwareArray());
+
+		return temp;
+	}
+
+
+
+	private static GenericServer createGenericServer(String desc)
+	{
+		String objectName = PrimeMain.texts.getString("GeneralServer");
+		String objectDesc = desc;
+
+		if ( objectDesc == "" )
+		{
+			objectDesc = objectName;
+		}
+
+		Object[] st_components = createComponentsArray();
+
+
+
+		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setIntegLANcard(true);
+		serverMB.setMaxIntegratedLANs(2);
+		serverMB.setIntegLANPortsAvailable(2);
+
+
+		GenericServer temp = new GenericServer(objectName, objectDesc,
+				st_components);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment
+				.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		// Adds OS
+		temp.setSoftware(createSoftwareArray());
+
+		return temp;
+	}
+
+
+
+	private static AntivirusServer createDefaultAntivirusServer(String desc)
+	{
+		String objectName = PrimeMain.texts.getString("antivirusServer");
+		String objectDesc = desc;
+
+		String ObjectSWname = PrimeMain.texts.getString("antivirus");
+		String ObjectSWdesc = "Standard antivirus server";
+		String ObjectSWversion = "1";
+
+		if ( objectDesc == "" )
+		{
+			objectDesc = objectName;
+		}
+
+		Object[] st_components = createComponentsArray();
+
+
+		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setIntegLANcard(true);
+		serverMB.setMaxIntegratedLANs(2);
+		serverMB.setIntegLANPortsAvailable(2);
+
+
+		AntivirusServer temp = new AntivirusServer(objectName, objectDesc,
+				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
 
 		String[] supportedConnectionInterfaces = ComponentsManagment
 				.getSupportedInterfaces(temp);
@@ -461,13 +561,47 @@ public class CreateObjects
 
 
 
-	private static DatabaseServer createDefaultDatabaseServer(String desc)
+	private static NASServer createDefaultNASServer(String desc)
 	{
-		String objectName = "Backup Server";
+		String objectName = PrimeMain.texts.getString("NASServer");
 		String objectDesc = desc;
 
-		String ObjectSWname = "Backup";
-		String ObjectSWdesc = "Standard backup server";
+		if ( objectDesc == "" )
+		{
+			objectDesc = objectName;
+		}
+
+		Object[] st_components = createComponentsArray();
+
+
+		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setIntegLANcard(true);
+		serverMB.setMaxIntegratedLANs(2);
+		serverMB.setIntegLANPortsAvailable(2);
+
+
+		NASServer temp = new NASServer(objectName, objectDesc, st_components);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment
+				.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		// Adds OS
+		temp.setSoftware(createSoftwareArray());
+
+		return temp;
+	}
+
+
+
+	private static DatabaseServer createDefaultDatabaseServer(String desc)
+	{
+		String objectName = "Database Server";
+		String objectDesc = desc;
+
+		String ObjectSWname = "Database";
+		String ObjectSWdesc = "Standard database server";
 		String ObjectSWversion = "1";
 
 		if ( objectDesc == "" )
@@ -486,6 +620,42 @@ public class CreateObjects
 
 		DatabaseServer temp = new DatabaseServer(objectName, objectDesc,
 				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment
+				.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+
+		// Adds OS
+		temp.setSoftware(createSoftwareArray());
+
+		return temp;
+	}
+
+
+
+	private static VirtualizationServer createDefaultVirtualizationServer(
+			String desc)
+	{
+		String objectName = PrimeMain.texts.getString("virtualizationServer");
+		String objectDesc = desc;
+
+		if ( objectDesc == "" )
+		{
+			objectDesc = objectName;
+		}
+
+		Object[] st_components = createComponentsArray();
+
+
+		Motherboard serverMB = (Motherboard) st_components[0];
+		serverMB.setIntegLANcard(true);
+		serverMB.setMaxIntegratedLANs(2);
+		serverMB.setIntegLANPortsAvailable(2);
+
+
+		VirtualizationServer temp = new VirtualizationServer(objectName,
+				objectDesc, st_components);
 
 		String[] supportedConnectionInterfaces = ComponentsManagment
 				.getSupportedInterfaces(temp);
@@ -645,6 +815,46 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		temp.setSoftware(createSoftwareArray());
+
+		return temp;
+	}
+
+
+
+	private static ExternalHDD createDefaultNAS(String desc)
+	{
+		String objectName = PrimeMain.texts.getString("nas");
+		String objectDesc = desc;
+
+		int HDDsize = 500;
+
+
+		if ( objectDesc == "" )
+		{
+			objectDesc = objectName;
+		}
+
+		Motherboard objectMB = PrimeMain.standard_internal_components
+				.getHw_MB();
+
+		objectMB.setMaxUSBs(1);
+		objectMB.setUSBPortsAvailable(1);
+
+
+		HDD internalHDD = PrimeMain.standard_internal_components.getSt_HDD();
+		internalHDD.setSize(1000);
+
+		objectMB.setDUCconnectionType(internalHDD.getPort());
+
+		ExternalHDD temp = new ExternalHDD(objectName, objectDesc, HDDsize,
+				objectMB);
+
+		temp.addComponent(internalHDD);
+
+		String[] supportedConnectionInterfaces = ComponentsManagment
+				.getSupportedInterfaces(temp);
+
+		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		return temp;
 	}

@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.customOSviews;
 
@@ -259,8 +259,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 		d.gridx = 0; // column
 
 
-		JButton newCustomOS = new JButton(PrimeMain.texts
-				.getString("newCustomOSlabel"));
+		JButton newCustomOS = new JButton(
+				PrimeMain.texts.getString("newCustomOSlabel"));
 		newCustomOS.setActionCommand(PrimeMain.texts
 				.getString("newCustomOSlabel"));
 		newCustomOS.addActionListener(this);
@@ -393,8 +393,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 		// The supported file system.
-		JLabel fsLabel = new JLabel(PrimeMain.texts
-				.getString("osViewSupFSLabel"));
+		JLabel fsLabel = new JLabel(
+				PrimeMain.texts.getString("osViewSupFSLabel"));
 		fsLabel.setToolTipText(PrimeMain.texts.getString("osViewSupFSTip"));
 
 		panel1.add(fsLabel, conPanel1);
@@ -422,8 +422,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 		// Whether or not the OS supports encrypted file system
-		JCheckBox encryptedFileSystem = new JCheckBox(PrimeMain.texts
-				.getString("osViewSupEnctyptedFSLabel"));
+		JCheckBox encryptedFileSystem = new JCheckBox(
+				PrimeMain.texts.getString("osViewSupEnctyptedFSLabel"));
 		encryptedFileSystem.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		encryptedFileSystem.setSelected(os.isEncryptedFileSystem());
@@ -435,8 +435,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 		// Whether or not the OS has a GUI
-		JCheckBox hasGUI = new JCheckBox(PrimeMain.texts
-				.getString("osViewSupEnctyptedFSLabel"));
+		JCheckBox hasGUI = new JCheckBox(
+				PrimeMain.texts.getString("osViewSupEnctyptedFSLabel"));
 		hasGUI.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		hasGUI.setSelected(os.isHasGUI());
@@ -468,8 +468,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 		conPanel2.gridx = 0; // column
 
 		// The 64 bit check box
-		JCheckBox is64bit = new JCheckBox(PrimeMain.texts
-				.getString("osViewSupEnctyptedFSLabel"));
+		JCheckBox is64bit = new JCheckBox(
+				PrimeMain.texts.getString("osViewSupEnctyptedFSLabel"));
 		is64bit.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		is64bit.setSelected(os.isIs64bit());
@@ -480,8 +480,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 		// The version of the OS
-		JLabel versionLabel = new JLabel(PrimeMain.texts
-				.getString("osViewVersionLabel"));
+		JLabel versionLabel = new JLabel(
+				PrimeMain.texts.getString("osViewVersionLabel"));
 		conPanel2.gridx = 1; // column
 		panel2.add(versionLabel, conPanel2);
 
@@ -521,8 +521,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 		// Desc
-		JLabel descLabel = new JLabel(PrimeMain.texts
-				.getString("swTabSWdescriptionLabel"));
+		JLabel descLabel = new JLabel(
+				PrimeMain.texts.getString("swTabSWdescriptionLabel"));
 
 		conPanel3.gridx = 0; // column
 		panel3.add(descLabel, conPanel3);
@@ -617,7 +617,9 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -646,7 +648,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 				{
 					if ( !PrimeMain.system_custom_OS.isEmpty() )
 					{
-						// get an Iterator object for ArrayList using iterator() method.
+						// get an Iterator object for ArrayList using iterator()
+						// method.
 						Iterator<OperatingSystem> itr = PrimeMain.system_custom_OS
 								.iterator();
 
@@ -671,12 +674,14 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 
-				// If a the remove button has been pressed on one of the custom OS
+				// If a the remove button has been pressed on one of the custom
+				// OS
 				if ( !found )
 				{
 					if ( !PrimeMain.system_custom_OS.isEmpty() )
 					{
-						// get an Iterator object for ArrayList using iterator() method.
+						// get an Iterator object for ArrayList using iterator()
+						// method.
 						Iterator<OperatingSystem> itr = PrimeMain.system_custom_OS
 								.iterator();
 
@@ -698,8 +703,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 								int i = JOptionPane.showOptionDialog(null,
-										question, PrimeMain.texts
-												.getString("confirm"),
+										question,
+										PrimeMain.texts.getString("confirm"),
 										JOptionPane.YES_NO_CANCEL_OPTION,
 										JOptionPane.QUESTION_MESSAGE, null,
 										options, options[1]);
@@ -722,7 +727,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 				// If the OS was not found
 				if ( !found )
 				{
-					// Determines whether the name name is found as a standard OS
+					// Determines whether the name name is found as a standard
+					// OS
 					found = DesktopSoftwareManagment.foundInStandardOS(e
 							.getActionCommand());
 
@@ -773,11 +779,19 @@ public class osSelectionOverView extends JDialog implements ActionListener
 				{
 					if ( mainObj != null )
 					{
-						// Updates the views of the object to correctly show the current info.
+						// Updates the views of the object to correctly show the
+						// current info.
 						ObjectView view = PrimeMain.getObjectView(mainObj);
 						if ( view != null )
 						{
 							view.updateViewInfo();
+						}
+						// If no view is returned, then the standard object view
+						// is open and that should be updated.
+						else if ( PrimeMain.stdObjView != null )
+						{
+							PrimeMain.stdObjView.getSplitView().getObjView()
+									.getSoftStdObjView().updateTabInfo();
 						}
 					}
 				}

@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package actions.canvasActions;
 
@@ -50,7 +50,8 @@ import connections.WidgetExtendedConnection;
  * 
  * @author Bahram Malaekeh
  */
-public class ActionDeleteWidget extends AbstractSystemAction implements SystemActionInterface
+public class ActionDeleteWidget extends AbstractSystemAction implements
+		SystemActionInterface
 {
 	// The canvas where the deletion is taking place
 	private WorkareaCanvas canvas = null;
@@ -92,6 +93,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -105,6 +107,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#canRedo()
 	 */
 	@Override
@@ -115,6 +118,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#canUndo()
 	 */
 	@Override
@@ -125,6 +129,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#die()
 	 */
 	@Override
@@ -137,6 +142,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getPresentationName()
 	 */
 	@Override
@@ -148,6 +154,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getRedoPresentationName()
 	 */
 	@Override
@@ -158,6 +165,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getUndoPresentationName()
 	 */
 	@Override
@@ -168,6 +176,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#isSignificant()
 	 */
 	@Override
@@ -179,6 +188,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#redo()
 	 */
 	@Override
@@ -190,14 +200,15 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#undo()
 	 */
 	@Override
 	public void undo() throws CannotUndoException
 	{
 		// Adds the created WidgetObject to the classes canvas
-		DesktopCanvasManagment.addWidgetToCanvas(widObject, widObject
-				.getLocation(), canvas, true, true);
+		DesktopCanvasManagment.addWidgetToCanvas(widObject,
+				widObject.getLocation(), canvas, true, true);
 
 
 		if ( existingConnections != null )
@@ -209,17 +220,17 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 					// Find the two object which are to be connected on the
 					// canvas
 					WidgetObject sourceWidget = CanvasManagment
-							.findWidgetObject(existingConnections[i]
-									.getObject1(), canvas);
+							.findWidgetObject(
+									existingConnections[i].getObject1(), canvas);
 					WidgetObject targetWidget = CanvasManagment
-							.findWidgetObject(existingConnections[i]
-									.getObject2(), canvas);
+							.findWidgetObject(
+									existingConnections[i].getObject2(), canvas);
 
 					// Creates a new connection between the two widget objects
-					Connection con = ConnectionManagment.makeConnection(canvas
-							.getConnections(), PrimeMain.texts
-							.getString("connection")
-							+ canvas.getNumberOfWidgetsOnTheScene(),
+					Connection con = ConnectionManagment.makeConnection(
+							canvas.getConnections(),
+							PrimeMain.texts.getString("connection")
+									+ canvas.getNumberOfWidgetsOnTheScene(),
 							"Connection between "
 									+ sourceWidget.getObject().getObjectName()
 									+ " and "
@@ -253,7 +264,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 					// Add the connection the connection layer
 					canvas.getConnectionLayer().addChild(connection);
 
-					canvas.cleanUp();
+					DesktopCanvasManagment.canvasCleanUp(canvas);
 
 				}
 				// If there already exists a connection between the two given
@@ -280,6 +291,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.SystemActionInterface#performAction()
 	 */
 	@Override
@@ -293,8 +305,8 @@ public class ActionDeleteWidget extends AbstractSystemAction implements SystemAc
 		widObject = canvas.getCurrentWidgetObject();
 
 		// Finds all the connections of the object(for the undo action)
-		existingConnections = ConnectionManagment.findConnections(canvas
-				.getConnections(), widObject.getObject());
+		existingConnections = ConnectionManagment.findConnections(
+				canvas.getConnections(), widObject.getObject());
 
 		WorkareaCanvasActions.removeObject(canvas, widObject, true);
 

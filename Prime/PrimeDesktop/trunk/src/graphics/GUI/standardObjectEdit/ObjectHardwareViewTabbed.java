@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.standardObjectEdit;
 
@@ -53,7 +53,7 @@ import objects.hardwareObjects.Ram;
  * 
  * @author Bahram Malaekeh
  */
-public class ObjectViewTabbed extends JTabbedPane
+public class ObjectHardwareViewTabbed extends JTabbedPane
 {
 	private Object mainobj;
 
@@ -63,7 +63,7 @@ public class ObjectViewTabbed extends JTabbedPane
 	 * 
 	 * @param obj
 	 */
-	public ObjectViewTabbed(Object obj)
+	public ObjectHardwareViewTabbed(Object obj)
 	{
 		mainobj = obj;
 		populateTabs(obj);
@@ -96,20 +96,20 @@ public class ObjectViewTabbed extends JTabbedPane
 			else if ( components[i] instanceof CPU )
 			{
 				this.addTab(PrimeMain.texts.getString("cpu"), null,
-						new CPUView(obj, (CPU) components[i]), PrimeMain.texts
-								.getString("hwTabCPUtabDescription"));
+						new CPUView(obj, (CPU) components[i]),
+						PrimeMain.texts.getString("hwTabCPUtabDescription"));
 			}
 			else if ( components[i] instanceof HDD )
 			{
 				this.addTab(PrimeMain.texts.getString("hdd"), null,
-						new HDDView(obj, (HDD) components[i]), PrimeMain.texts
-								.getString("hwTabHDDtabDescription"));
+						new HDDView(obj, (HDD) components[i]),
+						PrimeMain.texts.getString("hwTabHDDtabDescription"));
 			}
 			else if ( components[i] instanceof Ram )
 			{
 				this.addTab(PrimeMain.texts.getString("ram"), null,
-						new RAMView(obj, (Ram) components[i]), PrimeMain.texts
-								.getString("hwTabRAMtabDescription"));
+						new RAMView(obj, (Ram) components[i]),
+						PrimeMain.texts.getString("hwTabRAMtabDescription"));
 			}
 			else if ( components[i] instanceof Discdrive )
 			{
@@ -119,12 +119,11 @@ public class ObjectViewTabbed extends JTabbedPane
 			}
 			else if ( components[i] instanceof GraphicsCard )
 			{
-				this
-						.addTab(PrimeMain.texts.getString("graphicalCard"),
-								null, new GraphicsCardView(obj,
-										(GraphicsCard) components[i]),
-								PrimeMain.texts
-										.getString("hwTabGPUtabDescription"));
+				this.addTab(
+						PrimeMain.texts.getString("graphicalCard"),
+						null,
+						new GraphicsCardView(obj, (GraphicsCard) components[i]),
+						PrimeMain.texts.getString("hwTabGPUtabDescription"));
 			}
 			else if ( components[i] instanceof InternalNetworksCard )
 			{
@@ -212,10 +211,6 @@ public class ObjectViewTabbed extends JTabbedPane
 					close = false;
 				}
 			}
-
-			// // The motherboard save.
-			// Component comp = this.getComponent(0);
-			// ((HardwareView) comp).save();
 
 
 			try

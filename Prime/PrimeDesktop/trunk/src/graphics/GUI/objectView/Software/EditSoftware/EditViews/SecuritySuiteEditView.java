@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
@@ -66,7 +66,8 @@ import objects.softwareObjects.SecuritySuite;
  * 
  * @author Bahram Malaekeh
  */
-public class SecuritySuiteEditView extends JPanel implements SoftwareView, ActionListener
+public class SecuritySuiteEditView extends JPanel implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -161,11 +162,11 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.TRAILING));
 		buttons.setBorder(BorderFactory.createEtchedBorder());
 
-		JLabel label = new JLabel(PrimeMain.texts
-				.getString("swTabRemoveSoftwaretText"));
+		JLabel label = new JLabel(
+				PrimeMain.texts.getString("swTabRemoveSoftwaretText"));
 
-		Button remove = new Button(PrimeMain.texts
-				.getString("swTabRemoveSoftwareButtonLabel"));
+		Button remove = new Button(
+				PrimeMain.texts.getString("swTabRemoveSoftwareButtonLabel"));
 		remove.addActionListener(this);
 		remove.setActionCommand("removeSoft");
 
@@ -182,7 +183,8 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Software object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param secSuite
@@ -197,25 +199,25 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 		JLabel[] labels = new JLabel[3];
 
 
-		labels[0] = new JLabel(PrimeMain.texts
-				.getString("secSuiteViewLicenseLabel"));
+		labels[0] = new JLabel(
+				PrimeMain.texts.getString("secSuiteViewLicenseLabel"));
 		labels[0].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewLicenseTip"));
 
 
-		labels[1] = new JLabel(PrimeMain.texts
-				.getString("secSuiteViewActDateLabel"));
+		labels[1] = new JLabel(
+				PrimeMain.texts.getString("secSuiteViewActDateLabel"));
 		labels[1].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewActDateTip"));
 
-		labels[2] = new JLabel(PrimeMain.texts
-				.getString("secSuiteViewExpDateLabel"));
+		labels[2] = new JLabel(
+				PrimeMain.texts.getString("secSuiteViewExpDateLabel"));
 		labels[2].setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewExpDateTip"));
 
 
-		SimpleDateFormat format = new SimpleDateFormat(PrimeMain.texts
-				.getString("secSuiteViewSimpleDateFormat"));
+		SimpleDateFormat format = new SimpleDateFormat(
+				PrimeMain.texts.getString("secSuiteViewSimpleDateFormat"));
 
 		// --------------------------------------------------------------
 		JPanel panel = new JPanel(new GridBagLayout());
@@ -234,8 +236,8 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 		c.gridx = 0; // column
 
 		// The supported operating systems by the Email software.
-		JLabel osLabel = new JLabel(PrimeMain.texts
-				.getString("secSuiteViewSupOSLabel"));
+		JLabel osLabel = new JLabel(
+				PrimeMain.texts.getString("secSuiteViewSupOSLabel"));
 		osLabel.setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewSupOSTip"));
 		panel.add(osLabel, c);
@@ -257,8 +259,8 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 			if ( mainSecSuite.getSupportedOperatingSystems().length > 0 )
 			{
 				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, osNames, mainSecSuite
-								.getSupportedOperatingSystems()));
+						supportedOS, osNames,
+						mainSecSuite.getSupportedOperatingSystems()));
 			}
 		}
 
@@ -268,8 +270,8 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 		// --------------------------------------------------------------
 
 		// Whether or not the security suite has been activated
-		activated = new JCheckBox(PrimeMain.texts
-				.getString("secSuiteViewActivatedLabel"));
+		activated = new JCheckBox(
+				PrimeMain.texts.getString("secSuiteViewActivatedLabel"));
 		activated.setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewActivatedTip"));
 		activated.setActionCommand("Activated");
@@ -300,8 +302,8 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 		// --------------------------------------------------------------
 
 		// Whether or not the security suite contains an antivirus
-		hasAntivirus = new JCheckBox(PrimeMain.texts
-				.getString("secSuiteViewHasAntivirusLabel"));
+		hasAntivirus = new JCheckBox(
+				PrimeMain.texts.getString("secSuiteViewHasAntivirusLabel"));
 		hasAntivirus.setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewHasAntivirusTip"));
 		hasAntivirus.setActionCommand("HasAntivirus");
@@ -323,8 +325,8 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 
 
 		// Whether or not the security suite contains an firewall
-		hasFirewall = new JCheckBox(PrimeMain.texts
-				.getString("secSuiteViewHasFirewallLabel"));
+		hasFirewall = new JCheckBox(
+				PrimeMain.texts.getString("secSuiteViewHasFirewallLabel"));
 		hasFirewall.setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewHasFirewallTip"));
 		hasFirewall.setActionCommand("HasFirewall");
@@ -338,8 +340,8 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 		// --------------------------------------------------------------
 
 		// Whether or not the security suite contains an proxy
-		hasProxy = new JCheckBox(PrimeMain.texts
-				.getString("secSuiteViewHasProxyLabel"));
+		hasProxy = new JCheckBox(
+				PrimeMain.texts.getString("secSuiteViewHasProxyLabel"));
 		hasProxy.setToolTipText(PrimeMain.texts
 				.getString("secSuiteViewHasProxyTip"));
 		hasProxy.setActionCommand("HasProxy");
@@ -426,13 +428,14 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see graphics.GUI.objectView.Software.SoftwareEditView#save()
 	 */
 	@Override
 	public void save()
 	{
-		SimpleDateFormat format = new SimpleDateFormat(PrimeMain.texts
-				.getString("secSuiteViewSimpleDateFormat"));
+		SimpleDateFormat format = new SimpleDateFormat(
+				PrimeMain.texts.getString("secSuiteViewSimpleDateFormat"));
 
 		if ( name.getText() != "" )
 		{
@@ -501,6 +504,7 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -517,11 +521,19 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 			{
 				DesktopSoftwareManagment.removeSoftware(mainObj, mainSecSuite);
 
-				// Updates the views of the object to correctly show the current info.
+				// Updates the views of the object to correctly show the current
+				// info.
 				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
+				}
+				// If no view is returned, then the standard object view is
+				// open and that should be updated.
+				else if ( PrimeMain.stdObjView != null )
+				{
+					PrimeMain.stdObjView.getSplitView().getObjView()
+							.getSoftStdObjView().updateTabInfo();
 				}
 			}
 		}
@@ -559,6 +571,7 @@ public class SecuritySuiteEditView extends JPanel implements SoftwareView, Actio
 	{
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)

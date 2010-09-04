@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.settings;
 
@@ -39,6 +39,8 @@ public class SettingsListener implements ActionListener
 {
 	JCheckBox[] messageCheckBox;
 
+	JCheckBox[] displayCheckBox;
+
 	SettingsOverview settingsFrame;
 
 	/**
@@ -50,15 +52,18 @@ public class SettingsListener implements ActionListener
 	 * @param checkBox
 	 *            The actual checkboxes set and unset by the user.
 	 */
-	public SettingsListener(SettingsOverview panel, JCheckBox[] checkBox)
+	public SettingsListener(SettingsOverview panel, JCheckBox[] msgBox,
+			JCheckBox[] displayBox)
 	{
-		messageCheckBox = checkBox;
+		messageCheckBox = msgBox;
+		displayCheckBox = displayBox;
 		settingsFrame = panel;
 	}
 
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -113,6 +118,7 @@ public class SettingsListener implements ActionListener
 	 */
 	private void setMessagesSettings()
 	{
+		// MESSAGES
 		Settings.showHardwareErrorMessages = messageCheckBox[0].isSelected();
 		Settings.showHardwareWarningMessages = messageCheckBox[1].isSelected();
 		Settings.showHardwareNoticeMessages = messageCheckBox[2].isSelected();
@@ -130,6 +136,13 @@ public class SettingsListener implements ActionListener
 		Settings.showNetworkWarningMessages = messageCheckBox[10].isSelected();
 		Settings.showNetworkNoticeMessages = messageCheckBox[11].isSelected();
 
+
+		// DISPLAY
+		Settings.showIP = displayCheckBox[0].isSelected();
+		Settings.showOSicon = displayCheckBox[1].isSelected();
+
+
 		PrimeMain.updateCanvasAndObjectInfo();
+		PrimeMain.runAllCanvasUpdate();
 	}
 }

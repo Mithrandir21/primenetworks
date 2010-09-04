@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Software.EditSoftware.EditViews;
 
@@ -36,6 +36,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -62,7 +63,8 @@ import objects.softwareObjects.Database;
  * 
  * @author Bahram Malaekeh
  */
-public class DatabaseEditView extends JPanel implements SoftwareView, ActionListener
+public class DatabaseEditView extends JPanel implements SoftwareView,
+		ActionListener
 {
 	// The name of the software object
 	JTextField name = new JTextField(25);
@@ -75,6 +77,9 @@ public class DatabaseEditView extends JPanel implements SoftwareView, ActionList
 
 	// List of operating systems
 	private String[] OSs;
+
+	// The max size of the Database(in GB)
+	private JComboBox maxDB = new JComboBox();
 
 
 	private Object mainObj;
@@ -163,7 +168,8 @@ public class DatabaseEditView extends JPanel implements SoftwareView, ActionList
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Software object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param db
@@ -178,17 +184,15 @@ public class DatabaseEditView extends JPanel implements SoftwareView, ActionList
 
 		JLabel[] labels = new JLabel[4];
 
-		labels[0] = new JLabel("Activated Date");
-		labels[0].setToolTipText("The date that the AV was activated.");
+		labels[0] = new JLabel(
+				PrimeMain.texts.getString("databaseViewSupOSLabel"));
+		labels[0].setToolTipText(PrimeMain.texts
+				.getString("databaseViewSupOSTip"));
 
-		labels[1] = new JLabel("Expiration Date");
-		labels[1].setToolTipText("The date that the AV will expire.");
-
-		labels[2] = new JLabel("Activated");
-		labels[2].setToolTipText("Whether or not the AV is activated.");
-
-		labels[3] = new JLabel("License");
-		labels[3].setToolTipText("The license key for the AV.");
+		labels[1] = new JLabel(
+				PrimeMain.texts.getString("databaseViewMaxDBSizeLabel"));
+		labels[1].setToolTipText(PrimeMain.texts
+				.getString("databaseViewMaxDBSizeTip"));
 
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -227,16 +231,46 @@ public class DatabaseEditView extends JPanel implements SoftwareView, ActionList
 			if ( mainDB.getSupportedOperatingSystems().length > 0 )
 			{
 				listPane.setViewportView(GraphicalFunctions.getIndexInJList(
-						supportedOS, osNames, mainDB
-								.getSupportedOperatingSystems()));
+						supportedOS, osNames,
+						mainDB.getSupportedOperatingSystems()));
 			}
 		}
 
-		c.weighty = 1.0; // request any extra vertical space
-		c.weightx = 1.0; // request any extra horizontal space
 		c.insets = new Insets(20, 10, 10, 10); // padding
 		c.gridx = 1; // column
 		panel.add(listPane, c);
+
+
+		// The Max DB size
+		c.gridx = 2; // column
+		panel.add(labels[1], c);
+
+
+		String[] sizes = new String[14];
+		sizes[0] = "Unlimited";
+		sizes[1] = "2";
+
+		for ( int i = 2; i < sizes.length; i++ )
+		{
+			int size = Integer.parseInt(sizes[i - 1]);
+			sizes[i] = size * 2 + "";
+		}
+
+
+		maxDB = new JComboBox(sizes);
+		maxDB.setEnabled(false);
+		labels[1].setLabelFor(maxDB);
+		maxDB.setMaximumSize(tfSize);
+		maxDB.setPreferredSize(tfSize);
+
+		c.gridx = 3; // column
+		panel.add(maxDB, c);
+
+
+		c.weighty = 1.0; // request any extra vertical space
+		c.weightx = 1.0; // request any extra horizontal space
+		c.gridx = 4; // column
+		panel.add(new JLabel(), c);
 
 
 		return panel;
@@ -273,11 +307,19 @@ public class DatabaseEditView extends JPanel implements SoftwareView, ActionList
 			{
 				DesktopSoftwareManagment.removeSoftware(mainObj, mainDB);
 
-				// Updates the views of the object to correctly show the current info.
+				// Updates the views of the object to correctly show the current
+				// info.
 				ObjectView view = PrimeMain.getObjectView(mainObj);
 				if ( view != null )
 				{
 					view.updateViewInfo();
+				}
+				// If no view is returned, then the standard object view is
+				// open and that should be updated.
+				else if ( PrimeMain.stdObjView != null )
+				{
+					PrimeMain.stdObjView.getSplitView().getObjView()
+							.getSoftStdObjView().updateTabInfo();
 				}
 			}
 		}
@@ -300,6 +342,7 @@ public class DatabaseEditView extends JPanel implements SoftwareView, ActionList
 	{
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)

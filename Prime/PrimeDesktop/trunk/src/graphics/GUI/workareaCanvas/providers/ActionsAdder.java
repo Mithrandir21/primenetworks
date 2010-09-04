@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.workareaCanvas.providers;
 
@@ -29,6 +29,8 @@ import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget.JMenu
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.dnd.DropTarget;
+
+import managment.DesktopCanvasManagment;
 
 import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.action.AlignWithMoveDecorator;
@@ -70,23 +72,29 @@ public class ActionsAdder
 		// Adds the zoom feature to the scene.
 		// canvas.getScene().getActions().addAction(
 		// ActionFactory.createZoomAction());
-		canvas.getScene().getActions().addAction(
-				ActionFactory.createMouseCenteredZoomAction(1.1));
-		canvas.getScene().getActions().addAction(
-				ActionFactory.createWheelPanAction());
-		canvas.getScene().getActions().addAction(
-				ActionFactory.createPopupMenuAction(new JMenuWorkareaCanvas(
-						canvas)));
+		canvas.getScene().getActions()
+				.addAction(ActionFactory.createMouseCenteredZoomAction(1.1));
+		canvas.getScene().getActions()
+				.addAction(ActionFactory.createWheelPanAction());
+		canvas.getScene()
+				.getActions()
+				.addAction(
+						ActionFactory
+								.createPopupMenuAction(new JMenuWorkareaCanvas(
+										canvas)));
 
 
 		canvas.getScene().getActions().addAction(new WorkareaCanvasListener());
 
 
-		canvas.getScene().getActions().addAction(
-				new RectangularAreaSelection(
-						new PrimeRectangularSelectDecorator(canvas), canvas
-								.getInteractionLayer(),
-						new PrimeObjectSceneRectangularSelectProvider(canvas)));
+		canvas.getScene()
+				.getActions()
+				.addAction(
+						new RectangularAreaSelection(
+								new PrimeRectangularSelectDecorator(canvas),
+								canvas.getInteractionLayer(),
+								new PrimeObjectSceneRectangularSelectProvider(
+										canvas)));
 
 
 		// canvas.setNetworkInfo(new WorkareaCanvasNetworkInfo(canvas));
@@ -99,7 +107,8 @@ public class ActionsAdder
 	public static void makeWidgetObjectReady(WorkareaCanvas canvas,
 			WidgetObject newObject)
 	{
-		// // Here the create a connection between widgets on the scene is created
+		// // Here the create a connection between widgets on the scene is
+		// created
 		newObject.getActions().addAction(
 				new ExtendedWidgetConnectAction(ActionFactory
 						.createDefaultConnectDecorator(), canvas
@@ -120,8 +129,8 @@ public class ActionsAdder
 						canvas.getInteractionLayer(), null));
 
 		// PrimeAlignWithMove pa = new PrimeAlignWithMove(
-		// new PrimeLayerAlignCollector(canvas.getMainLayer()), canvas
-		// .getInteractionLayer(), decorator);
+		// new PrimeLayerAlignCollector(canvas.getMainLayer()),
+		// canvas.getInteractionLayer(), decorator);
 		//
 		// newObject.getActions()
 		// .addAction(ActionFactory.createMoveAction(pa, pa));
@@ -134,7 +143,7 @@ public class ActionsAdder
 				ActionFactory.createPopupMenuAction(new JMenuWidget(canvas)));
 
 		// Cleans up the canvas
-		canvas.cleanUp();
+		DesktopCanvasManagment.canvasCleanUp(canvas);
 	}
 
 	/**
@@ -174,7 +183,8 @@ public class ActionsAdder
 								.createDefaultResizeControlPointResolver(),
 								ActionFactory.createDefaultResizeProvider()));
 
-		// Creates a Strategy and a Provider, in one, to be used for the logic behind moving a WidgetRoom
+		// Creates a Strategy and a Provider, in one, to be used for the logic
+		// behind moving a WidgetRoom
 		AlignWithMoveStrategyProvider sp = new AlignWithMoveStrategyProvider(
 				(new SingleLayerAlignWithWidgetCollector(canvas.getRoomLayer(),
 						true)), canvas.getInteractionLayer(), decorator, true);
@@ -184,7 +194,8 @@ public class ActionsAdder
 
 		// Previous room moving logic
 		// room.getActions().addAction(
-		// new MoveRoomAction(ActionFactory.createFreeMoveStrategy(), ActionFactory.createDefaultMoveProvider()));
+		// new MoveRoomAction(ActionFactory.createFreeMoveStrategy(),
+		// ActionFactory.createDefaultMoveProvider()));
 
 		// Clicking ability
 		room.getActions().addAction(new WidgetRoomAdapterExtended());

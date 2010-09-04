@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics;
 
@@ -37,10 +37,14 @@ import objects.softwareObjects.Backup;
 import objects.softwareObjects.Database;
 import objects.softwareObjects.Email;
 import objects.softwareObjects.Firewall;
+import objects.softwareObjects.GenericSoftware;
+import objects.softwareObjects.NASsoftware;
 import objects.softwareObjects.OfficeSuite;
 import objects.softwareObjects.OperatingSystem;
 import objects.softwareObjects.Proxy;
+import objects.softwareObjects.RemoteDesktop;
 import objects.softwareObjects.SecuritySuite;
+import objects.softwareObjects.VirtualizationSoftware;
 import objects.softwareObjects.Webserver;
 
 
@@ -138,476 +142,164 @@ public class MakeSystemImageIcons
 	private static void setupObjectImageIcon()
 	{
 		// Desktop
-		if ( PrimeMain.objectlist.get(0).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("Desktop");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(0).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(0)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(0)
-					.getClass(), PrimeMain.objectlist.get(0).getVisualImage());
-		}
+		setupImage(0, "Desktop");
 
 
 		// Laptop
-		if ( PrimeMain.objectlist.get(1).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("Laptop");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(1).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(1)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(1)
-					.getClass(), PrimeMain.objectlist.get(1).getVisualImage());
-		}
+		setupImage(1, "Laptop");
+		// // Laptop
+		// if ( PrimeMain.objectlist.get(1).getVisualImage() == null )
+		// {
+		// // Gets the objects ImageIcon
+		// ImageIcon objectIcon = ImageLocator.getImageIconObject("Laptop");
+		//
+		// // Sets the Objects Visual Image
+		// PrimeMain.objectlist.get(1).setVisualImage(objectIcon);
+		//
+		// // Places the ImageIcon into the systems hashmap of ImageIcons
+		// PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(1)
+		// .getClass(), objectIcon);
+		// }
+		// else
+		// {
+		// // Places the ImageIcon into the systems hashmap of ImageIcons
+		// PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(1)
+		// .getClass(), PrimeMain.objectlist.get(1).getVisualImage());
+		// }
 
 
 		// Thin Client
-		if ( PrimeMain.objectlist.get(2).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Thin Client");
+		setupImage(2, "Thin Client");
 
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(2).setVisualImage(objectIcon);
 
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(2)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(2)
-					.getClass(), PrimeMain.objectlist.get(2).getVisualImage());
-		}
+		// Generic Server
+		setupImage(3, "Server");
+
+
+		// Antivirus Server
+		setupImage(4, "Antivirus Server");
 
 
 		// HTTP Server
-		if ( PrimeMain.objectlist.get(3).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("HTTP Server");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(3).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(3)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(3)
-					.getClass(), PrimeMain.objectlist.get(3).getVisualImage());
-		}
+		setupImage(5, "HTTP Server");
 
 
 		// Backup Server
-		if ( PrimeMain.objectlist.get(4).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Backup Server");
+		setupImage(6, "Backup Server");
 
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(4).setVisualImage(objectIcon);
 
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(4)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(4)
-					.getClass(), PrimeMain.objectlist.get(4).getVisualImage());
-		}
+		// NAS Server
+		setupImage(7, "NAS Server");
 
 
 		// Database Server
-		if ( PrimeMain.objectlist.get(5).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Database Server");
+		setupImage(8, "Database Server");
 
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(5).setVisualImage(objectIcon);
 
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(5)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(5)
-					.getClass(), PrimeMain.objectlist.get(5).getVisualImage());
-		}
+		// Virtualization Server
+		setupImage(9, "Virtualization Server");
 
 
 		// Mail Server
-		if ( PrimeMain.objectlist.get(6).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Mail Server");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(6).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(6)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(6)
-					.getClass(), PrimeMain.objectlist.get(6).getVisualImage());
-		}
+		setupImage(10, "Mail Server");
 
 
 		// Firewall Server
-		if ( PrimeMain.objectlist.get(7).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Firewall Server");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(7).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(7)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(7)
-					.getClass(), PrimeMain.objectlist.get(7).getVisualImage());
-		}
+		setupImage(11, "Firewall Server");
 
 
 		// Proxy Server
-		if ( PrimeMain.objectlist.get(8).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Proxy Server");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(8).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(8)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(8)
-					.getClass(), PrimeMain.objectlist.get(8).getVisualImage());
-		}
+		setupImage(12, "Proxy Server");
 
 
 		// Printer Server
-		if ( PrimeMain.objectlist.get(9).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Printer Server");
+		setupImage(13, "Printer Server");
 
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(9).setVisualImage(objectIcon);
 
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(9)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(9)
-					.getClass(), PrimeMain.objectlist.get(9).getVisualImage());
-		}
+		// NAS
+		setupImage(14, "ExternalHDD");
 
 
 		// Scanner
-		if ( PrimeMain.objectlist.get(10).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("Scanner");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(10).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(10)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(10)
-					.getClass(), PrimeMain.objectlist.get(10).getVisualImage());
-		}
+		setupImage(15, "Scanner");
 
 
 		// Printer
-		if ( PrimeMain.objectlist.get(11).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("Printer");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(11).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(11)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(11)
-					.getClass(), PrimeMain.objectlist.get(11).getVisualImage());
-		}
+		setupImage(16, "Printer");
 
 
 		// Fax
-		if ( PrimeMain.objectlist.get(12).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("Fax");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(12).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(12)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(12)
-					.getClass(), PrimeMain.objectlist.get(12).getVisualImage());
-		}
+		setupImage(17, "Fax");
 
 
 		// MFP
-		if ( PrimeMain.objectlist.get(13).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("MFP");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(13).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(13)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(13)
-					.getClass(), PrimeMain.objectlist.get(13).getVisualImage());
-		}
+		setupImage(18, "MFP");
 
 
 		// Network Printer
-		if ( PrimeMain.objectlist.get(14).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Network Printer");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(14).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(14)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(14)
-					.getClass(), PrimeMain.objectlist.get(14).getVisualImage());
-		}
+		setupImage(19, "Network Printer");
 
 
 		// NetworkMultifunctionPrinter
-		if ( PrimeMain.objectlist.get(15).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("NetworkMultifunctionPrinter");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(15).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(15)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(15)
-					.getClass(), PrimeMain.objectlist.get(15).getVisualImage());
-		}
+		setupImage(20, "NetworkMultifunctionPrinter");
 
 
 		// Hub
-		if ( PrimeMain.objectlist.get(16).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("Hub");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(16).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(16)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(16)
-					.getClass(), PrimeMain.objectlist.get(16).getVisualImage());
-		}
+		setupImage(21, "Hub");
 
 
 		// Switch
-		if ( PrimeMain.objectlist.get(17).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("Switch");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(17).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(17)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(17)
-					.getClass(), PrimeMain.objectlist.get(17).getVisualImage());
-		}
+		setupImage(22, "Switch");
 
 
 		// Router
-		if ( PrimeMain.objectlist.get(18).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("Router");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(18).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(18)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(18)
-					.getClass(), PrimeMain.objectlist.get(18).getVisualImage());
-		}
+		setupImage(23, "Router");
 
 
+		// FIXME - MODEM ICON
 		// Modem
-		if ( PrimeMain.objectlist.get(19).getVisualImage() == null )
-		{
-			// FIXME - MODEM ICON
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("Router");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(19).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(19)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(19)
-					.getClass(), PrimeMain.objectlist.get(19).getVisualImage());
-		}
+		setupImage(24, "Router");
 
 
 		// Wireless Router
-		if ( PrimeMain.objectlist.get(20).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Wireless Router");
-
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(20).setVisualImage(objectIcon);
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(20)
-					.getClass(), objectIcon);
-		}
-		else
-		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(20)
-					.getClass(), PrimeMain.objectlist.get(20).getVisualImage());
-		}
+		setupImage(25, "Wireless Router");
 
 
 		// Internet
-		if ( PrimeMain.objectlist.get(21).getVisualImage() == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("Internet");
+		setupImage(26, "Internet");
+	}
 
-			// Sets the Objects Visual Image
-			PrimeMain.objectlist.get(21).setVisualImage(objectIcon);
 
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(21)
-					.getClass(), objectIcon);
-		}
-		else
+
+	/**
+	 * This function sets up the image icon for the system.
+	 */
+	private static void setupImage(int objectListID, String name)
+	{
+		if ( name != null )
 		{
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(21)
-					.getClass(), PrimeMain.objectlist.get(21).getVisualImage());
+			if ( PrimeMain.objectlist.get(objectListID).getVisualImage() == null )
+			{
+				// Gets the objects ImageIcon
+				ImageIcon objectIcon = ImageLocator.getImageIconObject(name);
+
+				// Sets the Objects Visual Image
+				PrimeMain.objectlist.get(objectListID).setVisualImage(
+						objectIcon);
+
+				// Places the ImageIcon into the systems hashmap of ImageIcons
+				PrimeMain.objectImageIcons.put(
+						PrimeMain.objectlist.get(objectListID).getClass(),
+						objectIcon);
+			}
+			else
+			{
+				// Places the ImageIcon into the systems hashmap of ImageIcons
+				PrimeMain.objectImageIcons
+						.put(PrimeMain.objectlist.get(objectListID).getClass(),
+								PrimeMain.objectlist.get(objectListID)
+										.getVisualImage());
+			}
 		}
 	}
 
@@ -618,92 +310,53 @@ public class MakeSystemImageIcons
 	 */
 	private static void setupHardwareImageIcon()
 	{
-		if ( PrimeMain.objectImageIcons.get(CPU.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("CPU");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(CPU.class, objectIcon);
-		}
+		// CPU
+		setupImage(CPU.class, "CPU");
 
 
-		if ( PrimeMain.objectImageIcons.get(Discdrive.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Optical-Drive");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(Discdrive.class, objectIcon);
-		}
+		// Discdrive
+		setupImage(Discdrive.class, "Optical-Drive");
 
 
-		if ( PrimeMain.objectImageIcons.get(ExternalNetworksCard.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("ExternalNIC");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(ExternalNetworksCard.class,
-					objectIcon);
-		}
+		// ExternalNetworksCard
+		setupImage(ExternalNetworksCard.class, "ExternalNIC");
 
 
-		if ( PrimeMain.objectImageIcons.get(GraphicsCard.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("GPU");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(GraphicsCard.class, objectIcon);
-		}
+		// GraphicsCard
+		setupImage(GraphicsCard.class, "GPU");
 
 
-		if ( PrimeMain.objectImageIcons.get(HDD.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("Harddisc");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(HDD.class, objectIcon);
-		}
+		// HDD
+		setupImage(HDD.class, "Harddisc");
 
 
-		if ( PrimeMain.objectImageIcons.get(InternalNetworksCard.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("NIC");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(InternalNetworksCard.class,
-					objectIcon);
-		}
+		// InternalNetworksCard
+		setupImage(InternalNetworksCard.class, "NIC");
 
 
-		if ( PrimeMain.objectImageIcons.get(Motherboard.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Motherboard");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(Motherboard.class, objectIcon);
-		}
+		// Motherboard
+		setupImage(Motherboard.class, "Motherboard");
 
 
-		if ( PrimeMain.objectImageIcons.get(Ram.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator.getImageIconObject("RAM");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(Ram.class, objectIcon);
-		}
+		// Ram
+		setupImage(Ram.class, "RAM");
 	}
 
 
+	/**
+	 * This function sets up the image icon for the system.
+	 */
+	private static void setupImage(Class<?> classType, String name)
+	{
+		if ( PrimeMain.objectImageIcons.get(classType) == null )
+		{
+			// Gets the objects ImageIcon
+			ImageIcon objectIcon = ImageLocator.getImageIconObject(name);
+
+			// Places the ImageIcon into the systems hashmap of ImageIcons
+			PrimeMain.objectImageIcons.put(classType, objectIcon);
+		}
+	}
 
 
 	/**
@@ -711,114 +364,60 @@ public class MakeSystemImageIcons
 	 */
 	private static void setupSoftwareImageIcon()
 	{
-		if ( PrimeMain.objectImageIcons.get(Antivirus.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Antivirus-Software");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(Antivirus.class, objectIcon);
-		}
+		// GenericSoftware
+		setupImage(GenericSoftware.class, "Generic-Software");
 
 
-		if ( PrimeMain.objectImageIcons.get(Backup.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Backup-Software");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(Backup.class, objectIcon);
-		}
+		// Antivirus
+		setupImage(Antivirus.class, "Antivirus-Software");
 
 
-		if ( PrimeMain.objectImageIcons.get(Database.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Database-Software");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(Database.class, objectIcon);
-		}
+		// Backup
+		setupImage(Backup.class, "Backup-Software");
 
 
-		if ( PrimeMain.objectImageIcons.get(Email.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Email-Software");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(Email.class, objectIcon);
-		}
+		// NASsoftware
+		setupImage(NASsoftware.class, "NAS-Software");
 
 
-		if ( PrimeMain.objectImageIcons.get(Firewall.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Firewall-Software");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(Firewall.class, objectIcon);
-		}
+		// Database
+		setupImage(Database.class, "Database-Software");
 
 
-		if ( PrimeMain.objectImageIcons.get(OfficeSuite.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("OfficeSuite-Software");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(OfficeSuite.class, objectIcon);
-		}
+		// VirtualizationSoftware
+		setupImage(VirtualizationSoftware.class, "Virtualization-Software");
 
 
-		if ( PrimeMain.objectImageIcons.get(OperatingSystem.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("OperatingSystem-Software");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(OperatingSystem.class, objectIcon);
-		}
+		// Email
+		setupImage(Email.class, "Email-Software");
 
 
-		if ( PrimeMain.objectImageIcons.get(Proxy.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Proxy-Software");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(Proxy.class, objectIcon);
-		}
+		// Firewall
+		setupImage(Firewall.class, "Firewall-Software");
 
 
-		if ( PrimeMain.objectImageIcons.get(SecuritySuite.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("SecuritySuite-Software");
-
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(SecuritySuite.class, objectIcon);
-		}
+		// OfficeSuite
+		setupImage(OfficeSuite.class, "OfficeSuite-Software");
 
 
-		if ( PrimeMain.objectImageIcons.get(Webserver.class) == null )
-		{
-			// Gets the objects ImageIcon
-			ImageIcon objectIcon = ImageLocator
-					.getImageIconObject("Webserver-Software");
+		// OperatingSystem
+		setupImage(OperatingSystem.class, "OperatingSystem-Software");
 
-			// Places the ImageIcon into the systems hashmap of ImageIcons
-			PrimeMain.objectImageIcons.put(Webserver.class, objectIcon);
-		}
+
+		// Proxy
+		setupImage(Proxy.class, "Proxy-Software");
+
+
+		// SecuritySuite
+		setupImage(SecuritySuite.class, "SecuritySuite-Software");
+
+
+		// Webserver
+		setupImage(Webserver.class, "Webserver-Software");
+
+
+		// RemoteDesktop
+		setupImage(RemoteDesktop.class, "RemoteDesktop-Software");
 	}
 
 
