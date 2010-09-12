@@ -17,21 +17,20 @@
  */
 package graphics.GUI.userGroups;
 
-
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.TableColumn;
 
 import widgets.WorkareaCanvas;
-
 
 /**
  * TODO - Description NEEDED!
@@ -39,13 +38,11 @@ import widgets.WorkareaCanvas;
  * @author Bahram Malaekeh
  * 
  */
-public class NetworkGroupsDialog extends JDialog
-{
+public class NetworkGroupsDialog extends JDialog {
 	/**
 	 * A constructor for the class that sets up the window.
 	 */
-	public NetworkGroupsDialog(WorkareaCanvas canvas)
-	{
+	public NetworkGroupsDialog(WorkareaCanvas canvas) {
 		this.setTitle(canvas.getCanvasName() + " Groups");
 
 		// Get the default toolkit
@@ -55,26 +52,24 @@ public class NetworkGroupsDialog extends JDialog
 		Dimension scrnsize = toolkit.getScreenSize();
 
 		// Set size for the settings JFrame
-		Dimension size = new Dimension(700, 500);
+		Dimension size = new Dimension(500, 220);
 
 		int initYLocation = (scrnsize.height - size.height) / 3;
 		int initXLocation = (scrnsize.width - size.width) / 2;
 
-
+		this.setPreferredSize(size);
+		
+		
 		panelSetup(canvas);
 
-
-		this.setPreferredSize(size);
+		
 		this.setLocation(initXLocation, initYLocation);
 		this.setMinimumSize(size);
 		this.setVisible(true);
 		this.setResizable(false);
 	}
 
-
-
-	private void panelSetup(WorkareaCanvas canvas)
-	{
+	private void panelSetup(WorkareaCanvas canvas) {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -91,17 +86,12 @@ public class NetworkGroupsDialog extends JDialog
 		c.gridy = 0; // row
 		c.gridx = 0; // column
 
-
-
 		mainPanel.add(getButtonPanel(), c);
-
 
 		c.weighty = 1.0; // request any extra vertical space
 		c.weightx = 1.0; // request any extra horizontal space
 		c.gridx = 1; // column
-		mainPanel.add(getGroupsPanel(), c);
-
-
+		mainPanel.add(getGroupsPanel(canvas), c);
 
 		JButton closeButton = new JButton("Close");
 		c.fill = GridBagConstraints.NONE;
@@ -113,14 +103,10 @@ public class NetworkGroupsDialog extends JDialog
 		c.gridx = 1; // column
 		mainPanel.add(closeButton, c);
 
-
 		this.add(mainPanel);
 	}
 
-
-
-	private JPanel getButtonPanel()
-	{
+	private JPanel getButtonPanel() {
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -137,52 +123,63 @@ public class NetworkGroupsDialog extends JDialog
 		c.gridy = 0; // row
 		c.gridx = 0; // column
 
-
 		JButton addButton = new JButton("New");
 		buttonPanel.add(addButton, c);
-
 
 		JButton editButton = new JButton("Edit");
 		c.gridy = 1; // row
 		buttonPanel.add(editButton, c);
-
 
 		JButton removeButton = new JButton("Delete");
 		c.weighty = 1.0; // request any extra vertical space
 		c.gridy = 2; // row
 		buttonPanel.add(removeButton, c);
 
-
-
 		return buttonPanel;
 	}
 
-
-
-	private JPanel getGroupsPanel()
-	{
+	private JPanel getGroupsPanel(WorkareaCanvas canvas) {
 		JPanel groupPanel = new JPanel();
 		groupPanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		groupPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		// groupPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-		c.fill = GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.BOTH;
 		// c.ipady = 0; // reset to default
 		// c.ipadx = 0; // reset to default
-		// c.weighty = 1.0; // request any extra vertical space
+		c.weighty = 1.0; // request any extra vertical space
 		c.weightx = 1.0; // request any extra horizontal space
 		c.anchor = GridBagConstraints.NORTH; // location
-		c.insets = new Insets(10, 10, 10, 10); // padding
+		// c.insets = new Insets(10, 10, 10, 10); // padding
 		// c.gridwidth = 1; // 1 row wide
 		// c.gridheight = 1; // 1 columns wide
 		c.gridy = 0; // row
 		c.gridx = 0; // column
 
+		JScrollPane scroll = new JScrollPane();
+		scroll.setViewportView(getGroupTable(canvas));
 
+		groupPanel.add(scroll, c);
 
 		return groupPanel;
 	}
 
+	private JTable getGroupTable(WorkareaCanvas canvas) {
 
+		String[] columnNames = { "Group Name", "Group Description" };
 
+		Object[][] data = { { "Math Studens", "Smith" }, { "Physics Students", "Doe" },
+				{ "Teachers", "Black" }, { "Administrators", "White" }, { "Guests", "Brown" } };
+
+		JTable groupTable = new JTable(data, columnNames);
+		groupTable.setFillsViewportHeight(true);
+
+		TableColumn nameColumn = groupTable.getColumnModel().getColumn(0);
+		nameColumn.setPreferredWidth(this.getPreferredSize().width / 2);
+		TableColumn descColumn = groupTable.getColumnModel().getColumn(1);
+		descColumn.setPreferredWidth(this.getPreferredSize().width);
+
+		
+		return groupTable;
+	}
 }
