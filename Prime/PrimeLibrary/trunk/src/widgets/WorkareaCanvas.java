@@ -18,7 +18,10 @@
 package widgets;
 
 
+import groups.Group;
+
 import java.awt.dnd.DropTarget;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -125,7 +128,8 @@ public class WorkareaCanvas extends JPanel
 	// The undo manager for this canvas
 	private CanvasUndoManager undoManager;
 
-
+	// The Groups of users that the network operates with
+	private ArrayList<Group> networkGroups;
 
 
 	/**
@@ -366,6 +370,15 @@ public class WorkareaCanvas extends JPanel
 	public WorkareaCanvasNetworkInfo getNetworkInfo()
 	{
 		return networkInfo;
+	}
+
+
+	/**
+	 * Gets the {@link ArrayList} that lists the networks {@link Group Groups}.
+	 */
+	public ArrayList<Group> getNetworkGroups()
+	{
+		return networkGroups;
 	}
 
 
@@ -768,6 +781,15 @@ public class WorkareaCanvas extends JPanel
 	public void setNetworkInfo(WorkareaCanvasNetworkInfo networkInfo)
 	{
 		this.networkInfo = networkInfo;
+	}
+
+
+	/**
+	 * Sets the {@link ArrayList} that lists the networks {@link Group Groups}.
+	 */
+	public void setNetworkGroups(ArrayList<Group> networkGroups)
+	{
+		this.networkGroups = networkGroups;
 	}
 
 

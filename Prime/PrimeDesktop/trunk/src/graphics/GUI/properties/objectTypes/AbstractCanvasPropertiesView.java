@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.properties.objectTypes;
 
@@ -88,9 +88,8 @@ public class AbstractCanvasPropertiesView extends JPanel
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @param canvas
+	 * A constructor for the class that takes a {@link WorkareaCanvas} as a
+	 * parameter.
 	 */
 	public AbstractCanvasPropertiesView(WorkareaCanvas canvas)
 	{
@@ -142,8 +141,8 @@ public class AbstractCanvasPropertiesView extends JPanel
 
 
 		// Name
-		JLabel nameLabel = new JLabel(PrimeMain.texts
-				.getString("propGeneralViewCanvasNameLabel"),
+		JLabel nameLabel = new JLabel(
+				PrimeMain.texts.getString("propGeneralViewCanvasNameLabel"),
 				SwingConstants.TRAILING);
 		nameLabel.setToolTipText(PrimeMain.texts
 				.getString("propGeneralViewCanvasNameTip"));
@@ -160,8 +159,8 @@ public class AbstractCanvasPropertiesView extends JPanel
 
 
 		// The number of objects on the network map.
-		JLabel objectCountLabel = new JLabel(PrimeMain.texts
-				.getString("propGeneralViewObjectsCountLabel"),
+		JLabel objectCountLabel = new JLabel(
+				PrimeMain.texts.getString("propGeneralViewObjectsCountLabel"),
 				SwingConstants.TRAILING);
 		objectCountLabel.setToolTipText(PrimeMain.texts
 				.getString("propGeneralViewObjectsCountTip"));
@@ -177,8 +176,8 @@ public class AbstractCanvasPropertiesView extends JPanel
 
 
 		// The IP Mask of the Network
-		JLabel netmaskLabel = new JLabel(PrimeMain.texts
-				.getString("propGeneralViewNetmaskLabel"),
+		JLabel netmaskLabel = new JLabel(
+				PrimeMain.texts.getString("propGeneralViewNetmaskLabel"),
 				SwingConstants.TRAILING);
 		netmaskLabel.setToolTipText(PrimeMain.texts
 				.getString("propGeneralViewNetmaskTip"));
@@ -199,8 +198,8 @@ public class AbstractCanvasPropertiesView extends JPanel
 
 
 		// The start of the IP range
-		JLabel IPrangeStartLabel = new JLabel(PrimeMain.texts
-				.getString("propGeneralViewIPStartsLabel"),
+		JLabel IPrangeStartLabel = new JLabel(
+				PrimeMain.texts.getString("propGeneralViewIPStartsLabel"),
 				SwingConstants.TRAILING);
 		IPrangeStartLabel.setToolTipText(PrimeMain.texts
 				.getString("propGeneralViewIPStartsTip"));
@@ -222,8 +221,8 @@ public class AbstractCanvasPropertiesView extends JPanel
 
 
 		// The start of the IP range
-		JLabel IPrangeEndLabel = new JLabel(PrimeMain.texts
-				.getString("propGeneralViewIPendsLabel"),
+		JLabel IPrangeEndLabel = new JLabel(
+				PrimeMain.texts.getString("propGeneralViewIPendsLabel"),
 				SwingConstants.TRAILING);
 		IPrangeEndLabel.setToolTipText(PrimeMain.texts
 				.getString("propGeneralViewIPendsTip"));
@@ -251,7 +250,8 @@ public class AbstractCanvasPropertiesView extends JPanel
 
 
 	/**
-	 * Resets all general fields to the info gotten from the {@link WorkareaCanvas} viewed.
+	 * Resets all general fields to the info gotten from the
+	 * {@link WorkareaCanvas} viewed.
 	 * It also resets the errorDuringSaving to false.
 	 */
 	public void resetGeneralFields()
@@ -296,10 +296,11 @@ public class AbstractCanvasPropertiesView extends JPanel
 					// If the string gotten is not valid
 					if ( !(canvasViewed.getNetworkInfo().setNetmask(selected)) )
 					{
-						JOptionPane.showMessageDialog(null, PrimeMain.texts
-								.getString("netmaskNotValidMsg")
-								+ "\"" + selected + "\".", PrimeMain.texts
-								.getString("error"), JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,
+								PrimeMain.texts.getString("netmaskNotValidMsg")
+										+ "\"" + selected + "\".",
+								PrimeMain.texts.getString("error"),
+								JOptionPane.ERROR_MESSAGE);
 
 						errorDuringSaving = true;
 					}
@@ -324,10 +325,13 @@ public class AbstractCanvasPropertiesView extends JPanel
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(null, PrimeMain.texts
-								.getString("canvasExistWithNameMsg")
-								+ "\"" + canvasName + "\".", PrimeMain.texts
-								.getString("error"), JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(
+								null,
+								PrimeMain.texts
+										.getString("canvasExistWithNameMsg")
+										+ "\"" + canvasName + "\".",
+								PrimeMain.texts.getString("error"),
+								JOptionPane.ERROR_MESSAGE);
 
 						errorDuringSaving = true;
 					}
@@ -339,22 +343,12 @@ public class AbstractCanvasPropertiesView extends JPanel
 			String IPrangeStart = null;
 			String IPrangeEnd = null;
 
-			// // If the text in the JTextField is not ""
-			// if ( !(IPrangeStartField.getText().equals("")) )
-			// {
-			// Sets the local IPrangeStart string that might be
-			// used later
+			// Sets the local IPrangeStart string that might be used later
 			IPrangeStart = IPrangeStartField.getText();
-			// }
 
 
-			// // If the text in the JTextField is not ""
-			// if ( !(IPrangeEndField.getText().equals("")) )
-			// {
-			// Sets the local IPrangeEnd string that might be
-			// used later
+			// Sets the local IPrangeEnd string that might be used later
 			IPrangeEnd = IPrangeEndField.getText();
-			// }
 
 
 
@@ -376,11 +370,36 @@ public class AbstractCanvasPropertiesView extends JPanel
 								if ( !(canvasViewed.getNetworkInfo()
 										.setIpRangeFrom(IPrangeStart)) )
 								{
+									JOptionPane
+											.showMessageDialog(
+													null,
+													PrimeMain.texts
+															.getString("saveNetworkNotValidIPerrorMsg"),
+													PrimeMain.texts
+															.getString("error"),
+													JOptionPane.ERROR_MESSAGE);
+
+									// Updates the properties area
+									PrimeMain.updatePropertiesCanvasArea(true);
+
 									errorDuringSaving = true;
 								}
 								if ( !(canvasViewed.getNetworkInfo()
 										.setIpRangeTo(IPrangeEnd)) )
 								{
+
+									JOptionPane
+											.showMessageDialog(
+													null,
+													PrimeMain.texts
+															.getString("saveNetworkNotValidIPerrorMsg"),
+													PrimeMain.texts
+															.getString("error"),
+													JOptionPane.ERROR_MESSAGE);
+
+									// Updates the properties area
+									PrimeMain.updatePropertiesCanvasArea(true);
+
 									errorDuringSaving = true;
 								}
 							}
@@ -390,11 +409,35 @@ public class AbstractCanvasPropertiesView extends JPanel
 							if ( !(canvasViewed.getNetworkInfo()
 									.setIpRangeFrom(IPrangeStart)) )
 							{
+								JOptionPane
+										.showMessageDialog(
+												null,
+												PrimeMain.texts
+														.getString("saveNetworkNotValidIPerrorMsg"),
+												PrimeMain.texts
+														.getString("error"),
+												JOptionPane.ERROR_MESSAGE);
+
+								// Updates the properties area
+								PrimeMain.updatePropertiesCanvasArea(true);
+
 								errorDuringSaving = true;
 							}
 							if ( !(canvasViewed.getNetworkInfo()
 									.setIpRangeTo(IPrangeEnd)) )
 							{
+								JOptionPane
+										.showMessageDialog(
+												null,
+												PrimeMain.texts
+														.getString("saveNetworkNotValidIPerrorMsg"),
+												PrimeMain.texts
+														.getString("error"),
+												JOptionPane.ERROR_MESSAGE);
+
+								// Updates the properties area
+								PrimeMain.updatePropertiesCanvasArea(true);
+
 								errorDuringSaving = true;
 							}
 						}
@@ -407,14 +450,18 @@ public class AbstractCanvasPropertiesView extends JPanel
 								PrimeMain.texts.getString("error"),
 								JOptionPane.ERROR_MESSAGE);
 
+						// Updates the properties area
+						PrimeMain.updatePropertiesCanvasArea(true);
+
 						errorDuringSaving = true;
 					}
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null, PrimeMain.texts
-							.getString("ipMustHaveEndRange"), PrimeMain.texts
-							.getString("error"), JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							PrimeMain.texts.getString("ipMustHaveEndRange"),
+							PrimeMain.texts.getString("error"),
+							JOptionPane.ERROR_MESSAGE);
 
 					errorDuringSaving = true;
 
@@ -424,9 +471,10 @@ public class AbstractCanvasPropertiesView extends JPanel
 			{
 				if ( !(IPrangeEnd == null) )
 				{
-					JOptionPane.showMessageDialog(null, PrimeMain.texts
-							.getString("ipMustHaveStartRange"), PrimeMain.texts
-							.getString("error"), JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							PrimeMain.texts.getString("ipMustHaveStartRange"),
+							PrimeMain.texts.getString("error"),
+							JOptionPane.ERROR_MESSAGE);
 
 					errorDuringSaving = true;
 				}

@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.menues;
 
@@ -37,6 +37,7 @@ import actions.systemActions.ActionFullscreen;
 import actions.systemActions.ActionNew;
 import actions.systemActions.ActionObjectEditing;
 import actions.systemActions.ActionOpenCustomOS;
+import actions.systemActions.ActionOpenNetworkGroups;
 import actions.systemActions.ActionOpenStandardRules;
 import actions.systemActions.ActionOpenfile;
 import actions.systemActions.ActionPaste;
@@ -117,8 +118,8 @@ public class GenericPrimeToolbar extends JToolBar
 				PrimeMain.texts.getString("newLabel"), tempIcon);
 
 		tempIcon = ImageLocator.getImageIconObject("Open");
-		ActionOpenfile openFile = new ActionOpenfile(PrimeMain.texts
-				.getString("openFileLabel"), tempIcon);
+		ActionOpenfile openFile = new ActionOpenfile(
+				PrimeMain.texts.getString("openFileLabel"), tempIcon);
 		openFile.setEnabled(false);
 
 		tempIcon = ImageLocator.getImageIconObject("Save");
@@ -126,8 +127,8 @@ public class GenericPrimeToolbar extends JToolBar
 				PrimeMain.texts.getString("saveLabel"), tempIcon);
 
 		tempIcon = ImageLocator.getImageIconObject("Save_all");
-		ActionSaveAll saveAll = new ActionSaveAll(PrimeMain.texts
-				.getString("saveAllLabel"), tempIcon);
+		ActionSaveAll saveAll = new ActionSaveAll(
+				PrimeMain.texts.getString("saveAllLabel"), tempIcon);
 
 
 		fileToolBar.add(newFile);
@@ -158,12 +159,12 @@ public class GenericPrimeToolbar extends JToolBar
 				tempIcon);
 
 		tempIcon = ImageLocator.getImageIconObject("Copy");
-		ActionCopy openFile = new ActionCopy(PrimeMain.texts
-				.getString("copyLabel"), tempIcon);
+		ActionCopy openFile = new ActionCopy(
+				PrimeMain.texts.getString("copyLabel"), tempIcon);
 
 		tempIcon = ImageLocator.getImageIconObject("Paste");
-		ActionPaste save = new ActionPaste(PrimeMain.texts
-				.getString("pasteLabel"), tempIcon);
+		ActionPaste save = new ActionPaste(
+				PrimeMain.texts.getString("pasteLabel"), tempIcon);
 
 
 		editToolBar.add(cut);
@@ -215,8 +216,8 @@ public class GenericPrimeToolbar extends JToolBar
 		networkToolBar.setFloatable(false);
 
 		tempIcon = ImageLocator.getImageIconObject("Update");
-		ActionUpdate update = new ActionUpdate(PrimeMain.texts
-				.getString("updateButtonLabel"), tempIcon);
+		ActionUpdate update = new ActionUpdate(
+				PrimeMain.texts.getString("updateButtonLabel"), tempIcon);
 		JButton updateButton = new JButton(update);
 
 		tempIcon = ImageLocator.getImageIconObject("Export");
@@ -243,13 +244,13 @@ public class GenericPrimeToolbar extends JToolBar
 
 
 		tempIcon = ImageLocator.getImageIconObject("Connection");
-		ActionConnection con = new ActionConnection(PrimeMain.texts
-				.getString("connectToggleButtonLabel"), tempIcon);
+		ActionConnection con = new ActionConnection(
+				PrimeMain.texts.getString("connectToggleButtonLabel"), tempIcon);
 		JToggleButton connectionButton = new JToggleButton(con);
 
 		tempIcon = ImageLocator.getImageIconObject("Room");
-		ActionRoom room = new ActionRoom(PrimeMain.texts
-				.getString("roomToggleButtonLabel"), tempIcon);
+		ActionRoom room = new ActionRoom(
+				PrimeMain.texts.getString("roomToggleButtonLabel"), tempIcon);
 		JToggleButton roomButton = new JToggleButton(room);
 
 
@@ -273,8 +274,8 @@ public class GenericPrimeToolbar extends JToolBar
 
 
 		tempIcon = ImageLocator.getImageIconObject("OperatingSystem-Button");
-		ActionOpenCustomOS osList = new ActionOpenCustomOS(PrimeMain.texts
-				.getString("systemOSlist"), tempIcon);
+		ActionOpenCustomOS osList = new ActionOpenCustomOS(
+				PrimeMain.texts.getString("systemOSlist"), tempIcon);
 		JButton osListButton = new JButton(osList);
 
 
@@ -287,13 +288,17 @@ public class GenericPrimeToolbar extends JToolBar
 
 
 		tempIcon = ImageLocator.getImageIconObject("Objects");
-		ActionObjectEditing editing = new ActionObjectEditing(PrimeMain.texts
-				.getString("standardObjectsLabel"), tempIcon);
+		ActionObjectEditing editing = new ActionObjectEditing(
+				PrimeMain.texts.getString("standardObjectsLabel"), tempIcon);
 		JButton editingButton = new JButton(editing);
 
 
-		ActionFullscreen fullscreen = new ActionFullscreen(PrimeMain.texts
-				.getString("actionFullscreenText"));
+		ActionOpenNetworkGroups groups = new ActionOpenNetworkGroups("Groups");
+		JButton groupsButton = new JButton(groups);
+
+
+		ActionFullscreen fullscreen = new ActionFullscreen(
+				PrimeMain.texts.getString("actionFullscreenText"));
 		JButton fullscreenButton = new JButton(fullscreen);
 		fullscreenButton.setVisible(false);
 
@@ -301,6 +306,7 @@ public class GenericPrimeToolbar extends JToolBar
 		editingToolBar.add(rulesButton);
 		editingToolBar.add(editingButton);
 		editingToolBar.add(fullscreenButton);
+		editingToolBar.add(groupsButton);
 
 		this.add(editingToolBar, BorderLayout.WEST);
 		tempIcon = null;
@@ -338,8 +344,8 @@ public class GenericPrimeToolbar extends JToolBar
 					JToggleButton button = (JToggleButton) canvasToolBar
 							.getComponent(i);
 
-					if ( button.getAction().getClass().equals(
-							ActionConnection.class) )
+					if ( button.getAction().getClass()
+							.equals(ActionConnection.class) )
 					{
 						button.setSelected(false);
 					}

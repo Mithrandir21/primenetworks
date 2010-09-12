@@ -30,6 +30,7 @@ import graphics.GUI.properties.PropertiesArea;
 import graphics.GUI.selectArea.TabbedSelection;
 import graphics.GUI.standardObjectEdit.StandardObjects;
 import graphics.GUI.statusArea.PrimeStatusBar;
+import graphics.GUI.userGroups.NetworkGroupsDialog;
 import graphics.GUI.visualObjectCustomization.VisualCustomFrame;
 import graphics.GUI.workareaCanvas.WorkareaTabbed;
 import graphics.services.PrimeService;
@@ -172,6 +173,9 @@ public class PrimeMain extends JFrame
 
 	// The frame for the Operating System selection
 	public static osSelectionOverView osSelect;
+
+	// The JDialog that shows the networks groups
+	public static NetworkGroupsDialog groupsDialog;
 
 	// The arraylist of the systems standard Objects
 	public static ArrayList<Object> objectlist = new ArrayList<Object>();
@@ -500,6 +504,8 @@ public class PrimeMain extends JFrame
 	public static void main(String[] args)
 	{
 		PrimeMain temp = new PrimeMain();
+
+		// new PrimeDesktopUpdateService();
 
 		// services = new PrimeService();
 

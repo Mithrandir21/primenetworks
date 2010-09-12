@@ -28,6 +28,10 @@ import java.io.Serializable;
  */
 public class Settings implements Serializable
 {
+	// THE APPLICATION VERSION
+	public static String appVersion = "Beta 3.2";
+
+
 	// HARDWARE MESSAGES
 	public static boolean showHardwareErrorMessages = true;
 
@@ -84,4 +88,16 @@ public class Settings implements Serializable
 
 	// SHOW IP LABEL FOR WIDGETS
 	public static boolean showIP = true;
+
+
+	// THE SYSTEMS STANDARD PERMISSION
+	public static standardPermissions standPerm;
+
+
+
+
+	private enum standardPermissions
+	{
+		NONE, READ, WRITE, EXECUTE, ALL
+	}
 }

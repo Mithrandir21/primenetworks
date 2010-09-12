@@ -311,7 +311,8 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * TODO - Description
+	 * This function creates a random {@link Long} that is set as the objects
+	 * serial number.
 	 */
 	public void createRandomLongSerial()
 	{

@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package widgetManipulation;
 
@@ -35,7 +35,8 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 {
 
 	/**
-	 * The serial number of the {@link WorkareaCanvas} this set of rules applies to.
+	 * The serial number of the {@link WorkareaCanvas} this set of rules applies
+	 * to.
 	 */
 	private double canvasSerial;
 
@@ -71,7 +72,8 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 
 	/**
 	 * A constructor for the class that takes a {@link WorkareaCanvas} as the
-	 * only argument. This class will contain network information for that {@link WorkareaCanvas}.
+	 * only argument. This class will contain network information for that
+	 * {@link WorkareaCanvas}.
 	 * 
 	 * @param canvas
 	 *            The WorkareaCanvas this information class belongs to.
@@ -87,7 +89,8 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 
 
 	/**
-	 * Gets the serial number of the {@link WorkareaCanvas} this information applies to.
+	 * Gets the serial number of the {@link WorkareaCanvas} this information
+	 * applies to.
 	 */
 	public double getCanvasSerial()
 	{
@@ -185,15 +188,6 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 
 		return false;
 	}
-
-	//
-	//
-	//
-	//
-	// public String[] getAvailableIPs()
-	// {
-	// return availableIPs;
-	// }
 
 
 

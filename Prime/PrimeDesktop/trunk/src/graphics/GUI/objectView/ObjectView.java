@@ -67,7 +67,7 @@ public class ObjectView extends JFrame implements ActionListener
 	 */
 	public ObjectView(WidgetObject obj)
 	{
-		super(PrimeMain.texts.getString("objectViewLabel"));
+		super(obj.getObject().getObjectName());
 
 		widgetObj = obj;
 
@@ -132,7 +132,7 @@ public class ObjectView extends JFrame implements ActionListener
 
 		this.setPreferredSize(size);
 		this.setLocation(initXLocation, initYLocation);
-		this.setMinimumSize(new Dimension(650, 525));
+		this.setMinimumSize(size);
 		this.setVisible(true);
 
 
