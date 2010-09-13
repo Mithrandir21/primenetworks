@@ -29,6 +29,7 @@ import graphics.GUI.ghostGlass.GhostGlassPane;
 import graphics.GUI.selectArea.PrimeJTree.FileTreeNode;
 import graphics.GUI.workareaCanvas.WorkareaSceneScroll;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
+import groups.Group;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -168,6 +169,9 @@ public class DesktopFileManagment
 
 				// Writes out the NetworkRules
 				oos.writeObject(canvas.getRules());
+
+				// Writes out the NetworkGroups
+				oos.writeObject(canvas.getNetworkGroups());
 
 
 
@@ -1155,6 +1159,16 @@ public class DesktopFileManagment
 			catch ( IOException e )
 			{
 				canvas.setRules(new NetworkRules(canvas));
+			}
+
+			try
+			{
+				// Reads the NetworkRules
+				canvas.setNetworkGroups((ArrayList<Group>) ois.readObject());
+			}
+			catch ( IOException e )
+			{
+				canvas.setNetworkGroups(new ArrayList<Group>());
 			}
 
 

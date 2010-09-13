@@ -17,20 +17,30 @@
  */
 package graphics.GUI.userGroups;
 
+
+import graphics.PrimeMain;
+
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import managment.GroupManagment;
 import widgets.WorkareaCanvas;
+
 
 /**
  * TODO - Description NEEDED!
@@ -38,12 +48,22 @@ import widgets.WorkareaCanvas;
  * @author Bahram Malaekeh
  * 
  */
-public class NetworkGroupsDialog extends JDialog {
+public class NetworkGroupsDialog extends JDialog implements ActionListener
+{
+	private WorkareaCanvas canvas;
+
+	private JTable groupTable;
+
+
 	/**
 	 * A constructor for the class that sets up the window.
 	 */
-	public NetworkGroupsDialog(WorkareaCanvas canvas) {
-		this.setTitle(canvas.getCanvasName() + " Groups");
+	public NetworkGroupsDialog(WorkareaCanvas canvas)
+	{
+		this.setTitle(canvas.getCanvasName() + " "
+				+ PrimeMain.texts.getString("groupsDialogTitleLabel"));
+
+		this.canvas = canvas;
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -58,18 +78,31 @@ public class NetworkGroupsDialog extends JDialog {
 		int initXLocation = (scrnsize.width - size.width) / 2;
 
 		this.setPreferredSize(size);
-		
-		
+
+
 		panelSetup(canvas);
 
-		
+
 		this.setLocation(initXLocation, initYLocation);
 		this.setMinimumSize(size);
 		this.setVisible(true);
-		this.setResizable(false);
+
+
+		// Resets the NetworkGroupsDialog object when closed.
+		this.addWindowListener(new WindowAdapter()
+		{
+			@Override
+			public void windowClosing(WindowEvent ev)
+			{
+				// Removes the pointer to this object in the system registry.
+				PrimeMain.groupsDialog = null;
+			}
+		});
 	}
 
-	private void panelSetup(WorkareaCanvas canvas) {
+
+	private void panelSetup(WorkareaCanvas canvas)
+	{
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -93,7 +126,10 @@ public class NetworkGroupsDialog extends JDialog {
 		c.gridx = 1; // column
 		mainPanel.add(getGroupsPanel(canvas), c);
 
-		JButton closeButton = new JButton("Close");
+		JButton closeButton = new JButton(
+				PrimeMain.texts.getString("closeButton"));
+		closeButton.addActionListener(this);
+		closeButton.setActionCommand("close");
 		c.fill = GridBagConstraints.NONE;
 		c.anchor = GridBagConstraints.EAST; // location
 		c.weighty = 0; // request any extra vertical space
@@ -106,7 +142,9 @@ public class NetworkGroupsDialog extends JDialog {
 		this.add(mainPanel);
 	}
 
-	private JPanel getButtonPanel() {
+
+	private JPanel getButtonPanel()
+	{
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -123,14 +161,20 @@ public class NetworkGroupsDialog extends JDialog {
 		c.gridy = 0; // row
 		c.gridx = 0; // column
 
-		JButton addButton = new JButton("New");
+		JButton addButton = new JButton(PrimeMain.texts.getString("new"));
+		addButton.addActionListener(this);
+		addButton.setActionCommand("new");
 		buttonPanel.add(addButton, c);
 
-		JButton editButton = new JButton("Edit");
+		JButton editButton = new JButton(PrimeMain.texts.getString("edit"));
+		editButton.addActionListener(this);
+		editButton.setActionCommand("edit");
 		c.gridy = 1; // row
 		buttonPanel.add(editButton, c);
 
-		JButton removeButton = new JButton("Delete");
+		JButton removeButton = new JButton(PrimeMain.texts.getString("delete"));
+		removeButton.addActionListener(this);
+		removeButton.setActionCommand("delete");
 		c.weighty = 1.0; // request any extra vertical space
 		c.gridy = 2; // row
 		buttonPanel.add(removeButton, c);
@@ -138,7 +182,9 @@ public class NetworkGroupsDialog extends JDialog {
 		return buttonPanel;
 	}
 
-	private JPanel getGroupsPanel(WorkareaCanvas canvas) {
+
+	private JPanel getGroupsPanel(WorkareaCanvas canvas)
+	{
 		JPanel groupPanel = new JPanel();
 		groupPanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -164,14 +210,16 @@ public class NetworkGroupsDialog extends JDialog {
 		return groupPanel;
 	}
 
-	private JTable getGroupTable(WorkareaCanvas canvas) {
+
+	private JTable getGroupTable(WorkareaCanvas canvas)
+	{
 
 		String[] columnNames = { "Group Name", "Group Description" };
 
-		Object[][] data = { { "Math Studens", "Smith" }, { "Physics Students", "Doe" },
-				{ "Teachers", "Black" }, { "Administrators", "White" }, { "Guests", "Brown" } };
 
-		JTable groupTable = new JTable(data, columnNames);
+		String[][] data = GroupManagment.getGroupDataWithDesription(canvas);
+
+		groupTable = new JTable(data, columnNames);
 		groupTable.setFillsViewportHeight(true);
 
 		TableColumn nameColumn = groupTable.getColumnModel().getColumn(0);
@@ -179,7 +227,65 @@ public class NetworkGroupsDialog extends JDialog {
 		TableColumn descColumn = groupTable.getColumnModel().getColumn(1);
 		descColumn.setPreferredWidth(this.getPreferredSize().width);
 
-		
+
 		return groupTable;
 	}
+
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		if ( e.getActionCommand().equals("new") )
+		{
+			new NewNetworkGroupDialog(canvas);
+		}
+		else if ( e.getActionCommand().equals("edit") )
+		{
+
+		}
+		else if ( e.getActionCommand().equals("delete") )
+		{
+
+		}
+		else if ( e.getActionCommand().equals("close") )
+		{
+			// Removes the pointer to this object in the system registry.
+			PrimeMain.groupsDialog = null;
+
+			this.dispose();
+		}
+	}
+
+
+
+	/**
+	 * This function will attempt to reload the information inside the class
+	 * JTable, if the JTable is not null.
+	 */
+	public void reloadGroupInfo()
+	{
+		if ( groupTable != null && PrimeMain.canvases != null
+				&& PrimeMain.currentCanvas != null )
+		{
+			String[][] data = GroupManagment.getGroupDataWithDesription(canvas);
+
+			String[] columnNames = { "Group Name", "Group Description" };
+
+			DefaultTableModel model = new DefaultTableModel(data, columnNames);
+			groupTable.setModel(model);
+			groupTable.revalidate();
+			groupTable.repaint();
+		}
+	}
+
+
+
+
+
 }

@@ -200,6 +200,10 @@ public class WorkareaCanvas extends JPanel
 		// Initiates the undomanager for this canvas
 		undoManager = new CanvasUndoManager(this);
 
+		// Creates a new array of
+		networkGroups = new ArrayList<Group>();
+
+
 		saved = false;
 		changed = false;
 	}

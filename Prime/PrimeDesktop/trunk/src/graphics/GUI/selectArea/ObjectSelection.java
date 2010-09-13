@@ -293,7 +293,6 @@ public class ObjectSelection extends JPanel
 	private JXTaskPane getWidgetGroup(String groupName, WidgetIcon[] widIcons,
 			boolean expanded)
 	{
-		// "System" GROUP
 		JXTaskPane group = new JXTaskPane();
 		group.setTitle(groupName);
 		group.setSpecial(true);
