@@ -85,7 +85,7 @@ public class ActionDeleteAllRooms extends AbstractSystemAction
 		{
 			String question = PrimeMain.texts
 					.getString("actionDeleteAllRoomsQuestions")
-					+ "\n"
+					+ System.getProperty("line.separator")
 					+ PrimeMain.texts.getString("thisCannotBeUndoneMsg");
 
 

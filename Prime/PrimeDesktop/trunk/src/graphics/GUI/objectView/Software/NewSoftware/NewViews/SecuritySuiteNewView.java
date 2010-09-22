@@ -465,12 +465,12 @@ public class SecuritySuiteNewView extends JDialog implements SoftwareView,
 		SimpleDateFormat format = new SimpleDateFormat(
 				PrimeMain.texts.getString("secSuiteViewSimpleDateFormat"));
 
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			mainSecSuite.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			mainSecSuite.setDescription(desc.getText());
 		}
@@ -481,7 +481,7 @@ public class SecuritySuiteNewView extends JDialog implements SoftwareView,
 		}
 
 
-		if ( license.getText() != "" )
+		if ( !license.getText().equals("") )
 		{
 			mainSecSuite.setLicense(license.getText());
 		}

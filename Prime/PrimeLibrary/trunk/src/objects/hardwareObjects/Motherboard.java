@@ -1092,7 +1092,7 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		for ( int i = 0; i < array.length; i++ )
 		{
-			if ( array[i] == false )
+			if ( !(array[i]) )
 			{
 				return i;
 			}

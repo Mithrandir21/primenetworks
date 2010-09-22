@@ -366,12 +366,12 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 	@Override
 	public boolean save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			mainGC.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			mainGC.setDescription(desc.getText());
 		}
@@ -383,7 +383,7 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 		mainGC.setSubtype(outputInterface.getSelectedItem().toString());
 
 
-		if ( size.getSelectedItem().toString() != "" )
+		if ( !size.getSelectedItem().toString().equals("") )
 		{
 			mainGC.setSize(Integer.parseInt(size.getSelectedItem().toString()));
 		}
@@ -393,7 +393,7 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 		}
 
 
-		if ( speed.getSelectedItem().toString() != "" )
+		if ( !speed.getSelectedItem().toString().equals("") )
 		{
 			mainGC.setSpeed(Integer
 					.parseInt(speed.getSelectedItem().toString()));
@@ -407,7 +407,7 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 
 
 
-		if ( maxMonitors.getSelectedItem().toString() != "" )
+		if ( !maxMonitors.getSelectedItem().toString().equals("") )
 		{
 			mainGC.setMaxMonitors(Integer.parseInt(maxMonitors
 					.getSelectedItem().toString()));
@@ -430,7 +430,7 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 	public void actionPerformed(ActionEvent e)
 	{
 		if ( e.getSource() instanceof JComboBox
-				&& e.getActionCommand() != "Integrated" )
+				&& !e.getActionCommand().equals("Integrated") )
 		{
 			JComboBox box = (JComboBox) e.getSource();
 

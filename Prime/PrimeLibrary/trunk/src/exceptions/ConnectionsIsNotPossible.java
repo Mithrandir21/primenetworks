@@ -64,8 +64,8 @@ public class ConnectionsIsNotPossible extends Exception
 	@Override
 	public String getMessage()
 	{
-		String output = "A connection between object a, " + a
-				+ " and object b, " + b + ", is not possible because " + reason;
+		String output = "A connection between object a, " + this.a
+				+ " and object b, " + this.b + ", is not possible because " + this.reason;
 
 		return output;
 	}

@@ -345,12 +345,12 @@ public class OSedit extends JDialog implements ActionListener
 
 	public void save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			mainOS.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			mainOS.setDescription(desc.getText());
 		}
@@ -360,7 +360,7 @@ public class OSedit extends JDialog implements ActionListener
 			mainOS.setFs(GraphicalFunctions.getFSInJList(supportedFS));
 		}
 
-		if ( osVersion.getText() != "" )
+		if ( !osVersion.getText().equals("") )
 		{
 			mainOS.setVersion(osVersion.getText());
 		}
@@ -390,7 +390,7 @@ public class OSedit extends JDialog implements ActionListener
 
 
 		// Checks to see whether the description is empty
-		if ( desc.getText().equals("") || desc.getText() == "" )
+		if ( desc.getText().equals("") || desc.getText().equals("") )
 		{
 			JOptionPane.showMessageDialog(null, PrimeMain.texts
 					.getString("osNoDescriptionMsg"), PrimeMain.texts

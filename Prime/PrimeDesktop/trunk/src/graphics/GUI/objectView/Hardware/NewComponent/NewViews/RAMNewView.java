@@ -329,12 +329,12 @@ public class RAMNewView extends JDialog implements HardwareViewInterface,
 	@Override
 	public boolean save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			RAMobj.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			RAMobj.setDescription(desc.getText());
 		}
@@ -346,7 +346,7 @@ public class RAMNewView extends JDialog implements HardwareViewInterface,
 		RAMobj.setSubtype(subtype.getSelectedItem().toString());
 
 
-		if ( size.getSelectedItem().toString() != "" )
+		if ( !size.getSelectedItem().toString().equals("") )
 		{
 			RAMobj.setSize(Integer.parseInt(size.getSelectedItem().toString()));
 		}
@@ -356,7 +356,7 @@ public class RAMNewView extends JDialog implements HardwareViewInterface,
 		}
 
 
-		if ( speed.getSelectedItem().toString() != "" )
+		if ( !speed.getSelectedItem().toString().equals("") )
 		{
 			RAMobj.setSpeed(Integer
 					.parseInt(speed.getSelectedItem().toString()));

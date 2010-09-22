@@ -351,12 +351,12 @@ public class RemoteDesktopNewView extends JDialog implements ActionListener,
 	@Override
 	public void save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			remDeskSoft.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			remDeskSoft.setDescription(desc.getText());
 		}

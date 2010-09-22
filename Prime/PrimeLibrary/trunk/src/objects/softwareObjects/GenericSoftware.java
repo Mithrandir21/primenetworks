@@ -66,7 +66,7 @@ public class GenericSoftware extends Software
 	public String[] getSupportedOperatingSystems()
 	{
 
-		return supportedOperatingSystems;
+		return this.supportedOperatingSystems;
 	}
 
 

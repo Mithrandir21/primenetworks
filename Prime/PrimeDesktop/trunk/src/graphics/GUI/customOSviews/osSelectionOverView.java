@@ -653,7 +653,7 @@ public class osSelectionOverView extends JDialog implements ActionListener
 						Iterator<OperatingSystem> itr = PrimeMain.system_custom_OS
 								.iterator();
 
-						while ( itr.hasNext() && found == false )
+						while ( itr.hasNext() && !(found) )
 						{
 							OperatingSystem os = itr.next();
 
@@ -685,7 +685,7 @@ public class osSelectionOverView extends JDialog implements ActionListener
 						Iterator<OperatingSystem> itr = PrimeMain.system_custom_OS
 								.iterator();
 
-						while ( itr.hasNext() && found == false )
+						while ( itr.hasNext() && !(found) )
 						{
 							OperatingSystem os = itr.next();
 

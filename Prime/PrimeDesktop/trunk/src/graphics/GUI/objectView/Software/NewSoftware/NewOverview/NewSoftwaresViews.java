@@ -147,20 +147,20 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		String text = null;
 
 		text = genObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			genInfo[0] = text;
 		}
 
 		text = genObj.getVersion();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			genInfo[1] = PrimeMain.texts.getString("swTabVersionLabel") + ": "
 					+ text;
 		}
 
 		text = genObj.getDescription();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			genInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
@@ -186,20 +186,20 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = null;
 
 		text = avobj.getObjectName();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			avInfo[0] = text;
 		}
 
 		text = avobj.getVersion();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			avInfo[1] = PrimeMain.texts.getString("swTabVersionLabel") + ": "
 					+ text;
 		}
 
 		text = avobj.getDescription();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			avInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
@@ -226,20 +226,20 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = null;
 
 		text = backupObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			backInfo[0] = text;
 		}
 
 		text = backupObj.getVersion();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			backInfo[1] = PrimeMain.texts.getString("swTabVersionLabel") + ": "
 					+ text;
 		}
 
 		text = backupObj.getDescription();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			backInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
@@ -266,20 +266,20 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = null;
 
 		text = nasObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			nasInfo[0] = text;
 		}
 
 		text = nasObj.getVersion();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			nasInfo[1] = PrimeMain.texts.getString("swTabVersionLabel") + ": "
 					+ text;
 		}
 
 		text = nasObj.getDescription();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			nasInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
@@ -306,20 +306,20 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = null;
 
 		text = dbObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			dbInfo[0] = text;
 		}
 
 		text = dbObj.getVersion();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			dbInfo[1] = PrimeMain.texts.getString("swTabVersionLabel") + ": "
 					+ text;
 		}
 
 		text = dbObj.getDescription();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			dbInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
@@ -346,20 +346,20 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = null;
 
 		text = virtObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			virtInfo[0] = text;
 		}
 
 		text = virtObj.getVersion();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			virtInfo[1] = PrimeMain.texts.getString("swTabVersionLabel") + ": "
 					+ text;
 		}
 
 		text = virtObj.getDescription();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			virtInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
@@ -385,20 +385,20 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = null;
 
 		text = emailObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			emailInfo[0] = text;
 		}
 
 		text = emailObj.getVersion();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			emailInfo[1] = PrimeMain.texts.getString("swTabVersionLabel")
 					+ ": " + text;
 		}
 
 		text = emailObj.getDescription();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			emailInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
@@ -425,20 +425,20 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = null;
 
 		text = fwObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			fwInfo[0] = text;
 		}
 
 		text = fwObj.getVersion();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			fwInfo[1] = PrimeMain.texts.getString("swTabVersionLabel") + ": "
 					+ text;
 		}
 
 		text = fwObj.getDescription();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			fwInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
@@ -465,20 +465,20 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = null;
 
 		text = offSuiteObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			offSuiteInfo[0] = text;
 		}
 
 		text = offSuiteObj.getVersion();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			offSuiteInfo[1] = PrimeMain.texts.getString("swTabVersionLabel")
 					+ ": " + text;
 		}
 
 		text = offSuiteObj.getDescription();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			offSuiteInfo[2] = PrimeMain.texts
 					.getString("swTabDescriptionLabel") + ": " + text;
@@ -522,20 +522,20 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = null;
 
 		text = proxyObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			proxyInfo[0] = text;
 		}
 
 		text = proxyObj.getVersion();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			proxyInfo[1] = PrimeMain.texts.getString("swTabVersionLabel")
 					+ ": " + text;
 		}
 
 		text = proxyObj.getDescription();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			proxyInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
@@ -563,20 +563,20 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = null;
 
 		text = secSuiteObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			secSuiteInfo[0] = text;
 		}
 
 		text = secSuiteObj.getVersion();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			secSuiteInfo[1] = PrimeMain.texts.getString("swTabVersionLabel")
 					+ ": " + text;
 		}
 
 		text = secSuiteObj.getDescription();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			secSuiteInfo[2] = PrimeMain.texts
 					.getString("swTabDescriptionLabel") + ": " + text;
@@ -603,20 +603,20 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = null;
 
 		text = webServerObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			webSerInfo[0] = text;
 		}
 
 		text = webServerObj.getVersion();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			webSerInfo[1] = PrimeMain.texts.getString("swTabVersionLabel")
 					+ ": " + text;
 		}
 
 		text = webServerObj.getDescription();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			webSerInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;
@@ -644,20 +644,20 @@ public class NewSoftwaresViews extends JPanel implements MouseListener
 		text = null;
 
 		text = remDeskObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			remDeskInfo[0] = text;
 		}
 
 		text = remDeskObj.getVersion();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			remDeskInfo[1] = PrimeMain.texts.getString("swTabVersionLabel")
 					+ ": " + text;
 		}
 
 		text = remDeskObj.getDescription();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			remDeskInfo[2] = PrimeMain.texts.getString("swTabDescriptionLabel")
 					+ ": " + text;

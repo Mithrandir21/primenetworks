@@ -429,7 +429,7 @@ public class NetworkConnectionsView extends JPanel
 		String text = "";
 
 		text = obj.getObjectName();
-		if ( text != "" && text != null )
+		if ( !text.equals("") && text != null )
 		{
 			info[0] = PrimeMain.texts.getString("conTabObjectNameLabel") + ": "
 					+ text;
@@ -507,7 +507,7 @@ public class NetworkConnectionsView extends JPanel
 
 				for ( int i = 0; i < cpus.length; i++ )
 				{
-					speed = speed + cpus[i].getSpeed();
+					speed += cpus[i].getSpeed();
 				}
 
 				if ( speed != 0 )
@@ -541,7 +541,7 @@ public class NetworkConnectionsView extends JPanel
 
 				for ( int i = 0; i < hdds.length; i++ )
 				{
-					size = size + hdds[i].getSize();
+					size += hdds[i].getSize();
 				}
 
 				if ( size != 0 )
@@ -612,7 +612,7 @@ public class NetworkConnectionsView extends JPanel
 		 */
 		for ( int i = 0; i < texts.length; i++ )
 		{
-			if ( texts[i] != null && texts[i] != "" )
+			if ( texts[i] != null && !texts[i].equals("") )
 			{
 				JLabel text = new JLabel(texts[i]);
 				// text.setBorder(BorderFactory.createLineBorder(Color.BLACK));

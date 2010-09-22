@@ -55,7 +55,7 @@ public class CanvasNotFound extends Exception
 	@Override
 	public String getMessage()
 	{
-		String output = "The WorkareaCanvas, " + canvas.getCanvasName()
+		String output = "The WorkareaCanvas, " + this.canvas.getCanvasName()
 				+ ", was not found.";
 
 		return output;

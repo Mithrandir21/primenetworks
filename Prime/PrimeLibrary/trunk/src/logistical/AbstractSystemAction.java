@@ -42,7 +42,7 @@ public abstract class AbstractSystemAction extends AbstractAction implements Und
 	 * @param icon
 	 *            The image representing the action.
 	 */
-	public AbstractSystemAction(String text, ImageIcon icon)
+	protected AbstractSystemAction(String text, ImageIcon icon)
 	{
 		super(text, icon);
 	}
@@ -54,7 +54,7 @@ public abstract class AbstractSystemAction extends AbstractAction implements Und
 	 * @param text
 	 *            The name of the action.
 	 */
-	public AbstractSystemAction(String text)
+	protected AbstractSystemAction(String text)
 	{
 		super(text);
 	}

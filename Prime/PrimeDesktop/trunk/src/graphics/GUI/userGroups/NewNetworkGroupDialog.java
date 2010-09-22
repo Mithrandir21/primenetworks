@@ -20,8 +20,8 @@ package graphics.GUI.userGroups;
 
 import graphics.PrimeMain;
 import groups.Group;
+import groups.Permissions;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -29,17 +29,22 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.TableColumn;
 
 import logistical.checkLogic;
 import managment.GroupManagment;
@@ -63,9 +68,20 @@ public class NewNetworkGroupDialog extends JDialog implements ActionListener
 
 	private JTextArea descArea;
 
-	private JCheckBox permissionsBox;
+	private JRadioButton noPerm;
+
+	private JRadioButton copyPermBox;
+
+	private JRadioButton customPermBox;
 
 	private JTable groupTable;
+
+	private JXCollapsiblePane collapsibleCustomPane;
+
+	private JXCollapsiblePane collapsibleCopyPane;
+
+	private CustomPermissionsPanel CustomPermissions;
+
 
 
 	/**
@@ -85,7 +101,7 @@ public class NewNetworkGroupDialog extends JDialog implements ActionListener
 		Dimension scrnsize = toolkit.getScreenSize();
 
 		// Set size for the settings JFrame
-		Dimension size = new Dimension(400, 440);
+		Dimension size = new Dimension(510, 650);
 
 		int initYLocation = (scrnsize.height - size.height) / 3;
 		int initXLocation = (scrnsize.width - size.width) / 2;
@@ -106,17 +122,17 @@ public class NewNetworkGroupDialog extends JDialog implements ActionListener
 	private void panelSetup()
 	{
 		JPanel mainPanel = new JPanel();
-		mainPanel.setLayout(new BorderLayout());
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
 
-		mainPanel.add(getNameDescPanel(), BorderLayout.NORTH);
+		mainPanel.add(getNameDescPanel());
 
-		mainPanel.add(getCopyPermissionsPanel(), BorderLayout.SOUTH);
+
+		mainPanel.add(getCopyPermissionsPanel());
 
 
 		this.add(mainPanel);
 	}
-
 
 
 	private JPanel getNameDescPanel()
@@ -174,8 +190,6 @@ public class NewNetworkGroupDialog extends JDialog implements ActionListener
 	}
 
 
-
-
 	private JPanel getCopyPermissionsPanel()
 	{
 		JPanel panel = new JPanel();
@@ -186,7 +200,7 @@ public class NewNetworkGroupDialog extends JDialog implements ActionListener
 		// c.ipady = 0; // reset to default
 		// c.ipadx = 0; // reset to default
 		// c.weighty = 1.0; // request any extra vertical space
-		// c.weightx = 1.0; // request any extra horizontal space
+		c.weightx = 1.0; // request any extra horizontal space
 		c.anchor = GridBagConstraints.NORTH; // location
 		c.insets = new Insets(5, 5, 5, 5); // padding
 		// c.gridwidth = 1; // 1 row wide
@@ -195,40 +209,79 @@ public class NewNetworkGroupDialog extends JDialog implements ActionListener
 		c.gridx = 0; // column
 
 
+		// No permissions JCheckBox
+		noPerm = new JRadioButton(
+				PrimeMain.texts.getString("newGroupNoPermRadioLable"));
+
+		noPerm.addActionListener(this);
+		noPerm.setSelected(true);
+
+
+		panel.add(noPerm, c);
+
+
+
 		// The collapsible pane that will contain the
-		JXCollapsiblePane collapsiblePane = new JXCollapsiblePane();
-		collapsiblePane.setCollapsed(true);
+		collapsibleCopyPane = new JXCollapsiblePane();
+		collapsibleCopyPane.setCollapsed(true);
 
-		permissionsBox = new JCheckBox("Copy Permissions From Open Networks");
-		permissionsBox.addActionListener(collapsiblePane.getActionMap().get(
-				JXCollapsiblePane.TOGGLE_ACTION));
+		copyPermBox = new JRadioButton(
+				PrimeMain.texts.getString("newGroupCopyPermRadioLabel"));
+		copyPermBox.addActionListener(this);
 
-		panel.add(permissionsBox, c);
+		c.weighty = 0; // request any extra vertical space
+		c.gridy = 1; // row
+		panel.add(copyPermBox, c);
 
 
 
 		JScrollPane scroll = new JScrollPane(getGroupCopyTable());
-		scroll.setPreferredSize(new Dimension(scroll.getWidth(), 200));
-		collapsiblePane.add(scroll);
+		scroll.setPreferredSize(new Dimension(scroll.getWidth(), 350));
+		collapsibleCopyPane.add(scroll);
 
 
-		c.weighty = 1.0; // request any extra vertical space
-		c.weightx = 1.0; // request any extra horizontal space
-		c.gridy = 1; // row
-		panel.add(collapsiblePane, c);
-
-
-		JButton setupPermissions = new JButton("Setup Permissions");
-		setupPermissions.addActionListener(this);
-		setupPermissions.setActionCommand("permSetup");
 		c.weighty = 0; // request any extra vertical space
+		c.weightx = 1.0; // request any extra horizontal space
 		c.gridy = 2; // row
-		panel.add(setupPermissions, c);
+		panel.add(collapsibleCopyPane, c);
+
+
+
+		// The collapsible pane that will contain the
+		collapsibleCustomPane = new JXCollapsiblePane();
+		collapsibleCustomPane.setCollapsed(true);
+
+		customPermBox = new JRadioButton(
+				PrimeMain.texts
+						.getString("newGroupCustomPermissionsRadioLabel"));
+		customPermBox.addActionListener(this);
+
+		c.gridy = 3; // row
+		panel.add(customPermBox, c);
+
+
+		CustomPermissions = new CustomPermissionsPanel(canvas);
+		JScrollPane scrollPerm = new JScrollPane(CustomPermissions);
+		scrollPerm.setPreferredSize(new Dimension(scrollPerm.getWidth(), 350));
+		scrollPerm.getVerticalScrollBar().setUnitIncrement(10);
+		collapsibleCustomPane.add(scrollPerm);
+
+		c.gridy = 4; // row
+		panel.add(collapsibleCustomPane, c);
+
 
 		c.fill = GridBagConstraints.NONE;
-		c.anchor = GridBagConstraints.EAST; // location
-		c.gridy = 3; // row
+		c.anchor = GridBagConstraints.SOUTHEAST; // location
+		c.weighty = 1.0; // request any extra vertical space
+		c.gridy = 5; // row
 		panel.add(getButtonPanel(), c);
+
+
+		ButtonGroup boxes = new ButtonGroup();
+		boxes.add(customPermBox);
+		boxes.add(copyPermBox);
+		boxes.add(noPerm);
+
 
 		return panel;
 	}
@@ -236,20 +289,38 @@ public class NewNetworkGroupDialog extends JDialog implements ActionListener
 
 	private JTable getGroupCopyTable()
 	{
-		String[] columnNames = { "Select", "Group Name" };
+		String[] columnNames = {
+				PrimeMain.texts
+						.getString("newGroupCopyPermTableColumnNameLabel"),
+				PrimeMain.texts
+						.getString("newGroupCopyPermTableColumnDescLabel") };
 
-		String[][] data = GroupManagment
-				.getGroupNamesWithNetworkName(PrimeMain.canvases);
+		String[][] data = GroupManagment.getGroupDataWithDesription(canvas);
 
 
 		groupTable = new JTable(data, columnNames);
 		groupTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		groupTable.setFillsViewportHeight(true);
 
+		// Sets up the column sizes
+		TableColumn column = null;
+		for ( int i = 0; i < groupTable.getModel().getColumnCount(); i++ )
+		{
+			column = groupTable.getColumnModel().getColumn(i);
+			if ( i == 0 )
+			{
+				// first column is smaller
+				column.setPreferredWidth(40);
+			}
+			else
+			{
+				column.setPreferredWidth(250);
+			}
+		}
+
 
 		return groupTable;
 	}
-
 
 
 	private JPanel getButtonPanel()
@@ -316,13 +387,17 @@ public class NewNetworkGroupDialog extends JDialog implements ActionListener
 						 * validated and there exists no other group with the
 						 * same name.
 						 */
-						// Copy Permission group
-						Group permGroup = null;
+
 
 						// If the check box is selected, the user wants to copy
 						// the permissions of another group.
-						if ( permissionsBox.isSelected() )
+						if ( copyPermBox.isSelected() )
 						{
+							HashMap<Long, Permissions> copiedPermissions = null;
+
+							// Copy Permission group
+							Group permGroup = null;
+
 							int row = groupTable.getSelectedRow();
 
 							// If any row is selected
@@ -331,26 +406,45 @@ public class NewNetworkGroupDialog extends JDialog implements ActionListener
 								String copyGroupName = (String) groupTable
 										.getModel().getValueAt(row, 0);
 
-								String canvasName = (String) groupTable
-										.getModel().getValueAt(row, 1);
-
 								permGroup = GroupManagment.getGroupWithName(
-										canvasName, PrimeMain.canvases,
-										copyGroupName);
+										canvas, copyGroupName);
+
+								copiedPermissions = GroupManagment
+										.deepCopyPermissionsMap(permGroup
+												.getDevicePermissions());
+							}
+
+							// Attempts to create the group
+							if ( GroupManagment.createNewGroup(canvas,
+									groupName, descArea.getText(),
+									copiedPermissions) )
+							{
+								canvas.setChanged(true);
 							}
 						}
-
-						// If any group was found
-						if ( permGroup != null )
+						// If the custom permissions box is selected
+						else if ( customPermBox.isSelected() )
 						{
-							GroupManagment.createNewGroup(canvas, groupName,
-									descArea.getText(),
-									permGroup.getDevicePermissions());
+							// Gets the custom permissions
+							HashMap<Long, Permissions> permissions = CustomPermissions
+									.getCustomPermissions();
+
+							// Attempts to create the group
+							if ( GroupManagment.createNewGroup(canvas,
+									groupName, descArea.getText(), permissions) )
+							{
+								canvas.setChanged(true);
+							}
 						}
+						// Either no button has been chosen or noPerm
 						else
 						{
-							GroupManagment.createNewGroup(canvas, groupName,
-									descArea.getText(), null);
+							// Attempts to create the group
+							if ( GroupManagment.createNewGroup(canvas,
+									groupName, descArea.getText(), null) )
+							{
+								canvas.setChanged(true);
+							}
 						}
 
 
@@ -360,22 +454,45 @@ public class NewNetworkGroupDialog extends JDialog implements ActionListener
 					}
 					else
 					{
-						// TODO - MSG about groups existence
+						JOptionPane.showMessageDialog(null, PrimeMain.texts
+								.getString("groupAlreadExistsWithNameMsg"),
+								PrimeMain.texts.getString("error"),
+								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				else
 				{
-					// TODO - MSG about incorrect name
+					JOptionPane.showMessageDialog(null,
+							PrimeMain.texts.getString("groupNameNotValidMsg"),
+							PrimeMain.texts.getString("error"),
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 			else
 			{
-				// TODO - MSG about empty name
+				JOptionPane.showMessageDialog(null,
+						PrimeMain.texts.getString("groupNameIsEmptyMsg"),
+						PrimeMain.texts.getString("error"),
+						JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		else if ( e.getActionCommand().equals("permSetup") )
+		else if ( e.getSource().equals(customPermBox) )
 		{
-			new PermissionsDialog(canvas);
+			collapsibleCustomPane.setCollapsed(!customPermBox.isSelected());
+			collapsibleCopyPane.setCollapsed(customPermBox.isSelected());
+		}
+		else if ( e.getSource().equals(copyPermBox) )
+		{
+			collapsibleCopyPane.setCollapsed(!copyPermBox.isSelected());
+			collapsibleCustomPane.setCollapsed(copyPermBox.isSelected());
+		}
+		else if ( e.getSource().equals(noPerm) )
+		{
+			if ( noPerm.isSelected() )
+			{
+				collapsibleCopyPane.setCollapsed(true);
+				collapsibleCustomPane.setCollapsed(true);
+			}
 		}
 		else if ( e.getActionCommand().equals("cancel") )
 		{

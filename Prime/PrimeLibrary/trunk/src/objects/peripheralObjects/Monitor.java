@@ -64,8 +64,8 @@ public class Monitor extends ExternalHardware implements Serializable
 	{
 		super(Name, Desc, MonitorConnectionInterfaces);
 
-		inches = MonitorInches;
-		monitorType = type;
+		this.inches = MonitorInches;
+		this.monitorType = type;
 	}
 
 
@@ -78,7 +78,7 @@ public class Monitor extends ExternalHardware implements Serializable
 	 */
 	public int getMonitorSize()
 	{
-		return inches;
+		return this.inches;
 	}
 
 
@@ -87,7 +87,7 @@ public class Monitor extends ExternalHardware implements Serializable
 	 */
 	public String getMonitorType()
 	{
-		return monitorType;
+		return this.monitorType;
 	}
 
 
@@ -97,7 +97,7 @@ public class Monitor extends ExternalHardware implements Serializable
 	 */
 	public boolean isLaptopMonitor()
 	{
-		return isLaptopMonitor;
+		return this.isLaptopMonitor;
 	}
 
 
@@ -109,7 +109,7 @@ public class Monitor extends ExternalHardware implements Serializable
 	 */
 	public void setMonitorSize(int MonitorInches)
 	{
-		inches = MonitorInches;
+		this.inches = MonitorInches;
 	}
 
 
@@ -118,7 +118,7 @@ public class Monitor extends ExternalHardware implements Serializable
 	 */
 	public void setMonitorType(String Type)
 	{
-		monitorType = Type;
+		this.monitorType = Type;
 	}
 
 
@@ -127,7 +127,7 @@ public class Monitor extends ExternalHardware implements Serializable
 	 */
 	public void setLaptopMonitor(boolean info)
 	{
-		isLaptopMonitor = info;
+		this.isLaptopMonitor = info;
 	}
 
 

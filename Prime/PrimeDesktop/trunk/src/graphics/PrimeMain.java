@@ -783,7 +783,7 @@ public class PrimeMain extends JFrame
 		{
 			ObjectView objViewTest = i.next();
 
-			if ( obj == objViewTest.getObject() )
+			if ( obj.equals(objViewTest.getObject()) )
 			{
 				return objViewTest;
 			}

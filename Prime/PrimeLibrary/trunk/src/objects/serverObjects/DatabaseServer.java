@@ -63,9 +63,9 @@ public class DatabaseServer extends Servers implements Serializable
 		super(Name, Desc);
 
 		// Creates a database software object
-		Database = new Database(DatabaseSWname, DatabaseSWdesc,
+		this.Database = new Database(DatabaseSWname, DatabaseSWdesc,
 				DatabaseSWversion);
-		Software[] sw = { Database };
+		Software[] sw = { this.Database };
 		super.setSoftware(sw);
 	}
 
@@ -91,9 +91,9 @@ public class DatabaseServer extends Servers implements Serializable
 		super(Name, Desc, SupConInt);
 
 		// Creates a database software object
-		Database = new Database(DatabaseSWname, DatabaseSWdesc,
+		this.Database = new Database(DatabaseSWname, DatabaseSWdesc,
 				DatabaseSWversion);
-		Software[] sw = { Database };
+		Software[] sw = { this.Database };
 		super.setSoftware(sw);
 	}
 
@@ -120,9 +120,9 @@ public class DatabaseServer extends Servers implements Serializable
 		super(Name, Desc, DesktopComponents);
 
 		// Creates a database software object
-		Database = new Database(DatabaseSWname, DatabaseSWdesc,
+		this.Database = new Database(DatabaseSWname, DatabaseSWdesc,
 				DatabaseSWversion);
-		Software[] sw = { Database };
+		Software[] sw = { this.Database };
 		super.setSoftware(sw);
 	}
 
@@ -149,9 +149,9 @@ public class DatabaseServer extends Servers implements Serializable
 		super(Name, Desc, SupConInt, DesktopComponents);
 
 		// Creates a database software object
-		Database = new Database(DatabaseSWname, DatabaseSWdesc,
+		this.Database = new Database(DatabaseSWname, DatabaseSWdesc,
 				DatabaseSWversion);
-		Software[] sw = { Database };
+		Software[] sw = { this.Database };
 		super.setSoftware(sw);
 	}
 
@@ -163,7 +163,7 @@ public class DatabaseServer extends Servers implements Serializable
 	public Database getDatabaseApplication()
 	{
 
-		return Database;
+		return this.Database;
 	}
 
 

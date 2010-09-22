@@ -263,7 +263,7 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 
 		for ( int i = 1; i < mhertz.length; i++ )
 		{
-			zero = zero + 50;
+			zero += 50;
 			mhertz[i] = "" + zero;
 		}
 
@@ -420,25 +420,25 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 	@Override
 	public boolean save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			CPUobj.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			CPUobj.setDescription(desc.getText());
 		}
 
 		CPUobj.setProducer(producerField.getText());
 
-		if ( socket.getSelectedItem().toString() != "" )
+		if ( !socket.getSelectedItem().toString().equals("") )
 		{
 			CPUobj.setSocketType(socket.getSelectedItem().toString());
 		}
 
 
-		if ( mhz.getSelectedItem().toString() != "" )
+		if ( !mhz.getSelectedItem().toString().equals("") )
 		{
 			CPUobj.setSpeed(Integer.parseInt(mhz.getSelectedItem().toString()));
 		}
@@ -448,7 +448,7 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 		}
 
 
-		if ( level1Cache.getSelectedItem().toString() != "" )
+		if ( !level1Cache.getSelectedItem().toString().equals("") )
 		{
 			CPUobj.setLevel1CacheSize(Integer.parseInt(level1Cache
 					.getSelectedItem().toString()));
@@ -459,7 +459,7 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 		}
 
 
-		if ( level2Cache.getSelectedItem().toString() != "" )
+		if ( !level2Cache.getSelectedItem().toString().equals("") )
 		{
 			CPUobj.setLevel2CacheSize(Integer.parseInt(level2Cache
 					.getSelectedItem().toString()));
@@ -470,7 +470,7 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 		}
 
 
-		if ( nanometer.getSelectedItem().toString() != "" )
+		if ( !nanometer.getSelectedItem().toString().equals("") )
 		{
 			CPUobj.setNanometer(Integer.parseInt(nanometer.getSelectedItem()
 					.toString()));
@@ -481,7 +481,7 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 		}
 
 
-		if ( fsb.getSelectedItem().toString() != "" )
+		if ( !fsb.getSelectedItem().toString().equals("") )
 		{
 			CPUobj.setFSB(Integer.parseInt(fsb.getSelectedItem().toString()));
 		}

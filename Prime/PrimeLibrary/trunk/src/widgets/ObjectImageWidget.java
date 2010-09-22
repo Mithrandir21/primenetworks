@@ -57,14 +57,14 @@ public class ObjectImageWidget extends ImageWidget
 
 		this.setLayout(LayoutFactory.createAbsoluteLayout());
 
-		OSimageWidget = new ImageWidget(scene);
+		this.OSimageWidget = new ImageWidget(scene);
 		if ( image != null )
 		{
 			// OSimageWidget.setBorder(BorderFactory.createLineBorder());
-			OSimageWidget.setPreferredLocation(new Point(
+			this.OSimageWidget.setPreferredLocation(new Point(
 					image.getWidth(null) - 20, image.getHeight(null) - 20));
 		}
-		this.addChild(OSimageWidget);
+		this.addChild(this.OSimageWidget);
 
 		this.setState(ObjectState.createNormal());
 	}
@@ -100,6 +100,6 @@ public class ObjectImageWidget extends ImageWidget
 	 */
 	public ImageWidget getOSImageWidget()
 	{
-		return OSimageWidget;
+		return this.OSimageWidget;
 	}
 }

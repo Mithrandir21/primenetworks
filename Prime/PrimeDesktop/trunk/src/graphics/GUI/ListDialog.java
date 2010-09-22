@@ -1,28 +1,25 @@
-package graphics.GUI;
-
-
 /*
- * Copyright (c) 1995 - 2008 Sun Microsystems, Inc.  All rights reserved.
- *
+ * Copyright (c) 1995 - 2008 Sun Microsystems, Inc. All rights reserved.
+ * 
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
- *   - Redistributions of source code must retain the above copyright
- *     notice, this list of conditions and the following disclaimer.
- *
- *   - Redistributions in binary form must reproduce the above copyright
- *     notice, this list of conditions and the following disclaimer in the
- *     documentation and/or other materials provided with the distribution.
- *
- *   - Neither the name of Sun Microsystems nor the names of its
- *     contributors may be used to endorse or promote products derived
- *     from this software without specific prior written permission.
- *
+ * 
+ * - Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ * 
+ * - Redistributions in binary form must reproduce the above copyright
+ * notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution.
+ * 
+ * - Neither the name of Sun Microsystems nor the names of its
+ * contributors may be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ * 
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
  * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
  * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
  * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
@@ -31,6 +28,8 @@ package graphics.GUI;
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package graphics.GUI;
+
 
 import graphics.PrimeMain;
 
@@ -64,7 +63,8 @@ import javax.swing.ListSelectionModel;
  */
 
 /**
- * Use this modal dialog to let the user choose one string from a long list. See ListDialogRunner.java for an example of
+ * Use this modal dialog to let the user choose one string from a long list. See
+ * ListDialogRunner.java for an example of
  * using ListDialog. The basics:
  * 
  * <pre>
@@ -84,9 +84,12 @@ public class ListDialog extends JDialog implements ActionListener
 	private JList list;
 
 	/**
-	 * Set up and show the dialog. The first Component argument determines which frame the dialog depends on; it should
-	 * be a component in the dialog's controlling frame. The second Component argument should be null if you want the
-	 * dialog to come up with its left corner in the center of the screen; otherwise, it should be the component on top
+	 * Set up and show the dialog. The first Component argument determines which
+	 * frame the dialog depends on; it should
+	 * be a component in the dialog's controlling frame. The second Component
+	 * argument should be null if you want the
+	 * dialog to come up with its left corner in the center of the screen;
+	 * otherwise, it should be the component on top
 	 * of which the dialog should appear.
 	 */
 	public static String showDialog(Component frameComp,
@@ -109,7 +112,7 @@ public class ListDialog extends JDialog implements ActionListener
 	private void setValue(String newValue)
 	{
 		value = newValue;
-		list.setSelectedValue(value, true);
+		this.list.setSelectedValue(value, true);
 	}
 
 
@@ -135,8 +138,9 @@ public class ListDialog extends JDialog implements ActionListener
 		cancelButton.addActionListener(this);
 
 		//
-		final JButton setButton = new JButton(PrimeMain.texts
-				.getString("actionCreateConnectionDescriptionText"));
+		final JButton setButton = new JButton(
+				PrimeMain.texts
+						.getString("actionCreateConnectionDescriptionText"));
 		setButton.setActionCommand(PrimeMain.texts
 				.getString("actionCreateConnectionDescriptionText"));
 		setButton.addActionListener(this);
@@ -144,15 +148,15 @@ public class ListDialog extends JDialog implements ActionListener
 
 
 		// main part of the dialog
-		list = new JList(data);
-		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		this.list = new JList(data);
+		this.list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		if ( longValue != null )
 		{
-			list.setPrototypeCellValue(longValue); // get extra space
+			this.list.setPrototypeCellValue(longValue); // get extra space
 		}
-		list.setLayoutOrientation(JList.VERTICAL);
+		this.list.setLayoutOrientation(JList.VERTICAL);
 		// list.setVisibleRowCount(-1);
-		list.addMouseListener(new MouseAdapter()
+		this.list.addMouseListener(new MouseAdapter()
 		{
 			@Override
 			public void mouseClicked(MouseEvent e)
@@ -165,7 +169,7 @@ public class ListDialog extends JDialog implements ActionListener
 		});
 
 
-		JScrollPane listScroller = new JScrollPane(list);
+		JScrollPane listScroller = new JScrollPane(this.list);
 		listScroller.setPreferredSize(new Dimension(150, 80));
 		listScroller.setAlignmentX(LEFT_ALIGNMENT);
 
@@ -177,7 +181,7 @@ public class ListDialog extends JDialog implements ActionListener
 		JPanel listPane = new JPanel();
 		listPane.setLayout(new BoxLayout(listPane, BoxLayout.PAGE_AXIS));
 		JLabel label = new JLabel(labelText);
-		label.setLabelFor(list);
+		label.setLabelFor(this.list);
 		listPane.add(label);
 		listPane.add(Box.createRigidArea(new Dimension(0, 5)));
 		listPane.add(listScroller);
@@ -207,6 +211,7 @@ public class ListDialog extends JDialog implements ActionListener
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javax.swing.JDialog#processWindowEvent(java.awt.event.WindowEvent)
 	 */
 	@Override
@@ -240,7 +245,9 @@ public class ListDialog extends JDialog implements ActionListener
 	// Handle clicks on the Set and Cancel buttons.
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
@@ -248,7 +255,7 @@ public class ListDialog extends JDialog implements ActionListener
 				PrimeMain.texts
 						.getString("actionCreateConnectionDescriptionText")) )
 		{
-			ListDialog.value = (String) (list.getSelectedValue());
+			ListDialog.value = (String) (this.list.getSelectedValue());
 		}
 		else if ( e.getActionCommand().equals(
 				PrimeMain.texts.getString("cancel")) )

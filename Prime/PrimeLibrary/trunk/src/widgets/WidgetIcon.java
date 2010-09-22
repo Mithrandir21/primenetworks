@@ -64,8 +64,8 @@ public class WidgetIcon extends JLabel
 	public WidgetIcon(ImageIcon icon, Class<?> objectType)
 	{
 		super(icon);
-		img = icon.getImage();
-		classType = objectType;
+		this.img = icon.getImage();
+		this.classType = objectType;
 	}
 
 
@@ -85,8 +85,8 @@ public class WidgetIcon extends JLabel
 	public WidgetIcon(ImageIcon icon, Class<?> objectType, String name)
 	{
 		super(icon);
-		img = icon.getImage();
-		classType = objectType;
+		this.img = icon.getImage();
+		this.classType = objectType;
 		this.setText(name);
 	}
 
@@ -110,10 +110,10 @@ public class WidgetIcon extends JLabel
 			String desc)
 	{
 		super(icon);
-		img = icon.getImage();
-		classType = objectType;
+		this.img = icon.getImage();
+		this.classType = objectType;
 		this.setText(name);
-		description = desc;
+		this.description = desc;
 	}
 
 
@@ -124,7 +124,7 @@ public class WidgetIcon extends JLabel
 	 */
 	public Class<?> getClassType()
 	{
-		return classType;
+		return this.classType;
 	}
 
 
@@ -133,7 +133,7 @@ public class WidgetIcon extends JLabel
 	 */
 	public String getDescription()
 	{
-		return description;
+		return this.description;
 	}
 
 
@@ -143,6 +143,6 @@ public class WidgetIcon extends JLabel
 	 */
 	public Image getIconImage()
 	{
-		return img;
+		return this.img;
 	}
 }

@@ -55,10 +55,10 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 {
 
 	// The canvas where the deletion is taking place
-	WorkareaCanvas canvas = null;
+	private WorkareaCanvas canvas = null;
 
 	// The connection that is to be deleted
-	WidgetExtendedConnection existingConnections = null;
+	private WidgetExtendedConnection existingConnections = null;
 
 	/**
 	 * A constructor for the class that takes a string, the action name, and a
@@ -73,7 +73,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 			WidgetExtendedConnection con)
 	{
 		super(text, icon);
-		existingConnections = con;
+		this.existingConnections = con;
 	}
 
 
@@ -87,7 +87,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 	public ActionDeleteConnection(String text, WidgetExtendedConnection con)
 	{
 		super(text);
-		existingConnections = con;
+		this.existingConnections = con;
 	}
 
 
@@ -137,8 +137,8 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 	@Override
 	public void die()
 	{
-		canvas = null;
-		existingConnections = null;
+		this.canvas = null;
+		this.existingConnections = null;
 	}
 
 	/*
@@ -195,10 +195,10 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 	public void redo() throws CannotRedoException
 	{
 		// Removes the connection
-		WorkareaCanvasActions.removeWidgetConnection(canvas,
-				existingConnections);
+		WorkareaCanvasActions.removeWidgetConnection(this.canvas,
+				this.existingConnections);
 
-		DesktopCanvasManagment.canvasCleanUp(canvas);
+		DesktopCanvasManagment.canvasCleanUp(this.canvas);
 	}
 
 	/*
@@ -209,15 +209,15 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 	@Override
 	public void undo() throws CannotUndoException
 	{
-		if ( existingConnections != null )
+		if ( this.existingConnections != null )
 		{
 			try
 			{
-				Connection priorCon = existingConnections.getConnection();
+				Connection priorCon = this.existingConnections.getConnection();
 
 				// Find the two object which are to be connected on the canvas
 				WidgetObject sourceWidget = CanvasManagment.findWidgetObject(
-						priorCon.getObject1(), canvas);
+						priorCon.getObject1(), this.canvas);
 				WidgetObject targetWidget = CanvasManagment.findWidgetObject(
 						priorCon.getObject2(), canvas);
 

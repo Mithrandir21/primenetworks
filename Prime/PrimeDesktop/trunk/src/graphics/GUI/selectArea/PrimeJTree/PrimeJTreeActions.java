@@ -58,7 +58,7 @@ public class PrimeJTreeActions
 					canvasName);
 
 			// There does not exist a tab with that name already
-			if ( exists == false )
+			if ( !(exists) )
 			{
 				DesktopFileManagment.openWorkareaCanvas(file.getFile());
 			}

@@ -46,7 +46,7 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 * @param Desc
 	 *            The description of the hardware device.
 	 */
-	public ExternalHardware(String Name, String Desc)
+	protected ExternalHardware(String Name, String Desc)
 	{
 		super(Name, Desc);
 	}
@@ -62,7 +62,7 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 * @param SupConInt
 	 *            An array of strings that describes the supported connection interfaces.
 	 */
-	public ExternalHardware(String Name, String Desc, String[] SupConInt)
+	protected ExternalHardware(String Name, String Desc, String[] SupConInt)
 	{
 		super(Name, Desc, SupConInt);
 	}
@@ -78,7 +78,7 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 * @param DesktopComponents
 	 *            The initial components an instance of a desktop has.
 	 */
-	public ExternalHardware(String Name, String Desc, Object[] DesktopComponents)
+	protected ExternalHardware(String Name, String Desc, Object[] DesktopComponents)
 	{
 		super(Name, Desc, DesktopComponents);
 	}
@@ -96,7 +96,7 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 * @param DesktopComponents
 	 *            The initial components an instance of a desktop has.
 	 */
-	public ExternalHardware(String Name, String Desc, String[] SupConInt,
+	protected ExternalHardware(String Name, String Desc, String[] SupConInt,
 			Object[] DesktopComponents)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
@@ -115,7 +115,7 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 * @param deviceMB
 	 *            The initial {@link objects.hardwareObjects.Motherboard motherboard} the hardware has.
 	 */
-	public ExternalHardware(String Name, String Desc, String[] SupConInt,
+	protected ExternalHardware(String Name, String Desc, String[] SupConInt,
 			Motherboard deviceMB)
 	{
 		super(Name, Desc, SupConInt, deviceMB);
@@ -132,7 +132,7 @@ public abstract class ExternalHardware extends Hardware implements Serializable
 	 * @param deviceMB
 	 *            The initial {@link objects.hardwareObjects.Motherboard motherboard} the hardware has.
 	 */
-	public ExternalHardware(String Name, String Desc, Motherboard deviceMB)
+	protected ExternalHardware(String Name, String Desc, Motherboard deviceMB)
 	{
 		super(Name, Desc, deviceMB);
 	}

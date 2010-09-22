@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package connections;
 
@@ -24,8 +24,10 @@ import objects.Object;
 
 
 /**
- * A representation of any connection between any to devices in the entire system. This can be a connection between a
- * computer and a printer, a computer and a router, a router and a server, a router and another router and so on.
+ * A representation of any connection between any to devices in the entire
+ * system. This can be a connection between a
+ * computer and a printer, a computer and a router, a router and a server, a
+ * router and another router and so on.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -67,13 +69,13 @@ public abstract class Connection extends Object implements Serializable
 	 * @param To
 	 *            The object which is to be connected to.
 	 */
-	public Connection(String Name, String Desc, Object From, Object To,
+	protected Connection(String Name, String Desc, Object From, Object To,
 			String conType)
 	{
 		super(Name, Desc, new String[0]);
-		object1 = From;
-		object2 = To;
-		connection = conType;
+		this.object1 = From;
+		this.object2 = To;
+		this.connection = conType;
 	}
 
 
@@ -84,25 +86,27 @@ public abstract class Connection extends Object implements Serializable
 	 */
 	public Object getObject1()
 	{
-		return object1;
+		return this.object1;
 	}
 
 
 	/**
-	 * Get the second object in the connection. Normally the object which is to be connected to.
+	 * Get the second object in the connection. Normally the object which is to
+	 * be connected to.
 	 */
 	public Object getObject2()
 	{
-		return object2;
+		return this.object2;
 	}
 
 
 	/**
-	 * Get the actual status of the connection, whether it be enabled or disabled.
+	 * Get the actual status of the connection, whether it be enabled or
+	 * disabled.
 	 */
 	public boolean getStatus()
 	{
-		return status;
+		return this.status;
 	}
 
 
@@ -114,7 +118,7 @@ public abstract class Connection extends Object implements Serializable
 	public String getConnectionType()
 	{
 
-		return connection;
+		return this.connection;
 	}
 
 
@@ -137,7 +141,8 @@ public abstract class Connection extends Object implements Serializable
 
 
 	/**
-	 * Set the actual status of the connection, whether it be enabled or disabled.
+	 * Set the actual status of the connection, whether it be enabled or
+	 * disabled.
 	 */
 	public void setStatus(boolean status)
 	{
@@ -148,16 +153,18 @@ public abstract class Connection extends Object implements Serializable
 
 
 	/**
-	 * Gets the connection rate between the two connected {@link Object Objects}.
+	 * Gets the connection rate between the two connected {@link Object Objects}
+	 * .
 	 */
 	public int getConnectionRate()
 	{
-		return connectionRate;
+		return this.connectionRate;
 	}
 
 
 	/**
-	 * Sets the connection rate between the two connected {@link Object Objects}.
+	 * Sets the connection rate between the two connected {@link Object Objects}
+	 * .
 	 */
 	public void setConnectionRate(int connectionRate)
 	{

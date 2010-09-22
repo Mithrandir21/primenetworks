@@ -518,12 +518,12 @@ public class WebserverEditView extends JPanel implements SoftwareView,
 	@Override
 	public void save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			mainWebSer.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			mainWebSer.setDescription(desc.getText());
 		}

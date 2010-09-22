@@ -40,7 +40,7 @@ public class NotValidIPAddress extends Exception
 	 */
 	public NotValidIPAddress(String IPtext)
 	{
-		text = IPtext;
+		this.text = IPtext;
 	}
 
 
@@ -53,7 +53,7 @@ public class NotValidIPAddress extends Exception
 	@Override
 	public String getMessage()
 	{
-		String output = "This, " + text + ", is not a valid IP address.";
+		String output = "This, " + this.text + ", is not a valid IP address.";
 
 		return output;
 	}

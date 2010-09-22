@@ -112,7 +112,7 @@ public class RulesManagment
 						boolean violation = objectUSBruleViolation(rules,
 								objects[i], canvas);
 
-						if ( violation == true )
+						if ( violation )
 						{
 							ruleViolation = true;
 						}
@@ -143,8 +143,8 @@ public class RulesManagment
 
 
 			// If USB ports are not allowed or (USB allowed and port number equals 0)
-			if ( usbNotAllowed == true
-					|| (usbNotAllowed == false && rules.getUSBportsAllowed() == 0) )
+			if ( usbNotAllowed
+					|| (!(usbNotAllowed) && rules.getUSBportsAllowed() == 0) )
 			{
 				allowedUSBports = 0;
 			}
@@ -250,8 +250,8 @@ public class RulesManagment
 			int allowedLANports = -1;
 
 			// If LAN ports are not allowed or (LAN allowed and port number equals 0)
-			if ( lanNotAllowed == true
-					|| (lanNotAllowed == false && rules.getLANportsAllowed() == 0) )
+			if ( lanNotAllowed
+					|| (!(lanNotAllowed) && rules.getLANportsAllowed() == 0) )
 			{
 				allowedLANports = 0;
 			}

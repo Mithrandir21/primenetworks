@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Hardware.NewComponent.NewOverview;
 
@@ -113,34 +113,34 @@ public class NewComponentsView extends JPanel implements MouseListener
 		String text = null;
 
 		text = mbObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			mbinfo[0] = text;
 		}
 
 		text = mbObj.getForm();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			mbinfo[1] = PrimeMain.texts.getString("hwTabFormLabel") + ": "
 					+ text;
 		}
 
 		text = mbObj.getSocket();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			mbinfo[2] = PrimeMain.texts.getString("hwTabSocketLabel") + ": "
 					+ text;
 		}
 
 		text = mbObj.getGraphicalPort();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			mbinfo[3] = PrimeMain.texts.getString("hwTabGPUslotLabel") + ": "
 					+ text;
 		}
 
 		text = mbObj.getDescription();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			mbinfo[4] = text;
 		}
@@ -163,27 +163,27 @@ public class NewComponentsView extends JPanel implements MouseListener
 		String[] cpuinfo = new String[4];
 
 		text = cpuObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			cpuinfo[0] = text;
 		}
 
 		text = cpuObj.getProducer();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			cpuinfo[1] = PrimeMain.texts.getString("hwTabProducerLabel") + ": "
 					+ text;
 		}
 
 		text = cpuObj.getSocket();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			cpuinfo[2] = PrimeMain.texts.getString("hwTabSocketLabel") + ": "
 					+ text;
 		}
 
 		text = cpuObj.getDescription();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			cpuinfo[3] = text;
 		}
@@ -206,20 +206,20 @@ public class NewComponentsView extends JPanel implements MouseListener
 		String[] hddinfo = new String[5];
 
 		text = hddObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			hddinfo[0] = text;
 		}
 
 		text = hddObj.getProducer();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			hddinfo[1] = PrimeMain.texts.getString("hwTabProducerLabel") + ": "
 					+ text;
 		}
 
 		text = hddObj.getSubtype();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			hddinfo[2] = PrimeMain.texts.getString("hwTabTypeLabel") + ": "
 					+ text;
@@ -232,7 +232,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		}
 
 		text = hddObj.getDescription();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			hddinfo[4] = text;
 		}
@@ -254,20 +254,20 @@ public class NewComponentsView extends JPanel implements MouseListener
 		String[] raminfo = new String[5];
 
 		text = ramObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			raminfo[0] = text;
 		}
 
 		text = ramObj.getProducer();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			raminfo[1] = PrimeMain.texts.getString("hwTabProducerLabel") + ": "
 					+ text;
 		}
 
 		text = ramObj.getSubtype();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			raminfo[2] = PrimeMain.texts.getString("hwTabTypeLabel") + ": "
 					+ text;
@@ -280,7 +280,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		}
 
 		text = ramObj.getDescription();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			raminfo[4] = text;
 		}
@@ -302,20 +302,20 @@ public class NewComponentsView extends JPanel implements MouseListener
 		String[] discinfo = new String[5];
 
 		text = discObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			discinfo[0] = text;
 		}
 
 		text = discObj.getProducer();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			discinfo[1] = PrimeMain.texts.getString("hwTabProducerLabel")
 					+ ": " + text;
 		}
 
 		text = discObj.getSubtype();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			discinfo[2] = PrimeMain.texts.getString("hwTabTypeLabel") + ": "
 					+ text;
@@ -328,7 +328,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		}
 
 		text = discObj.getDescription();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			discinfo[4] = text;
 		}
@@ -350,20 +350,21 @@ public class NewComponentsView extends JPanel implements MouseListener
 		String[] gpuinfo = new String[5];
 
 		text = gpuObj.getObjectName();
-		if ( gpuObj.getObjectName() != "" && gpuObj.getObjectName() != null )
+		if ( !gpuObj.getObjectName().equals("")
+				&& gpuObj.getObjectName() != null )
 		{
 			gpuinfo[0] = gpuObj.getObjectName();
 		}
 
 		text = gpuObj.getProducer();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			gpuinfo[1] = PrimeMain.texts.getString("hwTabProducerLabel") + ": "
 					+ text;
 		}
 
 		text = gpuObj.getOutputInterface();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			gpuinfo[2] = PrimeMain.texts.getString("hwTabOutputLabel") + ": "
 					+ text;
@@ -376,7 +377,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		}
 
 		text = gpuObj.getDescription();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			gpuinfo[4] = text;
 		}
@@ -400,20 +401,20 @@ public class NewComponentsView extends JPanel implements MouseListener
 		String[] intNICinfo = new String[5];
 
 		text = intNICObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			intNICinfo[0] = text;
 		}
 
 		text = intNICObj.getProducer();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			intNICinfo[1] = PrimeMain.texts.getString("hwTabProducerLabel")
 					+ ": " + text;
 		}
 
 		text = intNICObj.getProtocol();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			intNICinfo[2] = PrimeMain.texts.getString("hwTabProducerLabel")
 					+ ": " + text;
@@ -426,7 +427,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		}
 
 		text = intNICObj.getDescription();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			intNICinfo[4] = text;
 		}
@@ -451,20 +452,20 @@ public class NewComponentsView extends JPanel implements MouseListener
 		String[] extNICinfo = new String[5];
 
 		text = extNICObj.getObjectName();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			extNICinfo[0] = text;
 		}
 
 		text = extNICObj.getProducer();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			extNICinfo[1] = PrimeMain.texts.getString("hwTabProducerLabel")
 					+ ": " + text;
 		}
 
 		text = extNICObj.getProtocol();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			extNICinfo[2] = PrimeMain.texts.getString("hwTabProducerLabel")
 					+ ": " + text;
@@ -477,7 +478,7 @@ public class NewComponentsView extends JPanel implements MouseListener
 		}
 
 		text = extNICObj.getDescription();
-		if ( text != "" && text != null )
+		if ( text != null && !text.equals("") )
 		{
 			extNICinfo[4] = text;
 		}
@@ -513,10 +514,11 @@ public class NewComponentsView extends JPanel implements MouseListener
 
 		if ( panel.getName().equals("Motherboard") )
 		{
-			int answer = JOptionPane.showConfirmDialog(this, PrimeMain.texts
-					.getString("newHWnewMotherboardQuestionMsg"),
-					PrimeMain.texts.getString("caution"),
-					JOptionPane.YES_NO_OPTION);
+			int answer = JOptionPane
+					.showConfirmDialog(this, PrimeMain.texts
+							.getString("newHWnewMotherboardQuestionMsg"),
+							PrimeMain.texts.getString("caution"),
+							JOptionPane.YES_NO_OPTION);
 
 			// If the answer is not No.
 			if ( answer != 1 )

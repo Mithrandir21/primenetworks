@@ -539,18 +539,12 @@ public class DesktopFileManagment
 						{
 							return true;
 						}
-						else
-						{
-							return false;
-						}
+
+						return false;
 					}
-					else
-					{
-						return true;
-					}
+
+					return true;
 				}
-
-
 			}
 			catch ( FileNotFoundException e )
 			{
@@ -772,8 +766,11 @@ public class DesktopFileManagment
 		{
 			JOptionPane.showMessageDialog(
 					null,
-					"This file\n" + file.getName() + "\n"
-							+ "does not exist in location\n"
+					"This file" + System.getProperty("line.separator")
+							+ file.getName()
+							+ System.getProperty("line.separator")
+							+ "does not exist in location"
+							+ System.getProperty("line.separator")
 							+ file.getAbsolutePath(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 
@@ -783,9 +780,15 @@ public class DesktopFileManagment
 		// If the file is a directory
 		if ( file.isDirectory() )
 		{
-			JOptionPane.showMessageDialog(null, "This \n" + file.getName()
-					+ "\n" + "is a directory at\n" + file.getAbsolutePath(),
-					"Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(
+					null,
+					"This" + System.getProperty("line.separator")
+							+ file.getName()
+							+ System.getProperty("line.separator")
+							+ "is a directory at"
+							+ System.getProperty("line.separator")
+							+ file.getAbsolutePath(), "Error",
+					JOptionPane.ERROR_MESSAGE);
 
 			return false;
 		}
@@ -793,8 +796,12 @@ public class DesktopFileManagment
 		// If the file can not be written to(hence not deleted)
 		if ( !file.canWrite() )
 		{
-			JOptionPane.showMessageDialog(null, "This file\n" + file.getName()
-					+ "\n" + "is write protected.", "Error",
+			JOptionPane.showMessageDialog(
+					null,
+					"This file" + System.getProperty("line.separator")
+							+ file.getName()
+							+ System.getProperty("line.separator")
+							+ "is write protected.", "Error",
 					JOptionPane.ERROR_MESSAGE);
 
 			return false;
@@ -828,8 +835,11 @@ public class DesktopFileManagment
 
 				if ( !success )
 				{
-					JOptionPane.showMessageDialog(null,
-							"The file\n" + file.getName() + "\n"
+					JOptionPane.showMessageDialog(
+							null,
+							"The file" + System.getProperty("line.separator")
+									+ file.getName()
+									+ System.getProperty("line.separator")
 									+ "was NOT successfully deleted.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 
@@ -879,8 +889,11 @@ public class DesktopFileManagment
 
 				if ( !success )
 				{
-					JOptionPane.showMessageDialog(null,
-							"The file\n" + file.getName() + "\n"
+					JOptionPane.showMessageDialog(
+							null,
+							"The file" + System.getProperty("line.separator")
+									+ file.getName()
+									+ System.getProperty("line.separator")
 									+ "was NOT successfully deleted.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 
@@ -919,7 +932,6 @@ public class DesktopFileManagment
 			return false;
 		}
 	}
-
 
 
 	/**
@@ -1185,7 +1197,7 @@ public class DesktopFileManagment
 			int objectArraySize = 0;
 
 			// Iterates through the Object list
-			for ( Iterator it = objectList.iterator(); it.hasNext(); )
+			for ( Iterator<Object> it = objectList.iterator(); it.hasNext(); )
 			{
 				objectArraySize++;
 				it.next();
@@ -1205,7 +1217,8 @@ public class DesktopFileManagment
 			int widgetInfoArraySize = 0;
 
 			// Iterates through the Object list
-			for ( Iterator it = widgetInfoList.iterator(); it.hasNext(); )
+			for ( Iterator<WidgetNetworkInfo> it = widgetInfoList.iterator(); it
+					.hasNext(); )
 			{
 				widgetInfoArraySize++;
 				it.next();
@@ -1229,9 +1242,9 @@ public class DesktopFileManagment
 
 				// Iterates through the list and adds the objects to the objects
 				// array
-				for ( Iterator it = objectList.iterator(); it.hasNext(); )
+				for ( Iterator<Object> it = objectList.iterator(); it.hasNext(); )
 				{
-					objects[objectIndex] = (Object) it.next();
+					objects[objectIndex] = it.next();
 					objectIndex++;
 				}
 
@@ -1247,10 +1260,10 @@ public class DesktopFileManagment
 
 				// Iterates through the list and adds the objects to the
 				// WidgetNetworkInfo array
-				for ( Iterator it = widgetInfoList.iterator(); it.hasNext(); )
+				for ( Iterator<WidgetNetworkInfo> it = widgetInfoList
+						.iterator(); it.hasNext(); )
 				{
-					widgetNetInfos[widgetNetInfosIndex] = (WidgetNetworkInfo) it
-							.next();
+					widgetNetInfos[widgetNetInfosIndex] = it.next();
 					widgetNetInfosIndex++;
 				}
 
@@ -1320,9 +1333,10 @@ public class DesktopFileManagment
 
 				// Iterates through the list and adds the connections to the
 				// connections array
-				for ( Iterator it = connectionList.iterator(); it.hasNext(); )
+				for ( Iterator<Connection> it = connectionList.iterator(); it
+						.hasNext(); )
 				{
-					connections[connectionIndex] = (Connection) it.next();
+					connections[connectionIndex] = it.next();
 					connectionIndex++;
 				}
 
@@ -1397,9 +1411,9 @@ public class DesktopFileManagment
 				int roomIndex = 0;
 
 				// Iterates through the list and adds the room to the room array
-				for ( Iterator it = roomList.iterator(); it.hasNext(); )
+				for ( Iterator<Room> it = roomList.iterator(); it.hasNext(); )
 				{
-					rooms[roomIndex] = (Room) it.next();
+					rooms[roomIndex] = it.next();
 					roomIndex++;
 				}
 
@@ -2274,7 +2288,7 @@ public class DesktopFileManagment
 				// The text shown to the user
 				String text = PrimeMain.texts
 						.getString("verifyStandardRulesListOverwrite")
-						+ "\n"
+						+ System.getProperty("line.separator")
 						+ PrimeMain.texts.getString("thisCannotBeUndoneMsg");
 
 				// Whether or not the user wants to overwrite the current
@@ -2322,7 +2336,7 @@ public class DesktopFileManagment
 				// The text shown to the user
 				String text = PrimeMain.texts
 						.getString("verifyCsutomOSListOverwrite")
-						+ "\n"
+						+ System.getProperty("line.separator")
 						+ PrimeMain.texts.getString("thisCannotBeUndoneMsg");
 
 				// Whether or not the user wants to overwrite the current
@@ -2370,7 +2384,7 @@ public class DesktopFileManagment
 				// The text shown to the user
 				String text = PrimeMain.texts
 						.getString("verifyStandardObjectsListOverwrite")
-						+ "\n"
+						+ System.getProperty("line.separator")
 						+ PrimeMain.texts.getString("thisCannotBeUndoneMsg");
 
 				// Whether or not the user wants to overwrite the current
@@ -2537,7 +2551,7 @@ public class DesktopFileManagment
 							Object testObject = testlist.get(0);
 
 							// If the name of the gotten object is not ""
-							if ( testObject.getObjectName() != "" )
+							if ( !testObject.getObjectName().equals("") )
 							{
 								verified = true;
 							}

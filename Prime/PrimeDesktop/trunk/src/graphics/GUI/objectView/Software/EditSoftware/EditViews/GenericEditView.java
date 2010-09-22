@@ -162,9 +162,6 @@ public class GenericEditView extends JPanel implements SoftwareView,
 	 */
 	private JPanel createSpesificInfo(GenericSoftware genericSoft)
 	{
-		Dimension tfSize = new Dimension(100, 20);
-
-
 		JLabel[] labels = new JLabel[4];
 
 		labels[0] = new JLabel(PrimeMain.texts.getString("genViewSupOSLabel"));
@@ -233,12 +230,12 @@ public class GenericEditView extends JPanel implements SoftwareView,
 	@Override
 	public void save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			genSoft.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			genSoft.setDescription(desc.getText());
 		}

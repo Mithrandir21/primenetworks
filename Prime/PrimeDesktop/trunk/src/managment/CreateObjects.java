@@ -293,7 +293,7 @@ public class CreateObjects
 		String objectName = PrimeMain.texts.getString("desktop");
 		String objectDesc = desc;
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -320,7 +320,7 @@ public class CreateObjects
 		String objectName = PrimeMain.texts.getString("laptop");
 		String objectDesc = desc;
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -364,7 +364,7 @@ public class CreateObjects
 		String objectName = PrimeMain.texts.getString("thinClient");
 		String objectDesc = desc;
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -412,7 +412,7 @@ public class CreateObjects
 		String objectName = PrimeMain.texts.getString("GeneralServer");
 		String objectDesc = desc;
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -452,7 +452,7 @@ public class CreateObjects
 		String ObjectSWdesc = "Standard antivirus server";
 		String ObjectSWversion = "1";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -491,7 +491,7 @@ public class CreateObjects
 		String ObjectSWdesc = "Standard Webserver";
 		String ObjectSWversion = "2.2";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -531,7 +531,7 @@ public class CreateObjects
 		String ObjectSWdesc = "Standard backup server";
 		String ObjectSWversion = "1";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -566,7 +566,7 @@ public class CreateObjects
 		String objectName = PrimeMain.texts.getString("NASServer");
 		String objectDesc = desc;
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -604,7 +604,7 @@ public class CreateObjects
 		String ObjectSWdesc = "Standard database server";
 		String ObjectSWversion = "1";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -640,7 +640,7 @@ public class CreateObjects
 		String objectName = PrimeMain.texts.getString("virtualizationServer");
 		String objectDesc = desc;
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -679,7 +679,7 @@ public class CreateObjects
 		String ObjectSWdesc = "Standard mail server";
 		String ObjectSWversion = "1";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -718,7 +718,7 @@ public class CreateObjects
 		String ObjectSWdesc = "Standard firewall server";
 		String ObjectSWversion = "1";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -756,7 +756,7 @@ public class CreateObjects
 		String ObjectSWdesc = "Standard proxy server";
 		String ObjectSWversion = "1";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -793,7 +793,7 @@ public class CreateObjects
 		String ObjectSWdesc = "Standard printer server";
 		String ObjectSWversion = "1";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -829,7 +829,7 @@ public class CreateObjects
 		int HDDsize = 500;
 
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -868,7 +868,7 @@ public class CreateObjects
 
 		String Sresolution = "1280x1020";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -900,7 +900,7 @@ public class CreateObjects
 
 		String Sresolution = "1280x1020";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -932,7 +932,7 @@ public class CreateObjects
 
 		String Sresolution = "1280x1020";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -966,7 +966,7 @@ public class CreateObjects
 
 		String Sresolution[] = { "1280x1020" };
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -998,7 +998,7 @@ public class CreateObjects
 
 		String Sresolution = "1280x1020";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -1045,7 +1045,7 @@ public class CreateObjects
 
 		String Sresolution[] = { "1280x1020" };
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -1082,7 +1082,7 @@ public class CreateObjects
 		int inPorts = 16;
 		String[] DuplexSupport = { ConnectionUtils.FullDuplex };
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -1117,7 +1117,7 @@ public class CreateObjects
 		int inPorts = 16;
 		String[] DuplexSupport = { ConnectionUtils.FullDuplex };
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -1152,7 +1152,7 @@ public class CreateObjects
 		int inPorts = 4;
 		String[] DuplexSupport = { ConnectionUtils.FullDuplex };
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -1184,7 +1184,7 @@ public class CreateObjects
 		String objectDesc = desc;
 
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -1230,7 +1230,7 @@ public class CreateObjects
 		int inPorts = 4;
 		String[] DuplexSupport = { ConnectionUtils.FullDuplex };
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -1276,7 +1276,7 @@ public class CreateObjects
 
 		String[] SupConInt = { ConnectionUtils.RJ45, ConnectionUtils.Coax };
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}

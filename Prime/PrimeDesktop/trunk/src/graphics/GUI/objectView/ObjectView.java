@@ -199,7 +199,7 @@ public class ObjectView extends JFrame implements ActionListener
 
 
 		// If closeObjectView is true, this JFrame is closed
-		if ( closeObjectView && (errorFound == false) )
+		if ( closeObjectView && (!(errorFound)) )
 		{
 			// Updates the views of the object to correctly show the
 			// current info.
@@ -299,7 +299,7 @@ public class ObjectView extends JFrame implements ActionListener
 		if ( !(info.setNetmask(view.netObjView.widgetNetmaskField.getText())) )
 		{
 			// If not other error has been given
-			if ( errorFound != true )
+			if ( !(errorFound) )
 			{
 				JOptionPane.showMessageDialog(null, PrimeMain.texts
 						.getString("saveNetworkNotValidNetmaskErrorMsg"),
@@ -314,7 +314,7 @@ public class ObjectView extends JFrame implements ActionListener
 		if ( !(info.setMAC(view.netObjView.widgetMacField.getText())) )
 		{
 			// If not other error has been given
-			if ( errorFound != true )
+			if ( !(errorFound) )
 			{
 				JOptionPane.showMessageDialog(null, PrimeMain.texts
 						.getString("saveNetworkNotValidMacErrorMsg"),
@@ -330,7 +330,7 @@ public class ObjectView extends JFrame implements ActionListener
 				.getText())) )
 		{
 			// If not other error has been given
-			if ( errorFound != true )
+			if ( !(errorFound) )
 			{
 				JOptionPane
 						.showMessageDialog(
@@ -356,7 +356,7 @@ public class ObjectView extends JFrame implements ActionListener
 		else
 		{
 			// If not other error has been given
-			if ( errorFound != true )
+			if ( !(errorFound) )
 			{
 				JOptionPane.showMessageDialog(null, PrimeMain.texts
 						.getString("saveNetworkNotValidNetworkNameErrorMsg"),
@@ -372,11 +372,11 @@ public class ObjectView extends JFrame implements ActionListener
 
 		boolean exempted = view.netObjView.exemptedNetworkRules.isSelected();
 
-		if ( exempted == false && currentObject.isExemptedNetworkRules() )
+		if ( !(exempted) && currentObject.isExemptedNetworkRules() )
 		{
 			String question = PrimeMain.texts
 					.getString("rulesNoLongerExemptedMsg")
-					+ "\n"
+					+ System.getProperty("line.separator")
 					+ PrimeMain.texts
 							.getString("rulesPortsConnectionsChangeMsg");
 

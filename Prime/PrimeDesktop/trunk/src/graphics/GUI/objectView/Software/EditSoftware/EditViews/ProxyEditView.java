@@ -391,12 +391,12 @@ public class ProxyEditView extends JPanel implements SoftwareView,
 	@Override
 	public void save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			mainProxy.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			mainProxy.setDescription(desc.getText());
 		}

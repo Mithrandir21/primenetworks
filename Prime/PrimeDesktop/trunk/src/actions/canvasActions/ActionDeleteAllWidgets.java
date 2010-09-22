@@ -85,7 +85,7 @@ public class ActionDeleteAllWidgets extends AbstractSystemAction
 		{
 			String question = PrimeMain.texts
 					.getString("actionDeleteAllWidgetsQuestions")
-					+ "\n"
+					+ System.getProperty("line.separator")
 					+ PrimeMain.texts.getString("thisCannotBeUndoneMsg");
 
 

@@ -347,12 +347,12 @@ public class BackupEditView extends JPanel implements SoftwareView,
 	@Override
 	public void save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			mainBack.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			mainBack.setDescription(desc.getText());
 		}
@@ -363,7 +363,7 @@ public class BackupEditView extends JPanel implements SoftwareView,
 		}
 
 		// The type of backup
-		if ( backupType.getText() != "" )
+		if ( !backupType.getText().equals("") )
 		{
 			mainBack.setBackupType(backupType.getText());
 		}
@@ -375,7 +375,7 @@ public class BackupEditView extends JPanel implements SoftwareView,
 		mainBack.setSupportsEncryption(encryption.isSelected());
 
 
-		if ( duplicate.getSelectedItem().toString() != "" )
+		if ( !duplicate.getSelectedItem().toString().equals("") )
 		{
 			// The number of copies keeps
 			mainBack.setDuplicate(Integer.parseInt(duplicate.getSelectedItem()

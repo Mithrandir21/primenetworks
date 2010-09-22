@@ -296,12 +296,12 @@ public class DatabaseNewView extends JDialog implements SoftwareView,
 	@Override
 	public void save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			mainDB.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			mainDB.setDescription(desc.getText());
 		}

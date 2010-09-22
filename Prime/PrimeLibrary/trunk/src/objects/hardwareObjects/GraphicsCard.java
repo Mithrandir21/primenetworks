@@ -80,10 +80,10 @@ public class GraphicsCard extends Hardware implements Serializable
 	{
 		super(Name, Desc);
 
-		type = GCtype;
-		size = GCram;
-		outputInterface = GCoutputInterface;
-		isIntegrated = GCisIntegrated;
+		this.type = GCtype;
+		this.size = GCram;
+		this.outputInterface = GCoutputInterface;
+		this.isIntegrated = GCisIntegrated;
 	}
 
 
@@ -96,7 +96,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	 */
 	public String getProducer()
 	{
-		return producer;
+		return this.producer;
 	}
 
 
@@ -106,7 +106,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	 */
 	public String getType()
 	{
-		return type;
+		return this.type;
 	}
 
 
@@ -115,7 +115,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	 */
 	public String getOutputInterface()
 	{
-		return outputInterface;
+		return this.outputInterface;
 	}
 
 
@@ -124,7 +124,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	 */
 	public int getSize()
 	{
-		return size;
+		return this.size;
 	}
 
 
@@ -133,7 +133,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	 */
 	public int getSpeed()
 	{
-		return Speed;
+		return this.Speed;
 	}
 
 
@@ -142,7 +142,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	 */
 	public int getMaxMonitors()
 	{
-		return maxMonitors;
+		return this.maxMonitors;
 	}
 
 
@@ -151,7 +151,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	 */
 	public boolean getIsIntegrated()
 	{
-		return isIntegrated;
+		return this.isIntegrated;
 	}
 
 
@@ -162,7 +162,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	 */
 	public void setProducer(String GCproducer)
 	{
-		producer = GCproducer;
+		this.producer = GCproducer;
 	}
 
 
@@ -171,7 +171,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	 */
 	public void setType(String GCtype)
 	{
-		type = GCtype;
+		this.type = GCtype;
 	}
 
 
@@ -180,7 +180,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	 */
 	public void setSubtype(String GCoutputInterface)
 	{
-		outputInterface = GCoutputInterface;
+		this.outputInterface = GCoutputInterface;
 	}
 
 
@@ -189,7 +189,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	 */
 	public void setSize(int GCsize)
 	{
-		size = GCsize;
+		this.size = GCsize;
 	}
 
 
@@ -198,7 +198,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	 */
 	public void setSpeed(int GCspeed)
 	{
-		Speed = GCspeed;
+		this.Speed = GCspeed;
 	}
 
 
@@ -207,7 +207,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	 */
 	public void setMaxMonitors(int GCmaxMonitors)
 	{
-		maxMonitors = GCmaxMonitors;
+		this.maxMonitors = GCmaxMonitors;
 	}
 
 
@@ -216,7 +216,7 @@ public class GraphicsCard extends Hardware implements Serializable
 	 */
 	public void setIsIntegrated(boolean GCisIntegrated)
 	{
-		isIntegrated = GCisIntegrated;
+		this.isIntegrated = GCisIntegrated;
 	}
 
 }

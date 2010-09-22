@@ -156,9 +156,9 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 	@Override
 	public void die()
 	{
-		canvas = null;
-		widObject = null;
-		objectPoint = null;
+		this.canvas = null;
+		this.widObject = null;
+		this.objectPoint = null;
 	}
 
 	/*
@@ -217,18 +217,18 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 	@Override
 	public void redo() throws CannotRedoException
 	{
-		if ( widObject != null )
+		if ( this.widObject != null )
 		{
 			// Gets the point the Widget has on the scene
-			Point sceneLocation = canvas.getScene().convertViewToScene(
-					objectPoint);
+			Point sceneLocation = this.canvas.getScene().convertViewToScene(
+					this.objectPoint);
 
 			// Adds the newly created WidgetObject to the classes canvas
-			DesktopCanvasManagment.addWidgetToCanvas(widObject, sceneLocation,
-					canvas, true, true);
+			DesktopCanvasManagment.addWidgetToCanvas(this.widObject,
+					sceneLocation, this.canvas, true, true);
 
 			// Adds the actions that the new widget supports
-			ActionsAdder.makeWidgetObjectReady(canvas, widObject);
+			ActionsAdder.makeWidgetObjectReady(this.canvas, this.widObject);
 		}
 	}
 
@@ -241,9 +241,10 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 	@Override
 	public void undo() throws CannotUndoException
 	{
-		if ( widObject != null )
+		if ( this.widObject != null )
 		{
-			WorkareaCanvasActions.removeObject(canvas, widObject, true);
+			WorkareaCanvasActions.removeObject(this.canvas, this.widObject,
+					true);
 		}
 	}
 
@@ -257,18 +258,19 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 	public void performAction(boolean undoable)
 	{
 		// Gets the point the Widget has on the scene
-		Point sceneLocation = canvas.getScene().convertViewToScene(objectPoint);
+		Point sceneLocation = this.canvas.getScene().convertViewToScene(
+				this.objectPoint);
 
 		// Adds the newly created WidgetObject to the classes canvas
-		DesktopCanvasManagment.addWidgetToCanvas(widObject, sceneLocation,
-				canvas, true, true);
+		DesktopCanvasManagment.addWidgetToCanvas(this.widObject, sceneLocation,
+				this.canvas, true, true);
 
 		// Adds the actions that the new widget supports
-		ActionsAdder.makeWidgetObjectReady(canvas, widObject);
+		ActionsAdder.makeWidgetObjectReady(this.canvas, this.widObject);
 
 		if ( undoable )
 		{
-			canvas.addUndoableAction(this);
+			this.canvas.addUndoableAction(this);
 		}
 	}
 }

@@ -54,16 +54,16 @@ public class HardwareMessages extends JScrollPane
 				PrimeMain.texts.getString("tableHWdescription"),
 				PrimeMain.texts.getString("tableHWmsgType") };
 
-		table = new MessageJTable(data, columnNames);
+		this.table = new MessageJTable(data, columnNames);
 
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+		this.table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 
 		setColumnWidths();
 
 		// table.setPreferredScrollableViewportSize(new Dimension(700,300));
-		table.setFillsViewportHeight(false);
+		this.table.setFillsViewportHeight(false);
 
-		setViewportView(table);
+		setViewportView(this.table);
 	}
 
 
@@ -76,7 +76,7 @@ public class HardwareMessages extends JScrollPane
 		TableColumn column = null;
 		for ( int i = 0; i < 4; i++ )
 		{
-			column = table.getColumnModel().getColumn(i);
+			column = this.table.getColumnModel().getColumn(i);
 			if ( i == 2 )
 			{
 				column.setPreferredWidth(700); // third column is bigger

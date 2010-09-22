@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.properties.objectTypes;
 
@@ -75,7 +75,7 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 	 * 
 	 * @param obj
 	 */
-	public AbstractObjectPropertiesView(Object obj)
+	protected AbstractObjectPropertiesView(Object obj)
 	{
 		if ( obj != null )
 		{
@@ -126,8 +126,8 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 
 
 		// Name
-		JLabel nameLabel = new JLabel(PrimeMain.texts
-				.getString("propGeneralViewObjectNameLabel"),
+		JLabel nameLabel = new JLabel(
+				PrimeMain.texts.getString("propGeneralViewObjectNameLabel"),
 				SwingConstants.TRAILING);
 		nameLabel.setToolTipText(PrimeMain.texts
 				.getString("propGeneralViewObjectNameTip"));
@@ -141,8 +141,8 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 
 
 		// Supported connection interfaces
-		JLabel supConIntLabel = new JLabel(PrimeMain.texts
-				.getString("propGeneralViewSupConIntLabel"),
+		JLabel supConIntLabel = new JLabel(
+				PrimeMain.texts.getString("propGeneralViewSupConIntLabel"),
 				SwingConstants.TRAILING);
 		supConIntLabel.setToolTipText(PrimeMain.texts
 				.getString("propGeneralViewSupConIntTip"));
@@ -162,8 +162,8 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 
 
 		// Number of components
-		JLabel numConLabel = new JLabel(PrimeMain.texts
-				.getString("propGeneralViewNumConDevicesLabel"),
+		JLabel numConLabel = new JLabel(
+				PrimeMain.texts.getString("propGeneralViewNumConDevicesLabel"),
 				SwingConstants.TRAILING);
 		numConLabel.setToolTipText(PrimeMain.texts
 				.getString("propGeneralViewNumConDevicesTip"));
@@ -171,8 +171,8 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 		panelCons.gridy++; // row
 		panel.add(numConLabel, panelCons);
 
-		numConField.setText(Integer
-				.toString((obj.getNumberOfConnectedDevices())));
+		numConField
+				.setText(Integer.toString((obj.getNumberOfConnectedDevices())));
 		numConField.setEditable(false);
 		numConField.setName("numCon");
 		panelCons.insets = new Insets(0, 0, 10, 0); // padding
@@ -181,8 +181,8 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 
 
 		// Number of nodes
-		JLabel numbJumpsLabel = new JLabel(PrimeMain.texts
-				.getString("propGeneralViewNumJumpsLabel"),
+		JLabel numbJumpsLabel = new JLabel(
+				PrimeMain.texts.getString("propGeneralViewNumJumpsLabel"),
 				SwingConstants.TRAILING);
 		numbJumpsLabel.setToolTipText(PrimeMain.texts
 				.getString("propGeneralViewNumJumpsTip"));
@@ -207,8 +207,8 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 		if ( widObj != null )
 		{
 			// The IP of the object
-			JLabel IPLabel = new JLabel(PrimeMain.texts
-					.getString("propGeneralViewDeviceIPLabel"),
+			JLabel IPLabel = new JLabel(
+					PrimeMain.texts.getString("propGeneralViewDeviceIPLabel"),
 					SwingConstants.TRAILING);
 			IPLabel.setToolTipText(PrimeMain.texts
 					.getString("propGeneralViewDeviceIPTip"));
@@ -231,8 +231,8 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 
 
 		// Exempted network rules
-		JLabel exemptedRulesLabel = new JLabel(PrimeMain.texts
-				.getString("propGeneralViewExemptedRulesLabel"),
+		JLabel exemptedRulesLabel = new JLabel(
+				PrimeMain.texts.getString("propGeneralViewExemptedRulesLabel"),
 				SwingConstants.TRAILING);
 		exemptedRulesLabel.setToolTipText(PrimeMain.texts
 				.getString("propGeneralViewExemptedRulesTip"));
@@ -254,7 +254,8 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 
 
 	/**
-	 * Resets all general fields to the info gotten from the {@link Object} viewed.
+	 * Resets all general fields to the info gotten from the {@link Object}
+	 * viewed.
 	 * It also resets the errorDuringSaving to false.
 	 */
 	public void resetGeneralFields()
@@ -390,11 +391,11 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 
 			boolean exempted = exemptedNetworkRules.isSelected();
 
-			if ( exempted == false && objectViewed.isExemptedNetworkRules() )
+			if ( !(exempted) && objectViewed.isExemptedNetworkRules() )
 			{
 				String question = PrimeMain.texts
 						.getString("rulesNoLongerExemptedMsg")
-						+ "\n"
+						+ System.getProperty("line.separator")
 						+ PrimeMain.texts
 								.getString("rulesPortsConnectionsChangeMsg");
 
@@ -406,8 +407,8 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 
 
 				int i = JOptionPane
-						.showOptionDialog(null, question, PrimeMain.texts
-								.getString("confirm"),
+						.showOptionDialog(null, question,
+								PrimeMain.texts.getString("confirm"),
 								JOptionPane.YES_NO_CANCEL_OPTION,
 								JOptionPane.QUESTION_MESSAGE, null, options,
 								options[1]);

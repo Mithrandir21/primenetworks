@@ -167,7 +167,7 @@ public abstract class Object implements Serializable, Cloneable
 	 * @param Desc
 	 *            The description of the object.
 	 */
-	public Object(String Name, String Desc)
+	protected Object(String Name, String Desc)
 	{
 		name = Name;
 		description = Desc;
@@ -195,7 +195,7 @@ public abstract class Object implements Serializable, Cloneable
 	 *            The supported connection interfaces an instance of a object
 	 *            supports.
 	 */
-	public Object(String Name, String Desc, String[] SupConInt)
+	protected Object(String Name, String Desc, String[] SupConInt)
 	{
 		name = Name;
 		description = Desc;
@@ -224,7 +224,7 @@ public abstract class Object implements Serializable, Cloneable
 	 * @param objectComponents
 	 *            The initial components an instance of a object has.
 	 */
-	public Object(String Name, String Desc, Object[] objectComponents)
+	protected Object(String Name, String Desc, Object[] objectComponents)
 	{
 		name = Name;
 		description = Desc;
@@ -257,7 +257,7 @@ public abstract class Object implements Serializable, Cloneable
 	 * @param objectComponents
 	 *            The initial components an instance of a object has.
 	 */
-	public Object(String Name, String Desc, String[] SupConInt,
+	protected Object(String Name, String Desc, String[] SupConInt,
 			Object[] objectComponents)
 	{
 		name = Name;
@@ -292,7 +292,7 @@ public abstract class Object implements Serializable, Cloneable
 	 *            The {@link objects.hardwareObjects.Motherboard motherboard} of
 	 *            an object.
 	 */
-	public Object(String Name, String Desc, String[] SupConInt,
+	protected Object(String Name, String Desc, String[] SupConInt,
 			Motherboard objectMB)
 	{
 		name = Name;
@@ -692,7 +692,7 @@ public abstract class Object implements Serializable, Cloneable
 	 * @param NewComponents
 	 *            An array of new components.
 	 */
-	public void addComponents(Object[] NewComponents) throws Exception
+	public void addComponents(Object[] NewComponents)
 	{
 		components = ComponentsManagment.addComponents(NewComponents,
 				components, componentCounter);
@@ -813,15 +813,7 @@ public abstract class Object implements Serializable, Cloneable
 			removeNetworkConnection((NetworkConnection) con);
 		}
 
-		try
-		{
-			releaseSingelConnectionPort(con.getConnectionType());
-		}
-		catch ( PortIsNotRegisteredOnMotherboard e )
-		{
-			System.out.println(e.getMessage());
-		}
-
+		releaseSingelConnectionPort(con.getConnectionType());
 	}
 
 
@@ -1033,7 +1025,6 @@ public abstract class Object implements Serializable, Cloneable
 	 * @throws PortIsNotRegisteredOnMotherboard
 	 */
 	public void releaseSingelConnectionPort(String conType)
-			throws PortIsNotRegisteredOnMotherboard
 	{
 		Motherboard objectMotherboard = null;
 
@@ -1304,10 +1295,8 @@ public abstract class Object implements Serializable, Cloneable
 	{
 		NetworkConnection[] temp = new NetworkConnection[array.length + 5];
 
-		for ( int i = 0; i < array.length; i++ )
-		{
-			temp[i] = array[i];
-		}
+		// Addes the new items to the end of the new array
+		System.arraycopy(array, 0, temp, 0, array.length);
 
 		return temp;
 	}
@@ -1320,10 +1309,8 @@ public abstract class Object implements Serializable, Cloneable
 	{
 		DeviceConnection[] temp = new DeviceConnection[array.length + 5];
 
-		for ( int i = 0; i < array.length; i++ )
-		{
-			temp[i] = array[i];
-		}
+		// Addes the new items to the end of the new array
+		System.arraycopy(array, 0, temp, 0, array.length);
 
 		return temp;
 	}
@@ -1337,10 +1324,8 @@ public abstract class Object implements Serializable, Cloneable
 	{
 		InternalConnection[] temp = new InternalConnection[array.length + 5];
 
-		for ( int i = 0; i < array.length; i++ )
-		{
-			temp[i] = array[i];
-		}
+		// Addes the new items to the end of the new array
+		System.arraycopy(array, 0, temp, 0, array.length);
 
 		return temp;
 	}
@@ -1387,12 +1372,12 @@ public abstract class Object implements Serializable, Cloneable
 
 		if ( networkConnections != null )
 		{
-			connectionsLenght = connectionsLenght + networkConnections.length;
+			connectionsLenght += networkConnections.length;
 		}
 
 		if ( deviceConnections != null )
 		{
-			connectionsLenght = connectionsLenght + deviceConnections.length;
+			connectionsLenght += deviceConnections.length;
 		}
 
 

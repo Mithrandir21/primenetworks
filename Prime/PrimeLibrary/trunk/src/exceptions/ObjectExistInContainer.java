@@ -46,7 +46,7 @@ public class ObjectExistInContainer extends Exception
 	{
 		super(message);
 
-		object = FoundObject;
+		this.object = FoundObject;
 	}
 
 
@@ -57,6 +57,6 @@ public class ObjectExistInContainer extends Exception
 	public Object getObject()
 	{
 
-		return object;
+		return this.object;
 	}
 }

@@ -288,12 +288,12 @@ public class VirtualizationEditView extends JPanel implements ActionListener,
 	@Override
 	public void save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			virtSoft.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			virtSoft.setDescription(desc.getText());
 		}

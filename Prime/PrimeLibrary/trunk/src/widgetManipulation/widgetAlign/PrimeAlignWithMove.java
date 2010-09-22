@@ -57,7 +57,7 @@ public class PrimeAlignWithMove extends AlignWithSupport implements
 
 		Rectangle widgetBounds = widObj.getClientArea();
 
-		Rectangle imageWidgetBoud = widObj.getImageWidget().getBounds();
+		// Rectangle imageWidgetBoud = widObj.getImageWidget().getBounds();
 
 
 		// Rectangle bounds = widObj.convertLocalToScene(new Rectangle(

@@ -156,7 +156,7 @@ public class HardwareEditor extends JDialog implements ActionListener
 
 	public void createNewEditorTab(Object obj)
 	{
-		givenObject = obj;
+		this.givenObject = obj;
 
 		Dimension size = new Dimension(870, 600);
 
@@ -177,8 +177,8 @@ public class HardwareEditor extends JDialog implements ActionListener
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
 
-		view = new HardwareEditorTabbed(obj);
-		panel.add(view);
+		this.view = new HardwareEditorTabbed(obj);
+		panel.add(this.view);
 
 
 
@@ -231,15 +231,15 @@ public class HardwareEditor extends JDialog implements ActionListener
 			boolean verify = true;
 
 			// If the object is an instance of infrastructure, external hardware or internet class.
-			if ( givenObject instanceof Infrastructure
-					|| givenObject instanceof ExternalHardware
-					|| givenObject instanceof Internet )
+			if ( this.givenObject instanceof Infrastructure
+					|| this.givenObject instanceof ExternalHardware
+					|| this.givenObject instanceof Internet )
 			{
 				verify = false;
 			}
 
 			// If the information is saved a true is returned and the JFrame is closed.
-			if ( view.save(verify) )
+			if ( this.view.save(verify) )
 			{
 				this.dispose();
 			}

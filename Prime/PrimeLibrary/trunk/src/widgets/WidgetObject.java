@@ -26,9 +26,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.geom.Rectangle2D;
-import java.io.IOException;
 
 import objects.Object;
 import objects.softwareObjects.OperatingSystem;
@@ -67,7 +65,7 @@ public class WidgetObject extends Widget implements Transferable
 	// The information regarding the widgets in the network
 	private WidgetNetworkInfo widNetInfo = new WidgetNetworkInfo();
 
-	private static final DataFlavor flavors[] = new DataFlavor[1];
+	private static final DataFlavor[] flavors = new DataFlavor[1];
 
 
 	/**
@@ -102,23 +100,23 @@ public class WidgetObject extends Widget implements Transferable
 	public WidgetObject(Scene scene, Object obj, Image objImg)
 	{
 		super(scene);
-		object = obj;
+		this.object = obj;
 
 		LookFeel lookFeel = getScene().getLookFeel();
 
 		this.setLayout(LayoutFactory.createVerticalFlowLayout(
 				LayoutFactory.SerialAlignment.CENTER, -lookFeel.getMargin() + 1));
 
-		labelWidget = new LabelWidget(scene);
+		this.labelWidget = new LabelWidget(scene);
 		// labelWidget.setFont(scene.getDefaultFont().deriveFont(14.0f));
-		this.addChild(labelWidget);
+		this.addChild(this.labelWidget);
 
-		imageWidget = new ObjectImageWidget(scene, objImg);
-		this.addChild(imageWidget);
+		this.imageWidget = new ObjectImageWidget(scene, objImg);
+		this.addChild(this.imageWidget);
 
-		ipLabelWidget = new LabelWidget(scene);
-		ipLabelWidget.setLabel("");
-		this.addChild(ipLabelWidget);
+		this.ipLabelWidget = new LabelWidget(scene);
+		this.ipLabelWidget.setLabel("");
+		this.addChild(this.ipLabelWidget);
 
 
 		this.setState(ObjectState.createNormal());
@@ -134,7 +132,7 @@ public class WidgetObject extends Widget implements Transferable
 	 */
 	public Object getObject()
 	{
-		return object;
+		return this.object;
 	}
 
 
@@ -144,7 +142,7 @@ public class WidgetObject extends Widget implements Transferable
 	 */
 	public WidgetNetworkInfo getWidgetNetworkInfo()
 	{
-		return widNetInfo;
+		return this.widNetInfo;
 	}
 
 
@@ -154,7 +152,7 @@ public class WidgetObject extends Widget implements Transferable
 	 */
 	public Image getImage()
 	{
-		return imageWidget.getImage();
+		return this.imageWidget.getImage();
 	}
 
 
@@ -166,7 +164,7 @@ public class WidgetObject extends Widget implements Transferable
 	 */
 	public String getLabel()
 	{
-		return labelWidget.getLabel();
+		return this.labelWidget.getLabel();
 	}
 
 
@@ -177,7 +175,7 @@ public class WidgetObject extends Widget implements Transferable
 	 */
 	public ImageWidget getImageWidget()
 	{
-		return imageWidget;
+		return this.imageWidget;
 	}
 
 
@@ -188,7 +186,7 @@ public class WidgetObject extends Widget implements Transferable
 	 */
 	public LabelWidget getLabelWidget()
 	{
-		return labelWidget;
+		return this.labelWidget;
 	}
 
 
@@ -199,7 +197,7 @@ public class WidgetObject extends Widget implements Transferable
 	 */
 	public LabelWidget getIPlabelWidget()
 	{
-		return ipLabelWidget;
+		return this.ipLabelWidget;
 	}
 
 
@@ -221,7 +219,7 @@ public class WidgetObject extends Widget implements Transferable
 	 */
 	public void setWidgetNetworkInfo(WidgetNetworkInfo netInfo)
 	{
-		widNetInfo = netInfo;
+		this.widNetInfo = netInfo;
 	}
 
 
@@ -233,7 +231,7 @@ public class WidgetObject extends Widget implements Transferable
 	 */
 	public final void setLabel(String label)
 	{
-		labelWidget.setLabel(label);
+		this.labelWidget.setLabel(label);
 	}
 
 
@@ -243,9 +241,9 @@ public class WidgetObject extends Widget implements Transferable
 	 */
 	public void setOSimage(Image osImage)
 	{
-		if ( osImage != null && imageWidget != null )
+		if ( osImage != null && this.imageWidget != null )
 		{
-			imageWidget.setOSImageWidget(osImage);
+			this.imageWidget.setOSImageWidget(osImage);
 		}
 	}
 
@@ -256,15 +254,14 @@ public class WidgetObject extends Widget implements Transferable
 	 */
 	public void removeOSimage()
 	{
-		if ( imageWidget != null )
+		if ( this.imageWidget != null )
 		{
-			imageWidget.setOSImageWidget(null);
+			this.imageWidget.setOSImageWidget(null);
 		}
 	}
 
 	// TRANSFERABLE IMPLEMENTATION
 	public WidgetObject getTransferData(DataFlavor flavor)
-			throws UnsupportedFlavorException, IOException
 	{
 		// System.out.println("WidgetCanvas - getTransferData");
 		if ( isDataFlavorSupported(flavor) )
@@ -312,8 +309,8 @@ public class WidgetObject extends Widget implements Transferable
 	 */
 	public Dimension getImageDimension()
 	{
-		return new Dimension(imageWidget.getImage().getHeight(null),
-				imageWidget.getImage().getWidth(null));
+		return new Dimension(this.imageWidget.getImage().getHeight(null),
+				this.imageWidget.getImage().getWidth(null));
 	}
 
 
@@ -327,7 +324,7 @@ public class WidgetObject extends Widget implements Transferable
 		Graphics2D gr = getScene().getGraphics();
 		FontMetrics fontMetrics = gr.getFontMetrics();
 		Rectangle2D stringBounds = fontMetrics.getStringBounds(
-				object.getObjectName(), gr);
+				this.object.getObjectName(), gr);
 		Rectangle rectangle = GeomUtil.roundRectangle(stringBounds);
 
 

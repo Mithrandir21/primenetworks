@@ -64,9 +64,9 @@ public class AntivirusServer extends Servers implements Serializable
 		super(Name, Desc);
 
 		// Creates a Antivirus software object
-		antivirus = new Antivirus(AntivirusSWname, AntivirusSWdesc,
+		this.antivirus = new Antivirus(AntivirusSWname, AntivirusSWdesc,
 				AntivirusSWversion);
-		Software[] sw = { antivirus };
+		Software[] sw = { this.antivirus };
 		super.setSoftware(sw);
 	}
 
@@ -94,9 +94,9 @@ public class AntivirusServer extends Servers implements Serializable
 		super(Name, Desc, SupConInt);
 
 		// Creates a Antivirus software object
-		antivirus = new Antivirus(AntivirusSWname, AntivirusSWdesc,
+		this.antivirus = new Antivirus(AntivirusSWname, AntivirusSWdesc,
 				AntivirusSWversion);
-		Software[] sw = { antivirus };
+		Software[] sw = { this.antivirus };
 		super.setSoftware(sw);
 	}
 
@@ -124,9 +124,9 @@ public class AntivirusServer extends Servers implements Serializable
 		super(Name, Desc, DesktopComponents);
 
 		// Creates a Antivirus software object
-		antivirus = new Antivirus(AntivirusSWname, AntivirusSWdesc,
+		this.antivirus = new Antivirus(AntivirusSWname, AntivirusSWdesc,
 				AntivirusSWversion);
-		Software[] sw = { antivirus };
+		Software[] sw = { this.antivirus };
 		super.setSoftware(sw);
 	}
 
@@ -154,9 +154,9 @@ public class AntivirusServer extends Servers implements Serializable
 		super(Name, Desc, SupConInt, DesktopComponents);
 
 		// Creates a Antivirus software object
-		antivirus = new Antivirus(AntivirusSWname, AntivirusSWdesc,
+		this.antivirus = new Antivirus(AntivirusSWname, AntivirusSWdesc,
 				AntivirusSWversion);
-		Software[] sw = { antivirus };
+		Software[] sw = { this.antivirus };
 		super.setSoftware(sw);
 	}
 
@@ -170,7 +170,7 @@ public class AntivirusServer extends Servers implements Serializable
 	public Antivirus getAntivirusApplication()
 	{
 
-		return antivirus;
+		return this.antivirus;
 	}
 
 

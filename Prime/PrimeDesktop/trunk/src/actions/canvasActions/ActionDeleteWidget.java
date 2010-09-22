@@ -135,9 +135,9 @@ public class ActionDeleteWidget extends AbstractSystemAction implements
 	@Override
 	public void die()
 	{
-		canvas = null;
-		widObject = null;
-		existingConnections = null;
+		this.canvas = null;
+		this.widObject = null;
+		this.existingConnections = null;
 	}
 
 	/*
@@ -194,7 +194,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements
 	@Override
 	public void redo() throws CannotRedoException
 	{
-		WorkareaCanvasActions.removeObject(canvas, widObject, true);
+		WorkareaCanvasActions.removeObject(this.canvas, this.widObject, true);
 	}
 
 

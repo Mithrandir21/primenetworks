@@ -29,12 +29,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.UnknownHostException;
 
-import managment.Settings;
-
 
 /**
  * This class contains method that help the system determine if the current
- * version of the application is the lastet.
+ * version of the application is the latest.
  * 
  * This is mainly done by checking the content of a text file on a server.
  * 
@@ -56,10 +54,10 @@ public class PrimeDesktopUpdateService
 
 		if ( newestVersion != null )
 		{
-			if ( !newestVersion.equalsIgnoreCase(Settings.appVersion) )
-			{
-				new UpdateDialog();
-			}
+			// if ( !newestVersion.equalsIgnoreCase(Settings.appVersion) )
+			// {
+			new UpdateDialog();
+			// }
 		}
 	}
 
@@ -97,15 +95,17 @@ public class PrimeDesktopUpdateService
 				InputStream stream = (InputStream) content;
 
 				StringBuilder sb = new StringBuilder();
-				String line;
+
 
 				try
 				{
 					BufferedReader reader = new BufferedReader(
 							new InputStreamReader(stream, "UTF-8"));
-					while ( (line = reader.readLine()) != null )
+					String line = reader.readLine();
+					while ( line != null )
 					{
 						sb.append(line);
+						line = reader.readLine();
 					}
 				}
 				finally
@@ -139,7 +139,7 @@ public class PrimeDesktopUpdateService
 	{
 		if ( Desktop.isDesktopSupported() )
 		{
-			System.err.println("Desktop is not supported (fatal)");
+			// System.err.println("Desktop is not supported (fatal)");
 		}
 
 		Desktop desktop = Desktop.getDesktop();

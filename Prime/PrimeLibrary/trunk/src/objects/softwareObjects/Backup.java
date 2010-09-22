@@ -71,7 +71,7 @@ public class Backup extends Software implements Serializable
 	 */
 	public String[] getSupportedOperatingSystems()
 	{
-		return supportedOperatingSystems;
+		return this.supportedOperatingSystems;
 	}
 
 
@@ -83,7 +83,7 @@ public class Backup extends Software implements Serializable
 	 */
 	public String getBackupType()
 	{
-		return backupType;
+		return this.backupType;
 	}
 
 
@@ -95,7 +95,7 @@ public class Backup extends Software implements Serializable
 	 */
 	public boolean supportsCompression()
 	{
-		return compression;
+		return this.compression;
 	}
 
 
@@ -107,7 +107,7 @@ public class Backup extends Software implements Serializable
 	 */
 	public boolean supportsEncryption()
 	{
-		return encryption;
+		return this.encryption;
 	}
 
 
@@ -119,7 +119,7 @@ public class Backup extends Software implements Serializable
 	 */
 	public int getDuplicate()
 	{
-		return duplicate;
+		return this.duplicate;
 	}
 
 
@@ -183,6 +183,6 @@ public class Backup extends Software implements Serializable
 	 */
 	public void setDuplicate(int dup)
 	{
-		duplicate = dup;
+		this.duplicate = dup;
 	}
 }

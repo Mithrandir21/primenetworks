@@ -80,7 +80,7 @@ public class Proxy extends Software implements Serializable
 	public String[] getSupportedOperatingSystems()
 	{
 
-		return supportedOperatingSystems;
+		return this.supportedOperatingSystems;
 	}
 
 
@@ -94,7 +94,7 @@ public class Proxy extends Software implements Serializable
 	public boolean hasAnonymizingProxy()
 	{
 
-		return anonymizingProxy;
+		return this.anonymizingProxy;
 	}
 
 
@@ -108,7 +108,7 @@ public class Proxy extends Software implements Serializable
 	public boolean hasCaching()
 	{
 
-		return caching;
+		return this.caching;
 	}
 
 
@@ -122,7 +122,7 @@ public class Proxy extends Software implements Serializable
 	public boolean hasReverseProxy()
 	{
 
-		return reverseProxy;
+		return this.reverseProxy;
 	}
 
 
@@ -136,7 +136,7 @@ public class Proxy extends Software implements Serializable
 	public boolean supportsHTTPS()
 	{
 
-		return supportsHTTPS;
+		return this.supportsHTTPS;
 	}
 
 
@@ -150,7 +150,7 @@ public class Proxy extends Software implements Serializable
 	public boolean supportsIPv6()
 	{
 
-		return supportsIPv6;
+		return this.supportsIPv6;
 	}
 
 
@@ -164,7 +164,7 @@ public class Proxy extends Software implements Serializable
 	public boolean supportsSSL()
 	{
 
-		return supportsSSL;
+		return this.supportsSSL;
 	}
 
 
@@ -178,7 +178,7 @@ public class Proxy extends Software implements Serializable
 	public boolean supportsTSL()
 	{
 
-		return supportsTSL;
+		return this.supportsTSL;
 	}
 
 
@@ -192,7 +192,7 @@ public class Proxy extends Software implements Serializable
 	public boolean hasTransparentProxy()
 	{
 
-		return transparentProxy;
+		return this.transparentProxy;
 	}
 
 
@@ -206,7 +206,7 @@ public class Proxy extends Software implements Serializable
 	public boolean hasWebProxy()
 	{
 
-		return webProxy;
+		return this.webProxy;
 	}
 
 

@@ -43,7 +43,7 @@ public class GhostGlassPane extends JPanel
 	public GhostGlassPane()
 	{
 		setOpaque(false);
-		composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
+		this.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
 	}
 
 	public void setImage(BufferedImage dragged)
@@ -58,13 +58,13 @@ public class GhostGlassPane extends JPanel
 
 	public void paintComponent(Graphics g)
 	{
-		if ( dragged == null )
+		if ( this.dragged == null )
 			return;
 
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setComposite(composite);
-		g2.drawImage(dragged,
-				(int) (location.getX() - (dragged.getWidth(this) / 2)),
-				(int) (location.getY() - (dragged.getHeight(this) / 2)), null);
+		g2.setComposite(this.composite);
+		g2.drawImage(this.dragged,
+				(int) (this.location.getX() - (this.dragged.getWidth(this) / 2)),
+				(int) (this.location.getY() - (this.dragged.getHeight(this) / 2)), null);
 	}
 }

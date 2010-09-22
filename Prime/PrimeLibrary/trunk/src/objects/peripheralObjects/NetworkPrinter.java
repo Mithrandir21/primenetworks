@@ -97,7 +97,7 @@ public class NetworkPrinter extends Printer
 	 */
 	public WidgetNetworkInfo getInfo()
 	{
-		return info;
+		return this.info;
 	}
 
 

@@ -401,12 +401,12 @@ public class InternalNICNewView extends JDialog implements
 	@Override
 	public boolean save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			IntNIC.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			IntNIC.setDescription(desc.getText());
 		}
@@ -418,7 +418,7 @@ public class InternalNICNewView extends JDialog implements
 		IntNIC.setType(conType.getSelectedItem().toString());
 
 
-		if ( transferSpeed.getSelectedItem().toString() != "" )
+		if ( !transferSpeed.getSelectedItem().toString().equals("") )
 		{
 			IntNIC.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem()
 					.toString()));

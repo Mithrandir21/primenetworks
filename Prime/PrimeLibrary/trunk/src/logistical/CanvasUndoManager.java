@@ -52,7 +52,7 @@ public class CanvasUndoManager extends UndoManager
 	 */
 	public WorkareaCanvas getCanvas()
 	{
-		return canvas;
+		return this.canvas;
 	}
 
 

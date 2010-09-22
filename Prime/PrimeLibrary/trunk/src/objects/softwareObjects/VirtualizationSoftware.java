@@ -65,7 +65,7 @@ public class VirtualizationSoftware extends Software
 	public String[] getSupportedOperatingSystems()
 	{
 
-		return supportedOperatingSystems;
+		return this.supportedOperatingSystems;
 	}
 
 
@@ -76,7 +76,7 @@ public class VirtualizationSoftware extends Software
 	 */
 	public boolean isNoHost()
 	{
-		return noHost;
+		return this.noHost;
 	}
 
 
@@ -87,7 +87,7 @@ public class VirtualizationSoftware extends Software
 	 */
 	public boolean supportsSMP()
 	{
-		return supSMP;
+		return this.supSMP;
 	}
 
 
@@ -97,7 +97,7 @@ public class VirtualizationSoftware extends Software
 	 */
 	public boolean supports3Dacceleration()
 	{
-		return sup3Dacceleration;
+		return this.sup3Dacceleration;
 	}
 
 
@@ -108,7 +108,7 @@ public class VirtualizationSoftware extends Software
 	 */
 	public boolean supportsLiveSnapshots()
 	{
-		return supLiveSnapshots;
+		return this.supLiveSnapshots;
 	}
 
 

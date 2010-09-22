@@ -398,7 +398,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 		for ( int i = 1; i < gpuPortStrings.length; i++ )
 		{
-			if ( mb.getGraphicalPort() != null && mb.getGraphicalPort() != "" )
+			if ( mb.getGraphicalPort() != null && !mb.getGraphicalPort().equals("") )
 			{
 				if ( gpuPorts.getItemAt(i).equals(mb.getGraphicalPort()) )
 				{
@@ -435,7 +435,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 		for ( int i = 0; i < DUCStrings.length; i++ )
 		{
 			if ( mb.getDUCconnectionType() != null
-					&& mb.getDUCconnectionType() != "" )
+					&& !mb.getDUCconnectionType().equals("") )
 			{
 				if ( DUCPorts.getItemAt(i).equals(mb.getDUCconnectionType()) )
 				{
@@ -471,7 +471,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 		for ( int i = 0; i < RAMStrings.length; i++ )
 		{
-			if ( mb.getRAMtype() != null && mb.getRAMtype() != "" )
+			if ( mb.getRAMtype() != null && !mb.getRAMtype().equals("") )
 			{
 				if ( RAMPorts.getItemAt(i).equals(mb.getRAMtype()) )
 				{
@@ -966,12 +966,12 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 	{
 		boolean validated = true;
 
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			mbObj.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			mbObj.setDescription(desc.getText());
 		}
@@ -983,7 +983,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 		mbObj.setSocket(sockets.getSelectedItem().toString());
 
 
-		if ( busSpeeds.getSelectedItem().toString() != "" )
+		if ( !busSpeeds.getSelectedItem().toString().equals("") )
 		{
 			mbObj.setBusSpeed(Integer.parseInt(busSpeeds.getSelectedItem()
 					.toString()));
@@ -1009,22 +1009,22 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 		mbObj.setGraphicsCardInstalled(GPUinstalled.isSelected());
 
 
-		if ( CPUsockets.getSelectedItem().toString() != "" )
+		if ( !CPUsockets.getSelectedItem().toString().equals("") )
 		{
 			ComponentsManagment.CPUportsValidation(mainObj, mbObj, CPUsockets);
 		}
 
-		if ( PCIslots.getSelectedItem().toString() != "" )
+		if ( !PCIslots.getSelectedItem().toString().equals("") )
 		{
 			ComponentsManagment.PCIportsValidation(mainObj, mbObj, PCIslots);
 		}
 
-		if ( RAMslots.getSelectedItem().toString() != "" )
+		if ( !RAMslots.getSelectedItem().toString().equals("") )
 		{
 			ComponentsManagment.RAMportsValidation(mainObj, mbObj, RAMslots);
 		}
 
-		if ( USBports.getSelectedItem().toString() != "" )
+		if ( !USBports.getSelectedItem().toString().equals("") )
 		{
 			boolean standardObject = false;
 
@@ -1128,7 +1128,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 
 
-		if ( DUCports.getSelectedItem().toString() != "" )
+		if ( !DUCports.getSelectedItem().toString().equals("") )
 		{
 			ComponentsManagment.DUCportsValidation(mainObj, mbObj, DUCports);
 		}
@@ -1136,7 +1136,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 
 
-		if ( LANports.getSelectedItem().toString() != "" )
+		if ( !LANports.getSelectedItem().toString().equals("") )
 		{
 			boolean standardObject = false;
 
@@ -1241,7 +1241,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 
 
-		if ( CoaxPorts.getSelectedItem().toString() != "" )
+		if ( !CoaxPorts.getSelectedItem().toString().equals("") )
 		{
 			boolean standardObject = false;
 
@@ -1346,7 +1346,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 
 
-		if ( FiberPorts.getSelectedItem().toString() != "" )
+		if ( !FiberPorts.getSelectedItem().toString().equals("") )
 		{
 			boolean standardObject = false;
 

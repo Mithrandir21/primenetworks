@@ -69,7 +69,7 @@ public class OperatingSystem extends Software implements Serializable
 	 */
 	public boolean isEncryptedFileSystem()
 	{
-		return encryptedFileSystem;
+		return this.encryptedFileSystem;
 	}
 
 
@@ -79,7 +79,7 @@ public class OperatingSystem extends Software implements Serializable
 	 */
 	public boolean isHasGUI()
 	{
-		return hasGUI;
+		return this.hasGUI;
 	}
 
 
@@ -89,7 +89,7 @@ public class OperatingSystem extends Software implements Serializable
 	 */
 	public boolean isIs64bit()
 	{
-		return is64bit;
+		return this.is64bit;
 	}
 
 

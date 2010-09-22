@@ -45,9 +45,9 @@ public class PortIsNotRegisteredOnMotherboard extends Exception
 	public PortIsNotRegisteredOnMotherboard(Motherboard aMB, Object aOb,
 			String type)
 	{
-		mb = aMB;
-		obj = aOb;
-		conType = type;
+		this.mb = aMB;
+		this.obj = aOb;
+		this.conType = type;
 	}
 
 
@@ -58,9 +58,9 @@ public class PortIsNotRegisteredOnMotherboard extends Exception
 	@Override
 	public String getMessage()
 	{
-		String output = "The motherboard, " + mb.getObjectName()
-				+ ", on the object " + obj.getObjectName()
-				+ " has not registered " + conType
+		String output = "The motherboard, " + this.mb.getObjectName()
+				+ ", on the object " + this.obj.getObjectName()
+				+ " has not registered " + this.conType
 				+ " ports in the correct way.";
 
 		return output;

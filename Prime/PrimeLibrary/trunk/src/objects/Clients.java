@@ -56,7 +56,7 @@ public abstract class Clients extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the desktop.
 	 */
-	public Clients(String Name, String Desc)
+	protected Clients(String Name, String Desc)
 	{
 		super(Name, Desc);
 	}
@@ -75,7 +75,7 @@ public abstract class Clients extends Object implements Serializable
 	 * @param SupConInt
 	 *            The connection interfaces supported by the client.
 	 */
-	public Clients(String Name, String Desc, String[] SupConInt)
+	protected Clients(String Name, String Desc, String[] SupConInt)
 	{
 		super(Name, Desc, SupConInt);
 	}
@@ -94,7 +94,7 @@ public abstract class Clients extends Object implements Serializable
 	 * @param DesktopComponents
 	 *            The initial components an instance of a desktop has.
 	 */
-	public Clients(String Name, String Desc, Object[] DesktopComponents)
+	protected Clients(String Name, String Desc, Object[] DesktopComponents)
 	{
 		super(Name, Desc, DesktopComponents);
 	}
@@ -114,7 +114,7 @@ public abstract class Clients extends Object implements Serializable
 	 * @param DesktopComponents
 	 *            The initial components an instance of a desktop has.
 	 */
-	public Clients(String Name, String Desc, String[] SupConInt,
+	protected Clients(String Name, String Desc, String[] SupConInt,
 			Object[] DesktopComponents)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
@@ -129,7 +129,7 @@ public abstract class Clients extends Object implements Serializable
 	 */
 	public int getNumberJumps()
 	{
-		return numberOfNodes;
+		return this.numberOfNodes;
 	}
 
 
@@ -139,7 +139,7 @@ public abstract class Clients extends Object implements Serializable
 	 */
 	public void setNumberOfJumps(int jumps)
 	{
-		numberOfNodes = jumps;
+		this.numberOfNodes = jumps;
 	}
 
 
@@ -151,7 +151,7 @@ public abstract class Clients extends Object implements Serializable
 	 */
 	public int getClientRate()
 	{
-		return clientRate;
+		return this.clientRate;
 	}
 
 

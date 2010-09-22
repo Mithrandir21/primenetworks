@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package widgets;
 
@@ -27,14 +27,16 @@ import objects.Object;
 
 
 /**
- * This class represents a JButton which contains a pointer to an {@link Object} class that the JButton will represent.
+ * This class represents a JButton which contains a pointer to an {@link Object}
+ * class that the JButton will represent.
  * 
  * @author Bahram Malaekeh
  */
 public class WidgetButton extends JButton
 {
 	/**
-	 * This represents the class type what the icon represents. Like {@link objects.clientObjects.Desktop Desktop}.
+	 * This represents the class type what the icon represents. Like
+	 * {@link objects.clientObjects.Desktop Desktop}.
 	 */
 	private Class<?> classType;
 
@@ -67,9 +69,9 @@ public class WidgetButton extends JButton
 	public WidgetButton(Object obj)
 	{
 		super(obj.getVisualImage());
-		object = obj;
-		img = obj.getVisualImage().getImage();
-		classType = obj.getClass();
+		this.object = obj;
+		this.img = obj.getVisualImage().getImage();
+		this.classType = obj.getClass();
 		setText(obj.getObjectName());
 	}
 
@@ -88,8 +90,8 @@ public class WidgetButton extends JButton
 	public WidgetButton(ImageIcon icon, Class<?> objectType)
 	{
 		super(icon);
-		img = icon.getImage();
-		classType = objectType;
+		this.img = icon.getImage();
+		this.classType = objectType;
 	}
 
 
@@ -111,8 +113,8 @@ public class WidgetButton extends JButton
 	public WidgetButton(ImageIcon icon, Class<?> objectType, String name)
 	{
 		super(icon);
-		img = icon.getImage();
-		classType = objectType;
+		this.img = icon.getImage();
+		this.classType = objectType;
 		setText(name);
 	}
 
@@ -137,10 +139,10 @@ public class WidgetButton extends JButton
 			String desc)
 	{
 		super(icon);
-		img = icon.getImage();
-		classType = objectType;
+		this.img = icon.getImage();
+		this.classType = objectType;
 		setText(name);
-		description = desc;
+		this.description = desc;
 	}
 
 
@@ -155,7 +157,7 @@ public class WidgetButton extends JButton
 	 */
 	public Class<?> getClassType()
 	{
-		return classType;
+		return this.classType;
 	}
 
 
@@ -165,7 +167,7 @@ public class WidgetButton extends JButton
 	 */
 	public String getDescription()
 	{
-		return description;
+		return this.description;
 	}
 
 
@@ -175,7 +177,7 @@ public class WidgetButton extends JButton
 	 */
 	public Image getIconImage()
 	{
-		return img;
+		return this.img;
 	}
 
 
@@ -184,6 +186,6 @@ public class WidgetButton extends JButton
 	 */
 	public Object getObject()
 	{
-		return object;
+		return this.object;
 	}
 }

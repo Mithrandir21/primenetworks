@@ -31,7 +31,7 @@ import java.io.Serializable;
  * 
  * @author Bahram Malaekeh
  */
-public class Permissions implements Serializable
+public class Permissions implements Serializable, Cloneable
 {
 	/**
 	 * Permission to read from a device.
@@ -56,9 +56,9 @@ public class Permissions implements Serializable
 	 */
 	public Permissions(boolean read, boolean write, boolean execute)
 	{
-		readAccess = read;
-		writeAccess = write;
-		executeAccess = execute;
+		this.readAccess = read;
+		this.writeAccess = write;
+		this.executeAccess = execute;
 	}
 
 
@@ -70,7 +70,7 @@ public class Permissions implements Serializable
 	 */
 	public boolean hasReadAccess()
 	{
-		return readAccess;
+		return this.readAccess;
 	}
 
 
@@ -79,7 +79,7 @@ public class Permissions implements Serializable
 	 */
 	public boolean hasWriteAccess()
 	{
-		return writeAccess;
+		return this.writeAccess;
 	}
 
 
@@ -88,7 +88,7 @@ public class Permissions implements Serializable
 	 */
 	public boolean hasExecuteAccess()
 	{
-		return executeAccess;
+		return this.executeAccess;
 	}
 
 
@@ -125,4 +125,15 @@ public class Permissions implements Serializable
 	}
 
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#clone()
+	 */
+	@Override
+	public Permissions clone()
+	{
+		return new Permissions(hasReadAccess(), hasWriteAccess(),
+				hasExecuteAccess());
+	}
 }

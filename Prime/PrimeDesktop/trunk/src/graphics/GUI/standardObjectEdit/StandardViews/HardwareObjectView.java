@@ -63,7 +63,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 {
 	private Object givenObject = null;
 
-	private StandardObjectHardwareEditor hwEditor = null;
+	private StandardObjectHardwareEditor hwEditor;
 
 
 	/**
@@ -320,7 +320,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				String text = null;
 
 				text = gpuObj.getObjectName();
-				if ( gpuObj.getObjectName() != ""
+				if ( !gpuObj.getObjectName().equals("")
 						&& gpuObj.getObjectName() != null )
 				{
 					info[0] = gpuObj.getObjectName();
@@ -619,7 +619,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 	 */
 	public StandardObjectHardwareEditor createNewHardwareEditor(Object obj)
 	{
-		return new StandardObjectHardwareEditor(obj);
+		return hwEditor = new StandardObjectHardwareEditor(obj);
 	}
 
 
@@ -718,7 +718,10 @@ public class HardwareObjectView extends JPanel implements ActionListener
 	 */
 	public void disposeHardwareView()
 	{
-		hwEditor.dispose();
-		hwEditor = null;
+		if ( hwEditor != null )
+		{
+			hwEditor.dispose();
+			hwEditor = null;
+		}
 	}
 }

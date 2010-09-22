@@ -129,7 +129,7 @@ public class MultifunctionPrinter extends ExternalHardware implements Serializab
 	 */
 	public boolean getHasPrinter()
 	{
-		return hasPrinter;
+		return this.hasPrinter;
 	}
 
 
@@ -142,9 +142,9 @@ public class MultifunctionPrinter extends ExternalHardware implements Serializab
 	public Printer getPrinterConnection()
 	{
 
-		if ( printerConnection != null )
+		if ( this.printerConnection != null )
 		{
-			return printerConnection;
+			return this.printerConnection;
 		}
 
 		return null;
@@ -158,7 +158,7 @@ public class MultifunctionPrinter extends ExternalHardware implements Serializab
 	 */
 	public boolean getHasScanner()
 	{
-		return hasScanner;
+		return this.hasScanner;
 	}
 
 
@@ -171,9 +171,9 @@ public class MultifunctionPrinter extends ExternalHardware implements Serializab
 	public Scanner getScannerConnection()
 	{
 
-		if ( scannerConnection != null )
+		if ( this.scannerConnection != null )
 		{
-			return scannerConnection;
+			return this.scannerConnection;
 		}
 
 		return null;
@@ -187,7 +187,7 @@ public class MultifunctionPrinter extends ExternalHardware implements Serializab
 	 */
 	public boolean getHasFax()
 	{
-		return hasFax;
+		return this.hasFax;
 	}
 
 
@@ -200,9 +200,9 @@ public class MultifunctionPrinter extends ExternalHardware implements Serializab
 	public Fax getFaxConnection()
 	{
 
-		if ( faxConnection != null )
+		if ( this.faxConnection != null )
 		{
-			return faxConnection;
+			return this.faxConnection;
 		}
 
 		return null;
@@ -217,7 +217,7 @@ public class MultifunctionPrinter extends ExternalHardware implements Serializab
 	 */
 	public void setHasPrinter(boolean MFPhasPrinter)
 	{
-		hasPrinter = MFPhasPrinter;
+		this.hasPrinter = MFPhasPrinter;
 	}
 
 
@@ -240,7 +240,7 @@ public class MultifunctionPrinter extends ExternalHardware implements Serializab
 	 */
 	public void setHasScanner(boolean MFPhasScanner)
 	{
-		hasScanner = MFPhasScanner;
+		this.hasScanner = MFPhasScanner;
 	}
 
 
@@ -263,7 +263,7 @@ public class MultifunctionPrinter extends ExternalHardware implements Serializab
 	 */
 	public void setHasFax(boolean MFPhasFax)
 	{
-		hasFax = MFPhasFax;
+		this.hasFax = MFPhasFax;
 	}
 
 

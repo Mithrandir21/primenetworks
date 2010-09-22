@@ -73,7 +73,7 @@ public class Email extends Software implements Serializable
 	public String[] getSupportedOperatingSystems()
 	{
 
-		return supportedOperatingSystems;
+		return this.supportedOperatingSystems;
 	}
 
 
@@ -86,7 +86,7 @@ public class Email extends Software implements Serializable
 	public boolean SupportsIMAP()
 	{
 
-		return supportsIMAP;
+		return this.supportsIMAP;
 	}
 
 
@@ -99,7 +99,7 @@ public class Email extends Software implements Serializable
 	public boolean SupportsNNTP()
 	{
 
-		return supportsNNTP;
+		return this.supportsNNTP;
 	}
 
 
@@ -112,7 +112,7 @@ public class Email extends Software implements Serializable
 	public boolean SupportsPOP3()
 	{
 
-		return supportsPOP3;
+		return this.supportsPOP3;
 	}
 
 
@@ -125,7 +125,7 @@ public class Email extends Software implements Serializable
 	public boolean SupportsSMTP()
 	{
 
-		return supportsSMTP;
+		return this.supportsSMTP;
 	}
 
 
@@ -138,7 +138,7 @@ public class Email extends Software implements Serializable
 	public boolean SupportsSSL()
 	{
 
-		return supportsSSL;
+		return this.supportsSSL;
 	}
 
 
@@ -151,7 +151,7 @@ public class Email extends Software implements Serializable
 	public boolean SupportsWebmail()
 	{
 
-		return supportsWebmail;
+		return this.supportsWebmail;
 	}
 
 

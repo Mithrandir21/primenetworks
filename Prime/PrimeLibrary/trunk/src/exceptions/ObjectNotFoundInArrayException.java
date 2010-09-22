@@ -49,7 +49,7 @@ public class ObjectNotFoundInArrayException extends Exception
 	{
 		super(message);
 
-		object = notFoundObject;
+		this.object = notFoundObject;
 	}
 
 
@@ -60,6 +60,6 @@ public class ObjectNotFoundInArrayException extends Exception
 	public Object getObject()
 	{
 
-		return object;
+		return this.object;
 	}
 }

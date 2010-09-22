@@ -77,11 +77,11 @@ public class WidgetNetworkInfo implements Serializable
 	public String getIp()
 	{
 		// If the string variable is null
-		if ( ip == null )
+		if ( this.ip == null )
 		{
 			return "";
 		}
-		return ip;
+		return this.ip;
 	}
 
 
@@ -93,11 +93,11 @@ public class WidgetNetworkInfo implements Serializable
 	public String getNetmask()
 	{
 		// If the string variable is null
-		if ( netmask == null )
+		if ( this.netmask == null )
 		{
 			return "";
 		}
-		return netmask;
+		return this.netmask;
 	}
 
 
@@ -109,11 +109,11 @@ public class WidgetNetworkInfo implements Serializable
 	public String getMAC()
 	{
 		// If the string variable is null
-		if ( MAC == null )
+		if ( this.MAC == null )
 		{
 			return "";
 		}
-		return MAC;
+		return this.MAC;
 	}
 
 
@@ -125,11 +125,11 @@ public class WidgetNetworkInfo implements Serializable
 	public String getDefaultGateway()
 	{
 		// If the string variable is null
-		if ( defaultGateway == null )
+		if ( this.defaultGateway == null )
 		{
 			return "";
 		}
-		return defaultGateway;
+		return this.defaultGateway;
 	}
 
 
@@ -141,11 +141,11 @@ public class WidgetNetworkInfo implements Serializable
 	public String getNetworkName()
 	{
 		// If the string variable is null
-		if ( networkName == null )
+		if ( this.networkName == null )
 		{
 			return "";
 		}
-		return networkName;
+		return this.networkName;
 	}
 
 
@@ -159,11 +159,11 @@ public class WidgetNetworkInfo implements Serializable
 	public String getWidgetNotes()
 	{
 		// If the string variable is null
-		if ( widgetNotes == null )
+		if ( this.widgetNotes == null )
 		{
 			return "";
 		}
-		return widgetNotes;
+		return this.widgetNotes;
 	}
 
 

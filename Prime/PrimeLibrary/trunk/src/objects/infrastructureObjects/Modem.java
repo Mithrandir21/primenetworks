@@ -71,7 +71,7 @@ public class Modem extends Infrastructure implements Serializable
 	public int getTransferRate()
 	{
 
-		return transferRate;
+		return this.transferRate;
 	}
 
 

@@ -236,7 +236,7 @@ public class WorkareaCanvas extends JPanel
 	 * 
 	 * @return the dt
 	 */
-	public DropTarget getDropTarget()
+	public synchronized DropTarget getDropTarget()
 	{
 		return dt;
 	}
@@ -416,10 +416,8 @@ public class WorkareaCanvas extends JPanel
 		WidgetObject[] childrenWidgets = new WidgetObject[childrenTemp.length];
 
 		// Casts all the objects in the converted list to widgetobjects
-		for ( int i = 0; i < childrenWidgets.length; i++ )
-		{
-			childrenWidgets[i] = (WidgetObject) childrenTemp[i];
-		}
+		System.arraycopy(childrenTemp, 0, childrenWidgets, 0,
+				childrenWidgets.length);
 
 
 		return childrenWidgets;
@@ -432,25 +430,13 @@ public class WorkareaCanvas extends JPanel
 	 */
 	public Object[] getObjectsOnTheScene()
 	{
-		// Get a list of Widgets in the mainlayer
-		List<Widget> l = mainLayer.getChildren();
-
-		// Converts that list to an array of Objects
-		java.lang.Object[] childrenTemp = l.toArray();
+		// Creates an array with the length of the all the children on the
+		// canvas
+		WidgetObject[] childrenWidgets = getWidgetObjectsOnTheScene();
 
 		// Creates an array with the length of the all the children on the
 		// canvas
-		WidgetObject[] childrenWidgets = new WidgetObject[childrenTemp.length];
-
-		// Casts all the objects in the converted list to widgetobjects
-		for ( int i = 0; i < childrenWidgets.length; i++ )
-		{
-			childrenWidgets[i] = (WidgetObject) childrenTemp[i];
-		}
-
-		// Creates an array with the length of the all the children on the
-		// canvas
-		Object[] childrenObject = new Object[childrenTemp.length];
+		Object[] childrenObject = new Object[childrenWidgets.length];
 
 		// Gets and places all the objects from within every widgetobject in an
 		// array
@@ -482,10 +468,7 @@ public class WorkareaCanvas extends JPanel
 		WidgetRoom[] roomWidgets = new WidgetRoom[roomTemp.length];
 
 		// Casts all the objects in the converted list to widgetobjects
-		for ( int i = 0; i < roomWidgets.length; i++ )
-		{
-			roomWidgets[i] = (WidgetRoom) roomTemp[i];
-		}
+		System.arraycopy(roomTemp, 0, roomWidgets, 0, roomWidgets.length);
 
 		roomWidgets = cleanup.cleanObjectArray(roomWidgets);
 
@@ -501,25 +484,13 @@ public class WorkareaCanvas extends JPanel
 	 */
 	public Room[] getNetworkRooms()
 	{
-		// Get a list of Widgets in the mainlayer
-		List<Widget> l = roomLayer.getChildren();
-
-		// Converts that list to an array of Objects
-		java.lang.Object[] roomTemp = l.toArray();
+		// Creates an array with the length of the all the children on the
+		// canvas
+		WidgetRoom[] roomWidgets = getNetworkWidgetRooms();
 
 		// Creates an array with the length of the all the children on the
 		// canvas
-		WidgetRoom[] roomWidgets = new WidgetRoom[roomTemp.length];
-
-		// Casts all the objects in the converted list to widgetobjects
-		for ( int i = 0; i < roomWidgets.length; i++ )
-		{
-			roomWidgets[i] = (WidgetRoom) roomTemp[i];
-		}
-
-		// Creates an array with the length of the all the children on the
-		// canvas
-		Room[] rooms = new Room[roomTemp.length];
+		Room[] rooms = new Room[roomWidgets.length];
 
 		// Gets and places all the objects from within every widgetobject in an
 		// array
@@ -625,7 +596,7 @@ public class WorkareaCanvas extends JPanel
 	/**
 	 * Javadoc-TODO - Description NEEDED!
 	 */
-	public void setDropTarget(DropTarget dt)
+	public synchronized void setDropTarget(DropTarget dt)
 	{
 		this.dt = dt;
 	}

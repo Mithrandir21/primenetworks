@@ -64,8 +64,8 @@ public class BackupServer extends Servers implements Serializable
 		super(Name, Desc);
 
 		// Creates a Backup software object
-		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
-		Software[] sw = { Backup };
+		this.Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
+		Software[] sw = { this.Backup };
 		super.setSoftware(sw);
 	}
 
@@ -91,8 +91,8 @@ public class BackupServer extends Servers implements Serializable
 		super(Name, Desc, SupConInt);
 
 		// Creates a Backup software object
-		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
-		Software[] sw = { Backup };
+		this.Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
+		Software[] sw = { this.Backup };
 		super.setSoftware(sw);
 	}
 
@@ -118,8 +118,8 @@ public class BackupServer extends Servers implements Serializable
 		super(Name, Desc, DesktopComponents);
 
 		// Creates a Backup software object
-		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
-		Software[] sw = { Backup };
+		this.Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
+		Software[] sw = { this.Backup };
 		super.setSoftware(sw);
 	}
 
@@ -146,8 +146,8 @@ public class BackupServer extends Servers implements Serializable
 		super(Name, Desc, SupConInt, DesktopComponents);
 
 		// Creates a Backup software object
-		Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
-		Software[] sw = { Backup };
+		this.Backup = new Backup(BackupSWname, BackupSWdesc, BackupSWversion);
+		Software[] sw = { this.Backup };
 		super.setSoftware(sw);
 	}
 
@@ -161,7 +161,7 @@ public class BackupServer extends Servers implements Serializable
 	public Backup getBackupApplication()
 	{
 
-		return Backup;
+		return this.Backup;
 	}
 
 

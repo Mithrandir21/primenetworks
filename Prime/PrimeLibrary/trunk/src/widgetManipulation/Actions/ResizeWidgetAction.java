@@ -62,7 +62,7 @@ public class ResizeWidgetAction extends WidgetAction.LockedAdapter
 
 	protected boolean isLocked()
 	{
-		return resizingWidget != null;
+		return this.resizingWidget != null;
 	}
 
 	public State mousePressed(Widget widget, WidgetMouseEvent event)
@@ -70,22 +70,22 @@ public class ResizeWidgetAction extends WidgetAction.LockedAdapter
 		if ( event.getButton() == MouseEvent.BUTTON1
 				&& event.getClickCount() == 1 )
 		{
-			insets = widget.getBorder().getInsets();
-			controlPoint = resolver.resolveControlPoint(widget, event
+			this.insets = widget.getBorder().getInsets();
+			this.controlPoint = this.resolver.resolveControlPoint(widget, event
 					.getPoint());
-			if ( controlPoint != null )
+			if ( this.controlPoint != null )
 			{
-				resizingWidget = widget;
-				originalSceneRectangle = null;
+				this.resizingWidget = widget;
+				this.originalSceneRectangle = null;
 				if ( widget.isPreferredBoundsSet() )
-					originalSceneRectangle = widget.getPreferredBounds();
-				if ( originalSceneRectangle == null )
-					originalSceneRectangle = widget.getBounds();
-				if ( originalSceneRectangle == null )
-					originalSceneRectangle = widget.getPreferredBounds();
-				dragSceneLocation = widget
+					this.originalSceneRectangle = widget.getPreferredBounds();
+				if ( this.originalSceneRectangle == null )
+					this.originalSceneRectangle = widget.getBounds();
+				if ( this.originalSceneRectangle == null )
+					this.originalSceneRectangle = widget.getPreferredBounds();
+				this.dragSceneLocation = widget
 						.convertLocalToScene(event.getPoint());
-				provider.resizingStarted(widget);
+				this.provider.resizingStarted(widget);
 				return State.createLocked(widget, this);
 			}
 		}
@@ -97,8 +97,8 @@ public class ResizeWidgetAction extends WidgetAction.LockedAdapter
 		boolean state = resize(widget, event.getPoint());
 		if ( state )
 		{
-			resizingWidget = null;
-			provider.resizingFinished(widget);
+			this.resizingWidget = null;
+			this.provider.resizingFinished(widget);
 		}
 		return state ? State.CONSUMED : State.REJECTED;
 	}
@@ -111,7 +111,7 @@ public class ResizeWidgetAction extends WidgetAction.LockedAdapter
 
 	private boolean resize(Widget widget, Point newLocation)
 	{
-		if ( resizingWidget != widget )
+		if ( !this.resizingWidget.equals(widget) )
 			return false;
 
 		newLocation = widget.convertLocalToScene(newLocation);
@@ -120,8 +120,8 @@ public class ResizeWidgetAction extends WidgetAction.LockedAdapter
 		int minx = insets.left + insets.right;
 		int miny = insets.top + insets.bottom;
 
-		Rectangle rectangle = new Rectangle(originalSceneRectangle);
-		switch ( controlPoint )
+		Rectangle rectangle = new Rectangle(this.originalSceneRectangle);
+		switch ( this.controlPoint )
 		{
 		case BOTTOM_CENTER:
 			resizeToBottom(miny, rectangle, dy);
@@ -153,8 +153,8 @@ public class ResizeWidgetAction extends WidgetAction.LockedAdapter
 			break;
 		}
 
-		widget.setPreferredBounds(strategy.boundsSuggested(widget,
-				originalSceneRectangle, rectangle, controlPoint));
+		widget.setPreferredBounds(this.strategy.boundsSuggested(widget,
+				this.originalSceneRectangle, rectangle, this.controlPoint));
 		return true;
 	}
 

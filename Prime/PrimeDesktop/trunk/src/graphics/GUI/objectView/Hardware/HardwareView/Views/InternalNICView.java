@@ -372,12 +372,12 @@ public class InternalNICView extends JPanel implements HardwareViewInterface,
 	{
 		boolean valid = true;
 
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			IntNIC.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			IntNIC.setDescription(desc.getText());
 		}
@@ -393,7 +393,7 @@ public class InternalNICView extends JPanel implements HardwareViewInterface,
 			IntNIC.setType(conType.getSelectedItem().toString());
 		}
 
-		if ( transferSpeed.getSelectedItem().toString() != "" )
+		if ( !transferSpeed.getSelectedItem().toString().equals("") )
 		{
 			IntNIC.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem()
 					.toString()));

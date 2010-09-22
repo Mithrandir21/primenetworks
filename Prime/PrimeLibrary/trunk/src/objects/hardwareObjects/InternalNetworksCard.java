@@ -87,10 +87,10 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	{
 		super(Name, Desc);
 
-		producer = NICproducer;
-		port = NICport;
-		MAC = NIC_MAC;
-		connectionType = NICconnectionType;
+		this.producer = NICproducer;
+		this.port = NICport;
+		this.MAC = NIC_MAC;
+		this.connectionType = NICconnectionType;
 	}
 
 
@@ -104,7 +104,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public String getProducer()
 	{
-		return producer;
+		return this.producer;
 	}
 
 
@@ -113,7 +113,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public String getPort()
 	{
-		return port;
+		return this.port;
 	}
 
 
@@ -122,7 +122,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public String getMAC()
 	{
-		return MAC;
+		return this.MAC;
 	}
 
 
@@ -131,7 +131,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public String getConnectionType()
 	{
-		return connectionType;
+		return this.connectionType;
 	}
 
 
@@ -140,7 +140,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public int getSpeed()
 	{
-		return transferSpeed;
+		return this.transferSpeed;
 	}
 
 
@@ -149,7 +149,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public String getProtocol()
 	{
-		return protocol;
+		return this.protocol;
 	}
 
 
@@ -158,7 +158,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public String[] getSupportedStandards()
 	{
-		return supportedStandards;
+		return this.supportedStandards;
 	}
 
 
@@ -167,7 +167,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public boolean getIPv6support()
 	{
-		return supportsIPv6;
+		return this.supportsIPv6;
 	}
 
 
@@ -176,7 +176,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public Object getConnectedObject()
 	{
-		return connectedObject;
+		return this.connectedObject;
 	}
 
 	// SET METHODES
@@ -186,7 +186,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setProducer(String NICProducer)
 	{
-		producer = NICProducer;
+		this.producer = NICProducer;
 	}
 
 
@@ -195,7 +195,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setPort(String NICport)
 	{
-		port = NICport;
+		this.port = NICport;
 	}
 
 
@@ -204,7 +204,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setType(String type)
 	{
-		connectionType = type;
+		this.connectionType = type;
 	}
 
 
@@ -214,7 +214,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setMAC(String NIC_MAC)
 	{
-		MAC = NIC_MAC;
+		this.MAC = NIC_MAC;
 	}
 
 
@@ -223,7 +223,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setSubtype(String NICconnectionType)
 	{
-		connectionType = NICconnectionType;
+		this.connectionType = NICconnectionType;
 	}
 
 
@@ -232,7 +232,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setSpeed(int NICtransferSpeed)
 	{
-		transferSpeed = NICtransferSpeed;
+		this.transferSpeed = NICtransferSpeed;
 	}
 
 
@@ -241,7 +241,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setSupportedStandards(String NICsupportedStandards[])
 	{
-		supportedStandards = NICsupportedStandards;
+		this.supportedStandards = NICsupportedStandards;
 	}
 
 
@@ -250,7 +250,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setSupportsIPv6(boolean NICsupportsIPv6)
 	{
-		supportsIPv6 = NICsupportsIPv6;
+		this.supportsIPv6 = NICsupportsIPv6;
 	}
 
 
@@ -259,7 +259,7 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setConnectedObject(Object obj)
 	{
-		connectedObject = obj;
+		this.connectedObject = obj;
 	}
 
 }

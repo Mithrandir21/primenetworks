@@ -72,13 +72,13 @@ public class Rack extends Infrastructure implements Serializable
 	{
 		super(Name, Desc, SupConInt);
 
-		numberOfShelfs = rackShelfs;
+		this.numberOfShelfs = rackShelfs;
 
-		units = new Object[rackShelfs];
+		this.units = new Object[rackShelfs];
 
-		unitsCounter = 0;
+		this.unitsCounter = 0;
 
-		occupiedShelfs = 0;
+		this.occupiedShelfs = 0;
 
 	}
 
@@ -99,7 +99,7 @@ public class Rack extends Infrastructure implements Serializable
 	 */
 	public int getNumberOfShelfs()
 	{
-		return numberOfShelfs;
+		return this.numberOfShelfs;
 	}
 
 
@@ -111,7 +111,7 @@ public class Rack extends Infrastructure implements Serializable
 	public Object[] getUnits()
 	{
 
-		return units;
+		return this.units;
 	}
 
 
@@ -155,7 +155,7 @@ public class Rack extends Infrastructure implements Serializable
 			throws ObjectNotFoundException
 	{
 		Object[] unitsFound = ArrayManagment.getSpesificComponents(unitClass,
-				units, unitsCounter);
+				this.units, this.unitsCounter);
 
 		return unitsFound;
 	}
@@ -167,20 +167,20 @@ public class Rack extends Infrastructure implements Serializable
 	 * @param NewUnits
 	 *            An array of new units.
 	 */
-	public boolean addUnits(Object[] NewUnits) throws Exception
+	public boolean addUnits(Object[] NewUnits)
 	{
 		/*
 		 * If the number of shelfs needed by the new units is not bigger then the number of shelfs available, the units
 		 * will be installed.
 		 */
-		if ( !(RackFunctions.calculateShelfSpace(NewUnits) > (numberOfShelfs - occupiedShelfs)) )
+		if ( !(RackFunctions.calculateShelfSpace(NewUnits) > (this.numberOfShelfs - this.occupiedShelfs)) )
 		{
-			units = ComponentsManagment.addComponents(NewUnits, units,
-					unitsCounter);
+			this.units = ComponentsManagment.addComponents(NewUnits, this.units,
+					this.unitsCounter);
 
 			// Sets the new count for number of components in the array
 
-			unitsCounter = units.length;
+			this.unitsCounter = units.length;
 
 			return true;
 		}
@@ -204,13 +204,13 @@ public class Rack extends Infrastructure implements Serializable
 		 * If the number of shelfs needed by the new units is not bigger then the number of shelfs available, the units
 		 * will be installed.
 		 */
-		if ( !(RackFunctions.calculateShelfSpace(NewUnit) > (numberOfShelfs - occupiedShelfs)) )
+		if ( !(RackFunctions.calculateShelfSpace(NewUnit) > (this.numberOfShelfs - this.occupiedShelfs)) )
 		{
-			units = ComponentsManagment.changeComponent(NewUnit, OldUnit,
-					units, unitsCounter);
+			this.units = ComponentsManagment.changeComponent(NewUnit, OldUnit,
+					this.units, this.unitsCounter);
 
 			// Sets the new count for number of components in the array
-			unitsCounter = units.length;
+			this.unitsCounter = units.length;
 
 			return true;
 		}
@@ -228,11 +228,11 @@ public class Rack extends Infrastructure implements Serializable
 	public void removeComponent(Object[] ToBeRemoved)
 			throws ObjectNotFoundInArrayException
 	{
-		units = ComponentsManagment.removeComponents(ToBeRemoved, units,
-				unitsCounter);
+		this.units = ComponentsManagment.removeComponents(ToBeRemoved, this.units,
+				this.unitsCounter);
 
 		// Sets the new count for number of components in the array
-		unitsCounter = units.length;
+		this.unitsCounter = units.length;
 	}
 
 

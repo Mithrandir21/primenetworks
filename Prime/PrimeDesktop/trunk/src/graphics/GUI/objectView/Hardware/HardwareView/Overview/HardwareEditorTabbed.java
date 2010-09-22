@@ -64,7 +64,7 @@ public class HardwareEditorTabbed extends JTabbedPane
 	 */
 	public HardwareEditorTabbed(Object obj)
 	{
-		mainobj = obj;
+		this.mainobj = obj;
 		populateTabs(obj);
 	}
 
@@ -185,7 +185,7 @@ public class HardwareEditorTabbed extends JTabbedPane
 			 */
 			for ( int i = 0; i < verified.length; i++ )
 			{
-				if ( verified[i] == false )
+				if ( !(verified[i]) )
 				{
 					validationFailed = true;
 					i = verified.length;
@@ -193,7 +193,7 @@ public class HardwareEditorTabbed extends JTabbedPane
 			}
 		}
 		// Checks if any of the views failed its validation.
-		if ( validationFailed == false )
+		if ( !(validationFailed) )
 		{
 			boolean close = true;
 
@@ -205,7 +205,7 @@ public class HardwareEditorTabbed extends JTabbedPane
 			{
 				Component comp = this.getComponent(i);
 
-				if ( ((HardwareViewInterface) comp).save() == false )
+				if ( !(((HardwareViewInterface) comp).save()) )
 				{
 					close = false;
 				}
@@ -214,11 +214,11 @@ public class HardwareEditorTabbed extends JTabbedPane
 
 			try
 			{
-				ComponentsManagment.processAllChanges(mainobj);
+				ComponentsManagment.processAllChanges(this.mainobj);
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				ObjectView view = PrimeMain.getObjectView(mainobj);
+				ObjectView view = PrimeMain.getObjectView(this.mainobj);
 				if ( view != null )
 				{
 					view.updateViewInfo();

@@ -43,7 +43,7 @@ public abstract class Container implements Serializable
 	 */
 	public ArrayList<Object> getContainer()
 	{
-		return container;
+		return this.container;
 	}
 
 
@@ -67,7 +67,7 @@ public abstract class Container implements Serializable
 	public boolean addObject(Object obj) throws ObjectExistInContainer
 	{
 		// Check to see if the specific object already exist in the container
-		if ( container.contains(obj) )
+		if ( this.container.contains(obj) )
 		{
 			throw new ObjectExistInContainer("This object,"
 					+ obj.getObjectName()
@@ -75,7 +75,7 @@ public abstract class Container implements Serializable
 		}
 
 		// Returns true if added and false if not.
-		return container.add(obj);
+		return this.container.add(obj);
 	}
 
 
@@ -87,7 +87,7 @@ public abstract class Container implements Serializable
 			throws ObjectDoesNotExistInContainer
 	{
 		// Checks to see if object really exist in the container
-		if ( !container.contains(obj) )
+		if ( !this.container.contains(obj) )
 		{
 			throw new ObjectDoesNotExistInContainer("This object,"
 					+ obj.getObjectName()
@@ -95,7 +95,7 @@ public abstract class Container implements Serializable
 		}
 
 
-		return container.remove(obj);
+		return this.container.remove(obj);
 	}
 
 
@@ -106,6 +106,6 @@ public abstract class Container implements Serializable
 	public boolean containsObject(Object obj)
 	{
 
-		return container.contains(obj);
+		return this.container.contains(obj);
 	}
 }

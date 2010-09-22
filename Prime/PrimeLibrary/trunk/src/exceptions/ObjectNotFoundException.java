@@ -50,7 +50,7 @@ public class ObjectNotFoundException extends Exception
 	{
 		super(message);
 
-		objectType = type;
+		this.objectType = type;
 	}
 
 
@@ -60,6 +60,6 @@ public class ObjectNotFoundException extends Exception
 	 */
 	public Class<Object> getObjectClass()
 	{
-		return objectType;
+		return this.objectType;
 	}
 }

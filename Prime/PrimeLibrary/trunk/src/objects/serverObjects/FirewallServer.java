@@ -63,9 +63,9 @@ public class FirewallServer extends Servers implements Serializable
 		super(Name, Desc);
 
 		// Creates a firewall software object
-		firewall = new Firewall(FirewallSWname, FirewallSWdesc,
+		this.firewall = new Firewall(FirewallSWname, FirewallSWdesc,
 				FirewallSWversion);
-		Software[] sw = { firewall };
+		Software[] sw = { this.firewall };
 		super.setSoftware(sw);
 	}
 
@@ -92,9 +92,9 @@ public class FirewallServer extends Servers implements Serializable
 		super(Name, Desc, SupConInt);
 
 		// Creates a firewall software object
-		firewall = new Firewall(FirewallSWname, FirewallSWdesc,
+		this.firewall = new Firewall(FirewallSWname, FirewallSWdesc,
 				FirewallSWversion);
-		Software[] sw = { firewall };
+		Software[] sw = { this.firewall };
 		super.setSoftware(sw);
 	}
 
@@ -121,9 +121,9 @@ public class FirewallServer extends Servers implements Serializable
 		super(Name, Desc, DesktopComponents);
 
 		// Creates a firewall software object
-		firewall = new Firewall(FirewallSWname, FirewallSWdesc,
+		this.firewall = new Firewall(FirewallSWname, FirewallSWdesc,
 				FirewallSWversion);
-		Software[] sw = { firewall };
+		Software[] sw = { this.firewall };
 		super.setSoftware(sw);
 	}
 
@@ -152,9 +152,9 @@ public class FirewallServer extends Servers implements Serializable
 		super(Name, Desc, SupConInt, DesktopComponents);
 
 		// Creates a firewall software object
-		firewall = new Firewall(FirewallSWname, FirewallSWdesc,
+		this.firewall = new Firewall(FirewallSWname, FirewallSWdesc,
 				FirewallSWversion);
-		Software[] sw = { firewall };
+		Software[] sw = { this.firewall };
 		super.setSoftware(sw);
 	}
 
@@ -165,7 +165,7 @@ public class FirewallServer extends Servers implements Serializable
 	public Firewall getFirewallApplication()
 	{
 
-		return firewall;
+		return this.firewall;
 	}
 
 

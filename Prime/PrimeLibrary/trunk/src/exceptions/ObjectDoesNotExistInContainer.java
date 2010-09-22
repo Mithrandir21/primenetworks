@@ -46,7 +46,7 @@ public class ObjectDoesNotExistInContainer extends Exception
 	{
 		super(message);
 
-		object = notFoundObject;
+		this.object = notFoundObject;
 	}
 
 
@@ -57,6 +57,6 @@ public class ObjectDoesNotExistInContainer extends Exception
 	public Object getObject()
 	{
 
-		return object;
+		return this.object;
 	}
 }

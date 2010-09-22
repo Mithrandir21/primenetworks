@@ -320,7 +320,7 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 
 
-			if ( set == true )
+			if ( set )
 			{
 				WidgetIcon newObjectIcon = new WidgetIcon(objectIcon,
 						objectType);

@@ -40,7 +40,7 @@ public class ObjectCreationTests
 
 
 	@Before
-	public void setUp() throws Exception
+	public void setUp()
 	{
 		objects = ObjectCreationClass.ObjectCreationClass();
 	}

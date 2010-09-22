@@ -353,7 +353,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				String text = null;
 
 				text = gpuObj.getObjectName();
-				if ( gpuObj.getObjectName() != ""
+				if ( !gpuObj.getObjectName().equals("")
 						&& gpuObj.getObjectName() != null )
 				{
 					info[0] = gpuObj.getObjectName();

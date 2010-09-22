@@ -49,7 +49,7 @@ public class PrimeRectangularSelectDecorator implements RectangularSelectDecorat
 	@Override
 	public Widget createSelectionWidget()
 	{
-		WidgetRoom widget = RoomManagment.createWidgetRoom(canvas, "RoomName");
+		WidgetRoom widget = RoomManagment.createWidgetRoom(this.canvas, "RoomName");
 
 		return widget;
 	}

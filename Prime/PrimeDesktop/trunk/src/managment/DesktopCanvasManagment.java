@@ -404,7 +404,7 @@ public class DesktopCanvasManagment
 
 					String question = PrimeMain.texts
 							.getString("rulesUSBviolationMsg")
-							+ "\n"
+							+ System.getProperty("line.separator")
 							+ PrimeMain.texts
 									.getString("rulesModificationQuestion");
 
@@ -442,7 +442,7 @@ public class DesktopCanvasManagment
 
 					String question = PrimeMain.texts
 							.getString("rulesLANviolationMsg")
-							+ "\n"
+							+ System.getProperty("line.separator")
 							+ PrimeMain.texts
 									.getString("rulesModificationQuestion");
 
@@ -575,7 +575,7 @@ public class DesktopCanvasManagment
 		if ( widObj != null )
 		{
 			// If the widgetObject does not have an IP
-			if ( Settings.showIP == false
+			if ( !(Settings.showIP)
 					|| widObj.getWidgetNetworkInfo().getIp().equals("") )
 			{
 				if ( !widObj.getIPlabelWidget().getLabel().equals("") )
@@ -624,7 +624,7 @@ public class DesktopCanvasManagment
 		{
 			if ( widObj.getObject() != null )
 			{
-				if ( Settings.showOSicon == true )
+				if ( Settings.showOSicon )
 				{
 					// Gets all the OperatingSystem software installed on the
 					// object

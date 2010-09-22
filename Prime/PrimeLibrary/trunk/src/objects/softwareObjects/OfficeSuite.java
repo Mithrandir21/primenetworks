@@ -49,7 +49,7 @@ public class OfficeSuite extends Software implements Serializable
 		super(Name, Desc, Version);
 		if ( OfficeSupportedFormats[0] != null )
 		{
-			supportedFormats = OfficeSupportedFormats;
+			this.supportedFormats = OfficeSupportedFormats;
 		}
 		else
 		{
@@ -62,7 +62,7 @@ public class OfficeSuite extends Software implements Serializable
 			formats[5] = ".rtf";
 			// TODO - Find more supported formats. Based on Microsoft Office
 
-			supportedFormats = formats;
+			this.supportedFormats = formats;
 		}
 	}
 
@@ -75,7 +75,7 @@ public class OfficeSuite extends Software implements Serializable
 	 */
 	public String[] getSupportedOperatingSystems()
 	{
-		return supportedOperatingSystems;
+		return this.supportedOperatingSystems;
 	}
 
 

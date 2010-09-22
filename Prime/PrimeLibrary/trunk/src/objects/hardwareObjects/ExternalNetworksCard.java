@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package objects.hardwareObjects;
 
@@ -25,12 +25,16 @@ import objects.Object;
 
 
 /**
- * This class represents a external networks interface card connected to {@link objects.Servers server} or {@link objects.Clients
- * client} machine. It can be a server, a desktop or a laptop. It contains information on what
- * kind of capability the networks interface card has. It also contains information on transfere speeds, MACs,
+ * This class represents a external networks interface card connected to
+ * {@link objects.Servers server} or {@link objects.Clients
+ * client} machine. It can be a server, a desktop or a laptop. It contains
+ * information on what
+ * kind of capability the networks interface card has. It also contains
+ * information on transfere speeds, MACs,
  * connection types and so on. <br>
  * <br>
- * <b>Notation</b>: The networks interface card will be refered to as "NIC" in the remainder of this document.
+ * <b>Notation</b>: The networks interface card will be refered to as "NIC" in
+ * the remainder of this document.
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -77,7 +81,8 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 * @param Desc
 	 *            The description of the MB.
 	 * @param NICproducer
-	 *            The company that produces the NIC. D-Link, Linksys, Cisco and so on.
+	 *            The company that produces the NIC. D-Link, Linksys, Cisco and
+	 *            so on.
 	 * @param NIC_MAC
 	 *            The MAC address of the NIC.
 	 * @param NICconnectionType
@@ -88,10 +93,10 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	{
 		super(Name, Desc);
 
-		producer = NICproducer;
-		MAC = NIC_MAC;
-		connectionType = NICconnectionType;
-		port = NICconncectedBy;
+		this.producer = NICproducer;
+		this.MAC = NIC_MAC;
+		this.connectionType = NICconnectionType;
+		this.port = NICconncectedBy;
 	}
 
 
@@ -105,7 +110,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public String getProducer()
 	{
-		return producer;
+		return this.producer;
 	}
 
 
@@ -114,7 +119,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public String getMAC()
 	{
-		return MAC;
+		return this.MAC;
 	}
 
 
@@ -123,7 +128,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public String getConnectionType()
 	{
-		return connectionType;
+		return this.connectionType;
 	}
 
 
@@ -132,7 +137,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public int getSpeed()
 	{
-		return transferSpeed;
+		return this.transferSpeed;
 	}
 
 
@@ -141,7 +146,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public String getProtocol()
 	{
-		return protocol;
+		return this.protocol;
 	}
 
 
@@ -150,7 +155,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public String[] getSupportedStandards()
 	{
-		return supportedStandards;
+		return this.supportedStandards;
 	}
 
 
@@ -159,7 +164,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public boolean getIPv6support()
 	{
-		return supportsIPv6;
+		return this.supportsIPv6;
 	}
 
 
@@ -168,7 +173,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public String getPort()
 	{
-		return port;
+		return this.port;
 	}
 
 
@@ -177,7 +182,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public Object getConnectedObject()
 	{
-		return connectedObject;
+		return this.connectedObject;
 	}
 
 
@@ -188,7 +193,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setProducer(String NICProducer)
 	{
-		producer = NICProducer;
+		this.producer = NICProducer;
 	}
 
 
@@ -198,7 +203,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setConnectionType(String type)
 	{
-		connectionType = type;
+		this.connectionType = type;
 	}
 
 
@@ -208,7 +213,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setMAC(String NIC_MAC)
 	{
-		MAC = NIC_MAC;
+		this.MAC = NIC_MAC;
 	}
 
 
@@ -217,7 +222,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setSpeed(int NICtransferSpeed)
 	{
-		transferSpeed = NICtransferSpeed;
+		this.transferSpeed = NICtransferSpeed;
 	}
 
 
@@ -226,7 +231,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setSupportedStandards(String NICsupportedStandards[])
 	{
-		supportedStandards = NICsupportedStandards;
+		this.supportedStandards = NICsupportedStandards;
 	}
 
 
@@ -235,7 +240,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setSupportsIPv6(boolean NICsupportsIPv6)
 	{
-		supportsIPv6 = NICsupportsIPv6;
+		this.supportsIPv6 = NICsupportsIPv6;
 	}
 
 
@@ -244,7 +249,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setPortBy(String NICport)
 	{
-		port = NICport;
+		this.port = NICport;
 	}
 
 
@@ -253,7 +258,7 @@ public class ExternalNetworksCard extends Hardware implements Serializable
 	 */
 	public void setConnectedObject(Object obj)
 	{
-		connectedObject = obj;
+		this.connectedObject = obj;
 	}
 
 }

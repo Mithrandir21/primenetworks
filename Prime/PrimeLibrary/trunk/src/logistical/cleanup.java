@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package logistical;
 
@@ -31,7 +31,8 @@ import connections.NetworkConnection;
 
 
 /**
- * Class that contains different cleanup and support functions that are used in the different parts of the program.
+ * Class that contains different cleanup and support functions that are used in
+ * the different parts of the program.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -68,10 +69,7 @@ public class cleanup
 
 
 		// Creates a new array that will copy all the non-null objects.
-		for ( int i = 0; i < tempCounter; i++ )
-		{
-			results[i] = Tempresults[i];
-		}
+		System.arraycopy(Tempresults, 0, results, 0, tempCounter);
 
 		return results;
 	}
@@ -106,10 +104,7 @@ public class cleanup
 
 
 		// Creates a new array that will copy all the non-null objects.
-		for ( int i = 0; i < tempCounter; i++ )
-		{
-			results[i] = Tempresults[i];
-		}
+		System.arraycopy(Tempresults, 0, results, 0, tempCounter);
 
 		return results;
 	}
@@ -145,10 +140,7 @@ public class cleanup
 
 
 		// Creates a new array that will copy all the non-null objects.
-		for ( int i = 0; i < tempCounter; i++ )
-		{
-			results[i] = Tempresults[i];
-		}
+		System.arraycopy(Tempresults, 0, results, 0, tempCounter);
 
 		return results;
 	}
@@ -184,10 +176,7 @@ public class cleanup
 
 
 		// Creates a new array that will copy all the non-null objects.
-		for ( int i = 0; i < tempCounter; i++ )
-		{
-			results[i] = Tempresults[i];
-		}
+		System.arraycopy(Tempresults, 0, results, 0, tempCounter);
 
 		return results;
 	}
@@ -225,10 +214,7 @@ public class cleanup
 
 
 		// Creates a new array that will copy all the non-null objects.
-		for ( int i = 0; i < tempCounter; i++ )
-		{
-			results[i] = Tempresults[i];
-		}
+		System.arraycopy(Tempresults, 0, results, 0, tempCounter);
 
 
 
@@ -242,7 +228,7 @@ public class cleanup
 	public static Connection[] cleanObjectArray(Connection[] array)
 	{
 		// Temporary counter for the function
-		int counter = 0;
+		int tempCounter = 0;
 
 		// Makes an array with given length
 		Connection[] Tempresults = new Connection[array.length];
@@ -253,20 +239,17 @@ public class cleanup
 		{
 			if ( array[i] != null )
 			{
-				Tempresults[counter] = array[i];
+				Tempresults[tempCounter] = array[i];
 
-				counter++;
+				tempCounter++;
 			}
 		}
 
 		// Makes the array that is to hold the results
-		Connection[] results = new Connection[counter];
+		Connection[] results = new Connection[tempCounter];
 
 		// Creates a new array that will copy all the non-null objects.
-		for ( int i = 0; i < counter; i++ )
-		{
-			results[i] = Tempresults[i];
-		}
+		System.arraycopy(Tempresults, 0, results, 0, tempCounter);
 
 		return results;
 	}
@@ -278,7 +261,7 @@ public class cleanup
 	public static NetworkConnection[] cleanObjectArray(NetworkConnection[] array)
 	{
 		// Temporary counter for the function
-		int counter = 0;
+		int tempCounter = 0;
 
 		// Makes an array with given length
 		NetworkConnection[] Tempresults = new NetworkConnection[array.length];
@@ -289,20 +272,17 @@ public class cleanup
 		{
 			if ( array[i] != null )
 			{
-				Tempresults[counter] = array[i];
+				Tempresults[tempCounter] = array[i];
 
-				counter++;
+				tempCounter++;
 			}
 		}
 
 		// Makes the array that is to hold the results
-		NetworkConnection[] results = new NetworkConnection[counter];
+		NetworkConnection[] results = new NetworkConnection[tempCounter];
 
 		// Creates a new array that will copy all the non-null objects.
-		for ( int i = 0; i < counter; i++ )
-		{
-			results[i] = Tempresults[i];
-		}
+		System.arraycopy(Tempresults, 0, results, 0, tempCounter);
 
 		return results;
 	}
@@ -315,7 +295,7 @@ public class cleanup
 	public static DeviceConnection[] cleanObjectArray(DeviceConnection[] array)
 	{
 		// Temporary counter for the function
-		int counter = 0;
+		int tempCounter = 0;
 
 		// Makes an array with given length
 		DeviceConnection[] Tempresults = new DeviceConnection[array.length];
@@ -326,20 +306,17 @@ public class cleanup
 		{
 			if ( array[i] != null )
 			{
-				Tempresults[counter] = array[i];
+				Tempresults[tempCounter] = array[i];
 
-				counter++;
+				tempCounter++;
 			}
 		}
 
 		// Makes the array that is to hold the results
-		DeviceConnection[] results = new DeviceConnection[counter];
+		DeviceConnection[] results = new DeviceConnection[tempCounter];
 
 		// Creates a new array that will copy all the non-null objects.
-		for ( int i = 0; i < counter; i++ )
-		{
-			results[i] = Tempresults[i];
-		}
+		System.arraycopy(Tempresults, 0, results, 0, tempCounter);
 
 		return results;
 	}
@@ -353,7 +330,7 @@ public class cleanup
 			InternalConnection[] array)
 	{
 		// Temporary counter for the function
-		int counter = 0;
+		int tempCounter = 0;
 
 		// Makes an array with given length
 		InternalConnection[] Tempresults = new InternalConnection[array.length];
@@ -364,20 +341,17 @@ public class cleanup
 		{
 			if ( array[i] != null )
 			{
-				Tempresults[counter] = array[i];
+				Tempresults[tempCounter] = array[i];
 
-				counter++;
+				tempCounter++;
 			}
 		}
 
 		// Makes the array that is to hold the results
-		InternalConnection[] results = new InternalConnection[counter];
+		InternalConnection[] results = new InternalConnection[tempCounter];
 
 		// Creates a new array that will copy all the non-null objects.
-		for ( int i = 0; i < counter; i++ )
-		{
-			results[i] = Tempresults[i];
-		}
+		System.arraycopy(Tempresults, 0, results, 0, tempCounter);
 
 		return results;
 	}
@@ -390,7 +364,7 @@ public class cleanup
 	public static WidgetRoom[] cleanObjectArray(WidgetRoom[] array)
 	{
 		// Temporary counter for the function
-		int counter = 0;
+		int tempCounter = 0;
 
 		// Makes an array with given length
 		WidgetRoom[] Tempresults = new WidgetRoom[array.length];
@@ -401,20 +375,17 @@ public class cleanup
 		{
 			if ( array[i] != null )
 			{
-				Tempresults[counter] = array[i];
+				Tempresults[tempCounter] = array[i];
 
-				counter++;
+				tempCounter++;
 			}
 		}
 
 		// Makes the array that is to hold the results
-		WidgetRoom[] results = new WidgetRoom[counter];
+		WidgetRoom[] results = new WidgetRoom[tempCounter];
 
 		// Creates a new array that will copy all the non-null objects.
-		for ( int i = 0; i < counter; i++ )
-		{
-			results[i] = Tempresults[i];
-		}
+		System.arraycopy(Tempresults, 0, results, 0, tempCounter);
 
 		return results;
 	}
@@ -426,7 +397,7 @@ public class cleanup
 	public static Room[] cleanObjectArray(Room[] array)
 	{
 		// Temporary counter for the function
-		int counter = 0;
+		int tempCounter = 0;
 
 		// Makes an array with given length
 		Room[] Tempresults = new Room[array.length];
@@ -437,20 +408,17 @@ public class cleanup
 		{
 			if ( array[i] != null )
 			{
-				Tempresults[counter] = array[i];
+				Tempresults[tempCounter] = array[i];
 
-				counter++;
+				tempCounter++;
 			}
 		}
 
 		// Makes the array that is to hold the results
-		Room[] results = new Room[counter];
+		Room[] results = new Room[tempCounter];
 
 		// Creates a new array that will copy all the non-null objects.
-		for ( int i = 0; i < counter; i++ )
-		{
-			results[i] = Tempresults[i];
-		}
+		System.arraycopy(Tempresults, 0, results, 0, tempCounter);
 
 		return results;
 	}
@@ -458,7 +426,8 @@ public class cleanup
 
 
 	/**
-	 * Function to remove null pointer from the an array of booleans. Its arranged after the given boolean so that the
+	 * Function to remove null pointer from the an array of booleans. Its
+	 * arranged after the given boolean so that the
 	 * given boolean is placed first and the rest is placed afterwards.
 	 */
 	public static boolean[] cleanObjectArray(boolean[] array, boolean given)

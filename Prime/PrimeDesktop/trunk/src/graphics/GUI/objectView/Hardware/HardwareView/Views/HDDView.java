@@ -250,12 +250,12 @@ public class HDDView extends JPanel implements HardwareViewInterface,
 		{
 			if ( hddSize < 200 )
 			{
-				hddSize = hddSize + 10;
+				hddSize += 10;
 				sizeString[i] = "" + hddSize;
 			}
 			else
 			{
-				hddSize = hddSize + 100;
+				hddSize += 100;
 				sizeString[i] = "" + hddSize;
 			}
 		}
@@ -334,17 +334,17 @@ public class HDDView extends JPanel implements HardwareViewInterface,
 	@Override
 	public boolean save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			mainHDD.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			mainHDD.setDescription(desc.getText());
 		}
 
-		if ( producer.getText() != "" )
+		if ( !producer.getText().equals("") )
 		{
 			mainHDD.setProducer(producer.getText());
 		}
@@ -353,7 +353,7 @@ public class HDDView extends JPanel implements HardwareViewInterface,
 
 		mainHDD.setSubtype(subtype.getSelectedItem().toString());
 
-		if ( size.getSelectedItem().toString() != "" )
+		if ( !size.getSelectedItem().toString().equals("") )
 		{
 			mainHDD.setSize(Integer.parseInt(size.getSelectedItem().toString()));
 		}
@@ -362,7 +362,7 @@ public class HDDView extends JPanel implements HardwareViewInterface,
 			mainHDD.setSize(0);
 		}
 
-		if ( transferSpeed.getSelectedItem().toString() != "" )
+		if ( !transferSpeed.getSelectedItem().toString().equals("") )
 		{
 			mainHDD.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem()
 					.toString()));
@@ -372,7 +372,7 @@ public class HDDView extends JPanel implements HardwareViewInterface,
 			mainHDD.setSpeed(0);
 		}
 
-		if ( rpm.getSelectedItem().toString() != "" )
+		if ( !rpm.getSelectedItem().toString().equals("") )
 		{
 			mainHDD.setRPM(Integer.parseInt(rpm.getSelectedItem().toString()));
 		}

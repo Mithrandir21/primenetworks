@@ -44,7 +44,7 @@ public class MotherboardNotFound extends Exception
 	 */
 	public MotherboardNotFound(Object obj)
 	{
-		object = obj;
+		this.object = obj;
 	}
 
 	/*
@@ -55,7 +55,7 @@ public class MotherboardNotFound extends Exception
 	public String getMessage()
 	{
 		String output = "No Motherboard was found for object: "
-				+ object.getObjectName();
+				+ this.object.getObjectName();
 
 		return output;
 	}

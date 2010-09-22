@@ -52,7 +52,7 @@ public class WirelessRouter extends Router
 	{
 		super(Name, Desc, SupConInt, objectMB, outPorts, inPorts, DuplexSupport);
 
-		wireless = wifi;
+		this.wireless = wifi;
 	}
 
 
@@ -63,7 +63,7 @@ public class WirelessRouter extends Router
 	 */
 	public boolean isWireless()
 	{
-		return wireless;
+		return this.wireless;
 	}
 
 

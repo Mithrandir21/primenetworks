@@ -55,7 +55,7 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 
 	protected boolean isLocked()
 	{
-		return movingWidget != null;
+		return this.movingWidget != null;
 	}
 
 	public State mousePressed(Widget widget, WidgetMouseEvent event)
@@ -64,12 +64,12 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 				&& ((event.getModifiers() & MouseEvent.SHIFT_MASK) != 0)
 				&& Settings.roomsManipulation )
 		{
-			movingWidget = widget;
-			originalSceneLocation = provider.getOriginalLocation(widget);
-			if ( originalSceneLocation == null )
-				originalSceneLocation = new Point();
-			dragSceneLocation = widget.convertLocalToScene(event.getPoint());
-			provider.movementStarted(widget);
+			this.movingWidget = widget;
+			this.originalSceneLocation = this.provider.getOriginalLocation(widget);
+			if ( this.originalSceneLocation == null )
+				this.originalSceneLocation = new Point();
+			this.dragSceneLocation = widget.convertLocalToScene(event.getPoint());
+			this.provider.movementStarted(widget);
 			return State.createLocked(widget, this);
 		}
 		return State.REJECTED;
@@ -80,8 +80,8 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 		boolean state = move(widget, event.getPoint());
 		if ( state )
 		{
-			movingWidget = null;
-			provider.movementFinished(widget);
+			this.movingWidget = null;
+			this.provider.movementFinished(widget);
 		}
 		return state ? State.CONSUMED : State.REJECTED;
 	}
@@ -94,14 +94,14 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 
 	private boolean move(Widget widget, Point newLocation)
 	{
-		if ( movingWidget != widget )
+		if ( !this.movingWidget.equals(widget) )
 			return false;
 		newLocation = widget.convertLocalToScene(newLocation);
 		Point location = new Point(originalSceneLocation.x + newLocation.x
 				- dragSceneLocation.x, originalSceneLocation.y + newLocation.y
 				- dragSceneLocation.y);
-		provider.setNewLocation(widget, strategy.locationSuggested(widget,
-				originalSceneLocation, location));
+		this.provider.setNewLocation(widget, this.strategy.locationSuggested(widget,
+				this.originalSceneLocation, location));
 		return true;
 	}
 

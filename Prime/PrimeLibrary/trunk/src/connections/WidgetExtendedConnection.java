@@ -63,7 +63,7 @@ public class WidgetExtendedConnection extends ConnectionWidget
 				.addAction(
 						ActionFactory
 								.createMoveControlPointAction(new FreeMoveControlPointProvider()));
-		connection = con;
+		this.connection = con;
 	}
 
 
@@ -76,7 +76,7 @@ public class WidgetExtendedConnection extends ConnectionWidget
 	 */
 	public Connection getConnection()
 	{
-		return connection;
+		return this.connection;
 	}
 
 	/**

@@ -40,13 +40,13 @@ public class PrimeLayerAlignCollector implements AlignWithWidgetCollector
 
 	public java.util.List<Rectangle> getRegions(Widget movingWidget)
 	{
-		List<Widget> children = collectionLayer.getChildren();
+		List<Widget> children = this.collectionLayer.getChildren();
 		ArrayList<Rectangle> regions = new ArrayList<Rectangle>(children.size());
 
 		ArrayList<WidgetObject> widgetObjects = new ArrayList<WidgetObject>();
 		for ( Widget widget : children )
 		{
-			if ( widget != movingWidget && widget instanceof WidgetObject )
+			if ( !widget.equals(movingWidget) && widget instanceof WidgetObject )
 			{
 				widgetObjects.add((WidgetObject) widget);
 			}
@@ -85,7 +85,7 @@ public class PrimeLayerAlignCollector implements AlignWithWidgetCollector
 
 		for ( Widget widget : children )
 		{
-			if ( widget != movingWidget )
+			if ( !widget.equals(movingWidget) )
 			{
 				Rectangle widgetBound = widget.getBounds();
 

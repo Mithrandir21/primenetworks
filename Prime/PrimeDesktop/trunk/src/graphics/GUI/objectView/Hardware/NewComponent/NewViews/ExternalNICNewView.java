@@ -406,12 +406,12 @@ public class ExternalNICNewView extends JDialog implements
 	@Override
 	public boolean save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			extNIC.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			extNIC.setDescription(desc.getText());
 		}
@@ -422,7 +422,7 @@ public class ExternalNICNewView extends JDialog implements
 
 		extNIC.setConnectionType(conType.getSelectedItem().toString());
 
-		if ( transferSpeed.getSelectedItem().toString() != "" )
+		if ( !transferSpeed.getSelectedItem().toString().equals("") )
 		{
 			extNIC.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem()
 					.toString()));

@@ -145,13 +145,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					String text = null;
 
 					text = antiVirusObj.getObjectName();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[0] = text;
 					}
 
 					text = antiVirusObj.getVersion();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
 								.getString("swTabVersionLabel")
@@ -172,7 +172,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					}
 
 					text = antiVirusObj.getDescription();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[3] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
@@ -191,13 +191,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					String text = null;
 
 					text = backupObj.getObjectName();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[0] = text;
 					}
 
 					text = backupObj.getVersion();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
 								.getString("swTabVersionLabel")
@@ -205,7 +205,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					}
 
 					text = backupObj.getDescription();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
@@ -224,13 +224,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					String text = null;
 
 					text = hddObj.getObjectName();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[0] = text;
 					}
 
 					text = hddObj.getVersion();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
 								.getString("swTabProducerLabel")
@@ -238,7 +238,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					}
 
 					text = hddObj.getDescription();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
@@ -257,13 +257,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					String text = null;
 
 					text = emailObj.getObjectName();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[0] = text;
 					}
 
 					text = emailObj.getVersion();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
 								.getString("swTabVersionLabel")
@@ -271,7 +271,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					}
 
 					text = emailObj.getDescription();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
@@ -290,13 +290,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					String text = null;
 
 					text = firewallObj.getObjectName();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[0] = text;
 					}
 
 					text = firewallObj.getVersion();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
 								.getString("swTabVersionLabel")
@@ -304,7 +304,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					}
 
 					text = firewallObj.getDescription();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
@@ -322,13 +322,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					String text = null;
 
 					text = OffSuitObj.getObjectName();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[0] = text;
 					}
 
 					text = OffSuitObj.getVersion();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
 								.getString("swTabVersionLabel")
@@ -336,7 +336,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					}
 
 					text = OffSuitObj.getDescription();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
@@ -355,13 +355,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					String text = null;
 
 					text = OSObj.getObjectName();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[0] = text;
 					}
 
 					text = OSObj.getVersion();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
 								.getString("swTabVersionLabel")
@@ -369,7 +369,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					}
 
 					text = OSObj.getDescription();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
@@ -388,13 +388,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					String text = null;
 
 					text = proxyObj.getObjectName();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[0] = text;
 					}
 
 					text = proxyObj.getVersion();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
 								.getString("swTabProducerLabel")
@@ -402,7 +402,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					}
 
 					text = proxyObj.getDescription();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
@@ -421,13 +421,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					String text = null;
 
 					text = secSuiteObj.getObjectName();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[0] = text;
 					}
 
 					text = secSuiteObj.getVersion();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
 								.getString("swTabProducerLabel")
@@ -435,7 +435,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					}
 
 					text = secSuiteObj.getDescription();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
@@ -454,13 +454,13 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					String text = null;
 
 					text = webServObj.getObjectName();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[0] = text;
 					}
 
 					text = webServObj.getVersion();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
 								.getString("swTabProducerLabel")
@@ -468,7 +468,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					}
 
 					text = webServObj.getDescription();
-					if ( text != "" && text != null )
+					if ( !text.equals("") && text != null )
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")

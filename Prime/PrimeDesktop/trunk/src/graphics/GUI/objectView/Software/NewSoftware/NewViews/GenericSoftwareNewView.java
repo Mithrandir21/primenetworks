@@ -168,9 +168,6 @@ public class GenericSoftwareNewView extends JDialog implements ActionListener,
 	 */
 	private JPanel createSpesificInfo(GenericSoftware genSoft)
 	{
-		Dimension tfSize = new Dimension(100, 20);
-
-
 		JLabel[] labels = new JLabel[4];
 
 		labels[0] = new JLabel(PrimeMain.texts.getString("genViewSupOSLabel"));
@@ -270,12 +267,12 @@ public class GenericSoftwareNewView extends JDialog implements ActionListener,
 	@Override
 	public void save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			genericSoft.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			genericSoft.setDescription(desc.getText());
 		}

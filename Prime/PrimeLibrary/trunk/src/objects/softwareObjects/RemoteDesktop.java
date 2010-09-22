@@ -66,7 +66,7 @@ public class RemoteDesktop extends Software
 	public String[] getSupportedOperatingSystems()
 	{
 
-		return supportedOperatingSystems;
+		return this.supportedOperatingSystems;
 	}
 
 
@@ -76,7 +76,7 @@ public class RemoteDesktop extends Software
 	 */
 	public boolean supportsEncryption()
 	{
-		return supEncryption;
+		return this.supEncryption;
 	}
 
 
@@ -86,7 +86,7 @@ public class RemoteDesktop extends Software
 	 */
 	public boolean supportsFileTransfer()
 	{
-		return supFileTransfer;
+		return this.supFileTransfer;
 	}
 
 
@@ -96,7 +96,7 @@ public class RemoteDesktop extends Software
 	 */
 	public boolean supportsAudio()
 	{
-		return supAudio;
+		return this.supAudio;
 	}
 
 
@@ -106,7 +106,7 @@ public class RemoteDesktop extends Software
 	 */
 	public boolean supportsMultiSessions()
 	{
-		return supMultiSessions;
+		return this.supMultiSessions;
 	}
 
 
@@ -116,7 +116,7 @@ public class RemoteDesktop extends Software
 	 */
 	public boolean supportsSeamlessWindows()
 	{
-		return supSeamlessWindows;
+		return this.supSeamlessWindows;
 	}
 
 

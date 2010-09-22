@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package actions.canvasActions;
 
@@ -44,11 +44,13 @@ import connections.Connection;
 
 /**
  * This action deletes the given {@link WidgetRoom} on the
- * currently open {@link WorkareaCanvas}. (It does not delete any {@link WidgetObject} or {@link Connection} inside the room.
+ * currently open {@link WorkareaCanvas}. (It does not delete any
+ * {@link WidgetObject} or {@link Connection} inside the room.
  * 
  * @author Bahram Malaekeh
  */
-public class ActionRemoveRoom extends AbstractSystemAction implements SystemActionInterface
+public class ActionRemoveRoom extends AbstractSystemAction implements
+		SystemActionInterface
 {
 	// The canvas where the deletion is taking place
 	private WorkareaCanvas canvas = null;
@@ -70,7 +72,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 	public ActionRemoveRoom(String text, ImageIcon icon, WidgetRoom widRoom)
 	{
 		super(text, icon);
-		room = widRoom;
+		this.room = widRoom;
 	}
 
 
@@ -86,12 +88,13 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 	public ActionRemoveRoom(String text, WidgetRoom widRoom)
 	{
 		super(text);
-		room = widRoom;
+		this.room = widRoom;
 	}
 
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -105,6 +108,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#canRedo()
 	 */
 	@Override
@@ -115,6 +119,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#canUndo()
 	 */
 	@Override
@@ -125,6 +130,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#die()
 	 */
 	@Override
@@ -134,6 +140,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getPresentationName()
 	 */
 	@Override
@@ -144,6 +151,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getRedoPresentationName()
 	 */
 	@Override
@@ -154,6 +162,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getUndoPresentationName()
 	 */
 	@Override
@@ -164,6 +173,7 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#isSignificant()
 	 */
 	@Override
@@ -175,13 +185,14 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#redo()
 	 */
 	@Override
 	public void redo() throws CannotRedoException
 	{
 		// Gets all the rooms on the current canvas
-		List<Widget> list = canvas.getRoomLayer().getChildren();
+		List<Widget> list = this.canvas.getRoomLayer().getChildren();
 
 		WidgetRoom temp = null;
 
@@ -194,49 +205,51 @@ public class ActionRemoveRoom extends AbstractSystemAction implements SystemActi
 		{
 			testingWidget = (WidgetRoom) iter.next();
 
-			if ( testingWidget.equals(room) )
+			if ( testingWidget.equals(this.room) )
 			{
 				found = true;
 				temp = testingWidget;
 			}
 		}
 
-		if ( found == true )
+		if ( found )
 		{
-			canvas.getRoomLayer().removeChild(temp);
+			this.canvas.getRoomLayer().removeChild(temp);
 		}
 	}
 
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#undo()
 	 */
 	@Override
 	public void undo() throws CannotUndoException
 	{
-		RoomManagment.addRoom(canvas, room);
+		RoomManagment.addRoom(this.canvas, this.room);
 
 		// Adds the actions supported by the WidgetRoom
-		ActionsAdder.makeWidgetRoomReady(canvas, room);
+		ActionsAdder.makeWidgetRoomReady(this.canvas, this.room);
 	}
 
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.SystemActionInterface#performAction()
 	 */
 	@Override
 	public void performAction(boolean undoable)
 	{
 		// Sets the current canvas
-		canvas = PrimeMain.currentCanvas;
+		this.canvas = PrimeMain.currentCanvas;
 
-		WorkareaCanvasActions.removeRoom(canvas, room, true);
+		WorkareaCanvasActions.removeRoom(this.canvas, this.room, true);
 
 		if ( undoable )
 		{
-			canvas.addUndoableAction(this);
+			this.canvas.addUndoableAction(this);
 		}
 	}
 }

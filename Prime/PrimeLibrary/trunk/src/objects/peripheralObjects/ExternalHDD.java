@@ -77,7 +77,7 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	{
 		super(Name, Desc, ConnectionInterface);
 
-		size = HDDSize;
+		this.size = HDDSize;
 	}
 
 
@@ -98,7 +98,7 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	{
 		super(Name, Desc);
 
-		size = HDDSize;
+		this.size = HDDSize;
 	}
 
 
@@ -120,7 +120,7 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	{
 		super(Name, Desc, objectMB);
 
-		size = HDDSize;
+		this.size = HDDSize;
 	}
 
 
@@ -133,7 +133,7 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	 */
 	public String getProducer()
 	{
-		return producer;
+		return this.producer;
 	}
 
 
@@ -142,7 +142,7 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	 */
 	public String getPort()
 	{
-		return port;
+		return this.port;
 	}
 
 
@@ -151,7 +151,7 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	 */
 	public String getSubtype()
 	{
-		return subtype;
+		return this.subtype;
 	}
 
 
@@ -160,7 +160,7 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	 */
 	public int getSize()
 	{
-		return size;
+		return this.size;
 	}
 
 
@@ -169,7 +169,7 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	 */
 	public int getSpeed()
 	{
-		return transferSpeed;
+		return this.transferSpeed;
 	}
 
 
@@ -178,7 +178,7 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	 */
 	public int getRPM()
 	{
-		return rpm;
+		return this.rpm;
 	}
 
 
@@ -189,7 +189,7 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	 */
 	public void setProducer(String HDDProducer)
 	{
-		producer = HDDProducer;
+		this.producer = HDDProducer;
 	}
 
 
@@ -198,7 +198,7 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	 */
 	public void setPort(String HDDport)
 	{
-		port = HDDport;
+		this.port = HDDport;
 	}
 
 
@@ -207,7 +207,7 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	 */
 	public void setSubtype(String HDDSubtype)
 	{
-		subtype = HDDSubtype;
+		this.subtype = HDDSubtype;
 	}
 
 
@@ -216,7 +216,7 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	 */
 	public void setSize(int HDDSize)
 	{
-		size = HDDSize;
+		this.size = HDDSize;
 	}
 
 
@@ -225,7 +225,7 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	 */
 	public void setSpeed(int HDDtransferSpeed)
 	{
-		transferSpeed = HDDtransferSpeed;
+		this.transferSpeed = HDDtransferSpeed;
 	}
 
 
@@ -234,6 +234,6 @@ public class ExternalHDD extends ExternalHardware implements Serializable
 	 */
 	public void setRPM(int HDDrpm)
 	{
-		rpm = HDDrpm;
+		this.rpm = HDDrpm;
 	}
 }

@@ -46,7 +46,7 @@ public class Database extends Software implements Serializable
 	 */
 	public String[] getSupportedOperatingSystems()
 	{
-		return supportedOperatingSystems;
+		return this.supportedOperatingSystems;
 	}
 
 
@@ -58,7 +58,7 @@ public class Database extends Software implements Serializable
 	 */
 	public int getMaxDBsize()
 	{
-		return maxDBsize;
+		return this.maxDBsize;
 	}
 
 

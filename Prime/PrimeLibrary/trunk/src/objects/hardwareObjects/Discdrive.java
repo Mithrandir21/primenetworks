@@ -65,9 +65,9 @@ public class Discdrive extends Hardware implements Serializable
 	{
 		super(Name, Desc);
 
-		type = DiskdriveType;
+		this.type = DiskdriveType;
 
-		port = Port;
+		this.port = Port;
 	}
 
 
@@ -79,7 +79,7 @@ public class Discdrive extends Hardware implements Serializable
 	 */
 	public String getProducer()
 	{
-		return producer;
+		return this.producer;
 	}
 
 
@@ -89,7 +89,7 @@ public class Discdrive extends Hardware implements Serializable
 	 */
 	public String getType()
 	{
-		return type;
+		return this.type;
 	}
 
 
@@ -98,7 +98,7 @@ public class Discdrive extends Hardware implements Serializable
 	 */
 	public String getPort()
 	{
-		return port;
+		return this.port;
 	}
 
 
@@ -107,7 +107,7 @@ public class Discdrive extends Hardware implements Serializable
 	 */
 	public String getSubtype()
 	{
-		return subtype;
+		return this.subtype;
 	}
 
 
@@ -116,7 +116,7 @@ public class Discdrive extends Hardware implements Serializable
 	 */
 	public int getSpeed()
 	{
-		return transferSpeed;
+		return this.transferSpeed;
 	}
 
 
@@ -126,7 +126,7 @@ public class Discdrive extends Hardware implements Serializable
 	 */
 	public void setProducer(String DiskdriveProducer)
 	{
-		producer = DiskdriveProducer;
+		this.producer = DiskdriveProducer;
 	}
 
 
@@ -135,7 +135,7 @@ public class Discdrive extends Hardware implements Serializable
 	 */
 	public void setType(String DiskdriveType)
 	{
-		type = DiskdriveType;
+		this.type = DiskdriveType;
 	}
 
 
@@ -144,7 +144,7 @@ public class Discdrive extends Hardware implements Serializable
 	 */
 	public void setPort(String Port)
 	{
-		port = Port;
+		this.port = Port;
 	}
 
 
@@ -153,7 +153,7 @@ public class Discdrive extends Hardware implements Serializable
 	 */
 	public void setSubtype(String DiskdriveSubtype)
 	{
-		subtype = DiskdriveSubtype;
+		this.subtype = DiskdriveSubtype;
 	}
 
 
@@ -162,7 +162,7 @@ public class Discdrive extends Hardware implements Serializable
 	 */
 	public void setSpeed(int DiskDrivetransferSpeed)
 	{
-		transferSpeed = DiskDrivetransferSpeed;
+		this.transferSpeed = DiskDrivetransferSpeed;
 	}
 
 }

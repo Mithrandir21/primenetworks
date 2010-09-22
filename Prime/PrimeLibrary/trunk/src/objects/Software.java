@@ -60,16 +60,16 @@ public abstract class Software extends Object implements Serializable
 	 *            which will then result in the version
 	 *            being set to "0.0.1".
 	 */
-	public Software(String Name, String Desc, String SWversion)
+	protected Software(String Name, String Desc, String SWversion)
 	{
 		super(Name, Desc);
 		if ( SWversion != null )
 		{
-			version = SWversion;
+			this.version = SWversion;
 		}
 		else
 		{
-			version = "0.1";
+			this.version = "0.1";
 		}
 	}
 
@@ -81,7 +81,7 @@ public abstract class Software extends Object implements Serializable
 	public String getVersion()
 	{
 
-		return version;
+		return this.version;
 	}
 
 
@@ -90,7 +90,7 @@ public abstract class Software extends Object implements Serializable
 	 */
 	public base getBase()
 	{
-		return base;
+		return this.base;
 	}
 
 
@@ -99,7 +99,7 @@ public abstract class Software extends Object implements Serializable
 	 */
 	public fileSystems[] getFs()
 	{
-		return fs;
+		return this.fs;
 	}
 
 	// SETTERS
@@ -111,7 +111,7 @@ public abstract class Software extends Object implements Serializable
 	public void setVersion(String SWversion)
 	{
 
-		version = SWversion;
+		this.version = SWversion;
 	}
 
 

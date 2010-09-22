@@ -49,7 +49,7 @@ public class Room implements Serializable
 	 */
 	public Room(String name)
 	{
-		roomName = name;
+		this.roomName = name;
 	}
 
 
@@ -62,7 +62,7 @@ public class Room implements Serializable
 	 */
 	public String getRoomName()
 	{
-		return roomName;
+		return this.roomName;
 	}
 
 
@@ -71,7 +71,7 @@ public class Room implements Serializable
 	 */
 	public Point getLocation()
 	{
-		return location;
+		return this.location;
 	}
 
 
@@ -80,7 +80,7 @@ public class Room implements Serializable
 	 */
 	public Rectangle getBounds()
 	{
-		return bounds;
+		return this.bounds;
 	}
 
 

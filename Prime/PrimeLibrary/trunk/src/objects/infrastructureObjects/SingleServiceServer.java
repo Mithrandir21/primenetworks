@@ -93,13 +93,13 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	{
 		super(Name, Desc, SupConInt);
 
-		componentCounter = ServerComponents.length;
+		this.componentCounter = ServerComponents.length;
 
-		components = ServerComponents;
+		this.components = ServerComponents;
 
-		serverRate = 0; // Not been rated yet.
+		this.serverRate = 0; // Not been rated yet.
 
-		ServerApplication = app;
+		this.ServerApplication = app;
 	}
 
 
@@ -118,7 +118,7 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	@Override
 	public Object[] getComponents()
 	{
-		return components;
+		return this.components;
 	}
 
 
@@ -127,7 +127,7 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	 */
 	public int getServerRating()
 	{
-		return serverRate;
+		return this.serverRate;
 	}
 
 
@@ -136,7 +136,7 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	 */
 	public int getNumberJumps()
 	{
-		return numberOfNodes;
+		return this.numberOfNodes;
 	}
 
 
@@ -149,7 +149,7 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	public Servers getServerApplication()
 	{
 
-		return ServerApplication;
+		return this.ServerApplication;
 	}
 
 
@@ -164,7 +164,7 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 			throws ObjectNotFoundException
 	{
 		Object[] componentsFound = ArrayManagment.getSpesificComponents(
-				ComponentClass, components, componentCounter);
+				ComponentClass, this.components, this.componentCounter);
 
 		return componentsFound;
 	}
@@ -181,7 +181,7 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 			throws ObjectNotFoundException
 	{
 		Object[] componentsFound = ArrayManagment.getSpesificComponents(
-				connectedDeviceClass, components, componentCounter);
+				connectedDeviceClass, this.components, componentCounter);
 
 		return componentsFound;
 	}
@@ -310,7 +310,7 @@ public class SingleServiceServer extends Infrastructure implements Serializable
 	 *            An array of new components.
 	 */
 	@Override
-	public void addComponents(Object[] NewComponents) throws Exception
+	public void addComponents(Object[] NewComponents)
 	{
 		components = ComponentsManagment.addComponents(NewComponents,
 				components, componentCounter);

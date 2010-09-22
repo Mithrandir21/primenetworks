@@ -330,12 +330,12 @@ public class DiscDriveNewView extends JDialog implements HardwareViewInterface,
 	@Override
 	public boolean save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			DiscObj.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			DiscObj.setDescription(desc.getText());
 		}
@@ -349,7 +349,7 @@ public class DiscDriveNewView extends JDialog implements HardwareViewInterface,
 		DiscObj.setSubtype(subtype.getSelectedItem().toString());
 
 
-		if ( speed.getSelectedItem().toString() != "" )
+		if ( !speed.getSelectedItem().toString().equals("") )
 		{
 			DiscObj.setSpeed(Integer.parseInt(speed.getSelectedItem()
 					.toString()));

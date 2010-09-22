@@ -62,7 +62,7 @@ public class NASsoftware extends Software
 	public String[] getSupportedOperatingSystems()
 	{
 
-		return supportedOperatingSystems;
+		return this.supportedOperatingSystems;
 	}
 
 
@@ -72,7 +72,7 @@ public class NASsoftware extends Software
 	 */
 	public boolean supportsRaid5()
 	{
-		return supRaid5;
+		return this.supRaid5;
 	}
 
 
@@ -82,7 +82,7 @@ public class NASsoftware extends Software
 	 */
 	public boolean supportsEncryption()
 	{
-		return supEncryption;
+		return this.supEncryption;
 	}
 
 
@@ -92,7 +92,7 @@ public class NASsoftware extends Software
 	 */
 	public boolean supportsSMARTmon()
 	{
-		return supSMARTmon;
+		return this.supSMARTmon;
 	}
 
 
@@ -102,7 +102,7 @@ public class NASsoftware extends Software
 	 */
 	public boolean supportsWebInterface()
 	{
-		return supWebInterface;
+		return this.supWebInterface;
 	}
 
 

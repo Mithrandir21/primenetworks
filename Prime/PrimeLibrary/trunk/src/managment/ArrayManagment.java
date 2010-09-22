@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package managment;
 
@@ -31,8 +31,9 @@ import exceptions.StringNotFoundInArrayException;
 /**
  * Class that contains different function that add, remove and replace
  * components from a given array. It is used in the different parts of the
- * program, specially {@link objects.clientObjects.Desktop Desktops}, {@link objects.clientObjects.Laptop Laptops},
- * {@link objects.Servers Servers} and {@link objects.infrastructureObjects.Rack Racks}.
+ * program, specially {@link objects.clientObjects.Desktop Desktops},
+ * {@link objects.clientObjects.Laptop Laptops}, {@link objects.Servers Servers}
+ * and {@link objects.infrastructureObjects.Rack Racks}.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -77,7 +78,7 @@ public class ArrayManagment
 		// Checks to see if any of the items are found within the array
 		for ( int i = 0; i < areFound.length; i++ )
 		{
-			if ( areFound[i] == true )
+			if ( areFound[i] )
 			{
 				throw new Exception("The items " + NewItems[i]
 						+ " is already present.");
@@ -86,17 +87,10 @@ public class ArrayManagment
 
 
 		// Addes the old items to the new array
-		for ( int i = 0; i < Items.length; i++ )
-		{
-			tempItems[i] = Items[i];
-		}
+		System.arraycopy(Items, 0, tempItems, 0, Items.length);
 
-
-		// Addes the new items to the end of the new array
-		for ( int i = 0; i < numberOfNewItems; i++ )
-		{
-			tempItems[Items.length + i] = NewItems[i];
-		}
+		// Addes the old items to the new array
+		System.arraycopy(NewItems, 0, tempItems, Items.length, numberOfNewItems);
 
 		return tempItems;
 	}
@@ -149,7 +143,7 @@ public class ArrayManagment
 		// Checks whether all the objects were found and removed
 		for ( int i = 0; i < objectFound.length; i++ )
 		{
-			if ( objectFound[i] == false )
+			if ( !(objectFound[i]) )
 			{
 				throw new StringNotFoundInArrayException(
 						"String was not found, hence cannot "
@@ -271,7 +265,8 @@ public class ArrayManagment
 	public static String[] changeArrayItem(String NewItem, String OldItem,
 			String[] Items)
 	{
-		// Goes through all the strings and replaces the old string with the new one
+		// Goes through all the strings and replaces the old string with the new
+		// one
 		for ( int i = 0; i < Items.length; i++ )
 		{
 			if ( Items[i] != null )
@@ -343,7 +338,7 @@ public class ArrayManagment
 
 
 			// Checks whether all the objects were found and removed
-			if ( objectNotFound == true )
+			if ( objectNotFound )
 			{
 				throw new ObjectNotFoundException(
 						"Object(s) with the given component, "
@@ -435,7 +430,8 @@ public class ArrayManagment
 			for ( int i = 0; i < objects.length; i++ )
 			{
 				/*
-				 * If the given object class matches the present object class, it
+				 * If the given object class matches the present object class,
+				 * it
 				 * will be added to the container
 				 */
 				if ( objects[i].getClass().equals(objectClass) )
@@ -450,7 +446,7 @@ public class ArrayManagment
 
 
 			// Checks whether all the objects were found and removed
-			if ( objectNotFound == true )
+			if ( objectNotFound )
 			{
 				ObjectNotFoundException exception = new ObjectNotFoundException(
 						"Object(s) of the given type, "
@@ -504,7 +500,8 @@ public class ArrayManagment
 	 * Check function to determine whether or not the the given array contains
 	 * the given object. Compares {@link Object} serial numbers.
 	 * 
-	 * @return -1 if the given searchObject is not found in the given {@link Object} array. Returns the index of the searchObject
+	 * @return -1 if the given searchObject is not found in the given
+	 *         {@link Object} array. Returns the index of the searchObject
 	 *         in the given {@link Object} array.
 	 * 
 	 * @param array
@@ -547,7 +544,8 @@ public class ArrayManagment
 	{
 		if ( array != null && searchObjects != null )
 		{
-			// Boolean to tell whether or not the given object is found within the
+			// Boolean to tell whether or not the given object is found within
+			// the
 			// given array.
 			boolean[] foundObject = new boolean[searchObjects.length];
 
@@ -688,7 +686,7 @@ public class ArrayManagment
 					{
 						if ( data[i][j] != null )
 						{
-							temp[i][j] = data[i][j].toString();
+							temp[i][j] = data[i][j];
 						}
 					}
 				}

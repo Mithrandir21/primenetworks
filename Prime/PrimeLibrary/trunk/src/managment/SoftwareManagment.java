@@ -77,10 +77,8 @@ public class SoftwareManagment
 			newSW = new Software[curSW.length + 1];
 
 
-			for ( int i = 0; i < curSW.length; i++ )
-			{
-				newSW[i] = curSW[i];
-			}
+			// Addes the new items to the end of the new array
+			System.arraycopy(curSW, 0, newSW, 0, curSW.length);
 
 
 			// The index which is the same as the length of the current software
@@ -304,7 +302,7 @@ public class SoftwareManagment
 					{
 						// If the OS name is found to be an OS that the software
 						// supports
-						if ( ArrayManagment.arrayContains(swOS, osName) == true )
+						if ( ArrayManagment.arrayContains(swOS, osName) )
 						{
 							foundCompatible = true;
 						}

@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package managment;
 
@@ -36,7 +36,8 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * The class contains various function for the management of {@link WidgetRoom WidgetRooms}. This includes functions to
+ * The class contains various function for the management of {@link WidgetRoom
+ * WidgetRooms}. This includes functions to
  * create rooms, adds rooms and remove rooms.
  * 
  * @author Bahram Malaekeh
@@ -44,24 +45,28 @@ import widgets.WorkareaCanvas;
 public class RoomManagment
 {
 	/**
-	 * This function adds all the actions a WidgetRoom has, like the ability to resize and move.
+	 * This function adds all the actions a WidgetRoom has, like the ability to
+	 * resize and move.
 	 * 
 	 * @param room
-	 *            The {@link WidgetRoom} that will have actions added to it an returned.
+	 *            The {@link WidgetRoom} that will have actions added to it an
+	 *            returned.
 	 * @return The {@link WidgetRoom} with added actions.
 	 */
 	public static WidgetRoom addActionsToWidgetRoom(WidgetRoom room)
 	{
-		// TitledBorder border = javax.swing.BorderFactory.createTitledBorder(new RoomBorder(Color.BLACK), "Room Name");
+		// TitledBorder border =
+		// javax.swing.BorderFactory.createTitledBorder(new
+		// RoomBorder(Color.BLACK), "Room Name");
 		// room.setBorder(border);
 
 		RoomBorder border = new RoomBorder(Color.BLACK);
 
-		room
-				.setBorder(BorderFactory.createSwingBorder(room.getScene(),
-						border));
+		room.setBorder(BorderFactory.createSwingBorder(room.getScene(), border));
 		// room.setBorder(new RoomBorder(Color.BLACK));
-		// widget.setBorder (scene.getLookFeel().getMiniBorder(ObjectState.createNormal().deriveSelected (true)));
+		// widget.setBorder
+		// (scene.getLookFeel().getMiniBorder(ObjectState.createNormal().deriveSelected
+		// (true)));
 
 		room.bringToBack();
 
@@ -73,13 +78,15 @@ public class RoomManagment
 
 
 	/**
-	 * Creates a {@link WidgetRoom} with the given {@link Room} and adds that to the {@link LayerWidget RoomLayer} of
+	 * Creates a {@link WidgetRoom} with the given {@link Room} and adds that to
+	 * the {@link LayerWidget RoomLayer} of
 	 * the given {@link WorkareaCanvas}.
 	 * 
 	 * @param canvas
 	 *            The {@link WorkareaCanvas} the {@link WidgetRoom} is added to.
 	 * @param room
-	 *            The {@link Room} from which a {@link WidgetRoom} will be created and added to the given {@link WorkareaCanvas}.
+	 *            The {@link Room} from which a {@link WidgetRoom} will be
+	 *            created and added to the given {@link WorkareaCanvas}.
 	 */
 	public static WidgetRoom addRoom(WorkareaCanvas canvas, Room room)
 	{
@@ -93,7 +100,6 @@ public class RoomManagment
 
 		canvas.getRoomLayer().addChild(widRoom);
 
-		canvas.setSaved(false);
 		canvas.setChanged(true);
 
 		return widRoom;
@@ -102,18 +108,19 @@ public class RoomManagment
 
 
 	/**
-	 * Adds the given {@link WidgetRoom} to the {@link LayerWidget RoomLayer} of the given {@link WorkareaCanvas}.
+	 * Adds the given {@link WidgetRoom} to the {@link LayerWidget RoomLayer} of
+	 * the given {@link WorkareaCanvas}.
 	 * 
 	 * @param canvas
 	 *            The {@link WorkareaCanvas} the {@link WidgetRoom} is added to.
 	 * @param widRoom
-	 *            The {@link WidgetRoom} that is to be added to the given {@link WorkareaCanvas}.
+	 *            The {@link WidgetRoom} that is to be added to the given
+	 *            {@link WorkareaCanvas}.
 	 */
 	public static void addRoom(WorkareaCanvas canvas, WidgetRoom widRoom)
 	{
 		canvas.getRoomLayer().addChild(widRoom);
 
-		canvas.setSaved(false);
 		canvas.setChanged(true);
 	}
 
@@ -125,10 +132,13 @@ public class RoomManagment
 	 * Creates and returns a new {@link WidgetRoom} object, with all actions.
 	 * 
 	 * @param canvas
-	 *            The {@link WorkareaCanvas} where the {@link WidgetRoom} is to be added.
+	 *            The {@link WorkareaCanvas} where the {@link WidgetRoom} is to
+	 *            be added.
 	 * @param name
-	 *            The name of the {@link Room} that is created inside the {@link WidgetRoom} object.
-	 * @return A newly created {@link WidgetRoom} with all necessary actions attached.
+	 *            The name of the {@link Room} that is created inside the
+	 *            {@link WidgetRoom} object.
+	 * @return A newly created {@link WidgetRoom} with all necessary actions
+	 *         attached.
 	 */
 	public static WidgetRoom createWidgetRoom(WorkareaCanvas canvas, String name)
 	{
@@ -145,10 +155,13 @@ public class RoomManagment
 	 * Creates and returns a new {@link WidgetRoom} object, with all actions.
 	 * 
 	 * @param canvas
-	 *            The {@link WorkareaCanvas} where the {@link WidgetRoom} is to be added.
+	 *            The {@link WorkareaCanvas} where the {@link WidgetRoom} is to
+	 *            be added.
 	 * @param room
-	 *            The {@link Room} that is placed inside the {@link WidgetRoom} object.
-	 * @return A newly created {@link WidgetRoom} with all necessary actions attached.
+	 *            The {@link Room} that is placed inside the {@link WidgetRoom}
+	 *            object.
+	 * @return A newly created {@link WidgetRoom} with all necessary actions
+	 *         attached.
 	 */
 	public static WidgetRoom createWidgetRoom(WorkareaCanvas canvas, Room room)
 	{
@@ -161,10 +174,12 @@ public class RoomManagment
 
 
 	/**
-	 * The given {@link WidgetRoom} is, if found, removed from the RoomLayer of the given {@link WorkareaCanvas}.
+	 * The given {@link WidgetRoom} is, if found, removed from the RoomLayer of
+	 * the given {@link WorkareaCanvas}.
 	 * 
 	 * @param canvas
-	 *            The {@link WorkareaCanvas} where the a {@link WidgetRoom} is searched for and removed if found.
+	 *            The {@link WorkareaCanvas} where the a {@link WidgetRoom} is
+	 *            searched for and removed if found.
 	 * @param widRoom
 	 *            The {@link WidgetRoom} which will be removed if found.
 	 */
@@ -176,7 +191,6 @@ public class RoomManagment
 		{
 			canvas.getRoomLayer().removeChild(widRoom);
 
-			canvas.setSaved(false);
 			canvas.setChanged(true);
 
 			return true;
@@ -187,20 +201,26 @@ public class RoomManagment
 
 
 	/**
-	 * The RoomLayer in the given {@link WorkareaCanvas} is search for a {@link WidgetRoom} that has a name equal to the
-	 * given String name. If a {@link WidgetRoom} with the given name is found, it is removed.
+	 * The RoomLayer in the given {@link WorkareaCanvas} is search for a
+	 * {@link WidgetRoom} that has a name equal to the
+	 * given String name. If a {@link WidgetRoom} with the given name is found,
+	 * it is removed.
 	 * 
 	 * @param canvas
-	 *            The {@link WorkareaCanvas} where the a {@link WidgetRoom} is searched for and removed if found.
+	 *            The {@link WorkareaCanvas} where the a {@link WidgetRoom} is
+	 *            searched for and removed if found.
 	 * @param name
-	 *            The name of the {@link Room} which will be inside a {@link WidgetRoom}, which will be removed if
+	 *            The name of the {@link Room} which will be inside a
+	 *            {@link WidgetRoom}, which will be removed if
 	 *            found.
-	 * @return True if the {@link WidgetRoom} is found and removed. False if no {@link WidgetRoom} is found with the
+	 * @return True if the {@link WidgetRoom} is found and removed. False if no
+	 *         {@link WidgetRoom} is found with the
 	 *         given name.
 	 */
 	public static boolean deleteWidgetRoom(WorkareaCanvas canvas, String name)
 	{
-		// The list of all the children of the the roomlayer of the given WorkareaCanvas
+		// The list of all the children of the the roomlayer of the given
+		// WorkareaCanvas
 		List<Widget> list = canvas.getRoomLayer().getChildren();
 
 		// A testing WidgetRoom
@@ -212,12 +232,12 @@ public class RoomManagment
 			// Casts the Widget to a WidgetRoom
 			testingWidget = (WidgetRoom) iter.next();
 
-			// If the name of the Room object within the WidgetRoom is equal to the String name given
+			// If the name of the Room object within the WidgetRoom is equal to
+			// the String name given
 			if ( testingWidget.getRoom().getRoomName().equals(name) )
 			{
 				canvas.getRoomLayer().removeChild(testingWidget);
 
-				canvas.setSaved(false);
 				canvas.setChanged(true);
 
 				return true;
@@ -228,19 +248,25 @@ public class RoomManagment
 	}
 
 	/**
-	 * The RoomLayer in the given {@link WorkareaCanvas} is search for a {@link WidgetRoom} containing a {@link Room} equal to the
-	 * given {@link Room}. If a {@link WidgetRoom} with the given name is found, it is removed.
+	 * The RoomLayer in the given {@link WorkareaCanvas} is search for a
+	 * {@link WidgetRoom} containing a {@link Room} equal to the
+	 * given {@link Room}. If a {@link WidgetRoom} with the given name is found,
+	 * it is removed.
 	 * 
 	 * @param canvas
-	 *            The {@link WorkareaCanvas} where the a {@link WidgetRoom} is searched for and removed if found.
+	 *            The {@link WorkareaCanvas} where the a {@link WidgetRoom} is
+	 *            searched for and removed if found.
 	 * @param room
-	 *            The {@link Room} which will be inside a {@link WidgetRoom}, which will be removed if found.
-	 * @return True if the {@link WidgetRoom} is found and removed. False if no {@link WidgetRoom} is found containing
+	 *            The {@link Room} which will be inside a {@link WidgetRoom},
+	 *            which will be removed if found.
+	 * @return True if the {@link WidgetRoom} is found and removed. False if no
+	 *         {@link WidgetRoom} is found containing
 	 *         the given {@link Room}.
 	 */
 	public static boolean deleteWidgetRoom(WorkareaCanvas canvas, Room room)
 	{
-		// The list of all the children of the the roomlayer of the given WorkareaCanvas
+		// The list of all the children of the the roomlayer of the given
+		// WorkareaCanvas
 		List<Widget> list = canvas.getRoomLayer().getChildren();
 
 		// A testing WidgetRoom
@@ -252,12 +278,12 @@ public class RoomManagment
 			// Casts the Widget to a WidgetRoom
 			testingWidget = (WidgetRoom) iter.next();
 
-			// If the Room object within the WidgetRoom is equal to the given Room
+			// If the Room object within the WidgetRoom is equal to the given
+			// Room
 			if ( testingWidget.getRoom().equals(room) )
 			{
 				canvas.getRoomLayer().removeChild(testingWidget);
 
-				canvas.setSaved(false);
 				canvas.setChanged(true);
 
 				return true;

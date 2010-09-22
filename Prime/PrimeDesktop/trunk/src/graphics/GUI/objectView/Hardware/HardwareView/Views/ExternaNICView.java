@@ -368,12 +368,12 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface,
 	{
 		boolean valid = true;
 
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			extNIC.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			extNIC.setDescription(desc.getText());
 		}
@@ -390,7 +390,7 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface,
 		}
 
 
-		if ( transferSpeed.getSelectedItem().toString() != "" )
+		if ( !transferSpeed.getSelectedItem().toString().equals("") )
 		{
 			extNIC.setSpeed(Integer.parseInt(transferSpeed.getSelectedItem()
 					.toString()));

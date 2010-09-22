@@ -474,7 +474,7 @@ public class WorkareaCanvasActions
 			}
 		}
 
-		if ( found == true )
+		if ( found )
 		{
 			canvas.getConnectionLayer().removeChild(temp);
 
@@ -520,7 +520,7 @@ public class WorkareaCanvasActions
 				}
 			}
 
-			if ( found == true )
+			if ( found )
 			{
 				canvas.getRoomLayer().removeChild(temp);
 

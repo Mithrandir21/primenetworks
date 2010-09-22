@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package managment;
 
@@ -120,7 +120,8 @@ public class CanvasManagment
 	 * @param canvases
 	 *            The {@link WorkareaCanvas WorkareaCanvases} that are to be
 	 *            searched.
-	 * @return Returns null if no {@link WorkareaCanvas} with the given {@link Object} is
+	 * @return Returns null if no {@link WorkareaCanvas} with the given
+	 *         {@link Object} is
 	 *         found.
 	 */
 	public static WorkareaCanvas findCanvas(Object obj,
@@ -162,6 +163,39 @@ public class CanvasManagment
 
 				if ( temp.getObject().getObjectSerial() == obj
 						.getObjectSerial() )
+				{
+					return temp;
+				}
+			}
+		}
+
+		return null;
+	}
+
+
+
+	/**
+	 * Finds and returns the WidgetObject that contains an Object based on the
+	 * serial number given.
+	 * 
+	 * @param serial
+	 *            The serial number searched for.
+	 * @param canvas
+	 * @return The WidgetObject that contains the given object.
+	 */
+	public static WidgetObject findWidgetObjectByObjectSerial(long serial,
+			WorkareaCanvas canvas)
+	{
+		if ( canvas != null )
+		{
+			List<Widget> children = canvas.getMainLayer().getChildren();
+
+
+			for ( Iterator<Widget> iter = children.iterator(); iter.hasNext(); )
+			{
+				WidgetObject temp = (WidgetObject) iter.next();
+
+				if ( temp.getObject().getObjectSerial() == serial )
 				{
 					return temp;
 				}
@@ -250,7 +284,8 @@ public class CanvasManagment
 
 
 	/**
-	 * Finds a WorkareaCanvas in the systems canvas array. Compares {@link WorkareaCanvas} serial numbers.
+	 * Finds a WorkareaCanvas in the systems canvas array. Compares
+	 * {@link WorkareaCanvas} serial numbers.
 	 * 
 	 * @param canvas
 	 *            The searched for WorkareaCanvas.
@@ -268,7 +303,9 @@ public class CanvasManagment
 			{
 				if ( canvases[i] != null )
 				{
-					if ( canvases[i].getSerial() == canvas.getSerial() )
+					// If the difference between the two doubles are smaller
+					// then Epsilon
+					if ( Math.abs(canvases[i].getSerial() - canvas.getSerial()) < 0.0000001 )
 					{
 						return true;
 					}
@@ -279,7 +316,6 @@ public class CanvasManagment
 		// Has not found any canvases with that name.
 		return false;
 	}
-
 
 	/**
 	 * Finds a WorkareaCanvas with the given name in the systems canvas array.
@@ -339,8 +375,7 @@ public class CanvasManagment
 			{
 				if ( canvases[i] != null )
 				{
-					if ( canvases[i].isSaved() != true
-							&& canvases[i].isChanged() == true )
+					if ( !(canvases[i].isSaved()) && canvases[i].isChanged() )
 					{
 						change[i] = canvases[i];
 					}
@@ -366,18 +401,21 @@ public class CanvasManagment
 
 
 	/**
-	 * The method checks the given WorkareaCanvas and returns a boolean on whether or not the {@link WorkareaCanvas} has been
-	 * changed and not been saved. If the given workareaCanvas is null, false will be returned.
+	 * The method checks the given WorkareaCanvas and returns a boolean on
+	 * whether or not the {@link WorkareaCanvas} has been
+	 * changed and not been saved. If the given workareaCanvas is null, false
+	 * will be returned.
 	 * 
 	 * @param canvas
 	 *            The {@link WorkareaCanvas} to be examined.
-	 * @return A boolean on whether or not the {@link WorkareaCanvas} has been changed and not saved.
+	 * @return A boolean on whether or not the {@link WorkareaCanvas} has been
+	 *         changed and not saved.
 	 */
 	public static boolean canvasHasChanged(WorkareaCanvas canvas)
 	{
 		if ( canvas != null )
 		{
-			if ( canvas.isSaved() != true && canvas.isChanged() == true )
+			if ( !(canvas.isSaved()) && canvas.isChanged() )
 			{
 				return true;
 			}

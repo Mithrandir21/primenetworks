@@ -378,12 +378,12 @@ public class AntivirusEditView extends JPanel implements SoftwareView,
 		SimpleDateFormat format = new SimpleDateFormat(
 				PrimeMain.texts.getString("avViewSimpleDateFormat"));
 
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			mainAV.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			mainAV.setDescription(desc.getText());
 		}

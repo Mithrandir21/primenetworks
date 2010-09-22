@@ -67,8 +67,8 @@ public class Ram extends Hardware implements Serializable
 	{
 		super(Name, Desc);
 
-		port = ramType;
-		size = ramSize;
+		this.port = ramType;
+		this.size = ramSize;
 	}
 
 
@@ -81,7 +81,7 @@ public class Ram extends Hardware implements Serializable
 	 */
 	public String getProducer()
 	{
-		return producer;
+		return this.producer;
 	}
 
 
@@ -90,7 +90,7 @@ public class Ram extends Hardware implements Serializable
 	 */
 	public String getPort()
 	{
-		return port;
+		return this.port;
 	}
 
 
@@ -99,7 +99,7 @@ public class Ram extends Hardware implements Serializable
 	 */
 	public String getSubtype()
 	{
-		return subtype;
+		return this.subtype;
 	}
 
 
@@ -108,7 +108,7 @@ public class Ram extends Hardware implements Serializable
 	 */
 	public int getSize()
 	{
-		return size;
+		return this.size;
 	}
 
 
@@ -117,7 +117,7 @@ public class Ram extends Hardware implements Serializable
 	 */
 	public int getSpeed()
 	{
-		return speed;
+		return this.speed;
 	}
 
 
@@ -128,7 +128,7 @@ public class Ram extends Hardware implements Serializable
 	 */
 	public void setProducer(String ramProducer)
 	{
-		producer = ramProducer;
+		this.producer = ramProducer;
 	}
 
 
@@ -137,7 +137,7 @@ public class Ram extends Hardware implements Serializable
 	 */
 	public void setPort(String ramPort)
 	{
-		port = ramPort;
+		this.port = ramPort;
 	}
 
 
@@ -146,7 +146,7 @@ public class Ram extends Hardware implements Serializable
 	 */
 	public void setSubtype(String ramSubtype)
 	{
-		subtype = ramSubtype;
+		this.subtype = ramSubtype;
 	}
 
 
@@ -155,7 +155,7 @@ public class Ram extends Hardware implements Serializable
 	 */
 	public void setSize(int ramSize)
 	{
-		size = ramSize;
+		this.size = ramSize;
 	}
 
 
@@ -164,7 +164,7 @@ public class Ram extends Hardware implements Serializable
 	 */
 	public void setSpeed(int ramSpeed)
 	{
-		speed = ramSpeed;
+		this.speed = ramSpeed;
 	}
 
 }

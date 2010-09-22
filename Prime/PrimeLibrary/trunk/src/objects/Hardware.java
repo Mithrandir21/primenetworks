@@ -46,7 +46,7 @@ public abstract class Hardware extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the hardware decvice.
 	 */
-	public Hardware(String Name, String Desc)
+	protected Hardware(String Name, String Desc)
 	{
 		super(Name, Desc);
 	}
@@ -60,7 +60,7 @@ public abstract class Hardware extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the hardware decvice.
 	 */
-	public Hardware(String Name, String Desc, String[] SupConInt)
+	protected Hardware(String Name, String Desc, String[] SupConInt)
 	{
 		super(Name, Desc, SupConInt);
 	}
@@ -74,7 +74,7 @@ public abstract class Hardware extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the hardware decvice.
 	 */
-	public Hardware(String Name, String Desc, Object[] DesktopComponents)
+	protected Hardware(String Name, String Desc, Object[] DesktopComponents)
 	{
 		super(Name, Desc, DesktopComponents);
 	}
@@ -88,7 +88,7 @@ public abstract class Hardware extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the hardware decvice.
 	 */
-	public Hardware(String Name, String Desc, String[] SupConInt,
+	protected Hardware(String Name, String Desc, String[] SupConInt,
 			Object[] DesktopComponents)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
@@ -103,7 +103,7 @@ public abstract class Hardware extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the hardware decvice.
 	 */
-	public Hardware(String Name, String Desc, String[] SupConInt,
+	protected Hardware(String Name, String Desc, String[] SupConInt,
 			Motherboard objectMB)
 	{
 		super(Name, Desc, SupConInt, objectMB);
@@ -118,7 +118,7 @@ public abstract class Hardware extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the hardware decvice.
 	 */
-	public Hardware(String Name, String Desc, Motherboard objectMB)
+	protected Hardware(String Name, String Desc, Motherboard objectMB)
 	{
 		super(Name, Desc, null, objectMB);
 	}

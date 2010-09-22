@@ -87,7 +87,7 @@ public class ActionDeleteAllConnections extends AbstractSystemAction
 		{
 			String question = PrimeMain.texts
 					.getString("actionDeleteAllConnectionsQuestions")
-					+ "\n"
+					+ System.getProperty("line.separator")
 					+ PrimeMain.texts.getString("thisCannotBeUndoneMsg");
 
 			// Custom button text

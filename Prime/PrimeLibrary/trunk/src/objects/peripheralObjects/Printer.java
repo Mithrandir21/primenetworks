@@ -61,7 +61,7 @@ public class Printer extends ExternalHardware implements Serializable
 	{
 		super(Name, Desc, PconnectionInterfaces);
 
-		printerType = PprinterType;
+		this.printerType = PprinterType;
 	}
 
 
@@ -84,7 +84,7 @@ public class Printer extends ExternalHardware implements Serializable
 	{
 		super(Name, Desc, PconnectionInterfaces, objectMB);
 
-		printerType = PprinterType;
+		this.printerType = PprinterType;
 	}
 
 
@@ -106,7 +106,7 @@ public class Printer extends ExternalHardware implements Serializable
 	{
 		super(Name, Desc, objectMB);
 
-		printerType = PprinterType;
+		this.printerType = PprinterType;
 	}
 
 
@@ -119,7 +119,7 @@ public class Printer extends ExternalHardware implements Serializable
 	 */
 	public String getPrinterType()
 	{
-		return printerType;
+		return this.printerType;
 	}
 
 
@@ -128,7 +128,7 @@ public class Printer extends ExternalHardware implements Serializable
 	 */
 	public int getPagesPerMinute()
 	{
-		return ppm;
+		return this.ppm;
 	}
 
 
@@ -139,7 +139,7 @@ public class Printer extends ExternalHardware implements Serializable
 	 */
 	public void setPrinterType(String PprinterType)
 	{
-		printerType = PprinterType;
+		this.printerType = PprinterType;
 	}
 
 
@@ -149,6 +149,6 @@ public class Printer extends ExternalHardware implements Serializable
 	 */
 	public void setPagesPerMinute(int Pppm)
 	{
-		ppm = Pppm;
+		this.ppm = Pppm;
 	}
 }

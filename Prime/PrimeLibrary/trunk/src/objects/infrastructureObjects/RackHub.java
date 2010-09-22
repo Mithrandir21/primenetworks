@@ -64,7 +64,7 @@ public class RackHub extends Hub implements Serializable
 	public int getUnitSize()
 	{
 
-		return unitSize;
+		return this.unitSize;
 	}
 
 

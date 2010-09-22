@@ -65,9 +65,9 @@ public class Group implements Serializable
 	 */
 	public Group(String name, String desc)
 	{
-		groupName = name;
-		groupDescription = desc;
-		devicePermissions = new HashMap<Long, Permissions>();
+		this.groupName = name;
+		this.groupDescription = desc;
+		this.devicePermissions = new HashMap<Long, Permissions>();
 	}
 
 
@@ -80,9 +80,9 @@ public class Group implements Serializable
 	public Group(String name, String desc,
 			HashMap<Long, Permissions> permissions)
 	{
-		groupName = name;
-		groupDescription = desc;
-		devicePermissions = permissions;
+		this.groupName = name;
+		this.groupDescription = desc;
+		this.devicePermissions = permissions;
 	}
 
 
@@ -94,7 +94,7 @@ public class Group implements Serializable
 	 */
 	public String getGroupName()
 	{
-		return groupName;
+		return this.groupName;
 	}
 
 
@@ -103,7 +103,7 @@ public class Group implements Serializable
 	 */
 	public String getGroupDescription()
 	{
-		return groupDescription;
+		return this.groupDescription;
 	}
 
 
@@ -112,7 +112,7 @@ public class Group implements Serializable
 	 */
 	public HashMap<Long, Permissions> getDevicePermissions()
 	{
-		return devicePermissions;
+		return this.devicePermissions;
 	}
 
 

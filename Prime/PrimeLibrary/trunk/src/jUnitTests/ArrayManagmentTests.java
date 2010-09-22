@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package jUnitTests;
 
@@ -44,7 +44,7 @@ import exceptions.ObjectNotFoundException;
 public class ArrayManagmentTests
 {
 	@Before
-	public void setUp() throws Exception
+	public void setUp()
 	{
 		Object[] objects = ObjectCreationClass.ObjectCreationClass();
 
@@ -52,7 +52,9 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#addItems(java.lang.String[], java.lang.String[])}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#addItems(java.lang.String[], java.lang.String[])}
+	 * .
 	 */
 	@Test
 	public final void testAddItems()
@@ -70,6 +72,7 @@ public class ArrayManagmentTests
 		}
 		catch ( Exception e )
 		{
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -79,7 +82,9 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#removeItems(java.lang.String[], java.lang.String[])}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#removeItems(java.lang.String[], java.lang.String[])}
+	 * .
 	 */
 	@Test
 	public final void testRemoveItems()
@@ -105,7 +110,9 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#removeItem(objects.Object, objects.Object[])}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#removeItem(objects.Object, objects.Object[])}
+	 * .
 	 */
 	@Test
 	public final void testRemoveItemObjectObjectArray()
@@ -135,7 +142,9 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#removeItemReturnIndex(objects.Object, objects.Object[])}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#removeItemReturnIndex(objects.Object, objects.Object[])}
+	 * .
 	 */
 	@Test
 	public final void testRemoveItemReturnIndex()
@@ -167,7 +176,9 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#removeItem(objects.Object, java.util.ArrayList)}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#removeItem(objects.Object, java.util.ArrayList)}
+	 * .
 	 */
 	@Test
 	public final void testRemoveItemObjectArrayListOfObject()
@@ -197,7 +208,9 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#changeArrayItem(java.lang.String, java.lang.String, java.lang.String[])}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#changeArrayItem(java.lang.String, java.lang.String, java.lang.String[])}
+	 * .
 	 */
 	@Test
 	public final void testChangeArrayItem()
@@ -219,7 +232,9 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#getSpesificComponents(java.lang.Class, objects.Object[], int)}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#getSpesificComponents(java.lang.Class, objects.Object[], int)}
+	 * .
 	 */
 	@Test
 	public final void testGetSpesificComponents()
@@ -242,8 +257,9 @@ public class ArrayManagmentTests
 
 		try
 		{
-			ArrayManagment.getSpesificComponents(Motherboard.class, objects[0]
-					.getComponents(), objects[0].getComponents().length);
+			ArrayManagment.getSpesificComponents(Motherboard.class,
+					objects[0].getComponents(),
+					objects[0].getComponents().length);
 		}
 		catch ( ObjectNotFoundException e )
 		{
@@ -252,7 +268,9 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#getSpesificComponent(java.lang.Class, java.util.ArrayList)}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#getSpesificComponent(java.lang.Class, java.util.ArrayList)}
+	 * .
 	 */
 	@Test
 	public final void testGetSpesificComponent()
@@ -292,7 +310,9 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#getSpesificObjects(java.lang.Class, objects.Object[], int)}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#getSpesificObjects(java.lang.Class, objects.Object[], int)}
+	 * .
 	 */
 	@Test
 	public final void testGetSpesificObjects()
@@ -324,7 +344,9 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#arrayContains(objects.Object[], objects.Object)}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#arrayContains(objects.Object[], objects.Object)}
+	 * .
 	 */
 	@Test
 	public final void testArrayContainsObjectArrayObject()
@@ -345,7 +367,9 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#arrayContainsReturnsIndex(objects.Object[], objects.Object)}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#arrayContainsReturnsIndex(objects.Object[], objects.Object)}
+	 * .
 	 */
 	@Test
 	public final void testArrayContainsReturnsIndex()
@@ -367,7 +391,9 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#arrayContains(java.lang.String[], java.lang.String[])}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#arrayContains(java.lang.String[], java.lang.String[])}
+	 * .
 	 */
 	@Test
 	public final void testArrayContainsStringArrayStringArray()
@@ -404,7 +430,9 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#arrayContains(java.lang.String[], java.lang.String)}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#arrayContains(java.lang.String[], java.lang.String)}
+	 * .
 	 */
 	@Test
 	public final void testArrayContainsStringArrayString()
@@ -431,7 +459,8 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#add5ArraySpaces(java.lang.Object[][])}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#add5ArraySpaces(java.lang.Object[][])}.
 	 */
 	@Test
 	public final void testAdd5ArraySpacesObjectArrayArray()
@@ -467,7 +496,8 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#add5ArraySpaces(java.lang.String[][])}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#add5ArraySpaces(java.lang.String[][])}.
 	 */
 	@Test
 	public final void testAdd5ArraySpacesStringArrayArray()
@@ -502,7 +532,9 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#removeEmptyIndexes(java.lang.String[][])}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#removeEmptyIndexes(java.lang.String[][])}
+	 * .
 	 */
 	@Test
 	public final void testRemoveEmptyIndexes()
@@ -527,7 +559,8 @@ public class ArrayManagmentTests
 	}
 
 	/**
-	 * Test method for {@link managment.ArrayManagment#copyArray(objects.Object[])}.
+	 * Test method for
+	 * {@link managment.ArrayManagment#copyArray(objects.Object[])}.
 	 */
 	@Test
 	public final void testCopyArray()

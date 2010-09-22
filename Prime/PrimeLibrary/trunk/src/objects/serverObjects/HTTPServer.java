@@ -61,9 +61,9 @@ public class HTTPServer extends Servers implements Serializable
 		super(Name, Desc);
 
 		// Creates a Webserver software object
-		Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
+		this.Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
 				WebserverSWversion);
-		Software[] sw = { Webserver };
+		Software[] sw = { this.Webserver };
 		super.setSoftware(sw);
 	}
 
@@ -90,9 +90,9 @@ public class HTTPServer extends Servers implements Serializable
 		super(Name, Desc, SupConInt);
 
 		// Creates a Webserver software object
-		Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
+		this.Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
 				WebserverSWversion);
-		Software[] sw = { Webserver };
+		Software[] sw = { this.Webserver };
 		super.setSoftware(sw);
 	}
 
@@ -119,9 +119,9 @@ public class HTTPServer extends Servers implements Serializable
 		super(Name, Desc, DesktopComponents);
 
 		// Creates a Webserver software object
-		Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
+		this.Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
 				WebserverSWversion);
-		Software[] sw = { Webserver };
+		Software[] sw = { this.Webserver };
 		super.setSoftware(sw);
 	}
 
@@ -148,9 +148,9 @@ public class HTTPServer extends Servers implements Serializable
 		super(Name, Desc, SupConInt, DesktopComponents);
 
 		// Creates a Webserver software object
-		Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
+		this.Webserver = new Webserver(WebserverSWname, WebserverSWdesc,
 				WebserverSWversion);
-		Software[] sw = { Webserver };
+		Software[] sw = { this.Webserver };
 		super.setSoftware(sw);
 	}
 
@@ -164,7 +164,7 @@ public class HTTPServer extends Servers implements Serializable
 	public Webserver getWebserverApplication()
 	{
 
-		return Webserver;
+		return this.Webserver;
 	}
 
 	/**

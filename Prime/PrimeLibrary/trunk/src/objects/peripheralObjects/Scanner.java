@@ -59,7 +59,7 @@ public class Scanner extends ExternalHardware implements Serializable
 
 		if ( Sresolution != null )
 		{
-			resolution = Sresolution;
+			this.resolution = Sresolution;
 		}
 	}
 
@@ -84,7 +84,7 @@ public class Scanner extends ExternalHardware implements Serializable
 
 		if ( Sresolution != null )
 		{
-			resolution = Sresolution;
+			this.resolution = Sresolution;
 		}
 	}
 
@@ -107,7 +107,7 @@ public class Scanner extends ExternalHardware implements Serializable
 
 		if ( Sresolution != null )
 		{
-			resolution = Sresolution;
+			this.resolution = Sresolution;
 		}
 	}
 
@@ -121,7 +121,7 @@ public class Scanner extends ExternalHardware implements Serializable
 	 */
 	public String getScannerResolution()
 	{
-		return resolution;
+		return this.resolution;
 	}
 
 
@@ -132,7 +132,7 @@ public class Scanner extends ExternalHardware implements Serializable
 	 */
 	public void setScannerResolution(String Sresolution)
 	{
-		resolution = Sresolution;
+		this.resolution = Sresolution;
 	}
 
 }

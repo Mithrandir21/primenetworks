@@ -80,7 +80,7 @@ public class MainContainerWorker
 	 */
 	public ConnectionContainer getConContainer()
 	{
-		return conContainer;
+		return this.conContainer;
 	}
 
 
@@ -94,7 +94,7 @@ public class MainContainerWorker
 	 */
 	public HardwareContainer getHwContainer()
 	{
-		return hwContainer;
+		return this.hwContainer;
 	}
 
 
@@ -108,7 +108,7 @@ public class MainContainerWorker
 	 */
 	public PeripheralContainer getPerContainer()
 	{
-		return perContainer;
+		return this.perContainer;
 	}
 
 
@@ -122,7 +122,7 @@ public class MainContainerWorker
 	 */
 	public SoftwareContainer getSwContainer()
 	{
-		return swContainer;
+		return this.swContainer;
 	}
 
 
@@ -135,7 +135,7 @@ public class MainContainerWorker
 	 */
 	public ClientsContainer getClientContainer()
 	{
-		return clientContainer;
+		return this.clientContainer;
 	}
 
 
@@ -147,7 +147,7 @@ public class MainContainerWorker
 	 */
 	public ServersContainer getServerContainer()
 	{
-		return serverContainer;
+		return this.serverContainer;
 	}
 
 
@@ -167,23 +167,23 @@ public class MainContainerWorker
 
 		if ( object instanceof Hardware )
 		{
-			return hwContainer.addObject(object);
+			return this.hwContainer.addObject(object);
 		}
 		else if ( object instanceof Software )
 		{
-			return swContainer.addObject(object);
+			return this.swContainer.addObject(object);
 		}
 		else if ( object instanceof Connection )
 		{
-			return conContainer.addObject(object);
+			return this.conContainer.addObject(object);
 		}
 		else if ( object instanceof Clients )
 		{
-			return clientContainer.addObject(object);
+			return this.clientContainer.addObject(object);
 		}
 		else if ( object instanceof Servers )
 		{
-			return serverContainer.addObject(object);
+			return this.serverContainer.addObject(object);
 		}
 
 
@@ -202,23 +202,23 @@ public class MainContainerWorker
 	{
 		if ( object instanceof Hardware )
 		{
-			return hwContainer.removeObject(object);
+			return this.hwContainer.removeObject(object);
 		}
 		else if ( object instanceof Software )
 		{
-			return swContainer.removeObject(object);
+			return this.swContainer.removeObject(object);
 		}
 		else if ( object instanceof Connection )
 		{
-			return conContainer.removeObject(object);
+			return this.conContainer.removeObject(object);
 		}
 		else if ( object instanceof Clients )
 		{
-			return clientContainer.removeObject(object);
+			return this.clientContainer.removeObject(object);
 		}
 		else if ( object instanceof Servers )
 		{
-			return serverContainer.removeObject(object);
+			return this.serverContainer.removeObject(object);
 		}
 
 
@@ -237,44 +237,44 @@ public class MainContainerWorker
 		{
 			if ( object instanceof Hardware )
 			{
-				return hwContainer.containsObject(object);
+				return this.hwContainer.containsObject(object);
 			}
 			else if ( object instanceof Software )
 			{
-				return swContainer.containsObject(object);
+				return this.swContainer.containsObject(object);
 			}
 			else if ( object instanceof Connection )
 			{
-				return conContainer.containsObject(object);
+				return this.conContainer.containsObject(object);
 			}
 			else if ( object instanceof Clients )
 			{
-				return clientContainer.containsObject(object);
+				return this.clientContainer.containsObject(object);
 			}
 			else if ( object instanceof Servers )
 			{
-				return serverContainer.containsObject(object);
+				return this.serverContainer.containsObject(object);
 			}
 		}
 		else if ( objectClass.equals(Hardware.class) )
 		{
-			return hwContainer.containsObject(object);
+			return this.hwContainer.containsObject(object);
 		}
 		else if ( objectClass.equals(Software.class) )
 		{
-			return swContainer.containsObject(object);
+			return this.swContainer.containsObject(object);
 		}
 		else if ( objectClass.equals(Connection.class) )
 		{
-			return conContainer.containsObject(object);
+			return this.conContainer.containsObject(object);
 		}
 		else if ( objectClass.equals(Clients.class) )
 		{
-			return clientContainer.containsObject(object);
+			return this.clientContainer.containsObject(object);
 		}
 		else if ( objectClass.equals(Servers.class) )
 		{
-			return serverContainer.containsObject(object);
+			return this.serverContainer.containsObject(object);
 		}
 
 

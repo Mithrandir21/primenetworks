@@ -61,8 +61,8 @@ public class ConnectionDoesNotExist extends Exception
 	@Override
 	public String getMessage()
 	{
-		String output = "There exists no connection between object a, " + a
-				+ " and object b, " + b + ".";
+		String output = "There exists no connection between object a, " + this.a
+				+ " and object b, " + this.b + ".";
 
 		return output;
 	}

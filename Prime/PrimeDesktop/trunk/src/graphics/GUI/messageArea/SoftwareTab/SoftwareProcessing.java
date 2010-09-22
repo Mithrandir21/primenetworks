@@ -216,10 +216,10 @@ public class SoftwareProcessing
 		{
 			if ( data[i][0] == null )
 			{
-				data[i][0] = info[0].toString();
-				data[i][1] = info[1].toString();
-				data[i][2] = info[2].toString();
-				data[i][3] = info[3].toString();
+				data[i][0] = info[0];
+				data[i][1] = info[1];
+				data[i][2] = info[2];
+				data[i][3] = info[3];
 
 				return data;
 			}

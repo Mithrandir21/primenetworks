@@ -65,8 +65,8 @@ public class Internet extends Infrastructure
 	public Internet(String name, String desc, String net)
 	{
 		super(name, desc);
-		netName = net;
-		netDescription = desc;
+		this.netName = net;
+		this.netDescription = desc;
 	}
 
 
@@ -86,9 +86,9 @@ public class Internet extends Infrastructure
 	public Internet(String name, String desc, String net, Object device)
 	{
 		super(name, desc);
-		netName = net;
-		netDescription = desc;
-		connectedDevice = device;
+		this.netName = net;
+		this.netDescription = desc;
+		this.connectedDevice = device;
 	}
 
 
@@ -112,8 +112,8 @@ public class Internet extends Infrastructure
 			Motherboard initObjects)
 	{
 		super(name, desc, supCon, initObjects);
-		netName = net;
-		netDescription = desc;
+		this.netName = net;
+		this.netDescription = desc;
 	}
 
 
@@ -125,7 +125,7 @@ public class Internet extends Infrastructure
 	 */
 	public String getNetName()
 	{
-		return netName;
+		return this.netName;
 	}
 
 
@@ -135,7 +135,7 @@ public class Internet extends Infrastructure
 	 */
 	public String getNetDescription()
 	{
-		return netDescription;
+		return this.netDescription;
 	}
 
 
@@ -145,7 +145,7 @@ public class Internet extends Infrastructure
 	 */
 	public Object getConnectedDevice()
 	{
-		return connectedDevice;
+		return this.connectedDevice;
 	}
 
 

@@ -23,6 +23,7 @@ import groups.Permissions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import widgets.WorkareaCanvas;
 
@@ -75,6 +76,7 @@ public class GroupManagment
 	}
 
 
+
 	/**
 	 * This function returns a multi dimensional string array that will contain
 	 * the names of the group and the name of the given {@link WorkareaCanvas}.
@@ -120,7 +122,7 @@ public class GroupManagment
 	 * {@link ArrayList} of the given {@link WorkareaCanvas}.
 	 * Note: permissions CAN be null.
 	 */
-	public static void createNewGroup(WorkareaCanvas canvas, String name,
+	public static boolean createNewGroup(WorkareaCanvas canvas, String name,
 			String desc, HashMap<Long, Permissions> permissions)
 	{
 		if ( canvas != null && name != null && desc != null )
@@ -142,9 +144,55 @@ public class GroupManagment
 
 				// Adds the new group to the Network
 				canvas.getNetworkGroups().add(newGroup);
+
+				return true;
 			}
 		}
+
+		return false;
 	}
+
+
+
+	/**
+	 * This function attempts to remove the given {@link Group} from the
+	 * given {@link WorkareaCanvas}.
+	 */
+	public static boolean removeGroup(WorkareaCanvas canvas, Group group)
+	{
+		if ( canvas != null && group != null )
+		{
+			// Adds the new group to the Network
+			return canvas.getNetworkGroups().remove(group);
+		}
+
+		return false;
+	}
+
+
+
+	/**
+	 * This function attempts to find and then remove a {@link Group} from the
+	 * given {@link WorkareaCanvas} with the same name as the given string.
+	 */
+	public static boolean removeGroupWithName(WorkareaCanvas canvas,
+			String groupName)
+	{
+		if ( canvas != null && groupName != null )
+		{
+			// Attempts to get the Group with the name
+			Group group = GroupManagment.getGroupWithName(canvas, groupName);
+
+			if ( group != null )
+			{
+				// Adds the new group to the Network
+				return canvas.getNetworkGroups().remove(group);
+			}
+		}
+
+		return false;
+	}
+
 
 
 
@@ -252,6 +300,8 @@ public class GroupManagment
 		return null;
 	}
 
+
+
 	public static String[][] getGroupNamesWithNetworkName(
 			WorkareaCanvas[] canvases)
 	{
@@ -330,7 +380,7 @@ public class GroupManagment
 								{
 									if ( mainGroup[i][j] != null )
 									{
-										temp[i][j] = mainGroup[i][j].toString();
+										temp[i][j] = mainGroup[i][j];
 									}
 								}
 							}
@@ -348,8 +398,7 @@ public class GroupManagment
 								{
 									if ( newGroup[newGroupCounter][j] != null )
 									{
-										temp[i][j] = newGroup[newGroupCounter][j]
-												.toString();
+										temp[i][j] = newGroup[newGroupCounter][j];
 									}
 								}
 							}
@@ -386,4 +435,50 @@ public class GroupManagment
 
 	}
 
+
+
+	/**
+	 * This function performers a deep copy of the given {@link HashMap}.
+	 * This is done by calling the {@link Cloneable} clone() function inside the
+	 * {@link Permissions} class.
+	 * 
+	 * Will return NULL if the given map is NULL, or a new empty {@link HashMap}
+	 * is the size of the given map is 0.
+	 */
+	public static HashMap<Long, Permissions> deepCopyPermissionsMap(
+			HashMap<Long, Permissions> original)
+	{
+		if ( original != null )
+		{
+			if ( original.size() == 0 )
+			{
+				return new HashMap<Long, Permissions>();
+			}
+
+			// The new map with the copied keys and values
+			HashMap<Long, Permissions> newPermissions = new HashMap<Long, Permissions>();
+
+			Iterator<Long> itr = original.keySet().iterator();
+
+			while ( itr.hasNext() )
+			{
+				// Creates a new long
+				Long newLong = new Long(itr.next());
+
+				// Gets the permission with key from the original map
+				Permissions orginialPermission = original.get(newLong);
+
+				/**
+				 * Puts the new Long created and a clone of the original
+				 * permissions into the new map.
+				 */
+				newPermissions.put(newLong, orginialPermission.clone());
+			}
+
+
+			return newPermissions;
+		}
+
+		return null;
+	}
 }

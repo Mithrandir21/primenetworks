@@ -54,13 +54,13 @@ public class ActionDeleteAllConnectionsToAndFrom extends AbstractSystemAction
 		implements SystemActionInterface
 {
 	// The canvas where the deletion is taking place
-	WorkareaCanvas canvas = null;
+	private WorkareaCanvas canvas = null;
 
 	// The widget object
-	WidgetObject widObject = null;
+	private WidgetObject widObject = null;
 
 	// The connections from the WidgetObject
-	Connection[] existingConnections = null;
+	private Connection[] existingConnections = null;
 
 	/**
 	 * A constructor for the class that takes a string, the action name, and an

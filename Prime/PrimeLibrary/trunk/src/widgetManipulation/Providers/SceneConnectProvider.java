@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package widgetManipulation.Providers;
 
@@ -32,7 +32,8 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * This class controls the creation of graphical connections on a {@link WorkareaCanvas}.
+ * This class controls the creation of graphical connections on a
+ * {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
  */
@@ -57,6 +58,7 @@ public class SceneConnectProvider implements ConnectProvider
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * org.netbeans.api.visual.action.ConnectProvider#createConnection(org.netbeans
 	 * .api.visual.widget.Widget, org.netbeans.api.visual.widget.Widget)
@@ -67,6 +69,7 @@ public class SceneConnectProvider implements ConnectProvider
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * org.netbeans.api.visual.action.ConnectProvider#hasCustomTargetWidgetResolver
 	 * (org.netbeans.api.visual.widget.Scene)
@@ -78,6 +81,7 @@ public class SceneConnectProvider implements ConnectProvider
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * org.netbeans.api.visual.action.ConnectProvider#isSourceWidget(org.netbeans
 	 * .api.visual.widget.Widget)
@@ -95,6 +99,7 @@ public class SceneConnectProvider implements ConnectProvider
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * org.netbeans.api.visual.action.ConnectProvider#isTargetWidget(org.netbeans
 	 * .api.visual.widget.Widget, org.netbeans.api.visual.widget.Widget)
@@ -102,12 +107,12 @@ public class SceneConnectProvider implements ConnectProvider
 	public ConnectorState isTargetWidget(Widget sourceWidget,
 			Widget targetWidget)
 	{
-		if ( sourceWidget != targetWidget
+		if ( !sourceWidget.equals(targetWidget)
 				&& !(targetWidget instanceof LabelWidget)
 				&& !(targetWidget instanceof LayerWidget)
 				&& (targetWidget instanceof WidgetObject || isChildOfThisWidget(targetWidget))
 				&& !(targetWidget.getParentWidget() instanceof LayerWidget)
-				&& targetWidget.getParentWidget() != sourceWidget )
+				&& !targetWidget.getParentWidget().equals(sourceWidget) )
 		{
 			return ConnectorState.ACCEPT;
 		}
@@ -119,6 +124,7 @@ public class SceneConnectProvider implements ConnectProvider
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * org.netbeans.api.visual.action.ConnectProvider#resolveTargetWidget(org
 	 * .netbeans.api.visual.widget.Scene, java.awt.Point)
@@ -130,7 +136,8 @@ public class SceneConnectProvider implements ConnectProvider
 
 
 	/**
-	 * Determines whether the given {@link Widget} is a child of a {@link WidgetObject}.
+	 * Determines whether the given {@link Widget} is a child of a
+	 * {@link WidgetObject}.
 	 */
 	public boolean isChildOfThisWidget(Widget widget)
 	{
@@ -161,6 +168,6 @@ public class SceneConnectProvider implements ConnectProvider
 	 */
 	public WorkareaCanvas getCanvas()
 	{
-		return canvas;
+		return this.canvas;
 	}
 }

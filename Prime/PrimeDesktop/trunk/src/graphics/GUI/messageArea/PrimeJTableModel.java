@@ -47,8 +47,8 @@ public class PrimeJTableModel extends AbstractTableModel
 	 */
 	public PrimeJTableModel(String[] colNames, Object[][] tableData)
 	{
-		columnNames = colNames;
-		data = tableData;
+		this.columnNames = colNames;
+		this.data = tableData;
 	}
 
 
@@ -70,7 +70,7 @@ public class PrimeJTableModel extends AbstractTableModel
 	@Override
 	public String getColumnName(int col)
 	{
-		return columnNames[col];
+		return this.columnNames[col];
 	}
 
 	/*
@@ -90,7 +90,7 @@ public class PrimeJTableModel extends AbstractTableModel
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex)
 	{
-		return data[rowIndex][columnIndex];
+		return this.data[rowIndex][columnIndex];
 	}
 
 	/*
@@ -101,7 +101,7 @@ public class PrimeJTableModel extends AbstractTableModel
 	@Override
 	public void setValueAt(Object value, int row, int col)
 	{
-		data[row][col] = value;
+		this.data[row][col] = value;
 		this.fireTableCellUpdated(row, col);
 	}
 

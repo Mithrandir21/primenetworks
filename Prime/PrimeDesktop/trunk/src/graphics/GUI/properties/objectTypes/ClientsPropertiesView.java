@@ -161,7 +161,7 @@ public class ClientsPropertiesView extends AbstractObjectPropertiesView
 		for ( int i = 0; i < rates.length; i++ )
 		{
 			rates[i] = Integer.toString(temp);
-			temp = temp + 5;
+			temp += 5;
 		}
 
 
@@ -200,7 +200,7 @@ public class ClientsPropertiesView extends AbstractObjectPropertiesView
 		for ( int i = 0; i < rates.length; i++ )
 		{
 			rates[i] = Integer.toString(temp);
-			temp = temp + 5;
+			temp += 5;
 		}
 
 		comboBox.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(rates,

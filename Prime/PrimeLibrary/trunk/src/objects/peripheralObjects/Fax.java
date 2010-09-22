@@ -61,7 +61,7 @@ public class Fax extends ExternalHardware implements Serializable
 	{
 		super(Name, Desc, FconnectionInterfaces);
 
-		faxType = FfaxType;
+		this.faxType = FfaxType;
 	}
 
 
@@ -84,7 +84,7 @@ public class Fax extends ExternalHardware implements Serializable
 	{
 		super(Name, Desc, FconnectionInterfaces, objectMB);
 
-		faxType = FfaxType;
+		this.faxType = FfaxType;
 	}
 
 
@@ -105,7 +105,7 @@ public class Fax extends ExternalHardware implements Serializable
 	{
 		super(Name, Desc, objectMB);
 
-		faxType = FfaxType;
+		this.faxType = FfaxType;
 	}
 
 
@@ -118,7 +118,7 @@ public class Fax extends ExternalHardware implements Serializable
 	 */
 	public String getFaxType()
 	{
-		return faxType;
+		return this.faxType;
 	}
 
 
@@ -127,7 +127,7 @@ public class Fax extends ExternalHardware implements Serializable
 	 */
 	public int getPagesPerMinute()
 	{
-		return ppm;
+		return this.ppm;
 	}
 
 
@@ -138,7 +138,7 @@ public class Fax extends ExternalHardware implements Serializable
 	 */
 	public void setFaxType(String FfaxType)
 	{
-		faxType = FfaxType;
+		this.faxType = FfaxType;
 	}
 
 
@@ -147,6 +147,6 @@ public class Fax extends ExternalHardware implements Serializable
 	 */
 	public void setPagesPerMinute(int Pppm)
 	{
-		ppm = Pppm;
+		this.ppm = Pppm;
 	}
 }

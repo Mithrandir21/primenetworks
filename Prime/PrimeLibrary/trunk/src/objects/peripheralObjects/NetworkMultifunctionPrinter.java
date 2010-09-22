@@ -74,7 +74,7 @@ public class NetworkMultifunctionPrinter extends MultifunctionPrinter
 	 */
 	public WidgetNetworkInfo getInfo()
 	{
-		return info;
+		return this.info;
 	}
 
 

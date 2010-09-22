@@ -143,7 +143,7 @@ public class SystemFunctions
 				found = fileExistsInGivenDirectory(new File(dir, children[i]),
 						file);
 
-				if ( found == true )
+				if ( found )
 				{
 					return found;
 				}

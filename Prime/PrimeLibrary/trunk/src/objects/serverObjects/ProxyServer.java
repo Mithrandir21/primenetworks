@@ -61,8 +61,8 @@ public class ProxyServer extends Servers implements Serializable
 		super(Name, Desc);
 
 		// Creates a Proxy software object
-		Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
-		Software[] sw = { Proxy };
+		this.Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
+		Software[] sw = { this.Proxy };
 		super.setSoftware(sw);
 	}
 
@@ -87,8 +87,8 @@ public class ProxyServer extends Servers implements Serializable
 		super(Name, Desc, SupConInt);
 
 		// Creates a Proxy software object
-		Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
-		Software[] sw = { Proxy };
+		this.Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
+		Software[] sw = { this.Proxy };
 		super.setSoftware(sw);
 	}
 
@@ -114,8 +114,8 @@ public class ProxyServer extends Servers implements Serializable
 		super(Name, Desc, DesktopComponents);
 
 		// Creates a Proxy software object
-		Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
-		Software[] sw = { Proxy };
+		this.Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
+		Software[] sw = { this.Proxy };
 		super.setSoftware(sw);
 	}
 
@@ -142,8 +142,8 @@ public class ProxyServer extends Servers implements Serializable
 		super(Name, Desc, SupConInt, DesktopComponents);
 
 		// Creates a Proxy software object
-		Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
-		Software[] sw = { Proxy };
+		this.Proxy = new Proxy(ProxySWname, ProxySWdesc, ProxySWversion);
+		Software[] sw = { this.Proxy };
 		super.setSoftware(sw);
 	}
 
@@ -156,7 +156,7 @@ public class ProxyServer extends Servers implements Serializable
 	public Proxy getProxyApplication()
 	{
 
-		return Proxy;
+		return this.Proxy;
 	}
 
 	/**

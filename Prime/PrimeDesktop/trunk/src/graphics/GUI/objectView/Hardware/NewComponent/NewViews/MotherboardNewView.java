@@ -406,7 +406,7 @@ public class MotherboardNewView extends JDialog implements
 
 		for ( int i = 1; i < gpuPortStrings.length; i++ )
 		{
-			if ( mb.getGraphicalPort() != null && mb.getGraphicalPort() != "" )
+			if ( mb.getGraphicalPort() != null && !mb.getGraphicalPort().equals("") )
 			{
 				if ( gpuPorts.getItemAt(i).equals(mb.getGraphicalPort()) )
 				{
@@ -443,7 +443,7 @@ public class MotherboardNewView extends JDialog implements
 		for ( int i = 0; i < DUCStrings.length; i++ )
 		{
 			if ( mb.getDUCconnectionType() != null
-					&& mb.getDUCconnectionType() != "" )
+					&& !mb.getDUCconnectionType().equals("") )
 			{
 				if ( DUCPorts.getItemAt(i).equals(mb.getDUCconnectionType()) )
 				{
@@ -479,7 +479,7 @@ public class MotherboardNewView extends JDialog implements
 
 		for ( int i = 0; i < RAMStrings.length; i++ )
 		{
-			if ( mb.getRAMtype() != null && mb.getRAMtype() != "" )
+			if ( mb.getRAMtype() != null && !mb.getRAMtype().equals("") )
 			{
 				if ( RAMPorts.getItemAt(i).equals(mb.getRAMtype()) )
 				{
@@ -1017,43 +1017,43 @@ public class MotherboardNewView extends JDialog implements
 	{
 		boolean validated = true;
 
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			mbObj.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			mbObj.setDescription(desc.getText());
 		}
 
-		if ( producerField.getText() != "" )
+		if ( !producerField.getText().equals("") )
 		{
 			mbObj.setProducer(producerField.getText());
 		}
 
-		if ( forms.getSelectedItem().toString() != "" )
+		if ( !forms.getSelectedItem().toString().equals("") )
 		{
 			mbObj.setForm(forms.getSelectedItem().toString());
 		}
 
-		if ( sockets.getSelectedItem().toString() != "" )
+		if ( !sockets.getSelectedItem().toString().equals("") )
 		{
 			mbObj.setSocket(sockets.getSelectedItem().toString());
 		}
 
-		if ( busSpeeds.getSelectedItem().toString() != "" )
+		if ( !busSpeeds.getSelectedItem().toString().equals("") )
 		{
 			mbObj.setBusSpeed(Integer.parseInt(busSpeeds.getSelectedItem()
 					.toString()));
 		}
 
-		if ( chipsetField.getText() != "" )
+		if ( !chipsetField.getText().equals("") )
 		{
 			mbObj.setChipset(chipsetField.getText());
 		}
 
-		if ( gpuPorts.getSelectedItem().toString() != "" )
+		if ( !gpuPorts.getSelectedItem().toString().equals("") )
 		{
 			mbObj.setGraphicalPortType(gpuPorts.getSelectedItem().toString());
 		}
@@ -1063,7 +1063,7 @@ public class MotherboardNewView extends JDialog implements
 			mbObj.setDUCconnectionType(DUCPorts.getSelectedItem().toString());
 		}
 
-		if ( RAMPorts.getSelectedItem().toString() != "" )
+		if ( !RAMPorts.getSelectedItem().toString().equals("") )
 		{
 			mbObj.setRAMtype(RAMPorts.getSelectedItem().toString());
 		}
@@ -1075,25 +1075,25 @@ public class MotherboardNewView extends JDialog implements
 		mbObj.setGraphicsCardInstalled(GPUinstalled.isSelected());
 
 
-		if ( CPUsockets.getSelectedItem().toString() != "" )
+		if ( !CPUsockets.getSelectedItem().toString().equals("") )
 		{
 			mbObj.setMaxCPUs(Integer.parseInt(CPUsockets.getSelectedItem()
 					.toString()));
 		}
 
-		if ( PCIslots.getSelectedItem().toString() != "" )
+		if ( !PCIslots.getSelectedItem().toString().equals("") )
 		{
 			mbObj.setMaxPCIs(Integer.parseInt(PCIslots.getSelectedItem()
 					.toString()));
 		}
 
-		if ( RAMslots.getSelectedItem().toString() != "" )
+		if ( !RAMslots.getSelectedItem().toString().equals("") )
 		{
 			mbObj.setMaxRAMs(Integer.parseInt(RAMslots.getSelectedItem()
 					.toString()));
 		}
 
-		if ( USBports.getSelectedItem().toString() != "" )
+		if ( !USBports.getSelectedItem().toString().equals("") )
 		{
 			if ( mainObj.isExemptedNetworkRules() )
 			{
@@ -1180,7 +1180,7 @@ public class MotherboardNewView extends JDialog implements
 		}
 
 
-		if ( DUCports.getSelectedItem().toString() != "" )
+		if ( !DUCports.getSelectedItem().toString().equals("") )
 		{
 			mbObj.setMaxDUCs(Integer.parseInt(DUCports.getSelectedItem()
 					.toString()));
@@ -1188,7 +1188,7 @@ public class MotherboardNewView extends JDialog implements
 
 
 
-		if ( LANports.getSelectedItem().toString() != "" )
+		if ( !LANports.getSelectedItem().toString().equals("") )
 		{
 			boolean standardObject = false;
 
@@ -1293,7 +1293,7 @@ public class MotherboardNewView extends JDialog implements
 
 
 
-		if ( CoaxPorts.getSelectedItem().toString() != "" )
+		if ( !CoaxPorts.getSelectedItem().toString().equals("") )
 		{
 			boolean standardObject = false;
 
@@ -1398,7 +1398,7 @@ public class MotherboardNewView extends JDialog implements
 
 
 
-		if ( FiberPorts.getSelectedItem().toString() != "" )
+		if ( !FiberPorts.getSelectedItem().toString().equals("") )
 		{
 			boolean standardObject = false;
 

@@ -66,7 +66,7 @@ public class Keyboard extends ExternalHardware implements Serializable
 	 */
 	public boolean isLaptopKeyboard()
 	{
-		return isLaptopKeyboard;
+		return this.isLaptopKeyboard;
 	}
 
 
@@ -79,6 +79,6 @@ public class Keyboard extends ExternalHardware implements Serializable
 	 */
 	public void setIsLaptopKeyboard(boolean info)
 	{
-		isLaptopKeyboard = info;
+		this.isLaptopKeyboard = info;
 	}
 }

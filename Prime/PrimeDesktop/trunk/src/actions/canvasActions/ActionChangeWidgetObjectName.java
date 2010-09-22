@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package actions.canvasActions;
 
@@ -44,17 +44,18 @@ import widgets.WorkareaCanvas;
  * 
  * @author Bahram Malaekeh
  */
-public class ActionChangeWidgetObjectName extends AbstractSystemAction implements SystemActionInterface
+public class ActionChangeWidgetObjectName extends AbstractSystemAction
+		implements SystemActionInterface
 {
 
 	// The widget object where the name is to be changed
-	WidgetObject widObject = null;
+	private WidgetObject widObject = null;
 
 	// The new name of the widget object
-	String newName = null;
+	private String newName = null;
 
 	// The old name of the widget object
-	String oldName = null;
+	private String oldName = null;
 
 	/**
 	 * A constructor for the class that takes a string, the action name, an
@@ -74,13 +75,14 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 			WidgetObject widgetObject, String givenName)
 	{
 		super(text, icon);
-		widObject = widgetObject;
-		newName = givenName;
-		oldName = widgetObject.getObject().getObjectName();
+		this.widObject = widgetObject;
+		this.newName = givenName;
+		this.oldName = widgetObject.getObject().getObjectName();
 	}
 
 	/**
-	 * A constructor for the class that takes a string, the action name, a {@link WidgetObject} and a String that is to be the new
+	 * A constructor for the class that takes a string, the action name, a
+	 * {@link WidgetObject} and a String that is to be the new
 	 * name of
 	 * the given {@link WidgetObject}.
 	 * 
@@ -95,15 +97,16 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 			String givenName)
 	{
 		super(text);
-		widObject = widgetObject;
-		newName = givenName;
-		oldName = widgetObject.getObject().getObjectName();
+		this.widObject = widgetObject;
+		this.newName = givenName;
+		this.oldName = widgetObject.getObject().getObjectName();
 	}
 
 
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -117,6 +120,7 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * logistical.AbstractSystemAction#addEdit(javax.swing.undo.UndoableEdit)
 	 */
@@ -128,6 +132,7 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#canRedo()
 	 */
 	@Override
@@ -138,6 +143,7 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#canUndo()
 	 */
 	@Override
@@ -148,18 +154,20 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#die()
 	 */
 	@Override
 	public void die()
 	{
-		widObject = null;
-		newName = null;
-		oldName = null;
+		this.widObject = null;
+		this.newName = null;
+		this.oldName = null;
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getPresentationName()
 	 */
 	@Override
@@ -171,6 +179,7 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getRedoPresentationName()
 	 */
 	@Override
@@ -182,6 +191,7 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#getUndoPresentationName()
 	 */
 	@Override
@@ -193,6 +203,7 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#isSignificant()
 	 */
 	@Override
@@ -203,51 +214,56 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction implement
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#redo()
 	 */
 	@Override
 	public void redo() throws CannotRedoException
 	{
-		if ( widObject != null )
+		if ( this.widObject != null )
 		{
 			// Updates the name of the LabelWidget on the scene
 			WorkareaCanvasActions.updateWidgetObjectCanvasName(
-					PrimeMain.currentCanvas, widObject.getObject(), newName);
+					PrimeMain.currentCanvas, this.widObject.getObject(),
+					this.newName);
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.AbstractSystemAction#undo()
 	 */
 	@Override
 	public void undo() throws CannotUndoException
 	{
-		if ( widObject != null )
+		if ( this.widObject != null )
 		{
 			// Updates the name of the LabelWidget on the scene
 			WorkareaCanvasActions.updateWidgetObjectCanvasName(
-					PrimeMain.currentCanvas, widObject.getObject(), oldName);
+					PrimeMain.currentCanvas, this.widObject.getObject(),
+					this.oldName);
 		}
 	}
 
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see logistical.SystemActionInterface#performAction(boolean)
 	 */
 	@Override
 	public void performAction(boolean undoable)
 	{
-		if ( widObject != null )
+		if ( this.widObject != null )
 		{
 			// If the text is validated
-			if ( checkLogic.validateName(newName) )
+			if ( checkLogic.validateName(this.newName) )
 			{
 				// Updates the name of the LabelWidget on the scene
-				WorkareaCanvasActions
-						.updateWidgetObjectCanvasName(PrimeMain.currentCanvas,
-								widObject.getObject(), newName);
+				WorkareaCanvasActions.updateWidgetObjectCanvasName(
+						PrimeMain.currentCanvas, this.widObject.getObject(),
+						this.newName);
 			}
 			else
 			{

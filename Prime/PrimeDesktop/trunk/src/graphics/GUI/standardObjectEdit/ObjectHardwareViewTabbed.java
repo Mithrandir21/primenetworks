@@ -186,7 +186,7 @@ public class ObjectHardwareViewTabbed extends JTabbedPane
 			 */
 			for ( int i = 0; i < verified.length; i++ )
 			{
-				if ( verified[i] == false )
+				if ( !(verified[i]) )
 				{
 					validationFailed = true;
 					i = verified.length;
@@ -194,7 +194,7 @@ public class ObjectHardwareViewTabbed extends JTabbedPane
 			}
 		}
 		// Checks if any of the views failed its validation.
-		if ( validationFailed == false )
+		if ( !(validationFailed) )
 		{
 			boolean close = true;
 
@@ -206,7 +206,7 @@ public class ObjectHardwareViewTabbed extends JTabbedPane
 			{
 				Component comp = this.getComponent(i);
 
-				if ( ((HardwareViewInterface) comp).save() == false )
+				if ( !(((HardwareViewInterface) comp).save()) )
 				{
 					close = false;
 				}

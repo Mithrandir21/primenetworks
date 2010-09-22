@@ -352,12 +352,12 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 	@Override
 	public void save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			mainOS.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			mainOS.setDescription(desc.getText());
 		}
@@ -367,7 +367,7 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 			mainOS.setFs(GraphicalFunctions.getFSInJList(supportedFS));
 		}
 
-		if ( osVersion.getText() != "" )
+		if ( !osVersion.getText().equals("") )
 		{
 			mainOS.setVersion(osVersion.getText());
 		}

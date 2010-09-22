@@ -87,9 +87,9 @@ public class SecuritySuite extends Software implements Serializable
 	{
 		super(Name, Desc, Version);
 
-		hasAntivirus = SShasAntivirus;
-		hasFirewall = SShasFirewall;
-		hasProxy = SShasProxy;
+		this.hasAntivirus = SShasAntivirus;
+		this.hasFirewall = SShasFirewall;
+		this.hasProxy = SShasProxy;
 	}
 
 
@@ -104,7 +104,7 @@ public class SecuritySuite extends Software implements Serializable
 	 */
 	public String[] getSupportedOperatingSystems()
 	{
-		return supportedOperatingSystems;
+		return this.supportedOperatingSystems;
 	}
 
 
@@ -113,7 +113,7 @@ public class SecuritySuite extends Software implements Serializable
 	 */
 	public boolean isActivated()
 	{
-		return activated;
+		return this.activated;
 	}
 
 
@@ -122,7 +122,7 @@ public class SecuritySuite extends Software implements Serializable
 	 */
 	public String getLicense()
 	{
-		return license;
+		return this.license;
 	}
 
 
@@ -131,7 +131,7 @@ public class SecuritySuite extends Software implements Serializable
 	 */
 	public boolean hasAntivirus()
 	{
-		return hasAntivirus;
+		return this.hasAntivirus;
 	}
 
 
@@ -140,7 +140,7 @@ public class SecuritySuite extends Software implements Serializable
 	 */
 	public boolean hasFirewall()
 	{
-		return hasFirewall;
+		return this.hasFirewall;
 	}
 
 
@@ -149,7 +149,7 @@ public class SecuritySuite extends Software implements Serializable
 	 */
 	public boolean hasProxy()
 	{
-		return hasProxy;
+		return this.hasProxy;
 	}
 
 
@@ -158,7 +158,7 @@ public class SecuritySuite extends Software implements Serializable
 	 */
 	public Date getActivationDate()
 	{
-		return actDate;
+		return this.actDate;
 	}
 
 
@@ -167,7 +167,7 @@ public class SecuritySuite extends Software implements Serializable
 	 */
 	public Date getExpirationDate()
 	{
-		return expDate;
+		return this.expDate;
 	}
 
 
@@ -191,7 +191,7 @@ public class SecuritySuite extends Software implements Serializable
 	 */
 	public void setActivated(boolean SSactivated)
 	{
-		activated = SSactivated;
+		this.activated = SSactivated;
 	}
 
 
@@ -200,7 +200,7 @@ public class SecuritySuite extends Software implements Serializable
 	 */
 	public void setLicense(String AVlicense)
 	{
-		license = AVlicense;
+		this.license = AVlicense;
 	}
 
 
@@ -209,7 +209,7 @@ public class SecuritySuite extends Software implements Serializable
 	 */
 	public void setHasAntivirus(boolean SShasAntivirus)
 	{
-		hasAntivirus = SShasAntivirus;
+		this.hasAntivirus = SShasAntivirus;
 	}
 
 
@@ -218,7 +218,7 @@ public class SecuritySuite extends Software implements Serializable
 	 */
 	public void sethasFirewall(boolean SShasFirewall)
 	{
-		hasFirewall = SShasFirewall;
+		this.hasFirewall = SShasFirewall;
 	}
 
 
@@ -227,7 +227,7 @@ public class SecuritySuite extends Software implements Serializable
 	 */
 	public void sethasProxy(boolean SShasProxy)
 	{
-		hasProxy = SShasProxy;
+		this.hasProxy = SShasProxy;
 	}
 
 
@@ -236,7 +236,7 @@ public class SecuritySuite extends Software implements Serializable
 	 */
 	public void setActivationDate(Date SSactivattionDate)
 	{
-		actDate = SSactivattionDate;
+		this.actDate = SSactivattionDate;
 	}
 
 
@@ -245,6 +245,6 @@ public class SecuritySuite extends Software implements Serializable
 	 */
 	public void setExpirationDate(Date SSexpirationDate)
 	{
-		expDate = SSexpirationDate;
+		this.expDate = SSexpirationDate;
 	}
 }

@@ -71,7 +71,7 @@ public class ActionCreateRoom extends AbstractSystemAction implements
 	public ActionCreateRoom(String text, ImageIcon icon, WidgetRoom widRoom)
 	{
 		super(text, icon);
-		room = widRoom;
+		this.room = widRoom;
 	}
 
 
@@ -88,7 +88,7 @@ public class ActionCreateRoom extends AbstractSystemAction implements
 	public ActionCreateRoom(String text, WidgetRoom widRoom)
 	{
 		super(text);
-		room = widRoom;
+		this.room = widRoom;
 	}
 
 
@@ -138,8 +138,8 @@ public class ActionCreateRoom extends AbstractSystemAction implements
 	@Override
 	public void die()
 	{
-		canvas = null;
-		room = null;
+		this.canvas = null;
+		this.room = null;
 	}
 
 	/*
@@ -195,10 +195,10 @@ public class ActionCreateRoom extends AbstractSystemAction implements
 	@Override
 	public void redo() throws CannotRedoException
 	{
-		RoomManagment.addRoom(canvas, room);
+		RoomManagment.addRoom(this.canvas, this.room);
 
 		// Adds the actions supported by the WidgetRoom
-		ActionsAdder.makeWidgetRoomReady(canvas, room);
+		ActionsAdder.makeWidgetRoomReady(this.canvas, this.room);
 	}
 
 
@@ -210,7 +210,7 @@ public class ActionCreateRoom extends AbstractSystemAction implements
 	@Override
 	public void undo() throws CannotUndoException
 	{
-		WorkareaCanvasActions.removeRoom(canvas, room, true);
+		WorkareaCanvasActions.removeRoom(this.canvas, this.room, true);
 	}
 
 
@@ -222,29 +222,29 @@ public class ActionCreateRoom extends AbstractSystemAction implements
 	@Override
 	public void performAction(boolean undoable)
 	{
-		if ( room != null )
+		if ( this.room != null )
 		{
-			canvas = PrimeMain.currentCanvas;
+			this.canvas = PrimeMain.currentCanvas;
 
-			if ( room.getBounds().height < 50 && room.getBounds().width < 50 )
+			if ( this.room.getBounds().height < 50 && this.room.getBounds().width < 50 )
 			{
 				// Removes the WidgetRoom from the roomLayer
-				room.getParentWidget().removeChild(room);
+				this.room.getParentWidget().removeChild(this.room);
 			}
 			else
 			{
 				// Add the JMenuPopup action the WidgetRoom
-				room.getActions().addAction(
+				this.room.getActions().addAction(
 						ActionFactory
 								.createPopupMenuAction(new JMenuWidgetRoom(
 										PrimeMain.currentCanvas)));
 
 				// Repaints roomLayer
-				DesktopCanvasManagment.canvasCleanUp(canvas);
+				DesktopCanvasManagment.canvasCleanUp(this.canvas);
 
 				if ( undoable )
 				{
-					canvas.addUndoableAction(this);
+					this.canvas.addUndoableAction(this);
 				}
 			}
 		}

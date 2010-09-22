@@ -59,7 +59,7 @@ public class RangeIsNotValidException extends Exception
 	public String getMessage()
 	{
 		String output = "There can not be created a valid IP range between these two IP address, "
-				+ from + " and " + to + ".";
+				+ this.from + " and " + this.to + ".";
 
 		return output;
 	}

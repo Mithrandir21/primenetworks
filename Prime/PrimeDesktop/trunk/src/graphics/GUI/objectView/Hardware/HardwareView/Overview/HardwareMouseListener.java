@@ -249,7 +249,7 @@ public class HardwareMouseListener extends MouseAdapter implements
 
 									String msg = PrimeMain.texts
 											.getString("rulesNewMBwithUSBviolationMsg")
-											+ "\n"
+											+ System.getProperty("line.separator")
 											+ PrimeMain.texts
 													.getString("rulesNewMBCorrectionMsg");
 
@@ -265,7 +265,7 @@ public class HardwareMouseListener extends MouseAdapter implements
 
 								String msg = PrimeMain.texts
 										.getString("rulesUSBnotAllowedMsg")
-										+ "\n"
+										+ System.getProperty("line.separator")
 										+ PrimeMain.texts
 												.getString("rulesNewMBCorrectionMsg");
 
@@ -292,7 +292,7 @@ public class HardwareMouseListener extends MouseAdapter implements
 
 									String msg = PrimeMain.texts
 											.getString("rulesNewMBwithLANviolationMsg")
-											+ "\n"
+											+ System.getProperty("line.separator")
 											+ PrimeMain.texts
 													.getString("rulesNewMBCorrectionMsg");
 
@@ -309,7 +309,7 @@ public class HardwareMouseListener extends MouseAdapter implements
 
 								String msg = PrimeMain.texts
 										.getString("rulesLANnotAllowedMsg")
-										+ "\n"
+										+ System.getProperty("line.separator")
 										+ PrimeMain.texts
 												.getString("rulesNewMBCorrectionMsg");
 

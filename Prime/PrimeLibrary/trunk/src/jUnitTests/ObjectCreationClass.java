@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package jUnitTests;
 
@@ -230,7 +230,7 @@ public class ObjectCreationClass
 		String objectName = "Desktop";
 		String objectDesc = desc;
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -260,7 +260,7 @@ public class ObjectCreationClass
 		String objectName = "Laptop";
 		String objectDesc = desc;
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -269,7 +269,8 @@ public class ObjectCreationClass
 		Object[] st_components = components;
 
 		Motherboard mb = (Motherboard) st_components[0];
-		mb.makeOnePCIportTaken(); // For the NIC that will be added further down.
+		mb.makeOnePCIportTaken(); // For the NIC that will be added further
+									// down.
 
 
 		Laptop temp = new Laptop(objectName, objectDesc, st_components);
@@ -304,7 +305,7 @@ public class ObjectCreationClass
 		String objectName = "ThinClient";
 		String objectDesc = desc;
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -323,7 +324,8 @@ public class ObjectCreationClass
 		}
 		catch ( ObjectNotFoundException e )
 		{
-			// This is impossible since the HDD has just been added at the top of this class
+			// This is impossible since the HDD has just been added at the top
+			// of this class
 			e.printStackTrace();
 		}
 		catch ( MotherboardNotFound e )
@@ -355,7 +357,7 @@ public class ObjectCreationClass
 		String ObjectSWdesc = "Standard Webserver";
 		String ObjectSWversion = "2.2";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -396,7 +398,7 @@ public class ObjectCreationClass
 		String ObjectSWdesc = "Standard backup server";
 		String ObjectSWversion = "1";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -435,7 +437,7 @@ public class ObjectCreationClass
 		String ObjectSWdesc = "Standard Database Software";
 		String ObjectSWversion = "1";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -474,7 +476,7 @@ public class ObjectCreationClass
 		String ObjectSWdesc = "Standard mail Software";
 		String ObjectSWversion = "1";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -513,7 +515,7 @@ public class ObjectCreationClass
 		String ObjectSWdesc = "Standard firewall Software";
 		String ObjectSWversion = "1";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -551,7 +553,7 @@ public class ObjectCreationClass
 		String ObjectSWdesc = "Standard proxy Software";
 		String ObjectSWversion = "1";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -588,7 +590,7 @@ public class ObjectCreationClass
 		String ObjectSWdesc = "Standard printer Software";
 		String ObjectSWversion = "1";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -623,7 +625,7 @@ public class ObjectCreationClass
 
 		String Sresolution = "1280x1020";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -653,7 +655,7 @@ public class ObjectCreationClass
 
 		String Sresolution = "1280x1020";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -684,7 +686,7 @@ public class ObjectCreationClass
 
 		String Sresolution = "1280x1020";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -716,7 +718,7 @@ public class ObjectCreationClass
 
 		String Sresolution[] = { "1280x1020" };
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -747,7 +749,7 @@ public class ObjectCreationClass
 
 		String Sresolution = "1280x1020";
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -792,7 +794,7 @@ public class ObjectCreationClass
 
 		String Sresolution[] = { "1280x1020" };
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -830,7 +832,7 @@ public class ObjectCreationClass
 		int inPorts = 16;
 		String[] DuplexSupport = { ConnectionUtils.FullDuplex };
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -865,7 +867,7 @@ public class ObjectCreationClass
 		int inPorts = 16;
 		String[] DuplexSupport = { ConnectionUtils.FullDuplex };
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -899,7 +901,7 @@ public class ObjectCreationClass
 		int inPorts = 4;
 		String[] DuplexSupport = { ConnectionUtils.FullDuplex };
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -930,7 +932,7 @@ public class ObjectCreationClass
 		String objectDesc = desc;
 
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -975,7 +977,7 @@ public class ObjectCreationClass
 		int inPorts = 4;
 		String[] DuplexSupport = { ConnectionUtils.FullDuplex };
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}
@@ -997,10 +999,8 @@ public class ObjectCreationClass
 
 		// Adds all the previous supported connection interfaces to the new
 		// array
-		for ( int i = 0; i < supportedConnectionInterfaces.length; i++ )
-		{
-			supConIntWithWLan[i] = supportedConnectionInterfaces[i];
-		}
+		System.arraycopy(supportedConnectionInterfaces, 0, supConIntWithWLan,
+				0, supportedConnectionInterfaces.length);
 
 		// Places the Wireless string at the end of the array
 		supConIntWithWLan[supConIntWithWLan.length - 1] = ConnectionUtils.Wireless;
@@ -1011,7 +1011,6 @@ public class ObjectCreationClass
 		return temp;
 	}
 
-
 	public static Internet createDefaultInternet(String desc)
 	{
 		String objectName = "Internet";
@@ -1019,7 +1018,7 @@ public class ObjectCreationClass
 
 		String[] SupConInt = { ConnectionUtils.RJ45, ConnectionUtils.Coax };
 
-		if ( objectDesc == "" )
+		if ( objectDesc.equals("") )
 		{
 			objectDesc = objectName;
 		}

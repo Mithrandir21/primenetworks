@@ -163,9 +163,6 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareView,
 	 */
 	private JPanel createSpesificInfo(OfficeSuite offSuite)
 	{
-		Dimension tfSize = new Dimension(100, 20);
-
-
 		JLabel[] labels = new JLabel[4];
 
 		labels[0] = new JLabel("Activated Date");
@@ -237,12 +234,12 @@ public class OfficeSuiteEditView extends JPanel implements SoftwareView,
 	@Override
 	public void save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			mainOffSuite.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			mainOffSuite.setDescription(desc.getText());
 		}

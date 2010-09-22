@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package canvasManipulation;
 
@@ -44,6 +44,8 @@ import org.netbeans.api.visual.widget.Widget;
 import widgets.WorkareaCanvas;
 import canvasManipulation.CanvasExporter.ImageType;
 import canvasManipulation.CanvasExporter.ZoomType;
+
+
 
 
 /**
@@ -264,7 +266,8 @@ public class Canvas2Image
 
 	/**
 	 * Takes the Scene and writes an image file according to the constraints
-	 * defined by the caller. This returns a BufferedImage of the {@link Scene} even if the file can not be written. This function
+	 * defined by the caller. This returns a BufferedImage of the {@link Scene}
+	 * even if the file can not be written. This function
 	 * creates the image for
 	 * the entire {@link Scene}.
 	 * 

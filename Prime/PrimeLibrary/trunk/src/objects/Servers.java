@@ -63,7 +63,7 @@ public abstract class Servers extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the server.
 	 */
-	public Servers(String Name, String Desc)
+	protected Servers(String Name, String Desc)
 	{
 		super(Name, Desc);
 	}
@@ -76,7 +76,7 @@ public abstract class Servers extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the server.
 	 */
-	public Servers(String Name, String Desc, String[] SupConInt)
+	protected Servers(String Name, String Desc, String[] SupConInt)
 	{
 		super(Name, Desc, SupConInt);
 	}
@@ -91,7 +91,7 @@ public abstract class Servers extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the server.
 	 */
-	public Servers(String Name, String Desc, Object[] DesktopComponents)
+	protected Servers(String Name, String Desc, Object[] DesktopComponents)
 	{
 		super(Name, Desc, DesktopComponents);
 	}
@@ -106,7 +106,7 @@ public abstract class Servers extends Object implements Serializable
 	 * @param Desc
 	 *            The description of the server.
 	 */
-	public Servers(String Name, String Desc, String[] SupConInt,
+	protected Servers(String Name, String Desc, String[] SupConInt,
 			Object[] DesktopComponents)
 	{
 		super(Name, Desc, SupConInt, DesktopComponents);
@@ -122,7 +122,7 @@ public abstract class Servers extends Object implements Serializable
 	 */
 	public boolean supportsOnSiteAccess()
 	{
-		return supportsOnSiteAccess;
+		return this.supportsOnSiteAccess;
 	}
 
 
@@ -131,7 +131,7 @@ public abstract class Servers extends Object implements Serializable
 	 */
 	public boolean supportsRemoteAccess()
 	{
-		return supportsRemoteAccess;
+		return this.supportsRemoteAccess;
 	}
 
 
@@ -141,7 +141,7 @@ public abstract class Servers extends Object implements Serializable
 	 */
 	public String[] getSupportedRemoteAccessProtocols()
 	{
-		return supportedRemoteAccessProtocols;
+		return this.supportedRemoteAccessProtocols;
 	}
 
 
@@ -183,7 +183,7 @@ public abstract class Servers extends Object implements Serializable
 	 */
 	public int getNumberJumps()
 	{
-		return numberOfNodes;
+		return this.numberOfNodes;
 	}
 
 
@@ -193,7 +193,7 @@ public abstract class Servers extends Object implements Serializable
 	 */
 	public void setNumberOfJumps(int jumps)
 	{
-		numberOfNodes = jumps;
+		this.numberOfNodes = jumps;
 	}
 
 
@@ -208,8 +208,8 @@ public abstract class Servers extends Object implements Serializable
 	public void addRemoteAccessProtocols(String[] NewProtocols)
 			throws Exception
 	{
-		supportedRemoteAccessProtocols = ArrayManagment.addItems(NewProtocols,
-				supportedRemoteAccessProtocols);
+		this.supportedRemoteAccessProtocols = ArrayManagment.addItems(NewProtocols,
+				this.supportedRemoteAccessProtocols);
 
 	}
 
@@ -224,8 +224,8 @@ public abstract class Servers extends Object implements Serializable
 	public void removeRemoteAccessProtocols(String[] ToBeRemoved)
 			throws StringNotFoundInArrayException
 	{
-		supportedRemoteAccessProtocols = ArrayManagment.removeItems(
-				ToBeRemoved, supportedRemoteAccessProtocols);
+		this.supportedRemoteAccessProtocols = ArrayManagment.removeItems(
+				ToBeRemoved, this.supportedRemoteAccessProtocols);
 	}
 
 }

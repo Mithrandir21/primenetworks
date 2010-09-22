@@ -107,7 +107,7 @@ public class ComponentsManagment
 		// Checks to see if any of the
 		for ( int i = 0; i < areFound.length; i++ )
 		{
-			if ( areFound[i] == true )
+			if ( areFound[i] )
 			{
 				// A try/catch in case the object is null.
 				try
@@ -126,10 +126,7 @@ public class ComponentsManagment
 
 
 		// Adds the old components to the new array
-		for ( int i = 0; i < componentCounter; i++ )
-		{
-			tempComponents[i] = components[i];
-		}
+		System.arraycopy(components, 0, tempComponents, 0, componentCounter);
 
 
 		// Addes the new components to the end of the new array
@@ -165,7 +162,7 @@ public class ComponentsManagment
 		boolean isFound = arrayContains(components, NewComponent);
 
 		// Checks to see if the was found in the array of objects.
-		if ( isFound == true )
+		if ( isFound )
 		{
 			// A try/catch in case the object is null.
 			try
@@ -181,10 +178,7 @@ public class ComponentsManagment
 		}
 
 
-		for ( int i = 0; i < components.length; i++ )
-		{
-			tempComponents[i] = components[i];
-		}
+		System.arraycopy(components, 0, tempComponents, 0, components.length);
 
 
 		// Adds the new components at the end of the array of components.
@@ -217,7 +211,7 @@ public class ComponentsManagment
 		boolean isFound = arrayContains(components, NewComponent);
 
 		// Checks to see if any of the
-		if ( isFound == true )
+		if ( isFound )
 		{
 			// A try/catch incase the object is null.
 			try
@@ -313,12 +307,12 @@ public class ComponentsManagment
 			for ( int i = 0; i < cpus.length; i++ )
 			{
 				// Gets all the Discdrive components in the components array.
-				if ( mb.getSocket() != "" && mb.getSocket() != null )
+				if ( !mb.getSocket().equals("") && mb.getSocket() != null )
 				{
 					CPU cpu = (CPU) cpus[i];
 					// Checks the socket of the cpu versus the socket on the
 					// motherboard
-					if ( cpu.getSocket() != mb.getSocket() )
+					if ( !cpu.getSocket().equals(mb.getSocket()) )
 					{
 						removeCPU(obj, cpu);
 					}
@@ -354,11 +348,11 @@ public class ComponentsManagment
 			for ( int i = 0; i < drives.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
-				if ( mb.getDUCconnectionType() != ""
+				if ( !mb.getDUCconnectionType().equals("")
 						&& mb.getDUCconnectionType() != null )
 				{
 					Discdrive dicsdrive = (Discdrive) drives[i];
-					if ( dicsdrive.getPort() != mb.getDUCconnectionType() )
+					if ( !dicsdrive.getPort().equals(mb.getDUCconnectionType()) )
 					{
 						removeDiscdrive(obj, dicsdrive);
 					}
@@ -393,11 +387,11 @@ public class ComponentsManagment
 			for ( int i = 0; i < GPUs.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
-				if ( mb.getGraphicalPort() != ""
+				if ( !mb.getGraphicalPort().equals("")
 						&& mb.getGraphicalPort() != null )
 				{
 					GraphicsCard gpu = (GraphicsCard) GPUs[i];
-					if ( gpu.getType() != mb.getGraphicalPort() )
+					if ( !gpu.getType().equals(mb.getGraphicalPort()) )
 					{
 						removeGPU(obj, gpu);
 					}
@@ -432,11 +426,11 @@ public class ComponentsManagment
 			for ( int i = 0; i < HDDs.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
-				if ( mb.getDUCconnectionType() != ""
+				if ( !mb.getDUCconnectionType().equals("")
 						&& mb.getDUCconnectionType() != null )
 				{
 					HDD hdd = (HDD) HDDs[i];
-					if ( hdd.getPort() != mb.getDUCconnectionType() )
+					if ( !hdd.getPort().equals(mb.getDUCconnectionType()) )
 					{
 						removeHDD(obj, hdd);
 					}
@@ -471,11 +465,11 @@ public class ComponentsManagment
 			for ( int i = 0; i < RAMs.length; i++ )
 			{
 				// If the motherboard actual has a value that can be checked.
-				if ( mb.getRAMtype() != "" && mb.getRAMtype() != null )
+				if ( !mb.getRAMtype().equals("") && mb.getRAMtype() != null )
 				{
 					Ram RAM = (Ram) RAMs[i];
 					// If the port to the motherboard is not the same
-					if ( RAM.getPort() != mb.getRAMtype() )
+					if ( !RAM.getPort().equals(mb.getRAMtype()) )
 					{
 						removeRAM(obj, RAM);
 					}
@@ -775,7 +769,7 @@ public class ComponentsManagment
 		boolean availablePort = mb.isGraphicsCardInstalled();
 
 		// Check the availability of ports.
-		if ( availablePort == false )
+		if ( !(availablePort) )
 		{
 			// Checks the match between the types of disc.
 			if ( GPU.getType().equals(mb.getGraphicalPort()) )
@@ -963,7 +957,7 @@ public class ComponentsManagment
 		// Checks whether all the objects were found and removed
 		for ( int i = 0; i < objectFound.length; i++ )
 		{
-			if ( objectFound[i] == false )
+			if ( !(objectFound[i]) )
 			{
 				ObjectNotFoundInArrayException exception = new ObjectNotFoundInArrayException(
 						"Object was not found, hence cannot "
@@ -2225,8 +2219,7 @@ public class ComponentsManagment
 
 			// The connections array that will hold all the connections that are
 			// with portType
-			Object[] connectedObjects = ConnectionManagment
-					.objectsConnectedToBy(mainObj, portType);
+			Object[] connectedObjects = connectedToBy(mainObj, portType);
 
 			try
 			{
@@ -3039,8 +3032,11 @@ public class ComponentsManagment
 		}
 
 
-		// Removes all the empty indexes from the array.
-		foundComp = cleanup.cleanObjectArray(foundComp);
+		if ( foundComp != null )
+		{
+			// Removes all the empty indexes from the array.
+			foundComp = cleanup.cleanObjectArray(foundComp);
+		}
 
 
 

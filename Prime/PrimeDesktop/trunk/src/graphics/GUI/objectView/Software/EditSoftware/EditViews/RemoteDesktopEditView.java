@@ -308,12 +308,12 @@ public class RemoteDesktopEditView extends JPanel implements SoftwareView,
 	@Override
 	public void save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			remDeskSoft.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			remDeskSoft.setDescription(desc.getText());
 		}

@@ -45,7 +45,7 @@ public class StringNotFoundInArrayException extends Exception
 	{
 		super(message);
 
-		string = notFoundString;
+		this.string = notFoundString;
 	}
 
 
@@ -56,6 +56,6 @@ public class StringNotFoundInArrayException extends Exception
 	public String getString()
 	{
 
-		return string;
+		return this.string;
 	}
 }

@@ -330,12 +330,12 @@ public class NASnewView extends JDialog implements SoftwareView, ActionListener
 	@Override
 	public void save()
 	{
-		if ( name.getText() != "" )
+		if ( !name.getText().equals("") )
 		{
 			nasSoft.setObjectName(name.getText());
 		}
 
-		if ( desc.getText() != "" )
+		if ( !desc.getText().equals("") )
 		{
 			nasSoft.setDescription(desc.getText());
 		}

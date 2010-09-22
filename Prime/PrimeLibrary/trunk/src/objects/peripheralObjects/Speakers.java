@@ -57,7 +57,7 @@ public class Speakers extends ExternalHardware implements Serializable
 	{
 		super(Name, Desc, ConnectionInterfaces);
 
-		satellites = Speakerssatellites;
+		this.satellites = Speakerssatellites;
 	}
 
 
@@ -70,7 +70,7 @@ public class Speakers extends ExternalHardware implements Serializable
 	 */
 	public int getSpeakersSatellites()
 	{
-		return satellites;
+		return this.satellites;
 	}
 
 
@@ -79,7 +79,7 @@ public class Speakers extends ExternalHardware implements Serializable
 	 */
 	public boolean isLaptopSpeakers()
 	{
-		return isLaptopSpeakers;
+		return this.isLaptopSpeakers;
 	}
 
 
@@ -90,7 +90,7 @@ public class Speakers extends ExternalHardware implements Serializable
 	 */
 	public void setSpeakersSatellites(int SpeakersSatellites)
 	{
-		satellites = SpeakersSatellites;
+		this.satellites = SpeakersSatellites;
 	}
 
 
@@ -99,6 +99,6 @@ public class Speakers extends ExternalHardware implements Serializable
 	 */
 	public void setIsLaptopSpeakers(boolean info)
 	{
-		isLaptopSpeakers = info;
+		this.isLaptopSpeakers = info;
 	}
 }

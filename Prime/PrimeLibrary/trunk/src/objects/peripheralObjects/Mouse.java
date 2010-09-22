@@ -65,7 +65,7 @@ public class Mouse extends ExternalHardware implements Serializable
 	 */
 	public boolean isLaptopMouse()
 	{
-		return isLaptopMouse;
+		return this.isLaptopMouse;
 	}
 
 
@@ -76,6 +76,6 @@ public class Mouse extends ExternalHardware implements Serializable
 	 */
 	public void setIsLaptopMouse(boolean info)
 	{
-		isLaptopMouse = info;
+		this.isLaptopMouse = info;
 	}
 }

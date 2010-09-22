@@ -19,6 +19,7 @@ package graphics.GUI.userGroups;
 
 
 import graphics.PrimeMain;
+import groups.Group;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -32,9 +33,11 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -53,6 +56,8 @@ public class NetworkGroupsDialog extends JDialog implements ActionListener
 	private WorkareaCanvas canvas;
 
 	private JTable groupTable;
+
+	public EditGroupDialog editDialog = null;
 
 
 	/**
@@ -214,12 +219,18 @@ public class NetworkGroupsDialog extends JDialog implements ActionListener
 	private JTable getGroupTable(WorkareaCanvas canvas)
 	{
 
-		String[] columnNames = { "Group Name", "Group Description" };
+		String[] columnNames = {
+				PrimeMain.texts.getString("newGroupNameLabel"),
+				PrimeMain.texts.getString("newGroupDescLabel") };
 
 
 		String[][] data = GroupManagment.getGroupDataWithDesription(canvas);
 
-		groupTable = new JTable(data, columnNames);
+		DefaultTableModel model = new DefaultTableModel(data, columnNames);
+
+
+		groupTable = new JTable(model);
+		groupTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		groupTable.setFillsViewportHeight(true);
 
 		TableColumn nameColumn = groupTable.getColumnModel().getColumn(0);
@@ -247,11 +258,78 @@ public class NetworkGroupsDialog extends JDialog implements ActionListener
 		}
 		else if ( e.getActionCommand().equals("edit") )
 		{
+			if ( editDialog != null )
+			{
+				editDialog.toFront();
+			}
+			else
+			{
+				// If a row is selected
+				if ( groupTable.getSelectedRow() > -1 )
+				{
+					DefaultTableModel model = (DefaultTableModel) groupTable
+							.getModel();
 
+					// Gets the name of the group
+					String groupName = (String) model.getValueAt(
+							groupTable.getSelectedRow(), 0);
+
+					// If the group name is not empty
+					if ( !groupName.equals("") )
+					{
+						// Attempts to get the Group with the name
+						Group group = GroupManagment.getGroupWithName(canvas,
+								groupName);
+
+						if ( group != null )
+						{
+							editDialog = new EditGroupDialog(canvas, group);
+						}
+					}
+				}
+			}
 		}
 		else if ( e.getActionCommand().equals("delete") )
 		{
+			// If a row is selected
+			if ( groupTable.getSelectedRow() > -1 )
+			{
+				DefaultTableModel model = (DefaultTableModel) groupTable
+						.getModel();
 
+				// Gets the name of the group
+				String groupName = (String) model.getValueAt(
+						groupTable.getSelectedRow(), 0);
+
+				// If the group name is not empty
+				if ( !groupName.equals("") )
+				{
+					String question = PrimeMain.texts
+							.getString("actionDeleteGroupQuestion")
+							+ System.getProperty("line.separator")
+							+ PrimeMain.texts
+									.getString("thisCannotBeUndoneMsg");
+
+					// Custom button text
+					Object[] options = { PrimeMain.texts.getString("yes"),
+							PrimeMain.texts.getString("no") };
+
+
+					int i = JOptionPane.showOptionDialog(null, question,
+							PrimeMain.texts.getString("actionDeleteGroupName"),
+							JOptionPane.YES_NO_CANCEL_OPTION,
+							JOptionPane.QUESTION_MESSAGE, null, options,
+							options[1]);
+
+					// If the answer is yes
+					if ( i == 0 )
+					{
+						GroupManagment.removeGroupWithName(canvas, groupName);
+
+						reloadGroupInfo();
+					}
+				}
+			}
 		}
 		else if ( e.getActionCommand().equals("close") )
 		{
@@ -261,7 +339,6 @@ public class NetworkGroupsDialog extends JDialog implements ActionListener
 			this.dispose();
 		}
 	}
-
 
 
 	/**
@@ -275,7 +352,9 @@ public class NetworkGroupsDialog extends JDialog implements ActionListener
 		{
 			String[][] data = GroupManagment.getGroupDataWithDesription(canvas);
 
-			String[] columnNames = { "Group Name", "Group Description" };
+			String[] columnNames = {
+					PrimeMain.texts.getString("newGroupNameLabel"),
+					PrimeMain.texts.getString("newGroupDescLabel") };
 
 			DefaultTableModel model = new DefaultTableModel(data, columnNames);
 			groupTable.setModel(model);
@@ -283,9 +362,4 @@ public class NetworkGroupsDialog extends JDialog implements ActionListener
 			groupTable.repaint();
 		}
 	}
-
-
-
-
-
 }
