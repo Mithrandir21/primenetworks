@@ -18,6 +18,7 @@
 package logistical;
 
 
+import groups.Group;
 import objects.Object;
 import objects.Room;
 import objects.Software;
@@ -464,4 +465,39 @@ public class cleanup
 
 		return results;
 	}
+
+
+
+	/**
+	 * Function to remove null pointer from the an array of {@link Group}.
+	 */
+	public static Group[] cleanObjectArray(Group[] array)
+	{
+		// Temporary counter for the function
+		int tempCounter = 0;
+
+		// Makes an array with given length
+		Group[] Tempresults = new Group[array.length];
+
+		// Goes through all of the found components array and moves those that
+		// are not null
+		for ( int i = 0; i < array.length; i++ )
+		{
+			if ( array[i] != null )
+			{
+				Tempresults[tempCounter] = array[i];
+
+				tempCounter++;
+			}
+		}
+
+		// Makes the array that is to hold the results
+		Group[] results = new Group[tempCounter];
+
+		// Creates a new array that will copy all the non-null objects.
+		System.arraycopy(Tempresults, 0, results, 0, tempCounter);
+
+		return results;
+	}
+
 }

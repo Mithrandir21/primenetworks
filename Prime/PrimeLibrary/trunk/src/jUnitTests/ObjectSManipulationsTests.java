@@ -62,7 +62,8 @@ import exceptions.ObjectNotFoundException;
 
 
 /**
- * TODO - Description NEEDED!
+ * This test class contains functions that test the systems ability to correctly
+ * manipulate {@link Object Objects}.
  * 
  * @author Bahram Malaekeh
  */
@@ -402,7 +403,6 @@ public class ObjectSManipulationsTests
 		}
 		catch ( MotherboardNotFound e )
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

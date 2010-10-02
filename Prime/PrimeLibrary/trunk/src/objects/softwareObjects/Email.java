@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package objects.softwareObjects;
 
@@ -26,7 +26,8 @@ import objects.Software;
 public class Email extends Software implements Serializable
 {
 	/*
-	 * Datafields for an abstract webserver These will contain the values of any webserver object
+	 * Datafields for an abstract webserver These will contain the values of any
+	 * webserver object
 	 */
 	// Supported Operating systems
 	private String[] supportedOperatingSystems;
@@ -55,9 +56,13 @@ public class Email extends Software implements Serializable
 	private boolean supportsWebmail;
 
 
-	// FIXME - Authentication remains to be fixed.
-
-
+	/**
+	 * A constructor for the class.
+	 * 
+	 * @param Name
+	 * @param Desc
+	 * @param Version
+	 */
 	public Email(String Name, String Desc, String Version)
 	{
 		super(Name, Desc, Version);
@@ -66,9 +71,7 @@ public class Email extends Software implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @return the supportedOperatingSystems
+	 * Gets the supported {@link OperatingSystem OperatingSystems}.
 	 */
 	public String[] getSupportedOperatingSystems()
 	{
@@ -79,9 +82,7 @@ public class Email extends Software implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @return the supportsIMAP
+	 * Gets whether or not the software supports IMAP.
 	 */
 	public boolean SupportsIMAP()
 	{
@@ -92,9 +93,7 @@ public class Email extends Software implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @return the supportsNNTP
+	 * Gets whether or not the software supports NNTP.
 	 */
 	public boolean SupportsNNTP()
 	{
@@ -105,9 +104,7 @@ public class Email extends Software implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @return the supportsPOP3
+	 * Gets whether or not the software supports POP3.
 	 */
 	public boolean SupportsPOP3()
 	{
@@ -118,9 +115,7 @@ public class Email extends Software implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @return the supportsSMTP
+	 * Gets whether or not the software supports SMTP.
 	 */
 	public boolean SupportsSMTP()
 	{
@@ -131,9 +126,7 @@ public class Email extends Software implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @return the supportsSSL
+	 * Gets whether or not the software supports SSL.
 	 */
 	public boolean SupportsSSL()
 	{
@@ -144,9 +137,7 @@ public class Email extends Software implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @return the supportsWebmail
+	 * Gets whether or not the software supports webmail.
 	 */
 	public boolean SupportsWebmail()
 	{
@@ -157,10 +148,7 @@ public class Email extends Software implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @param supportedOperatingSystems
-	 *            the supportedOperatingSystems to set
+	 * Sets the supported {@link OperatingSystem OperatingSystems}.
 	 */
 	public void setSupportedOperatingSystems(String[] supportedOperatingSystems)
 	{
@@ -171,10 +159,7 @@ public class Email extends Software implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @param supportsIMAP
-	 *            the supportsIMAP to set
+	 * Sets whether or not the software supports IMAP.
 	 */
 	public void setSupportsIMAP(boolean supportsIMAP)
 	{
@@ -185,10 +170,7 @@ public class Email extends Software implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @param supportsNNTP
-	 *            the supportsNNTP to set
+	 * Sets whether or not the software supports NNTP.
 	 */
 	public void setSupportsNNTP(boolean supportsNNTP)
 	{
@@ -199,10 +181,7 @@ public class Email extends Software implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @param supportsPOP3
-	 *            the supportsPOP3 to set
+	 * Sets whether or not the software supports POP3.
 	 */
 	public void setSupportsPOP3(boolean supportsPOP3)
 	{
@@ -213,10 +192,7 @@ public class Email extends Software implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @param supportsSMTP
-	 *            the supportsSMTP to set
+	 * Sets whether or not the software supports SMTP.
 	 */
 	public void setSupportsSMTP(boolean supportsSMTP)
 	{
@@ -227,10 +203,7 @@ public class Email extends Software implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @param supportsSSL
-	 *            the supportsSSL to set
+	 * Sets whether or not the software supports SSL.
 	 */
 	public void setSupportsSSL(boolean supportsSSL)
 	{
@@ -241,10 +214,7 @@ public class Email extends Software implements Serializable
 
 
 	/**
-	 * Description NEEDED!
-	 * 
-	 * @param supportsWebmail
-	 *            the supportsWebmail to set
+	 * Sets whether or not the software supports webmail.
 	 */
 	public void setSupportsWebmail(boolean supportsWebmail)
 	{

@@ -31,10 +31,12 @@ import org.netbeans.api.visual.widget.Scene;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class is used to contain and display the {@link Image} representing a
+ * {@link Object}. This class is found inside a {@link WidgetObject}.
+ * It also contains another {@link ImageWidget} that will represent the
+ * {@link OperatingSystem} installed on the {@link Object}, if any.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class ObjectImageWidget extends ImageWidget
 {
@@ -46,7 +48,8 @@ public class ObjectImageWidget extends ImageWidget
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * A constructor that takes the image that represents the {@link Object} and
+	 * the {@link Scene} where the image will be displayed.
 	 * 
 	 * @param scene
 	 * @param image
@@ -61,8 +64,8 @@ public class ObjectImageWidget extends ImageWidget
 		if ( image != null )
 		{
 			// OSimageWidget.setBorder(BorderFactory.createLineBorder());
-			this.OSimageWidget.setPreferredLocation(new Point(
-					image.getWidth(null) - 20, image.getHeight(null) - 20));
+			this.OSimageWidget.setPreferredLocation(new Point(image
+					.getWidth(null) - 20, image.getHeight(null) - 20));
 		}
 		this.addChild(this.OSimageWidget);
 
@@ -73,10 +76,8 @@ public class ObjectImageWidget extends ImageWidget
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @param imageWidget
-	 *            the imageWidget to set
+	 * Sets the image of the {@link OperatingSystem} installed on the
+	 * {@link Object}, if any.
 	 */
 	public void setOSImageWidget(Image osImage)
 	{
@@ -94,9 +95,8 @@ public class ObjectImageWidget extends ImageWidget
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @return the imageWidget
+	 * Gets the image of the {@link OperatingSystem} installed on the
+	 * {@link Object}, if any.
 	 */
 	public ImageWidget getOSImageWidget()
 	{

@@ -19,13 +19,16 @@ package actions.systemActions;
 
 
 import graphics.PrimeMain;
-import graphics.GUI.userGroups.NetworkGroupsDialog;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import logistical.AbstractSystemAction;
+import managment.CreateObjects;
+import managment.DesktopFileManagment;
 
 
 /**
@@ -34,7 +37,7 @@ import logistical.AbstractSystemAction;
  * @author Bahram Malaekeh
  * 
  */
-public class ActionOpenNetworkGroups extends AbstractSystemAction
+public class ActionResetStandardObjects extends AbstractSystemAction
 {
 	/**
 	 * A constructor for the class that takes a string, the action name, and a
@@ -45,7 +48,7 @@ public class ActionOpenNetworkGroups extends AbstractSystemAction
 	 * @param icon
 	 *            The icon representing the action.
 	 */
-	public ActionOpenNetworkGroups(String text, ImageIcon icon)
+	public ActionResetStandardObjects(String text, ImageIcon icon)
 	{
 		super(text, icon);
 	}
@@ -58,7 +61,7 @@ public class ActionOpenNetworkGroups extends AbstractSystemAction
 	 * @param text
 	 *            The name of the action.
 	 */
-	public ActionOpenNetworkGroups(String text)
+	public ActionResetStandardObjects(String text)
 	{
 		super(text);
 	}
@@ -71,24 +74,45 @@ public class ActionOpenNetworkGroups extends AbstractSystemAction
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
-	public void actionPerformed(ActionEvent arg0)
+	public void actionPerformed(ActionEvent e)
 	{
-		if ( PrimeMain.groupsDialog != null )
+		if ( PrimeMain.stdObjView == null )
 		{
-			PrimeMain.groupsDialog.toFront();
-		}
-		// Cannot show groups if any ObjectViews are open
-		else if ( !PrimeMain.objView.isEmpty() )
-		{
-			PrimeMain.objView.get(0).toFront();
+			String question = PrimeMain.texts
+					.getString("settingsAdvancedResetStdObjQuestion")
+					+ System.getProperty("line.separator")
+					+ PrimeMain.texts.getString("thisCannotBeUndoneMsg");
+
+			// Custom button text
+			Object[] options = { PrimeMain.texts.getString("yes"),
+					PrimeMain.texts.getString("no") };
+
+
+			int answer = JOptionPane.showOptionDialog(null, question,
+					PrimeMain.texts.getString("confirm"),
+					JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+
+			if ( answer == 0 )
+			{
+				File file = new File("./resource/objects.obj");
+
+				// Attempt to delete the object file
+				file.delete();
+
+				// Removes all the objects in the arrayList
+				PrimeMain.objectlist.clear();
+
+				// Creates new Standard Object
+				CreateObjects.createStandardObject();
+
+				// Creates a new Objects list file
+				DesktopFileManagment.saveObjectsFile();
+			}
 		}
 		else
 		{
-			if ( PrimeMain.currentCanvas != null )
-			{
-				PrimeMain.groupsDialog = new NetworkGroupsDialog(
-						PrimeMain.currentCanvas);
-			}
+			PrimeMain.stdObjView.toFront();
 		}
 	}
 }

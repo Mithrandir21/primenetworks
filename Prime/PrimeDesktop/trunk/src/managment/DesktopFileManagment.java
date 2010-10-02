@@ -40,7 +40,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
@@ -71,10 +70,6 @@ import connections.WidgetExtendedConnection;
  */
 public class DesktopFileManagment
 {
-	// The log for this class
-	public static Logger log = Logger.getLogger(DesktopCanvasManagment.class
-			.getName());
-
 	/**
 	 * Saves the given WorkareaCanvas. This function creates a file object from
 	 * the name of the WorkareaCanvas and passes that on the function that
@@ -469,6 +464,7 @@ public class DesktopFileManagment
 			oos.writeBoolean(managment.Settings.showTOFD);
 			oos.writeBoolean(managment.Settings.showOSicon);
 			oos.writeBoolean(managment.Settings.showIP);
+			oos.writeUTF(managment.Settings.primeLocale.toString());
 
 			oos.flush();
 			oos.close();
@@ -760,7 +756,6 @@ public class DesktopFileManagment
 	 */
 	public static boolean deleteWorkareaCanvas(File file)
 	{
-
 		// If the file does not exist
 		if ( !file.exists() )
 		{
@@ -919,9 +914,10 @@ public class DesktopFileManagment
 						}
 						catch ( CanvasNotFound e )
 						{
-							log.warning("The WorkareaCanvas, "
-									+ canvasName
-									+ ", was not found in the WorkareaCanvas main register.");
+							// log.warning("The WorkareaCanvas, "
+							// + canvasName
+							// +
+							// ", was not found in the WorkareaCanvas main register.");
 							e.printStackTrace();
 						}
 					}
@@ -1624,6 +1620,8 @@ public class DesktopFileManagment
 						managment.Settings.showTOFD = ois.readBoolean();
 						managment.Settings.showOSicon = ois.readBoolean();
 						managment.Settings.showIP = ois.readBoolean();
+						managment.Settings.primeLocale = managment.Settings.systemLocale
+								.valueOf(ois.readUTF());
 
 
 						ois.close();

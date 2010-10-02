@@ -51,14 +51,18 @@ import connections.WidgetExtendedConnection;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This class contains functions to add action to {@link WidgetObject},
+ * {@link WorkareaCanvas}, {@link WidgetRoom} and
+ * {@link WidgetExtendedConnection}.
  * 
  * @author Bahram Malaekeh
  */
 public class ActionsAdder
 {
 	/**
-	 * Javadoc-TODO - Description
+	 * This function adds the necessary action to the given
+	 * {@link WorkareaCanvas} and sets up the {@link DropTarget} in regards to
+	 * the dropping of {@link WidgetObject}.
 	 * 
 	 * @param canvas
 	 */
@@ -95,19 +99,24 @@ public class ActionsAdder
 								canvas.getInteractionLayer(),
 								new PrimeObjectSceneRectangularSelectProvider(
 										canvas)));
-
-
-		// canvas.setNetworkInfo(new WorkareaCanvasNetworkInfo(canvas));
 	}
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function add the necessary actions to the given {@link WidgetObject}
+	 * . The given {@link WorkareaCanvas} is needed by the methods to create the
+	 * actions.
+	 * 
+	 * @param canvas
+	 *            The {@link WorkareaCanvas} where the given
+	 *            {@link WidgetObject} is contained.
+	 * @param newObject
+	 *            The {@link WidgetObject} where the new actions will be added.
 	 */
 	public static void makeWidgetObjectReady(WorkareaCanvas canvas,
 			WidgetObject newObject)
 	{
-		// // Here the create a connection between widgets on the scene is
+		// // Here "the create a connection between widgets on the scene" is
 		// created
 		newObject.getActions().addAction(
 				new ExtendedWidgetConnectAction(ActionFactory
@@ -146,11 +155,19 @@ public class ActionsAdder
 		DesktopCanvasManagment.canvasCleanUp(canvas);
 	}
 
+
+
 	/**
-	 * Javadoc-TODO - Description
+	 * This function add the necessary actions to the given
+	 * {@link WidgetExtendedConnection}. The given {@link WorkareaCanvas} is
+	 * needed by the methods to create the actions.
 	 * 
 	 * @param canvas
+	 *            The {@link WorkareaCanvas} where the given
+	 *            {@link WidgetExtendedConnection} is contained.
 	 * @param newCon
+	 *            The {@link WidgetExtendedConnection} where the new actions
+	 *            will be added.
 	 */
 	public static void makeWidgetConnectionReady(WorkareaCanvas canvas,
 			WidgetExtendedConnection newCon)
@@ -162,15 +179,24 @@ public class ActionsAdder
 		newCon.getActions().addAction(
 				ActionFactory
 						.createPopupMenuAction(new JMenuConnection(canvas)));
+
+		// // Sets the connection comment text
+		newCon.setToolTipText(newCon.getConnection().getDescription());
 	}
 
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function add the necessary actions to the given {@link WidgetRoom}.
+	 * The given {@link WorkareaCanvas} is needed by the methods to create the
+	 * actions.
 	 * 
 	 * @param canvas
-	 * @param room
+	 *            The {@link WorkareaCanvas} where the given {@link WidgetRoom}
+	 *            is contained.
+	 * @param newCon
+	 *            The {@link WidgetRoom} where the new actions
+	 *            will be added.
 	 */
 	public static void makeWidgetRoomReady(WorkareaCanvas canvas,
 			WidgetRoom room)

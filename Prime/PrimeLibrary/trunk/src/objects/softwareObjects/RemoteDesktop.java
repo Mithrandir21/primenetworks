@@ -8,7 +8,8 @@ import objects.Software;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class will represent a software that performs the actions of remote
+ * desktoping with different options and features.
  * 
  * @author Bahram Malaekeh
  * 

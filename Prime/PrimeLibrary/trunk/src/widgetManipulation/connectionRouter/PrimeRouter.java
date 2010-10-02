@@ -13,25 +13,21 @@ import org.netbeans.api.visual.anchor.Anchor;
 import org.netbeans.api.visual.router.Router;
 import org.netbeans.api.visual.widget.ConnectionWidget;
 
+import widgets.WidgetObject;
+import widgets.WorkareaCanvas;
+import connections.WidgetExtendedConnection;
+
 
 /**
- * TODO - Description NEEDED!
+ * This {@link Router} extension represents a "route" a
+ * {@link WidgetExtendedConnection} takes between two {@link WidgetObject} on a
+ * {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
  * 
  */
 public class PrimeRouter implements Router
 {
-	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 */
-	public PrimeRouter()
-	{
-		// TODO Auto-generated constructor stub
-	}
-
-
 	/*
 	 * (non-Javadoc)
 	 * 

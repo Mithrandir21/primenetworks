@@ -75,6 +75,8 @@ public class ObjectView extends JFrame implements ActionListener
 
 		canvas = PrimeMain.currentCanvas;
 
+		this.setIconImage(widgetObj.getImageWidget().getImage());
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -82,7 +84,7 @@ public class ObjectView extends JFrame implements ActionListener
 		Dimension scrnsize = toolkit.getScreenSize();
 
 		// Set size for the settings JFrame
-		Dimension size = new Dimension(650, 525);
+		Dimension size = new Dimension(650, 625);
 
 		int initYLocation = (scrnsize.height - size.height) / 3;
 		int initXLocation = (scrnsize.width - size.width) / 2;
@@ -96,7 +98,7 @@ public class ObjectView extends JFrame implements ActionListener
 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		view = new ObjectViewTabbed(obj);
+		view = new ObjectViewTabbed(canvas, obj);
 
 		panel.add(view);
 
@@ -416,9 +418,18 @@ public class ObjectView extends JFrame implements ActionListener
 		info.setWidgetNotes(view.netObjView.widgetNotesArea.getText());
 
 
+		// SAVING THE PERMISSIONS PART
+		view.netObjView.objPermPanel.saveObjectPermissions();
+
+
+
+
+
+
+
+
 		return errorFound;
 	}
-
 
 
 	/**

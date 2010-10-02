@@ -94,20 +94,19 @@ import widgets.WorkareaCanvas;
  * Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * @version 0.61 08/07/2010
+ * @version 0.62 23/09/2010
  */
 @SuppressWarnings("serial")
 public class PrimeMain extends JFrame
 {
-	// The log for the the program
-	private static Logger log = Logger.getLogger("");
+	// The log for the the GUI part of the program
+	public static Logger guiLog = Logger.getLogger("GUILogging");
 
 	// Daemon services running
 	private static PrimeService services;
 
 	// The locale texts
-	public static ResourceBundle texts = ResourceBundle.getBundle(
-			"SystemTexts", new Locale("en"));
+	public static ResourceBundle texts;
 
 	// Variables to place the height and width of the main screen.
 	public static int width, height;
@@ -146,14 +145,13 @@ public class PrimeMain extends JFrame
 	public static ArrayList<ImageIcon> images = new ArrayList<ImageIcon>(60);
 
 	// A pointer to where all standard internal components are kept.
-	public static MakeStandardInternalComponents standard_internal_components = new MakeStandardInternalComponents();
+	public static MakeStandardInternalComponents standard_internal_components;
 
 	// A pointer to where all standard softwares are kept.
-	public static MakeStandardSoftware standard_software = new MakeStandardSoftware();
+	public static MakeStandardSoftware standard_software;
 
 	// This array contains the systems standard, unchangeable OperatingSystem.
-	public static OperatingSystem[] system_standard_OS = MakeStandardSoftware
-			.getSystemStandardOSs();
+	public static OperatingSystem[] system_standard_OS;
 
 	// This array contains the systems custom OperatingSystems, the ones created
 	// by Users.
@@ -193,7 +191,7 @@ public class PrimeMain extends JFrame
 	public static NetworkRules standardRules = null;
 
 	// The GhostGlass that will show the moving device(for D'n'D).
-	public static GhostGlassPane glassPane = new GhostGlassPane();
+	public static GhostGlassPane glassPane;
 
 
 
@@ -242,9 +240,24 @@ public class PrimeMain extends JFrame
 
 		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
-		// Tries to retrieve the users previous settings
+		// Attempts to retrieve the users previous settings
 		DesktopFileManagment.openSettings();
 
+		// Sets the Locale for the application
+		texts = ResourceBundle.getBundle("SystemTexts", new Locale(
+				Settings.primeLocale.toString()));
+
+		// Creates internal components(Motherboard, HDD, RAM, etc).
+		standard_internal_components = new MakeStandardInternalComponents();
+
+		// Creates standard software (Antivirus, Firewall, etc).
+		standard_software = new MakeStandardSoftware();
+
+		// Creates the standard system Operative systems
+		system_standard_OS = MakeStandardSoftware.getSystemStandardOSs();
+
+
+		glassPane = new GhostGlassPane();
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -517,7 +530,6 @@ public class PrimeMain extends JFrame
 				exitProcess();
 			}
 		});
-
 	}
 
 

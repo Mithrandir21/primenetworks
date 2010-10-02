@@ -90,4 +90,20 @@ public class WidgetExtendedConnection extends ConnectionWidget
 		this.connection = connection;
 	}
 
+
+
+	/**
+	 * This function sets the description of the connection. It sets both the
+	 * {@link WidgetExtendedConnection#setToolTipText(String)} and the
+	 * {@link Connection} description.
+	 */
+	public void setConnectionDescription(String text)
+	{
+		// If the text is not null or empty
+		if ( text != null && !text.equals("") )
+		{
+			this.setToolTipText(text);
+			connection.setDescription(text);
+		}
+	}
 }

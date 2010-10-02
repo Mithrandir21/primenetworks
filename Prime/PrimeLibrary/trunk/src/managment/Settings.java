@@ -19,17 +19,19 @@ package managment;
 
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This class contains final static fields that represent the systems settings.
+ * The fields in this class are used throughout the system.
  * 
  * @author Bahram Malaekeh
  */
 public class Settings implements Serializable
 {
 	// THE APPLICATION VERSION
-	public static String appVersion = "Beta 3.2";
+	public final static String appVersion = "Beta 3.2";
 
 
 	// HARDWARE MESSAGES
@@ -91,13 +93,119 @@ public class Settings implements Serializable
 
 
 	// THE SYSTEMS STANDARD PERMISSION
-	public static standardPermissions standPerm;
+	public static standardPermissions standPerm = standardPermissions.ALL;
+
+
+	// THE SYSTEM LOCALE(LANGUAGE GUIDE)
+	public static systemLocale primeLocale = systemLocale.en;
+
+
+	/**
+	 * This boolean will control the flow information within the system.
+	 * While the system is in debug mode, it will print out any error to a
+	 * console. But outside debug mode it will attempt to send them to a
+	 * {@link Logger}.
+	 */
+	public static boolean debug = false;
+
+
+	/**
+	 * This function resets all settings to the original.
+	 */
+	public static void resetSettings()
+	{
+		// HARDWARE MESSAGES
+		showHardwareErrorMessages = true;
+
+		showHardwareWarningMessages = false;
+
+		showHardwareNoticeMessages = false;
+
+
+		// SOFTWARE MESSAGES
+		showSoftwareErrorMessages = true;
+
+		showSoftwareWarningMessages = false;
+
+		showSoftwareNoticeMessages = false;
+
+
+		// CONNECTION MESSAGES
+		showConnectionErrorMessages = true;
+
+		showConnectionWarningMessages = false;
+
+		showConnectionNoticeMessages = false;
+
+
+		// NETWORK MESSAGES
+		showNetworkErrorMessages = true;
+
+		showNetworkWarningMessages = false;
+
+		showNetworkNoticeMessages = false;
+
+
+		// CREATING NETWORK CONNECTION
+		// A status saying whether or not the system is currently trying to
+		// create a connection between two object on the workareaCanvas.
+		connecting = false;
+
+
+		// CREATING ROOM BUTTON
+		roomsManipulation = false;
+
+
+		// CREATING CONNECTION BUTTON
+		connectionToggle = false;
+
+
+		// SHOW TIP OF THE DAY ON STARTUP
+		showTOFD = true;
+
+
+		// SHOW OPERATING SYSTEM ICON
+		showOSicon = true;
+
+
+		// SHOW IP LABEL FOR WIDGETS
+		showIP = true;
+
+
+		// THE SYSTEMS STANDARD PERMISSION
+		standPerm = standardPermissions.ALL;
+
+
+		// THE SYSTEM LOCALE(LANGUAGE GUIDE)
+		primeLocale = systemLocale.en;
+
+
+		// DEBUG MODE
+		debug = false;
+	}
 
 
 
-
+	/**
+	 * This {@link Enum} contains all the different types of standard
+	 * permissions.
+	 * 
+	 * @author Bahram Malaekeh
+	 */
 	private enum standardPermissions
 	{
 		NONE, READ, WRITE, EXECUTE, ALL
+	}
+
+
+	/**
+	 * This {@link Enum} contains all the possible locales possible in the
+	 * system.
+	 * 
+	 * @author Bahram Malaekeh
+	 */
+	public enum systemLocale
+	{
+		en, no_NO
 	}
 }

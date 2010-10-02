@@ -189,7 +189,6 @@ public class ConnectionManagment
 		// The array anchor
 		connection.setTargetAnchorShape(AnchorShape.NONE);
 		connection.setStroke(stroke);
-		connection.setToolTipText("This is a connection");
 		connection.setSourceAnchor(AnchorFactory
 				.createRectangularAnchor(SourceWidObj));
 		connection.setTargetAnchor(AnchorFactory

@@ -84,28 +84,36 @@ public class WorkareaWidgetActionListener implements ActionListener
 
 		if ( !actionName.equals("") )
 		{
-
 			if ( actionName.equals("OpenDevice") )
 			{
-				// Gets the view, if there exist any, with the given object
-				ObjectView view = PrimeMain.getObjectView(widget.getObject());
-
-				// There exist no view with the given object.
-				// Which means that there exist no open view for the given
-				// object.
-				if ( view == null )
+				// If there exists no group dialog
+				if ( PrimeMain.groupsDialog == null )
 				{
-					// Creates a new ObjectView object with the WidgetObject
-					// that has been cast.
-					ObjectView objView = new ObjectView(widget);
+					// Gets the view, if there exist any, with the given object
+					ObjectView view = PrimeMain.getObjectView(widget
+							.getObject());
 
-					// Adds the view to the arraylist of object views.
-					PrimeMain.addObjectView(objView);
+					// There exist no view with the given object.
+					// Which means that there exist no open view for the given
+					// object.
+					if ( view == null )
+					{
+						// Creates a new ObjectView object with the WidgetObject
+						// that has been cast.
+						ObjectView objView = new ObjectView(widget);
+
+						// Adds the view to the arraylist of object views.
+						PrimeMain.addObjectView(objView);
+					}
+					else
+					{
+						// Brings the pre-existing ObjectView to the front.
+						view.toFront();
+					}
 				}
 				else
 				{
-					// Brings the pre-existing ObjectView to the front.
-					view.toFront();
+					PrimeMain.groupsDialog.toFront();
 				}
 			}
 			else if ( actionName.equals("CopyObject") )

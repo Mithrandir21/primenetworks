@@ -33,7 +33,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
-import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -51,7 +50,6 @@ import javax.swing.table.TableColumn;
 
 import logistical.checkLogic;
 import logistical.cleanup;
-import managment.CanvasManagment;
 import managment.GroupManagment;
 import objects.Clients;
 import objects.ExternalHardware;
@@ -61,7 +59,6 @@ import objects.Servers;
 import org.jdesktop.swingx.JXTaskPane;
 import org.jdesktop.swingx.JXTaskPaneContainer;
 
-import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
 
 
@@ -427,14 +424,14 @@ public class EditGroupDialog extends JDialog implements ActionListener
 		clientJTable = new JTable(new PermissionsModel(clientData, columnNames));
 		clientJTable.setName("clientTable");
 		clientJTable.getModel().addTableModelListener(
-				new ModelSelectionListener(clientJTable, canvas, permissions));
+				new EditGroupModelSelectionListener(clientJTable, canvas, permissions));
 		clientJTable
 				.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
 		serverJTable = new JTable(new PermissionsModel(serverData, columnNames));
 		serverJTable.setName("serverTable");
 		serverJTable.getModel().addTableModelListener(
-				new ModelSelectionListener(serverJTable, canvas, permissions));
+				new EditGroupModelSelectionListener(serverJTable, canvas, permissions));
 		serverJTable
 				.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
@@ -442,7 +439,7 @@ public class EditGroupDialog extends JDialog implements ActionListener
 				externalDevicesData, columnNames));
 		externalHardwareJTable.setName("externalHardwareTable");
 		externalHardwareJTable.getModel().addTableModelListener(
-				new ModelSelectionListener(externalHardwareJTable, canvas,
+				new EditGroupModelSelectionListener(externalHardwareJTable, canvas,
 						permissions));
 		externalHardwareJTable
 				.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -605,122 +602,6 @@ public class EditGroupDialog extends JDialog implements ActionListener
 	}
 
 
-	/**
-	 * This function will "load" the permissions from the permissions
-	 * {@link HashMap} into the JTable.
-	 */
-	private void loadDevicePermissionsIntoTables()
-	{
-		if ( permissions != null )
-		{
-			for ( int i = 0; i < permissions.size(); i++ )
-			{
-				Iterator<Long> itr = permissions.keySet().iterator();
-
-				while ( itr.hasNext() )
-				{
-					// Gets the permission
-					Long serial = itr.next();
-
-					WidgetObject widObj = CanvasManagment
-							.findWidgetObjectByObjectSerial(serial, canvas);
-
-					if ( widObj != null )
-					{
-						Object obj = widObj.getObject();
-
-						if ( obj != null )
-						{
-							JTable table = null;
-
-							// Determines which JTable to use
-							if ( obj instanceof Clients )
-							{
-								table = clientJTable;
-							}
-							else if ( obj instanceof Servers )
-							{
-								table = serverJTable;
-							}
-							else if ( obj instanceof ExternalHardware )
-							{
-								table = externalHardwareJTable;
-							}
-
-							if ( table != null )
-							{
-								// Gets the row the objects is on
-								int row = getObjectRow(obj.getObjectName(),
-										table);
-
-								// If the object was found
-								if ( row > -1 )
-								{
-									PermissionsModel model = (PermissionsModel) table
-											.getModel();
-
-									// Sets the READ access
-									model.setValueAt(permissions.get(serial)
-											.hasReadAccess(), row, 1);
-
-									// Sets the WRITE access
-									model.setValueAt(permissions.get(serial)
-											.hasWriteAccess(), row, 2);
-
-									// Sets the EXECUTE access
-									model.setValueAt(permissions.get(serial)
-											.hasExecuteAccess(), row, 3);
-
-									System.out.println(obj.getObjectName()
-											+ " - "
-											+ permissions.get(serial)
-													.hasReadAccess());
-
-									System.out.println(obj.getObjectName()
-											+ " - " + model.getValueAt(row, 1));
-
-									System.out.println();
-
-								}
-							}
-						}
-					}
-				}
-			}
-
-
-			clientJTable.repaint();
-			serverJTable.repaint();
-			externalHardwareJTable.repaint();
-		}
-	}
-
-
-
-
-	/**
-	 * This function will attempt to find a row in the given {@link JTable} that
-	 * contains the given string in the first column.
-	 */
-	private int getObjectRow(String objectName, JTable table)
-	{
-		int row = -1;
-
-		for ( int i = 0; i < table.getRowCount(); i++ )
-		{
-			String name = (String) table.getValueAt(i, 0);
-
-			if ( name.equals(objectName) )
-			{
-				return i;
-			}
-		}
-
-
-		return row;
-	}
-
-
 
 	/*
 	 * (non-Javadoc)
@@ -746,7 +627,7 @@ public class EditGroupDialog extends JDialog implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener clientLis = (ModelSelectionListener) ((AbstractTableModel) clientJTable
+			EditGroupModelSelectionListener clientLis = (EditGroupModelSelectionListener) ((AbstractTableModel) clientJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < clientModel.getRowCount(); i++ )
@@ -767,7 +648,7 @@ public class EditGroupDialog extends JDialog implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener serverLis = (ModelSelectionListener) ((AbstractTableModel) serverJTable
+			EditGroupModelSelectionListener serverLis = (EditGroupModelSelectionListener) ((AbstractTableModel) serverJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < serverModel.getRowCount(); i++ )
@@ -788,7 +669,7 @@ public class EditGroupDialog extends JDialog implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener extHardLis = (ModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
+			EditGroupModelSelectionListener extHardLis = (EditGroupModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < externalHardwareModel.getRowCount(); i++ )
@@ -815,7 +696,7 @@ public class EditGroupDialog extends JDialog implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener clientLis = (ModelSelectionListener) ((AbstractTableModel) clientJTable
+			EditGroupModelSelectionListener clientLis = (EditGroupModelSelectionListener) ((AbstractTableModel) clientJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < clientModel.getRowCount(); i++ )
@@ -836,7 +717,7 @@ public class EditGroupDialog extends JDialog implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener serverLis = (ModelSelectionListener) ((AbstractTableModel) serverJTable
+			EditGroupModelSelectionListener serverLis = (EditGroupModelSelectionListener) ((AbstractTableModel) serverJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < serverModel.getRowCount(); i++ )
@@ -857,7 +738,7 @@ public class EditGroupDialog extends JDialog implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener extHardLis = (ModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
+			EditGroupModelSelectionListener extHardLis = (EditGroupModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < externalHardwareModel.getRowCount(); i++ )
@@ -884,7 +765,7 @@ public class EditGroupDialog extends JDialog implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener clientLis = (ModelSelectionListener) ((AbstractTableModel) clientJTable
+			EditGroupModelSelectionListener clientLis = (EditGroupModelSelectionListener) ((AbstractTableModel) clientJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < clientModel.getRowCount(); i++ )
@@ -905,7 +786,7 @@ public class EditGroupDialog extends JDialog implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener serverLis = (ModelSelectionListener) ((AbstractTableModel) serverJTable
+			EditGroupModelSelectionListener serverLis = (EditGroupModelSelectionListener) ((AbstractTableModel) serverJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < serverModel.getRowCount(); i++ )
@@ -926,7 +807,7 @@ public class EditGroupDialog extends JDialog implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener extHardLis = (ModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
+			EditGroupModelSelectionListener extHardLis = (EditGroupModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < externalHardwareModel.getRowCount(); i++ )
@@ -953,7 +834,7 @@ public class EditGroupDialog extends JDialog implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener clientLis = (ModelSelectionListener) ((AbstractTableModel) clientJTable
+			EditGroupModelSelectionListener clientLis = (EditGroupModelSelectionListener) ((AbstractTableModel) clientJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < clientModel.getRowCount(); i++ )
@@ -984,7 +865,7 @@ public class EditGroupDialog extends JDialog implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener serverLis = (ModelSelectionListener) ((AbstractTableModel) serverJTable
+			EditGroupModelSelectionListener serverLis = (EditGroupModelSelectionListener) ((AbstractTableModel) serverJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < serverModel.getRowCount(); i++ )
@@ -1015,7 +896,7 @@ public class EditGroupDialog extends JDialog implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener extHardlis = (ModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
+			EditGroupModelSelectionListener extHardlis = (EditGroupModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < externalHardwareModel.getRowCount(); i++ )

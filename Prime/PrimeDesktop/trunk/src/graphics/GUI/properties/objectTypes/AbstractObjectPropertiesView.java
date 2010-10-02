@@ -281,7 +281,8 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function save, with the necessary checks and controls, the general
+	 * {@link Object} settings.
 	 */
 	public void generalSaveAction()
 	{

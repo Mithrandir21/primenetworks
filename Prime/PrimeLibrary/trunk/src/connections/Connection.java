@@ -176,7 +176,7 @@ public abstract class Connection extends Object implements Serializable
 	/**
 	 * Sets the type of connection between the two objects.
 	 */
-	public void setConnection(String connection)
+	public void setConnectionType(String connection)
 	{
 		this.connection = connection;
 	}

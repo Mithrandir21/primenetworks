@@ -151,10 +151,7 @@ public class SceneConnectProvider implements ConnectProvider
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param canvas
-	 *            the canvas to set
+	 * Sets this classes {@link WorkareaCanvas}.
 	 */
 	public void setCanvas(WorkareaCanvas canvas)
 	{
@@ -162,9 +159,7 @@ public class SceneConnectProvider implements ConnectProvider
 	}
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @return the canvas
+	 * Gets this classes {@link WorkareaCanvas}.
 	 */
 	public WorkareaCanvas getCanvas()
 	{

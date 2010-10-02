@@ -29,10 +29,10 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class contains functions that handle {@link Group Groups}. There are
+ * search, verification and validation functions for {@link Group Groups}.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class GroupManagment
 {

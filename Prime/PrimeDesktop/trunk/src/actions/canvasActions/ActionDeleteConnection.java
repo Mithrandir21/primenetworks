@@ -226,12 +226,14 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 						canvas.getConnections(),
 						PrimeMain.texts.getString("connection")
 								+ canvas.getNumberOfWidgetsOnTheScene(),
-						"Connection between "
+						priorCon.getConnectionType() + " "
+								+ PrimeMain.texts.getString("connection")
+								+ ". "
 								+ sourceWidget.getObject().getObjectName()
-								+ " and "
-								+ targetWidget.getObject().getObjectName()
-								+ ".", sourceWidget.getObject(),
-						targetWidget.getObject(), priorCon.getConnectionType(),
+								+ " - "
+								+ targetWidget.getObject().getObjectName(),
+						sourceWidget.getObject(), targetWidget.getObject(),
+						priorCon.getConnectionType(),
 						checkLogic.getConClass(priorCon.getConnectionType()));
 
 				// Creates the connection between the two devices on the

@@ -147,25 +147,6 @@ public class MakeSystemImageIcons
 
 		// Laptop
 		setupImage(1, "Laptop");
-		// // Laptop
-		// if ( PrimeMain.objectlist.get(1).getVisualImage() == null )
-		// {
-		// // Gets the objects ImageIcon
-		// ImageIcon objectIcon = ImageLocator.getImageIconObject("Laptop");
-		//
-		// // Sets the Objects Visual Image
-		// PrimeMain.objectlist.get(1).setVisualImage(objectIcon);
-		//
-		// // Places the ImageIcon into the systems hashmap of ImageIcons
-		// PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(1)
-		// .getClass(), objectIcon);
-		// }
-		// else
-		// {
-		// // Places the ImageIcon into the systems hashmap of ImageIcons
-		// PrimeMain.objectImageIcons.put(PrimeMain.objectlist.get(1)
-		// .getClass(), PrimeMain.objectlist.get(1).getVisualImage());
-		// }
 
 
 		// Thin Client
@@ -256,9 +237,8 @@ public class MakeSystemImageIcons
 		setupImage(23, "Router");
 
 
-		// FIXME - MODEM ICON
 		// Modem
-		setupImage(24, "Router");
+		setupImage(24, "Modem");
 
 
 		// Wireless Router

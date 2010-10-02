@@ -232,7 +232,7 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * Gets the classes {@link DropTarget}.
 	 * 
 	 * @return the dt
 	 */
@@ -561,9 +561,8 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @return the undoManager
+	 * Gets the {@link CanvasUndoManager} for this class that contains all the
+	 * undoable action performed in this network.
 	 */
 	public CanvasUndoManager getUndoManager()
 	{
@@ -594,7 +593,7 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
+	 * Gets the classes {@link DropTarget}.
 	 */
 	public synchronized void setDropTarget(DropTarget dt)
 	{

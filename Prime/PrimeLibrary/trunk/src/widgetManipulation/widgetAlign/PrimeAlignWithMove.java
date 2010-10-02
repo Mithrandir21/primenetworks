@@ -28,12 +28,17 @@ import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Widget;
 import org.netbeans.modules.visual.action.AlignWithSupport;
 
+import widgetManipulation.Providers.MoveWidgetObjectProvider;
 import widgets.WidgetObject;
+import widgets.WorkareaCanvas;
 
 
 
 /**
- * TODO - Description NEEDED!
+ * This extension of the {@link AlignWithSupport} class is meant to be used when
+ * users move {@link WidgetObject} in a {@link WorkareaCanvas}. This class will
+ * align the {@link WidgetObject} with other {@link Widget Widgets}.
+ * This class works together with the {@link MoveWidgetObjectProvider} class.
  * 
  * @author Bahram Malaekeh
  * 

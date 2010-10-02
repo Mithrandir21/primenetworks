@@ -1,23 +1,24 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.customNetworks;
 
 
+import graphics.ImageLocator;
 import graphics.PrimeMain;
 
 import java.awt.Button;
@@ -31,6 +32,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -62,6 +64,9 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 	{
 		this.setTitle(PrimeMain.texts
 				.getString("openStandardNetworkRulesLabel"));
+
+		ImageIcon frameIcon = ImageLocator.getImageIconObject("Rules");
+		this.setIconImage(frameIcon.getImage());
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -124,9 +129,10 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 		});
 
 
-		JOptionPane.showMessageDialog(this, PrimeMain.texts
-				.getString("standardRulesWarningMsg"), PrimeMain.texts
-				.getString("caution"), JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(this,
+				PrimeMain.texts.getString("standardRulesWarningMsg"),
+				PrimeMain.texts.getString("caution"),
+				JOptionPane.WARNING_MESSAGE);
 	}
 
 
@@ -157,7 +163,8 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 
 
 	/**
-	 * Creates a JPanel with two buttons that are listened for by the given actionlisteners.
+	 * Creates a JPanel with two buttons that are listened for by the given
+	 * actionlisteners.
 	 */
 	public static JPanel createButtons(ActionListener lis)
 	{
@@ -194,13 +201,11 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 
 
 		// The USB not allowed rule
-		rules
-				.setUSBnotAllowed(HardwareRulesPanel.USBnotAllowedBox
-						.isSelected());
+		rules.setUSBnotAllowed(HardwareRulesPanel.USBnotAllowedBox.isSelected());
 
 		// The USB ports number
-		if ( HardwareRulesPanel.USBports.getSelectedItem().toString().equals(
-				"Unlimited") )
+		if ( HardwareRulesPanel.USBports.getSelectedItem().toString()
+				.equals("Unlimited") )
 		{
 			rules.setUSBportsAllowed(-1);
 		}
@@ -214,13 +219,11 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 
 
 		// The LAN not allowed rule
-		rules
-				.setLANnotAllowed(HardwareRulesPanel.LANnotAllowedBox
-						.isSelected());
+		rules.setLANnotAllowed(HardwareRulesPanel.LANnotAllowedBox.isSelected());
 
 		// The LAN ports number
-		if ( HardwareRulesPanel.LANports.getSelectedItem().toString().equals(
-				"Unlimited") )
+		if ( HardwareRulesPanel.LANports.getSelectedItem().toString()
+				.equals("Unlimited") )
 		{
 			rules.setLANportsAllowed(-1);
 		}
@@ -315,9 +318,8 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 		// INFRASTRUCTURE RULES
 
 		// Internet allowed
-		rules
-				.setCanConnectToInternet(InfrastructureRulesPanel.internetAllowedBox
-						.isSelected());
+		rules.setCanConnectToInternet(InfrastructureRulesPanel.internetAllowedBox
+				.isSelected());
 
 		// // Antivirus before internet
 		// rules
@@ -330,20 +332,19 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 		// .isSelected());
 
 		// Hub allowed
-		rules
-				.setCanContainHub(InfrastructureRulesPanel.hubAllowed
-						.isSelected());
+		rules.setCanContainHub(InfrastructureRulesPanel.hubAllowed.isSelected());
 
 		// Wireless allowed
-		rules
-				.setCanContainWirelessRouter(InfrastructureRulesPanel.wirelessAllowed
-						.isSelected());
+		rules.setCanContainWirelessRouter(InfrastructureRulesPanel.wirelessAllowed
+				.isSelected());
 	}
 
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)

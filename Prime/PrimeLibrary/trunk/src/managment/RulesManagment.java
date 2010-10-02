@@ -1,23 +1,26 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package managment;
 
 
+import java.util.logging.Level;
+
+import logistical.LibraryLogging;
 import logistical.cleanup;
 import objects.Infrastructure;
 import objects.Object;
@@ -39,15 +42,15 @@ import exceptions.ObjectNotFoundException;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class contained functions that check, verify and validate
+ * {@link WorkareaCanvas WorkareaCanvases} against {@link NetworkRules}.
  * 
  * @author Bahram Malaekeh
  */
 public class RulesManagment
 {
 	/**
-	 * TODO - Description
-	 * 
+	 * This function calls all the different rules checking methods.
 	 */
 	public static boolean processRulesChange(WorkareaCanvas canvas)
 	{
@@ -85,9 +88,12 @@ public class RulesManagment
 
 
 	/**
-	 * This function is meant as a reaction to the altering of the number of USB ports available for the given network.
-	 * It sets the USB port for any device with a higher max USB ports to the network rule.
-	 * It also removed the device that no longer can be connected because of the no available ports.
+	 * This function is meant as a reaction to the altering of the number of USB
+	 * ports available for the given network.
+	 * It sets the USB port for any device with a higher max USB ports to the
+	 * network rule.
+	 * It also removed the device that no longer can be connected because of the
+	 * no available ports.
 	 */
 	public static boolean usbRuleViolation(WorkareaCanvas canvas)
 	{
@@ -126,9 +132,12 @@ public class RulesManagment
 
 
 	/**
-	 * This function checks the number of USB ports available for the given network.
-	 * It sets the USB port of the given device if it has a higher max USB ports then the network rule.
-	 * It also removed the device that no longer can be connected because of the no available ports.
+	 * This function checks the number of USB ports available for the given
+	 * network.
+	 * It sets the USB port of the given device if it has a higher max USB ports
+	 * then the network rule.
+	 * It also removed the device that no longer can be connected because of the
+	 * no available ports.
 	 */
 	public static boolean objectUSBruleViolation(NetworkRules rules,
 			Object object, WorkareaCanvas canvas)
@@ -142,13 +151,15 @@ public class RulesManagment
 			int allowedUSBports = -1;
 
 
-			// If USB ports are not allowed or (USB allowed and port number equals 0)
+			// If USB ports are not allowed or (USB allowed and port number
+			// equals 0)
 			if ( usbNotAllowed
 					|| (!(usbNotAllowed) && rules.getUSBportsAllowed() == 0) )
 			{
 				allowedUSBports = 0;
 			}
-			// If USB ports are allowed and allowed USB ports are set to higher then -1, not unlimited
+			// If USB ports are allowed and allowed USB ports are set to higher
+			// then -1, not unlimited
 			else if ( rules.getUSBportsAllowed() > -1 )
 			{
 				allowedUSBports = rules.getUSBportsAllowed();
@@ -164,10 +175,12 @@ public class RulesManagment
 					Motherboard objectMotherboard = (Motherboard) object
 							.getSpesificComponents(Motherboard.class)[0];
 
-					// If the motherboards USB ports are higher then the allowed USB ports
+					// If the motherboards USB ports are higher then the allowed
+					// USB ports
 					if ( objectMotherboard.getMaxUSBs() > allowedUSBports )
 					{
-						// Sets the motherboard USB ports and removes appropriate connected devices
+						// Sets the motherboard USB ports and removes
+						// appropriate connected devices
 						ComponentsManagment.USBportsValidation(object,
 								objectMotherboard, allowedUSBports, canvas);
 
@@ -188,11 +201,15 @@ public class RulesManagment
 
 
 	/**
-	 * This function is meant as a reaction to the altering of the number of LAN ports available for the given network.
-	 * It sets the LAN port for any device with a higher max LAN ports to the network rule.
-	 * It also removed the device that no longer can be connected because of the no available ports.
+	 * This function is meant as a reaction to the altering of the number of LAN
+	 * ports available for the given network.
+	 * It sets the LAN port for any device with a higher max LAN ports to the
+	 * network rule.
+	 * It also removed the device that no longer can be connected because of the
+	 * no available ports.
 	 * 
-	 * It also removes any {@link InternalNetworksCard} and {@link ExternalNetworksCard} that is above the maximum amount of
+	 * It also removes any {@link InternalNetworksCard} and
+	 * {@link ExternalNetworksCard} that is above the maximum amount of
 	 * ports, staring by {@link ExternalNetworksCard}.
 	 */
 	public static boolean lanRuleViolation(WorkareaCanvas canvas)
@@ -226,13 +243,18 @@ public class RulesManagment
 
 
 	/**
-	 * This function will return False for any object that is an instance of {@link Infrastructure}.
+	 * This function will return False for any object that is an instance of
+	 * {@link Infrastructure}.
 	 * 
-	 * This function checks the number of LAN ports available for the given network.
-	 * It sets the LAN port of the given device if it has a higher max LAN ports then the network rule.
-	 * It also removed the device that no longer can be connected because of the no available ports.
+	 * This function checks the number of LAN ports available for the given
+	 * network.
+	 * It sets the LAN port of the given device if it has a higher max LAN ports
+	 * then the network rule.
+	 * It also removed the device that no longer can be connected because of the
+	 * no available ports.
 	 * 
-	 * It also removes any {@link InternalNetworksCard} and {@link ExternalNetworksCard} that is above the maximum amount of
+	 * It also removes any {@link InternalNetworksCard} and
+	 * {@link ExternalNetworksCard} that is above the maximum amount of
 	 * ports, staring by {@link ExternalNetworksCard}.
 	 */
 	public static boolean objectLANruleViolation(NetworkRules rules,
@@ -240,8 +262,10 @@ public class RulesManagment
 	{
 		boolean ruleViolation = false;
 
-		// If the canvas is not null and it is not an infrastructure device and the object is not exempted the network rules.
-		if ( canvas != null && !(object instanceof Infrastructure)
+		// If the canvas is not null and it is not an infrastructure device and
+		// the object is not exempted the network rules.
+		if ( object != null && canvas != null
+				&& !(object instanceof Infrastructure)
 				&& !object.isExemptedNetworkRules() )
 		{
 			boolean lanNotAllowed = rules.isLANnotAllowed();
@@ -249,13 +273,15 @@ public class RulesManagment
 			// The number of allowed ports
 			int allowedLANports = -1;
 
-			// If LAN ports are not allowed or (LAN allowed and port number equals 0)
+			// If LAN ports are not allowed or (LAN allowed and port number
+			// equals 0)
 			if ( lanNotAllowed
 					|| (!(lanNotAllowed) && rules.getLANportsAllowed() == 0) )
 			{
 				allowedLANports = 0;
 			}
-			// If LAN ports are allowed and allowed LAN ports are set to higher then -1, not unlimited
+			// If LAN ports are allowed and allowed LAN ports are set to higher
+			// then -1, not unlimited
 			else if ( rules.getLANportsAllowed() > -1 )
 			{
 				allowedLANports = rules.getLANportsAllowed();
@@ -274,7 +300,8 @@ public class RulesManagment
 					// The number of integrated LAN ports
 					int maxIntegLan = objectMotherboard.getMaxIntegLANs();
 
-					// Gets the both the number of internal NICs and the how many they are
+					// Gets the both the number of internal NICs and the how
+					// many they are
 					int internalNICcount = 0;
 					Object[] internalNICs = null;
 					try
@@ -287,7 +314,8 @@ public class RulesManagment
 						// If the array is not null
 						if ( tempInternalNICs != null )
 						{
-							// Creates a new array with the length of the temporary array
+							// Creates a new array with the length of the
+							// temporary array
 							internalNICs = new Object[tempInternalNICs.length];
 
 							// Goes through the entire temporary array
@@ -297,7 +325,8 @@ public class RulesManagment
 								{
 									InternalNetworksCard nic = (InternalNetworksCard) tempInternalNICs[i];
 
-									// If the connection type is the same as RJ45
+									// If the connection type is the same as
+									// RJ45
 									if ( nic.getConnectionType().equals(
 											ConnectionUtils.RJ45) )
 									{
@@ -320,7 +349,8 @@ public class RulesManagment
 
 
 
-					// Gets the both the number of external NICs and the how many they are
+					// Gets the both the number of external NICs and the how
+					// many they are
 					int externalNICcount = 0;
 					Object[] externalNICs = null;
 					try
@@ -333,7 +363,8 @@ public class RulesManagment
 						// If the array is not null
 						if ( tempExternalNICs != null )
 						{
-							// Creates a new array with the length of the temporary array
+							// Creates a new array with the length of the
+							// temporary array
 							externalNICs = new Object[tempExternalNICs.length];
 
 							// Goes through the entire temporary array
@@ -343,7 +374,8 @@ public class RulesManagment
 								{
 									ExternalNetworksCard nic = (ExternalNetworksCard) tempExternalNICs[i];
 
-									// If the connection type is the same as RJ45
+									// If the connection type is the same as
+									// RJ45
 									if ( nic.getConnectionType().equals(
 											ConnectionUtils.RJ45) )
 									{
@@ -372,8 +404,10 @@ public class RulesManagment
 					int totalLANs = maxIntegLan + totalNICs;
 
 					/**
-					 * If the number of integrated LAN ports is greater or equal to the allowedLANports, then all the
-					 * NICs(internal and external) must be removed since there is no room for them.
+					 * If the number of integrated LAN ports is greater or equal
+					 * to the allowedLANports, then all the
+					 * NICs(internal and external) must be removed since there
+					 * is no room for them.
 					 */
 					if ( maxIntegLan >= allowedLANports )
 					{
@@ -382,7 +416,8 @@ public class RulesManagment
 						{
 							for ( int j = internalNICs.length - 1; j > -1; j-- )
 							{
-								// Removes the NIC and if the NIC is connected to an object, the connection is broken.
+								// Removes the NIC and if the NIC is connected
+								// to an object, the connection is broken.
 								ComponentsManagment.removeInternalNIC(canvas,
 										object,
 										(InternalNetworksCard) internalNICs[j]);
@@ -420,8 +455,10 @@ public class RulesManagment
 						}
 					}
 					/**
-					 * If the number of allowed LANs is lower then the total number of LANs ports, which means that the number
-					 * of integrated LAN ports is lower then the number of allowed ports. This means that some of the NICs can
+					 * If the number of allowed LANs is lower then the total
+					 * number of LANs ports, which means that the number
+					 * of integrated LAN ports is lower then the number of
+					 * allowed ports. This means that some of the NICs can
 					 * stay.
 					 */
 					else
@@ -449,7 +486,8 @@ public class RulesManagment
 
 
 
-						// If the totalLANs is above the allowedLANports and there are any internal NICs
+						// If the totalLANs is above the allowedLANports and
+						// there are any internal NICs
 						if ( totalLANs > allowedLANports
 								&& internalNICcount > 0 )
 						{
@@ -458,7 +496,9 @@ public class RulesManagment
 								// If the totalLANs is above the allowedLANports
 								if ( totalLANs > allowedLANports )
 								{
-									// Removes the NIC and if the NIC is connected to an object, the connection is broken.
+									// Removes the NIC and if the NIC is
+									// connected to an object, the connection is
+									// broken.
 									ComponentsManagment
 											.removeInternalNIC(
 													canvas,
@@ -476,8 +516,19 @@ public class RulesManagment
 				}
 				catch ( MotherboardNotFound e )
 				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LibraryLogging.libraryLog.logp(
+							Level.SEVERE,
+							"RulesManagment",
+							"objectLANruleViolation",
+							"The Object '" + object.getObjectName()
+									+ "' in the network '"
+									+ canvas.getCanvasName()
+									+ "' does not contain a Motherboard.");
+
+					if ( Settings.debug )
+					{
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -496,8 +547,9 @@ public class RulesManagment
 
 
 	/**
-	 * This function determines if the rules of the {@link WorkareaCanvas} allowed class type objects. If the
-	 * {@link WorkareaCanvas} does not allow it, those class type objects are removed.
+	 * This function determines if the rules of the {@link WorkareaCanvas}
+	 * allowed class type objects. If the {@link WorkareaCanvas} does not allow
+	 * it, those class type objects are removed.
 	 */
 	public static boolean canContainObjectWithClassRuleViolation(
 			WorkareaCanvas canvas, Class classType, boolean canContain)
@@ -537,6 +589,10 @@ public class RulesManagment
 
 
 
+	/**
+	 * This method determines whether the given {@link NetworkRules} allows the
+	 * given {@link Object}.
+	 */
 	public static boolean canContainObject(NetworkRules rules, Object obj)
 	{
 

@@ -234,15 +234,16 @@ public class ActionDeleteAllConnectionsToAndFrom extends AbstractSystemAction
 							canvas.getConnections(),
 							PrimeMain.texts.getString("connection")
 									+ canvas.getNumberOfWidgetsOnTheScene(),
-							"Connection between "
+							existingConnections[i].getConnectionType() + " "
+									+ PrimeMain.texts.getString("connection")
+									+ ". "
 									+ sourceWidget.getObject().getObjectName()
-									+ " and "
-									+ targetWidget.getObject().getObjectName()
-									+ ".", sourceWidget.getObject(),
-							targetWidget.getObject(), existingConnections[i]
-									.getConnectionType(), checkLogic
-									.getConClass(existingConnections[i]
-											.getConnectionType()));
+									+ " - "
+									+ targetWidget.getObject().getObjectName(),
+							sourceWidget.getObject(), targetWidget.getObject(),
+							existingConnections[i].getConnectionType(),
+							checkLogic.getConClass(existingConnections[i]
+									.getConnectionType()));
 
 					// Creates the connection between the two devices on the
 					// scene.

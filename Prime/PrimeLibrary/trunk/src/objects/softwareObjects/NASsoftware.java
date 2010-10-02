@@ -4,11 +4,16 @@
 package objects.softwareObjects;
 
 
+import objects.Clients;
+import objects.Servers;
 import objects.Software;
+import objects.serverObjects.NASServer;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class represents a software that will perform the actions of a
+ * {@link NASServer}, but will be on any {@link Clients Client} or
+ * {@link Servers Server}.
  * 
  * @author Bahram Malaekeh
  */

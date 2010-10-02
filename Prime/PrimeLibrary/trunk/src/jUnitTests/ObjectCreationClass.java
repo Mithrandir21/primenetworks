@@ -62,7 +62,8 @@ import exceptions.ObjectNotFoundException;
 
 
 /**
- * TODO - Description NEEDED!
+ * This test class contains functions that test the systems ability to create
+ * {@link Object Objects} correctly.
  * 
  * @author Bahram Malaekeh
  * 
@@ -330,7 +331,6 @@ public class ObjectCreationClass
 		}
 		catch ( MotherboardNotFound e )
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

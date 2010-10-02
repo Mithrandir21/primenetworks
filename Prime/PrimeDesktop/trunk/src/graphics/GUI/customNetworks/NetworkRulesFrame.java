@@ -18,6 +18,7 @@
 package graphics.GUI.customNetworks;
 
 
+import graphics.ImageLocator;
 import graphics.PrimeMain;
 
 import java.awt.Button;
@@ -31,6 +32,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -73,6 +75,9 @@ public class NetworkRulesFrame extends JDialog implements ActionListener
 	{
 		this.canvas = canvas;
 		this.setTitle(PrimeMain.texts.getString("networkRulesLabel"));
+
+		ImageIcon frameIcon = ImageLocator.getImageIconObject("Rules");
+		this.setIconImage(frameIcon.getImage());
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();

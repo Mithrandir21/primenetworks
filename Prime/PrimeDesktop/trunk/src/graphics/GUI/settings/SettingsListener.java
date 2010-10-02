@@ -18,6 +18,7 @@
 package graphics.GUI.settings;
 
 
+import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 
 import java.awt.event.ActionEvent;
@@ -25,6 +26,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 import managment.Settings;
 
@@ -37,11 +40,13 @@ import managment.Settings;
  */
 public class SettingsListener implements ActionListener
 {
-	JCheckBox[] messageCheckBox;
+	private JCheckBox[] messageCheckBox;
 
-	JCheckBox[] displayCheckBox;
+	private JCheckBox[] displayCheckBox;
 
-	SettingsOverview settingsFrame;
+	private JComboBox systemLocale;
+
+	private SettingsOverview settingsFrame;
 
 	/**
 	 * A constructor for the class.
@@ -53,10 +58,11 @@ public class SettingsListener implements ActionListener
 	 *            The actual checkboxes set and unset by the user.
 	 */
 	public SettingsListener(SettingsOverview panel, JCheckBox[] msgBox,
-			JCheckBox[] displayBox)
+			JCheckBox[] displayBox, JComboBox locale)
 	{
 		messageCheckBox = msgBox;
 		displayCheckBox = displayBox;
+		systemLocale = locale;
 		settingsFrame = panel;
 	}
 
@@ -111,8 +117,6 @@ public class SettingsListener implements ActionListener
 		}
 	}
 
-
-
 	/**
 	 * Sets the program settings reflecting what the classes checkboxes show.
 	 */
@@ -140,6 +144,19 @@ public class SettingsListener implements ActionListener
 		// DISPLAY
 		Settings.showIP = displayCheckBox[0].isSelected();
 		Settings.showOSicon = displayCheckBox[1].isSelected();
+
+		// Gets the new systemLocale
+		managment.Settings.systemLocale newLocale = GraphicalFunctions
+				.getSystemLocale(systemLocale.getSelectedItem().toString());
+
+		if ( !newLocale.equals(Settings.primeLocale) )
+		{
+			JOptionPane.showMessageDialog(null,
+					PrimeMain.texts.getString("settingsAdvancedLanguageMsg"));
+
+			// Sets the locale
+			Settings.primeLocale = newLocale;
+		}
 
 
 		PrimeMain.updateCanvasAndObjectInfo();

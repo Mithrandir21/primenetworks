@@ -18,9 +18,11 @@
 package graphics.GUI.settings;
 
 
+import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -31,6 +33,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -49,6 +52,7 @@ public class SettingsOverview extends JFrame
 
 	public static JCheckBox[] displayCheckBox = new JCheckBox[2];
 
+	public static JComboBox localeCombo;
 
 	/**
 	 * A constructor for the class that sets up the settings variables and
@@ -62,7 +66,7 @@ public class SettingsOverview extends JFrame
 		setUpMessageCheckBoxes();
 
 		SettingsListener setListener = new SettingsListener(this,
-				messagesCheckBox, displayCheckBox);
+				messagesCheckBox, displayCheckBox, localeCombo);
 
 		// Get the content pane for this object
 		Container c = this.getContentPane();
@@ -125,10 +129,8 @@ public class SettingsOverview extends JFrame
 		this.setMinimumSize(size);
 		// this.setResizable(false);
 		this.setLocation(initXLocation, initYLocation);
-		// this.setExtendedState(Frame.MAXIMIZED_BOTH);
 		this.setVisible(true);
 	}
-
 
 
 
@@ -150,13 +152,16 @@ public class SettingsOverview extends JFrame
 				frameIcon, new NetworkMessagesSettings(messagesCheckBox, lis),
 				PrimeMain.texts.getString("settingsShowMsgPanelTip"));
 
-		tabs.addTab(PrimeMain.texts.getString("settingsAdvancedPanelLabel"),
+		tabs.addTab(PrimeMain.texts.getString("settingsDisplayPanelLabel"),
 				frameIcon, new DisplaySettings(displayCheckBox, lis),
-				PrimeMain.texts.getString("settingsShowMsgPanelTip"));
+				PrimeMain.texts.getString("settingsDisplayPanelTip"));
+
+		tabs.addTab(PrimeMain.texts.getString("settingsAdvancedPanelLabel"),
+				frameIcon, new AdvancedSettings(lis, localeCombo),
+				PrimeMain.texts.getString("settingsAdvancedPanelTip"));
 
 		return tabs;
 	}
-
 
 
 	/**
@@ -208,6 +213,17 @@ public class SettingsOverview extends JFrame
 
 		displayCheckBox[1] = new JCheckBox();
 		displayCheckBox[1].setSelected(Settings.showOSicon);
+
+
+		// LOCALES
+		String[] locales = { PrimeMain.texts.getString("english"),
+				PrimeMain.texts.getString("norwegian") };
+
+		localeCombo = new JComboBox(locales);
+		localeCombo.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
+				locales,
+				GraphicalFunctions.getSystemLocale(Settings.primeLocale)));
+		localeCombo.setBackground(Color.WHITE);
 	}
 
 }

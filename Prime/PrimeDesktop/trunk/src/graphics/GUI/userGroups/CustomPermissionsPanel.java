@@ -267,14 +267,14 @@ public class CustomPermissionsPanel extends JPanel implements ActionListener
 		clientJTable = new JTable(new PermissionsModel(clientData, columnNames));
 		clientJTable.setName("clientTable");
 		clientJTable.getModel().addTableModelListener(
-				new ModelSelectionListener(clientJTable, canvas, permissions));
+				new EditGroupModelSelectionListener(clientJTable, canvas, permissions));
 		clientJTable
 				.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
 		serverJTable = new JTable(new PermissionsModel(serverData, columnNames));
 		serverJTable.setName("serverTable");
 		serverJTable.getModel().addTableModelListener(
-				new ModelSelectionListener(serverJTable, canvas, permissions));
+				new EditGroupModelSelectionListener(serverJTable, canvas, permissions));
 		serverJTable
 				.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
@@ -282,7 +282,7 @@ public class CustomPermissionsPanel extends JPanel implements ActionListener
 				externalDevicesData, columnNames));
 		externalHardwareJTable.setName("externalHardwareTable");
 		externalHardwareJTable.getModel().addTableModelListener(
-				new ModelSelectionListener(externalHardwareJTable, canvas,
+				new EditGroupModelSelectionListener(externalHardwareJTable, canvas,
 						permissions));
 		externalHardwareJTable
 				.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -357,6 +357,7 @@ public class CustomPermissionsPanel extends JPanel implements ActionListener
 		return group;
 	}
 
+
 	private java.lang.Object[][] getObjectData(Object[] objects)
 	{
 		if ( objects != null && objects.length > 0 )
@@ -407,7 +408,7 @@ public class CustomPermissionsPanel extends JPanel implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener clientLis = (ModelSelectionListener) ((AbstractTableModel) clientJTable
+			EditGroupModelSelectionListener clientLis = (EditGroupModelSelectionListener) ((AbstractTableModel) clientJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < clientModel.getRowCount(); i++ )
@@ -428,7 +429,7 @@ public class CustomPermissionsPanel extends JPanel implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener serverLis = (ModelSelectionListener) ((AbstractTableModel) serverJTable
+			EditGroupModelSelectionListener serverLis = (EditGroupModelSelectionListener) ((AbstractTableModel) serverJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < serverModel.getRowCount(); i++ )
@@ -449,7 +450,7 @@ public class CustomPermissionsPanel extends JPanel implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener extHardLis = (ModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
+			EditGroupModelSelectionListener extHardLis = (EditGroupModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < externalHardwareModel.getRowCount(); i++ )
@@ -472,7 +473,7 @@ public class CustomPermissionsPanel extends JPanel implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener clientLis = (ModelSelectionListener) ((AbstractTableModel) clientJTable
+			EditGroupModelSelectionListener clientLis = (EditGroupModelSelectionListener) ((AbstractTableModel) clientJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < clientModel.getRowCount(); i++ )
@@ -493,7 +494,7 @@ public class CustomPermissionsPanel extends JPanel implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener serverLis = (ModelSelectionListener) ((AbstractTableModel) serverJTable
+			EditGroupModelSelectionListener serverLis = (EditGroupModelSelectionListener) ((AbstractTableModel) serverJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < serverModel.getRowCount(); i++ )
@@ -514,7 +515,7 @@ public class CustomPermissionsPanel extends JPanel implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener extHardLis = (ModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
+			EditGroupModelSelectionListener extHardLis = (EditGroupModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < externalHardwareModel.getRowCount(); i++ )
@@ -537,7 +538,7 @@ public class CustomPermissionsPanel extends JPanel implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener clientLis = (ModelSelectionListener) ((AbstractTableModel) clientJTable
+			EditGroupModelSelectionListener clientLis = (EditGroupModelSelectionListener) ((AbstractTableModel) clientJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < clientModel.getRowCount(); i++ )
@@ -554,7 +555,7 @@ public class CustomPermissionsPanel extends JPanel implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener serverLis = (ModelSelectionListener) ((AbstractTableModel) serverJTable
+			EditGroupModelSelectionListener serverLis = (EditGroupModelSelectionListener) ((AbstractTableModel) serverJTable
 					.getModel()).getTableModelListeners()[0];
 
 			// SERVER
@@ -579,7 +580,7 @@ public class CustomPermissionsPanel extends JPanel implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener extHardLis = (ModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
+			EditGroupModelSelectionListener extHardLis = (EditGroupModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < externalHardwareModel.getRowCount(); i++ )
@@ -602,7 +603,7 @@ public class CustomPermissionsPanel extends JPanel implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener clientLis = (ModelSelectionListener) ((AbstractTableModel) clientJTable
+			EditGroupModelSelectionListener clientLis = (EditGroupModelSelectionListener) ((AbstractTableModel) clientJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < clientModel.getRowCount(); i++ )
@@ -633,7 +634,7 @@ public class CustomPermissionsPanel extends JPanel implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener serverLis = (ModelSelectionListener) ((AbstractTableModel) serverJTable
+			EditGroupModelSelectionListener serverLis = (EditGroupModelSelectionListener) ((AbstractTableModel) serverJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < serverModel.getRowCount(); i++ )
@@ -664,7 +665,7 @@ public class CustomPermissionsPanel extends JPanel implements ActionListener
 			 * Gets the ModelSelectionListener that contains the
 			 * addObjectPermissions function.
 			 */
-			ModelSelectionListener extHardlis = (ModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
+			EditGroupModelSelectionListener extHardlis = (EditGroupModelSelectionListener) ((AbstractTableModel) externalHardwareJTable
 					.getModel()).getTableModelListeners()[0];
 
 			for ( int i = 0; i < externalHardwareModel.getRowCount(); i++ )

@@ -23,10 +23,12 @@ import java.awt.datatransfer.DataFlavor;
 import javax.swing.TransferHandler;
 
 import widgets.WidgetObject;
+import widgets.WorkareaCanvas;
 
 
 /**
- * TODO - Description NEEDED!
+ * This {@link TransferHandler} extension provides the {@link WorkareaCanvas}
+ * class with the drag and drop.
  * 
  * @author Bahram Malaekeh
  * 
@@ -64,7 +66,4 @@ public class WidgetTransferHandler extends TransferHandler
 	{
 		return true;
 	}
-
-
-
 }

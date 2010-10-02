@@ -55,6 +55,7 @@ import javax.swing.event.ListSelectionListener;
 import managment.ArrayManagment;
 import managment.CanvasManagment;
 import managment.ComponentsManagment;
+import managment.NetworkManagment;
 import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.ExternalNetworksCard;
@@ -380,8 +381,11 @@ public class ExternaNICView extends JPanel implements HardwareViewInterface,
 
 		extNIC.setProducer(producer.getText());
 
-		// FIXME - MAC TEST
-		extNIC.setMAC(MAC.getText());
+
+		if ( NetworkManagment.getMACpattern().matcher(MAC.getText()).matches() )
+		{
+			extNIC.setMAC(MAC.getText());
+		}
 
 		valid = compliesWithNetworkRules();
 		if ( valid )

@@ -20,10 +20,12 @@ package managment;
 
 import java.awt.Component;
 import java.awt.Point;
+import java.util.logging.Level;
 
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
+import logistical.LibraryLogging;
 import logistical.cleanup;
 import objects.Hardware;
 import objects.Object;
@@ -109,7 +111,8 @@ public class ComponentsManagment
 		{
 			if ( areFound[i] )
 			{
-				// A try/catch in case the object is null.
+				// A try/catch in case one or more of the given components are
+				// found in the given devices components array.
 				try
 				{
 					throw new Exception("The component "
@@ -118,7 +121,16 @@ public class ComponentsManagment
 				}
 				catch ( Exception e )
 				{
-					e.printStackTrace();
+					LibraryLogging.libraryLog
+							.logp(Level.SEVERE,
+									"ComponentsManagment",
+									"addComponents",
+									"One or more of the components to be added to a device was already present in the devices components array.");
+
+					if ( Settings.debug )
+					{
+						e.printStackTrace();
+					}
 					return components;
 				}
 			}
@@ -172,7 +184,16 @@ public class ComponentsManagment
 			}
 			catch ( Exception e )
 			{
-				e.printStackTrace();
+				LibraryLogging.libraryLog
+						.logp(Level.SEVERE,
+								"ComponentsManagment",
+								"addComponent",
+								"The components to be added to a device was already present in the devices components array.");
+
+				if ( Settings.debug )
+				{
+					e.printStackTrace();
+				}
 				return components;
 			}
 		}
@@ -221,7 +242,17 @@ public class ComponentsManagment
 			}
 			catch ( Exception e )
 			{
-				e.printStackTrace();
+				LibraryLogging.libraryLog
+						.logp(Level.SEVERE,
+								"ComponentsManagment",
+								"changeComponent",
+								"The new components to replace an older component in a device was already present in the devices components array.");
+
+				if ( Settings.debug )
+				{
+					e.printStackTrace();
+				}
+				return components;
 			}
 
 		}
@@ -268,6 +299,7 @@ public class ComponentsManagment
 
 		processDiscDriveChanges(obj);
 
+		// THESE ARE RUN SOMEWHERE ELSE
 		// processExternalNICchanges(mb, obj);
 		// processInternalNICchanges(mb, obj);
 
@@ -299,7 +331,6 @@ public class ComponentsManagment
 
 		try
 		{
-			// FIXME - How to get an objects motherboard.
 			// Gets all the CPU components in the components array.
 			Object[] cpus = ArrayManagment.getSpesificComponents(CPU.class,
 					components, components.length);
@@ -321,10 +352,19 @@ public class ComponentsManagment
 		}
 		catch ( ObjectNotFoundException e )
 		{
-			// Does nothing if no objects are found.
+			// Log entry
+			LibraryLogging.libraryLog
+					.logp(Level.FINEST,
+							"ComponentsManagment",
+							"processCPUchanges",
+							"No CPU components were found in the given Object '"
+									+ obj.getObjectName()
+									+ "'. This does not indicates an error, only informational.");
+
+			// No need to print stack because the exception is used
+			// intentionally.
 		}
 	}
-
 
 	/**
 	 * Checks compatibility of the any DicsDrive component with the motherboard.
@@ -361,7 +401,17 @@ public class ComponentsManagment
 		}
 		catch ( ObjectNotFoundException e )
 		{
-			// Does nothing if no objects are found.
+			// Log entry
+			LibraryLogging.libraryLog
+					.logp(Level.FINEST,
+							"ComponentsManagment",
+							"processDiscDriveChanges",
+							"No Discdrive components were found in the given Object '"
+									+ obj.getObjectName()
+									+ "'. This does not indicates an error, only informational.");
+
+			// No need to print stack because the exception is used
+			// intentionally.
 		}
 	}
 
@@ -400,7 +450,17 @@ public class ComponentsManagment
 		}
 		catch ( ObjectNotFoundException e )
 		{
-			// Does nothing if no objects are found.
+			// Log entry
+			LibraryLogging.libraryLog
+					.logp(Level.FINEST,
+							"ComponentsManagment",
+							"processGPUchanges",
+							"No GraphicsCard components were found in the given Object '"
+									+ obj.getObjectName()
+									+ "'. This does not indicates an error, only informational.");
+
+			// No need to print stack because the exception is used
+			// intentionally.
 		}
 	}
 
@@ -439,7 +499,17 @@ public class ComponentsManagment
 		}
 		catch ( ObjectNotFoundException e )
 		{
-			// Does nothing if no objects are found.
+			// Log entry
+			LibraryLogging.libraryLog
+					.logp(Level.FINEST,
+							"ComponentsManagment",
+							"processHDDchanges",
+							"No HDD components were found in the given Object '"
+									+ obj.getObjectName()
+									+ "'. This does not indicates an error, only informational.");
+
+			// No need to print stack because the exception is used
+			// intentionally.
 		}
 	}
 
@@ -478,7 +548,17 @@ public class ComponentsManagment
 		}
 		catch ( ObjectNotFoundException e )
 		{
-			// Does nothing if no objects are found.
+			// Log entry
+			LibraryLogging.libraryLog
+					.logp(Level.FINEST,
+							"ComponentsManagment",
+							"processRAMchanges",
+							"No Ram components were found in the given Object '"
+									+ obj.getObjectName()
+									+ "'. This does not indicates an error, only informational.");
+
+			// No need to print stack because the exception is used
+			// intentionally.
 		}
 	}
 
@@ -505,8 +585,8 @@ public class ComponentsManagment
 	 *         object is added to the main object.
 	 * @throws MotherboardNotFound
 	 */
-	public static boolean processCPUmatch(Object mainObj, CPU cpu,
-			Component comp) throws MotherboardNotFound
+	public static void processCPUmatch(Object mainObj, CPU cpu, Component comp)
+			throws MotherboardNotFound
 	{
 		Motherboard mb = ComponentsManagment.getObjectMotherboard(mainObj);
 
@@ -534,6 +614,15 @@ public class ComponentsManagment
 								+ ", does not match the CPU socket, "
 								+ cpu.getSocket() + ".", "Info",
 						JOptionPane.INFORMATION_MESSAGE);
+
+				// Log entry
+				LibraryLogging.libraryLog
+						.logp(Level.FINE,
+								"ComponentsManagment",
+								"processCPUmatch",
+								"No CPU socket on the given Motherboard on the device '"
+										+ mainObj.getObjectName()
+										+ "' matches the socket on the given CPU. This indicates a user error, not a system error.");
 			}
 		}
 		// If there are not available sockets.
@@ -541,12 +630,16 @@ public class ComponentsManagment
 		{
 			JOptionPane.showMessageDialog(comp,
 					"There are no available CPU sockets left on the machine.",
-					"Info", JOptionPane.INFORMATION_MESSAGE);
+					"Info", JOptionPane.INFORMATION_MESSAGE);// Log entry
+
+			LibraryLogging.libraryLog
+					.logp(Level.FINE,
+							"ComponentsManagment",
+							"processCPUmatch",
+							"No available CPU socket on the given Motherboard on the device '"
+									+ mainObj.getObjectName()
+									+ "'. This indicates a user error, not a system error.");
 		}
-
-
-
-		return false;
 	}
 
 
@@ -569,8 +662,8 @@ public class ComponentsManagment
 	 * @return Returns true or false based on whether or not the given Ram
 	 *         object is added to the main object.
 	 */
-	public static boolean processRAMmatch(Object mainObj, Ram ram,
-			Component comp) throws MotherboardNotFound
+	public static void processRAMmatch(Object mainObj, Ram ram, Component comp)
+			throws MotherboardNotFound
 	{
 		Motherboard mb = ComponentsManagment.getObjectMotherboard(mainObj);
 
@@ -598,6 +691,15 @@ public class ComponentsManagment
 								+ ", does not match the RAM ports, "
 								+ ram.getPort() + ".", "Info",
 						JOptionPane.INFORMATION_MESSAGE);
+
+				// Log entry
+				LibraryLogging.libraryLog
+						.logp(Level.FINE,
+								"ComponentsManagment",
+								"processRAMmatch",
+								"No RAM port on the given Motherboard on the device '"
+										+ mainObj.getObjectName()
+										+ "' matches the port on the given Ram. This indicates a user error, not a system error.");
 			}
 		}
 		// If there are not available type.
@@ -606,11 +708,15 @@ public class ComponentsManagment
 			JOptionPane.showMessageDialog(comp,
 					"There are no available RAM ports left on the machine.",
 					"Info", JOptionPane.INFORMATION_MESSAGE);
+
+			LibraryLogging.libraryLog
+					.logp(Level.FINE,
+							"ComponentsManagment",
+							"processRAMmatch",
+							"No available RAM port on the given Motherboard on the device '"
+									+ mainObj.getObjectName()
+									+ "'. This indicates a user error, not a system error.");
 		}
-
-
-
-		return false;
 	}
 
 
@@ -633,8 +739,8 @@ public class ComponentsManagment
 	 * @return Returns true or false based on whether or not the given HDD
 	 *         object is added to the main object.
 	 */
-	public static boolean processHDDmatch(Object mainObj, HDD hdd,
-			Component comp) throws MotherboardNotFound
+	public static void processHDDmatch(Object mainObj, HDD hdd, Component comp)
+			throws MotherboardNotFound
 	{
 		Motherboard mb = ComponentsManagment.getObjectMotherboard(mainObj);
 
@@ -663,6 +769,15 @@ public class ComponentsManagment
 								+ ", does not match the HDD ports, "
 								+ hdd.getPort() + ".", "Info",
 						JOptionPane.INFORMATION_MESSAGE);
+
+				// Log entry
+				LibraryLogging.libraryLog
+						.logp(Level.FINE,
+								"ComponentsManagment",
+								"processHDDmatch",
+								"No DUC port on the given Motherboard on the device '"
+										+ mainObj.getObjectName()
+										+ "' matches the port on the given HDD. This indicates a user error, not a system error.");
 			}
 		}
 		// If there are not available type.
@@ -671,11 +786,15 @@ public class ComponentsManagment
 			JOptionPane.showMessageDialog(comp,
 					"There are no available HDD ports left on the machine.",
 					"Info", JOptionPane.INFORMATION_MESSAGE);
+
+			LibraryLogging.libraryLog
+					.logp(Level.FINE,
+							"ComponentsManagment",
+							"processHDDmatch",
+							"No available DUC port on the given Motherboard on the device '"
+									+ mainObj.getObjectName()
+									+ "'. This indicates a user error, not a system error.");
 		}
-
-
-
-		return false;
 	}
 
 
@@ -698,7 +817,7 @@ public class ComponentsManagment
 	 * @return Returns true or false based on whether or not the given Discdrive
 	 *         object is added to the main object.
 	 */
-	public static boolean processDiscDrivematch(Object mainObj, Discdrive dics,
+	public static void processDiscDrivematch(Object mainObj, Discdrive dics,
 			Component comp) throws MotherboardNotFound
 	{
 		Motherboard mb = ComponentsManagment.getObjectMotherboard(mainObj);
@@ -728,6 +847,15 @@ public class ComponentsManagment
 								+ ", does not match the Disc ports, "
 								+ dics.getPort() + ".", "Info",
 						JOptionPane.INFORMATION_MESSAGE);
+
+				// Log entry
+				LibraryLogging.libraryLog
+						.logp(Level.FINE,
+								"ComponentsManagment",
+								"processDiscDrivematch",
+								"No DUC port on the given Motherboard on the device '"
+										+ mainObj.getObjectName()
+										+ "' matches the port on the given Discdrive. This indicates a user error, not a system error.");
 			}
 		}
 		// If there are not available type.
@@ -736,9 +864,15 @@ public class ComponentsManagment
 			JOptionPane.showMessageDialog(comp,
 					"There are no available Disc ports left on the machine.",
 					"Info", JOptionPane.INFORMATION_MESSAGE);
-		}
 
-		return false;
+			LibraryLogging.libraryLog
+					.logp(Level.FINE,
+							"ComponentsManagment",
+							"processDiscDrivematch",
+							"No available DUC port on the given Motherboard on the device '"
+									+ mainObj.getObjectName()
+									+ "'. This indicates a user error, not a system error.");
+		}
 	}
 
 
@@ -761,7 +895,7 @@ public class ComponentsManagment
 	 * @return Returns true or false based on whether or not the given Ram
 	 *         object is added to the main object.
 	 */
-	public static boolean processGPUmatch(Object mainObj, GraphicsCard GPU,
+	public static void processGPUmatch(Object mainObj, GraphicsCard GPU,
 			Component comp) throws MotherboardNotFound
 	{
 		Motherboard mb = ComponentsManagment.getObjectMotherboard(mainObj);
@@ -790,6 +924,15 @@ public class ComponentsManagment
 								+ ", does not match the GPU ports, "
 								+ GPU.getType() + ".", "Info",
 						JOptionPane.INFORMATION_MESSAGE);
+
+				// Log entry
+				LibraryLogging.libraryLog
+						.logp(Level.FINE,
+								"ComponentsManagment",
+								"processGPUmatch",
+								"No GPU port on the given Motherboard on the device '"
+										+ mainObj.getObjectName()
+										+ "' matches the port on the given GraphicsCard. This indicates a user error, not a system error.");
 			}
 		}
 		// If there are not available type.
@@ -798,9 +941,15 @@ public class ComponentsManagment
 			JOptionPane.showMessageDialog(comp,
 					"There are no available GPU ports left on the machine.",
 					"Info", JOptionPane.INFORMATION_MESSAGE);
-		}
 
-		return false;
+			LibraryLogging.libraryLog
+					.logp(Level.FINE,
+							"ComponentsManagment",
+							"processGPUmatch",
+							"No available GPU port on the given Motherboard on the device '"
+									+ mainObj.getObjectName()
+									+ "'. This indicates a user error, not a system error.");
+		}
 	}
 
 
@@ -823,7 +972,7 @@ public class ComponentsManagment
 	 * @return Returns true or false based on whether or not the given NIC
 	 *         object is added to the main object.
 	 */
-	public static boolean processInternalNICmatch(Object mainObj,
+	public static void processInternalNICmatch(Object mainObj,
 			InternalNetworksCard nic, Component comp)
 			throws MotherboardNotFound
 	{
@@ -847,9 +996,15 @@ public class ComponentsManagment
 			JOptionPane.showMessageDialog(comp,
 					"There are no available PCI ports left on the machine.",
 					"Info", JOptionPane.INFORMATION_MESSAGE);
-		}
 
-		return false;
+			LibraryLogging.libraryLog
+					.logp(Level.FINE,
+							"ComponentsManagment",
+							"processInternalNICmatch",
+							"No available PCI port on the given Motherboard on the device '"
+									+ mainObj.getObjectName()
+									+ "'. This indicates a user error, not a system error.");
+		}
 	}
 
 
@@ -871,7 +1026,7 @@ public class ComponentsManagment
 	 * @return Returns true or false based on whether or not the given NIC
 	 *         object is added to the main object.
 	 */
-	public static boolean processExternalNICmatch(Object mainObj,
+	public static void processExternalNICmatch(Object mainObj,
 			ExternalNetworksCard nic, Component comp)
 			throws MotherboardNotFound
 	{
@@ -895,9 +1050,15 @@ public class ComponentsManagment
 			JOptionPane.showMessageDialog(comp,
 					"There are no available USB ports left on the machine.",
 					"Info", JOptionPane.INFORMATION_MESSAGE);
-		}
 
-		return false;
+			LibraryLogging.libraryLog
+					.logp(Level.FINE,
+							"ComponentsManagment",
+							"processExternalNICmatch",
+							"No available USB port on the given Motherboard on the device '"
+									+ mainObj.getObjectName()
+									+ "'. This indicates a user error, not a system error.");
+		}
 	}
 
 
@@ -964,6 +1125,13 @@ public class ComponentsManagment
 								+ "be deleted. Contact systemadminstrator.",
 						ToBeRemoved[i]);
 
+				// Log entry
+				LibraryLogging.libraryLog
+						.logp(Level.SEVERE,
+								"ComponentsManagment",
+								"removeComponents",
+								"No or more of the components to be removed were not found in the given array of components.");
+
 				throw exception;
 			}
 		}
@@ -989,6 +1157,13 @@ public class ComponentsManagment
 				if ( components[i].equals(ToBeRemoved) )
 				{
 					components[i] = null;
+
+					// Log entry
+					LibraryLogging.libraryLog
+							.logp(Level.FINER,
+									"ComponentsManagment",
+									"removeComponent",
+									"The given component has been removed from the given array of components. Informational only.");
 				}
 			}
 		}
@@ -1040,6 +1215,15 @@ public class ComponentsManagment
 				}
 				catch ( ObjectNotFoundException ex )
 				{
+					// Log entry
+					LibraryLogging.libraryLog
+							.log(Level.FINEST,
+									"No components were found of the given class type, '"
+											+ componentClass
+											+ "', in the given Object, '"
+											+ mainObj.getObjectName()
+											+ "'. This does not indicate an error, only informational.");
+
 					objContains = false;
 				}
 
@@ -1053,15 +1237,28 @@ public class ComponentsManagment
 										mainObj.getComponents(),
 										mainObj.getComponents().length));
 					}
-					catch ( ObjectNotFoundInArrayException ex )
+					catch ( ObjectNotFoundInArrayException e )
 					{
-						ex.printStackTrace();
+						// Log entry
+						LibraryLogging.libraryLog
+								.logp(Level.SEVERE,
+										"ComponentsManagment",
+										"removeComponentFromObject",
+										"The components with the given class, '"
+												+ componentClass
+												+ "', found in the given Object, '"
+												+ mainObj.getObjectName()
+												+ "', were not found that objects components array.");
+
+						if ( Settings.debug )
+						{
+							e.printStackTrace();
+						}
 					}
 				}
 			}
 		}
 	}
-
 
 
 	/**
@@ -1443,11 +1640,33 @@ public class ComponentsManagment
 			}
 			catch ( ObjectNotFoundException e )
 			{
+				// Log entry
+				LibraryLogging.libraryLog
+						.logp(Level.FINEST,
+								"ComponentsManagment",
+								"PCIportsValidation",
+								"No InternalNetworksCards components were found in the given Object '"
+										+ mainObj.getObjectName()
+										+ "'. This does not indicate an error, only informational.");
 
+				// No need to print stack because the exception is used
+				// intentionally.
 			}
 			catch ( ObjectNotFoundInArrayException e )
 			{
-				e.printStackTrace();
+				// Log entry
+				LibraryLogging.libraryLog
+						.logp(Level.SEVERE,
+								"ComponentsManagment",
+								"PCIportsValidation",
+								"The InternalNetworksCards found in the given Object, '"
+										+ mainObj.getObjectName()
+										+ "', were not found that objects components array.");
+
+				if ( Settings.debug )
+				{
+					e.printStackTrace();
+				}
 			}
 
 
@@ -1520,11 +1739,33 @@ public class ComponentsManagment
 			}
 			catch ( ObjectNotFoundException e )
 			{
+				// Log entry
+				LibraryLogging.libraryLog
+						.logp(Level.FINEST,
+								"ComponentsManagment",
+								"RAMportsValidation",
+								"No RAM components were found in the given Object '"
+										+ mainObj.getObjectName()
+										+ "'. This does not indicate an error, only informational.");
 
+				// No need to print stack because the exception is used
+				// intentionally.
 			}
 			catch ( ObjectNotFoundInArrayException e )
 			{
-				e.printStackTrace();
+				// Log entry
+				LibraryLogging.libraryLog
+						.logp(Level.SEVERE,
+								"ComponentsManagment",
+								"RAMportsValidation",
+								"The Ram components found in the given Object, '"
+										+ mainObj.getObjectName()
+										+ "', were not found that objects components array.");
+
+				if ( Settings.debug )
+				{
+					e.printStackTrace();
+				}
 			}
 
 
@@ -1598,7 +1839,17 @@ public class ComponentsManagment
 			}
 			catch ( ObjectNotFoundException e )
 			{
+				// Log entry
+				LibraryLogging.libraryLog
+						.logp(Level.FINEST,
+								"ComponentsManagment",
+								"DUCportsValidation",
+								"No HDD or DiscDrive components were found in the given Object '"
+										+ mainObj.getObjectName()
+										+ "'. This does not indicate an error, only informational.");
 
+				// No need to print stack because the exception is used
+				// intentionally.
 			}
 
 
@@ -1674,7 +1925,19 @@ public class ComponentsManagment
 			}
 			catch ( ObjectNotFoundInArrayException e )
 			{
-				e.printStackTrace();
+				// Log entry
+				LibraryLogging.libraryLog
+						.logp(Level.SEVERE,
+								"ComponentsManagment",
+								"DUCportsValidation",
+								"The components found in the given Object, '"
+										+ mainObj.getObjectName()
+										+ "', were not found that objects components array.");
+
+				if ( Settings.debug )
+				{
+					e.printStackTrace();
+				}
 			}
 
 
@@ -1755,7 +2018,17 @@ public class ComponentsManagment
 				}
 				catch ( ObjectNotFoundException e )
 				{
+					// Log entry
+					LibraryLogging.libraryLog
+							.logp(Level.FINEST,
+									"ComponentsManagment",
+									"USBportsValidation",
+									"No ExternalNetworksCard components were found in the given Object '"
+											+ mainObj.getObjectName()
+											+ "'. This does not indicate an error, only informational.");
 
+					// No need to print stack because the exception is used
+					// intentionally.
 				}
 
 
@@ -1880,7 +2153,19 @@ public class ComponentsManagment
 					}
 					catch ( ObjectNotFoundInArrayException e )
 					{
-						e.printStackTrace();
+						// Log entry
+						LibraryLogging.libraryLog
+								.logp(Level.SEVERE,
+										"ComponentsManagment",
+										"USBportsValidation",
+										"The ExternalNetworksCard components found in the given Object, '"
+												+ mainObj.getObjectName()
+												+ "', were not found that objects components array.");
+
+						if ( Settings.debug )
+						{
+							e.printStackTrace();
+						}
 					}
 				}
 			}
@@ -1937,11 +2222,33 @@ public class ComponentsManagment
 			}
 			catch ( ObjectNotFoundException e )
 			{
+				// Log entry
+				LibraryLogging.libraryLog
+						.logp(Level.FINEST,
+								"ComponentsManagment",
+								"CPUportsValidation",
+								"No CPU components were found in the given Object '"
+										+ mainObj.getObjectName()
+										+ "'. This does not indicate an error, only informational.");
 
+				// No need to print stack because the exception is used
+				// intentionally.
 			}
 			catch ( ObjectNotFoundInArrayException e )
 			{
-				e.printStackTrace();
+				// Log entry
+				LibraryLogging.libraryLog
+						.logp(Level.SEVERE,
+								"ComponentsManagment",
+								"CPUportsValidation",
+								"The CPU components found in the given Object, '"
+										+ mainObj.getObjectName()
+										+ "', were not found that objects components array.");
+
+				if ( Settings.debug )
+				{
+					e.printStackTrace();
+				}
 			}
 
 
@@ -2003,177 +2310,6 @@ public class ComponentsManagment
 				ConnectionUtils.RJ45, canvas);
 	}
 
-	// /**
-	// * Processes the LAN settings with the connected objects.
-	// * <i>The process first finds all {@link Object Objects} connected to the
-	// main {@link Object}. Then it finds the network
-	// * cards, internal and external. It then removes the objects set as
-	// connected to the different network cards from the array of
-	// * removable Objects, because in this function only the {@link Motherboard
-	// Motherboards} lan ports are are being changed.
-	// * When only {@link Object Objects} connected to the {@link Motherboard}
-	// are left, they will be removed depending on the
-	// * difference between the number of lan and the number of connected
-	// Objects.
-	// */
-	// public static void LANportsValidation(Object mainObj, Motherboard mbObj,
-	// int LANports, WorkareaCanvas canvas)
-	// {
-	// if ( mbObj.getMaxIntegLANs() > LANports )
-	// {
-	// int newMaxLANports = LANports;
-	//
-	// // The connections array that will hold all the connections that are with
-	// RJ45
-	// Object[] LANconnectedObjects = ConnectionManagment
-	// .objectsConnectedToBy(mainObj, ConnectionUtils.RJ45);
-	//
-	// try
-	// {
-	// // Gets all the InternalNetworksCard from the objects components array.
-	// Object[] internalNICs = ArrayManagment.getSpesificComponents(
-	// InternalNetworksCard.class, mainObj.getComponents(),
-	// mainObj.getComponents().length);
-	//
-	// for ( int i = 0; i < internalNICs.length; i++ )
-	// {
-	// InternalNetworksCard nic = (InternalNetworksCard) internalNICs[i];
-	//
-	// // If the NICs connection object is not null and connection type is RJ-45
-	// if ( nic.getConnectedObject() != null
-	// && nic.getConnectionType().equals(
-	// ConnectionUtils.RJ45) )
-	// {
-	// // Goes through all the RJ45 connected objects
-	// for ( int j = 0; j < LANconnectedObjects.length; j++ )
-	// {
-	// // If the index is not null
-	// if ( LANconnectedObjects[j] != null )
-	// {
-	// // If the connected object serial is the same as the one connected to the
-	// NIC
-	// if ( LANconnectedObjects[j].getObjectSerial() == nic
-	// .getConnectedObject().getObjectSerial() )
-	// {
-	// // The object connected to the NIC is removed from the removable RJ45
-	// connected objcets
-	// LANconnectedObjects[j] = null;
-	// }
-	// }
-	// }
-	// }
-	// }
-	//
-	//
-	// }
-	// catch ( ObjectNotFoundException e )
-	// {
-	// // No InternalNetworksCard found
-	// }
-	//
-	// try
-	// {
-	// // Gets all the InternalNetworksCard from the objects components array.
-	// Object[] externalNICs = ArrayManagment.getSpesificComponents(
-	// ExternalNetworksCard.class, mainObj.getComponents(),
-	// mainObj.getComponents().length);
-	//
-	//
-	// for ( int i = 0; i < externalNICs.length; i++ )
-	// {
-	// ExternalNetworksCard nic = (ExternalNetworksCard) externalNICs[i];
-	//
-	// // If the NICs connection object is not null and connection type is RJ-45
-	// if ( nic.getConnectedObject() != null
-	// && nic.getConnectionType().equals(
-	// ConnectionUtils.RJ45) )
-	// {
-	// // Goes through all the RJ45 connected objects
-	// for ( int j = 0; j < LANconnectedObjects.length; j++ )
-	// {
-	// // If the index is not null
-	// if ( LANconnectedObjects[j] != null )
-	// {
-	// // If the connected object serial is the same as the one connected to the
-	// NIC
-	// if ( LANconnectedObjects[j].getObjectSerial() == nic
-	// .getConnectedObject().getObjectSerial() )
-	// {
-	// // The object connected to the NIC is removed from the removable RJ45
-	// connected objcets
-	// LANconnectedObjects[j] = null;
-	// }
-	// }
-	// }
-	// }
-	// }
-	// }
-	// catch ( ObjectNotFoundException e )
-	// {
-	// // No ExternalNetworksCard found
-	// }
-	//
-	//
-	// // Removes the null pointers and shortens the array
-	// LANconnectedObjects = cleanup.cleanObjectArray(LANconnectedObjects);
-	//
-	//
-	// // Now LANconnectedObjects contains only objects connected to the
-	// motherboard
-	//
-	// // The number of LAN ports left after connected objects are added.
-	// int leftLANports = newMaxLANports - LANconnectedObjects.length;
-	//
-	//
-	// if ( LANconnectedObjects != null )
-	// {
-	// // If the number of available RJ-45 ports is less then the number of
-	// RJ-45 devices
-	// if ( leftLANports < 0 )
-	// {
-	// for ( int i = LANconnectedObjects.length + leftLANports; i <
-	// LANconnectedObjects.length; i++ )
-	// {
-	// // Gets the WidgetExtendedConnection between the two objects
-	// WidgetExtendedConnection widCon = null;
-	// try
-	// {
-	// widCon = ConnectionManagment.findWidgetConnection(
-	// canvas, mainObj, LANconnectedObjects[i]);
-	// }
-	// catch ( ConnectionDoesNotExist e )
-	// {
-	// e.printStackTrace();
-	// }
-	//
-	// if ( widCon != null )
-	// {
-	// // Removes the connection
-	// WorkareaCanvasActions.removeWidgetConnection(
-	// canvas, widCon);
-	// }
-	// }
-	// }
-	// }
-	// }
-	// int takenPorts = mbObj.getMaxIntegLANs()
-	// - mbObj.getIntegLANPortsAvailable();
-	//
-	// // Sets the max LAN ports
-	// mbObj.setMaxIntegratedLANs(LANports);
-	// mbObj.setIntegLANPortsAvailable(mbObj.getMaxIntegLANs() - takenPorts);
-	//
-	// // Sets the supported connection interfaces
-	// String[] supportedConnectionInterfaces = ComponentsManagment
-	// .getSupportedInterfaces(mainObj);
-	// mainObj.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
-	//
-	// if ( canvas != null )
-	// {
-	// canvas.setSaved(false);
-	// canvas.setChanged(true);
-	// }
-	// }
 
 
 	/**
@@ -2263,7 +2399,17 @@ public class ComponentsManagment
 			}
 			catch ( ObjectNotFoundException e )
 			{
-				// No InternalNetworksCard found
+				// Log entry
+				LibraryLogging.libraryLog
+						.logp(Level.FINEST,
+								"ComponentsManagment",
+								"portsValidation",
+								"No InternalNetworksCard components were found in the given Object '"
+										+ mainObj.getObjectName()
+										+ "'. This does not indicate an error, only informational.");
+
+				// No need to print stack because the exception is used
+				// intentionally.
 			}
 
 			try
@@ -2341,7 +2487,22 @@ public class ComponentsManagment
 						}
 						catch ( ConnectionDoesNotExist e )
 						{
-							e.printStackTrace();
+							// Log entry
+							LibraryLogging.libraryLog.logp(
+									Level.SEVERE,
+									"ComponentsManagment",
+									"portsValidation",
+									"A connection that should exist between two objects, '"
+											+ mainObj.getObjectName()
+											+ "' and '"
+											+ connectedObjects[i]
+													.getObjectName()
+											+ "', does not exist.");
+
+							if ( Settings.debug )
+							{
+								e.printStackTrace();
+							}
 						}
 
 						if ( widCon != null )
@@ -2431,182 +2592,6 @@ public class ComponentsManagment
 	}
 
 
-	// /**
-	// * Processes the COAX settings with the connected objects.
-	// * <i>The process first finds all {@link Object Objects} connected to the
-	// * main {@link Object}. Then it finds the network
-	// * cards, internal and external. It then removes the objects set as
-	// * connected to the different network cards from the array of
-	// * removable Objects, because in this function only the {@link Motherboard
-	// * Motherboards} COAX ports are are being changed.
-	// * When only {@link Object Objects} connected to the {@link Motherboard}
-	// are
-	// * left, they will be removed depending on the
-	// * difference between the number of COAX and the number of connected
-	// * Objects.
-	// */
-	// public static void COAXportsValidation(Object mainObj, Motherboard mbObj,
-	// int COAXports, WorkareaCanvas canvas)
-	// {
-	// if ( mbObj.getMaxCoaxs() > COAXports )
-	// {
-	// int newMaxCOAXports = COAXports;
-	//
-	// // The connections array that will hold all the connections that are with
-	// COAX
-	// Object[] COAXconnectedObjects = ConnectionManagment
-	// .objectsConnectedToBy(mainObj, ConnectionUtils.Coax);
-	//
-	// try
-	// {
-	// // Gets all the InternalNetworksCard from the objects components array.
-	// Object[] internalNICs = ArrayManagment.getSpesificComponents(
-	// InternalNetworksCard.class, mainObj.getComponents(),
-	// mainObj.getComponents().length);
-	//
-	// for ( int i = 0; i < internalNICs.length; i++ )
-	// {
-	// InternalNetworksCard nic = (InternalNetworksCard) internalNICs[i];
-	//
-	// // If the NICs connection object is not null and connection type is RJ-45
-	// if ( nic.getConnectedObject() != null
-	// && nic.getConnectionType().equals(
-	// ConnectionUtils.Coax) )
-	// {
-	// // Goes through all the COAX connected objects
-	// for ( int j = 0; j < COAXconnectedObjects.length; j++ )
-	// {
-	// // If the index is not null
-	// if ( COAXconnectedObjects[j] != null )
-	// {
-	// // If the connected object serial is the same as the one connected to the
-	// NIC
-	// if ( COAXconnectedObjects[j].getObjectSerial() == nic
-	// .getConnectedObject().getObjectSerial() )
-	// {
-	// // The object connected to the NIC is removed from the removable COAX
-	// connected objcets
-	// COAXconnectedObjects[j] = null;
-	// }
-	// }
-	// }
-	// }
-	// }
-	//
-	//
-	// }
-	// catch ( ObjectNotFoundException e )
-	// {
-	// // No InternalNetworksCard found
-	// }
-	//
-	// try
-	// {
-	// // Gets all the InternalNetworksCard from the objects components array.
-	// Object[] externalNICs = ArrayManagment.getSpesificComponents(
-	// ExternalNetworksCard.class, mainObj.getComponents(),
-	// mainObj.getComponents().length);
-	//
-	//
-	// for ( int i = 0; i < externalNICs.length; i++ )
-	// {
-	// ExternalNetworksCard nic = (ExternalNetworksCard) externalNICs[i];
-	//
-	// // If the NICs connection object is not null and connection type is COAX
-	// if ( nic.getConnectedObject() != null
-	// && nic.getConnectionType().equals(
-	// ConnectionUtils.Coax) )
-	// {
-	// // Goes through all the COAX connected objects
-	// for ( int j = 0; j < COAXconnectedObjects.length; j++ )
-	// {
-	// // If the index is not null
-	// if ( COAXconnectedObjects[j] != null )
-	// {
-	// // If the connected object serial is the same as the one connected to the
-	// NIC
-	// if ( COAXconnectedObjects[j].getObjectSerial() == nic
-	// .getConnectedObject().getObjectSerial() )
-	// {
-	// // The object connected to the NIC is removed from the removable COAX
-	// connected objcets
-	// COAXconnectedObjects[j] = null;
-	// }
-	// }
-	// }
-	// }
-	// }
-	// }
-	// catch ( ObjectNotFoundException e )
-	// {
-	// // No ExternalNetworksCard found
-	// }
-	//
-	//
-	// // Removes the null pointers and shortens the array
-	// COAXconnectedObjects = cleanup.cleanObjectArray(COAXconnectedObjects);
-	//
-	//
-	// // Now LANconnectedObjects contains only objects connected to the
-	// motherboard
-	//
-	// // The number of COAX ports left after connected objects are added.
-	// int leftCOAXports = newMaxCOAXports - COAXconnectedObjects.length;
-	//
-	//
-	// if ( COAXconnectedObjects != null )
-	// {
-	// // If the number of available RJ-45 ports is less then the number of COAX
-	// devices
-	// if ( leftCOAXports < 0 )
-	// {
-	// for ( int i = COAXconnectedObjects.length + leftCOAXports; i <
-	// COAXconnectedObjects.length; i++ )
-	// {
-	// // Gets the WidgetExtendedConnection between the two objects
-	// WidgetExtendedConnection widCon = null;
-	// try
-	// {
-	// widCon = ConnectionManagment.findWidgetConnection(
-	// canvas, mainObj, COAXconnectedObjects[i]);
-	// }
-	// catch ( ConnectionDoesNotExist e )
-	// {
-	// e.printStackTrace();
-	// }
-	//
-	// if ( widCon != null )
-	// {
-	// // Removes the connection
-	// WorkareaCanvasActions.removeWidgetConnection(
-	// canvas, widCon);
-	// }
-	// }
-	// }
-	// }
-	// }
-	// int takenPorts = mbObj.getMaxCoaxs() - mbObj.getCoaxPortsAvailable();
-	//
-	// // Sets the max COAX ports
-	// mbObj.setMaxCoaxs(COAXports);
-	// mbObj.setCoaxPortsAvailable(mbObj.getMaxCoaxs() - takenPorts);
-	//
-	// // Sets the supported connection interfaces
-	// String[] supportedConnectionInterfaces = ComponentsManagment
-	// .getSupportedInterfaces(mainObj);
-	// mainObj.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
-	//
-	// if ( canvas != null )
-	// {
-	// canvas.setSaved(false);
-	// canvas.setChanged(true);
-	// }
-	// }
-
-
-
-
-
 	/**
 	 * Processes the FIBER settings with the connected objects.
 	 * <i>The process first finds all {@link Object Objects} connected to the
@@ -2628,188 +2613,6 @@ public class ComponentsManagment
 				ConnectionUtils.Fiber, canvas);
 	}
 
-
-	// /**
-	// * Processes the FIBER settings with the connected objects.
-	// * <i>The process first finds all {@link Object Objects} connected to the
-	// * main {@link Object}. Then it finds the network
-	// * cards, internal and external. It then removes the objects set as
-	// * connected to the different network cards from the array of
-	// * removable Objects, because in this function only the {@link Motherboard
-	// * Motherboards} FIBER ports are are being changed.
-	// * When only {@link Object Objects} connected to the {@link Motherboard}
-	// are
-	// * left, they will be removed depending on the
-	// * difference between the number of FIBER and the number of connected
-	// * Objects.
-	// */
-	// public static void FIBERportsValidation(Object mainObj, Motherboard
-	// mbObj,
-	// int FIBERports, WorkareaCanvas canvas)
-	// {
-	// if ( mbObj.getMaxFibers() > FIBERports )
-	// {
-	// int newMaxFIBERports = FIBERports;
-	//
-	// // The connections array that will hold all the connections that are
-	// // with FIBER
-	// Object[] FIBERconnectedObjects = ConnectionManagment
-	// .objectsConnectedToBy(mainObj, ConnectionUtils.Fiber);
-	//
-	// try
-	// {
-	// // Gets all the InternalNetworksCard from the objects components
-	// // array.
-	// Object[] internalNICs = ArrayManagment.getSpesificComponents(
-	// InternalNetworksCard.class, mainObj.getComponents(),
-	// mainObj.getComponents().length);
-	//
-	// for ( int i = 0; i < internalNICs.length; i++ )
-	// {
-	// InternalNetworksCard nic = (InternalNetworksCard) internalNICs[i];
-	//
-	// // If the NICs connection object is not null and connection
-	// // type is FIBER
-	// if ( nic.getConnectedObject() != null
-	// && nic.getConnectionType().equals(
-	// ConnectionUtils.Fiber) )
-	// {
-	// // Goes through all the FIBER connected objects
-	// for ( int j = 0; j < FIBERconnectedObjects.length; j++ )
-	// {
-	// // If the index is not null
-	// if ( FIBERconnectedObjects[j] != null )
-	// {
-	// // If the connected object serial is the same as
-	// // the one connected to the NIC
-	// if ( FIBERconnectedObjects[j].getObjectSerial() == nic
-	// .getConnectedObject().getObjectSerial() )
-	// {
-	// // The object connected to the NIC is
-	// // removed from the removable FIBER
-	// // connected objcets
-	// FIBERconnectedObjects[j] = null;
-	// }
-	// }
-	// }
-	// }
-	// }
-	//
-	//
-	// }
-	// catch ( ObjectNotFoundException e )
-	// {
-	// // No InternalNetworksCard found
-	// }
-	//
-	// try
-	// {
-	// // Gets all the InternalNetworksCard from the objects components
-	// // array.
-	// Object[] externalNICs = ArrayManagment.getSpesificComponents(
-	// ExternalNetworksCard.class, mainObj.getComponents(),
-	// mainObj.getComponents().length);
-	//
-	//
-	// for ( int i = 0; i < externalNICs.length; i++ )
-	// {
-	// ExternalNetworksCard nic = (ExternalNetworksCard) externalNICs[i];
-	//
-	// // If the NICs connection object is not null and connection
-	// // type is FIBER
-	// if ( nic.getConnectedObject() != null
-	// && nic.getConnectionType().equals(
-	// ConnectionUtils.Fiber) )
-	// {
-	// // Goes through all the FIBER connected objects
-	// for ( int j = 0; j < FIBERconnectedObjects.length; j++ )
-	// {
-	// // If the index is not null
-	// if ( FIBERconnectedObjects[j] != null )
-	// {
-	// // If the connected object serial is the same as
-	// // the one connected to the NIC
-	// if ( FIBERconnectedObjects[j].getObjectSerial() == nic
-	// .getConnectedObject().getObjectSerial() )
-	// {
-	// // The object connected to the NIC is
-	// // removed from the removable FIBER
-	// // connected objcets
-	// FIBERconnectedObjects[j] = null;
-	// }
-	// }
-	// }
-	// }
-	// }
-	// }
-	// catch ( ObjectNotFoundException e )
-	// {
-	// // No ExternalNetworksCard found
-	// }
-	//
-	//
-	// // Removes the null pointers and shortens the array
-	// FIBERconnectedObjects = cleanup
-	// .cleanObjectArray(FIBERconnectedObjects);
-	//
-	//
-	// // Now LANconnectedObjects contains only objects connected to the
-	// // motherboard
-	//
-	// // The number of FIBER ports left after connected objects are added.
-	// int leftFIBERports = newMaxFIBERports
-	// - FIBERconnectedObjects.length;
-	//
-	//
-	// if ( FIBERconnectedObjects != null )
-	// {
-	// // If the number of available RJ-45 ports is less then the
-	// // number of FIBER devices
-	// if ( leftFIBERports < 0 )
-	// {
-	// for ( int i = FIBERconnectedObjects.length + leftFIBERports; i <
-	// FIBERconnectedObjects.length; i++ )
-	// {
-	// // Gets the WidgetExtendedConnection between the two
-	// // objects
-	// WidgetExtendedConnection widCon = null;
-	// try
-	// {
-	// widCon = ConnectionManagment.findWidgetConnection(
-	// canvas, mainObj, FIBERconnectedObjects[i]);
-	// }
-	// catch ( ConnectionDoesNotExist e )
-	// {
-	// e.printStackTrace();
-	// }
-	//
-	// if ( widCon != null )
-	// {
-	// // Removes the connection
-	// WorkareaCanvasActions.removeWidgetConnection(
-	// canvas, widCon);
-	// }
-	// }
-	// }
-	// }
-	// }
-	// int takenPorts = mbObj.getMaxFibers() - mbObj.getFiberPortsAvailable();
-	//
-	// // Sets the max FIBER ports
-	// mbObj.setMaxFibers(FIBERports);
-	// mbObj.setFiberPortsAvailable(mbObj.getMaxFibers() - takenPorts);
-	//
-	// // Sets the supported connection interfaces
-	// String[] supportedConnectionInterfaces = ComponentsManagment
-	// .getSupportedInterfaces(mainObj);
-	// mainObj.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
-	//
-	// if ( canvas != null )
-	// {
-	// canvas.setSaved(false);
-	// canvas.setChanged(true);
-	// }
-	// }
 
 
 	// SEARCH FUNCTIONS
@@ -3295,6 +3098,18 @@ public class ComponentsManagment
 		}
 		catch ( ObjectNotFoundException e )
 		{
+			// Log entry
+			LibraryLogging.libraryLog.logp(Level.SEVERE, "ComponentsManagment",
+					"getObjectMotherboard",
+					"No Motherboard components was found in the given Object '"
+							+ obj.getObjectName()
+							+ "'. Alle devices must contain a Motherboard.");
+
+			if ( Settings.debug )
+			{
+				e.printStackTrace();
+			}
+
 			throw new MotherboardNotFound(obj);
 		}
 

@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package objects.infrastructureObjects;
 
@@ -35,16 +35,9 @@ public class WirelessRouter extends Router
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param Name
-	 * @param Desc
-	 * @param SupConInt
-	 * @param objectMB
-	 * @param outPorts
-	 * @param inPorts
-	 * @param DuplexSupport
-	 * @param wifi
+	 * A constructor for this class that takes as parameters the parameters
+	 * needed for the {@link Router} class and a boolean on whether wifi
+	 * enabled.
 	 */
 	public WirelessRouter(String Name, String Desc, String[] SupConInt,
 			Motherboard objectMB, int outPorts, int inPorts,
@@ -57,9 +50,7 @@ public class WirelessRouter extends Router
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @return the wireless
+	 * Gets a boolean on whether Wireless feature is enabled or not.
 	 */
 	public boolean isWireless()
 	{
@@ -68,10 +59,7 @@ public class WirelessRouter extends Router
 
 
 	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param wireless
-	 *            the wireless to set
+	 * Sets a boolean on whether Wireless feature is enabled or not.
 	 */
 	public void setWireless(boolean wireless)
 	{

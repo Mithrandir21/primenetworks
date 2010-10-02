@@ -25,10 +25,10 @@ import org.junit.Test;
 
 
 /**
- * TODO - Description NEEDED!
+ * This test class tests different functions in the {@link GroupManagment}
+ * class.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class GroupsManagmentTest
 {

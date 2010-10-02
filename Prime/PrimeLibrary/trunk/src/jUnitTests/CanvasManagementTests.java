@@ -32,7 +32,8 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * TODO - Description NEEDED!
+ * This test class contains methods for testing of functions in the
+ * {@link CanvasManagementTests}.
  * 
  * @author Bahram Malaekeh
  * 

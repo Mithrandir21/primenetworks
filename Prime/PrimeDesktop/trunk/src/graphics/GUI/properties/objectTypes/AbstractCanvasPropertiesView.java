@@ -277,13 +277,13 @@ public class AbstractCanvasPropertiesView extends JPanel
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This function save, with the necessary checks and controls, the general
+	 * {@link WorkareaCanvas} settings.
 	 */
 	public void generalSaveAction()
 	{
 		if ( canvasViewed != null )
 		{
-
 			// The netmask
 			if ( netmaskCombo.getSelectedIndex() != -1 )
 			{

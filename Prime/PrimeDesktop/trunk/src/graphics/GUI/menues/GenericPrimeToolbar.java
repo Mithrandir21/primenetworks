@@ -293,7 +293,9 @@ public class GenericPrimeToolbar extends JToolBar
 		JButton editingButton = new JButton(editing);
 
 
-		ActionOpenNetworkGroups groups = new ActionOpenNetworkGroups("Groups");
+		tempIcon = ImageLocator.getImageIconObject("Groups");
+		ActionOpenNetworkGroups groups = new ActionOpenNetworkGroups(
+				PrimeMain.texts.getString("groupsDialogTitleLabel"), tempIcon);
 		JButton groupsButton = new JButton(groups);
 
 

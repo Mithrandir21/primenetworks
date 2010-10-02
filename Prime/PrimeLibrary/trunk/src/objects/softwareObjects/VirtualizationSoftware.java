@@ -8,7 +8,7 @@ import objects.Software;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class represents a software that can perform a virtualization service.
  * 
  * @author Bahram Malaekeh
  * 

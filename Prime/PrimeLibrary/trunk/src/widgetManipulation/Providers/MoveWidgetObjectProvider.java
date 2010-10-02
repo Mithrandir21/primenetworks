@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package widgetManipulation.Providers;
 
@@ -34,13 +34,21 @@ import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
 import org.netbeans.modules.visual.action.AlignWithSupport;
 
+import widgetManipulation.widgetAlign.PrimeAlignWithMove;
+import widgets.WidgetObject;
+import widgets.WorkareaCanvas;
+
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This extension of the {@link AlignWithSupport} class is meant to be used when
+ * users move {@link WidgetObject} in a {@link WorkareaCanvas}. This class will
+ * align the {@link WidgetObject} with other {@link Widget Widgets}.
+ * This class works together with the {@link PrimeAlignWithMove} class.
  * 
  * @author Bahram Malaekeh
  */
-public class MoveWidgetObjectProvider extends AlignWithSupport implements MoveStrategy, MoveProvider
+public class MoveWidgetObjectProvider extends AlignWithSupport implements
+		MoveStrategy, MoveProvider
 {
 
 
@@ -48,8 +56,10 @@ public class MoveWidgetObjectProvider extends AlignWithSupport implements MoveSt
 	{
 		/*
 		 * (non-Javadoc)
+		 * 
 		 * @see
-		 * org.netbeans.api.visual.action.AlignWithMoveDecorator#createLineWidget(org.netbeans.api.visual.widget.Scene)
+		 * org.netbeans.api.visual.action.AlignWithMoveDecorator#createLineWidget
+		 * (org.netbeans.api.visual.widget.Scene)
 		 */
 		public ConnectionWidget createLineWidget(Scene scene)
 		{
@@ -62,12 +72,6 @@ public class MoveWidgetObjectProvider extends AlignWithSupport implements MoveSt
 		}
 	};
 
-	/**
-	 * Javadoc-TODO - Description NEEDED!
-	 * 
-	 * @param collector
-	 * @param interractionLayer
-	 */
 	public MoveWidgetObjectProvider(AlignWithWidgetCollector collector,
 			LayerWidget interractionLayer)
 	{
@@ -78,7 +82,10 @@ public class MoveWidgetObjectProvider extends AlignWithSupport implements MoveSt
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.netbeans.api.visual.action.MoveStrategy#locationSuggested(org.netbeans.api.visual.widget.Widget,
+	 * 
+	 * @see
+	 * org.netbeans.api.visual.action.MoveStrategy#locationSuggested(org.netbeans
+	 * .api.visual.widget.Widget,
 	 * java.awt.Point, java.awt.Point)
 	 */
 	public Point locationSuggested(Widget widget, Point originalLocation,
@@ -97,7 +104,10 @@ public class MoveWidgetObjectProvider extends AlignWithSupport implements MoveSt
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.netbeans.api.visual.action.MoveProvider#movementStarted(org.netbeans.api.visual.widget.Widget)
+	 * 
+	 * @see
+	 * org.netbeans.api.visual.action.MoveProvider#movementStarted(org.netbeans
+	 * .api.visual.widget.Widget)
 	 */
 	public void movementStarted(Widget widget)
 	{
@@ -107,7 +117,10 @@ public class MoveWidgetObjectProvider extends AlignWithSupport implements MoveSt
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.netbeans.api.visual.action.MoveProvider#movementFinished(org.netbeans.api.visual.widget.Widget)
+	 * 
+	 * @see
+	 * org.netbeans.api.visual.action.MoveProvider#movementFinished(org.netbeans
+	 * .api.visual.widget.Widget)
 	 */
 	public void movementFinished(Widget widget)
 	{
@@ -117,7 +130,10 @@ public class MoveWidgetObjectProvider extends AlignWithSupport implements MoveSt
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.netbeans.api.visual.action.MoveProvider#getOriginalLocation(org.netbeans.api.visual.widget.Widget)
+	 * 
+	 * @see
+	 * org.netbeans.api.visual.action.MoveProvider#getOriginalLocation(org.netbeans
+	 * .api.visual.widget.Widget)
 	 */
 	public Point getOriginalLocation(Widget widget)
 	{
@@ -128,7 +144,10 @@ public class MoveWidgetObjectProvider extends AlignWithSupport implements MoveSt
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.netbeans.api.visual.action.MoveProvider#setNewLocation(org.netbeans.api.visual.widget.Widget,
+	 * 
+	 * @see
+	 * org.netbeans.api.visual.action.MoveProvider#setNewLocation(org.netbeans
+	 * .api.visual.widget.Widget,
 	 * java.awt.Point)
 	 */
 	public void setNewLocation(Widget widget, Point location)

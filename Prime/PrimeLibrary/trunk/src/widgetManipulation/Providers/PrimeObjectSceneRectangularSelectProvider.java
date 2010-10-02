@@ -29,7 +29,9 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This class is meant to be used when users which to select multiple
+ * {@link WidgetObject} on a {@link WorkareaCanvas}.
+ * (Not in use)
  * 
  * @author Bahram Malaekeh
  */

@@ -32,7 +32,9 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * Javadoc-TODO - Description NEEDED!
+ * This class contains functions that handle mainly {@link WorkareaCanvas
+ * WorkareaCanvases}. There are functions that search, validate and check
+ * different aspects of a {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
  */

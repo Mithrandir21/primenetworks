@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package objects.infrastructureObjects;
 
@@ -28,10 +28,14 @@ import exceptions.StringNotFoundInArrayException;
 
 
 /**
- * A representation of the most simple networking device available. This device simply replays any communication from
- * any one port to all other ports. This device is not often used in any kind of large scale network because of the
- * flooding effect it has on that network. Once a communication is send by one computer on the network, no other
- * communication will get through before the first one has reached its destination.
+ * A representation of the most simple networking device available. This device
+ * simply replays any communication from
+ * any one port to all other ports. This device is not often used in any kind of
+ * large scale network because of the
+ * flooding effect it has on that network. Once a communication is send by one
+ * computer on the network, no other
+ * communication will get through before the first one has reached its
+ * destination.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -73,11 +77,12 @@ public class Hub extends Infrastructure implements Serializable
 
 
 
-	// TODO - Rating system for networking devices.
+	// FIXME - Rating system for networking devices.
 
 
 	/*
-	 * NOTES - Connections between this device and the devices connected to it will be handled by the main system.
+	 * NOTES - Connections between this device and the devices connected to it
+	 * will be handled by the main system.
 	 */
 
 
@@ -90,9 +95,11 @@ public class Hub extends Infrastructure implements Serializable
 	 * @param Desc
 	 *            The description of the device.
 	 * @param outPorts
-	 *            The number of ports that can be connected to different computers or subnets.
+	 *            The number of ports that can be connected to different
+	 *            computers or subnets.
 	 * @param inPorts
-	 *            The number of ports that are meant to be used providers of internet access.
+	 *            The number of ports that are meant to be used providers of
+	 *            internet access.
 	 * @param DuplexSupport
 	 *            The supported duplex type on the device.
 	 */
@@ -183,7 +190,8 @@ public class Hub extends Infrastructure implements Serializable
 	/**
 	 * Gets the boolean on whether or not it supports wired conncetions.
 	 * 
-	 * @return A boolean on whether or not the device supports wired connections.
+	 * @return A boolean on whether or not the device supports wired
+	 *         connections.
 	 */
 	public boolean isSupportsWired()
 	{
@@ -196,7 +204,8 @@ public class Hub extends Infrastructure implements Serializable
 	/**
 	 * Get the boolean on whether or not it supports wireless connections.
 	 * 
-	 * @return A boolean on whether or not the device supports wireless connections.
+	 * @return A boolean on whether or not the device supports wireless
+	 *         connections.
 	 */
 	public boolean isSupportsWireless()
 	{
@@ -322,7 +331,8 @@ public class Hub extends Infrastructure implements Serializable
 	 * Sets the boolean on whether or not it supports wired conncetions.
 	 * 
 	 * @param supportsWired
-	 *            A boolean on whether or not the device supports wired connections.
+	 *            A boolean on whether or not the device supports wired
+	 *            connections.
 	 */
 	public void setSupportsWired(boolean supportsWired)
 	{
@@ -336,7 +346,8 @@ public class Hub extends Infrastructure implements Serializable
 	 * Sets the boolean on whether or not it supports wireless connections.
 	 * 
 	 * @param supportsWireless
-	 *            A boolean on whether or not the device supports wireless connections.
+	 *            A boolean on whether or not the device supports wireless
+	 *            connections.
 	 */
 	public void setSupportsWireless(boolean supportsWireless)
 	{
@@ -392,7 +403,8 @@ public class Hub extends Infrastructure implements Serializable
 	// Connection interfaces methodes.
 
 	/**
-	 * Function for replacing a spesific given connection interface with a given new interface.
+	 * Function for replacing a spesific given connection interface with a given
+	 * new interface.
 	 * 
 	 * @param NewItem
 	 *            The interface to replace the previous one.
@@ -407,7 +419,8 @@ public class Hub extends Infrastructure implements Serializable
 
 
 	/**
-	 * Function to remove connection interfaces from the array of connection interfaces.
+	 * Function to remove connection interfaces from the array of connection
+	 * interfaces.
 	 * 
 	 * @param ToBeRemoved
 	 *            Connection interfaces to be removed.
@@ -438,7 +451,8 @@ public class Hub extends Infrastructure implements Serializable
 	// Link protocols methodes.
 
 	/**
-	 * Function for replacing a spesific given link protocol with a given new protocol.
+	 * Function for replacing a spesific given link protocol with a given new
+	 * protocol.
 	 * 
 	 * @param NewItem
 	 *            The protocol to replace the previous one.
@@ -483,7 +497,8 @@ public class Hub extends Infrastructure implements Serializable
 	// Remote management protocols methodes.
 
 	/**
-	 * Function for replacing a spesific given remote management protocol with a given new protocol.
+	 * Function for replacing a spesific given remote management protocol with a
+	 * given new protocol.
 	 * 
 	 * @param NewItem
 	 *            The protocol to replace the previous one.
@@ -499,7 +514,8 @@ public class Hub extends Infrastructure implements Serializable
 
 
 	/**
-	 * Function to remove remote management protocols from the array of remote management protocols.
+	 * Function to remove remote management protocols from the array of remote
+	 * management protocols.
 	 * 
 	 * @param ToBeRemoved
 	 *            Link protocol to be removed.
@@ -531,7 +547,8 @@ public class Hub extends Infrastructure implements Serializable
 	// Transport protocols methodes.
 
 	/**
-	 * Function for replacing a spesific given transport protocol with a given new protocol.
+	 * Function for replacing a spesific given transport protocol with a given
+	 * new protocol.
 	 * 
 	 * @param NewItem
 	 *            The protocol to replace the previous one.
@@ -546,7 +563,8 @@ public class Hub extends Infrastructure implements Serializable
 
 
 	/**
-	 * Function to remove transport protocols from the array of transport protocols.
+	 * Function to remove transport protocols from the array of transport
+	 * protocols.
 	 * 
 	 * @param ToBeRemoved
 	 *            Link protocol to be removed.

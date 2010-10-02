@@ -241,12 +241,14 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 						canvas.getConnections(),
 						PrimeMain.texts.getString("connection")
 								+ canvas.getNumberOfWidgetsOnTheScene(),
-						"Connection between "
+						priorCon.getConnectionType() + " "
+								+ PrimeMain.texts.getString("connection")
+								+ ". "
 								+ SourceWidObj.getObject().getObjectName()
-								+ " and "
-								+ TargetWidObj.getObject().getObjectName()
-								+ ".", SourceWidObj.getObject(),
-						TargetWidObj.getObject(), priorCon.getConnectionType(),
+								+ " - "
+								+ TargetWidObj.getObject().getObjectName(),
+						SourceWidObj.getObject(), TargetWidObj.getObject(),
+						priorCon.getConnectionType(),
 						checkLogic.getConClass(priorCon.getConnectionType()));
 
 				// Creates the connection between the two devices on the
@@ -385,12 +387,14 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 							canvas.getConnections(),
 							PrimeMain.texts.getString("connection")
 									+ canvas.getNumberOfWidgetsOnTheScene(),
-							"Connection between "
+							conType + " "
+									+ PrimeMain.texts.getString("connection")
+									+ ". "
 									+ SourceWidObj.getObject().getObjectName()
-									+ " and "
-									+ TargetWidObj.getObject().getObjectName()
-									+ ".", SourceWidObj.getObject(),
-							TargetWidObj.getObject(), conType, conClass);
+									+ " - "
+									+ TargetWidObj.getObject().getObjectName(),
+							SourceWidObj.getObject(), TargetWidObj.getObject(),
+							conType, conClass);
 
 
 					// Adds the connection to the connections array of each
@@ -424,6 +428,8 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 					{
 						canvas.addUndoableAction(this);
 					}
+
+					DesktopCanvasManagment.canvasCleanUp(canvas);
 				}
 				// If there already exists a connection between the two given
 				// objects.

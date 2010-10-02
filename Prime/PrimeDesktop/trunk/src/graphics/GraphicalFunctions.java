@@ -43,6 +43,7 @@ import javax.swing.border.TitledBorder;
 import managment.ComponentsManagment;
 import managment.RoomManagment;
 import managment.Settings;
+import managment.Settings.systemLocale;
 import objects.Object;
 import objects.Room;
 import objects.Software.fileSystems;
@@ -670,6 +671,52 @@ public class GraphicalFunctions
 		}
 
 		return null;
+	}
+
+
+
+	/**
+	 * This function attempts to return the a string depending on the given
+	 * {@link systemLocale}.
+	 * 
+	 * If no corresponding {@link systemLocale} is found, the primeLocale from
+	 * the Settings class will be returned.
+	 */
+	public static String getSystemLocale(systemLocale language)
+	{
+		if ( language.equals(systemLocale.en) )
+		{
+			return PrimeMain.texts.getString("english");
+		}
+		else if ( language.equals(systemLocale.no_NO) )
+		{
+			return PrimeMain.texts.getString("norwegian");
+		}
+
+		return PrimeMain.texts.getString("english");
+	}
+
+
+
+	/**
+	 * This function attempts to return the {@link systemLocale} that
+	 * corresponds with the given string.
+	 * 
+	 * If no corresponding {@link systemLocale} is found, the primeLocale from
+	 * the Settings class will be returned.
+	 */
+	public static systemLocale getSystemLocale(String language)
+	{
+		if ( language.equals(PrimeMain.texts.getString("english")) )
+		{
+			return systemLocale.en;
+		}
+		else if ( language.equals(PrimeMain.texts.getString("norwegian")) )
+		{
+			return systemLocale.no_NO;
+		}
+
+		return managment.Settings.primeLocale;
 	}
 
 

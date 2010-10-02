@@ -38,7 +38,7 @@ import widgets.WorkareaCanvas;
  * @author Bahram Malaekeh
  * 
  */
-public class ModelSelectionListener implements TableModelListener
+public class EditGroupModelSelectionListener implements TableModelListener
 {
 
 	private JTable table;
@@ -49,7 +49,7 @@ public class ModelSelectionListener implements TableModelListener
 
 	// It is necessary to keep the table since it is not possible
 	// to determine the table from the event's source
-	ModelSelectionListener(JTable table, WorkareaCanvas canvas,
+	public EditGroupModelSelectionListener(JTable table, WorkareaCanvas canvas,
 			HashMap<Long, Permissions> permissions)
 	{
 		this.table = table;

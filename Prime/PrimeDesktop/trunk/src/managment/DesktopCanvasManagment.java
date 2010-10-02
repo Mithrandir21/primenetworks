@@ -26,7 +26,6 @@ import graphics.GUI.objectView.ObjectView;
 import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -53,10 +52,6 @@ import widgets.WorkareaCanvas;
  */
 public class DesktopCanvasManagment
 {
-	// The log for this class
-	public static Logger log = Logger.getLogger(DesktopCanvasManagment.class
-			.getName());
-
 	/**
 	 * Adds the given canvas to the array of currently active canvas in the
 	 * system. It also sets the given name as the
@@ -179,9 +174,10 @@ public class DesktopCanvasManagment
 					{
 						// Removes the canvas from the array
 						PrimeMain.canvases[i] = null;
-						log.fine("Canvas,"
-								+ canvas.getCanvasName()
-								+ ", has been removed from the main WorkareaCanvas register.");
+						PrimeMain.guiLog
+								.fine("Canvas,"
+										+ canvas.getCanvasName()
+										+ ", has been removed from the main WorkareaCanvas register.");
 
 						// Removes the null pointer in the array
 						PrimeMain.canvases = logistical.cleanup
@@ -235,15 +231,16 @@ public class DesktopCanvasManagment
 					if ( PrimeMain.canvases[i] == null )
 					{
 						// If the canvas at index i has the same name as the
-						// gievn canvas
+						// given canvas
 						if ( PrimeMain.canvases[i].getCanvasName()
 								.equalsIgnoreCase(canvas.getCanvasName()) )
 						{
 							// Removes the canvas from the array
 							PrimeMain.canvases[i] = null;
-							log.fine("Canvas,"
-									+ canvas.getCanvasName()
-									+ ", has been removed from the main WorkareaCanvas register.");
+							PrimeMain.guiLog
+									.fine("Canvas,"
+											+ canvas.getCanvasName()
+											+ ", has been removed from the main WorkareaCanvas register.");
 
 							// Removes the null pointer in the array
 							PrimeMain.canvases = logistical.cleanup
@@ -361,27 +358,30 @@ public class DesktopCanvasManagment
 					{
 						errMsg = PrimeMain.texts
 								.getString("rulesDoesNotAllowHubMsg");
-						log.fine("A Hub was attempted added to a network,"
-								+ canvas.getCanvasName()
-								+ ", that does not allow Hubs.");
+						PrimeMain.guiLog
+								.fine("A Hub was attempted added to a network,"
+										+ canvas.getCanvasName()
+										+ ", that does not allow Hubs.");
 					}
 					// WIRELESSROUTER
 					else if ( obj instanceof WirelessRouter )
 					{
 						errMsg = PrimeMain.texts
 								.getString("rulesDoesNotAllowWirelessRouterMsg");
-						log.fine("A WirelessRouter was attempted added to a network,"
-								+ canvas.getCanvasName()
-								+ ", that does not allow WirelessRouter.");
+						PrimeMain.guiLog
+								.fine("A WirelessRouter was attempted added to a network,"
+										+ canvas.getCanvasName()
+										+ ", that does not allow WirelessRouter.");
 					}
 					// INTERNET
 					else if ( obj instanceof Internet )
 					{
 						errMsg = PrimeMain.texts
 								.getString("rulesDoesNotAllowInternetMsg");
-						log.fine("A Internet object was attempted added to a network,"
-								+ canvas.getCanvasName()
-								+ ", that does not allow Internet objects.");
+						PrimeMain.guiLog
+								.fine("A Internet object was attempted added to a network,"
+										+ canvas.getCanvasName()
+										+ ", that does not allow Internet objects.");
 					}
 
 					JOptionPane.showMessageDialog(null, errMsg,
@@ -398,7 +398,7 @@ public class DesktopCanvasManagment
 				if ( RulesManagment.objectUSBruleViolation(rules, obj, canvas) )
 				{
 					// Log info
-					log.fine("The device attempted added, "
+					PrimeMain.guiLog.fine("The device attempted added, "
 							+ obj.getObjectName()
 							+ ",violates the USB rules of the network.");
 
@@ -423,9 +423,10 @@ public class DesktopCanvasManagment
 					if ( i != 0 )
 					{
 						// Log info
-						log.fine("The USB ports on the device have been altered to "
-								+ "match the allowed USB port and the user has "
-								+ "decided to accept the modified device.");
+						PrimeMain.guiLog
+								.fine("The USB ports on the device have been altered to "
+										+ "match the allowed USB port and the user has "
+										+ "decided to accept the modified device.");
 						return false;
 					}
 				}
@@ -436,7 +437,7 @@ public class DesktopCanvasManagment
 				if ( RulesManagment.objectLANruleViolation(rules, obj, canvas) )
 				{
 					// Log info
-					log.fine("The device attempted added, "
+					PrimeMain.guiLog.fine("The device attempted added, "
 							+ obj.getObjectName()
 							+ ",violates the LAN(RJ45) rules of the network.");
 
@@ -461,9 +462,10 @@ public class DesktopCanvasManagment
 					if ( i != 0 )
 					{
 						// Log info
-						log.fine("The integrated LAN ports on the device have been altered to "
-								+ "match the allowed USB port and the user has "
-								+ "decided to accept the modified device.");
+						PrimeMain.guiLog
+								.fine("The integrated LAN ports on the device have been altered to "
+										+ "match the allowed USB port and the user has "
+										+ "decided to accept the modified device.");
 						return false;
 					}
 				}

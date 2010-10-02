@@ -9,7 +9,7 @@ import objects.Servers;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class represents a server that is capable of virtualization service.
  * 
  * @author Bahram Malaekeh
  * 

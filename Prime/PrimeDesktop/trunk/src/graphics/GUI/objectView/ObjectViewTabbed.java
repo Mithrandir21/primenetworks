@@ -28,6 +28,7 @@ import graphics.GUI.objectView.Software.EditSoftware.EditOverview.SoftwareObject
 import javax.swing.JTabbedPane;
 
 import widgets.WidgetObject;
+import widgets.WorkareaCanvas;
 
 
 /**
@@ -57,7 +58,7 @@ public class ObjectViewTabbed extends JTabbedPane
 	 * @param obj
 	 *            The object that will be examined for information
 	 */
-	public ObjectViewTabbed(WidgetObject obj)
+	public ObjectViewTabbed(WorkareaCanvas canvas, WidgetObject obj)
 	{
 		genObjView = new GeneralObjectView(obj.getObject());
 		this.addTab(PrimeMain.texts.getString("generalTabLabel"), null,
@@ -82,7 +83,7 @@ public class ObjectViewTabbed extends JTabbedPane
 				PrimeMain.texts.getString("connectionTabDescription"));
 
 
-		netObjView = new NetworkView(obj);
+		netObjView = new NetworkView(canvas, obj);
 		this.addTab(PrimeMain.texts.getString("networkTabLabel"), null,
 				netObjView, PrimeMain.texts.getString("networkTabDescription"));
 	}

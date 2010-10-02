@@ -19,6 +19,7 @@ package graphics.GUI.customOSviews;
 
 
 import graphics.GraphicalFunctions;
+import graphics.ImageLocator;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
 
@@ -34,6 +35,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Iterator;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
@@ -105,6 +107,10 @@ public class osSelectionOverView extends JDialog implements ActionListener
 	 */
 	private void initDialog()
 	{
+		ImageIcon frameIcon = ImageLocator
+				.getImageIconObject("OperatingSystem-Button");
+		this.setIconImage(frameIcon.getImage());
+
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 

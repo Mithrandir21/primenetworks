@@ -18,6 +18,7 @@
 package graphics.GUI.userGroups;
 
 
+import graphics.ImageLocator;
 import graphics.PrimeMain;
 import groups.Group;
 
@@ -31,6 +32,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -69,6 +71,9 @@ public class NetworkGroupsDialog extends JDialog implements ActionListener
 				+ PrimeMain.texts.getString("groupsDialogTitleLabel"));
 
 		this.canvas = canvas;
+
+		ImageIcon frameIcon = ImageLocator.getImageIconObject("Groups");
+		this.setIconImage(frameIcon.getImage());
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
