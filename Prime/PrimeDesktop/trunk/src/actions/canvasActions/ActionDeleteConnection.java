@@ -23,7 +23,9 @@ import exceptions.ConnectionsIsNotPossible;
 import graphics.PrimeMain;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -60,6 +62,9 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 	// The connection that is to be deleted
 	private WidgetExtendedConnection existingConnections = null;
 
+	// The list of point that the WidgetExtendedConnection goes through
+	private List<Point> conPoints = null;
+
 	/**
 	 * A constructor for the class that takes a string, the action name, and a
 	 * Icon.
@@ -74,6 +79,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 	{
 		super(text, icon);
 		this.existingConnections = con;
+		this.conPoints = con.getControlPoints();
 	}
 
 
@@ -88,6 +94,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 	{
 		super(text);
 		this.existingConnections = con;
+		this.conPoints = con.getControlPoints();
 	}
 
 
@@ -194,6 +201,9 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 	@Override
 	public void redo() throws CannotRedoException
 	{
+		// Gets the current Points
+		conPoints = existingConnections.getControlPoints();
+
 		// Removes the connection
 		WorkareaCanvasActions.removeWidgetConnection(this.canvas,
 				this.existingConnections);
@@ -239,7 +249,7 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 				// Creates the connection between the two devices on the
 				// scene.
 				WidgetExtendedConnection connection = new WidgetExtendedConnection(
-						canvas.getScene(), con);
+						canvas, con);
 
 
 				// Adds the connection to the connections array of each
@@ -255,6 +265,9 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 
 				// Adds the different actions
 				ActionsAdder.makeWidgetConnectionReady(canvas, connection);
+
+				// Sets the control Points for the WidgetExtendedConnection
+				connection.setControlPoints(conPoints, true);
 
 				// Add the connection the connection layer
 				canvas.getConnectionLayer().addChild(connection);
@@ -297,15 +310,21 @@ public class ActionDeleteConnection extends AbstractSystemAction implements
 		// Sets the current canvas as the canvas
 		canvas = PrimeMain.currentCanvas;
 
-		// Removes the connection
-		WorkareaCanvasActions.removeWidgetConnection(canvas,
-				existingConnections);
-
-		DesktopCanvasManagment.canvasCleanUp(canvas);
-
-		if ( undoable )
+		if ( canvas != null )
 		{
-			canvas.addUndoableAction(this);
+			// Gets the current Points
+			conPoints = existingConnections.getControlPoints();
+
+			// Removes the connection
+			WorkareaCanvasActions.removeWidgetConnection(canvas,
+					existingConnections);
+
+			DesktopCanvasManagment.canvasCleanUp(canvas);
+
+			if ( undoable )
+			{
+				canvas.addUndoableAction(this);
+			}
 		}
 	}
 }

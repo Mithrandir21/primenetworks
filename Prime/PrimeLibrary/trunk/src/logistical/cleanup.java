@@ -29,6 +29,7 @@ import connections.Connection;
 import connections.DeviceConnection;
 import connections.InternalConnection;
 import connections.NetworkConnection;
+import connections.WidgetExtendedConnection;
 
 
 /**
@@ -218,6 +219,41 @@ public class cleanup
 		System.arraycopy(Tempresults, 0, results, 0, tempCounter);
 
 
+
+		return results;
+	}
+
+
+	/**
+	 * Function to remove null pointer from the an array of
+	 * {@link WidgetExtendedConnection}.
+	 */
+	public static WidgetExtendedConnection[] cleanObjectArray(
+			WidgetExtendedConnection[] array)
+	{
+		// Temporary counter for the function
+		int tempCounter = 0;
+
+		// Makes an array with given length
+		WidgetExtendedConnection[] Tempresults = new WidgetExtendedConnection[array.length];
+
+		// Goes through all of the found components array and moves those that
+		// are not null
+		for ( int i = 0; i < array.length; i++ )
+		{
+			if ( array[i] != null )
+			{
+				Tempresults[tempCounter] = array[i];
+
+				tempCounter++;
+			}
+		}
+
+		// Makes the array that is to hold the results
+		WidgetExtendedConnection[] results = new WidgetExtendedConnection[tempCounter];
+
+		// Creates a new array that will copy all the non-null objects.
+		System.arraycopy(Tempresults, 0, results, 0, tempCounter);
 
 		return results;
 	}

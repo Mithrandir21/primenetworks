@@ -505,7 +505,7 @@ public class PrimeMain extends JFrame
 		this.setExtendedState(Frame.MAXIMIZED_BOTH);
 		this.setVisible(true);
 
-		if ( Settings.showTOFD )
+		if ( Settings.showTOTD )
 		{
 			new TipOfDay();
 		}
@@ -689,19 +689,23 @@ public class PrimeMain extends JFrame
 	{
 		PropertiesArea temp = (PropertiesArea) propertiesPanel.getComponent(0);
 
-		// If the method is to update the properties area regardless of whether
-		// or not the currently showing object is the same WorkareaCanvas
-		if ( override )
+		if ( currentCanvas != null )
 		{
-			temp.newObjectSelectedPropertiesTab(currentCanvas);
-		}
-		else
-		{
-			// If the WorkareaCanvas shown in the properties area is not the
-			// same as the current WorkareaCanvas
-			if ( !(temp.isGivenCanvasCurrent(currentCanvas)) )
+			// If the method is to update the properties area regardless of
+			// whether
+			// or not the currently showing object is the same WorkareaCanvas
+			if ( override )
 			{
 				temp.newObjectSelectedPropertiesTab(currentCanvas);
+			}
+			else
+			{
+				// If the WorkareaCanvas shown in the properties area is not the
+				// same as the current WorkareaCanvas
+				if ( !(temp.isGivenCanvasCurrent(currentCanvas)) )
+				{
+					temp.newObjectSelectedPropertiesTab(currentCanvas);
+				}
 			}
 		}
 	}

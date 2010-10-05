@@ -102,8 +102,9 @@ public class ActionDeleteEverything extends AbstractSystemAction
 					JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 
 
-			// If the answer is yes
-			if ( i == 0 )
+			// If the answer is yes(user can possibly close the
+			// current canvas before pressing ok or cancel.)
+			if ( i == 0 && canvas != null )
 			{
 				// -----------------DELETING WIDGETS-----------------------
 				// gets all the Widgets on the current scene

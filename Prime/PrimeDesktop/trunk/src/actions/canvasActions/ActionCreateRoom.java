@@ -222,11 +222,12 @@ public class ActionCreateRoom extends AbstractSystemAction implements
 	@Override
 	public void performAction(boolean undoable)
 	{
-		if ( this.room != null )
+		if ( this.room != null && PrimeMain.currentCanvas != null )
 		{
 			this.canvas = PrimeMain.currentCanvas;
 
-			if ( this.room.getBounds().height < 50 && this.room.getBounds().width < 50 )
+			if ( this.room.getBounds().height < 50
+					&& this.room.getBounds().width < 50 )
 			{
 				// Removes the WidgetRoom from the roomLayer
 				this.room.getParentWidget().removeChild(this.room);

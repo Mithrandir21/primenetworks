@@ -103,8 +103,9 @@ public class ActionDeleteAllConnections extends AbstractSystemAction
 							options[1]);
 
 
-			// If the answer is yes
-			if ( i == 0 )
+			// If the answer is yes(user can possibly close the
+			// current canvas before pressing ok or cancel.)
+			if ( i == 0 && canvas != null )
 			{
 				canvas.getUndoManager();
 

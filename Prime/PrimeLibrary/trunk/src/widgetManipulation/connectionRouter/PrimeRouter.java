@@ -28,6 +28,15 @@ import connections.WidgetExtendedConnection;
  */
 public class PrimeRouter implements Router
 {
+	/**
+	 * TODO - Description NEEDED!
+	 * 
+	 */
+	public PrimeRouter()
+	{
+	}
+
+
 	/*
 	 * (non-Javadoc)
 	 * 

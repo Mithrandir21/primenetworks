@@ -454,30 +454,34 @@ public class GraphicsCardView extends JPanel implements HardwareViewInterface,
 
 			if ( command.equals("removeComp") )
 			{
-				try
+				if ( PrimeMain.currentCanvas != null )
 				{
-					ComponentsManagment.removeComponent(
-							PrimeMain.currentCanvas, mainObj, mainGC);
+					try
+					{
+						ComponentsManagment.removeComponent(
+								PrimeMain.currentCanvas, mainObj, mainGC);
 
-					// Updates the views of the object to correctly show the
-					// current info.
-					ObjectView view = PrimeMain.getObjectView(mainObj);
-					if ( view != null )
-					{
-						view.updateViewInfo();
+						// Updates the views of the object to correctly show the
+						// current info.
+						ObjectView view = PrimeMain.getObjectView(mainObj);
+						if ( view != null )
+						{
+							view.updateViewInfo();
+						}
+						// If no view is returned, then the standard object view
+						// is
+						// open and that should be updated.
+						else if ( PrimeMain.stdObjView != null )
+						{
+							PrimeMain.stdObjView.getSplitView().getObjView()
+									.getHardStdObjView().updateTabInfo();
+						}
 					}
-					// If no view is returned, then the standard object view is
-					// open and that should be updated.
-					else if ( PrimeMain.stdObjView != null )
+					catch ( MotherboardNotFound e1 )
 					{
-						PrimeMain.stdObjView.getSplitView().getObjView()
-								.getHardStdObjView().updateTabInfo();
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
-				}
-				catch ( MotherboardNotFound e1 )
-				{
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 				}
 			}
 		}

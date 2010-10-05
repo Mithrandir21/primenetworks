@@ -20,12 +20,13 @@ package connections;
 
 import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.anchor.PointShape;
-import org.netbeans.api.visual.router.RouterFactory;
 import org.netbeans.api.visual.widget.ConnectionWidget;
-import org.netbeans.api.visual.widget.Scene;
-import org.netbeans.modules.visual.action.FreeMoveControlPointProvider;
 
+import widgetManipulation.connectionRouter.AddRemovePrimeControlPointAction;
+import widgetManipulation.connectionRouter.FreeMovePrimeControlPointProvider;
+import widgetManipulation.connectionRouter.PrimeRouter;
 import widgets.WidgetObject;
+import widgets.WorkareaCanvas;
 
 
 /**
@@ -51,22 +52,21 @@ public class WidgetExtendedConnection extends ConnectionWidget
 	 * @param con
 	 *            The actual system connection between the two objects.
 	 */
-	public WidgetExtendedConnection(Scene scene, Connection con)
+	public WidgetExtendedConnection(WorkareaCanvas canvas, Connection con)
 	{
-		super(scene);
+		super(canvas.getScene());
 		this.setControlPointShape(PointShape.SQUARE_FILLED_BIG);
 		this.setRoutingPolicy(ConnectionWidget.RoutingPolicy.DISABLE_ROUTING_UNTIL_END_POINT_IS_MOVED);
-		this.setRouter(RouterFactory.createFreeRouter());
+		this.setRouter(new PrimeRouter());
 		this.getActions().addAction(
-				ActionFactory.createAddRemoveControlPointAction());
+				new AddRemovePrimeControlPointAction(3.0, 5.0, null, canvas));
 		this.getActions()
 				.addAction(
 						ActionFactory
-								.createMoveControlPointAction(new FreeMoveControlPointProvider()));
+								.createMoveControlPointAction(new FreeMovePrimeControlPointProvider(
+										canvas)));
 		this.connection = con;
 	}
-
-
 
 
 	/**

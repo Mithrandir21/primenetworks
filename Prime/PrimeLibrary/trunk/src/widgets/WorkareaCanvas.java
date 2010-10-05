@@ -46,6 +46,7 @@ import widgetManipulation.NetworkRules;
 import widgetManipulation.WidgetTransferHandler;
 import widgetManipulation.WorkareaCanvasNetworkInfo;
 import connections.Connection;
+import connections.WidgetExtendedConnection;
 
 
 
@@ -426,6 +427,36 @@ public class WorkareaCanvas extends JPanel
 
 
 	/**
+	 * Gets all the {@link WidgetObject WidgetObjectes} on the scene of this
+	 * {@link WorkareaCanvas}.
+	 * 
+	 * @return An {@link WidgetObject} array with all the {@link WidgetObject
+	 *         WidgetObjectes} on the scene.
+	 */
+	public WidgetExtendedConnection[] getWidgetExtendedConnectionsOnTheScene()
+	{
+		// Get a list of WidgetExtendedConnection in the connectionLayer
+		List<Widget> l = connectionLayer.getChildren();
+
+		// Converts that list to an array of Objects
+		java.lang.Object[] childrenTemp = l.toArray();
+
+		// Creates an array with the length of the all the children on the
+		// canvas
+		WidgetExtendedConnection[] childrenWidgets = new WidgetExtendedConnection[childrenTemp.length];
+
+		// Casts all the objects in the converted list to
+		// WidgetExtendedConnection
+		System.arraycopy(childrenTemp, 0, childrenWidgets, 0,
+				childrenWidgets.length);
+
+
+		return childrenWidgets;
+	}
+
+
+
+	/**
 	 * This method gets all the objects on the scene.
 	 */
 	public Object[] getObjectsOnTheScene()
@@ -668,7 +699,7 @@ public class WorkareaCanvas extends JPanel
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
 	 */
-	public void getConnectionLayer(LayerWidget con)
+	public void setConnectionLayer(LayerWidget con)
 	{
 		connectionLayer = con;
 	}

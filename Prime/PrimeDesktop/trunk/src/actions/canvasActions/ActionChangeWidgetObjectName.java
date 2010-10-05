@@ -220,7 +220,7 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 	@Override
 	public void redo() throws CannotRedoException
 	{
-		if ( this.widObject != null )
+		if ( this.widObject != null && PrimeMain.currentCanvas != null )
 		{
 			// Updates the name of the LabelWidget on the scene
 			WorkareaCanvasActions.updateWidgetObjectCanvasName(
@@ -237,7 +237,7 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 	@Override
 	public void undo() throws CannotUndoException
 	{
-		if ( this.widObject != null )
+		if ( this.widObject != null && PrimeMain.currentCanvas != null )
 		{
 			// Updates the name of the LabelWidget on the scene
 			WorkareaCanvasActions.updateWidgetObjectCanvasName(
@@ -255,7 +255,7 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 	@Override
 	public void performAction(boolean undoable)
 	{
-		if ( this.widObject != null )
+		if ( this.widObject != null && PrimeMain.currentCanvas != null )
 		{
 			// If the text is validated
 			if ( checkLogic.validateName(this.newName) )

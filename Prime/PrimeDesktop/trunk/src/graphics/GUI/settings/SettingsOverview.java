@@ -50,7 +50,7 @@ public class SettingsOverview extends JFrame
 {
 	public static JCheckBox[] messagesCheckBox = new JCheckBox[12];
 
-	public static JCheckBox[] displayCheckBox = new JCheckBox[2];
+	public static JCheckBox[] displayCheckBox = new JCheckBox[3];
 
 	public static JComboBox localeCombo;
 
@@ -213,6 +213,9 @@ public class SettingsOverview extends JFrame
 
 		displayCheckBox[1] = new JCheckBox();
 		displayCheckBox[1].setSelected(Settings.showOSicon);
+
+		displayCheckBox[2] = new JCheckBox();
+		displayCheckBox[2].setSelected(Settings.showTOTD);
 
 
 		// LOCALES

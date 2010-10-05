@@ -245,11 +245,14 @@ public class ActionRemoveRoom extends AbstractSystemAction implements
 		// Sets the current canvas
 		this.canvas = PrimeMain.currentCanvas;
 
-		WorkareaCanvasActions.removeRoom(this.canvas, this.room, true);
-
-		if ( undoable )
+		if ( canvas != null )
 		{
-			this.canvas.addUndoableAction(this);
+			WorkareaCanvasActions.removeRoom(this.canvas, this.room, true);
+
+			if ( undoable )
+			{
+				this.canvas.addUndoableAction(this);
+			}
 		}
 	}
 }

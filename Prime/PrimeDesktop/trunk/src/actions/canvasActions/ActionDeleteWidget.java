@@ -60,7 +60,7 @@ public class ActionDeleteWidget extends AbstractSystemAction implements
 	private WidgetObject widObject = null;
 
 	// The connections from the WidgetObject
-	private Connection[] existingConnections = null;
+	private WidgetExtendedConnection[] existingConnections = null;
 
 
 	/**
@@ -194,6 +194,12 @@ public class ActionDeleteWidget extends AbstractSystemAction implements
 	@Override
 	public void redo() throws CannotRedoException
 	{
+		// Finds all the connections of the object(for the undo action).
+		// This is performed so that the Points list in the
+		// WidgetExtendedConnection array are correct.
+		existingConnections = ConnectionManagment.findWidgetConnections(canvas,
+				canvas.getConnections(), widObject.getObject());
+
 		WorkareaCanvasActions.removeObject(this.canvas, this.widObject, true);
 	}
 
@@ -215,80 +221,99 @@ public class ActionDeleteWidget extends AbstractSystemAction implements
 		{
 			for ( int i = 0; i < existingConnections.length; i++ )
 			{
-				try
+				if ( existingConnections[i] != null
+						&& existingConnections[i].getConnection() != null )
 				{
-					// Find the two object which are to be connected on the
-					// canvas
-					WidgetObject sourceWidget = CanvasManagment
-							.findWidgetObject(
-									existingConnections[i].getObject1(), canvas);
-					WidgetObject targetWidget = CanvasManagment
-							.findWidgetObject(
-									existingConnections[i].getObject2(), canvas);
+					Connection tempCon = existingConnections[i].getConnection();
 
-					// Creates a new connection between the two widget objects
-					Connection con = ConnectionManagment.makeConnection(
-							canvas.getConnections(),
-							PrimeMain.texts.getString("connection")
-									+ canvas.getNumberOfWidgetsOnTheScene(),
-							existingConnections[i].getConnectionType() + " "
-									+ PrimeMain.texts.getString("connection")
-									+ ". "
-									+ sourceWidget.getObject().getObjectName()
-									+ " - "
-									+ targetWidget.getObject().getObjectName(),
-							sourceWidget.getObject(), targetWidget.getObject(),
-							existingConnections[i].getConnectionType(),
-							checkLogic.getConClass(existingConnections[i]
-									.getConnectionType()));
+					try
+					{
+						// Find the two object which are to be connected on the
+						// canvas
+						WidgetObject sourceWidget = CanvasManagment
+								.findWidgetObject(tempCon.getObject1(), canvas);
+						WidgetObject targetWidget = CanvasManagment
+								.findWidgetObject(tempCon.getObject2(), canvas);
 
-					// Creates the connection between the two devices on the
-					// scene.
-					WidgetExtendedConnection connection = new WidgetExtendedConnection(
-							canvas.getScene(), con);
+						// Creates a new connection between the two widget
+						// objects
+						Connection con = ConnectionManagment
+								.makeConnection(
+										canvas.getConnections(),
+										PrimeMain.texts.getString("connection")
+												+ canvas.getNumberOfWidgetsOnTheScene(),
+										tempCon.getConnectionType()
+												+ " "
+												+ PrimeMain.texts
+														.getString("connection")
+												+ ". "
+												+ sourceWidget.getObject()
+														.getObjectName()
+												+ " - "
+												+ targetWidget.getObject()
+														.getObjectName(),
+										sourceWidget.getObject(), targetWidget
+												.getObject(), tempCon
+												.getConnectionType(),
+										checkLogic.getConClass(tempCon
+												.getConnectionType()));
 
-
-					// Adds the connection to the connections array of each
-					// object.
-					sourceWidget.getObject().addConnection(con);
-					targetWidget.getObject().addConnection(con);
-
-					// Creates the whole connection with all actions
-					connection = ConnectionManagment
-							.createWidgetExtendedConnection(canvas, con,
-									connection, sourceWidget, targetWidget);
+						// Creates the connection between the two devices on the
+						// scene.
+						WidgetExtendedConnection connection = new WidgetExtendedConnection(
+								canvas, con);
 
 
-					// Adds the different actions
-					ActionsAdder.makeWidgetConnectionReady(canvas, connection);
+						// Adds the connection to the connections array of each
+						// object.
+						sourceWidget.getObject().addConnection(con);
+						targetWidget.getObject().addConnection(con);
 
-					// Add the connection the connection layer
-					canvas.getConnectionLayer().addChild(connection);
+						// Creates the whole connection with all actions
+						connection = ConnectionManagment
+								.createWidgetExtendedConnection(canvas, con,
+										connection, sourceWidget, targetWidget);
 
-					DesktopCanvasManagment.canvasCleanUp(canvas);
 
-				}
-				// If there already exists a connection between the two given
-				// objects.
-				catch ( ConnectionDoesExist e )
-				{
-					JOptionPane.showMessageDialog(null, PrimeMain.texts
-							.getString("connectionAlreadyExistsMsg"),
-							PrimeMain.texts.getString("alert"),
-							JOptionPane.ERROR_MESSAGE);
-				}
-				// If a connection between the two given objects is impossible.
-				catch ( ConnectionsIsNotPossible e )
-				{
-					JOptionPane.showMessageDialog(null, PrimeMain.texts
-							.getString("connectionNotPossibleMsg"),
-							PrimeMain.texts.getString("alert"),
-							JOptionPane.ERROR_MESSAGE);
+						// Adds the different actions
+						ActionsAdder.makeWidgetConnectionReady(canvas,
+								connection);
+
+						// Sets the control Points for the
+						// WidgetExtendedConnection
+						connection
+								.setControlPoints(existingConnections[i]
+										.getControlPoints(), true);
+
+						// Add the connection the connection layer
+						canvas.getConnectionLayer().addChild(connection);
+
+						DesktopCanvasManagment.canvasCleanUp(canvas);
+
+					}
+					// If there already exists a connection between the two
+					// given
+					// objects.
+					catch ( ConnectionDoesExist e )
+					{
+						JOptionPane.showMessageDialog(null, PrimeMain.texts
+								.getString("connectionAlreadyExistsMsg"),
+								PrimeMain.texts.getString("alert"),
+								JOptionPane.ERROR_MESSAGE);
+					}
+					// If a connection between the two given objects is
+					// impossible.
+					catch ( ConnectionsIsNotPossible e )
+					{
+						JOptionPane.showMessageDialog(null, PrimeMain.texts
+								.getString("connectionNotPossibleMsg"),
+								PrimeMain.texts.getString("alert"),
+								JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		}
 	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -301,19 +326,22 @@ public class ActionDeleteWidget extends AbstractSystemAction implements
 		// Sets the current canvas as the actions canvas
 		canvas = PrimeMain.currentCanvas;
 
-		// Sets the currently selected widget on the current canvas as the
-		// actions WidgetObject
-		widObject = canvas.getCurrentWidgetObject();
-
-		// Finds all the connections of the object(for the undo action)
-		existingConnections = ConnectionManagment.findConnections(
-				canvas.getConnections(), widObject.getObject());
-
-		WorkareaCanvasActions.removeObject(canvas, widObject, true);
-
-		if ( undoable )
+		if ( canvas != null )
 		{
-			canvas.addUndoableAction(this);
+			// Sets the currently selected widget on the current canvas as the
+			// actions WidgetObject
+			widObject = canvas.getCurrentWidgetObject();
+
+			// Finds all the connections of the object(for the undo action)
+			existingConnections = ConnectionManagment.findWidgetConnections(
+					canvas, canvas.getConnections(), widObject.getObject());
+
+			WorkareaCanvasActions.removeObject(canvas, widObject, true);
+
+			if ( undoable )
+			{
+				canvas.addUndoableAction(this);
+			}
 		}
 	}
 }

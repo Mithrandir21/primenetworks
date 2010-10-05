@@ -395,7 +395,7 @@ public class ObjectView extends JFrame implements ActionListener
 					JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 
 			// If the answer is yes
-			if ( i == 0 )
+			if ( i == 0 && PrimeMain.currentCanvas != null )
 			{
 				currentObject.setExemptedNetworkRules(false);
 

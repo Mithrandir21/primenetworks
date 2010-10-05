@@ -373,6 +373,61 @@ public class ConnectionManagment
 
 
 	/**
+	 * Finds and returns all {@link WidgetExtendedConnection} that contain a
+	 * {@link Connection} in the given {@link Connection} array where
+	 * the given Object is involved.
+	 */
+	public static WidgetExtendedConnection[] findWidgetConnections(
+			WorkareaCanvas canvas, Connection[] existingConnections,
+			Object object)
+	{
+		// If the existing connection array is not null or empty
+		if ( existingConnections != null && existingConnections.length != 0 )
+		{
+			// Gets all the connections involving the given object
+			Connection[] foundConnections = findConnections(
+					existingConnections, object);
+
+
+			// If there are any connections found
+			if ( foundConnections != null && foundConnections.length != 0 )
+			{
+				WidgetExtendedConnection[] foundWidgetConnections = new WidgetExtendedConnection[foundConnections.length];
+
+				for ( int i = 0; i < foundConnections.length; i++ )
+				{
+					if ( foundConnections[i] != null )
+					{
+						// Attempts to find the WidgetExtendedConnection that
+						// contains the current connection
+						WidgetExtendedConnection widConTemp = findWidgetConnection(
+								canvas, foundConnections[i]);
+
+						// If the object is found as any part of the connection
+						if ( widConTemp != null )
+						{
+
+							foundWidgetConnections[i] = widConTemp;
+						}
+					}
+				}
+
+				// Removes any null-pointers in the array of connections
+				foundWidgetConnections = cleanup
+						.cleanObjectArray(foundWidgetConnections);
+
+				return foundWidgetConnections;
+			}
+		}
+
+		return null;
+	}
+
+
+
+
+
+	/**
 	 * This method changes a connection between A and B, to be a connection
 	 * between A and C. This is done by changing the second object in the
 	 * connection to point to object C instead of object B. There is also checks
@@ -1984,7 +2039,7 @@ public class ConnectionManagment
 	 * Finds and returns the {@link WidgetExtendedConnection} that represents
 	 * the connection between the two given {@link Object Objects}.
 	 */
-	public static WidgetExtendedConnection findWidgetConnection(
+	public static WidgetExtendedConnection findWidgetConnections(
 			WorkareaCanvas canvas, Object A, Object B)
 			throws ConnectionDoesNotExist
 	{
@@ -1992,6 +2047,38 @@ public class ConnectionManagment
 		// connection
 		Connection con = getConnection(canvas.getConnections(), A, B);
 
+		// The widgetCon variable
+		WidgetExtendedConnection widgetCon = null;
+
+
+		List<Widget> list = canvas.getConnectionLayer().getChildren();
+
+
+		WidgetExtendedConnection testingWidget = null;
+
+		for ( Iterator<?> iter = list.iterator(); iter.hasNext(); )
+		{
+			testingWidget = (WidgetExtendedConnection) iter.next();
+
+			if ( testingWidget.getConnection().equals(con) )
+			{
+				widgetCon = testingWidget;
+			}
+		}
+
+
+		return widgetCon;
+	}
+
+
+
+	/**
+	 * Finds and returns the {@link WidgetExtendedConnection} that represents
+	 * the connection between the two given {@link Object Objects}.
+	 */
+	public static WidgetExtendedConnection findWidgetConnection(
+			WorkareaCanvas canvas, Connection con)
+	{
 		// The widgetCon variable
 		WidgetExtendedConnection widgetCon = null;
 

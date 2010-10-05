@@ -2482,7 +2482,7 @@ public class ComponentsManagment
 						WidgetExtendedConnection widCon = null;
 						try
 						{
-							widCon = ConnectionManagment.findWidgetConnection(
+							widCon = ConnectionManagment.findWidgetConnections(
 									canvas, mainObj, connectedObjects[i]);
 						}
 						catch ( ConnectionDoesNotExist e )

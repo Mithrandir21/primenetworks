@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.workareaCanvas;
 
@@ -64,6 +64,7 @@ public class RectangularAreaSelection extends LockedAdapter
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.netbeans.api.visual.action.WidgetAction.LockedAdapter#isLocked()
 	 */
 	@Override
@@ -78,7 +79,8 @@ public class RectangularAreaSelection extends LockedAdapter
 	{
 		// If the event button was the left click and the it was clicked once.
 		if ( (event.getButton() == MouseEvent.BUTTON1 && event.getClickCount() == 1)
-				&& Settings.roomsManipulation )
+				&& Settings.roomsManipulation
+				&& PrimeMain.currentCanvas != null )
 		{
 			// Creates the widgetRoom
 			selectionWidget = (WidgetRoom) decorator.createSelectionWidget();
@@ -94,8 +96,8 @@ public class RectangularAreaSelection extends LockedAdapter
 
 			// Creates and sets the rectangle that is the bounds of the
 			// WidgetRoom
-			selectionSceneRectangle = new Rectangle(widget
-					.convertLocalToScene(event.getPoint()));
+			selectionSceneRectangle = new Rectangle(
+					widget.convertLocalToScene(event.getPoint()));
 			move(widget, event.getPoint());
 			return State.createLocked(widget, this);
 		}
@@ -111,8 +113,9 @@ public class RectangularAreaSelection extends LockedAdapter
 		{
 			move(widget, event.getPoint());
 
-			ActionCreateRoom action = new ActionCreateRoom(PrimeMain.texts
-					.getString("actionCreateRoomDescriptionText"),
+			ActionCreateRoom action = new ActionCreateRoom(
+					PrimeMain.texts
+							.getString("actionCreateRoomDescriptionText"),
 					selectionWidget);
 			action.performAction(true);
 

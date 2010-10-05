@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.programGUI;
 
@@ -44,9 +44,10 @@ import org.jdesktop.swingx.tips.TipOfTheDayModel;
 
 
 /**
- * This extension of the {@link JDialog} class will display a 'tip of the day' to
- * the user of the program on startup.
- * (Example provided by 'www.java2s.com') Extended by Bahram Malaekeh.
+ * This extension of the {@link JDialog} class will display a 'tip of the day'
+ * to the user of the program on startup.
+ * (Example provided by 'www.java2s.com')
+ * Extended by Bahram Malaekeh.
  */
 public class TipOfDay extends JFrame implements ActionListener
 {
@@ -133,14 +134,15 @@ public class TipOfDay extends JFrame implements ActionListener
 		buttonPanel.setMaximumSize(panelSize);
 
 
-		JCheckBox box = new JCheckBox(PrimeMain.texts
-				.getString("totdShowTipOnStartup"));
+		JCheckBox box = new JCheckBox(
+				PrimeMain.texts.getString("totdShowTipOnStartup"));
 		box.addActionListener(this);
 		box.setActionCommand("showTips");
+		box.setSelected(!Settings.showTOTD);
 
 
-		JButton next = new JButton(PrimeMain.texts
-				.getString("totdNextTipButton"));
+		JButton next = new JButton(
+				PrimeMain.texts.getString("totdNextTipButton"));
 		next.setFocusable(false);
 		next.addActionListener(this);
 		next.setActionCommand("nextTip");
@@ -188,6 +190,7 @@ public class TipOfDay extends JFrame implements ActionListener
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -196,7 +199,7 @@ public class TipOfDay extends JFrame implements ActionListener
 	{
 		if ( e.getActionCommand().equals("showTips") )
 		{
-			Settings.showTOFD = !((JCheckBox) e.getSource()).isSelected();
+			Settings.showTOTD = !((JCheckBox) e.getSource()).isSelected();
 		}
 		else if ( e.getActionCommand().equals("nextTip") )
 		{

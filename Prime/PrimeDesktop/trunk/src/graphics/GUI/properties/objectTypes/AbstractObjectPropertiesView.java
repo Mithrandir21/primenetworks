@@ -272,11 +272,16 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 		// Gets the WidgetObject so that the IP address can be added
 		WidgetObject widObj = CanvasManagment.findWidgetObject(objectViewed,
 				PrimeMain.currentCanvas);
-		IPfield.setText(widObj.getWidgetNetworkInfo().getIp());
 
-		exemptedNetworkRules.setSelected(objectViewed.isExemptedNetworkRules());
+		if ( widObj != null )
+		{
+			IPfield.setText(widObj.getWidgetNetworkInfo().getIp());
 
-		errorDuringSaving = false;
+			exemptedNetworkRules.setSelected(objectViewed
+					.isExemptedNetworkRules());
+
+			errorDuringSaving = false;
+		}
 	}
 
 
@@ -319,16 +324,6 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 						// Performs the action
 						changeNameAction.performAction(true);
 					}
-
-
-					// // Updates the name of the LabelWidget on the
-					// // scene
-					// objectViewed = GraphicalFunctions
-					// .updateWidgetObjectCanvasName(
-					// objectViewed, objName);
-					//
-					// // Sets the name of the object
-					// objectViewed.setObjectName(objName);
 				}
 				else
 				{

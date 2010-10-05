@@ -544,29 +544,33 @@ public class CPUView extends JPanel implements HardwareViewInterface,
 
 			if ( command.equals("removeComp") )
 			{
-				try
+				if ( PrimeMain.currentCanvas != null )
 				{
-					ComponentsManagment.removeComponent(
-							PrimeMain.currentCanvas, mainObj, CPUobj);
+					try
+					{
+						ComponentsManagment.removeComponent(
+								PrimeMain.currentCanvas, mainObj, CPUobj);
 
-					// Updates the views of the object to correctly show the
-					// current info.
-					ObjectView view = PrimeMain.getObjectView(mainObj);
-					if ( view != null )
-					{
-						view.updateViewInfo();
+						// Updates the views of the object to correctly show the
+						// current info.
+						ObjectView view = PrimeMain.getObjectView(mainObj);
+						if ( view != null )
+						{
+							view.updateViewInfo();
+						}
+						// If no view is returned, then the standard object view
+						// is
+						// open and that should be updated.
+						else if ( PrimeMain.stdObjView != null )
+						{
+							PrimeMain.stdObjView.getSplitView().getObjView()
+									.getHardStdObjView().updateTabInfo();
+						}
 					}
-					// If no view is returned, then the standard object view is
-					// open and that should be updated.
-					else if ( PrimeMain.stdObjView != null )
+					catch ( MotherboardNotFound e1 )
 					{
-						PrimeMain.stdObjView.getSplitView().getObjView()
-								.getHardStdObjView().updateTabInfo();
+						e1.printStackTrace();
 					}
-				}
-				catch ( MotherboardNotFound e1 )
-				{
-					e1.printStackTrace();
 				}
 			}
 		}

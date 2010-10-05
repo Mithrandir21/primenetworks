@@ -31,6 +31,7 @@ import graphics.GUI.workareaCanvas.WorkareaSceneScroll;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 import groups.Group;
 
+import java.awt.Point;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -40,6 +41,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
@@ -238,28 +240,69 @@ public class DesktopFileManagment
 
 				// WRITE CONNECTIONS ON THE CANVAS
 
-				// The canvas connections
-				Connection[] connections = canvas.getConnections();
+				// The WidgetExtendedConnections on the scene of the canvas
+				WidgetExtendedConnection[] widCons = canvas
+						.getWidgetExtendedConnectionsOnTheScene();
 
 				// The ArrayList that will hold the connections
-				ArrayList<Connection> connectionList = new ArrayList<Connection>();
+				ArrayList<Connection> widConList = new ArrayList<Connection>();
+
+				// The ArrayList that will hold the Points of the
+				// WidgetExtendedConnection
+				ArrayList<List<Point>> widConPoints = new ArrayList<List<Point>>();
+
 
 				// The must be at least on connection on the canvas for there to
 				// be saved any connections
-				if ( connections.length > 0 && connections[0] != null )
+				if ( widCons.length > 0 && widCons[0] != null )
 				{
 					// Goes through all the connections on the canvas and adds
 					// them to the ArrayList
-					for ( int i = 0; i < connections.length; i++ )
+					for ( int i = 0; i < widCons.length; i++ )
 					{
-						connectionList.add(connections[i]);
+						// Adds the connection in the WidgetExtendedConnections
+						widConList.add(widCons[i].getConnection());
+
+						// Adds the List of Points inside the
+						// WidgetExtendedConnections
+						widConPoints.add(widCons[i].getControlPoints());
 					}
 				}
 
+
 				// Writes out the connections ArrayList, even if it is empty
-				oos.writeObject(connectionList);
+				oos.writeObject(widConList);
+
+				// Writes out the Points ArrayList, even if it is empty
+				oos.writeObject(widConPoints);
 
 				oos.flush();
+
+
+				// // The canvas connections
+				// Connection[] connections = canvas.getConnections();
+				//
+				// // The ArrayList that will hold the connections
+				// ArrayList<Connection> connectionList = new
+				// ArrayList<Connection>();
+				//
+				// // The must be at least on connection on the canvas for there
+				// to
+				// // be saved any connections
+				// if ( connections.length > 0 && connections[0] != null )
+				// {
+				// // Goes through all the connections on the canvas and adds
+				// // them to the ArrayList
+				// for ( int i = 0; i < connections.length; i++ )
+				// {
+				// connectionList.add(connections[i]);
+				// }
+				// }
+				//
+				// // Writes out the connections ArrayList, even if it is empty
+				// oos.writeObject(connectionList);
+				//
+				// oos.flush();
 
 				// END OF WRITE CONNECTIONS
 
@@ -461,7 +504,7 @@ public class DesktopFileManagment
 			oos.writeBoolean(managment.Settings.showSoftwareErrorMessages);
 			oos.writeBoolean(managment.Settings.showSoftwareNoticeMessages);
 			oos.writeBoolean(managment.Settings.showSoftwareWarningMessages);
-			oos.writeBoolean(managment.Settings.showTOFD);
+			oos.writeBoolean(managment.Settings.showTOTD);
 			oos.writeBoolean(managment.Settings.showOSicon);
 			oos.writeBoolean(managment.Settings.showIP);
 			oos.writeUTF(managment.Settings.primeLocale.toString());
@@ -1190,14 +1233,7 @@ public class DesktopFileManagment
 			objectList = (ArrayList<Object>) ois.readObject();
 
 			// The size of the new Objects array
-			int objectArraySize = 0;
-
-			// Iterates through the Object list
-			for ( Iterator<Object> it = objectList.iterator(); it.hasNext(); )
-			{
-				objectArraySize++;
-				it.next();
-			}
+			int objectArraySize = objectList.size();
 
 
 			// READS THE NETWORKINFO THAT ARE TO BE PLACED INSIDE THE WIDGET
@@ -1305,18 +1341,21 @@ public class DesktopFileManagment
 			// The ArrayList that will hold all the connections
 			ArrayList<Connection> connectionList = new ArrayList<Connection>();
 
+			// The ArrayList that will hold the Points of the
+			// WidgetExtendedConnection
+			ArrayList<List<Point>> widConPoints = new ArrayList<List<Point>>();
+
 			// Reads inn the ArrayList from the file stream
 			connectionList = (ArrayList<Connection>) ois.readObject();
 
-			// The size of the new Connection array
-			int connectionArraySize = 0;
+			// Reads inn the ArrayList containing List<Point> from the file
+			widConPoints = (ArrayList<List<Point>>) ois.readObject();
 
-			// Iterates through the connection list
-			for ( Iterator it = connectionList.iterator(); it.hasNext(); )
-			{
-				connectionArraySize++;
-				it.next();
-			}
+
+			// The size of the new Connection array(which is also the size of
+			// the Points arraylist)
+			int connectionArraySize = connectionList.size();
+
 
 			// If there were any objects found
 			if ( connectionArraySize > 0 )
@@ -1324,16 +1363,32 @@ public class DesktopFileManagment
 				// The connection array
 				Connection[] connections = new Connection[connectionArraySize];
 
+				// The List<Point> array
+				List<Point>[] points = new List[connectionArraySize];
+
 				// The index of the connection array
 				int connectionIndex = 0;
 
+				// The index of the List<Point> array
+				int pointIndex = 0;
+
+
 				// Iterates through the list and adds the connections to the
 				// connections array
-				for ( Iterator<Connection> it = connectionList.iterator(); it
+				for ( Iterator<Connection> conIt = connectionList.iterator(); conIt
 						.hasNext(); )
 				{
-					connections[connectionIndex] = it.next();
+					connections[connectionIndex] = conIt.next();
 					connectionIndex++;
+				}
+
+				// Iterates through the list and adds the List<Point> to the
+				// List<Point> array
+				for ( Iterator<List<Point>> pointIt = widConPoints.iterator(); pointIt
+						.hasNext(); )
+				{
+					points[pointIndex] = pointIt.next();
+					pointIndex++;
 				}
 
 
@@ -1346,7 +1401,7 @@ public class DesktopFileManagment
 						// Creates the connection between the two devices on the
 						// scene.
 						WidgetExtendedConnection connection = new WidgetExtendedConnection(
-								canvas.getScene(), connections[i]);
+								canvas, connections[i]);
 
 
 						// Find the two object which are to be connected on the
@@ -1368,6 +1423,10 @@ public class DesktopFileManagment
 						ActionsAdder.makeWidgetConnectionReady(canvas,
 								connection);
 
+						// Sets the control Points for the
+						// WidgetExtendedConnection
+						connection.setControlPoints(points[i], true);
+
 						// Add the connection the connection layer
 						canvas.getConnectionLayer().addChild(connection);
 					}
@@ -1388,14 +1447,7 @@ public class DesktopFileManagment
 			roomList = (ArrayList<Room>) ois.readObject();
 
 			// The size of the new Room array
-			int roomArraySize = 0;
-
-			// Iterates through the room list
-			for ( Iterator it = roomList.iterator(); it.hasNext(); )
-			{
-				roomArraySize++;
-				it.next();
-			}
+			int roomArraySize = roomList.size();
 
 			// If there were any objects found
 			if ( roomArraySize > 0 )
@@ -1617,7 +1669,7 @@ public class DesktopFileManagment
 								.readBoolean();
 						managment.Settings.showSoftwareWarningMessages = ois
 								.readBoolean();
-						managment.Settings.showTOFD = ois.readBoolean();
+						managment.Settings.showTOTD = ois.readBoolean();
 						managment.Settings.showOSicon = ois.readBoolean();
 						managment.Settings.showIP = ois.readBoolean();
 						managment.Settings.primeLocale = managment.Settings.systemLocale

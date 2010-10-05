@@ -24,7 +24,9 @@ import graphics.PrimeMain;
 import graphics.GUI.ListDialog;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -66,6 +68,9 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 	// The Widget connection between the two Widgets
 	private WidgetExtendedConnection widCon = null;
+
+	// The list of point that the WidgetExtendedConnection goes through
+	private List<Point> conPoints = null;
 
 	/**
 	 * A constructor for the class that takes a string, the action name, an
@@ -254,7 +259,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 				// Creates the connection between the two devices on the
 				// scene.
 				WidgetExtendedConnection connection = new WidgetExtendedConnection(
-						canvas.getScene(), con);
+						canvas, con);
 
 
 				// Adds the connection to the connections array of each
@@ -270,6 +275,15 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 				// Adds the different actions
 				ActionsAdder.makeWidgetConnectionReady(canvas, connection);
+
+
+				// If the Points list is not null
+				if ( conPoints != null )
+				{
+					// Sets the control Points for the
+					// WidgetExtendedConnection
+					connection.setControlPoints(conPoints, true);
+				}
 
 				// Add the connection the connection layer
 				canvas.getConnectionLayer().addChild(connection);
@@ -309,6 +323,8 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 	@Override
 	public void undo() throws CannotUndoException
 	{
+		conPoints = widCon.getControlPoints();
+
 		// Removes the connection
 		WorkareaCanvasActions.removeWidgetConnection(canvas, widCon);
 
@@ -406,7 +422,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 					// Creates the connection between the two devices on the
 					// scene.
 					WidgetExtendedConnection connection = new WidgetExtendedConnection(
-							canvas.getScene(), con);
+							canvas, con);
 
 
 					// Creates the whole connection with all actions
@@ -416,6 +432,14 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 					// Adds the different actions
 					ActionsAdder.makeWidgetConnectionReady(canvas, connection);
+
+					// If the Points list is not null
+					if ( conPoints != null )
+					{
+						// Sets the control Points for the
+						// WidgetExtendedConnection
+						connection.setControlPoints(conPoints, true);
+					}
 
 					// Add the connection the connection layer
 					canvas.getConnectionLayer().addChild(connection);

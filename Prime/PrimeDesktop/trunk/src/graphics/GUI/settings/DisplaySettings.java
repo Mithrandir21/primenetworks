@@ -107,9 +107,17 @@ public class DisplaySettings extends JPanel
 				.getString("settingsShowWidgetOSiconText"));
 		checkBox[1].setToolTipText(PrimeMain.texts
 				.getString("settingsShowWidgetOSiconText"));
-		d.weighty = 1.0; // request any extra vertical space
 		d.gridy = 1; // row
 		panel.add(checkBox[1], d);
+
+
+		// CheckBox 2 - Display TOTD
+		checkBox[2].setText(PrimeMain.texts.getString("settingsShowTOTDText"));
+		checkBox[2].setToolTipText(PrimeMain.texts
+				.getString("settingsShowTOTDText"));
+		d.weighty = 1.0; // request any extra vertical space
+		d.gridy = 2; // row
+		panel.add(checkBox[2], d);
 
 
 		return panel;

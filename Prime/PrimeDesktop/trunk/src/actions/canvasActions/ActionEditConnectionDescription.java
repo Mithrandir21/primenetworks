@@ -247,8 +247,9 @@ public class ActionEditConnectionDescription extends AbstractSystemAction
 					JOptionPane.PLAIN_MESSAGE, null, null,
 					widCon.getToolTipText());
 
-			// If the gotten description is not null
-			if ( newText != null )
+			// If the gotten description is not null(user can possibly close the
+			// current canvas before pressing ok or cancel.)
+			if ( newText != null && PrimeMain.currentCanvas != null )
 			{
 				// If the gotten description is not the same as the old
 				// description

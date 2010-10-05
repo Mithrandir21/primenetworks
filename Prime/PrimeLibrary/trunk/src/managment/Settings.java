@@ -81,7 +81,7 @@ public class Settings implements Serializable
 
 
 	// SHOW TIP OF THE DAY ON STARTUP
-	public static boolean showTOFD = true;
+	public static boolean showTOTD = true;
 
 
 	// SHOW OPERATING SYSTEM ICON
@@ -161,7 +161,7 @@ public class Settings implements Serializable
 
 
 		// SHOW TIP OF THE DAY ON STARTUP
-		showTOFD = true;
+		showTOTD = true;
 
 
 		// SHOW OPERATING SYSTEM ICON
