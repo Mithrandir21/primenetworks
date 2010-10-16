@@ -54,7 +54,7 @@ import exceptions.ObjectNotFoundInArrayException;
  * components from a given array. It is used in the different parts of the
  * program, specially {@link objects.clientObjects.Desktop Desktops},
  * {@link objects.clientObjects.Laptop Laptops}, {@link objects.Servers Servers}
- * and {@link objects.infrastructureObjects.Rack Racks}.
+ * and {@link objects.rackUnits.Rack Racks}.
  * 
  * @author Bahram Malaekeh
  * @version 0.2
@@ -3011,21 +3011,26 @@ public class ComponentsManagment
 
 		// Copies the components to a new array
 		Object[] oldComponents = copyFrom.getComponents();
-		Object[] newComponents = new Object[oldComponents.length];
 
-		if ( oldComponents[0] != null )
+		if ( oldComponents != null && oldComponents.length > 0 )
 		{
-			for ( int i = 0; i < oldComponents.length; i++ )
+
+			Object[] newComponents = new Object[oldComponents.length];
+
+			if ( oldComponents[0] != null )
 			{
-				newComponents[i] = oldComponents[i].clone();
+				for ( int i = 0; i < oldComponents.length; i++ )
+				{
+					newComponents[i] = oldComponents[i].clone();
+				}
 			}
+
+			// Copies the components of the copyFrom object to copyTo object
+			copyTo.setAllComponents(newComponents);
+
+			// Removes all the connection the newly created object contains.
+			copyTo.removeAllConnections();
 		}
-
-		// Copies the components of the copyFrom object to copyTo object
-		copyTo.setAllComponents(newComponents);
-
-		// Removes all the connection the newly created object contains.
-		copyTo.removeAllConnections();
 
 
 		// --------------------------------------------------

@@ -1,21 +1,21 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package objects.infrastructureObjects;
+package objects.rackUnits;
 
 
 import java.io.Serializable;
@@ -30,8 +30,10 @@ import exceptions.ObjectNotFoundInArrayException;
 
 
 /**
- * This class represents a 19-inch rack. This rack is basically a container for different units, like switches and
- * routers. It contains information about how many different units it can contain, depending on the unit sizes.
+ * This class represents a 19-inch rack. This rack is basically a container for
+ * different units, like switches and
+ * routers. It contains information about how many different units it can
+ * contain, depending on the unit sizes.
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -51,14 +53,12 @@ public class Rack extends Infrastructure implements Serializable
 	private Object[] units;
 
 
-	// The number of units currently contained by the rack.
-	private int unitsCounter;
-
-
 
 	/**
-	 * Constructor for a rack class. This also creates an array that contains a given number of object entires to
-	 * contain the different units placed within the rack. It also sets the number of currently contained units and the
+	 * Constructor for a rack class. This also creates an array that contains a
+	 * given number of object entries to
+	 * contain the different units placed within the rack. It also sets the
+	 * number of currently contained units and the
 	 * number of currently occupied shelfs to 0.
 	 * 
 	 * @param Name
@@ -76,17 +76,14 @@ public class Rack extends Infrastructure implements Serializable
 
 		this.units = new Object[rackShelfs];
 
-		this.unitsCounter = 0;
-
 		this.occupiedShelfs = 0;
-
 	}
 
 
 
 
 
-	// Get and Set methods for retrieving all datafields.
+	// Get and Set methods for retrieving all data fields.
 
 
 	// GET METHODES
@@ -132,7 +129,8 @@ public class Rack extends Infrastructure implements Serializable
 
 
 	/**
-	 * Replaces the array that contains all the racks units with another array of units.
+	 * Replaces the array that contains all the racks units with another array
+	 * of units.
 	 * 
 	 * @param units
 	 *            The units that will replace the previous units.
@@ -147,7 +145,8 @@ public class Rack extends Infrastructure implements Serializable
 	// CLASS METHODES
 
 	/**
-	 * Get specific units, like routers and switches, by searching for units with the give class type.
+	 * Get specific units, like routers and switches, by searching for units
+	 * with the give class type.
 	 * 
 	 * @return Returns an array of units that match with the given class.
 	 */
@@ -155,7 +154,7 @@ public class Rack extends Infrastructure implements Serializable
 			throws ObjectNotFoundException
 	{
 		Object[] unitsFound = ArrayManagment.getSpesificComponents(unitClass,
-				this.units, this.unitsCounter);
+				this.units, this.units.length);
 
 		return unitsFound;
 	}
@@ -170,17 +169,14 @@ public class Rack extends Infrastructure implements Serializable
 	public boolean addUnits(Object[] NewUnits)
 	{
 		/*
-		 * If the number of shelfs needed by the new units is not bigger then the number of shelfs available, the units
+		 * If the number of shelfs needed by the new units is not bigger then
+		 * the number of shelfs available, the units
 		 * will be installed.
 		 */
 		if ( !(RackFunctions.calculateShelfSpace(NewUnits) > (this.numberOfShelfs - this.occupiedShelfs)) )
 		{
-			this.units = ComponentsManagment.addComponents(NewUnits, this.units,
-					this.unitsCounter);
-
-			// Sets the new count for number of components in the array
-
-			this.unitsCounter = units.length;
+			this.units = ComponentsManagment.addComponents(NewUnits,
+					this.units, this.units.length);
 
 			return true;
 		}
@@ -201,16 +197,14 @@ public class Rack extends Infrastructure implements Serializable
 	public boolean changeUnit(Object NewUnit, Object OldUnit)
 	{
 		/*
-		 * If the number of shelfs needed by the new units is not bigger then the number of shelfs available, the units
+		 * If the number of shelfs needed by the new units is not bigger then
+		 * the number of shelfs available, the units
 		 * will be installed.
 		 */
 		if ( !(RackFunctions.calculateShelfSpace(NewUnit) > (this.numberOfShelfs - this.occupiedShelfs)) )
 		{
 			this.units = ComponentsManagment.changeComponent(NewUnit, OldUnit,
-					this.units, this.unitsCounter);
-
-			// Sets the new count for number of components in the array
-			this.unitsCounter = units.length;
+					this.units, this.units.length);
 
 			return true;
 		}
@@ -228,13 +222,7 @@ public class Rack extends Infrastructure implements Serializable
 	public void removeComponent(Object[] ToBeRemoved)
 			throws ObjectNotFoundInArrayException
 	{
-		this.units = ComponentsManagment.removeComponents(ToBeRemoved, this.units,
-				this.unitsCounter);
-
-		// Sets the new count for number of components in the array
-		this.unitsCounter = units.length;
+		this.units = ComponentsManagment.removeComponents(ToBeRemoved,
+				this.units, this.units.length);
 	}
-
-
-
 }

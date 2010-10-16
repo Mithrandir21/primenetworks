@@ -247,6 +247,10 @@ public class MakeSystemImageIcons
 
 		// Internet
 		setupImage(26, "Internet");
+
+
+		// Internet
+		setupImage(27, "Rack");
 	}
 
 

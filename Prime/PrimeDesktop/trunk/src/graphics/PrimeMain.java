@@ -27,6 +27,7 @@ import graphics.GUI.messageArea.MessageTabbed;
 import graphics.GUI.objectView.ObjectView;
 import graphics.GUI.programGUI.TipOfDay;
 import graphics.GUI.properties.PropertiesArea;
+import graphics.GUI.rackOverview.RackOverview;
 import graphics.GUI.selectArea.TabbedSelection;
 import graphics.GUI.standardObjectEdit.StandardObjects;
 import graphics.GUI.statusArea.PrimeStatusBar;
@@ -79,12 +80,14 @@ import managment.MakeStandardInternalComponents;
 import managment.MakeStandardSoftware;
 import managment.Settings;
 import objects.Object;
+import objects.rackUnits.Rack;
 import objects.softwareObjects.OperatingSystem;
 
 import org.jdesktop.swingx.JXMultiSplitPane;
 import org.jdesktop.swingx.MultiSplitLayout;
 import org.jdesktop.swingx.MultiSplitLayout.Node;
 
+import updatePrime.PrimeDesktopUpdateService;
 import widgetManipulation.NetworkRules;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
@@ -157,8 +160,12 @@ public class PrimeMain extends JFrame
 	// by Users.
 	public static ArrayList<OperatingSystem> system_custom_OS = new ArrayList<OperatingSystem>();
 
-	// The variable for the object that is in view.
+	// The variable for the objects that are in view.
 	public static ArrayList<ObjectView> objView = new ArrayList<ObjectView>(1);
+
+	// The variable for the racks that are in view.
+	public static ArrayList<RackOverview> rackView = new ArrayList<RackOverview>(
+			1);
 
 	// The variable for the view of the standard object view.
 	public static StandardObjects stdObjView;
@@ -518,7 +525,7 @@ public class PrimeMain extends JFrame
 	{
 		PrimeMain temp = new PrimeMain();
 
-		// new PrimeDesktopUpdateService();
+		new PrimeDesktopUpdateService();
 
 		// services = new PrimeService();
 
@@ -812,6 +819,29 @@ public class PrimeMain extends JFrame
 
 
 	/**
+	 * Searches the racks views that exist to find the given rack as one of
+	 * the views main rack. If found that view is returned.
+	 */
+	public static RackOverview getRackView(Rack rackObj)
+	{
+		Iterator<RackOverview> i = rackView.iterator();
+		while ( i.hasNext() )
+		{
+			RackOverview rackViewTest = i.next();
+
+			if ( rackObj.equals(rackViewTest.getRackObject()) )
+			{
+				return rackViewTest;
+			}
+
+		}
+
+		return null;
+	}
+
+
+
+	/**
 	 * Adds a view to the arraylist of views.
 	 */
 	public static void addObjectView(ObjectView view)
@@ -831,6 +861,31 @@ public class PrimeMain extends JFrame
 		if ( view != null )
 		{
 			objView.remove(view);
+		}
+	}
+
+
+
+	/**
+	 * Adds a view to the arraylist of views.
+	 */
+	public static void addRackView(RackOverview view)
+	{
+		rackView.add(view);
+	}
+
+
+	/**
+	 * Removes the view, if it exist, that has as its main object the given
+	 * object.
+	 */
+	public static void removeRackView(Rack obj)
+	{
+		RackOverview view = getRackView(obj);
+
+		if ( view != null )
+		{
+			rackView.remove(view);
 		}
 	}
 

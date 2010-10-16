@@ -33,7 +33,7 @@ import exceptions.StringNotFoundInArrayException;
  * components from a given array. It is used in the different parts of the
  * program, specially {@link objects.clientObjects.Desktop Desktops},
  * {@link objects.clientObjects.Laptop Laptops}, {@link objects.Servers Servers}
- * and {@link objects.infrastructureObjects.Rack Racks}.
+ * and {@link objects.rackUnits.Rack Racks}.
  * 
  * @author Bahram Malaekeh
  * @version 0.1

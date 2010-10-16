@@ -49,6 +49,7 @@ import objects.peripheralObjects.NetworkMultifunctionPrinter;
 import objects.peripheralObjects.NetworkPrinter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
+import objects.rackUnits.Rack;
 import objects.serverObjects.AntivirusServer;
 import objects.serverObjects.BackupServer;
 import objects.serverObjects.DatabaseServer;
@@ -161,6 +162,10 @@ public class ObjectSelection extends JPanel
 
 		// Adds the group panel to the collapsible container
 		tpc.add(initInfrastructureButtonIcons(mouseLis, transferable));
+
+
+		// // Adds the group panel to the collapsible container
+		// tpc.add(initRackButtonIcons(mouseLis, transferable));
 
 
 
@@ -284,6 +289,23 @@ public class ObjectSelection extends JPanel
 		return getWidgetGroup(
 				PrimeMain.texts.getString("selectAreaNetworkGroupName"),
 				widIcons, false);
+	}
+
+	/**
+	 * TODO - Description
+	 */
+	private JXTaskPane initRackButtonIcons(MouseListener mouseLis,
+			boolean transferable)
+	{
+		ArrayList<WidgetIcon> iconsList = new ArrayList<WidgetIcon>();
+
+		iconsList.add(makeImageIcon(Rack.class, mouseLis, transferable));
+
+		WidgetIcon[] widIcons = new WidgetIcon[iconsList.size()];
+		iconsList.toArray(widIcons);
+
+
+		return getWidgetGroup("Racks", widIcons, false);
 	}
 
 

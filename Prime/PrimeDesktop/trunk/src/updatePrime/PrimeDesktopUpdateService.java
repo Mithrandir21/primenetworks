@@ -29,6 +29,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.UnknownHostException;
 
+import managment.Settings;
+
 
 /**
  * This class contains method that help the system determine if the current
@@ -54,10 +56,10 @@ public class PrimeDesktopUpdateService
 
 		if ( newestVersion != null )
 		{
-			// if ( !newestVersion.equalsIgnoreCase(Settings.appVersion) )
-			// {
-			new UpdateDialog();
-			// }
+			if ( !newestVersion.equalsIgnoreCase(Settings.appVersion) )
+			{
+				new UpdateDialog();
+			}
 		}
 	}
 

@@ -42,6 +42,8 @@ import objects.peripheralObjects.NetworkMultifunctionPrinter;
 import objects.peripheralObjects.NetworkPrinter;
 import objects.peripheralObjects.Printer;
 import objects.peripheralObjects.Scanner;
+import objects.rackUnits.Rack;
+import objects.rackUnits.RackUnit;
 import objects.serverObjects.AntivirusServer;
 import objects.serverObjects.BackupServer;
 import objects.serverObjects.DatabaseServer;
@@ -77,12 +79,16 @@ public class CreateObjects
 	 *            object.
 	 * @return Object The newly created standard object.
 	 */
-	public Object CreateObject(WidgetIcon iconObject,
+	public static Object CreateObject(WidgetIcon iconObject,
 			int numberOfWidgetsOnTheScene)
 	{
 		Object newObject = null;
 		String objectType = iconObject.getClassType().getSimpleName();
+		String test = iconObject.getIcon().toString();
 		String desc = iconObject.getDescription();
+
+		System.out.println(objectType);
+		System.out.println(test);
 
 		try
 		{
@@ -196,6 +202,22 @@ public class CreateObjects
 			{
 				newObject = createDefaultInternet(desc);
 			}
+			else if ( objectType.equals("Rack") )
+			{
+				newObject = createDefaultRack(desc);
+			}
+			else if ( objectType.equals("RackHub") )
+			{
+				newObject = createDefaultRackUnitWithObject(Hub.class, desc);
+			}
+			else if ( objectType.equals("RackRouter") )
+			{
+				newObject = createDefaultRackUnitWithObject(Router.class, desc);
+			}
+			else if ( objectType.equals("RackSwitch") )
+			{
+				newObject = createDefaultRackUnitWithObject(Switch.class, desc);
+			}
 		}
 
 		// Makes a exact copy of the object
@@ -243,6 +265,27 @@ public class CreateObjects
 		PrimeMain.objectlist.add(createDefaultModem(""));
 		PrimeMain.objectlist.add(createDefaultWirelessRouter(""));
 		PrimeMain.objectlist.add(createDefaultInternet(""));
+		PrimeMain.objectlist.add(createDefaultRack(""));
+		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+				AntivirusServer.class, ""));
+		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+				BackupServer.class, ""));
+		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+				DatabaseServer.class, ""));
+		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+				FirewallServer.class, ""));
+		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+				HTTPServer.class, ""));
+		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+				MailServer.class, ""));
+		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+				NASServer.class, ""));
+		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+				PrinterServer.class, ""));
+		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+				ProxyServer.class, ""));
+		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+				VirtualizationServer.class, ""));
 	}
 
 
@@ -1294,15 +1337,6 @@ public class CreateObjects
 		Internet temp = new Internet(objectName, objectDesc, objectName,
 				SupConInt, objectMB);
 
-		// // Internal Wireless NIC
-		// InternalNetworksCard intNIC = PrimeMain1.standard_internal_components
-		// .getSt_IntNIC();
-		// intNIC.setType(ConnectionUtils.Coax);
-		//
-		// // Add the internal NIC to the list of components on the Object(not
-		// the
-		// // "st_components" array of this class)
-		// temp.addComponent(intNIC);
 
 		String[] supportedConnectionInterfaces = ComponentsManagment
 				.getSupportedInterfaces(temp);
@@ -1312,4 +1346,100 @@ public class CreateObjects
 
 		return temp;
 	}
+
+
+
+
+	// RACK OBJECTS
+
+
+	private static Rack createDefaultRack(String desc)
+	{
+		String objectName = PrimeMain.texts.getString("rack");
+		String objectDesc = desc;
+
+		String[] SupConInt = {};
+
+		if ( objectDesc.equals("") )
+		{
+			objectDesc = objectName;
+		}
+
+
+		Rack rack = new Rack(objectName, objectDesc, SupConInt, 24);
+
+		return rack;
+	}
+
+
+
+	private static RackUnit createDefaultRackUnitWithObject(Class<?> classType,
+			String desc)
+	{
+		Object obj = null;
+
+		if ( classType.equals(Hub.class) )
+		{
+			obj = createDefaultHub(desc);
+		}
+		else if ( classType.equals(Router.class) )
+		{
+			obj = createDefaultRouter(desc);
+		}
+		else if ( classType.equals(Switch.class) )
+		{
+			obj = createDefaultSwitch(desc);
+		}
+		else if ( classType.equals(AntivirusServer.class) )
+		{
+			obj = createDefaultAntivirusServer(desc);
+		}
+		else if ( classType.equals(BackupServer.class) )
+		{
+			obj = createDefaultBackupServer(desc);
+		}
+		else if ( classType.equals(DatabaseServer.class) )
+		{
+			obj = createDefaultDatabaseServer(desc);
+		}
+		else if ( classType.equals(FirewallServer.class) )
+		{
+			obj = createDefaultFirewallServer(desc);
+		}
+		else if ( classType.equals(HTTPServer.class) )
+		{
+			obj = createDefaultHTTPServer(desc);
+		}
+		else if ( classType.equals(MailServer.class) )
+		{
+			obj = createDefaultMailServer(desc);
+		}
+		else if ( classType.equals(NASServer.class) )
+		{
+			obj = createDefaultNASServer(desc);
+		}
+		else if ( classType.equals(PrinterServer.class) )
+		{
+			obj = createDefaultPrinterServer(desc);
+		}
+		else if ( classType.equals(ProxyServer.class) )
+		{
+			obj = createDefaultProxyServer(desc);
+		}
+		else if ( classType.equals(VirtualizationServer.class) )
+		{
+			obj = createDefaultVirtualizationServer(desc);
+		}
+
+
+		if ( obj != null )
+		{
+			return new RackUnit(obj.getObjectName(), obj.getDescription(), obj);
+		}
+
+
+		// If no object was created.
+		return null;
+	}
+
 }

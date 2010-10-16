@@ -330,7 +330,7 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 
 				// Creates a new Object that will be added to the WidgetObject
-				newObject = new CreateObjects().CreateObject(newObjectIcon,
+				newObject = CreateObjects.CreateObject(newObjectIcon,
 						canvas.getNumberOfWidgetsOnTheScene());
 
 				// Creates a new WidgetObject that will be added to the scene

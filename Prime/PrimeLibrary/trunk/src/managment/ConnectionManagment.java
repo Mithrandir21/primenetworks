@@ -650,6 +650,34 @@ public class ConnectionManagment
 
 
 	/**
+	 * Checks to see if the given device support the connecting interface.
+	 * 
+	 * @return Returns true if both the devices support the interface, and false
+	 *         if one or both do not support the interface.
+	 */
+	public static boolean checkDeviceConnectiontypeSupport(Object objectA,
+			String type)
+	{
+		// Gets the supported connection interfaces of the devices
+		String[] connectionTypesA = objectA.getSupportedConnectionInterfaces();
+
+		// Checks to see if object A supports the connection type
+		for ( int i = 0; i < connectionTypesA.length; i++ )
+		{
+			if ( type.equals(connectionTypesA[i]) )
+			{
+				return true;
+			}
+		}
+
+		// Else it will return false, to show the given devices does not support
+		// the type
+		return false;
+	}
+
+
+
+	/**
 	 * Checks to see if a connections array contains any connections between
 	 * object A and object B.
 	 * 

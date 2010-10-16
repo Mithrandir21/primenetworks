@@ -1,31 +1,30 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package logistical;
 
 
 import objects.Object;
-import objects.infrastructureObjects.RackHub;
-import objects.infrastructureObjects.RackRouter;
-import objects.infrastructureObjects.RackSwitch;
+import objects.rackUnits.RackUnit;
 
 
 /**
- * Functions class that contains functions to manage and manipulate the content of a rack. Functions like calculating
+ * Functions class that contains functions to manage and manipulate the content
+ * of a rack. Functions like calculating
  * shelf space.
  * 
  * @author Bahram Malaekeh
@@ -35,7 +34,8 @@ public class RackFunctions
 {
 
 	/**
-	 * Calculates the number of shelfs needed to contain all the units in the given array of units.
+	 * Calculates the number of shelfs needed to contain all the units in the
+	 * given array of units.
 	 * 
 	 * @return The number of shelfs needed.
 	 */
@@ -47,21 +47,9 @@ public class RackFunctions
 
 		for ( int i = 0; i < RackUnits.length; i++ )
 		{
-			if ( RackUnits[i].getClass().equals(RackRouter.class) )
+			if ( RackUnits[i] instanceof RackUnit )
 			{
-				RackRouter temp = (RackRouter) RackUnits[i];
-
-				numberOfShelfs += temp.getUnitSize();
-			}
-			else if ( RackUnits[i].getClass().equals(RackHub.class) )
-			{
-				RackHub temp = (RackHub) RackUnits[i];
-
-				numberOfShelfs += temp.getUnitSize();
-			}
-			else if ( RackUnits[i].getClass().equals(RackSwitch.class) )
-			{
-				RackSwitch temp = (RackSwitch) RackUnits[i];
+				RackUnit temp = (RackUnit) RackUnits[i];
 
 				numberOfShelfs += temp.getUnitSize();
 			}
@@ -82,21 +70,9 @@ public class RackFunctions
 		// The number of shelfs needed
 		int numberOfShelfs = 0;
 
-		if ( RackUnits.getClass().equals(RackRouter.class) )
+		if ( RackUnits instanceof RackUnit )
 		{
-			RackRouter temp = (RackRouter) RackUnits;
-
-			numberOfShelfs += temp.getUnitSize();
-		}
-		else if ( RackUnits.getClass().equals(RackHub.class) )
-		{
-			RackHub temp = (RackHub) RackUnits;
-
-			numberOfShelfs += temp.getUnitSize();
-		}
-		else if ( RackUnits.getClass().equals(RackSwitch.class) )
-		{
-			RackSwitch temp = (RackSwitch) RackUnits;
+			RackUnit temp = (RackUnit) RackUnits;
 
 			numberOfShelfs += temp.getUnitSize();
 		}

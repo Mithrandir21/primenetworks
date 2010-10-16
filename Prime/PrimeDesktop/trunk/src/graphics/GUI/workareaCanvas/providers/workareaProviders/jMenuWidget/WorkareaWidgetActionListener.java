@@ -20,6 +20,7 @@ package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuWidget;
 
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
+import graphics.GUI.rackOverview.RackOverview;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +28,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 
 import managment.DesktopCanvasManagment;
+import objects.rackUnits.Rack;
 
 import org.netbeans.api.visual.widget.Widget;
 
@@ -89,26 +91,62 @@ public class WorkareaWidgetActionListener implements ActionListener
 				// If there exists no group dialog
 				if ( PrimeMain.groupsDialog == null )
 				{
-					// Gets the view, if there exist any, with the given object
-					ObjectView view = PrimeMain.getObjectView(widget
-							.getObject());
-
-					// There exist no view with the given object.
-					// Which means that there exist no open view for the given
-					// object.
-					if ( view == null )
+					if ( widget.getObject() instanceof Rack )
 					{
-						// Creates a new ObjectView object with the WidgetObject
-						// that has been cast.
-						ObjectView objView = new ObjectView(widget);
+						Rack rackObj = (Rack) widget.getObject();
 
-						// Adds the view to the arraylist of object views.
-						PrimeMain.addObjectView(objView);
+						// Gets the view, if there exist any, with the given
+						// Rack
+						RackOverview view = PrimeMain.getRackView(rackObj);
+
+						// There exist no view with the given Rack.
+						// Which means that there exist no open view for the
+						// given Rack.
+						if ( view == null )
+						{
+							// Creates a new RackOverview with the
+							// WidgetObject that has been cast.
+							RackOverview rackView = new RackOverview(widget);
+
+							// Adds the view to the arraylist of object
+							// views.
+							PrimeMain.addRackView(rackView);
+						}
+						else
+						{
+							// Brings the pre-existing ObjectView to the
+							// front.
+							view.toFront();
+							// JOptionPane.showMessageDialog(null,
+							// "Only one object can be edited at a time.");
+						}
 					}
 					else
 					{
-						// Brings the pre-existing ObjectView to the front.
-						view.toFront();
+						// Gets the view, if there exist any, with the given
+						// object
+						ObjectView view = PrimeMain.getObjectView(widget
+								.getObject());
+
+						// There exist no view with the given object.
+						// Which means that there exist no open view for the
+						// given
+						// object.
+						if ( view == null )
+						{
+							// Creates a new ObjectView object with the
+							// WidgetObject
+							// that has been cast.
+							ObjectView objView = new ObjectView(widget);
+
+							// Adds the view to the arraylist of object views.
+							PrimeMain.addObjectView(objView);
+						}
+						else
+						{
+							// Brings the pre-existing ObjectView to the front.
+							view.toFront();
+						}
 					}
 				}
 				else

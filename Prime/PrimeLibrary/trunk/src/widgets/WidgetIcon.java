@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package widgets;
 
@@ -26,15 +26,18 @@ import javax.swing.JLabel;
 
 
 /**
- * The WidgetIcon class represents an JLabel based icon that represents an {@link objects.Object
- * Object} within the system. This is a dragable object that can be dropped within the {@link widgets.WorkareaCanvas Canvas}.
+ * The WidgetIcon class represents an JLabel based icon that represents an
+ * {@link objects.Object
+ * Object} within the system. This is a dragable object that can be dropped
+ * within the {@link widgets.WorkareaCanvas Canvas}.
  * 
  * @author Bahram Malaekeh
  */
 public class WidgetIcon extends JLabel
 {
 	/**
-	 * This represents the class type what the icon represents. Like {@link objects.clientObjects.Desktop Desktop}.
+	 * This represents the class type what the icon represents. Like
+	 * {@link objects.clientObjects.Desktop Desktop}.
 	 */
 	private Class<?> classType;
 
@@ -52,14 +55,18 @@ public class WidgetIcon extends JLabel
 
 
 	/**
-	 * A constructor that creates a JLabel icon with the given ImageIcon and sets the classType of
-	 * the represented {@link objects.Object Object}. The constructor also adds a mouseListener and
+	 * A constructor that creates a JLabel icon with the given ImageIcon and
+	 * sets the classType of
+	 * the represented {@link objects.Object Object}. The constructor also adds
+	 * a mouseListener and
 	 * sets a transferhandler for the JLabel icon.
 	 * 
 	 * @param icon
-	 *            The icon that is to represent the {@link objects.Object Object}.
+	 *            The icon that is to represent the {@link objects.Object
+	 *            Object}.
 	 * @param objectType
-	 *            The object class of the represented {@link objects.Object Object}.
+	 *            The object class of the represented {@link objects.Object
+	 *            Object}.
 	 */
 	public WidgetIcon(ImageIcon icon, Class<?> objectType)
 	{
@@ -71,14 +78,18 @@ public class WidgetIcon extends JLabel
 
 
 	/**
-	 * A constructor that creates a JLabel icon with the given ImageIcon, sets the classType of the
-	 * represented {@link objects.Object Object} and gives the JLabel icon a name. The constructor
+	 * A constructor that creates a JLabel icon with the given ImageIcon, sets
+	 * the classType of the
+	 * represented {@link objects.Object Object} and gives the JLabel icon a
+	 * name. The constructor
 	 * also adds a mouseListener and sets a transferhandler for the JLabel icon.
 	 * 
 	 * @param icon
-	 *            The icon that is to represent the {@link objects.Object Object}.
+	 *            The icon that is to represent the {@link objects.Object
+	 *            Object}.
 	 * @param objectType
-	 *            The object class of the represented {@link objects.Object Object}.
+	 *            The object class of the represented {@link objects.Object
+	 *            Object}.
 	 * @param name
 	 *            The name of the JLabel.
 	 */
@@ -92,15 +103,20 @@ public class WidgetIcon extends JLabel
 
 
 	/**
-	 * A constructor that creates a JLabel icon with the given ImageIcon, sets the classType of the
-	 * represented {@link objects.Object Object}, gives the JLabel icon a name and sets a
-	 * description of the object representer. The constructor also adds a mouseListener and sets a
+	 * A constructor that creates a JLabel icon with the given ImageIcon, sets
+	 * the classType of the
+	 * represented {@link objects.Object Object}, gives the JLabel icon a name
+	 * and sets a
+	 * description of the object representer. The constructor also adds a
+	 * mouseListener and sets a
 	 * transferhandler for the JLabel icon.
 	 * 
 	 * @param icon
-	 *            The icon that is to represent the {@link objects.Object Object}.
+	 *            The icon that is to represent the {@link objects.Object
+	 *            Object}.
 	 * @param objectType
-	 *            The object class of the represented {@link objects.Object Object}.
+	 *            The object class of the represented {@link objects.Object
+	 *            Object}.
 	 * @param name
 	 *            The name of the JLabel.
 	 * @param desc
@@ -120,7 +136,8 @@ public class WidgetIcon extends JLabel
 	// GETTERS
 
 	/**
-	 * @return The class of the {@link objects.Object Object} that the JLabel icon represents.
+	 * @return The class of the {@link objects.Object Object} that the JLabel
+	 *         icon represents.
 	 */
 	public Class<?> getClassType()
 	{
@@ -129,7 +146,8 @@ public class WidgetIcon extends JLabel
 
 
 	/**
-	 * @return The description of the {@link objects.Object Object} that the JLabel icon represents.
+	 * @return The description of the {@link objects.Object Object} that the
+	 *         JLabel icon represents.
 	 */
 	public String getDescription()
 	{

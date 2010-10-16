@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Hardware.HardwareView.Overview;
 
@@ -48,6 +48,7 @@ import objects.hardwareObjects.HDD;
 import objects.hardwareObjects.InternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
 import objects.hardwareObjects.Ram;
+import objects.rackUnits.Rack;
 
 
 /**
@@ -128,439 +129,449 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		d2.gridx = 0; // column
 
 
-		for ( int i = 0; i < hwObj.length; i++ )
+		if ( hwObj != null && hwObj.length > 0 )
 		{
-			if ( hwObj[i] instanceof Motherboard )
+			for ( int i = 0; i < hwObj.length; i++ )
 			{
-				temp = PrimeMain.objectImageIcons.get(Motherboard.class);
-
-				Motherboard mbObj = (Motherboard) hwObj[i];
-
-				info = new String[5];
-
-				String text = null;
-
-				text = mbObj.getObjectName();
-				if ( text != null && text.length() > 0 )
+				if ( hwObj[i] instanceof Motherboard )
 				{
-					info[0] = text;
+					temp = PrimeMain.objectImageIcons.get(Motherboard.class);
+
+					Motherboard mbObj = (Motherboard) hwObj[i];
+
+					info = new String[5];
+
+					String text = null;
+
+					text = mbObj.getObjectName();
+					if ( text != null && text.length() > 0 )
+					{
+						info[0] = text;
+					}
+
+					text = mbObj.getForm();
+					if ( text != null && text.length() > 0 )
+					{
+						info[1] = PrimeMain.texts.getString("hwTabFormLabel")
+								+ ": " + text;
+					}
+
+					text = mbObj.getSocket();
+					if ( text != null && text.length() > 0 )
+					{
+						info[2] = PrimeMain.texts.getString("hwTabSocketLabel")
+								+ ": " + text;
+					}
+
+					text = mbObj.getGraphicalPort();
+					if ( text != null && text.length() > 0 )
+					{
+						info[3] = PrimeMain.texts
+								.getString("hwTabGPUslotLabel") + ": " + text;
+					}
+
+					text = mbObj.getDescription();
+					if ( text != null && text.length() > 0 )
+					{
+						info[4] = text;
+					}
+
+
+				}
+				else if ( hwObj[i] instanceof CPU )
+				{
+					temp = PrimeMain.objectImageIcons.get(CPU.class);
+
+					CPU cpuObj = (CPU) hwObj[i];
+
+					info = new String[4];
+
+					String text = null;
+
+					text = cpuObj.getObjectName();
+					if ( text != null && text.length() > 0 )
+					{
+						info[0] = text;
+					}
+
+					text = cpuObj.getProducer();
+					if ( text != null && text.length() > 0 )
+					{
+						info[1] = PrimeMain.texts
+								.getString("hwTabProducerLabel") + ": " + text;
+					}
+
+					text = cpuObj.getSocket();
+					if ( text != null && text.length() > 0 )
+					{
+						info[2] = PrimeMain.texts.getString("hwTabSocketLabel")
+								+ ": " + text;
+					}
+
+					text = cpuObj.getDescription();
+					if ( text != null && text.length() > 0 )
+					{
+						info[3] = text;
+					}
+
+
+				}
+				else if ( hwObj[i] instanceof HDD )
+				{
+					temp = PrimeMain.objectImageIcons.get(HDD.class);
+
+					HDD hddObj = (HDD) hwObj[i];
+
+					info = new String[5];
+
+					String text = null;
+
+					text = hddObj.getObjectName();
+					if ( text != null && text.length() > 0 )
+					{
+						info[0] = text;
+					}
+
+					text = hddObj.getProducer();
+					if ( text != null && text.length() > 0 )
+					{
+						info[1] = PrimeMain.texts
+								.getString("hwTabProducerLabel") + ": " + text;
+					}
+
+					text = hddObj.getSubtype();
+					if ( text != null && text.length() > 0 )
+					{
+						info[2] = PrimeMain.texts.getString("hwTabTypeLabel")
+								+ ": " + text;
+					}
+
+					if ( hddObj.getSize() != 0 )
+					{
+						info[3] = PrimeMain.texts.getString("hwTabSizeLabel")
+								+ ": " + Integer.toString(hddObj.getSize());
+					}
+
+					text = hddObj.getDescription();
+					if ( text != null && text.length() > 0 )
+					{
+						info[4] = text;
+					}
+
+				}
+				else if ( hwObj[i] instanceof Ram )
+				{
+					temp = PrimeMain.objectImageIcons.get(Ram.class);
+
+					Ram ramObj = (Ram) hwObj[i];
+
+					info = new String[5];
+
+					String text = null;
+
+					text = ramObj.getObjectName();
+					if ( text != null && text.length() > 0 )
+					{
+						info[0] = text;
+					}
+
+					text = ramObj.getProducer();
+					if ( text != null && text.length() > 0 )
+					{
+						info[1] = PrimeMain.texts
+								.getString("hwTabProducerLabel") + ": " + text;
+					}
+
+					text = ramObj.getSubtype();
+					if ( text != null && text.length() > 0 )
+					{
+						info[2] = PrimeMain.texts.getString("hwTabTypeLabel")
+								+ ": " + text;
+					}
+
+					if ( ramObj.getSize() != 0 )
+					{
+						info[3] = PrimeMain.texts.getString("hwTabSizeLabel")
+								+ ": " + Integer.toString(ramObj.getSize());
+					}
+
+					text = ramObj.getDescription();
+					if ( text != null && text.length() > 0 )
+					{
+						info[4] = text;
+					}
+
+				}
+				else if ( hwObj[i] instanceof Discdrive )
+				{
+					temp = PrimeMain.objectImageIcons.get(Discdrive.class);
+
+					Discdrive discObj = (Discdrive) hwObj[i];
+
+					info = new String[5];
+
+					String text = null;
+
+					text = discObj.getObjectName();
+					if ( text != null && text.length() > 0 )
+					{
+						info[0] = text;
+					}
+
+					text = discObj.getProducer();
+					if ( text != null && text.length() > 0 )
+					{
+						info[1] = PrimeMain.texts
+								.getString("hwTabProducerLabel") + ": " + text;
+					}
+
+					text = discObj.getSubtype();
+					if ( text != null && text.length() > 0 )
+					{
+						info[2] = PrimeMain.texts.getString("hwTabTypeLabel")
+								+ ": " + text;
+					}
+
+					if ( discObj.getSpeed() != 0 )
+					{
+						info[3] = PrimeMain.texts.getString("hwTabSpeedLabel")
+								+ ": " + Integer.toString(discObj.getSpeed());
+					}
+
+					text = discObj.getDescription();
+					if ( text != null && text.length() > 0 )
+					{
+						info[4] = text;
+					}
+
+				}
+				else if ( hwObj[i] instanceof GraphicsCard )
+				{
+					temp = PrimeMain.objectImageIcons.get(GraphicsCard.class);
+
+					GraphicsCard gpuObj = (GraphicsCard) hwObj[i];
+
+					info = new String[5];
+
+					String text = null;
+
+					text = gpuObj.getObjectName();
+					if ( !gpuObj.getObjectName().equals("")
+							&& gpuObj.getObjectName() != null )
+					{
+						info[0] = gpuObj.getObjectName();
+					}
+
+					text = gpuObj.getProducer();
+					if ( text != null && text.length() > 0 )
+					{
+						info[1] = PrimeMain.texts
+								.getString("hwTabProducerLabel") + ": " + text;
+					}
+
+					text = gpuObj.getOutputInterface();
+					if ( text != null && text.length() > 0 )
+					{
+						info[2] = PrimeMain.texts.getString("hwTabOutputLabel")
+								+ ": " + text;
+					}
+
+					if ( gpuObj.getSpeed() != 0 )
+					{
+						info[3] = PrimeMain.texts.getString("hwTabSpeedLabel")
+								+ ": " + Integer.toString(gpuObj.getSpeed());
+					}
+
+					text = gpuObj.getDescription();
+					if ( text != null && text.length() > 0 )
+					{
+						info[4] = text;
+					}
+
+				}
+				else if ( hwObj[i] instanceof InternalNetworksCard )
+				{
+					temp = PrimeMain.objectImageIcons
+							.get(InternalNetworksCard.class);
+
+					InternalNetworksCard nicObj = (InternalNetworksCard) hwObj[i];
+
+					info = new String[5];
+
+					String text = null;
+
+					text = nicObj.getObjectName();
+					if ( text != null && text.length() > 0 )
+					{
+						info[0] = text;
+					}
+
+					text = nicObj.getProducer();
+					if ( text != null && text.length() > 0 )
+					{
+						info[1] = PrimeMain.texts
+								.getString("hwTabProducerLabel") + ": " + text;
+					}
+
+					text = nicObj.getProtocol();
+					if ( text != null && text.length() > 0 )
+					{
+						info[2] = PrimeMain.texts
+								.getString("hwTabProducerLabel") + ": " + text;
+					}
+
+					if ( nicObj.getSpeed() != 0 )
+					{
+						info[3] = PrimeMain.texts
+								.getString("hwTabProducerLabel")
+								+ ": "
+								+ Integer.toString(nicObj.getSpeed());
+					}
+
+					text = nicObj.getDescription();
+					if ( text != null && text.length() > 0 )
+					{
+						info[4] = text;
+					}
+
+				}
+				else if ( hwObj[i] instanceof ExternalNetworksCard )
+				{
+					temp = PrimeMain.objectImageIcons
+							.get(ExternalNetworksCard.class);
+
+					ExternalNetworksCard nicObj = (ExternalNetworksCard) hwObj[i];
+
+					info = new String[5];
+
+					String text = null;
+
+					text = nicObj.getObjectName();
+					if ( text != null && text.length() > 0 )
+					{
+						info[0] = text;
+					}
+
+					text = nicObj.getProducer();
+					if ( text != null && text.length() > 0 )
+					{
+						info[1] = PrimeMain.texts
+								.getString("hwTabProducerLabel") + ": " + text;
+					}
+
+					text = nicObj.getProtocol();
+					if ( text != null && text.length() > 0 )
+					{
+						info[2] = PrimeMain.texts
+								.getString("hwTabProducerLabel") + ": " + text;
+					}
+
+					if ( nicObj.getSpeed() != 0 )
+					{
+						info[3] = PrimeMain.texts
+								.getString("hwTabProducerLabel")
+								+ ": "
+								+ Integer.toString(nicObj.getSpeed());
+					}
+
+					text = nicObj.getDescription();
+					if ( text != null && text.length() > 0 )
+					{
+						info[4] = text;
+					}
 				}
 
-				text = mbObj.getForm();
-				if ( text != null && text.length() > 0 )
+				assert temp != null;
+
+
+
+				if ( i == 0 )
 				{
-					info[1] = PrimeMain.texts.getString("hwTabFormLabel")
-							+ ": " + text;
+					d2.gridheight = 2;
+					d2.gridx = 0;
+					d2.gridy = 0;
+				}
+				else if ( i == 1 )
+				{
+					d2.weightx = 0; // request any extra horizontal space
+					d2.gridheight = 1;
+					d2.gridx = 1;
+					d2.gridy = 0;
+				}
+				else if ( i == 2 )
+				{
+					d2.weightx = 0.5; // request any extra horizontal space
+					d2.gridx = 1;
+					d2.gridy = 1;
+				}
+				else if ( i == 3 )
+				{
+					d2.gridx = 0;
+					d2.gridy = 2;
+				}
+				else if ( i % 2 == 0 )
+				{
+					d2.gridx = 1;
+				}
+				else
+				{
+					d2.gridx = 0;
+					d2.gridy++;
 				}
 
-				text = mbObj.getSocket();
-				if ( text != null && text.length() > 0 )
-				{
-					info[2] = PrimeMain.texts.getString("hwTabSocketLabel")
-							+ ": " + text;
-				}
 
-				text = mbObj.getGraphicalPort();
-				if ( text != null && text.length() > 0 )
-				{
-					info[3] = PrimeMain.texts.getString("hwTabGPUslotLabel")
-							+ ": " + text;
-				}
-
-				text = mbObj.getDescription();
-				if ( text != null && text.length() > 0 )
-				{
-					info[4] = text;
-				}
-
-
+				JPanel panel = createHardwareJPanel(info, temp);
+				panel.addMouseListener(new HardwareMouseListener(panel,
+						givenObject, hwObj[i]));
+				hwPanel.add(panel, d2);
 			}
-			else if ( hwObj[i] instanceof CPU )
+
+
+			if ( hwObj.length < 3 )
 			{
-				temp = PrimeMain.objectImageIcons.get(CPU.class);
-
-				CPU cpuObj = (CPU) hwObj[i];
-
-				info = new String[4];
-
-				String text = null;
-
-				text = cpuObj.getObjectName();
-				if ( text != null && text.length() > 0 )
+				if ( hwPanel.getComponentCount() == 1 )
 				{
-					info[0] = text;
+					// Adds a big JPanel at the bottom right to take the
+					// remaining space
+					JPanel emptyPanel1 = new JPanel();
+					d2.weightx = 0.34; // request any extra horizontal space
+					d2.gridx = 1;
+					d2.gridy = 0;
+					d2.gridheight = 1;
+					d2.gridwidth = 1;
+					// d2.weighty = 1.0;
+					hwPanel.add(emptyPanel1, d2);
+
+
+					// Adds a big JPanel at the bottom right to take the
+					// remaining space
+					JPanel emptyPanel2 = new JPanel();
+					d2.gridx = 1;
+					d2.gridy = 1;
+					// d2.gridwidth = 1;
+					// d2.weighty = 1.0;
+					hwPanel.add(emptyPanel2, d2);
 				}
-
-				text = cpuObj.getProducer();
-				if ( text != null && text.length() > 0 )
+				/**
+				 * Since there can not be a device without a Motherboard, the
+				 * object
+				 * has at least one object. So the count can only be 2 or 3.
+				 */
+				else
 				{
-					info[1] = PrimeMain.texts.getString("hwTabProducerLabel")
-							+ ": " + text;
-				}
-
-				text = cpuObj.getSocket();
-				if ( text != null && text.length() > 0 )
-				{
-					info[2] = PrimeMain.texts.getString("hwTabSocketLabel")
-							+ ": " + text;
-				}
-
-				text = cpuObj.getDescription();
-				if ( text != null && text.length() > 0 )
-				{
-					info[3] = text;
-				}
-
-
-			}
-			else if ( hwObj[i] instanceof HDD )
-			{
-				temp = PrimeMain.objectImageIcons.get(HDD.class);
-
-				HDD hddObj = (HDD) hwObj[i];
-
-				info = new String[5];
-
-				String text = null;
-
-				text = hddObj.getObjectName();
-				if ( text != null && text.length() > 0 )
-				{
-					info[0] = text;
-				}
-
-				text = hddObj.getProducer();
-				if ( text != null && text.length() > 0 )
-				{
-					info[1] = PrimeMain.texts.getString("hwTabProducerLabel")
-							+ ": " + text;
-				}
-
-				text = hddObj.getSubtype();
-				if ( text != null && text.length() > 0 )
-				{
-					info[2] = PrimeMain.texts.getString("hwTabTypeLabel")
-							+ ": " + text;
-				}
-
-				if ( hddObj.getSize() != 0 )
-				{
-					info[3] = PrimeMain.texts.getString("hwTabSizeLabel")
-							+ ": " + Integer.toString(hddObj.getSize());
-				}
-
-				text = hddObj.getDescription();
-				if ( text != null && text.length() > 0 )
-				{
-					info[4] = text;
-				}
-
-			}
-			else if ( hwObj[i] instanceof Ram )
-			{
-				temp = PrimeMain.objectImageIcons.get(Ram.class);
-
-				Ram ramObj = (Ram) hwObj[i];
-
-				info = new String[5];
-
-				String text = null;
-
-				text = ramObj.getObjectName();
-				if ( text != null && text.length() > 0 )
-				{
-					info[0] = text;
-				}
-
-				text = ramObj.getProducer();
-				if ( text != null && text.length() > 0 )
-				{
-					info[1] = PrimeMain.texts.getString("hwTabProducerLabel")
-							+ ": " + text;
-				}
-
-				text = ramObj.getSubtype();
-				if ( text != null && text.length() > 0 )
-				{
-					info[2] = PrimeMain.texts.getString("hwTabTypeLabel")
-							+ ": " + text;
-				}
-
-				if ( ramObj.getSize() != 0 )
-				{
-					info[3] = PrimeMain.texts.getString("hwTabSizeLabel")
-							+ ": " + Integer.toString(ramObj.getSize());
-				}
-
-				text = ramObj.getDescription();
-				if ( text != null && text.length() > 0 )
-				{
-					info[4] = text;
-				}
-
-			}
-			else if ( hwObj[i] instanceof Discdrive )
-			{
-				temp = PrimeMain.objectImageIcons.get(Discdrive.class);
-
-				Discdrive discObj = (Discdrive) hwObj[i];
-
-				info = new String[5];
-
-				String text = null;
-
-				text = discObj.getObjectName();
-				if ( text != null && text.length() > 0 )
-				{
-					info[0] = text;
-				}
-
-				text = discObj.getProducer();
-				if ( text != null && text.length() > 0 )
-				{
-					info[1] = PrimeMain.texts.getString("hwTabProducerLabel")
-							+ ": " + text;
-				}
-
-				text = discObj.getSubtype();
-				if ( text != null && text.length() > 0 )
-				{
-					info[2] = PrimeMain.texts.getString("hwTabTypeLabel")
-							+ ": " + text;
-				}
-
-				if ( discObj.getSpeed() != 0 )
-				{
-					info[3] = PrimeMain.texts.getString("hwTabSpeedLabel")
-							+ ": " + Integer.toString(discObj.getSpeed());
-				}
-
-				text = discObj.getDescription();
-				if ( text != null && text.length() > 0 )
-				{
-					info[4] = text;
-				}
-
-			}
-			else if ( hwObj[i] instanceof GraphicsCard )
-			{
-				temp = PrimeMain.objectImageIcons.get(GraphicsCard.class);
-
-				GraphicsCard gpuObj = (GraphicsCard) hwObj[i];
-
-				info = new String[5];
-
-				String text = null;
-
-				text = gpuObj.getObjectName();
-				if ( !gpuObj.getObjectName().equals("")
-						&& gpuObj.getObjectName() != null )
-				{
-					info[0] = gpuObj.getObjectName();
-				}
-
-				text = gpuObj.getProducer();
-				if ( text != null && text.length() > 0 )
-				{
-					info[1] = PrimeMain.texts.getString("hwTabProducerLabel")
-							+ ": " + text;
-				}
-
-				text = gpuObj.getOutputInterface();
-				if ( text != null && text.length() > 0 )
-				{
-					info[2] = PrimeMain.texts.getString("hwTabOutputLabel")
-							+ ": " + text;
-				}
-
-				if ( gpuObj.getSpeed() != 0 )
-				{
-					info[3] = PrimeMain.texts.getString("hwTabSpeedLabel")
-							+ ": " + Integer.toString(gpuObj.getSpeed());
-				}
-
-				text = gpuObj.getDescription();
-				if ( text != null && text.length() > 0 )
-				{
-					info[4] = text;
-				}
-
-			}
-			else if ( hwObj[i] instanceof InternalNetworksCard )
-			{
-				temp = PrimeMain.objectImageIcons
-						.get(InternalNetworksCard.class);
-
-				InternalNetworksCard nicObj = (InternalNetworksCard) hwObj[i];
-
-				info = new String[5];
-
-				String text = null;
-
-				text = nicObj.getObjectName();
-				if ( text != null && text.length() > 0 )
-				{
-					info[0] = text;
-				}
-
-				text = nicObj.getProducer();
-				if ( text != null && text.length() > 0 )
-				{
-					info[1] = PrimeMain.texts.getString("hwTabProducerLabel")
-							+ ": " + text;
-				}
-
-				text = nicObj.getProtocol();
-				if ( text != null && text.length() > 0 )
-				{
-					info[2] = PrimeMain.texts.getString("hwTabProducerLabel")
-							+ ": " + text;
-				}
-
-				if ( nicObj.getSpeed() != 0 )
-				{
-					info[3] = PrimeMain.texts.getString("hwTabProducerLabel")
-							+ ": " + Integer.toString(nicObj.getSpeed());
-				}
-
-				text = nicObj.getDescription();
-				if ( text != null && text.length() > 0 )
-				{
-					info[4] = text;
-				}
-
-			}
-			else if ( hwObj[i] instanceof ExternalNetworksCard )
-			{
-				temp = PrimeMain.objectImageIcons
-						.get(ExternalNetworksCard.class);
-
-				ExternalNetworksCard nicObj = (ExternalNetworksCard) hwObj[i];
-
-				info = new String[5];
-
-				String text = null;
-
-				text = nicObj.getObjectName();
-				if ( text != null && text.length() > 0 )
-				{
-					info[0] = text;
-				}
-
-				text = nicObj.getProducer();
-				if ( text != null && text.length() > 0 )
-				{
-					info[1] = PrimeMain.texts.getString("hwTabProducerLabel")
-							+ ": " + text;
-				}
-
-				text = nicObj.getProtocol();
-				if ( text != null && text.length() > 0 )
-				{
-					info[2] = PrimeMain.texts.getString("hwTabProducerLabel")
-							+ ": " + text;
-				}
-
-				if ( nicObj.getSpeed() != 0 )
-				{
-					info[3] = PrimeMain.texts.getString("hwTabProducerLabel")
-							+ ": " + Integer.toString(nicObj.getSpeed());
-				}
-
-				text = nicObj.getDescription();
-				if ( text != null && text.length() > 0 )
-				{
-					info[4] = text;
+					// Adds a big JPanel at the bottom right to take the
+					// remaining space
+					JPanel emptyPanel = new JPanel();
+					d2.weightx = 0.10; // request any extra horizontal space
+					d2.gridx = 1;
+					d2.gridy = 1;
+					d2.gridheight = 1;
+					d2.gridwidth = 1;
+					// d2.weighty = 1.0;
+					hwPanel.add(emptyPanel, d2);
 				}
 			}
-
-			assert temp != null;
-
-
-
-			if ( i == 0 )
-			{
-				d2.gridheight = 2;
-				d2.gridx = 0;
-				d2.gridy = 0;
-			}
-			else if ( i == 1 )
-			{
-				d2.weightx = 0; // request any extra horizontal space
-				d2.gridheight = 1;
-				d2.gridx = 1;
-				d2.gridy = 0;
-			}
-			else if ( i == 2 )
-			{
-				d2.weightx = 0.5; // request any extra horizontal space
-				d2.gridx = 1;
-				d2.gridy = 1;
-			}
-			else if ( i == 3 )
-			{
-				d2.gridx = 0;
-				d2.gridy = 2;
-			}
-			else if ( i % 2 == 0 )
-			{
-				d2.gridx = 1;
-			}
-			else
-			{
-				d2.gridx = 0;
-				d2.gridy++;
-			}
-
-
-			JPanel panel = createHardwareJPanel(info, temp);
-			panel.addMouseListener(new HardwareMouseListener(panel,
-					givenObject, hwObj[i]));
-			hwPanel.add(panel, d2);
 		}
-
-
-		if ( hwObj.length < 3 )
-		{
-			if ( hwPanel.getComponentCount() == 1 )
-			{
-				// Adds a big JPanel at the bottom right to take the remaining space
-				JPanel emptyPanel1 = new JPanel();
-				d2.weightx = 0.34; // request any extra horizontal space
-				d2.gridx = 1;
-				d2.gridy = 0;
-				d2.gridheight = 1;
-				d2.gridwidth = 1;
-				// d2.weighty = 1.0;
-				hwPanel.add(emptyPanel1, d2);
-
-
-				// Adds a big JPanel at the bottom right to take the remaining space
-				JPanel emptyPanel2 = new JPanel();
-				d2.gridx = 1;
-				d2.gridy = 1;
-				// d2.gridwidth = 1;
-				// d2.weighty = 1.0;
-				hwPanel.add(emptyPanel2, d2);
-			}
-			/**
-			 * Since there can not be a device without a Motherboard, the object
-			 * has at least one object. So the count can only be 2 or 3.
-			 */
-			else
-			{
-				// Adds a big JPanel at the bottom right to take the remaining space
-				JPanel emptyPanel = new JPanel();
-				d2.weightx = 0.10; // request any extra horizontal space
-				d2.gridx = 1;
-				d2.gridy = 1;
-				d2.gridheight = 1;
-				d2.gridwidth = 1;
-				// d2.weighty = 1.0;
-				hwPanel.add(emptyPanel, d2);
-			}
-		}
-
 
 
 		// Adds a big JPanel at the bottom to take the remaining space
@@ -609,24 +620,26 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		Button edit = new Button("Edit Components");
-		edit.addActionListener(this);
-		edit.setActionCommand("edit");
-
-		buttons.add(edit);
-
-
-		// If the object is a Client or Server Object, the user can add
-		// components.
-		if ( obj instanceof Clients || obj instanceof Servers )
+		if ( !(obj instanceof Rack) )
 		{
-			Button addNew = new Button("New Components");
-			addNew.addActionListener(this);
-			addNew.setActionCommand("newComp");
+			Button edit = new Button("Edit Components");
+			edit.addActionListener(this);
+			edit.setActionCommand("edit");
 
-			buttons.add(addNew);
+			buttons.add(edit);
+
+
+			// If the object is a Client or Server Object, the user can add
+			// components.
+			if ( obj instanceof Clients || obj instanceof Servers )
+			{
+				Button addNew = new Button("New Components");
+				addNew.addActionListener(this);
+				addNew.setActionCommand("newComp");
+
+				buttons.add(addNew);
+			}
 		}
-
 
 		return buttons;
 	}
@@ -684,8 +697,8 @@ public class HardwareObjectView extends JPanel implements ActionListener
 		{
 			if ( texts[i] != null )
 			{
-				JLabel text = new JLabel(GraphicalFunctions
-						.verifyDescriptionLength(texts[i]));
+				JLabel text = new JLabel(
+						GraphicalFunctions.verifyDescriptionLength(texts[i]));
 				// text.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				panel.add(text, d);
 				d.gridy++;
@@ -711,6 +724,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */

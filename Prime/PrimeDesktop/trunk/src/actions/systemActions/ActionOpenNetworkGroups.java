@@ -82,6 +82,11 @@ public class ActionOpenNetworkGroups extends AbstractSystemAction
 		{
 			PrimeMain.objView.get(0).toFront();
 		}
+		// Cannot show groups if any RackOverviews are open
+		else if ( !PrimeMain.rackView.isEmpty() )
+		{
+			PrimeMain.rackView.get(0).toFront();
+		}
 		else
 		{
 			if ( PrimeMain.currentCanvas != null )

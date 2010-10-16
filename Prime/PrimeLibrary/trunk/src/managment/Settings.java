@@ -31,7 +31,7 @@ import java.util.logging.Logger;
 public class Settings implements Serializable
 {
 	// THE APPLICATION VERSION
-	public final static String appVersion = "Beta 3.2";
+	public final static String appVersion = "Beta 3.4";
 
 
 	// HARDWARE MESSAGES
