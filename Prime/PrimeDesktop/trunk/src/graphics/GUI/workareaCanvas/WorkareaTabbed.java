@@ -134,9 +134,6 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 		// Check whether or not there exists a tab with the given canvas name
 		if ( existsTabWithGivenName(canvas.getCanvasName()) )
 		{
-			// The old name of the canvas
-			String oldName = canvas.getCanvasName();
-
 			// This is the current number of tabs
 			int arraySize = this.getTabCount();
 
@@ -370,6 +367,9 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 			// This is the current number of tabs
 			int arraySize = this.getTabCount();
 
+			// A boolean on whether the tab was closed
+			boolean closed = false;
+
 			// Goes through the list of tab contents until it finds one that
 			// matches the given button name.
 			for ( int i = 0; i < arraySize; i++ )
@@ -409,8 +409,8 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 						if ( answer == 0 )
 						{
 							// Saves the canvas to a file.
-							DesktopFileManagment.saveWorkareaCanvas(test
-									.getCanvas());
+							DesktopFileManagment.saveWorkareaCanvas(
+									test.getCanvas(), true);
 							this.removeTabAt(i);
 							DesktopCanvasManagment.removeWorkareaCanvas(test
 									.getCanvas());
@@ -420,7 +420,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 							// + test.getCanvas().getCanvasName()
 							// + ", has been saved and removed from the GUI.");
 
-							return;
+							closed = true;
 						}
 						// Dont save.
 						else if ( answer == 1 )
@@ -435,11 +435,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 							// +
 							// ", has not been saved and removed from the GUI.");
 
-							return;
-						}
-						else
-						{
-							return;
+							closed = true;
 						}
 					}
 					else
@@ -454,6 +450,17 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 						// +
 						// ", has removed from the GUI with 'saved' verification'.");
 
+						closed = true;
+					}
+
+
+					// If the tab was closed
+					if ( closed )
+					{
+						PrimeMain.updatePropertiesCanvasArea(true);
+
+						// Breaks out of the For-loop because the tab was found
+						// and removed.
 						return;
 					}
 				}
@@ -461,11 +468,9 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 		}
 	}
 
-
-
-
 	/**
-	 * Javadoc-TODO - Description
+	 * This function returns a boolean on whether there exists a tab with the
+	 * given name.
 	 * 
 	 * @param canvasName
 	 * @return Returns true if there exists a tab with the given name and false

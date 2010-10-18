@@ -237,18 +237,13 @@ public class StandardObjectSoftwareEditor extends JFrame implements
 		{
 			view.save();
 
-			// If no view is returned, then the standard object view is
-			// open and that should be updated.
-			if ( PrimeMain.stdObjView != null )
-			{
-				PrimeMain.stdObjView.getSplitView().getObjView()
-						.getSoftStdObjView().updateTabInfo();
-			}
-
 			if ( PrimeMain.stdObjView != null )
 			{
 				PrimeMain.stdObjView.getSplitView().getObjView()
 						.getSoftStdObjView().disposeSoftwareView();
+
+				PrimeMain.stdObjView.getSplitView().getObjView()
+						.getSoftStdObjView().updateTabInfo();
 			}
 		}
 		else if ( e.getActionCommand().equals("apply") )

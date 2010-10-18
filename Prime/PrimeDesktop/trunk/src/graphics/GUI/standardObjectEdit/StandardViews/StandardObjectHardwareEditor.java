@@ -285,22 +285,21 @@ public class StandardObjectHardwareEditor extends JFrame implements
 				verify = false;
 			}
 
-			if ( PrimeMain.stdObjView != null )
-			{
-				PrimeMain.stdObjView.getSplitView().getObjView()
-						.getHardStdObjView().updateTabInfo();
-			}
-
 			// If the information is saved a true is returned and the
 			// JFrame is closed.
 			if ( view.save(verify) )
 			{
+				// this.dispose();
 				if ( PrimeMain.stdObjView != null )
 				{
 					PrimeMain.stdObjView.getSplitView().getObjView()
 							.getHardStdObjView().disposeHardwareView();
+
+					PrimeMain.stdObjView.getSplitView().getObjView()
+							.getHardStdObjView().updateTabInfo();
 				}
 			}
+
 		}
 		else if ( e.getActionCommand().equals("apply") )
 		{

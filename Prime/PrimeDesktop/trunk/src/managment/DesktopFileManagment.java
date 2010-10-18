@@ -79,8 +79,10 @@ public class DesktopFileManagment
 	 * 
 	 * @param canvas
 	 *            The WorkareaCanvas to be written out.
+	 * @param verify
+	 *            Verify if the file exists and if so can be overwritten.
 	 */
-	public static void saveWorkareaCanvas(WorkareaCanvas canvas)
+	public static void saveWorkareaCanvas(WorkareaCanvas canvas, boolean verify)
 	{
 		File file = new File("./resource/Data/" + canvas.getCanvasName()
 				+ File.separator + canvas.getCanvasName() + ".dat");
@@ -98,7 +100,7 @@ public class DesktopFileManagment
 		}
 
 
-		saveCanvas(canvas, file, true);
+		saveCanvas(canvas, file, verify);
 	}
 
 
@@ -508,6 +510,7 @@ public class DesktopFileManagment
 			oos.writeBoolean(managment.Settings.showOSicon);
 			oos.writeBoolean(managment.Settings.showIP);
 			oos.writeUTF(managment.Settings.primeLocale.toString());
+			oos.writeBoolean(managment.Settings.originalImages);
 
 			oos.flush();
 			oos.close();
@@ -522,8 +525,83 @@ public class DesktopFileManagment
 
 	/**
 	 * This function checks whether or not there exist a file containing a
-	 * WorkareaCanvas with the same and serial as the given WorkareaCanvas. If
-	 * not true is returned. If there exists a WorkareaCanvas with the same
+	 * WorkareaCanvas with the same name and serial as the given WorkareaCanvas.
+	 * If not true is returned. If there exists a WorkareaCanvas with the same
+	 * name, but not serial number the user is asked to verify overwriting that
+	 * file.
+	 * 
+	 * @param canvas
+	 * @return
+	 */
+	private static boolean checkAndVerify(String canvasName)
+	{
+		// Creates a file object(not the actual file)
+		File file = new File("./resource/Data/" + canvasName + File.separator
+				+ canvasName + ".dat");
+
+		// If the file(network) exists
+		if ( file.exists() )
+		{
+			try
+			{
+				FileInputStream fin = new FileInputStream(file);
+
+				ObjectInputStream ois = new ObjectInputStream(fin);
+
+				// The name of the file canvas
+				String name = (String) ois.readObject();
+
+
+				ois.close();
+
+				// If the name of the file network is the same as the name of
+				// the given WorkareaCanvas
+				if ( name.equalsIgnoreCase(canvasName) )
+				{
+					int answer = JOptionPane
+							.showConfirmDialog(
+									null,
+									PrimeMain.texts
+											.getString("overwriteNetworkWithTheSameNameMsg"),
+									PrimeMain.texts.getString("overwrite"),
+									JOptionPane.YES_NO_OPTION);
+
+					// The user answers "yes"
+					if ( answer == 0 )
+					{
+						return true;
+					}
+
+					return false;
+				}
+			}
+			catch ( FileNotFoundException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch ( IOException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch ( ClassNotFoundException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+
+		return true;
+	}
+
+
+
+	/**
+	 * This function checks whether or not there exist a file containing a
+	 * WorkareaCanvas with the same name and serial as the given WorkareaCanvas.
+	 * If not true is returned. If there exists a WorkareaCanvas with the same
 	 * name, but not serial number the user is asked to verify overwriting that
 	 * file.
 	 * 
@@ -1674,6 +1752,7 @@ public class DesktopFileManagment
 						managment.Settings.showIP = ois.readBoolean();
 						managment.Settings.primeLocale = managment.Settings.systemLocale
 								.valueOf(ois.readUTF());
+						managment.Settings.originalImages = ois.readBoolean();
 
 
 						ois.close();
@@ -1753,7 +1832,7 @@ public class DesktopFileManagment
 		{
 			if ( canvases[i] != null )
 			{
-				saveWorkareaCanvas(canvases[i]);
+				saveWorkareaCanvas(canvases[i], true);
 			}
 		}
 	}
@@ -2200,41 +2279,59 @@ public class DesktopFileManagment
 
 				if ( changeName )
 				{
-					/**
-					 * The WorkareaCanvas inside the file has the same name or
-					 * serial number as another network inside the system. It
-					 * must therefore have its name and serial number changed.
-					 */
+					// The options the user will be presented with.
+					java.lang.Object[] options = {
+							PrimeMain.texts.getString("change"),
+							PrimeMain.texts.getString("overwrite"),
+							PrimeMain.texts.getString("cancel") };
 
+					// Asks the user whether or not to save
 					int answer = JOptionPane
-							.showConfirmDialog(
+							.showOptionDialog(
 									null,
 									PrimeMain.texts
 											.getString("verifyImportedNetworkNameChange"),
 									PrimeMain.texts.getString("overwrite"),
-									JOptionPane.YES_NO_OPTION);
+									JOptionPane.WARNING_MESSAGE,
+									JOptionPane.WARNING_MESSAGE, null, options,
+									PrimeMain.texts.getString("change"));
 
 					// The user answers yes
 					if ( answer == 0 )
 					{
 						boolean tryAgain = true;
 
+
 						while ( tryAgain )
 						{
+							// Gets the users new network name
 							String newName = JOptionPane
 									.showInputDialog(
 											null,
 											PrimeMain.texts
 													.getString("writeNewNetworkNameMsg"));
 
-							if ( Pattern.matches("([a-zA-Z_0-9 ])*", newName)
-									&& !(newName.equals("")) )
+							if ( newName != null
+									&& !(newName.equals(""))
+									&& Pattern.matches("([a-zA-Z_0-9 ])*",
+											newName) )
 							{
 								// If the file can be read
 								if ( file.canRead() )
 								{
 									try
 									{
+										/**
+										 * Now the function will check if the
+										 * found canvas is open and since the
+										 * user wants to overwrite the canvas
+										 * with the same name, we must close the
+										 * open canvas.
+										 */
+										PrimeMain.workTab.removeTabWithCanvas(
+												newName, false);
+
+
 										// The workareacanvas in the file
 										WorkareaCanvas newCanvas = openCanvasFile(file);
 
@@ -2253,17 +2350,21 @@ public class DesktopFileManagment
 														newCanvas);
 
 										// Saves the canvas into the program
-										saveWorkareaCanvas(newCanvas);
+										saveWorkareaCanvas(newCanvas, false);
 
 										newCanvas.setSaved(true);
 									}
-									catch ( Exception e )
+									catch ( CanvasNotFound e )
 									{
-										e.printStackTrace();
+										// DO NOTHING, BECAUSE THE TAB IS CLOSED
 									}
-								}
 
-								tryAgain = false;
+									tryAgain = false;
+								}
+								else
+								{
+									tryAgain = true;
+								}
 							}
 							else
 							{
@@ -2285,6 +2386,51 @@ public class DesktopFileManagment
 							}
 						}
 					}
+					else if ( answer == 1 )
+					{
+						String newName = getFileNameWithoutExtension(file
+								.getName());
+
+						// If the file can be read
+						if ( file.canRead() )
+						{
+							try
+							{
+								/**
+								 * Now the function will check if the
+								 * found canvas is open and since the
+								 * user wants to overwrite the canvas
+								 * with the same name, we must close the
+								 * open canvas.
+								 */
+								PrimeMain.workTab.removeTabWithCanvas(newName,
+										false);
+
+								// The workareacanvas in the file
+								WorkareaCanvas newCanvas = openCanvasFile(file);
+
+								// Sets the new name for the network
+								newCanvas.setCanvasName(newName);
+
+								// Sets the a new serial number for the
+								// network
+								newCanvas.setSerial((Math.random()) * 500);
+
+								// Adds the canvas to the program
+								PrimeMain.getWorkarea().createNewCanvasTab(
+										PrimeMain.glassPane, newCanvas);
+
+								// Saves the canvas into the program
+								saveWorkareaCanvas(newCanvas, false);
+
+								newCanvas.setSaved(true);
+							}
+							catch ( CanvasNotFound e )
+							{
+								// DO NOTHING, BECAUSE THE TAB IS CLOSED
+							}
+						}
+					}
 				}
 				else
 				{
@@ -2301,15 +2447,13 @@ public class DesktopFileManagment
 							PrimeMain.glassPane, newCanvas);
 
 					// Saves the canvas into the program
-					saveWorkareaCanvas(newCanvas);
+					saveWorkareaCanvas(newCanvas, true);
 
 					newCanvas.setSaved(true);
 				}
 			}
 		}
 	}
-
-
 
 	/**
 	 * TODO - Description

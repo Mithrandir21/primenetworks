@@ -84,11 +84,7 @@ public class CreateObjects
 	{
 		Object newObject = null;
 		String objectType = iconObject.getClassType().getSimpleName();
-		String test = iconObject.getIcon().toString();
 		String desc = iconObject.getDescription();
-
-		System.out.println(objectType);
-		System.out.println(test);
 
 		try
 		{
@@ -266,26 +262,26 @@ public class CreateObjects
 		PrimeMain.objectlist.add(createDefaultWirelessRouter(""));
 		PrimeMain.objectlist.add(createDefaultInternet(""));
 		PrimeMain.objectlist.add(createDefaultRack(""));
-		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
-				AntivirusServer.class, ""));
-		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
-				BackupServer.class, ""));
-		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
-				DatabaseServer.class, ""));
-		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
-				FirewallServer.class, ""));
-		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
-				HTTPServer.class, ""));
-		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
-				MailServer.class, ""));
-		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
-				NASServer.class, ""));
-		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
-				PrinterServer.class, ""));
-		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
-				ProxyServer.class, ""));
-		PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
-				VirtualizationServer.class, ""));
+		// PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+		// AntivirusServer.class, ""));
+		// PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+		// BackupServer.class, ""));
+		// PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+		// DatabaseServer.class, ""));
+		// PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+		// FirewallServer.class, ""));
+		// PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+		// HTTPServer.class, ""));
+		// PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+		// MailServer.class, ""));
+		// PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+		// NASServer.class, ""));
+		// PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+		// PrinterServer.class, ""));
+		// PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+		// ProxyServer.class, ""));
+		// PrimeMain.objectlist.add(createDefaultRackUnitWithObject(
+		// VirtualizationServer.class, ""));
 	}
 
 

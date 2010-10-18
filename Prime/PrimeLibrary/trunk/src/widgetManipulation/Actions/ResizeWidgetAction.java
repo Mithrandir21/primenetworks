@@ -97,7 +97,7 @@ public class ResizeWidgetAction extends WidgetAction.LockedAdapter
 					this.originalSceneRectangle = widget.getBounds();
 				if ( this.originalSceneRectangle == null )
 					this.originalSceneRectangle = widget.getPreferredBounds();
-				this.dragSceneLocation = widget.convertLocalToScene(event
+				this.dragSceneLocation = widget.convertSceneToLocal(event
 						.getPoint());
 				this.provider.resizingStarted(widget);
 				return State.createLocked(widget, this);
@@ -147,7 +147,7 @@ public class ResizeWidgetAction extends WidgetAction.LockedAdapter
 		if ( !this.resizingWidget.equals(widget) )
 			return false;
 
-		newLocation = widget.convertLocalToScene(newLocation);
+		newLocation = widget.convertSceneToLocal(newLocation);
 		int dx = newLocation.x - dragSceneLocation.x;
 		int dy = newLocation.y - dragSceneLocation.y;
 		int minx = insets.left + insets.right;

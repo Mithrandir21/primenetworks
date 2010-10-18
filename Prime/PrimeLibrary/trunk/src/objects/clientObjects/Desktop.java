@@ -37,7 +37,6 @@ import objects.Object;
  * reperesente the network around the system, like switches, servers, firewalls,
  * printer and so on. <br>
  * <br>
- * FIXME - Make desktop rating system.<br>
  * A system that rates a desktop machine depending on the type of components it
  * has.(Components must then also have a
  * way of rating themselfs.) <br>

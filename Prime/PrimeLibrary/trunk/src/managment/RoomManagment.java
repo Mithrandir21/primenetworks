@@ -93,7 +93,7 @@ public class RoomManagment
 
 		WidgetRoom widRoom = createWidgetRoom(canvas, room);
 
-		widRoom.setPreferredLocation(canvas.getScene().convertViewToScene(
+		widRoom.setPreferredLocation(canvas.getScene().convertSceneToLocal(
 				room.getLocation()));
 		widRoom.setPreferredBounds(room.getBounds());
 

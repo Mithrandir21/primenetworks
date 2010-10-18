@@ -93,7 +93,7 @@ public class MoveWidgetObjectProvider extends AlignWithSupport implements
 	{
 		Point widgetLocation = widget.getLocation();
 		Rectangle widgetBounds = widget.getBounds();
-		Rectangle bounds = widget.convertLocalToScene(widgetBounds);
+		Rectangle bounds = widget.convertSceneToLocal(widgetBounds);
 		bounds.translate(suggestedLocation.x - widgetLocation.x,
 				suggestedLocation.y - widgetLocation.y);
 		Point point = super.locationSuggested(widget, bounds,

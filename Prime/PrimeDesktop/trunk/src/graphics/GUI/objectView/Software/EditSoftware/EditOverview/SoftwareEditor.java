@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.objectView.Software.EditSoftware.EditOverview;
 
@@ -63,7 +63,7 @@ public class SoftwareEditor extends JDialog implements ActionListener
 
 		givenObject = obj;
 
-		Dimension size = new Dimension(770, 620);
+		Dimension size = new Dimension(780, 620);
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -161,8 +161,8 @@ public class SoftwareEditor extends JDialog implements ActionListener
 		genPanel.add(image, c);
 
 
-		JLabel nameLabel = new JLabel(PrimeMain.texts
-				.getString("swTabSWnameLabel"));
+		JLabel nameLabel = new JLabel(
+				PrimeMain.texts.getString("swTabSWnameLabel"));
 		c.gridheight = 1; // 2 columns wide
 		c.gridx = 1;
 		c.gridy = 0;
@@ -180,8 +180,8 @@ public class SoftwareEditor extends JDialog implements ActionListener
 
 
 
-		JLabel descLabel = new JLabel(PrimeMain.texts
-				.getString("swTabSWdescriptionLabel"));
+		JLabel descLabel = new JLabel(
+				PrimeMain.texts.getString("swTabSWdescriptionLabel"));
 		c.gridx = 1;
 		c.gridy = 1;
 		genPanel.add(descLabel, c);

@@ -82,7 +82,7 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 					.getOriginalLocation(widget);
 			if ( this.originalSceneLocation == null )
 				this.originalSceneLocation = new Point();
-			this.dragSceneLocation = widget.convertLocalToScene(event
+			this.dragSceneLocation = widget.convertSceneToLocal(event
 					.getPoint());
 			this.provider.movementStarted(widget);
 			return State.createLocked(widget, this);
@@ -129,7 +129,7 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 			return false;
 		if ( !this.movingWidget.equals(widget) )
 			return false;
-		newLocation = widget.convertLocalToScene(newLocation);
+		newLocation = widget.convertSceneToLocal(newLocation);
 		Point location = new Point(originalSceneLocation.x + newLocation.x
 				- dragSceneLocation.x, originalSceneLocation.y + newLocation.y
 				- dragSceneLocation.y);

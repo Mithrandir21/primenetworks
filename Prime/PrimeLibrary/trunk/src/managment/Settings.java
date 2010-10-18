@@ -100,6 +100,10 @@ public class Settings implements Serializable
 	public static systemLocale primeLocale = systemLocale.en;
 
 
+	// A BOOLEAN ON WHETHER ORIGINAL IMAGES SHOULD BE LOADED
+	public static boolean originalImages = false;
+
+
 	/**
 	 * This boolean will control the flow information within the system.
 	 * While the system is in debug mode, it will print out any error to a

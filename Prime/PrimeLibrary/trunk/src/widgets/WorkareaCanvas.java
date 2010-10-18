@@ -108,7 +108,7 @@ public class WorkareaCanvas extends JPanel
 	private WidgetObject currentWidgetObject = null;
 
 
-	// FIXME - Create array of amount of different object types on the scene
+	// The number of widgets on the scene
 	private int numberOfWidgetsOnTheScene = 0;
 
 	// The number of Network cards on the canvas

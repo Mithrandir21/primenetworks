@@ -20,9 +20,12 @@ package graphics.GUI.properties.objectTypes;
 
 import graphics.PrimeMain;
 
+import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
@@ -135,6 +138,7 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 
 		nameField.setText(obj.getObjectName());
 		nameField.setName("Name Object");
+		removeAllKeyListeners(nameField);
 		panelCons.insets = new Insets(0, 0, 10, 0); // padding
 		panelCons.gridy++; // row
 		panel.add(nameField, panelCons);
@@ -155,6 +159,7 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 				.getSupportedConnectionInterfaces()));
 		subConCombo.setEditable(false);
 		subConCombo.setName("supConInt");
+		removeAllKeyListeners(subConCombo);
 		panelCons.insets = new Insets(0, 0, 10, 0); // padding
 		panelCons.gridy++; // row
 		panel.add(subConCombo, panelCons);
@@ -175,6 +180,7 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 				.setText(Integer.toString((obj.getNumberOfConnectedDevices())));
 		numConField.setEditable(false);
 		numConField.setName("numCon");
+		removeAllKeyListeners(numConField);
 		panelCons.insets = new Insets(0, 0, 10, 0); // padding
 		panelCons.gridy++; // row
 		panel.add(numConField, panelCons);
@@ -193,6 +199,7 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 		numbJumpsField.setText("0");
 		numbJumpsField.setEditable(false);
 		numbJumpsField.setName("numbJumps");
+		removeAllKeyListeners(numbJumpsField);
 		panelCons.insets = new Insets(0, 0, 10, 0); // padding
 		panelCons.gridy++; // row
 		panel.add(numbJumpsField, panelCons);
@@ -218,6 +225,7 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 
 
 			IPfield.setName("Object IP");
+			removeAllKeyListeners(IPfield);
 			String ipFrom = widObj.getWidgetNetworkInfo().getIp();
 			if ( !(ipFrom == null) )
 			{
@@ -243,6 +251,7 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 
 		exemptedNetworkRules.setSelected(obj.isExemptedNetworkRules());
 		exemptedNetworkRules.setName("exemptedRules");
+		removeAllKeyListeners(exemptedNetworkRules);
 		exemptedRulesLabel.setLabelFor(exemptedNetworkRules);
 		panelCons.insets = new Insets(0, 0, 10, 0); // padding
 		panelCons.gridy++; // row
@@ -377,8 +386,8 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 							PrimeMain.texts.getString("error"),
 							JOptionPane.ERROR_MESSAGE);
 
-					// Updates the WidgetObject properties area
-					PrimeMain.updatePropertiesObjectArea(objectViewed, true);
+					// // Updates the WidgetObject properties area
+					// PrimeMain.updatePropertiesObjectArea(objectViewed, true);
 
 					errorDuringSaving = true;
 				}
@@ -424,6 +433,43 @@ public abstract class AbstractObjectPropertiesView extends JPanel
 			else
 			{
 				objectViewed.setExemptedNetworkRules(exempted);
+			}
+		}
+	}
+
+
+
+	/**
+	 * This method adds the given {@link KeyAdapter} to this classes fields.
+	 */
+	public void addSaveKeyListener(KeyAdapter adapter)
+	{
+		nameField.addKeyListener(adapter);
+
+		subConCombo.addKeyListener(adapter);
+
+		numConField.addKeyListener(adapter);
+
+		numbJumpsField.addKeyListener(adapter);
+
+		IPfield.addKeyListener(adapter);
+	}
+
+
+
+	/**
+	 * This method removes all, if any, {@link KeyListener KeyListeners} from
+	 * the given {@link Component}.
+	 */
+	private static void removeAllKeyListeners(Component comp)
+	{
+		KeyListener[] keys = comp.getKeyListeners();
+
+		if ( keys != null && keys.length > 0 )
+		{
+			for ( int i = 0; i < keys.length; i++ )
+			{
+				comp.removeKeyListener(keys[i]);
 			}
 		}
 	}

@@ -26,10 +26,14 @@ import graphics.GUI.objectView.Software.EditSoftware.EditViews.BackupEditView;
 import graphics.GUI.objectView.Software.EditSoftware.EditViews.DatabaseEditView;
 import graphics.GUI.objectView.Software.EditSoftware.EditViews.EmailEditView;
 import graphics.GUI.objectView.Software.EditSoftware.EditViews.FirewallEditView;
+import graphics.GUI.objectView.Software.EditSoftware.EditViews.GenericEditView;
+import graphics.GUI.objectView.Software.EditSoftware.EditViews.NASeditView;
 import graphics.GUI.objectView.Software.EditSoftware.EditViews.OSEditView;
 import graphics.GUI.objectView.Software.EditSoftware.EditViews.OfficeSuiteEditView;
 import graphics.GUI.objectView.Software.EditSoftware.EditViews.ProxyEditView;
+import graphics.GUI.objectView.Software.EditSoftware.EditViews.RemoteDesktopEditView;
 import graphics.GUI.objectView.Software.EditSoftware.EditViews.SecuritySuiteEditView;
+import graphics.GUI.objectView.Software.EditSoftware.EditViews.VirtualizationEditView;
 import graphics.GUI.objectView.Software.EditSoftware.EditViews.WebserverEditView;
 
 import java.awt.Component;
@@ -44,10 +48,14 @@ import objects.softwareObjects.Backup;
 import objects.softwareObjects.Database;
 import objects.softwareObjects.Email;
 import objects.softwareObjects.Firewall;
+import objects.softwareObjects.GenericSoftware;
+import objects.softwareObjects.NASsoftware;
 import objects.softwareObjects.OfficeSuite;
 import objects.softwareObjects.OperatingSystem;
 import objects.softwareObjects.Proxy;
+import objects.softwareObjects.RemoteDesktop;
 import objects.softwareObjects.SecuritySuite;
+import objects.softwareObjects.VirtualizationSoftware;
 import objects.softwareObjects.Webserver;
 
 
@@ -89,7 +97,15 @@ public class ObjectSoftwareViewTabbed extends JTabbedPane
 
 		for ( int i = 0; i < software.length; i++ )
 		{
-			if ( software[i] instanceof Antivirus )
+			if ( software[i] instanceof GenericSoftware )
+			{
+				this.addTab(
+						PrimeMain.texts.getString("generic"),
+						null,
+						new GenericEditView(obj, (GenericSoftware) software[i]),
+						PrimeMain.texts.getString("swTabGentabDescription"));
+			}
+			else if ( software[i] instanceof Antivirus )
 			{
 				this.addTab(PrimeMain.texts.getString("antivirus"), null,
 						new AntivirusEditView(obj, (Antivirus) software[i]),
@@ -101,12 +117,26 @@ public class ObjectSoftwareViewTabbed extends JTabbedPane
 						new BackupEditView(obj, (Backup) software[i]),
 						PrimeMain.texts.getString("swTabBackupTabDescription"));
 			}
+			else if ( software[i] instanceof NASsoftware )
+			{
+				this.addTab(PrimeMain.texts.getString("nas"), null,
+						new NASeditView(obj, (NASsoftware) software[i]),
+						PrimeMain.texts.getString("swTabNASTabDescription"));
+			}
 			else if ( software[i] instanceof Database )
 			{
 				this.addTab(PrimeMain.texts.getString("database"), null,
 						new DatabaseEditView(obj, (Database) software[i]),
 						PrimeMain.texts
 								.getString("swTabDatabaseTabDescription"));
+			}
+			else if ( software[i] instanceof VirtualizationSoftware )
+			{
+				this.addTab(PrimeMain.texts.getString("virtualization"), null,
+						new VirtualizationEditView(obj,
+								(VirtualizationSoftware) software[i]),
+						PrimeMain.texts
+								.getString("swTabVirtualizationTabDescription"));
 			}
 			else if ( software[i] instanceof Email )
 			{
@@ -155,6 +185,13 @@ public class ObjectSoftwareViewTabbed extends JTabbedPane
 						new WebserverEditView(obj, (Webserver) software[i]),
 						PrimeMain.texts
 								.getString("swTabWebserverTabDescription"));
+			}
+			else if ( software[i] instanceof RemoteDesktop )
+			{
+				this.addTab(PrimeMain.texts.getString("remoteDesktop"), null,
+						new RemoteDesktopEditView(obj,
+								(RemoteDesktop) software[i]), PrimeMain.texts
+								.getString("swTabRemoteDesktopTabDescription"));
 			}
 		}
 

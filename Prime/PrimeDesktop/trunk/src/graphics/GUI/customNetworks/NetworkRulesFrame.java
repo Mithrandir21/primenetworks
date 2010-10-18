@@ -182,9 +182,6 @@ public class NetworkRulesFrame extends JDialog implements ActionListener
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		Button reset = new Button(PrimeMain.texts.getString("reset"));
-		reset.addActionListener(lis);
-		reset.setActionCommand(PrimeMain.texts.getString("reset"));
 
 		Button save = new Button(PrimeMain.texts.getString("save"));
 		save.addActionListener(lis);
@@ -194,7 +191,6 @@ public class NetworkRulesFrame extends JDialog implements ActionListener
 		cancel.addActionListener(lis);
 		cancel.setActionCommand(PrimeMain.texts.getString("cancel"));
 
-		buttons.add(reset);
 		buttons.add(save);
 		buttons.add(cancel);
 
@@ -391,10 +387,12 @@ public class NetworkRulesFrame extends JDialog implements ActionListener
 
 					RulesManagment.processRulesChange(canvas);
 
+					// Sets the current as changed(for the save-on-exit
+					// feature).
 					canvas.setChanged(true);
 
 					// Saves the canvas
-					DesktopFileManagment.saveWorkareaCanvas(canvas);
+					DesktopFileManagment.saveWorkareaCanvas(canvas, true);
 
 					this.dispose();
 
@@ -403,11 +401,6 @@ public class NetworkRulesFrame extends JDialog implements ActionListener
 					PrimeMain.rulesFrame = null;
 				}
 			}
-		}
-		else if ( e.getActionCommand().equals(
-				PrimeMain.texts.getString("reset")) )
-		{
-
 		}
 		else if ( e.getActionCommand().equals(
 				PrimeMain.texts.getString("cancel")) )

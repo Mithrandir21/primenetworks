@@ -30,6 +30,7 @@ import objects.hardwareObjects.Motherboard;
 import objects.infrastructureObjects.Hub;
 import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.WirelessRouter;
+import objects.rackUnits.Rack;
 import widgetManipulation.NetworkRules;
 import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetObject;
@@ -266,6 +267,7 @@ public class RulesManagment
 		// the object is not exempted the network rules.
 		if ( object != null && canvas != null
 				&& !(object instanceof Infrastructure)
+				&& !(object instanceof Rack)
 				&& !object.isExemptedNetworkRules() )
 		{
 			boolean lanNotAllowed = rules.isLANnotAllowed();
@@ -531,7 +533,45 @@ public class RulesManagment
 					}
 				}
 			}
+
+
+			// Will set the IntegLAN setting on the motherboard.
+			try
+			{
+				// Gets the object motherboard
+				Motherboard objectMotherboard = ComponentsManagment
+						.getObjectMotherboard(object);
+
+				// The number of integrated LAN ports
+				int maxIntegLan = objectMotherboard.getMaxIntegLANs();
+
+				// If there are any integrated LAN ports
+				if ( maxIntegLan == 0 )
+				{
+					objectMotherboard.setIntegLANcard(false);
+				}
+				else if ( maxIntegLan > 0 )
+				{
+					objectMotherboard.setIntegLANcard(true);
+				}
+			}
+			catch ( MotherboardNotFound e )
+			{
+				LibraryLogging.libraryLog.logp(Level.INFO, "RulesManagment",
+						"objectLANruleViolation",
+						"The Object '" + object.getObjectName()
+								+ "' in the network '" + canvas.getCanvasName()
+								+ "' does not contain a Motherboard.");
+
+				if ( Settings.debug )
+				{
+					e.printStackTrace();
+				}
+			}
 		}
+
+
+
 
 
 		return ruleViolation;

@@ -1,25 +1,25 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.selectArea;
 
 
 /*
- *   images/middle.gif.
+ * images/middle.gif.
  */
 import graphics.ImageLocator;
 import graphics.PrimeMain;
@@ -38,8 +38,8 @@ import widgets.WorkareaCanvas;
 /**
  * This JTabbedPane extension is where the selection area and Networkmodels area
  * is located.
- * The selection area is where the user can click'n'drag new {@link WidgetObject WidgetObjects} into an open
- * {@link WorkareaCanvas}.
+ * The selection area is where the user can click'n'drag new
+ * {@link WidgetObject WidgetObjects} into an open {@link WorkareaCanvas}.
  * The Networkmodels area is where the user can see all the network models he
  * can open and edit.
  * 
@@ -64,23 +64,24 @@ public class TabbedSelection extends JTabbedPane
 
 
 	/**
-	 * A constructor for the class that adds both the selection area tab for the {@link Object Objects} and the network models
-	 * tabs for the {@link WorkareaCanvas}.
+	 * A constructor for the class that adds both the selection area tab for the
+	 * {@link Object Objects} and the network models tabs for the
+	 * {@link WorkareaCanvas}.
 	 */
 	public TabbedSelection()
 	{
 		ImageIcon objects = ImageLocator.getImageIconObject("Objects");
 
 		this.addTab(PrimeMain.texts.getString("selectAreaUnitAreaLabel"),
-				objects, objectPanel, PrimeMain.texts
-						.getString("selectAreaUnitAreaTip"));
+				objects, objectPanel,
+				PrimeMain.texts.getString("selectAreaUnitAreaTip"));
 
 
 
 		ImageIcon networks = ImageLocator.getImageIconObject("Networks");
 		this.addTab(PrimeMain.texts.getString("selectAreaNetworkModelsLabel"),
-				networks, primeTree, PrimeMain.texts
-						.getString("selectAreaNetworkModelsTip"));
+				networks, primeTree,
+				PrimeMain.texts.getString("selectAreaNetworkModelsTip"));
 
 
 		// The following line enables to use scrolling tabs.
@@ -94,15 +95,15 @@ public class TabbedSelection extends JTabbedPane
 	 */
 	public void updateObjectArea()
 	{
-		objectPanel = new ObjectSelection(true);
-		scrollArea.setViewportView(objectPanel);
+		// objectPanel = new ObjectSelection(true);
+		// scrollArea.setViewportView(objectPanel);
 
 
 		ImageIcon objects = ImageLocator.getImageIconObject("Objects");
 
 		this.insertTab(PrimeMain.texts.getString("selectAreaUnitAreaLabel"),
-				objects, scrollArea, PrimeMain.texts
-						.getString("selectAreaUnitAreaTip"), 0);
+				objects, objectPanel,
+				PrimeMain.texts.getString("selectAreaUnitAreaTip"), 0);
 		this.setSelectedIndex(0);
 	}
 

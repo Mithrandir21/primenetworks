@@ -97,7 +97,7 @@ public class RectangularAreaSelection extends LockedAdapter
 			// Creates and sets the rectangle that is the bounds of the
 			// WidgetRoom
 			selectionSceneRectangle = new Rectangle(
-					widget.convertLocalToScene(event.getPoint()));
+					widget.convertSceneToLocal(event.getPoint()));
 			move(widget, event.getPoint());
 			return State.createLocked(widget, this);
 		}
@@ -155,7 +155,7 @@ public class RectangularAreaSelection extends LockedAdapter
 
 	private void move(Widget widget, Point newLocation)
 	{
-		Point sceneLocation = widget.convertLocalToScene(newLocation);
+		Point sceneLocation = widget.convertSceneToLocal(newLocation);
 		selectionSceneRectangle.width = sceneLocation.x
 				- selectionSceneRectangle.x;
 		selectionSceneRectangle.height = sceneLocation.y

@@ -28,10 +28,12 @@ import org.netbeans.api.visual.widget.ConnectionWidget;
 import org.netbeans.api.visual.widget.Widget;
 
 import widgets.WorkareaCanvas;
+import connections.WidgetExtendedConnection;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class is added to a {@link WidgetExtendedConnection} to add "Line-break"
+ * functions.
  * 
  * @author Alex (Modified by Bahram Malaekeh)
  */

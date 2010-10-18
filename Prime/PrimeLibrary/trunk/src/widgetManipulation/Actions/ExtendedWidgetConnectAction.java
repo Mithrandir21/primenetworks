@@ -175,7 +175,7 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 		if ( sourceWidget != widget )
 			return false;
 
-		Point targetSceneLocation = widget.convertLocalToScene(point);
+		Point targetSceneLocation = widget.convertSceneToLocal(point);
 		targetWidget = resolveTargetWidgetCore(interractionLayer.getScene(),
 				targetSceneLocation);
 		Anchor targetAnchor = null;

@@ -424,14 +424,16 @@ public class EditGroupDialog extends JDialog implements ActionListener
 		clientJTable = new JTable(new PermissionsModel(clientData, columnNames));
 		clientJTable.setName("clientTable");
 		clientJTable.getModel().addTableModelListener(
-				new EditGroupModelSelectionListener(clientJTable, canvas, permissions));
+				new EditGroupModelSelectionListener(clientJTable, canvas,
+						permissions));
 		clientJTable
 				.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
 		serverJTable = new JTable(new PermissionsModel(serverData, columnNames));
 		serverJTable.setName("serverTable");
 		serverJTable.getModel().addTableModelListener(
-				new EditGroupModelSelectionListener(serverJTable, canvas, permissions));
+				new EditGroupModelSelectionListener(serverJTable, canvas,
+						permissions));
 		serverJTable
 				.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
@@ -439,8 +441,8 @@ public class EditGroupDialog extends JDialog implements ActionListener
 				externalDevicesData, columnNames));
 		externalHardwareJTable.setName("externalHardwareTable");
 		externalHardwareJTable.getModel().addTableModelListener(
-				new EditGroupModelSelectionListener(externalHardwareJTable, canvas,
-						permissions));
+				new EditGroupModelSelectionListener(externalHardwareJTable,
+						canvas, permissions));
 		externalHardwareJTable
 				.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
@@ -1005,6 +1007,8 @@ public class EditGroupDialog extends JDialog implements ActionListener
 					// Sets the groups permissions
 					group.setDevicePermissions(permissions);
 
+					// Sets the current as changed(for the save-on-exit
+					// feature).
 					canvas.setChanged(true);
 
 					PrimeMain.groupsDialog.editDialog = null;

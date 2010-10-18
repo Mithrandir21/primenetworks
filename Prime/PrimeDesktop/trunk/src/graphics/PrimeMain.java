@@ -351,8 +351,10 @@ public class PrimeMain extends JFrame
 
 
 		// Creates the system icons and places them in the ImageIcon array.
-		MakeSystemImageIcons standard_Image_Icons = new MakeSystemImageIcons();
-		standard_Image_Icons.getImageIcons();
+		MakeSystemImageIcons.getImageIcons(Settings.originalImages);
+
+		// Resets the setting for original images
+		Settings.originalImages = false;
 
 
 
@@ -696,23 +698,20 @@ public class PrimeMain extends JFrame
 	{
 		PropertiesArea temp = (PropertiesArea) propertiesPanel.getComponent(0);
 
-		if ( currentCanvas != null )
+		// If the method is to update the properties area regardless of
+		// whether or not the currently showing object is the same
+		// WorkareaCanvas
+		if ( override )
 		{
-			// If the method is to update the properties area regardless of
-			// whether
-			// or not the currently showing object is the same WorkareaCanvas
-			if ( override )
+			temp.newObjectSelectedPropertiesTab(currentCanvas);
+		}
+		else
+		{
+			// If the WorkareaCanvas shown in the properties area is not the
+			// same as the current WorkareaCanvas
+			if ( !(temp.isGivenCanvasCurrent(currentCanvas)) )
 			{
 				temp.newObjectSelectedPropertiesTab(currentCanvas);
-			}
-			else
-			{
-				// If the WorkareaCanvas shown in the properties area is not the
-				// same as the current WorkareaCanvas
-				if ( !(temp.isGivenCanvasCurrent(currentCanvas)) )
-				{
-					temp.newObjectSelectedPropertiesTab(currentCanvas);
-				}
 			}
 		}
 	}
@@ -746,7 +745,13 @@ public class PrimeMain extends JFrame
 				temp.newObjectSelectedPropertiesTab(obj);
 			}
 		}
+	}
 
+
+
+	public static void clearPropertiesArea()
+	{
+		updatePropertiesObjectArea(null, true);
 	}
 
 

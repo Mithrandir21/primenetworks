@@ -45,6 +45,8 @@ import exceptions.PortIsNotRegisteredOnMotherboard;
  * Object is a super class for all objects created within the system. Both
  * hardware and software. MUST ADD INFO!
  * 
+ * FIXME - Make Object rating system.<br>
+ * 
  * @author Bahram Malaekeh
  * @version 0.1
  */

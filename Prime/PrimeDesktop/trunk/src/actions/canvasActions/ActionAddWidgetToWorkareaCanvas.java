@@ -220,7 +220,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 		if ( this.widObject != null )
 		{
 			// Gets the point the Widget has on the scene
-			Point sceneLocation = this.canvas.getScene().convertViewToScene(
+			Point sceneLocation = this.canvas.getScene().convertSceneToLocal(
 					this.objectPoint);
 
 			// Adds the newly created WidgetObject to the classes canvas
@@ -258,7 +258,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 	public void performAction(boolean undoable)
 	{
 		// Gets the point the Widget has on the scene
-		Point sceneLocation = this.canvas.getScene().convertViewToScene(
+		Point sceneLocation = this.canvas.getScene().convertSceneToLocal(
 				this.objectPoint);
 
 		// Adds the newly created WidgetObject to the classes canvas

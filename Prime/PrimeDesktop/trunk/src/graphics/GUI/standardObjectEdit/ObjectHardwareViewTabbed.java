@@ -65,7 +65,7 @@ public class ObjectHardwareViewTabbed extends JTabbedPane
 	 */
 	public ObjectHardwareViewTabbed(Object obj)
 	{
-		mainobj = obj;
+		this.mainobj = obj;
 		populateTabs(obj);
 	}
 
@@ -215,11 +215,11 @@ public class ObjectHardwareViewTabbed extends JTabbedPane
 
 			try
 			{
-				ComponentsManagment.processAllChanges(mainobj);
+				ComponentsManagment.processAllChanges(this.mainobj);
 
 				// Updates the views of the object to correctly show the
 				// current info.
-				ObjectView view = PrimeMain.getObjectView(mainobj);
+				ObjectView view = PrimeMain.getObjectView(this.mainobj);
 				if ( view != null )
 				{
 					view.updateViewInfo();

@@ -72,6 +72,8 @@ public class CreateProvider implements SelectProvider
 		if ( relatedWidget instanceof WidgetObject
 				&& PrimeMain.currentCanvas != null )
 		{
+			PrimeMain.currentCanvas.setChanged(true);
+
 			relatedWidget.bringToFront();
 
 			WidgetObject widgetobj = (WidgetObject) relatedWidget;

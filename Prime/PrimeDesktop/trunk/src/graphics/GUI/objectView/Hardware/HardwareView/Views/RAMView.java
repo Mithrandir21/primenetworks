@@ -45,10 +45,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import managment.CanvasManagment;
 import managment.ComponentsManagment;
 import objects.Hardware;
 import objects.Object;
 import objects.hardwareObjects.Ram;
+import widgets.WorkareaCanvas;
 
 
 /**
@@ -319,7 +321,6 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 			RAMobj.setSize(0);
 		}
 
-
 		if ( !speed.getSelectedItem().toString().equals("") )
 		{
 			RAMobj.setSpeed(Integer
@@ -414,12 +415,17 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 
 			if ( command.equals("removeComp") )
 			{
-				if ( PrimeMain.currentCanvas != null )
+				// Attempts to find the canvas that contains the given object.
+				WorkareaCanvas canvas = CanvasManagment.findCanvas(mainObj,
+						PrimeMain.canvases);
+
+				// Object is on a canvas
+				if ( canvas != null )
 				{
 					try
 					{
-						ComponentsManagment.removeComponent(
-								PrimeMain.currentCanvas, mainObj, RAMobj);
+						ComponentsManagment.removeComponent(canvas, mainObj,
+								RAMobj);
 
 						// Updates the views of the object to correctly show the
 						// current info.
@@ -428,11 +434,24 @@ public class RAMView extends JPanel implements HardwareViewInterface,
 						{
 							view.updateViewInfo();
 						}
+					}
+					catch ( MotherboardNotFound e1 )
+					{
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				// The object is a Standard Object
+				else if ( PrimeMain.objectlist.contains(mainObj) )
+				{
+					try
+					{
+						ComponentsManagment.removeComponent(null, mainObj,
+								RAMobj);
+
 						// If no view is returned, then the standard object view
-						// is
-						// open
-						// and that should be updated.
-						else if ( PrimeMain.stdObjView != null )
+						// is open and that should be updated.
+						if ( PrimeMain.stdObjView != null )
 						{
 							PrimeMain.stdObjView.getSplitView().getObjView()
 									.getHardStdObjView().updateTabInfo();

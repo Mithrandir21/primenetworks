@@ -36,7 +36,6 @@ public class NASsoftware extends Software
 	private boolean supWebInterface;
 
 
-	// FIXME - Fix NASsoftware.
 	/**
 	 * A constructor for the values needed for the super class({@link Software}
 	 * ).

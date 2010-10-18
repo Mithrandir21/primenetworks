@@ -46,6 +46,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 
+import managment.Settings;
 import objects.Object;
 import widgets.WidgetButton;
 
@@ -67,14 +68,17 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 	public HashMap<Class, ImageIcon> tempImageIcons = new HashMap<Class, ImageIcon>();
 
 	// The JPanel all WidgetButtons will place in.
-	JPanel iconPanel;
+	private JPanel iconPanel;
+
+	private JScrollPane scrollPane = new JScrollPane();
 
 	// A boolean on whether or not anything has been changed
 	boolean changed = false;
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * This is a constructor for the class sets up the different Icon buttons
+	 * that show {@link Object} icons.
 	 */
 	public VisualCustomFrame()
 	{
@@ -95,52 +99,8 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 		int initXLocation = (scrnsize.width - size.width) / 2;
 
 
-		JPanel panel = new JPanel();
-		panel.setBorder(grayline);
+		panelSetup();
 
-		panel.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-
-		c.fill = GridBagConstraints.BOTH;
-
-		c.gridx = 0;
-		c.gridy = 0;
-		c.weightx = 1;
-		c.weighty = 1;
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		c.insets = new Insets(10, 10, 5, 10);
-
-		iconPanel = createVisualPanel();
-		JScrollPane scrollPane = new JScrollPane();
-		iconPanel.setPreferredSize(new Dimension(scrollPane.getWidth(), 1000));
-		scrollPane.setViewportView(iconPanel);
-
-		// Increases how far the scroll bar scrolls on one step of a mouse wheel
-		scrollPane.getVerticalScrollBar().setUnitIncrement(10);
-
-
-		// scrollPane
-		// .setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		// scrollPane.setBorder(null);
-
-		panel.add(scrollPane, c);
-
-
-		c.gridx = 0;
-		c.gridy = 1;
-		c.weightx = 1;
-		c.weighty = 0;
-		c.gridwidth = 1;
-		c.gridheight = 0;
-		c.insets = new Insets(0, 10, 10, 10);
-
-		JPanel p2 = createButtons();
-
-		panel.add(p2, c);
-
-
-		this.add(panel);
 
 
 		this.setSize(size);
@@ -188,8 +148,65 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 	}
 
 
+
 	/**
 	 * TODO - Description
+	 * 
+	 */
+	private void panelSetup()
+	{
+		JPanel panel = new JPanel();
+		panel.setBorder(grayline);
+
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+
+		c.fill = GridBagConstraints.BOTH;
+
+		c.gridx = 0;
+		c.gridy = 0;
+		c.weightx = 1;
+		c.weighty = 1;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.insets = new Insets(10, 10, 5, 10);
+
+		iconPanel = createVisualPanel();
+		iconPanel.setPreferredSize(new Dimension(scrollPane.getWidth(), 1000));
+		scrollPane.setViewportView(iconPanel);
+
+		// Increases how far the scroll bar scrolls on one step of a mouse wheel
+		scrollPane.getVerticalScrollBar().setUnitIncrement(10);
+
+
+		// scrollPane
+		// .setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		// scrollPane.setBorder(null);
+
+		panel.add(scrollPane, c);
+
+
+		c.gridx = 0;
+		c.gridy = 1;
+		c.weightx = 1;
+		c.weighty = 0;
+		c.gridwidth = 1;
+		c.gridheight = 0;
+		c.insets = new Insets(0, 10, 10, 10);
+
+		JPanel p2 = createButtons();
+
+		panel.add(p2, c);
+
+
+		this.add(panel);
+	}
+
+
+
+	/**
+	 * This function creates and returns a JPanel with {@link WidgetButton} with
+	 * images that show {@link Object} icons.
 	 */
 	private JPanel createVisualPanel()
 	{
@@ -210,7 +227,7 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 
 
 	/**
-	 * TODO - Description
+	 * Creates a {@link WidgetButton} that contains given {@link Object}.
 	 */
 	private JButton createImageButton(Object obj)
 	{
@@ -271,11 +288,43 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 		{
 			saveImages();
 
+			JOptionPane.showMessageDialog(null,
+					PrimeMain.texts.getString("ChangeAfterRestart"));
+
 			this.dispose();
+			// Sets the pointer to this JFrame to null.
+			PrimeMain.vcf = null;
 		}
 		else if ( e.getActionCommand().equals("reset") )
 		{
-			// FIXME - Fix reset button on Custom Visual Icons
+			String question = PrimeMain.texts
+					.getString("imageIconsResetQuestion")
+					+ System.getProperty("line.separator")
+					+ PrimeMain.texts.getString("thisCannotBeUndoneMsg");
+
+
+			// Custom button text
+			java.lang.Object[] options = { PrimeMain.texts.getString("yes"),
+					PrimeMain.texts.getString("no") };
+
+
+			int answer = JOptionPane.showOptionDialog(null, question,
+					PrimeMain.texts.getString("confirm"),
+					JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+
+
+			if ( answer == 0 )
+			{
+				Settings.originalImages = true;
+
+				JOptionPane.showMessageDialog(null,
+						PrimeMain.texts.getString("ChangeAfterRestart"));
+
+				this.dispose();
+				// Sets the pointer to this JFrame to null.
+				PrimeMain.vcf = null;
+			}
 		}
 		else
 		{
@@ -317,28 +366,11 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 		}
 	}
 
-
 	/**
 	 * Saving function for saving icon images.
 	 */
 	private void saveImages()
 	{
-		// String question = PrimeMain1.texts
-		// .getString("overwriteIconFileQuestions")
-		// + "\n" + PrimeMain1.texts.getString("thisCannotBeUndoneMsg");
-		//
-		//
-		// // Custom button text
-		// java.lang.Object[] options = { PrimeMain1.texts.getString("yes"),
-		// PrimeMain1.texts.getString("no") };
-		//
-		//
-		// int answer = JOptionPane.showOptionDialog(null, question,
-		// PrimeMain1.texts.getString("overwrite"),
-		// JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
-		// null, options, options[1]);
-
-
 		for ( int i = 0; i < iconPanel.getComponentCount(); i++ )
 		{
 			WidgetButton button = (WidgetButton) iconPanel.getComponent(i);
@@ -350,20 +382,6 @@ public class VisualCustomFrame extends JDialog implements ActionListener
 
 
 			button.getObject().setVisualImage(icon);
-
-			// FIXME - Image Override
-			// if ( answer == 0 )
-			// {
-			// // The File pointer to the Image file
-			// File imageFile = GraphicalFunctions.getImageIconFile(icon);
-			//
-			// // If there was a File found
-			// if ( imageFile != null )
-			// {
-			// // Attempts to write
-			// SystemFunctions.copyIconIntoTheSystem(imageFile);
-			// }
-			// }
 		}
 
 

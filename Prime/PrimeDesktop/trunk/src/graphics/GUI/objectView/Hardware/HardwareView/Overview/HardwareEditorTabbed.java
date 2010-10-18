@@ -54,7 +54,6 @@ import objects.hardwareObjects.Ram;
  */
 public class HardwareEditorTabbed extends JTabbedPane
 {
-
 	private Object mainobj;
 
 	/**

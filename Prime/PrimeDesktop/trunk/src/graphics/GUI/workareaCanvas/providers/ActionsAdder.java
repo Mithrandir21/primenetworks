@@ -138,8 +138,9 @@ public class ActionsAdder
 						canvas.getInteractionLayer(), null));
 
 		// PrimeAlignWithMove pa = new PrimeAlignWithMove(
-		// new PrimeLayerAlignCollector(canvas.getMainLayer()),
-		// canvas.getInteractionLayer(), decorator);
+		// new SingleLayerAlignWithWidgetCollector(canvas.getMainLayer(),
+		// true), canvas.getInteractionLayer(), decorator, true,
+		// canvas);
 		//
 		// newObject.getActions()
 		// .addAction(ActionFactory.createMoveAction(pa, pa));
@@ -154,8 +155,6 @@ public class ActionsAdder
 		// Cleans up the canvas
 		DesktopCanvasManagment.canvasCleanUp(canvas);
 	}
-
-
 
 	/**
 	 * This function add the necessary actions to the given

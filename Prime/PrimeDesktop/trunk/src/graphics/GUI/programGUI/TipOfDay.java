@@ -60,7 +60,7 @@ public class TipOfDay extends JFrame implements ActionListener
 	{
 		super(PrimeMain.texts.getString("totdTitle"));
 
-		createTipOfTheDayDemo();
+		createTipOfTheDay();
 
 
 		// Get the default toolkit
@@ -85,7 +85,7 @@ public class TipOfDay extends JFrame implements ActionListener
 		this.setVisible(true);
 	}
 
-	private void createTipOfTheDayDemo()
+	private void createTipOfTheDay()
 	{
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints d = new GridBagConstraints();

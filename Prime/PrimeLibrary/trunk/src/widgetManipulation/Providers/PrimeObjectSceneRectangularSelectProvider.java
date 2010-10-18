@@ -76,7 +76,7 @@ public class PrimeObjectSceneRectangularSelectProvider implements
 			}
 			if ( entirely )
 			{
-				Rectangle widgetRect = object.convertLocalToScene(object
+				Rectangle widgetRect = object.convertSceneToLocal(object
 						.getBounds());
 				if ( rect.contains(widgetRect) )
 				{

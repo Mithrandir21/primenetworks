@@ -64,7 +64,7 @@ public class HardwareObjectView extends JPanel implements ActionListener
 {
 	private Object givenObject = null;
 
-	private StandardObjectHardwareEditor hwEditor;
+	private StandardObjectHardwareEditor hwEditor = null;
 
 
 	/**

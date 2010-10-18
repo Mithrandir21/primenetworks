@@ -55,12 +55,9 @@ public class ClientsPropertiesView extends AbstractObjectPropertiesView
 {
 
 	// The client properties labels
-	JLabel name;
+	private JLabel name;
 
 
-	/**
-	 * 
-	 */
 	private JComboBox comboBox = new JComboBox();
 
 
@@ -79,7 +76,9 @@ public class ClientsPropertiesView extends AbstractObjectPropertiesView
 		{
 			objectView = (Clients) obj;
 
-			// nameField.addKeyListener(new SaveKey());
+			SaveKey key = new SaveKey();
+
+			addSaveKeyListener(key);
 
 			d.gridy = 1;
 			this.add(getClientsPropertiesView(obj), d);

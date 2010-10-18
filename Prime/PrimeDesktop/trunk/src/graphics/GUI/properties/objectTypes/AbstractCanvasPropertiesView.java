@@ -21,9 +21,12 @@ package graphics.GUI.properties.objectTypes;
 import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 
+import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -33,6 +36,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import logistical.checkLogic;
 import managment.DesktopFileManagment;
 import managment.NetworkManagment;
 import objects.Object;
@@ -152,6 +156,7 @@ public class AbstractCanvasPropertiesView extends JPanel
 		nameField.setText(canvas.getCanvasName());
 		// nameLabel.setLabelFor(nameField);
 		nameField.setName("Name_Canvas");
+		removeAllKeyListeners(nameField);
 		panelCons.insets = new Insets(0, 0, 10, 0); // padding
 		panelCons.gridy++; // row
 		panel.add(nameField, panelCons);
@@ -170,6 +175,7 @@ public class AbstractCanvasPropertiesView extends JPanel
 
 		objectCountField.setText("" + canvas.getNumberOfWidgetsOnTheScene());
 		objectCountField.setEditable(false);
+		removeAllKeyListeners(objectCountField);
 		panelCons.insets = new Insets(0, 0, 10, 0); // padding
 		panelCons.gridy++; // row
 		panel.add(objectCountField, panelCons);
@@ -192,6 +198,7 @@ public class AbstractCanvasPropertiesView extends JPanel
 		netmaskCombo.setModel(new DefaultComboBoxModel(netmasks));
 		netmaskCombo.setSelectedIndex(GraphicalFunctions.getIndexInJComboBox(
 				netmasks, canvas.getNetworkInfo().getNetmask()));
+		removeAllKeyListeners(netmaskCombo);
 		panelCons.insets = new Insets(0, 0, 10, 0); // padding
 		panelCons.gridy++; // row
 		panel.add(netmaskCombo, panelCons);
@@ -209,6 +216,7 @@ public class AbstractCanvasPropertiesView extends JPanel
 
 
 		IPrangeStartField.setName("IP range start");
+		removeAllKeyListeners(IPrangeStartField);
 		String ipFrom = canvas.getNetworkInfo().getIpRangeFrom();
 		if ( !(ipFrom == null) )
 		{
@@ -232,6 +240,7 @@ public class AbstractCanvasPropertiesView extends JPanel
 
 
 		IPrangeEndField.setName("IP range end");
+		removeAllKeyListeners(IPrangeEndField);
 		String ipTo = canvas.getNetworkInfo().getIpRangeTo();
 		if ( !(ipTo == null) )
 		{
@@ -311,30 +320,49 @@ public class AbstractCanvasPropertiesView extends JPanel
 			String canvasName = nameField.getText();
 			if ( !(canvasName.equals("")) )
 			{
-				// If the name of the currently selected
-				// WorkareaCanvas is not the same as the
-				// name of the name in the canvasName field.
-				if ( !(canvasViewed.getCanvasName().equals(canvasName)) )
+				if ( checkLogic.validateName(canvasName) )
 				{
-					// No canvas was found with the name
-					if ( !(DesktopFileManagment
-							.fileWorkareaCanvasExist(canvasName)) )
+					// If the name of the currently selected
+					// WorkareaCanvas is not the same as the
+					// name of the name in the canvasName field.
+					if ( !(canvasViewed.getCanvasName().equals(canvasName)) )
 					{
-						PrimeMain.workTab.updateCanvasName(canvasViewed,
-								canvasName);
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(
-								null,
-								PrimeMain.texts
-										.getString("canvasExistWithNameMsg")
-										+ "\"" + canvasName + "\".",
-								PrimeMain.texts.getString("error"),
-								JOptionPane.ERROR_MESSAGE);
+						// No canvas was found with the name
+						if ( !(DesktopFileManagment
+								.fileWorkareaCanvasExist(canvasName)) )
+						{
+							PrimeMain.workTab.updateCanvasName(canvasViewed,
+									canvasName);
+						}
+						else
+						{
+							JOptionPane
+									.showMessageDialog(
+											null,
+											PrimeMain.texts
+													.getString("canvasExistWithNameMsg")
+													+ "\"" + canvasName + "\".",
+											PrimeMain.texts.getString("error"),
+											JOptionPane.ERROR_MESSAGE);
 
-						errorDuringSaving = true;
+							errorDuringSaving = true;
+						}
 					}
+				}
+				else
+				{
+					JOptionPane
+							.showMessageDialog(
+									null,
+									PrimeMain.texts
+											.getString("actionChangeWidgetNameInvalidNameText"),
+									PrimeMain.texts.getString("error"),
+									JOptionPane.ERROR_MESSAGE);
+
+					// Focuses on the JTextField
+					nameField.requestFocusInWindow();
+
+					errorDuringSaving = true;
 				}
 			}
 
@@ -481,4 +509,41 @@ public class AbstractCanvasPropertiesView extends JPanel
 			}
 		}
 	}
+
+
+	/**
+	 * This method adds the given {@link KeyAdapter} to this classes fields.
+	 */
+	public void addSaveKeyListener(KeyAdapter adapter)
+	{
+		nameField.addKeyListener(adapter);
+
+		objectCountField.addKeyListener(adapter);
+
+		netmaskCombo.addKeyListener(adapter);
+
+		IPrangeStartField.addKeyListener(adapter);
+
+		IPrangeEndField.addKeyListener(adapter);
+	}
+
+
+
+	/**
+	 * This method removes all, if any, {@link KeyListener KeyListeners} from
+	 * the given {@link Component}.
+	 */
+	private static void removeAllKeyListeners(Component comp)
+	{
+		KeyListener[] keys = comp.getKeyListeners();
+
+		if ( keys != null && keys.length > 0 )
+		{
+			for ( int i = 0; i < keys.length; i++ )
+			{
+				comp.removeKeyListener(keys[i]);
+			}
+		}
+	}
+
 }

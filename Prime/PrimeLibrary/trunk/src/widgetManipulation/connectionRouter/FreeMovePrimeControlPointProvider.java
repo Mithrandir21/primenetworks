@@ -26,10 +26,13 @@ import org.netbeans.api.visual.action.MoveControlPointProvider;
 import org.netbeans.api.visual.widget.ConnectionWidget;
 
 import widgets.WorkareaCanvas;
+import connections.WidgetExtendedConnection;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class is added to a {@link WidgetExtendedConnection} to added the free
+ * movement feature a "Line-break" point. See
+ * {@link AddRemovePrimeControlPointAction}.
  * 
  * @author Alex (Modified by Bahram Malaekeh)
  */
@@ -40,8 +43,9 @@ public class FreeMovePrimeControlPointProvider implements
 	private WorkareaCanvas canvas;
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
+	 * This is a constructor for the class that takes as parameter the
+	 * {@link WorkareaCanvas} that the {@link WidgetExtendedConnection} that
+	 * this class object will be added to.
 	 */
 	public FreeMovePrimeControlPointProvider(WorkareaCanvas canvas)
 	{

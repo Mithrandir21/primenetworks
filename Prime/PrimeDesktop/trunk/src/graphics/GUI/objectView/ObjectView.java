@@ -39,7 +39,10 @@ import logistical.checkLogic;
 import managment.ComponentsManagment;
 import managment.DesktopCanvasManagment;
 import managment.RulesManagment;
+import objects.Clients;
+import objects.ExternalHardware;
 import objects.Object;
+import objects.Servers;
 import widgetManipulation.WidgetNetworkInfo;
 import widgetManipulation.Actions.WorkareaCanvasActions;
 import widgets.WidgetObject;
@@ -419,8 +422,12 @@ public class ObjectView extends JFrame implements ActionListener
 
 
 		// SAVING THE PERMISSIONS PART
-		view.netObjView.objPermPanel.saveObjectPermissions();
-
+		if ( currentObject instanceof Clients
+				|| currentObject instanceof Servers
+				|| currentObject instanceof ExternalHardware )
+		{
+			view.netObjView.objPermPanel.saveObjectPermissions();
+		}
 
 
 

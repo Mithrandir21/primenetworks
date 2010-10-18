@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.customOSviews;
 
@@ -145,7 +145,8 @@ public class OSedit extends JDialog implements ActionListener
 
 	/**
 	 * This method creates and returns a JPanel that contains all the different
-	 * settings of the given Software object. It uses the {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
+	 * settings of the given Software object. It uses the
+	 * {@link graphics.GraphicalFunctions.make6xGrid make6xGrid} to order all
 	 * the different components in the JPanel in grids.
 	 * 
 	 * @param OS
@@ -192,8 +193,8 @@ public class OSedit extends JDialog implements ActionListener
 
 
 		// The supported file system.
-		JLabel fsLabel = new JLabel(PrimeMain.texts
-				.getString("osViewSupFSLabel"));
+		JLabel fsLabel = new JLabel(
+				PrimeMain.texts.getString("osViewSupFSLabel"));
 		fsLabel.setToolTipText(PrimeMain.texts.getString("osViewSupFSTip"));
 
 		panel1.add(fsLabel, conPanel1);
@@ -222,8 +223,8 @@ public class OSedit extends JDialog implements ActionListener
 
 
 		// Whether or not the OS supports encrypted file system
-		encryptedFileSystem = new JCheckBox(PrimeMain.texts
-				.getString("osViewSupEnctyptedFSLabel"));
+		encryptedFileSystem = new JCheckBox(
+				PrimeMain.texts.getString("osViewSupEnctyptedFSLabel"));
 		encryptedFileSystem.setToolTipText(PrimeMain.texts
 				.getString("osViewSupEnctyptedFSTip"));
 		encryptedFileSystem.setSelected(os.isEncryptedFileSystem());
@@ -234,10 +235,8 @@ public class OSedit extends JDialog implements ActionListener
 
 
 		// Whether or not the OS has a GUI
-		hasGUI = new JCheckBox(PrimeMain.texts
-				.getString("osViewSupEnctyptedFSLabel"));
-		hasGUI.setToolTipText(PrimeMain.texts
-				.getString("osViewSupEnctyptedFSTip"));
+		hasGUI = new JCheckBox(PrimeMain.texts.getString("osViewHasGUILabel"));
+		hasGUI.setToolTipText(PrimeMain.texts.getString("osViewHasGUITip"));
 		hasGUI.setSelected(os.isHasGUI());
 
 		conPanel1.gridx = 3; // column
@@ -267,10 +266,8 @@ public class OSedit extends JDialog implements ActionListener
 
 
 		// The 64 bit check box
-		is64bit = new JCheckBox(PrimeMain.texts
-				.getString("osViewSupEnctyptedFSLabel"));
-		is64bit.setToolTipText(PrimeMain.texts
-				.getString("osViewSupEnctyptedFSTip"));
+		is64bit = new JCheckBox(PrimeMain.texts.getString("osView64BitLabel"));
+		is64bit.setToolTipText(PrimeMain.texts.getString("osView64BitTip"));
 		is64bit.setSelected(os.isIs64bit());
 
 		conPanel2.gridx = 0; // column
@@ -278,8 +275,8 @@ public class OSedit extends JDialog implements ActionListener
 
 
 		// The version of the OS
-		JLabel versionLabel = new JLabel(PrimeMain.texts
-				.getString("osViewVersionLabel"));
+		JLabel versionLabel = new JLabel(
+				PrimeMain.texts.getString("osViewVersionLabel"));
 		conPanel2.gridx = 1; // column
 		panel2.add(versionLabel, conPanel2);
 
@@ -374,16 +371,18 @@ public class OSedit extends JDialog implements ActionListener
 
 
 	/**
-	 * Returns a boolean on whether or not the information in the fields are valid.
+	 * Returns a boolean on whether or not the information in the fields are
+	 * valid.
 	 */
 	public boolean validateCustomOS()
 	{
 		// Checks whether any filesystems have been selected
 		if ( supportedFS.getSelectedIndex() == -1 )
 		{
-			JOptionPane.showMessageDialog(null, PrimeMain.texts
-					.getString("osNoFSselectedMsg"), PrimeMain.texts
-					.getString("error"), JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,
+					PrimeMain.texts.getString("osNoFSselectedMsg"),
+					PrimeMain.texts.getString("error"),
+					JOptionPane.ERROR_MESSAGE);
 
 			return false;
 		}
@@ -392,9 +391,10 @@ public class OSedit extends JDialog implements ActionListener
 		// Checks to see whether the description is empty
 		if ( desc.getText().equals("") || desc.getText().equals("") )
 		{
-			JOptionPane.showMessageDialog(null, PrimeMain.texts
-					.getString("osNoDescriptionMsg"), PrimeMain.texts
-					.getString("error"), JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,
+					PrimeMain.texts.getString("osNoDescriptionMsg"),
+					PrimeMain.texts.getString("error"),
+					JOptionPane.ERROR_MESSAGE);
 
 			return false;
 		}
@@ -403,9 +403,10 @@ public class OSedit extends JDialog implements ActionListener
 		// Checks the standard OS names
 		if ( DesktopSoftwareManagment.foundInStandardOS(name.getText()) )
 		{
-			JOptionPane.showMessageDialog(null, PrimeMain.texts
-					.getString("osSameNameAsAstandardOS"), PrimeMain.texts
-					.getString("error"), JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,
+					PrimeMain.texts.getString("osSameNameAsAstandardOS"),
+					PrimeMain.texts.getString("error"),
+					JOptionPane.ERROR_MESSAGE);
 
 			return false;
 		}
@@ -422,12 +423,13 @@ public class OSedit extends JDialog implements ActionListener
 			{
 				OperatingSystem os = itr.next();
 
-				// If the name is the same and the Serial number is different, ie different Operating System
+				// If the name is the same and the Serial number is different,
+				// ie different Operating System
 				if ( name.getText().equalsIgnoreCase(os.getObjectName())
 						&& (os.getObjectSerial() != mainOS.getObjectSerial()) )
 				{
-					JOptionPane.showMessageDialog(null, PrimeMain.texts
-							.getString("osSameNameAsAcustomOS"),
+					JOptionPane.showMessageDialog(null,
+							PrimeMain.texts.getString("osSameNameAsAcustomOS"),
 							PrimeMain.texts.getString("error"),
 							JOptionPane.ERROR_MESSAGE);
 
@@ -443,7 +445,9 @@ public class OSedit extends JDialog implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)

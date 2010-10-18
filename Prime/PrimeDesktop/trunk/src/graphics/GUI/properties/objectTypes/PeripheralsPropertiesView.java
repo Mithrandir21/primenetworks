@@ -53,7 +53,9 @@ public class PeripheralsPropertiesView extends AbstractObjectPropertiesView
 	{
 		super(obj);
 
-		nameField.addKeyListener(new SaveKey());
+		SaveKey key = new SaveKey();
+
+		addSaveKeyListener(key);
 
 		d.gridy = 1;
 		this.add(getPeripheralsPropertiesView(obj), d);

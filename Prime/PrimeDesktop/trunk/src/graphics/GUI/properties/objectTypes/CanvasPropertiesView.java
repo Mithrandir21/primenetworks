@@ -54,9 +54,9 @@ public class CanvasPropertiesView extends AbstractCanvasPropertiesView
 	{
 		super(canvas);
 
-		// nameField.addKeyListener(new SaveKey());
-		// IPrangeEndField.addKeyListener(new SaveKey());
-		// IPrangeStartField.addKeyListener(new SaveKey());
+		SaveKey key = new SaveKey();
+
+		addSaveKeyListener(key);
 
 		d.gridy = 1;
 		this.add(getGeneralCanvasPropertiesView(canvas), d);

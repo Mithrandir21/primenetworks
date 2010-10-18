@@ -62,7 +62,7 @@ public class MakeSystemImageIcons
 	 * Gets the URL of this class to be used to locate all the system images and
 	 * Icons. It calls the method visitAllFiles.
 	 */
-	public void getImageIcons()
+	public static void getImageIcons(boolean original)
 	{
 		URI uri = new File("./resource/images").toURI();
 
@@ -70,7 +70,7 @@ public class MakeSystemImageIcons
 
 		visitAllFiles(folder);
 
-		setupAllSystemImageIcons();
+		setupAllSystemImageIcons(original);
 	}
 
 
@@ -119,18 +119,18 @@ public class MakeSystemImageIcons
 
 
 	/**
-	 * TODO - Description
+	 * This method initiates the different setup methods for system images.
 	 */
-	public static void setupAllSystemImageIcons()
+	public static void setupAllSystemImageIcons(boolean original)
 	{
 		// Sets up the images for main objects.
-		setupObjectImageIcon();
+		setupObjectImageIcon(original);
 
 		// Sets up the images for the hardware objects.
-		setupHardwareImageIcon();
+		setupHardwareImageIcon(original);
 
 		// Sets up the images for the software objects.
-		setupSoftwareImageIcon();
+		setupSoftwareImageIcon(original);
 	}
 
 
@@ -139,130 +139,132 @@ public class MakeSystemImageIcons
 	 * Sets up both the systems standard objects ImageIcons and the systems
 	 * hashmap of the object ImageIcon.
 	 */
-	private static void setupObjectImageIcon()
+	private static void setupObjectImageIcon(boolean original)
 	{
 		// Desktop
-		setupImage(0, "Desktop");
+		setupImage(0, "Desktop", original);
 
 
 		// Laptop
-		setupImage(1, "Laptop");
+		setupImage(1, "Laptop", original);
 
 
 		// Thin Client
-		setupImage(2, "Thin Client");
+		setupImage(2, "Thin Client", original);
 
 
 		// Generic Server
-		setupImage(3, "Server");
+		setupImage(3, "Server", original);
 
 
 		// Antivirus Server
-		setupImage(4, "Antivirus Server");
+		setupImage(4, "Antivirus Server", original);
 
 
 		// HTTP Server
-		setupImage(5, "HTTP Server");
+		setupImage(5, "HTTP Server", original);
 
 
 		// Backup Server
-		setupImage(6, "Backup Server");
+		setupImage(6, "Backup Server", original);
 
 
 		// NAS Server
-		setupImage(7, "NAS Server");
+		setupImage(7, "NAS Server", original);
 
 
 		// Database Server
-		setupImage(8, "Database Server");
+		setupImage(8, "Database Server", original);
 
 
 		// Virtualization Server
-		setupImage(9, "Virtualization Server");
+		setupImage(9, "Virtualization Server", original);
 
 
 		// Mail Server
-		setupImage(10, "Mail Server");
+		setupImage(10, "Mail Server", original);
 
 
 		// Firewall Server
-		setupImage(11, "Firewall Server");
+		setupImage(11, "Firewall Server", original);
 
 
 		// Proxy Server
-		setupImage(12, "Proxy Server");
+		setupImage(12, "Proxy Server", original);
 
 
 		// Printer Server
-		setupImage(13, "Printer Server");
+		setupImage(13, "Printer Server", original);
 
 
 		// NAS
-		setupImage(14, "ExternalHDD");
+		setupImage(14, "ExternalHDD", original);
 
 
 		// Scanner
-		setupImage(15, "Scanner");
+		setupImage(15, "Scanner", original);
 
 
 		// Printer
-		setupImage(16, "Printer");
+		setupImage(16, "Printer", original);
 
 
 		// Fax
-		setupImage(17, "Fax");
+		setupImage(17, "Fax", original);
 
 
 		// MFP
-		setupImage(18, "MFP");
+		setupImage(18, "MFP", original);
 
 
 		// Network Printer
-		setupImage(19, "Network Printer");
+		setupImage(19, "Network Printer", original);
 
 
 		// NetworkMultifunctionPrinter
-		setupImage(20, "NetworkMultifunctionPrinter");
+		setupImage(20, "NetworkMultifunctionPrinter", original);
 
 
 		// Hub
-		setupImage(21, "Hub");
+		setupImage(21, "Hub", original);
 
 
 		// Switch
-		setupImage(22, "Switch");
+		setupImage(22, "Switch", original);
 
 
 		// Router
-		setupImage(23, "Router");
+		setupImage(23, "Router", original);
 
 
 		// Modem
-		setupImage(24, "Modem");
+		setupImage(24, "Modem", original);
 
 
 		// Wireless Router
-		setupImage(25, "Wireless Router");
+		setupImage(25, "Wireless Router", original);
 
 
 		// Internet
-		setupImage(26, "Internet");
+		setupImage(26, "Internet", original);
 
 
-		// Internet
-		setupImage(27, "Rack");
+		// Rack
+		setupImage(27, "Rack", original);
 	}
-
 
 
 	/**
 	 * This function sets up the image icon for the system.
+	 * If the given boolean is true, the system will load original icons. (Used
+	 * when reseting.)
 	 */
-	private static void setupImage(int objectListID, String name)
+	private static void setupImage(int objectListID, String name,
+			boolean original)
 	{
-		if ( name != null )
+		if ( name != null && objectListID > -1 )
 		{
-			if ( PrimeMain.objectlist.get(objectListID).getVisualImage() == null )
+			if ( original )
 			{
 				// Gets the objects ImageIcon
 				ImageIcon objectIcon = ImageLocator.getImageIconObject(name);
@@ -271,68 +273,97 @@ public class MakeSystemImageIcons
 				PrimeMain.objectlist.get(objectListID).setVisualImage(
 						objectIcon);
 
-				// Places the ImageIcon into the systems hashmap of ImageIcons
+				// Places the ImageIcon into the systems hashmap of
+				// ImageIcons
 				PrimeMain.objectImageIcons.put(
 						PrimeMain.objectlist.get(objectListID).getClass(),
 						objectIcon);
 			}
 			else
 			{
-				// Places the ImageIcon into the systems hashmap of ImageIcons
-				PrimeMain.objectImageIcons
-						.put(PrimeMain.objectlist.get(objectListID).getClass(),
-								PrimeMain.objectlist.get(objectListID)
-										.getVisualImage());
+				if ( PrimeMain.objectlist.get(objectListID).getVisualImage() == null )
+				{
+					// Gets the objects ImageIcon
+					ImageIcon objectIcon = ImageLocator
+							.getImageIconObject(name);
+
+					// Sets the Objects Visual Image
+					PrimeMain.objectlist.get(objectListID).setVisualImage(
+							objectIcon);
+
+					// Places the ImageIcon into the systems hashmap of
+					// ImageIcons
+					PrimeMain.objectImageIcons.put(
+							PrimeMain.objectlist.get(objectListID).getClass(),
+							objectIcon);
+				}
+				else
+				{
+					// Places the ImageIcon into the systems hashmap of
+					// ImageIcons
+					PrimeMain.objectImageIcons.put(
+							PrimeMain.objectlist.get(objectListID).getClass(),
+							PrimeMain.objectlist.get(objectListID)
+									.getVisualImage());
+				}
 			}
 		}
 	}
 
 
 
+
+
+
+
 	/**
 	 * Sets up the systems hashmap of the hardware objects ImageIcon.
 	 */
-	private static void setupHardwareImageIcon()
+	private static void setupHardwareImageIcon(boolean original)
 	{
 		// CPU
-		setupImage(CPU.class, "CPU");
+		setupImage(CPU.class, "CPU", original);
 
 
 		// Discdrive
-		setupImage(Discdrive.class, "Optical-Drive");
+		setupImage(Discdrive.class, "Optical-Drive", original);
 
 
 		// ExternalNetworksCard
-		setupImage(ExternalNetworksCard.class, "ExternalNIC");
+		setupImage(ExternalNetworksCard.class, "ExternalNIC", original);
 
 
 		// GraphicsCard
-		setupImage(GraphicsCard.class, "GPU");
+		setupImage(GraphicsCard.class, "GPU", original);
 
 
 		// HDD
-		setupImage(HDD.class, "Harddisc");
+		setupImage(HDD.class, "Harddisc", original);
 
 
 		// InternalNetworksCard
-		setupImage(InternalNetworksCard.class, "NIC");
+		setupImage(InternalNetworksCard.class, "NIC", original);
 
 
 		// Motherboard
-		setupImage(Motherboard.class, "Motherboard");
+		setupImage(Motherboard.class, "Motherboard", original);
 
 
 		// Ram
-		setupImage(Ram.class, "RAM");
+		setupImage(Ram.class, "RAM", original);
 	}
 
 
 	/**
 	 * This function sets up the image icon for the system.
+	 * If the given boolean is true, the system will load original icons. (Used
+	 * when reseting.)
 	 */
-	private static void setupImage(Class<?> classType, String name)
+	private static void setupImage(Class<?> classType, String name,
+			boolean original)
 	{
-		if ( PrimeMain.objectImageIcons.get(classType) == null )
+		// Loads the system original icon
+		if ( original )
 		{
 			// Gets the objects ImageIcon
 			ImageIcon objectIcon = ImageLocator.getImageIconObject(name);
@@ -340,68 +371,79 @@ public class MakeSystemImageIcons
 			// Places the ImageIcon into the systems hashmap of ImageIcons
 			PrimeMain.objectImageIcons.put(classType, objectIcon);
 		}
-	}
+		else
+		{
+			if ( PrimeMain.objectImageIcons.get(classType) == null )
+			{
+				// Gets the objects ImageIcon
+				ImageIcon objectIcon = ImageLocator.getImageIconObject(name);
 
+				// Places the ImageIcon into the systems hashmap of ImageIcons
+				PrimeMain.objectImageIcons.put(classType, objectIcon);
+			}
+		}
+	}
 
 	/**
 	 * Sets up the systems hashmap of the software objects ImageIcon.
 	 */
-	private static void setupSoftwareImageIcon()
+	private static void setupSoftwareImageIcon(boolean original)
 	{
 		// GenericSoftware
-		setupImage(GenericSoftware.class, "Generic-Software");
+		setupImage(GenericSoftware.class, "Generic-Software", original);
 
 
 		// Antivirus
-		setupImage(Antivirus.class, "Antivirus-Software");
+		setupImage(Antivirus.class, "Antivirus-Software", original);
 
 
 		// Backup
-		setupImage(Backup.class, "Backup-Software");
+		setupImage(Backup.class, "Backup-Software", original);
 
 
 		// NASsoftware
-		setupImage(NASsoftware.class, "NAS-Software");
+		setupImage(NASsoftware.class, "NAS-Software", original);
 
 
 		// Database
-		setupImage(Database.class, "Database-Software");
+		setupImage(Database.class, "Database-Software", original);
 
 
 		// VirtualizationSoftware
-		setupImage(VirtualizationSoftware.class, "Virtualization-Software");
+		setupImage(VirtualizationSoftware.class, "Virtualization-Software",
+				original);
 
 
 		// Email
-		setupImage(Email.class, "Email-Software");
+		setupImage(Email.class, "Email-Software", original);
 
 
 		// Firewall
-		setupImage(Firewall.class, "Firewall-Software");
+		setupImage(Firewall.class, "Firewall-Software", original);
 
 
 		// OfficeSuite
-		setupImage(OfficeSuite.class, "OfficeSuite-Software");
+		setupImage(OfficeSuite.class, "OfficeSuite-Software", original);
 
 
 		// OperatingSystem
-		setupImage(OperatingSystem.class, "OperatingSystem-Software");
+		setupImage(OperatingSystem.class, "OperatingSystem-Software", original);
 
 
 		// Proxy
-		setupImage(Proxy.class, "Proxy-Software");
+		setupImage(Proxy.class, "Proxy-Software", original);
 
 
 		// SecuritySuite
-		setupImage(SecuritySuite.class, "SecuritySuite-Software");
+		setupImage(SecuritySuite.class, "SecuritySuite-Software", original);
 
 
 		// Webserver
-		setupImage(Webserver.class, "Webserver-Software");
+		setupImage(Webserver.class, "Webserver-Software", original);
 
 
 		// RemoteDesktop
-		setupImage(RemoteDesktop.class, "RemoteDesktop-Software");
+		setupImage(RemoteDesktop.class, "RemoteDesktop-Software", original);
 	}
 
 

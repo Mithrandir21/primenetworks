@@ -398,7 +398,8 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 		for ( int i = 1; i < gpuPortStrings.length; i++ )
 		{
-			if ( mb.getGraphicalPort() != null && !mb.getGraphicalPort().equals("") )
+			if ( mb.getGraphicalPort() != null
+					&& !mb.getGraphicalPort().equals("") )
 			{
 				if ( gpuPorts.getItemAt(i).equals(mb.getGraphicalPort()) )
 				{
@@ -456,7 +457,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 
 		// RAM
-		String[] RAMStrings = { "", "DDR", "DDR2", "DDR3" };
+		String[] RAMStrings = { "", "SDRAM", "DDR", "DDR2", "DDR3" };
 		RAMPorts = new JComboBox(RAMStrings);
 		RAMPorts.setMaximumSize(tfSize);
 		RAMPorts.setMinimumSize(tfSize);
@@ -527,6 +528,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 		intNIC.setToolTipText(labels[10].getToolTipText());
 		intNIC.setActionCommand("Int NIC");
 		intNIC.addActionListener(this);
+		intNIC.setEnabled(false);
 
 		labels[10].setLabelFor(intNIC);
 
@@ -1236,6 +1238,17 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 						}
 					}
 				}
+			}
+
+			int ports = Integer.parseInt(LANports.getSelectedItem().toString());
+			// If there are any integrated LAN ports
+			if ( ports == 0 )
+			{
+				mbObj.setIntegLANcard(false);
+			}
+			else if ( ports > 0 )
+			{
+				mbObj.setIntegLANcard(true);
 			}
 		}
 

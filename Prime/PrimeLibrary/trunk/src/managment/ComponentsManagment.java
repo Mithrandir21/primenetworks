@@ -1509,15 +1509,18 @@ public class ComponentsManagment
 	public static boolean removeInternalNIC(WorkareaCanvas canvas, Object obj,
 			InternalNetworksCard nic) throws MotherboardNotFound
 	{
-		try
+		if ( canvas != null )
 		{
-			// Attempts to remove the connection from the NIC, if any.
-			ConnectionManagment.removeConnectionFromInternalNIC(canvas, obj,
-					nic);
-		}
-		catch ( ConnectionDoesNotExist e1 )
-		{
-			// DOES NOTHING
+			try
+			{
+				// Attempts to remove the connection from the NIC, if any.
+				ConnectionManagment.removeConnectionFromInternalNIC(canvas,
+						obj, nic);
+			}
+			catch ( ConnectionDoesNotExist e1 )
+			{
+				// DOES NOTHING
+			}
 		}
 
 		// Attempts to remove the given object from the components array
@@ -1565,15 +1568,18 @@ public class ComponentsManagment
 	public static boolean removeExternalNIC(WorkareaCanvas canvas, Object obj,
 			ExternalNetworksCard nic) throws MotherboardNotFound
 	{
-		try
+		if ( canvas != null )
 		{
-			// Attempts to remove the connection from the NIC, if any.
-			ConnectionManagment.removeConnectionFromExternalNIC(canvas, obj,
-					nic);
-		}
-		catch ( ConnectionDoesNotExist e1 )
-		{
-			// Does nothing
+			try
+			{
+				// Attempts to remove the connection from the NIC, if any.
+				ConnectionManagment.removeConnectionFromExternalNIC(canvas,
+						obj, nic);
+			}
+			catch ( ConnectionDoesNotExist e1 )
+			{
+				// Does nothing
+			}
 		}
 
 		// Attempts to remove the given object from the components array

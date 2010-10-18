@@ -18,10 +18,13 @@
 package widgetManipulation.widgetAlign;
 
 
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import org.netbeans.api.visual.action.ActionFactory;
 import org.netbeans.api.visual.action.AlignWithMoveDecorator;
+import org.netbeans.api.visual.action.AlignWithWidgetCollector;
 import org.netbeans.api.visual.action.MoveProvider;
 import org.netbeans.api.visual.action.MoveStrategy;
 import org.netbeans.api.visual.widget.LayerWidget;
@@ -40,69 +43,115 @@ import widgets.WorkareaCanvas;
  * align the {@link WidgetObject} with other {@link Widget Widgets}.
  * This class works together with the {@link MoveWidgetObjectProvider} class.
  * 
- * @author Bahram Malaekeh
+ * @author David Kaspar (Extended by Bahram Malaekeh)
  * 
  */
 public class PrimeAlignWithMove extends AlignWithSupport implements
 		MoveStrategy, MoveProvider
 {
+	private WorkareaCanvas canvas;
 
-	public PrimeAlignWithMove(PrimeLayerAlignCollector collector,
-			LayerWidget interractionLayer, AlignWithMoveDecorator decorator)
+	private boolean outerBounds;
+
+	/**
+	 * A constructor for the class.
+	 * 
+	 * @param collector
+	 * @param interractionLayer
+	 * @param decorator
+	 * @param outerBounds
+	 * @param canvas
+	 */
+	public PrimeAlignWithMove(AlignWithWidgetCollector collector,
+			LayerWidget interractionLayer, AlignWithMoveDecorator decorator,
+			boolean outerBounds, WorkareaCanvas canvas)
 	{
 		super(collector, interractionLayer, decorator);
+		this.outerBounds = outerBounds;
+		this.canvas = canvas;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.netbeans.api.visual.action.MoveStrategy#locationSuggested(org.netbeans
+	 * .api.visual.widget.Widget, java.awt.Point, java.awt.Point)
+	 */
 	public Point locationSuggested(Widget widget, Point originalLocation,
 			Point suggestedLocation)
 	{
 		Point widgetLocation = widget.getLocation();
-
-		WidgetObject widObj = (WidgetObject) widget;
-
-		Rectangle widgetBounds = widObj.getClientArea();
-
-		// Rectangle imageWidgetBoud = widObj.getImageWidget().getBounds();
-
-
-		// Rectangle bounds = widObj.convertLocalToScene(new Rectangle(
-		// imageWidgetBoud.x, widgetBounds.y, imageWidgetBoud.width,
-		// widgetBounds.height));
-		// Rectangle bounds = widObj.convertLocalToScene(new Rectangle(
-		// imageWidgetBoud.x, widgetBounds.y, imageWidgetBoud.width,
-		// widgetBounds.height));
-
-		Rectangle bounds = widObj.convertLocalToScene(widgetBounds);
-
+		Rectangle widgetBounds = outerBounds ? widget.getBounds() : widget
+				.getClientArea();
+		Rectangle bounds = widget.convertLocalToScene(widgetBounds);
 		bounds.translate(suggestedLocation.x - widgetLocation.x,
 				suggestedLocation.y - widgetLocation.y);
-
-
+		Insets insets = widget.getBorder().getInsets();
+		if ( !outerBounds )
+		{
+			suggestedLocation.x += insets.left;
+			suggestedLocation.y += insets.top;
+		}
 		Point point = super.locationSuggested(widget, bounds,
 				suggestedLocation, true, true, true, true);
-
-
-		return widObj.getParentWidget().convertSceneToLocal(point);
+		if ( !outerBounds )
+		{
+			point.x -= insets.left;
+			point.y -= insets.top;
+		}
+		return widget.getParentWidget().convertSceneToLocal(point);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.netbeans.api.visual.action.MoveProvider#movementStarted(org.netbeans
+	 * .api.visual.widget.Widget)
+	 */
 	public void movementStarted(Widget widget)
 	{
+		canvas.setChanged(true);
 		show();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.netbeans.api.visual.action.MoveProvider#movementFinished(org.netbeans
+	 * .api.visual.widget.Widget)
+	 */
 	public void movementFinished(Widget widget)
 	{
 		hide();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.netbeans.api.visual.action.MoveProvider#getOriginalLocation(org.netbeans
+	 * .api.visual.widget.Widget)
+	 */
 	public Point getOriginalLocation(Widget widget)
 	{
-		return widget.getPreferredLocation();
+		return ActionFactory.createDefaultMoveProvider().getOriginalLocation(
+				widget);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.netbeans.api.visual.action.MoveProvider#setNewLocation(org.netbeans
+	 * .api.visual.widget.Widget, java.awt.Point)
+	 */
 	public void setNewLocation(Widget widget, Point location)
 	{
-		widget.setPreferredLocation(location);
+		ActionFactory.createDefaultMoveProvider().setNewLocation(widget,
+				location);
 	}
 
 }

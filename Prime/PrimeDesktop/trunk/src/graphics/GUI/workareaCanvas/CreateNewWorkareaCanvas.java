@@ -1,19 +1,19 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * Copyright (C) 2010  Bahram Malaekeh
- *
+ * Copyright (C) 2010 Bahram Malaekeh
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
-
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package graphics.GUI.workareaCanvas;
 
@@ -140,9 +140,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 
 
 		// The range to label and textfield
-		rangeTo
-				.setText(PrimeMain.texts
-						.getString("newWorkareaCanvasIPtoLabel"));
+		rangeTo.setText(PrimeMain.texts.getString("newWorkareaCanvasIPtoLabel"));
 		rangeTo.setEnabled(false);
 		rangeToField.setEnabled(false);
 
@@ -165,130 +163,146 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 
 		GroupLayout layout = new GroupLayout(settings);
 		settings.setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(
-				GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup().addGap(66, 66, 66).addGroup(
-						layout.createParallelGroup(
-								GroupLayout.Alignment.LEADING).addComponent(
-								netmaskLabel).addComponent(rangeTo,
-								GroupLayout.PREFERRED_SIZE, 75,
-								GroupLayout.PREFERRED_SIZE).addComponent(
-								rangeFrom, GroupLayout.PREFERRED_SIZE, 91,
-								GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18)
-						.addGroup(
-								layout.createParallelGroup(
-										GroupLayout.Alignment.LEADING)
-										.addComponent(rangeToField,
-												GroupLayout.DEFAULT_SIZE, 126,
-												Short.MAX_VALUE).addComponent(
-												netmaskCombo, 0, 126,
-												Short.MAX_VALUE).addComponent(
-												rangeFromField,
-												GroupLayout.DEFAULT_SIZE, 126,
-												Short.MAX_VALUE)).addGap(173,
-								173, 173)).addGroup(
-				GroupLayout.Alignment.TRAILING,
-				layout.createSequentialGroup().addContainerGap(32,
-						Short.MAX_VALUE).addGroup(
-						layout.createParallelGroup(
-								GroupLayout.Alignment.LEADING).addComponent(
-								jScrollPane1, GroupLayout.PREFERRED_SIZE, 412,
-								GroupLayout.PREFERRED_SIZE).addComponent(
-								settingsCheck).addGroup(
-								layout.createSequentialGroup().addComponent(
-										nameLabel, GroupLayout.PREFERRED_SIZE,
-										88, GroupLayout.PREFERRED_SIZE).addGap(
-										18, 18, 18).addComponent(nameField,
-										GroupLayout.PREFERRED_SIZE, 115,
-										GroupLayout.PREFERRED_SIZE))).addGap(
-						30, 30, 30)));
-		layout
-				.setVerticalGroup(layout
-						.createParallelGroup(GroupLayout.Alignment.LEADING)
-						.addGroup(
-								layout
-										.createSequentialGroup()
-										.addGap(22, 22, 22)
-										.addGroup(
-												layout
-														.createParallelGroup(
-																GroupLayout.Alignment.LEADING)
-														.addComponent(
-																nameLabel,
-																GroupLayout.Alignment.TRAILING,
-																GroupLayout.PREFERRED_SIZE,
-																23,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																nameField,
-																GroupLayout.Alignment.TRAILING,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(31, 31, 31)
-										.addComponent(settingsCheck)
-										.addGap(10, 10, 10)
-										.addGroup(
-												layout
-														.createParallelGroup(
-																GroupLayout.Alignment.TRAILING)
-														.addGroup(
-																GroupLayout.Alignment.LEADING,
-																layout
-																		.createSequentialGroup()
-																		.addComponent(
-																				netmaskLabel,
-																				GroupLayout.PREFERRED_SIZE,
-																				14,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				LayoutStyle.ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				rangeFrom,
-																				GroupLayout.PREFERRED_SIZE,
-																				23,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				LayoutStyle.ComponentPlacement.RELATED)
-																		.addComponent(
-																				rangeTo,
-																				GroupLayout.PREFERRED_SIZE,
-																				23,
-																				GroupLayout.PREFERRED_SIZE))
-														.addGroup(
-																GroupLayout.Alignment.LEADING,
-																layout
-																		.createSequentialGroup()
-																		.addGap(
-																				28,
-																				28,
-																				28)
-																		.addComponent(
-																				rangeFromField,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				LayoutStyle.ComponentPlacement.RELATED)
-																		.addComponent(
-																				rangeToField,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE))
-														.addComponent(
-																netmaskCombo,
-																GroupLayout.Alignment.LEADING,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(49, 49, 49).addComponent(
-												jScrollPane1,
-												GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addContainerGap(
-												GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)));
+		layout.setHorizontalGroup(layout
+				.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(
+						layout.createSequentialGroup()
+								.addGap(66, 66, 66)
+								.addGroup(
+										layout.createParallelGroup(
+												GroupLayout.Alignment.LEADING)
+												.addComponent(netmaskLabel)
+												.addComponent(
+														rangeTo,
+														GroupLayout.PREFERRED_SIZE,
+														75,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(
+														rangeFrom,
+														GroupLayout.PREFERRED_SIZE,
+														91,
+														GroupLayout.PREFERRED_SIZE))
+								.addGap(18, 18, 18)
+								.addGroup(
+										layout.createParallelGroup(
+												GroupLayout.Alignment.LEADING)
+												.addComponent(
+														rangeToField,
+														GroupLayout.DEFAULT_SIZE,
+														126, Short.MAX_VALUE)
+												.addComponent(netmaskCombo, 0,
+														126, Short.MAX_VALUE)
+												.addComponent(
+														rangeFromField,
+														GroupLayout.DEFAULT_SIZE,
+														126, Short.MAX_VALUE))
+								.addGap(173, 173, 173))
+				.addGroup(
+						GroupLayout.Alignment.TRAILING,
+						layout.createSequentialGroup()
+								.addContainerGap(32, Short.MAX_VALUE)
+								.addGroup(
+										layout.createParallelGroup(
+												GroupLayout.Alignment.LEADING)
+												.addComponent(
+														jScrollPane1,
+														GroupLayout.PREFERRED_SIZE,
+														412,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(settingsCheck)
+												.addGroup(
+														layout.createSequentialGroup()
+																.addComponent(
+																		nameLabel,
+																		GroupLayout.PREFERRED_SIZE,
+																		88,
+																		GroupLayout.PREFERRED_SIZE)
+																.addGap(18, 18,
+																		18)
+																.addComponent(
+																		nameField,
+																		GroupLayout.PREFERRED_SIZE,
+																		115,
+																		GroupLayout.PREFERRED_SIZE)))
+								.addGap(30, 30, 30)));
+		layout.setVerticalGroup(layout
+				.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(
+						layout.createSequentialGroup()
+								.addGap(22, 22, 22)
+								.addGroup(
+										layout.createParallelGroup(
+												GroupLayout.Alignment.LEADING)
+												.addComponent(
+														nameLabel,
+														GroupLayout.Alignment.TRAILING,
+														GroupLayout.PREFERRED_SIZE,
+														23,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(
+														nameField,
+														GroupLayout.Alignment.TRAILING,
+														GroupLayout.PREFERRED_SIZE,
+														GroupLayout.DEFAULT_SIZE,
+														GroupLayout.PREFERRED_SIZE))
+								.addGap(31, 31, 31)
+								.addComponent(settingsCheck)
+								.addGap(10, 10, 10)
+								.addGroup(
+										layout.createParallelGroup(
+												GroupLayout.Alignment.TRAILING)
+												.addGroup(
+														GroupLayout.Alignment.LEADING,
+														layout.createSequentialGroup()
+																.addComponent(
+																		netmaskLabel,
+																		GroupLayout.PREFERRED_SIZE,
+																		14,
+																		GroupLayout.PREFERRED_SIZE)
+																.addPreferredGap(
+																		LayoutStyle.ComponentPlacement.UNRELATED)
+																.addComponent(
+																		rangeFrom,
+																		GroupLayout.PREFERRED_SIZE,
+																		23,
+																		GroupLayout.PREFERRED_SIZE)
+																.addPreferredGap(
+																		LayoutStyle.ComponentPlacement.RELATED)
+																.addComponent(
+																		rangeTo,
+																		GroupLayout.PREFERRED_SIZE,
+																		23,
+																		GroupLayout.PREFERRED_SIZE))
+												.addGroup(
+														GroupLayout.Alignment.LEADING,
+														layout.createSequentialGroup()
+																.addGap(28, 28,
+																		28)
+																.addComponent(
+																		rangeFromField,
+																		GroupLayout.PREFERRED_SIZE,
+																		GroupLayout.DEFAULT_SIZE,
+																		GroupLayout.PREFERRED_SIZE)
+																.addPreferredGap(
+																		LayoutStyle.ComponentPlacement.RELATED)
+																.addComponent(
+																		rangeToField,
+																		GroupLayout.PREFERRED_SIZE,
+																		GroupLayout.DEFAULT_SIZE,
+																		GroupLayout.PREFERRED_SIZE))
+												.addComponent(
+														netmaskCombo,
+														GroupLayout.Alignment.LEADING,
+														GroupLayout.PREFERRED_SIZE,
+														GroupLayout.DEFAULT_SIZE,
+														GroupLayout.PREFERRED_SIZE))
+								.addGap(49, 49, 49)
+								.addComponent(jScrollPane1,
+										GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)));
 
 
 		panel.add(settings);
@@ -299,8 +313,9 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		final JButton save = new JButton(PrimeMain.texts
-				.getString("newWorkareaCanvasButtonCreateNetwork"));
+		final JButton save = new JButton(
+				PrimeMain.texts
+						.getString("newWorkareaCanvasButtonCreateNetwork"));
 		save.addActionListener(this);
 		save.setActionCommand("create_network");
 
@@ -348,6 +363,7 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -392,8 +408,8 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 								// Checks whether or not the range between the
 								// two is valid
 								if ( NetworkManagment.processRange(
-										rangeFromField.getText(), rangeToField
-												.getText()) )
+										rangeFromField.getText(),
+										rangeToField.getText()) )
 								{
 									boolean created = DesktopFileManagment
 											.newWorkareaCanvas(
@@ -417,9 +433,9 @@ public class CreateNewWorkareaCanvas extends JFrame implements ActionListener
 											.indexOfTabWithCanvas(nameField
 													.getText());
 
-									// If the index is not -1, which means that
-									// the tab was found
-									if ( index != -1 )
+									// If the index is greater then -1, which
+									// means that the tab was found
+									if ( index > -1 )
 									{
 										// Sets the focused on tab that contains
 										// the new WorkareaCanvas

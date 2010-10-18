@@ -56,6 +56,7 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 	 */
 	public static boolean changed = false;
 
+
 	/**
 	 * TODO - Description NEEDED!
 	 * 
@@ -79,6 +80,7 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 
 		int initYLocation = (scrnsize.height - size.height) / 3;
 		int initXLocation = (scrnsize.width - size.width) / 2;
+
 
 
 		this.setLayout(new GridBagLayout());
@@ -111,6 +113,7 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 
 
 
+
 		this.setPreferredSize(size);
 		this.setLocation(initXLocation, initYLocation);
 		this.setMinimumSize(size);
@@ -137,11 +140,9 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 
 
 
-
-
 	/**
-	 * TODO - Description
-	 * 
+	 * Creates a {@link JXTaskPaneContainer} that will contain options for
+	 * different aspects of the {@link NetworkRules}.
 	 */
 	private JXTaskPaneContainer createRulesTabes()
 	{
@@ -171,9 +172,6 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
-		Button reset = new Button(PrimeMain.texts.getString("reset"));
-		reset.addActionListener(lis);
-		reset.setActionCommand(PrimeMain.texts.getString("reset"));
 
 		Button save = new Button(PrimeMain.texts.getString("save"));
 		save.addActionListener(lis);
@@ -183,7 +181,6 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 		cancel.addActionListener(lis);
 		cancel.setActionCommand(PrimeMain.texts.getString("cancel"));
 
-		buttons.add(reset);
 		buttons.add(save);
 		buttons.add(cancel);
 
@@ -375,11 +372,6 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 				// Removes the pointer to this Object in the system registry.
 				PrimeMain.rulesFrame = null;
 			}
-		}
-		else if ( e.getActionCommand().equals(
-				PrimeMain.texts.getString("reset")) )
-		{
-
 		}
 		else if ( e.getActionCommand().equals(
 				PrimeMain.texts.getString("cancel")) )

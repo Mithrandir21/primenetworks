@@ -419,6 +419,8 @@ public class NewNetworkGroupDialog extends JDialog implements ActionListener
 									groupName, descArea.getText(),
 									copiedPermissions) )
 							{
+								// Sets the current as changed(for the
+								// save-on-exit feature).
 								canvas.setChanged(true);
 							}
 						}

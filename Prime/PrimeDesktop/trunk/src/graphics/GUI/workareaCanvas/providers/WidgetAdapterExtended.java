@@ -35,8 +35,8 @@ import widgets.WidgetObject;
 
 /**
  * This class overrides some of the methods in the {@link Adapter Adapter}
- * class. The methods govern how widgets react
- * to actions like clicks and mouse movements.
+ * class. The methods govern how widgets react to actions like clicks and mouse
+ * movements.
  * 
  * @author Bahram Malaekeh
  */
@@ -53,6 +53,9 @@ public class WidgetAdapterExtended extends Adapter
 	@Override
 	public State mouseClicked(Widget widget, WidgetMouseEvent event)
 	{
+		// Sets the current as changed(for the save-on-exit feature).
+		PrimeMain.currentCanvas.setChanged(true);
+
 		// If the object is not an instance of a connection widget
 		if ( widget instanceof WidgetObject )
 		{

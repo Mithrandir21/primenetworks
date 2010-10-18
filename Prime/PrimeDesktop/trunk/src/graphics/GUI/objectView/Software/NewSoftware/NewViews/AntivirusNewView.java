@@ -107,7 +107,7 @@ public class AntivirusNewView extends JDialog implements SoftwareView,
 	{
 		this.setTitle(PrimeMain.texts.getString("swNewAntivirusLabel"));
 
-		Dimension size = new Dimension(760, 600);
+		Dimension size = new Dimension(770, 610);
 
 		// Get the default toolkit
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -284,7 +284,7 @@ public class AntivirusNewView extends JDialog implements SoftwareView,
 			// DO nothing.
 		}
 
-		if ( av.getActivationDate() != null )
+		if ( parsedAct != null )
 		{
 			actDate.setText(parsedAct.toString());
 		}
@@ -322,7 +322,7 @@ public class AntivirusNewView extends JDialog implements SoftwareView,
 			// DO nothing.
 		}
 
-		if ( av.getActivationDate() != null )
+		if ( parsedExp != null )
 		{
 			expDate.setText(parsedExp.toString());
 		}
@@ -350,8 +350,6 @@ public class AntivirusNewView extends JDialog implements SoftwareView,
 		license.setText(av.getLicense());
 		license.setToolTipText(labels[3].getToolTipText());
 
-		c.insets = new Insets(10, 10, 10, 10); // padding
-		c.gridwidth = 1; // 1 row wide
 		c.gridx = 1; // column
 		panel.add(license, c);
 
