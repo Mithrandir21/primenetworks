@@ -205,7 +205,7 @@ public class PrimeMain extends JFrame
 	// Constructor
 	public PrimeMain()
 	{
-		super("Prime");
+		super("PrimeDesktop");
 
 		// try
 		// {
@@ -551,13 +551,16 @@ public class PrimeMain extends JFrame
 			XMLEncoder output = new XMLEncoder(new BufferedOutputStream(
 					new FileOutputStream("PrimeLayoutModel.xml")));
 
-			output.writeObject(multiSplitPane);
+			System.out.println(multiSplitPane.getMultiSplitLayout().getModel()
+					.toString());
+
+			output.writeObject(multiSplitPane.getMultiSplitLayout().getModel());
 			output.close();
-			// JOptionPane.showMessageDialog(null,"Saved model.");
+			// JOptionPane.showMessageDialog(null, "Saved model.");
 		}
 		catch ( FileNotFoundException output )
 		{
-			// JOptionPane.showMessageDialog(null,"Error saving layout model.");
+			JOptionPane.showMessageDialog(null, "Error saving layout model.");
 		}
 	}
 
@@ -571,7 +574,6 @@ public class PrimeMain extends JFrame
 				+ "(LEAF name=propertiesLeaf weight=0.2) )"
 				+ "(LEAF name=messagesLeaf weight=1)  ) ) )";
 
-		// JOptionPane.showMessageDialog(null,"Error Loading layout Model.");
 		Node modelRoot = MultiSplitLayout.parseModel(layoutDef);
 		multiSplitPane.getMultiSplitLayout().setModel(modelRoot);
 		multiSplitPane.setPreferredSize(modelRoot.getBounds().getSize());
@@ -615,32 +617,24 @@ public class PrimeMain extends JFrame
 	 */
 	private void LoadLayoutModel()
 	{
-		String layoutDef = "(COLUMN (LEAF name=toolbarLeaf) (ROW (LEAF name=selectionLeaf) "
-				+ "(COLUMN (ROW (LEAF name=workareaLeaf weight=0.6) "
-				+ "(LEAF name=propertiesLeaf weight=0.2) )"
-				+ "(LEAF name=messagesLeaf weight=1)  ) ) )";
-
-
 		try
 		{
 			XMLDecoder d = new XMLDecoder(new BufferedInputStream(
 					new FileInputStream("PrimeLayoutModel.xml")));
 
 
-			multiSplitPane = (JXMultiSplitPane) (d.readObject());
+			Node modelRoot = (Node) (d.readObject());
+			System.out.println(modelRoot.toString());
+			multiSplitPane.getMultiSplitLayout().setModel(modelRoot);
 			d.close();
-			// JOptionPane.showMessageDialog(null,"Loaded model.");
+			JOptionPane.showMessageDialog(null, "Loaded model.");
 		}
 		catch ( Exception exc )
 		{
-			// JOptionPane.showMessageDialog(null,"Error Loading layout
-			// Model.");
-			Node modelRoot = MultiSplitLayout.parseModel(layoutDef);
-			multiSplitPane.getMultiSplitLayout().setModel(modelRoot);
-			multiSplitPane.setPreferredSize(modelRoot.getBounds().getSize());
+			JOptionPane.showMessageDialog(null, "Error Loading layout Model.");
+			makeLayoutModel();
 		}
 	}
-
 
 	/**
 	 * 
@@ -824,8 +818,8 @@ public class PrimeMain extends JFrame
 
 
 	/**
-	 * Searches the racks views that exist to find the given rack as one of
-	 * the views main rack. If found that view is returned.
+	 * Searches the racks views that exist to find the given rack as one of the
+	 * views main rack. If found that view is returned.
 	 */
 	public static RackOverview getRackView(Rack rackObj)
 	{
@@ -958,6 +952,8 @@ public class PrimeMain extends JFrame
 		WorkareaCanvas[] changes = CanvasManagment
 				.canvasesHaveChanged(canvases);
 
+
+		// SaveLayoutModel();
 
 
 		// There were some canvases that were changed

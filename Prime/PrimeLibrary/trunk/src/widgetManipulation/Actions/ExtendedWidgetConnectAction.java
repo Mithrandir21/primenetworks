@@ -68,7 +68,6 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.netbeans.api.visual.action.WidgetAction.LockedAdapter#isLocked()
 	 */
 	protected boolean isLocked()
@@ -78,7 +77,6 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * org.netbeans.api.visual.action.WidgetAction.LockedAdapter#mousePressed
 	 * (org.netbeans.api.visual.widget.Widget,
@@ -113,7 +111,6 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * org.netbeans.api.visual.action.WidgetAction.LockedAdapter#mouseReleased
 	 * (org.netbeans.api.visual.widget.Widget,
@@ -157,7 +154,6 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * org.netbeans.api.visual.action.WidgetAction.LockedAdapter#mouseDragged
 	 * (org.netbeans.api.visual.widget.Widget,
@@ -175,7 +171,7 @@ public class ExtendedWidgetConnectAction extends WidgetAction.LockedAdapter
 		if ( sourceWidget != widget )
 			return false;
 
-		Point targetSceneLocation = widget.convertSceneToLocal(point);
+		Point targetSceneLocation = widget.convertLocalToScene(point);
 		targetWidget = resolveTargetWidgetCore(interractionLayer.getScene(),
 				targetSceneLocation);
 		Anchor targetAnchor = null;

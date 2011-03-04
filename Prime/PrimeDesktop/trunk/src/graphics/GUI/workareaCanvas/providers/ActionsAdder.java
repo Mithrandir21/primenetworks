@@ -194,8 +194,7 @@ public class ActionsAdder
 	 *            The {@link WorkareaCanvas} where the given {@link WidgetRoom}
 	 *            is contained.
 	 * @param newCon
-	 *            The {@link WidgetRoom} where the new actions
-	 *            will be added.
+	 *            The {@link WidgetRoom} where the new actions will be added.
 	 */
 	public static void makeWidgetRoomReady(WorkareaCanvas canvas,
 			WidgetRoom room)

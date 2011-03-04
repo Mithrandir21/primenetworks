@@ -34,12 +34,10 @@ import managment.Settings;
 
 /**
  * This class contains method that help the system determine if the current
- * version of the application is the latest.
- * 
- * This is mainly done by checking the content of a text file on a server.
+ * version of the application is the latest. This is mainly done by checking the
+ * content of a text file on a server.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class PrimeDesktopUpdateService
 {

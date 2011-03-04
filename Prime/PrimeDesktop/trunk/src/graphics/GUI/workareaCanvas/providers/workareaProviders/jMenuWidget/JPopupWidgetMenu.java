@@ -28,12 +28,14 @@ import org.netbeans.api.visual.widget.Widget;
 
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
+import actions.canvasActions.ActionChangeWidgetIcon;
 import actions.canvasActions.ActionDeleteWidget;
 import actions.systemActions.ActionPaste;
 
 
 /**
- * Class for the JPopupMenu for {@link WidgetObject WidgetObjects} on a {@link WorkareaCanvas}.
+ * Class for the JPopupMenu for {@link WidgetObject WidgetObjects} on a
+ * {@link WorkareaCanvas}.
  * 
  * @author Bahram Malaekeh
  */
@@ -111,32 +113,37 @@ public class JPopupWidgetMenu
 	{
 		JMenuItem menuItem;
 
-		menuItem = new JMenuItem(PrimeMain.texts
-				.getString("widgetMenuOpenWidgetAction"));
+		menuItem = new JMenuItem(
+				PrimeMain.texts.getString("widgetMenuOpenWidgetAction"));
 		menuItem.setActionCommand("OpenDevice");
 		menuItem.addActionListener(widgetActListener);
+		popup.add(menuItem);
+
+		menuItem = new JMenuItem(new ActionChangeWidgetIcon(
+				PrimeMain.texts.getString("widgetMenuChangeImageWidgetAction"),
+				(WidgetObject) widget, canvas));
 		popup.add(menuItem);
 
 
 		popup.addSeparator();
 
 
-		menuItem = new JMenuItem(PrimeMain.texts
-				.getString("widgetMenuCopyWidgetAction"));
+		menuItem = new JMenuItem(
+				PrimeMain.texts.getString("widgetMenuCopyWidgetAction"));
 		menuItem.setActionCommand("CopyObject");
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);
 
 
-		menuItem = new JMenuItem(PrimeMain.texts
-				.getString("widgetMenuCutWidgetAction"));
+		menuItem = new JMenuItem(
+				PrimeMain.texts.getString("widgetMenuCutWidgetAction"));
 		menuItem.setActionCommand("CutObject");
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);
 
 
-		menuItem = new JMenuItem(new ActionPaste(PrimeMain.texts
-				.getString("widgetMenuPasteWidgetAction")));
+		menuItem = new JMenuItem(new ActionPaste(
+				PrimeMain.texts.getString("widgetMenuPasteWidgetAction")));
 
 		// If neither the copy or cut pointers point to anything, the past
 		// button will be disabled
@@ -149,12 +156,14 @@ public class JPopupWidgetMenu
 
 		popup.addSeparator();
 
-		menuItem = new JMenuItem(new ActionDeleteWidget(PrimeMain.texts
-				.getString("widgetMenuDeleteWidgetAction")));
+
+		menuItem = new JMenuItem(new ActionDeleteWidget(
+				PrimeMain.texts.getString("widgetMenuDeleteWidgetAction")));
 		popup.add(menuItem);
 
-		menuItem = new JMenuItem(PrimeMain.texts
-				.getString("widgetMenuDeleteConnectionToFromWidgetAction"));
+		menuItem = new JMenuItem(
+				PrimeMain.texts
+						.getString("widgetMenuDeleteConnectionToFromWidgetAction"));
 		menuItem.setActionCommand("DeleteConnectionsObject");
 		menuItem.addActionListener(widgetActListener);
 		popup.add(menuItem);

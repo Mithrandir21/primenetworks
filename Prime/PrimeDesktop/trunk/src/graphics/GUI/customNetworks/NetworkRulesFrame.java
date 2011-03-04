@@ -51,7 +51,6 @@ import widgets.WorkareaCanvas;
  * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class NetworkRulesFrame extends JDialog implements ActionListener
 {
@@ -69,7 +68,6 @@ public class NetworkRulesFrame extends JDialog implements ActionListener
 
 	/**
 	 * TODO - Description NEEDED!
-	 * 
 	 */
 	public NetworkRulesFrame(WorkareaCanvas canvas)
 	{
@@ -152,7 +150,6 @@ public class NetworkRulesFrame extends JDialog implements ActionListener
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	private JXTaskPaneContainer createRulesTabes()
 	{
@@ -200,7 +197,6 @@ public class NetworkRulesFrame extends JDialog implements ActionListener
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	private void saveRules(NetworkRules rules)
 	{
@@ -349,7 +345,6 @@ public class NetworkRulesFrame extends JDialog implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -405,6 +400,8 @@ public class NetworkRulesFrame extends JDialog implements ActionListener
 		else if ( e.getActionCommand().equals(
 				PrimeMain.texts.getString("cancel")) )
 		{
+			// Removes the pointer to this Object in the system registry.
+			PrimeMain.rulesFrame = null;
 			this.dispose();
 		}
 	}

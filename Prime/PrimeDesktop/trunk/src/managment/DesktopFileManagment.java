@@ -19,7 +19,6 @@ package managment;
 
 
 import exceptions.CanvasNotFound;
-import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
 import graphics.GUI.CustomFileFilters.DATFilter;
 import graphics.GUI.CustomFileFilters.JPGFilter;
@@ -65,8 +64,7 @@ import connections.WidgetExtendedConnection;
 /**
  * This class provides static functions that deal with the actual saving to
  * file, reading from file and so on. {@link WorkareaCanvas WorkareaCanvases}
- * are saved and loaded here. There are also testing
- * and control functions.
+ * are saved and loaded here. There are also testing and control functions.
  * 
  * @author Bahram Malaekeh
  */
@@ -182,6 +180,10 @@ public class DesktopFileManagment
 				// The ArrayList of object that are on the canvas
 				ArrayList<Object> objectList = new ArrayList<Object>();
 
+				// The ArrayList that will contain the ImageIcons for the
+				// objects
+				ArrayList<ImageIcon> objectIconList = new ArrayList<ImageIcon>();
+
 
 				// There must be some objects on the canvas for there to be
 				// saved any widgetObjects
@@ -192,6 +194,14 @@ public class DesktopFileManagment
 					for ( int i = 0; i < objects.length; i++ )
 					{
 						objectList.add(objects[i]);
+						if ( objects[i].getVisualImage() != null )
+						{
+							objectIconList.add(objects[i].getVisualImage());
+						}
+						else
+						{
+							objectIconList.add(null);
+						}
 					}
 
 				}
@@ -199,6 +209,10 @@ public class DesktopFileManagment
 				// Writes out the objects in the form of an arraylist, even if
 				// it is empty
 				oos.writeObject(objectList);
+
+				// Writes out the objects images in the form of an arraylist,
+				// even if it is empty
+				oos.writeObject(objectIconList);
 
 				oos.flush();
 
@@ -359,8 +373,6 @@ public class DesktopFileManagment
 		return false;
 	}
 
-
-
 	/**
 	 * Saves the given {@link NetworkRules} instance to a file to preserve the
 	 * standard rules.
@@ -429,7 +441,6 @@ public class DesktopFileManagment
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public static boolean saveCustomOS(File file)
 	{
@@ -1307,8 +1318,18 @@ public class DesktopFileManagment
 			// The ArrayList that will hold the Objects
 			ArrayList<Object> objectList = new ArrayList<Object>();
 
-			// Reads inn the ArrayList from the file stream
+
+			// The ArrayList that will contain the ImageIcons for the objects
+			ArrayList<ImageIcon> objectIconList = new ArrayList<ImageIcon>();
+
+
+
+			// Reads inn the ArrayList of Object from the file stream
 			objectList = (ArrayList<Object>) ois.readObject();
+
+			// Reads inn the ArrayList of imageicon from the file stream
+			objectIconList = (ArrayList<ImageIcon>) ois.readObject();
+
 
 			// The size of the new Objects array
 			int objectArraySize = objectList.size();
@@ -1339,13 +1360,21 @@ public class DesktopFileManagment
 			// PUTS THE OBJECTS AND NETWORKINFO TOGETHER AND PLACES A NEW
 			// WIDGETS ON THE CANVAS
 
-			// If there were any objects found
-			if ( objectArraySize == widgetInfoArraySize && objectArraySize > 0 )
+			/**
+			 * If there were any objects found, the size of the image arraylist
+			 * is the same as the object arraylist and the number of object
+			 * found is the same as the number of widget infos found.
+			 **/
+			if ( objectArraySize == widgetInfoArraySize
+					&& objectArraySize == objectIconList.size()
+					&& objectArraySize > 0 )
 			{
 				// PLACES THE OBJECTS INSIDE THE ARRAYLIST INTO AN ARRAY
 
 				// The objects array
 				Object[] objects = new Object[objectArraySize];
+
+				ImageIcon[] images = new ImageIcon[objectArraySize];
 
 				// The index of the objects array
 				int objectIndex = 0;
@@ -1356,6 +1385,18 @@ public class DesktopFileManagment
 				{
 					objects[objectIndex] = it.next();
 					objectIndex++;
+				}
+
+				// The index of the objects images array
+				int objectImageIndex = 0;
+
+				// Iterates through the list and adds the object images to the
+				// object images array
+				for ( Iterator<ImageIcon> it = objectIconList.iterator(); it
+						.hasNext(); )
+				{
+					images[objectImageIndex] = it.next();
+					objectImageIndex++;
 				}
 
 
@@ -1383,10 +1424,19 @@ public class DesktopFileManagment
 				{
 					if ( objects[i] != null && widgetNetInfos[i] != null )
 					{
-						Class<?> objClass = GraphicalFunctions
-								.getObjectClass(objects[i]);
-						ImageIcon icon = PrimeMain.objectImageIcons
-								.get(objects[i].getClass());
+						ImageIcon icon = null;
+
+						// If the object contains any custom image.
+						if ( images[i] != null )
+						{
+							icon = images[i];
+						}
+						// If not, the systems original Image is used.
+						else
+						{
+							icon = PrimeMain.objectImageIcons.get(objects[i]
+									.getClass());
+						}
 
 						// Creates a new WidgetObject that will be added to the
 						// scene
@@ -2027,9 +2077,9 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This function exports the Standard rules to a file. The file will
-	 * have a .dat filetype. The user is presented with a choice on which folder
-	 * to save the file in.
+	 * This function exports the Standard rules to a file. The file will have a
+	 * .dat filetype. The user is presented with a choice on which folder to
+	 * save the file in.
 	 */
 	public static boolean exportStandardRules()
 	{
@@ -2163,10 +2213,8 @@ public class DesktopFileManagment
 
 	/**
 	 * This function exports the Custom {@link OperatingSystem} within the
-	 * system to a file.
-	 * The file will have a .dat filetype. The user is presented with a choice
-	 * on which folder
-	 * to save the file in.
+	 * system to a file. The file will have a .dat filetype. The user is
+	 * presented with a choice on which folder to save the file in.
 	 */
 	public static boolean exportCustomOS()
 	{
@@ -2397,11 +2445,10 @@ public class DesktopFileManagment
 							try
 							{
 								/**
-								 * Now the function will check if the
-								 * found canvas is open and since the
-								 * user wants to overwrite the canvas
-								 * with the same name, we must close the
-								 * open canvas.
+								 * Now the function will check if the found
+								 * canvas is open and since the user wants to
+								 * overwrite the canvas with the same name, we
+								 * must close the open canvas.
 								 */
 								PrimeMain.workTab.removeTabWithCanvas(newName,
 										false);
@@ -2457,7 +2504,6 @@ public class DesktopFileManagment
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public static void importStandardRules()
 	{
@@ -2505,7 +2551,6 @@ public class DesktopFileManagment
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public static void importCustomOS()
 	{
@@ -2787,7 +2832,6 @@ public class DesktopFileManagment
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public static NetworkRules copyRules(NetworkRules standardRules,
 			NetworkRules newRules)
@@ -2838,8 +2882,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * This function checks whether or not an standard rules file exists in
-	 * the resources folder with the name rules.dat
+	 * This function checks whether or not an standard rules file exists in the
+	 * resources folder with the name rules.dat
 	 */
 	public static boolean ruleFileExists()
 	{

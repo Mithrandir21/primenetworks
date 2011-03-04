@@ -38,8 +38,8 @@ import widgets.WorkareaCanvas;
 
 /**
  * This action adds a given {@link WidgetObject} to a given
- * {@link WorkareaCanvas} at a given {@link Point}.
- * This action contains a undo/redo function.
+ * {@link WorkareaCanvas} at a given {@link Point}. This action contains a
+ * undo/redo function.
  * 
  * @author Bahram Malaekeh
  */
@@ -114,7 +114,6 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -128,7 +127,6 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#canRedo()
 	 */
 	@Override
@@ -139,7 +137,6 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#canUndo()
 	 */
 	@Override
@@ -150,7 +147,6 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#die()
 	 */
 	@Override
@@ -163,7 +159,6 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#getPresentationName()
 	 */
 	@Override
@@ -175,7 +170,6 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#getRedoPresentationName()
 	 */
 	@Override
@@ -187,7 +181,6 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#getUndoPresentationName()
 	 */
 	@Override
@@ -199,7 +192,6 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#isSignificant()
 	 */
 	@Override
@@ -211,7 +203,6 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#redo()
 	 */
 	@Override
@@ -235,7 +226,6 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#undo()
 	 */
 	@Override
@@ -251,7 +241,6 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.SystemActionInterface#performAction()
 	 */
 	@Override

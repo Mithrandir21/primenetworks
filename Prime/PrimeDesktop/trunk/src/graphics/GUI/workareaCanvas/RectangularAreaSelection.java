@@ -64,7 +64,6 @@ public class RectangularAreaSelection extends LockedAdapter
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.netbeans.api.visual.action.WidgetAction.LockedAdapter#isLocked()
 	 */
 	@Override

@@ -40,7 +40,6 @@ import widgets.WorkareaCanvas;
  * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class CanvasPropertiesView extends AbstractCanvasPropertiesView
 		implements ActionListener
@@ -111,13 +110,11 @@ public class CanvasPropertiesView extends AbstractCanvasPropertiesView
 	 * TODO - Description NEEDED!
 	 * 
 	 * @author Bahram Malaekeh
-	 * 
 	 */
 	public class SaveKey extends KeyAdapter
 	{
 		/*
 		 * (non-Javadoc)
-		 * 
 		 * @see java.awt.event.KeyAdapter#keyPressed(java.awt.event.KeyEvent)
 		 */
 		@Override
@@ -137,7 +134,6 @@ public class CanvasPropertiesView extends AbstractCanvasPropertiesView
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	private void saveAction()
 	{
@@ -159,7 +155,6 @@ public class CanvasPropertiesView extends AbstractCanvasPropertiesView
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -181,8 +176,7 @@ public class CanvasPropertiesView extends AbstractCanvasPropertiesView
 			if ( PrimeMain.currentCanvas != null )
 			{
 				// Creates and places a new StandardObjects JFrame into the
-				// system main
-				// registry.
+				// system main registry.
 
 				if ( PrimeMain.rulesFrame == null )
 				{

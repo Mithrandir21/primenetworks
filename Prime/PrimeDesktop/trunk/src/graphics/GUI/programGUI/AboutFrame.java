@@ -24,12 +24,17 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URI;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 
 
 /**
@@ -54,7 +59,7 @@ public class AboutFrame extends JFrame
 		Dimension scrnsize = toolkit.getScreenSize();
 
 		// Set size for the settings JFrame
-		Dimension size = new Dimension(300, 200);
+		Dimension size = new Dimension(400, 300);
 
 		int initYLocation = (scrnsize.height - size.height) / 3;
 		int initXLocation = (scrnsize.width - size.width) / 2;
@@ -63,11 +68,79 @@ public class AboutFrame extends JFrame
 
 		this.add(Box.createRigidArea(new Dimension(0, 10)));
 
-		JLabel name = new JLabel(PrimeMain.texts.getString("aboutText"));
+		JTextArea name = new JTextArea(PrimeMain.texts.getString("aboutHeader"));
+		name.setEditable(false);
+		name.setBackground(this.getBackground());
+		name.setLineWrap(true);
+		name.setWrapStyleWord(true);
 		name.setAlignmentX(0.5f);
 		this.add(name);
 
-		add(Box.createRigidArea(new Dimension(0, 100)));
+		add(Box.createRigidArea(new Dimension(0, 15)));
+
+		JTextArea license = new JTextArea(
+				PrimeMain.texts.getString("aboutLicenseText"));
+		license.setEditable(false);
+		license.setBackground(this.getBackground());
+		license.setLineWrap(true);
+		license.setWrapStyleWord(true);
+		license.setAlignmentX(0.5f);
+		this.add(license);
+
+		JEditorPane gpl = new JEditorPane("text/html",
+				"<a href='http://www.gnu.org/licenses/gpl.html'>GPLv3</a>");
+		gpl.setEditable(false);
+		gpl.setOpaque(false);
+		gpl.setAlignmentX(0.5f);
+		gpl.addHyperlinkListener(new HyperlinkListener()
+		{
+			public void hyperlinkUpdate(HyperlinkEvent hle)
+			{
+				if ( HyperlinkEvent.EventType.ACTIVATED.equals(hle
+						.getEventType()) )
+				{
+					java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+
+					if ( !desktop.isSupported(java.awt.Desktop.Action.BROWSE) )
+					{
+						System.err
+								.println("Desktop doesn't support the browse action (fatal)");
+						System.exit(1);
+					}
+
+					try
+					{
+						URI uri = hle.getURL().toURI();
+						desktop.browse(uri);
+					}
+					catch ( Exception e )
+					{
+						System.err.println(e.getMessage());
+					}
+				}
+			}
+		});
+
+		this.add(gpl);
+
+
+
+		add(Box.createRigidArea(new Dimension(0, 15)));
+
+		JTextArea creator = new JTextArea(
+				PrimeMain.texts.getString("aboutCreatorText"));
+		creator.setEditable(false);
+		creator.setBackground(this.getBackground());
+		creator.setLineWrap(true);
+		creator.setWrapStyleWord(true);
+		creator.setAlignmentX(0.5f);
+		this.add(creator);
+
+		JLabel email = new JLabel("Bahram.malaekeh@gmail.com");
+		email.setAlignmentX(0.5f);
+		this.add(email);
+
+		add(Box.createRigidArea(new Dimension(0, 50)));
 
 		JButton close = new JButton(PrimeMain.texts.getString("closeButton"));
 		close.addActionListener(new ActionListener()
@@ -82,7 +155,7 @@ public class AboutFrame extends JFrame
 		this.add(close);
 		this.setLocation(initXLocation, initYLocation);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setSize(300, 200);
+		this.setSize(size);
 		this.setResizable(false);
 	}
 }

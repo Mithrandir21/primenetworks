@@ -64,7 +64,8 @@ public class WorkareaCanvasActions
 			Point objectPoint, WorkareaCanvas canvas, boolean withCleanUp)
 	{
 		// Gets the point the Widget has on the scene
-		Point sceneLocation = canvas.getScene().convertViewToScene(objectPoint);
+		Point sceneLocation = canvas.getScene()
+				.convertSceneToLocal(objectPoint);
 
 		// Sets the point on the scene as the widgets preferred location
 		newObject.setPreferredLocation(sceneLocation);
@@ -222,8 +223,8 @@ public class WorkareaCanvasActions
 
 	/**
 	 * Updates all the LabelWidgets on all the scenes of the given
-	 * {@link WorkareaCanvas} with the name of the object
-	 * name that is within the WidgetObject.
+	 * {@link WorkareaCanvas} with the name of the object name that is within
+	 * the WidgetObject.
 	 */
 	public static void updateWidgetObjectNamesOnAllCanvas(
 			WorkareaCanvas[] canvases)
@@ -487,8 +488,7 @@ public class WorkareaCanvasActions
 
 	/**
 	 * The function removes the given {@link WidgetRoom} from the given
-	 * {@link WorkareaCanvas}, if the WidgetRoom is found to be
-	 * contained within
+	 * {@link WorkareaCanvas}, if the WidgetRoom is found to be contained within
 	 * the WorkareaCanvas.
 	 * 
 	 * @param widRoom
@@ -540,8 +540,7 @@ public class WorkareaCanvasActions
 
 	/**
 	 * This method calls the revalidateWidgetLocations function in all the given
-	 * {@link WorkareaCanvas WorkareaCanvases}, which
-	 * will update the locations
+	 * {@link WorkareaCanvas WorkareaCanvases}, which will update the locations
 	 * on all the WidgetObjects on their respective scenes.
 	 * 
 	 * @param canvases
@@ -561,8 +560,7 @@ public class WorkareaCanvasActions
 
 	/**
 	 * This method calls the revalidateWidgetLocations function in the given
-	 * {@link WorkareaCanvas}, which will update the
-	 * locations on all the
+	 * {@link WorkareaCanvas}, which will update the locations on all the
 	 * WidgetObjects on the scenes.
 	 * 
 	 * @param canvas

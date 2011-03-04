@@ -55,7 +55,6 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.netbeans.api.visual.action.WidgetAction.LockedAdapter#isLocked()
 	 */
 	protected boolean isLocked()
@@ -65,7 +64,6 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * org.netbeans.api.visual.action.WidgetAction.LockedAdapter#mousePressed
 	 * (org.netbeans.api.visual.widget.Widget,
@@ -82,7 +80,7 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 					.getOriginalLocation(widget);
 			if ( this.originalSceneLocation == null )
 				this.originalSceneLocation = new Point();
-			this.dragSceneLocation = widget.convertSceneToLocal(event
+			this.dragSceneLocation = widget.convertLocalToScene(event
 					.getPoint());
 			this.provider.movementStarted(widget);
 			return State.createLocked(widget, this);
@@ -92,7 +90,6 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * org.netbeans.api.visual.action.WidgetAction.LockedAdapter#mouseReleased
 	 * (org.netbeans.api.visual.widget.Widget,
@@ -111,7 +108,6 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * org.netbeans.api.visual.action.WidgetAction.LockedAdapter#mouseDragged
 	 * (org.netbeans.api.visual.widget.Widget,
@@ -129,7 +125,7 @@ public class MoveRoomAction extends WidgetAction.LockedAdapter
 			return false;
 		if ( !this.movingWidget.equals(widget) )
 			return false;
-		newLocation = widget.convertSceneToLocal(newLocation);
+		newLocation = widget.convertLocalToScene(newLocation);
 		Point location = new Point(originalSceneLocation.x + newLocation.x
 				- dragSceneLocation.x, originalSceneLocation.y + newLocation.y
 				- dragSceneLocation.y);

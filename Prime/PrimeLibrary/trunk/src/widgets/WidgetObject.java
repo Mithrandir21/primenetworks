@@ -28,6 +28,8 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.geom.Rectangle2D;
 
+import javax.swing.ImageIcon;
+
 import objects.Object;
 import objects.softwareObjects.OperatingSystem;
 
@@ -46,14 +48,12 @@ import widgetManipulation.WidgetNetworkInfo;
 /**
  * This class represents an {@link Object} in the form of a {@link Widget}. The
  * class is made {@link Transferable} to enable drag and drop feature for the
- * {@link WorkareaCanvas}.
- * It is this class, and not the {@link Object} class
+ * {@link WorkareaCanvas}. It is this class, and not the {@link Object} class
  * itself, that contains the information about the objects network
- * configuration, ie. {@link WidgetNetworkInfo}.
- * 
- * The Widgets children are a {@link ImageWidget}, that will be present an image
- * representing the {@link Object} type, and a {@link LabelWidget} that will
- * display the name of the {@link Object}.
+ * configuration, ie. {@link WidgetNetworkInfo}. The Widgets children are a
+ * {@link ImageWidget}, that will be present an image representing the
+ * {@link Object} type, and a {@link LabelWidget} that will display the name of
+ * the {@link Object}.
  * 
  * @author Bahram Malaekeh
  */
@@ -85,9 +85,8 @@ public class WidgetObject extends Widget implements Transferable
 
 
 	/**
-	 * A constructor for this class.
-	 * The method sets the layout for the placement of children,
-	 * {@link ImageWidget} and {@link LabelWidget}.
+	 * A constructor for this class. The method sets the layout for the
+	 * placement of children, {@link ImageWidget} and {@link LabelWidget}.
 	 * 
 	 * @param scene
 	 *            The {@link Scene} where the {@link Object} is to be placed.
@@ -232,6 +231,18 @@ public class WidgetObject extends Widget implements Transferable
 	public final void setLabel(String label)
 	{
 		this.labelWidget.setLabel(label);
+	}
+
+
+
+	/**
+	 * @return The {@link ImageWidget} that contains the {@link Image} that
+	 *         represents the type {@link Object} represented by this class.
+	 */
+	public void setWidgetImage(ImageIcon icon)
+	{
+		this.object.setVisualImage(icon);
+		this.imageWidget.setImage(icon.getImage());
 	}
 
 
