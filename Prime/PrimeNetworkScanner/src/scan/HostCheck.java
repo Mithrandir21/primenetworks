@@ -72,7 +72,10 @@ public class HostCheck implements Runnable
 			// address, new OpenSocket(port)) : null;
 		}
 
-
-		l.stateChanged(new ChangeEvent(result));
+		// Adds the results to the foundHosts list if the result is not null
+		if ( result != null )
+		{
+			l.stateChanged(new ChangeEvent(result));
+		}
 	}
 }

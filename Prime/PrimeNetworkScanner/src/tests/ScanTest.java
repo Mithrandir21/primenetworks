@@ -4,8 +4,12 @@
 package tests;
 
 
+import java.net.InetAddress;
+import java.util.Map;
+
 import scan.NetworkScan;
 import scan.Subnet;
+import scan.status.PingMethod;
 
 
 /**
@@ -31,6 +35,17 @@ public class ScanTest
 
 		netScan.start(false);
 
-		netScan.getFoundHosts();
+		while ( !netScan.isDone() )
+		{
+			// Wait
+		}
+
+		Map<InetAddress, PingMethod> m = netScan.getFoundHosts();
+
+		for ( Map.Entry<InetAddress, PingMethod> entry : m.entrySet() )
+		{
+			System.out.println(entry.getKey() + "/" + entry.getValue()
+					+ " - Is Up");
+		}
 	}
 }
