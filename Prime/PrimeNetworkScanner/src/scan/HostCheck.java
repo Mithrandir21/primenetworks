@@ -54,6 +54,7 @@ public class HostCheck implements Runnable
 		}
 
 
+
 		if ( IsReachable.getInstance().getStatus(address) == Status.UP )
 		{
 			result = new Tuple<InetAddress, PingMethod>(address,

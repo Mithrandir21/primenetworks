@@ -31,7 +31,7 @@ public class ScanTest
 	 */
 	public static void ScanTest()
 	{
-		netScan = new NetworkScan(new Subnet("192.168.0.150", "255.255.255.0"));
+		netScan = new NetworkScan(new Subnet("172.17.7.1", "255.255.255.0"));
 
 		netScan.start(false);
 

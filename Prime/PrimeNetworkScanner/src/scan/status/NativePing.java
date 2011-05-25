@@ -7,6 +7,8 @@ import java.net.InetAddress;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import util.Utils.DeviceType;
+
 
 /**
  * @author rakudave
@@ -44,14 +46,14 @@ public class NativePing implements PingMethod
 		Process process = null;
 		try
 		{
-			// A boolean on whether the system is Unix or Windows
-			boolean isUnix = !System.getProperty("os.name").startsWith(
-					"Windows");
+			// Gets the device type of the local machine
+			DeviceType devType = DeviceType.getLocalHostType();
+
 
 			String command = "";
-			if ( isUnix )
+			if ( devType == DeviceType.MAC || devType == DeviceType.UNIX )
 			{
-				command = "ping -c 4 -w 5";
+				command = "ping -c 4 -W 5";
 			}
 			else
 			{
@@ -75,7 +77,7 @@ public class NativePing implements PingMethod
 			}
 
 			// Checks the output for a certain response and returns a Status
-			return (checkPingResponse(output, isUnix));
+			return (checkPingResponse(output, devType));
 
 			// return (process.waitFor() == 0) ? Status.UP : Status.DOWN;
 		}
@@ -90,24 +92,32 @@ public class NativePing implements PingMethod
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString()
 	{
-		return "System Ping";
+		return "Native Ping";
 	}
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
-	private Status checkPingResponse(String pingOutput, boolean isUnix)
+	private Status checkPingResponse(String pingOutput, DeviceType devType)
 	{
 		// The pattern that is to be looked for in the Ping output.
 		Pattern allReceived;
 
-		if ( isUnix )
+		if ( devType == DeviceType.MAC )
 		{
-			// Applied to Linux/Unix/Mac
+			// Applied to Mac
+			allReceived = Pattern.compile("4 packets received");
+		}
+		else if ( devType == DeviceType.UNIX )
+		{
+			// Applied to Linux/Unix
 			allReceived = Pattern.compile("4 received");
 		}
 		else

@@ -50,14 +50,15 @@ public class Host implements Device
 	@Override
 	public void addInterface(NetworkIF i)
 	{
-		if ( i != null )
+		if ( i != null && interfaces != null && !interfaces.contains(i) )
 			interfaces.add(i);
 	}
 
 	@Override
 	public void addDeviceListener(DeviceListener listener)
 	{
-		if ( listener != null && !listeners.contains(listener) )
+		if ( listener != null && listeners != null
+				&& !listeners.contains(listener) )
 			listeners.add(listener);
 	}
 
