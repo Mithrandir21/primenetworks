@@ -5,6 +5,7 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ import java.util.concurrent.RejectedExecutionException;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import model.devices.Host;
 import scan.status.PingMethod;
 import util.Tuple;
 
@@ -87,9 +89,20 @@ public class NetworkScan implements ChangeListener
 	}
 
 
+	public void getHosts()
+	{
+		// All the hosts
+		ArrayList<Host> hosts = new ArrayList<Host>();
+
+		// We will first be making the NICs
+		ArrayList<NetworkInterface> NICs = new ArrayList<NetworkInterface>();
+
+
+	}
+
+
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public java.util.Map<InetAddress, PingMethod> getFoundHosts()
 	{
@@ -98,8 +111,11 @@ public class NetworkScan implements ChangeListener
 
 
 
-	/* (non-Javadoc)
-	 * @see javax.swing.event.ChangeListener#stateChanged(javax.swing.event.ChangeEvent)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * javax.swing.event.ChangeListener#stateChanged(javax.swing.event.ChangeEvent
+	 * )
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -113,7 +129,6 @@ public class NetworkScan implements ChangeListener
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public static String getLocalAddress()
 	{
