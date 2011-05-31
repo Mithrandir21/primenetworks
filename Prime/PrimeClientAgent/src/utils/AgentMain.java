@@ -4,18 +4,15 @@
 package utils;
 
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
-import java.io.File;
-import java.util.Collection;
-import java.util.Iterator;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
-import net.xeoh.plugins.base.PluginManager;
-import net.xeoh.plugins.base.impl.PluginManagerFactory;
-import net.xeoh.plugins.base.util.PluginManagerUtil;
 import transmission.PluginOutputTransmitter;
-import agentPluginInterface.PrimeAgentPluginInterface;
 
 
 /**
@@ -33,80 +30,132 @@ public class AgentMain
 
 	public static PluginOutputTransmitter pluginOutTrans;
 
-	/**
-	 * TODO - Description
-	 */
+	// /**
+	// * TODO - Description
+	// */
+	// public static void main(String[] args)
+	// {
+	// // Creates an Executor schedule for all the runnable plugins
+	// scheduler = new ScheduledThreadPoolExecutor(25);
+	//
+	// PluginManager pm = PluginManagerFactory.createPluginManager();
+	//
+	// // Loads all plugins in the plugins folder
+	// pm.addPluginsFrom(new File("plugins/").toURI());
+	//
+	// // Creates a plugin manager "helper"
+	// PluginManagerUtil pmu = new PluginManagerUtil(pm);
+	//
+	// /**
+	// * Gets a Collection of all plugins that implement the
+	// * PrimeAgentPluginInterface, which also implements Runnable (where the
+	// * data gathering will take place).
+	// */
+	// Collection<PrimeAgentPluginInterface> plugins = pmu
+	// .getPlugins(PrimeAgentPluginInterface.class);
+	//
+	// // Get an Iterator for the Plugin Collection
+	// Iterator<PrimeAgentPluginInterface> itr = plugins.iterator();
+	//
+	// while ( itr.hasNext() )
+	// {
+	// // Gets a single plugin
+	// PrimeAgentPluginInterface plugin = (PrimeAgentPluginInterface) itr
+	// .next();
+	//
+	// // Add the Runnable plugin to the Executor schedule
+	// scheduler.schedule(plugin, 2, SECONDS);
+	// }
+	//
+	// // Calls an orderly 'shutdown' of all the tasks running. (Will NOT
+	// // terminate, but will disallow additional tasks from being added.)
+	// scheduler.shutdown();
+	//
+	//
+	// while ( !scheduler.isTerminated() )
+	// {
+	// // wait...
+	// }
+	//
+	//
+	// pluginOutTrans = new PluginOutputTransmitter();
+	//
+	//
+	// // Get an Iterator for the Plugin Collection
+	// Iterator<PrimeAgentPluginInterface> itr2 = plugins.iterator();
+	//
+	// while ( itr2.hasNext() )
+	// {
+	// // Gets a single plugin
+	// PrimeAgentPluginInterface plugin = (PrimeAgentPluginInterface) itr2
+	// .next();
+	//
+	// System.out.println("Plugin " + plugin.getPluginName()
+	// + " is finished = " + plugin.isFinished());
+	//
+	// pluginOutTrans.addTransmissionJob(plugin);
+	// }
+	//
+	// System.out
+	// .println("All plugins are done = " + scheduler.isTerminated());
+	//
+	//
+	// // pluginOutTrans.addTransmissionCompleteJob();
+	//
+	//
+	// // Starts the transmission jobs
+	// new Thread(pluginOutTrans).start();
+	// }
+
+
 	public static void main(String[] args)
 	{
-		// Creates an Executor schedule for all the runnable plugins
-		scheduler = new ScheduledThreadPoolExecutor(25);
+		ResultSet rs;
+		Connection conn;
 
-		PluginManager pm = PluginManagerFactory.createPluginManager();
-
-		// Loads all plugins in the plugins folder
-		pm.addPluginsFrom(new File("plugins/").toURI());
-
-		// Creates a plugin manager "helper"
-		PluginManagerUtil pmu = new PluginManagerUtil(pm);
-
-		/**
-		 * Gets a Collection of all plugins that implement the
-		 * PrimeAgentPluginInterface, which also implements Runnable (where the
-		 * data gathering will take place).
-		 */
-		Collection<PrimeAgentPluginInterface> plugins = pmu
-				.getPlugins(PrimeAgentPluginInterface.class);
-
-		// Get an Iterator for the Plugin Collection
-		Iterator<PrimeAgentPluginInterface> itr = plugins.iterator();
-
-		while ( itr.hasNext() )
+		try
 		{
-			// Gets a single plugin
-			PrimeAgentPluginInterface plugin = (PrimeAgentPluginInterface) itr
-					.next();
+			Class.forName("org.sqlite.JDBC");
+			conn = DriverManager.getConnection("jdbc:sqlite:test.db");
+			Statement stat = conn.createStatement();
+			stat.executeUpdate("drop table if exists people;");
+			stat.executeUpdate("create table people (name, occupation);");
+			PreparedStatement prep = conn
+					.prepareStatement("insert into people values (?, ?);");
 
-			// Add the Runnable plugin to the Executor schedule
-			scheduler.schedule(plugin, 2, SECONDS);
+			prep.setString(1, "Gandhi");
+			prep.setString(2, "politics");
+			prep.addBatch();
+			prep.setString(1, "Turing");
+			prep.setString(2, "computers");
+			prep.addBatch();
+			prep.setString(1, "Wittgenstein");
+			prep.setString(2, "smartypants");
+			prep.addBatch();
+
+			conn.setAutoCommit(false);
+			prep.executeBatch();
+			conn.setAutoCommit(true);
+
+			rs = stat.executeQuery("select * from people;");
+			while ( rs.next() )
+			{
+				System.out.println("name = " + rs.getString("name"));
+				System.out.println("job = " + rs.getString("occupation"));
+			}
+
+			rs.close();
+			conn.close();
 		}
-
-		// Calls an orderly 'shutdown' of all the tasks running. (Will NOT
-		// terminate, but will disallow additional tasks from being added.)
-		scheduler.shutdown();
-
-
-		while ( !scheduler.isTerminated() )
+		catch ( ClassNotFoundException e )
 		{
-			// wait...
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-
-		pluginOutTrans = new PluginOutputTransmitter();
-
-
-		// Get an Iterator for the Plugin Collection
-		Iterator<PrimeAgentPluginInterface> itr2 = plugins.iterator();
-
-		while ( itr2.hasNext() )
+		catch ( SQLException e )
 		{
-			// Gets a single plugin
-			PrimeAgentPluginInterface plugin = (PrimeAgentPluginInterface) itr2
-					.next();
-
-			System.out.println("Plugin " + plugin.getPluginName()
-					+ " is finished = " + plugin.isFinished());
-
-			pluginOutTrans.addTransmissionJob(plugin);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		System.out
-				.println("All plugins are done = " + scheduler.isTerminated());
-
-
-		// pluginOutTrans.addTransmissionCompleteJob();
-
-
-		// Starts the transmission jobs
-		new Thread(pluginOutTrans).start();
 	}
 }
