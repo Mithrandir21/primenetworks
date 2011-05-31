@@ -9,8 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.InterruptedIOException;
 import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Calendar;
 
@@ -22,32 +21,23 @@ import utils.PluginProcessing;
  * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class AgentListener implements Runnable
 {
-	/**
-	 * The URL (IP, hostname, etc) to the Agent.
-	 */
-	private String serverurl;
-
-	/**
-	 * The port to listen to.
-	 */
-	private int serverport;
+	private Socket socket;
 
 
 	/**
 	 * A constructor that takes the URL (String) and port (int) to listen to.
 	 */
-	public AgentListener(String url, int port)
+	public AgentListener(Socket socket)
 	{
-		serverurl = url;
-		serverport = port;
+		this.socket = socket;
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Runnable#run()
 	 */
 	@Override
@@ -55,27 +45,18 @@ public class AgentListener implements Runnable
 	{
 		try
 		{
-			ListenerMain.serversocket = new ServerSocket(serverport, 50,
-					InetAddress.getByName(serverurl));
-
-			System.out.println("Listening at " + serverurl + " on port "
-					+ serverport);
-
-			// wait indefinitely until a client connects to the socket
-			ListenerMain.socket = ListenerMain.serversocket.accept();
-
 			// set up communications for sending and receiving lines of text
 			// data establish a BufferedReader from the input stream provided by
 			// the socket object
 			InputStreamReader inputstreamreader = new InputStreamReader(
-					ListenerMain.socket.getInputStream());
+					socket.getInputStream());
 			BufferedReader bufferedreader = new BufferedReader(
 					inputstreamreader);
 
 			// establish an printwriter using the output stream of the socket
 			// object and set auto flush on
-			PrintWriter printwriter = new PrintWriter(
-					ListenerMain.socket.getOutputStream(), true);
+			PrintWriter printwriter = new PrintWriter(socket.getOutputStream(),
+					true);
 
 			// for binary data use
 			// DataInputStream and DataOutputStream
@@ -144,31 +125,34 @@ public class AgentListener implements Runnable
 			bufferedreader.close();
 			inputstreamreader.close();
 			printwriter.close();
-			ListenerMain.socket.close();
+			socket.close();
 		}
 		catch ( UnknownHostException unhe )
 		{
-			System.out.println("UnknownHostException: " + unhe.getMessage());
+			System.out.println("AgentListener - UnknownHostException: "
+					+ unhe.getMessage());
 		}
 		catch ( InterruptedIOException intioe )
 		{
 			System.out
-					.println("Timeout while attempting to establish socket connection.");
+					.println("AgentListener - Timeout while attempting to establish socket connection.");
 		}
 		catch ( IOException ioe )
 		{
-			System.out.println("IOException: " + ioe.getMessage());
+			System.out.println("AgentListener - IOException: "
+					+ ioe.getMessage());
 		}
 		finally
 		{
 			try
 			{
-				ListenerMain.socket.close();
-				ListenerMain.serversocket.close();
+				ListenerMain.activeCons--;
+				socket.close();
 			}
 			catch ( IOException ioe )
 			{
-				System.out.println("IOException: " + ioe.getMessage());
+				System.out.println("AgentListener - IOException2: "
+						+ ioe.getMessage());
 			}
 		}
 	}
