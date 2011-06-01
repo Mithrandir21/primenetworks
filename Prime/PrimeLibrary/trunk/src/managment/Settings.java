@@ -31,7 +31,7 @@ import java.util.logging.Logger;
 public class Settings implements Serializable
 {
 	// THE APPLICATION VERSION
-	public final static String appVersion = "Beta 3.4";
+	public final static String appVersion = "Beta 3.5 RC1";
 
 
 	// HARDWARE MESSAGES
@@ -105,10 +105,9 @@ public class Settings implements Serializable
 
 
 	/**
-	 * This boolean will control the flow information within the system.
-	 * While the system is in debug mode, it will print out any error to a
-	 * console. But outside debug mode it will attempt to send them to a
-	 * {@link Logger}.
+	 * This boolean will control the flow information within the system. While
+	 * the system is in debug mode, it will print out any error to a console.
+	 * But outside debug mode it will attempt to send them to a {@link Logger}.
 	 */
 	public static boolean debug = false;
 
