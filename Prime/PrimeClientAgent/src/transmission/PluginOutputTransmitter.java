@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import utils.AgentMain;
 import utils.ServerConUtils;
 import agentPluginInterface.PrimeAgentPluginInterface;
 
@@ -18,7 +19,6 @@ import agentPluginInterface.PrimeAgentPluginInterface;
  * PrimeAgentListener on the PrimeDesktop server.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class PluginOutputTransmitter implements Runnable
 {
@@ -34,8 +34,10 @@ public class PluginOutputTransmitter implements Runnable
 	public PluginOutputTransmitter()
 	{
 		queue = new LinkedList<Runnable>();
-	}
 
+		// Attempts the connection, and sets the booleans
+		AgentMain.canConnectToServer = ServerConUtils.makeSocketReady();
+	}
 
 	/**
 	 * This function adds the given {@link PrimeAgentPluginInterface} to this
@@ -54,9 +56,8 @@ public class PluginOutputTransmitter implements Runnable
 
 	/**
 	 * This functions add a {@link TransmissionJobComplete} job to this classes
-	 * {@link Queue} to show when all transmissions have been completed.
-	 * 
-	 * NOTE: SHOULD ONLY BE ADDED AFTER ALL TRANSMISSIONS!
+	 * {@link Queue} to show when all transmissions have been completed. NOTE:
+	 * SHOULD ONLY BE ADDED AFTER ALL TRANSMISSIONS!
 	 */
 	public void addTransmissionCompleteJob()
 	{
@@ -64,7 +65,8 @@ public class PluginOutputTransmitter implements Runnable
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Runnable#run()
 	 */
 	@Override
@@ -72,11 +74,9 @@ public class PluginOutputTransmitter implements Runnable
 	{
 		System.out.println("\n\n\nStarting transmissions job at " + new Date());
 
-		// Creates the connection
-		boolean connectionMade = ServerConUtils.makeSocketReady();
 
 		// If there is a connection and the queue is not empty
-		while ( connectionMade && !queue.isEmpty() )
+		while ( AgentMain.canConnectToServer && !queue.isEmpty() )
 		{
 			// Gets the top TransmissionJob
 			Runnable job = queue.poll();

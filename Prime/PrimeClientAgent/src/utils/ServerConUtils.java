@@ -8,16 +8,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
 
 /**
- * This class contains variables and functions that assist in the sending and receiving information
- *
- * @author Bahram Malaekeh
+ * This class contains variables and functions that assist in the sending and
+ * receiving information
  * 
+ * @author Bahram Malaekeh
  */
 public class ServerConUtils
 {
@@ -37,14 +38,16 @@ public class ServerConUtils
 	public static BufferedReader bufferedreader = null;
 
 	/**
-	 * The {@link PrintWriter} that will write to the {@link Socket#getOutputStream()}, ie write to the server.
+	 * The {@link PrintWriter} that will write to the
+	 * {@link Socket#getOutputStream()}, ie write to the server.
 	 */
 	public static PrintWriter printwriter = null;
 
 
 
 	/**
-	 * This function will make the socket and other variables ready for sending and receiving information from the server. 
+	 * This function will make the socket and other variables ready for sending
+	 * and receiving information from the server.
 	 */
 	public static boolean makeSocketReady()
 	{
@@ -66,6 +69,10 @@ public class ServerConUtils
 			// establish an PrintWriter using the output stream of the
 			// socket object and set auto flush on
 			printwriter = new PrintWriter(socket.getOutputStream(), true);
+		}
+		catch ( ConnectException e )
+		{
+			return false;
 		}
 		catch ( UnknownHostException e )
 		{

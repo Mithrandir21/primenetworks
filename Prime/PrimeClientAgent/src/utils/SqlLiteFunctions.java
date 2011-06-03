@@ -18,7 +18,6 @@ import org.sqlite.SQLite;
  * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class SqlLiteFunctions
 {
@@ -38,7 +37,8 @@ public class SqlLiteFunctions
 		try
 		{
 			Class.forName("org.sqlite.JDBC");
-			con = DriverManager.getConnection("jdbc:sqlite:test.db");
+			con = DriverManager
+					.getConnection("jdbc:sqlite:config/AgentInfo.db");
 
 			// Checks
 			if ( con != null && !con.isClosed() && !con.isReadOnly() )
@@ -76,6 +76,8 @@ public class SqlLiteFunctions
 			{
 				Statement statement = con.createStatement();
 				statement.setQueryTimeout(30); // set timeout to 30 sec.
+
+				System.out.println(statementString);
 
 				statement.executeUpdate("BEGIN;");
 				statement.executeUpdate(statementString);
@@ -120,8 +122,8 @@ public class SqlLiteFunctions
 				}
 
 				// Attempts to create the AgentInfo table
-				stat.executeUpdate("create table " + agentInfoTableName
-						+ " (PropName, value);");
+				stat.executeUpdate("CREATE TABLE IF NOT EXISTS "
+						+ agentInfoTableName + " (PropName, value);");
 
 				// Will execute the sql statements above
 				stat.executeUpdate("COMMIT;");
@@ -179,18 +181,108 @@ public class SqlLiteFunctions
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public static boolean createAndStoreAgentUID(Connection con,
 			boolean deleteExistingUID)
 	{
 		if ( con != null )
 		{
-			UUID id = UUID.randomUUID();
-
+			// Must create new UUID.
+			UUID newID = UUID.randomUUID();
 			String statementString = "";
 
+			boolean keyExists = false;
+			boolean valueExists = false;
 
+			/**
+			 * 1. Check if UID exists. 1.1 If it does, set that as agent ID.
+			 */
+			if ( (keyExists = UIDexistsInTable(con)) == true )
+			{
+				// Gets UUID from SQL table
+				UUID id = getUIDInTable(con);
+
+				// If the UUID value exists.
+				valueExists = (id != null);
+
+				// If value exists and it is not to be replaced
+				if ( valueExists && !deleteExistingUID )
+				{
+					// Sets the Agent ID
+					AgentMain.agentID = id;
+
+					return true;
+				}
+				else if ( valueExists && deleteExistingUID )
+				{
+					statementString = "UPDATE " + agentInfoTableName
+							+ " SET value='" + newID.toString()
+							+ "' WHERE PropName='" + agentIDkeyName + "';";
+
+					// If the placement of the UUID is successful
+					if ( databaseStatementExecution(con, statementString) )
+					{
+						// Sets the Agent ID
+						AgentMain.agentID = newID;
+
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+			}
+
+
+			/**
+			 * 2. If the key exists, then the value does not exist.
+			 */
+			if ( keyExists )
+			{
+				// 2.2 Key exists, but value does not.
+				if ( !valueExists )
+				{
+					statementString = "UPDATE " + agentInfoTableName
+							+ " SET value='" + newID.toString()
+							+ "' WHERE PropName='" + agentIDkeyName + "');";
+
+					// If the placement of the UUID is successful
+					if ( databaseStatementExecution(con, statementString) )
+					{
+						// Sets the Agent ID
+						AgentMain.agentID = newID;
+
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+			}
+			/**
+			 * 3. The key does not exist and must be created
+			 */
+			else
+			{
+				statementString = "INSERT INTO " + agentInfoTableName
+						+ " VALUES ('" + agentIDkeyName + "', '"
+						+ newID.toString() + "');";
+
+				// If the placement of the UUID is successful
+				if ( databaseStatementExecution(con, statementString) )
+				{
+					// Sets the Agent ID
+					AgentMain.agentID = newID;
+
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
 		}
 
 
@@ -198,12 +290,10 @@ public class SqlLiteFunctions
 	}
 
 
-
 	/**
 	 * This function looks for the property key agentIDkeyName to see if there
-	 * exists a key/value in the agent table.
-	 * 
-	 * (NOTE: Does not check the actual key, just that exists.)
+	 * exists a key/value in the agent table. (NOTE: Does not check the actual
+	 * key, just that exists.)
 	 */
 	public static boolean UIDexistsInTable(Connection con)
 	{
@@ -233,6 +323,47 @@ public class SqlLiteFunctions
 		}
 
 		return false;
+	}
+
+
+
+	/**
+	 * This function looks for the property key agentIDkeyName to see if there
+	 * exists a key/value in the agent table.
+	 */
+	public static UUID getUIDInTable(Connection con)
+	{
+		if ( con != null )
+		{
+			try
+			{
+				Statement stat = con.createStatement();
+				stat.setQueryTimeout(10); // set timeout to 10 sec.
+
+				ResultSet rs = stat.executeQuery("SELECT * FROM "
+						+ agentInfoTableName + " WHERE PropName='"
+						+ agentIDkeyName + "';");
+
+				// If there was anything found, the table contains a uid
+				// key/value.
+				if ( rs.next() )
+				{
+					return UUID.fromString(rs.getString("value"));
+				}
+			}
+			catch ( IllegalArgumentException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch ( SQLException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return null;
 	}
 
 

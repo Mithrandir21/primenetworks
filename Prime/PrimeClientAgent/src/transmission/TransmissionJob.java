@@ -7,6 +7,7 @@ package transmission;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import utils.AgentMain;
 import utils.ServerConUtils;
 import agentPluginInterface.PrimeAgentPluginInterface;
 
@@ -17,7 +18,6 @@ import agentPluginInterface.PrimeAgentPluginInterface;
  * PrimeDesktop server.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class TransmissionJob implements Runnable
 {
@@ -35,7 +35,8 @@ public class TransmissionJob implements Runnable
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Runnable#run()
 	 */
 	@Override
@@ -99,9 +100,8 @@ public class TransmissionJob implements Runnable
 
 	/**
 	 * This function is a helper class that does the actual sending of plugin
-	 * name, version and output (in that order).
-	 * 
-	 * Will return true if all necessary data exists in plugin and false if not.
+	 * name, version and output (in that order). Will return true if all
+	 * necessary data exists in plugin and false if not.
 	 */
 	private boolean sendPluginInfo(PrintWriter send)
 	{
@@ -117,6 +117,8 @@ public class TransmissionJob implements Runnable
 				|| pluginOutput != null )
 		{
 			send.println("START--");
+
+			send.println("AgentID:'" + AgentMain.agentID + "'");
 
 			send.println("Plugin Name:'" + pluginName + "'");
 
