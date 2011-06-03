@@ -6,6 +6,7 @@ package utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.UUID;
 
 import listener.AgentListener;
 import serverPluginInterface.PrimeServerPluginInterface;
@@ -16,7 +17,6 @@ import serverPluginInterface.PrimeServerPluginInterface;
  * Agent, through the {@link AgentListener#run()}.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class PluginProcessing implements Runnable
 {
@@ -36,7 +36,8 @@ public class PluginProcessing implements Runnable
 	}
 
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Runnable#run()
 	 */
 	@Override
@@ -50,77 +51,92 @@ public class PluginProcessing implements Runnable
 				{
 					/**
 					 * The protocol for information sending from the agents is
-					 * as following:
-					 * 
-					 * 1. Send the plugin name
-					 * 
-					 * 2. Send the plugin version
-					 * 
-					 * 3. Send the plugin output
+					 * as following: 0. Send the Agent UUID 1. Send the plugin
+					 * name 2. Send the plugin version 3. Send the plugin output
 					 */
 
+					UUID agentID = null;
 					String pluginName = "";
 					String pluginVersion = "";
 					String pluginOutput = "";
 
 					String lineread = "";
 
-					// Verify the syntax of the plugin name text and reads the
-					// first input
-					if ( (lineread = bufferedreader.readLine()) != null
+					// Verify the syntax of the AgentID name text and reads
+					// the zeroth input
+					if ( ((lineread = bufferedreader.readLine()) != null)
 							&& AgentInputProcessing
-									.verifyPluginNameSyntax(lineread) )
+									.verifyPluginAgentIDSyntax(lineread) )
 					{
-						System.out.println("Step1 - " + lineread);
-						// If it is not NULL, get plugin name
-						pluginName = AgentInputProcessing
-								.getPluginMetaInfo(lineread);
+						System.out.println("Step0 - " + lineread);
 
-						// Verify the syntax of the plugin version text and
-						// reads the second input
-						if ( (lineread = bufferedreader.readLine()) != null
+						// Converts the line to a UUID, null if invalid
+						agentID = AgentInputProcessing
+								.verifyStringAsUUID(AgentInputProcessing
+										.getPluginMetaInfo(lineread));
+
+						// Verify the syntax of the agentID, plugin name text
+						// and reads the first input
+						if ( agentID != null
+								&& (lineread = bufferedreader.readLine()) != null
 								&& AgentInputProcessing
-										.verifyPluginVersionSyntax(lineread) )
+										.verifyPluginNameSyntax(lineread) )
 						{
-							System.out.println("Step2 - " + lineread);
-							// If it is not NULL, get plugin version
-							pluginVersion = AgentInputProcessing
+							System.out.println("Step1 - " + lineread);
+							// If it is not NULL, get plugin name
+							pluginName = AgentInputProcessing
 									.getPluginMetaInfo(lineread);
 
-							// Reads the third input
-							if ( (lineread = bufferedreader.readLine()) != null )
+							// Verify the syntax of the plugin version text and
+							// reads the second input
+							if ( (lineread = bufferedreader.readLine()) != null
+									&& AgentInputProcessing
+											.verifyPluginVersionSyntax(lineread) )
 							{
-								// Finds the correct plugin by name and version
-								PrimeServerPluginInterface plugin = AgentInputProcessing
-										.findCorrectPlugin(pluginName,
-												pluginVersion);
+								System.out.println("Step2 - " + lineread);
+								// If it is not NULL, get plugin version
+								pluginVersion = AgentInputProcessing
+										.getPluginMetaInfo(lineread);
 
-								// If any plugin was found
-								if ( plugin != null )
+								// Reads the third input
+								if ( (lineread = bufferedreader.readLine()) != null )
 								{
-									System.out.println("Step3 - " + lineread);
-									// If it is not NULL, get plugin output
-									pluginOutput = lineread;
+									// Finds the correct plugin by name and
+									// version
+									PrimeServerPluginInterface plugin = AgentInputProcessing
+											.findCorrectPlugin(pluginName,
+													pluginVersion);
 
-									// Reads the END input
-									if ( (lineread = bufferedreader.readLine()) != null )
+									// If any plugin was found
+									if ( plugin != null )
 									{
-										System.out.println("Step4 - "
+										System.out.println("Step3 - "
 												+ lineread);
-										// Gotten the end of the plugin output
-										if ( lineread
-												.compareToIgnoreCase("--END") == 0 )
+										// If it is not NULL, get plugin output
+										pluginOutput = lineread;
+
+										// Reads the END input
+										if ( (lineread = bufferedreader
+												.readLine()) != null )
 										{
-											System.out
-													.println("Plugin output received succesfully!\n");
-											success = true;
+											System.out.println("Step4 - "
+													+ lineread);
+											// Gotten the end of the plugin
+											// output
+											if ( lineread
+													.compareToIgnoreCase("--END") == 0 )
+											{
+												System.out
+														.println("Plugin output received succesfully!\n");
+												success = true;
 
-											// Sends the agent plugin output to
-											// the server agent input for
-											// processing.
-											plugin.agentInputProcessing(pluginOutput);
+												// Sends the agent plugin output
+												// to the server agent input for
+												// processing.
+												plugin.agentInputProcessing(pluginOutput);
 
-											System.out.println();
+												System.out.println();
+											}
 										}
 									}
 								}

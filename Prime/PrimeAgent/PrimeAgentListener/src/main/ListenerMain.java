@@ -97,7 +97,7 @@ public class ListenerMain
 		try
 		{
 			// The object that provides Socket objects on connection.
-			serversocket = new ServerSocket(serverport, 100,
+			serversocket = new ServerSocket(serverport, 10,
 					InetAddress.getByName(serverurl));
 
 			System.out.println("Listening at " + serverurl + " on port "
@@ -109,8 +109,8 @@ public class ListenerMain
 				Socket socket = serversocket.accept();
 
 				// The processing Thread
-				Thread processing = new Thread(new AgentListener(socket));
-				processing.start();
+				// Thread processing = new Thread(new AgentListener(socket));
+				new Thread(new AgentListener(socket)).start();
 
 				// Adds a new connection
 				activeCons++;

@@ -6,6 +6,7 @@ package utils;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,10 +18,46 @@ import serverPluginInterface.PrimeServerPluginInterface;
  * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class AgentInputProcessing
 {
+	/**
+	 * This function attempts to convert the String given to a UUID. Will return
+	 * null if text is null, empty or not UUID format.
+	 */
+	public static UUID verifyStringAsUUID(String text)
+	{
+		if ( text != null && text != "" )
+		{
+			try
+			{
+				return UUID.fromString(text);
+			}
+			catch ( IllegalArgumentException e )
+			{
+			}
+		}
+
+		return null;
+	}
+
+
+	/**
+	 * This function uses Regular Expressions to verify the syntax of the given
+	 * text to match " AgentID:'[anything]' ".
+	 */
+	public static boolean verifyPluginAgentIDSyntax(String text)
+	{
+		// Create a pattern to match "Plugin Name:'[anything]'"
+		Pattern p = Pattern.compile("AgentID:'.*?'");
+
+		// Create a matcher with an input string
+		Matcher m = p.matcher(text);
+
+		return m.find();
+	}
+
+
 	/**
 	 * This function uses Regular Expressions to verify the syntax of the given
 	 * text to match " Plugin Name:'[anything]' ".
@@ -66,7 +103,6 @@ public class AgentInputProcessing
 
 	/**
 	 * TODO - Description
-	 * 
 	 */
 	public static PrimeServerPluginInterface findCorrectPlugin(
 			String pluginName, String pluginVersion)
