@@ -72,6 +72,7 @@ import javax.swing.ToolTipManager;
 import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 
+import main.ListenerMain;
 import managment.CanvasManagment;
 import managment.CreateObjects;
 import managment.DesktopCanvasManagment;
@@ -87,7 +88,6 @@ import org.jdesktop.swingx.JXMultiSplitPane;
 import org.jdesktop.swingx.MultiSplitLayout;
 import org.jdesktop.swingx.MultiSplitLayout.Node;
 
-import updatePrime.PrimeDesktopUpdateService;
 import widgetManipulation.NetworkRules;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
@@ -97,7 +97,7 @@ import widgets.WorkareaCanvas;
  * Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * @version 0.62 23/09/2010
+ * @version 0.63 06/03/2011
  */
 @SuppressWarnings("serial")
 public class PrimeMain extends JFrame
@@ -199,6 +199,9 @@ public class PrimeMain extends JFrame
 
 	// The GhostGlass that will show the moving device(for D'n'D).
 	public static GhostGlassPane glassPane;
+
+	// The listening agent that will listen to agent coms
+	public static ListenerMain agentListener = new ListenerMain();;
 
 
 
@@ -518,6 +521,8 @@ public class PrimeMain extends JFrame
 		{
 			new TipOfDay();
 		}
+
+		agentListener.start();
 	}
 
 	/**
@@ -527,7 +532,7 @@ public class PrimeMain extends JFrame
 	{
 		PrimeMain temp = new PrimeMain();
 
-		new PrimeDesktopUpdateService();
+		// new PrimeDesktopUpdateService();
 
 		// services = new PrimeService();
 
@@ -975,16 +980,23 @@ public class PrimeMain extends JFrame
 			if ( answer == 0 )
 			{
 				DesktopFileManagment.saveCanvases(changes);
+
+				// Stops listening for agent coms
+				agentListener.stopListening();
 				System.exit(0);
 			}
 			// Dont save
 			else if ( answer == 1 )
 			{
+				// Stops listening for agent coms
+				agentListener.stopListening();
 				System.exit(0);
 			}
 		}
 		else
 		{
+			// Stops listening for agent coms
+			agentListener.stopListening();
 			System.exit(0);
 		}
 	}

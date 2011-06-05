@@ -175,6 +175,9 @@ public class WidgetAdapterExtended extends Adapter
 
 
 
+	/* (non-Javadoc)
+	 * @see org.netbeans.api.visual.action.WidgetAction.Adapter#mouseReleased(org.netbeans.api.visual.widget.Widget, org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent)
+	 */
 	@Override
 	public State mouseReleased(Widget widget, WidgetMouseEvent event)
 	{

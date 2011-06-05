@@ -383,8 +383,8 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 			else
 			{
 				// If there is only one connection type and the user has chosen
-				// to create a connection
-				// that one connection type will be set as the conType.
+				// to create a connection that one connection type will be set
+				// as the conType.
 				if ( compInter.length == 1 )
 				{
 					conType = compInter[0];

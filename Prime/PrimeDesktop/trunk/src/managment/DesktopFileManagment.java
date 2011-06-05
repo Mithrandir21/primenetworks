@@ -41,6 +41,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
@@ -159,7 +160,7 @@ public class DesktopFileManagment
 				oos.writeObject(nameOfCanvas);
 
 				// Writes out the serial number of the canvas
-				oos.writeDouble(canvas.getSerial());
+				oos.writeObject(canvas.getSerial());
 
 				// Writes out the WorkareaCanvasNetworkInfo
 				oos.writeObject(canvas.getNetworkInfo());
@@ -622,7 +623,7 @@ public class DesktopFileManagment
 	private static boolean checkAndVerify(WorkareaCanvas canvas)
 	{
 		String canvasName = canvas.getCanvasName();
-		double canvasSerial = canvas.getSerial();
+		UUID canvasSerial = canvas.getSerial();
 
 		// Creates a file object(not the actual file)
 		File file = new File("./resource/Data/" + canvas.getCanvasName()
@@ -641,7 +642,7 @@ public class DesktopFileManagment
 				String name = (String) ois.readObject();
 
 				// The serial of the file network
-				double serial = ois.readDouble();
+				UUID serial = (UUID) ois.readObject();
 
 
 				ois.close();
@@ -652,7 +653,7 @@ public class DesktopFileManagment
 				{
 					// If the serial from the file is not the same as the serial
 					// from the given WorkareaCanvas
-					if ( serial != canvasSerial )
+					if ( !serial.equals(canvasSerial) )
 					{
 						int answer = JOptionPane
 								.showConfirmDialog(
@@ -991,76 +992,83 @@ public class DesktopFileManagment
 		else
 		{
 			// Gets the serial of the canvas in the given file
-			double serial = getWorkareaCanvasSerialFromFile(file);
+			UUID serial = getWorkareaCanvasSerialFromFile(file);
 
-			// A boolean on whether the open canvas is the same as the file.
-			boolean sameCanvas = false;
-
-			// Checking to see whether the open canvas has the serial number as
-			// the canvas in the file.
-			if ( serial == canvas.getSerial() )
+			if ( serial != null )
 			{
-				sameCanvas = true;
-			}
+				// A boolean on whether the open canvas is the same as the file.
+				boolean sameCanvas = false;
 
-			int answer = JOptionPane.showConfirmDialog(null,
-					PrimeMain.texts.getString("actionDeleteWorkareaCanvasMsg")
-							+ canvasName + "?",
-					PrimeMain.texts.getString("confirm"),
-					JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
-
-			if ( answer == 0 )
-			{
-				// Attempt to delete it
-				boolean success = file.delete();
-
-				if ( !success )
+				// Checking to see whether the open canvas has the serial number
+				// as the canvas in the file.
+				if ( serial.equals(canvas.getSerial()) )
 				{
-					JOptionPane.showMessageDialog(
-							null,
-							"The file" + System.getProperty("line.separator")
-									+ file.getName()
-									+ System.getProperty("line.separator")
-									+ "was NOT successfully deleted.", "Error",
-							JOptionPane.ERROR_MESSAGE);
-
-					return false;
+					sameCanvas = true;
 				}
-				else
+
+				int answer = JOptionPane.showConfirmDialog(
+						null,
+						PrimeMain.texts
+								.getString("actionDeleteWorkareaCanvasMsg")
+								+ canvasName + "?", PrimeMain.texts
+								.getString("confirm"),
+						JOptionPane.OK_CANCEL_OPTION,
+						JOptionPane.WARNING_MESSAGE);
+
+				if ( answer == 0 )
 				{
-					// If the canvas has been deleted, the canvas folder must be
-					// deleted.
-					deleteDir(file.getParentFile());
+					// Attempt to delete it
+					boolean success = file.delete();
 
-
-					// Reloads
-					PrimeMain.updateNetworkSelectionArea();
-
-					if ( sameCanvas )
+					if ( !success )
 					{
-						// Removes the WorkareScroll with the canvas
-						try
-						{
-							PrimeMain.workTab.removeTabWithCanvas(canvasName,
-									false);
-						}
-						catch ( CanvasNotFound e )
-						{
-							// log.warning("The WorkareaCanvas, "
-							// + canvasName
-							// +
-							// ", was not found in the WorkareaCanvas main register.");
-							e.printStackTrace();
-						}
-					}
+						JOptionPane.showMessageDialog(
+								null,
+								"The file"
+										+ System.getProperty("line.separator")
+										+ file.getName()
+										+ System.getProperty("line.separator")
+										+ "was NOT successfully deleted.",
+								"Error", JOptionPane.ERROR_MESSAGE);
 
-					return true;
+						return false;
+					}
+					else
+					{
+						// If the canvas has been deleted, the canvas folder
+						// must be
+						// deleted.
+						deleteDir(file.getParentFile());
+
+
+						// Reloads
+						PrimeMain.updateNetworkSelectionArea();
+
+						if ( sameCanvas )
+						{
+							// Removes the WorkareScroll with the canvas
+							try
+							{
+								PrimeMain.workTab.removeTabWithCanvas(
+										canvasName, false);
+							}
+							catch ( CanvasNotFound e )
+							{
+								// log.warning("The WorkareaCanvas, "
+								// + canvasName
+								// +
+								// ", was not found in the WorkareaCanvas main register.");
+								e.printStackTrace();
+							}
+						}
+
+						return true;
+					}
 				}
 			}
 			return false;
 		}
 	}
-
 
 	/**
 	 * Creates a new WorkareaCanvas. The user is asked what the name of the new
@@ -1276,7 +1284,7 @@ public class DesktopFileManagment
 			canvas.setCanvasName(name);
 
 			// The serial of the network
-			double serial = ois.readDouble();
+			UUID serial = (UUID) ois.readObject();
 			canvas.setSerial(serial);
 
 			try
@@ -2388,8 +2396,8 @@ public class DesktopFileManagment
 
 										// Sets the a new serial number for the
 										// network
-										newCanvas
-												.setSerial((Math.random()) * 500);
+										// FIXME - Serial nr of managed network
+										newCanvas.setSerial(UUID.randomUUID());
 
 										// Adds the canvas to the program
 										PrimeMain.getWorkarea()
@@ -2461,7 +2469,7 @@ public class DesktopFileManagment
 
 								// Sets the a new serial number for the
 								// network
-								newCanvas.setSerial((Math.random()) * 500);
+								newCanvas.setSerial(UUID.randomUUID());
 
 								// Adds the canvas to the program
 								PrimeMain.getWorkarea().createNewCanvasTab(
@@ -2972,9 +2980,9 @@ public class DesktopFileManagment
 	 * This function attempts to retrieve the serial number of the
 	 * {@link WorkareaCanvas} contained inside the give file.
 	 */
-	public static double getWorkareaCanvasSerialFromFile(File file)
+	public static UUID getWorkareaCanvasSerialFromFile(File file)
 	{
-		double serial = 0;
+		UUID serial = null;
 
 
 		// If the Objects file exists
@@ -2996,7 +3004,7 @@ public class DesktopFileManagment
 						ois.readObject();
 
 						// The serial of the network
-						serial = ois.readDouble();
+						serial = (UUID) ois.readObject();
 
 						ois.close();
 					}

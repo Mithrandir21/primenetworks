@@ -36,7 +36,7 @@ import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -68,7 +68,7 @@ import widgets.WorkareaCanvas;
  * @author Bahram Malaekeh
  * 
  */
-public class EditGroupDialog extends JDialog implements ActionListener
+public class EditGroupDialog extends JFrame implements ActionListener
 {
 	private WorkareaCanvas canvas;
 
@@ -102,7 +102,7 @@ public class EditGroupDialog extends JDialog implements ActionListener
 	 */
 	public EditGroupDialog(WorkareaCanvas canvas, Group group)
 	{
-		this.setTitle("Edit Group" + " - " + group.getGroupName());
+		super("Edit Group" + " - " + group.getGroupName());
 
 
 		this.group = group;
@@ -131,7 +131,7 @@ public class EditGroupDialog extends JDialog implements ActionListener
 		this.setLocation(initXLocation, initYLocation);
 		this.setMinimumSize(size);
 		this.setVisible(true);
-		this.setResizable(false);
+		// this.setResizable(false);
 	}
 
 

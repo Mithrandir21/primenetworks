@@ -179,10 +179,22 @@ public class ActionsAdder
 				ActionFactory
 						.createPopupMenuAction(new JMenuConnection(canvas)));
 
-		// // Sets the connection comment text
-		newCon.setToolTipText(newCon.getConnection().getDescription());
-	}
+		// Sets the connection comment text
+		// newCon.setToolTipText(newCon.getConnection().getDescription());
 
+		// Balloon tooltip
+		// BalloonTip tooltipBalloon = new BalloonTip(newCon, newCon
+		// .getConnection().getDescription(), new EdgedBalloonStyle(
+		// Color.WHITE, Color.BLUE), BalloonTip.Orientation.LEFT_ABOVE,
+		// BalloonTip.AttachLocation.ALIGNED, 15, 15, false);
+		// tooltipLabel, new JLabel("I'm a balloon tooltip!"),
+		// new EdgedBalloonStyle(Color.WHITE, Color.BLUE),
+		// BalloonTip.Orientation.LEFT_ABOVE,
+		// BalloonTip.AttachLocation.ALIGNED,
+		// 15, 15,
+		// false);
+		// ToolTipUtils.balloonToToolTip(tooltipBalloon, 200, 3000);
+	}
 
 
 	/**
