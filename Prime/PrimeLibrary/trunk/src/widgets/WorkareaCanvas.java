@@ -23,6 +23,7 @@ import groups.Group;
 import java.awt.dnd.DropTarget;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -73,7 +74,7 @@ public class WorkareaCanvas extends JPanel
 	private String CanvasName = "";
 
 	// The individual serialnumber of the workareacanvas
-	private double serial = 0;
+	private UUID serial = null;
 
 	// The transferHandler that will take care of the drag and drop feature for
 	// the canvas
@@ -165,7 +166,7 @@ public class WorkareaCanvas extends JPanel
 	public void makeCanvasReady()
 	{
 		// A random number that will be the serial number of the network
-		serial = (Math.random()) * 500;
+		serial = UUID.randomUUID();
 
 		// Creates the network info object and sets the serial of this class as
 		// the serial of the class
@@ -226,7 +227,7 @@ public class WorkareaCanvas extends JPanel
 	 * 
 	 * @return the serial
 	 */
-	public double getSerial()
+	public UUID getSerial()
 	{
 		return serial;
 	}
@@ -321,8 +322,7 @@ public class WorkareaCanvas extends JPanel
 
 	/**
 	 * Gets the connection layer of the scene. This is where the
-	 * {@link connections.WidgetExtendedConnection connections} between
-	 * objects
+	 * {@link connections.WidgetExtendedConnection connections} between objects
 	 * in the scene are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget
@@ -617,7 +617,7 @@ public class WorkareaCanvas extends JPanel
 	 * @param serial
 	 *            the serial to set
 	 */
-	public void setSerial(double serial)
+	public void setSerial(UUID serial)
 	{
 		this.serial = serial;
 	}
@@ -693,8 +693,7 @@ public class WorkareaCanvas extends JPanel
 
 	/**
 	 * Sets the connection layer of the scene. This is where the
-	 * {@link connections.WidgetExtendedConnection connections} between
-	 * objects
+	 * {@link connections.WidgetExtendedConnection connections} between objects
 	 * in the scene are placed.
 	 * 
 	 * @see org.netbeans.api.visual.widget.LayerWidget LayerWidget

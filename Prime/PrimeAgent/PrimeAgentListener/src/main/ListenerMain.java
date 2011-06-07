@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 import listener.AgentListener;
 import net.xeoh.plugins.base.PluginManager;
@@ -53,11 +54,25 @@ public class ListenerMain
 	 */
 	public static int activeCons = 0;
 
+	/**
+	 * A boolean on whether or not the socket is closing.
+	 */
+	private static boolean closing = false;
+
 
 	/**
 	 * Main that starts the StartServerPlugins() and then StartListening().
 	 */
 	public static void main(String[] args)
+	{
+		if ( startServerPlugins() )
+		{
+			startListening();
+		}
+	}
+
+
+	public void start()
 	{
 		if ( startServerPlugins() )
 		{
@@ -103,7 +118,7 @@ public class ListenerMain
 			System.out.println("Listening at " + serverurl + " on port "
 					+ serverport);
 
-			while ( activeCons <= MAXconnections )
+			while ( !closing && activeCons <= MAXconnections )
 			{
 				// wait indefinitely until a client connects to the socket
 				Socket socket = serversocket.accept();
@@ -116,18 +131,23 @@ public class ListenerMain
 				activeCons++;
 			}
 		}
+		catch ( SocketException e )
+		{
+			// Will be thrown when closing the connection while waiting for
+			// connections.
+		}
 		catch ( IOException ioe )
 		{
 			System.out.println("startListening() - IOException: "
 					+ ioe.getMessage());
 		}
-
 	}
 
-	private static void stopListening()
+	public void stopListening()
 	{
 		try
 		{
+			closing = true;
 			serversocket.close();
 		}
 		catch ( IOException e )

@@ -19,6 +19,7 @@ package widgetManipulation;
 
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import objects.infrastructureObjects.Hub;
 import objects.infrastructureObjects.Internet;
@@ -32,8 +33,9 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * This class represents the rules that is to be applied to any given {@link WorkareaCanvas}.
- * The rules can contain such things as how many, if any, ports can be available on a computer, like USB or RJ-45.
+ * This class represents the rules that is to be applied to any given
+ * {@link WorkareaCanvas}. The rules can contain such things as how many, if
+ * any, ports can be available on a computer, like USB or RJ-45.
  * 
  * @author Bahram Malaekeh
  */
@@ -41,9 +43,10 @@ public class NetworkRules implements Serializable
 {
 
 	/**
-	 * The serial number of the {@link WorkareaCanvas} this set of rules applies to.
+	 * The serial number of the {@link WorkareaCanvas} this set of rules applies
+	 * to.
 	 */
-	private double canvasSerial;
+	private UUID canvasSerial;
 
 
 
@@ -58,8 +61,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * A number representing the number of allowed USB ports.
-	 * -1 means the numbers is not set.
+	 * A number representing the number of allowed USB ports. -1 means the
+	 * numbers is not set.
 	 */
 	private int USBportsAllowed = -1;
 
@@ -71,8 +74,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * A number representing the number of allowed LAN ports.
-	 * -1 means the numbers is not set.
+	 * A number representing the number of allowed LAN ports. -1 means the
+	 * numbers is not set.
 	 */
 	private int LANportsAllowed = -1;
 
@@ -84,8 +87,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * A number representing the number of allowed COAX ports.
-	 * -1 means the numbers is not set.
+	 * A number representing the number of allowed COAX ports. -1 means the
+	 * numbers is not set.
 	 */
 	private int COAXportsAllowed = -1;
 
@@ -97,8 +100,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * A number representing the number of allowed FIBER ports.
-	 * -1 means the numbers is not set.
+	 * A number representing the number of allowed FIBER ports. -1 means the
+	 * numbers is not set.
 	 */
 	private int FIBERportsAllowed = -1;
 
@@ -108,66 +111,71 @@ public class NetworkRules implements Serializable
 	 */
 
 	/**
-	 * Whether or not the computers in a network are restricted to a specific {@link OperatingSystem}.
+	 * Whether or not the computers in a network are restricted to a specific
+	 * {@link OperatingSystem}.
 	 */
 	private boolean OSrestriction = false;
 
 
 	/**
-	 * The name of the {@link OperatingSystem} the network is restricted to.
-	 * An empty string("") means no name is set.
+	 * The name of the {@link OperatingSystem} the network is restricted to. An
+	 * empty string("") means no name is set.
 	 */
 	private String OSrestrictedName = "";
 
 
 	/**
-	 * Whether or not the computers in a network are restricted to a specific {@link Antivirus}.
+	 * Whether or not the computers in a network are restricted to a specific
+	 * {@link Antivirus}.
 	 */
 	private boolean AVrestriction = false;
 
 
 	/**
-	 * The name of the {@link Antivirus} the network is restricted to.
-	 * An empty string("") means no name is set.
+	 * The name of the {@link Antivirus} the network is restricted to. An empty
+	 * string("") means no name is set.
 	 */
 	private String AVrestrictedName = "";
 
 
 	/**
-	 * Whether or not the computers in a network are restricted to a specific {@link Firewall}.
+	 * Whether or not the computers in a network are restricted to a specific
+	 * {@link Firewall}.
 	 */
 	private boolean FWrestriction = false;
 
 
 	/**
-	 * The name of the {@link Firewall} the network is restricted to.
-	 * An empty string("") means no name is set.
+	 * The name of the {@link Firewall} the network is restricted to. An empty
+	 * string("") means no name is set.
 	 */
 	private String FWrestrictedName = "";
 
 
 	/**
-	 * Whether or not the computers in a network are restricted to a specific {@link Email}.
+	 * Whether or not the computers in a network are restricted to a specific
+	 * {@link Email}.
 	 */
 	private boolean EMailRestriction = false;
 
 
 	/**
-	 * The name of the {@link Email} the network is restricted to.
-	 * An empty string("") means no name is set.
+	 * The name of the {@link Email} the network is restricted to. An empty
+	 * string("") means no name is set.
 	 */
 	private String EMailRestrictedName = "";
 
 
 	/**
-	 * Whether or not the computers in a network are restricted to a specific {@link OfficeSuite}.
+	 * Whether or not the computers in a network are restricted to a specific
+	 * {@link OfficeSuite}.
 	 */
 	private boolean OfficeSuiteRestriction = false;
 
 
 	/**
-	 * The name of the {@link OfficeSuite} the network is restricted to.
-	 * An empty string("") means no name is set.
+	 * The name of the {@link OfficeSuite} the network is restricted to. An
+	 * empty string("") means no name is set.
 	 */
 	private String OfficeSuiteRestrictedName = "";
 
@@ -178,19 +186,22 @@ public class NetworkRules implements Serializable
 	 */
 
 	/**
-	 * Whether the network can connect to the Internet, ie an {@link Internet} object.
+	 * Whether the network can connect to the Internet, ie an {@link Internet}
+	 * object.
 	 */
 	private boolean canConnectToInternet = true;
 
 
 	/**
-	 * Whether there must be a {@link Firewall} between the Internet, ie an {@link Internet} object, and the internal network.
+	 * Whether there must be a {@link Firewall} between the Internet, ie an
+	 * {@link Internet} object, and the internal network.
 	 */
 	private boolean mustHaveFWbeforeInternet = false;
 
 
 	/**
-	 * Whether there must be a {@link Antivirus} between the Internet, ie an {@link Internet} object, and the internal network.
+	 * Whether there must be a {@link Antivirus} between the Internet, ie an
+	 * {@link Internet} object, and the internal network.
 	 */
 	private boolean mustHaveAVbeforeInternet = false;
 
@@ -210,10 +221,12 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * A constructor for this class that sets the serial number of this class from the given {@link WorkareaCanvas}.
+	 * A constructor for this class that sets the serial number of this class
+	 * from the given {@link WorkareaCanvas}.
 	 * 
 	 * @param canvas
-	 *            The {@link WorkareaCanvas} that contains the serial number set.
+	 *            The {@link WorkareaCanvas} that contains the serial number
+	 *            set.
 	 */
 	public NetworkRules(WorkareaCanvas canvas)
 	{
@@ -223,11 +236,12 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * A constructor for this class that is used to make a standard rules object.
+	 * A constructor for this class that is used to make a standard rules
+	 * object.
 	 */
 	public NetworkRules()
 	{
-		canvasSerial = -1;
+		canvasSerial = null;
 	}
 
 
@@ -235,9 +249,10 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets the serial number of the {@link WorkareaCanvas} this set of rules applies to.
+	 * Gets the serial number of the {@link WorkareaCanvas} this set of rules
+	 * applies to.
 	 */
-	public double getCanvasSerial()
+	public UUID getCanvasSerial()
 	{
 		return canvasSerial;
 	}
@@ -257,8 +272,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets the number representing the number of allowed USB ports.
-	 * -1 means the numbers is not set.
+	 * Gets the number representing the number of allowed USB ports. -1 means
+	 * the numbers is not set.
 	 */
 	public int getUSBportsAllowed()
 	{
@@ -280,8 +295,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets the number representing the number of allowed LAN ports.
-	 * -1 means the numbers is not set.
+	 * Gets the number representing the number of allowed LAN ports. -1 means
+	 * the numbers is not set.
 	 */
 	public int getLANportsAllowed()
 	{
@@ -303,8 +318,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets the number representing the number of allowed COAX ports.
-	 * -1 means the numbers is not set.
+	 * Gets the number representing the number of allowed COAX ports. -1 means
+	 * the numbers is not set.
 	 */
 	public int getCOAXportsAllowed()
 	{
@@ -326,8 +341,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets the number representing the number of allowed FIBER ports.
-	 * -1 means the numbers is not set.
+	 * Gets the number representing the number of allowed FIBER ports. -1 means
+	 * the numbers is not set.
 	 */
 	public int getFIBERportsAllowed()
 	{
@@ -350,8 +365,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets the name of the {@link OperatingSystem} the network is restricted to.
-	 * An empty string("") means no name is set.
+	 * Gets the name of the {@link OperatingSystem} the network is restricted
+	 * to. An empty string("") means no name is set.
 	 */
 	public String getOSrestrictedName()
 	{
@@ -362,7 +377,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets whether or not the computers in a network are restricted to a specific {@link Antivirus}.
+	 * Gets whether or not the computers in a network are restricted to a
+	 * specific {@link Antivirus}.
 	 */
 	public boolean isAVrestriction()
 	{
@@ -373,8 +389,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets the name of the {@link Antivirus} the network is restricted to.
-	 * An empty string("") means no name is set.
+	 * Gets the name of the {@link Antivirus} the network is restricted to. An
+	 * empty string("") means no name is set.
 	 */
 	public String getAVrestrictedName()
 	{
@@ -385,7 +401,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets whether or not the computers in a network are restricted to a specific {@link Firewall}.
+	 * Gets whether or not the computers in a network are restricted to a
+	 * specific {@link Firewall}.
 	 */
 	public boolean isFWrestriction()
 	{
@@ -396,8 +413,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets the name of the {@link Firewall} the network is restricted to.
-	 * An empty string("") means no name is set.
+	 * Gets the name of the {@link Firewall} the network is restricted to. An
+	 * empty string("") means no name is set.
 	 */
 	public String getFWrestrictedName()
 	{
@@ -408,7 +425,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets whether or not the computers in a network are restricted to a specific {@link Email}.
+	 * Gets whether or not the computers in a network are restricted to a
+	 * specific {@link Email}.
 	 */
 	public boolean isEMailRestriction()
 	{
@@ -419,8 +437,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets the name of the {@link Email} the network is restricted to.
-	 * An empty string("") means no name is set.
+	 * Gets the name of the {@link Email} the network is restricted to. An empty
+	 * string("") means no name is set.
 	 */
 	public String getEMailRestrictedName()
 	{
@@ -431,7 +449,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets whether or not the computers in a network are restricted to a specific {@link OfficeSuite}.
+	 * Gets whether or not the computers in a network are restricted to a
+	 * specific {@link OfficeSuite}.
 	 */
 	public boolean isOfficeSuiteRestriction()
 	{
@@ -442,8 +461,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets the name of the {@link OfficeSuite} the network is restricted to.
-	 * An empty string("") means no name is set.
+	 * Gets the name of the {@link OfficeSuite} the network is restricted to. An
+	 * empty string("") means no name is set.
 	 */
 	public String getOfficeSuiteRestrictedName()
 	{
@@ -454,7 +473,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets whether the network can connect to the Internet, ie can contain an {@link Internet} object.
+	 * Gets whether the network can connect to the Internet, ie can contain an
+	 * {@link Internet} object.
 	 */
 	public boolean isCanConnectToInternet()
 	{
@@ -465,8 +485,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets whether there must be a {@link Firewall} between the Internet, ie an {@link Internet} object, and the internal
-	 * network.
+	 * Gets whether there must be a {@link Firewall} between the Internet, ie an
+	 * {@link Internet} object, and the internal network.
 	 */
 	public boolean isMustHaveFWbeforeInternet()
 	{
@@ -477,8 +497,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Gets whether there must be a {@link Antivirus} between the Internet, ie an {@link Internet} object, and the internal
-	 * network.
+	 * Gets whether there must be a {@link Antivirus} between the Internet, ie
+	 * an {@link Internet} object, and the internal network.
 	 */
 	public boolean isMustHaveAVbeforeInternet()
 	{
@@ -524,8 +544,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * A number representing the number of allowed USB ports.
-	 * -1 means the numbers is not set.
+	 * A number representing the number of allowed USB ports. -1 means the
+	 * numbers is not set.
 	 */
 	public void setUSBportsAllowed(int uSBportsAllowed)
 	{
@@ -547,8 +567,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * A number representing the number of allowed LAN ports.
-	 * -1 means the numbers is not set.
+	 * A number representing the number of allowed LAN ports. -1 means the
+	 * numbers is not set.
 	 */
 	public void setLANportsAllowed(int LANportsAllowed)
 	{
@@ -570,8 +590,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * A number representing the number of allowed COAX ports.
-	 * -1 means the numbers is not set.
+	 * A number representing the number of allowed COAX ports. -1 means the
+	 * numbers is not set.
 	 */
 	public void setCOAXportsAllowed(int COAXportsAllowed)
 	{
@@ -593,8 +613,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * A number representing the number of allowed FIBER ports.
-	 * -1 means the numbers is not set.
+	 * A number representing the number of allowed FIBER ports. -1 means the
+	 * numbers is not set.
 	 */
 	public void setFIBERportsAllowed(int FIBERportsAllowed)
 	{
@@ -605,7 +625,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Sets whether or not the computers in a network are restricted to a specific {@link OperatingSystem}.
+	 * Sets whether or not the computers in a network are restricted to a
+	 * specific {@link OperatingSystem}.
 	 */
 	public void setOSrestriction(boolean oSrestriction)
 	{
@@ -616,8 +637,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Sets the name of the {@link OperatingSystem} the network is restricted to.
-	 * An empty string("") means no name is set.
+	 * Sets the name of the {@link OperatingSystem} the network is restricted
+	 * to. An empty string("") means no name is set.
 	 */
 	public void setOSrestrictedName(String oSrestrictedName)
 	{
@@ -628,7 +649,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Sets whether or not the computers in a network are restricted to a specific {@link Antivirus}.
+	 * Sets whether or not the computers in a network are restricted to a
+	 * specific {@link Antivirus}.
 	 */
 	public void setAVrestriction(boolean aVrestriction)
 	{
@@ -639,8 +661,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Sets the name of the {@link Antivirus} the network is restricted to.
-	 * An empty string("") means no name is set.
+	 * Sets the name of the {@link Antivirus} the network is restricted to. An
+	 * empty string("") means no name is set.
 	 */
 	public void setAVrestrictedName(String aVrestrictedName)
 	{
@@ -651,7 +673,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Sets whether or not the computers in a network are restricted to a specific {@link Firewall}.
+	 * Sets whether or not the computers in a network are restricted to a
+	 * specific {@link Firewall}.
 	 */
 	public void setFWrestriction(boolean fWrestriction)
 	{
@@ -662,8 +685,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Sets the name of the {@link Firewall} the network is restricted to.
-	 * An empty string("") means no name is set.
+	 * Sets the name of the {@link Firewall} the network is restricted to. An
+	 * empty string("") means no name is set.
 	 */
 	public void setFWrestrictedName(String fWrestrictedName)
 	{
@@ -674,7 +697,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Sets whether or not the computers in a network are restricted to a specific {@link Email}.
+	 * Sets whether or not the computers in a network are restricted to a
+	 * specific {@link Email}.
 	 */
 	public void setEMailRestriction(boolean eMailRestriction)
 	{
@@ -685,8 +709,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Sets the name of the {@link Email} the network is restricted to.
-	 * An empty string("") means no name is set.
+	 * Sets the name of the {@link Email} the network is restricted to. An empty
+	 * string("") means no name is set.
 	 */
 	public void setEMailRestrictedName(String eMailRestrictedName)
 	{
@@ -697,7 +721,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Sets whether or not the computers in a network are restricted to a specific {@link OfficeSuite}.
+	 * Sets whether or not the computers in a network are restricted to a
+	 * specific {@link OfficeSuite}.
 	 */
 	public void setOfficeSuiteRestriction(boolean officeSuiteRestriction)
 	{
@@ -708,8 +733,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Sets the name of the {@link OfficeSuite} the network is restricted to.
-	 * An empty string("") means no name is set.
+	 * Sets the name of the {@link OfficeSuite} the network is restricted to. An
+	 * empty string("") means no name is set.
 	 */
 	public void setOfficeSuiteRestrictedName(String officeSuiteRestrictedName)
 	{
@@ -723,7 +748,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Sets whether the network can connect to the Internet, ie an {@link Internet} object.
+	 * Sets whether the network can connect to the Internet, ie an
+	 * {@link Internet} object.
 	 */
 	public void setCanConnectToInternet(boolean canConnectToInternet)
 	{
@@ -734,8 +760,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Sets whether there must be a {@link Firewall} between the Internet, ie an {@link Internet} object, and the internal
-	 * network.
+	 * Sets whether there must be a {@link Firewall} between the Internet, ie an
+	 * {@link Internet} object, and the internal network.
 	 */
 	public void setMustHaveFWbeforeInternet(boolean mustHaveFWbeforeInternet)
 	{
@@ -746,8 +772,8 @@ public class NetworkRules implements Serializable
 
 
 	/**
-	 * Sets whether there must be a {@link Antivirus} between the Internet, ie an {@link Internet} object, and the internal
-	 * network.
+	 * Sets whether there must be a {@link Antivirus} between the Internet, ie
+	 * an {@link Internet} object, and the internal network.
 	 */
 	public void setMustHaveAVbeforeInternet(boolean mustHaveAVbeforeInternet)
 	{

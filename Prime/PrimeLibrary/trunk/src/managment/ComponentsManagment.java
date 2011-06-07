@@ -2449,7 +2449,7 @@ public class ComponentsManagment
 								{
 									// The object connected to the NIC is
 									// removed from the removable portType
-									// connected objcets
+									// connected objects
 									connectedObjects[j] = null;
 								}
 							}

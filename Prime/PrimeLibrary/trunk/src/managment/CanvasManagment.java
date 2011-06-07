@@ -123,8 +123,7 @@ public class CanvasManagment
 	 *            The {@link WorkareaCanvas WorkareaCanvases} that are to be
 	 *            searched.
 	 * @return Returns null if no {@link WorkareaCanvas} with the given
-	 *         {@link Object} is
-	 *         found.
+	 *         {@link Object} is found.
 	 */
 	public static WorkareaCanvas findCanvas(Object obj,
 			WorkareaCanvas[] canvases)
@@ -305,9 +304,7 @@ public class CanvasManagment
 			{
 				if ( canvases[i] != null )
 				{
-					// If the difference between the two doubles are smaller
-					// then Epsilon
-					if ( Math.abs(canvases[i].getSerial() - canvas.getSerial()) < 0.0000001 )
+					if ( canvases[i].getSerial().equals(canvas.getSerial()) )
 					{
 						return true;
 					}
@@ -363,8 +360,8 @@ public class CanvasManagment
 	 * @param canvases
 	 *            The WorkareaCanvases to be searched.
 	 * @return The WorkareaCanvases that have changed, but not been saved. Or a
-	 *         null pointer if no WorkareaCanvases are found.
-	 *         NULL if the given array is null.
+	 *         null pointer if no WorkareaCanvases are found. NULL if the given
+	 *         array is null.
 	 */
 	public static WorkareaCanvas[] canvasesHaveChanged(WorkareaCanvas[] canvases)
 	{
@@ -404,9 +401,8 @@ public class CanvasManagment
 
 	/**
 	 * The method checks the given WorkareaCanvas and returns a boolean on
-	 * whether or not the {@link WorkareaCanvas} has been
-	 * changed and not been saved. If the given workareaCanvas is null, false
-	 * will be returned.
+	 * whether or not the {@link WorkareaCanvas} has been changed and not been
+	 * saved. If the given workareaCanvas is null, false will be returned.
 	 * 
 	 * @param canvas
 	 *            The {@link WorkareaCanvas} to be examined.

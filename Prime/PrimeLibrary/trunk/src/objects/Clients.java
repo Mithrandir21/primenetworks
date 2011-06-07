@@ -19,10 +19,12 @@ package objects;
 
 
 import java.io.Serializable;
+import java.util.UUID;
 
 
 /**
- * An abstract super class for all client objects in the system, including {@link objects.clientObjects.Desktop Desktop} and
+ * An abstract super class for all client objects in the system, including
+ * {@link objects.clientObjects.Desktop Desktop} and
  * {@link objects.clientObjects.Laptop Laptop}. MUST ADD INFO!
  * 
  * @author Bahram Malaekeh
@@ -44,12 +46,18 @@ public abstract class Clients extends Object implements Serializable
 	private int numberOfNodes;
 
 
+	/**
+	 * The {@link UUID} that belongs to the Agent associated with this client.
+	 */
+	private UUID agentUUID;
+
+
 
 
 	/**
 	 * Constructor of a desktop computer.<br>
-	 * This constructor also sets the number of components in the system and the desktop rating to "0"(since the rating
-	 * system is not yet implemented).
+	 * This constructor also sets the number of components in the system and the
+	 * desktop rating to "0"(since the rating system is not yet implemented).
 	 * 
 	 * @param Name
 	 *            The name of the desktop.
@@ -65,8 +73,8 @@ public abstract class Clients extends Object implements Serializable
 
 	/**
 	 * Constructor of a desktop computer.<br>
-	 * This constructor also sets the number of components in the system and the desktop rating to "0"(since the rating
-	 * system is not yet implemented).
+	 * This constructor also sets the number of components in the system and the
+	 * desktop rating to "0"(since the rating system is not yet implemented).
 	 * 
 	 * @param Name
 	 *            The name of the desktop.
@@ -84,8 +92,8 @@ public abstract class Clients extends Object implements Serializable
 
 	/**
 	 * Constructor of a desktop computer.<br>
-	 * This constructor also sets the number of components in the system and the desktop rating to "0"(since the rating
-	 * system is not yet implemented).
+	 * This constructor also sets the number of components in the system and the
+	 * desktop rating to "0"(since the rating system is not yet implemented).
 	 * 
 	 * @param Name
 	 *            The name of the desktop.
@@ -102,15 +110,16 @@ public abstract class Clients extends Object implements Serializable
 
 	/**
 	 * Constructor of a desktop computer.<br>
-	 * This constructor also sets the number of components in the system and the desktop rating to "0"(since the rating
-	 * system is not yet implemented).
+	 * This constructor also sets the number of components in the system and the
+	 * desktop rating to "0"(since the rating system is not yet implemented).
 	 * 
 	 * @param Name
 	 *            The name of the desktop.
 	 * @param Desc
 	 *            The description of the desktop.
 	 * @param SupConInt
-	 *            An array of strings that describes the supported connection interfaces.
+	 *            An array of strings that describes the supported connection
+	 *            interfaces.
 	 * @param DesktopComponents
 	 *            The initial components an instance of a desktop has.
 	 */
@@ -167,4 +176,23 @@ public abstract class Clients extends Object implements Serializable
 		this.clientRate = clientRate;
 	}
 
+
+
+	/**
+	 * Set the UUID associated with the Agent running on the actual client.
+	 */
+	public void setAssociatedAgentUUID(UUID agentUUID)
+	{
+		this.agentUUID = agentUUID;
+	}
+
+
+
+	/**
+	 * Get the UUID associated with the Agent running on the actual client.
+	 */
+	public UUID getAssociatedAgentUUID()
+	{
+		return agentUUID;
+	}
 }

@@ -19,8 +19,11 @@ package objects.hardwareObjects;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import objects.Hardware;
+import connections.ConnectionUtils;
 
 
 /**
@@ -144,6 +147,11 @@ public class Motherboard extends Hardware implements Serializable
 
 
 
+	/**
+	 * The arrayList containing the intergrated Internal network cards.
+	 */
+	private ArrayList<InternalNetworksCard> intNICs = new ArrayList<InternalNetworksCard>();
+
 	// FIXME : Set up a number of connection to a network card object
 
 
@@ -227,6 +235,12 @@ public class Motherboard extends Hardware implements Serializable
 		IntegLANPortsAvailable = MBmaxIntegLanPorts;
 		COAXPortsAvailable = MBmaxCOAXs;
 		FiberPortsAvailable = MBmaxFibers;
+
+
+		for ( int i = 0; i < MBmaxIntegLanPorts; i++ )
+		{
+			intNICs.add(constructIntNIC());
+		}
 	}
 
 
@@ -340,6 +354,17 @@ public class Motherboard extends Hardware implements Serializable
 	}
 
 
+	// /**
+	// * Gets the number of integrated LAN ports.
+	// *
+	// * @return the maxIntegLANs
+	// */
+	// public int getMaxIntegLANs()
+	// {
+	// return maxIntegLANs;
+	// }
+
+
 	/**
 	 * Gets the number of integrated LAN ports.
 	 * 
@@ -347,7 +372,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public int getMaxIntegLANs()
 	{
-		return maxIntegLANs;
+		return intNICs.size();
 	}
 
 
@@ -452,6 +477,18 @@ public class Motherboard extends Hardware implements Serializable
 	}
 
 
+	// /**
+	// * Get a boolean on whether or not there is an integrated LAN card on the
+	// * motherboard.
+	// *
+	// * @return the integLANcard
+	// */
+	// public boolean isIntegLANcard()
+	// {
+	// return LANcardIntegrated;
+	// }
+
+
 	/**
 	 * Get a boolean on whether or not there is an integrated LAN card on the
 	 * motherboard.
@@ -460,7 +497,7 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public boolean isIntegLANcard()
 	{
-		return LANcardIntegrated;
+		return intNICs.size() > 0;
 	}
 
 
@@ -519,6 +556,17 @@ public class Motherboard extends Hardware implements Serializable
 	}
 
 
+	// /**
+	// * Gets the number of LAN ports that are available.
+	// *
+	// * @return the integLANPortsAvailable
+	// */
+	// public int getIntegLANPortsAvailable()
+	// {
+	// return IntegLANPortsAvailable;
+	// }
+
+
 	/**
 	 * Gets the number of LAN ports that are available.
 	 * 
@@ -526,7 +574,19 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public int getIntegLANPortsAvailable()
 	{
-		return IntegLANPortsAvailable;
+		int availablePorts = 0;
+
+		for ( Iterator<InternalNetworksCard> i = intNICs.iterator(); i
+				.hasNext(); )
+		{
+			InternalNetworksCard nic = (InternalNetworksCard) i.next();
+			if ( nic.getConnectedObject() == null )
+			{
+				availablePorts++;
+			}
+		}
+
+		return availablePorts;
 	}
 
 
@@ -1099,5 +1159,29 @@ public class Motherboard extends Hardware implements Serializable
 			}
 		}
 		return -1;
+	}
+
+
+	/**
+	 * Creates a standard intergrated NIC.
+	 */
+	private InternalNetworksCard constructIntNIC()
+	{
+		String count = "";
+		int intNICcount = intNICs.size();
+
+		if ( intNICcount < 10 )
+		{
+			count = "0" + intNICcount;
+		}
+		else
+		{
+			count = "" + intNICcount;
+		}
+
+		String mac = "00:00:00:00:00:" + count;
+
+		return new InternalNetworksCard("Int NIC", "Int NIC", "",
+				ConnectionUtils.Integrated, mac, ConnectionUtils.RJ45);
 	}
 }

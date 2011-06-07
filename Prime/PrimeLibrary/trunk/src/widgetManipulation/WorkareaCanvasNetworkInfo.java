@@ -20,6 +20,7 @@ package widgetManipulation;
 
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import managment.NetworkManagment;
 import widgets.WorkareaCanvas;
@@ -38,7 +39,7 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	 * The serial number of the {@link WorkareaCanvas} this set of rules applies
 	 * to.
 	 */
-	private double canvasSerial;
+	private UUID canvasSerial;
 
 	/**
 	 * The networks netmask
@@ -92,7 +93,7 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	 * Gets the serial number of the {@link WorkareaCanvas} this information
 	 * applies to.
 	 */
-	public double getCanvasSerial()
+	public UUID getCanvasSerial()
 	{
 		return canvasSerial;
 	}

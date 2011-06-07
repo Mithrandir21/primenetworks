@@ -15,37 +15,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package connections;
+package importManagment;
 
 
 /**
- * This class contains only static final fields that represent different
- * hardware and software specific values.
- * These fields are used for validation and verification throughout the system.
- * 
+ * TODO - Description NEEDED!
+ *
  * @author Bahram Malaekeh
+ * 
  */
-public class ConnectionUtils
+public class NormanPRimport
 {
-	public static final String RJ45 = "RJ-45";
+	private String sqlUserName = "";
 
-	public static final String USB = "USB";
+	private String sqlPassword = "";
 
-	public static final String Coax = "Coaxial";
 
-	public static final String Fiber = "Fiber";
+	private void getUsernamePassword()
+	{
 
-	public static final String FireWire = "FireWire";
-
-	public static final String Wireless = "Wireless";
-
-	public static final String Wired = "Wired";
-
-	public static final String FullDuplex = "Full Duplex";
-
-	public static final String HalfDuplex = "Half Duplex";
-
-	public static final String PCI = "PCI";
-
-	public static final String Integrated = "Integrated";
+	}
 }

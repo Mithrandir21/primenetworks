@@ -19,6 +19,7 @@ package objects;
 
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import managment.ArrayManagment;
 import exceptions.StringNotFoundInArrayException;
@@ -26,8 +27,9 @@ import exceptions.StringNotFoundInArrayException;
 
 
 /**
- * An abstract super class for all servers objects in the system, including {@link objects.clientObjects.Desktop MUST
- * CHANGE} and {@link objects.clientObjects.Laptop MUST CHANGE}. MUST ADD INFO!
+ * An abstract super class for all servers objects in the system, including
+ * {@link objects.clientObjects.Desktop MUST CHANGE} and
+ * {@link objects.clientObjects.Laptop MUST CHANGE}. MUST ADD INFO!
  * 
  * @author Bahram Malaekeh
  * @version 0.0.1
@@ -51,6 +53,11 @@ public abstract class Servers extends Object implements Serializable
 	// Nodes before it reaches the first router outside of the systems own
 	// routers, i.e. the Internet.
 	private int numberOfNodes;
+
+	/**
+	 * The {@link UUID} that belongs to the Agent associated with this server.
+	 */
+	private UUID agentUUID;
 
 
 
@@ -117,8 +124,9 @@ public abstract class Servers extends Object implements Serializable
 
 
 	/**
-	 * Get a boolean saying if this device supports on-site-access, which implies that the device is at least connected
-	 * to a mouse, keyboard and a monitor.
+	 * Get a boolean saying if this device supports on-site-access, which
+	 * implies that the device is at least connected to a mouse, keyboard and a
+	 * monitor.
 	 */
 	public boolean supportsOnSiteAccess()
 	{
@@ -166,7 +174,8 @@ public abstract class Servers extends Object implements Serializable
 
 
 	/**
-	 * Set an array of string with the protocols the device supports for remote access.
+	 * Set an array of string with the protocols the device supports for remote
+	 * access.
 	 */
 	public void setSupportedRemoteAccessProtocols(
 			String[] supportedRemoteAccessProtocols)
@@ -208,15 +217,16 @@ public abstract class Servers extends Object implements Serializable
 	public void addRemoteAccessProtocols(String[] NewProtocols)
 			throws Exception
 	{
-		this.supportedRemoteAccessProtocols = ArrayManagment.addItems(NewProtocols,
-				this.supportedRemoteAccessProtocols);
+		this.supportedRemoteAccessProtocols = ArrayManagment.addItems(
+				NewProtocols, this.supportedRemoteAccessProtocols);
 
 	}
 
 
 
 	/**
-	 * Function to remove remote access protocols from the array of remote access protocols.
+	 * Function to remove remote access protocols from the array of remote
+	 * access protocols.
 	 * 
 	 * @param ToBeRemoved
 	 *            Remote access protocol to be removed.
@@ -226,6 +236,26 @@ public abstract class Servers extends Object implements Serializable
 	{
 		this.supportedRemoteAccessProtocols = ArrayManagment.removeItems(
 				ToBeRemoved, this.supportedRemoteAccessProtocols);
+	}
+
+
+
+	/**
+	 * Set the UUID associated with the Agent running on the actual server.
+	 */
+	public void setAssociatedAgentUUID(UUID agentUUID)
+	{
+		this.agentUUID = agentUUID;
+	}
+
+
+
+	/**
+	 * Get the UUID associated with the Agent running on the actual server.
+	 */
+	public UUID getAssociatedAgentUUID()
+	{
+		return agentUUID;
 	}
 
 }
