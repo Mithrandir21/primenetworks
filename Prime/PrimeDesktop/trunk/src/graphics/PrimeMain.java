@@ -57,6 +57,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
@@ -72,7 +73,6 @@ import javax.swing.ToolTipManager;
 import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 
-import main.ListenerMain;
 import managment.CanvasManagment;
 import managment.CreateObjects;
 import managment.DesktopCanvasManagment;
@@ -88,6 +88,8 @@ import org.jdesktop.swingx.JXMultiSplitPane;
 import org.jdesktop.swingx.MultiSplitLayout;
 import org.jdesktop.swingx.MultiSplitLayout.Node;
 
+import plugins.pluginManagement.PluginMain;
+import plugins.pluginManagement.StopPluginsJob;
 import widgetManipulation.NetworkRules;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
@@ -201,7 +203,7 @@ public class PrimeMain extends JFrame
 	public static GhostGlassPane glassPane;
 
 	// The listening agent that will listen to agent coms
-	public static ListenerMain agentListener = new ListenerMain();;
+	public static PluginMain pluginMan = new PluginMain();
 
 
 
@@ -209,6 +211,8 @@ public class PrimeMain extends JFrame
 	public PrimeMain()
 	{
 		super("PrimeDesktop");
+
+
 
 		// try
 		// {
@@ -522,7 +526,6 @@ public class PrimeMain extends JFrame
 			new TipOfDay();
 		}
 
-		agentListener.start();
 	}
 
 	/**
@@ -531,6 +534,8 @@ public class PrimeMain extends JFrame
 	public static void main(String[] args)
 	{
 		PrimeMain temp = new PrimeMain();
+
+		PluginMain.startPluginQueue();
 
 		// new PrimeDesktopUpdateService();
 
@@ -940,6 +945,7 @@ public class PrimeMain extends JFrame
 	 */
 	public static void exitProcess()
 	{
+		System.out.println("Quit - " + new Date());
 		// services.stopAll();
 
 		// Saves the settings the user has in his current session
@@ -981,23 +987,47 @@ public class PrimeMain extends JFrame
 			{
 				DesktopFileManagment.saveCanvases(changes);
 
-				// Stops listening for agent coms
-				agentListener.stopListening();
+				// Stops the plugin queue from receiving new plugins
+				stopPluginQueue();
 				System.exit(0);
 			}
 			// Dont save
 			else if ( answer == 1 )
 			{
-				// Stops listening for agent coms
-				agentListener.stopListening();
+				// Stops the plugin queue from receiving new plugins
+				stopPluginQueue();
 				System.exit(0);
 			}
 		}
 		else
 		{
-			// Stops listening for agent coms
-			agentListener.stopListening();
+			// Stops the plugin queue from receiving new plugins
+			stopPluginQueue();
 			System.exit(0);
+		}
+	}
+
+	/**
+	 * This function attempts to stop the queue of plugins.
+	 * It stops the queue from receiving new plugin jobs. The plugin manager
+	 * will automatically finish the remaining plugins.
+	 */
+	private static void stopPluginQueue()
+	{
+		Thread t = new Thread(new StopPluginsJob());
+
+		synchronized (t)
+		{
+			try
+			{
+				t.start();
+
+				t.wait();
+			}
+			catch ( InterruptedException e )
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 }
