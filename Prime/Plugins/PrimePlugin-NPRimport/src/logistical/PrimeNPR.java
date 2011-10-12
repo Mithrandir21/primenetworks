@@ -4,6 +4,8 @@
 package logistical;
 
 
+import java.sql.Connection;
+
 import localPluginInterface.PrimeLocalPluginInterface;
 import net.xeoh.plugins.base.annotations.PluginImplementation;
 import net.xeoh.plugins.base.annotations.events.Init;
@@ -23,6 +25,21 @@ public class PrimeNPR implements PrimeLocalPluginInterface
 	 * A boolean on whether the plugin has finished.
 	 */
 	private boolean finished = false;
+
+
+	/**
+	 * The connection to the server.
+	 * (Should be set in the initiatePluging() function.)
+	 */
+	private Connection con;
+
+
+	/**
+	 * An Integer that tells what version the NPR server is. (ie. 64,70 or 71)
+	 * (Should be set in the initiatePluging() function, after the connection to
+	 * the server is created.)
+	 */
+	public static int NPRversion;
 
 
 	/*
