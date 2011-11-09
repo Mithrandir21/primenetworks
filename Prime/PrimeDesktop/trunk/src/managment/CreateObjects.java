@@ -21,6 +21,7 @@ package managment;
 import exceptions.MotherboardNotFound;
 import exceptions.ObjectNotFoundException;
 import graphics.PrimeMain;
+import objects.ExternalHardware;
 import objects.Object;
 import objects.Software;
 import objects.clientObjects.Desktop;
@@ -85,6 +86,8 @@ public class CreateObjects
 		Object newObject = null;
 		String objectType = iconObject.getClassType().getSimpleName();
 		String desc = iconObject.getDescription();
+
+		boolean customDevice = false;
 
 		try
 		{
@@ -214,18 +217,37 @@ public class CreateObjects
 			{
 				newObject = createDefaultRackUnitWithObject(Switch.class, desc);
 			}
+			else if ( objectType.equals("ExternalHardware") )
+			{
+				customDevice = true;
+			}
 		}
 
-		// Makes a exact copy of the object
-		Object copiedObject = ComponentsManagment.deepObjectCopy(newObject);
+		// If no object was created
+		if ( newObject != null )
+		{
+			// Makes a exact copy of the object
+			Object copiedObject = ComponentsManagment.deepObjectCopy(newObject);
 
-		// Adds the numbers of Widgets on the canvas to the end of the
-		// object name.
-		copiedObject.setObjectName(newObject.getObjectName()
-				+ Integer.toString(numberOfWidgetsOnTheScene));
+			// Adds the numbers of Widgets on the canvas to the end of the
+			// object name.
+			copiedObject.setObjectName(newObject.getObjectName()
+					+ Integer.toString(numberOfWidgetsOnTheScene));
 
 
-		return copiedObject;
+			return copiedObject;
+		}
+
+		// If the user wants to create a custom object.
+		if ( customDevice )
+		{
+			getGenericExternalHardware();
+		}
+
+		System.err
+				.println("No new object was created. - CreateObjects - Fatal Error.");
+
+		return null;
 	}
 
 
@@ -1438,4 +1460,13 @@ public class CreateObjects
 		return null;
 	}
 
+
+
+	// GENERAL HARDWARE
+	private static ExternalHardware getGenericExternalHardware()
+	{
+		System.out.println("Her");
+
+		return null;
+	}
 }

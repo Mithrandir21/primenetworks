@@ -147,8 +147,11 @@ public class ListenerMain
 	{
 		try
 		{
-			closing = true;
-			serversocket.close();
+			if( serversocket != null )
+			{
+				closing = true;
+				serversocket.close();
+			}
 		}
 		catch ( IOException e )
 		{

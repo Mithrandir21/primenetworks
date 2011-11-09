@@ -19,6 +19,7 @@ package graphics.GUI.selectArea;
 
 
 import graphics.GraphicalFunctions;
+import graphics.ImageLocator;
 import graphics.PrimeMain;
 
 import java.awt.Component;
@@ -32,6 +33,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import objects.ExternalHardware;
 import objects.Object;
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
@@ -167,6 +169,9 @@ public class ObjectSelection extends JPanel
 		// // Adds the group panel to the collapsible container
 		// tpc.add(initRackButtonIcons(mouseLis, transferable));
 
+		// Adds the group panel to the collapsible container
+		tpc.add(initGeneralObjectsButtonIcons(mouseLis, transferable));
+
 
 
 		JScrollPane scrollArea = new JScrollPane(tpc);
@@ -291,6 +296,26 @@ public class ObjectSelection extends JPanel
 				widIcons, false);
 	}
 
+
+	private JXTaskPane initGeneralObjectsButtonIcons(MouseListener mouseLis,
+			boolean transferable)
+	{
+		ArrayList<WidgetIcon> iconsList = new ArrayList<WidgetIcon>();
+
+		iconsList.add(makeImageIcon(ImageLocator.getImageIconObject("Unknown"),
+				ExternalHardware.class, "Unknown", mouseLis, transferable));
+
+		WidgetIcon[] widIcons = new WidgetIcon[iconsList.size()];
+		iconsList.toArray(widIcons);
+
+
+		return getWidgetGroup(
+				PrimeMain.texts.getString("selectAreaGeneralGroupName"),
+				widIcons, false);
+	}
+
+
+
 	/**
 	 * TODO - Description
 	 */
@@ -305,7 +330,9 @@ public class ObjectSelection extends JPanel
 		iconsList.toArray(widIcons);
 
 
-		return getWidgetGroup("Racks", widIcons, false);
+		return getWidgetGroup(
+				PrimeMain.texts.getString("selectAreaRackNetworkGroupName"),
+				widIcons, false);
 	}
 
 
@@ -360,44 +387,97 @@ public class ObjectSelection extends JPanel
 	private WidgetIcon makeImageIcon(Class<?> objectType,
 			MouseListener mouseLis, boolean transferable)
 	{
-		ImageIcon Icon = PrimeMain.objectImageIcons.get(objectType);
 
 		WidgetIcon iconButton = null;
 
-		try
+		if ( objectType != null )
 		{
-			iconButton = new WidgetIcon(Icon, objectType,
-					objectType.getSimpleName());
+			ImageIcon Icon = PrimeMain.objectImageIcons.get(objectType);
 
-			// Adds the given mouselistener if its not null
-			if ( mouseLis != null )
+			try
 			{
-				iconButton.addMouseListener(mouseLis);
+				iconButton = new WidgetIcon(Icon, objectType,
+						objectType.getSimpleName());
+
+				// Adds the given mouselistener if its not null
+				if ( mouseLis != null )
+				{
+					iconButton.addMouseListener(mouseLis);
+				}
 			}
+			catch ( Exception e )
+			{
+				System.out.println("NullPointerException"
+						+ " - ObjectSelection " + " - " + objectType
+						+ System.getProperty("line.separator"));
+				System.exit(0);
+			}
+
+
+			if ( transferable )
+			{
+				// Sets up the WidgetIcon
+				GraphicalFunctions.widgetIconSetup(iconButton, Icon);
+			}
+
+			iconButton.setSize(Icon.getIconWidth(), Icon.getIconHeight());
+
+			// iconButton.setVerticalTextPosition(AbstractButton.BOTTOM);
+			// iconButton.setHorizontalTextPosition(AbstractButton.CENTER);
+			iconButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+			iconButton.setAlignmentY(Component.TOP_ALIGNMENT);
+			// iconButton.setBorder(grayline);
 		}
-		catch ( Exception e )
+
+		return iconButton;
+	}
+
+
+
+	/**
+	 * TODO - Description
+	 */
+	@SuppressWarnings("unchecked")
+	private WidgetIcon makeImageIcon(ImageIcon Icon, Class<?> objectType,
+			String objectName, MouseListener mouseLis, boolean transferable)
+	{
+		WidgetIcon iconButton = null;
+
+		if ( Icon != null && objectType != null )
 		{
-			System.out
-					.println("NullPointerException" + " - ObjectSelection "
-							+ " - " + objectType
-							+ System.getProperty("line.separator"));
-			System.exit(0);
+			try
+			{
+				iconButton = new WidgetIcon(Icon, objectType, objectName);
+
+				// Adds the given mouselistener if its not null
+				if ( mouseLis != null )
+				{
+					iconButton.addMouseListener(mouseLis);
+				}
+			}
+			catch ( Exception e )
+			{
+				System.out.println("NullPointerException"
+						+ " - ObjectSelection " + " - " + objectType
+						+ System.getProperty("line.separator"));
+				System.exit(0);
+			}
+
+
+			if ( transferable )
+			{
+				// Sets up the WidgetIcon
+				GraphicalFunctions.widgetIconSetup(iconButton, Icon);
+			}
+
+			iconButton.setSize(Icon.getIconWidth(), Icon.getIconHeight());
+
+			// iconButton.setVerticalTextPosition(AbstractButton.BOTTOM);
+			// iconButton.setHorizontalTextPosition(AbstractButton.CENTER);
+			iconButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+			iconButton.setAlignmentY(Component.TOP_ALIGNMENT);
+			// iconButton.setBorder(grayline);
 		}
-
-
-		if ( transferable )
-		{
-			// Sets up the WidgetIcon
-			GraphicalFunctions.widgetIconSetup(iconButton, Icon);
-		}
-
-		iconButton.setSize(Icon.getIconWidth(), Icon.getIconHeight());
-
-		// iconButton.setVerticalTextPosition(AbstractButton.BOTTOM);
-		// iconButton.setHorizontalTextPosition(AbstractButton.CENTER);
-		iconButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		iconButton.setAlignmentY(Component.TOP_ALIGNMENT);
-		// iconButton.setBorder(grayline);
 
 		return iconButton;
 	}
