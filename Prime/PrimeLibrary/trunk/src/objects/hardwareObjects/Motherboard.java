@@ -354,15 +354,15 @@ public class Motherboard extends Hardware implements Serializable
 	}
 
 
-	// /**
-	// * Gets the number of integrated LAN ports.
-	// *
-	// * @return the maxIntegLANs
-	// */
-	// public int getMaxIntegLANs()
-	// {
-	// return maxIntegLANs;
-	// }
+	/**
+	 * Gets the number of integrated LAN ports.
+	 * 
+	 * @return the maxIntegLANs
+	 */
+	public int getMaxIntegLANs()
+	{
+		return maxIntegLANs;
+	}
 
 
 	/**
@@ -370,7 +370,7 @@ public class Motherboard extends Hardware implements Serializable
 	 * 
 	 * @return the maxIntegLANs
 	 */
-	public int getMaxIntegLANs()
+	public int getInstalledIntegLANs()
 	{
 		return intNICs.size();
 	}
@@ -477,16 +477,16 @@ public class Motherboard extends Hardware implements Serializable
 	}
 
 
-	// /**
-	// * Get a boolean on whether or not there is an integrated LAN card on the
-	// * motherboard.
-	// *
-	// * @return the integLANcard
-	// */
-	// public boolean isIntegLANcard()
-	// {
-	// return LANcardIntegrated;
-	// }
+	/**
+	 * Get a boolean on whether or not there is an integrated LAN card on the
+	 * motherboard.
+	 * 
+	 * @return the integLANcard
+	 */
+	public boolean isIntegLANcard()
+	{
+		return LANcardIntegrated;
+	}
 
 
 	/**
@@ -495,7 +495,7 @@ public class Motherboard extends Hardware implements Serializable
 	 * 
 	 * @return the integLANcard
 	 */
-	public boolean isIntegLANcard()
+	public boolean isIntegLANcardInstalled()
 	{
 		return intNICs.size() > 0;
 	}
@@ -556,17 +556,6 @@ public class Motherboard extends Hardware implements Serializable
 	}
 
 
-	// /**
-	// * Gets the number of LAN ports that are available.
-	// *
-	// * @return the integLANPortsAvailable
-	// */
-	// public int getIntegLANPortsAvailable()
-	// {
-	// return IntegLANPortsAvailable;
-	// }
-
-
 	/**
 	 * Gets the number of LAN ports that are available.
 	 * 
@@ -574,7 +563,19 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public int getIntegLANPortsAvailable()
 	{
-		int availablePorts = 0;
+		return IntegLANPortsAvailable;
+	}
+
+
+	/**
+	 * Gets the number of LAN ports that are available on installed NIC
+	 * (none-MB).
+	 * 
+	 * @return the integLANPortsAvailable
+	 */
+	public int getInstalledIntegLANPortsAvailable()
+	{
+		int availablePorts = IntegLANPortsAvailable;
 
 		for ( Iterator<InternalNetworksCard> i = intNICs.iterator(); i
 				.hasNext(); )
@@ -582,7 +583,7 @@ public class Motherboard extends Hardware implements Serializable
 			InternalNetworksCard nic = (InternalNetworksCard) i.next();
 			if ( nic.getConnectedObject() == null )
 			{
-				availablePorts++;
+				availablePorts--;
 			}
 		}
 

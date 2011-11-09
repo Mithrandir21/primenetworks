@@ -147,7 +147,7 @@ public class PrimeMain extends JFrame
 	public static WorkareaCanvas currentCanvas = null;
 
 	// An ImageIcon array that contains all the icons used in the system.
-	public static ArrayList<ImageIcon> images = new ArrayList<ImageIcon>(60);
+	public static ArrayList<ImageIcon> images = new ArrayList<ImageIcon>(120);
 
 	// A pointer to where all standard internal components are kept.
 	public static MakeStandardInternalComponents standard_internal_components;

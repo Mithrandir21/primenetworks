@@ -3023,6 +3023,7 @@ public class ComponentsManagment
 
 			Object[] newComponents = new Object[oldComponents.length];
 
+
 			if ( oldComponents[0] != null )
 			{
 				for ( int i = 0; i < oldComponents.length; i++ )
