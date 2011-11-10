@@ -20,8 +20,8 @@ package connections;
 
 /**
  * This class contains only static final fields that represent different
- * hardware and software specific values.
- * These fields are used for validation and verification throughout the system.
+ * hardware and software specific values. These fields are used for validation
+ * and verification throughout the system.
  * 
  * @author Bahram Malaekeh
  */

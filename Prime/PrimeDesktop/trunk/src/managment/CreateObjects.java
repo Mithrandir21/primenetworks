@@ -348,6 +348,19 @@ public class CreateObjects
 	}
 
 
+	/**
+	 * 
+	 */
+	private static Software[] createServerSoftwareArray()
+	{
+		Software[] st_software = new Software[1];
+		st_software[0] = PrimeMain.system_standard_OS[2];
+
+
+		return st_software;
+	}
+
+
 
 	private static Desktop createDefaultDesktop(String desc)
 	{
@@ -497,7 +510,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(createSoftwareArray());
+		temp.setSoftware(createServerSoftwareArray());
 
 		return temp;
 	}
@@ -536,7 +549,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(createSoftwareArray());
+		temp.setSoftware(createServerSoftwareArray());
 
 		return temp;
 	}
@@ -576,7 +589,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(createSoftwareArray());
+		temp.setSoftware(createServerSoftwareArray());
 
 		return temp;
 	}
@@ -615,7 +628,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(createSoftwareArray());
+		temp.setSoftware(createServerSoftwareArray());
 
 		return temp;
 	}
@@ -649,7 +662,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(createSoftwareArray());
+		temp.setSoftware(createServerSoftwareArray());
 
 		return temp;
 	}
@@ -688,7 +701,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(createSoftwareArray());
+		temp.setSoftware(createServerSoftwareArray());
 
 		return temp;
 	}
@@ -724,7 +737,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(createSoftwareArray());
+		temp.setSoftware(createServerSoftwareArray());
 
 		return temp;
 	}
@@ -763,7 +776,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(createSoftwareArray());
+		temp.setSoftware(createServerSoftwareArray());
 
 		return temp;
 	}
@@ -801,7 +814,7 @@ public class CreateObjects
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		// Adds OS
-		temp.setSoftware(createSoftwareArray());
+		temp.setSoftware(createServerSoftwareArray());
 
 		return temp;
 	}
@@ -838,7 +851,7 @@ public class CreateObjects
 
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
-		temp.setSoftware(createSoftwareArray());
+		temp.setSoftware(createServerSoftwareArray());
 
 		return temp;
 	}
@@ -875,7 +888,7 @@ public class CreateObjects
 
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
-		temp.setSoftware(createSoftwareArray());
+		temp.setSoftware(createServerSoftwareArray());
 
 		return temp;
 	}
