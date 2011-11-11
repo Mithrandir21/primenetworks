@@ -32,10 +32,6 @@ import java.util.UUID;
  */
 public abstract class Clients extends Object implements Serializable
 {
-
-	// FIXME - Create a standalone, singel purpose client class.
-
-
 	// NETWORK INFORMATION FIELDS
 
 	// Desktop rating

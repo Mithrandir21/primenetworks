@@ -1026,11 +1026,6 @@ public class CreateObjects
 		String[] supportedConnectionInterfaces = ComponentsManagment
 				.getSupportedInterfaces(temp);
 
-		for ( int i = 0; i < supportedConnectionInterfaces.length; i++ )
-		{
-			System.out.println(supportedConnectionInterfaces[i]);
-		}
-
 		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
 
 		return temp;

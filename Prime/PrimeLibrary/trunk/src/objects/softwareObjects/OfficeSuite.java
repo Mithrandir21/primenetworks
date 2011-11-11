@@ -63,6 +63,7 @@ public class OfficeSuite extends Software implements Serializable
 			formats[4] = ".ppt";
 			formats[5] = ".rtf";
 			// FIXME - Find more supported formats. Based on Microsoft Office
+			// and OpenOffice/LibreOffice
 
 			this.supportedFormats = formats;
 		}

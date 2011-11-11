@@ -75,7 +75,7 @@ public class checkLogic
 
 
 
-	// FIXME - Add user-added connection types
+	// FEATURE - Add user-added connection types
 	/**
 	 * Returns a connection class depending on the given string.
 	 * 

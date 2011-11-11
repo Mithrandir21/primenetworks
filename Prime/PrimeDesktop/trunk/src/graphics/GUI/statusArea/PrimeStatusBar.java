@@ -45,7 +45,7 @@ public class PrimeStatusBar extends JXStatusBar
 
 		this.add(new JSeparator(SwingConstants.VERTICAL));
 
-		// FIXME - DO something with the JProgressBar
+		// FEATURE - DO something with the JProgressBar
 		JXStatusBar.Constraint c2 = new JXStatusBar.Constraint(
 				JXStatusBar.Constraint.ResizeBehavior.FILL);
 		JProgressBar pbar = new JProgressBar();

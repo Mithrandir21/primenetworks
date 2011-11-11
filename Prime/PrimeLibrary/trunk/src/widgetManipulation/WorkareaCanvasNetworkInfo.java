@@ -266,16 +266,16 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	// FIXME - Do something about this
 	// /**
 	// * Gets the first available IP address in this classes array of available
-	// IPs. The IP which is returned is then
+	// * IPs. The IP which is returned is then
 	// * removed from the IP array.
 	// *
 	// * @return Returns the first available IP address. If none are found or
-	// the array is null, null is returned.
+	// * the array is null, null is returned.
 	// */
 	// public String getFirstAvailableIP()
 	// {
 	// // If the available IPs array is not null and the first index is not
-	// empty
+	// // empty
 	// if ( availableIPs != null && !(availableIPs[0].equals("")) )
 	// {
 	// // Gets the available IP
@@ -297,11 +297,10 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	// }
 	//
 	//
-	//
 	// public void createAvailableIPs()
 	// {
 	// // SINCE THE IP RANGES ARE CHECK AND VALIDATED ON WRITTING, THE WILL BE
-	// VALID.
+	// // VALID.
 	// // Splits the fromIP into strings on the symbol "."
 	// String[] fromString = ipRangeFrom.split("\\.");
 	//
@@ -371,7 +370,7 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	//
 	// /**
 	// * Adds the given String to the array of the currently available network
-	// IPs.
+	// * IPs.
 	// *
 	// * @param IP
 	// * The IP to be added to the array of available network IPs.
@@ -395,6 +394,4 @@ public class WorkareaCanvasNetworkInfo implements Serializable
 	// current network IP array
 	// availableIPs = ips;
 	// }
-
-
 }

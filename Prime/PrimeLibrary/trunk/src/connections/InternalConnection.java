@@ -29,14 +29,14 @@ import objects.Object;
  * server and so on. So any connection within a computer is represented by an
  * internalConnection object.
  * 
+ * (NOTE: This is NOT used through out the system. Internal devices are inside
+ * Arrays on objects.)
+ * 
  * @author Bahram Malaekeh
  * @version 0.1
  */
 public class InternalConnection extends Connection implements Serializable
 {
-
-	// FIXME - Consider Internal Connection
-
 	/**
 	 * A class constructor for the internal connection.
 	 * 
