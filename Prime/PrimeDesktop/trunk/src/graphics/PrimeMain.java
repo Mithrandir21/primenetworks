@@ -526,6 +526,7 @@ public class PrimeMain extends JFrame
 			new TipOfDay();
 		}
 
+		GraphicalFunctions.customizeGenericDevice(null);
 	}
 
 	/**

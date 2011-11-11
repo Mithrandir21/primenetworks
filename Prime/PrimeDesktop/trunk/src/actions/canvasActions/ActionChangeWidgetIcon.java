@@ -1,18 +1,12 @@
 package actions.canvasActions;
 
 
-import graphics.ImageLocator;
+import graphics.GraphicalFunctions;
 import graphics.PrimeMain;
-import graphics.GUI.visualObjectCustomization.previewFileChooser.ImageFilter;
-import graphics.GUI.visualObjectCustomization.previewFileChooser.ImagePreview;
 
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.net.MalformedURLException;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoableEdit;
@@ -206,63 +200,18 @@ public class ActionChangeWidgetIcon extends AbstractSystemAction implements
 	@Override
 	public void performAction(boolean undoable)
 	{
-		JFileChooser fc = null;
+		ImageIcon image = GraphicalFunctions.userIconSelection(null);
 
-
-		// Set up the file chooser.
-		if ( fc == null )
+		if ( image != null )
 		{
-			fc = new JFileChooser();
+			newIcon = image;
+			widObject.setWidgetImage(newIcon);
+			canvas.cleanUp();
 
-			// Add a custom file filter and disable the default
-			// (Accept All) file filter.
-			fc.addChoosableFileFilter(new ImageFilter());
-			fc.setAcceptAllFileFilterUsed(false);
-
-			// Add the preview pane.
-			fc.setAccessory(new ImagePreview(fc));
-		}
-
-		// Show it.
-		int returnVal = fc.showDialog(null, "Attach");
-
-		// Process the results.
-		if ( returnVal == JFileChooser.APPROVE_OPTION )
-		{
-			File file = fc.getSelectedFile();
-
-			ImageIcon image = null;
-
-			try
+			if ( undoable )
 			{
-				image = ImageLocator.createImageIcon(file.toURI().toURL());
-			}
-			catch ( MalformedURLException e1 )
-			{
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-
-			if ( image.getIconHeight() <= 48 && image.getIconWidth() <= 48 )
-			{
-				newIcon = image;
-				widObject.setWidgetImage(newIcon);
-				canvas.cleanUp();
-
-				if ( undoable )
-				{
-					canvas.addUndoableAction(this);
-				}
-			}
-			else
-			{
-				JOptionPane.showMessageDialog(null,
-						"The image choosen must be 48x48 or smaller.",
-						"Size Error", JOptionPane.ERROR_MESSAGE);
+				canvas.addUndoableAction(this);
 			}
 		}
-
-		fc.setSelectedFile(null);
 	}
 }

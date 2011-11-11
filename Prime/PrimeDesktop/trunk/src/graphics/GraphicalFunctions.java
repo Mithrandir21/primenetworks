@@ -22,19 +22,27 @@ import graphics.GUI.SpringUtilities;
 import graphics.GUI.ghostGlass.GhostMotionAdapter;
 import graphics.GUI.selectArea.ImageSelection;
 import graphics.GUI.selectArea.TransferWidgetIconListener;
+import graphics.GUI.visualObjectCustomization.previewFileChooser.ImageFilter;
+import graphics.GUI.visualObjectCustomization.previewFileChooser.ImagePreview;
 import graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuRoom.JMenuWidgetRoom;
 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -789,6 +797,7 @@ public class GraphicalFunctions
 	}
 
 
+
 	/**
 	 * Goes through all files and directories under a given folder. It finds and
 	 * sets all files within this given folder with the file extensions *.png,
@@ -836,7 +845,6 @@ public class GraphicalFunctions
 
 
 
-
 	/**
 	 * @return A String array that contains all the {@link fileSystems} enums
 	 *         converted to string.
@@ -857,6 +865,151 @@ public class GraphicalFunctions
 
 
 		return listData;
+	}
+
+
+
+	/**
+	 * This function will allow the user to select an Icon (max 48x48) and
+	 * returns the selected ImageIcon.
+	 * NOTE: Given file pointer CAN BE NULL.
+	 */
+	public static ImageIcon userIconSelection(File folder)
+	{
+		ImageIcon objectIcon = null;
+
+		JFileChooser fc = null;
+
+		if ( folder == null )
+		{
+			folder = new File("./resource/images/objectImages/GeneralIcons");
+		}
+
+		// Set up the file chooser.
+		if ( fc == null )
+		{
+			fc = new JFileChooser(folder);
+
+			// Add a custom file filter and disable the default
+			// (Accept All) file filter.
+			fc.addChoosableFileFilter(new ImageFilter());
+			fc.setAcceptAllFileFilterUsed(false);
+
+			// Add the preview pane.
+			fc.setAccessory(new ImagePreview(fc));
+		}
+
+		boolean done = false;
+
+		while ( !done )
+		{
+			// Show it.
+			int returnVal = fc.showDialog(null, "Icon");
+
+			// Process the results.
+			if ( returnVal == JFileChooser.APPROVE_OPTION )
+			{
+				File file = fc.getSelectedFile();
+
+				ImageIcon image = null;
+
+				try
+				{
+					image = ImageLocator.createImageIcon(file.toURI().toURL());
+				}
+				catch ( MalformedURLException e1 )
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+
+				if ( image.getIconHeight() <= 48 && image.getIconWidth() <= 48 )
+				{
+					objectIcon = image;
+
+					// Finished
+					done = true;
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null,
+							"The image choosen must be 48x48 or smaller.",
+							"Size Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			else if ( returnVal == JFileChooser.CANCEL_OPTION )
+			{
+				// Finished
+				done = true;
+			}
+		}
+
+		fc.setSelectedFile(null);
+
+
+		return objectIcon;
+	}
+
+
+
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	public static void customizeGenericDevice(Object obj)
+	{
+		JCheckBox supportsWireless = new JCheckBox("Wifi");
+		JCheckBox supportsLAN = new JCheckBox("LAN");
+		JCheckBox supportsCOAX = new JCheckBox("COAX");
+		JCheckBox supportsFIBER = new JCheckBox("Fiber");
+		JCheckBox supportsFireWire = new JCheckBox("FireWire");
+
+		JCheckBox containsHDD = new JCheckBox("HDD");
+		JCheckBox containsDiskdrive = new JCheckBox("Diskdriver");
+
+
+		JFrame frame = new JFrame("FRAME");
+		frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+
+		// Get the default toolkit
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+
+		// Get the current screen size
+		Dimension scrnsize = toolkit.getScreenSize();
+
+		int initYLocation = (scrnsize.height) / 3;
+		int initXLocation = (scrnsize.width) / 2;
+
+
+
+
+		supportsWireless.setAlignmentX(Component.LEFT_ALIGNMENT);
+		frame.add(supportsWireless);
+
+		supportsLAN.setAlignmentX(Component.LEFT_ALIGNMENT);
+		frame.add(supportsLAN);
+
+		supportsCOAX.setAlignmentX(Component.LEFT_ALIGNMENT);
+		frame.add(supportsCOAX);
+
+		supportsFIBER.setAlignmentX(Component.LEFT_ALIGNMENT);
+		frame.add(supportsFIBER);
+
+		supportsFireWire.setAlignmentX(Component.LEFT_ALIGNMENT);
+		frame.add(supportsFireWire);
+
+		containsHDD.setAlignmentX(Component.LEFT_ALIGNMENT);
+		frame.add(containsHDD);
+
+		containsDiskdrive.setAlignmentX(Component.LEFT_ALIGNMENT);
+		frame.add(containsDiskdrive);
+
+		// Display the window.
+		frame.pack();
+		frame.setLocation(initXLocation - frame.getSize().width, initYLocation
+				- frame.getSize().height);
+		frame.setVisible(true);
 	}
 
 }
