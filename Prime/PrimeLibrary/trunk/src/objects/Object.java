@@ -654,6 +654,8 @@ public abstract class Object implements Serializable, Cloneable
 	 * Function for replacing a specific given component with a given new
 	 * component.
 	 * 
+	 * (Note: Will run revalidateSupportedConnectionInterfaces().)
+	 * 
 	 * @param NewComponent
 	 *            The component to replace the previous one.
 	 * @param OldComponent
@@ -666,12 +668,16 @@ public abstract class Object implements Serializable, Cloneable
 
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
+
+		revalidateSupportedConnectionInterfaces();
 	}
 
 
 
 	/**
 	 * Function to remove components from the array of components.
+	 * 
+	 * (Note: Will run revalidateSupportedConnectionInterfaces().)
 	 * 
 	 * @param ToBeRemoved
 	 *            Component to be removed.
@@ -684,12 +690,16 @@ public abstract class Object implements Serializable, Cloneable
 
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
+
+		revalidateSupportedConnectionInterfaces();
 	}
 
 
 
 	/**
 	 * Function to add components to the components list.
+	 * 
+	 * (Note: Will run revalidateSupportedConnectionInterfaces().)
 	 * 
 	 * @param NewComponents
 	 *            An array of new components.
@@ -701,12 +711,16 @@ public abstract class Object implements Serializable, Cloneable
 
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
+
+		revalidateSupportedConnectionInterfaces();
 	}
 
 
 
 	/**
 	 * Function to add component to the components list.
+	 * 
+	 * (Note: Will run revalidateSupportedConnectionInterfaces().)
 	 * 
 	 * @param NewComponent
 	 */
@@ -720,6 +734,8 @@ public abstract class Object implements Serializable, Cloneable
 
 		// Sets the new count for number of components in the array
 		componentCounter = components.length;
+
+		revalidateSupportedConnectionInterfaces();
 	}
 
 
@@ -727,7 +743,7 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * Function for replacing a spesific given connected device with a given new
+	 * Function for replacing a specific given connected device with a given new
 	 * connected devices.
 	 * 
 	 * @param NewconnectedDevice
@@ -1336,6 +1352,18 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	// MICS FUNCTIONS
+	/**
+	 * This function rechecks the supported interfaces of the object.
+	 */
+	public void revalidateSupportedConnectionInterfaces()
+	{
+		String[] supportedConnectionInterfaces = ComponentsManagment
+				.getSupportedInterfaces(this);
+
+		this.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+	}
+
+
 	/**
 	 * Gets the number of actual connected devices, be it with RJ-45 or USB and
 	 * so on.

@@ -36,7 +36,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import logistical.checkLogic;
-import managment.ComponentsManagment;
 import managment.DesktopCanvasManagment;
 import managment.RulesManagment;
 import objects.Clients;
@@ -155,7 +154,6 @@ public class ObjectView extends JFrame implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -197,10 +195,8 @@ public class ObjectView extends JFrame implements ActionListener
 			errorFound = saveNetworkView();
 		}
 
-
-		// Sets the supported connection interfaces for the Object
-		currentObject.setSupportedConnectionInterfaces(ComponentsManagment
-				.getSupportedInterfaces(currentObject));
+		// Determines the supported connection interface on the device.
+		currentObject.revalidateSupportedConnectionInterfaces();
 
 
 		// If closeObjectView is true, this JFrame is closed

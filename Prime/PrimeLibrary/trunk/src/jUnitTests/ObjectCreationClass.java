@@ -238,11 +238,8 @@ public class ObjectCreationClass
 
 		Desktop temp = new Desktop(objectName, objectDesc, components);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		// Adds OS
 		temp.setSoftware(st_software);
@@ -287,11 +284,8 @@ public class ObjectCreationClass
 		// "st_components" array of this class)
 		temp.addComponent(intNIC);
 
-
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		// Adds OS
 		temp.setSoftware(st_software);
@@ -334,11 +328,8 @@ public class ObjectCreationClass
 			e.printStackTrace();
 		}
 
-
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		// Adds OS
 		temp.setSoftware(st_software);
@@ -375,10 +366,8 @@ public class ObjectCreationClass
 		HTTPServer temp = new HTTPServer(objectName, objectDesc, st_components,
 				ObjectSWname, ObjectSWdesc, ObjectSWversion);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		// Adds OS
 		temp.setSoftware(st_software);
@@ -415,10 +404,8 @@ public class ObjectCreationClass
 		BackupServer temp = new BackupServer(objectName, objectDesc,
 				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		// Adds OS
 		temp.setSoftware(st_software);
@@ -454,10 +441,8 @@ public class ObjectCreationClass
 		DatabaseServer temp = new DatabaseServer(objectName, objectDesc,
 				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		// Adds OS
 		temp.setSoftware(st_software);
@@ -493,10 +478,8 @@ public class ObjectCreationClass
 		MailServer temp = new MailServer(objectName, objectDesc, st_components,
 				ObjectSWname, ObjectSWdesc, ObjectSWversion);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		// Adds OS
 		temp.setSoftware(st_software);
@@ -531,10 +514,8 @@ public class ObjectCreationClass
 		FirewallServer temp = new FirewallServer(objectName, objectDesc,
 				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		// Adds OS
 		temp.setSoftware(st_software);
@@ -569,10 +550,8 @@ public class ObjectCreationClass
 		ProxyServer temp = new ProxyServer(objectName, objectDesc,
 				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		temp.setSoftware(st_software);
 
@@ -606,10 +585,8 @@ public class ObjectCreationClass
 		PrinterServer temp = new PrinterServer(objectName, objectDesc,
 				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		temp.setSoftware(st_software);
 
@@ -639,10 +616,8 @@ public class ObjectCreationClass
 		Scanner temp = new Scanner(objectName, objectDesc, Sresolution,
 				objectMB);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		return temp;
 	}
@@ -669,10 +644,8 @@ public class ObjectCreationClass
 		Printer temp = new Printer(objectName, objectDesc, Sresolution,
 				objectMB);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		return temp;
 	}
@@ -702,10 +675,8 @@ public class ObjectCreationClass
 
 		Fax temp = new Fax(objectName, objectDesc, Sresolution, objectMB);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		return temp;
 	}
@@ -732,10 +703,8 @@ public class ObjectCreationClass
 		MultifunctionPrinter temp = new MultifunctionPrinter(objectName,
 				objectDesc, Sresolution, objectMB);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		return temp;
 	}
@@ -766,20 +735,8 @@ public class ObjectCreationClass
 		NetworkPrinter temp = new NetworkPrinter(objectName, objectDesc,
 				Sresolution, objectMB);
 
-		// Internal NIC
-		// InternalNetworksCard intNIC =
-		// HW_MB.getSt_IntNIC();
-		// intNIC.setType(ConnectionUtils.Wireless);
-
-		// Add the internal NIC to the list of components on the Object(not the
-		// "st_components" array of this class)
-		// temp.addComponent(intNIC);
-
-
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		return temp;
 	}
@@ -811,10 +768,8 @@ public class ObjectCreationClass
 		NetworkMultifunctionPrinter temp = new NetworkMultifunctionPrinter(
 				objectName, objectDesc, Sresolution, objectMB);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		return temp;
 	}
@@ -847,10 +802,8 @@ public class ObjectCreationClass
 		Hub temp = new Hub(objectName, objectDesc, null, objectMB, outPorts,
 				inPorts, DuplexSupport);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		return temp;
 	}
@@ -882,10 +835,8 @@ public class ObjectCreationClass
 		Switch temp = new Switch(objectName, objectDesc, null, objectMB,
 				outPorts, inPorts, DuplexSupport);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		return temp;
 	}
@@ -916,10 +867,8 @@ public class ObjectCreationClass
 		Router temp = new Router(objectName, objectDesc, null, objectMB,
 				outPorts, inPorts, DuplexSupport);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		return temp;
 	}
@@ -948,20 +897,8 @@ public class ObjectCreationClass
 
 		Modem temp = new Modem(objectName, objectDesc, null, objectMB);
 
-		// // Internal Wireless NIC
-		// InternalNetworksCard intNIC = HW_MB
-		// .getSt_IntNIC();
-		// intNIC.setType(ConnectionUtils.Coax);
-		//
-		// // Add the internal NIC to the list of components on the Object(not
-		// the
-		// // "st_components" array of this class)
-		// temp.addComponent(intNIC);
-
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		return temp;
 	}
@@ -1035,20 +972,8 @@ public class ObjectCreationClass
 		Internet temp = new Internet(objectName, objectDesc, objectName,
 				SupConInt, objectMB);
 
-		// // Internal Wireless NIC
-		// InternalNetworksCard intNIC = HW_MB
-		// .getSt_IntNIC();
-		// intNIC.setType(ConnectionUtils.Coax);
-		//
-		// // Add the internal NIC to the list of components on the Object(not
-		// the
-		// // "st_components" array of this class)
-		// temp.addComponent(intNIC);
-
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		temp.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 
 		return temp;

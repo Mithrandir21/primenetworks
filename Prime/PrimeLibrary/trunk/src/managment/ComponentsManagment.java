@@ -309,12 +309,8 @@ public class ComponentsManagment
 
 		processRAMchanges(obj);
 
-		// Gets the supported connection interfaces after processing
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(obj);
-
-		// Sets the new interface array
-		obj.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		obj.revalidateSupportedConnectionInterfaces();
 	}
 
 
@@ -2195,10 +2191,8 @@ public class ComponentsManagment
 			}
 
 
-			// Sets the supported connection interfaces
-			String[] supportedConnectionInterfaces = ComponentsManagment
-					.getSupportedInterfaces(mainObj);
-			mainObj.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+			// Determines the supported connection interface on the device.
+			mainObj.revalidateSupportedConnectionInterfaces();
 		}
 	}
 
@@ -2560,10 +2554,8 @@ public class ComponentsManagment
 		}
 
 
-		// Sets the supported connection interfaces
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(mainObj);
-		mainObj.setSupportedConnectionInterfaces(supportedConnectionInterfaces);
+		// Determines the supported connection interface on the device.
+		mainObj.revalidateSupportedConnectionInterfaces();
 
 		if ( canvas != null )
 		{

@@ -18,15 +18,19 @@
 package graphics.GUI.selectArea;
 
 
+import graphics.GraphicalFunctions;
+import graphics.ImageLocator;
 import graphics.PrimeMain;
 
 import java.awt.datatransfer.Transferable;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.TransferHandler;
 
 import managment.CreateObjects;
 import objects.Object;
+import objects.peripheralObjects.GenericDevice;
 import widgets.WidgetIcon;
 import widgets.WidgetObject;
 
@@ -42,7 +46,6 @@ public class ImageSelection extends TransferHandler
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see javax.swing.TransferHandler#getSourceActions(javax.swing.JComponent)
 	 */
 	@Override
@@ -55,7 +58,6 @@ public class ImageSelection extends TransferHandler
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * javax.swing.TransferHandler#createTransferable(javax.swing.JComponent)
 	 */
@@ -71,8 +73,26 @@ public class ImageSelection extends TransferHandler
 				Object newObject = CreateObjects.CreateObject(icon,
 						PrimeMain.currentCanvas.getNumberOfWidgetsOnTheScene());
 
-				return new WidgetObject(PrimeMain.currentCanvas.getScene(),
-						newObject, icon.getIconImage());
+				// if the object is not a GenericDevice object
+				if ( !(newObject instanceof GenericDevice) )
+				{
+					return new WidgetObject(PrimeMain.currentCanvas.getScene(),
+							newObject, icon.getIconImage());
+				}
+				else
+				{
+					ImageIcon genericIcon = GraphicalFunctions
+							.userIconSelection(null);
+
+					if ( genericIcon == null )
+					{
+						genericIcon = ImageLocator
+								.getImageIconObject("Unknown");
+					}
+
+					return new WidgetObject(PrimeMain.currentCanvas.getScene(),
+							newObject, genericIcon.getImage());
+				}
 			}
 
 			return null;
