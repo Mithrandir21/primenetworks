@@ -55,7 +55,6 @@ public class WorkareaTargetListener implements DropTargetListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#dragEnter(java.awt.dnd.DropTargetDragEvent
 	 * )
@@ -67,7 +66,6 @@ public class WorkareaTargetListener implements DropTargetListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#dragExit(java.awt.dnd.DropTargetEvent)
 	 */
@@ -78,7 +76,6 @@ public class WorkareaTargetListener implements DropTargetListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#dragOver(java.awt.dnd.DropTargetDragEvent
 	 * )
@@ -91,7 +88,6 @@ public class WorkareaTargetListener implements DropTargetListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.dnd.DropTargetListener#drop(java.awt.dnd.DropTargetDropEvent)
 	 */
@@ -159,7 +155,6 @@ public class WorkareaTargetListener implements DropTargetListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @seejava.awt.dnd.DropTargetListener#dropActionChanged(java.awt.dnd.
 	 * DropTargetDragEvent)
 	 */

@@ -22,6 +22,7 @@ import exceptions.CanvasNotFound;
 import graphics.ImageLocator;
 import graphics.PrimeMain;
 import graphics.GUI.objectView.ObjectView;
+import graphics.GUI.selectArea.GenericDeviceCreation;
 
 import java.awt.Image;
 import java.awt.Point;
@@ -34,6 +35,7 @@ import objects.Software.base;
 import objects.infrastructureObjects.Hub;
 import objects.infrastructureObjects.Internet;
 import objects.infrastructureObjects.WirelessRouter;
+import objects.peripheralObjects.GenericDevice;
 import objects.softwareObjects.OperatingSystem;
 
 import org.netbeans.api.visual.widget.LabelWidget;
@@ -54,8 +56,7 @@ public class DesktopCanvasManagment
 {
 	/**
 	 * Adds the given canvas to the array of currently active canvas in the
-	 * system. It also sets the given name as the
-	 * name of the canvas object.
+	 * system. It also sets the given name as the name of the canvas object.
 	 * 
 	 * @param newCanvas
 	 *            The new canvas that is to be added to systems array of
@@ -148,8 +149,7 @@ public class DesktopCanvasManagment
 
 	/**
 	 * Removes the given canvas from the systems array of open canvases. It does
-	 * this by comparing the names of the
-	 * canvas(ignoring case).
+	 * this by comparing the names of the canvas(ignoring case).
 	 * 
 	 * @param canvas
 	 * @throws CanvasNotFound
@@ -323,14 +323,13 @@ public class DesktopCanvasManagment
 
 	/**
 	 * This function attempts to add the given {@link WidgetObject} to the given
-	 * {@link WorkareaCanvas} at the {@link Point} given.
-	 * It cleans up the {@link WorkareaCanvas} afterwards, if the boolean is
-	 * true and the attempt is a success.
-	 * This function also goes through the {@link NetworkRules Rules} contained
-	 * inside the {@link WorkareaCanvas} to check whether
-	 * the given {@link Object} violates the {@link NetworkRules rules}. If the
-	 * {@link Object} violates the rules, a message is
-	 * show to the user and the attempt is aborted with no action performed.
+	 * {@link WorkareaCanvas} at the {@link Point} given. It cleans up the
+	 * {@link WorkareaCanvas} afterwards, if the boolean is true and the attempt
+	 * is a success. This function also goes through the {@link NetworkRules
+	 * Rules} contained inside the {@link WorkareaCanvas} to check whether the
+	 * given {@link Object} violates the {@link NetworkRules rules}. If the
+	 * {@link Object} violates the rules, a message is show to the user and the
+	 * attempt is aborted with no action performed.
 	 */
 	public static boolean addWidgetToCanvas(WidgetObject newObject,
 			Point objectPoint, WorkareaCanvas canvas, boolean withCleanUp,
@@ -486,9 +485,9 @@ public class DesktopCanvasManagment
 
 	/**
 	 * This function determines whether or not the {@link WorkareaCanvas} given
-	 * has a any objects open by checking if there is
-	 * pointer to the {@link WorkareaCanvas} inside any of the {@link ArrayList}
-	 * indexes objView in {@link PrimeMain}.
+	 * has a any objects open by checking if there is pointer to the
+	 * {@link WorkareaCanvas} inside any of the {@link ArrayList} indexes
+	 * objView in {@link PrimeMain}.
 	 */
 	public static boolean objectOpenInCanvas(WorkareaCanvas canvas)
 	{
@@ -509,9 +508,9 @@ public class DesktopCanvasManagment
 
 	/**
 	 * This function determines whether or not the {@link WorkareaCanvas} given
-	 * has a any objects open by checking if there is
-	 * pointer to the {@link WorkareaCanvas} inside any of the {@link ArrayList}
-	 * indexes objView in {@link PrimeMain}.
+	 * has a any objects open by checking if there is pointer to the
+	 * {@link WorkareaCanvas} inside any of the {@link ArrayList} indexes
+	 * objView in {@link PrimeMain}.
 	 */
 	public static void bringObjectViewToFront(WorkareaCanvas canvas)
 	{
@@ -531,9 +530,8 @@ public class DesktopCanvasManagment
 	/**
 	 * This method call several clean up methods for the given the canvas. The
 	 * scene and all the views are repainted and revalidated. The properties
-	 * panel is also updated.
-	 * This method also calls the method that adds IP labels to the canvases
-	 * widgets.
+	 * panel is also updated. This method also calls the method that adds IP
+	 * labels to the canvases widgets.
 	 */
 	public static void canvasCleanUp(WorkareaCanvas canvas)
 	{
@@ -568,8 +566,8 @@ public class DesktopCanvasManagment
 
 	/**
 	 * This function will add a {@link LabelWidget} to the given
-	 * {@link WidgetObject} if the given {@link WidgetObject} has an IP.
-	 * The {@link LabelWidget} will be shown at the below the widget image.
+	 * {@link WidgetObject} if the given {@link WidgetObject} has an IP. The
+	 * {@link LabelWidget} will be shown at the below the widget image.
 	 */
 	public static void addIPlabelToWidget(WidgetObject widObj)
 	{
@@ -691,6 +689,86 @@ public class DesktopCanvasManagment
 				{
 					widObj.removeOSimage();
 				}
+			}
+		}
+	}
+
+
+
+	/**
+	 * This function will update the name of all the WidgetObjects on the given
+	 * {@link WorkareaCanvas}.
+	 */
+	public static void runCanvasNameUpdate(WorkareaCanvas canvas)
+	{
+		if ( canvas != null )
+		{
+			// Gets all the objects on the scene
+			WidgetObject widObjects[] = canvas.getWidgetObjectsOnTheScene();
+
+			// If the array is not NULL or empty
+			if ( widObjects != null && widObjects.length > 0 )
+			{
+				// For every WidgetObject on the scene
+				for ( int i = 0; i > widObjects.length; i++ )
+				{
+					if ( widObjects[i] != null )
+					{
+						WorkareaCanvasActions.updateWidgetObjectCanvasName(
+								PrimeMain.canvases[i], widObjects[i],
+								widObjects[i].getObject().getObjectName());
+					}
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * This function will update the name of all the WidgetObjects on the open
+	 * {@link WorkareaCanvas WorkareaCanvases}.
+	 */
+	public static void runAllCanvasNameUpdate()
+	{
+		for ( int i = 0; i < PrimeMain.canvases.length; i++ )
+		{
+			if ( PrimeMain.canvases[i] != null )
+			{
+				// Gets all the objects on the scene
+				WidgetObject widObjects[] = PrimeMain.canvases[i]
+						.getWidgetObjectsOnTheScene();
+
+				// If the array is not NULL or empty
+				if ( widObjects != null && widObjects.length > 0 )
+				{
+					// For every WidgetObject on the scene
+					for ( int j = 0; j < widObjects.length; j++ )
+					{
+						if ( widObjects[j] != null )
+						{
+							WorkareaCanvasActions.updateWidgetObjectCanvasName(
+									PrimeMain.canvases[i], widObjects[j],
+									widObjects[j].getObject().getObjectName(),
+									true);
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * This function will check if the Object inside the {@link WidgetObject} is
+	 * a GenericDevice. If so, it will display a Generic Device Options panel.
+	 */
+	public static void checkForCustomObject(WidgetObject widObj)
+	{
+		if ( widObj != null && widObj.getObject() != null )
+		{
+			if ( widObj.getObject() instanceof GenericDevice )
+			{
+				new GenericDeviceCreation((GenericDevice) widObj.getObject());
 			}
 		}
 	}

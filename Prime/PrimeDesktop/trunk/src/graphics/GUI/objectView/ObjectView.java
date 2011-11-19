@@ -19,6 +19,7 @@ package graphics.GUI.objectView;
 
 
 import graphics.PrimeMain;
+import graphics.GUI.objectView.Network.NetworkView;
 
 import java.awt.Button;
 import java.awt.Container;
@@ -182,7 +183,9 @@ public class ObjectView extends JFrame implements ActionListener
 
 
 	/**
-	 * Javadoc-TODO - Description
+	 * This save function will call the save functions in all the different
+	 * views. It will not close, even if the boolean given is True, is any of
+	 * the views return an error while attempting to save.
 	 */
 	public void save(boolean closeObjectView)
 	{
@@ -275,7 +278,8 @@ public class ObjectView extends JFrame implements ActionListener
 
 
 	/**
-	 * TODO - Description
+	 * This save function will save the information regarding the {@link Object
+	 * Objects} network settings, the information found in {@link NetworkView}.
 	 */
 	private boolean saveNetworkView()
 	{
@@ -424,11 +428,6 @@ public class ObjectView extends JFrame implements ActionListener
 		{
 			view.netObjView.objPermPanel.saveObjectPermissions();
 		}
-
-
-
-
-
 
 
 		return errorFound;

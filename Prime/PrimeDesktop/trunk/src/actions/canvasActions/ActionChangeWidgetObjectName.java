@@ -39,8 +39,8 @@ import widgets.WorkareaCanvas;
 /**
  * This action changes the name of a given {@link WidgetObject}. The action
  * automatically changed the name displayed on the {@link WorkareaCanvas} where
- * the {@link WidgetObject} is placed.
- * This action contains a undo/redo function.
+ * the {@link WidgetObject} is placed. This action contains a undo/redo
+ * function.
  * 
  * @author Bahram Malaekeh
  */
@@ -82,9 +82,8 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 
 	/**
 	 * A constructor for the class that takes a string, the action name, a
-	 * {@link WidgetObject} and a String that is to be the new
-	 * name of
-	 * the given {@link WidgetObject}.
+	 * {@link WidgetObject} and a String that is to be the new name of the given
+	 * {@link WidgetObject}.
 	 * 
 	 * @param text
 	 *            The name of the action.
@@ -106,7 +105,6 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -120,7 +118,6 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * logistical.AbstractSystemAction#addEdit(javax.swing.undo.UndoableEdit)
 	 */
@@ -132,7 +129,6 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#canRedo()
 	 */
 	@Override
@@ -143,7 +139,6 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#canUndo()
 	 */
 	@Override
@@ -154,7 +149,6 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#die()
 	 */
 	@Override
@@ -167,7 +161,6 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#getPresentationName()
 	 */
 	@Override
@@ -179,7 +172,6 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#getRedoPresentationName()
 	 */
 	@Override
@@ -191,7 +183,6 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#getUndoPresentationName()
 	 */
 	@Override
@@ -203,7 +194,6 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#isSignificant()
 	 */
 	@Override
@@ -214,7 +204,6 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#redo()
 	 */
 	@Override
@@ -224,14 +213,12 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 		{
 			// Updates the name of the LabelWidget on the scene
 			WorkareaCanvasActions.updateWidgetObjectCanvasName(
-					PrimeMain.currentCanvas, this.widObject.getObject(),
-					this.newName);
+					PrimeMain.currentCanvas, this.widObject, this.newName);
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#undo()
 	 */
 	@Override
@@ -241,15 +228,13 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 		{
 			// Updates the name of the LabelWidget on the scene
 			WorkareaCanvasActions.updateWidgetObjectCanvasName(
-					PrimeMain.currentCanvas, this.widObject.getObject(),
-					this.oldName);
+					PrimeMain.currentCanvas, this.widObject, this.oldName);
 		}
 	}
 
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.SystemActionInterface#performAction(boolean)
 	 */
 	@Override
@@ -262,8 +247,7 @@ public class ActionChangeWidgetObjectName extends AbstractSystemAction
 			{
 				// Updates the name of the LabelWidget on the scene
 				WorkareaCanvasActions.updateWidgetObjectCanvasName(
-						PrimeMain.currentCanvas, this.widObject.getObject(),
-						this.newName);
+						PrimeMain.currentCanvas, this.widObject, this.newName);
 			}
 			else
 			{

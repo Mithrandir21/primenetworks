@@ -61,7 +61,6 @@ import org.jdesktop.swingx.JXTaskPaneContainer;
  * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class osSelectionOverView extends JDialog implements ActionListener
 {
@@ -73,9 +72,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @param obj
+	 * A constructor for the class that sets the name of the {@link JDialog} and
+	 * calls the initiation function.
 	 */
 	public osSelectionOverView()
 	{
@@ -86,7 +84,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * A constructor for the class that sets the name of the {@link JDialog},
+	 * sets the main object of this class and calls the initiation function.
 	 * 
 	 * @param obj
 	 */
@@ -162,8 +161,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 	/**
-	 * TODO - Description
-	 * 
+	 * This functions creates and places the panels that show the different
+	 * {@link OperatingSystem}.
 	 */
 	private JPanel populateDialog()
 	{
@@ -288,10 +287,9 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 
-
 	/**
-	 * TODO - Description
-	 * 
+	 * This function returns a {@link JXTaskPaneContainer} that contains a list
+	 * of the systems Standard {@link OperatingSystem}.
 	 */
 	private JXTaskPaneContainer getStandardOS()
 	{
@@ -317,8 +315,9 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 	/**
-	 * TODO - Description
-	 * 
+	 * This function returns a {@link JXTaskPaneContainer} that contains a list
+	 * of custom {@link OperatingSystem}, either created by the user or
+	 * imported.
 	 */
 	private JXTaskPaneContainer getCustomOS()
 	{
@@ -350,8 +349,9 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 
 	/**
-	 * TODO - Description
-	 * 
+	 * This functions creates, populates and configures a {@link JXTaskPane}
+	 * containing configurable information about the given
+	 * {@link OperatingSystem}.
 	 */
 	private JXTaskPane getOSpane(OperatingSystem os, boolean collapsed,
 			boolean editable)
@@ -623,7 +623,6 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -804,6 +803,7 @@ public class osSelectionOverView extends JDialog implements ActionListener
 			}
 		}
 	}
+
 
 	/**
 	 * Updates the list of {@link OperatingSystem} shown in this class.

@@ -40,10 +40,10 @@ import widgetManipulation.NetworkRules;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class will represent a single {@link JXTaskPane} that will contain
+ * options regarding a set of Hardware rules in {@link NetworkRules}.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class HardwareRulesPanel extends JXTaskPane implements ActionListener
 {
@@ -73,14 +73,12 @@ public class HardwareRulesPanel extends JXTaskPane implements ActionListener
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
+	 * A constructor for the class that will set up the {@link JXTaskPane} with
+	 * names and text.
 	 */
 	public HardwareRulesPanel(NetworkRules rules)
 	{
-		this
-				.setTitle(PrimeMain.texts
-						.getString("networkRulesHardwareTabLabel"));
+		this.setTitle(PrimeMain.texts.getString("networkRulesHardwareTabLabel"));
 		this.setSpecial(true);
 		this.setCollapsed(false);
 
@@ -102,9 +100,9 @@ public class HardwareRulesPanel extends JXTaskPane implements ActionListener
 
 		String[] numbers = { "Unlimited", "1", "2", "3", "4", "5", "6" };
 
-		USBnotAllowedBox = new JCheckBox(PrimeMain.texts
-				.getString("hardwareRulesUSBnotAllowedLabel"), rules
-				.isUSBnotAllowed());
+		USBnotAllowedBox = new JCheckBox(
+				PrimeMain.texts.getString("hardwareRulesUSBnotAllowedLabel"),
+				rules.isUSBnotAllowed());
 		USBnotAllowedBox.setToolTipText(PrimeMain.texts
 				.getString("hardwareRulesUSBnotAllowedTip"));
 
@@ -116,13 +114,15 @@ public class HardwareRulesPanel extends JXTaskPane implements ActionListener
 				numbers, rules.getUSBportsAllowed()));
 
 
-		this.add(createOptionPanel(USBnotAllowedBox, PrimeMain.texts
-				.getString("hardwareRulesUSBportsAllowedLabel"), USBports), d);
+		this.add(
+				createOptionPanel(USBnotAllowedBox, PrimeMain.texts
+						.getString("hardwareRulesUSBportsAllowedLabel"),
+						USBports), d);
 
 
-		LANnotAllowedBox = new JCheckBox(PrimeMain.texts
-				.getString("hardwareRulesLANnotAllowedLabel"), rules
-				.isLANnotAllowed());
+		LANnotAllowedBox = new JCheckBox(
+				PrimeMain.texts.getString("hardwareRulesLANnotAllowedLabel"),
+				rules.isLANnotAllowed());
 		LANnotAllowedBox.setToolTipText(PrimeMain.texts
 				.getString("hardwareRulesLANnotAllowedTip"));
 
@@ -137,16 +137,18 @@ public class HardwareRulesPanel extends JXTaskPane implements ActionListener
 		d.weightx = 1.0; // request any extra horizontal space
 		d.gridy = 0; // row
 		d.gridx = 1; // column
-		this.add(createOptionPanel(LANnotAllowedBox, PrimeMain.texts
-				.getString("hardwareRulesLANportsAllowedLabel"), LANports), d);
+		this.add(
+				createOptionPanel(LANnotAllowedBox, PrimeMain.texts
+						.getString("hardwareRulesLANportsAllowedLabel"),
+						LANports), d);
 	}
 
 
 
 
 	/**
-	 * TODO - Description
-	 * 
+	 * This function creates the JPanel that will display the options for
+	 * Hardware rules.
 	 */
 	private JPanel createOptionPanel(JCheckBox check, String comboString,
 			JComboBox box)
@@ -208,6 +210,11 @@ public class HardwareRulesPanel extends JXTaskPane implements ActionListener
 
 
 
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{

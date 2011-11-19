@@ -104,7 +104,8 @@ public class WidgetObject extends Widget implements Transferable
 		LookFeel lookFeel = getScene().getLookFeel();
 
 		this.setLayout(LayoutFactory.createVerticalFlowLayout(
-				LayoutFactory.SerialAlignment.CENTER, -lookFeel.getMargin() + 1));
+				LayoutFactory.SerialAlignment.CENTER,
+				-(lookFeel.getMargin()) + 1));
 
 		this.labelWidget = new LabelWidget(scene);
 		// labelWidget.setFont(scene.getDefaultFont().deriveFont(14.0f));
@@ -286,7 +287,6 @@ public class WidgetObject extends Widget implements Transferable
 
 	public DataFlavor[] getTransferDataFlavors()
 	{
-		// System.out.println("WidgetCanvas - getTransferDataFlavors");
 		return flavors;
 	}
 
@@ -302,12 +302,10 @@ public class WidgetObject extends Widget implements Transferable
 
 	private DataFlavor[] setFlavor()
 	{
-		// System.out.println("WidgetCanvas - setFlavor");
 		if ( flavors[0] == null )
 		{
 			flavors[0] = new DataFlavor(WidgetObject.class, "Widget Object");
 		}
-		// System.out.println("WidgetCanvas - " + flavors[0]);
 		return flavors;
 	}
 

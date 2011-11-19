@@ -40,10 +40,10 @@ import widgetManipulation.NetworkRules;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class will represent a single {@link JXTaskPane} that will contain
+ * options regarding a set of Software rules in {@link NetworkRules}.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class SoftwareRulesPanel extends JXTaskPane implements ActionListener
 {
@@ -105,14 +105,12 @@ public class SoftwareRulesPanel extends JXTaskPane implements ActionListener
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
+	 * A constructor for the class that will set up the {@link JXTaskPane} with
+	 * names and text.
 	 */
 	public SoftwareRulesPanel(NetworkRules rules)
 	{
-		this
-				.setTitle(PrimeMain.texts
-						.getString("networkRulesSoftwareTabLabel"));
+		this.setTitle(PrimeMain.texts.getString("networkRulesSoftwareTabLabel"));
 		this.setSpecial(true);
 		this.setCollapsed(true);
 
@@ -134,25 +132,26 @@ public class SoftwareRulesPanel extends JXTaskPane implements ActionListener
 
 
 		// OS Restriction
-		OSrestrictionBox = new JCheckBox(PrimeMain.texts
-				.getString("softwareRulesOSrestrictionLabel"), rules
-				.isOSrestriction());
+		OSrestrictionBox = new JCheckBox(
+				PrimeMain.texts.getString("softwareRulesOSrestrictionLabel"),
+				rules.isOSrestriction());
 		OSrestrictionBox.setToolTipText(PrimeMain.texts
 				.getString("softwareRulesOSrestrictionTip"));
 
 		OSresName = new JTextField(rules.getOSrestrictedName());
 		OSresName.setBackground(Color.WHITE);
 
-		this.add(createOptionPanel(OSrestrictionBox, PrimeMain.texts
-				.getString("softwareRulesOSrestrictionNameLabel"), OSresName),
-				d);
+		this.add(
+				createOptionPanel(OSrestrictionBox, PrimeMain.texts
+						.getString("softwareRulesOSrestrictionNameLabel"),
+						OSresName), d);
 
 
 
 		// Antivirus Restriction
-		AVrestrictionBox = new JCheckBox(PrimeMain.texts
-				.getString("softwareRulesAVrestrictionLabel"), rules
-				.isOSrestriction());
+		AVrestrictionBox = new JCheckBox(
+				PrimeMain.texts.getString("softwareRulesAVrestrictionLabel"),
+				rules.isOSrestriction());
 		AVrestrictionBox.setToolTipText(PrimeMain.texts
 				.getString("softwareRulesAVrestrictionTip"));
 
@@ -161,16 +160,17 @@ public class SoftwareRulesPanel extends JXTaskPane implements ActionListener
 
 		d.gridy = 0; // row
 		d.gridx = 1; // column
-		this.add(createOptionPanel(AVrestrictionBox, PrimeMain.texts
-				.getString("softwareRulesAVrestrictionNameLabel"), AVresName),
-				d);
+		this.add(
+				createOptionPanel(AVrestrictionBox, PrimeMain.texts
+						.getString("softwareRulesAVrestrictionNameLabel"),
+						AVresName), d);
 
 
 
 		// Firewall Restriction
-		FWrestrictionBox = new JCheckBox(PrimeMain.texts
-				.getString("softwareRulesFWrestrictionLabel"), rules
-				.isOSrestriction());
+		FWrestrictionBox = new JCheckBox(
+				PrimeMain.texts.getString("softwareRulesFWrestrictionLabel"),
+				rules.isOSrestriction());
 		FWrestrictionBox.setToolTipText(PrimeMain.texts
 				.getString("softwareRulesFWrestrictionTip"));
 
@@ -180,16 +180,17 @@ public class SoftwareRulesPanel extends JXTaskPane implements ActionListener
 		d.weightx = 1.0; // request any extra horizontal space
 		d.gridy = 0; // row
 		d.gridx = 2; // column
-		this.add(createOptionPanel(FWrestrictionBox, PrimeMain.texts
-				.getString("softwareRulesFWrestrictionNameLabel"), FWresName),
-				d);
+		this.add(
+				createOptionPanel(FWrestrictionBox, PrimeMain.texts
+						.getString("softwareRulesFWrestrictionNameLabel"),
+						FWresName), d);
 
 
 
 		// Email Restriction
-		EmailRestrictionBox = new JCheckBox(PrimeMain.texts
-				.getString("softwareRulesEMailRestrictionLabel"), rules
-				.isOSrestriction());
+		EmailRestrictionBox = new JCheckBox(
+				PrimeMain.texts.getString("softwareRulesEMailRestrictionLabel"),
+				rules.isOSrestriction());
 		EmailRestrictionBox.setToolTipText(PrimeMain.texts
 				.getString("softwareRulesEMailRestrictionTip"));
 
@@ -199,16 +200,18 @@ public class SoftwareRulesPanel extends JXTaskPane implements ActionListener
 		d.weightx = 0; // request any extra horizontal space
 		d.gridy = 1; // row
 		d.gridx = 0; // column
-		this.add(createOptionPanel(EmailRestrictionBox, PrimeMain.texts
-				.getString("softwareRulesEMailRestrictionNameLabel"),
-				EmailResName), d);
+		this.add(
+				createOptionPanel(EmailRestrictionBox, PrimeMain.texts
+						.getString("softwareRulesEMailRestrictionNameLabel"),
+						EmailResName), d);
 
 
 
 		// Office Suite Restriction
-		OfficeSuiteRestrictionBox = new JCheckBox(PrimeMain.texts
-				.getString("softwareRulesOfficeSuiteRestrictionLabel"), rules
-				.isOSrestriction());
+		OfficeSuiteRestrictionBox = new JCheckBox(
+				PrimeMain.texts
+						.getString("softwareRulesOfficeSuiteRestrictionLabel"),
+				rules.isOSrestriction());
 		OfficeSuiteRestrictionBox.setToolTipText(PrimeMain.texts
 				.getString("softwareRulesOfficeSuiteRestrictionTip"));
 
@@ -219,17 +222,20 @@ public class SoftwareRulesPanel extends JXTaskPane implements ActionListener
 		// d.weightx = 1.0; // request any extra horizontal space
 		d.gridy = 1; // row
 		d.gridx = 1; // column
-		this.add(createOptionPanel(OfficeSuiteRestrictionBox, PrimeMain.texts
-				.getString("softwareRulesOfficeSuiteRestrictionNameLabel"),
-				OfficeSuiteResName), d);
+		this.add(
+				createOptionPanel(
+						OfficeSuiteRestrictionBox,
+						PrimeMain.texts
+								.getString("softwareRulesOfficeSuiteRestrictionNameLabel"),
+						OfficeSuiteResName), d);
 	}
 
 
 
 
 	/**
-	 * TODO - Description
-	 * 
+	 * This function creates the JPanel that will display the options for
+	 * Software rules.
 	 */
 	private JPanel createOptionPanel(JCheckBox check, String comboString,
 			JTextField field)
@@ -298,7 +304,8 @@ public class SoftwareRulesPanel extends JXTaskPane implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)

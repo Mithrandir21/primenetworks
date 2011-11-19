@@ -30,19 +30,15 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -561,8 +557,7 @@ public class GraphicalFunctions
 
 	/**
 	 * FIXME - ChangeWidgetRoomName Changes the title of the
-	 * {@link TitledBorder} surrounding the {@link WidgetRoom} and the name
-	 * of
+	 * {@link TitledBorder} surrounding the {@link WidgetRoom} and the name of
 	 * the {@link Room} inside the {@link WidgetRoom} object.
 	 */
 	public static void changeWidgetRoomName(Widget widget)
@@ -685,10 +680,8 @@ public class GraphicalFunctions
 
 	/**
 	 * This function attempts to return the a string depending on the given
-	 * {@link systemLocale}.
-	 * 
-	 * If no corresponding {@link systemLocale} is found, the primeLocale from
-	 * the Settings class will be returned.
+	 * {@link systemLocale}. If no corresponding {@link systemLocale} is found,
+	 * the primeLocale from the Settings class will be returned.
 	 */
 	public static String getSystemLocale(systemLocale language)
 	{
@@ -708,10 +701,9 @@ public class GraphicalFunctions
 
 	/**
 	 * This function attempts to return the {@link systemLocale} that
-	 * corresponds with the given string.
-	 * 
-	 * If no corresponding {@link systemLocale} is found, the primeLocale from
-	 * the Settings class will be returned.
+	 * corresponds with the given string. If no corresponding
+	 * {@link systemLocale} is found, the primeLocale from the Settings class
+	 * will be returned.
 	 */
 	public static systemLocale getSystemLocale(String language)
 	{
@@ -871,8 +863,7 @@ public class GraphicalFunctions
 
 	/**
 	 * This function will allow the user to select an Icon (max 48x48) and
-	 * returns the selected ImageIcon.
-	 * NOTE: Given file pointer CAN BE NULL.
+	 * returns the selected ImageIcon. NOTE: Given file pointer CAN BE NULL.
 	 */
 	public static ImageIcon userIconSelection(File folder)
 	{
@@ -904,7 +895,8 @@ public class GraphicalFunctions
 		while ( !done )
 		{
 			// Show it.
-			int returnVal = fc.showDialog(null, "Icon");
+			int returnVal = fc.showDialog(null,
+					PrimeMain.texts.getString("yes"));
 
 			// Process the results.
 			if ( returnVal == JFileChooser.APPROVE_OPTION )

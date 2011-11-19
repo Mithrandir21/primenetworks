@@ -37,11 +37,10 @@ import widgets.WorkareaCanvas;
 
 /**
  * This JTabbedPane extension is where the selection area and Networkmodels area
- * is located.
- * The selection area is where the user can click'n'drag new
- * {@link WidgetObject WidgetObjects} into an open {@link WorkareaCanvas}.
- * The Networkmodels area is where the user can see all the network models he
- * can open and edit.
+ * is located. The selection area is where the user can click'n'drag new
+ * {@link WidgetObject WidgetObjects} into an open {@link WorkareaCanvas}. The
+ * Networkmodels area is where the user can see all the network models he can
+ * open and edit.
  * 
  * @author Bahram Malaekeh
  */
@@ -51,7 +50,7 @@ public class TabbedSelection extends JTabbedPane
 	 * Object selection area, where the ImageIcons of the objects can be clicked
 	 * and dragged.
 	 */
-	JPanel objectPanel = new ObjectSelection(true);
+	JPanel objectPanel = new ObjectSelection(true, true);
 
 
 	PrimeTree primeTree = new PrimeTree();

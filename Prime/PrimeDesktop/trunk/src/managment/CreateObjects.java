@@ -21,7 +21,6 @@ package managment;
 import exceptions.MotherboardNotFound;
 import exceptions.ObjectNotFoundException;
 import graphics.PrimeMain;
-import graphics.GUI.selectArea.GenericDeviceCreation;
 import objects.ExternalHardware;
 import objects.Object;
 import objects.Software;
@@ -91,142 +90,147 @@ public class CreateObjects
 
 		boolean customDevice = false;
 
-		try
+		if ( !objectType.equals("GenericDevice") )
 		{
-			// Gets the object in the given ArrayList with the given class
-			newObject = ArrayManagment.getSpesificComponent(
-					iconObject.getClassType(), PrimeMain.objectlist);
+			try
+			{
+				// Gets the object in the given ArrayList with the given class
+				newObject = ArrayManagment.getSpesificComponent(
+						iconObject.getClassType(), PrimeMain.objectlist);
+			}
+			catch ( ObjectNotFoundException e )
+			{
+				if ( objectType.equals("Desktop") )
+				{
+					newObject = createDefaultDesktop(desc);
+				}
+				else if ( objectType.equals("Laptop") )
+				{
+					newObject = createDefaultLaptop(desc);
+				}
+				else if ( objectType.equals("ThinClient") )
+				{
+					newObject = createDefaultThinClient(desc);
+				}
+				else if ( objectType.equals("GenericServer") )
+				{
+					newObject = createGenericServer(desc);
+				}
+				else if ( objectType.equals("HTTPServer") )
+				{
+					newObject = createDefaultHTTPServer(desc);
+				}
+				else if ( objectType.equals("BackupServer") )
+				{
+					newObject = createDefaultBackupServer(desc);
+				}
+				else if ( objectType.equals("NASServer") )
+				{
+					newObject = createDefaultBackupServer(desc);
+				}
+				else if ( objectType.equals("DatabaseServer") )
+				{
+					newObject = createDefaultDatabaseServer(desc);
+				}
+				else if ( objectType.equals("VirtualizationServer") )
+				{
+					newObject = createDefaultVirtualizationServer(desc);
+				}
+				else if ( objectType.equals("MailServer") )
+				{
+					newObject = createDefaultMailServer(desc);
+				}
+				else if ( objectType.equals("FirewallServer") )
+				{
+					newObject = createDefaultFirewallServer(desc);
+				}
+				else if ( objectType.equals("ProxyServer") )
+				{
+					newObject = createDefaultProxyServer(desc);
+				}
+				else if ( objectType.equals("PrinterServer") )
+				{
+					newObject = createDefaultPrinterServer(desc);
+				}
+				else if ( objectType.equals("ExternalHDD") )
+				{
+					newObject = createDefaultNAS(desc);
+				}
+				else if ( objectType.equals("Scanner") )
+				{
+					newObject = createDefaultScanner(desc);
+				}
+				else if ( objectType.equals("Printer") )
+				{
+					newObject = createDefaultPrinter(desc);
+				}
+				else if ( objectType.equals("Fax") )
+				{
+					newObject = createDefaultFax(desc);
+				}
+				else if ( objectType.equals("MultifunctionPrinter") )
+				{
+					newObject = createDefaultMFP(desc);
+				}
+				else if ( objectType.equals("NetworkPrinter") )
+				{
+					newObject = createDefaultNetworkPrinter(desc);
+				}
+				else if ( objectType.equals("NetworkMultifunctionPrinter") )
+				{
+					newObject = createDefaultNetworkMFP(desc);
+				}
+				else if ( objectType.equals("Hub") )
+				{
+					newObject = createDefaultHub(desc);
+				}
+				else if ( objectType.equals("Switch") )
+				{
+					newObject = createDefaultSwitch(desc);
+				}
+				else if ( objectType.equals("Router") )
+				{
+					newObject = createDefaultRouter(desc);
+				}
+				else if ( objectType.equals("Modem") )
+				{
+					newObject = createDefaultModem(desc);
+				}
+				else if ( objectType.equals("WirelessRouter") )
+				{
+					newObject = createDefaultWirelessRouter(desc);
+				}
+				else if ( objectType.equals("Internet") )
+				{
+					newObject = createDefaultInternet(desc);
+				}
+				else if ( objectType.equals("Rack") )
+				{
+					newObject = createDefaultRack(desc);
+				}
+				else if ( objectType.equals("RackHub") )
+				{
+					newObject = createDefaultRackUnitWithObject(Hub.class, desc);
+				}
+				else if ( objectType.equals("RackRouter") )
+				{
+					newObject = createDefaultRackUnitWithObject(Router.class,
+							desc);
+				}
+				else if ( objectType.equals("RackSwitch") )
+				{
+					newObject = createDefaultRackUnitWithObject(Switch.class,
+							desc);
+				}
+			}
 		}
-		catch ( ObjectNotFoundException e )
+		else
 		{
-			if ( objectType.equals("Desktop") )
-			{
-				newObject = createDefaultDesktop(desc);
-			}
-			else if ( objectType.equals("Laptop") )
-			{
-				newObject = createDefaultLaptop(desc);
-			}
-			else if ( objectType.equals("ThinClient") )
-			{
-				newObject = createDefaultThinClient(desc);
-			}
-			else if ( objectType.equals("GenericServer") )
-			{
-				newObject = createGenericServer(desc);
-			}
-			else if ( objectType.equals("HTTPServer") )
-			{
-				newObject = createDefaultHTTPServer(desc);
-			}
-			else if ( objectType.equals("BackupServer") )
-			{
-				newObject = createDefaultBackupServer(desc);
-			}
-			else if ( objectType.equals("NASServer") )
-			{
-				newObject = createDefaultBackupServer(desc);
-			}
-			else if ( objectType.equals("DatabaseServer") )
-			{
-				newObject = createDefaultDatabaseServer(desc);
-			}
-			else if ( objectType.equals("VirtualizationServer") )
-			{
-				newObject = createDefaultVirtualizationServer(desc);
-			}
-			else if ( objectType.equals("MailServer") )
-			{
-				newObject = createDefaultMailServer(desc);
-			}
-			else if ( objectType.equals("FirewallServer") )
-			{
-				newObject = createDefaultFirewallServer(desc);
-			}
-			else if ( objectType.equals("ProxyServer") )
-			{
-				newObject = createDefaultProxyServer(desc);
-			}
-			else if ( objectType.equals("PrinterServer") )
-			{
-				newObject = createDefaultPrinterServer(desc);
-			}
-			else if ( objectType.equals("ExternalHDD") )
-			{
-				newObject = createDefaultNAS(desc);
-			}
-			else if ( objectType.equals("Scanner") )
-			{
-				newObject = createDefaultScanner(desc);
-			}
-			else if ( objectType.equals("Printer") )
-			{
-				newObject = createDefaultPrinter(desc);
-			}
-			else if ( objectType.equals("Fax") )
-			{
-				newObject = createDefaultFax(desc);
-			}
-			else if ( objectType.equals("MultifunctionPrinter") )
-			{
-				newObject = createDefaultMFP(desc);
-			}
-			else if ( objectType.equals("NetworkPrinter") )
-			{
-				newObject = createDefaultNetworkPrinter(desc);
-			}
-			else if ( objectType.equals("NetworkMultifunctionPrinter") )
-			{
-				newObject = createDefaultNetworkMFP(desc);
-			}
-			else if ( objectType.equals("Hub") )
-			{
-				newObject = createDefaultHub(desc);
-			}
-			else if ( objectType.equals("Switch") )
-			{
-				newObject = createDefaultSwitch(desc);
-			}
-			else if ( objectType.equals("Router") )
-			{
-				newObject = createDefaultRouter(desc);
-			}
-			else if ( objectType.equals("Modem") )
-			{
-				newObject = createDefaultModem(desc);
-			}
-			else if ( objectType.equals("WirelessRouter") )
-			{
-				newObject = createDefaultWirelessRouter(desc);
-			}
-			else if ( objectType.equals("Internet") )
-			{
-				newObject = createDefaultInternet(desc);
-			}
-			else if ( objectType.equals("Rack") )
-			{
-				newObject = createDefaultRack(desc);
-			}
-			else if ( objectType.equals("RackHub") )
-			{
-				newObject = createDefaultRackUnitWithObject(Hub.class, desc);
-			}
-			else if ( objectType.equals("RackRouter") )
-			{
-				newObject = createDefaultRackUnitWithObject(Router.class, desc);
-			}
-			else if ( objectType.equals("RackSwitch") )
-			{
-				newObject = createDefaultRackUnitWithObject(Switch.class, desc);
-			}
-			else if ( objectType.equals("ExternalHardware") )
-			{
-				customDevice = true;
-			}
+			customDevice = true;
 		}
 
 		// If no object was created
-		if ( newObject != null )
+		if ( !customDevice && newObject != null )
 		{
 			// Makes a exact copy of the object
 			Object copiedObject = ComponentsManagment.deepObjectCopy(newObject);
@@ -251,7 +255,6 @@ public class CreateObjects
 
 		return null;
 	}
-
 
 	/**
 	 * Creates all the system default objects.
@@ -1407,11 +1410,13 @@ public class CreateObjects
 		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
-		GenericDevice temp = new GenericDevice("Generic Device",
-				"Generic Device", objectMB);
+		GenericDevice temp = new GenericDevice(
+				PrimeMain.texts.getString("genericDevice"),
+				PrimeMain.texts.getString("genericDevice"), objectMB);
 
-		GenericDeviceCreation devCreation = new GenericDeviceCreation(temp);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
-		return devCreation.getCustomizedGenericDevice();
+		return temp;
 	}
 }

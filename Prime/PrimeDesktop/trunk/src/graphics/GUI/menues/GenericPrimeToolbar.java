@@ -26,6 +26,7 @@ import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 
@@ -316,7 +317,8 @@ public class GenericPrimeToolbar extends JToolBar
 
 
 	/**
-	 * TODO - Description
+	 * This function sets selected to false on all {@link JComponent
+	 * JComponents} with the given class.
 	 */
 	public static void untoggleAllOthersButtons(Class<?> actionClass)
 	{

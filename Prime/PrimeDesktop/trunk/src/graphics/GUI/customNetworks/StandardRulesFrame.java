@@ -22,6 +22,7 @@ import graphics.ImageLocator;
 import graphics.PrimeMain;
 
 import java.awt.Button;
+import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -44,10 +45,11 @@ import widgetManipulation.NetworkRules;
 
 
 /**
- * TODO - Description NEEDED!
+ * This {@link JDialog} extension class is used to display the systems standard
+ * {@link NetworkRules}, that will apply to any newly created {@link Canvas},
+ * and facilitate the alteration of those rules.
  * 
  * @author Bahram Malaekeh
- * 
  */
 public class StandardRulesFrame extends JDialog implements ActionListener
 {
@@ -58,8 +60,8 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 
 
 	/**
-	 * TODO - Description NEEDED!
-	 * 
+	 * A constructor the class that initiates and sets up the JDialog and
+	 * necessary information.
 	 */
 	public StandardRulesFrame()
 	{
@@ -158,11 +160,6 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 
 
 
-
-
-
-
-
 	/**
 	 * Creates a JPanel with two buttons that are listened for by the given
 	 * actionlisteners.
@@ -189,8 +186,8 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 
 
 	/**
-	 * TODO - Description
-	 * 
+	 * This save function will read the selected/unselected options and write
+	 * them to the given {@link NetworkRules}.
 	 */
 	private void saveRules(NetworkRules rules)
 	{
@@ -339,7 +336,6 @@ public class StandardRulesFrame extends JDialog implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */

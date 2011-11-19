@@ -13,14 +13,11 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import javax.swing.JCheckBox;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -28,11 +25,13 @@ import javax.swing.JTextField;
 
 import logistical.checkLogic;
 import managment.ComponentsManagment;
+import managment.DesktopCanvasManagment;
 import objects.ExternalHardware;
 import objects.hardwareObjects.Discdrive;
 import objects.hardwareObjects.HDD;
 import objects.hardwareObjects.InternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
+import objects.peripheralObjects.GenericDevice;
 import connections.ConnectionUtils;
 
 
@@ -40,9 +39,8 @@ import connections.ConnectionUtils;
  * TODO - Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * 
  */
-public class GenericDeviceCreation extends JDialog implements ActionListener
+public class GenericDeviceCreation extends JFrame implements ActionListener
 {
 	private ExternalHardware exObject = null;
 
@@ -50,36 +48,34 @@ public class GenericDeviceCreation extends JDialog implements ActionListener
 	private JTextField nameField = new JTextField("");
 
 
-	private JCheckBox supportsWireless = new JCheckBox("Wifi");
+	private JCheckBox supportsWireless = new JCheckBox(ConnectionUtils.Wireless);
 
-	private JCheckBox supportsLAN = new JCheckBox("LAN");
+	private JCheckBox supportsLAN = new JCheckBox(ConnectionUtils.RJ45);
 
-	private JCheckBox supportsCOAX = new JCheckBox("COAX");
+	private JCheckBox supportsUSB = new JCheckBox(ConnectionUtils.USB);
 
-	private JCheckBox supportsFIBER = new JCheckBox("Fiber");
+	private JCheckBox supportsCOAX = new JCheckBox(ConnectionUtils.Coax);
 
-	private JCheckBox containsHDD = new JCheckBox("HDD (1GB)");
+	private JCheckBox supportsFIBER = new JCheckBox(ConnectionUtils.Fiber);
 
-	private JCheckBox containsDiskdrive = new JCheckBox("Diskdriver");
+	private JCheckBox containsHDD = new JCheckBox(
+			PrimeMain.texts.getString("genericDeviceHDDoptionLabel"));
+
+	private JCheckBox containsDiskdrive = new JCheckBox(
+			PrimeMain.texts.getString("discdrive"));
 
 
-	public GenericDeviceCreation(ExternalHardware obj)
+	public GenericDeviceCreation(GenericDevice obj)
 	{
-		this.setTitle("Generic Device Options");
+		this.setTitle(PrimeMain.texts.getString("genericDeviceWindowsTitle"));
 
 		exObject = obj;
 
-		// Get the default toolkit
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-
-		// Get the current screen size
-		Dimension scrnsize = toolkit.getScreenSize();
-
 		// Set size for the settings JFrame
-		Dimension size = new Dimension(240, 390);
+		Dimension size = new Dimension(240, 400);
 
-		int initYLocation = (scrnsize.height - size.height) / 3;
-		int initXLocation = (scrnsize.width - size.width) / 2;
+		int initYLocation = (PrimeMain.scrnsize.height - size.height) / 3;
+		int initXLocation = (PrimeMain.scrnsize.width - size.width) / 2;
 
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -114,18 +110,8 @@ public class GenericDeviceCreation extends JDialog implements ActionListener
 		this.setPreferredSize(size);
 		this.setLocation(initXLocation, initYLocation);
 		this.setMinimumSize(size);
+		this.pack();
 		this.setVisible(true);
-
-
-		// Resets the ruleFrame object when closed.
-		this.addWindowListener(new WindowAdapter()
-		{
-			@Override
-			public void windowClosing(WindowEvent ev)
-			{
-
-			}
-		});
 	}
 
 
@@ -150,7 +136,8 @@ public class GenericDeviceCreation extends JDialog implements ActionListener
 		d.gridx = 0; // column
 
 
-		JLabel deviceName = new JLabel("Name of the Device:");
+		JLabel deviceName = new JLabel(
+				PrimeMain.texts.getString("genericDeviceNameLabel"));
 		d.gridy++; // row
 		optionsPanel.add(deviceName, d);
 
@@ -159,7 +146,8 @@ public class GenericDeviceCreation extends JDialog implements ActionListener
 
 
 		// The question asked
-		JLabel Question = new JLabel("What does the device support?");
+		JLabel Question = new JLabel(
+				PrimeMain.texts.getString("genericDeviceSupportsLabel"));
 		d.insets = new Insets(10, 15, 5, 0); // padding
 		d.gridy++; // row
 		optionsPanel.add(Question, d);
@@ -171,6 +159,9 @@ public class GenericDeviceCreation extends JDialog implements ActionListener
 
 		d.gridy++; // row
 		optionsPanel.add(supportsLAN, d);
+
+		d.gridy++; // row
+		optionsPanel.add(supportsUSB, d);
 
 		d.gridy++; // row
 		optionsPanel.add(supportsCOAX, d);
@@ -245,7 +236,13 @@ public class GenericDeviceCreation extends JDialog implements ActionListener
 				exObject.setDescription(nameField.getText());
 
 				// Sets the object
-				setSelectedOptions();
+				if ( setSelectedOptions() )
+				{
+					DesktopCanvasManagment.runAllCanvasNameUpdate();
+					PrimeMain.updatePropertiesCanvasArea(true);
+
+					this.dispose();
+				}
 			}
 			else
 			{
@@ -262,12 +259,11 @@ public class GenericDeviceCreation extends JDialog implements ActionListener
 	}
 
 
-
 	/**
 	 * This function reads all the options provided by the user and then creates
 	 * the necessary devices and ports on this class {@link ExternalHardware}.
 	 */
-	private void setSelectedOptions()
+	private boolean setSelectedOptions()
 	{
 		if ( exObject != null )
 		{
@@ -297,6 +293,12 @@ public class GenericDeviceCreation extends JDialog implements ActionListener
 						nic.setType(ConnectionUtils.RJ45);
 
 						exObject.addComponent(nic);
+					}
+
+					if ( supportsUSB.isSelected() )
+					{
+						mb.setMaxUSBs(1);
+						mb.setUSBPortsAvailable(1);
 					}
 
 					if ( supportsCOAX.isSelected() )
@@ -342,6 +344,9 @@ public class GenericDeviceCreation extends JDialog implements ActionListener
 					// device.
 					exObject.revalidateSupportedConnectionInterfaces();
 				}
+
+
+				return true;
 			}
 			catch ( MotherboardNotFound e )
 			{
@@ -349,5 +354,8 @@ public class GenericDeviceCreation extends JDialog implements ActionListener
 				e.printStackTrace();
 			}
 		}
+
+		// No exObject exists
+		return false;
 	}
 }

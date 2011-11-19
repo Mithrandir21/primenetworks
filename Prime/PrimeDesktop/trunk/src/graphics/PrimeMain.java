@@ -202,6 +202,10 @@ public class PrimeMain extends JFrame
 	// The GhostGlass that will show the moving device(for D'n'D).
 	public static GhostGlassPane glassPane;
 
+	// Get the current screen size
+	public static Dimension scrnsize = Toolkit.getDefaultToolkit()
+			.getScreenSize();
+
 	// The listening agent that will listen to agent coms
 	public static PluginMain pluginMan = new PluginMain();
 
@@ -1011,9 +1015,9 @@ public class PrimeMain extends JFrame
 	}
 
 	/**
-	 * This function attempts to stop the queue of plugins.
-	 * It stops the queue from receiving new plugin jobs. The plugin manager
-	 * will automatically finish the remaining plugins.
+	 * This function attempts to stop the queue of plugins. It stops the queue
+	 * from receiving new plugin jobs. The plugin manager will automatically
+	 * finish the remaining plugins.
 	 */
 	private static void stopPluginQueue()
 	{

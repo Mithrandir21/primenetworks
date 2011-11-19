@@ -421,4 +421,61 @@ public class CanvasManagment
 
 		return false;
 	}
+
+
+
+
+
+	/**
+	 * This function will go through each object on the given
+	 * {@link WorkareaCanvas} and check if the name of the given {@link Object}.
+	 * If it does, it creates a new name and checks it against all the other
+	 * names.
+	 */
+	public static String getNextAvailableObjectName(Object obj,
+			WorkareaCanvas canvas)
+	{
+		String newName = null;
+
+		if ( obj != null && canvas != null )
+		{
+			// The number to be added to the end of the new name
+			int number = 0;
+
+			// The initial new name
+			newName = obj.getObjectName();
+
+			Object canvasObjects[] = canvas.getObjectsOnTheScene();
+
+			// If an object was found that had the same name
+			boolean foundMatch = false;
+
+			// While no name has been chosen.
+			do
+			{
+				foundMatch = false;
+
+				for ( int i = 0; i < canvasObjects.length; i++ )
+				{
+					if ( canvasObjects[i] != null )
+					{
+						// If the name of the object is the same the newName
+						if ( canvasObjects[i].getObjectName().equals(newName) )
+						{
+							foundMatch = true;
+
+							number++;
+
+							// Creates a new newName
+							newName = obj.getObjectName() + number;
+						}
+					}
+				}
+			}
+			while ( foundMatch );
+		}
+
+
+		return newName;
+	}
 }

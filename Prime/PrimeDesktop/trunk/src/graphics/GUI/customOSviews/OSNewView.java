@@ -49,7 +49,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import managment.DesktopSoftwareManagment;
-import objects.Object;
 import objects.Software;
 import objects.softwareObjects.OperatingSystem;
 
@@ -89,11 +88,6 @@ public class OSNewView extends JDialog implements SoftwareView, ActionListener
 
 	/**
 	 * Constructor for the software view.
-	 * 
-	 * @param obj
-	 *            The main {@link Object object}.
-	 * @param OS
-	 *            The {@link OperatingSystem OperatingSystem} software.
 	 */
 	public OSNewView()
 	{
@@ -351,6 +345,10 @@ public class OSNewView extends JDialog implements SoftwareView, ActionListener
 	}
 
 
+	/*
+	 * (non-Javadoc)
+	 * @see graphics.GUI.objectView.Software.SoftwareView#save()
+	 */
 	@Override
 	public void save()
 	{
@@ -381,6 +379,12 @@ public class OSNewView extends JDialog implements SoftwareView, ActionListener
 		mainOS.setIs64bit(is64bit.isSelected());
 	}
 
+
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -419,7 +423,6 @@ public class OSNewView extends JDialog implements SoftwareView, ActionListener
 	{
 		/*
 		 * (non-Javadoc)
-		 * 
 		 * @see
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)
@@ -450,8 +453,8 @@ public class OSNewView extends JDialog implements SoftwareView, ActionListener
 
 
 	/**
-	 * TODO - Description
-	 * 
+	 * This function determines if the information provided by the user in this
+	 * class is valid for the creation of a Custom {@link OperatingSystem}.
 	 */
 	public boolean validateCustomOS()
 	{
@@ -506,6 +509,11 @@ public class OSNewView extends JDialog implements SoftwareView, ActionListener
 		return true;
 	}
 
+
+	/*
+	 * (non-Javadoc)
+	 * @see graphics.GUI.objectView.Software.SoftwareView#getViewSoftware()
+	 */
 	@Override
 	public Software getViewSoftware()
 	{

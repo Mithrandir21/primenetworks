@@ -33,7 +33,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import objects.ExternalHardware;
 import objects.Object;
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
@@ -46,6 +45,7 @@ import objects.infrastructureObjects.Switch;
 import objects.infrastructureObjects.WirelessRouter;
 import objects.peripheralObjects.ExternalHDD;
 import objects.peripheralObjects.Fax;
+import objects.peripheralObjects.GenericDevice;
 import objects.peripheralObjects.MultifunctionPrinter;
 import objects.peripheralObjects.NetworkMultifunctionPrinter;
 import objects.peripheralObjects.NetworkPrinter;
@@ -91,27 +91,16 @@ public class ObjectSelection extends JPanel
 	 */
 	public ObjectSelection()
 	{
-		setupObjectsGroups(null, false);
+		setupObjectsGroups(null, false, false);
 	}
 
 
 	/**
 	 * TODO - Description NEEDED!
 	 */
-	public ObjectSelection(boolean transferable)
+	public ObjectSelection(boolean transferable, boolean customObjects)
 	{
-		setupObjectsGroups(null, transferable);
-	}
-
-
-	/**
-	 * TODO - Description NEEDED!
-	 * 
-	 * @param mouseLis
-	 */
-	public ObjectSelection(MouseListener mouseLis)
-	{
-		setupObjectsGroups(mouseLis, false);
+		setupObjectsGroups(null, transferable, customObjects);
 	}
 
 
@@ -120,16 +109,29 @@ public class ObjectSelection extends JPanel
 	 * 
 	 * @param mouseLis
 	 */
-	public ObjectSelection(MouseListener mouseLis, boolean transferable)
+	public ObjectSelection(MouseListener mouseLis, boolean customObjects)
 	{
-		setupObjectsGroups(mouseLis, transferable);
+		setupObjectsGroups(mouseLis, false, customObjects);
+	}
+
+
+	/**
+	 * TODO - Description NEEDED!
+	 * 
+	 * @param mouseLis
+	 */
+	public ObjectSelection(MouseListener mouseLis, boolean transferable,
+			boolean customObjects)
+	{
+		setupObjectsGroups(mouseLis, transferable, customObjects);
 	}
 
 
 	/**
 	 * TODO - Description
 	 */
-	private void setupObjectsGroups(MouseListener mouseLis, boolean transferable)
+	private void setupObjectsGroups(MouseListener mouseLis,
+			boolean transferable, boolean customObjects)
 	{
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints d = new GridBagConstraints();
@@ -169,9 +171,11 @@ public class ObjectSelection extends JPanel
 		// // Adds the group panel to the collapsible container
 		// tpc.add(initRackButtonIcons(mouseLis, transferable));
 
-		// Adds the group panel to the collapsible container
-		tpc.add(initGeneralObjectsButtonIcons(mouseLis, transferable));
-
+		if ( customObjects )
+		{
+			// Adds the group panel to the collapsible container
+			tpc.add(initGeneralObjectsButtonIcons(mouseLis, transferable));
+		}
 
 
 		JScrollPane scrollArea = new JScrollPane(tpc);
@@ -303,7 +307,10 @@ public class ObjectSelection extends JPanel
 		ArrayList<WidgetIcon> iconsList = new ArrayList<WidgetIcon>();
 
 		iconsList.add(makeImageIcon(ImageLocator.getImageIconObject("Unknown"),
-				ExternalHardware.class, "Unknown", mouseLis, transferable));
+				GenericDevice.class,
+				PrimeMain.texts.getString("selectAreaUnknownDeviceLabel"),
+				PrimeMain.texts.getString("selectAreaUnknownDeviceLabel"),
+				mouseLis, transferable));
 
 		WidgetIcon[] widIcons = new WidgetIcon[iconsList.size()];
 		iconsList.toArray(widIcons);
@@ -448,6 +455,57 @@ public class ObjectSelection extends JPanel
 			try
 			{
 				iconButton = new WidgetIcon(Icon, objectType, objectName);
+
+				// Adds the given mouselistener if its not null
+				if ( mouseLis != null )
+				{
+					iconButton.addMouseListener(mouseLis);
+				}
+			}
+			catch ( Exception e )
+			{
+				System.out.println("NullPointerException"
+						+ " - ObjectSelection " + " - " + objectType
+						+ System.getProperty("line.separator"));
+				System.exit(0);
+			}
+
+
+			if ( transferable )
+			{
+				// Sets up the WidgetIcon
+				GraphicalFunctions.widgetIconSetup(iconButton, Icon);
+			}
+
+			iconButton.setSize(Icon.getIconWidth(), Icon.getIconHeight());
+
+			// iconButton.setVerticalTextPosition(AbstractButton.BOTTOM);
+			// iconButton.setHorizontalTextPosition(AbstractButton.CENTER);
+			iconButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+			iconButton.setAlignmentY(Component.TOP_ALIGNMENT);
+			// iconButton.setBorder(grayline);
+		}
+
+		return iconButton;
+	}
+
+
+
+	/**
+	 * TODO - Description
+	 */
+	@SuppressWarnings("unchecked")
+	private WidgetIcon makeImageIcon(ImageIcon Icon, Class<?> objectType,
+			String objectName, String desc, MouseListener mouseLis,
+			boolean transferable)
+	{
+		WidgetIcon iconButton = null;
+
+		if ( Icon != null && objectType != null )
+		{
+			try
+			{
+				iconButton = new WidgetIcon(Icon, objectType, objectName, desc);
 
 				// Adds the given mouselistener if its not null
 				if ( mouseLis != null )

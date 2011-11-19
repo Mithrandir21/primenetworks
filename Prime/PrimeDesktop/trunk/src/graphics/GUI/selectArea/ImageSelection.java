@@ -68,30 +68,73 @@ public class ImageSelection extends TransferHandler
 		{
 			WidgetIcon icon = (WidgetIcon) comp;
 
+			/**
+			 * Step 1: If the gotten WidgetIcon is a GenericDevice and the type
+			 * is "Unknown", the user has to select an Icon. If the type is
+			 * anything other then "Unknown" the icon provided will be used.
+			 * Step 2: If the gotten WidgetIcon is not a GenericDevice, a
+			 * standard object will be created.
+			 */
+
 			if ( PrimeMain.currentCanvas != null )
 			{
-				Object newObject = CreateObjects.CreateObject(icon,
-						PrimeMain.currentCanvas.getNumberOfWidgetsOnTheScene());
-
-				// if the object is not a GenericDevice object
-				if ( !(newObject instanceof GenericDevice) )
+				if ( icon != null )
 				{
-					return new WidgetObject(PrimeMain.currentCanvas.getScene(),
-							newObject, icon.getIconImage());
-				}
-				else
-				{
-					ImageIcon genericIcon = GraphicalFunctions
-							.userIconSelection(null);
-
-					if ( genericIcon == null )
+					// Step 1.
+					// If the device selected was a GenericDevice object
+					if ( icon.getClassType().equals(GenericDevice.class) )
 					{
-						genericIcon = ImageLocator
-								.getImageIconObject("Unknown");
-					}
+						Object newObject = null;
 
-					return new WidgetObject(PrimeMain.currentCanvas.getScene(),
-							newObject, genericIcon.getImage());
+						ImageIcon genericIcon = ImageLocator
+								.getImageIconObject("Unknown");
+
+						WidgetIcon genIcon = icon;
+
+						// If it is an "Unknown" device
+						if ( icon
+								.getDescription()
+								.equals(PrimeMain.texts
+										.getString("selectAreaUnknownDeviceLabel")) )
+						{
+							// Ask the to select an Icon
+							ImageIcon iconTemp = GraphicalFunctions
+									.userIconSelection(null);
+
+							// If the user selected a valid image
+							if ( iconTemp != null )
+							{
+								genericIcon = iconTemp;
+							}
+
+							// Creates a new WidgetIcon with the user-selected
+							// Icon
+							genIcon = new WidgetIcon(genericIcon,
+									icon.getClassType(), icon.getDescription());
+						}
+
+						// Creates the new Object
+						newObject = CreateObjects.CreateObject(genIcon,
+								PrimeMain.currentCanvas
+										.getNumberOfWidgetsOnTheScene());
+
+						WidgetObject widObj = new WidgetObject(
+								PrimeMain.currentCanvas.getScene(), newObject,
+								genIcon.getIconImage());
+
+						return widObj;
+					}
+					// Step 2.
+					else
+					{
+						Object newObject = CreateObjects.CreateObject(icon,
+								PrimeMain.currentCanvas
+										.getNumberOfWidgetsOnTheScene());
+
+						return new WidgetObject(
+								PrimeMain.currentCanvas.getScene(), newObject,
+								icon.getIconImage());
+					}
 				}
 			}
 
@@ -99,5 +142,4 @@ public class ImageSelection extends TransferHandler
 		}
 		return null;
 	}
-
 }

@@ -27,9 +27,8 @@ import javax.swing.JLabel;
 
 /**
  * The WidgetIcon class represents an JLabel based icon that represents an
- * {@link objects.Object
- * Object} within the system. This is a dragable object that can be dropped
- * within the {@link widgets.WorkareaCanvas Canvas}.
+ * {@link objects.Object Object} within the system. This is a dragable object
+ * that can be dropped within the {@link widgets.WorkareaCanvas Canvas}.
  * 
  * @author Bahram Malaekeh
  */
@@ -56,10 +55,9 @@ public class WidgetIcon extends JLabel
 
 	/**
 	 * A constructor that creates a JLabel icon with the given ImageIcon and
-	 * sets the classType of
-	 * the represented {@link objects.Object Object}. The constructor also adds
-	 * a mouseListener and
-	 * sets a transferhandler for the JLabel icon.
+	 * sets the classType of the represented {@link objects.Object Object}. The
+	 * constructor also adds a mouseListener and sets a transferhandler for the
+	 * JLabel icon.
 	 * 
 	 * @param icon
 	 *            The icon that is to represent the {@link objects.Object
@@ -79,10 +77,9 @@ public class WidgetIcon extends JLabel
 
 	/**
 	 * A constructor that creates a JLabel icon with the given ImageIcon, sets
-	 * the classType of the
-	 * represented {@link objects.Object Object} and gives the JLabel icon a
-	 * name. The constructor
-	 * also adds a mouseListener and sets a transferhandler for the JLabel icon.
+	 * the classType of the represented {@link objects.Object Object} and gives
+	 * the JLabel icon a name. The constructor also adds a mouseListener and
+	 * sets a transferhandler for the JLabel icon.
 	 * 
 	 * @param icon
 	 *            The icon that is to represent the {@link objects.Object
@@ -104,12 +101,10 @@ public class WidgetIcon extends JLabel
 
 	/**
 	 * A constructor that creates a JLabel icon with the given ImageIcon, sets
-	 * the classType of the
-	 * represented {@link objects.Object Object}, gives the JLabel icon a name
-	 * and sets a
-	 * description of the object representer. The constructor also adds a
-	 * mouseListener and sets a
-	 * transferhandler for the JLabel icon.
+	 * the classType of the represented {@link objects.Object Object}, gives the
+	 * JLabel icon a name and sets a description of the object representer. The
+	 * constructor also adds a mouseListener and sets a transferhandler for the
+	 * JLabel icon.
 	 * 
 	 * @param icon
 	 *            The icon that is to represent the {@link objects.Object

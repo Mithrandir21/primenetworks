@@ -19,6 +19,7 @@ package graphics.GUI.workareaCanvas.providers.workareaProviders.jMenuCanvas;
 
 
 import graphics.GraphicalFunctions;
+import graphics.ImageLocator;
 import graphics.PrimeMain;
 import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
@@ -41,6 +42,7 @@ import objects.infrastructureObjects.Router;
 import objects.infrastructureObjects.Switch;
 import objects.peripheralObjects.ExternalHDD;
 import objects.peripheralObjects.Fax;
+import objects.peripheralObjects.GenericDevice;
 import objects.peripheralObjects.MultifunctionPrinter;
 import objects.peripheralObjects.NetworkMultifunctionPrinter;
 import objects.peripheralObjects.NetworkPrinter;
@@ -99,7 +101,6 @@ public class WorkareaCanvasActionListener implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -109,6 +110,8 @@ public class WorkareaCanvasActionListener implements ActionListener
 		JMenuItem action = (JMenuItem) e.getSource();
 
 		String actionName = "";
+
+		boolean customObject = false;
 
 
 		if ( action.getActionCommand() != null )
@@ -313,6 +316,26 @@ public class WorkareaCanvasActionListener implements ActionListener
 			{
 				objectType = NetworkMultifunctionPrinter.class;
 				objectIcon = PrimeMain.objectImageIcons.get(objectType);
+
+				set = true;
+			}
+			else if ( actionName.equals("CreateNewST_GenericDevice_Item") )
+			{
+				objectType = GenericDevice.class;
+
+				ImageIcon genericIcon = ImageLocator
+						.getImageIconObject("Unknown");
+
+				// Ask the to select an Icon
+				ImageIcon iconTemp = GraphicalFunctions.userIconSelection(null);
+
+				// If the user selected a valid image
+				if ( iconTemp != null )
+				{
+					genericIcon = iconTemp;
+				}
+
+				objectIcon = genericIcon;
 
 				set = true;
 			}

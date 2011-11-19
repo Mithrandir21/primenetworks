@@ -41,6 +41,7 @@ import javax.swing.JScrollPane;
 import managment.DesktopFileManagment;
 import managment.RulesManagment;
 
+import org.jdesktop.swingx.JXTaskPane;
 import org.jdesktop.swingx.JXTaskPaneContainer;
 
 import widgetManipulation.NetworkRules;
@@ -48,7 +49,8 @@ import widgets.WorkareaCanvas;
 
 
 /**
- * TODO - Description NEEDED!
+ * This {@link JDialog} extension class is used to display a set of
+ * {@link NetworkRules} and facilitate the alteration of those rules.
  * 
  * @author Bahram Malaekeh
  */
@@ -67,7 +69,8 @@ public class NetworkRulesFrame extends JDialog implements ActionListener
 
 
 	/**
-	 * TODO - Description NEEDED!
+	 * A constructor the class that initiates and sets up the JDialog and
+	 * necessary information.
 	 */
 	public NetworkRulesFrame(WorkareaCanvas canvas)
 	{
@@ -149,7 +152,9 @@ public class NetworkRulesFrame extends JDialog implements ActionListener
 
 
 	/**
-	 * TODO - Description
+	 * This function will initiated the {@link JXTaskPaneContainer} and add the
+	 * different {@link JXTaskPane} panel with the different
+	 * {@link NetworkRules} options.
 	 */
 	private JXTaskPaneContainer createRulesTabes()
 	{
@@ -162,11 +167,6 @@ public class NetworkRulesFrame extends JDialog implements ActionListener
 
 		return tpc;
 	}
-
-
-
-
-
 
 
 
@@ -196,151 +196,163 @@ public class NetworkRulesFrame extends JDialog implements ActionListener
 
 
 	/**
-	 * TODO - Description
+	 * This save function will read the selected/unselected options and write
+	 * them to the given {@link NetworkRules}.
 	 */
 	private void saveRules(NetworkRules rules)
 	{
 		// HARDWARE RULES
-
-
-		// The USB not allowed rule
-		rules.setUSBnotAllowed(HardwareRulesPanel.USBnotAllowedBox.isSelected());
-
-		// The USB ports number
-		if ( HardwareRulesPanel.USBports.getSelectedItem().toString()
-				.equals("Unlimited") )
+		if ( rules != null )
 		{
-			rules.setUSBportsAllowed(-1);
+
+			// The USB not allowed rule
+			rules.setUSBnotAllowed(HardwareRulesPanel.USBnotAllowedBox
+					.isSelected());
+
+			// The USB ports number
+			if ( HardwareRulesPanel.USBports.getSelectedItem().toString()
+					.equals("Unlimited") )
+			{
+				rules.setUSBportsAllowed(-1);
+			}
+			else
+			{
+				rules.setUSBportsAllowed(Integer
+						.parseInt(HardwareRulesPanel.USBports.getSelectedItem()
+								.toString()));
+			}
+
+
+
+			// The LAN not allowed rule
+			rules.setLANnotAllowed(HardwareRulesPanel.LANnotAllowedBox
+					.isSelected());
+
+			// The LAN ports number
+			if ( HardwareRulesPanel.LANports.getSelectedItem().toString()
+					.equals("Unlimited") )
+			{
+				rules.setLANportsAllowed(-1);
+			}
+			else
+			{
+				rules.setLANportsAllowed(Integer
+						.parseInt(HardwareRulesPanel.LANports.getSelectedItem()
+								.toString()));
+			}
+
+
+			// SOFTWARE RULES
+
+			// // OS restriction
+			// rules
+			// .setOSrestriction(SoftwareRulesPanel.OSrestrictionBox
+			// .isSelected());
+			//
+			// if ( rules.isOSrestriction() )
+			// {
+			// rules.setOSrestrictedName(SoftwareRulesPanel.OSresName.getText());
+			// }
+			// else
+			// {
+			// rules.setOSrestrictedName("");
+			// }
+			//
+			//
+			// // AV restriction
+			// rules
+			// .setAVrestriction(SoftwareRulesPanel.AVrestrictionBox
+			// .isSelected());
+			//
+			// if ( rules.isAVrestriction() )
+			// {
+			// rules.setAVrestrictedName(SoftwareRulesPanel.AVresName.getText());
+			// }
+			// else
+			// {
+			// rules.setAVrestrictedName("");
+			// }
+			//
+			//
+			// // FW restriction
+			// rules
+			// .setFWrestriction(SoftwareRulesPanel.FWrestrictionBox
+			// .isSelected());
+			//
+			// if ( rules.isFWrestriction() )
+			// {
+			// rules.setFWrestrictedName(SoftwareRulesPanel.FWresName.getText());
+			// }
+			// else
+			// {
+			// rules.setFWrestrictedName("");
+			// }
+			//
+			//
+			// // Email restriction
+			// rules.setEMailRestriction(SoftwareRulesPanel.EmailRestrictionBox
+			// .isSelected());
+			//
+			// if ( rules.isEMailRestriction() )
+			// {
+			// rules.setEMailRestrictedName(SoftwareRulesPanel.EmailResName
+			// .getText());
+			// }
+			// else
+			// {
+			// rules.setEMailRestrictedName("");
+			// }
+			//
+			//
+			// // Office suite restriction
+			// rules
+			// .setOfficeSuiteRestriction(SoftwareRulesPanel.OfficeSuiteRestrictionBox
+			// .isSelected());
+			//
+			// if ( rules.isOfficeSuiteRestriction() )
+			// {
+			// rules
+			// .setOfficeSuiteRestrictedName(SoftwareRulesPanel.OfficeSuiteResName
+			// .getText());
+			// }
+			// else
+			// {
+			// rules.setOfficeSuiteRestrictedName("");
+			// }
+
+
+
+			// INFRASTRUCTURE RULES
+
+			// Internet allowed
+			rules.setCanConnectToInternet(InfrastructureRulesPanel.internetAllowedBox
+					.isSelected());
+
+			// // Antivirus before internet
+			// rules
+			// .setMustHaveAVbeforeInternet(InfrastructureRulesPanel.AVbeforeInternet
+			// .isSelected());
+			//
+			// // Firewall before internet
+			// rules
+			// .setMustHaveFWbeforeInternet(InfrastructureRulesPanel.FWbeforeInternet
+			// .isSelected());
+
+			// Hub allowed
+			rules.setCanContainHub(InfrastructureRulesPanel.hubAllowed
+					.isSelected());
+
+			// Wireless allowed
+			rules.setCanContainWirelessRouter(InfrastructureRulesPanel.wirelessAllowed
+					.isSelected());
 		}
 		else
 		{
-			rules.setUSBportsAllowed(Integer
-					.parseInt(HardwareRulesPanel.USBports.getSelectedItem()
-							.toString()));
+			System.err
+					.println("NetworkRulesFrame - Given NetworkRules == NULL");
 		}
-
-
-
-		// The LAN not allowed rule
-		rules.setLANnotAllowed(HardwareRulesPanel.LANnotAllowedBox.isSelected());
-
-		// The LAN ports number
-		if ( HardwareRulesPanel.LANports.getSelectedItem().toString()
-				.equals("Unlimited") )
-		{
-			rules.setLANportsAllowed(-1);
-		}
-		else
-		{
-			rules.setLANportsAllowed(Integer
-					.parseInt(HardwareRulesPanel.LANports.getSelectedItem()
-							.toString()));
-		}
-
-
-		// SOFTWARE RULES
-
-		// // OS restriction
-		// rules
-		// .setOSrestriction(SoftwareRulesPanel.OSrestrictionBox
-		// .isSelected());
-		//
-		// if ( rules.isOSrestriction() )
-		// {
-		// rules.setOSrestrictedName(SoftwareRulesPanel.OSresName.getText());
-		// }
-		// else
-		// {
-		// rules.setOSrestrictedName("");
-		// }
-		//
-		//
-		// // AV restriction
-		// rules
-		// .setAVrestriction(SoftwareRulesPanel.AVrestrictionBox
-		// .isSelected());
-		//
-		// if ( rules.isAVrestriction() )
-		// {
-		// rules.setAVrestrictedName(SoftwareRulesPanel.AVresName.getText());
-		// }
-		// else
-		// {
-		// rules.setAVrestrictedName("");
-		// }
-		//
-		//
-		// // FW restriction
-		// rules
-		// .setFWrestriction(SoftwareRulesPanel.FWrestrictionBox
-		// .isSelected());
-		//
-		// if ( rules.isFWrestriction() )
-		// {
-		// rules.setFWrestrictedName(SoftwareRulesPanel.FWresName.getText());
-		// }
-		// else
-		// {
-		// rules.setFWrestrictedName("");
-		// }
-		//
-		//
-		// // Email restriction
-		// rules.setEMailRestriction(SoftwareRulesPanel.EmailRestrictionBox
-		// .isSelected());
-		//
-		// if ( rules.isEMailRestriction() )
-		// {
-		// rules.setEMailRestrictedName(SoftwareRulesPanel.EmailResName
-		// .getText());
-		// }
-		// else
-		// {
-		// rules.setEMailRestrictedName("");
-		// }
-		//
-		//
-		// // Office suite restriction
-		// rules
-		// .setOfficeSuiteRestriction(SoftwareRulesPanel.OfficeSuiteRestrictionBox
-		// .isSelected());
-		//
-		// if ( rules.isOfficeSuiteRestriction() )
-		// {
-		// rules
-		// .setOfficeSuiteRestrictedName(SoftwareRulesPanel.OfficeSuiteResName
-		// .getText());
-		// }
-		// else
-		// {
-		// rules.setOfficeSuiteRestrictedName("");
-		// }
-
-
-
-		// INFRASTRUCTURE RULES
-
-		// Internet allowed
-		rules.setCanConnectToInternet(InfrastructureRulesPanel.internetAllowedBox
-				.isSelected());
-
-		// // Antivirus before internet
-		// rules
-		// .setMustHaveAVbeforeInternet(InfrastructureRulesPanel.AVbeforeInternet
-		// .isSelected());
-		//
-		// // Firewall before internet
-		// rules
-		// .setMustHaveFWbeforeInternet(InfrastructureRulesPanel.FWbeforeInternet
-		// .isSelected());
-
-		// Hub allowed
-		rules.setCanContainHub(InfrastructureRulesPanel.hubAllowed.isSelected());
-
-		// Wireless allowed
-		rules.setCanContainWirelessRouter(InfrastructureRulesPanel.wirelessAllowed
-				.isSelected());
 	}
+
 
 
 	/*

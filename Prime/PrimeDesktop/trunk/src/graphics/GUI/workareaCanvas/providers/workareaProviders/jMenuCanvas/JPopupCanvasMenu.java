@@ -163,13 +163,18 @@ public class JPopupCanvasMenu
 		submenuAdd.add(submenuPeripheral);
 
 
+		JMenuItem submenuCustom = createAddCustomDevices(new JMenu(
+				PrimeMain.texts.getString("canvasMenuAddGenericDevice")));
+		submenuAdd.add(submenuCustom);
+
+
 
 		popup.add(submenuAdd);
 	}
 
 
 	/**
-	 * Creates the menus for the creation desktop objects.
+	 * Creates the menus for the creation of desktop objects.
 	 */
 	private JMenuItem createAddDesktop(JMenuItem submenuDesktop)
 	{
@@ -198,7 +203,7 @@ public class JPopupCanvasMenu
 
 
 	/**
-	 * Creates the menus for the creation server objects.
+	 * Creates the menus for the creation of server objects.
 	 */
 	private JMenuItem createAddServer(JMenuItem submenuServer)
 	{
@@ -268,7 +273,7 @@ public class JPopupCanvasMenu
 
 
 	/**
-	 * Creates the menus for the creation infrastructur objects.
+	 * Creates the menus for the creation of infrastructur objects.
 	 */
 	private JMenuItem createAddInfrastructur(JMenuItem submenuInfrastructur)
 	{
@@ -312,7 +317,7 @@ public class JPopupCanvasMenu
 
 
 	/**
-	 * Creates the menus for the creation peripheral objects.
+	 * Creates the menus for the creation of peripheral objects.
 	 */
 	private JMenuItem createAddPeripheral(JMenuItem submenuPeripheral)
 	{
@@ -353,6 +358,24 @@ public class JPopupCanvasMenu
 		menuItem = new JMenuItem(
 				PrimeMain.texts.getString("networkMultifunctionPrinter"));
 		menuItem.setActionCommand("CreateNewST_NetworkMFP_Item");
+		menuItem.addActionListener(canvasActListener);
+		submenuPeripheral.add(menuItem);
+
+		return submenuPeripheral;
+	}
+
+
+
+
+	/**
+	 * Creates the menus for the creation of custom objects.
+	 */
+	private JMenuItem createAddCustomDevices(JMenuItem submenuPeripheral)
+	{
+		JMenuItem menuItem = new JMenuItem();
+
+		menuItem = new JMenuItem(PrimeMain.texts.getString("genericDevice"));
+		menuItem.setActionCommand("CreateNewST_GenericDevice_Item");
 		menuItem.addActionListener(canvasActListener);
 		submenuPeripheral.add(menuItem);
 

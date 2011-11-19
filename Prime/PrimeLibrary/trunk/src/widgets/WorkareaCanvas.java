@@ -721,12 +721,12 @@ public class WorkareaCanvas extends JPanel
 	/**
 	 * Sets the current widgetObject.
 	 * 
-	 * @param currentWidgetObject
+	 * @param givenWidgetObject
 	 */
-	public void setCurrentWidgetObject(WidgetObject currentWidgetObject)
+	public void setCurrentWidgetObject(WidgetObject givenWidgetObject)
 	{
 		// If the given WidgetObject is null
-		if ( currentWidgetObject == null )
+		if ( givenWidgetObject == null )
 		{
 			// If the current selected widgetObject is not null
 			if ( this.currentWidgetObject != null )
@@ -749,7 +749,7 @@ public class WorkareaCanvas extends JPanel
 			}
 
 			// The now currently selected widgetObject is given a border
-			this.currentWidgetObject = currentWidgetObject;
+			this.currentWidgetObject = givenWidgetObject;
 			// this.currentWidgetObject.setBorder(BorderFactory
 			// .createRoundedBorder(7, 7, Color.white, Color.black));
 		}

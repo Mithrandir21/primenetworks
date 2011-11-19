@@ -71,7 +71,7 @@ public class WorkareaCanvasActions
 		newObject.setPreferredLocation(sceneLocation);
 
 		// Sets the location of the object
-		newObject.getObject().setLocation(sceneLocation);
+
 
 		newObject.setLabel(newObject.getObject().getObjectName());
 
@@ -151,11 +151,12 @@ public class WorkareaCanvasActions
 			if ( canvas != null )
 			{
 				return updateWidgetObjectCanvasName(canvas,
-						widgetObj.getObject(), name);
+						widgetObj.getObject(), name, false);
 			}
 		}
 		return null;
 	}
+
 
 	/**
 	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on
@@ -169,7 +170,26 @@ public class WorkareaCanvasActions
 	public static Object updateWidgetObjectCanvasName(WorkareaCanvas canvas,
 			WidgetObject widgetObj, String name)
 	{
-		return updateWidgetObjectCanvasName(canvas, widgetObj.getObject(), name);
+		return updateWidgetObjectCanvasName(canvas, widgetObj.getObject(),
+				name, false);
+	}
+
+
+
+	/**
+	 * Updates the LabelWidget that shows the widgetObjects name on the Scene on
+	 * the canvas. This method finds the WidgetObject that contains the given
+	 * object in all the different canvases.
+	 * 
+	 * @param widgetObj
+	 * @param name
+	 * @return The object with the updated name
+	 */
+	public static Object updateWidgetObjectCanvasName(WorkareaCanvas canvas,
+			WidgetObject widgetObj, String name, boolean override)
+	{
+		return updateWidgetObjectCanvasName(canvas, widgetObj.getObject(),
+				name, override);
 	}
 
 
@@ -185,7 +205,7 @@ public class WorkareaCanvasActions
 	 * @return The object with the updated name
 	 */
 	public static Object updateWidgetObjectCanvasName(WorkareaCanvas canvas,
-			Object obj, String name)
+			Object obj, String name, boolean override)
 	{
 		if ( obj != null )
 		{
@@ -193,7 +213,7 @@ public class WorkareaCanvasActions
 					canvas);
 
 
-			if ( !(obj.getObjectName().equals(name)) )
+			if ( override || !(obj.getObjectName().equals(name)) )
 			{
 				LabelWidget label = widgetObj.getLabelWidget();
 
