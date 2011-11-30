@@ -60,9 +60,7 @@ import connections.WidgetExtendedConnection;
  * the canvas. The widget will then be placed inside a {@link WidgetObject
  * WidgetObject} and a standard object will be created. The object class depends
  * on the class of the dragged widget. The object will be created and place
- * within the WidgetObject.
- * 
- * Date 09/07/2010S
+ * within the WidgetObject. Date 09/07/2010S
  * 
  * @author Bahram Malaekeh
  * @version 1.0
@@ -132,6 +130,9 @@ public class WorkareaCanvas extends JPanel
 
 	// The Groups of users that the network operates with
 	private ArrayList<Group> networkGroups;
+
+	// The boolean that says whether this canvas a free-draw canvas
+	private boolean freeDraw = false;
 
 
 	/**
@@ -394,6 +395,15 @@ public class WorkareaCanvas extends JPanel
 	public NetworkRules getRules()
 	{
 		return rules;
+	}
+
+
+	/**
+	 * Gets the boolean on whether or not this canvas is a free-draw canvas.
+	 */
+	public boolean isFreeDraw()
+	{
+		return freeDraw;
 	}
 
 
@@ -804,6 +814,15 @@ public class WorkareaCanvas extends JPanel
 	public void setRules(NetworkRules rules)
 	{
 		this.rules = rules;
+	}
+
+
+	/**
+	 * Sets the boolean on whether or not this canvas is a Free-Draw canvas.
+	 */
+	public void setFreeDraw(boolean freeDraw)
+	{
+		this.freeDraw = freeDraw;
 	}
 
 

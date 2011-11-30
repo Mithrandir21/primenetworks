@@ -1644,6 +1644,408 @@ public class DesktopFileManagment
 	}
 
 	/**
+	 * This method opens a WorkareaCanvas from the given file, but does not add
+	 * it to the systems array of canvases. It just returns the
+	 * {@link WorkareaCanvas}.
+	 * 
+	 * @param file
+	 */
+	@SuppressWarnings("unchecked")
+	private static WorkareaCanvas openCanvasFileTemp(File file)
+	{
+		WorkareaCanvas canvas = new WorkareaCanvas();
+
+		try
+		{
+			FileInputStream fin = new FileInputStream(file);
+
+			ObjectInputStream ois = new ObjectInputStream(fin);
+
+			/**
+			 * -----MUST HAVE-----
+			 * 1. Name of the canvas.
+			 * 2. Serial number of the canvas
+			 * 
+			 * -----POSSIBLE FIELDS-----
+			 * 3. WorkareaCanvasNetworkInfo
+			 * 4. NetworkRules
+			 * 5. NetworkGroups (ArrayList<Group>)
+			 * 
+			 * 6. Objects (ArrayList<Object>)
+			 * 7. System Icons (ArrayList<ImageIcon>)
+			 * 8. WidgetNetworkInfo (ArrayList<WidgetNetworkInfo>)
+			 * 
+			 * 9. Connections (ArrayList<Connection>)
+			 * 10. Points for the WidgetConnections (ArrayList<List<Point>>)
+			 * 11. Rooms (ArrayList<Room>)
+			 */
+
+			// The name of the canvas
+			String name = (String) ois.readObject();
+			canvas.setCanvasName(name);
+
+			// The serial of the network
+			UUID serial = (UUID) ois.readObject();
+			canvas.setSerial(serial);
+
+			try
+			{
+				// Reads the WorkareaCanvasNetworkInfo
+				canvas.setNetworkInfo((WorkareaCanvasNetworkInfo) ois
+						.readObject());
+			}
+			catch ( Exception e )
+			{
+				// Creates a new network info object
+				canvas.setNetworkInfo(new WorkareaCanvasNetworkInfo(canvas));
+			}
+
+			try
+			{
+				// Reads the NetworkRules
+				canvas.setRules((NetworkRules) ois.readObject());
+			}
+			catch ( IOException e )
+			{
+				canvas.setRules(new NetworkRules(canvas));
+			}
+
+			try
+			{
+				// Reads the NetworkRules
+				canvas.setNetworkGroups((ArrayList<Group>) ois.readObject());
+			}
+			catch ( IOException e )
+			{
+				canvas.setNetworkGroups(new ArrayList<Group>());
+			}
+
+
+			// READS THE OBJECTS THAT ARE TO BE PLACED ON THE CANVAS
+
+
+			// The ArrayList that will hold the Objects
+			ArrayList<Object> objectList = new ArrayList<Object>();
+
+
+			// The ArrayList that will contain the ImageIcons for the objects
+			ArrayList<ImageIcon> objectIconList = new ArrayList<ImageIcon>();
+
+
+
+			// Reads inn the ArrayList of Object from the file stream
+			objectList = (ArrayList<Object>) ois.readObject();
+
+			// Reads inn the ArrayList of imageicon from the file stream
+			objectIconList = (ArrayList<ImageIcon>) ois.readObject();
+
+
+			// The size of the new Objects array
+			int objectArraySize = objectList.size();
+
+
+			// READS THE NETWORKINFO THAT ARE TO BE PLACED INSIDE THE WIDGET
+
+
+			// The ArrayList that will hold the Widget
+			ArrayList<WidgetNetworkInfo> widgetInfoList = new ArrayList<WidgetNetworkInfo>();
+
+			// Reads inn the ArrayList from the file stream
+			widgetInfoList = (ArrayList<WidgetNetworkInfo>) ois.readObject();
+
+			// The size of the new Objects array
+			int widgetInfoArraySize = 0;
+
+			// Iterates through the Object list
+			for ( Iterator<WidgetNetworkInfo> it = widgetInfoList.iterator(); it
+					.hasNext(); )
+			{
+				widgetInfoArraySize++;
+				it.next();
+			}
+
+
+
+			// PUTS THE OBJECTS AND NETWORKINFO TOGETHER AND PLACES A NEW
+			// WIDGETS ON THE CANVAS
+
+			/**
+			 * If there were any objects found, the size of the image arraylist
+			 * is the same as the object arraylist and the number of object
+			 * found is the same as the number of widget infos found.
+			 **/
+			if ( objectArraySize == widgetInfoArraySize
+					&& objectArraySize == objectIconList.size()
+					&& objectArraySize > 0 )
+			{
+				// PLACES THE OBJECTS INSIDE THE ARRAYLIST INTO AN ARRAY
+
+				// The objects array
+				Object[] objects = new Object[objectArraySize];
+
+				ImageIcon[] images = new ImageIcon[objectArraySize];
+
+				// The index of the objects array
+				int objectIndex = 0;
+
+				// Iterates through the list and adds the objects to the objects
+				// array
+				for ( Iterator<Object> it = objectList.iterator(); it.hasNext(); )
+				{
+					objects[objectIndex] = it.next();
+					objectIndex++;
+				}
+
+				// The index of the objects images array
+				int objectImageIndex = 0;
+
+				// Iterates through the list and adds the object images to the
+				// object images array
+				for ( Iterator<ImageIcon> it = objectIconList.iterator(); it
+						.hasNext(); )
+				{
+					images[objectImageIndex] = it.next();
+					objectImageIndex++;
+				}
+
+
+				// PLACES THE WIDGETNETWORKINFO INSIDE THE ARRAYLIST INTO AN
+				// ARRAY
+
+				// The WidgetNetworkInfo array
+				WidgetNetworkInfo[] widgetNetInfos = new WidgetNetworkInfo[widgetInfoArraySize];
+
+				// The index of the WidgetNetworkInfo array
+				int widgetNetInfosIndex = 0;
+
+				// Iterates through the list and adds the objects to the
+				// WidgetNetworkInfo array
+				for ( Iterator<WidgetNetworkInfo> it = widgetInfoList
+						.iterator(); it.hasNext(); )
+				{
+					widgetNetInfos[widgetNetInfosIndex] = it.next();
+					widgetNetInfosIndex++;
+				}
+
+				// Goes through the array of objects and adds them to the newly
+				// made canvas
+				for ( int i = 0; i < objects.length; i++ )
+				{
+					if ( objects[i] != null && widgetNetInfos[i] != null )
+					{
+						ImageIcon icon = null;
+
+						// If the object contains any custom image.
+						if ( images[i] != null )
+						{
+							icon = images[i];
+						}
+						// If not, the systems original Image is used.
+						else
+						{
+							icon = PrimeMain.objectImageIcons.get(objects[i]
+									.getClass());
+						}
+
+						// Creates a new WidgetObject that will be added to the
+						// scene
+						WidgetObject newWidgetObject = new WidgetObject(
+								canvas.getScene(), objects[i], icon.getImage());
+
+						// Adds the network information about the object
+						newWidgetObject.setWidgetNetworkInfo(widgetNetInfos[i]);
+
+						// Adds the given object to the given location
+						DesktopCanvasManagment.addWidgetToCanvas(
+								newWidgetObject, objects[i].getLocation(),
+								canvas, false, true);
+
+						// Adds the actions that the new widget supports
+						ActionsAdder.makeWidgetObjectReady(canvas,
+								newWidgetObject);
+					}
+				}
+			}
+
+			// END OF READ OBJECTS
+
+
+
+			// READ THE CONNECTIONS THAT TO BE PLACED ON THE CANVAS
+
+
+
+			// The ArrayList that will hold all the connections
+			ArrayList<Connection> connectionList = new ArrayList<Connection>();
+
+			// The ArrayList that will hold the Points of the
+			// WidgetExtendedConnection
+			ArrayList<List<Point>> widConPoints = new ArrayList<List<Point>>();
+
+			// Reads inn the ArrayList from the file stream
+			connectionList = (ArrayList<Connection>) ois.readObject();
+
+			// Reads inn the ArrayList containing List<Point> from the file
+			widConPoints = (ArrayList<List<Point>>) ois.readObject();
+
+
+			// The size of the new Connection array(which is also the size of
+			// the Points arraylist)
+			int connectionArraySize = connectionList.size();
+
+
+			// If there were any objects found
+			if ( connectionArraySize > 0 )
+			{
+				// The connection array
+				Connection[] connections = new Connection[connectionArraySize];
+
+				// The List<Point> array
+				List<Point>[] points = new List[connectionArraySize];
+
+				// The index of the connection array
+				int connectionIndex = 0;
+
+				// The index of the List<Point> array
+				int pointIndex = 0;
+
+
+				// Iterates through the list and adds the connections to the
+				// connections array
+				for ( Iterator<Connection> conIt = connectionList.iterator(); conIt
+						.hasNext(); )
+				{
+					connections[connectionIndex] = conIt.next();
+					connectionIndex++;
+				}
+
+				// Iterates through the list and adds the List<Point> to the
+				// List<Point> array
+				for ( Iterator<List<Point>> pointIt = widConPoints.iterator(); pointIt
+						.hasNext(); )
+				{
+					points[pointIndex] = pointIt.next();
+					pointIndex++;
+				}
+
+
+				// Goes through the entire connections array and adds the
+				// connections to the WorkareaCanvas
+				for ( int i = 0; i < connections.length; i++ )
+				{
+					if ( connections[i] != null )
+					{
+						// Creates the connection between the two devices on the
+						// scene.
+						WidgetExtendedConnection connection = new WidgetExtendedConnection(
+								canvas, connections[i]);
+
+
+						// Find the two object which are to be connected on the
+						// canvas
+						WidgetObject sourceWidget = CanvasManagment
+								.findWidgetObject(connections[i].getObject1(),
+										canvas);
+						WidgetObject targetWidget = CanvasManagment
+								.findWidgetObject(connections[i].getObject2(),
+										canvas);
+
+						// Creates the whole connection with all actions
+						connection = ConnectionManagment
+								.createWidgetExtendedConnection(canvas,
+										connections[i], connection,
+										sourceWidget, targetWidget);
+
+						// Adds the different actions
+						ActionsAdder.makeWidgetConnectionReady(canvas,
+								connection);
+
+						// Sets the control Points for the
+						// WidgetExtendedConnection
+						connection.setControlPoints(points[i], true);
+
+						// Add the connection the connection layer
+						canvas.getConnectionLayer().addChild(connection);
+					}
+				}
+			}
+
+			// END OF CONNECTIONS
+
+
+
+			// READ THE NETWORK ROOMS
+
+
+			// The ArrayList that will hold all the rooms
+			ArrayList<Room> roomList = new ArrayList<Room>();
+
+			// Reads inn the ArrayList from the file stream
+			roomList = (ArrayList<Room>) ois.readObject();
+
+			// The size of the new Room array
+			int roomArraySize = roomList.size();
+
+			// If there were any objects found
+			if ( roomArraySize > 0 )
+			{
+				// The room array
+				Room[] rooms = new Room[roomArraySize];
+
+				// The index of the room array
+				int roomIndex = 0;
+
+				// Iterates through the list and adds the room to the room array
+				for ( Iterator<Room> it = roomList.iterator(); it.hasNext(); )
+				{
+					rooms[roomIndex] = it.next();
+					roomIndex++;
+				}
+
+				// Goes through the entire connections array and adds the
+				// connections to the WorkareaCanvas
+				for ( int i = 0; i < rooms.length; i++ )
+				{
+					if ( rooms[i] != null )
+					{
+						WidgetRoom room = RoomManagment.addRoom(canvas,
+								rooms[i]);
+
+						// Adds the actions supported by the WidgetRoom
+						ActionsAdder.makeWidgetRoomReady(canvas, room);
+					}
+				}
+			}
+
+
+			// END OF READ NETWORK ROOMS
+
+
+
+			ois.close();
+		}
+		catch ( FileNotFoundException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch ( IOException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch ( ClassNotFoundException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return canvas;
+	}
+
+
+	/**
 	 * This function call the openCustomOSs function to import the users Custom
 	 * {@link OperatingSystem}.
 	 */

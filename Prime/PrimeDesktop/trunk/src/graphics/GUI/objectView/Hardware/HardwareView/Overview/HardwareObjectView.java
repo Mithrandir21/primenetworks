@@ -37,9 +37,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import objects.Clients;
 import objects.Object;
-import objects.Servers;
 import objects.hardwareObjects.CPU;
 import objects.hardwareObjects.Discdrive;
 import objects.hardwareObjects.ExternalNetworksCard;
@@ -554,8 +552,8 @@ public class HardwareObjectView extends JPanel implements ActionListener
 				}
 				/**
 				 * Since there can not be a device without a Motherboard, the
-				 * object
-				 * has at least one object. So the count can only be 2 or 3.
+				 * object has at least one object. So the count can only be 2 or
+				 * 3.
 				 */
 				else
 				{
@@ -631,14 +629,14 @@ public class HardwareObjectView extends JPanel implements ActionListener
 
 			// If the object is a Client or Server Object, the user can add
 			// components.
-			if ( obj instanceof Clients || obj instanceof Servers )
-			{
-				Button addNew = new Button("New Components");
-				addNew.addActionListener(this);
-				addNew.setActionCommand("newComp");
+			// if ( obj instanceof Clients || obj instanceof Servers )
+			// {
+			Button addNew = new Button("New Components");
+			addNew.addActionListener(this);
+			addNew.setActionCommand("newComp");
 
-				buttons.add(addNew);
-			}
+			buttons.add(addNew);
+			// }
 		}
 
 		return buttons;
@@ -724,7 +722,6 @@ public class HardwareObjectView extends JPanel implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */

@@ -15,7 +15,9 @@ import serverPluginInterface.PrimeServerPluginInterface;
 
 
 /**
- * TODO - Description NEEDED!
+ * This class contains methods to retrieve and process meta information gathered
+ * from Agents. This can be ID's, plugins or other types of information
+ * regarding the agent.
  * 
  * @author Bahram Malaekeh
  */
@@ -90,7 +92,8 @@ public class AgentInputProcessing
 
 
 	/**
-	 * TODO - Description
+	 * This function takes the given String and returns a predetermined
+	 * substring, namely the text between the first and last '\' characters.
 	 */
 	public static String getPluginMetaInfo(String input)
 	{
@@ -102,7 +105,10 @@ public class AgentInputProcessing
 
 
 	/**
-	 * TODO - Description
+	 * This function will find the correct server plugin that matched the agent
+	 * plugin name and version. Only plugins, that implement
+	 * {@link PrimeServerPluginInterface}, in the servers applications plugin
+	 * ArrayList will be examined for a match.
 	 */
 	public static PrimeServerPluginInterface findCorrectPlugin(
 			String pluginName, String pluginVersion)

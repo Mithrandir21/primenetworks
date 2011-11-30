@@ -122,6 +122,8 @@ public class ImageSelection extends TransferHandler
 								PrimeMain.currentCanvas.getScene(), newObject,
 								genIcon.getIconImage());
 
+						widObj.setWidgetImage(genericIcon);
+
 						return widObj;
 					}
 					// Step 2.

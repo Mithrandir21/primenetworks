@@ -360,6 +360,8 @@ public class WorkareaCanvasActionListener implements ActionListener
 				newWidgetObject = new WidgetObject(canvas.getScene(),
 						newObject, objectIcon.getImage());
 
+				newWidgetObject.setWidgetImage(objectIcon);
+
 				// // Adds the given object to the given location
 				ActionAddWidgetToWorkareaCanvas actionAdd = new ActionAddWidgetToWorkareaCanvas(
 						PrimeMain.texts
