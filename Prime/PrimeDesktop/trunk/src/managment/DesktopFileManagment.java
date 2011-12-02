@@ -31,6 +31,7 @@ import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 import groups.Group;
 
 import java.awt.Point;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -134,6 +135,7 @@ public class DesktopFileManagment
 	private static boolean saveCanvas(WorkareaCanvas canvas, File file,
 			boolean verify)
 	{
+		PrimeMain.ioLog.fine("Starting Network Map (canvas) Saving process.");
 		// Revalidates the locations of the objects on the scene
 		canvas.revalidateWidgetLocations();
 
@@ -148,6 +150,8 @@ public class DesktopFileManagment
 		{
 			try
 			{
+				PrimeMain.ioLog.fine("Open '" + file.getCanonicalPath()
+						+ "' with FileOutputStream for saving.");
 				FileOutputStream fout = new FileOutputStream(file);
 
 				// The object stream file
@@ -157,23 +161,34 @@ public class DesktopFileManagment
 				String nameOfCanvas = canvas.getCanvasName();
 
 				// Writes out the name of the canvas
+				PrimeMain.ioLog.fine("Writing out the name of the canvas, '"
+						+ nameOfCanvas + "'");
 				oos.writeObject(nameOfCanvas);
 
 				// Writes out the serial number of the canvas
+				PrimeMain.ioLog.fine("Writing out the serial of the canvas.");
 				oos.writeObject(canvas.getSerial());
 
 				// Writes out the WorkareaCanvasNetworkInfo
+				PrimeMain.ioLog
+						.fine("Writing out the NetworkInfo of the canvas.");
 				oos.writeObject(canvas.getNetworkInfo());
 
 				// Writes out the NetworkRules
+				PrimeMain.ioLog.fine("Writing out the Rules of the canvas.");
 				oos.writeObject(canvas.getRules());
 
 				// Writes out the NetworkGroups
+				PrimeMain.ioLog
+						.fine("Writing out the Network Groups of the canvas.");
 				oos.writeObject(canvas.getNetworkGroups());
 
 
 
 				// WRITE OBJECTS ON THE CANVAS
+
+				PrimeMain.ioLog
+						.fine("Collecting objects on canvas and their icons.");
 
 				// The objects on the canvas
 				Object[] objects = canvas.getObjectsOnTheScene();
@@ -207,10 +222,13 @@ public class DesktopFileManagment
 
 				}
 
+				PrimeMain.ioLog.fine("Writing out the objects on the canvas.");
 				// Writes out the objects in the form of an arraylist, even if
 				// it is empty
 				oos.writeObject(objectList);
 
+				PrimeMain.ioLog
+						.fine("Writing out the icons of the objects on the canvas.");
 				// Writes out the objects images in the form of an arraylist,
 				// even if it is empty
 				oos.writeObject(objectIconList);
@@ -223,6 +241,8 @@ public class DesktopFileManagment
 
 
 				// WRITE WIDGETNETWORKINFO INSIDE THE WIDGETS
+				PrimeMain.ioLog
+						.fine("Collecting WidgetNetworkInfo for each object on the canvas.");
 
 				// The widgets on the scene
 				WidgetObject[] widgets = canvas.getWidgetObjectsOnTheScene();
@@ -244,9 +264,10 @@ public class DesktopFileManagment
 
 				}
 
+				PrimeMain.ioLog
+						.fine("Writing out the WidgetNetworkInfo of the objects on the canvas.");
 				// Writes out the WidgetNetworkInfo in the form of an arraylist,
-				// even if
-				// it is empty
+				// even if it is empty
 				oos.writeObject(widgetList);
 
 				oos.flush();
@@ -256,6 +277,8 @@ public class DesktopFileManagment
 
 
 				// WRITE CONNECTIONS ON THE CANVAS
+				PrimeMain.ioLog
+						.fine("Collecting Connection and a list of break points for each connection on the canvas.");
 
 				// The WidgetExtendedConnections on the scene of the canvas
 				WidgetExtendedConnection[] widCons = canvas
@@ -286,10 +309,13 @@ public class DesktopFileManagment
 					}
 				}
 
-
+				PrimeMain.ioLog
+						.fine("Writing out the Connections on the canvas.");
 				// Writes out the connections ArrayList, even if it is empty
 				oos.writeObject(widConList);
 
+				PrimeMain.ioLog
+						.fine("Writing out the List of points for the Connections on the canvas.");
 				// Writes out the Points ArrayList, even if it is empty
 				oos.writeObject(widConPoints);
 
@@ -325,6 +351,7 @@ public class DesktopFileManagment
 
 
 				// WRITE ROOMS ON THE CANVAS
+				PrimeMain.ioLog.fine("Collecting the Rooms on the canvas.");
 
 				// The canvas rooms
 				Room[] rooms = canvas.getNetworkRooms();
@@ -344,6 +371,7 @@ public class DesktopFileManagment
 					}
 				}
 
+				PrimeMain.ioLog.fine("Writing out the Rooms on the canvas.");
 				// Writes out the room ArrayList, even if it is empty
 				oos.writeObject(roomList);
 
@@ -356,6 +384,12 @@ public class DesktopFileManagment
 			}
 			catch ( Exception e )
 			{
+				PrimeMain.ioLog
+						.warning("An Exception, "
+								+ e.getClass().getCanonicalName()
+								+ ", was caught which means that the save action failed. (See Debug info for more detailed information.)");
+
+				PrimeMain.ioLog.severe(e.getMessage());
 				e.printStackTrace();
 			}
 
@@ -368,6 +402,9 @@ public class DesktopFileManagment
 			PrimeMain.workTab.revalidate();
 			PrimeMain.workTab.repaint();
 
+			PrimeMain.ioLog.fine("The canvas, " + canvas.getCanvasName()
+					+ ", has successfully been saved to " + file.getName()
+					+ ".");
 			return true;
 		}
 
@@ -1269,7 +1306,7 @@ public class DesktopFileManagment
 	 * @param file
 	 */
 	@SuppressWarnings("unchecked")
-	private static WorkareaCanvas openCanvasFile(File file)
+	private static WorkareaCanvas openCanvasFile1(File file)
 	{
 		WorkareaCanvas canvas = new WorkareaCanvas();
 
@@ -1346,7 +1383,7 @@ public class DesktopFileManagment
 			// READS THE NETWORKINFO THAT ARE TO BE PLACED INSIDE THE WIDGET
 
 
-			// The ArrayList that will hold the Widget
+			// The ArrayList that will hold the WidgetNetworkInfo
 			ArrayList<WidgetNetworkInfo> widgetInfoList = new ArrayList<WidgetNetworkInfo>();
 
 			// Reads inn the ArrayList from the file stream
@@ -1362,6 +1399,21 @@ public class DesktopFileManagment
 				widgetInfoArraySize++;
 				it.next();
 			}
+
+			System.out.println("objectArraySize - " + objectArraySize);
+			System.out.println("widgetInfoArraySize - " + widgetInfoArraySize);
+			System.out.println("objectIconList.size() - "
+					+ objectIconList.size());
+
+
+			System.out.println("objectArraySize == widgetInfoArraySize - "
+					+ (objectArraySize == widgetInfoArraySize));
+
+			System.out.println("objectArraySize == objectIconList.size() - "
+					+ (objectArraySize == objectIconList.size()));
+
+			System.out
+					.println("objectArraySize > 0 - " + (objectArraySize > 0));
 
 
 
@@ -1651,12 +1703,15 @@ public class DesktopFileManagment
 	 * @param file
 	 */
 	@SuppressWarnings("unchecked")
-	private static WorkareaCanvas openCanvasFileTemp(File file)
+	private static WorkareaCanvas openCanvasFile(File file)
 	{
 		WorkareaCanvas canvas = new WorkareaCanvas();
 
 		try
 		{
+			PrimeMain.ioLog.fine("Attempting to open canvas in "
+					+ file.getName() + ".");
+
 			FileInputStream fin = new FileInputStream(file);
 
 			ObjectInputStream ois = new ObjectInputStream(fin);
@@ -1688,70 +1743,201 @@ public class DesktopFileManagment
 			UUID serial = (UUID) ois.readObject();
 			canvas.setSerial(serial);
 
+			PrimeMain.ioLog.fine("Gotten name and UUID. Creating fields.");
+
+
+			// FIELDS CREATION
+			WorkareaCanvasNetworkInfo WorkareaCanvasNetworkInfoFIELD = null;
+			NetworkRules NetworkRulesFIELD = null;
+
+			// The ArrayList that will hold the Groups
+			ArrayList<Group> groupArrayList = new ArrayList<Group>();
+
+			// The ArrayList that will hold the Objects
+			ArrayList<Object> objectList = new ArrayList<Object>();
+
+			// The ArrayList that will contain the ImageIcons for the objects
+			ArrayList<ImageIcon> objectIconList = new ArrayList<ImageIcon>();
+
+			// The ArrayList that will hold the WidgetNetworkInfo
+			ArrayList<WidgetNetworkInfo> widgetInfoList = new ArrayList<WidgetNetworkInfo>();
+
+			// The ArrayList that will hold all the connections
+			ArrayList<Connection> connectionList = new ArrayList<Connection>();
+
+			// The ArrayList that will hold the Points of the
+			// WidgetExtendedConnection
+			ArrayList<List<Point>> widConPoints = new ArrayList<List<Point>>();
+
+			// The ArrayList that will hold all the rooms
+			ArrayList<Room> roomList = new ArrayList<Room>();
+
+
+			// Reading objects
+			java.lang.Object gottenObject = null;
+
 			try
 			{
-				// Reads the WorkareaCanvasNetworkInfo
-				canvas.setNetworkInfo((WorkareaCanvasNetworkInfo) ois
-						.readObject());
+				PrimeMain.ioLog.fine("Fields created. Reading in objects.");
+				// Read an object
+				gottenObject = ois.readObject();
+
+				// While not get here if an EOFException is thrown during
+				// reading.
+				while ( gottenObject != null )
+				{
+					PrimeMain.ioLog.fine("Reading object.");
+
+					if ( gottenObject instanceof WorkareaCanvasNetworkInfo )
+					{
+						PrimeMain.ioLog
+								.fine("Setting WorkareaCanvasNetworkInfo");
+						WorkareaCanvasNetworkInfoFIELD = (WorkareaCanvasNetworkInfo) gottenObject;
+					}
+					else if ( gottenObject instanceof NetworkRules )
+					{
+						PrimeMain.ioLog.fine("Setting NetworkRules");
+						NetworkRulesFIELD = (NetworkRules) gottenObject;
+					}
+					else if ( gottenObject instanceof ArrayList<?> )
+					{
+						PrimeMain.ioLog.fine("Object ArrayList.");
+						/**
+						 * Creates a temporary ArrayList (for checking of index
+						 * types) and then checks whether the ArrayList is
+						 * empty.
+						 */
+						ArrayList<?> tempArrayList = (ArrayList<?>) gottenObject;
+
+						if ( !tempArrayList.isEmpty() )
+						{
+							PrimeMain.ioLog
+									.fine("ArrayList not empty. Determining type.");
+							// Since it is not empty, it will get the first not
+							// NULL object
+							java.lang.Object ArrayObject = null;
+
+							// Iterates through the Object list
+							for ( Iterator<?> list = tempArrayList.iterator(); ArrayObject == null; )
+							{
+								PrimeMain.ioLog
+										.fine("Gotten temporary object type. Checking NULL.");
+								java.lang.Object tempObject = list.next();
+
+								if ( tempObject != null )
+								{
+									PrimeMain.ioLog
+											.fine("Gotten temporary object not NULL. Setting as ArrayObject.");
+									ArrayObject = tempObject;
+								}
+							}
+
+
+							/**
+							 * If the ArrayObject is not NULL, the object type
+							 * is checked and then the gottenObject is cast and
+							 * set to the correct field.
+							 */
+							if ( ArrayObject != null )
+							{
+								PrimeMain.ioLog
+										.fine("ArrayObject object not NULL. Determining object Instanceof.");
+
+
+
+								// Rooms
+								if ( ArrayObject instanceof Room )
+								{
+									PrimeMain.ioLog.fine("Type Room");
+									roomList = (ArrayList<Room>) gottenObject;
+								}
+								// Points on WidgetConnections
+								else if ( ArrayObject instanceof List<?> )
+								{
+									PrimeMain.ioLog.fine("Type List<?>");
+									widConPoints = (ArrayList<List<Point>>) gottenObject;
+								}
+								// Connections
+								else if ( ArrayObject instanceof Connection )
+								{
+									PrimeMain.ioLog.fine("Type Connection");
+									connectionList = (ArrayList<Connection>) gottenObject;
+								}
+								// WidgetNetworkInfo
+								else if ( ArrayObject instanceof WidgetNetworkInfo )
+								{
+									PrimeMain.ioLog
+											.fine("Type WidgetNetworkInfo");
+									widgetInfoList = (ArrayList<WidgetNetworkInfo>) gottenObject;
+								}
+								// Image Icons
+								else if ( ArrayObject instanceof ImageIcon )
+								{
+									PrimeMain.ioLog.fine("Type ImageIcon");
+									objectIconList = (ArrayList<ImageIcon>) gottenObject;
+								}
+								// Objects
+								else if ( ArrayObject instanceof Object )
+								{
+									PrimeMain.ioLog.fine("Type Object");
+									objectList = (ArrayList<Object>) gottenObject;
+								}
+								// Groups
+								else if ( ArrayObject instanceof Group )
+								{
+									PrimeMain.ioLog.fine("Type Group");
+									groupArrayList = (ArrayList<Group>) gottenObject;
+								}
+							}
+						}
+					}
+
+					PrimeMain.ioLog.fine("Reading the next object.");
+					// Reads next object
+					gottenObject = ois.readObject();
+				}
 			}
-			catch ( Exception e )
+			catch ( EOFException e )
+			{
+				PrimeMain.ioLog.fine("End of file! (Expected.)");
+			}
+
+
+			// ---------------INPUTS WITHOUT FURTHER MANIPULATION---------------
+			PrimeMain.desktopProcLog
+					.finer("Finished reading in input. Beginning processing.");
+			if ( WorkareaCanvasNetworkInfoFIELD != null )
+			{
+				// Inputs the WorkareaCanvasNetworkInfo
+				canvas.setNetworkInfo(WorkareaCanvasNetworkInfoFIELD);
+			}
+			else
 			{
 				// Creates a new network info object
 				canvas.setNetworkInfo(new WorkareaCanvasNetworkInfo(canvas));
 			}
 
-			try
+
+			if ( NetworkRulesFIELD != null )
 			{
-				// Reads the NetworkRules
-				canvas.setRules((NetworkRules) ois.readObject());
+				// Inputs the NetworkRules
+				canvas.setRules(NetworkRulesFIELD);
 			}
-			catch ( IOException e )
+			else
 			{
 				canvas.setRules(new NetworkRules(canvas));
 			}
 
-			try
-			{
-				// Reads the NetworkRules
-				canvas.setNetworkGroups((ArrayList<Group>) ois.readObject());
-			}
-			catch ( IOException e )
-			{
-				canvas.setNetworkGroups(new ArrayList<Group>());
-			}
+
+			// Inputs the NetworkRules
+			canvas.setNetworkGroups(groupArrayList);
 
 
-			// READS THE OBJECTS THAT ARE TO BE PLACED ON THE CANVAS
-
-
-			// The ArrayList that will hold the Objects
-			ArrayList<Object> objectList = new ArrayList<Object>();
-
-
-			// The ArrayList that will contain the ImageIcons for the objects
-			ArrayList<ImageIcon> objectIconList = new ArrayList<ImageIcon>();
-
-
-
-			// Reads inn the ArrayList of Object from the file stream
-			objectList = (ArrayList<Object>) ois.readObject();
-
-			// Reads inn the ArrayList of imageicon from the file stream
-			objectIconList = (ArrayList<ImageIcon>) ois.readObject();
-
+			PrimeMain.desktopProcLog
+					.finer("Puts the objects and networkinfo together and places a new widget on the canvas.");
 
 			// The size of the new Objects array
 			int objectArraySize = objectList.size();
-
-
-			// READS THE NETWORKINFO THAT ARE TO BE PLACED INSIDE THE WIDGET
-
-
-			// The ArrayList that will hold the Widget
-			ArrayList<WidgetNetworkInfo> widgetInfoList = new ArrayList<WidgetNetworkInfo>();
-
-			// Reads inn the ArrayList from the file stream
-			widgetInfoList = (ArrayList<WidgetNetworkInfo>) ois.readObject();
 
 			// The size of the new Objects array
 			int widgetInfoArraySize = 0;
@@ -1765,10 +1951,6 @@ public class DesktopFileManagment
 			}
 
 
-
-			// PUTS THE OBJECTS AND NETWORKINFO TOGETHER AND PLACES A NEW
-			// WIDGETS ON THE CANVAS
-
 			/**
 			 * If there were any objects found, the size of the image arraylist
 			 * is the same as the object arraylist and the number of object
@@ -1778,7 +1960,8 @@ public class DesktopFileManagment
 					&& objectArraySize == objectIconList.size()
 					&& objectArraySize > 0 )
 			{
-				// PLACES THE OBJECTS INSIDE THE ARRAYLIST INTO AN ARRAY
+				PrimeMain.desktopProcLog.finer("Adding the objects.");
+				// PLACES THE OBJECTS INSIDE THE ARRAYLIST INTO AN ARRAY;
 
 				// The objects array
 				Object[] objects = new Object[objectArraySize];
@@ -1809,6 +1992,7 @@ public class DesktopFileManagment
 				}
 
 
+				PrimeMain.desktopProcLog.finer("Adding the WidgetNetworkInfo.");
 				// PLACES THE WIDGETNETWORKINFO INSIDE THE ARRAYLIST INTO AN
 				// ARRAY
 
@@ -1833,16 +2017,22 @@ public class DesktopFileManagment
 				{
 					if ( objects[i] != null && widgetNetInfos[i] != null )
 					{
+						PrimeMain.desktopProcLog.fine("Adding object - "
+								+ objects[i].getObjectName());
 						ImageIcon icon = null;
 
 						// If the object contains any custom image.
 						if ( images[i] != null )
 						{
+							PrimeMain.desktopProcLog
+									.fine("Object contains custom icon.");
 							icon = images[i];
 						}
 						// If not, the systems original Image is used.
 						else
 						{
+							PrimeMain.desktopProcLog
+									.fine("Object contains standard icon.");
 							icon = PrimeMain.objectImageIcons.get(objects[i]
 									.getClass());
 						}
@@ -1867,27 +2057,14 @@ public class DesktopFileManagment
 				}
 			}
 
+			PrimeMain.desktopProcLog
+					.finer("Finished adding objects to canvas.");
 			// END OF READ OBJECTS
 
 
-
+			PrimeMain.desktopProcLog
+					.finer("Adding connections between the objects.");
 			// READ THE CONNECTIONS THAT TO BE PLACED ON THE CANVAS
-
-
-
-			// The ArrayList that will hold all the connections
-			ArrayList<Connection> connectionList = new ArrayList<Connection>();
-
-			// The ArrayList that will hold the Points of the
-			// WidgetExtendedConnection
-			ArrayList<List<Point>> widConPoints = new ArrayList<List<Point>>();
-
-			// Reads inn the ArrayList from the file stream
-			connectionList = (ArrayList<Connection>) ois.readObject();
-
-			// Reads inn the ArrayList containing List<Point> from the file
-			widConPoints = (ArrayList<List<Point>>) ois.readObject();
-
 
 			// The size of the new Connection array(which is also the size of
 			// the Points arraylist)
@@ -1970,18 +2147,14 @@ public class DesktopFileManagment
 				}
 			}
 
+			PrimeMain.desktopProcLog
+					.finer("Finished adding connections to canvas.");
 			// END OF CONNECTIONS
 
 
 
+			PrimeMain.desktopProcLog.finer("Adding rooms on the canvas.");
 			// READ THE NETWORK ROOMS
-
-
-			// The ArrayList that will hold all the rooms
-			ArrayList<Room> roomList = new ArrayList<Room>();
-
-			// Reads inn the ArrayList from the file stream
-			roomList = (ArrayList<Room>) ois.readObject();
 
 			// The size of the new Room array
 			int roomArraySize = roomList.size();
@@ -2017,7 +2190,7 @@ public class DesktopFileManagment
 				}
 			}
 
-
+			PrimeMain.desktopProcLog.finer("Finished adding rooms to canvas.");
 			// END OF READ NETWORK ROOMS
 
 
@@ -2026,24 +2199,38 @@ public class DesktopFileManagment
 		}
 		catch ( FileNotFoundException e )
 		{
-			// TODO Auto-generated catch block
+			PrimeMain.ioLog
+					.warning("An Exception, "
+							+ e.getClass().getCanonicalName()
+							+ ", was caught which means that the \"Load Network\" action failed. (See Debug info for more detailed information.)");
+
+			PrimeMain.ioLog.severe(e.getMessage());
 			e.printStackTrace();
 		}
 		catch ( IOException e )
 		{
-			// TODO Auto-generated catch block
+			PrimeMain.ioLog
+					.warning("An Exception, "
+							+ e.getClass().getCanonicalName()
+							+ ", was caught which means that the \"Load Network\" action failed. (See Debug info for more detailed information.)");
+
+			PrimeMain.ioLog.severe(e.getMessage());
 			e.printStackTrace();
 		}
 		catch ( ClassNotFoundException e )
 		{
-			// TODO Auto-generated catch block
+			PrimeMain.ioLog
+					.warning("An Exception, "
+							+ e.getClass().getCanonicalName()
+							+ ", was caught which means that the \"Load Network\" action failed. (See Debug info for more detailed information.)");
+
+			PrimeMain.ioLog.severe(e.getMessage());
 			e.printStackTrace();
 		}
 
 
 		return canvas;
 	}
-
 
 	/**
 	 * This function call the openCustomOSs function to import the users Custom

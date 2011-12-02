@@ -27,6 +27,7 @@ import graphics.GUI.selectArea.GenericDeviceCreation;
 import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import javax.swing.JOptionPane;
 
@@ -471,6 +472,10 @@ public class DesktopCanvasManagment
 
 			}
 
+			PrimeMain.desktopProcLog.logp(Level.INFO, "DesktopCanvasManagment",
+					"addWidgetToCanvas", "Widget, " + obj.getObjectName()
+							+ ", added to canvas " + canvas.getCanvasName()
+							+ ".");
 
 			// Add the (possibly modified) object to the given canvas
 			WorkareaCanvasActions.addWidgetToCanvas(newObject, objectPoint,

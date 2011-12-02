@@ -56,12 +56,15 @@ import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
@@ -73,9 +76,11 @@ import javax.swing.ToolTipManager;
 import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 
+import logistical.LibraryLogging;
 import managment.CanvasManagment;
 import managment.CreateObjects;
 import managment.DesktopCanvasManagment;
+import managment.DesktopCustomLoggerFormatter;
 import managment.DesktopFileManagment;
 import managment.MakeStandardInternalComponents;
 import managment.MakeStandardSoftware;
@@ -99,13 +104,18 @@ import widgets.WorkareaCanvas;
  * Description NEEDED!
  * 
  * @author Bahram Malaekeh
- * @version 0.63 06/03/2011
+ * @version 0.7 01/12/2011
  */
 @SuppressWarnings("serial")
 public class PrimeMain extends JFrame
 {
 	// The log for the the GUI part of the program
 	public static Logger guiLog = Logger.getLogger("GUILogging");
+
+	public static Logger ioLog = Logger.getLogger("IOLogging");
+
+	public static Logger desktopProcLog = Logger
+			.getLogger("desktopProcLogging");
 
 	// Daemon services running
 	private static PrimeService services;
@@ -215,6 +225,8 @@ public class PrimeMain extends JFrame
 	public PrimeMain()
 	{
 		super("PrimeDesktop");
+
+		setupLoggers();
 
 
 
@@ -996,6 +1008,7 @@ public class PrimeMain extends JFrame
 
 				// Stops the plugin queue from receiving new plugins
 				stopPluginQueue();
+				endingLoggin();
 				System.exit(0);
 			}
 			// Dont save
@@ -1003,6 +1016,7 @@ public class PrimeMain extends JFrame
 			{
 				// Stops the plugin queue from receiving new plugins
 				stopPluginQueue();
+				endingLoggin();
 				System.exit(0);
 			}
 		}
@@ -1010,6 +1024,7 @@ public class PrimeMain extends JFrame
 		{
 			// Stops the plugin queue from receiving new plugins
 			stopPluginQueue();
+			endingLoggin();
 			System.exit(0);
 		}
 	}
@@ -1036,5 +1051,94 @@ public class PrimeMain extends JFrame
 				e.printStackTrace();
 			}
 		}
+	}
+
+
+
+	/**
+	 * This function initiates the different system loggers including files and
+	 * formatters.
+	 */
+	private static void setupLoggers()
+	{
+		try
+		{
+			DesktopCustomLoggerFormatter formatter = new DesktopCustomLoggerFormatter();
+
+			FileHandler guiFH = new FileHandler("guiLog.log", true);
+			guiFH.setFormatter(formatter);
+			guiLog.addHandler(guiFH);
+			guiLog.setUseParentHandlers(false);
+			guiLog.setLevel(Level.ALL);
+
+
+			guiLog.finest("");
+			guiLog.finest("");
+			guiLog.finest("");
+			guiLog.info("--------STARTING GUI LOGGING--------");
+
+
+			FileHandler ioFH = new FileHandler("ioLog.log", true);
+			ioFH.setFormatter(formatter);
+			ioLog.addHandler(ioFH);
+			ioLog.setUseParentHandlers(false);
+			ioLog.setLevel(Level.ALL);
+
+
+			ioLog.finest("");
+			ioLog.finest("");
+			ioLog.finest("");
+			ioLog.info("--------STARTING IO LOGGING--------");
+
+
+			FileHandler deskProcFH = new FileHandler("dekstopProcLog.log", true);
+			deskProcFH.setFormatter(formatter);
+			desktopProcLog.addHandler(deskProcFH);
+			desktopProcLog.setUseParentHandlers(false);
+			desktopProcLog.setLevel(Level.ALL);
+
+
+			desktopProcLog.finest("");
+			desktopProcLog.finest("");
+			desktopProcLog.finest("");
+			desktopProcLog
+					.info("--------STARTING DEKSTOP PROCESSING LOGGING--------");
+
+
+			FileHandler libFH = new FileHandler("libraryLog.log", true);
+			libFH.setFormatter(formatter);
+			LibraryLogging.libraryLog.addHandler(libFH);
+			LibraryLogging.libraryLog.setUseParentHandlers(false);
+			LibraryLogging.libraryLog.setLevel(Level.ALL);
+
+
+			LibraryLogging.libraryLog.finest("");
+			LibraryLogging.libraryLog.finest("");
+			LibraryLogging.libraryLog.finest("");
+			LibraryLogging.libraryLog
+					.info("--------STARTING LIBRARY LOGGING--------");
+		}
+		catch ( SecurityException e )
+		{
+			e.printStackTrace();
+		}
+		catch ( IOException e )
+		{
+			e.printStackTrace();
+		}
+	}
+
+
+	/**
+	 * This function writes and ending to the loggings.
+	 */
+	private static void endingLoggin()
+	{
+		guiLog.info("--------ENDING GUI LOGGING--------");
+		ioLog.info("--------ENDING IO LOGGING--------");
+		desktopProcLog
+				.info("--------ENDING DEKSTOP PROCESSING LOGGING--------");
+		LibraryLogging.libraryLog
+				.info("--------ENDING LIBRARY LOGGING--------");
 	}
 }

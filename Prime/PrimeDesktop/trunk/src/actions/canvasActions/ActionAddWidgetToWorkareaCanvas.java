@@ -23,6 +23,7 @@ import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
 import java.awt.Point;
 import java.awt.event.ActionEvent;
+import java.util.logging.Level;
 
 import javax.swing.ImageIcon;
 import javax.swing.undo.CannotRedoException;
@@ -264,5 +265,12 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 		{
 			this.canvas.addUndoableAction(this);
 		}
+
+
+		PrimeMain.guiLog.logp(Level.FINE, "ActionAddWidgetToWorkareaCanvas",
+				"performAction", "Widget, "
+						+ this.widObject.getObject().getObjectName()
+						+ " added to canvas " + this.canvas.getCanvasName()
+						+ ".");
 	}
 }
