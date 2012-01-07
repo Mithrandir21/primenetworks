@@ -259,7 +259,7 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 		ActionsAdder.makeWidgetObjectReady(this.canvas, this.widObject);
 
 		// Checks for custom object
-		DesktopCanvasManagment.checkForCustomObject(this.widObject);
+		DesktopCanvasManagment.checkForCustomObjectAndRules(this.widObject, canvas);
 
 		if ( undoable )
 		{

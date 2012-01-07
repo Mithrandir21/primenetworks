@@ -32,6 +32,8 @@ import objects.hardwareObjects.HDD;
 import objects.hardwareObjects.InternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
 import objects.peripheralObjects.GenericDevice;
+import widgetManipulation.NetworkRules;
+import widgets.WorkareaCanvas;
 import connections.ConnectionUtils;
 
 
@@ -43,6 +45,8 @@ import connections.ConnectionUtils;
 public class GenericDeviceCreation extends JFrame implements ActionListener
 {
 	private ExternalHardware exObject = null;
+
+	private WorkareaCanvas canvas = null;
 
 
 	private JTextField nameField = new JTextField("");
@@ -65,11 +69,12 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 			PrimeMain.texts.getString("discdrive"));
 
 
-	public GenericDeviceCreation(GenericDevice obj)
+	public GenericDeviceCreation(GenericDevice obj, WorkareaCanvas canvas)
 	{
 		this.setTitle(PrimeMain.texts.getString("genericDeviceWindowsTitle"));
 
 		exObject = obj;
+		this.canvas = canvas;
 
 		// Set size for the settings JFrame
 		Dimension size = new Dimension(240, 400);
@@ -273,6 +278,8 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 				Motherboard mb = ComponentsManagment
 						.getObjectMotherboard(exObject);
 
+				NetworkRules rules = canvas.getRules();
+
 				if ( mb != null )
 				{
 					// Adds InternalNIC with wireless
@@ -283,16 +290,27 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 						wNic.setType(ConnectionUtils.Wireless);
 
 						exObject.addComponent(wNic);
+						PrimeMain.desktopProcLog.info("Added Wireless NIC to "
+								+ exObject.getObjectName() + ".");
 					}
 
 					// Adds InternalNIC with wireless
 					if ( supportsLAN.isSelected() )
 					{
-						InternalNetworksCard nic = PrimeMain.standard_internal_components
-								.getSt_IntNIC();
-						nic.setType(ConnectionUtils.RJ45);
+						if ( !rules.isLANnotAllowed() )
+						{
+							InternalNetworksCard nic = PrimeMain.standard_internal_components
+									.getSt_IntNIC();
+							nic.setType(ConnectionUtils.RJ45);
 
-						exObject.addComponent(nic);
+							exObject.addComponent(nic);
+							PrimeMain.desktopProcLog.info("Added Wired NIC to "
+									+ exObject.getObjectName() + ".");
+						}
+						else
+						{
+
+						}
 					}
 
 					if ( supportsUSB.isSelected() )
