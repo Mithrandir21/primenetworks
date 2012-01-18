@@ -84,150 +84,155 @@ public class CreateObjects
 	public static Object CreateObject(WidgetIcon iconObject,
 			int numberOfWidgetsOnTheScene)
 	{
+		PrimeMain.ioLog.info("Starting Object Creation.");
 		Object newObject = null;
 		String objectType = iconObject.getClassType().getSimpleName();
 		String desc = iconObject.getDescription();
 
 		boolean customDevice = false;
 
-		if ( !objectType.equals("GenericDevice") )
+
+		try
 		{
-			try
+			// Gets the object in the given ArrayList with the given class
+			newObject = ArrayManagment.getSpesificComponent(
+					iconObject.getClassType(), PrimeMain.objectlist);
+			PrimeMain.ioLog
+					.fine("Standard Object was found on systems Std Object list.");
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			PrimeMain.ioLog
+					.fine("Standard Object was NOT found on systems Std Object list. Creating a default "
+							+ objectType + ".");
+			if ( objectType.equals("Desktop") )
 			{
-				// Gets the object in the given ArrayList with the given class
-				newObject = ArrayManagment.getSpesificComponent(
-						iconObject.getClassType(), PrimeMain.objectlist);
+				newObject = createDefaultDesktop(desc);
 			}
-			catch ( ObjectNotFoundException e )
+			else if ( objectType.equals("Laptop") )
 			{
-				if ( objectType.equals("Desktop") )
-				{
-					newObject = createDefaultDesktop(desc);
-				}
-				else if ( objectType.equals("Laptop") )
-				{
-					newObject = createDefaultLaptop(desc);
-				}
-				else if ( objectType.equals("ThinClient") )
-				{
-					newObject = createDefaultThinClient(desc);
-				}
-				else if ( objectType.equals("GenericServer") )
-				{
-					newObject = createGenericServer(desc);
-				}
-				else if ( objectType.equals("HTTPServer") )
-				{
-					newObject = createDefaultHTTPServer(desc);
-				}
-				else if ( objectType.equals("BackupServer") )
-				{
-					newObject = createDefaultBackupServer(desc);
-				}
-				else if ( objectType.equals("NASServer") )
-				{
-					newObject = createDefaultBackupServer(desc);
-				}
-				else if ( objectType.equals("DatabaseServer") )
-				{
-					newObject = createDefaultDatabaseServer(desc);
-				}
-				else if ( objectType.equals("VirtualizationServer") )
-				{
-					newObject = createDefaultVirtualizationServer(desc);
-				}
-				else if ( objectType.equals("MailServer") )
-				{
-					newObject = createDefaultMailServer(desc);
-				}
-				else if ( objectType.equals("FirewallServer") )
-				{
-					newObject = createDefaultFirewallServer(desc);
-				}
-				else if ( objectType.equals("ProxyServer") )
-				{
-					newObject = createDefaultProxyServer(desc);
-				}
-				else if ( objectType.equals("PrinterServer") )
-				{
-					newObject = createDefaultPrinterServer(desc);
-				}
-				else if ( objectType.equals("ExternalHDD") )
-				{
-					newObject = createDefaultNAS(desc);
-				}
-				else if ( objectType.equals("Scanner") )
-				{
-					newObject = createDefaultScanner(desc);
-				}
-				else if ( objectType.equals("Printer") )
-				{
-					newObject = createDefaultPrinter(desc);
-				}
-				else if ( objectType.equals("Fax") )
-				{
-					newObject = createDefaultFax(desc);
-				}
-				else if ( objectType.equals("MultifunctionPrinter") )
-				{
-					newObject = createDefaultMFP(desc);
-				}
-				else if ( objectType.equals("NetworkPrinter") )
-				{
-					newObject = createDefaultNetworkPrinter(desc);
-				}
-				else if ( objectType.equals("NetworkMultifunctionPrinter") )
-				{
-					newObject = createDefaultNetworkMFP(desc);
-				}
-				else if ( objectType.equals("Hub") )
-				{
-					newObject = createDefaultHub(desc);
-				}
-				else if ( objectType.equals("Switch") )
-				{
-					newObject = createDefaultSwitch(desc);
-				}
-				else if ( objectType.equals("Router") )
-				{
-					newObject = createDefaultRouter(desc);
-				}
-				else if ( objectType.equals("Modem") )
-				{
-					newObject = createDefaultModem(desc);
-				}
-				else if ( objectType.equals("WirelessRouter") )
-				{
-					newObject = createDefaultWirelessRouter(desc);
-				}
-				else if ( objectType.equals("Internet") )
-				{
-					newObject = createDefaultInternet(desc);
-				}
-				else if ( objectType.equals("Rack") )
-				{
-					newObject = createDefaultRack(desc);
-				}
-				else if ( objectType.equals("RackHub") )
-				{
-					newObject = createDefaultRackUnitWithObject(Hub.class, desc);
-				}
-				else if ( objectType.equals("RackRouter") )
-				{
-					newObject = createDefaultRackUnitWithObject(Router.class,
-							desc);
-				}
-				else if ( objectType.equals("RackSwitch") )
-				{
-					newObject = createDefaultRackUnitWithObject(Switch.class,
-							desc);
-				}
+				newObject = createDefaultLaptop(desc);
+			}
+			else if ( objectType.equals("ThinClient") )
+			{
+				newObject = createDefaultThinClient(desc);
+			}
+			else if ( objectType.equals("GenericServer") )
+			{
+				newObject = createGenericServer(desc);
+			}
+			else if ( objectType.equals("HTTPServer") )
+			{
+				newObject = createDefaultHTTPServer(desc);
+			}
+			else if ( objectType.equals("BackupServer") )
+			{
+				newObject = createDefaultBackupServer(desc);
+			}
+			else if ( objectType.equals("NASServer") )
+			{
+				newObject = createDefaultBackupServer(desc);
+			}
+			else if ( objectType.equals("DatabaseServer") )
+			{
+				newObject = createDefaultDatabaseServer(desc);
+			}
+			else if ( objectType.equals("VirtualizationServer") )
+			{
+				newObject = createDefaultVirtualizationServer(desc);
+			}
+			else if ( objectType.equals("MailServer") )
+			{
+				newObject = createDefaultMailServer(desc);
+			}
+			else if ( objectType.equals("FirewallServer") )
+			{
+				newObject = createDefaultFirewallServer(desc);
+			}
+			else if ( objectType.equals("ProxyServer") )
+			{
+				newObject = createDefaultProxyServer(desc);
+			}
+			else if ( objectType.equals("PrinterServer") )
+			{
+				newObject = createDefaultPrinterServer(desc);
+			}
+			else if ( objectType.equals("ExternalHDD") )
+			{
+				newObject = createDefaultNAS(desc);
+			}
+			else if ( objectType.equals("Scanner") )
+			{
+				newObject = createDefaultScanner(desc);
+			}
+			else if ( objectType.equals("Printer") )
+			{
+				newObject = createDefaultPrinter(desc);
+			}
+			else if ( objectType.equals("Fax") )
+			{
+				newObject = createDefaultFax(desc);
+			}
+			else if ( objectType.equals("MultifunctionPrinter") )
+			{
+				newObject = createDefaultMFP(desc);
+			}
+			else if ( objectType.equals("NetworkPrinter") )
+			{
+				newObject = createDefaultNetworkPrinter(desc);
+			}
+			else if ( objectType.equals("NetworkMultifunctionPrinter") )
+			{
+				newObject = createDefaultNetworkMFP(desc);
+			}
+			else if ( objectType.equals("Hub") )
+			{
+				newObject = createDefaultHub(desc);
+			}
+			else if ( objectType.equals("Switch") )
+			{
+				newObject = createDefaultSwitch(desc);
+			}
+			else if ( objectType.equals("Router") )
+			{
+				newObject = createDefaultRouter(desc);
+			}
+			else if ( objectType.equals("Modem") )
+			{
+				newObject = createDefaultModem(desc);
+			}
+			else if ( objectType.equals("WirelessRouter") )
+			{
+				newObject = createDefaultWirelessRouter(desc);
+			}
+			else if ( objectType.equals("Internet") )
+			{
+				newObject = createDefaultInternet(desc);
+			}
+			else if ( objectType.equals("Rack") )
+			{
+				newObject = createDefaultRack(desc);
+			}
+			else if ( objectType.equals("RackHub") )
+			{
+				newObject = createDefaultRackUnitWithObject(Hub.class, desc);
+			}
+			else if ( objectType.equals("RackRouter") )
+			{
+				newObject = createDefaultRackUnitWithObject(Router.class, desc);
+			}
+			else if ( objectType.equals("RackSwitch") )
+			{
+				newObject = createDefaultRackUnitWithObject(Switch.class, desc);
 			}
 		}
-		else
+
+		if ( newObject == null && objectType.equals("GenericDevice") )
 		{
+			PrimeMain.ioLog.fine("Object is a GenericDevice.");
 			customDevice = true;
 		}
+
 
 		// If no object was created
 		if ( !customDevice && newObject != null )
@@ -240,6 +245,8 @@ public class CreateObjects
 			copiedObject.setObjectName(newObject.getObjectName()
 					+ Integer.toString(numberOfWidgetsOnTheScene));
 
+			PrimeMain.ioLog.fine("Deep Copied Object created with new name, '"
+					+ copiedObject.getObjectName() + "'.");
 
 			return copiedObject;
 		}
@@ -247,11 +254,13 @@ public class CreateObjects
 		// If the user wants to create a custom object.
 		if ( customDevice )
 		{
+			System.out.println("Here");
 			return getGenericExternalHardware();
 		}
 
-		System.err
-				.println("No new object was created. - CreateObjects - Fatal Error.");
+
+		PrimeMain.ioLog
+				.warning("No new object was created. - CreateObjects - Fatal Error.");
 
 		return null;
 	}
@@ -261,6 +270,7 @@ public class CreateObjects
 	 */
 	public static void createStandardObject()
 	{
+		PrimeMain.ioLog.info("Creating Default System Objects.");
 		PrimeMain.objectlist.add(createDefaultDesktop(""));
 		PrimeMain.objectlist.add(createDefaultLaptop(""));
 		PrimeMain.objectlist.add(createDefaultThinClient(""));
@@ -318,6 +328,7 @@ public class CreateObjects
 	 */
 	private static Object[] createComponentsArray()
 	{
+		PrimeMain.ioLog.fine("Creating Default Components array.");
 		Object[] components = new Object[5];
 
 		components[0] = PrimeMain.standard_internal_components.getSt_MB();
@@ -369,6 +380,7 @@ public class CreateObjects
 
 	private static Desktop createDefaultDesktop(String desc)
 	{
+		PrimeMain.ioLog.finer("Creating default Desktop.");
 		String objectName = PrimeMain.texts.getString("desktop");
 		String objectDesc = desc;
 
@@ -393,6 +405,7 @@ public class CreateObjects
 
 	private static Laptop createDefaultLaptop(String desc)
 	{
+		PrimeMain.ioLog.finer("Creating default Laptop.");
 		String objectName = PrimeMain.texts.getString("laptop");
 		String objectDesc = desc;
 
@@ -434,6 +447,7 @@ public class CreateObjects
 
 	public static ThinClient createDefaultThinClient(String desc)
 	{
+		PrimeMain.ioLog.finer("Creating default ThinClient.");
 		String objectName = PrimeMain.texts.getString("thinClient");
 		String objectDesc = desc;
 
@@ -448,21 +462,26 @@ public class CreateObjects
 
 		ThinClient temp = new ThinClient(objectName, objectDesc, st_components);
 		try
-		{ // Gets the HDD from the array of components
+		{
+			PrimeMain.ioLog
+					.finer("Attempting to remove default HDD from ThinClient.");
+			// Gets the HDD from the array of components
 			HDD removing = (HDD) ArrayManagment.getSpesificComponents(
 					HDD.class, st_components, st_components.length)[0];
 
 			ComponentsManagment.removeHDD(temp, removing);
+			PrimeMain.ioLog.finer("Default HDD removed from ThinClient.");
 		}
 		catch ( ObjectNotFoundException e )
 		{
-			// This is impossible since the HDD has just been added at the top
-			// of this class
+			PrimeMain.ioLog
+					.warning("HDD not found in ThinClient. - createDefaultThinClient - Fatal error.");
 			e.printStackTrace();
 		}
 		catch ( MotherboardNotFound e )
 		{
-			// TODO Auto-generated catch block
+			PrimeMain.ioLog
+					.warning("Motherboard not found in ThinClient. - createDefaultThinClient - Fatal error.");
 			e.printStackTrace();
 		}
 
@@ -479,6 +498,7 @@ public class CreateObjects
 
 	private static GenericServer createGenericServer(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Generic Server.");
 		String objectName = PrimeMain.texts.getString("GeneralServer");
 		String objectDesc = desc;
 
@@ -513,6 +533,7 @@ public class CreateObjects
 
 	private static AntivirusServer createDefaultAntivirusServer(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Antivirus Server.");
 		String objectName = PrimeMain.texts.getString("antivirusServer");
 		String objectDesc = desc;
 
@@ -550,6 +571,7 @@ public class CreateObjects
 
 	private static HTTPServer createDefaultHTTPServer(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Webserver Server.");
 		String objectName = PrimeMain.texts.getString("httpServer");
 		String objectDesc = desc;
 
@@ -588,6 +610,7 @@ public class CreateObjects
 
 	private static BackupServer createDefaultBackupServer(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Backup Server.");
 		String objectName = PrimeMain.texts.getString("backupServer");
 		String objectDesc = desc;
 
@@ -625,6 +648,7 @@ public class CreateObjects
 
 	private static NASServer createDefaultNASServer(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default NAS Server.");
 		String objectName = PrimeMain.texts.getString("NASServer");
 		String objectDesc = desc;
 
@@ -657,6 +681,7 @@ public class CreateObjects
 
 	private static DatabaseServer createDefaultDatabaseServer(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Database Server.");
 		String objectName = "Database Server";
 		String objectDesc = desc;
 
@@ -695,6 +720,7 @@ public class CreateObjects
 	private static VirtualizationServer createDefaultVirtualizationServer(
 			String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Virtualization Server.");
 		String objectName = PrimeMain.texts.getString("virtualizationServer");
 		String objectDesc = desc;
 
@@ -728,6 +754,7 @@ public class CreateObjects
 
 	private static MailServer createDefaultMailServer(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Mail Server.");
 		String objectName = PrimeMain.texts.getString("mailServer");
 		String objectDesc = desc;
 
@@ -765,6 +792,7 @@ public class CreateObjects
 
 	private static FirewallServer createDefaultFirewallServer(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Firewall Server.");
 		String objectName = PrimeMain.texts.getString("firewallServer");
 		String objectDesc = desc;
 
@@ -801,6 +829,7 @@ public class CreateObjects
 
 	private static ProxyServer createDefaultProxyServer(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Proxy Server.");
 		String objectName = PrimeMain.texts.getString("proxyServer");
 		String objectDesc = desc;
 
@@ -836,6 +865,7 @@ public class CreateObjects
 
 	private static PrinterServer createDefaultPrinterServer(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Print Server.");
 		String objectName = PrimeMain.texts.getString("printerServer");
 		String objectDesc = desc;
 
@@ -871,6 +901,7 @@ public class CreateObjects
 
 	private static ExternalHDD createDefaultNAS(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default NAS object.");
 		String objectName = PrimeMain.texts.getString("nas");
 		String objectDesc = desc;
 
@@ -909,6 +940,7 @@ public class CreateObjects
 
 	private static Scanner createDefaultScanner(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Scanner object.");
 		String objectName = PrimeMain.texts.getString("scanner");
 		String objectDesc = desc;
 
@@ -939,6 +971,7 @@ public class CreateObjects
 
 	private static Printer createDefaultPrinter(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Printer object.");
 		String objectName = PrimeMain.texts.getString("printer");
 		String objectDesc = desc;
 
@@ -969,6 +1002,7 @@ public class CreateObjects
 
 	private static Fax createDefaultFax(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Fax object.");
 		String objectName = PrimeMain.texts.getString("fax");
 		String objectDesc = desc;
 
@@ -1001,6 +1035,7 @@ public class CreateObjects
 
 	private static MultifunctionPrinter createDefaultMFP(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Multi Function Printer object.");
 		String objectName = PrimeMain.texts.getString("multifunctionPrinter");
 		String objectDesc = desc;
 
@@ -1031,6 +1066,7 @@ public class CreateObjects
 
 	private static NetworkPrinter createDefaultNetworkPrinter(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Network Printer object.");
 		String objectName = PrimeMain.texts.getString("printer");
 		String objectDesc = desc;
 
@@ -1065,6 +1101,8 @@ public class CreateObjects
 	private static NetworkMultifunctionPrinter createDefaultNetworkMFP(
 			String desc)
 	{
+		PrimeMain.ioLog
+				.info("Creating default Network Multi Function Printer object.");
 		String objectName = PrimeMain.texts
 				.getString("networkMultifunctionPrinter");
 		String objectDesc = desc;
@@ -1099,6 +1137,7 @@ public class CreateObjects
 
 	private static Hub createDefaultHub(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Hub object.");
 		String objectName = PrimeMain.texts.getString("hub");
 		String objectDesc = desc;
 
@@ -1132,6 +1171,7 @@ public class CreateObjects
 
 	private static Switch createDefaultSwitch(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Switch object.");
 		String objectName = PrimeMain.texts.getString("switch");
 		String objectDesc = desc;
 
@@ -1165,6 +1205,7 @@ public class CreateObjects
 
 	private static Router createDefaultRouter(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Router object.");
 		String objectName = PrimeMain.texts.getString("router");
 		String objectDesc = desc;
 
@@ -1198,6 +1239,7 @@ public class CreateObjects
 
 	private static Modem createDefaultModem(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Modem object.");
 		String objectName = PrimeMain.texts.getString("modem");
 		String objectDesc = desc;
 
@@ -1229,6 +1271,7 @@ public class CreateObjects
 
 	private static Router createDefaultWirelessRouter(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Wireless-router object.");
 		String objectName = PrimeMain.texts.getString("wirelessRouter");
 		String objectDesc = desc;
 
@@ -1277,6 +1320,7 @@ public class CreateObjects
 
 	private static Internet createDefaultInternet(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Internet object.");
 		String objectName = PrimeMain.texts.getString("internet");
 		String objectDesc = desc;
 
@@ -1315,6 +1359,7 @@ public class CreateObjects
 
 	private static Rack createDefaultRack(String desc)
 	{
+		PrimeMain.ioLog.info("Creating default Rack object.");
 		String objectName = PrimeMain.texts.getString("rack");
 		String objectDesc = desc;
 
@@ -1407,6 +1452,8 @@ public class CreateObjects
 	// GENERAL HARDWARE
 	private static ExternalHardware getGenericExternalHardware()
 	{
+		PrimeMain.ioLog
+				.info("Creating default Generic External Hardware object.");
 		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 

@@ -129,8 +129,8 @@ public class PrimeMain extends JFrame
 	// Main window panel setup
 	private static JPanel toolbarPanel, selectionPanel;
 
-	// The tab selection area where one can open projects and create new objects
-	private static TabbedSelection tabSelection;
+	// The tab selection area where one can open projects and select new objects
+	public static TabbedSelection tabSelection;
 
 	// The JPanel where the properties of any selected object or network
 	// overview is shown.
@@ -541,10 +541,6 @@ public class PrimeMain extends JFrame
 		{
 			new TipOfDay();
 		}
-
-		// new GenericDeviceCreation();
-
-		// GraphicalFunctions.customizeGenericDevice(null);
 	}
 
 	/**
@@ -977,7 +973,6 @@ public class PrimeMain extends JFrame
 		DesktopFileManagment.saveStandardRules();
 
 		DesktopFileManagment.saveCustomOS();
-
 
 		WorkareaCanvas[] changes = CanvasManagment
 				.canvasesHaveChanged(canvases);

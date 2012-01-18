@@ -21,8 +21,10 @@ package managment;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import objects.Object;
 import exceptions.NotValidIPAddress;
 import exceptions.RangeIsNotValidException;
 import exceptions.RangeNotBigEnoughException;
@@ -213,5 +215,41 @@ public class NetworkManagment
 		int timeOut = 5000; // No hurry
 
 		return InetAddress.getByName(host).isReachable(timeOut);
+	}
+
+
+
+	/**
+	 * This function will attempt to find the shortest 'path', number of objects
+	 * between start and end, connected by one of the networking connections
+	 * types.
+	 * 
+	 * NULL is returns if a path was not found.
+	 */
+	public static ArrayList<Object> getNetworkConObjectsToEnd(Object startObj,
+			Object endObj)
+	{
+		ArrayList<Object> path = new ArrayList<Object>();
+
+		/**
+		 * Algorithm:
+		 * 1. Find all paths between the 2 given objects.
+		 * 2. Find the shortest path.
+		 */
+
+		// Step 1
+		Object[] startingObjects = startObj.getConnectedDevices();
+
+
+
+
+
+		if ( path.isEmpty() )
+		{
+			return null;
+		}
+
+
+		return path;
 	}
 }

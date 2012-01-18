@@ -67,40 +67,52 @@ public class DesktopCanvasManagment
 	 */
 	public static void addCanvas(WorkareaCanvas newCanvas, String name)
 	{
-
-		// If the first canvas location is not null, which means that there are
-		// previous created canvases.
-		if ( PrimeMain.canvases[0] != null )
+		if ( newCanvas != null )
 		{
-			// Goes through the entire canvas array.
-			for ( int i = 0; i < PrimeMain.canvases.length; i++ )
+			PrimeMain.ioLog.info("Adding a new canvas, " + name
+					+ ", to the systems list of canvases.");
+			// If the first canvas location is not null, which means that there
+			// are previous created canvases.
+			if ( PrimeMain.canvases[0] != null )
 			{
-				// if any index is null.
-				if ( PrimeMain.canvases[i] == null )
+				// Goes through the entire canvas array.
+				for ( int i = 0; i < PrimeMain.canvases.length; i++ )
 				{
-					newCanvas.setCanvasName(name);
+					// if any index is null.
+					if ( PrimeMain.canvases[i] == null )
+					{
+						newCanvas.setCanvasName(name);
 
-					// Sets the newCanvas in at that index.
-					PrimeMain.canvases[i] = newCanvas;
+						// Sets the newCanvas in at that index.
+						PrimeMain.canvases[i] = newCanvas;
 
-					// Ends the method by returning.
-					return;
+						// Ends the method by returning.
+						return;
+					}
 				}
+
+				PrimeMain.ioLog.fine("Expanding the Canvas array size.");
+				// If the method gets to this point it means that there were no
+				// empty indexes found and there needs to be added an empty
+				// index at the end of the array
+				extendCanvasArray();
+
+				addCanvas(newCanvas, name);
 			}
+			else
+			{
+				PrimeMain.ioLog
+						.fine("No other canvases in system. Adding first.");
+				newCanvas.setCanvasName(name);
+				PrimeMain.canvases[0] = newCanvas;
+				PrimeMain.currentCanvas = newCanvas;
 
-			// If the method gets to this point it means that there were no
-			// empty indexes found and there needs to be added an empty index at
-			// the end of the array
-			extendCanvasArray();
-
-			addCanvas(newCanvas, name);
+			}
 		}
 		else
 		{
-			newCanvas.setCanvasName(name);
-			PrimeMain.canvases[0] = newCanvas;
-			PrimeMain.currentCanvas = newCanvas;
-
+			PrimeMain.ioLog
+					.warning("Given canvas variable was NULL. - addCanvas");
 		}
 	}
 
@@ -111,6 +123,7 @@ public class DesktopCanvasManagment
 	 */
 	public static void extendCanvasArray()
 	{
+		PrimeMain.ioLog.info("Expanding the Canvas array size.");
 		WorkareaCanvas[] temp = new WorkareaCanvas[PrimeMain.canvases.length + 1];
 
 		for ( int i = 0; i < PrimeMain.canvases.length; i++ )
@@ -132,15 +145,26 @@ public class DesktopCanvasManagment
 	 */
 	public static WorkareaCanvas findCanvas(String canvasName)
 	{
-		for ( int i = 0; i < PrimeMain.canvases.length; i++ )
+		if ( canvasName != null )
 		{
-			if ( PrimeMain.canvases[i] != null )
+			PrimeMain.ioLog
+					.info("Search for canvas in system with given name '"
+							+ canvasName + "'.");
+			for ( int i = 0; i < PrimeMain.canvases.length; i++ )
 			{
-				if ( PrimeMain.canvases[i].getCanvasName().equals(canvasName) )
+				if ( PrimeMain.canvases[i] != null )
 				{
-					return PrimeMain.canvases[i];
+					if ( PrimeMain.canvases[i].getCanvasName().equals(
+							canvasName) )
+					{
+						return PrimeMain.canvases[i];
+					}
 				}
 			}
+		}
+		else
+		{
+			PrimeMain.ioLog.warning("Given Canvas name was NULL. - findCanvas");
 		}
 
 		// Has not found any canvases with that name.
@@ -158,43 +182,53 @@ public class DesktopCanvasManagment
 	public static void removeWorkareaCanvas(WorkareaCanvas canvas)
 			throws CanvasNotFound
 	{
-		// If the first canvas location is not null, which means that there are
-		// previous created canvases.
-		if ( PrimeMain.canvases[0] != null )
+		if ( canvas != null )
 		{
-			// Goes through the entire canvas array.
-			for ( int i = 0; i < PrimeMain.canvases.length; i++ )
+			PrimeMain.ioLog.info("Attempting to remove given canvas '"
+					+ canvas.getCanvasName() + "' from system.");
+			// If the first canvas location is not null, which means that there
+			// are previous created canvases.
+			if ( PrimeMain.canvases[0] != null )
 			{
-				// if any index not equal null.
-				if ( PrimeMain.canvases[i] != null )
+				// Goes through the entire canvas array.
+				for ( int i = 0; i < PrimeMain.canvases.length; i++ )
 				{
-					// If the canvas at index i has the same name as the gievn
-					// canvas
-					if ( PrimeMain.canvases[i].getCanvasName()
-							.equalsIgnoreCase(canvas.getCanvasName()) )
+					// if any index not equal null.
+					if ( PrimeMain.canvases[i] != null )
 					{
-						// Removes the canvas from the array
-						PrimeMain.canvases[i] = null;
-						PrimeMain.guiLog
-								.fine("Canvas,"
-										+ canvas.getCanvasName()
-										+ ", has been removed from the main WorkareaCanvas register.");
-
-						// Removes the null pointer in the array
-						PrimeMain.canvases = logistical.cleanup
-								.cleanObjectArray(PrimeMain.canvases);
-
-						// If all the canvases have been removed, a new array
-						// with one index is created
-						if ( PrimeMain.canvases.length == 0 )
+						// If the canvas at index i has the same name as the
+						// given canvas
+						if ( PrimeMain.canvases[i].getCanvasName()
+								.equalsIgnoreCase(canvas.getCanvasName()) )
 						{
-							PrimeMain.canvases = new WorkareaCanvas[1];
-						}
+							// Removes the canvas from the array
+							PrimeMain.canvases[i] = null;
+							PrimeMain.guiLog
+									.fine("Canvas,"
+											+ canvas.getCanvasName()
+											+ ", has been removed from the main WorkareaCanvas register.");
 
-						return;
+							// Removes the null pointer in the array
+							PrimeMain.canvases = logistical.cleanup
+									.cleanObjectArray(PrimeMain.canvases);
+
+							// If all the canvases have been removed, a new
+							// array with one index is created
+							if ( PrimeMain.canvases.length == 0 )
+							{
+								PrimeMain.canvases = new WorkareaCanvas[1];
+							}
+
+							return;
+						}
 					}
 				}
 			}
+		}
+		else
+		{
+			PrimeMain.ioLog
+					.warning("Given Canvas was NULL. - removeWorkareaCanvas");
 		}
 
 		// If the function gets to this point it means that the WorkareaCanvas
@@ -214,12 +248,15 @@ public class DesktopCanvasManagment
 	public static void removeWorkareaCanvas(String canvasName)
 			throws CanvasNotFound
 	{
+		PrimeMain.ioLog.info("Attempting to remove canvas by name.");
 		// Find the canvas that has the given name
 		WorkareaCanvas canvas = findCanvas(canvasName);
 
 
 		if ( canvas != null )
 		{
+			PrimeMain.ioLog.fine("Attempting to remove given canvas '"
+					+ canvas.getCanvasName() + "' from system.");
 			// If the first canvas location is not null, which means that there
 			// are
 			// previous created canvases.
@@ -277,16 +314,28 @@ public class DesktopCanvasManagment
 	 */
 	public static boolean canvasExists(WorkareaCanvas canvas)
 	{
-		for ( int i = 0; i < PrimeMain.canvases.length; i++ )
+		if ( canvas != null )
 		{
-			if ( PrimeMain.canvases[i] != null )
+			PrimeMain.ioLog.info("Checking if given canvas, '"
+					+ canvas.getCanvasName() + "' exists in the system.");
+			for ( int i = 0; i < PrimeMain.canvases.length; i++ )
 			{
-				if ( PrimeMain.canvases[i].getCanvasName().equalsIgnoreCase(
-						canvas.getCanvasName()) )
+				if ( PrimeMain.canvases[i] != null )
 				{
-					return true;
+					if ( PrimeMain.canvases[i].getCanvasName()
+							.equalsIgnoreCase(canvas.getCanvasName()) )
+					{
+						PrimeMain.ioLog.fine("Canvas '"
+								+ canvas.getCanvasName()
+								+ "' exists in the system.");
+						return true;
+					}
 				}
 			}
+		}
+		else
+		{
+			PrimeMain.ioLog.warning("Given Canvas was NULL. - canvasExists");
 		}
 
 		// Has not found any canvases with that name.
@@ -303,17 +352,30 @@ public class DesktopCanvasManagment
 	 */
 	public static boolean canvasExists(String canvasName)
 	{
-		for ( int i = 0; i < PrimeMain.canvases.length; i++ )
+		if ( canvasName != null )
 		{
-			if ( PrimeMain.canvases[i] != null )
+			PrimeMain.ioLog.info("Checking if given canvas, '" + canvasName
+					+ "' exists in the system.");
+			for ( int i = 0; i < PrimeMain.canvases.length; i++ )
 			{
-				if ( PrimeMain.canvases[i].getCanvasName().equalsIgnoreCase(
-						canvasName) )
+				if ( PrimeMain.canvases[i] != null )
 				{
-					return true;
+					if ( PrimeMain.canvases[i].getCanvasName()
+							.equalsIgnoreCase(canvasName) )
+					{
+						PrimeMain.ioLog.fine("Canvas '" + canvasName
+								+ "' exists in the system.");
+						return true;
+					}
 				}
 			}
 		}
+		else
+		{
+			PrimeMain.ioLog
+					.warning("Given Canvas name was NULL. - canvasExists");
+		}
+
 
 		// Has not found any canvases with that name.
 		return false;
@@ -336,6 +398,8 @@ public class DesktopCanvasManagment
 			Point objectPoint, WorkareaCanvas canvas, boolean withCleanUp,
 			boolean rulesCheck)
 	{
+		PrimeMain.ioLog
+				.info("Attempting to add a new given WidgetObject to the given Canvas.");
 		if ( newObject != null && objectPoint != null && canvas != null )
 		{
 			// Gets the Object inside the widget
@@ -480,6 +544,11 @@ public class DesktopCanvasManagment
 			// Add the (possibly modified) object to the given canvas
 			WorkareaCanvasActions.addWidgetToCanvas(newObject, objectPoint,
 					canvas, withCleanUp);
+		}
+		else
+		{
+			PrimeMain.ioLog
+					.warning("Given WidgetObject, ObjectPoint or Canvas was NULL. - addWidgetToCanvas");
 		}
 
 
@@ -774,8 +843,12 @@ public class DesktopCanvasManagment
 		{
 			if ( widObj.getObject() instanceof GenericDevice )
 			{
-				new GenericDeviceCreation((GenericDevice) widObj.getObject(),
-						canvas);
+				// If the GeneriDevice is NOT customized.
+				if ( !((GenericDevice) widObj.getObject()).isCustomized() )
+				{
+					new GenericDeviceCreation(
+							(GenericDevice) widObj.getObject(), canvas);
+				}
 			}
 		}
 	}

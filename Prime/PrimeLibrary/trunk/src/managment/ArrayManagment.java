@@ -467,8 +467,74 @@ public class ArrayManagment
 
 
 
+	/**
+	 * Get specific objects by searching for objects with the give name.
+	 * 
+	 * @param array
+	 *            The arraylist that is to be checked.
+	 * @param name
+	 *            The object name that is to be searched for.
+	 * @return The found object or NULL.
+	 */
+	public static Object getObjectWithGivenName(ArrayList<Object> array,
+			String name)
+	{
+		return getObjectWithGivenName(array.toArray(new Object[1]), name);
+	}
+
+
+
+	/**
+	 * Get specific objects by searching for objects with the give name.
+	 * 
+	 * @param array
+	 *            The array that is to be checked.
+	 * @param name
+	 *            The object name that is to be searched for.
+	 * @return The found object or NULL.
+	 */
+	public static Object getObjectWithGivenName(Object[] array, String name)
+	{
+		if ( array != null && name != null )
+		{
+			for ( int i = 0; i < array.length; i++ )
+			{
+				if ( array[i] != null )
+				{
+					if ( array[i].getObjectName().equals(name) )
+					{
+						return array[i];
+					}
+				}
+			}
+		}
+
+		return null;
+	}
+
 
 	// CHECK FUNCTIONS
+	/**
+	 * Check function to determine whether or not the the given arraylist
+	 * contains the given object. Compares {@link Object} serial numbers.
+	 * 
+	 * @param list
+	 *            The arraylist that is to be checked.
+	 * @param searchObject
+	 *            The object that is to be searched for.
+	 */
+	public static boolean arrayContains(ArrayList<Object> list,
+			Object searchObject)
+	{
+		if ( list != null && searchObject != null )
+		{
+			return arrayContains(list.toArray(new Object[0]), searchObject);
+		}
+
+		return false;
+	}
+
+
 	/**
 	 * Check function to determine whether or not the the given array contains
 	 * the given object. Compares {@link Object} serial numbers.
@@ -583,8 +649,7 @@ public class ArrayManagment
 	 *            The array that is to be checked.
 	 * @param searchObject
 	 *            The object that is to be searched for.
-	 * @return The array of booleans that tells, by way of the index, which
-	 *         object are found.
+	 * @return The boolean on whether the String was found.
 	 */
 	public static boolean arrayContains(String[] array, String searchObject)
 	{
@@ -607,6 +672,55 @@ public class ArrayManagment
 
 
 
+	/**
+	 * Check function to determine whether or not the the given array contains
+	 * the given searchObject.
+	 * 
+	 * @param list
+	 *            The arraylist that is to be checked.
+	 * @param searchObject
+	 *            The object that is to be searched for.
+	 * @return The boolean on whether the String was found.
+	 */
+	public static boolean arrayContainsWithGivenName(ArrayList<Object> list,
+			String name)
+	{
+		if ( list != null && name != null )
+		{
+			return arrayContainsWithGivenName(list.toArray(new Object[0]), name);
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check function to determine whether or not the the given array contains
+	 * the given searchObject.
+	 * 
+	 * @param array
+	 *            The array that is to be checked.
+	 * @param searchObject
+	 *            The object that is to be searched for.
+	 * @return The boolean on whether the String was found.
+	 */
+	public static boolean arrayContainsWithGivenName(Object[] array, String name)
+	{
+		if ( array != null && name != null )
+		{
+			for ( int i = 0; i < array.length; i++ )
+			{
+				if ( array[i] != null )
+				{
+					if ( array[i].getObjectName().equals(name) )
+					{
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
 
 	/**
 	 * This function creates a new java.lang.Object array with 5 more indexes

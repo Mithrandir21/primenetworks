@@ -32,6 +32,11 @@ import objects.hardwareObjects.Motherboard;
  */
 public class GenericDevice extends ExternalHardware implements Serializable
 {
+	/**
+	 * The boolean on whether the object has been customized.
+	 */
+	private boolean customized;
+
 
 	/**
 	 * Constructor of the GenericDevice class.
@@ -46,5 +51,25 @@ public class GenericDevice extends ExternalHardware implements Serializable
 	public GenericDevice(String Name, String Desc, Motherboard objectMB)
 	{
 		super(Name, Desc, objectMB);
+		customized = false;
+	}
+
+
+	/**
+	 * @return the customized
+	 */
+	public boolean isCustomized()
+	{
+		return customized;
+	}
+
+
+	/**
+	 * @param customized
+	 *            the customized to set
+	 */
+	public void setCustomized(boolean customized)
+	{
+		this.customized = customized;
 	}
 }

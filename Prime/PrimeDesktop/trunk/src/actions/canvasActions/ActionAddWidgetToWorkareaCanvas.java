@@ -23,7 +23,6 @@ import graphics.GUI.workareaCanvas.providers.ActionsAdder;
 
 import java.awt.Point;
 import java.awt.event.ActionEvent;
-import java.util.logging.Level;
 
 import javax.swing.ImageIcon;
 import javax.swing.undo.CannotRedoException;
@@ -259,7 +258,8 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 		ActionsAdder.makeWidgetObjectReady(this.canvas, this.widObject);
 
 		// Checks for custom object
-		DesktopCanvasManagment.checkForCustomObjectAndRules(this.widObject, canvas);
+		DesktopCanvasManagment.checkForCustomObjectAndRules(this.widObject,
+				canvas);
 
 		if ( undoable )
 		{
@@ -267,10 +267,8 @@ public class ActionAddWidgetToWorkareaCanvas extends AbstractSystemAction
 		}
 
 
-		PrimeMain.guiLog.logp(Level.FINE, "ActionAddWidgetToWorkareaCanvas",
-				"performAction", "Widget, "
-						+ this.widObject.getObject().getObjectName()
-						+ " added to canvas " + this.canvas.getCanvasName()
-						+ ".");
+		PrimeMain.guiLog.fine("Widget, "
+				+ this.widObject.getObject().getObjectName()
+				+ " added to canvas " + this.canvas.getCanvasName() + ".");
 	}
 }

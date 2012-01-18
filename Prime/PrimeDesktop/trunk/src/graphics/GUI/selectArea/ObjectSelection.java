@@ -18,6 +18,7 @@
 package graphics.GUI.selectArea;
 
 
+import exceptions.ObjectNotFoundException;
 import graphics.GraphicalFunctions;
 import graphics.ImageLocator;
 import graphics.PrimeMain;
@@ -33,6 +34,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import managment.ArrayManagment;
 import objects.Object;
 import objects.clientObjects.Desktop;
 import objects.clientObjects.Laptop;
@@ -86,6 +88,13 @@ import widgets.WorkareaCanvas;
  */
 public class ObjectSelection extends JPanel
 {
+	private static JXTaskPane genericDevicePane;
+
+	private static MouseListener mouseLis;
+
+	private static boolean transferable;
+
+
 	/**
 	 * TODO - Description NEEDED!
 	 */
@@ -135,6 +144,9 @@ public class ObjectSelection extends JPanel
 	{
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints d = new GridBagConstraints();
+
+		this.mouseLis = mouseLis;
+		this.transferable = transferable;
 
 
 		d.fill = GridBagConstraints.BOTH;
@@ -304,21 +316,12 @@ public class ObjectSelection extends JPanel
 	private JXTaskPane initGeneralObjectsButtonIcons(MouseListener mouseLis,
 			boolean transferable)
 	{
-		ArrayList<WidgetIcon> iconsList = new ArrayList<WidgetIcon>();
+		WidgetIcon[] widIcons = getGenericDevicesIcons();
 
-		iconsList.add(makeImageIcon(ImageLocator.getImageIconObject("Unknown"),
-				GenericDevice.class,
-				PrimeMain.texts.getString("selectAreaUnknownDeviceLabel"),
-				PrimeMain.texts.getString("selectAreaUnknownDeviceLabel"),
-				mouseLis, transferable));
-
-		WidgetIcon[] widIcons = new WidgetIcon[iconsList.size()];
-		iconsList.toArray(widIcons);
-
-
-		return getWidgetGroup(
+		genericDevicePane = getWidgetGroup(
 				PrimeMain.texts.getString("selectAreaGeneralGroupName"),
 				widIcons, false);
+		return genericDevicePane;
 	}
 
 
@@ -440,64 +443,13 @@ public class ObjectSelection extends JPanel
 	}
 
 
-
 	/**
 	 * TODO - Description
 	 */
 	@SuppressWarnings("unchecked")
-	private WidgetIcon makeImageIcon(ImageIcon Icon, Class<?> objectType,
-			String objectName, MouseListener mouseLis, boolean transferable)
-	{
-		WidgetIcon iconButton = null;
-
-		if ( Icon != null && objectType != null )
-		{
-			try
-			{
-				iconButton = new WidgetIcon(Icon, objectType, objectName);
-
-				// Adds the given mouselistener if its not null
-				if ( mouseLis != null )
-				{
-					iconButton.addMouseListener(mouseLis);
-				}
-			}
-			catch ( Exception e )
-			{
-				System.out.println("NullPointerException"
-						+ " - ObjectSelection " + " - " + objectType
-						+ System.getProperty("line.separator"));
-				System.exit(0);
-			}
-
-
-			if ( transferable )
-			{
-				// Sets up the WidgetIcon
-				GraphicalFunctions.widgetIconSetup(iconButton, Icon);
-			}
-
-			iconButton.setSize(Icon.getIconWidth(), Icon.getIconHeight());
-
-			// iconButton.setVerticalTextPosition(AbstractButton.BOTTOM);
-			// iconButton.setHorizontalTextPosition(AbstractButton.CENTER);
-			iconButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-			iconButton.setAlignmentY(Component.TOP_ALIGNMENT);
-			// iconButton.setBorder(grayline);
-		}
-
-		return iconButton;
-	}
-
-
-
-	/**
-	 * TODO - Description
-	 */
-	@SuppressWarnings("unchecked")
-	private WidgetIcon makeImageIcon(ImageIcon Icon, Class<?> objectType,
-			String objectName, String desc, MouseListener mouseLis,
-			boolean transferable)
+	private static WidgetIcon makeImageIcon(ImageIcon Icon,
+			Class<?> objectType, String objectName, String desc,
+			MouseListener mouseLis, boolean transferable)
 	{
 		WidgetIcon iconButton = null;
 
@@ -538,5 +490,105 @@ public class ObjectSelection extends JPanel
 		}
 
 		return iconButton;
+	}
+
+
+
+	public static void reloadGenericDevicesIcons()
+	{
+		genericDevicePane.removeAll();
+
+
+		WidgetIcon[] widIcons = getGenericDevicesIcons();
+
+
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints d = new GridBagConstraints();
+
+		d.fill = GridBagConstraints.BOTH;
+		// d.ipady = 0; // reset to default
+		// d.ipadx = 0; // reset to default
+		// d.weighty = 1.0; // request any extra vertical space
+		d.weightx = 1.0; // request any extra vertical space
+		// d.anchor = GridBagConstraints.CENTER; // bottom of space
+		d.insets = new Insets(0, 0, 5, 0); // top padding
+		// d.gridwidth = 1; // 2 columns wide
+		// d.gridheight = 1; // 2 columns wide
+		d.gridy = 0;
+
+
+		for ( int i = 0; i < widIcons.length; i++ )
+		{
+			d.gridy = i;
+			panel.add(widIcons[i], d);
+		}
+
+
+		// Adds the panel with the objects to the group panel
+		genericDevicePane.add(panel);
+
+
+		PrimeMain.tabSelection.repaint();
+	}
+
+
+
+	/**
+	 * This function retrieves an Array of Icons for Generic Devices consisting
+	 * of a single "Unknown" icon and then all the custom icons added by the
+	 * users.
+	 */
+	private static WidgetIcon[] getGenericDevicesIcons()
+	{
+		PrimeMain.desktopProcLog.info("Getting Generic Devices Icons...");
+		ArrayList<WidgetIcon> iconsList = new ArrayList<WidgetIcon>();
+
+		iconsList.add(makeImageIcon(ImageLocator.getImageIconObject("Unknown"),
+				GenericDevice.class,
+				PrimeMain.texts.getString("selectAreaUnknownDeviceLabel"),
+				PrimeMain.texts.getString("selectAreaUnknownDeviceLabel"),
+				mouseLis, transferable));
+
+
+		// Attempts to get all the object within the Objectlist with the class
+		// CustomObject.
+		try
+		{
+			Object[] objs = ArrayManagment.getSpesificObjects(
+					GenericDevice.class,
+					PrimeMain.objectlist.toArray(new Object[1]));
+
+			ImageIcon temp = null;
+
+			if ( objs != null )
+			{
+				for ( int i = 0; i < objs.length; i++ )
+				{
+					// Gets the custom Icons for the object
+					temp = objs[i].getVisualImage();
+
+					if ( temp != null )
+					{
+						iconsList
+								.add(makeImageIcon(temp, GenericDevice.class,
+										objs[i].getObjectName(),
+										objs[i].getObjectName(), mouseLis,
+										transferable));
+					}
+				}
+			}
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			PrimeMain.desktopProcLog
+					.info("No Generic Devices were found in Standard Devices.");
+		}
+
+
+		WidgetIcon[] widIcons = new WidgetIcon[iconsList.size()];
+		iconsList.toArray(widIcons);
+
+
+		return widIcons;
 	}
 }

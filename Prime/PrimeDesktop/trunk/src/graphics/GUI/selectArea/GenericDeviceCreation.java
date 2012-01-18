@@ -6,6 +6,7 @@ package graphics.GUI.selectArea;
 
 import exceptions.MotherboardNotFound;
 import graphics.PrimeMain;
+import graphics.SystemFunctions;
 
 import java.awt.Button;
 import java.awt.Dimension;
@@ -24,6 +25,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import logistical.checkLogic;
+import managment.ArrayManagment;
+import managment.CanvasManagment;
 import managment.ComponentsManagment;
 import managment.DesktopCanvasManagment;
 import objects.ExternalHardware;
@@ -69,15 +72,23 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 			PrimeMain.texts.getString("discdrive"));
 
 
+	private JCheckBox addToStandardDevices = new JCheckBox(
+			PrimeMain.texts.getString("genericDeviceAddToStandardDevices"));
+
+
+	private boolean addToSD = false;
+
+
 	public GenericDeviceCreation(GenericDevice obj, WorkareaCanvas canvas)
 	{
 		this.setTitle(PrimeMain.texts.getString("genericDeviceWindowsTitle"));
 
+		obj.setCustomized(true);
 		exObject = obj;
 		this.canvas = canvas;
 
 		// Set size for the settings JFrame
-		Dimension size = new Dimension(240, 400);
+		Dimension size = new Dimension(240, 450);
 
 		int initYLocation = (PrimeMain.scrnsize.height - size.height) / 3;
 		int initXLocation = (PrimeMain.scrnsize.width - size.width) / 2;
@@ -182,6 +193,18 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 		optionsPanel.add(containsDiskdrive, d);
 
 
+		JLabel Question2 = new JLabel(
+				PrimeMain.texts.getString("genericDeviceAddToStandardDevices"));
+		d.gridy++; // row
+		d.insets = new Insets(10, 15, 5, 0); // padding
+		optionsPanel.add(Question2, d);
+
+
+		d.gridy++; // row
+		d.insets = new Insets(0, 15, 5, 0); // padding
+		optionsPanel.add(addToStandardDevices, d);
+
+
 		return optionsPanel;
 	}
 
@@ -236,17 +259,71 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 			// If the written name is valid
 			if ( checkLogic.validateName(nameField.getText()) )
 			{
-				// Sets the name and desc of the object
-				exObject.setObjectName(nameField.getText());
-				exObject.setDescription(nameField.getText());
-
-				// Sets the object
-				if ( setSelectedOptions() )
+				// If no other object on the scene has the same name.
+				if ( CanvasManagment.findWidgetObjectByObjectName(
+						nameField.getText(), canvas) == null )
 				{
-					DesktopCanvasManagment.runAllCanvasNameUpdate();
-					PrimeMain.updatePropertiesCanvasArea(true);
+					// Sets the object
+					if ( setSelectedOptions() )
+					{
+						// To be added to the standard devices list.
+						if ( addToSD )
+						{
+							if ( !(ArrayManagment.arrayContainsWithGivenName(
+									PrimeMain.objectlist, nameField.getText())) )
+							{
 
-					this.dispose();
+								// Sets the name and desc of the object
+								exObject.setObjectName(nameField.getText());
+								exObject.setDescription(nameField.getText());
+
+								DesktopCanvasManagment.runAllCanvasNameUpdate();
+								PrimeMain.updatePropertiesCanvasArea(true);
+
+								SystemFunctions
+										.addToStandardObjects((GenericDevice) exObject);
+
+
+								this.dispose();
+							}
+							else
+							{
+								JOptionPane
+										.showMessageDialog(
+												null,
+												PrimeMain.texts
+														.getString("standardObjectWithNameAlreadyExists"),
+												PrimeMain.texts
+														.getString("error"),
+												JOptionPane.ERROR_MESSAGE);
+
+								// Focuses on the JTextField
+								nameField.requestFocusInWindow();
+							}
+						}
+						else
+						{
+							// Sets the name and desc of the object
+							exObject.setObjectName(nameField.getText());
+							exObject.setDescription(nameField.getText());
+
+
+							DesktopCanvasManagment.runAllCanvasNameUpdate();
+							PrimeMain.updatePropertiesCanvasArea(true);
+
+							this.dispose();
+						}
+					}
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, PrimeMain.texts
+							.getString("objectNameAlreadyExistsMsg"),
+							PrimeMain.texts.getString("error"),
+							JOptionPane.ERROR_MESSAGE);
+
+					// Focuses on the JTextField
+					nameField.requestFocusInWindow();
 				}
 			}
 			else
@@ -262,7 +339,6 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 			this.dispose();
 		}
 	}
-
 
 	/**
 	 * This function reads all the options provided by the user and then creates
@@ -361,6 +437,10 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 					// Determines the supported connection interface on the
 					// device.
 					exObject.revalidateSupportedConnectionInterfaces();
+
+
+					// Add to standard devices options.
+					addToSD = addToStandardDevices.isSelected();
 				}
 
 

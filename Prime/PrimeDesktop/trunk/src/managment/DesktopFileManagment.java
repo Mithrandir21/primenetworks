@@ -472,8 +472,8 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Saves the given {@link NetworkRules} instance to a file to preserve the
-	 * standard rules.
+	 * Saves the systems custom OSs to a file, or deletes the
+	 * file if custom OSs is empty.
 	 */
 	public static boolean saveCustomOS()
 	{
@@ -510,25 +510,18 @@ public class DesktopFileManagment
 				// The object stream file
 				ObjectOutputStream oos = new ObjectOutputStream(fout);
 
-				// The must be at least on room on the canvas for there to be
-				// saved any rooms
-				if ( !PrimeMain.system_custom_OS.isEmpty() )
+				// get an Iterator object for ArrayList using iterator()
+				// method.
+				Iterator<OperatingSystem> itr = PrimeMain.system_custom_OS
+						.iterator();
+
+				while ( itr.hasNext() )
 				{
-					PrimeMain.ioLog.fine("Atleast one Custom OS present.");
-					// get an Iterator object for ArrayList using iterator()
-					// method.
-					Iterator<OperatingSystem> itr = PrimeMain.system_custom_OS
-							.iterator();
-
-					while ( itr.hasNext() )
-					{
-						oos.writeObject(itr.next());
-					}
-
-					// Writes a null to indicate the end of the file for read
-					// in.
-					oos.writeObject(null);
+					oos.writeObject(itr.next());
 				}
+
+				// Writes a null to indicate the end of the file for read in.
+				oos.writeObject(null);
 
 				oos.flush();
 				oos.close();
@@ -549,10 +542,12 @@ public class DesktopFileManagment
 			}
 		}
 
+
+		PrimeMain.ioLog
+				.info("Either no custom OS found, file was NULL or variable NULL.");
+
 		return false;
 	}
-
-
 
 
 	/**
@@ -2058,8 +2053,7 @@ public class DesktopFileManagment
 
 
 	/**
-	 * Opens the {@link NetworkRules} instance from a given file and imports
-	 * them to the system_custom_OS instance in PrimeMain.
+	 * This function imports the users Custom {@link OperatingSystem}.
 	 * 
 	 * @see PrimeMain
 	 */

@@ -18,6 +18,9 @@
 package connections;
 
 
+import java.util.ArrayList;
+
+
 /**
  * This class contains only static final fields that represent different
  * hardware and software specific values. These fields are used for validation
@@ -48,4 +51,17 @@ public class ConnectionUtils
 	public static final String PCI = "PCI";
 
 	public static final String Integrated = "Integrated";
+
+
+	public static final ArrayList<String> networkConnectionTypes = new ArrayList<String>()
+	{
+		{
+			add(RJ45);
+			add(Coax);
+			add(Fiber);
+			add(Wireless);
+			add(Wired);
+		}
+	};
+
 }

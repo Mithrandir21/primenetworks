@@ -86,16 +86,17 @@ public class ImageSelection extends TransferHandler
 					{
 						Object newObject = null;
 
-						ImageIcon genericIcon = ImageLocator
-								.getImageIconObject("Unknown");
+						// The Image of the selected Icon
+						ImageIcon newObjectIcon = new ImageIcon(
+								icon.getIconImage());
 
-						WidgetIcon genIcon = icon;
 
 						// If it is an "Unknown" device
-						if ( icon
-								.getDescription()
-								.equals(PrimeMain.texts
-										.getString("selectAreaUnknownDeviceLabel")) )
+						if ( (icon.getIconImage() == ImageLocator
+								.getImageIconObject("Unknown").getImage())
+								&& icon.getDescription()
+										.equals(PrimeMain.texts
+												.getString("selectAreaUnknownDeviceLabel")) )
 						{
 							// Ask the to select an Icon
 							ImageIcon iconTemp = GraphicalFunctions
@@ -104,25 +105,25 @@ public class ImageSelection extends TransferHandler
 							// If the user selected a valid image
 							if ( iconTemp != null )
 							{
-								genericIcon = iconTemp;
+								newObjectIcon = iconTemp;
 							}
 
 							// Creates a new WidgetIcon with the user-selected
 							// Icon
-							genIcon = new WidgetIcon(genericIcon,
+							icon = new WidgetIcon(newObjectIcon,
 									icon.getClassType(), icon.getDescription());
 						}
 
 						// Creates the new Object
-						newObject = CreateObjects.CreateObject(genIcon,
+						newObject = CreateObjects.CreateObject(icon,
 								PrimeMain.currentCanvas
 										.getNumberOfWidgetsOnTheScene());
 
 						WidgetObject widObj = new WidgetObject(
 								PrimeMain.currentCanvas.getScene(), newObject,
-								genIcon.getIconImage());
+								icon.getIconImage());
 
-						widObj.setWidgetImage(genericIcon);
+						widObj.setWidgetImage(newObjectIcon);
 
 						return widObj;
 					}

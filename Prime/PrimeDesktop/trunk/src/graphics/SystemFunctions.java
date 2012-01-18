@@ -18,12 +18,16 @@
 package graphics;
 
 
+import graphics.GUI.selectArea.ObjectSelection;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.channels.FileChannel;
+
+import objects.peripheralObjects.GenericDevice;
 
 
 
@@ -161,6 +165,31 @@ public class SystemFunctions
 			}
 		}
 
+		return false;
+	}
+
+
+
+
+	/**
+	 * Adds a given {@link GenericDevice} to the list of Standard Devices.
+	 */
+	public static boolean addToStandardObjects(GenericDevice exObject)
+	{
+		PrimeMain.desktopProcLog
+				.info("Adding a GenericDevice object to the list of Standard Devices.");
+
+		if ( exObject != null && PrimeMain.objectlist != null )
+		{
+			PrimeMain.objectlist.add(exObject);
+
+			ObjectSelection.reloadGenericDevicesIcons();
+			return true;
+		}
+
+
+		PrimeMain.desktopProcLog
+				.warning("Was not able to add a given GenericDevice to the Standard Devices list. - SystemFunctions - addToStandardObjects");
 		return false;
 	}
 }
