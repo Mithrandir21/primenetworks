@@ -51,7 +51,7 @@ public class checkLogic
 
 		// This pattern will allow letters, numbers, spaces, underscore and the
 		// letters Ø,Æ and Å.
-		String pat = "([\\w\\-_øæåØÆÅ\\d\\s]+)";
+		String pat = "([\\w\\-_øæåØÆÅ\\d\\s.]+)";
 
 		Pattern test = Pattern.compile(pat);
 

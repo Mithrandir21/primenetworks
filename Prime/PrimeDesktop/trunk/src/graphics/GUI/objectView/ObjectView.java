@@ -261,8 +261,8 @@ public class ObjectView extends JFrame implements ActionListener
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null,
-					PrimeMain.texts.getString("saveSpecifyNameErrorMsg"),
+			JOptionPane.showMessageDialog(null, PrimeMain.texts
+					.getString("actionChangeWidgetNameInvalidNameText"),
 					PrimeMain.texts.getString("error"),
 					JOptionPane.ERROR_MESSAGE);
 
