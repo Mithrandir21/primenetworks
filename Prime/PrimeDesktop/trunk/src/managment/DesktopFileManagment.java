@@ -1340,7 +1340,7 @@ public class DesktopFileManagment
 				if ( !DesktopCanvasManagment.canvasExists(nameOfCanvas) )
 				{
 					PrimeMain.ioLog
-							.fine("No canvas eixsts with the same name.");
+							.fine("No canvas exists with the same name.");
 					WorkareaCanvas canvas = new WorkareaCanvas(nameOfCanvas);
 					// ActionsAdder.makeWorkareaCanvasReady(ghostGlass, canvas);
 
@@ -2059,6 +2059,9 @@ public class DesktopFileManagment
 	 */
 	public static void loadCustomOS(File file)
 	{
+		PrimeMain.ioLog.info("Attempting to load Custom OS from '"
+				+ file.getName() + "'.");
+
 		// If the Objects file exists
 		if ( file.exists() )
 		{
@@ -2080,6 +2083,9 @@ public class DesktopFileManagment
 						{
 							// Clears the list
 							PrimeMain.system_custom_OS.clear();
+
+							PrimeMain.ioLog
+									.fine("No Custom OS in the file system. Clearing Custom OSs in the running system.");
 						}
 
 						// While the temp is not null, hence not EOF
@@ -2089,10 +2095,15 @@ public class DesktopFileManagment
 							PrimeMain.system_custom_OS.add(temp);
 						}
 
+
+						PrimeMain.ioLog.fine("Custom OSs read in from file.");
+
 						ois.close();
 					}
 					catch ( Exception e )
 					{
+						PrimeMain.ioLog
+								.warning("An error occured during file reading.");
 						e.printStackTrace();
 					}
 				}
@@ -2107,6 +2118,9 @@ public class DesktopFileManagment
 	 */
 	public static void openStandardRules(File file)
 	{
+		PrimeMain.ioLog.info("Attempting to load Standard Rules from '"
+				+ file.getName() + "'.");
+
 		// If the Objects file exists
 		if ( file.exists() )
 		{
@@ -2125,10 +2139,15 @@ public class DesktopFileManagment
 						PrimeMain.standardRules = (NetworkRules) ois
 								.readObject();
 
+						PrimeMain.ioLog
+								.fine("Standard Rules read in from file.");
+
 						ois.close();
 					}
 					catch ( Exception e )
 					{
+						PrimeMain.ioLog
+								.warning("An error occured during file reading.");
 						e.printStackTrace();
 					}
 				}
@@ -2158,6 +2177,9 @@ public class DesktopFileManagment
 	public static void openSettings()
 	{
 		File file = new File("./resource/settings.dat");
+
+		PrimeMain.ioLog.info("Attempting to load system settings from '"
+				+ file.getName() + "'.");
 
 		// If the Objects file exists
 		if ( file.exists() )
@@ -2207,10 +2229,14 @@ public class DesktopFileManagment
 						managment.Settings.originalImages = ois.readBoolean();
 
 
+						PrimeMain.ioLog.fine("Settings read in from file.");
+
 						ois.close();
 					}
 					catch ( Exception e )
 					{
+						PrimeMain.ioLog
+								.warning("An error occured during file reading.");
 						e.printStackTrace();
 					}
 				}
@@ -2299,56 +2325,69 @@ public class DesktopFileManagment
 	 */
 	public static boolean exportNetwork(WorkareaCanvas canvas)
 	{
-		// The JFileChoose where the user will save the export
-		JFileChooser fc = new JFileChooser();
-		fc.setAcceptAllFileFilterUsed(false);
-
-		// Adds the filters
-		fc.addChoosableFileFilter(new DATFilter());
-
-		// Sets the selected file to the name of the
-		fc.setSelectedFile(new File(canvas.getCanvasName()));
-
-		// Shows the File chooser
-		int returnVal = fc.showSaveDialog(null);
-
-		// If the save button is pressed
-		if ( returnVal == JFileChooser.APPROVE_OPTION )
+		if ( canvas != null )
 		{
-			// Gets the file written/selected
-			File file = fc.getSelectedFile();
+			PrimeMain.ioLog.info("Attempting to export network, "
+					+ canvas.getCanvasName() + ", to file.");
 
-			// Creates the file with the right extension
-			File output = new File(file.getAbsoluteFile() + ".dat");
+			// The JFileChoose where the user will save the export
+			JFileChooser fc = new JFileChooser();
+			fc.setAcceptAllFileFilterUsed(false);
 
-			// Whether or not to overwrite
-			boolean overwrite = false;
+			// Adds the filters
+			fc.addChoosableFileFilter(new DATFilter());
 
-			// IF there already exists a file
-			if ( output.exists() )
+			// Sets the selected file to the name of the
+			fc.setSelectedFile(new File(canvas.getCanvasName()));
+
+			// Shows the File chooser
+			int returnVal = fc.showSaveDialog(null);
+
+			// If the save button is pressed
+			if ( returnVal == JFileChooser.APPROVE_OPTION )
 			{
-				int answer = JOptionPane.showConfirmDialog(null,
-						PrimeMain.texts.getString("overwriteNetworkExportMsg"),
-						PrimeMain.texts.getString("overwrite"),
-						JOptionPane.YES_NO_OPTION);
+				// Gets the file written/selected
+				File file = fc.getSelectedFile();
 
-				if ( answer == 0 )
+				// Creates the file with the right extension
+				File output = new File(file.getAbsoluteFile() + ".dat");
+
+				// Whether or not to overwrite
+				boolean overwrite = false;
+
+				// IF there already exists a file
+				if ( output.exists() )
+				{
+					int answer = JOptionPane.showConfirmDialog(null,
+							PrimeMain.texts
+									.getString("overwriteNetworkExportMsg"),
+							PrimeMain.texts.getString("overwrite"),
+							JOptionPane.YES_NO_OPTION);
+
+					if ( answer == 0 )
+					{
+						overwrite = true;
+					}
+				}
+				else
 				{
 					overwrite = true;
 				}
-			}
-			else
-			{
-				overwrite = true;
-			}
 
 
-			// Will either overwrite or write a new file
-			if ( overwrite )
-			{
-				return saveCanvas(canvas, output, false);
+				// Will either overwrite or write a new file
+				if ( overwrite )
+				{
+					return saveCanvas(canvas, output, false);
+				}
+
+				PrimeMain.ioLog.info("Export network, "
+						+ canvas.getCanvasName() + ", to file successful.");
 			}
 		}
+
+		PrimeMain.ioLog
+				.warning("Saving Network in file failed because given network is NULL.");
 
 		return false;
 	}
@@ -2364,114 +2403,133 @@ public class DesktopFileManagment
 	 */
 	public static boolean exportWorkareaCanvasAsImage(WorkareaCanvas canvas)
 	{
-		// The JFileChoose where the user will save the export
-		JFileChooser fc = new JFileChooser();
-		fc.setAcceptAllFileFilterUsed(false);
-
-		// Adds the filters
-		fc.addChoosableFileFilter(new JPGFilter());
-		fc.addChoosableFileFilter(new PNGFilter());
-
-		// Sets the selected file to the name of the
-		fc.setSelectedFile(new File(canvas.getCanvasName()));
-
-		// Shows the File chooser
-		int returnVal = fc.showSaveDialog(null);
-
-		// If the save button is pressed
-		if ( returnVal == JFileChooser.APPROVE_OPTION )
+		if ( canvas != null )
 		{
-			// Gets the file written/selected
-			File file = fc.getSelectedFile();
+			PrimeMain.ioLog.info("Attempting to export network, "
+					+ canvas.getCanvasName() + ", as an image.");
 
-			// Whether or not to overwrite
-			boolean overwrite = false;
+			// The JFileChoose where the user will save the export
+			JFileChooser fc = new JFileChooser();
+			fc.setAcceptAllFileFilterUsed(false);
 
-			// IF there already exists a file
-			if ( file.exists() )
+			// Adds the filters
+			fc.addChoosableFileFilter(new JPGFilter());
+			fc.addChoosableFileFilter(new PNGFilter());
+
+			// Sets the selected file to the name of the
+			fc.setSelectedFile(new File(canvas.getCanvasName()));
+
+			// Shows the File chooser
+			int returnVal = fc.showSaveDialog(null);
+
+			// If the save button is pressed
+			if ( returnVal == JFileChooser.APPROVE_OPTION )
 			{
-				int answer = JOptionPane.showConfirmDialog(null,
-						PrimeMain.texts.getString("overwriteNetworkImageMsg"),
-						PrimeMain.texts.getString("overwrite"),
-						JOptionPane.YES_NO_OPTION);
+				// Gets the file written/selected
+				File file = fc.getSelectedFile();
 
-				if ( answer == 0 )
+				// Whether or not to overwrite
+				boolean overwrite = false;
+
+				// IF there already exists a file
+				if ( file.exists() )
+				{
+					int answer = JOptionPane.showConfirmDialog(null,
+							PrimeMain.texts
+									.getString("overwriteNetworkImageMsg"),
+							PrimeMain.texts.getString("overwrite"),
+							JOptionPane.YES_NO_OPTION);
+
+					if ( answer == 0 )
+					{
+						overwrite = true;
+					}
+				}
+				else
 				{
 					overwrite = true;
 				}
-			}
-			else
-			{
-				overwrite = true;
-			}
 
 
-			// Will either overwrite or write a new file
-			if ( overwrite )
-			{
-
-				// Gets the absolute path of the file
-				String path = file.getAbsolutePath();
-
-				// Gets the extension that is currently selected
-				String extension = fc.getFileFilter().getDescription();
-
-
-				if ( extension.equals(".jpg") )
+				// Will either overwrite or write a new file
+				if ( overwrite )
 				{
-					// If the file does not ends with the extension
-					if ( !(path.endsWith(extension)) )
+
+					// Gets the absolute path of the file
+					String path = file.getAbsolutePath();
+
+					// Gets the extension that is currently selected
+					String extension = fc.getFileFilter().getDescription();
+
+
+					if ( extension.equals(".jpg") )
 					{
-						// Creates a new file with the path of the file and the
-						// extension
-						file = new File(path + extension);
+						// If the file does not ends with the extension
+						if ( !(path.endsWith(extension)) )
+						{
+							// Creates a new file with the path of the file and
+							// the
+							// extension
+							file = new File(path + extension);
+						}
+
+
+						try
+						{
+							CanvasExporter.createImage(PrimeMain.currentCanvas,
+									file, CanvasExporter.ImageType.JPG,
+									CanvasExporter.ZoomType.ACTUAL_SIZE, false,
+									false, 100, 1600, 1400);
+
+							PrimeMain.ioLog.info("Export network, "
+									+ canvas.getCanvasName()
+									+ ", as image successful.");
+
+							return true;
+						}
+						catch ( IOException e )
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
-
-
-					try
+					else if ( extension.equals(".png") )
 					{
-						CanvasExporter.createImage(PrimeMain.currentCanvas,
-								file, CanvasExporter.ImageType.JPG,
-								CanvasExporter.ZoomType.ACTUAL_SIZE, false,
-								false, 100, 1600, 1400);
-
-						return true;
-					}
-					catch ( IOException e )
-					{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				else if ( extension.equals(".png") )
-				{
-					// If the file does not ends with the extension
-					if ( !(path.endsWith(extension)) )
-					{
-						// Creates a new file with the path of the file and the
-						// extension
-						file = new File(path + extension);
-					}
+						// If the file does not ends with the extension
+						if ( !(path.endsWith(extension)) )
+						{
+							// Creates a new file with the path of the file and
+							// the
+							// extension
+							file = new File(path + extension);
+						}
 
 
-					try
-					{
-						CanvasExporter.createImage(PrimeMain.currentCanvas,
-								file, CanvasExporter.ImageType.PNG,
-								CanvasExporter.ZoomType.ACTUAL_SIZE, false,
-								false, 100, 1000, 1000);
+						try
+						{
+							CanvasExporter.createImage(PrimeMain.currentCanvas,
+									file, CanvasExporter.ImageType.PNG,
+									CanvasExporter.ZoomType.ACTUAL_SIZE, false,
+									false, 100, 1000, 1000);
 
-						return true;
-					}
-					catch ( IOException e )
-					{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+							PrimeMain.ioLog.info("Export network, "
+									+ canvas.getCanvasName()
+									+ ", as image successful.");
+
+							return true;
+						}
+						catch ( IOException e )
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
 			}
 		}
 
+		PrimeMain.ioLog
+				.warning("Saving Network as image failed because given network is NULL.");
 
 		return false;
 	}
@@ -2485,6 +2543,8 @@ public class DesktopFileManagment
 	 */
 	public static boolean exportStandardRules()
 	{
+		PrimeMain.ioLog.info("Attempting to save Standard Rules to file.");
+
 		if ( PrimeMain.standardRules != null )
 		{
 			// The JFileChoose where the user will save the export
@@ -2536,8 +2596,13 @@ public class DesktopFileManagment
 				{
 					return saveStandardRules(output);
 				}
+
+				PrimeMain.ioLog.info("Saving Standard Rules was successful.");
 			}
 		}
+
+		PrimeMain.ioLog
+				.warning("Saving Standard Rules failed because Standard Rules variable is NULL.");
 
 		return false;
 	}
@@ -2551,6 +2616,8 @@ public class DesktopFileManagment
 	 */
 	public static boolean exportStandardObjects()
 	{
+		PrimeMain.ioLog.info("Attempting to save Standard Objects to file.");
+
 		// If the object list not empty
 		if ( !PrimeMain.objectlist.isEmpty() )
 		{
@@ -2602,10 +2669,15 @@ public class DesktopFileManagment
 				// The file either does not exist or the user wants to overwrite
 				if ( overwrite )
 				{
-					return saveObjectFile(output);
+					return saveObjectsFile(output);
 				}
+
+				PrimeMain.ioLog.info("Saving Standard Objects was successful.");
 			}
 		}
+
+		PrimeMain.ioLog
+				.warning("Saving Standard Objects failed because Standard Objects variable is NULL.");
 
 		return false;
 	}
@@ -2620,6 +2692,8 @@ public class DesktopFileManagment
 	 */
 	public static boolean exportCustomOS()
 	{
+		PrimeMain.ioLog.info("Attempting to save Custom OSs to file.");
+
 		if ( !PrimeMain.system_custom_OS.isEmpty() )
 		{
 			// The JFileChoose where the user will save the export
@@ -2671,8 +2745,13 @@ public class DesktopFileManagment
 				{
 					return saveCustomOS(output);
 				}
+
+				PrimeMain.ioLog.info("Saving Custom OSs was successful.");
 			}
 		}
+
+		PrimeMain.ioLog
+				.warning("Saving Custom OSs failed because Custom OSs variable is NULL.");
 
 		return false;
 	}
@@ -2686,6 +2765,8 @@ public class DesktopFileManagment
 	 */
 	public static void importNetwork()
 	{
+		PrimeMain.ioLog.info("Attempting to import a Network from a file.");
+
 		// The JFileChoose where the user will save the export
 		JFileChooser fc = new JFileChooser();
 		fc.setAcceptAllFileFilterUsed(false);
@@ -2729,6 +2810,9 @@ public class DesktopFileManagment
 
 				if ( changeName )
 				{
+					PrimeMain.ioLog
+							.fine("A network was found in the system with the same name. User is asked to change imported network, overwrite or cancel.");
+
 					// The options the user will be presented with.
 					java.lang.Object[] options = {
 							PrimeMain.texts.getString("change"),
@@ -2746,14 +2830,19 @@ public class DesktopFileManagment
 									JOptionPane.WARNING_MESSAGE, null, options,
 									PrimeMain.texts.getString("change"));
 
-					// The user answers yes
+					// The user answers "Change"
 					if ( answer == 0 )
 					{
+						PrimeMain.ioLog.fine("User selected \"Change\".");
+
 						boolean tryAgain = true;
 
 
 						while ( tryAgain )
 						{
+							PrimeMain.ioLog
+									.fine("Asking the user to select a network name.");
+
 							// Gets the users new network name
 							String newName = JOptionPane
 									.showInputDialog(
@@ -2838,6 +2927,8 @@ public class DesktopFileManagment
 					}
 					else if ( answer == 1 )
 					{
+						PrimeMain.ioLog.fine("User selected \"Overwrite\".");
+
 						String newName = getFileNameWithoutExtension(file
 								.getName());
 
@@ -2876,6 +2967,8 @@ public class DesktopFileManagment
 							}
 							catch ( CanvasNotFound e )
 							{
+								PrimeMain.ioLog
+										.info("Canvas was closed before save took place.");
 								// DO NOTHING, BECAUSE THE TAB IS CLOSED
 							}
 						}
@@ -2883,6 +2976,8 @@ public class DesktopFileManagment
 				}
 				else
 				{
+					PrimeMain.ioLog
+							.fine("No other network found with the same name or serial. Adding network.");
 					/**
 					 * The WorkareaCanvas inside the file does not have the name
 					 * or serial number. It is therefore just added to the
@@ -2909,6 +3004,9 @@ public class DesktopFileManagment
 	 */
 	public static void importStandardRules()
 	{
+		PrimeMain.ioLog
+				.info("Attempting to import a Standard Rules from a file.");
+
 		// The JFileChoose where the user will save the export
 		JFileChooser fc = new JFileChooser();
 		fc.setAcceptAllFileFilterUsed(false);
@@ -2943,10 +3041,12 @@ public class DesktopFileManagment
 				if ( answer == 0 )
 				{
 					openStandardRules(file);
+
+					PrimeMain.ioLog
+							.info("Imported the Standard Rules from a file successfully.");
 				}
 			}
 		}
-
 	}
 
 
@@ -2956,6 +3056,8 @@ public class DesktopFileManagment
 	 */
 	public static void importCustomOS()
 	{
+		PrimeMain.ioLog.info("Attempting to import a Custom OSs from a file.");
+
 		// The JFileChoose where the user will save the export
 		JFileChooser fc = new JFileChooser();
 		fc.setAcceptAllFileFilterUsed(false);
@@ -2990,6 +3092,9 @@ public class DesktopFileManagment
 				if ( answer == 0 )
 				{
 					loadCustomOS(file);
+
+					PrimeMain.ioLog
+							.info("Imported the Custom OSs from a file successfully.");
 				}
 			}
 		}
@@ -3004,6 +3109,9 @@ public class DesktopFileManagment
 	 */
 	public static void importStandardObjects()
 	{
+		PrimeMain.ioLog
+				.info("Attempting to import a Standard Rules from a file.");
+
 		// The JFileChoose where the user will save the export
 		JFileChooser fc = new JFileChooser();
 		fc.setAcceptAllFileFilterUsed(false);
@@ -3043,6 +3151,9 @@ public class DesktopFileManagment
 					// restart
 					JOptionPane.showMessageDialog(null,
 							PrimeMain.texts.getString("ChangeAfterRestart"));
+
+					PrimeMain.ioLog
+							.info("Imported the Standard Rules from a file successfully.");
 				}
 			}
 		}
@@ -3058,7 +3169,7 @@ public class DesktopFileManagment
 	{
 		File file = new File("./resource/objects.obj");
 
-		saveObjectFile(file);
+		saveObjectsFile(file);
 	}
 
 
@@ -3066,8 +3177,12 @@ public class DesktopFileManagment
 	/**
 	 * Saves the objectlist from the {@link PrimeMain} to the given file.
 	 */
-	public static boolean saveObjectFile(File file)
+	public static boolean saveObjectsFile(File file)
 	{
+		PrimeMain.ioLog
+				.info("Attempting to save the Standard Objects of the running system in the given file '"
+						+ file.getName() + "'.");
+
 		// If the Objects file exists
 		if ( file.exists() )
 		{
@@ -3094,25 +3209,35 @@ public class DesktopFileManagment
 						// Closes the stream
 						oos.close();
 
+						PrimeMain.ioLog
+								.info("Running systems Standard Objects written to file successfully.");
+
 						return true;
 					}
 					catch ( Exception e )
 					{
+						PrimeMain.ioLog
+								.warning("Standard Objects saving to file failed because writting to file throw exception.");
 						e.printStackTrace();
 					}
 				}
 				else
 				{
-					System.out.println("saveObjectsFile - file.canWrite()");
+					PrimeMain.ioLog.warning("Could not write to file '"
+							+ file.getName() + "'.");
 				}
 			}
 			else
 			{
-				System.out.println("saveObjectsFile - file.isFile()");
+				PrimeMain.ioLog.warning("'" + file.getName()
+						+ "' is not a file.");
 			}
 		}
 		else
 		{
+			PrimeMain.ioLog.fine("Objects file,'" + file.getName()
+					+ "', does not exist. Creating file.");
+
 			try
 			{
 				FileOutputStream fout = new FileOutputStream(file);
@@ -3130,13 +3255,20 @@ public class DesktopFileManagment
 				// Closes the stream
 				oos.close();
 
+				PrimeMain.ioLog
+						.info("Running systems Standard Objects written to file successfully.");
+
 				return true;
 			}
 			catch ( Exception e )
 			{
+				PrimeMain.ioLog
+						.warning("Standard Objects saving to file failed because writting to file throw exception.");
 				e.printStackTrace();
 			}
 		}
+
+		PrimeMain.ioLog.warning("Standard Objects saving to file failed.");
 
 		return false;
 	}
@@ -3162,6 +3294,10 @@ public class DesktopFileManagment
 	 */
 	public static void openObjectsFile(File file)
 	{
+		PrimeMain.ioLog
+				.info("Attempting to load the Standard Objects of the running system from the given file '"
+						+ file.getName() + "'.");
+
 		// If the Objects file exists
 		if ( file.exists() )
 		{
@@ -3204,6 +3340,9 @@ public class DesktopFileManagment
 						{
 							// Reads inn the ArrayList from the file stream
 							PrimeMain.objectlist = testlist;
+
+							PrimeMain.ioLog
+									.info("Loaded the Standard Objects from the given file successfully.");
 						}
 
 						ois.close();
@@ -3216,17 +3355,19 @@ public class DesktopFileManagment
 				}
 				else
 				{
-					System.out.println("openObjectsFile - file.canRead()");
+					PrimeMain.ioLog.warning("Could not read from '"
+							+ file.getName() + "' file.");
 				}
 			}
 			else
 			{
-				System.out.println("openObjectsFile - file.isFile()");
+				PrimeMain.ioLog.warning("'" + file.getName()
+						+ "' is not a file.");
 			}
 		}
 		else
 		{
-			System.out.println("openObjectsFile - file.exists()");
+			PrimeMain.ioLog.warning("'" + file.getName() + "' does not exist.");
 		}
 	}
 
@@ -3238,6 +3379,8 @@ public class DesktopFileManagment
 	public static NetworkRules copyRules(NetworkRules standardRules,
 			NetworkRules newRules)
 	{
+		PrimeMain.ioLog
+				.info("Copying the given Network Rules from one given variable to another variable.");
 		// HARDWARE
 		newRules.setUSBnotAllowed(standardRules.isUSBnotAllowed());
 		newRules.setUSBportsAllowed(standardRules.getUSBportsAllowed());
@@ -3362,7 +3505,6 @@ public class DesktopFileManagment
 		if ( 0 < whereDot && whereDot <= fileName.length() - 2 )
 		{
 			return fileName.substring(0, whereDot);
-			// extension = filename.substring(whereDot+1);
 		}
 
 		return "";
@@ -3376,54 +3518,71 @@ public class DesktopFileManagment
 	 */
 	public static UUID getWorkareaCanvasSerialFromFile(File file)
 	{
-		UUID serial = null;
-
-
-		// If the Objects file exists
-		if ( file.exists() )
+		if ( file != null )
 		{
-			// If the pointer is a file and nothing else
-			if ( file.isFile() )
+			PrimeMain.ioLog
+					.info("Attempting to get the serial number of the canvas inside the given file.");
+
+
+			UUID serial = null;
+
+
+			// If the Objects file exists
+			if ( file.exists() )
 			{
-				// If the file can be read
-				if ( file.canRead() )
+				// If the pointer is a file and nothing else
+				if ( file.isFile() )
 				{
-					try
+					// If the file can be read
+					if ( file.canRead() )
 					{
-						FileInputStream fin = new FileInputStream(file);
+						try
+						{
+							FileInputStream fin = new FileInputStream(file);
 
-						ObjectInputStream ois = new ObjectInputStream(fin);
+							ObjectInputStream ois = new ObjectInputStream(fin);
 
-						// The name of the canvas(not used)
-						ois.readObject();
+							// The name of the canvas(not used)
+							ois.readObject();
 
-						// The serial of the network
-						serial = (UUID) ois.readObject();
+							// The serial of the network
+							serial = (UUID) ois.readObject();
 
-						ois.close();
+							ois.close();
+						}
+						catch ( Exception e )
+						{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
-					catch ( Exception e )
+					else
 					{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						PrimeMain.ioLog.warning("Could not read from '"
+								+ file.getName() + "' file.");
 					}
 				}
 				else
 				{
-					System.out.println("File cannot be read.");
+					PrimeMain.ioLog.warning("'" + file.getName()
+							+ "' is not a file.");
 				}
 			}
 			else
 			{
-				System.out.println("File pointer is to a folder, not a file.");
+				PrimeMain.ioLog.warning("'" + file.getName()
+						+ "' does not exist.");
 			}
-		}
-		else
-		{
-			System.out.println("File does not exist.");
+
+			PrimeMain.ioLog
+					.info("Serial number of the canvas inside was successfully retrieved.");
+
+			return serial;
 		}
 
+		PrimeMain.ioLog
+				.warning("Serial number retrieval failed because given file was NULL.");
 
-		return serial;
+		return null;
 	}
 }

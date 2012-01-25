@@ -306,10 +306,8 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 		conPanel2.gridx = 0; // column
 
 		// The 64 bit check box
-		is64bit = new JCheckBox(
-				PrimeMain.texts.getString("osViewSupEnctyptedFSLabel"));
-		is64bit.setToolTipText(PrimeMain.texts
-				.getString("osViewSupEnctyptedFSTip"));
+		is64bit = new JCheckBox(PrimeMain.texts.getString("osView64BitLabel"));
+		is64bit.setToolTipText(PrimeMain.texts.getString("osView64BitTip"));
 		is64bit.setSelected(os.isIs64bit());
 		if ( nonEditable )
 		{
@@ -432,7 +430,6 @@ public class OSEditView extends JPanel implements SoftwareView, ActionListener
 	{
 		/*
 		 * (non-Javadoc)
-		 * 
 		 * @see
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)

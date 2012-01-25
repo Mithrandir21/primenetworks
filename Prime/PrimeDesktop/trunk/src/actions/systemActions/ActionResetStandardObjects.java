@@ -19,6 +19,7 @@ package actions.systemActions;
 
 
 import graphics.PrimeMain;
+import graphics.GUI.selectArea.ObjectSelection;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -69,7 +70,6 @@ public class ActionResetStandardObjects extends AbstractSystemAction
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -108,6 +108,8 @@ public class ActionResetStandardObjects extends AbstractSystemAction
 
 				// Creates a new Objects list file
 				DesktopFileManagment.saveObjectsFile();
+
+				ObjectSelection.reloadGenericDevicesIcons();
 			}
 		}
 		else

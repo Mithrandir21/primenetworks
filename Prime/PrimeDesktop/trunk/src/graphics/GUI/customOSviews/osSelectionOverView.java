@@ -475,9 +475,8 @@ public class osSelectionOverView extends JDialog implements ActionListener
 
 		// The 64 bit check box
 		JCheckBox is64bit = new JCheckBox(
-				PrimeMain.texts.getString("osViewSupEnctyptedFSLabel"));
-		is64bit.setToolTipText(PrimeMain.texts
-				.getString("osViewSupEnctyptedFSTip"));
+				PrimeMain.texts.getString("osView64BitLabel"));
+		is64bit.setToolTipText(PrimeMain.texts.getString("osView64BitTip"));
 		is64bit.setSelected(os.isIs64bit());
 		is64bit.setEnabled(false);
 

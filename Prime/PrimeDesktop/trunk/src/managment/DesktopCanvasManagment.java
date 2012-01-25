@@ -836,7 +836,7 @@ public class DesktopCanvasManagment
 	 * This function will check if the Object inside the {@link WidgetObject} is
 	 * a GenericDevice. If so, it will display a Generic Device Options panel.
 	 */
-	public static void checkForCustomObjectAndRules(WidgetObject widObj,
+	public static void checkForCustomObject(WidgetObject widObj,
 			WorkareaCanvas canvas)
 	{
 		if ( widObj != null && widObj.getObject() != null && canvas != null )

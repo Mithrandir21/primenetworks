@@ -65,7 +65,8 @@ public class StandardViewSpilt extends JPanel
 
 
 
-		this.add(new ObjectSelection(new StandardViewMouseListener(), false), c);
+		this.add(new ObjectSelection(new StandardViewMouseListener(), true,
+				false), c);
 
 
 		// c.fill = GridBagConstraints.BOTH;

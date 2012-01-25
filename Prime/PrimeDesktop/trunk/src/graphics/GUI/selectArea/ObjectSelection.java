@@ -94,22 +94,26 @@ public class ObjectSelection extends JPanel
 
 	private static boolean transferable;
 
+	private static boolean showUnknown;
+
+
 
 	/**
 	 * TODO - Description NEEDED!
 	 */
 	public ObjectSelection()
 	{
-		setupObjectsGroups(null, false, false);
+		setupObjectsGroups(null, false, false, false);
 	}
 
 
 	/**
 	 * TODO - Description NEEDED!
 	 */
-	public ObjectSelection(boolean transferable, boolean customObjects)
+	public ObjectSelection(boolean transferable, boolean customObjects,
+			boolean unknown)
 	{
-		setupObjectsGroups(null, transferable, customObjects);
+		setupObjectsGroups(null, transferable, customObjects, unknown);
 	}
 
 
@@ -118,9 +122,10 @@ public class ObjectSelection extends JPanel
 	 * 
 	 * @param mouseLis
 	 */
-	public ObjectSelection(MouseListener mouseLis, boolean customObjects)
+	public ObjectSelection(MouseListener mouseLis, boolean customObjects,
+			boolean unknown)
 	{
-		setupObjectsGroups(mouseLis, false, customObjects);
+		setupObjectsGroups(mouseLis, false, customObjects, unknown);
 	}
 
 
@@ -130,9 +135,9 @@ public class ObjectSelection extends JPanel
 	 * @param mouseLis
 	 */
 	public ObjectSelection(MouseListener mouseLis, boolean transferable,
-			boolean customObjects)
+			boolean customObjects, boolean unknown)
 	{
-		setupObjectsGroups(mouseLis, transferable, customObjects);
+		setupObjectsGroups(mouseLis, transferable, customObjects, unknown);
 	}
 
 
@@ -140,11 +145,12 @@ public class ObjectSelection extends JPanel
 	 * TODO - Description
 	 */
 	private void setupObjectsGroups(MouseListener mouseLis,
-			boolean transferable, boolean customObjects)
+			boolean transferable, boolean customObjects, boolean unknown)
 	{
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints d = new GridBagConstraints();
 
+		this.showUnknown = unknown;
 		this.mouseLis = mouseLis;
 		this.transferable = transferable;
 
@@ -543,12 +549,15 @@ public class ObjectSelection extends JPanel
 		PrimeMain.desktopProcLog.info("Getting Generic Devices Icons...");
 		ArrayList<WidgetIcon> iconsList = new ArrayList<WidgetIcon>();
 
-		iconsList.add(makeImageIcon(ImageLocator.getImageIconObject("Unknown"),
-				GenericDevice.class,
-				PrimeMain.texts.getString("selectAreaUnknownDeviceLabel"),
-				PrimeMain.texts.getString("selectAreaUnknownDeviceLabel"),
-				mouseLis, transferable));
-
+		if ( showUnknown )
+		{
+			iconsList.add(makeImageIcon(
+					ImageLocator.getImageIconObject("Unknown"),
+					GenericDevice.class,
+					PrimeMain.texts.getString("selectAreaUnknownDeviceLabel"),
+					PrimeMain.texts.getString("selectAreaUnknownDeviceLabel"),
+					mouseLis, transferable));
+		}
 
 		// Attempts to get all the object within the Objectlist with the class
 		// CustomObject.
@@ -569,14 +578,16 @@ public class ObjectSelection extends JPanel
 
 					if ( temp != null )
 					{
-						iconsList
-								.add(makeImageIcon(temp, GenericDevice.class,
-										objs[i].getObjectName(),
-										objs[i].getObjectName(), mouseLis,
-										transferable));
+						iconsList.add(makeImageIcon(temp, GenericDevice.class,
+								objs[i].getObjectName(), "GenericDevice - "
+										+ objs[i].getObjectName(), mouseLis,
+								transferable));
 					}
 				}
 			}
+
+			PrimeMain.desktopProcLog
+					.info("Generic Devices were found in Standard Devices.");
 		}
 		catch ( ObjectNotFoundException e )
 		{

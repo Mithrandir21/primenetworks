@@ -29,6 +29,7 @@ import managment.ArrayManagment;
 import managment.CanvasManagment;
 import managment.ComponentsManagment;
 import managment.DesktopCanvasManagment;
+import managment.DesktopFileManagment;
 import objects.ExternalHardware;
 import objects.hardwareObjects.Discdrive;
 import objects.hardwareObjects.HDD;
@@ -283,6 +284,8 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 								SystemFunctions
 										.addToStandardObjects((GenericDevice) exObject);
 
+								// Saves the systems Objects list
+								DesktopFileManagment.saveObjectsFile();
 
 								this.dispose();
 							}
@@ -375,13 +378,23 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 					{
 						if ( !rules.isLANnotAllowed() )
 						{
-							InternalNetworksCard nic = PrimeMain.standard_internal_components
-									.getSt_IntNIC();
-							nic.setType(ConnectionUtils.RJ45);
+							mb.setIntegLANcard(true);
+							mb.setMaxIntegratedLANs(1);
+							mb.setIntegLANPortsAvailable(1);
 
-							exObject.addComponent(nic);
-							PrimeMain.desktopProcLog.info("Added Wired NIC to "
-									+ exObject.getObjectName() + ".");
+							//
+							// InternalNetworksCard nic =
+							// PrimeMain.standard_internal_components
+							// .getSt_IntNIC();
+							// nic.setType(ConnectionUtils.RJ45);
+							//
+							// exObject.addComponent(nic);
+							// PrimeMain.desktopProcLog.info("Added Wired NIC to "
+							// + exObject.getObjectName() + ".");
+
+							PrimeMain.desktopProcLog
+									.info("Added intergrated LAN port to the Motherboard of "
+											+ exObject.getObjectName() + ".");
 						}
 						else
 						{
@@ -442,7 +455,6 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 					// Add to standard devices options.
 					addToSD = addToStandardDevices.isSelected();
 				}
-
 
 				return true;
 			}

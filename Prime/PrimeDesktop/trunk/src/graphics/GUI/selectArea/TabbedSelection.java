@@ -50,7 +50,7 @@ public class TabbedSelection extends JTabbedPane
 	 * Object selection area, where the ImageIcons of the objects can be clicked
 	 * and dragged.
 	 */
-	JPanel objectPanel = new ObjectSelection(true, true);
+	JPanel objectPanel = new ObjectSelection(true, true, true);
 
 
 	PrimeTree primeTree = new PrimeTree();
