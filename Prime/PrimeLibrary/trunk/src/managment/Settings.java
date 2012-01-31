@@ -104,6 +104,10 @@ public class Settings implements Serializable
 	public static boolean originalImages = false;
 
 
+	// A BOOLEAN ON WHETHER OR NOT TO SHOW SPLASH
+	public static boolean showSplash = true;
+
+
 	/**
 	 * This boolean will control the flow information within the system. While
 	 * the system is in debug mode, it will print out any error to a console.
@@ -181,6 +185,10 @@ public class Settings implements Serializable
 
 		// THE SYSTEM LOCALE(LANGUAGE GUIDE)
 		primeLocale = systemLocale.en;
+
+
+		// THE SHOW SPLASH
+		showSplash = true;
 
 
 		// DEBUG MODE
