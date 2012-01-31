@@ -584,6 +584,7 @@ public class DesktopFileManagment
 			oos.writeBoolean(managment.Settings.showIP);
 			oos.writeUTF(managment.Settings.primeLocale.toString());
 			oos.writeBoolean(managment.Settings.originalImages);
+			oos.writeBoolean(managment.Settings.showSplash);
 
 			oos.flush();
 			oos.close();
@@ -2227,6 +2228,7 @@ public class DesktopFileManagment
 						managment.Settings.primeLocale = managment.Settings.systemLocale
 								.valueOf(ois.readUTF());
 						managment.Settings.originalImages = ois.readBoolean();
+						managment.Settings.showSplash = ois.readBoolean();
 
 
 						PrimeMain.ioLog.fine("Settings read in from file.");

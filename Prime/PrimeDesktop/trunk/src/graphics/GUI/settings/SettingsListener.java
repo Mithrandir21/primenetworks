@@ -69,7 +69,6 @@ public class SettingsListener implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -145,6 +144,7 @@ public class SettingsListener implements ActionListener
 		Settings.showIP = displayCheckBox[0].isSelected();
 		Settings.showOSicon = displayCheckBox[1].isSelected();
 		Settings.showTOTD = displayCheckBox[2].isSelected();
+		Settings.showSplash = displayCheckBox[3].isSelected();
 
 		// Gets the new systemLocale
 		managment.Settings.systemLocale newLocale = GraphicalFunctions

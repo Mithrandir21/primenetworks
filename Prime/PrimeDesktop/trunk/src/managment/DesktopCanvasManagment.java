@@ -69,7 +69,7 @@ public class DesktopCanvasManagment
 	{
 		if ( newCanvas != null )
 		{
-			PrimeMain.ioLog.info("Adding a new canvas, " + name
+			PrimeMain.guiLog.info("Adding a new canvas, " + name
 					+ ", to the systems list of canvases.");
 			// If the first canvas location is not null, which means that there
 			// are previous created canvases.
@@ -91,7 +91,7 @@ public class DesktopCanvasManagment
 					}
 				}
 
-				PrimeMain.ioLog.fine("Expanding the Canvas array size.");
+				PrimeMain.guiLog.fine("Expanding the Canvas array size.");
 				// If the method gets to this point it means that there were no
 				// empty indexes found and there needs to be added an empty
 				// index at the end of the array
@@ -101,7 +101,7 @@ public class DesktopCanvasManagment
 			}
 			else
 			{
-				PrimeMain.ioLog
+				PrimeMain.guiLog
 						.fine("No other canvases in system. Adding first.");
 				newCanvas.setCanvasName(name);
 				PrimeMain.canvases[0] = newCanvas;
@@ -111,7 +111,7 @@ public class DesktopCanvasManagment
 		}
 		else
 		{
-			PrimeMain.ioLog
+			PrimeMain.guiLog
 					.warning("Given canvas variable was NULL. - addCanvas");
 		}
 	}
@@ -123,7 +123,7 @@ public class DesktopCanvasManagment
 	 */
 	public static void extendCanvasArray()
 	{
-		PrimeMain.ioLog.info("Expanding the Canvas array size.");
+		PrimeMain.guiLog.info("Expanding the Canvas array size.");
 		WorkareaCanvas[] temp = new WorkareaCanvas[PrimeMain.canvases.length + 1];
 
 		for ( int i = 0; i < PrimeMain.canvases.length; i++ )
@@ -147,7 +147,7 @@ public class DesktopCanvasManagment
 	{
 		if ( canvasName != null )
 		{
-			PrimeMain.ioLog
+			PrimeMain.guiLog
 					.info("Search for canvas in system with given name '"
 							+ canvasName + "'.");
 			for ( int i = 0; i < PrimeMain.canvases.length; i++ )
@@ -164,7 +164,8 @@ public class DesktopCanvasManagment
 		}
 		else
 		{
-			PrimeMain.ioLog.warning("Given Canvas name was NULL. - findCanvas");
+			PrimeMain.guiLog
+					.warning("Given Canvas name was NULL. - findCanvas");
 		}
 
 		// Has not found any canvases with that name.
@@ -184,7 +185,7 @@ public class DesktopCanvasManagment
 	{
 		if ( canvas != null )
 		{
-			PrimeMain.ioLog.info("Attempting to remove given canvas '"
+			PrimeMain.guiLog.info("Attempting to remove given canvas '"
 					+ canvas.getCanvasName() + "' from system.");
 			// If the first canvas location is not null, which means that there
 			// are previous created canvases.
@@ -227,7 +228,7 @@ public class DesktopCanvasManagment
 		}
 		else
 		{
-			PrimeMain.ioLog
+			PrimeMain.guiLog
 					.warning("Given Canvas was NULL. - removeWorkareaCanvas");
 		}
 
@@ -248,14 +249,14 @@ public class DesktopCanvasManagment
 	public static void removeWorkareaCanvas(String canvasName)
 			throws CanvasNotFound
 	{
-		PrimeMain.ioLog.info("Attempting to remove canvas by name.");
+		PrimeMain.guiLog.info("Attempting to remove canvas by name.");
 		// Find the canvas that has the given name
 		WorkareaCanvas canvas = findCanvas(canvasName);
 
 
 		if ( canvas != null )
 		{
-			PrimeMain.ioLog.fine("Attempting to remove given canvas '"
+			PrimeMain.guiLog.fine("Attempting to remove given canvas '"
 					+ canvas.getCanvasName() + "' from system.");
 			// If the first canvas location is not null, which means that there
 			// are
@@ -398,7 +399,7 @@ public class DesktopCanvasManagment
 			Point objectPoint, WorkareaCanvas canvas, boolean withCleanUp,
 			boolean rulesCheck)
 	{
-		PrimeMain.ioLog
+		PrimeMain.guiLog
 				.info("Attempting to add a new given WidgetObject to the given Canvas.");
 		if ( newObject != null && objectPoint != null && canvas != null )
 		{
@@ -547,14 +548,11 @@ public class DesktopCanvasManagment
 		}
 		else
 		{
-			PrimeMain.ioLog
+			PrimeMain.guiLog
 					.warning("Given WidgetObject, ObjectPoint or Canvas was NULL. - addWidgetToCanvas");
 		}
-
-
 		return false;
 	}
-
 
 
 	/**
@@ -565,16 +563,27 @@ public class DesktopCanvasManagment
 	 */
 	public static boolean objectOpenInCanvas(WorkareaCanvas canvas)
 	{
-		ObjectView[] views = PrimeMain.objView.toArray(new ObjectView[0]);
-
-		for ( int i = 0; i < views.length; i++ )
+		if ( canvas != null )
 		{
-			if ( views[i].getCanvas().getSerial() == canvas.getSerial() )
+			PrimeMain.guiLog.info("Determining if the given canvas, '"
+					+ canvas.getCanvasName() + "', has any open objects.");
+
+			ObjectView[] views = PrimeMain.objView.toArray(new ObjectView[0]);
+
+			for ( int i = 0; i < views.length; i++ )
 			{
-				return true;
+				if ( views[i].getCanvas().getSerial() == canvas.getSerial() )
+				{
+					PrimeMain.guiLog
+							.info("An open object was found in the given canvas '"
+									+ canvas.getCanvasName() + "'.");
+					return true;
+				}
 			}
 		}
 
+
+		PrimeMain.guiLog.fine("No open objects found.");
 		return false;
 	}
 
@@ -584,18 +593,29 @@ public class DesktopCanvasManagment
 	 * This function determines whether or not the {@link WorkareaCanvas} given
 	 * has a any objects open by checking if there is pointer to the
 	 * {@link WorkareaCanvas} inside any of the {@link ArrayList} indexes
-	 * objView in {@link PrimeMain}.
+	 * objView in {@link PrimeMain} and brings the open objects to the front..
 	 */
 	public static void bringObjectViewToFront(WorkareaCanvas canvas)
 	{
-		ObjectView[] views = PrimeMain.objView.toArray(new ObjectView[0]);
-
-		for ( int i = 0; i < views.length; i++ )
+		if ( canvas != null )
 		{
-			if ( views[i].getCanvas().getSerial() == canvas.getSerial() )
+			PrimeMain.guiLog.info("Determining if the given canvas, '"
+					+ canvas.getCanvasName()
+					+ "', has any open objects and brings it to the front.");
+
+			ObjectView[] views = PrimeMain.objView.toArray(new ObjectView[0]);
+
+			for ( int i = 0; i < views.length; i++ )
 			{
-				views[i].toFront();
-				return;
+				if ( views[i].getCanvas().getSerial() == canvas.getSerial() )
+				{
+					PrimeMain.guiLog
+							.info("An open object was found in the given canvas, '"
+									+ canvas.getCanvasName()
+									+ "', and was brought to the front.");
+					views[i].toFront();
+					return;
+				}
 			}
 		}
 	}
@@ -611,6 +631,9 @@ public class DesktopCanvasManagment
 	{
 		if ( canvas != null )
 		{
+			PrimeMain.guiLog.fine("Running canvas clean up on "
+					+ canvas.getCanvasName() + ".");
+
 			paintWidgetIPsOnScene(canvas);
 			paintOSiconOnWidgets(canvas);
 			canvas.cleanUp();
@@ -625,13 +648,18 @@ public class DesktopCanvasManagment
 	 */
 	private static void paintWidgetIPsOnScene(WorkareaCanvas canvas)
 	{
-		// The Widgets on the scene
-		WidgetObject[] widgets = canvas.getWidgetObjectsOnTheScene();
-
-		// Iterates through the Object list
-		for ( int i = 0; i < widgets.length; i++ )
+		if ( canvas != null )
 		{
-			addIPlabelToWidget(widgets[i]);
+			PrimeMain.guiLog.info("Toggle paint IPs on objects.");
+
+			// The Widgets on the scene
+			WidgetObject[] widgets = canvas.getWidgetObjectsOnTheScene();
+
+			// Iterates through the Object list
+			for ( int i = 0; i < widgets.length; i++ )
+			{
+				addIPlabelToWidget(widgets[i]);
+			}
 		}
 	}
 
@@ -652,6 +680,7 @@ public class DesktopCanvasManagment
 			if ( !(Settings.showIP)
 					|| widObj.getWidgetNetworkInfo().getIp().equals("") )
 			{
+				PrimeMain.guiLog.fine("Removing IP from object label.");
 				if ( !widObj.getIPlabelWidget().getLabel().equals("") )
 				{
 					widObj.getIPlabelWidget().setLabel("");
@@ -659,6 +688,7 @@ public class DesktopCanvasManagment
 			}
 			else
 			{
+				PrimeMain.guiLog.fine("Painting IP on object label.");
 				widObj.getIPlabelWidget().setLabel(
 						widObj.getWidgetNetworkInfo().getIp());
 			}
@@ -675,13 +705,18 @@ public class DesktopCanvasManagment
 	 */
 	private static void paintOSiconOnWidgets(WorkareaCanvas canvas)
 	{
-		// The Widgets on the scene
-		WidgetObject[] widgets = canvas.getWidgetObjectsOnTheScene();
-
-		// Iterates through the Object list
-		for ( int i = 0; i < widgets.length; i++ )
+		if ( canvas != null )
 		{
-			paintOSiconOnWidgets(widgets[i]);
+			PrimeMain.guiLog.info("Toggle paint OS icon on objects.");
+
+			// The Widgets on the scene
+			WidgetObject[] widgets = canvas.getWidgetObjectsOnTheScene();
+
+			// Iterates through the Object list
+			for ( int i = 0; i < widgets.length; i++ )
+			{
+				paintOSiconOnWidgets(widgets[i]);
+			}
 		}
 	}
 
@@ -700,6 +735,8 @@ public class DesktopCanvasManagment
 			{
 				if ( Settings.showOSicon )
 				{
+					PrimeMain.guiLog.fine("Painting OS icon on object label.");
+
 					// Gets all the OperatingSystem software installed on the
 					// object
 					OperatingSystem[] OSs = SoftwareManagment
@@ -761,6 +798,8 @@ public class DesktopCanvasManagment
 				}
 				else
 				{
+					PrimeMain.guiLog
+							.fine("Removing OS icon from object label.");
 					widObj.removeOSimage();
 				}
 			}
@@ -777,6 +816,10 @@ public class DesktopCanvasManagment
 	{
 		if ( canvas != null )
 		{
+			PrimeMain.guiLog
+					.info("Updating the names on the labels of the objects on the given canvas '"
+							+ canvas.getCanvasName() + "'.");
+
 			// Gets all the objects on the scene
 			WidgetObject widObjects[] = canvas.getWidgetObjectsOnTheScene();
 
@@ -804,6 +847,9 @@ public class DesktopCanvasManagment
 	 */
 	public static void runAllCanvasNameUpdate()
 	{
+		PrimeMain.guiLog
+				.info("Updating the names on the labels of the objects on all open canvases.");
+
 		for ( int i = 0; i < PrimeMain.canvases.length; i++ )
 		{
 			if ( PrimeMain.canvases[i] != null )
@@ -841,6 +887,9 @@ public class DesktopCanvasManagment
 	{
 		if ( widObj != null && widObj.getObject() != null && canvas != null )
 		{
+			PrimeMain.guiLog
+					.info("Checking if given object is a GenericDevice object.");
+
 			if ( widObj.getObject() instanceof GenericDevice )
 			{
 				// If the GeneriDevice is NOT customized.

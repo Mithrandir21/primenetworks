@@ -256,7 +256,6 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -267,9 +266,8 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 		{
 
 			// Since there is no other components in this class that can call
-			// the actionperformed method
-			// then the created JButton, we cast the source of the event as a
-			// JButton.
+			// the actionperformed method then the created JButton, we cast the
+			// source of the event as a JButton.
 			JButton button = (JButton) e.getSource();
 
 			String contentName = button.getName();
@@ -292,8 +290,7 @@ public class WorkareaTabbed extends JTabbedPane implements ActionListener
 					{
 
 						// log.warning("The WorkareaCanvas, "
-						// + contentName
-						// +
+						// + contentName +
 						// ", was not found in the WorkareaCanvas main register.");
 						e1.printStackTrace();
 					}

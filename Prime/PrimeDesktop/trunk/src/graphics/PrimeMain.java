@@ -25,6 +25,7 @@ import graphics.GUI.menues.GenericPrimeMenuBar;
 import graphics.GUI.menues.GenericPrimeToolbar;
 import graphics.GUI.messageArea.MessageTabbed;
 import graphics.GUI.objectView.ObjectView;
+import graphics.GUI.programGUI.PrimeSplashScreen;
 import graphics.GUI.programGUI.TipOfDay;
 import graphics.GUI.properties.PropertiesArea;
 import graphics.GUI.rackOverview.RackOverview;
@@ -36,16 +37,13 @@ import graphics.GUI.visualObjectCustomization.VisualCustomFrame;
 import graphics.GUI.workareaCanvas.WorkareaTabbed;
 import graphics.services.PrimeService;
 
-import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
-import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
-import java.awt.SplashScreen;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -301,35 +299,10 @@ public class PrimeMain extends JFrame
 		height = ((int) scrnsize.getHeight()) - 200;
 
 
-		final SplashScreen splash = SplashScreen.getSplashScreen();
-
-		if ( splash == null )
+		if ( Settings.showSplash )
 		{
-			// System.out.println("SplashScreen.getSplashScreen() returned null");
-		}
-		else
-		{
-			Graphics2D g = splash.createGraphics();
-			if ( g == null )
-			{
-				System.out.println("g is null");
-			}
-			else
-			{
-				for ( int i = 0; i < 2; i++ )
-				{
-					renderSplashFrame(g, i);
-					splash.update();
-					// try
-					// {
-					// Thread.sleep(200);
-					// }
-					// catch ( InterruptedException e )
-					// {
-					// }
-				}
-				splash.close();
-			}
+			// Application splash screen
+			new PrimeSplashScreen(3000);
 		}
 
 		// Sets the programs tooltip delay
@@ -660,24 +633,6 @@ public class PrimeMain extends JFrame
 			makeLayoutModel();
 		}
 	}
-
-	/**
-	 * 
-	 */
-	static void renderSplashFrame(Graphics2D g, int frame)
-	{
-		final String[] comps = { "Bam", "Lille-Bam", "Test" };
-		g.setComposite(AlphaComposite.Clear);
-		g.fillRect(120, 140, 200, 40);
-		g.setPaintMode();
-		g.setColor(Color.BLACK);
-		g.drawString("Loading " + comps[(frame / 5) % 4] + "...", 120, 150);
-	}
-
-
-
-	// updateObjectArea
-
 
 
 	/**
