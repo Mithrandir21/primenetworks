@@ -145,6 +145,7 @@ public class SettingsListener implements ActionListener
 		Settings.showOSicon = displayCheckBox[1].isSelected();
 		Settings.showTOTD = displayCheckBox[2].isSelected();
 		Settings.showSplash = displayCheckBox[3].isSelected();
+		Settings.checkUpdate = displayCheckBox[4].isSelected();
 
 		// Gets the new systemLocale
 		managment.Settings.systemLocale newLocale = GraphicalFunctions

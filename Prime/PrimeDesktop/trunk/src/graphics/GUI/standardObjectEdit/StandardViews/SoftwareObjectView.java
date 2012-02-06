@@ -42,6 +42,7 @@ import javax.swing.JScrollPane;
 import objects.Clients;
 import objects.Object;
 import objects.Servers;
+import objects.peripheralObjects.GenericDevice;
 import objects.softwareObjects.Antivirus;
 import objects.softwareObjects.Backup;
 import objects.softwareObjects.Database;
@@ -569,7 +570,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		if ( obj instanceof Clients || obj instanceof Servers )
+		if ( obj instanceof Clients || obj instanceof Servers
+				|| obj instanceof GenericDevice )
 		{
 			Button edit = new Button(
 					PrimeMain.texts.getString("swTabEditSoftwareButtonLabel"));
@@ -682,7 +684,6 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */

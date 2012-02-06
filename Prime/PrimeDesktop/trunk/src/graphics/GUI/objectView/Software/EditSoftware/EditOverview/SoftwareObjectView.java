@@ -42,6 +42,7 @@ import javax.swing.JScrollPane;
 import objects.Clients;
 import objects.Object;
 import objects.Servers;
+import objects.peripheralObjects.GenericDevice;
 import objects.softwareObjects.Antivirus;
 import objects.softwareObjects.Backup;
 import objects.softwareObjects.Database;
@@ -154,8 +155,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
-								.getString("swTabVersionLabel")
-								+ ": " + text;
+								.getString("swTabVersionLabel") + ": " + text;
 					}
 
 					Date date = antiVirusObj.getExpirationDate();
@@ -168,7 +168,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 								+ ": "
 								+ Calendar.DAY_OF_MONTH
 								+ "/"
-								+ Calendar.MONTH + "/" + Calendar.YEAR;
+								+ Calendar.MONTH
+								+ "/" + Calendar.YEAR;
 					}
 
 					text = antiVirusObj.getDescription();
@@ -176,7 +177,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					{
 						info[3] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
-								+ ": " + text;
+								+ ": "
+								+ text;
 					}
 
 				}
@@ -200,8 +202,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
-								.getString("swTabVersionLabel")
-								+ ": " + text;
+								.getString("swTabVersionLabel") + ": " + text;
 					}
 
 					text = backupObj.getDescription();
@@ -209,7 +210,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
-								+ ": " + text;
+								+ ": "
+								+ text;
 					}
 
 				}
@@ -233,8 +235,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
-								.getString("swTabProducerLabel")
-								+ ": " + text;
+								.getString("swTabProducerLabel") + ": " + text;
 					}
 
 					text = hddObj.getDescription();
@@ -242,7 +243,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
-								+ ": " + text;
+								+ ": "
+								+ text;
 					}
 
 				}
@@ -266,8 +268,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
-								.getString("swTabVersionLabel")
-								+ ": " + text;
+								.getString("swTabVersionLabel") + ": " + text;
 					}
 
 					text = emailObj.getDescription();
@@ -275,7 +276,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
-								+ ": " + text;
+								+ ": "
+								+ text;
 					}
 
 				}
@@ -299,8 +301,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
-								.getString("swTabVersionLabel")
-								+ ": " + text;
+								.getString("swTabVersionLabel") + ": " + text;
 					}
 
 					text = firewallObj.getDescription();
@@ -308,7 +309,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
-								+ ": " + text;
+								+ ": "
+								+ text;
 					}
 				}
 				else if ( swObj[i] instanceof OfficeSuite )
@@ -331,8 +333,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
-								.getString("swTabVersionLabel")
-								+ ": " + text;
+								.getString("swTabVersionLabel") + ": " + text;
 					}
 
 					text = OffSuitObj.getDescription();
@@ -340,7 +341,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
-								+ ": " + text;
+								+ ": "
+								+ text;
 					}
 				}
 				else if ( swObj[i] instanceof OperatingSystem )
@@ -364,8 +366,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
-								.getString("swTabVersionLabel")
-								+ ": " + text;
+								.getString("swTabVersionLabel") + ": " + text;
 					}
 
 					text = OSObj.getDescription();
@@ -373,7 +374,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
-								+ ": " + text;
+								+ ": "
+								+ text;
 					}
 
 				}
@@ -397,8 +399,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
-								.getString("swTabProducerLabel")
-								+ ": " + text;
+								.getString("swTabProducerLabel") + ": " + text;
 					}
 
 					text = proxyObj.getDescription();
@@ -406,7 +407,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
-								+ ": " + text;
+								+ ": "
+								+ text;
 					}
 
 				}
@@ -430,8 +432,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
-								.getString("swTabProducerLabel")
-								+ ": " + text;
+								.getString("swTabProducerLabel") + ": " + text;
 					}
 
 					text = secSuiteObj.getDescription();
@@ -439,7 +440,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
-								+ ": " + text;
+								+ ": "
+								+ text;
 					}
 
 				}
@@ -463,8 +465,7 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					if ( !text.equals("") && text != null )
 					{
 						info[1] = PrimeMain.texts
-								.getString("swTabProducerLabel")
-								+ ": " + text;
+								.getString("swTabProducerLabel") + ": " + text;
 					}
 
 					text = webServObj.getDescription();
@@ -472,7 +473,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 					{
 						info[2] = PrimeMain.texts
 								.getString("swTabDescriptionLabel")
-								+ ": " + text;
+								+ ": "
+								+ text;
 					}
 
 				}
@@ -509,7 +511,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 		{
 			if ( swPanel.getComponentCount() == 1 )
 			{
-				// Adds a big JPanel at the bottom right to take the remaining space
+				// Adds a big JPanel at the bottom right to take the remaining
+				// space
 				JPanel emptyPanel1 = new JPanel();
 				d2.weightx = 0.30; // request any extra horizontal space
 				d2.gridx = 1;
@@ -567,15 +570,16 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 		buttons.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
 
-		if ( obj instanceof Clients || obj instanceof Servers )
+		if ( obj instanceof Clients || obj instanceof Servers
+				|| obj instanceof GenericDevice )
 		{
-			Button edit = new Button(PrimeMain.texts
-					.getString("swTabEditSoftwareButtonLabel"));
+			Button edit = new Button(
+					PrimeMain.texts.getString("swTabEditSoftwareButtonLabel"));
 			edit.addActionListener(this);
 			edit.setActionCommand("edit");
 
-			Button addNew = new Button(PrimeMain.texts
-					.getString("swTabNewSoftwareButtonLabel"));
+			Button addNew = new Button(
+					PrimeMain.texts.getString("swTabNewSoftwareButtonLabel"));
 			addNew.addActionListener(this);
 			addNew.setActionCommand("newSoft");
 
@@ -586,8 +590,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 		}
 		else
 		{
-			JLabel text = new JLabel(PrimeMain.texts
-					.getString("swTabRestrictionText"));
+			JLabel text = new JLabel(
+					PrimeMain.texts.getString("swTabRestrictionText"));
 			buttons.add(text);
 		}
 
@@ -652,8 +656,8 @@ public class SoftwareObjectView extends JPanel implements ActionListener
 		{
 			if ( texts[i] != null )
 			{
-				JLabel text = new JLabel(GraphicalFunctions
-						.verifyDescriptionLength(texts[i]));
+				JLabel text = new JLabel(
+						GraphicalFunctions.verifyDescriptionLength(texts[i]));
 				// text.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				panel.add(text, d);
 				d.gridy++;

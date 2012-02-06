@@ -31,7 +31,7 @@ import java.util.logging.Logger;
 public class Settings implements Serializable
 {
 	// THE APPLICATION VERSION
-	public final static String appVersion = "Beta 3.5 RC1";
+	public final static String appVersion = "Beta 3.5 RC2";
 
 
 	// HARDWARE MESSAGES
@@ -106,6 +106,10 @@ public class Settings implements Serializable
 
 	// A BOOLEAN ON WHETHER OR NOT TO SHOW SPLASH
 	public static boolean showSplash = true;
+
+
+	// A BOOLEAN ON WHETHER OR NOT TO CHECK FOR UPDATES
+	public static boolean checkUpdate = true;
 
 
 	/**

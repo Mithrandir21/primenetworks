@@ -93,6 +93,7 @@ import org.jdesktop.swingx.MultiSplitLayout.Node;
 
 import plugins.pluginManagement.PluginMain;
 import plugins.pluginManagement.StopPluginsJob;
+import updatePrime.PrimeDesktopUpdateService;
 import widgetManipulation.NetworkRules;
 import widgets.WidgetObject;
 import widgets.WorkareaCanvas;
@@ -525,7 +526,7 @@ public class PrimeMain extends JFrame
 
 		PluginMain.startPluginQueue();
 
-		// new PrimeDesktopUpdateService();
+		new PrimeDesktopUpdateService();
 
 		// services = new PrimeService();
 

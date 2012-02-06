@@ -382,16 +382,6 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 							mb.setMaxIntegratedLANs(1);
 							mb.setIntegLANPortsAvailable(1);
 
-							//
-							// InternalNetworksCard nic =
-							// PrimeMain.standard_internal_components
-							// .getSt_IntNIC();
-							// nic.setType(ConnectionUtils.RJ45);
-							//
-							// exObject.addComponent(nic);
-							// PrimeMain.desktopProcLog.info("Added Wired NIC to "
-							// + exObject.getObjectName() + ".");
-
 							PrimeMain.desktopProcLog
 									.info("Added intergrated LAN port to the Motherboard of "
 											+ exObject.getObjectName() + ".");
@@ -404,8 +394,19 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 
 					if ( supportsUSB.isSelected() )
 					{
-						mb.setMaxUSBs(1);
-						mb.setUSBPortsAvailable(1);
+						if ( !rules.isUSBnotAllowed() )
+						{
+							mb.setMaxUSBs(1);
+							mb.setUSBPortsAvailable(1);
+
+							PrimeMain.desktopProcLog
+									.info("Added intergrated USB port to the Motherboard of "
+											+ exObject.getObjectName() + ".");
+						}
+						else
+						{
+
+						}
 					}
 
 					if ( supportsCOAX.isSelected() )

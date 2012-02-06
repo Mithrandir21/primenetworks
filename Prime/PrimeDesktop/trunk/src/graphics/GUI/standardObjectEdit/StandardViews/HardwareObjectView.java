@@ -48,6 +48,7 @@ import objects.hardwareObjects.HDD;
 import objects.hardwareObjects.InternalNetworksCard;
 import objects.hardwareObjects.Motherboard;
 import objects.hardwareObjects.Ram;
+import objects.peripheralObjects.GenericDevice;
 import objects.rackUnits.Rack;
 
 
@@ -537,18 +538,28 @@ public class HardwareObjectView extends JPanel implements ActionListener
 
 		if ( !(obj instanceof Rack) )
 		{
-			Button edit = new Button("Edit Components");
+			Button edit = new Button(
+					PrimeMain.texts.getString("hwTabHWEditComponentLabel"));
 			edit.addActionListener(this);
 			edit.setActionCommand("edit");
 
 			buttons.add(edit);
 
 
+			boolean addNewCompButton = false;
+
 			// If the object is a Client or Server Object, the user can add
 			// components.
-			if ( obj instanceof Clients || obj instanceof Servers )
+			if ( obj instanceof Clients || obj instanceof Servers
+					|| obj instanceof GenericDevice )
 			{
-				Button addNew = new Button("New Components");
+				addNewCompButton = true;
+			}
+
+			if ( addNewCompButton )
+			{
+				Button addNew = new Button(
+						PrimeMain.texts.getString("hwTabHWNewComponentLabel"));
 				addNew.addActionListener(this);
 				addNew.setActionCommand("newComp");
 
@@ -640,7 +651,6 @@ public class HardwareObjectView extends JPanel implements ActionListener
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */

@@ -50,13 +50,17 @@ public class PrimeDesktopUpdateService
 	 */
 	public PrimeDesktopUpdateService()
 	{
-		String newestVersion = getNewestVersion();
-
-		if ( newestVersion != null )
+		if ( Settings.checkUpdate == true )
 		{
-			if ( !newestVersion.equalsIgnoreCase(Settings.appVersion) )
+			String newestVersion = getNewestVersion();
+
+			if ( newestVersion != null )
 			{
-				new UpdateDialog();
+				if ( !newestVersion.equalsIgnoreCase(Settings.appVersion)
+						&& newestVersion.startsWith("Beta") )
+				{
+					new UpdateDialog();
+				}
 			}
 		}
 	}
@@ -112,6 +116,7 @@ public class PrimeDesktopUpdateService
 				{
 					stream.close();
 				}
+
 
 				return sb.toString();
 			}
