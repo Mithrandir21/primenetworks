@@ -544,7 +544,6 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -582,7 +581,6 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -621,7 +619,6 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -659,7 +656,6 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -693,7 +689,6 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -730,7 +725,6 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -765,7 +759,6 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -803,7 +796,6 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -841,7 +833,6 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -878,7 +869,6 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -914,7 +904,6 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -1050,7 +1039,6 @@ public class CreateObjects
 
 		objectMB.setMaxUSBs(1);
 		objectMB.setUSBPortsAvailable(1);
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(1);
 		objectMB.setIntegLANPortsAvailable(1);
 
@@ -1114,7 +1102,6 @@ public class CreateObjects
 				.getHw_MB();
 
 		objectMB.setMaxUSBs(1);
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(1);
 		objectMB.setUSBPortsAvailable(1);
 		objectMB.setIntegLANPortsAvailable(1);
@@ -1151,7 +1138,6 @@ public class CreateObjects
 				.getHw_MB();
 
 		objectMB.setMaxUSBs(1);
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(1);
 		objectMB.setUSBPortsAvailable(1);
 		objectMB.setIntegLANPortsAvailable(1);
@@ -1186,7 +1172,6 @@ public class CreateObjects
 		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(16);
 		objectMB.setIntegLANPortsAvailable(16);
 
@@ -1220,7 +1205,6 @@ public class CreateObjects
 		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(16);
 		objectMB.setIntegLANPortsAvailable(16);
 
@@ -1254,7 +1238,6 @@ public class CreateObjects
 		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(4);
 		objectMB.setIntegLANPortsAvailable(4);
 
@@ -1285,7 +1268,6 @@ public class CreateObjects
 		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(1);
 		objectMB.setIntegLANPortsAvailable(1);
 		objectMB.setMaxCoaxs(1);
@@ -1320,7 +1302,6 @@ public class CreateObjects
 		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(4);
 		objectMB.setIntegLANPortsAvailable(4);
 
@@ -1367,7 +1348,6 @@ public class CreateObjects
 		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(1);
 		objectMB.setIntegLANPortsAvailable(1);
 		objectMB.setCoaxPortsAvailable(1);

@@ -117,7 +117,6 @@ public class HardwareMouseListener extends MouseAdapter implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.awt.event.MouseAdapter#mousePressed(java.awt.event.MouseEvent)
 	 */
 	@Override
@@ -132,7 +131,6 @@ public class HardwareMouseListener extends MouseAdapter implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.awt.event.MouseAdapter#mouseReleased(java.awt.event.MouseEvent)
 	 */
 	@Override
@@ -149,7 +147,6 @@ public class HardwareMouseListener extends MouseAdapter implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */

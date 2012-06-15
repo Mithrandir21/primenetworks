@@ -86,7 +86,7 @@ public class ObjectSManipulationsTests
 	{
 		components[0] = new Motherboard("Standard MB", "Standard MB Desc",
 				"MB Producer", "ATX", "Intel 775", "DDR2", 1, 3, 2, 4, 4, 0, 0,
-				"SATA", "AGP", true, true, true, 1);
+				"SATA", "AGP", true, true, 1);
 
 		HW_MB = new Motherboard("Standard Hardware MB",
 				"Standard Hardware Desc");
@@ -224,8 +224,8 @@ public class ObjectSManipulationsTests
 		mb.setIntegGraphicalCard(true);
 		Assert.assertEquals(true, mb.isIntegGraphicalCard());
 
-		mb.setIntegLANcard(true);
-		Assert.assertEquals(true, mb.isIntegLANcard());
+		// mb.setIntegLANcard(true);
+		// Assert.assertEquals(true, mb.isIntegLANcard());
 
 		mb.setGraphicsCardInstalled(false);
 		Assert.assertEquals(false, mb.isGraphicsCardInstalled());
@@ -439,7 +439,6 @@ public class ObjectSManipulationsTests
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -479,7 +478,6 @@ public class ObjectSManipulationsTests
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -518,7 +516,6 @@ public class ObjectSManipulationsTests
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -557,7 +554,6 @@ public class ObjectSManipulationsTests
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -596,7 +592,6 @@ public class ObjectSManipulationsTests
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -634,7 +629,6 @@ public class ObjectSManipulationsTests
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -671,7 +665,6 @@ public class ObjectSManipulationsTests
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setIntegLANcard(true);
 		serverMB.setMaxIntegratedLANs(2);
 		serverMB.setIntegLANPortsAvailable(2);
 
@@ -767,7 +760,6 @@ public class ObjectSManipulationsTests
 
 		objectMB.setMaxUSBs(1);
 		objectMB.setUSBPortsAvailable(1);
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(1);
 		objectMB.setIntegLANPortsAvailable(1);
 
@@ -829,7 +821,6 @@ public class ObjectSManipulationsTests
 		Motherboard objectMB = HW_MB;
 
 		objectMB.setMaxUSBs(1);
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(1);
 		objectMB.setUSBPortsAvailable(1);
 		objectMB.setIntegLANPortsAvailable(1);
@@ -873,7 +864,6 @@ public class ObjectSManipulationsTests
 		Motherboard objectMB = HW_MB;
 
 		objectMB.setMaxUSBs(1);
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(1);
 		objectMB.setUSBPortsAvailable(1);
 		objectMB.setIntegLANPortsAvailable(1);
@@ -910,7 +900,6 @@ public class ObjectSManipulationsTests
 
 		Motherboard objectMB = HW_MB;
 
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(16);
 		objectMB.setIntegLANPortsAvailable(16);
 
@@ -945,7 +934,6 @@ public class ObjectSManipulationsTests
 
 		Motherboard objectMB = HW_MB;
 
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(16);
 		objectMB.setIntegLANPortsAvailable(16);
 
@@ -979,7 +967,6 @@ public class ObjectSManipulationsTests
 
 		Motherboard objectMB = HW_MB;
 
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(4);
 		objectMB.setIntegLANPortsAvailable(4);
 
@@ -1010,7 +997,6 @@ public class ObjectSManipulationsTests
 
 		Motherboard objectMB = HW_MB;
 
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(1);
 		objectMB.setIntegLANPortsAvailable(1);
 		objectMB.setMaxCoaxs(1);
@@ -1055,7 +1041,6 @@ public class ObjectSManipulationsTests
 
 		Motherboard objectMB = HW_MB;
 
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(4);
 		objectMB.setIntegLANPortsAvailable(4);
 
@@ -1097,7 +1082,6 @@ public class ObjectSManipulationsTests
 
 		Motherboard objectMB = HW_MB;
 
-		objectMB.setIntegLANcard(true);
 		objectMB.setMaxIntegratedLANs(1);
 		objectMB.setIntegLANPortsAvailable(1);
 		objectMB.setCoaxPortsAvailable(1);

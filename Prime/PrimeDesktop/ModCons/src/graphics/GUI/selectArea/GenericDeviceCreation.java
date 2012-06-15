@@ -378,7 +378,6 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 					{
 						if ( !rules.isLANnotAllowed() )
 						{
-							mb.setIntegLANcard(true);
 							mb.setMaxIntegratedLANs(1);
 							mb.setIntegLANPortsAvailable(1);
 

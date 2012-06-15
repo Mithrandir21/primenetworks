@@ -822,6 +822,165 @@ public class ConnectionManagment
 
 
 
+	private static int getPort(String conType, Motherboard mb)
+	{
+		int index = 0;
+
+		if ( conType.equals(ConnectionUtils.RJ45) )
+		{
+			// Gets the first available LAN port index.
+			index = mb.getIntegLANPortsAvailable();
+		}
+		else if ( conType.equals(ConnectionUtils.Coax) )
+		{
+			// Gets the first available Coax port index.
+			index = mb.getCoaxPortsAvailable();
+		}
+		else if ( conType.equals(ConnectionUtils.Fiber) )
+		{
+			// Gets the first available Fiber port index.
+			index = mb.getFiberPortsAvailable();
+		}
+
+
+		return index;
+	}
+
+
+
+	private static Object getNic(String conType, Object object, Object ObjectNic)
+	{
+		try
+		{
+			// Gets all the InternalNICs
+			Object[] intNICs = object
+					.getSpesificComponents(InternalNetworksCard.class);
+
+			// Goes through all the gotten InternalNICs
+			for ( int i = 0; i < intNICs.length; i++ )
+			{
+				InternalNetworksCard temp = (InternalNetworksCard) intNICs[i];
+
+				// If there is no Object connected to this InternalNIC
+				if ( temp.getConnectedObject() == null )
+				{
+					// If the connection type of the network card is
+					// conType
+					if ( temp.getConnectionType().equals(conType) )
+					{
+						// Sets the found InternalNetworksCard with no
+						// objects connected to it
+						ObjectNic = temp;
+
+						// Ends loop
+						i = intNICs.length;
+					}
+				}
+			}
+
+		}
+		// No InternalNetworksCard was found, search for
+		// ExternalNetworksCard
+		catch ( ObjectNotFoundException internalException )
+		{
+			// WILL BE CHECKED FURTHER DOWN
+		}
+
+
+		// No InternalNIC was found, either with conType or at all
+		if ( ObjectNic == null )
+		{
+			try
+			{
+				// Gets all the ExternalNICs
+				Object[] extNICs = object
+						.getSpesificComponents(ExternalNetworksCard.class);
+
+				// Goes through all the gotten ExternalNICs
+				for ( int i = 0; i < extNICs.length; i++ )
+				{
+					ExternalNetworksCard temp = (ExternalNetworksCard) extNICs[i];
+
+					// If there is no Object connected to this
+					// ExternalNICs
+					if ( temp.getConnectedObject() == null )
+					{
+						// If the connection type of the network card is
+						// conType
+						if ( temp.getConnectionType().equals(conType) )
+						{
+							// Sets the found ExternalNetworksCard with
+							// no objects connected to it
+							ObjectNic = temp;
+
+							// Ends loop
+							i = extNICs.length;
+						}
+					}
+				}
+
+			}
+			// No InternalNetworksCard or ExternalNetworksCard was found
+			// which was available
+			catch ( ObjectNotFoundException externalException )
+			{
+				// WILL BE CHECKED FURTHER DOWN
+			}
+		}
+
+
+		return ObjectNic;
+	}
+
+
+	/**
+	 * This function makes on of the ports, of the type conType, unavailable.
+	 */
+	private static void setIntegratedPort(String conType, Motherboard mb)
+	{
+		if ( conType.equals(ConnectionUtils.RJ45) )
+		{
+			// Sets the arrays on the actual motherboard components.
+			mb.makeOneIntLANportTaken();
+		}
+		else if ( conType.equals(ConnectionUtils.Coax) )
+		{
+			// Sets the arrays on the actual motherboard components.
+			mb.makeOneCoaxPortTaken();
+		}
+		else if ( conType.equals(ConnectionUtils.Fiber) )
+		{
+			// Sets the arrays on the actual motherboard components.
+			mb.makeOneFiberPortTaken();
+		}
+	}
+
+
+	/**
+	 * Sets the connected object of the nic on object.
+	 */
+	private static void setConnectedNic(Object nic, Object Object)
+	{
+		// Sets the connected object of the nic on object B
+		if ( nic instanceof InternalNetworksCard )
+		{
+			InternalNetworksCard temp = (InternalNetworksCard) nic;
+
+			// Sets objectA as the connected object of the network
+			// card
+			temp.setConnectedObject(Object);
+		}
+		else if ( nic instanceof ExternalNetworksCard )
+		{
+			ExternalNetworksCard temp = (ExternalNetworksCard) nic;
+
+			// Sets objectA as the connected object of the network
+			// card
+			temp.setConnectedObject(Object);
+		}
+	}
+
+
 	/**
 	 * In this function the availability of the ports to which the connection is
 	 * to be made is checked and, if available, set.
@@ -868,106 +1027,12 @@ public class ConnectionManagment
 			int indexB = 0;
 
 
-			if ( conType.equals(ConnectionUtils.RJ45) )
-			{
-				// Checks if the motherboard of the first object has an
-				// integrated LAN port.
-				if ( objectAmotherboard.LANcardIsIntegrated() )
-				{
-					// Gets the first available LAN port index.
-					indexA = objectAmotherboard.getIntegLANPortsAvailable();
-				}
-			}
-			else if ( conType.equals(ConnectionUtils.Coax) )
-			{
-				// Gets the first available Coax port index.
-				indexA = objectAmotherboard.getCoaxPortsAvailable();
-			}
-			else if ( conType.equals(ConnectionUtils.Fiber) )
-			{
-				// Gets the first available Fiber port index.
-				indexA = objectAmotherboard.getFiberPortsAvailable();
-			}
-
+			// Attempts to get the index of available port and sets the
+			// ObjectAnic if no port is available.
+			indexA = getPort(conType, objectAmotherboard);
 			if ( indexA < 1 )
 			{
-				try
-				{
-					// Gets all the InternalNICs
-					Object[] intNICs = objectA
-							.getSpesificComponents(InternalNetworksCard.class);
-
-					// Goes through all the gotten InternalNICs
-					for ( int i = 0; i < intNICs.length; i++ )
-					{
-						InternalNetworksCard temp = (InternalNetworksCard) intNICs[i];
-
-						// If there is no Object connected to this InternalNIC
-						if ( temp.getConnectedObject() == null )
-						{
-							// If the connection type of the network card is
-							// conType
-							if ( temp.getConnectionType().equals(conType) )
-							{
-								// Sets the found InternalNetworksCard with no
-								// objects connected to it
-								ObjectAnic = temp;
-
-								// Ends loop
-								i = intNICs.length;
-							}
-						}
-					}
-
-				}
-				// No InternalNetworksCard was found, search for
-				// ExternalNetworksCard
-				catch ( ObjectNotFoundException internalException )
-				{
-					// WILL BE CHECKED FURTHER DOWN
-				}
-
-
-				// No InternalNIC was found, either with conType or at all
-				if ( ObjectAnic == null )
-				{
-					try
-					{
-						// Gets all the ExternalNICs
-						Object[] extNICs = objectA
-								.getSpesificComponents(ExternalNetworksCard.class);
-
-						// Goes through all the gotten ExternalNICs
-						for ( int i = 0; i < extNICs.length; i++ )
-						{
-							ExternalNetworksCard temp = (ExternalNetworksCard) extNICs[i];
-
-							// If there is no Object connected to this
-							// ExternalNICs
-							if ( temp.getConnectedObject() == null )
-							{
-								// If the connection type of the network card is
-								// conType
-								if ( temp.getConnectionType().equals(conType) )
-								{
-									// Sets the found ExternalNetworksCard with
-									// no objects connected to it
-									ObjectAnic = temp;
-
-									// Ends loop
-									i = extNICs.length;
-								}
-							}
-						}
-
-					}
-					// No InternalNetworksCard or ExternalNetworksCard was found
-					// which was available
-					catch ( ObjectNotFoundException externalException )
-					{
-						// WILL BE CHECKED FURTHER DOWN
-					}
-				}
+				ObjectAnic = getNic(conType, objectA, ObjectAnic);
 			}
 
 			// No conType was present and no NIC card was found.
@@ -984,111 +1049,15 @@ public class ConnectionManagment
 
 
 
-			if ( conType.equals(ConnectionUtils.RJ45) )
-			{
-				// Checks if the motherboard of the second object has an LAN.
-				if ( objectBmotherboard.LANcardIsIntegrated() )
-				{
-					// Gets the first available LAN port index.
-					indexB = objectBmotherboard.getIntegLANPortsAvailable();
-				}
-			}
-			else if ( conType.equals(ConnectionUtils.Coax) )
-			{
-				// Gets the first available Coax port index.
-				indexB = objectBmotherboard.getCoaxPortsAvailable();
-			}
-			else if ( conType.equals(ConnectionUtils.Fiber) )
-			{
-				// Gets the first available Fiber port index.
-				indexB = objectBmotherboard.getFiberPortsAvailable();
-			}
-
-
+			// Attempts to get the index of available port and sets the
+			// ObjectBnic if no port is available.
+			indexB = getPort(conType, objectBmotherboard);
 			if ( indexB < 1 )
 			{
-				try
-				{
-					// Gets all the InternalNICs
-					Object[] intNICs = objectB
-							.getSpesificComponents(InternalNetworksCard.class);
-
-					// Goes through all the gotten InternalNICs
-					for ( int i = 0; i < intNICs.length; i++ )
-					{
-						InternalNetworksCard temp = (InternalNetworksCard) intNICs[i];
-
-						// If there is no Object connected to this InternalNIC
-						if ( temp.getConnectedObject() == null )
-						{
-							// If the connection type of the network card is
-							// conType
-							if ( temp.getConnectionType().equals(conType) )
-							{
-								// Sets the found InternalNetworksCard with no
-								// objects connected to it
-								ObjectBnic = temp;
-
-								// Ends loop
-								i = intNICs.length;
-							}
-						}
-					}
-
-				}
-				// No InternalNetworksCard was found, search for
-				// ExternalNetworksCard
-				catch ( ObjectNotFoundException internalException )
-				{
-
-				}
-
-
-				// No InternalNIC was found, either with conType or at all
-				if ( ObjectBnic == null )
-				{
-					try
-					{
-						// Gets all the ExternalNICs
-						Object[] extNICs = objectB
-								.getSpesificComponents(ExternalNetworksCard.class);
-
-						// Goes through all the gotten ExternalNICs
-						for ( int i = 0; i < extNICs.length; i++ )
-						{
-							ExternalNetworksCard temp = (ExternalNetworksCard) extNICs[i];
-
-							// If there is no Object connected to this
-							// ExternalNICs
-							if ( temp.getConnectedObject() == null )
-							{
-								// If the connection type of the network card is
-								// conType
-								if ( temp.getConnectionType().equals(conType) )
-								{
-									// Sets the found ExternalNetworksCard with
-									// no objects connected to it
-									ObjectBnic = temp;
-
-									// Ends loop
-									i = extNICs.length;
-								}
-							}
-						}
-
-					}
-					// No InternalNetworksCard or ExternalNetworksCard was found
-					// which was available
-					catch ( ObjectNotFoundException externalException )
-					{
-						// WILL BE CHECKED FURTHER DOWN
-					}
-				}
+				ObjectBnic = getNic(conType, objectB, ObjectBnic);
 			}
 
-
-
-			// No integrated lan port was present and no NIC card was found.
+			// No conType was present and no NIC card was found.
 			if ( indexB < 1 && ObjectBnic == null )
 			{
 				JOptionPane.showMessageDialog(
@@ -1102,7 +1071,6 @@ public class ConnectionManagment
 
 
 
-
 			/**
 			 * If the function gets to this point it means that either both the
 			 * motherboards on the objects have available LAN ports or they have
@@ -1113,66 +1081,20 @@ public class ConnectionManagment
 			// ObjectA - Has available integrated Lan port
 			if ( indexA > 0 )
 			{
-				if ( conType.equals(ConnectionUtils.RJ45) )
-				{
-					// Sets the arrays on the actual motherboard components.
-					objectAmotherboard.makeOneIntLANportTaken();
-				}
-				else if ( conType.equals(ConnectionUtils.Coax) )
-				{
-					// Sets the arrays on the actual motherboard components.
-					objectAmotherboard.makeOneCoaxPortTaken();
-				}
-				else if ( conType.equals(ConnectionUtils.Fiber) )
-				{
-					// Sets the arrays on the actual motherboard components.
-					objectAmotherboard.makeOneFiberPortTaken();
-				}
-
+				setIntegratedPort(conType, objectAmotherboard);
 
 
 				// ObjectB - Has available integrated Lan port
 				if ( indexB > 0 )
 				{
-					if ( conType.equals(ConnectionUtils.RJ45) )
-					{
-						// Sets the arrays on the actual motherboard components.
-						objectBmotherboard.makeOneIntLANportTaken();
-					}
-					else if ( conType.equals(ConnectionUtils.Coax) )
-					{
-						// Sets the arrays on the actual motherboard components.
-						objectBmotherboard.makeOneCoaxPortTaken();
-					}
-					else if ( conType.equals(ConnectionUtils.Fiber) )
-					{
-						// Sets the arrays on the actual motherboard components.
-						objectBmotherboard.makeOneFiberPortTaken();
-					}
+					setIntegratedPort(conType, objectBmotherboard);
 				}
 				else
 				{
 					// Makes sure that the nic pointer for object B is not null
 					assert ObjectBnic != null;
 
-
-					// Sets the connected object of the nic on object B
-					if ( ObjectBnic instanceof InternalNetworksCard )
-					{
-						InternalNetworksCard temp = (InternalNetworksCard) ObjectBnic;
-
-						// Sets objectA as the connected object of the network
-						// card
-						temp.setConnectedObject(objectA);
-					}
-					else if ( ObjectBnic instanceof ExternalNetworksCard )
-					{
-						ExternalNetworksCard temp = (ExternalNetworksCard) ObjectBnic;
-
-						// Sets objectA as the connected object of the network
-						// card
-						temp.setConnectedObject(objectA);
-					}
+					setConnectedNic(ObjectBnic, objectA);
 				}
 
 			}
@@ -1182,44 +1104,13 @@ public class ConnectionManagment
 				// Makes sure that the nic pointer for object A is not null
 				assert ObjectAnic != null;
 
+
 				// ObjectB - Has available integrated Lan port
 				if ( indexB > 0 )
 				{
-					if ( conType.equals(ConnectionUtils.RJ45) )
-					{
-						// Sets the arrays on the actual motherboard components.
-						objectBmotherboard.makeOneIntLANportTaken();
-					}
-					else if ( conType.equals(ConnectionUtils.Coax) )
-					{
-						// Sets the arrays on the actual motherboard components.
-						objectBmotherboard.makeOneCoaxPortTaken();
-					}
-					else if ( conType.equals(ConnectionUtils.Fiber) )
-					{
-						// Sets the arrays on the actual motherboard components.
-						objectBmotherboard.makeOneFiberPortTaken();
-					}
+					setIntegratedPort(conType, objectBmotherboard);
 
-
-					// Sets the objects as the connected objects on the network
-					// cards
-					if ( ObjectAnic instanceof InternalNetworksCard )
-					{
-						InternalNetworksCard temp = (InternalNetworksCard) ObjectAnic;
-
-						// Sets objectB as the connected object of the network
-						// card
-						temp.setConnectedObject(objectB);
-					}
-					else if ( ObjectAnic instanceof ExternalNetworksCard )
-					{
-						ExternalNetworksCard temp = (ExternalNetworksCard) ObjectAnic;
-
-						// Sets objectB as the connected object of the network
-						// card
-						temp.setConnectedObject(objectB);
-					}
+					setConnectedNic(ObjectAnic, objectB);
 				}
 				// ObjectB - Has not available integrated Lan port
 				else
@@ -1227,46 +1118,11 @@ public class ConnectionManagment
 					// Makes sure that the nic pointer for object B is not null
 					assert ObjectBnic != null;
 
-					// Sets the objects as the connected objects on the network
-					// cards
-					if ( ObjectAnic instanceof InternalNetworksCard )
-					{
-						InternalNetworksCard temp = (InternalNetworksCard) ObjectAnic;
+					setConnectedNic(ObjectAnic, objectB);
 
-						// Sets objectB as the connected object of the network
-						// card
-						temp.setConnectedObject(objectB);
-					}
-					else if ( ObjectAnic instanceof ExternalNetworksCard )
-					{
-						ExternalNetworksCard temp = (ExternalNetworksCard) ObjectAnic;
-
-						// Sets objectB as the connected object of the network
-						// card
-						temp.setConnectedObject(objectB);
-					}
-
-
-					// Sets the connected object of the nic on object B
-					if ( ObjectBnic instanceof InternalNetworksCard )
-					{
-						InternalNetworksCard temp = (InternalNetworksCard) ObjectBnic;
-
-						// Sets objectA as the connected object of the network
-						// card
-						temp.setConnectedObject(objectA);
-					}
-					else if ( ObjectBnic instanceof ExternalNetworksCard )
-					{
-						ExternalNetworksCard temp = (ExternalNetworksCard) ObjectBnic;
-
-						// Sets objectA as the connected object of the network
-						// card
-						temp.setConnectedObject(objectA);
-					}
+					setConnectedNic(ObjectBnic, objectA);
 				}
 			}
-
 
 
 			// Adds each object to the other objects array of connection
@@ -1662,8 +1518,8 @@ public class ConnectionManagment
 
 
 	/**
-	 * This function add a connection to the connection array of the currently
-	 * selected canvas. The function also gives the developer the opportunity to
+	 * This function add a connection to the connection array of the given
+	 * canvas. The function also gives the developer the opportunity to
 	 * add a check function which checks to see whether or not the connection
 	 * that is to be added already exists in the connection array of the
 	 * currently selected canvas.

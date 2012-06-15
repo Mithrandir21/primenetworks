@@ -546,14 +546,7 @@ public class RulesManagment
 				int maxIntegLan = objectMotherboard.getMaxIntegLANs();
 
 				// If there are any integrated LAN ports
-				if ( maxIntegLan == 0 )
-				{
-					objectMotherboard.setIntegLANcard(false);
-				}
-				else if ( maxIntegLan > 0 )
-				{
-					objectMotherboard.setIntegLANcard(true);
-				}
+				// objectMotherboard.setIntegLANcard(maxIntegLan);
 			}
 			catch ( MotherboardNotFound e )
 			{

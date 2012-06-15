@@ -131,7 +131,6 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -145,7 +144,6 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#canRedo()
 	 */
 	@Override
@@ -156,7 +154,6 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#canUndo()
 	 */
 	@Override
@@ -167,7 +164,6 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#die()
 	 */
 	@Override
@@ -181,7 +177,6 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#getPresentationName()
 	 */
 	@Override
@@ -193,7 +188,6 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#getRedoPresentationName()
 	 */
 	@Override
@@ -205,7 +199,6 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#getUndoPresentationName()
 	 */
 	@Override
@@ -217,7 +210,6 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#isSignificant()
 	 */
 	@Override
@@ -229,7 +221,6 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#redo()
 	 */
 	@Override
@@ -317,7 +308,6 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.AbstractSystemAction#undo()
 	 */
 	@Override
@@ -334,7 +324,6 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see logistical.SystemActionInterface#performAction()
 	 */
 	@Override

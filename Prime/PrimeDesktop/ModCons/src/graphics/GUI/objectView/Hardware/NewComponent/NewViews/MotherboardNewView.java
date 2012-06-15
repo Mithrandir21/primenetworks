@@ -89,8 +89,6 @@ public class MotherboardNewView extends JDialog implements
 
 	private JCheckBox intGPU;
 
-	private JCheckBox intNIC;
-
 	private JCheckBox GPUinstalled;
 
 	private JComboBox CPUsockets;
@@ -249,52 +247,47 @@ public class MotherboardNewView extends JDialog implements
 				.getString("mbViewGPUIntegratedTip"));
 
 		labels[10] = new JLabel(
-				PrimeMain.texts.getString("mbViewNICIntegratedLabel"));
-		labels[10].setToolTipText(PrimeMain.texts
-				.getString("mbViewNICIntegratedTip"));
-
-		labels[11] = new JLabel(
 				PrimeMain.texts.getString("mbViewGPUinstalledLabel"));
-		labels[11].setToolTipText(PrimeMain.texts
+		labels[10].setToolTipText(PrimeMain.texts
 				.getString("mbViewGPUinstalledTip"));
 
-		labels[12] = new JLabel(
+		labels[11] = new JLabel(
 				PrimeMain.texts.getString("mbViewCPUsocketLabel"));
-		labels[12].setToolTipText(PrimeMain.texts
+		labels[11].setToolTipText(PrimeMain.texts
 				.getString("mbViewCPUsocketTip"));
 
-		labels[13] = new JLabel(
+		labels[12] = new JLabel(
 				PrimeMain.texts.getString("mbViewPCIslotsLabel"));
-		labels[13].setToolTipText(PrimeMain.texts
+		labels[12].setToolTipText(PrimeMain.texts
 				.getString("mbViewPCIslotsTip"));
 
-		labels[14] = new JLabel(
+		labels[13] = new JLabel(
 				PrimeMain.texts.getString("mbViewRAMslotsLabel"));
-		labels[14].setToolTipText(PrimeMain.texts
+		labels[13].setToolTipText(PrimeMain.texts
 				.getString("mbViewRAMslotsTip"));
 
-		labels[15] = new JLabel(
+		labels[14] = new JLabel(
 				PrimeMain.texts.getString("mbViewUSBportsLabel"));
-		labels[15].setToolTipText(PrimeMain.texts
+		labels[14].setToolTipText(PrimeMain.texts
 				.getString("mbViewUSBportsTip"));
 
-		labels[16] = new JLabel(PrimeMain.texts.getString("mbViewDUCportLabel"));
-		labels[16]
+		labels[15] = new JLabel(PrimeMain.texts.getString("mbViewDUCportLabel"));
+		labels[15]
 				.setToolTipText(PrimeMain.texts.getString("mbViewDUCportTip"));
 
-		labels[17] = new JLabel(
+		labels[16] = new JLabel(
 				PrimeMain.texts.getString("mbViewLANportsLabel"));
-		labels[17].setToolTipText(PrimeMain.texts
+		labels[16].setToolTipText(PrimeMain.texts
 				.getString("mbViewLANportsTip"));
 
-		labels[18] = new JLabel(
+		labels[17] = new JLabel(
 				PrimeMain.texts.getString("mbViewCoaxportsLabel"));
-		labels[18].setToolTipText(PrimeMain.texts
+		labels[17].setToolTipText(PrimeMain.texts
 				.getString("mbViewCoaxportsTip"));
 
-		labels[19] = new JLabel(
+		labels[18] = new JLabel(
 				PrimeMain.texts.getString("mbViewFiberportsLabel"));
-		labels[19].setToolTipText(PrimeMain.texts
+		labels[18].setToolTipText(PrimeMain.texts
 				.getString("mbViewFiberportsTip"));
 
 
@@ -406,7 +399,8 @@ public class MotherboardNewView extends JDialog implements
 
 		for ( int i = 1; i < gpuPortStrings.length; i++ )
 		{
-			if ( mb.getGraphicalPort() != null && !mb.getGraphicalPort().equals("") )
+			if ( mb.getGraphicalPort() != null
+					&& !mb.getGraphicalPort().equals("") )
 			{
 				if ( gpuPorts.getItemAt(i).equals(mb.getGraphicalPort()) )
 				{
@@ -529,31 +523,16 @@ public class MotherboardNewView extends JDialog implements
 
 
 
-		// Integrated NIC
-		intNIC = new JCheckBox();
-		intNIC.setSelected(mb.isIntegLANcard());
-		intNIC.setToolTipText(labels[10].getToolTipText());
-		intNIC.setActionCommand("Int NIC");
-		intNIC.addActionListener(this);
-
-		labels[10].setLabelFor(intNIC);
-
-		panel.add(labels[10]);
-		panel.add(intNIC);
-		// --------------------------
-
-
-
 		// GPU installed, regardless of whether or not any integrate GPU exists.
 		GPUinstalled = new JCheckBox();
 		GPUinstalled.setSelected(mb.isGraphicsCardInstalled());
-		GPUinstalled.setToolTipText(labels[11].getToolTipText());
+		GPUinstalled.setToolTipText(labels[10].getToolTipText());
 		GPUinstalled.setActionCommand("GPU Installed");
 		GPUinstalled.addActionListener(this);
 
-		labels[11].setLabelFor(GPUinstalled);
+		labels[10].setLabelFor(GPUinstalled);
 
-		panel.add(labels[11]);
+		panel.add(labels[10]);
 		panel.add(GPUinstalled);
 		// --------------------------
 
@@ -567,7 +546,7 @@ public class MotherboardNewView extends JDialog implements
 		CPUsockets.setMinimumSize(tfSize);
 		CPUsockets.setPreferredSize(tfSize);
 		CPUsockets.setBackground(Color.WHITE);
-		CPUsockets.setToolTipText(labels[12].getToolTipText());
+		CPUsockets.setToolTipText(labels[11].getToolTipText());
 		CPUsockets.setActionCommand("CPU sockets");
 		CPUsockets.addActionListener(this);
 
@@ -585,9 +564,9 @@ public class MotherboardNewView extends JDialog implements
 
 		CPUsockets.setSelectedIndex(CPUsocketsIndex);
 
-		labels[12].setLabelFor(CPUsockets);
+		labels[11].setLabelFor(CPUsockets);
 
-		panel.add(labels[12]);
+		panel.add(labels[11]);
 		panel.add(CPUsockets);
 		// --------------------------
 
@@ -601,7 +580,7 @@ public class MotherboardNewView extends JDialog implements
 		PCIslots.setMinimumSize(tfSize);
 		PCIslots.setPreferredSize(tfSize);
 		PCIslots.setBackground(Color.WHITE);
-		PCIslots.setToolTipText(labels[13].getToolTipText());
+		PCIslots.setToolTipText(labels[12].getToolTipText());
 		PCIslots.setActionCommand("PCI Slots");
 		PCIslots.addActionListener(this);
 
@@ -620,9 +599,9 @@ public class MotherboardNewView extends JDialog implements
 
 		PCIslots.setSelectedIndex(PCIslotsIndex);
 
-		labels[13].setLabelFor(PCIslots);
+		labels[12].setLabelFor(PCIslots);
 
-		panel.add(labels[13]);
+		panel.add(labels[12]);
 		panel.add(PCIslots);
 		// --------------------------
 
@@ -636,7 +615,7 @@ public class MotherboardNewView extends JDialog implements
 		RAMslots.setMinimumSize(tfSize);
 		RAMslots.setPreferredSize(tfSize);
 		RAMslots.setBackground(Color.WHITE);
-		RAMslots.setToolTipText(labels[14].getToolTipText());
+		RAMslots.setToolTipText(labels[13].getToolTipText());
 		RAMslots.setActionCommand("RAM Slots");
 		RAMslots.addActionListener(this);
 
@@ -655,9 +634,9 @@ public class MotherboardNewView extends JDialog implements
 
 		RAMslots.setSelectedIndex(RAMslotsIndex);
 
-		labels[14].setLabelFor(RAMslots);
+		labels[13].setLabelFor(RAMslots);
 
-		panel.add(labels[14]);
+		panel.add(labels[13]);
 		panel.add(RAMslots);
 		// --------------------------
 
@@ -671,7 +650,7 @@ public class MotherboardNewView extends JDialog implements
 		USBports.setMinimumSize(tfSize);
 		USBports.setPreferredSize(tfSize);
 		USBports.setBackground(Color.WHITE);
-		USBports.setToolTipText(labels[15].getToolTipText());
+		USBports.setToolTipText(labels[14].getToolTipText());
 		USBports.setActionCommand("USB Ports");
 		USBports.addActionListener(this);
 
@@ -690,9 +669,9 @@ public class MotherboardNewView extends JDialog implements
 
 		USBports.setSelectedIndex(USBportsIndex);
 
-		labels[15].setLabelFor(USBports);
+		labels[14].setLabelFor(USBports);
 
-		panel.add(labels[15]);
+		panel.add(labels[14]);
 		panel.add(USBports);
 		// --------------------------
 
@@ -706,7 +685,7 @@ public class MotherboardNewView extends JDialog implements
 		DUCports.setMinimumSize(tfSize);
 		DUCports.setPreferredSize(tfSize);
 		DUCports.setBackground(Color.WHITE);
-		DUCports.setToolTipText(labels[16].getToolTipText());
+		DUCports.setToolTipText(labels[18].getToolTipText());
 		DUCports.setActionCommand("DUC Ports");
 		DUCports.addActionListener(this);
 
@@ -725,9 +704,9 @@ public class MotherboardNewView extends JDialog implements
 
 		DUCports.setSelectedIndex(DUCportsIndex);
 
-		labels[16].setLabelFor(DUCports);
+		labels[15].setLabelFor(DUCports);
 
-		panel.add(labels[16]);
+		panel.add(labels[15]);
 		panel.add(DUCports);
 		// --------------------------
 
@@ -741,7 +720,7 @@ public class MotherboardNewView extends JDialog implements
 		LANports.setMinimumSize(tfSize);
 		LANports.setPreferredSize(tfSize);
 		LANports.setBackground(Color.WHITE);
-		LANports.setToolTipText(labels[17].getToolTipText());
+		LANports.setToolTipText(labels[16].getToolTipText());
 		LANports.setActionCommand("LAN Ports");
 		LANports.addActionListener(this);
 
@@ -760,9 +739,9 @@ public class MotherboardNewView extends JDialog implements
 
 		LANports.setSelectedIndex(LANportsIndex);
 
-		labels[17].setLabelFor(LANports);
+		labels[16].setLabelFor(LANports);
 
-		panel.add(labels[17]);
+		panel.add(labels[16]);
 		panel.add(LANports);
 		// --------------------------
 
@@ -812,9 +791,9 @@ public class MotherboardNewView extends JDialog implements
 
 		CoaxPorts.setSelectedIndex(COAXportsIndex);
 
-		labels[18].setLabelFor(CoaxPorts);
+		labels[17].setLabelFor(CoaxPorts);
 
-		panel.add(labels[18]);
+		panel.add(labels[17]);
 		panel.add(CoaxPorts);
 		// --------------------------
 
@@ -845,7 +824,7 @@ public class MotherboardNewView extends JDialog implements
 		FiberPorts.setMinimumSize(tfSize);
 		FiberPorts.setPreferredSize(tfSize);
 		FiberPorts.setBackground(Color.WHITE);
-		FiberPorts.setToolTipText(labels[17].getToolTipText());
+		FiberPorts.setToolTipText(labels[18].getToolTipText());
 		FiberPorts.setActionCommand("COAX Ports");
 		FiberPorts.addActionListener(this);
 
@@ -864,9 +843,9 @@ public class MotherboardNewView extends JDialog implements
 
 		FiberPorts.setSelectedIndex(FiberportsIndex);
 
-		labels[19].setLabelFor(FiberPorts);
+		labels[18].setLabelFor(FiberPorts);
 
-		panel.add(labels[19]);
+		panel.add(labels[18]);
 		panel.add(FiberPorts);
 		// --------------------------
 
@@ -913,7 +892,6 @@ public class MotherboardNewView extends JDialog implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
@@ -1007,7 +985,6 @@ public class MotherboardNewView extends JDialog implements
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * graphics.GUI.objectView.Hardware.NewComponent.NewViews.HardwareNewView
 	 * #save()
@@ -1071,7 +1048,6 @@ public class MotherboardNewView extends JDialog implements
 
 		mbObj.setIntegAudioCard(intAudioCard.isSelected());
 		mbObj.setIntegGraphicalCard(intGPU.isSelected());
-		mbObj.setIntegLANcard(intNIC.isSelected());
 		mbObj.setGraphicsCardInstalled(GPUinstalled.isSelected());
 
 

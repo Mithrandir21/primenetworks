@@ -215,6 +215,7 @@ public class LogisticalFunctions
 			 */
 
 			/**
+			 * ------Up Agents------
 			 * 1. Get all lines in the UP_Agents table (expect
 			 * "IsInitialized=0").
 			 * 
@@ -236,6 +237,7 @@ public class LogisticalFunctions
 			 * InventoryItems.
 			 * (Creates well-known Software objects.)
 			 * 
+			 * ------Network------
 			 * 5. Go through each agent found and get connection information,
 			 * IP, MAC, NIC (InventoryClass_ID=25) and Subnet Mask
 			 * (InventoryClass_ID=39).
@@ -248,6 +250,11 @@ public class LogisticalFunctions
 
 			// Step 2
 			getAgentOS(con, agents);
+
+
+			// Step 3
+
+
 
 
 			return objects;

@@ -118,9 +118,6 @@ public class Motherboard extends Hardware implements Serializable
 	// Boolean on whether or not the MB has an integrated graphical card
 	private boolean graphicalCardIntegrated;
 
-	// Boolean on whether or not the MB has an integrated LAN card
-	private boolean LANcardIntegrated;
-
 	/*
 	 * Boolean on whether or not a graphics card is set on the AGP or PCI-E
 	 * port, depending on what kind of port is set on the graphicalPortType.
@@ -148,7 +145,7 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * The arrayList containing the intergrated Internal network cards.
+	 * The arrayList containing the integrated Internal network cards.
 	 */
 	private ArrayList<InternalNetworksCard> intNICs = new ArrayList<InternalNetworksCard>();
 
@@ -203,9 +200,8 @@ public class Motherboard extends Hardware implements Serializable
 			String MBform, String MBsocket, String MBramType, int MBmaxCPUs,
 			int MBmaxPCIs, int MBmaxRAMs, int MBmaxUSBs, int MBmaxDUCs,
 			int MBmaxCOAXs, int MBmaxFibers, String MBDUCconnectionType,
-			String MBgraphicalPort, boolean MBintegLANcard,
-			boolean MBintegGraphicalCard, boolean MBintegAudioCard,
-			int MBmaxIntegLanPorts)
+			String MBgraphicalPort, boolean MBintegGraphicalCard,
+			boolean MBintegAudioCard, int MBmaxIntegLanPorts)
 	{
 		super(Name, Desc);
 
@@ -223,7 +219,6 @@ public class Motherboard extends Hardware implements Serializable
 		maxFiber = MBmaxFibers;
 		graphicalPortType = MBgraphicalPort;
 		DUCconnectionType = MBDUCconnectionType;
-		LANcardIntegrated = MBintegLANcard;
 		graphicalCardIntegrated = MBintegGraphicalCard;
 		audioCardIntegrated = MBintegAudioCard;
 
@@ -443,17 +438,6 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Get a boolean on whether or not there is an integrated LAN card on the
-	 * motherboard.
-	 * FIXME - Consider removing this function
-	 */
-	public boolean LANcardIsIntegrated()
-	{
-		return LANcardIntegrated;
-	}
-
-
-	/**
 	 * Get a boolean on whether or not there is an integrated Audio card on the
 	 * motherboard.
 	 * 
@@ -484,18 +468,6 @@ public class Motherboard extends Hardware implements Serializable
 	 * @return the integLANcard
 	 */
 	public boolean isIntegLANcard()
-	{
-		return LANcardIntegrated;
-	}
-
-
-	/**
-	 * Get a boolean on whether or not there is an integrated LAN card on the
-	 * motherboard.
-	 * 
-	 * @return the integLANcard
-	 */
-	public boolean isIntegLANcardInstalled()
 	{
 		return intNICs.size() > 0;
 	}
@@ -781,17 +753,6 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		graphicalCardIntegrated = MBhasIntegratedGraphicalCard;
 	}
-
-
-	/**
-	 * Set method for whether or not the is present a integrated LAN card on the
-	 * motherboard.
-	 */
-	public void setIntegLANcard(boolean MBhasIntegratedLANcard)
-	{
-		LANcardIntegrated = MBhasIntegratedLANcard;
-	}
-
 
 
 	/**
@@ -1112,7 +1073,6 @@ public class Motherboard extends Hardware implements Serializable
 		maxFiber = 0;
 		graphicalPortType = "";
 		DUCconnectionType = "";
-		LANcardIntegrated = false;
 		graphicalCardIntegrated = false;
 		audioCardIntegrated = false;
 
