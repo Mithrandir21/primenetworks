@@ -364,7 +364,6 @@ public class InternalNICView extends JPanel implements HardwareViewInterface,
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see graphics.GUI.objectView.Hardware.HardwareView.HardwareView#save()
 	 */
 	@Override
@@ -493,7 +492,6 @@ public class InternalNICView extends JPanel implements HardwareViewInterface,
 	{
 		/*
 		 * (non-Javadoc)
-		 * 
 		 * @see
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)
@@ -621,8 +619,10 @@ public class InternalNICView extends JPanel implements HardwareViewInterface,
 							 * to equal or less then the number of allowed LANs.
 							 */
 							if ( rules.getLANportsAllowed() == -1
-									|| (mbBoard.getMaxIntegLANs() + lanNICs + 1) <= rules
-											.getLANportsAllowed() )
+									|| (mbBoard
+											.getInstalledNICs(ConnectionUtils.RJ45)
+											+ lanNICs + 1) <= rules
+												.getLANportsAllowed() )
 							{
 								valid = true;
 							}

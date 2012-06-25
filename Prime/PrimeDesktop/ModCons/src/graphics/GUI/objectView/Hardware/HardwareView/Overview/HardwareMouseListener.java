@@ -40,6 +40,7 @@ import objects.Object;
 import objects.hardwareObjects.Motherboard;
 import widgetManipulation.NetworkRules;
 import widgets.WorkareaCanvas;
+import connections.ConnectionUtils;
 
 
 /**
@@ -279,13 +280,12 @@ public class HardwareMouseListener extends MouseAdapter implements
 								// If the new number of ports is greater then
 								// the maximum number of allowed ports.
 								if ( rules.getLANportsAllowed() != -1
-										&& mbObj.getMaxIntegLANs() > rules
+										&& mbObj.getInstalledNICs(ConnectionUtils.RJ45) > rules
 												.getLANportsAllowed() )
 								{
-									mbObj.setMaxIntegratedLANs(rules
-											.getLANportsAllowed());
-									mbObj.setIntegLANPortsAvailable(mbObj
-											.getMaxIntegLANs());
+									mbObj.setMaxIntegratedNICs(
+											ConnectionUtils.RJ45,
+											rules.getLANportsAllowed());
 
 									String msg = PrimeMain.texts
 											.getString("rulesNewMBwithLANviolationMsg")
@@ -300,9 +300,8 @@ public class HardwareMouseListener extends MouseAdapter implements
 							}
 							else
 							{
-								mbObj.setMaxIntegratedLANs(0);
-								mbObj.setIntegLANPortsAvailable(mbObj
-										.getMaxIntegLANs());
+								mbObj.setMaxIntegratedNICs(
+										ConnectionUtils.RJ45, 0);
 
 								String msg = PrimeMain.texts
 										.getString("rulesLANnotAllowedMsg")

@@ -56,6 +56,7 @@ import objects.hardwareObjects.HDD;
 import objects.hardwareObjects.Motherboard;
 import widgetManipulation.NetworkRules;
 import actions.canvasActions.ActionDeleteAllConnectionsToAndFrom;
+import connections.ConnectionUtils;
 
 
 /**
@@ -739,7 +740,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 		for ( int i = 1; i < portsNumber.length; i++ )
 		{
 			if ( Integer.parseInt(LANports.getItemAt(i).toString()) == (mb
-					.getMaxIntegLANs()) )
+					.getInstalledNICs(ConnectionUtils.RJ45)) )
 			{
 				LANportsIndex = i;
 				i = portsNumber.length;
@@ -791,7 +792,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 		for ( int i = 1; i < CoaxPortsNumber.length; i++ )
 		{
 			if ( Integer.parseInt(CoaxPorts.getItemAt(i).toString()) == (mb
-					.getMaxCoaxs()) )
+					.getInstalledNICs(ConnectionUtils.Coax)) )
 			{
 				COAXportsIndex = i;
 				i = CoaxPortsNumber.length;
@@ -843,7 +844,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 		for ( int i = 1; i < FiberPortsNumber.length; i++ )
 		{
 			if ( Integer.parseInt(FiberPorts.getItemAt(i).toString()) == (mb
-					.getMaxFibers()) )
+					.getInstalledNICs(ConnectionUtils.Fiber)) )
 			{
 				FiberportsIndex = i;
 				i = FiberPortsNumber.length;

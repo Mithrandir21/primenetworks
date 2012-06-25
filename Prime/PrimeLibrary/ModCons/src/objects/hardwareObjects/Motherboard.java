@@ -21,6 +21,7 @@ package objects.hardwareObjects;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.ListIterator;
 
 import objects.Hardware;
 import connections.ConnectionUtils;
@@ -56,13 +57,20 @@ import connections.ConnectionUtils;
  * <p>
  * Added Fiber port.
  * </p>
+ * <br>
+ * <br>
+ * Changelog 0.5
+ * <p>
+ * Removed Integers for LAN/COAX/FIBER connections and replaced them with one
+ * single {@link ArrayList ArrayList} of {@link InternalNetworksCard
+ * InternalNetworksCard}.
+ * </p>
  * 
  * @author Bahram Malaekeh
- * @version 0.3
+ * @version 0.5
  */
 public class Motherboard extends Hardware implements Serializable
 {
-
 	// The company that produces the Motherboard. Asus, MSI and so on.
 	private String producer;
 
@@ -93,15 +101,6 @@ public class Motherboard extends Hardware implements Serializable
 	// The number of DUC, Different Usage Connections(HDD,CDROM), ports on the
 	// MB
 	private int maxDUCs = 0;
-
-	// The number of integrated LAN ports, if any, on the MB
-	private int maxIntegLANs = 0;
-
-	// The number of a coax ports.
-	private int maxCoaxs = 0;
-
-	// The number of a fiber ports.
-	private int maxFiber = 0;
 
 	// The type of graphical port on the MB
 	private String graphicalPortType;
@@ -136,20 +135,12 @@ public class Motherboard extends Hardware implements Serializable
 
 	private int DUCPortsAvailable;
 
-	private int IntegLANPortsAvailable;
-
-	private int COAXPortsAvailable;
-
-	private int FiberPortsAvailable;
-
 
 
 	/**
 	 * The arrayList containing the integrated Internal network cards.
 	 */
 	private ArrayList<InternalNetworksCard> intNICs = new ArrayList<InternalNetworksCard>();
-
-	// FIXME : Set up a number of connection to a network card object
 
 
 
@@ -214,9 +205,6 @@ public class Motherboard extends Hardware implements Serializable
 		maxRAMs = MBmaxRAMs;
 		maxUSBs = MBmaxUSBs;
 		maxDUCs = MBmaxDUCs;
-		maxIntegLANs = MBmaxIntegLanPorts;
-		maxCoaxs = MBmaxCOAXs;
-		maxFiber = MBmaxFibers;
 		graphicalPortType = MBgraphicalPort;
 		DUCconnectionType = MBDUCconnectionType;
 		graphicalCardIntegrated = MBintegGraphicalCard;
@@ -227,14 +215,23 @@ public class Motherboard extends Hardware implements Serializable
 		RAMPortsAvailable = MBmaxRAMs;
 		USBPortsAvailable = MBmaxUSBs;
 		DUCPortsAvailable = MBmaxDUCs;
-		IntegLANPortsAvailable = MBmaxIntegLanPorts;
-		COAXPortsAvailable = MBmaxCOAXs;
-		FiberPortsAvailable = MBmaxFibers;
 
 
 		for ( int i = 0; i < MBmaxIntegLanPorts; i++ )
 		{
-			intNICs.add(constructIntNIC());
+			intNICs.add(constructIntNIC(ConnectionUtils.RJ45));
+		}
+
+
+		for ( int i = 0; i < MBmaxCOAXs; i++ )
+		{
+			intNICs.add(constructIntNIC(ConnectionUtils.Coax));
+		}
+
+
+		for ( int i = 0; i < MBmaxFibers; i++ )
+		{
+			intNICs.add(constructIntNIC(ConnectionUtils.Fiber));
 		}
 	}
 
@@ -350,13 +347,51 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Gets the number of integrated LAN ports.
+	 * Gets the number of integrated LAN ports that support the given connection
+	 * type.
 	 * 
 	 * @return the maxIntegLANs
 	 */
-	public int getMaxIntegLANs()
+	public int getInstalledNICs(String conType)
 	{
-		return maxIntegLANs;
+		int nics = 0;
+
+		for ( Iterator<InternalNetworksCard> i = intNICs.iterator(); i
+				.hasNext(); )
+		{
+			InternalNetworksCard nic = (InternalNetworksCard) i.next();
+			if ( nic.getConnectionType().equals(conType) )
+			{
+				nics++;
+			}
+		}
+
+		return nics;
+	}
+
+
+	/**
+	 * Gets the number of LAN ports that are available on installed NIC
+	 * (none-MB).
+	 * 
+	 * @return the availablePorts
+	 */
+	public int getInstalledNICsAvailable(String conType)
+	{
+		int availablePorts = 0;
+
+		for ( Iterator<InternalNetworksCard> i = intNICs.iterator(); i
+				.hasNext(); )
+		{
+			InternalNetworksCard nic = (InternalNetworksCard) i.next();
+			if ( nic.getConnectionType().equals(conType)
+					&& nic.getConnectedObject().isEmpty() )
+			{
+				availablePorts++;
+			}
+		}
+
+		return availablePorts;
 	}
 
 
@@ -365,27 +400,9 @@ public class Motherboard extends Hardware implements Serializable
 	 * 
 	 * @return the maxIntegLANs
 	 */
-	public int getInstalledIntegLANs()
+	public int getInstalledNICs()
 	{
 		return intNICs.size();
-	}
-
-
-	/**
-	 * Gets the number of COAX ports.
-	 */
-	public int getMaxCoaxs()
-	{
-		return maxCoaxs;
-	}
-
-
-	/**
-	 * Gets the number of Fiber ports.
-	 */
-	public int getMaxFibers()
-	{
-		return maxFiber;
 	}
 
 
@@ -476,7 +493,7 @@ public class Motherboard extends Hardware implements Serializable
 	/**
 	 * Gets the number of CPU ports that are available.
 	 * 
-	 * @return the cPUPortsAvailable
+	 * @return the CPUPortsAvailable
 	 */
 	public int getCPUPortsAvailable()
 	{
@@ -529,59 +546,6 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Gets the number of LAN ports that are available.
-	 * 
-	 * @return the integLANPortsAvailable
-	 */
-	public int getIntegLANPortsAvailable()
-	{
-		return IntegLANPortsAvailable;
-	}
-
-
-	/**
-	 * Gets the number of LAN ports that are available on installed NIC
-	 * (none-MB).
-	 * 
-	 * @return the integLANPortsAvailable
-	 */
-	public int getInstalledIntegLANPortsAvailable()
-	{
-		int availablePorts = IntegLANPortsAvailable;
-
-		for ( Iterator<InternalNetworksCard> i = intNICs.iterator(); i
-				.hasNext(); )
-		{
-			InternalNetworksCard nic = (InternalNetworksCard) i.next();
-			if ( nic.getConnectedObject() == null )
-			{
-				availablePorts--;
-			}
-		}
-
-		return availablePorts;
-	}
-
-
-	/**
-	 * Gets the number of Coax ports that are available.
-	 */
-	public int getCoaxPortsAvailable()
-	{
-		return COAXPortsAvailable;
-	}
-
-
-	/**
-	 * Gets the number of Fiber ports that are available.
-	 */
-	public int getFiberPortsAvailable()
-	{
-		return FiberPortsAvailable;
-	}
-
-
-	/**
 	 * Get a boolean on whether or not there is a Graphical Card installed on
 	 * the motherboard.
 	 * 
@@ -589,8 +553,17 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public boolean isGraphicsCardInstalled()
 	{
-
 		return isGraphicsCardInstalled;
+	}
+
+
+	/**
+	 * Get the {@link ArrayList} with the all the {@link InternalNetworksCard
+	 * InternalNetworksCards} on the {@link Motherboard}.
+	 */
+	public ArrayList<InternalNetworksCard> getIntNICs()
+	{
+		return intNICs;
 	}
 
 
@@ -690,30 +663,54 @@ public class Motherboard extends Hardware implements Serializable
 	}
 
 
-	/**
-	 * Set method for number of LAN ports of the motherboard.
-	 */
-	public void setMaxIntegratedLANs(int MBmaxIntegLANs)
-	{
-		maxIntegLANs = MBmaxIntegLANs;
-	}
-
 
 	/**
-	 * Set method for number of Coax ports of the motherboard.
+	 * This function attempts to change the number of NICs to the new number
+	 * given.
+	 * This new number can be higher then the previous, where the function will
+	 * add NICs with the right connection type.
+	 * Or it can be lower, where the function will remove the excess NICs
+	 * (starting backwards with the last one added).
 	 */
-	public void setMaxCoaxs(int MBmaxCoaxs)
+	public void setMaxIntegratedNICs(String conType, int newNumberOfNICs)
 	{
-		maxCoaxs = MBmaxCoaxs;
-	}
+		// Gets the number of NICs installed
+		int currentNICS = getInstalledNICs(conType);
 
+		// If the number of current NICs is smaller then the number given.
+		if ( currentNICS < newNumberOfNICs )
+		{
+			int diff = newNumberOfNICs - currentNICS;
 
-	/**
-	 * Set method for number of Fiber ports of the motherboard.
-	 */
-	public void setMaxFibers(int MBmaxFibers)
-	{
-		maxFiber = MBmaxFibers;
+			for ( int i = 0; i < diff; i++ )
+			{
+				intNICs.add(constructIntNIC(conType));
+			}
+		}
+		// If the number of current NICs is larger then the number given.
+		else if ( currentNICS > newNumberOfNICs )
+		{
+			int diff = currentNICS - newNumberOfNICs;
+
+			// Generate an iterator. Start just after the last element.
+			ListIterator<InternalNetworksCard> i = intNICs.listIterator(intNICs
+					.size());
+
+			// Iterate in reverse.
+			while ( (diff != 0) && i.hasPrevious() )
+			{
+				InternalNetworksCard nic = (InternalNetworksCard) i.previous();
+
+				if ( nic.getConnectionType().equals(conType) )
+				{
+					// Deletes the NIC
+					intNICs.remove(i);
+					nic = null;
+
+					diff--;
+				}
+			}
+		}
 	}
 
 
@@ -764,7 +761,6 @@ public class Motherboard extends Hardware implements Serializable
 	 */
 	public void setGraphicsCardInstalled(boolean graphicsCard)
 	{
-
 		this.isGraphicsCardInstalled = graphicsCard;
 	}
 
@@ -950,109 +946,49 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Sets the number LAN ports available.
+	 * Sets the {@link InternalNetworksCard InternalNetworksCards} of this
+	 * motherboard. This function is created to be used when Cloning objects.
 	 * 
-	 * @param integLANPortsAvailable
-	 *            the integLANPortsAvailable to set
+	 * The variable can be NULL. A new empty arraylist will be made.
 	 */
-	public void setIntegLANPortsAvailable(int integLANPortsAvailable)
+	public void setInternalNICs(ArrayList<InternalNetworksCard> NICs)
 	{
-		IntegLANPortsAvailable = integLANPortsAvailable;
+		if ( NICs == null )
+		{
+			intNICs = new ArrayList<InternalNetworksCard>();
+		}
+		else
+		{
+			intNICs = NICs;
+		}
 	}
-
-
-
-	/**
-	 * Makes one LAN port available by add to the integer that keep track of how
-	 * make port are available.
-	 */
-	public void makeOneIntLANportAvailable()
-	{
-		IntegLANPortsAvailable++;
-	}
-
-
-
-	/**
-	 * Makes one LAN port unavailable by removing from the integer that keep
-	 * track of how make port are available.
-	 */
-	public void makeOneIntLANportTaken()
-	{
-		IntegLANPortsAvailable--;
-	}
-
-
-	/**
-	 * Sets the number Coax ports available.
-	 * 
-	 * @param CoaxPortsAvailable
-	 *            the CoaxPortsAvailable to set
-	 */
-	public void setCoaxPortsAvailable(int CoaxPortsAvailable)
-	{
-		COAXPortsAvailable = CoaxPortsAvailable;
-	}
-
-
-
-	/**
-	 * Makes one Coax port available by add to the integer that keep track of
-	 * how make port are available.
-	 */
-	public void makeOneCoaxPortAvailable()
-	{
-		COAXPortsAvailable++;
-	}
-
-
-
-	/**
-	 * Makes one Coax port unavailable by removing from the integer that keep
-	 * track of how make port are available.
-	 */
-	public void makeOneCoaxPortTaken()
-	{
-		COAXPortsAvailable--;
-	}
-
-
-	/**
-	 * Sets the number Fiber ports available.
-	 * 
-	 * @param FiberPortsAvailable
-	 *            the CoaxPortsAvailable to set
-	 */
-	public void setFiberPortsAvailable(int FiberPortsAvailable)
-	{
-		this.FiberPortsAvailable = FiberPortsAvailable;
-	}
-
-
-
-	/**
-	 * Makes one Fiber port available by add to the integer that keep track of
-	 * how make port are available.
-	 */
-	public void makeOneFiberPortAvailable()
-	{
-		FiberPortsAvailable++;
-	}
-
-
-
-	/**
-	 * Makes one Fiber port unavailable by removing from the integer that keep
-	 * track of how make port are available.
-	 */
-	public void makeOneFiberPortTaken()
-	{
-		FiberPortsAvailable--;
-	}
-
 
 
 	// CLASS METHODES
+
+
+	/**
+	 * This function iterates through the Internal NICs, find and returns the
+	 * first one that is not connected to any object and is the same connection
+	 * type.
+	 */
+	public InternalNetworksCard getFirstAvailableNIC(String conType)
+	{
+		for ( Iterator<InternalNetworksCard> i = intNICs.iterator(); i
+				.hasNext(); )
+		{
+			InternalNetworksCard nic = (InternalNetworksCard) i.next();
+			if ( nic.getConnectionType().equals(conType)
+					&& nic.getConnectedObject().isEmpty() )
+			{
+				return nic;
+			}
+		}
+
+
+		// If no available compatible NIC is found
+		return null;
+	}
 
 	/**
 	 * Resets all the fields for this Motherboard. All {@link String} fields
@@ -1069,8 +1005,6 @@ public class Motherboard extends Hardware implements Serializable
 		maxRAMs = 0;
 		maxUSBs = 0;
 		maxDUCs = 0;
-		maxCoaxs = 0;
-		maxFiber = 0;
 		graphicalPortType = "";
 		DUCconnectionType = "";
 		graphicalCardIntegrated = false;
@@ -1081,9 +1015,6 @@ public class Motherboard extends Hardware implements Serializable
 		RAMPortsAvailable = 0;
 		USBPortsAvailable = 0;
 		DUCPortsAvailable = 0;
-		IntegLANPortsAvailable = 0;
-		COAXPortsAvailable = 0;
-		FiberPortsAvailable = 0;
 	}
 
 
@@ -1098,9 +1029,6 @@ public class Motherboard extends Hardware implements Serializable
 		RAMPortsAvailable = maxRAMs;
 		USBPortsAvailable = maxUSBs;
 		DUCPortsAvailable = maxDUCs;
-		IntegLANPortsAvailable = maxIntegLANs;
-		COAXPortsAvailable = maxCoaxs;
-		FiberPortsAvailable = maxFiber;
 	}
 
 
@@ -1124,9 +1052,9 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	/**
-	 * Creates a standard intergrated NIC.
+	 * Creates a standard integrated NIC.
 	 */
-	private InternalNetworksCard constructIntNIC()
+	private InternalNetworksCard constructIntNIC(String conType)
 	{
 		String count = "";
 		int intNICcount = intNICs.size();
@@ -1143,6 +1071,26 @@ public class Motherboard extends Hardware implements Serializable
 		String mac = "00:00:00:00:00:" + count;
 
 		return new InternalNetworksCard("Int NIC", "Int NIC", "",
-				ConnectionUtils.Integrated, mac, ConnectionUtils.RJ45);
+				ConnectionUtils.Integrated, mac, conType);
+	}
+
+
+
+	/**
+	 * This function will iterate through the NICs and disconnect all compatible
+	 * NICs.
+	 */
+	public void disconnectAllNICs(String conType)
+	{
+		for ( Iterator<InternalNetworksCard> i = intNICs.iterator(); i
+				.hasNext(); )
+		{
+			InternalNetworksCard nic = (InternalNetworksCard) i.next();
+
+			if ( nic.getConnectionType().equals(conType) )
+			{
+				nic.removeAllNetworkConnectedDevices();
+			}
+		}
 	}
 }

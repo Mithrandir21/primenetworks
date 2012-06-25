@@ -896,53 +896,6 @@ public abstract class Object implements Serializable, Cloneable
 
 
 	/**
-	 * Releases all the connection ports on a motherboard by determining what
-	 * kind of class the connection is an instance of, and then clearing the
-	 * correct ports on the {@link objects.hardwareObjects.Motherboard
-	 * motherboard} of the object.
-	 */
-	public void releaseAllConnectionPorts(Connection con)
-	{
-		Motherboard objectAmotherboard = null;
-
-		try
-		{
-			objectAmotherboard = (Motherboard) getSpesificComponents(Motherboard.class)[0];
-		}
-		catch ( ObjectNotFoundException e )
-		{
-			System.out
-					.println("Object - releaseConnectionPorts - Network connection - cant find Motherboard");
-		}
-
-
-		if ( con instanceof InternalConnection )
-		{
-			objectAmotherboard.setMaxCPUs(objectAmotherboard.getMaxCPUs());
-			objectAmotherboard.setMaxDUCs(objectAmotherboard.getMaxDUCs());
-			objectAmotherboard.setMaxPCIs(objectAmotherboard.getMaxPCIs());
-			objectAmotherboard.setMaxRAMs(objectAmotherboard.getMaxRAMs());
-		}
-		else if ( con instanceof DeviceConnection )
-		{
-			objectAmotherboard.setMaxUSBs(objectAmotherboard.getMaxUSBs());
-		}
-		else
-		// This will then be a network connection.
-		{
-
-			// Sets the arrays on the actual motherboard component to an array
-			// of booleans with the given length of the last array, but where
-			// all the indexes are false.
-			objectAmotherboard.setMaxIntegratedLANs(objectAmotherboard
-					.getMaxIntegLANs());
-
-		}
-	}
-
-
-
-	/**
 	 * Removes all connected devices(USB), network(LAN) connections and resets
 	 * the connected devices counter.
 	 */
@@ -1025,11 +978,7 @@ public abstract class Object implements Serializable, Cloneable
 					+ "- Network connection - cant find Motherboard");
 		}
 
-		// Sets the arrays on the actual motherboard component to an array
-		// of booleans with the given length of the last array, but where
-		// all the indexes are false.
-		objectAmotherboard.setIntegLANPortsAvailable(objectAmotherboard
-				.getMaxIntegLANs());
+		objectAmotherboard.disconnectAllNICs(ConnectionUtils.RJ45);
 	}
 
 
@@ -1060,18 +1009,6 @@ public abstract class Object implements Serializable, Cloneable
 		if ( conType.equals(ConnectionUtils.USB) )
 		{
 			objectMotherboard.makeOneUSBportAvailable();
-		}
-		else if ( conType.equals(ConnectionUtils.RJ45) )
-		{
-			objectMotherboard.makeOneIntLANportAvailable();
-		}
-		else if ( conType.equals(ConnectionUtils.Coax) )
-		{
-			objectMotherboard.makeOneCoaxPortAvailable();
-		}
-		else if ( conType.equals(ConnectionUtils.Fiber) )
-		{
-			objectMotherboard.makeOneFiberPortAvailable();
 		}
 	}
 

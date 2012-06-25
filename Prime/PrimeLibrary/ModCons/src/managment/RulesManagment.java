@@ -300,7 +300,8 @@ public class RulesManagment
 							.getObjectMotherboard(object);
 
 					// The number of integrated LAN ports
-					int maxIntegLan = objectMotherboard.getMaxIntegLANs();
+					int maxIntegLan = objectMotherboard
+							.getInstalledNICsAvailable(ConnectionUtils.RJ45);
 
 					// Gets the both the number of internal NICs and the how
 					// many they are
@@ -543,7 +544,8 @@ public class RulesManagment
 						.getObjectMotherboard(object);
 
 				// The number of integrated LAN ports
-				int maxIntegLan = objectMotherboard.getMaxIntegLANs();
+				int maxIntegLan = objectMotherboard
+						.getInstalledNICsAvailable(ConnectionUtils.RJ45);
 
 				// If there are any integrated LAN ports
 				// objectMotherboard.setIntegLANcard(maxIntegLan);

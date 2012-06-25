@@ -350,23 +350,29 @@ public class WorkareaCanvasActions
 	public static void removeAllConnectionsToFromObject(WorkareaCanvas canvas,
 			Object obj)
 	{
-		Object[] connectedObjects = obj.getConnectedDevices();
+		// Gets all the connections on the canvas
+		Connection[] canvasCons = canvas.getConnections();
 
-		if ( connectedObjects != null )
+		if ( canvasCons != null )
 		{
-			for ( int i = 0; i < connectedObjects.length; i++ )
+			for ( int i = 0; i < canvasCons.length; i++ )
 			{
-				if ( connectedObjects[i] != null )
+				if ( canvasCons[i] != null )
 				{
-					try
+					// If the given object is either object in the connection
+					if ( canvasCons[i].getObject1().equals(obj)
+							|| canvasCons[i].getObject2().equals(obj) )
 					{
-						removeConnection(canvas, obj, connectedObjects[i]);
-					}
-					catch ( ConnectionDoesNotExist e )
-					{
-						System.out.println(e.getMessage());
-						System.out
-								.println("removeAllConnectionsToFromObject - breakConnection");
+						try
+						{
+							removeConnection(canvas, canvasCons[i]);
+						}
+						catch ( ConnectionDoesNotExist e )
+						{
+							System.out.println(e.getMessage());
+							System.out
+									.println("removeAllConnectionsToFromObject - breakConnection");
+						}
 					}
 				}
 			}
@@ -391,8 +397,7 @@ public class WorkareaCanvasActions
 	{
 		try
 		{
-			removeConnection(canvas, widCon.getConnection().getObject1(),
-					widCon.getConnection().getObject2());
+			removeConnection(canvas, widCon.getConnection());
 		}
 		catch ( ConnectionDoesNotExist e )
 		{
@@ -420,7 +425,7 @@ public class WorkareaCanvasActions
 	{
 		try
 		{
-			removeConnection(canvas, Con.getObject1(), Con.getObject2());
+			removeConnection(canvas, Con);
 		}
 		catch ( ConnectionDoesNotExist e )
 		{
@@ -437,29 +442,66 @@ public class WorkareaCanvasActions
 	 * Objects} and at the same time remove the {@link WidgetExtendedConnection}
 	 * from the given {@link WorkareaCanvas}.
 	 */
-	public static void removeConnection(WorkareaCanvas canvas, Object objA,
-			Object objB) throws ConnectionDoesNotExist
+	public static void removeConnection(WorkareaCanvas canvas, Connection con)
+			throws ConnectionDoesNotExist
 	{
-		// Removes the WidgetExtendedConnection from the
-		// WorkareaCanvas scene
-		WorkareaCanvasActions.removeConnectionFromConnectionLayer(canvas,
-				ConnectionManagment.getConnection(canvas.getConnections(),
-						objA, objB));
+		if ( con != null )
+		{
+			// Removes the WidgetExtendedConnection from the
+			// WorkareaCanvas scene
+			WorkareaCanvasActions.removeConnectionFromConnectionLayer(canvas,
+					ConnectionManagment.getConnection(canvas.getConnections(),
+							con.getObject1(), con.getObject2()));
 
-		// Removes the connection from the array of Connections
-		// for each connected object
-		Connection[] remainingConnection = ConnectionManagment.breakConnection(
-				canvas.getConnections(), objA, objB);
+			// Removes the connection from the array of Connections
+			// for each connected object
+			Connection[] remainingConnection = ConnectionManagment
+					.breakConnection(canvas.getConnections(), con);
 
-		// Sets the connections of the WorkareaCanvas, without
-		// the removed connection
-		canvas.setConnections(remainingConnection);
+			// Sets the connections of the WorkareaCanvas, without
+			// the removed connection
+			canvas.setConnections(remainingConnection);
 
-		canvas.setSaved(false);
-		canvas.setChanged(true);
+			canvas.setSaved(false);
+			canvas.setChanged(true);
 
-		canvas.cleanUp();
+			canvas.cleanUp();
+		}
 	}
+
+	//
+	//
+	//
+	//
+	// /**
+	// * This function attempts to remove a connection between to {@link Object
+	// * Objects} and at the same time remove the {@link
+	// WidgetExtendedConnection}
+	// * from the given {@link WorkareaCanvas}.
+	// */
+	// public static void removeConnection(WorkareaCanvas canvas, Object objA,
+	// Object objB) throws ConnectionDoesNotExist
+	// {
+	// // Removes the WidgetExtendedConnection from the
+	// // WorkareaCanvas scene
+	// WorkareaCanvasActions.removeConnectionFromConnectionLayer(canvas,
+	// ConnectionManagment.getConnection(canvas.getConnections(),
+	// objA, objB));
+	//
+	// // Removes the connection from the array of Connections
+	// // for each connected object
+	// Connection[] remainingConnection = ConnectionManagment.breakConnection(
+	// canvas.getConnections(), objA, objB);
+	//
+	// // Sets the connections of the WorkareaCanvas, without
+	// // the removed connection
+	// canvas.setConnections(remainingConnection);
+	//
+	// canvas.setSaved(false);
+	// canvas.setChanged(true);
+	//
+	// canvas.cleanUp();
+	// }
 
 
 

@@ -19,17 +19,23 @@ package objects.hardwareObjects;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import objects.Hardware;
 import objects.Object;
+import connections.Connection;
 
 
 /**
- * This class represents a networks interface card within a {@link objects.Servers server} or {@link objects.Clients
- * client} machine. It can be a server, a desktop or a laptop. It contains information on what kind of capability the
- * networks interface card has. It also contains information on transfer speeds, MACs, connection types and so on. <br>
+ * This class represents a networks interface card within a
+ * {@link objects.Servers server} or {@link objects.Clients
+ * client} machine. It can be a server, a desktop or a laptop. It contains
+ * information on what kind of capability the
+ * networks interface card has. It also contains information on transfer speeds,
+ * MACs, connection types and so on. <br>
  * <br>
- * <b>Notation</b>: The networks interface card will be referred to as "NIC" in the remainder of this document.
+ * <b>Notation</b>: The networks interface card will be referred to as "NIC" in
+ * the remainder of this document.
  * 
  * @author Bahram Malaekeh
  * @version 0.1
@@ -62,10 +68,11 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	// Whether or not the NIC has support for IP version 6, IPv6
 	private boolean supportsIPv6;
 
-	// The Object this NIC is connected to
-	private Object connectedObject;
+	// The Objects this NIC is connected to
+	private ArrayList<Object> connectedObject = new ArrayList<Object>();
 
-
+	// This arraylist will be the connections between the connectedObject.
+	private ArrayList<Connection> connections = new ArrayList<Connection>();
 
 
 	/**
@@ -76,7 +83,8 @@ public class InternalNetworksCard extends Hardware implements Serializable
 	 * @param Desc
 	 *            The description of the MB.
 	 * @param NICproducer
-	 *            The company that produces the NIC. D-Link, Linksys, Cisco and so on.
+	 *            The company that produces the NIC. D-Link, Linksys, Cisco and
+	 *            so on.
 	 * @param NIC_MAC
 	 *            The MAC address of the NIC.
 	 * @param NICconnectionType
@@ -172,12 +180,23 @@ public class InternalNetworksCard extends Hardware implements Serializable
 
 
 	/**
-	 * Get the {@link Object} this NIC is connected to.
+	 * Get the {@link Object Objects} this NIC is connected to.
 	 */
-	public Object getConnectedObject()
+	public ArrayList<Object> getConnectedObject()
 	{
 		return this.connectedObject;
 	}
+
+
+	/**
+	 * Get the connections to the connectedObject.
+	 */
+	public ArrayList<Connection> getConnections()
+	{
+		return this.connections;
+	}
+
+
 
 	// SET METHODES
 
@@ -255,11 +274,76 @@ public class InternalNetworksCard extends Hardware implements Serializable
 
 
 	/**
-	 * Sets the {@link Object} this NIC is connected to.
+	 * Adds the {@link Object} NIC to the connected to arraylist.
 	 */
-	public void setConnectedObject(Object obj)
+	public void addConnectedObject(Object obj)
 	{
-		this.connectedObject = obj;
+		this.connectedObject.add(obj);
 	}
 
+
+	/**
+	 * Removes the {@link Object} from the connected to arraylist.
+	 */
+	public void removeConnectedObject(Object obj)
+	{
+		this.connectedObject.remove(obj);
+	}
+
+
+	/**
+	 * Adds the connection to the connectedObject.
+	 */
+	public void addConnection(Connection connection)
+	{
+		this.connections.add(connection);
+	}
+
+
+	/**
+	 * Removes the {@link Connection} from the connections arraylist.
+	 */
+	public void removeConnection(Connection connection)
+	{
+		this.connections.remove(connection);
+	}
+
+
+
+	// FUNCTIONS
+	/**
+	 * This function will traverse the {@link ArrayList} containing the
+	 * connected objects and return the object that has a matching serial number
+	 * to the one provided. It wil return NULL is no such object is found.
+	 */
+	public Object getConnectedObjectBySerial(long serial)
+	{
+		for ( int i = 0; i < connectedObject.size(); i++ )
+		{
+			if ( connectedObject.get(i).getObjectSerial() == serial )
+			{
+				return connectedObject.get(i);
+			}
+		}
+
+		return null;
+	}
+
+
+
+	/**
+	 * This function clears the list of connected devices and connections list.
+	 */
+	public void removeAllNetworkConnectedDevices()
+	{
+		if ( connectedObject != null )
+		{
+			connectedObject.clear();
+		}
+
+		if ( connections != null )
+		{
+			connections.clear();
+		}
+	}
 }

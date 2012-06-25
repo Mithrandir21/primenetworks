@@ -361,7 +361,7 @@ public class ActionCreateConnection extends AbstractSystemAction implements
 						PrimeMain.texts.getString("alert"),
 						JOptionPane.ERROR_MESSAGE);
 			}
-			// If the close or cancel butten is pressed.
+			// If the close or cancel button is pressed.
 			else if ( conType != null
 					&& (conType.equals("Closed") || conType.equals("Cancelled")) )
 			{

@@ -544,8 +544,7 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setMaxIntegratedLANs(2);
-		serverMB.setIntegLANPortsAvailable(2);
+		serverMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 2);
 
 
 		GenericServer temp = new GenericServer(objectName, objectDesc,
@@ -581,8 +580,7 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setMaxIntegratedLANs(2);
-		serverMB.setIntegLANPortsAvailable(2);
+		serverMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 2);
 
 
 		AntivirusServer temp = new AntivirusServer(objectName, objectDesc,
@@ -619,8 +617,7 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setMaxIntegratedLANs(2);
-		serverMB.setIntegLANPortsAvailable(2);
+		serverMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 2);
 
 
 		HTTPServer temp = new HTTPServer(objectName, objectDesc, st_components,
@@ -656,8 +653,7 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setMaxIntegratedLANs(2);
-		serverMB.setIntegLANPortsAvailable(2);
+		serverMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 2);
 
 
 		BackupServer temp = new BackupServer(objectName, objectDesc,
@@ -689,8 +685,7 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setMaxIntegratedLANs(2);
-		serverMB.setIntegLANPortsAvailable(2);
+		serverMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 2);
 
 
 		NASServer temp = new NASServer(objectName, objectDesc, st_components);
@@ -725,8 +720,7 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setMaxIntegratedLANs(2);
-		serverMB.setIntegLANPortsAvailable(2);
+		serverMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 2);
 
 
 		DatabaseServer temp = new DatabaseServer(objectName, objectDesc,
@@ -759,8 +753,7 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setMaxIntegratedLANs(2);
-		serverMB.setIntegLANPortsAvailable(2);
+		serverMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 2);
 
 
 		VirtualizationServer temp = new VirtualizationServer(objectName,
@@ -796,8 +789,7 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setMaxIntegratedLANs(2);
-		serverMB.setIntegLANPortsAvailable(2);
+		serverMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 2);
 
 
 		MailServer temp = new MailServer(objectName, objectDesc, st_components,
@@ -833,8 +825,7 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setMaxIntegratedLANs(2);
-		serverMB.setIntegLANPortsAvailable(2);
+		serverMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 2);
 
 		FirewallServer temp = new FirewallServer(objectName, objectDesc,
 				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
@@ -869,8 +860,7 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setMaxIntegratedLANs(2);
-		serverMB.setIntegLANPortsAvailable(2);
+		serverMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 2);
 
 		ProxyServer temp = new ProxyServer(objectName, objectDesc,
 				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
@@ -904,8 +894,7 @@ public class CreateObjects
 
 
 		Motherboard serverMB = (Motherboard) st_components[0];
-		serverMB.setMaxIntegratedLANs(2);
-		serverMB.setIntegLANPortsAvailable(2);
+		serverMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 2);
 
 		PrinterServer temp = new PrinterServer(objectName, objectDesc,
 				st_components, ObjectSWname, ObjectSWdesc, ObjectSWversion);
@@ -1039,8 +1028,7 @@ public class CreateObjects
 
 		objectMB.setMaxUSBs(1);
 		objectMB.setUSBPortsAvailable(1);
-		objectMB.setMaxIntegratedLANs(1);
-		objectMB.setIntegLANPortsAvailable(1);
+		objectMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 1);
 
 
 		Fax temp = new Fax(objectName, objectDesc, Sresolution, objectMB);
@@ -1102,9 +1090,8 @@ public class CreateObjects
 				.getHw_MB();
 
 		objectMB.setMaxUSBs(1);
-		objectMB.setMaxIntegratedLANs(1);
+		objectMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 1);
 		objectMB.setUSBPortsAvailable(1);
-		objectMB.setIntegLANPortsAvailable(1);
 
 
 		NetworkPrinter temp = new NetworkPrinter(objectName, objectDesc,
@@ -1138,9 +1125,8 @@ public class CreateObjects
 				.getHw_MB();
 
 		objectMB.setMaxUSBs(1);
-		objectMB.setMaxIntegratedLANs(1);
+		objectMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 1);
 		objectMB.setUSBPortsAvailable(1);
-		objectMB.setIntegLANPortsAvailable(1);
 
 
 		NetworkMultifunctionPrinter temp = new NetworkMultifunctionPrinter(
@@ -1172,8 +1158,7 @@ public class CreateObjects
 		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
-		objectMB.setMaxIntegratedLANs(16);
-		objectMB.setIntegLANPortsAvailable(16);
+		objectMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 16);
 
 
 		Hub temp = new Hub(objectName, objectDesc, null, objectMB, outPorts,
@@ -1205,8 +1190,7 @@ public class CreateObjects
 		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
-		objectMB.setMaxIntegratedLANs(16);
-		objectMB.setIntegLANPortsAvailable(16);
+		objectMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 16);
 
 
 		Switch temp = new Switch(objectName, objectDesc, null, objectMB,
@@ -1238,8 +1222,7 @@ public class CreateObjects
 		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
-		objectMB.setMaxIntegratedLANs(4);
-		objectMB.setIntegLANPortsAvailable(4);
+		objectMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 4);
 
 
 		Router temp = new Router(objectName, objectDesc, null, objectMB,
@@ -1268,10 +1251,8 @@ public class CreateObjects
 		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
-		objectMB.setMaxIntegratedLANs(1);
-		objectMB.setIntegLANPortsAvailable(1);
-		objectMB.setMaxCoaxs(1);
-		objectMB.setCoaxPortsAvailable(1);
+		objectMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 1);
+		objectMB.setMaxIntegratedNICs(ConnectionUtils.Coax, 1);
 
 
 		Modem temp = new Modem(objectName, objectDesc, null, objectMB);
@@ -1302,8 +1283,7 @@ public class CreateObjects
 		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
-		objectMB.setMaxIntegratedLANs(4);
-		objectMB.setIntegLANPortsAvailable(4);
+		objectMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 4);
 
 
 		WirelessRouter temp = new WirelessRouter(objectName, objectDesc, null,
@@ -1348,10 +1328,8 @@ public class CreateObjects
 		Motherboard objectMB = PrimeMain.standard_internal_components
 				.getHw_MB();
 
-		objectMB.setMaxIntegratedLANs(1);
-		objectMB.setIntegLANPortsAvailable(1);
-		objectMB.setCoaxPortsAvailable(1);
-		objectMB.setMaxCoaxs(1);
+		objectMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 1);
+		objectMB.setMaxIntegratedNICs(ConnectionUtils.Coax, 1);
 
 
 		Internet temp = new Internet(objectName, objectDesc, objectName,

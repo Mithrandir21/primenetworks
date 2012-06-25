@@ -23,6 +23,7 @@ import java.util.Iterator;
 
 import logistical.cleanup;
 import objects.Object;
+import connections.Connection;
 import exceptions.ObjectNotFoundException;
 import exceptions.ObjectNotFoundInArrayException;
 import exceptions.StringNotFoundInArrayException;
@@ -282,7 +283,29 @@ public class ArrayManagment
 	}
 
 
+	/**
+	 * Function to removes the given Connection from the array of Connections.
+	 * 
+	 * It also cleans up the new array so that there is no empty indexes.
+	 */
+	public static Connection[] removeGivenConnectionFromConArray(
+			Connection[] existingCons, Connection con)
+	{
+		if ( existingCons != null && con != null )
+		{
+			for ( int i = 0; i < existingCons.length; i++ )
+			{
+				if ( existingCons[i].equals(con) )
+				{
+					existingCons[i] = null;
+				}
+			}
 
+			existingCons = cleanup.cleanObjectArray(existingCons);
+		}
+
+		return existingCons;
+	}
 
 
 	// SEARCH FUNCTIONS
@@ -393,8 +416,6 @@ public class ArrayManagment
 				+ ComponentClass.getCanonicalName()
 				+ ", was not found in the given ArrayList.", ComponentClass);
 	}
-
-
 
 
 	/**
@@ -864,8 +885,6 @@ public class ArrayManagment
 
 		return data;
 	}
-
-
 
 
 	/**

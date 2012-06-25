@@ -550,9 +550,10 @@ public class ExternalNICNewView extends JDialog implements
 									 * allowed LANs.
 									 */
 									if ( rules.getLANportsAllowed() == -1
-											|| (mbBoard.getMaxIntegLANs()
+											|| (mbBoard
+													.getInstalledNICs(ConnectionUtils.RJ45)
 													+ lanNICs + 1) <= rules
-													.getLANportsAllowed() )
+														.getLANportsAllowed() )
 									{
 										valid = true;
 									}
@@ -664,7 +665,6 @@ public class ExternalNICNewView extends JDialog implements
 	{
 		/*
 		 * (non-Javadoc)
-		 * 
 		 * @see
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)

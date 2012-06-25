@@ -378,8 +378,7 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 					{
 						if ( !rules.isLANnotAllowed() )
 						{
-							mb.setMaxIntegratedLANs(1);
-							mb.setIntegLANPortsAvailable(1);
+							mb.setMaxIntegratedNICs(ConnectionUtils.RJ45, 1);
 
 							PrimeMain.desktopProcLog
 									.info("Added intergrated LAN port to the Motherboard of "
@@ -410,14 +409,12 @@ public class GenericDeviceCreation extends JFrame implements ActionListener
 
 					if ( supportsCOAX.isSelected() )
 					{
-						mb.setMaxCoaxs(1);
-						mb.setCoaxPortsAvailable(1);
+						mb.setMaxIntegratedNICs(ConnectionUtils.Coax, 1);
 					}
 
 					if ( supportsFIBER.isSelected() )
 					{
-						mb.setMaxFibers(1);
-						mb.setFiberPortsAvailable(1);
+						mb.setMaxIntegratedNICs(ConnectionUtils.Fiber, 1);
 					}
 
 					if ( containsHDD.isSelected() )
