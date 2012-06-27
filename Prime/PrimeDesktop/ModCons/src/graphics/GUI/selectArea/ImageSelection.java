@@ -119,6 +119,7 @@ public class ImageSelection extends TransferHandler
 								PrimeMain.currentCanvas
 										.getNumberOfWidgetsOnTheScene());
 
+
 						WidgetObject widObj = new WidgetObject(
 								PrimeMain.currentCanvas.getScene(), newObject,
 								icon.getIconImage());

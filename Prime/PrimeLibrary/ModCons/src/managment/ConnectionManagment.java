@@ -1311,10 +1311,6 @@ public class ConnectionManagment
 				return false;
 			}
 
-			System.out.println("obj " + (objectA == objectB));
-			System.out.println("mob "
-					+ (objectAmotherboard == objectBmotherboard));
-			System.out.println("nic " + (ObjectAnic == ObjectBnic));
 
 			/**
 			 * If the function gets to this point it means that either both the
@@ -1328,8 +1324,6 @@ public class ConnectionManagment
 
 			// Makes sure that the nic pointer for object B is not null
 			assert ObjectBnic != null;
-
-			System.out.println(ObjectAnic == ObjectBnic);
 
 			setConnectedNic(ObjectAnic, objectB, newlyCreatedConnection);
 

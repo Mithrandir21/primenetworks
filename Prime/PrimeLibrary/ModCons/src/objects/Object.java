@@ -110,7 +110,7 @@ public abstract class Object implements Serializable, Cloneable
 	 * An array of the objects it is connected to, whether by USB, RJ-45,
 	 * bluetooth, PS-2 and so on.
 	 */
-	private Object[] connectedDevices;
+	private Object[] connectedDevices = new Object[5];
 
 	/**
 	 * An array of connection object which represent the connection between the
@@ -970,7 +970,8 @@ public abstract class Object implements Serializable, Cloneable
 
 		try
 		{
-			objectAmotherboard = (Motherboard) getSpesificComponents(Motherboard.class)[0];
+			objectAmotherboard = (Motherboard) this
+					.getSpesificComponents(Motherboard.class)[0];
 		}
 		catch ( ObjectNotFoundException e )
 		{

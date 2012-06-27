@@ -22,6 +22,7 @@ import java.awt.Component;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.logging.Level;
 
 import javax.swing.JComboBox;
@@ -3104,17 +3105,20 @@ public class ComponentsManagment
 		// The list of new NICs
 		ArrayList<InternalNetworksCard> newNICs = new ArrayList<InternalNetworksCard>();
 
+
 		// Goes through all NICs from the old MB.
 		for ( int i = 0; i < oldNICs.size(); i++ )
 		{
 			if ( oldNICs.get(i) != null )
 			{
 				// Creates a copy of the old NIC.
-				InternalNetworksCard tempNIC = (InternalNetworksCard) oldNICs
-						.get(i).clone();
+				InternalNetworksCard oldNIC = (InternalNetworksCard) oldNICs
+						.get(i);
 
-				// Removes the pointers to all connected devices
-				tempNIC.removeAllNetworkConnectedDevices();
+				InternalNetworksCard tempNIC = new InternalNetworksCard(
+						oldNIC.getObjectName(), oldNIC.getDescription(),
+						oldNIC.getProducer(), oldNIC.getPort(),
+						generateRandomIPv4MACadr(), oldNIC.getConnectionType());
 
 				// Adds the newly copy, empty of connected devices, to the list
 				// of new NICs
@@ -3197,7 +3201,7 @@ public class ComponentsManagment
 						.hasNext(); )
 				{
 					InternalNetworksCard nic = (InternalNetworksCard) i.next();
-					if ( nic.getConnections().equals(con) )
+					if ( nic.getConnections().contains(con) )
 					{
 						return nic;
 					}
@@ -3207,5 +3211,30 @@ public class ComponentsManagment
 
 
 		return null;
+	}
+
+
+
+	/**
+	 * Generates a random MAC address and returns it.
+	 */
+	public static String generateRandomIPv4MACadr()
+	{
+		Random rng = new Random();
+		String characters = "0123456789ABCDEF";
+		int length = 12;
+
+		String text = "";
+		for ( int i = 1; i < length + 1; i++ )
+		{
+			text += characters.charAt(rng.nextInt(characters.length()));
+
+			if ( (i % 2 == 0) && i != 12 )
+			{
+				text += ":";
+			}
+		}
+
+		return new String(text);
 	}
 }
