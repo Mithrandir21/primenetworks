@@ -216,12 +216,15 @@ public class ConnectionManagment
 	{
 		if ( con != null )
 		{
+			Object objectA = con.getObject1();
+			Object objectB = con.getObject2();
+
 			// Checks to see if there really is a connection between A and B
-			if ( !(checkConnectionExistence(existingConnections,
-					con.getObject1(), con.getObject2())) )
+			if ( !(checkConnectionExistence(existingConnections, objectA,
+					objectB)) )
 			{
-				throw new ConnectionDoesNotExist(con.getObject1()
-						.getObjectName(), con.getObject2().getObjectName());
+				throw new ConnectionDoesNotExist(objectA.getObjectName(),
+						objectB.getObjectName());
 			}
 
 
@@ -241,7 +244,7 @@ public class ConnectionManagment
 				try
 				{
 					// Gets all the ExternalNICs
-					Object[] extNICsObject1 = con.getObject1()
+					Object[] extNICsObject1 = objectA
 							.getSpesificComponents(ExternalNetworksCard.class);
 
 					/*
@@ -262,8 +265,9 @@ public class ConnectionManagment
 							 * its connected list.
 							 */
 							if ( extNIC.getConnections().contains(con)
-									&& (extNIC.getConnectedObjectBySerial(con
-											.getObject2().getObjectSerial()) != null) )
+									&& (extNIC
+											.getConnectedObjectBySerial(objectB
+													.getObjectSerial()) != null) )
 							{
 								ObjectAnic = extNIC;
 								// Ends the loop.
@@ -282,7 +286,7 @@ public class ConnectionManagment
 				try
 				{
 					// Gets all the ExternalNICs
-					Object[] extNICsObject2 = con.getObject2()
+					Object[] extNICsObject2 = objectB
 							.getSpesificComponents(ExternalNetworksCard.class);
 
 					/*
@@ -303,8 +307,9 @@ public class ConnectionManagment
 							 * its connected list.
 							 */
 							if ( extNIC.getConnections().contains(con)
-									&& (extNIC.getConnectedObjectBySerial(con
-											.getObject1().getObjectSerial()) != null) )
+									&& (extNIC
+											.getConnectedObjectBySerial(objectA
+													.getObjectSerial()) != null) )
 							{
 								ObjectBnic = extNIC;
 								// Ends the loop.
@@ -329,7 +334,7 @@ public class ConnectionManagment
 					{
 						// Since any object only has one motherboard this is a
 						// safe bet.
-						objectAmotherboard = (Motherboard) con.getObject1()
+						objectAmotherboard = (Motherboard) objectA
 								.getSpesificComponents(Motherboard.class)[0];
 					}
 					catch ( ObjectNotFoundException e )
@@ -356,7 +361,7 @@ public class ConnectionManagment
 					{
 						// Since any object only has one motherboard this is a
 						// safe bet.
-						objectBmotherboard = (Motherboard) con.getObject2()
+						objectBmotherboard = (Motherboard) objectB
 								.getSpesificComponents(Motherboard.class)[0];
 					}
 					catch ( ObjectNotFoundException e )
@@ -377,8 +382,8 @@ public class ConnectionManagment
 
 				if ( ObjectAnic == null || ObjectBnic == null )
 				{
-					throw new ConnectionDoesNotExist(con.getObject1()
-							.getObjectName(), con.getObject2().getObjectName());
+					throw new ConnectionDoesNotExist(objectA.getObjectName(),
+							objectB.getObjectName());
 				}
 
 
@@ -393,14 +398,14 @@ public class ConnectionManagment
 				{
 					ExternalNetworksCard exNIC = (ExternalNetworksCard) ObjectAnic;
 
-					exNIC.removeConnectedObject(ObjectBnic);
+					exNIC.removeConnectedObject(objectB);
 					exNIC.removeConnection(con);
 				}
 				else if ( ObjectAnic instanceof InternalNetworksCard )
 				{
 					InternalNetworksCard intNIC = (InternalNetworksCard) ObjectAnic;
 
-					intNIC.removeConnectedObject(ObjectBnic);
+					intNIC.removeConnectedObject(objectB);
 					intNIC.removeConnection(con);
 				}
 
@@ -410,24 +415,29 @@ public class ConnectionManagment
 				{
 					ExternalNetworksCard exNIC = (ExternalNetworksCard) ObjectBnic;
 
-					exNIC.removeConnectedObject(ObjectAnic);
+					exNIC.removeConnectedObject(objectA);
 					exNIC.removeConnection(con);
 				}
 				else if ( ObjectBnic instanceof InternalNetworksCard )
 				{
 					InternalNetworksCard intNIC = (InternalNetworksCard) ObjectBnic;
 
-					intNIC.removeConnectedObject(ObjectAnic);
+					intNIC.removeConnectedObject(objectA);
 					intNIC.removeConnection(con);
 				}
 
 
-				// Removing the objects from the Connected Objects list of the
-				// Object (NOT NIC object, but Object object).
+
 				try
 				{
-					con.getObject1().removeConnectedDevices(con.getObject2());
-					con.getObject2().removeConnectedDevices(con.getObject1());
+					// Removing the objects from the Connected Objects list of
+					// the Object (NOT NIC object, but Object object).
+					objectA.removeConnectedDevices(objectB);
+					objectB.removeConnectedDevices(objectA);
+
+					// Removes the connection from the list of the Object
+					objectA.removeConnection(con);
+					objectB.removeConnection(con);
 				}
 				catch ( ObjectNotFoundInArrayException e )
 				{
@@ -443,9 +453,6 @@ public class ConnectionManagment
 			 */
 			else
 			{
-				Object objectA = con.getObject1();
-				Object objectB = con.getObject2();
-
 				for ( int i = 0; i < existingConnections.length; i++ )
 				{
 					if ( existingConnections[i] != null )
