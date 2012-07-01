@@ -1284,28 +1284,14 @@ public class CreateObjects
 				.getHw_MB();
 
 		objectMB.setMaxIntegratedNICs(ConnectionUtils.RJ45, 4);
+		objectMB.setMaxIntegratedNICs(ConnectionUtils.Wireless, 1);
 
 
 		WirelessRouter temp = new WirelessRouter(objectName, objectDesc, null,
 				objectMB, outPorts, inPorts, DuplexSupport, true);
 
-		String[] supportedConnectionInterfaces = ComponentsManagment
-				.getSupportedInterfaces(temp);
-
-		String[] supConIntWithWLan = new String[supportedConnectionInterfaces.length + 1];
-
-		// Adds all the previous supported connection interfaces to the new
-		// array
-		for ( int i = 0; i < supportedConnectionInterfaces.length; i++ )
-		{
-			supConIntWithWLan[i] = supportedConnectionInterfaces[i];
-		}
-
-		// Places the Wireless string at the end of the array
-		supConIntWithWLan[supConIntWithWLan.length - 1] = ConnectionUtils.Wireless;
-
-
-		temp.setSupportedConnectionInterfaces(supConIntWithWLan);
+		// Determines the supported connection interface on the device.
+		temp.revalidateSupportedConnectionInterfaces();
 
 		return temp;
 	}

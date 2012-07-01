@@ -442,6 +442,7 @@ public class InternalNICNewView extends JDialog implements
 		return true;
 	}
 
+
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -465,7 +466,6 @@ public class InternalNICNewView extends JDialog implements
 					save();
 
 					// VALIDATES THE USB/LAN PORTS AGAINS THE NETWORK RULES
-
 					NetworkRules rules = canvas.getRules();
 
 					// Resets to test the LAN rule
@@ -522,11 +522,8 @@ public class InternalNICNewView extends JDialog implements
 								/**
 								 * If the number of integrated LAN ports,
 								 * internal LAN(RJ45) NICs and the this 1(one)
-								 * object
-								 * adds
-								 * up
-								 * to equal or less then the number of allowed
-								 * LANs.
+								 * object adds up to equal or less then the
+								 * number of allowed LANs.
 								 */
 								if ( rules.getLANportsAllowed() == -1
 										|| (mbBoard

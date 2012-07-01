@@ -239,7 +239,9 @@ public class ConnectionManagment
 				Object ObjectBnic = null;
 
 
-				// Checks the external NICs of the first object
+				/**
+				 * Checks the external NICs of the first object
+				 */
 				// Object 1
 				try
 				{
@@ -324,8 +326,96 @@ public class ConnectionManagment
 				}
 
 
-				// Checks the internal NICs.
+				/**
+				 * Checks the internal NICs NON-MOTHERBOARD.
+				 */
+				// Object 1
+				try
+				{
+					// Gets all the InternalNIC
+					Object[] intNICsObject1 = objectA
+							.getSpesificComponents(InternalNetworksCard.class);
 
+					/*
+					 * As long as the array is not null and there is at least on
+					 * Object in the array, the array will be stepped through
+					 * and every InternalNIC will be check to see if it contains
+					 * a pointer to the connection given.
+					 */
+					if ( intNICsObject1 != null && (intNICsObject1.length > 0) )
+					{
+						for ( int i = 0; i < intNICsObject1.length; i++ )
+						{
+							InternalNetworksCard intNIC = (InternalNetworksCard) intNICsObject1[i];
+
+							/*
+							 * Checks if the connections list contains the given
+							 * connection and if the NIC has the 2. object in
+							 * its connected list.
+							 */
+							if ( intNIC.getConnections().contains(con)
+									&& (intNIC
+											.getConnectedObjectBySerial(objectB
+													.getObjectSerial()) != null) )
+							{
+								ObjectAnic = intNIC;
+								// Ends the loop.
+								i = intNICsObject1.length;
+							}
+						}
+					}
+				}
+				catch ( ObjectNotFoundException e1 )
+				{
+					// Log entry
+				}
+
+
+				// Object 2
+				try
+				{
+					// Gets all the InternalNIC
+					Object[] intNICsObject2 = objectB
+							.getSpesificComponents(InternalNetworksCard.class);
+
+					/*
+					 * As long as the array is not null and there is at least on
+					 * Object in the array, the array will be stepped through
+					 * and every InternalNIC will be check to see if it contains
+					 * a pointer to the connection given.
+					 */
+					if ( intNICsObject2 != null && (intNICsObject2.length > 0) )
+					{
+						for ( int i = 0; i < intNICsObject2.length; i++ )
+						{
+							InternalNetworksCard intNIC = (InternalNetworksCard) intNICsObject2[i];
+
+							/*
+							 * Checks if the connections list contains the given
+							 * connection and if the NIC has the 2. object in
+							 * its connected list.
+							 */
+							if ( intNIC.getConnections().contains(con)
+									&& (intNIC
+											.getConnectedObjectBySerial(objectA
+													.getObjectSerial()) != null) )
+							{
+								ObjectBnic = intNIC;
+								// Ends the loop.
+								i = intNICsObject2.length;
+							}
+						}
+					}
+				}
+				catch ( ObjectNotFoundException e1 )
+				{
+					// Log entry
+				}
+
+
+				/**
+				 * Checks the internal NICs on Motherboard.
+				 */
 				if ( ObjectAnic == null )
 				{
 					Motherboard objectAmotherboard = null;
@@ -1121,7 +1211,16 @@ public class ConnectionManagment
 
 
 
-	private static Object getNonMotherboardNic(String conType, Object object)
+	/**
+	 * TODO - Description
+	 * 
+	 * 
+	 * @param multiConNIC
+	 *            A boolean on whether the NIC allows multiple connection, like
+	 *            Wireless NICs on {@link Infrastructure} objects.
+	 */
+	private static Object getNonMotherboardNic(String conType, Object object,
+			boolean multiConNIC)
 	{
 		Object ObjectNic = null;
 
@@ -1137,7 +1236,7 @@ public class ConnectionManagment
 				InternalNetworksCard temp = (InternalNetworksCard) intNICs[i];
 
 				// If there is no Object connected to this InternalNIC
-				if ( temp.getConnectedObject().isEmpty() )
+				if ( multiConNIC || temp.getConnectedObject().isEmpty() )
 				{
 					// If the connection type of the network card is
 					// conType
@@ -1152,7 +1251,6 @@ public class ConnectionManagment
 					}
 				}
 			}
-
 		}
 		// No InternalNetworksCard was found, search for
 		// ExternalNetworksCard
@@ -1178,7 +1276,7 @@ public class ConnectionManagment
 
 					// If there is no Object connected to this
 					// ExternalNICs
-					if ( temp.getConnectedObject().isEmpty() )
+					if ( multiConNIC || temp.getConnectedObject().isEmpty() )
 					{
 						// If the connection type of the network card is
 						// conType
@@ -1269,19 +1367,44 @@ public class ConnectionManagment
 		// If the connection is either LAN, COAX or FIBER
 		if ( conType.equals(ConnectionUtils.RJ45)
 				|| conType.equals(ConnectionUtils.Coax)
-				|| conType.equals(ConnectionUtils.Fiber) )
+				|| conType.equals(ConnectionUtils.Fiber)
+				|| conType.equals(ConnectionUtils.Wireless) )
 		{
 			// Pointers to network objects, either integrated or external.
 			Object ObjectAnic = null;
 			Object ObjectBnic = null;
 
+			// Booleans on multi connection Wireless NIC
+			boolean ObjectAmultiConnectionNIC = false;
+			boolean ObjectBmultiConnectionNIC = false;
+
+			/**
+			 * If the objects are instances of infrastructure, like wireless
+			 * routers, and the connection type is Wireless.
+			 */
+
+			if ( objectA instanceof Infrastructure
+					&& conType.equals(ConnectionUtils.Wireless) )
+			{
+				ObjectAmultiConnectionNIC = true;
+			}
+
+			if ( objectB instanceof Infrastructure
+					&& conType.equals(ConnectionUtils.Wireless) )
+			{
+				ObjectBmultiConnectionNIC = true;
+			}
+
+
 
 			// Attempts to get the index of available port and sets the
 			// ObjectAnic if no port is available.
-			ObjectAnic = objectAmotherboard.getFirstAvailableNIC(conType);
+			ObjectAnic = objectAmotherboard.getFirstAvailableNIC(conType,
+					ObjectAmultiConnectionNIC);
 			if ( ObjectAnic == null )
 			{
-				ObjectAnic = getNonMotherboardNic(conType, objectA);
+				ObjectAnic = getNonMotherboardNic(conType, objectA,
+						ObjectAmultiConnectionNIC);
 			}
 
 			// No compatible NIC card was found.
@@ -1300,10 +1423,12 @@ public class ConnectionManagment
 
 			// Attempts to get the index of available port and sets the
 			// ObjectBnic if no port is available.
-			ObjectBnic = objectBmotherboard.getFirstAvailableNIC(conType);
+			ObjectBnic = objectBmotherboard.getFirstAvailableNIC(conType,
+					ObjectBmultiConnectionNIC);
 			if ( ObjectBnic == null )
 			{
-				ObjectBnic = getNonMotherboardNic(conType, objectB);
+				ObjectBnic = getNonMotherboardNic(conType, objectB,
+						ObjectBmultiConnectionNIC);
 			}
 
 			// No compatible NIC card was found.
@@ -1335,142 +1460,6 @@ public class ConnectionManagment
 			setConnectedNic(ObjectAnic, objectB, newlyCreatedConnection);
 
 			setConnectedNic(ObjectBnic, objectA, newlyCreatedConnection);
-
-
-			// Adds each object to the other objects array of connection
-			// objects.
-			objectA.addConnectedDevices(objectB);
-			objectB.addConnectedDevices(objectA);
-		}
-		else if ( conType.equals(ConnectionUtils.Wireless) )
-		{
-			Object ObjectAnic = null;
-			Object ObjectBnic = null;
-
-
-			// If objectA is not a infrastructure object
-			if ( !(objectA instanceof Infrastructure) )
-			{
-				// Sets the found InternalNetworksCard
-				ObjectAnic = getInternalNIC(objectA, conType);
-
-
-				// No InternalNIC was found, either with Wireless or at all
-				if ( ObjectAnic == null )
-				{
-					// Sets the found ExternalNetworksCard
-					ObjectAnic = getExternalNIC(objectA, conType);
-
-
-					if ( ObjectAnic == null )
-					{
-						JOptionPane.showMessageDialog(null,
-								"No available network card was found on "
-										+ objectA.getObjectName() + ".",
-								"alert", JOptionPane.ERROR_MESSAGE);
-
-						return false;
-					}
-				}
-			}
-
-
-
-			if ( !(objectB instanceof Infrastructure) )
-			{
-				// Sets the found InternalNetworksCard
-				ObjectBnic = getInternalNIC(objectB, conType);
-
-
-				// No InternalNIC was found, either with Wireless or at all
-				if ( ObjectBnic == null )
-				{
-					// Sets the found ExternalNetworksCard
-					ObjectBnic = getExternalNIC(objectB, conType);
-
-					if ( ObjectBnic == null )
-					{
-						JOptionPane.showMessageDialog(null,
-								"No available network card was found on "
-										+ objectB.getObjectName() + ".",
-								"alert", JOptionPane.ERROR_MESSAGE);
-
-						return false;
-					}
-				}
-			}
-
-
-			// If either of the objects are null there cannot exist a connection
-			// between the two given objects
-			if ( ObjectAnic == null && !(objectA instanceof Infrastructure) )
-			{
-				JOptionPane.showMessageDialog(
-						null,
-						"No available network card was found on "
-								+ objectA.getObjectName() + ".", "alert",
-						JOptionPane.ERROR_MESSAGE);
-
-				return false;
-			}
-
-
-			// If either of the objects are null there cannot exist a connection
-			// between the two given objects
-			if ( ObjectBnic == null && !(objectB instanceof Infrastructure) )
-			{
-				JOptionPane.showMessageDialog(
-						null,
-						"No available network card was found on "
-								+ objectB.getObjectName() + ".", "alert",
-						JOptionPane.ERROR_MESSAGE);
-
-				return false;
-			}
-
-
-
-			/**
-			 * If the function gets here, both the objects have contained a
-			 * network card that is available and has the connection type of
-			 * Wireless.
-			 */
-
-
-
-
-			// Sets the objects as the connected objects on the network cards
-			if ( ObjectAnic instanceof InternalNetworksCard )
-			{
-				InternalNetworksCard temp = (InternalNetworksCard) ObjectAnic;
-
-				// Sets objectB as the connected object of the network card
-				temp.addConnectedObject(objectB);
-			}
-			else if ( ObjectAnic instanceof ExternalNetworksCard )
-			{
-				ExternalNetworksCard temp = (ExternalNetworksCard) ObjectAnic;
-
-				// Sets objectB as the connected object of the network card
-				temp.addConnectedObject(objectB);
-			}
-
-
-			if ( ObjectBnic instanceof InternalNetworksCard )
-			{
-				InternalNetworksCard temp = (InternalNetworksCard) ObjectBnic;
-
-				// Sets objectA as the connected object of the network card
-				temp.addConnectedObject(objectA);
-			}
-			else if ( ObjectBnic instanceof ExternalNetworksCard )
-			{
-				ExternalNetworksCard temp = (ExternalNetworksCard) ObjectBnic;
-
-				// Sets objectA as the connected object of the network card
-				temp.addConnectedObject(objectA);
-			}
-
 
 
 			// Adds each object to the other objects array of connection
@@ -2223,5 +2212,66 @@ public class ConnectionManagment
 
 
 		return foundCons;
+	}
+
+
+
+	/**
+	 * TODO - Description
+	 * 
+	 */
+	private static Object getWirelessInfrastructureNIC(Object object)
+	{
+		if ( object != null && (object instanceof Infrastructure) )
+		{
+			Motherboard objectAmotherboard;
+
+			try
+			{
+				// Since any object only has one motherboard this is a safe bet.
+				objectAmotherboard = (Motherboard) object
+						.getSpesificComponents(Motherboard.class)[0];
+			}
+			catch ( ObjectNotFoundException e )
+			{
+				JOptionPane.showMessageDialog(null,
+						"One of the devices does not have a motherboard.",
+						"alert", JOptionPane.ERROR_MESSAGE);
+
+				return null;
+			}
+
+
+			/**
+			 * First check for internal NICs on the motherboard.
+			 */
+			// Gets all the MBs NICs.
+			ArrayList<InternalNetworksCard> intNICs = objectAmotherboard
+					.getIntNICs();
+
+			for ( Iterator<InternalNetworksCard> i = intNICs.iterator(); i
+					.hasNext(); )
+			{
+				InternalNetworksCard nic = (InternalNetworksCard) i.next();
+				if ( nic.getConnectionType().equals(ConnectionUtils.Wireless) )
+				{
+					// Returns the first NIC that matches the connection type.
+					return nic;
+				}
+			}
+
+
+			/**
+			 * Seconds check for internal NICs as component on object.
+			 */
+
+
+			/**
+			 * Third check for external NICs as component on object.
+			 */
+
+		}
+
+		return null;
 	}
 }

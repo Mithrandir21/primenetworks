@@ -23,7 +23,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ListIterator;
 
+import managment.ConnectionManagment;
 import objects.Hardware;
+import objects.Infrastructure;
+import connections.Connection;
 import connections.ConnectionUtils;
 
 
@@ -669,13 +672,24 @@ public class Motherboard extends Hardware implements Serializable
 	 * given.
 	 * This new number can be higher then the previous, where the function will
 	 * add NICs with the right connection type.
-	 * Or it can be lower, where the function will remove the excess NICs
-	 * (starting backwards with the last one added).
+	 * Or it can be lower, where the function will return the {@link Connection
+	 * Connections} inside the excessive NICs (starting backwards with the last
+	 * one added).
+	 * 
+	 * @return Returns the {@link Connection Connections} inside the NICs that
+	 *         are supposed to be remove.
+	 *         (Returned Connections should be used in combination with
+	 *         {@link ConnectionManagment#breakConnection(Connection[], Connection)}
+	 *         ).
 	 */
-	public void setMaxIntegratedNICs(String conType, int newNumberOfNICs)
+	public ArrayList<Connection> setMaxIntegratedNICs(String conType,
+			int newNumberOfNICs)
 	{
 		// Gets the number of NICs installed
 		int currentNICS = getInstalledNICs(conType);
+
+		// A list of excess NICs
+		ArrayList<Connection> excessConnections = new ArrayList<Connection>();
 
 		// If the number of current NICs is smaller then the number given.
 		if ( currentNICS < newNumberOfNICs )
@@ -703,14 +717,21 @@ public class Motherboard extends Hardware implements Serializable
 
 				if ( nic.getConnectionType().equals(conType) )
 				{
-					// Deletes the NIC
-					intNICs.remove(i);
-					nic = null;
+					for ( Iterator<Connection> conIt = nic.getConnections()
+							.iterator(); conIt.hasNext(); )
+					{
+						excessConnections.add((Connection) conIt.next());
+					}
 
 					diff--;
 				}
 			}
+
+			return excessConnections;
 		}
+
+		// If the only new NICs added
+		return null;
 	}
 
 
@@ -971,17 +992,24 @@ public class Motherboard extends Hardware implements Serializable
 	 * This function iterates through the Internal NICs, find and returns the
 	 * first one that is not connected to any object and is the same connection
 	 * type.
+	 * 
+	 * @param multiConNIC
+	 *            A boolean on whether the NIC allows multiple connection, like
+	 *            Wireless NICs on {@link Infrastructure} objects.
 	 */
-	public InternalNetworksCard getFirstAvailableNIC(String conType)
+	public InternalNetworksCard getFirstAvailableNIC(String conType,
+			boolean multiConNIC)
 	{
 		for ( Iterator<InternalNetworksCard> i = intNICs.iterator(); i
 				.hasNext(); )
 		{
 			InternalNetworksCard nic = (InternalNetworksCard) i.next();
-			if ( nic.getConnectionType().equals(conType)
-					&& nic.getConnectedObject().isEmpty() )
+			if ( nic.getConnectionType().equals(conType) )
 			{
-				return nic;
+				if ( multiConNIC || nic.getConnectedObject().isEmpty() )
+				{
+					return nic;
+				}
 			}
 		}
 

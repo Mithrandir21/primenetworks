@@ -2315,23 +2315,45 @@ public class ComponentsManagment
 
 
 	/**
-	 * Processes the Ports settings with the connected objects.
-	 * <i>The process first finds all {@link Object Objects} connected to the
-	 * main {@link Object}. Then it finds the network
-	 * cards, internal and external. It then removes the objects set as
-	 * connected to the different network cards from the array of
-	 * removable Objects, because in this function only the {@link Motherboard
-	 * Motherboards} Ports ports are are being changed.
-	 * When only {@link Object Objects} connected to the {@link Motherboard} are
-	 * left, they will be removed depending on the
-	 * difference between the number of Ports and the number of connected
-	 * Objects.
+	 * Processes the (Connection) Ports settings with the connected objects.
+	 * 
+	 * This function is only meant to be used with the given {@link Object
+	 * Objects} {@link Motherboard}.
+	 * 
 	 * TODO - MUST BE FIXED NOW!!
 	 */
 	public static void portsValidation(Object mainObj, Motherboard mbObj,
 			int ports, String portType, WorkareaCanvas canvas)
 	{
+		Motherboard objectMB = null;
 
+		try
+		{
+			// Since any object only has one motherboard this is a safe bet.
+			objectMB = (Motherboard) mainObj
+					.getSpesificComponents(Motherboard.class)[0];
+		}
+		catch ( ObjectNotFoundException e )
+		{
+			JOptionPane.showMessageDialog(null,
+					"One of the devices does not have a motherboard.", "alert",
+					JOptionPane.ERROR_MESSAGE);
+		}
+
+		// Sets the number of NICs, returns cons to be removes if to many NICs
+		// already on the Motherboard.
+		ArrayList<Connection> consToBeRemoved = objectMB.setMaxIntegratedNICs(
+				portType, ports);
+
+		// There were to many NICs on the Motherboard
+		if ( consToBeRemoved != null )
+		{
+			for ( Iterator<Connection> i = consToBeRemoved.iterator(); i
+					.hasNext(); )
+			{
+				(Connection) i.next();
+			}
+		}
 
 		// boolean toManyIntegratedPorts = false;
 		//
@@ -2369,9 +2391,8 @@ public class ComponentsManagment
 		// {
 		// // Gets all the InternalNetworksCard from the objects components
 		// // array.
-		// Object[] internalNICs = ArrayManagment.getSpesificComponents(
-		// InternalNetworksCard.class, mainObj.getComponents(),
-		// mainObj.getComponents().length);
+		// Object[] internalNICs = mainObj.getSpesificComponents(
+		// InternalNetworksCard.class);
 		//
 		// for ( int i = 0; i < internalNICs.length; i++ )
 		// {
@@ -2423,7 +2444,7 @@ public class ComponentsManagment
 		//
 		// try
 		// {
-		// // Gets all the InternalNetworksCard from the objects components
+		// // Gets all the ExternalNetworksCard from the objects components
 		// // array.
 		// Object[] externalNICs = ArrayManagment.getSpesificComponents(
 		// ExternalNetworksCard.class, mainObj.getComponents(),
@@ -2526,8 +2547,8 @@ public class ComponentsManagment
 		// }
 		// }
 		// }
-
-
+		//
+		//
 		//
 		// /**
 		// * Motherboard port setup after internal- and external-NIC connected
@@ -2574,9 +2595,6 @@ public class ComponentsManagment
 			canvas.setChanged(true);
 		}
 	}
-
-
-
 
 	/**
 	 * Processes the COAX settings with the connected objects.
@@ -2894,6 +2912,12 @@ public class ComponentsManagment
 					lan = true;
 				}
 
+				// LAN
+				if ( mbTemp.getInstalledNICs(ConnectionUtils.Wireless) > 0 )
+				{
+					wlan = true;
+				}
+
 				// USB
 				if ( mbTemp.getMaxUSBs() > 0 )
 				{
@@ -3029,9 +3053,19 @@ public class ComponentsManagment
 			{
 				for ( int i = 0; i < oldComponents.length; i++ )
 				{
+					/**
+					 * Here components from the old object is cloned and copied
+					 * to the new object.
+					 * Special care is taken for Motherboards and NICs.
+					 */
 					if ( oldComponents[i] instanceof Motherboard )
 					{
 						newComponents[i] = copyMotherboard((Motherboard) oldComponents[i]);
+					}
+					else if ( oldComponents[i] instanceof InternalNetworksCard
+							|| oldComponents[i] instanceof ExternalNetworksCard )
+					{
+						newComponents[i] = copyNIC(oldComponents[i]);
 					}
 					else
 					{
@@ -3118,7 +3152,7 @@ public class ComponentsManagment
 				InternalNetworksCard tempNIC = new InternalNetworksCard(
 						oldNIC.getObjectName(), oldNIC.getDescription(),
 						oldNIC.getProducer(), oldNIC.getPort(),
-						generateRandomIPv4MACadr(), oldNIC.getConnectionType());
+						generateRandomMAC(), oldNIC.getConnectionType());
 
 				// Adds the newly copy, empty of connected devices, to the list
 				// of new NICs
@@ -3134,6 +3168,37 @@ public class ComponentsManagment
 	}
 
 
+
+	/**
+	 * This function takes a given NIC (Internal or External) and returns a copy
+	 * of that NIC without the connected objects or connections.
+	 */
+	private static Object copyNIC(Object NIC)
+	{
+		if ( NIC != null )
+		{
+			if ( NIC instanceof InternalNetworksCard )
+			{
+				InternalNetworksCard oldNIC = (InternalNetworksCard) NIC;
+
+				return new InternalNetworksCard(oldNIC.getObjectName(),
+						oldNIC.getDescription(), oldNIC.getProducer(),
+						oldNIC.getPort(), generateRandomMAC(),
+						oldNIC.getConnectionType());
+			}
+			else if ( NIC instanceof ExternalNetworksCard )
+			{
+				ExternalNetworksCard oldNIC = (ExternalNetworksCard) NIC;
+
+				return new ExternalNetworksCard(oldNIC.getObjectName(),
+						oldNIC.getDescription(), oldNIC.getProducer(),
+						oldNIC.getPort(), generateRandomMAC(),
+						oldNIC.getConnectionType());
+			}
+		}
+
+		return null;
+	}
 
 	/**
 	 * This function attempts to find the objects {@link Motherboard} in the
@@ -3218,7 +3283,7 @@ public class ComponentsManagment
 	/**
 	 * Generates a random MAC address and returns it.
 	 */
-	public static String generateRandomIPv4MACadr()
+	public static String generateRandomMAC()
 	{
 		Random rng = new Random();
 		String characters = "0123456789ABCDEF";

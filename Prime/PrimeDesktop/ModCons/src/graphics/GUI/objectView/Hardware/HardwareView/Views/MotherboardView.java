@@ -1142,6 +1142,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 				if ( PrimeMain.currentCanvas != null )
 				{
 					NetworkRules rules = PrimeMain.currentCanvas.getRules();
+
 					// If LAN is allowed
 					if ( !rules.isLANnotAllowed() )
 					{
