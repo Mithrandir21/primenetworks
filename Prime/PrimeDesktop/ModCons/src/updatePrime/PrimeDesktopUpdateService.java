@@ -18,6 +18,8 @@
 package updatePrime;
 
 
+import graphics.PrimeMain;
+
 import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,6 +31,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.UnknownHostException;
 
+import managment.DesktopFileManagment;
 import managment.Settings;
 
 
@@ -123,11 +126,15 @@ public class PrimeDesktopUpdateService
 		}
 		catch ( UnknownHostException e )
 		{
-			e.printStackTrace();
+			System.out.println(e.getLocalizedMessage());
+			System.out.println("See log for more info.");
+			DesktopFileManagment.writePrintStackToLog(PrimeMain.ioLog, e);
 		}
 		catch ( IOException e )
 		{
-			e.printStackTrace();
+			System.out.println(e.getLocalizedMessage());
+			System.out.println("See log for more info.");
+			DesktopFileManagment.writePrintStackToLog(PrimeMain.ioLog, e);
 		}
 
 

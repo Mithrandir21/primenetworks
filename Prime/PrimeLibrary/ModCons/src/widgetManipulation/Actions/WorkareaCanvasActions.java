@@ -19,6 +19,7 @@ package widgetManipulation.Actions;
 
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -435,12 +436,32 @@ public class WorkareaCanvasActions
 	}
 
 
+	/**
+	 * This function attempts to remove an arraylist of connections between to
+	 * {@link Object Objects} and at the same time remove the arraylist of
+	 * {@link Connection} from the given {@link WorkareaCanvas}.
+	 */
+	public static void removeConnection(WorkareaCanvas canvas,
+			ArrayList<Connection> con) throws ConnectionDoesNotExist
+	{
+		if ( con != null && (!con.isEmpty()) )
+		{
+			Connection[] cons = new Connection[1];
+			cons = con.toArray(cons);
+
+			for ( int i = 0; i < cons.length; i++ )
+			{
+				removeConnection(canvas, cons[i]);
+			}
+		}
+	}
+
 
 
 	/**
 	 * This function attempts to remove a connection between to {@link Object
-	 * Objects} and at the same time remove the {@link WidgetExtendedConnection}
-	 * from the given {@link WorkareaCanvas}.
+	 * Objects} and at the same time remove the {@link Connection} from the
+	 * given {@link WorkareaCanvas}.
 	 */
 	public static void removeConnection(WorkareaCanvas canvas, Connection con)
 			throws ConnectionDoesNotExist

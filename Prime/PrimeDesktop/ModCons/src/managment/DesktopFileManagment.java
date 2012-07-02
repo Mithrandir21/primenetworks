@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
@@ -3588,5 +3589,25 @@ public class DesktopFileManagment
 				.warning("Serial number retrieval failed because given file was NULL.");
 
 		return null;
+	}
+
+
+
+	/**
+	 * This function writes out the given {@link Exception} to the given
+	 * {@link Logger}.
+	 */
+	public static void writePrintStackToLog(Logger log, Exception e)
+	{
+		log.warning("------------ERROR-WARNING-START------------");
+
+		log.warning(e.getLocalizedMessage());
+		// add each element of the stack trace
+		for ( StackTraceElement element : e.getStackTrace() )
+		{
+			log.warning("\t" + element.toString());
+		}
+
+		log.warning("------------ERROR-WARNING-END------------");
 	}
 }

@@ -676,20 +676,20 @@ public class Motherboard extends Hardware implements Serializable
 	 * Connections} inside the excessive NICs (starting backwards with the last
 	 * one added).
 	 * 
-	 * @return Returns the {@link Connection Connections} inside the NICs that
-	 *         are supposed to be remove.
+	 * @return Returns the {@link InternalNetworksCard InternalNetworksCards}
+	 *         that are supposed to be remove.
 	 *         (Returned Connections should be used in combination with
 	 *         {@link ConnectionManagment#breakConnection(Connection[], Connection)}
 	 *         ).
 	 */
-	public ArrayList<Connection> setMaxIntegratedNICs(String conType,
+	public ArrayList<InternalNetworksCard> setMaxIntegratedNICs(String conType,
 			int newNumberOfNICs)
 	{
 		// Gets the number of NICs installed
 		int currentNICS = getInstalledNICs(conType);
 
 		// A list of excess NICs
-		ArrayList<Connection> excessConnections = new ArrayList<Connection>();
+		ArrayList<InternalNetworksCard> excessNICs = new ArrayList<InternalNetworksCard>();
 
 		// If the number of current NICs is smaller then the number given.
 		if ( currentNICS < newNumberOfNICs )
@@ -715,19 +715,12 @@ public class Motherboard extends Hardware implements Serializable
 			{
 				InternalNetworksCard nic = (InternalNetworksCard) i.previous();
 
-				if ( nic.getConnectionType().equals(conType) )
-				{
-					for ( Iterator<Connection> conIt = nic.getConnections()
-							.iterator(); conIt.hasNext(); )
-					{
-						excessConnections.add((Connection) conIt.next());
-					}
+				excessNICs.add(nic);
 
-					diff--;
-				}
+				diff--;
 			}
 
-			return excessConnections;
+			return excessNICs;
 		}
 
 		// If the only new NICs added
@@ -986,6 +979,15 @@ public class Motherboard extends Hardware implements Serializable
 
 
 	// CLASS METHODES
+
+	/**
+	 * This function attempts to remove the given {@link InternalNetworksCard}
+	 * from the arraylist of {@link InternalNetworksCard InternalNetworksCards}.
+	 */
+	public boolean removeInternalNIC(InternalNetworksCard nic)
+	{
+		return intNICs.remove(nic);
+	}
 
 
 	/**

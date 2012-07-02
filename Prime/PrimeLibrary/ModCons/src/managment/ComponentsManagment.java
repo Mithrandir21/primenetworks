@@ -1174,8 +1174,6 @@ public class ComponentsManagment
 	}
 
 
-
-
 	/**
 	 * This method will remove any component with the given class from the
 	 * component list of the this classes object if the given Variable does not
@@ -2321,9 +2319,12 @@ public class ComponentsManagment
 	 * Objects} {@link Motherboard}.
 	 * 
 	 * TODO - MUST BE FIXED NOW!!
+	 * 
+	 * @return
 	 */
-	public static void portsValidation(Object mainObj, Motherboard mbObj,
-			int ports, String portType, WorkareaCanvas canvas)
+	public static ArrayList<InternalNetworksCard> portsValidation(
+			Object mainObj, Motherboard mbObj, int ports, String portType,
+			WorkareaCanvas canvas)
 	{
 		Motherboard objectMB = null;
 
@@ -2342,258 +2343,16 @@ public class ComponentsManagment
 
 		// Sets the number of NICs, returns cons to be removes if to many NICs
 		// already on the Motherboard.
-		ArrayList<Connection> consToBeRemoved = objectMB.setMaxIntegratedNICs(
-				portType, ports);
-
-		// There were to many NICs on the Motherboard
-		if ( consToBeRemoved != null )
-		{
-			for ( Iterator<Connection> i = consToBeRemoved.iterator(); i
-					.hasNext(); )
-			{
-				(Connection) i.next();
-			}
-		}
-
-		// boolean toManyIntegratedPorts = false;
-		//
-		// /**
-		// * The new number of allowed ports is smaller then the current
-		// * number of integrated ports.
-		// */
-		// if ( portType.equals(ConnectionUtils.RJ45) )
-		// {
-		// toManyIntegratedPorts = (ports < mbObj
-		// .getInstalledNICs(ConnectionUtils.RJ45));
-		// }
-		// else if ( portType.equals(ConnectionUtils.Coax) )
-		// {
-		// toManyIntegratedPorts = (ports < mbObj
-		// .getInstalledNICs(ConnectionUtils.Coax));
-		// }
-		// else if ( portType.equals(ConnectionUtils.Fiber) )
-		// {
-		// toManyIntegratedPorts = (ports < mbObj
-		// .getInstalledNICs(ConnectionUtils.Fiber));
-		// }
-		//
-		//
-		//
-		// if ( toManyIntegratedPorts )
-		// {
-		// int newMaxPorts = ports;
-		//
-		// // The connections array that will hold all the connections that are
-		// // with portType
-		// Object[] connectedObjects = connectedToBy(mainObj, portType);
-		//
-		// try
-		// {
-		// // Gets all the InternalNetworksCard from the objects components
-		// // array.
-		// Object[] internalNICs = mainObj.getSpesificComponents(
-		// InternalNetworksCard.class);
-		//
-		// for ( int i = 0; i < internalNICs.length; i++ )
-		// {
-		// InternalNetworksCard nic = (InternalNetworksCard) internalNICs[i];
-		//
-		// // If the NICs connection object is not null and connection
-		// // type is RJ-45
-		// if ( nic != null && nic.getConnectionType().equals(portType) )
-		// {
-		// Object found = nic.getConnectedObjectBySerial(serial)
-		//
-		// // Goes through all the portType connected objects
-		// for ( int j = 0; j < connectedObjects.length; j++ )
-		// {
-		// // If the index is not null
-		// if ( connectedObjects[j] != null )
-		// {
-		//
-		// // If the connected object serial is the same as
-		// // the one connected to the NIC
-		// if ( connectedObjects[j].getObjectSerial() )
-		// {
-		// // The object connected to the NIC is
-		// // removed from the removable portType
-		// // connected objects
-		// connectedObjects[j] = null;
-		// }
-		// }
-		// }
-		// }
-		// }
-		//
-		//
-		// }
-		// catch ( ObjectNotFoundException e )
-		// {
-		// // Log entry
-		// LibraryLogging.libraryLog
-		// .logp(Level.FINEST,
-		// "ComponentsManagment",
-		// "portsValidation",
-		// "No InternalNetworksCard components were found in the given Object '"
-		// + mainObj.getObjectName()
-		// + "'. This does not indicate an error, only informational.");
-		//
-		// // No need to print stack because the exception is used
-		// // intentionally.
-		// }
-		//
-		// try
-		// {
-		// // Gets all the ExternalNetworksCard from the objects components
-		// // array.
-		// Object[] externalNICs = ArrayManagment.getSpesificComponents(
-		// ExternalNetworksCard.class, mainObj.getComponents(),
-		// mainObj.getComponents().length);
-		//
-		//
-		// for ( int i = 0; i < externalNICs.length; i++ )
-		// {
-		// ExternalNetworksCard nic = (ExternalNetworksCard) externalNICs[i];
-		//
-		// // If the NICs connection object is not null and connection
-		// // type is portType
-		// if ( nic.getConnectedObject() != null
-		// && (!nic.getConnectedObject().isEmpty())
-		// && nic.getConnectionType().equals(portType) )
-		// {
-		// // Goes through all the RJ45 connected objects
-		// for ( int j = 0; j < connectedObjects.length; j++ )
-		// {
-		// // If the index is not null
-		// if ( connectedObjects[j] != null )
-		// {
-		// // If the connected object serial is the same as
-		// // the one connected to the NIC
-		// if ( connectedObjects[j].getObjectSerial() == nic
-		// .getConnectedObject().getObjectSerial() )
-		// {
-		// // The object connected to the NIC is
-		// // removed from the removable portType
-		// // connected objects
-		// connectedObjects[j] = null;
-		// }
-		// }
-		// }
-		// }
-		// }
-		// }
-		// catch ( ObjectNotFoundException e )
-		// {
-		// // No ExternalNetworksCard found
-		// }
-		//
-		//
-		// // Removes the null pointers and shortens the array
-		// connectedObjects = cleanup.cleanObjectArray(connectedObjects);
-		//
-		//
-		// // Now connectedObjects contains only objects connected to the
-		// // motherboard
-		//
-		// // The number of portType ports left after connected objects are
-		// // added.
-		// int leftPorts = newMaxPorts - connectedObjects.length;
-		//
-		//
-		// if ( connectedObjects != null )
-		// {
-		// // If the number of available portType ports is less then the
-		// // number of portType devices
-		// if ( leftPorts < 0 )
-		// {
-		// for ( int i = connectedObjects.length + leftPorts; i <
-		// connectedObjects.length; i++ )
-		// {
-		// // Gets the WidgetExtendedConnection between the two
-		// // objects
-		// WidgetExtendedConnection widCon = null;
-		// try
-		// {
-		// widCon = ConnectionManagment.findWidgetConnections(
-		// canvas, mainObj, connectedObjects[i]);
-		// }
-		// catch ( ConnectionDoesNotExist e )
-		// {
-		// // Log entry
-		// LibraryLogging.libraryLog.logp(
-		// Level.SEVERE,
-		// "ComponentsManagment",
-		// "portsValidation",
-		// "A connection that should exist between two objects, '"
-		// + mainObj.getObjectName()
-		// + "' and '"
-		// + connectedObjects[i]
-		// .getObjectName()
-		// + "', does not exist.");
-		//
-		// if ( Settings.debug )
-		// {
-		// e.printStackTrace();
-		// }
-		// }
-		//
-		// if ( widCon != null )
-		// {
-		// // Removes the connection
-		// WorkareaCanvasActions.removeWidgetConnection(
-		// canvas, widCon);
-		// }
-		// }
-		// }
-		// }
-		// }
-		//
-		//
-		//
-		// /**
-		// * Motherboard port setup after internal- and external-NIC connected
-		// * Object removal.
-		// * Excess motherboards ports(and connected Objects) have also been
-		// * removed.
-		// */
-		// if ( portType.equals(ConnectionUtils.RJ45) )
-		// {
-		// int takenPorts = mbObj.getMaxIntegLANs()
-		// - mbObj.getIntegLANPortsAvailable();
-		//
-		// // Sets the max LAN ports
-		// mbObj.setMaxIntegratedLANs(ports);
-		// mbObj.setIntegLANPortsAvailable(mbObj.getMaxIntegLANs()
-		// - takenPorts);
-		// }
-		// else if ( portType.equals(ConnectionUtils.Coax) )
-		// {
-		// int takenPorts = mbObj.getMaxCoaxs()
-		// - mbObj.getCoaxPortsAvailable();
-		//
-		// // Sets the max COAX ports
-		// mbObj.setMaxCoaxs(ports);
-		// mbObj.setCoaxPortsAvailable(mbObj.getMaxCoaxs() - takenPorts);
-		// }
-		// else if ( portType.equals(ConnectionUtils.Fiber) )
-		// {
-		// int takenPorts = mbObj.getMaxFibers()
-		// - mbObj.getFiberPortsAvailable();
-		//
-		// // Sets the max FIBER ports
-		// mbObj.setMaxFibers(ports);
-		// mbObj.setFiberPortsAvailable(mbObj.getMaxFibers() - takenPorts);
-		// }
-
-
-		// Determines the supported connection interface on the device.
-		mainObj.revalidateSupportedConnectionInterfaces();
+		ArrayList<InternalNetworksCard> consToBeRemoved = objectMB
+				.setMaxIntegratedNICs(portType, ports);
 
 		if ( canvas != null )
 		{
 			canvas.setSaved(false);
 			canvas.setChanged(true);
 		}
+
+		return consToBeRemoved;
 	}
 
 	/**
