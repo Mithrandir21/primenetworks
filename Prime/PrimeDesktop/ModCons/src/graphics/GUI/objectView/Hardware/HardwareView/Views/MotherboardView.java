@@ -155,7 +155,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 
 
-		JPanel p2 = createSpesificInfo(mb);
+		JPanel p2 = createSpesificInfo(mbObj);
 		p2.setBorder(BorderFactory.createEtchedBorder());
 
 		c.gridx = 0;
@@ -712,22 +712,22 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 
 		// LAN ports
-		String[] LANportsStrings = { "0", "1", "2", "3", "4", "5", "6" };
-		String[] infraLanPortsStrings = { "0", "1", "2", "3", "4", "5", "6",
-				"7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17",
-				"18", "19", "20", "21", "22", "23", "24", "25", "26", "27",
-				"28", "29", "30", "31", "32", "33", "34", "35", "36", "37",
-				"38", "39", "40" };
+		String[] portsStrings = { "0", "1", "2", "3", "4", "5", "6" };
+		String[] infraPortsStrings = { "0", "1", "2", "3", "4", "5", "6", "7",
+				"8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18",
+				"19", "20", "21", "22", "23", "24", "25", "26", "27", "28",
+				"29", "30", "31", "32", "33", "34", "35", "36", "37", "38",
+				"39", "40" };
 
 		String[] portsNumber;
 
 		if ( mainObj instanceof Infrastructure )
 		{
-			portsNumber = infraLanPortsStrings;
+			portsNumber = infraPortsStrings;
 		}
 		else
 		{
-			portsNumber = LANportsStrings;
+			portsNumber = portsStrings;
 		}
 
 		LANports = new JComboBox(portsNumber);
@@ -740,19 +740,19 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 		LANports.addActionListener(this);
 
 
-		int LANportsIndex = 0;
+		// int LANportsIndex = 0;
+		//
+		// for ( int i = 1; i < portsNumber.length; i++ )
+		// {
+		// if ( Integer.parseInt(LANports.getItemAt(i).toString()) == (mb
+		// .getInstalledNICs(ConnectionUtils.RJ45)) )
+		// {
+		// LANportsIndex = i;
+		// i = portsNumber.length;
+		// }
+		// }
 
-		for ( int i = 1; i < portsNumber.length; i++ )
-		{
-			if ( Integer.parseInt(LANports.getItemAt(i).toString()) == (mb
-					.getInstalledNICs(ConnectionUtils.RJ45)) )
-			{
-				LANportsIndex = i;
-				i = portsNumber.length;
-			}
-		}
-
-		LANports.setSelectedIndex(LANportsIndex);
+		LANports.setSelectedIndex(mb.getInstalledNICs(ConnectionUtils.RJ45));
 
 		labels[16].setLabelFor(LANports);
 
@@ -764,22 +764,16 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 
 		// Coax ports
-		String[] COAXportsStrings = { "0", "1", "2", "3", "4", "5", "6" };
-		String[] infraCOAXPortsStrings = { "0", "1", "2", "3", "4", "5", "6",
-				"7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17",
-				"18", "19", "20", "21", "22", "23", "24", "25", "26", "27",
-				"28", "29", "30", "31", "32", "33", "34", "35", "36", "37",
-				"38", "39", "40" };
 
 		String[] CoaxPortsNumber;
 
 		if ( mainObj instanceof Infrastructure )
 		{
-			CoaxPortsNumber = infraCOAXPortsStrings;
+			CoaxPortsNumber = infraPortsStrings;
 		}
 		else
 		{
-			CoaxPortsNumber = COAXportsStrings;
+			CoaxPortsNumber = portsStrings;
 		}
 
 		CoaxPorts = new JComboBox(CoaxPortsNumber);
@@ -792,19 +786,19 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 		CoaxPorts.addActionListener(this);
 
 
-		int COAXportsIndex = 0;
+		// int COAXportsIndex = 0;
+		//
+		// for ( int i = 1; i < CoaxPortsNumber.length; i++ )
+		// {
+		// if ( Integer.parseInt(CoaxPorts.getItemAt(i).toString()) == (mb
+		// .getInstalledNICs(ConnectionUtils.Coax)) )
+		// {
+		// COAXportsIndex = i;
+		// i = CoaxPortsNumber.length;
+		// }
+		// }
 
-		for ( int i = 1; i < CoaxPortsNumber.length; i++ )
-		{
-			if ( Integer.parseInt(CoaxPorts.getItemAt(i).toString()) == (mb
-					.getInstalledNICs(ConnectionUtils.Coax)) )
-			{
-				COAXportsIndex = i;
-				i = CoaxPortsNumber.length;
-			}
-		}
-
-		CoaxPorts.setSelectedIndex(COAXportsIndex);
+		CoaxPorts.setSelectedIndex(mb.getInstalledNICs(ConnectionUtils.Coax));
 
 		labels[17].setLabelFor(CoaxPorts);
 
@@ -816,22 +810,16 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 
 		// Fiber ports
-		String[] FiberportsStrings = { "0", "1", "2", "3", "4", "5", "6" };
-		String[] infraFiberPortsStrings = { "0", "1", "2", "3", "4", "5", "6",
-				"7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17",
-				"18", "19", "20", "21", "22", "23", "24", "25", "26", "27",
-				"28", "29", "30", "31", "32", "33", "34", "35", "36", "37",
-				"38", "39", "40" };
 
 		String[] FiberPortsNumber;
 
 		if ( mainObj instanceof Infrastructure )
 		{
-			FiberPortsNumber = infraFiberPortsStrings;
+			FiberPortsNumber = infraPortsStrings;
 		}
 		else
 		{
-			FiberPortsNumber = FiberportsStrings;
+			FiberPortsNumber = portsStrings;
 		}
 
 		FiberPorts = new JComboBox(FiberPortsNumber);
@@ -840,23 +828,23 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 		FiberPorts.setPreferredSize(tfSize);
 		FiberPorts.setBackground(Color.WHITE);
 		FiberPorts.setToolTipText(labels[18].getToolTipText());
-		FiberPorts.setActionCommand("COAX Ports");
+		FiberPorts.setActionCommand("FIBER Ports");
 		FiberPorts.addActionListener(this);
 
 
-		int FiberportsIndex = 0;
+		// int FiberportsIndex = 0;
+		//
+		// for ( int i = 1; i < FiberPortsNumber.length; i++ )
+		// {
+		// if ( Integer.parseInt(FiberPorts.getItemAt(i).toString()) == (mb
+		// .getInstalledNICs(ConnectionUtils.Fiber)) )
+		// {
+		// FiberportsIndex = i;
+		// i = FiberPortsNumber.length;
+		// }
+		// }
 
-		for ( int i = 1; i < FiberPortsNumber.length; i++ )
-		{
-			if ( Integer.parseInt(FiberPorts.getItemAt(i).toString()) == (mb
-					.getInstalledNICs(ConnectionUtils.Fiber)) )
-			{
-				FiberportsIndex = i;
-				i = FiberPortsNumber.length;
-			}
-		}
-
-		FiberPorts.setSelectedIndex(FiberportsIndex);
+		FiberPorts.setSelectedIndex(mb.getInstalledNICs(ConnectionUtils.Fiber));
 
 		labels[18].setLabelFor(FiberPorts);
 
@@ -875,7 +863,6 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 		return panel;
 	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -1117,7 +1104,6 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 
 
 
-
 		if ( !LANports.getSelectedItem().toString().equals("") )
 		{
 			NetworkRules rules = PrimeMain.currentCanvas.getRules();
@@ -1135,151 +1121,6 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 			validated = portVal(validated, ConnectionUtils.RJ45,
 					newPortsNumber, portAllow, numberOfPortsAllowed,
 					PrimeMain.texts.getString("rulesLANviolationMsg"));
-			//
-			//
-			//
-			// boolean standardObject = false;
-			//
-			// // A temporary ArrayList of NICs to be removed
-			// ArrayList<InternalNetworksCard> tempNICs = null;
-			//
-			//
-			//
-			// /**
-			// * 1. Check if the object is a StandardObject (shown in the
-			// * "Edit Standard Objects" window).
-			// *
-			// * 2. If the Object is a Standard Object, is exempted from Rules,
-			// an
-			// * instance of Infrastructure or ExternalHardware, the user will
-			// not
-			// * be presented with any options.
-			// *
-			// * 3. If the Rules allow LAN and the LAN is set to Unlimited.
-			// *
-			// * 4. If the Rules do NOT allow LAN and the user has selected a
-			// * specific number of LAN ports over 0.
-			// */
-			//
-			//
-			// /**
-			// * 1. Check if the object is a StandardObject (shown in the
-			// * "Edit Standard Objects" window).
-			// */
-			// if ( PrimeMain.stdObjView != null )
-			// {
-			// if ( mainObj.getObjectSerial() == PrimeMain.stdObjView
-			// .getSplitView().getObjView().getHardStdObjView()
-			// .getGivenObject().getObjectSerial() )
-			// {
-			// standardObject = true;
-			// }
-			// }
-			//
-			//
-			// /**
-			// * 2. If the Object is a Standard Object, is exempted from Rules,
-			// an
-			// * instance of Infrastructure or ExternalHardware, the user will
-			// not
-			// * be presented with any options.
-			// */
-			// if ( standardObject || mainObj.isExemptedNetworkRules()
-			// || mainObj instanceof Infrastructure
-			// || mainObj instanceof ExternalHardware )
-			// {
-			// // Gets the the NICs that are over the LAN limit
-			// tempNICs = mbObj.setMaxIntegratedNICs(ConnectionUtils.RJ45,
-			// newLanPortsNumber);
-			// }
-			// else
-			// {
-			// if ( PrimeMain.currentCanvas != null )
-			// {
-			// NetworkRules rules = PrimeMain.currentCanvas.getRules();
-			//
-			// // If LAN is allowed
-			// if ( !rules.isLANnotAllowed() )
-			// {
-			// /**
-			// * 3. If the Rules allow LAN and the LAN is set to
-			// * Unlimited.
-			// */
-			// // LAN ports are unlimited
-			// if ( rules.getLANportsAllowed() == -1 )
-			// {
-			// // Gets the the NICs that are over the LAN limit
-			// tempNICs = mbObj.setMaxIntegratedNICs(
-			// ConnectionUtils.RJ45, newLanPortsNumber);
-			// }
-			// // If there is a max number of LAN ports allowed
-			// else
-			// {
-			// // If the user has selected a valid option
-			// if ( LANports.getSelectedIndex() != -1 )
-			// {
-			// // If the new number of ports is equal to, or
-			// // less then, the maximum number of allowed
-			// // ports.
-			// if ( newLanPortsNumber <= rules
-			// .getLANportsAllowed() )
-			// {
-			// // Gets the the NICs that are over the LAN
-			// // limit
-			// tempNICs = mbObj.setMaxIntegratedNICs(
-			// ConnectionUtils.RJ45,
-			// newLanPortsNumber);
-			// }
-			// else
-			// {
-			// JOptionPane
-			// .showMessageDialog(
-			// this,
-			// PrimeMain.texts
-			// .getString("rulesLANviolationMsg"),
-			// PrimeMain.texts
-			// .getString("error"),
-			// JOptionPane.ERROR_MESSAGE);
-			//
-			// validated = false;
-			// }
-			// }
-			// }
-			// }
-			// // LAN is NOT Allowed
-			// else
-			// {
-			// // If the user has selected number of ports
-			// if ( LANports.getSelectedIndex() != -1 )
-			// {
-			// /**
-			// * 4. If the Rules do NOT allow LAN and the user has
-			// * selected a specific number of LAN ports over 0.
-			// */
-			// if ( newLanPortsNumber > 0 )
-			// {
-			// JOptionPane
-			// .showMessageDialog(
-			// this,
-			// PrimeMain.texts
-			// .getString("rulesLANnotAllowedMsg"),
-			// PrimeMain.texts
-			// .getString("error"),
-			// JOptionPane.ERROR_MESSAGE);
-			//
-			// validated = false;
-			// }
-			// }
-			// }
-			// }
-			// }
-			//
-			//
-			// // If any NICs are returned to be removed
-			// if ( tempNICs != null )
-			// {
-			// NICsToBeRemoved.addAll(NICsToBeRemoved);
-			// }
 		}
 
 
@@ -1301,108 +1142,6 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 			validated = portVal(validated, ConnectionUtils.Coax,
 					newPortsNumber, portAllow, numberOfPortsAllowed,
 					PrimeMain.texts.getString("rulesCOAXnotAllowedMsg"));
-
-
-			// boolean standardObject = false;
-			//
-			// // Checks to see whether this is a object being shown as a
-			// standard
-			// // object
-			// if ( PrimeMain.stdObjView != null )
-			// {
-			// if ( mainObj.getObjectSerial() == PrimeMain.stdObjView
-			// .getSplitView().getObjView().getHardStdObjView()
-			// .getGivenObject().getObjectSerial() )
-			// {
-			// standardObject = true;
-			// }
-			// }
-			//
-			//
-			// if ( standardObject || mainObj.isExemptedNetworkRules()
-			// || mainObj instanceof Infrastructure
-			// || mainObj instanceof ExternalHardware )
-			// {
-			// ComponentsManagment.COAXportsValidation(mainObj, mbObj,
-			// CoaxPorts, PrimeMain.currentCanvas);
-			// }
-			// else
-			// {
-			// if ( PrimeMain.currentCanvas != null )
-			// {
-			// NetworkRules rules = PrimeMain.currentCanvas.getRules();
-			// // If COAX is allowed
-			// if ( !rules.isCOAXnotAllowed() )
-			// {
-			// // COAX ports are unlimited
-			// if ( rules.getCOAXportsAllowed() == -1 )
-			// {
-			// ComponentsManagment.COAXportsValidation(mainObj,
-			// mbObj, CoaxPorts, PrimeMain.currentCanvas);
-			// }
-			// // If there is a max number of COAX ports allowed
-			// else
-			// {
-			// // If the user has selected a valid option
-			// if ( CoaxPorts.getSelectedIndex() != -1 )
-			// {
-			// // The new number of ports
-			// int newPortsNumber = Integer.parseInt(CoaxPorts
-			// .getSelectedItem().toString());
-			//
-			// // If the new number of ports is equal to, or
-			// // less then, the maximum number of allowed
-			// // ports.
-			// if ( newPortsNumber <= rules
-			// .getCOAXportsAllowed() )
-			// {
-			// ComponentsManagment.COAXportsValidation(
-			// mainObj, mbObj, CoaxPorts,
-			// PrimeMain.currentCanvas);
-			// }
-			// else
-			// {
-			// JOptionPane
-			// .showMessageDialog(
-			// this,
-			// PrimeMain.texts
-			// .getString("rulesCOAXviolationMsg"),
-			// PrimeMain.texts
-			// .getString("error"),
-			// JOptionPane.ERROR_MESSAGE);
-			//
-			// validated = false;
-			// }
-			// }
-			// }
-			// }
-			// else
-			// {
-			// // If the user has selected number of ports
-			// if ( CoaxPorts.getSelectedIndex() != -1 )
-			// {
-			// // The new number of ports
-			// int newPortsNumber = Integer.parseInt(CoaxPorts
-			// .getSelectedItem().toString());
-			//
-			// // If the new number of ports is 0
-			// if ( newPortsNumber != 0 )
-			// {
-			// JOptionPane
-			// .showMessageDialog(
-			// this,
-			// PrimeMain.texts
-			// .getString("rulesCOAXnotAllowedMsg"),
-			// PrimeMain.texts
-			// .getString("error"),
-			// JOptionPane.ERROR_MESSAGE);
-			//
-			// validated = false;
-			// }
-			// }
-			// }
-			// }
-			// }
 		}
 
 
@@ -1424,139 +1163,7 @@ public class MotherboardView extends JPanel implements HardwareViewInterface,
 			validated = portVal(validated, ConnectionUtils.Fiber,
 					newPortsNumber, portAllow, numberOfPortsAllowed,
 					PrimeMain.texts.getString("rulesFIBERviolationMsg"));
-			//
-			//
-			// boolean standardObject = false;
-			//
-			// // Checks to see whether this is a object being shown as a
-			// standard
-			// // object
-			// if ( PrimeMain.stdObjView != null )
-			// {
-			// if ( mainObj.getObjectSerial() == PrimeMain.stdObjView
-			// .getSplitView().getObjView().getHardStdObjView()
-			// .getGivenObject().getObjectSerial() )
-			// {
-			// standardObject = true;
-			// }
-			// }
-			//
-			//
-			// if ( standardObject || mainObj.isExemptedNetworkRules()
-			// || mainObj instanceof Infrastructure
-			// || mainObj instanceof ExternalHardware )
-			// {
-			// ComponentsManagment.FIBERportsValidation(mainObj, mbObj,
-			// FiberPorts, PrimeMain.currentCanvas);
-			// }
-			// else
-			// {
-			// if ( PrimeMain.currentCanvas != null )
-			// {
-			// NetworkRules rules = PrimeMain.currentCanvas.getRules();
-			// // If FIBER is allowed
-			// if ( !rules.isFIBERnotAllowed() )
-			// {
-			// // FIBER ports are unlimited
-			// if ( rules.getFIBERportsAllowed() == -1 )
-			// {
-			// ComponentsManagment.FIBERportsValidation(mainObj,
-			// mbObj, FiberPorts, PrimeMain.currentCanvas);
-			// }
-			// // If there is a max number of FIBER ports allowed
-			// else
-			// {
-			// // If the user has selected a valid option
-			// if ( FiberPorts.getSelectedIndex() != -1 )
-			// {
-			// // The new number of ports
-			// int newPortsNumber = Integer
-			// .parseInt(FiberPorts.getSelectedItem()
-			// .toString());
-			//
-			// // If the new number of ports is equal to, or
-			// // less then, the maximum number of allowed
-			// // ports.
-			// if ( newPortsNumber <= rules
-			// .getFIBERportsAllowed() )
-			// {
-			// ComponentsManagment.FIBERportsValidation(
-			// mainObj, mbObj, FiberPorts,
-			// PrimeMain.currentCanvas);
-			// }
-			// else
-			// {
-			// JOptionPane
-			// .showMessageDialog(
-			// this,
-			// PrimeMain.texts
-			// .getString("rulesFIBERviolationMsg"),
-			// PrimeMain.texts
-			// .getString("error"),
-			// JOptionPane.ERROR_MESSAGE);
-			//
-			// validated = false;
-			// }
-			// }
-			// }
-			// }
-			// else
-			// {
-			// // If the user has selected number of ports
-			// if ( FiberPorts.getSelectedIndex() != -1 )
-			// {
-			// // The new number of ports
-			// int newPortsNumber = Integer.parseInt(FiberPorts
-			// .getSelectedItem().toString());
-			//
-			// // If the new number of ports is 0
-			// if ( newPortsNumber != 0 )
-			// {
-			// JOptionPane
-			// .showMessageDialog(
-			// this,
-			// PrimeMain.texts
-			// .getString("rulesFIBERnotAllowedMsg"),
-			// PrimeMain.texts
-			// .getString("error"),
-			// JOptionPane.ERROR_MESSAGE);
-			//
-			// validated = false;
-			// }
-			// }
-			// }
-			// }
-			// }
 		}
-
-
-		// /**
-		// * This section will attempt to remove the connections that need to be
-		// * removed.
-		// */
-		// if ( validated )
-		// {
-		// for ( Iterator<InternalNetworksCard> i = NICsToBeRemoved.iterator();
-		// i
-		// .hasNext(); )
-		// {
-		// InternalNetworksCard nic = (InternalNetworksCard) i.next();
-		//
-		// try
-		// {
-		// WorkareaCanvasActions.removeConnection(
-		// PrimeMain.currentCanvas, nic.getConnections());
-		//
-		// mbObj.removeInternalNIC(nic);
-		// }
-		// catch ( ConnectionDoesNotExist e )
-		// {
-		// System.out.println(e.getMessage());
-		// System.out
-		// .println("removeWidgetConnection - breakConnection");
-		// }
-		// }
-		// }
 
 
 		return validated;

@@ -715,9 +715,12 @@ public class Motherboard extends Hardware implements Serializable
 			{
 				InternalNetworksCard nic = (InternalNetworksCard) i.previous();
 
-				excessNICs.add(nic);
+				if ( nic.getConnectionType().equals(conType) )
+				{
+					excessNICs.add(nic);
 
-				diff--;
+					diff--;
+				}
 			}
 
 			return excessNICs;
@@ -988,7 +991,6 @@ public class Motherboard extends Hardware implements Serializable
 	{
 		return intNICs.remove(nic);
 	}
-
 
 	/**
 	 * This function iterates through the Internal NICs, find and returns the
