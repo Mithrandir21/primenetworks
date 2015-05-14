@@ -1,0 +1,1 @@
+An administration program that will allow easy, but detailed planning and drawing of an entire network with the ability to place, move and manipulate entities within the network map such as desktops, server and infrastructure objects. Java 6 is required.
